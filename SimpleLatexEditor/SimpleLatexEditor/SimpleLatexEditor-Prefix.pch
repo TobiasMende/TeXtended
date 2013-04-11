@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SimpleLatexEditor' target in the 'SimpleLatexEditor' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

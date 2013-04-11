@@ -12,6 +12,7 @@
 
 @implementation Document
 @synthesize firstTextView;
+@synthesize content;
 - (id)init
 {
     self = [super init];
@@ -39,12 +40,9 @@
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
 }
 
-
-+ (BOOL)autosavesInPlace
-{
++ (BOOL) autosavesInPlace {
     return YES;
 }
-
 
 # pragma mark Saving and Loading
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -112,7 +110,10 @@
     return NO;
 }
 
-
+- (void)compile:(id)sender {
+    self.content = [firstTextView string];
+    NSLog(@"%@", content);
+}
 
 #pragma mark Default Behaviour
 

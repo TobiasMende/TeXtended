@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D24CE426170D74230014C4C2 /* LatexDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D24CE425170D74230014C4C2 /* LatexDocument.m */; };
+		D24CE42A170D8EE00014C4C2 /* PreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24CE428170D8EE00014C4C2 /* PreviewController.m */; };
+		D24CE42B170D8EE00014C4C2 /* PreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24CE429170D8EE00014C4C2 /* PreviewWindow.xib */; };
+		D289EBEB170EEB2000C0F4BF /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = D289EBE9170EEB2000C0F4BF /* Document.xib */; };
+		D289EF4D17101FE400C0F4BF /* NoodleLineViewForML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D289EF4C17101FE400C0F4BF /* NoodleLineViewForML.framework */; };
+		D289EF501710226E00C0F4BF /* DockableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D289EF4F1710226E00C0F4BF /* DockableView.m */; };
+		D289EF52171022FA00C0F4BF /* DockableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D289EF51171022FA00C0F4BF /* DockableView.xib */; };
+		D2E06F05170CBE4100A87D04 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E06F04170CBE4100A87D04 /* Cocoa.framework */; };
+		D2E06F0F170CBE4100A87D04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2E06F0D170CBE4100A87D04 /* InfoPlist.strings */; };
+		D2E06F11170CBE4100A87D04 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E06F10170CBE4100A87D04 /* main.m */; };
+		D2E06F15170CBE4100A87D04 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2E06F13170CBE4100A87D04 /* Credits.rtf */; };
+		D2E06F18170CBE4100A87D04 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E06F17170CBE4100A87D04 /* Document.m */; };
+		D2E06F1E170CBE4100A87D04 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E06F1C170CBE4100A87D04 /* MainMenu.xib */; };
+		D2E06F26170CBE4200A87D04 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E06F25170CBE4200A87D04 /* SenTestingKit.framework */; };
+		D2E06F27170CBE4200A87D04 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E06F04170CBE4100A87D04 /* Cocoa.framework */; };
+		D2E06F2F170CBE4200A87D04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2E06F2D170CBE4200A87D04 /* InfoPlist.strings */; };
+		D2E06F32170CBE4200A87D04 /* SimpleLatexEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E06F31170CBE4200A87D04 /* SimpleLatexEditorTests.m */; };
+		D2E06F3C170CBE4A00A87D04 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E06F3B170CBE4A00A87D04 /* Quartz.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2E06F28170CBE4200A87D04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2E06EF9170CBE4100A87D04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2E06F00170CBE4100A87D04;
+			remoteInfo = SimpleLatexEditor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D24CE424170D74230014C4C2 /* LatexDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexDocument.h; sourceTree = "<group>"; };
+		D24CE425170D74230014C4C2 /* LatexDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexDocument.m; sourceTree = "<group>"; };
+		D24CE427170D8EE00014C4C2 /* PreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewController.h; sourceTree = "<group>"; };
+		D24CE428170D8EE00014C4C2 /* PreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewController.m; sourceTree = "<group>"; };
+		D24CE429170D8EE00014C4C2 /* PreviewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewWindow.xib; sourceTree = "<group>"; };
+		D289EBEA170EEB2000C0F4BF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		D289EF4C17101FE400C0F4BF /* NoodleLineViewForML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NoodleLineViewForML.framework; path = ../../../../../Library/Frameworks/NoodleLineViewForML.framework; sourceTree = "<group>"; };
+		D289EF4E1710226E00C0F4BF /* DockableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockableView.h; sourceTree = "<group>"; };
+		D289EF4F1710226E00C0F4BF /* DockableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DockableView.m; sourceTree = "<group>"; };
+		D289EF51171022FA00C0F4BF /* DockableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DockableView.xib; sourceTree = "<group>"; };
+		D2E06F01170CBE4100A87D04 /* SimpleLatexEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleLatexEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E06F04170CBE4100A87D04 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D2E06F07170CBE4100A87D04 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D2E06F08170CBE4100A87D04 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D2E06F09170CBE4100A87D04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2E06F0C170CBE4100A87D04 /* SimpleLatexEditor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleLatexEditor-Info.plist"; sourceTree = "<group>"; };
+		D2E06F0E170CBE4100A87D04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2E06F10170CBE4100A87D04 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2E06F12170CBE4100A87D04 /* SimpleLatexEditor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleLatexEditor-Prefix.pch"; sourceTree = "<group>"; };
+		D2E06F14170CBE4100A87D04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D2E06F16170CBE4100A87D04 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		D2E06F17170CBE4100A87D04 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		D2E06F1D170CBE4100A87D04 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2E06F24170CBE4200A87D04 /* SimpleLatexEditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleLatexEditorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E06F25170CBE4200A87D04 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D2E06F2C170CBE4200A87D04 /* SimpleLatexEditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleLatexEditorTests-Info.plist"; sourceTree = "<group>"; };
+		D2E06F2E170CBE4200A87D04 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2E06F30170CBE4200A87D04 /* SimpleLatexEditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLatexEditorTests.h; sourceTree = "<group>"; };
+		D2E06F31170CBE4200A87D04 /* SimpleLatexEditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLatexEditorTests.m; sourceTree = "<group>"; };
+		D2E06F3B170CBE4A00A87D04 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2E06EFE170CBE4100A87D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F3C170CBE4A00A87D04 /* Quartz.framework in Frameworks */,
+				D2E06F05170CBE4100A87D04 /* Cocoa.framework in Frameworks */,
+				D289EF4D17101FE400C0F4BF /* NoodleLineViewForML.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2E06F20170CBE4200A87D04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F26170CBE4200A87D04 /* SenTestingKit.framework in Frameworks */,
+				D2E06F27170CBE4200A87D04 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D24CE415170D6F680014C4C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D24CE427170D8EE00014C4C2 /* PreviewController.h */,
+				D24CE428170D8EE00014C4C2 /* PreviewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D24CE417170D6F700014C4C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D289EBE9170EEB2000C0F4BF /* Document.xib */,
+				D24CE429170D8EE00014C4C2 /* PreviewWindow.xib */,
+				D289EF4E1710226E00C0F4BF /* DockableView.h */,
+				D289EF4F1710226E00C0F4BF /* DockableView.m */,
+				D289EF51171022FA00C0F4BF /* DockableView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D24CE41F170D73F20014C4C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D24CE424170D74230014C4C2 /* LatexDocument.h */,
+				D24CE425170D74230014C4C2 /* LatexDocument.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D289EF3C17101AED00C0F4BF /* Own Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D289EF4C17101FE400C0F4BF /* NoodleLineViewForML.framework */,
+			);
+			name = "Own Frameworks";
+			sourceTree = "<group>";
+		};
+		D2E06EF8170CBE4100A87D04 = {
+			isa = PBXGroup;
+			children = (
+				D2E06F0A170CBE4100A87D04 /* SimpleLatexEditor */,
+				D2E06F2A170CBE4200A87D04 /* SimpleLatexEditorTests */,
+				D2E06F03170CBE4100A87D04 /* Frameworks */,
+				D2E06F02170CBE4100A87D04 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2E06F02170CBE4100A87D04 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2E06F01170CBE4100A87D04 /* SimpleLatexEditor.app */,
+				D2E06F24170CBE4200A87D04 /* SimpleLatexEditorTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2E06F03170CBE4100A87D04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D289EF3C17101AED00C0F4BF /* Own Frameworks */,
+				D2E06F3B170CBE4A00A87D04 /* Quartz.framework */,
+				D2E06F04170CBE4100A87D04 /* Cocoa.framework */,
+				D2E06F25170CBE4200A87D04 /* SenTestingKit.framework */,
+				D2E06F06170CBE4100A87D04 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2E06F06170CBE4100A87D04 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2E06F07170CBE4100A87D04 /* AppKit.framework */,
+				D2E06F08170CBE4100A87D04 /* CoreData.framework */,
+				D2E06F09170CBE4100A87D04 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D2E06F0A170CBE4100A87D04 /* SimpleLatexEditor */ = {
+			isa = PBXGroup;
+			children = (
+				D24CE41F170D73F20014C4C2 /* Model */,
+				D24CE417170D6F700014C4C2 /* View */,
+				D24CE415170D6F680014C4C2 /* Controller */,
+				D2E06F16170CBE4100A87D04 /* Document.h */,
+				D2E06F17170CBE4100A87D04 /* Document.m */,
+				D2E06F1C170CBE4100A87D04 /* MainMenu.xib */,
+				D2E06F0B170CBE4100A87D04 /* Supporting Files */,
+			);
+			path = SimpleLatexEditor;
+			sourceTree = "<group>";
+		};
+		D2E06F0B170CBE4100A87D04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2E06F0C170CBE4100A87D04 /* SimpleLatexEditor-Info.plist */,
+				D2E06F0D170CBE4100A87D04 /* InfoPlist.strings */,
+				D2E06F10170CBE4100A87D04 /* main.m */,
+				D2E06F12170CBE4100A87D04 /* SimpleLatexEditor-Prefix.pch */,
+				D2E06F13170CBE4100A87D04 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2E06F2A170CBE4200A87D04 /* SimpleLatexEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2E06F30170CBE4200A87D04 /* SimpleLatexEditorTests.h */,
+				D2E06F31170CBE4200A87D04 /* SimpleLatexEditorTests.m */,
+				D2E06F2B170CBE4200A87D04 /* Supporting Files */,
+			);
+			path = SimpleLatexEditorTests;
+			sourceTree = "<group>";
+		};
+		D2E06F2B170CBE4200A87D04 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2E06F2C170CBE4200A87D04 /* SimpleLatexEditorTests-Info.plist */,
+				D2E06F2D170CBE4200A87D04 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2E06F00170CBE4100A87D04 /* SimpleLatexEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2E06F35170CBE4200A87D04 /* Build configuration list for PBXNativeTarget "SimpleLatexEditor" */;
+			buildPhases = (
+				D2E06EFD170CBE4100A87D04 /* Sources */,
+				D2E06EFE170CBE4100A87D04 /* Frameworks */,
+				D2E06EFF170CBE4100A87D04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleLatexEditor;
+			productName = SimpleLatexEditor;
+			productReference = D2E06F01170CBE4100A87D04 /* SimpleLatexEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2E06F23170CBE4200A87D04 /* SimpleLatexEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2E06F38170CBE4200A87D04 /* Build configuration list for PBXNativeTarget "SimpleLatexEditorTests" */;
+			buildPhases = (
+				D2E06F1F170CBE4200A87D04 /* Sources */,
+				D2E06F20170CBE4200A87D04 /* Frameworks */,
+				D2E06F21170CBE4200A87D04 /* Resources */,
+				D2E06F22170CBE4200A87D04 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2E06F29170CBE4200A87D04 /* PBXTargetDependency */,
+			);
+			name = SimpleLatexEditorTests;
+			productName = SimpleLatexEditorTests;
+			productReference = D2E06F24170CBE4200A87D04 /* SimpleLatexEditorTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2E06EF9170CBE4100A87D04 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Tobias Mende";
+			};
+			buildConfigurationList = D2E06EFC170CBE4100A87D04 /* Build configuration list for PBXProject "SimpleLatexEditor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = D2E06EF8170CBE4100A87D04;
+			productRefGroup = D2E06F02170CBE4100A87D04 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2E06F00170CBE4100A87D04 /* SimpleLatexEditor */,
+				D2E06F23170CBE4200A87D04 /* SimpleLatexEditorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2E06EFF170CBE4100A87D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F0F170CBE4100A87D04 /* InfoPlist.strings in Resources */,
+				D2E06F15170CBE4100A87D04 /* Credits.rtf in Resources */,
+				D2E06F1E170CBE4100A87D04 /* MainMenu.xib in Resources */,
+				D24CE42B170D8EE00014C4C2 /* PreviewWindow.xib in Resources */,
+				D289EBEB170EEB2000C0F4BF /* Document.xib in Resources */,
+				D289EF52171022FA00C0F4BF /* DockableView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2E06F21170CBE4200A87D04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F2F170CBE4200A87D04 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D2E06F22170CBE4200A87D04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2E06EFD170CBE4100A87D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F11170CBE4100A87D04 /* main.m in Sources */,
+				D2E06F18170CBE4100A87D04 /* Document.m in Sources */,
+				D24CE426170D74230014C4C2 /* LatexDocument.m in Sources */,
+				D24CE42A170D8EE00014C4C2 /* PreviewController.m in Sources */,
+				D289EF501710226E00C0F4BF /* DockableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2E06F1F170CBE4200A87D04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E06F32170CBE4200A87D04 /* SimpleLatexEditorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2E06F29170CBE4200A87D04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2E06F00170CBE4100A87D04 /* SimpleLatexEditor */;
+			targetProxy = D2E06F28170CBE4200A87D04 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D289EBE9170EEB2000C0F4BF /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D289EBEA170EEB2000C0F4BF /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		D2E06F0D170CBE4100A87D04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2E06F0E170CBE4100A87D04 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2E06F13170CBE4100A87D04 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2E06F14170CBE4100A87D04 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D2E06F1C170CBE4100A87D04 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2E06F1D170CBE4100A87D04 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D2E06F2D170CBE4200A87D04 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2E06F2E170CBE4200A87D04 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2E06F33170CBE4200A87D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D2E06F34170CBE4200A87D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D2E06F36170CBE4200A87D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleLatexEditor/SimpleLatexEditor-Prefix.pch";
+				INFOPLIST_FILE = "SimpleLatexEditor/SimpleLatexEditor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2E06F37170CBE4200A87D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleLatexEditor/SimpleLatexEditor-Prefix.pch";
+				INFOPLIST_FILE = "SimpleLatexEditor/SimpleLatexEditor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D2E06F39170CBE4200A87D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleLatexEditor.app/Contents/MacOS/SimpleLatexEditor";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleLatexEditor/SimpleLatexEditor-Prefix.pch";
+				INFOPLIST_FILE = "SimpleLatexEditorTests/SimpleLatexEditorTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D2E06F3A170CBE4200A87D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleLatexEditor.app/Contents/MacOS/SimpleLatexEditor";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleLatexEditor/SimpleLatexEditor-Prefix.pch";
+				INFOPLIST_FILE = "SimpleLatexEditorTests/SimpleLatexEditorTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2E06EFC170CBE4100A87D04 /* Build configuration list for PBXProject "SimpleLatexEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2E06F33170CBE4200A87D04 /* Debug */,
+				D2E06F34170CBE4200A87D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2E06F35170CBE4200A87D04 /* Build configuration list for PBXNativeTarget "SimpleLatexEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2E06F36170CBE4200A87D04 /* Debug */,
+				D2E06F37170CBE4200A87D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2E06F38170CBE4200A87D04 /* Build configuration list for PBXNativeTarget "SimpleLatexEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2E06F39170CBE4200A87D04 /* Debug */,
+				D2E06F3A170CBE4200A87D04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2E06EF9170CBE4100A87D04 /* Project object */;
+}

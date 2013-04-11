@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 @class PreferencesController;
-@interface Document : NSDocument {
+@interface Document : NSDocument{
     NSString *content;
 }
 
+- (IBAction)compile:(id)sender;
  @property (assign) IBOutlet NSTextView *firstTextView;
+@property (retain) NSString* content;
 @end

@@ -70,7 +70,7 @@
 	{
 		return [NSFont labelFontOfSize:[NSFont systemFontSizeForControlSize:NSMiniControlSize]];
 	}
-    return self->_font;
+    return [self valueForKey:@"font"];
 }
 
 
@@ -80,7 +80,7 @@
 	{
 		return [NSColor colorWithCalibratedWhite:0.42 alpha:1.0];
 	}
-	return self->_textColor;
+	return [self valueForKey:@"textColor"];
 }
 
 - (NSColor *)alternateTextColor
@@ -89,7 +89,7 @@
 	{
 		return [NSColor whiteColor];
 	}
-	return self->_alternateTextColor;
+	return [self valueForKey:@"alternateTextColor"];
 }
 
 

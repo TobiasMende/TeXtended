@@ -25,6 +25,7 @@
 		D2C646601709FDA100A4BCF3 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C6465F1709FDA100A4BCF3 /* Preferences.xib */; };
 		D2C64663170A01E300A4BCF3 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C64662170A01E300A4BCF3 /* PreferencesController.m */; };
 		D2C64666170A07C100A4BCF3 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C64665170A07C100A4BCF3 /* ApplicationController.m */; };
+		D2E06F3E170CBE9800A87D04 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E06F3D170CBE9800A87D04 /* Quartz.framework */; };
 		D2FBC2BB170A25920025FC56 /* NSUserDefaults+DefaultsColorSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FBC2BA170A25920025FC56 /* NSUserDefaults+DefaultsColorSupport.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		D2C64662170A01E300A4BCF3 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		D2C64664170A07C100A4BCF3 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2C64665170A07C100A4BCF3 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		D2E06F3D170CBE9800A87D04 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2FBC2B9170A25920025FC56 /* NSUserDefaults+DefaultsColorSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+DefaultsColorSupport.h"; sourceTree = "<group>"; };
 		D2FBC2BA170A25920025FC56 /* NSUserDefaults+DefaultsColorSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+DefaultsColorSupport.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E06F3E170CBE9800A87D04 /* Quartz.framework in Frameworks */,
 				D26B1E1F170AAFCF00FE96B3 /* WebKit.framework in Frameworks */,
 				D22034461704C68300F6B936 /* Cocoa.framework in Frameworks */,
 			);
@@ -98,6 +101,7 @@
 		D22034391704C68300F6B936 = {
 			isa = PBXGroup;
 			children = (
+				D2E06F3D170CBE9800A87D04 /* Quartz.framework */,
 				D220344B1704C68300F6B936 /* TestProject */,
 				D220346B1704C68300F6B936 /* TestProjectTests */,
 				D22034441704C68300F6B936 /* Frameworks */,
