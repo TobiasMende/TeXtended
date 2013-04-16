@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesController : NSWindowController
+@interface PreferencesController : NSWindowController <NSWindowDelegate>
 
 @end

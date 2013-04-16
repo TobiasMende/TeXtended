@@ -7,6 +7,7 @@
 //
 
 #import "SyntaxHighlighter.h"
+#import "HighlightingTextView.h"
 NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
 
@@ -19,7 +20,7 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 + (void)initialize {
     NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
         // In this section,
-    COMMAND_PATTERN = [NSString stringWithFormat:@"%@[a-zA-Z0-9@_]+", backslash];
+    COMMAND_PATTERN = [NSString stringWithFormat:@"%@[a-zA-Z0-9@_]+|%@%@", backslash,backslash,backslash];
     
     INLINE_MATH_PATTERN = [NSString stringWithFormat:@"(\\$(?:[^\\$]+)\\$)|(%@\\[(?:[^\\$]+)%@\\])",backslash,backslash];
     
@@ -44,10 +45,9 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 }
 
 
-- (id)initWithTextView:(NSTextView *)tv {
-    self = [super init];
+- (id)initWithTextView:(HighlightingTextView *)tv {
+    self = [super initWithTextView:tv];
     if(self) {
-        view = tv;
         [self registerDefaults];
         [[NSNotificationCenter defaultCenter] addObserverForName:NSTextViewDidChangeSelectionNotification object:view queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
             [self highlightVisibleArea];

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Constants.h"
-@class PreferencesController;
+@class PreferencesController, HighlightingTextView;
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
 }

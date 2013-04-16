@@ -7,7 +7,9 @@
 //
 
 #import "BracketHighlighter.h"
-#import "NSString+SubstringRange.h"
+#import "NSString+LatexExtension.h"
+#import "HighlightingTextView.h"
+#import "Constants.h"
 NSDictionary *BRACKETS_TO_HIGHLIGHT;
 NSArray *VALID_PRE_CHARS;
 typedef enum {
@@ -19,6 +21,19 @@ typedef enum {
 @implementation BracketHighlighter
 
 
+-(id)initWithTextView:(HighlightingTextView *)tv {
+    self = [super initWithTextView:tv];
+    if(self) {
+        NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+        self.shouldHighlightMatchingBrackets = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_MATCHING_BRACKETS] boolValue];
+        [self bind:@"shouldHighlightMatchingBrackets" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_MATCHING_BRACKETS] options:NULL];
+        
+        self.shouldAutoInsertClosingBrackets = [[[defaults values] valueForKey:TMT_SHOULD_AUTO_INSERT_CLOSING_BRACKETS] boolValue];
+        [self bind:@"shouldAutoInsertClosingBrackets" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_AUTO_INSERT_CLOSING_BRACKETS] options:NULL];
+    }
+    return self;
+}
+
 
 + (void)initialize {
     BRACKETS_TO_HIGHLIGHT = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -29,15 +44,6 @@ typedef enum {
     VALID_PRE_CHARS = [NSArray arrayWithObject:@"\\"];
 }
 
-- (id)initWithTextView:(NSTextView *)tv {
-    self = [super init];
-    if(self) {
-        view = tv;
-    }
-    
-    return self;
-}
-
 - (void)highlightOnMoveLeft {
     NSUInteger insertionPoint = [view selectedRange].location;
     if (view.string.length == 0) {
@@ -45,7 +51,7 @@ typedef enum {
     }
     NSString* last = [NSString stringWithFormat:@"%C",[[[view textStorage] string] characterAtIndex:insertionPoint]];
     // Needed for correct bracket detection.
-    [self highlightOnInsertWithInsertion:last andPosition:insertionPoint+1];
+    [self highlightBracketWithInsertion:last andPosition:insertionPoint+1];
 }
 
 - (void)highlightOnMoveRight {
@@ -57,23 +63,60 @@ typedef enum {
     [self highlightOnInsertWithInsertion:last];
 }
 
-- (void)highlightOnInsertWithInsertion:(NSString *)str {
-    NSUInteger insertionPoint = [view selectedRange].location;
-    [self highlightOnInsertWithInsertion:str andPosition:insertionPoint];
+- (NSArray*)highlightOnInsertWithInsertion:(NSString *)str {
+        NSUInteger insertionPoint = [view selectedRange].location;
+    if (str.length>1) {
+        str = [str substringFromIndex:str.length-1];
+    }
+        return [self highlightBracketWithInsertion:str andPosition:insertionPoint];
 }
 
 
-- (void)highlightOnInsertWithInsertion:(NSString *)str andPosition:(NSUInteger) pos{
+- (void)handleBracketsOnInsertWithInsertion:(NSString *)str{
+    // Call the highlighting algorithm to find matching brackets
+    NSArray *ranges =[self highlightOnInsertWithInsertion:str];
+    
+    //If no matching brackets where found: insert pendant
+    if(!ranges) {
+        [self autoInsertMatchingBracket:str];
+    }
+
+}
+
+
+- (void)autoInsertMatchingBracket:(NSString*) bracket {
+    if ([self bracketTypeForString:bracket] != TMTOpeningBracketType || !self.shouldAutoInsertClosingBrackets   ) {
+        //should not auto insert or the string is not an opening bracket.
+        return;
+    }
+    NSUInteger insertionPoint = [view selectedRange].location;
+    //Get the prechared bracket:
+    NSString* extOpeningBracket = [self extendedBracketForBracket:bracket atPosition:insertionPoint];
+    NSString* closingBracket = [self pendantForBracket:bracket ofType:TMTOpeningBracketType];
+    NSString* extClosingBracket = [NSString stringWithString:closingBracket];
+    if(extOpeningBracket.length > bracket.length) {
+        //if the opening bracket has been extended, also extend the closing one.
+        NSString *preChar = [self charBeforeCurrentBracketWithPosition:insertionPoint];
+        extClosingBracket = [preChar stringByAppendingString:closingBracket];
+    }
+    
+    //insert the closing bracket and reset cursor to current insertion point
+    [view insertText:extClosingBracket];
+    [view setSelectedRange:NSMakeRange(insertionPoint, 0)];
+}
+
+- (NSArray*)highlightBracketWithInsertion:(NSString *)str andPosition:(NSUInteger) pos{
     NSLayoutManager *lm = [view layoutManager];
     NSRect visibleArea = [view visibleRect];
     NSRange visibleGlyphRange = [lm glyphRangeForBoundingRect:visibleArea inTextContainer:view.textContainer];
     NSRange range = [lm characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
     NSArray *rangesToHighlight = [self findMatchingBracketFor:str withStart:pos inRange:range];
-    if (rangesToHighlight) {
+    if (rangesToHighlight && self.shouldHighlightMatchingBrackets) {
         for(NSValue *rv in rangesToHighlight) {
             [view showFindIndicatorForRange:[rv rangeValue]];
         }
     }
+    return rangesToHighlight;
     
 }
 
@@ -102,6 +145,14 @@ typedef enum {
 }
 
 
+- (NSString*) extendedBracketForBracket:(NSString*) bracket atPosition:(NSUInteger) pos{
+    NSString *preChar = [self charBeforeCurrentBracketWithPosition:pos];
+    if([VALID_PRE_CHARS containsObject:preChar] && (![view.string numberOfBackslashesBeforePositionIsEven:pos-1])) {
+        // Extend the bracket if length is longer than one.
+        return [NSString stringWithFormat:@"%@%@",preChar,bracket];
+    }
+    return bracket;
+}
 
 
 - (NSArray *) findMatchingBracketFor:(NSString *) str
@@ -114,7 +165,7 @@ typedef enum {
     NSString *first, *second;
     BOOL searchWithPrechar = NO;
     // Are we looking for a special bracket longer than a single sign?
-    if([VALID_PRE_CHARS containsObject:preChar]) {
+    if([VALID_PRE_CHARS containsObject:preChar] && (![view.string numberOfBackslashesBeforePositionIsEven:pos-1])) {
         // Extend the bracket if length is longer than one.
         first = [NSString stringWithFormat:@"%@%@",preChar,str];
         second = [NSString stringWithFormat:@"%@%@",preChar,pendant];
@@ -125,7 +176,6 @@ typedef enum {
     }
     NSRange firstRange = NSMakeRange(pos-first.length, first.length);
     NSUInteger firstCounter=0;
-    
     NSUInteger currentPosition = pos;
     if(type == TMTClosingBracketType) {
         // If we search backward the starting point must be before the input bracket to prevent wrong unbalancing.
@@ -145,8 +195,10 @@ typedef enum {
         if (!searchWithPrechar) {
             // In this case, prechared brackets must be ignored. Therefore: Jump over.
             NSString *charBefore = [self charBeforeCurrentBracketWithPosition:currentPosition+1];
-            if([VALID_PRE_CHARS containsObject:charBefore]) {
+            if([VALID_PRE_CHARS containsObject:charBefore] && ![view.string numberOfBackslashesBeforePositionIsEven:currentPosition]) {
                 //The Jumping:
+                
+                
                 if(type == TMTClosingBracketType) {
                     if(currentPosition < charBefore.length+1) {
                         break;
@@ -154,7 +206,7 @@ typedef enum {
                         currentPosition -= charBefore.length+1;
                     }
                 } else {
-                    currentPosition += charBefore.length+1;
+                    currentPosition += charBefore.length;
                 }
                 continue;
             }

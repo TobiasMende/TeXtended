@@ -7,30 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EditorService.h"
 /**
  This class contains some algorithms for finding matching brackets and highlighting them.
  \warning Be aware, that all positions in this interface are ment to be behind the bracket.
  \author Tobias Mende
  */
-@interface BracketHighlighter : NSObject {
-    /** The text view to deal with */
-    NSTextView* view;
+@interface BracketHighlighter : EditorService {
 }
-
-/**
- Initialize instances with this method
- 
- \param tv  the text view do deal with
- */
-- (id) initWithTextView:(NSTextView *) tv;
+@property BOOL shouldHighlightMatchingBrackets;
+@property BOOL shouldAutoInsertClosingBrackets;
 
 /**
  Method for analyze the given input and highlight brackets according to matching rules.
  \param str the current input
- \param pos the position directly after the input: Input ) -> Pos )<here
+ 
  */
-- (void) highlightOnInsertWithInsertion:(NSString *) str
-                            andPosition:(NSUInteger)pos;
+- (void) handleBracketsOnInsertWithInsertion:(NSString *) str;
 
 
 /**
@@ -38,7 +31,7 @@
  
  \param str the input
  */
-- (void) highlightOnInsertWithInsertion:(NSString *) str;
+- (NSArray*) highlightOnInsertWithInsertion:(NSString *) str;
 
 /**
  Method for analyzing the surounding of the current caret position and for highlighting matching brackets, when moving caret to the left.

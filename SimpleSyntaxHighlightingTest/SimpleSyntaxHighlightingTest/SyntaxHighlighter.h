@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "EditorService.h"
 /**
  The SyntaxHighlighter provides a simple regex based highlighter for latex syntax.
  
@@ -15,9 +16,7 @@
  
  \author Tobias Mende
  */
-@interface SyntaxHighlighter : NSObject {
-    /** The textview which should be colored */
-    NSTextView *view;
+@interface SyntaxHighlighter : EditorService {
 }
 /** The color in which to highlight math (text between $ and $ or \[ and \] */
 @property (strong,nonatomic) NSColor *inlineMathColor;
