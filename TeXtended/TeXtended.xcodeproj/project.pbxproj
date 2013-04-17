@@ -39,6 +39,7 @@
 		D2CC554C171EB17000D81CF1 /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */; };
 		D2CC554D171EB17200D81CF1 /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */; };
 		D2CC5553171EB42800D81CF1 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5552171EB42800D81CF1 /* ApplicationController.m */; };
+		F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631282B171EB9E300D23B7F /* OutlineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,8 +104,10 @@
 		D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-ExtraLight.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
 		D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
-		D2CC5551171EB42800D81CF1 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = ../ApplicationController.h; sourceTree = "<group>"; };
-		D2CC5552171EB42800D81CF1 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = ../ApplicationController.m; sourceTree = "<group>"; };
+		D2CC5551171EB42800D81CF1 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
+		D2CC5552171EB42800D81CF1 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		F631282A171EB9E300D23B7F /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		F631282B171EB9E300D23B7F /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,9 +170,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5551171EB42800D81CF1 /* ApplicationController.h */,
-				D2CC5552171EB42800D81CF1 /* ApplicationController.m */,
-				76FA61B1171EB8910054C108 /* ExtendedPdf */,
+				F6312829171EB98700D23B7F /* FileViewer */,
 				D2CC5537171EB0C300D81CF1 /* Preferences */,
 				D2CC5536171EB0AD00D81CF1 /* Categories */,
 				D2CC5535171EB08E00D81CF1 /* Editor */,
@@ -266,6 +267,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		F6312829171EB98700D23B7F /* FileViewer */ = {
+			isa = PBXGroup;
+			children = (
+				F631282A171EB9E300D23B7F /* OutlineViewController.h */,
+				F631282B171EB9E300D23B7F /* OutlineViewController.m */,
+			);
+			name = FileViewer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,7 +362,7 @@
 				D2CC5533171EB08400D81CF1 /* NSString+LatexExtension.m in Sources */,
 				D2CC5534171EB08400D81CF1 /* Constants.m in Sources */,
 				D2CC5553171EB42800D81CF1 /* ApplicationController.m in Sources */,
-				76FA61B4171EB8BE0054C108 /* ExtendedPdf.m in Sources */,
+				F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
