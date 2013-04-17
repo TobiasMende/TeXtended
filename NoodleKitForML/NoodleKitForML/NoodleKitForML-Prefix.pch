@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'NoodleKitForML' target in the 'NoodleKitForML' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

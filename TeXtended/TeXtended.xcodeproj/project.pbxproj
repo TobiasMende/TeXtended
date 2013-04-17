@@ -6,8 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D21F376E171EC03700F961D6 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D21F376F171EC03700F961D6 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				D21F3772171EC04000F961D6 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		76FA61B4171EB8BE0054C108 /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */; };
+		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
@@ -15,30 +29,26 @@
 		D2CC5507171EAFAB00D81CF1 /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */; };
 		D2CC550A171EAFAB00D81CF1 /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
-		D2CC552A171EB08400D81CF1 /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5515171EB08400D81CF1 /* CodeNavigationAssistant.m */; };
-		D2CC552B171EB08400D81CF1 /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5516171EB08400D81CF1 /* EditorPlaceholderCell.m */; };
-		D2CC552C171EB08400D81CF1 /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5518171EB08400D81CF1 /* EditorPlaceholder.m */; };
-		D2CC552D171EB08400D81CF1 /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC551A171EB08400D81CF1 /* HighlightingTextView.m */; };
-		D2CC552E171EB08400D81CF1 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC551B171EB08400D81CF1 /* PreferencesWindow.xib */; };
-		D2CC552F171EB08400D81CF1 /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC551F171EB08400D81CF1 /* BracketHighlighter.m */; };
-		D2CC5530171EB08400D81CF1 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5521171EB08400D81CF1 /* PreferencesController.m */; };
-		D2CC5531171EB08400D81CF1 /* SyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5523171EB08400D81CF1 /* SyntaxHighlighter.m */; };
-		D2CC5532171EB08400D81CF1 /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5524171EB08400D81CF1 /* EditorService.m */; };
-		D2CC5533171EB08400D81CF1 /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5527171EB08400D81CF1 /* NSString+LatexExtension.m */; };
-		D2CC5534171EB08400D81CF1 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5529171EB08400D81CF1 /* Constants.m */; };
-		D2CC5540171EB10400D81CF1 /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553A171EB10400D81CF1 /* SourceCodePro-Semibold.ttf */; };
-		D2CC5541171EB10400D81CF1 /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553B171EB10400D81CF1 /* SourceCodePro-Regular.ttf */; };
-		D2CC5542171EB10400D81CF1 /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553C171EB10400D81CF1 /* SourceCodePro-Light.ttf */; };
-		D2CC5543171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */; };
-		D2CC5544171EB10400D81CF1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */; };
-		D2CC5545171EB10400D81CF1 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */; };
-		D2CC5548171EB16800D81CF1 /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553A171EB10400D81CF1 /* SourceCodePro-Semibold.ttf */; };
-		D2CC5549171EB16A00D81CF1 /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553B171EB10400D81CF1 /* SourceCodePro-Regular.ttf */; };
-		D2CC554A171EB16C00D81CF1 /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553C171EB10400D81CF1 /* SourceCodePro-Light.ttf */; };
-		D2CC554B171EB16E00D81CF1 /* SourceCodePro-ExtraLight.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */; };
-		D2CC554C171EB17000D81CF1 /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */; };
-		D2CC554D171EB17200D81CF1 /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */; };
-		D2CC5553171EB42800D81CF1 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5552171EB42800D81CF1 /* ApplicationController.m */; };
+		D2E5E179171EC4CA00536D1C /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399B171EC34F008BB864 /* HighlightingTextView.m */; };
+		D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */ = {isa = PBXBuildFile; fileRef = D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */; };
+		D2FD3988171EC316008BB864 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */; };
+		D2FD3989171EC316008BB864 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */; };
+		D2FD398A171EC316008BB864 /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */; };
+		D2FD398B171EC316008BB864 /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */; };
+		D2FD398C171EC316008BB864 /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */; };
+		D2FD398D171EC316008BB864 /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */; };
+		D2FD3996171EC33D008BB864 /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD398F171EC33D008BB864 /* BracketHighlighter.m */; };
+		D2FD3997171EC33D008BB864 /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */; };
+		D2FD3998171EC33D008BB864 /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3993171EC33D008BB864 /* EditorService.m */; };
+		D2FD3999171EC33D008BB864 /* SyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */; };
+		D2FD39A0171EC365008BB864 /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399D171EC365008BB864 /* EditorPlaceholder.m */; };
+		D2FD39A1171EC365008BB864 /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */; };
+		D2FD39A4171EC377008BB864 /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */; };
+		D2FD39AA171EC390008BB864 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A6171EC390008BB864 /* Constants.m */; };
+		D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A8171EC390008BB864 /* PreferencesController.m */; };
+		D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */; };
+		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
+		F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631282B171EB9E300D23B7F /* OutlineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,20 +58,13 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				D2CC5548171EB16800D81CF1 /* SourceCodePro-Semibold.ttf in CopyFiles */,
-				D2CC5549171EB16A00D81CF1 /* SourceCodePro-Regular.ttf in CopyFiles */,
-				D2CC554C171EB17000D81CF1 /* SourceCodePro-Bold.ttf in CopyFiles */,
-				D2CC554B171EB16E00D81CF1 /* SourceCodePro-ExtraLight.ttf in CopyFiles */,
-				D2CC554D171EB17200D81CF1 /* SourceCodePro-Black.ttf in CopyFiles */,
-				D2CC554A171EB16C00D81CF1 /* SourceCodePro-Light.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		76FA61B2171EB8BE0054C108 /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
-		76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
+		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -76,35 +79,38 @@
 		D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
 		D2CC5509171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SimpleDocument.xib; sourceTree = "<group>"; };
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D2CC5515171EB08400D81CF1 /* CodeNavigationAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeNavigationAssistant.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/CodeNavigationAssistant.m; sourceTree = "<group>"; };
-		D2CC5516171EB08400D81CF1 /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorPlaceholderCell.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorPlaceholderCell.m; sourceTree = "<group>"; };
-		D2CC5517171EB08400D81CF1 /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditorPlaceholder.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorPlaceholder.h; sourceTree = "<group>"; };
-		D2CC5518171EB08400D81CF1 /* EditorPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorPlaceholder.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorPlaceholder.m; sourceTree = "<group>"; };
-		D2CC5519171EB08400D81CF1 /* EditorPlaceholderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditorPlaceholderCell.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorPlaceholderCell.h; sourceTree = "<group>"; };
-		D2CC551A171EB08400D81CF1 /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighlightingTextView.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/HighlightingTextView.m; sourceTree = "<group>"; };
-		D2CC551B171EB08400D81CF1 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/PreferencesWindow.xib; sourceTree = "<group>"; };
-		D2CC551C171EB08400D81CF1 /* CodeNavigationAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeNavigationAssistant.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/CodeNavigationAssistant.h; sourceTree = "<group>"; };
-		D2CC551D171EB08400D81CF1 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/Constants.h; sourceTree = "<group>"; };
-		D2CC551E171EB08400D81CF1 /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighlightingTextView.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/HighlightingTextView.h; sourceTree = "<group>"; };
-		D2CC551F171EB08400D81CF1 /* BracketHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BracketHighlighter.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/BracketHighlighter.m; sourceTree = "<group>"; };
-		D2CC5520171EB08400D81CF1 /* BracketHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BracketHighlighter.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/BracketHighlighter.h; sourceTree = "<group>"; };
-		D2CC5521171EB08400D81CF1 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/PreferencesController.m; sourceTree = "<group>"; };
-		D2CC5522171EB08400D81CF1 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/PreferencesController.h; sourceTree = "<group>"; };
-		D2CC5523171EB08400D81CF1 /* SyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyntaxHighlighter.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/SyntaxHighlighter.m; sourceTree = "<group>"; };
-		D2CC5524171EB08400D81CF1 /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorService.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorService.m; sourceTree = "<group>"; };
-		D2CC5525171EB08400D81CF1 /* EditorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditorService.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/EditorService.h; sourceTree = "<group>"; };
-		D2CC5526171EB08400D81CF1 /* NSString+LatexExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+LatexExtension.h"; path = "../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/NSString+LatexExtension.h"; sourceTree = "<group>"; };
-		D2CC5527171EB08400D81CF1 /* NSString+LatexExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+LatexExtension.m"; path = "../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/NSString+LatexExtension.m"; sourceTree = "<group>"; };
-		D2CC5528171EB08400D81CF1 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxHighlighter.h; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/SyntaxHighlighter.h; sourceTree = "<group>"; };
-		D2CC5529171EB08400D81CF1 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = ../../SimpleSyntaxHighlightingTest/SimpleSyntaxHighlightingTest/Constants.m; sourceTree = "<group>"; };
-		D2CC553A171EB10400D81CF1 /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Semibold.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
-		D2CC553B171EB10400D81CF1 /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Regular.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
-		D2CC553C171EB10400D81CF1 /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Light.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
-		D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-ExtraLight.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
-		D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
-		D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
-		D2CC5551171EB42800D81CF1 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = ../ApplicationController.h; sourceTree = "<group>"; };
-		D2CC5552171EB42800D81CF1 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = ../ApplicationController.m; sourceTree = "<group>"; };
+		D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReloadDocset.scpt; sourceTree = "<group>"; };
+		D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
+		D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
+		D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
+		D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
+		D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		D2FD398E171EC33D008BB864 /* BracketHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BracketHighlighter.h; sourceTree = "<group>"; };
+		D2FD398F171EC33D008BB864 /* BracketHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BracketHighlighter.m; sourceTree = "<group>"; };
+		D2FD3990171EC33D008BB864 /* CodeNavigationAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeNavigationAssistant.h; sourceTree = "<group>"; };
+		D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeNavigationAssistant.m; sourceTree = "<group>"; };
+		D2FD3992171EC33D008BB864 /* EditorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorService.h; sourceTree = "<group>"; };
+		D2FD3993171EC33D008BB864 /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
+		D2FD3994171EC33D008BB864 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighter.m; sourceTree = "<group>"; };
+		D2FD399A171EC34F008BB864 /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
+		D2FD399B171EC34F008BB864 /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
+		D2FD399C171EC365008BB864 /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
+		D2FD399D171EC365008BB864 /* EditorPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholder.m; sourceTree = "<group>"; };
+		D2FD399E171EC365008BB864 /* EditorPlaceholderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholderCell.h; sourceTree = "<group>"; };
+		D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholderCell.m; sourceTree = "<group>"; };
+		D2FD39A2171EC377008BB864 /* NSString+LatexExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LatexExtension.h"; sourceTree = "<group>"; };
+		D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LatexExtension.m"; sourceTree = "<group>"; };
+		D2FD39A5171EC390008BB864 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D2FD39A6171EC390008BB864 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D2FD39A7171EC390008BB864 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		D2FD39A8171EC390008BB864 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
+		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		F631282A171EB9E300D23B7F /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		F631282B171EB9E300D23B7F /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,15 +125,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		76FA61B1171EB8910054C108 /* ExtendedPdf */ = {
-			isa = PBXGroup;
-			children = (
-				76FA61B2171EB8BE0054C108 /* ExtendedPdf.h */,
-				76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */,
-			);
-			name = ExtendedPdf;
-			sourceTree = "<group>";
-		};
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
@@ -167,9 +164,9 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5551171EB42800D81CF1 /* ApplicationController.h */,
-				D2CC5552171EB42800D81CF1 /* ApplicationController.m */,
-				76FA61B1171EB8910054C108 /* ExtendedPdf */,
+				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
+				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				F6312829171EB98700D23B7F /* FileViewer */,
 				D2CC5537171EB0C300D81CF1 /* Preferences */,
 				D2CC5536171EB0AD00D81CF1 /* Categories */,
 				D2CC5535171EB08E00D81CF1 /* Editor */,
@@ -185,12 +182,14 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2E5E17A171EC57C00536D1C /* Development */,
 				D2CC5546171EB10A00D81CF1 /* Fonts */,
 				D2CC54FB171EAFAB00D81CF1 /* TeXtended-Info.plist */,
 				D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */,
 				D2CC54FF171EAFAB00D81CF1 /* main.m */,
 				D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */,
 				D2CC5502171EAFAB00D81CF1 /* Credits.rtf */,
+				D21F376C171EBFE500F961D6 /* AppledocSettings.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -200,8 +199,8 @@
 			children = (
 				D2CC5539171EB0E700D81CF1 /* Placeholder */,
 				D2CC5538171EB0D500D81CF1 /* EditorServices */,
-				D2CC551E171EB08400D81CF1 /* HighlightingTextView.h */,
-				D2CC551A171EB08400D81CF1 /* HighlightingTextView.m */,
+				D2FD399A171EC34F008BB864 /* HighlightingTextView.h */,
+				D2FD399B171EC34F008BB864 /* HighlightingTextView.m */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -209,8 +208,8 @@
 		D2CC5536171EB0AD00D81CF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5526171EB08400D81CF1 /* NSString+LatexExtension.h */,
-				D2CC5527171EB08400D81CF1 /* NSString+LatexExtension.m */,
+				D2FD39A2171EC377008BB864 /* NSString+LatexExtension.h */,
+				D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -218,11 +217,11 @@
 		D2CC5537171EB0C300D81CF1 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC551B171EB08400D81CF1 /* PreferencesWindow.xib */,
-				D2CC551D171EB08400D81CF1 /* Constants.h */,
-				D2CC5521171EB08400D81CF1 /* PreferencesController.m */,
-				D2CC5522171EB08400D81CF1 /* PreferencesController.h */,
-				D2CC5529171EB08400D81CF1 /* Constants.m */,
+				D2FD39A5171EC390008BB864 /* Constants.h */,
+				D2FD39A6171EC390008BB864 /* Constants.m */,
+				D2FD39A7171EC390008BB864 /* PreferencesController.h */,
+				D2FD39A8171EC390008BB864 /* PreferencesController.m */,
+				D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -230,14 +229,14 @@
 		D2CC5538171EB0D500D81CF1 /* EditorServices */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5528171EB08400D81CF1 /* SyntaxHighlighter.h */,
-				D2CC551C171EB08400D81CF1 /* CodeNavigationAssistant.h */,
-				D2CC551F171EB08400D81CF1 /* BracketHighlighter.m */,
-				D2CC5520171EB08400D81CF1 /* BracketHighlighter.h */,
-				D2CC5523171EB08400D81CF1 /* SyntaxHighlighter.m */,
-				D2CC5524171EB08400D81CF1 /* EditorService.m */,
-				D2CC5525171EB08400D81CF1 /* EditorService.h */,
-				D2CC5515171EB08400D81CF1 /* CodeNavigationAssistant.m */,
+				D2FD398E171EC33D008BB864 /* BracketHighlighter.h */,
+				D2FD398F171EC33D008BB864 /* BracketHighlighter.m */,
+				D2FD3990171EC33D008BB864 /* CodeNavigationAssistant.h */,
+				D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */,
+				D2FD3992171EC33D008BB864 /* EditorService.h */,
+				D2FD3993171EC33D008BB864 /* EditorService.m */,
+				D2FD3994171EC33D008BB864 /* SyntaxHighlighter.h */,
+				D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */,
 			);
 			name = EditorServices;
 			sourceTree = "<group>";
@@ -245,10 +244,10 @@
 		D2CC5539171EB0E700D81CF1 /* Placeholder */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5516171EB08400D81CF1 /* EditorPlaceholderCell.m */,
-				D2CC5517171EB08400D81CF1 /* EditorPlaceholder.h */,
-				D2CC5518171EB08400D81CF1 /* EditorPlaceholder.m */,
-				D2CC5519171EB08400D81CF1 /* EditorPlaceholderCell.h */,
+				D2FD399C171EC365008BB864 /* EditorPlaceholder.h */,
+				D2FD399D171EC365008BB864 /* EditorPlaceholder.m */,
+				D2FD399E171EC365008BB864 /* EditorPlaceholderCell.h */,
+				D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */,
 			);
 			name = Placeholder;
 			sourceTree = "<group>";
@@ -256,14 +255,31 @@
 		D2CC5546171EB10A00D81CF1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC553A171EB10400D81CF1 /* SourceCodePro-Semibold.ttf */,
-				D2CC553B171EB10400D81CF1 /* SourceCodePro-Regular.ttf */,
-				D2CC553C171EB10400D81CF1 /* SourceCodePro-Light.ttf */,
-				D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */,
-				D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */,
-				D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */,
+				D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */,
+				D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */,
+				D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */,
+				D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */,
+				D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */,
+				D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		D2E5E17A171EC57C00536D1C /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */,
+			);
+			name = Development;
+			sourceTree = "<group>";
+		};
+		F6312829171EB98700D23B7F /* FileViewer */ = {
+			isa = PBXGroup;
+			children = (
+				F631282A171EB9E300D23B7F /* OutlineViewController.h */,
+				F631282B171EB9E300D23B7F /* OutlineViewController.m */,
+			);
+			name = FileViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +325,7 @@
 			projectRoot = "";
 			targets = (
 				D2CC54EF171EAFAB00D81CF1 /* TeXtended */,
+				D21F376E171EC03700F961D6 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -322,17 +339,35 @@
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
 				D2CC550A171EAFAB00D81CF1 /* SimpleDocument.xib in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
-				D2CC552E171EB08400D81CF1 /* PreferencesWindow.xib in Resources */,
-				D2CC5540171EB10400D81CF1 /* SourceCodePro-Semibold.ttf in Resources */,
-				D2CC5541171EB10400D81CF1 /* SourceCodePro-Regular.ttf in Resources */,
-				D2CC5542171EB10400D81CF1 /* SourceCodePro-Light.ttf in Resources */,
-				D2CC5543171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf in Resources */,
-				D2CC5544171EB10400D81CF1 /* SourceCodePro-Bold.ttf in Resources */,
-				D2CC5545171EB10400D81CF1 /* SourceCodePro-Black.ttf in Resources */,
+				D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */,
+				D2FD3988171EC316008BB864 /* SourceCodePro-Black.ttf in Resources */,
+				D2FD3989171EC316008BB864 /* SourceCodePro-Bold.ttf in Resources */,
+				D2FD398A171EC316008BB864 /* SourceCodePro-ExtraLight.ttf in Resources */,
+				D2FD398B171EC316008BB864 /* SourceCodePro-Light.ttf in Resources */,
+				D2FD398C171EC316008BB864 /* SourceCodePro-Regular.ttf in Resources */,
+				D2FD398D171EC316008BB864 /* SourceCodePro-Semibold.ttf in Resources */,
+				D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */,
+				D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D21F3772171EC04000F961D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\n# Add documentation to Xcode\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/ReloadDocset.scpt\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2CC54EC171EAFAB00D81CF1 /* Sources */ = {
@@ -340,19 +375,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2CC5500171EAFAB00D81CF1 /* main.m in Sources */,
+				F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */,
 				D2CC5507171EAFAB00D81CF1 /* SimpleDocument.m in Sources */,
-				D2CC552A171EB08400D81CF1 /* CodeNavigationAssistant.m in Sources */,
-				D2CC552B171EB08400D81CF1 /* EditorPlaceholderCell.m in Sources */,
-				D2CC552C171EB08400D81CF1 /* EditorPlaceholder.m in Sources */,
-				D2CC552D171EB08400D81CF1 /* HighlightingTextView.m in Sources */,
-				D2CC552F171EB08400D81CF1 /* BracketHighlighter.m in Sources */,
-				D2CC5530171EB08400D81CF1 /* PreferencesController.m in Sources */,
-				D2CC5531171EB08400D81CF1 /* SyntaxHighlighter.m in Sources */,
-				D2CC5532171EB08400D81CF1 /* EditorService.m in Sources */,
-				D2CC5533171EB08400D81CF1 /* NSString+LatexExtension.m in Sources */,
-				D2CC5534171EB08400D81CF1 /* Constants.m in Sources */,
-				D2CC5553171EB42800D81CF1 /* ApplicationController.m in Sources */,
-				76FA61B4171EB8BE0054C108 /* ExtendedPdf.m in Sources */,
+				D2FD3996171EC33D008BB864 /* BracketHighlighter.m in Sources */,
+				D2FD3997171EC33D008BB864 /* CodeNavigationAssistant.m in Sources */,
+				D2FD3998171EC33D008BB864 /* EditorService.m in Sources */,
+				D2FD3999171EC33D008BB864 /* SyntaxHighlighter.m in Sources */,
+				D2FD39A0171EC365008BB864 /* EditorPlaceholder.m in Sources */,
+				D2E5E179171EC4CA00536D1C /* HighlightingTextView.m in Sources */,
+				D2FD39A1171EC365008BB864 /* EditorPlaceholderCell.m in Sources */,
+				D2FD39A4171EC377008BB864 /* NSString+LatexExtension.m in Sources */,
+				D2FD39AA171EC390008BB864 /* Constants.m in Sources */,
+				D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */,
+				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +429,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D21F3770171EC03700F961D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D21F3771171EC03700F961D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D2CC550E171EAFAB00D81CF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -480,6 +531,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D21F376F171EC03700F961D6 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D21F3770171EC03700F961D6 /* Debug */,
+				D21F3771171EC03700F961D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
