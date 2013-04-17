@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
+		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2C240BA171ED3DC009E33CE /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
 		D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +143,7 @@
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
+				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
@@ -391,6 +395,7 @@
 				F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */,
 				D2CC5507171EAFAB00D81CF1 /* SimpleDocument.m in Sources */,
 				D2FD3996171EC33D008BB864 /* BracketHighlighter.m in Sources */,
+				D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */,
 				D2FD3997171EC33D008BB864 /* CodeNavigationAssistant.m in Sources */,
 				D2FD3998171EC33D008BB864 /* EditorService.m in Sources */,
 				D2FD3999171EC33D008BB864 /* SyntaxHighlighter.m in Sources */,
@@ -401,7 +406,6 @@
 				D2FD39AA171EC390008BB864 /* Constants.m in Sources */,
 				D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
-				D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
