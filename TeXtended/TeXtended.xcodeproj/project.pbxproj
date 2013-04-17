@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76FA61B4171EB8BE0054C108 /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
@@ -60,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76FA61B2171EB8BE0054C108 /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
+		76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -119,11 +122,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76FA61B1171EB8910054C108 /* ExtendedPdf */ = {
+			isa = PBXGroup;
+			children = (
+				76FA61B2171EB8BE0054C108 /* ExtendedPdf.h */,
+				76FA61B3171EB8BE0054C108 /* ExtendedPdf.m */,
+			);
+			name = ExtendedPdf;
+			sourceTree = "<group>";
+		};
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
-				D2CC5551171EB42800D81CF1 /* ApplicationController.h */,
-				D2CC5552171EB42800D81CF1 /* ApplicationController.m */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
