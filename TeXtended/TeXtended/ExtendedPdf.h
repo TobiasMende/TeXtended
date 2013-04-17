@@ -16,8 +16,6 @@
 @property (assign) bool drawHorizotalLines;
 @property (assign) bool drawVerticalLines;
 
-
-
 -(void) drawGrid:(NSSize) size;
 - (void) initVariables;
 
