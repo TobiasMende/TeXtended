@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'NoodleLineViewForML' target in the 'NoodleLineViewForML' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
