@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		761F605B171ED2D8006EA6AE /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 761F605A171ED2D8006EA6AE /* ExtendedPdf.m */; };
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
@@ -64,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		761F6059171ED2D8006EA6AE /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedPdf.h; path = ../../../DocumentBasedEditor/DocumentBasedEditor/ExtendedPdf.h; sourceTree = "<group>"; };
+		761F605A171ED2D8006EA6AE /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedPdf.m; path = ../../../DocumentBasedEditor/DocumentBasedEditor/ExtendedPdf.m; sourceTree = "<group>"; };
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -125,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76DD1641171ED1B10060ED10 /* ExtendedPdf */ = {
+			isa = PBXGroup;
+			children = (
+				761F6059171ED2D8006EA6AE /* ExtendedPdf.h */,
+				761F605A171ED2D8006EA6AE /* ExtendedPdf.m */,
+			);
+			name = ExtendedPdf;
+			sourceTree = "<group>";
+		};
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +178,7 @@
 			children = (
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				76DD1641171ED1B10060ED10 /* ExtendedPdf */,
 				F6312829171EB98700D23B7F /* FileViewer */,
 				D2CC5537171EB0C300D81CF1 /* Preferences */,
 				D2CC5536171EB0AD00D81CF1 /* Categories */,
@@ -388,6 +401,7 @@
 				D2FD39AA171EC390008BB864 /* Constants.m in Sources */,
 				D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
+				761F605B171ED2D8006EA6AE /* ExtendedPdf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
