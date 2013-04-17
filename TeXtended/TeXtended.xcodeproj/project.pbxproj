@@ -365,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/ReloadDocset.scpt\"";
+			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\n# Add documentation to Xcode\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/ReloadDocset.scpt\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

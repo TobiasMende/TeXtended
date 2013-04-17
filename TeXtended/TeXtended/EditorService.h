@@ -8,9 +8,23 @@
 
 #import <Foundation/Foundation.h>
 @class HighlightingTextView;
+
+/**
+@author Tobias Mende
+
+ Superclass for additional services for the HighlightingTextView
+ */
 @interface EditorService : NSObject {
     HighlightingTextView* view;
 }
 
+
+/**
+ Method for initializing an EditorService with a HighlightingTextView
+ 
+ @param tv the textview to deal with
+ 
+ @return the EditorService
+ */
 - (id)initWithTextView:(HighlightingTextView*) tv;
 @end

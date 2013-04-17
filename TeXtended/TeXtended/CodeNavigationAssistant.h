@@ -11,7 +11,8 @@
 
 /**
  The CodeNavigationAssistant can be asked for handling insertions and other actions in an NSTextView. For example: line highlighting, carret highlighting or auto indention and tab conversion are basis tasks of this class.
- \author Tobias Mende
+ 
+ @author Tobias Mende
  */
 
 @interface CodeNavigationAssistant : EditorService {
@@ -53,18 +54,18 @@
 /** The color for highlighting the character under the carret */
 @property (strong, nonatomic) NSColor* carretColor;
 
-/** If \c YES, line highlighting ist active */
+/** If `YES`, line highlighting ist active */
 @property (nonatomic) BOOL shouldHighlightCurrentLine;
 
-/** If \c YES, carret highlighting is active */
+/** If `YES`, carret highlighting is active */
 @property (nonatomic) BOOL shouldHighlightCarret;
 
-/** If \c YES, the text of the current line is highlighted */
+/** If `YES`, the text of the current line is highlighted */
 @property (nonatomic) BOOL shouldHighlightCurrentLineText;
 
-/** If \c YES, tabs were replaced during writing */
+/** If `YES`, tabs were replaced during writing */
 @property BOOL shouldUseSpacesAsTabs;
 
-/** If \c YES, a new line has the same indention as the previous line */
+/** If `YES`, a new line has the same indention as the previous line */
 @property BOOL shouldAutoIndentLines;
 @end

@@ -14,7 +14,7 @@
  
  All kinds of syntax highlighting are optional. Furthermore the color for each highlighting is customizable. 
  
- \author Tobias Mende
+ @author Tobias Mende
  */
 @interface SyntaxHighlighter : EditorService {
 }
@@ -60,7 +60,8 @@
 
 /**
  Method for highlighting only a small area around the cursor area. This method only colors a few lines, which might be more efficient than coloring the visible area or the entire document. 
-\warning Using this method when changing more than one line per call might cause wrong highlighting.
+
+ @warning Using this method when changing more than one line per call might cause wrong highlighting.
  */
 - (void) highlightNarrowArea;
 
