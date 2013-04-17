@@ -1,38 +1,18 @@
 //
-//  AppDelegate.m
-//  SimpleSyntaxHighlightingTest
+//  ApplicationController.m
+//  TeXtended
 //
-//  Created by Tobias Mende on 09.04.13.
+//  Created by Tobias Mende on 17.04.13.
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ApplicationController.h"
+#import "Constants.h"
 #import "PreferencesController.h"
-#import "HighlightingTextView.h"
-#import "EditorPlaceholder.h"
-@implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    // Insert code here to initialize your application
-    [self.editorView setString:@"Test"];
-    [self.editorView.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder"]];
-    [self.editorView insertText:@"blabla"];
-    [self.editorView.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder"]];
-
-}
-    
-
-
-- (void)showPreferences:(id)sender {
-    if (!preferencesController) {
-        preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }
-[preferencesController showWindow:self];
-}
-
+@implementation ApplicationController
 + (void)initialize {
-        //Register default user defaults
+    //Register default user defaults
     [NSColor colorWithCalibratedRed:36.0/255.0 green:80.0/255 blue:123.0 alpha:1];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],TMT_COMMAND_COLOR,
@@ -46,7 +26,7 @@
                               [NSArchiver archivedDataWithRootObject:[NSColor blackColor]],TMT_EDITOR_FOREGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],TMT_EDITOR_SELECTION_BACKGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_EDITOR_SELECTION_FOREGROUND_COLOR,
-                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_CURRENT_LINE_TEXT_COLOR,
+                              [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_CURRENT_LINE_TEXT_COLOR,
                               
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_INLINE_MATH,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_COMMANDS,
@@ -67,4 +47,13 @@
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
+
+
+- (IBAction)showPreferences:(id)sender {
+    if (!preferencesController) {
+        preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }
+    [preferencesController showWindow:self];
+}
+
 @end

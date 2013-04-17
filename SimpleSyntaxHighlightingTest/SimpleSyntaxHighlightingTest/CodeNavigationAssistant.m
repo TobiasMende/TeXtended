@@ -56,6 +56,7 @@
     NSLayoutManager *lm = [view layoutManager];
     if (self.shouldHighlightCurrentLineText) {
         NSRange lineRange = [self lineTextRangeWithRange:range];
+        
         [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
         [view updateSyntaxHighlighting];
         [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.currentLineTextColor, NSForegroundColorAttributeName, nil] forCharacterRange:lineRange];
@@ -93,7 +94,7 @@
 - (NSRange) lineTextRangeWithRange:(NSRange) range {
     NSUInteger rangeStartPosition = range.location;
     NSRange startLineRange = [view.string lineRangeForRange:NSMakeRange(rangeStartPosition, 0)];
-    NSUInteger rangeEndPosition = NSMaxRange(range)-1;
+    NSUInteger rangeEndPosition = NSMaxRange(range);
     if (rangeEndPosition >= view.string.length) {
         return NSMakeRange(NSNotFound, 0);
     }
@@ -102,7 +103,7 @@
     }
     NSRange endLineRange = [view.string lineRangeForRange:NSMakeRange(rangeEndPosition, 0)];
     
-    NSRange totalLineRange = NSMakeRange(startLineRange.location, NSMaxRange(endLineRange)-startLineRange.location-1);
+    NSRange totalLineRange = NSMakeRange(startLineRange.location, NSMaxRange(endLineRange)-startLineRange.location);
     return totalLineRange;
 }
 
@@ -190,7 +191,6 @@
             NSString *substringForFirstMatch = [view.string substringWithRange:rangeOfFirstMatch];
             lineBreak = [lineBreak stringByAppendingString:substringForFirstMatch];
         }
-        
     } 
 [view insertText:lineBreak];
 }

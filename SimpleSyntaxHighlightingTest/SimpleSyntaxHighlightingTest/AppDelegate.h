@@ -12,6 +12,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
 }
+@property (unsafe_unretained) IBOutlet HighlightingTextView *editorView;
 
 @property (assign) IBOutlet NSWindow *window;
 - (IBAction)showPreferences:(id)sender;

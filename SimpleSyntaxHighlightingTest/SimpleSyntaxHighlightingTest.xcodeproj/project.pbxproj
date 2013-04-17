@@ -24,6 +24,8 @@
 		D2C888EC1713EBB2007D741F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C888EB1713EBB2007D741F /* AppDelegate.m */; };
 		D2C888EF1713EBB2007D741F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C888ED1713EBB2007D741F /* MainMenu.xib */; };
 		D2C888F71713EBE4007D741F /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C888F61713EBE4007D741F /* HighlightingTextView.m */; };
+		D2CC54E2171E724F00D81CF1 /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54E1171E724F00D81CF1 /* EditorPlaceholderCell.m */; };
+		D2CC54E6171E727000D81CF1 /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54E5171E727000D81CF1 /* EditorPlaceholder.m */; };
 		D2E69EFC1714428C00291D15 /* SyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E69EFB1714428C00291D15 /* SyntaxHighlighter.m */; };
 		D2E69F0017149AA800291D15 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E69EFE17149AA800291D15 /* PreferencesController.m */; };
 		D2E69F0117149AA800291D15 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E69EFF17149AA800291D15 /* PreferencesWindow.xib */; };
@@ -78,6 +80,10 @@
 		D2C888EE1713EBB2007D741F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2C888F51713EBE4007D741F /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
 		D2C888F61713EBE4007D741F /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
+		D2CC54E0171E724F00D81CF1 /* EditorPlaceholderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholderCell.h; sourceTree = "<group>"; };
+		D2CC54E1171E724F00D81CF1 /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholderCell.m; sourceTree = "<group>"; };
+		D2CC54E4171E727000D81CF1 /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
+		D2CC54E5171E727000D81CF1 /* EditorPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholder.m; sourceTree = "<group>"; };
 		D2E69EFA1714428C00291D15 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
 		D2E69EFB1714428C00291D15 /* SyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighter.m; sourceTree = "<group>"; };
 		D2E69EFD17149AA800291D15 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
@@ -184,20 +190,13 @@
 		D2C888DE1713EBB2007D741F /* SimpleSyntaxHighlightingTest */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC5514171EAFE000D81CF1 /* Preferences */,
+				D2229E2A1716E1C2004AF92E /* Categories */,
+				D2CC5513171EAFBB00D81CF1 /* Editor */,
 				D2C888EA1713EBB2007D741F /* AppDelegate.h */,
 				D2C888EB1713EBB2007D741F /* AppDelegate.m */,
 				D2C888ED1713EBB2007D741F /* MainMenu.xib */,
-				D2FE5A8117188B1700CD1AD7 /* Model */,
 				D2C888DF1713EBB2007D741F /* Supporting Files */,
-				D2C888F51713EBE4007D741F /* HighlightingTextView.h */,
-				D2C888F61713EBE4007D741F /* HighlightingTextView.m */,
-				D2229E2A1716E1C2004AF92E /* Categories */,
-				D2E69EFD17149AA800291D15 /* PreferencesController.h */,
-				D2E69EFE17149AA800291D15 /* PreferencesController.m */,
-				D2E69EFF17149AA800291D15 /* PreferencesWindow.xib */,
-				D2E69F0217154C6600291D15 /* Constants.h */,
-				D2229E291716E1AE004AF92E /* EditorServices */,
-				D2E69F0317154C6600291D15 /* Constants.m */,
 			);
 			path = SimpleSyntaxHighlightingTest;
 			sourceTree = "<group>";
@@ -212,6 +211,41 @@
 				D2C888E71713EBB2007D741F /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2CC54DF171E721F00D81CF1 /* Text Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				D2CC54E0171E724F00D81CF1 /* EditorPlaceholderCell.h */,
+				D2CC54E1171E724F00D81CF1 /* EditorPlaceholderCell.m */,
+				D2CC54E4171E727000D81CF1 /* EditorPlaceholder.h */,
+				D2CC54E5171E727000D81CF1 /* EditorPlaceholder.m */,
+			);
+			name = "Text Placeholder";
+			sourceTree = "<group>";
+		};
+		D2CC5513171EAFBB00D81CF1 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				D2229E291716E1AE004AF92E /* EditorServices */,
+				D2C888F51713EBE4007D741F /* HighlightingTextView.h */,
+				D2C888F61713EBE4007D741F /* HighlightingTextView.m */,
+				D2FE5A8117188B1700CD1AD7 /* Model */,
+				D2CC54DF171E721F00D81CF1 /* Text Placeholder */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
+		D2CC5514171EAFE000D81CF1 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				D2E69F0217154C6600291D15 /* Constants.h */,
+				D2E69F0317154C6600291D15 /* Constants.m */,
+				D2E69EFD17149AA800291D15 /* PreferencesController.h */,
+				D2E69EFE17149AA800291D15 /* PreferencesController.m */,
+				D2E69EFF17149AA800291D15 /* PreferencesWindow.xib */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		D2FE5A8117188B1700CD1AD7 /* Model */ = {
@@ -297,6 +331,8 @@
 				D2229E281716C55D004AF92E /* NSString+LatexExtension.m in Sources */,
 				D2229E2D1716E23E004AF92E /* CodeNavigationAssistant.m in Sources */,
 				D2229E301716E28D004AF92E /* EditorService.m in Sources */,
+				D2CC54E2171E724F00D81CF1 /* EditorPlaceholderCell.m in Sources */,
+				D2CC54E6171E727000D81CF1 /* EditorPlaceholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
