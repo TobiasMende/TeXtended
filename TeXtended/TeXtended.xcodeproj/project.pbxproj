@@ -103,8 +103,8 @@
 		D2CC553D171EB10400D81CF1 /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-ExtraLight.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D2CC553E171EB10400D81CF1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
 		D2CC553F171EB10400D81CF1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "../../SimpleSyntaxHighlightingTest/SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
-		D2CC5551171EB42800D81CF1 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
-		D2CC5552171EB42800D81CF1 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		D2CC5551171EB42800D81CF1 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = ../ApplicationController.h; sourceTree = "<group>"; };
+		D2CC5552171EB42800D81CF1 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = ../ApplicationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,6 @@
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
-				D2CC5551171EB42800D81CF1 /* ApplicationController.h */,
-				D2CC5552171EB42800D81CF1 /* ApplicationController.m */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
@@ -169,6 +167,8 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC5551171EB42800D81CF1 /* ApplicationController.h */,
+				D2CC5552171EB42800D81CF1 /* ApplicationController.m */,
 				76FA61B1171EB8910054C108 /* ExtendedPdf */,
 				D2CC5537171EB0C300D81CF1 /* Preferences */,
 				D2CC5536171EB0AD00D81CF1 /* Categories */,
