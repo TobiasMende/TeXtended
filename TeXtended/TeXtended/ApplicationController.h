@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController;
+@class PreferencesController,DocumentController;
 @interface ApplicationController : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
+    DocumentController *documentController;
 }
 - (IBAction)showPreferences:(id)sender;
 @end

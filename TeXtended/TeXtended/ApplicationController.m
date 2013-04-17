@@ -9,10 +9,12 @@
 #import "ApplicationController.h"
 #import "Constants.h"
 #import "PreferencesController.h"
+#import "DocumentController.h"
 
 @implementation ApplicationController
 + (void)initialize {
     //Register default user defaults
+    
     [NSColor colorWithCalibratedRed:36.0/255.0 green:80.0/255 blue:123.0 alpha:1];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],TMT_COMMAND_COLOR,
@@ -48,6 +50,10 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    documentController = [[DocumentController alloc] init];
+}
 
 - (IBAction)showPreferences:(id)sender {
     if (!preferencesController) {

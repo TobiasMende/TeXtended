@@ -23,6 +23,9 @@
 /* Begin PBXBuildFile section */
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
+		D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439EC171F06800020C15F /* ProjectDocument.m */; };
+		D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A439ED171F06800020C15F /* ProjectDocument.xib */; };
+		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
@@ -68,6 +71,11 @@
 /* Begin PBXFileReference section */
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		D2A439EB171F06800020C15F /* ProjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectDocument.h; path = ../ProjectDocument.h; sourceTree = "<group>"; };
+		D2A439EC171F06800020C15F /* ProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectDocument.m; path = ../ProjectDocument.m; sourceTree = "<group>"; };
+		D2A439ED171F06800020C15F /* ProjectDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProjectDocument.xib; path = ../ProjectDocument.xib; sourceTree = "<group>"; };
+		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
+		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2C240BA171ED3DC009E33CE /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
 		D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +148,19 @@
 			name = ExtendedPdf;
 			sourceTree = "<group>";
 		};
+		D2A439F0171F06910020C15F /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				D2CC5505171EAFAB00D81CF1 /* SimpleDocument.h */,
+				D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */,
+				D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */,
+				D2A439EB171F06800020C15F /* ProjectDocument.h */,
+				D2A439EC171F06800020C15F /* ProjectDocument.m */,
+				D2A439ED171F06800020C15F /* ProjectDocument.xib */,
+			);
+			name = Documents;
+			sourceTree = "<group>";
+		};
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
@@ -187,11 +208,11 @@
 				D2CC5537171EB0C300D81CF1 /* Preferences */,
 				D2CC5536171EB0AD00D81CF1 /* Categories */,
 				D2CC5535171EB08E00D81CF1 /* Editor */,
-				D2CC5505171EAFAB00D81CF1 /* SimpleDocument.h */,
-				D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */,
-				D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */,
+				D2A439F0171F06910020C15F /* Documents */,
 				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D2CC54FA171EAFAB00D81CF1 /* Supporting Files */,
+				D2A439F2171F10D60020C15F /* DocumentController.h */,
+				D2A439F3171F10D60020C15F /* DocumentController.m */,
 			);
 			path = TeXtended;
 			sourceTree = "<group>";
@@ -365,6 +386,7 @@
 				D2FD398D171EC316008BB864 /* SourceCodePro-Semibold.ttf in Resources */,
 				D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */,
 				D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */,
+				D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +428,8 @@
 				D2FD39AA171EC390008BB864 /* Constants.m in Sources */,
 				D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
+				D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */,
+				D2A439F4171F10D60020C15F /* DocumentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

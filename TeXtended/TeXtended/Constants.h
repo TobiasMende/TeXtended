@@ -10,6 +10,16 @@
 
 
 /*
+ Constants for Document Type
+*/
+
+#define TMT_FOLDER_DOCUMENT_TYPE @"TeXtendedProjectFolder"
+#define TMT_PROJECT_DOCUMENT_TYPE @"TeXtededProjectFile"
+#define TMT_LATEX_DOCUMENT_TYPE @"Latex Document"
+#define TMT_LATEX_STYLE_DOCUMENT @"Latex Style Document"
+#define TMT_LATEX_CLASS_DOCUMENT @"Latex Class Document"
+
+/*
  KVC keys for NSColor objects (used for user defaults)
  */
 #define TMT_INLINE_MATH_COLOR @"TMTInlineMathColor"
