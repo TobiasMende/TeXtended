@@ -11,6 +11,7 @@
 
 @interface ExtendedPdf : PDFView
 
+// test
 @property (assign) int gridVerticalSpacing;
 @property (assign) int gridHorizontalSpacing;
 @property (assign) bool drawHorizotalLines;
