@@ -44,6 +44,9 @@
     [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder1"]];
     [self insertText:@" Bla Bla "];
     [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder2"]];
+    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder3"]];
+    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder4"]];
+    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder5"]];
 
 
 }

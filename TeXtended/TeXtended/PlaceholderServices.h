@@ -27,5 +27,6 @@
  
  */
 - (NSRange) rangeOfNextPlaceholderStartIndex:(NSUInteger) index inRange:(NSRange) range;
+- (NSRange) rangeOfPreviousPlaceholderStartIndex:(NSUInteger) index inRange:(NSRange) range;
 - (BOOL) isPlaceholderAtIndex:(NSUInteger) index;
 @end

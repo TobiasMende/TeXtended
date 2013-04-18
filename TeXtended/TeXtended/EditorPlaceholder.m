@@ -25,7 +25,7 @@
 }
 
 + (NSAttributedString *)placeholderAsAttributedStringWithName:(NSString *)name {
-    EditorPlaceholder *attachment = [[EditorPlaceholder alloc] initWithName:@"Placeholder"];
+    EditorPlaceholder *attachment = [[EditorPlaceholder alloc] initWithName:name];
     return [NSAttributedString attributedStringWithAttachment:attachment];
 }
 @end
