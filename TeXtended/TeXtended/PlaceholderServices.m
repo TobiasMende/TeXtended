@@ -18,7 +18,6 @@
     }
     
     if ([self isPlaceholderAtIndex:view.selectedRange.location]) {
-        //TODO: next placeholder
         NSRange next = [self rangeOfNextPlaceholderStartIndex:view.selectedRange.location+1 inRange:[view visibleRange]];
         if (next.location != NSNotFound) {
             [view setSelectedRange:next];
@@ -30,7 +29,19 @@
 }
 
 - (BOOL)handleInsertBacktab {
-    //TODO: step through placeholders backward.
+    
+    if (view.selectedRanges.count > 1 || view.selectedRange.length != 1) {
+        return NO;
+    }
+    
+    if ([self isPlaceholderAtIndex:view.selectedRange.location]) {
+        NSRange next = [self rangeOfPreviousPlaceholderStartIndex:view.selectedRange.location-1 inRange:[view visibleRange]];
+        if (next.location != NSNotFound) {
+            [view setSelectedRange:next];
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
@@ -43,7 +54,6 @@
         dif = index-range.location;
         
     }
-    NSLog(@"%ld", dif);
     for(NSUInteger idx = range.location+dif; idx < NSMaxRange(range); idx++ ) {
         if ([self isPlaceholderAtIndex:idx]) {
             return NSMakeRange(idx, 1);
@@ -51,6 +61,30 @@
     }
     // No Placeholder found. Round wrap!:
     for(NSUInteger idx = range.location; idx < range.location+dif; idx++ ) {
+        if ([self isPlaceholderAtIndex:idx]) {
+            return NSMakeRange(idx, 1);
+        }
+    }
+    
+    return NSMakeRange(NSNotFound, 0);
+}
+
+- (NSRange)rangeOfPreviousPlaceholderStartIndex:(NSUInteger)index inRange:(NSRange)range{
+    if (index < range.location || index > NSMaxRange(range)) {
+        index = NSMaxRange(range)-1;
+    }
+    NSUInteger dif = 0;
+    if (index > range.location && index < NSMaxRange(range)) {
+        dif = index-range.location;
+        
+    }
+    for(NSUInteger idx = range.location+dif; idx >= range.location ; idx-- ) {
+        if ([self isPlaceholderAtIndex:idx]) {
+            return NSMakeRange(idx, 1);
+        }
+    }
+    // No Placeholder found. Round wrap!:
+    for(NSUInteger idx = NSMaxRange(range)-1; idx > range.location+dif; idx-- ) {
         if ([self isPlaceholderAtIndex:idx]) {
             return NSMakeRange(idx, 1);
         }
