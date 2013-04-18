@@ -13,6 +13,7 @@
 #import "NSString+LatexExtension.h"
 #import "PlaceholderServices.h"
 #import "EditorPlaceholder.h"
+#import "CompletionHandler.h"
 @implementation HighlightingTextView
 
 - (id)initWithFrame:(NSRect)frame
@@ -35,6 +36,7 @@
     bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
     codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
+    completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
     }
@@ -47,6 +49,7 @@
     [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder3"]];
     [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder4"]];
     [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder5"]];
+    [self setDelegate:self];
 
 
 }
@@ -60,6 +63,14 @@
     NSRange glyphVisibleRange = [lm glyphRangeForBoundingRect:visibleRect inTextContainer:tc];;
     NSRange charVisibleRange = [lm characterRangeForGlyphRange:glyphVisibleRange  actualGlyphRange:nil];
     return charVisibleRange;
+}
+
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+}
+
+- (void)complete:(id)sender {
+    
 }
 
 - (void)updateTrackingAreas {
@@ -156,6 +167,14 @@
 
 -(void)dealloc {
     [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+}
+
+
+#pragma mark -
+#pragma mark Delegate Methods
+
+- (NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    return [completionHandler completions:words forPartialWordRange:charRange indexOfSelectedItem:index];
 }
 
 
