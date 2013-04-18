@@ -40,16 +40,16 @@
     // init variables
     [self setGridHorizontalSpacing:1];
     [self setGridVerticalSpacing:1];
+    [self setGridHorizontalOffset:0];
+    [self setGridVerticalOffset:0];
+    
+    [self setGridColor:[[NSColor alloc] init]];
+    [self setGridColor:[NSColor grayColor]];
 }
 
-- (void)drawRect:(NSRect)rect
-{
-    
-}
 
-- (void) drawPage:(PDFPage *) page;
+- (void) drawPage:(PDFPage *) page
 {
-    
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -61,7 +61,6 @@
     /* draw pdf content */
     [page drawWithBox:[self displayBox]];
     
-    
 }
 
 - (void) drawGrid:(NSSize) size {
@@ -70,28 +69,31 @@
     int i = 0 ;
     
     
-    // Set the color in the current graphics context for future draw operations
-    [[NSColor grayColor] setStroke];
+    /* use the given color */
+    [[self gridColor] setStroke];
     
-    // Create our drawing path
+    /* Create our drawing path */
     NSBezierPath* drawingPath = [NSBezierPath bezierPath];
-    
-    // Draw a grid
-    
-    // first the vertical lines
+        
+    /* first the vertical lines */
     if (self.drawVerticalLines) {
-        for( i = 0 ; i <= width ; i=i+[self gridVerticalSpacing] ) { [drawingPath moveToPoint:NSMakePoint(i, 0)]; [drawingPath lineToPoint:NSMakePoint(i, height)]; }
+        for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]) {
+            [drawingPath moveToPoint:NSMakePoint(i, 0)];
+            [drawingPath lineToPoint:NSMakePoint(i, height)];
+        }
     }
     
-    // then the horizontal lines
+    /* then the horizontal lines */
     if (self.drawHorizotalLines) {
-        for( i = 0 ; i <= height ; i=i+[self gridHorizontalSpacing] ) { [drawingPath moveToPoint:NSMakePoint(0,i)]; [drawingPath lineToPoint:NSMakePoint(width, i)]; } // actually draw the grid
+        for( i = height - [self gridHorizontalSpacing]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
+            [drawingPath moveToPoint:NSMakePoint(0,i)];
+            [drawingPath lineToPoint:NSMakePoint(width, i)];
+        }
     }
     
     /* actual draw it */
     [drawingPath stroke];
 }
-
 
 
 @end

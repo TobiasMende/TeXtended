@@ -9,15 +9,68 @@
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
+/**
+ * This class the PDFView from cocoas PDFKit by functionalitys
+ * to support typhography work.
+ *
+ * @author Max Bannach
+ */
 @interface ExtendedPdf : PDFView
 
-// test
+/**
+ * Describes the distances between to vertical lines in the grid.
+ */
 @property (assign) int gridVerticalSpacing;
+
+/**
+ * Describes the distances between to horizontal lines in the grid.
+ */
 @property (assign) int gridHorizontalSpacing;
+
+/**
+ * 'YES', if the horizontal lines of the grid should be drawn.
+ */
 @property (assign) bool drawHorizotalLines;
+
+/**
+ * 'YES', if the vertical lines of the grid should be drawn.
+ */
 @property (assign) bool drawVerticalLines;
 
+/**
+ * Move the horizontal lines in south direction by the given amount outgoing from (0,0).
+ */
+@property (assign) int gridHorizontalOffset;
+
+/**
+ * Move the vertical lines in east direction by the given amount outgoing from (0,0).
+ */
+@property (assign) int gridVerticalOffset;
+
+/**
+ * Color of the grid, default is gray.
+ */
+@property (assign) NSColor *gridColor;
+
+/**
+  * Draws a grid of the given size on the current page.
+  * @param size the grid should have.
+  * @see [method drawPage]([ExtendedPdf drawPage:])
+  */
 -(void) drawGrid:(NSSize) size;
+
+/**
+  * Overide of PDFKids drawPage.
+  * Will draw the given page and add, if requried,
+  * thinks like the grid.
+  * @param page - the current page of the pdf, that should be drawn
+  * @see [method drawGrid]([ExtendedPdf drawGrid:])
+  */
+- (void) drawPage:(PDFPage *) page;
+
+/**
+  * Init required variables. Called from all init methods.
+  */
 - (void) initVariables;
 
 @end
