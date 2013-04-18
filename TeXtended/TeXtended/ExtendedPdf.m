@@ -40,6 +40,8 @@
     // init variables
     [self setGridHorizontalSpacing:1];
     [self setGridVerticalSpacing:1];
+    [self setGridHorizontalOffset:0];
+    [self setGridVerticalOffset:0];
 }
 
 
@@ -74,12 +76,18 @@
     
     // first the vertical lines
     if (self.drawVerticalLines) {
-        for( i = 0 ; i <= width ; i=i+[self gridVerticalSpacing] ) { [drawingPath moveToPoint:NSMakePoint(i, 0)]; [drawingPath lineToPoint:NSMakePoint(i, height)]; }
+        for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]) {
+            [drawingPath moveToPoint:NSMakePoint(i, 0)];
+            [drawingPath lineToPoint:NSMakePoint(i, height)];
+        }
     }
     
     // then the horizontal lines
     if (self.drawHorizotalLines) {
-        for( i = 0 ; i <= height ; i=i+[self gridHorizontalSpacing] ) { [drawingPath moveToPoint:NSMakePoint(0,i)]; [drawingPath lineToPoint:NSMakePoint(width, i)]; } // actually draw the grid
+        for( i = height - [self gridHorizontalSpacing]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
+            [drawingPath moveToPoint:NSMakePoint(0,i)];
+            [drawingPath lineToPoint:NSMakePoint(width, i)];
+        }
     }
     
     /* actual draw it */

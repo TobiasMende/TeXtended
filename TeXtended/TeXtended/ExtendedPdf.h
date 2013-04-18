@@ -37,6 +37,15 @@
  */
 @property (assign) bool drawVerticalLines;
 
+/**
+ * Move the horizontal lines in south direction by the given amount outgoing from (0,0).
+ */
+@property (assign) int gridHorizontalOffset;
+
+/**
+ * Move the vertical lines in east direction by the given amount outgoing from (0,0).
+ */
+@property (assign) int gridVerticalOffset;
 
 /**
   * Draws a grid of the given size on the current page.
