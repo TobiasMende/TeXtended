@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant;
+@class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices;
 @interface HighlightingTextView : NSTextView {
     SyntaxHighlighter *regexHighlighter;
     BracketHighlighter *bracketHighlighter;
     CodeNavigationAssistant *codeNavigationAssistant;
+    PlaceholderServices *placeholderService;
 }
 - (void) updateSyntaxHighlighting;
+- (NSRange) visibleRange;
 @end

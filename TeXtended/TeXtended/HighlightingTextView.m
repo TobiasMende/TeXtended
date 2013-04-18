@@ -11,6 +11,8 @@
 #import "BracketHighlighter.h"
 #import "CodeNavigationAssistant.h"
 #import "NSString+LatexExtension.h"
+#import "PlaceholderServices.h"
+#import "EditorPlaceholder.h"
 @implementation HighlightingTextView
 
 - (id)initWithFrame:(NSRect)frame
@@ -32,13 +34,29 @@
     regexHighlighter = [[SyntaxHighlighter alloc] initWithTextView:self];
     bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
     codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
+    placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+    
+    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder1"]];
+    [self insertText:@" Bla Bla "];
+    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder2"]];
 
 
+}
+
+- (NSRange) visibleRange
+{
+    NSRect visibleRect = [self visibleRect];
+    NSLayoutManager *lm = [self layoutManager];
+    NSTextContainer *tc = [self textContainer];
+    
+    NSRange glyphVisibleRange = [lm glyphRangeForBoundingRect:visibleRect inTextContainer:tc];;
+    NSRange charVisibleRange = [lm characterRangeForGlyphRange:glyphVisibleRange  actualGlyphRange:nil];
+    return charVisibleRange;
 }
 
 - (void)updateTrackingAreas {
@@ -63,7 +81,15 @@
 }
 
 - (void)insertTab:(id)sender {
-    [codeNavigationAssistant handleTabInsertion];
+    if (![placeholderService handleInsertTab]) {
+        [codeNavigationAssistant handleTabInsertion];
+    }
+}
+
+- (void)insertBacktab:(id)sender {
+    if (![placeholderService handleInsertBacktab]) {
+        [super insertBacktab:sender];
+    }
 }
 
 - (void)insertNewline:(id)sender {

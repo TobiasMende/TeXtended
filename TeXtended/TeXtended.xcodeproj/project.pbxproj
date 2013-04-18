@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
+		D244B504171FC5C70068F4C0 /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D244B503171FC5C70068F4C0 /* PlaceholderServices.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439EC171F06800020C15F /* ProjectDocument.m */; };
 		D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A439ED171F06800020C15F /* ProjectDocument.xib */; };
@@ -70,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		D244B502171FC5C70068F4C0 /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
+		D244B503171FC5C70068F4C0 /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439EB171F06800020C15F /* ProjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectDocument.h; path = ../ProjectDocument.h; sourceTree = "<group>"; };
 		D2A439EC171F06800020C15F /* ProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectDocument.m; path = ../ProjectDocument.m; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				D2FD3993171EC33D008BB864 /* EditorService.m */,
 				D2FD3994171EC33D008BB864 /* SyntaxHighlighter.h */,
 				D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */,
+				D244B502171FC5C70068F4C0 /* PlaceholderServices.h */,
+				D244B503171FC5C70068F4C0 /* PlaceholderServices.m */,
 			);
 			name = EditorServices;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
 				D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */,
 				D2A439F4171F10D60020C15F /* DocumentController.m in Sources */,
+				D244B504171FC5C70068F4C0 /* PlaceholderServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
