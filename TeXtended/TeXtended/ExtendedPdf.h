@@ -48,6 +48,11 @@
 @property (assign) int gridVerticalOffset;
 
 /**
+ * Color of the grid, default is gray.
+ */
+@property (assign) NSColor *gridColor;
+
+/**
   * Draws a grid of the given size on the current page.
   * @param size the grid should have.
   * @see [method drawPage]([ExtendedPdf drawPage:])

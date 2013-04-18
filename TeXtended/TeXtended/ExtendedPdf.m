@@ -42,6 +42,9 @@
     [self setGridVerticalSpacing:1];
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
+    
+    [self setGridColor:[[NSColor alloc] init]];
+    [self setGridColor:[NSColor grayColor]];
 }
 
 
@@ -66,15 +69,13 @@
     int i = 0 ;
     
     
-    // Set the color in the current graphics context for future draw operations
-    [[NSColor grayColor] setStroke];
+    /* use the given color */
+    [[self gridColor] setStroke];
     
-    // Create our drawing path
+    /* Create our drawing path */
     NSBezierPath* drawingPath = [NSBezierPath bezierPath];
-    
-    // Draw a grid
-    
-    // first the vertical lines
+        
+    /* first the vertical lines */
     if (self.drawVerticalLines) {
         for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]) {
             [drawingPath moveToPoint:NSMakePoint(i, 0)];
@@ -82,7 +83,7 @@
         }
     }
     
-    // then the horizontal lines
+    /* then the horizontal lines */
     if (self.drawHorizotalLines) {
         for( i = height - [self gridHorizontalSpacing]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
             [drawingPath moveToPoint:NSMakePoint(0,i)];
