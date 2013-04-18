@@ -13,16 +13,18 @@
 @implementation PlaceholderServices
 
 - (BOOL)handleInsertTab {
-    if (view.selectedRanges.count > 1 || view.selectedRange.length != 1) {
+    if (view.selectedRanges.count > 1 || view.selectedRange.length > 1) {
         return NO;
     }
-    
-    if ([self isPlaceholderAtIndex:view.selectedRange.location]) {
-        NSRange next = [self rangeOfNextPlaceholderStartIndex:view.selectedRange.location+1 inRange:[view visibleRange]];
-        if (next.location != NSNotFound) {
-            [view setSelectedRange:next];
-            return YES;
-        }
+    NSRange next;
+    if ([self isPlaceholderAtIndex:view.selectedRange.location] && view.selectedRange.length == 1) {
+        next = [self rangeOfNextPlaceholderStartIndex:view.selectedRange.location+1 inRange:[view visibleRange]];
+    } else {
+        next = [self rangeOfNextPlaceholderStartIndex:view.selectedRange.location inRange:[view visibleRange]];
+    }
+    if (next.location != NSNotFound) {
+        [view setSelectedRange:next];
+        return YES;
     }
     return NO;
     
@@ -30,16 +32,20 @@
 
 - (BOOL)handleInsertBacktab {
     
-    if (view.selectedRanges.count > 1 || view.selectedRange.length != 1) {
+    if (view.selectedRanges.count > 1 || view.selectedRange.length > 1) {
         return NO;
     }
     
+    NSRange next;
     if ([self isPlaceholderAtIndex:view.selectedRange.location]) {
-        NSRange next = [self rangeOfPreviousPlaceholderStartIndex:view.selectedRange.location-1 inRange:[view visibleRange]];
-        if (next.location != NSNotFound) {
-            [view setSelectedRange:next];
-            return YES;
-        }
+        next = [self rangeOfPreviousPlaceholderStartIndex:view.selectedRange.location-1 inRange:[view visibleRange]];
+       
+    } else {
+        next =  [self rangeOfPreviousPlaceholderStartIndex:view.selectedRange.location inRange:[view visibleRange]];
+    }
+    if (next.location != NSNotFound) {
+        [view setSelectedRange:next];
+        return YES;
     }
     
     return NO;
