@@ -42,14 +42,9 @@
     [self setGridVerticalSpacing:1];
 }
 
-- (void)drawRect:(NSRect)rect
-{
-    
-}
 
-- (void) drawPage:(PDFPage *) page;
+- (void) drawPage:(PDFPage *) page
 {
-    
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -60,7 +55,6 @@
     
     /* draw pdf content */
     [page drawWithBox:[self displayBox]];
-    
     
 }
 
@@ -91,7 +85,6 @@
     /* actual draw it */
     [drawingPath stroke];
 }
-
 
 
 @end
