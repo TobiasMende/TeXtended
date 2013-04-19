@@ -9,12 +9,14 @@
 #import "EditorService.h"
 
 @interface CompletionHandler : EditorService
-/**
- @see [NSTextViewDelegate textView:completions:forPartialWordRange: indexOfSelectedItem:]
- */
+
+
+
+
+
 - (NSArray*) completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
-/**
- @see [NSTextView completionsForPartialWordRange:indexOfSelectedItem:];
- */
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+
+- (void) complete;
+- (BOOL) willHandleCompletionForPartialWordRange:(NSRange)charRange;
 @end

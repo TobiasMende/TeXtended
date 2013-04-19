@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D23D22F9172117FF009088CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23D22F8172117FF009088CC /* Cocoa.framework */; };
+		D23D2303172117FF009088CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D23D2301172117FF009088CC /* InfoPlist.strings */; };
+		D23D2305172117FF009088CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D23D2304172117FF009088CC /* main.m */; };
+		D23D2309172117FF009088CC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D23D2307172117FF009088CC /* Credits.rtf */; };
+		D23D230C172117FF009088CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D23D230B172117FF009088CC /* AppDelegate.m */; };
+		D23D230F172117FF009088CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23D230D172117FF009088CC /* MainMenu.xib */; };
+		D23D231717211819009088CC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = D23D231617211819009088CC /* Person.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D23D22F5172117FF009088CC /* SerializationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SerializationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D23D22F8172117FF009088CC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D23D22FB172117FF009088CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D23D22FC172117FF009088CC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D23D22FD172117FF009088CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D23D2300172117FF009088CC /* SerializationExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SerializationExample-Info.plist"; sourceTree = "<group>"; };
+		D23D2302172117FF009088CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D23D2304172117FF009088CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D23D2306172117FF009088CC /* SerializationExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SerializationExample-Prefix.pch"; sourceTree = "<group>"; };
+		D23D2308172117FF009088CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D23D230A172117FF009088CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D23D230B172117FF009088CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D23D230E172117FF009088CC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D23D231517211819009088CC /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		D23D231617211819009088CC /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D23D22F2172117FF009088CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D23D22F9172117FF009088CC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D23D22EC172117FF009088CC = {
+			isa = PBXGroup;
+			children = (
+				D23D22FE172117FF009088CC /* SerializationExample */,
+				D23D22F7172117FF009088CC /* Frameworks */,
+				D23D22F6172117FF009088CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D23D22F6172117FF009088CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D23D22F5172117FF009088CC /* SerializationExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D23D22F7172117FF009088CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D23D22F8172117FF009088CC /* Cocoa.framework */,
+				D23D22FA172117FF009088CC /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D23D22FA172117FF009088CC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D23D22FB172117FF009088CC /* AppKit.framework */,
+				D23D22FC172117FF009088CC /* CoreData.framework */,
+				D23D22FD172117FF009088CC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D23D22FE172117FF009088CC /* SerializationExample */ = {
+			isa = PBXGroup;
+			children = (
+				D23D230A172117FF009088CC /* AppDelegate.h */,
+				D23D230B172117FF009088CC /* AppDelegate.m */,
+				D23D230D172117FF009088CC /* MainMenu.xib */,
+				D23D22FF172117FF009088CC /* Supporting Files */,
+				D23D231517211819009088CC /* Person.h */,
+				D23D231617211819009088CC /* Person.m */,
+			);
+			path = SerializationExample;
+			sourceTree = "<group>";
+		};
+		D23D22FF172117FF009088CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D23D2300172117FF009088CC /* SerializationExample-Info.plist */,
+				D23D2301172117FF009088CC /* InfoPlist.strings */,
+				D23D2304172117FF009088CC /* main.m */,
+				D23D2306172117FF009088CC /* SerializationExample-Prefix.pch */,
+				D23D2307172117FF009088CC /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D23D22F4172117FF009088CC /* SerializationExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D23D2312172117FF009088CC /* Build configuration list for PBXNativeTarget "SerializationExample" */;
+			buildPhases = (
+				D23D22F1172117FF009088CC /* Sources */,
+				D23D22F2172117FF009088CC /* Frameworks */,
+				D23D22F3172117FF009088CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SerializationExample;
+			productName = SerializationExample;
+			productReference = D23D22F5172117FF009088CC /* SerializationExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D23D22ED172117FF009088CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Tobias Mende";
+			};
+			buildConfigurationList = D23D22F0172117FF009088CC /* Build configuration list for PBXProject "SerializationExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D23D22EC172117FF009088CC;
+			productRefGroup = D23D22F6172117FF009088CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D23D22F4172117FF009088CC /* SerializationExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D23D22F3172117FF009088CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D23D2303172117FF009088CC /* InfoPlist.strings in Resources */,
+				D23D2309172117FF009088CC /* Credits.rtf in Resources */,
+				D23D230F172117FF009088CC /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D23D22F1172117FF009088CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D23D2305172117FF009088CC /* main.m in Sources */,
+				D23D230C172117FF009088CC /* AppDelegate.m in Sources */,
+				D23D231717211819009088CC /* Person.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D23D2301172117FF009088CC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D23D2302172117FF009088CC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D23D2307172117FF009088CC /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D23D2308172117FF009088CC /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D23D230D172117FF009088CC /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D23D230E172117FF009088CC /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D23D2310172117FF009088CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D23D2311172117FF009088CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D23D2313172117FF009088CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerializationExample/SerializationExample-Prefix.pch";
+				INFOPLIST_FILE = "SerializationExample/SerializationExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D23D2314172117FF009088CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerializationExample/SerializationExample-Prefix.pch";
+				INFOPLIST_FILE = "SerializationExample/SerializationExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D23D22F0172117FF009088CC /* Build configuration list for PBXProject "SerializationExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D23D2310172117FF009088CC /* Debug */,
+				D23D2311172117FF009088CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D23D2312172117FF009088CC /* Build configuration list for PBXNativeTarget "SerializationExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D23D2313172117FF009088CC /* Debug */,
+				D23D2314172117FF009088CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D23D22ED172117FF009088CC /* Project object */;
+}

@@ -18,7 +18,6 @@
     HighlightingTextView* view;
 }
 
-
 /**
  Method for initializing an EditorService with a HighlightingTextView
  
@@ -26,5 +25,6 @@
  
  @return the EditorService
  */
+
 - (id)initWithTextView:(HighlightingTextView*) tv;
 @end
