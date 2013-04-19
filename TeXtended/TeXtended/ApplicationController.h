@@ -14,6 +14,6 @@
 }
 - (IBAction)showPreferences:(id)sender;
 + (ApplicationController*) sharedApplicationController;
-@property (strong) NSMutableArray* systemCommandCompletions;
-@property (strong) NSMutableArray* systemEnvironmentCompletions;
+@property (strong) NSMutableDictionary* systemCommandCompletions;
+@property (strong) NSMutableDictionary* systemEnvironmentCompletions;
 @end

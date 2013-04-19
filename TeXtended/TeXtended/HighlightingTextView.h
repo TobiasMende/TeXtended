@@ -17,4 +17,6 @@
 }
 - (void) updateSyntaxHighlighting;
 - (NSRange) visibleRange;
+- (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void) jumpToNextPlaceholder;
 @end

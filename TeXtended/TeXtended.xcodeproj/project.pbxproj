@@ -22,9 +22,10 @@
 
 /* Begin PBXBuildFile section */
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
-		D23D231917211FE3009088CC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D231817211FE3009088CC /* CommandCompletions.plist */; };
 		D23D231B1721325E009088CC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D231A1721325E009088CC /* EnvironmentCompletions.plist */; };
 		D23D231D17215D11009088CC /* AppleDoc Snippets in Resources */ = {isa = PBXBuildFile; fileRef = D23D231C17215D11009088CC /* AppleDoc Snippets */; };
+		D23D231F17215FCA009088CC /* TeXnicleCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */; };
+		D23D23211721613D009088CC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D23201721613D009088CC /* CommandCompletions.plist */; };
 		D244B504171FC5C70068F4C0 /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D244B503171FC5C70068F4C0 /* PlaceholderServices.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439EC171F06800020C15F /* ProjectDocument.m */; };
@@ -79,9 +80,10 @@
 
 /* Begin PBXFileReference section */
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
-		D23D231817211FE3009088CC /* CommandCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommandCompletions.plist; sourceTree = "<group>"; };
 		D23D231A1721325E009088CC /* EnvironmentCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnvironmentCompletions.plist; sourceTree = "<group>"; };
 		D23D231C17215D11009088CC /* AppleDoc Snippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "AppleDoc Snippets"; sourceTree = "<group>"; };
+		D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TeXnicleCompletions.plist; sourceTree = "<group>"; };
+		D23D23201721613D009088CC /* CommandCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommandCompletions.plist; sourceTree = "<group>"; };
 		D244B502171FC5C70068F4C0 /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
 		D244B503171FC5C70068F4C0 /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -187,7 +189,7 @@
 		D2B0F5B11720246000B6BBC4 /* AutoCompletion */ = {
 			isa = PBXGroup;
 			children = (
-				D23D231817211FE3009088CC /* CommandCompletions.plist */,
+				D23D23201721613D009088CC /* CommandCompletions.plist */,
 				D2B0F5B91720854500B6BBC4 /* Completion.h */,
 				D2B0F5BA1720854500B6BBC4 /* Completion.m */,
 				D2B0F5BC1720869F00B6BBC4 /* CommandCompletion.h */,
@@ -352,6 +354,7 @@
 			children = (
 				D23D231C17215D11009088CC /* AppleDoc Snippets */,
 				D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */,
+				D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */,
 			);
 			name = Development;
 			sourceTree = "<group>";
@@ -432,9 +435,10 @@
 				D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */,
 				D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */,
 				D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */,
-				D23D231917211FE3009088CC /* CommandCompletions.plist in Resources */,
 				D23D231B1721325E009088CC /* EnvironmentCompletions.plist in Resources */,
 				D23D231D17215D11009088CC /* AppleDoc Snippets in Resources */,
+				D23D231F17215FCA009088CC /* TeXnicleCompletions.plist in Resources */,
+				D23D23211721613D009088CC /* CommandCompletions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
