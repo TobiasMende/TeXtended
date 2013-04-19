@@ -62,12 +62,11 @@ ApplicationController *sharedInstance;
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-    NSLog(@"Finished Launching");
     sharedInstance = self;
     documentController = [[DocumentController alloc] init];
+
     
-    [self loadCompletions];
-    
+    [self loadCompletions];    
 }
 
 - (void) loadCompletions {
@@ -88,7 +87,6 @@ ApplicationController *sharedInstance;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
-    NSLog(@"%@", self.systemCommandCompletions);
     [self saveCompletions];
 }
 
