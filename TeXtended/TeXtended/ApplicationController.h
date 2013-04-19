@@ -13,4 +13,7 @@
     DocumentController *documentController;
 }
 - (IBAction)showPreferences:(id)sender;
++ (ApplicationController*) sharedApplicationController;
+@property (strong) NSMutableArray* systemCommandCompletions;
+@property (strong) NSMutableArray* systemEnvironmentCompletions;
 @end

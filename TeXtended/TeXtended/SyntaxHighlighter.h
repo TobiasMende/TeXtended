@@ -75,4 +75,8 @@
  Method for invalidating and deleting the highlighting of the entire document.
  */
 - (void) invalidateHighlighting;
+
+
++ (NSRegularExpression *) commandExpression;
+
 @end

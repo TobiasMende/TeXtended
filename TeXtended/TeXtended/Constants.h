@@ -62,6 +62,15 @@
 #define TMT_SHOULD_USE_SPACES_AS_TABS @"TMTShouldUseSpacesAsTabs"
 #define TMT_SHOULD_AUTO_INDENT_LINES @"TMTShouldAutoIndentLines"
 
+
+
+/*
+ Keys for NSCoding
+ */
+#define TMTCompletionInsertionKey @"TMTCompletionInsertionKey"
+#define TMTCompletionExtensionKey @"TMTCompletionExtensionKey"
+#define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
+
 /**
     This class is our common place for constants and other global definitions.
     E.g. keys used in the user defaults are defined here as global macros.

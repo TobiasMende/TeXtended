@@ -66,12 +66,19 @@
 }
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+    if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
+        return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+    }
+    return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
 }
 
 - (void)complete:(id)sender {
+    NSLog(@"Complete");
+    [super complete:sender];
+    //[completionHandler complete];
     
 }
+
 
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
@@ -82,12 +89,17 @@
     [regexHighlighter highlightVisibleArea];
 }
 
+
 - (void)insertText:(id)str {
+    NSUInteger before = [self selectedRange].location;
     [super insertText:str];
     NSUInteger position = [self selectedRange].location;
     // Some services should not run if a latex linebreak occures befor the current position
     if (![self.string latexLineBreakPreceedingPosition:position]) {
-        //TODO: show Code Completion Window
+        if ([completionHandler willHandleCompletionForPartialWordRange:NSMakeRange(before, 1
+                                                                                   )]) {
+            [self complete:self];
+        }
     } else {
         NSLog(@"Latex LineBreak");
     }
@@ -172,10 +184,5 @@
 
 #pragma mark -
 #pragma mark Delegate Methods
-
-- (NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    return [completionHandler completions:words forPartialWordRange:charRange indexOfSelectedItem:index];
-}
-
 
 @end

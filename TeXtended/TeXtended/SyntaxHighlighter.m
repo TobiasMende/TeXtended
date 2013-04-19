@@ -271,4 +271,12 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 
 
 
+#pragma mark -
+#pragma mark Regex Getter
+
++ (NSRegularExpression *)commandExpression {
+    return COMMAND_REGEX;
+}
+
+
 @end
