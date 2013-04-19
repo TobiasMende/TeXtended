@@ -12,9 +12,9 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{\@@command@@}{@@length@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\setlength</string>
 	</dict>

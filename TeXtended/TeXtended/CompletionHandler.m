@@ -57,18 +57,9 @@ typedef enum {
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
-    BOOL stop = NO;
-    BOOL start = NO;
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
             [matchingKeys addObject:key];
-            start = YES;
-        } else if (start) {
-            // Keys are orderd. So if we found matching keys and than a non matching key, we don't need to look ahead.
-            stop = YES;
-        }
-        if (stop) {
-            break;
         }
     }
     return matchingKeys;
