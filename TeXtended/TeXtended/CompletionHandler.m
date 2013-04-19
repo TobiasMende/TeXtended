@@ -21,6 +21,40 @@ typedef enum {
     TMTEndCompletion
     } TMTCompletionType;
 
+@interface CompletionHandler()
+
+/**
+ Used by [CompletionHandler completionsForPartialWordRange:indexOfSelectedItem:] for handling \command completions.
+ 
+ @param charRange the prefix range
+ @param index the selected entry
+ 
+ @return an array of command completions
+ */
+
+- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+
+/**
+ Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \command completions.
+ 
+ @param word the completion word
+ @param charRange the prefix range
+ @param movement the text movement
+ @param flag useless flag
+ */
+- (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+/**
+ Method for detecting the completion type by the prefix range.
+ 
+ @param charRange the prefix range
+ 
+ @return the completion type or TMTNoCompletion if this class can't handle this completion.
+ */
+- (TMTCompletionType) completionTypeForPartialWordRange:(NSRange) charRange;
+
+@end
+
 @implementation CompletionHandler
 
 + (void)initialize {
@@ -112,9 +146,6 @@ typedef enum {
     return nil;
 }
 
-- (void)complete {
-    
-}
 
 - (BOOL) isFinalInsertion:(NSUInteger) movement {
     switch (movement) {

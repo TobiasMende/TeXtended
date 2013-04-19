@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@emph@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\emph</string>
 	</dict>
@@ -68,9 +68,9 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@style@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\pagestyle</string>
 	</dict>
@@ -84,33 +84,25 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@space@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
-		<key>TMTCompletionInsertionKey</key>
-		<string>\minipage</string>
-	</dict>
-	<dict>
-		<key>TMTCompletionExtensionKey</key>
-		<string></string>
-		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\vspace</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@space@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\hspace</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@name@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\pageref</string>
 	</dict>
@@ -124,9 +116,9 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@color@@}{@@text@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\textcolor</string>
 	</dict>
@@ -156,81 +148,65 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@name@@}{@@begin@@}{@@end@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\newenvironment</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@name@@}{@@name@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\newtheorem</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{\@@counter@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\newcounter</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{\@@counter@@}{@@value@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\setcounter</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@width@@}{@@content@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\parbox</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@file@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\input</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@file@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\include</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>[@@options@@]{@@style@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
-		<key>TMTCompletionInsertionKey</key>
-		<string>\begin</string>
-	</dict>
-	<dict>
-		<key>TMTCompletionExtensionKey</key>
-		<string></string>
-		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
-		<key>TMTCompletionInsertionKey</key>
-		<string>\end</string>
-	</dict>
-	<dict>
-		<key>TMTCompletionExtensionKey</key>
-		<string></string>
-		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\documentclass</string>
 	</dict>
@@ -252,25 +228,25 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@title@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\title</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@author@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\author</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@package@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\usepackage</string>
 	</dict>
@@ -284,25 +260,25 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@numerator@@}{@@denominator@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\frac</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@numerator@@}{@@denominator@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\dfrac</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@numerator@@}{@@denominator@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\cfrac</string>
 	</dict>
@@ -316,41 +292,41 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{\@@command@@}{@@definition@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\newcommand</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@label@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\label</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@citation@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\cite</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@label@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\ref</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@caption@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\caption</string>
 	</dict>
@@ -364,57 +340,65 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@imagename@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\includegraphics</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>[width=@@width@@]{@@imagename@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\includegraphics</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@section@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\section</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@subsection@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\subsection</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@subsubsection@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\subsubsection</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@heading@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\paragraph</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@heading@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\subparagraph</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@heading@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\part</string>
 	</dict>
@@ -428,17 +412,17 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@style@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\bibliographystyle</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@bib@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\bibliography</string>
 	</dict>
@@ -468,9 +452,9 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@color@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\rowcolor</string>
 	</dict>
@@ -484,19 +468,27 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@italic text@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\textit</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
+		<string>{@@bold text@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\textbf</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
 		<string></string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<false/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\textbf</string>
+		<string>\bf</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -508,17 +500,17 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@small capitals@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\textsc</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@typewrited text@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\texttt</string>
 	</dict>
@@ -532,11 +524,51 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@text@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\textsl</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>{@@env@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\begin</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>{@@env@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\end</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>{@@file@@}{@@text@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\addtocontents</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>{\@@counter@@}{@@value@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\addtocounter</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>{\@@length@@}{@@value@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\addtolength</string>
 	</dict>
 </array>
 </plist>

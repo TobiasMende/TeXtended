@@ -8,6 +8,12 @@
 
 #import "Completion.h"
 
+
+/**
+ Class for environment completions. Just needed for identification of the completion type. May provide custom functionality later.
+ 
+ @author Tobias Mende
+ */
 @interface EnvironmentCompletion : Completion <NSCoding>
 
 @end

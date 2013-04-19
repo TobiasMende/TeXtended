@@ -8,6 +8,7 @@
 
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
+
 @implementation EnvironmentCompletion
 
 @end
