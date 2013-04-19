@@ -77,7 +77,7 @@ return self;
         NSInteger offset = 0;
         for (NSTextCheckingResult *match in matches) {
                 NSRange range = [match range];
-            NSRange final = NSMakeRange(range.location+2+offset, range.length-4);
+            NSRange final = NSMakeRange(range.location+2, range.length-4);
                 NSString *title = [self.extension substringWithRange:final];
                 NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
             NSRange newRange = NSMakeRange(range.location+offset, range.length);

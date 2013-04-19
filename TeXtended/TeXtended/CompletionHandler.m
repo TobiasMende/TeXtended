@@ -95,7 +95,7 @@ typedef enum {
 }
 
 - (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    NSLog(@"%@ %@ %ld %@", word, NSStringFromRange(charRange), movement, [NSNumber numberWithBool:flag]);
+
     NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
     CommandCompletion *completion = [completions objectForKey:word];
     if (flag && [self isFinalInsertion:movement]) {
