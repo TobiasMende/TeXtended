@@ -19,5 +19,7 @@
 - (id)initWithInsertion:(NSString*) insertion containingPlaceholders:(BOOL)flag andExtension:(NSString*) extension;
 - (NSMutableDictionary*) dictionaryRepresentation;
 - (id) initWithDictionary:(NSDictionary*) dict;
+- (NSAttributedString*) substitutedExtension;
 - (BOOL) hasExtension;
+- (NSString*)key;
 @end

@@ -19,4 +19,5 @@
 
 - (void) complete;
 - (BOOL) willHandleCompletionForPartialWordRange:(NSRange)charRange;
+- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 @end

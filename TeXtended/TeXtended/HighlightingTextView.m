@@ -42,13 +42,7 @@
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-    
-    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder1"]];
-    [self insertText:@" Bla Bla "];
-    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder2"]];
-    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder3"]];
-    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder4"]];
-    [self.textStorage appendAttributedString:[EditorPlaceholder placeholderAsAttributedStringWithName:@"Placeholder5"]];
+
     [self setDelegate:self];
 
 
@@ -69,16 +63,34 @@
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
         return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
     }
-    return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+    return nil;
+    //return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
 }
 
 - (void)complete:(id)sender {
-    NSLog(@"Complete");
     [super complete:sender];
     //[completionHandler complete];
     
 }
 
+- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    
+    [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    
+}
+
+- (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    
+    if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
+        [self delete:nil];
+        return;
+    }
+    [super insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+}
+
+- (void)jumpToNextPlaceholder {
+    [placeholderService handleInsertTab];
+}
 
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
@@ -89,17 +101,12 @@
     [regexHighlighter highlightVisibleArea];
 }
 
-
 - (void)insertText:(id)str {
-    NSUInteger before = [self selectedRange].location;
     [super insertText:str];
     NSUInteger position = [self selectedRange].location;
     // Some services should not run if a latex linebreak occures befor the current position
     if (![self.string latexLineBreakPreceedingPosition:position]) {
-        if ([completionHandler willHandleCompletionForPartialWordRange:NSMakeRange(before, 1
-                                                                                   )]) {
             [self complete:self];
-        }
     } else {
         NSLog(@"Latex LineBreak");
     }

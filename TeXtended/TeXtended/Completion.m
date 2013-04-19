@@ -8,8 +8,18 @@
 
 #import "Completion.h"
 #import "Constants.h"
-
+#import "EditorPlaceholder.h"
+NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation Completion
+
++ (void)initialize {
+    NSError *error;
+    PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error) {
+        NSLog(@"Regex Error");
+    }
+    
+}
 
 - (id)initWithInsertion:(NSString *)insertion {
     return [self initWithInsertion:insertion containingPlaceholders:NO];
@@ -33,6 +43,10 @@ return self;
 - (id)initWithDictionary:(NSDictionary *)dict {
     NSString *insertion = [dict objectForKey:TMTCompletionInsertionKey];
     BOOL hasPlaceholders = [[dict objectForKey:TMTCompletionHasPlaceholdersKey] boolValue];
+    NSString *extension = [dict objectForKey:TMTCompletionExtensionKey];
+    if (extension) {
+        return [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders andExtension:extension];
+    }
     return [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders];
 }
 
@@ -49,6 +63,33 @@ return self;
 - (BOOL)hasExtension {
     return self.extension && self.extension.length > 0;
 }
+
+
+-(NSString *)key {
+    return [NSString stringWithFormat:@"%@%@", self.insertion, self.extension];
+}
+
+
+- (NSAttributedString *)substitutedExtension {
+    NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:self.extension];
+    if (self.hasPlaceholders) {
+        NSArray *matches = [PLACEHOLDER_REGEX matchesInString:self.extension options:0 range:NSMakeRange(0, self.extension.length)];
+        NSInteger offset = 0;
+        for (NSTextCheckingResult *match in matches) {
+                NSRange range = [match range];
+            NSRange final = NSMakeRange(range.location+2+offset, range.length-4);
+                NSString *title = [self.extension substringWithRange:final];
+                NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
+            NSRange newRange = NSMakeRange(range.location+offset, range.length);
+            [extension replaceCharactersInRange:newRange withAttributedString:placeholder];
+            offset += placeholder.length - range.length;
+            
+            
+        }
+    }
+    return extension;
+}
+
 
 
 #pragma mark -
@@ -69,6 +110,8 @@ return self;
     [aCoder encodeObject:self.extension forKey:TMTCompletionExtensionKey];
     [aCoder encodeBool:self.hasPlaceholders forKey:TMTCompletionHasPlaceholdersKey];
 }
+
+
 
 
 

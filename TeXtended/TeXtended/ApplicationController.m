@@ -73,16 +73,18 @@ ApplicationController *sharedInstance;
     NSString *commandPath = [[NSBundle mainBundle] pathForResource:@"CommandCompletions" ofType:@"plist"];
     NSString *envPath = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
     NSArray *commandDicts = [NSArray arrayWithContentsOfFile:commandPath];
-    _systemCommandCompletions = [[NSMutableArray alloc] initWithCapacity:commandDicts.count];
+    _systemCommandCompletions = [[NSMutableDictionary alloc] initWithCapacity:commandDicts.count];
     
     for(NSDictionary *d in commandDicts) {
-        [_systemCommandCompletions addObject:[[CommandCompletion alloc] initWithDictionary:d]];
+        Completion *c = [[CommandCompletion alloc] initWithDictionary:d];
+        [_systemCommandCompletions setObject:c forKey:[c key]];
     }
     NSArray *envDicts = [NSArray arrayWithContentsOfFile:envPath];
-    _systemEnvironmentCompletions = [[NSMutableArray alloc] initWithCapacity:envDicts.count];
+    _systemEnvironmentCompletions = [[NSMutableDictionary alloc] initWithCapacity:envDicts.count];
     
     for(NSDictionary *d in envDicts) {
-        [_systemEnvironmentCompletions addObject:[[EnvironmentCompletion alloc] initWithDictionary:d]];
+        Completion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
+        [_systemEnvironmentCompletions setObject:c forKey:[c key]];
     }
 }
 
@@ -96,13 +98,13 @@ ApplicationController *sharedInstance;
     
     // Storing Command Completions:
     NSMutableArray *commandSaving = [[NSMutableArray alloc] initWithCapacity:self.systemCommandCompletions.count];
-    for(CommandCompletion *c in self.systemCommandCompletions) {
+    for(CommandCompletion *c in [self.systemCommandCompletions allValues]) {
         [commandSaving addObject:[c dictionaryRepresentation]];
     }
     [commandSaving writeToFile:commandPath atomically:YES];
     // Storing Environment Completions:
     NSMutableArray *envSaving = [[NSMutableArray alloc] initWithCapacity:self.systemEnvironmentCompletions.count];
-    for(EnvironmentCompletion *c in self.systemEnvironmentCompletions) {
+    for(EnvironmentCompletion *c in [self.systemEnvironmentCompletions allValues]) {
         [envSaving addObject:[c dictionaryRepresentation]];
     }
     [envSaving writeToFile:envPath atomically:YES];

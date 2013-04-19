@@ -76,9 +76,9 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{\@@name@@}{@@definition@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
-		<false/>
+		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\renewcommand</string>
 	</dict>
