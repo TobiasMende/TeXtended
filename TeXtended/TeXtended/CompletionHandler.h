@@ -36,6 +36,7 @@
  */
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
 
+
 /**
  Method for checking whethter this class can handle the completion for the provided range or not.
  
@@ -65,4 +66,6 @@
  
  */
 - (BOOL) isFinalInsertion:(NSUInteger) movement;
+
+- (BOOL) shouldCompleteForInsertion:(NSString*) insertion;
 @end

@@ -61,7 +61,10 @@
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
-        return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+        [self.undoManager beginUndoGrouping];
+        NSArray *completions =[completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+        [self.undoManager endUndoGrouping];
+        return completions;
     }
     return nil;
     //return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
@@ -74,6 +77,7 @@
 }
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    NSLog(@"word: %@ %@", word, NSStringFromRange(charRange));
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
 }
@@ -102,10 +106,15 @@
 
 - (void)insertText:(id)str {
     [super insertText:str];
+    if ([str isKindOfClass:[NSAttributedString class]]) {
+        return;
+    }
     NSUInteger position = [self selectedRange].location;
     // Some services should not run if a latex linebreak occures befor the current position
     if (![self.string latexLineBreakPreceedingPosition:position]) {
+        if ([completionHandler shouldCompleteForInsertion:str]) {
             [self complete:self];
+        }
     } else {
         NSLog(@"Latex LineBreak");
     }

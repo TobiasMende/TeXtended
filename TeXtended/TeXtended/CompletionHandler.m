@@ -14,7 +14,7 @@
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
 NSDictionary *COMPLETION_TYPE_BY_PREFIX;
-
+NSSet *COMPLETION_ESCAPE_INSERTIONS;
 typedef enum {
     TMTNoCompletion,
     TMTCommandCompletion,
@@ -66,6 +66,7 @@ typedef enum {
 
 + (void)initialize {
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
+    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", nil];
     
 }
 
@@ -73,8 +74,6 @@ typedef enum {
 
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    
-
     
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     switch (type) {
@@ -96,6 +95,7 @@ typedef enum {
 }
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
@@ -152,10 +152,13 @@ typedef enum {
         
         NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
             [final appendAttributedString:[completion substitutedExtension]];
+            [view.undoManager beginUndoGrouping];
+            [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
-            [view.textStorage replaceCharactersInRange:charRange withAttributedString:final];
+            [view  insertText:final];
             [view setSelectedRange:NSMakeRange(charRange.location, 0)];
             [view jumpToNextPlaceholder];
+            [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
         }
@@ -187,7 +190,7 @@ typedef enum {
     } else {
         range = visible;
     }
-    NSRange endRange = NSMakeRange(NSNotFound, 0);//[self matchingEndForEnvironment:word inRange:range];
+    NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
     NSMutableAttributedString *further = [[NSMutableAttributedString alloc] init];
     if (completion && [completion hasPlaceholders]) {
         [further appendAttributedString:[completion substitutedExtension]];
@@ -195,12 +198,18 @@ typedef enum {
     if (endRange.location == NSNotFound) {
         [further appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", word]]];
     }
-    [view.textStorage insertAttributedString:further atIndex:position];
+    [view.undoManager beginUndoGrouping];
+    [view setSelectedRange:NSMakeRange(position, 0)];
+    [view insertText:further];
     [view setSelectedRange:NSMakeRange(position, 0)];
     [view jumpToNextPlaceholder];
+    [view.undoManager endUndoGrouping];
+    
     
     
 }
+
+
 
 - (NSRange) matchingEndForEnvironment:(NSString*) name inRange:(NSRange) range {
     //FIXME: doesn't work.
@@ -278,7 +287,7 @@ typedef enum {
     return TMTNoCompletion;
 }
 
-- (void)dealloc {
-    
+- (BOOL)shouldCompleteForInsertion:(NSString *)insertion {
+    return ![COMPLETION_ESCAPE_INSERTIONS containsObject:insertion];
 }
 @end

@@ -20,7 +20,7 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>\n\t\item@@content@@</string>
+		<string>@@content@@</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
@@ -44,7 +44,7 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>[@@placement@@]\n\t@@content@@\n\caption{@@title@@}</string>
+		<string>[@@placement@@]@@content@@\caption{@@title@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
@@ -68,7 +68,7 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>\n\t\item@@content@@</string>
+		<string>@@content@@</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
@@ -76,7 +76,7 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>{@@label@@}{@@spacing@@}\n\t\item@@content@@</string>
+		<string>{@@label@@}{@@spacing@@}@@content@@</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
