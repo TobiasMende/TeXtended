@@ -85,7 +85,7 @@
     
     /* then the horizontal lines */
     if (self.drawHorizotalLines) {
-        for( i = height - [self gridHorizontalSpacing]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
+        for( i = height - [self gridHorizontalOffset]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
             [drawingPath moveToPoint:NSMakePoint(0,i)];
             [drawingPath lineToPoint:NSMakePoint(width, i)];
         }
