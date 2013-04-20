@@ -154,6 +154,27 @@
     
 }
 
+- (BOOL)handleBacktabInsertion {
+    if (view.selectedRanges.count > 1 || view.selectedRange.length > 0) {
+        return NO;
+    }
+    NSString *tab = [self singleTab];
+    NSUInteger position = view.selectedRange.location;
+    if (position < tab.length) {
+        return NO;
+    }
+    NSRange possibleTabRange = NSMakeRange(position-tab.length, tab.length);
+    if ([[view.string substringWithRange:possibleTabRange] isEqualToString:tab]) {
+        [view.undoManager beginUndoGrouping];
+        [view setSelectedRange:possibleTabRange];
+        [view delete:nil];
+        [view.undoManager endUndoGrouping];
+        return YES;
+    }
+    return NO;
+
+}
+
 /**
  Method returns a single tab, meaning a \t or a user defined amount of spaces.
  */

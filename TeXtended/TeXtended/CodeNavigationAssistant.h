@@ -38,6 +38,8 @@
  */
 - (void) handleTabInsertion;
 
+- (BOOL) handleBacktabInsertion;
+
 /**
  Handles insertion of a new line. If defined by the user the new line will begin with the same indention as the previous line.
  */

@@ -9,7 +9,7 @@
 #import "EditorService.h"
 
 @interface CompletionHandler : EditorService
-
+@property BOOL shouldAutoIndentEnvironment;
 
 
 

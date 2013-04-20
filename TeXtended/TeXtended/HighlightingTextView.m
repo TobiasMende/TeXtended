@@ -42,7 +42,6 @@
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-
     [self setDelegate:self];
 
 
@@ -127,7 +126,7 @@
 }
 
 - (void)insertBacktab:(id)sender {
-    if (![placeholderService handleInsertBacktab]) {
+    if (![codeNavigationAssistant handleBacktabInsertion] && ![placeholderService handleInsertBacktab]) {
         [super insertBacktab:sender];
     }
 }

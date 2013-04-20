@@ -70,6 +70,14 @@ typedef enum {
     
 }
 
+- (id)initWithTextView:(HighlightingTextView *)tv {
+    self = [super initWithTextView:tv];
+    if (self) {
+        _shouldAutoIndentEnvironment = YES;
+    }
+    return self;
+}
+
 
 
 
@@ -191,16 +199,23 @@ typedef enum {
         range = visible;
     }
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
-    NSMutableAttributedString *further = [[NSMutableAttributedString alloc] init];
-    if (completion && [completion hasPlaceholders]) {
-        [further appendAttributedString:[completion substitutedExtension]];
-    }
-    if (endRange.location == NSNotFound) {
-        [further appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", word]]];
-    }
     [view.undoManager beginUndoGrouping];
     [view setSelectedRange:NSMakeRange(position, 0)];
-    [view insertText:further];
+    if (self.shouldAutoIndentEnvironment) {
+        [view insertNewline:self];
+        [view insertTab:self];
+    }
+    if (completion && [completion hasPlaceholders]) {
+        [view insertText:[completion substitutedExtension]];
+    }
+    if (endRange.location == NSNotFound) {
+        if (self.shouldAutoIndentEnvironment) {
+            [view insertNewline:self];
+            [view insertBacktab:self];
+        }
+        [view insertText:[NSString stringWithFormat:@"\\end{%@}", word]];
+    
+    }
     [view setSelectedRange:NSMakeRange(position, 0)];
     [view jumpToNextPlaceholder];
     [view.undoManager endUndoGrouping];
