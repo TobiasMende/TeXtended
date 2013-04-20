@@ -72,17 +72,22 @@
         if (lineRect.size.width == 0) {
             return;
         }
-        [self.currentLineColor set];
-        [NSBezierPath fillRect:lineRect];
+        if ([view lockFocusIfCanDraw]) {
+            [self.currentLineColor set];
+            [NSBezierPath fillRect:lineRect];
+            [view unlockFocus];
+        }
     }
     
 }
 
+- (void)highlight {
+    [self highlightCurrentLine];
+    [self highlightCarret];
+}
+
 - (NSRect)lineRectforRange:(NSRange) range {
-    NSRange totalLineRange = [self lineTextRangeWithRange:range];
-    if(totalLineRange.location == NSNotFound) {
-        return NSZeroRect;
-    }
+    NSRange totalLineRange = NSMakeRange(view.selectedRange.location, 0);
     NSLayoutManager *lm = view.layoutManager;
     NSRange glyphRange = [lm glyphRangeForCharacterRange:totalLineRange actualCharacterRange:NULL];
     NSRect boundingRect = [lm boundingRectForGlyphRange:glyphRange inTextContainer:view.textContainer];
@@ -115,12 +120,12 @@
     if (!self.shouldHighlightCarret) {
         if(lastCarretRange.location != NSNotFound) {
             // Make sure that the visible carret gets deleted.
-            [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:lastCarretRange];
+            [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:view.visibleRange];
             lastCarretRange = NSMakeRange(NSNotFound, 0);
         }
         return;
     }
-    [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:lastCarretRange];
+    [lm removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:view.visibleRange];
     if(view.selectedRanges.count > 1 || view.selectedRange.length >0 || !self.carretColor) {
         return;
     }
@@ -236,9 +241,7 @@
 
 - (void) updateViewDrawing {
     if ([view lockFocusIfCanDraw]) {
-        [view setNeedsDisplay:YES];
         [view drawRect:view.visibleRect];
-        [view setNeedsDisplay:NO];
         [view unlockFocus];
     }
 }

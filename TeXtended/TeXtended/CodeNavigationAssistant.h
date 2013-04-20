@@ -31,6 +31,8 @@
  */
 - (void) highlightCarret;
 
+- (void) highlight;
+
 /**
  Handles the insertion of a tab. If activated by the user, tabs will be replaced by a user defined amount of spaces.
  */

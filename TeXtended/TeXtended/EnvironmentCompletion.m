@@ -11,4 +11,8 @@
 
 @implementation EnvironmentCompletion
 
+
+-(NSString *)key {
+    return self.insertion;
+}
 @end

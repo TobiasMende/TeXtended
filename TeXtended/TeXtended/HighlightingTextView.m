@@ -69,18 +69,16 @@
 
 - (void)complete:(id)sender {
     [super complete:sender];
-    //[completionHandler complete];
+    
     
 }
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
 }
 
 - (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
         return;
@@ -95,6 +93,7 @@
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     [self updateSyntaxHighlighting];
+    [codeNavigationAssistant highlight];
 }
 
 - (void)updateSyntaxHighlighting {
