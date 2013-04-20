@@ -10,7 +10,8 @@
 
 @interface CompletionHandler : EditorService
 @property BOOL shouldAutoIndentEnvironment;
-
+@property BOOL shouldCompleteCommands;
+@property BOOL shouldCompleteEnvironments;
 
 
 /**

@@ -105,6 +105,7 @@
 - (void)insertText:(id)str {
     [super insertText:str];
     if ([str isKindOfClass:[NSAttributedString class]]) {
+        NSLog(@"Bla");
         return;
     }
     NSUInteger position = [self selectedRange].location;
@@ -120,8 +121,15 @@
 }
 
 - (void)insertTab:(id)sender {
-    if (![placeholderService handleInsertTab]) {
+    BOOL senderIsCompletionHandler = [sender isKindOfClass:[CompletionHandler class]];
+    BOOL placeholderServicesHandles = NO;
+    if (!senderIsCompletionHandler) {
+        placeholderServicesHandles = [placeholderService handleInsertTab];
+    }
+    if ( senderIsCompletionHandler|| !placeholderServicesHandles) {
         [codeNavigationAssistant handleTabInsertion];
+    } else if (!placeholderServicesHandles) {
+        [super insertTab:sender];
     }
 }
 

@@ -138,20 +138,23 @@
 
 #pragma mark -
 #pragma mark Auto Indention and Tab Spacing
-- (void)handleTabInsertion {
+- (BOOL)handleTabInsertion {
+    if (view.selectedRanges.count > 1 || view.selectedRange.length > 0) {
+        return NO;
+    }
     NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
     if (lineRange.location != NSNotFound) {
         NSRange totalRange = NSUnionRange(lineRange
                                           , view.selectedRange);
         if (view.selectedRange.length > 0 && view.selectedRange.location == totalRange.location) {
             [self handleMultiLineIndent];
-            return;
+            return YES;
         }
     }
     
         NSString *tab = [self singleTab];
         [view insertText:tab];
-    
+    return YES;
 }
 
 - (BOOL)handleBacktabInsertion {

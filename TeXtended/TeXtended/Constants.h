@@ -61,7 +61,9 @@
 #define TMT_SHOULD_HIGHLIGHT_CARRET @"TMTShouldHighlightCarret"
 #define TMT_SHOULD_USE_SPACES_AS_TABS @"TMTShouldUseSpacesAsTabs"
 #define TMT_SHOULD_AUTO_INDENT_LINES @"TMTShouldAutoIndentLines"
-
+#define TMT_SHOULD_COMPLETE_COMMANDS @"TMTShouldCompleteCommands"
+#define TMT_SHOULD_COMPLETE_ENVIRONMENTS @"TMTShouldCompleteEnvironments"
+#define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
 
 
 /*
@@ -70,6 +72,7 @@
 #define TMTCompletionInsertionKey @"TMTCompletionInsertionKey"
 #define TMTCompletionExtensionKey @"TMTCompletionExtensionKey"
 #define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
+#define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
 
 /**
     This class is our common place for constants and other global definitions.

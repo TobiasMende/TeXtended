@@ -50,6 +50,8 @@
  */
 - (NSAttributedString*) substitutedExtension;
 
+- (NSAttributedString*) substitutePlaceholdersInString:(NSString *) string;
+
 /**
  Method for checking whether [Completion extension] is neither nil nor empty.
  @return `YES` if there is a meaningfull extension

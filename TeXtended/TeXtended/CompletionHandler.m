@@ -73,7 +73,18 @@ typedef enum {
 - (id)initWithTextView:(HighlightingTextView *)tv {
     self = [super initWithTextView:tv];
     if (self) {
-        _shouldAutoIndentEnvironment = YES;
+         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+        
+        self.shouldCompleteEnvironments = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_ENVIRONMENTS] boolValue];
+        [self bind:@"shouldCompleteEnvironments" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_ENVIRONMENTS] options:NULL];
+    
+    
+    
+        self.shouldCompleteCommands = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_COMMANDS] boolValue];
+        [self bind:@"shouldCompleteCommands" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_COMMANDS] options:NULL];
+        
+        self.shouldAutoIndentEnvironment = [[[defaults values] valueForKey:TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS] boolValue];
+        [self bind:@"shouldAutoIndentEnvironment" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS] options:NULL];
     }
     return self;
 }
@@ -86,12 +97,21 @@ typedef enum {
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     switch (type) {
         case TMTCommandCompletion:
+            if (!self.shouldCompleteCommands) {
+                return nil;
+            }
             return [self commandCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         case TMTBeginCompletion:
+            if (!self.shouldCompleteEnvironments) {
+                return nil;
+            }
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         case TMTEndCompletion:
+            if (!self.shouldCompleteEnvironments) {
+                return nil;
+            }
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         default:
@@ -133,12 +153,21 @@ typedef enum {
     
     switch (type) {
         case TMTCommandCompletion:
+            if (!self.shouldCompleteCommands) {
+                return;
+            }
             [self insertCommandCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTBeginCompletion:
+            if (!self.shouldCompleteEnvironments) {
+                return;
+            }
             [self insertEnvironmentCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTEndCompletion:
+            if (!self.shouldCompleteEnvironments) {
+                return;
+            }
             [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             if (flag && [self isFinalInsertion:movement]) {
                 [self skipClosingBracket];
@@ -201,6 +230,9 @@ typedef enum {
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
     [view.undoManager beginUndoGrouping];
     [view setSelectedRange:NSMakeRange(position, 0)];
+    if ([completion hasFirstLineExtension]) {
+        [view insertText:[completion substitutedFirstLineExtension]];
+    }
     if (self.shouldAutoIndentEnvironment) {
         [view insertNewline:self];
         [view insertTab:self];
@@ -214,7 +246,7 @@ typedef enum {
             [view insertBacktab:self];
         }
         [view insertText:[NSString stringWithFormat:@"\\end{%@}", word]];
-    
+        
     }
     [view setSelectedRange:NSMakeRange(position, 0)];
     [view jumpToNextPlaceholder];

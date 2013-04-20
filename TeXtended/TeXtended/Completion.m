@@ -70,16 +70,16 @@ return self;
 }
 
 
-- (NSAttributedString *)substitutedExtension {
-    NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:self.extension];
+- (NSAttributedString *)substitutePlaceholdersInString:(NSString *)string {
+    NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:string];
     if (self.hasPlaceholders) {
-        NSArray *matches = [PLACEHOLDER_REGEX matchesInString:self.extension options:0 range:NSMakeRange(0, self.extension.length)];
+        NSArray *matches = [PLACEHOLDER_REGEX matchesInString:string options:0 range:NSMakeRange(0, string.length)];
         NSInteger offset = 0;
         for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match range];
+            NSRange range = [match range];
             NSRange final = NSMakeRange(range.location+2, range.length-4);
-                NSString *title = [self.extension substringWithRange:final];
-                NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
+            NSString *title = [string substringWithRange:final];
+            NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
             NSRange newRange = NSMakeRange(range.location+offset, range.length);
             [extension replaceCharactersInRange:newRange withAttributedString:placeholder];
             offset += placeholder.length - range.length;
@@ -88,6 +88,11 @@ return self;
         }
     }
     return extension;
+}
+
+- (NSAttributedString *)substitutedExtension {
+    
+    return [self substitutePlaceholdersInString:self.extension];
 }
 
 

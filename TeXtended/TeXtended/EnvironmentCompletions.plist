@@ -2,181 +2,226 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>center</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>description</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>enumerate</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>eqnarray</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>equation</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>[@@placement@@]@@content@@\caption{@@title@@}</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>figure</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>flushleft</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>flushright</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>\item @@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>itemize</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>{@@label@@}{@@spacing@@}@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>list</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>[@@position@@]{@@width@@}@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>minipage</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>quotation</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>quoute</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>tabbing</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>[@@placement@@]@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>table</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>{@@cols@@}@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>tabular</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>theorem</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>titlepage</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>verbatim</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>verse</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>tikzpicture</string>
-</dict>
-<dict>
-    <key>TMTCompletionExtensionKey</key>
-    <string>@@content@@</string>
-    <key>TMTCompletionHasPlaceholdersKey</key>
-    <true/>
-    <key>TMTCompletionInsertionKey</key>
-    <string>frame</string>
-</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>description</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>frame</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>flushleft</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>eqnarray</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>[@@position@@]{@@width@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>minipage</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>\item @@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>itemize</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>verbatim</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>flushright</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>{@@cols@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>tabular</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>theorem</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@
+    \caption{@@title@@}</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>[@@placement@@]</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>figure</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>verse</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>tikzpicture</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>{@@label@@}{@@spacing@@}</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>list</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>[@@placement@@]</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>table</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>enumerate</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>tabbing</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>quoute</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>center</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>titlepage</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>equation</string>
+	</dict>
+	<dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@content@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>quotation</string>
+	</dict>
 </array>
 </plist>

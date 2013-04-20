@@ -15,5 +15,9 @@
  @author Tobias Mende
  */
 @interface EnvironmentCompletion : Completion <NSCoding>
+@property (strong) NSString *firstLineExtension;
+
+- (BOOL) hasFirstLineExtension;
+- (NSAttributedString*) substitutedFirstLineExtension;
 
 @end

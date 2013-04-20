@@ -45,7 +45,9 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_LINES,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_USE_SPACES_AS_TABS,
-                              
+                              [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS,
+                              [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_COMMANDS,
+                              [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_ENVIRONMENTS,
                               [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
                               
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
