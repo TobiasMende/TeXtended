@@ -8,6 +8,11 @@
 
 #import "Completion.h"
 
+/**
+ Class for \command completions. Just needed for identification of the completion type. May provide custom functionality later.
+ 
+ @author Tobias Mende
+ */
 @interface CommandCompletion : Completion <NSCoding>
 
 @end

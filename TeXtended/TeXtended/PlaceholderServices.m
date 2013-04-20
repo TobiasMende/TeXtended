@@ -84,13 +84,13 @@
         dif = index-range.location;
         
     }
-    for(NSUInteger idx = range.location+dif; idx >= range.location ; idx-- ) {
+    for(NSUInteger idx = range.location+dif; idx > range.location ; idx-- ) {
         if ([self isPlaceholderAtIndex:idx]) {
             return NSMakeRange(idx, 1);
         }
     }
     // No Placeholder found. Round wrap!:
-    for(NSUInteger idx = NSMaxRange(range)-1; idx > range.location+dif; idx-- ) {
+    for(NSUInteger idx = NSMaxRange(range); idx > range.location+dif; idx-- ) {
         if ([self isPlaceholderAtIndex:idx]) {
             return NSMakeRange(idx, 1);
         }

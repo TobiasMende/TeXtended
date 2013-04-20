@@ -8,6 +8,11 @@
 
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
+
 @implementation EnvironmentCompletion
 
+
+-(NSString *)key {
+    return self.insertion;
+}
 @end

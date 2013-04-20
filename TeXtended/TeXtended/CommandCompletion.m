@@ -11,7 +11,4 @@
 @implementation CommandCompletion
 
 
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder ];
-}
 @end

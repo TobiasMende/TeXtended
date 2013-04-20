@@ -31,10 +31,14 @@
  */
 - (void) highlightCarret;
 
+- (void) highlight;
+
 /**
  Handles the insertion of a tab. If activated by the user, tabs will be replaced by a user defined amount of spaces.
  */
 - (void) handleTabInsertion;
+
+- (BOOL) handleBacktabInsertion;
 
 /**
  Handles insertion of a new line. If defined by the user the new line will begin with the same indention as the previous line.

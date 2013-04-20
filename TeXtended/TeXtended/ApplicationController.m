@@ -41,7 +41,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CURRENT_LINE,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_MATCHING_BRACKETS,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INSERT_CLOSING_BRACKETS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CARRET,
+                              [NSNumber numberWithBool:NO], TMT_SHOULD_HIGHLIGHT_CARRET,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_LINES,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_USE_SPACES_AS_TABS,

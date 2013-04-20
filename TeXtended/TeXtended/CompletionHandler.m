@@ -12,8 +12,9 @@
 #import "ApplicationController.h"
 #import "Completion.h"
 #import "CommandCompletion.h"
+#import "EnvironmentCompletion.h"
 NSDictionary *COMPLETION_TYPE_BY_PREFIX;
-
+NSSet *COMPLETION_ESCAPE_INSERTIONS;
 typedef enum {
     TMTNoCompletion,
     TMTCommandCompletion,
@@ -21,10 +22,60 @@ typedef enum {
     TMTEndCompletion
     } TMTCompletionType;
 
+@interface CompletionHandler()
+
+/**
+ Used by [CompletionHandler completionsForPartialWordRange:indexOfSelectedItem:] for handling \command completions.
+ 
+ @param charRange the prefix range
+ @param index the selected entry
+ 
+ @return an array of command completions
+ */
+
+- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+
+/**
+ Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \command completions.
+ 
+ @param word the completion word
+ @param charRange the prefix range
+ @param movement the text movement
+ @param flag useless flag
+ */
+- (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+- (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+/**
+ Method for detecting the completion type by the prefix range.
+ 
+ @param charRange the prefix range
+ 
+ @return the completion type or TMTNoCompletion if this class can't handle this completion.
+ */
+- (TMTCompletionType) completionTypeForPartialWordRange:(NSRange) charRange;
+
+- (void) skipClosingBracket;
+
+@end
+
 @implementation CompletionHandler
 
 + (void)initialize {
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
+    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", nil];
+    
+}
+
+- (id)initWithTextView:(HighlightingTextView *)tv {
+    self = [super initWithTextView:tv];
+    if (self) {
+        _shouldAutoIndentEnvironment = YES;
+    }
+    return self;
 }
 
 
@@ -32,18 +83,16 @@ typedef enum {
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     
-
-    
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     switch (type) {
         case TMTCommandCompletion:
             return [self commandCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         case TMTBeginCompletion:
-            NSLog(@"BeginCompletion");
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         case TMTEndCompletion:
-            NSLog(@"EndCompletion");
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
         default:
             NSLog(@"NoCompletion");
@@ -54,6 +103,7 @@ typedef enum {
 }
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
@@ -65,6 +115,18 @@ typedef enum {
     return matchingKeys;
 }
 
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    NSString *prefix = [view.string substringWithRange:charRange];
+    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemEnvironmentCompletions] ;
+    NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
+    for (NSString *key in completions) {
+        if ([key hasPrefix:prefix]) {
+            [matchingCompletions addObject:[[completions objectForKey:key] insertion]];
+        }
+    }
+    return matchingCompletions;
+}
+
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
@@ -74,10 +136,13 @@ typedef enum {
             [self insertCommandCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTBeginCompletion:
-            NSLog(@"BeginCompletion");
+            [self insertEnvironmentCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTEndCompletion:
-            NSLog(@"EndCompletion");
+            [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+            if (flag && [self isFinalInsertion:movement]) {
+                [self skipClosingBracket];
+            }
             break;
         default:
             NSLog(@"NoCompletion");
@@ -95,10 +160,13 @@ typedef enum {
         
         NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
             [final appendAttributedString:[completion substitutedExtension]];
+            [view.undoManager beginUndoGrouping];
+            [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
-            [view.textStorage replaceCharactersInRange:charRange withAttributedString:final];
+            [view  insertText:final];
             [view setSelectedRange:NSMakeRange(charRange.location, 0)];
             [view jumpToNextPlaceholder];
+            [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
         }
@@ -106,15 +174,99 @@ typedef enum {
         [view insertFinalCompletion:[completion.insertion substringWithRange:NSMakeRange(1, completion.insertion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
     }
     
+}
+
+- (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
+    if (type != TMTBeginCompletion) {
+        return;
     }
+    if (!flag || ![self isFinalInsertion:movement]) {
+        [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+        return;
+    }
+    [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    [self skipClosingBracket];
+    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemEnvironmentCompletions];
+    EnvironmentCompletion *completion = [completions objectForKey:word];
+    NSUInteger position = [view selectedRange].location;
+    NSRange visible = [view visibleRange];
+    NSRange range;
+    if (position > visible.location) {
+        NSUInteger dif = position - visible.location;
+        range = NSMakeRange(position, visible.length-dif);
+    } else {
+        range = visible;
+    }
+    NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
+    [view.undoManager beginUndoGrouping];
+    [view setSelectedRange:NSMakeRange(position, 0)];
+    if (self.shouldAutoIndentEnvironment) {
+        [view insertNewline:self];
+        [view insertTab:self];
+    }
+    if (completion && [completion hasPlaceholders]) {
+        [view insertText:[completion substitutedExtension]];
+    }
+    if (endRange.location == NSNotFound) {
+        if (self.shouldAutoIndentEnvironment) {
+            [view insertNewline:self];
+            [view insertBacktab:self];
+        }
+        [view insertText:[NSString stringWithFormat:@"\\end{%@}", word]];
+    
+    }
+    [view setSelectedRange:NSMakeRange(position, 0)];
+    [view jumpToNextPlaceholder];
+    [view.undoManager endUndoGrouping];
+    
+    
+    
+}
+
+
+
+- (NSRange) matchingEndForEnvironment:(NSString*) name inRange:(NSRange) range {
+    //FIXME: doesn't work.
+    NSLog(@"Range: %@, total: %@", NSStringFromRange(range), NSStringFromRange(view.visibleRange));
+    
+    NSString *start = [NSString stringWithFormat:@"\\begin{%@}", name];
+    NSString *end = [NSString stringWithFormat:@"\\end{%@}", name];
+    NSUInteger totalLength = [view string].length;
+    NSUInteger counter = 0;
+    for (NSUInteger position = range.location; position < range.location+range.length; position++) {
+        if (position+start.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, start.length)] isEqualToString:start]) {
+            NSLog(@"Found Begin");
+            counter ++;
+            continue;
+        }
+        if (position+end.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, end.length)] isEqualToString:end]) {
+            if (counter == 0) {
+                NSLog(@"Match!");
+                return NSMakeRange(position, end.length);
+            }
+            NSLog(@"Found End");
+            counter --;
+            continue;
+        }
+    }
+    return NSMakeRange(NSNotFound, 0);
+}
+
+- (void) skipClosingBracket {
+    NSUInteger position = [view selectedRange].location;
+    if (position < view.string.length) {
+        NSRange r = NSMakeRange(position, 1);
+        if ([[view.string substringWithRange:r] isEqualToString:@"}"]) {
+            [view setSelectedRange:NSMakeRange(position+1, 0)];
+        }
+    }
+}
 
 - (NSArray *)completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     return nil;
 }
 
-- (void)complete {
-    
-}
 
 - (BOOL) isFinalInsertion:(NSUInteger) movement {
     switch (movement) {
@@ -150,7 +302,7 @@ typedef enum {
     return TMTNoCompletion;
 }
 
-- (void)dealloc {
-    
+- (BOOL)shouldCompleteForInsertion:(NSString *)insertion {
+    return ![COMPLETION_ESCAPE_INSERTIONS containsObject:insertion];
 }
 @end

@@ -42,7 +42,6 @@
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-
     [self setDelegate:self];
 
 
@@ -61,7 +60,10 @@
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
-        return [completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+        [self.undoManager beginUndoGrouping];
+        NSArray *completions =[completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+        [self.undoManager endUndoGrouping];
+        return completions;
     }
     return nil;
     //return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
@@ -69,18 +71,16 @@
 
 - (void)complete:(id)sender {
     [super complete:sender];
-    //[completionHandler complete];
+    
     
 }
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
 }
 
 - (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
         return;
@@ -95,6 +95,7 @@
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     [self updateSyntaxHighlighting];
+    [codeNavigationAssistant highlight];
 }
 
 - (void)updateSyntaxHighlighting {
@@ -103,10 +104,15 @@
 
 - (void)insertText:(id)str {
     [super insertText:str];
+    if ([str isKindOfClass:[NSAttributedString class]]) {
+        return;
+    }
     NSUInteger position = [self selectedRange].location;
     // Some services should not run if a latex linebreak occures befor the current position
     if (![self.string latexLineBreakPreceedingPosition:position]) {
+        if ([completionHandler shouldCompleteForInsertion:str]) {
             [self complete:self];
+        }
     } else {
         NSLog(@"Latex LineBreak");
     }
@@ -120,7 +126,7 @@
 }
 
 - (void)insertBacktab:(id)sender {
-    if (![placeholderService handleInsertBacktab]) {
+    if (![codeNavigationAssistant handleBacktabInsertion] && ![placeholderService handleInsertBacktab]) {
         [super insertBacktab:sender];
     }
 }
