@@ -77,7 +77,6 @@
 }
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    NSLog(@"word: %@ %@", word, NSStringFromRange(charRange));
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
 }

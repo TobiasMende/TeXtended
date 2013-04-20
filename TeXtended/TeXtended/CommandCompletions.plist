@@ -570,5 +570,13 @@
 		<key>TMTCompletionInsertionKey</key>
 		<string>\addtolength</string>
 	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<false/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\linewidth</string>
+	</dict>
 </array>
 </plist>
