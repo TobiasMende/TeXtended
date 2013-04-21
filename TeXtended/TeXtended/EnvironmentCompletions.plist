@@ -155,7 +155,7 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>@@content@@</string>
+		<string>\item @@content@@</string>
 		<key>TMTCompletionFirstLineExtensionKey</key>
 		<string></string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
