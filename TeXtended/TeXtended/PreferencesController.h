@@ -8,6 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesController : NSWindowController <NSWindowDelegate>
+@interface PreferencesController : NSWindowController <NSWindowDelegate, NSToolbarDelegate> {
+    IBOutlet NSView *generalPreferencesView;
+    IBOutlet NSView *colorPreferencesView;
+    IBOutlet NSView *codeAssistantPreferencesView;
+    IBOutlet NSToolbar *toolbar;
+    NSUInteger currentViewTag;
+}
+
+-(NSView *)viewForTag:(NSUInteger)tag;
+-(IBAction)switchView:(id)sender;
+-(NSRect)newFrameForNewContentView:(NSView *)view;
 
 @end
