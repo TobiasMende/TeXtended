@@ -73,7 +73,7 @@ typedef enum {
 - (id)initWithTextView:(HighlightingTextView *)tv {
     self = [super initWithTextView:tv];
     if (self) {
-         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController]; 
         
         self.shouldCompleteEnvironments = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_ENVIRONMENTS] boolValue];
         [self bind:@"shouldCompleteEnvironments" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_ENVIRONMENTS] options:NULL];
