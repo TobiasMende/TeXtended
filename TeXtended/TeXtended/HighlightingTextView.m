@@ -105,7 +105,6 @@
 - (void)insertText:(id)str {
     [super insertText:str];
     if ([str isKindOfClass:[NSAttributedString class]]) {
-        NSLog(@"Bla");
         return;
     }
     NSUInteger position = [self selectedRange].location;

@@ -234,6 +234,8 @@ typedef enum {
     if ([completion hasFirstLineExtension]) {
         [view insertText:[completion substitutedFirstLineExtension]];
     }
+    if ([completion hasExtension]) {
+        
     if (self.shouldAutoIndentEnvironment) {
         [view insertNewline:self];
         [view insertTab:self];
@@ -241,8 +243,9 @@ typedef enum {
     if (completion && [completion hasPlaceholders]) {
         [view insertText:[completion substitutedExtension]];
     }
+    }
     if (endRange.location == NSNotFound) {
-        if (self.shouldAutoIndentEnvironment) {
+        if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
             [view insertNewline:self];
             [view insertBacktab:self];
         }
@@ -250,7 +253,9 @@ typedef enum {
         
     }
     [view setSelectedRange:NSMakeRange(position, 0)];
-    [view jumpToNextPlaceholder];
+    if ([completion hasPlaceholders]) {
+        [view jumpToNextPlaceholder];
+    }
     [view.undoManager endUndoGrouping];
     
     
