@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		D2026E8B17251AEF00710804 /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2026E8A17251AEF00710804 /* CompletionsController.m */; };
+		D2026E911725871A00710804 /* CodeExtensionEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D2026E901725871A00710804 /* CodeExtensionEngine.m */; };
 		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
 		D23D231D17215D11009088CC /* AppleDoc Snippets in Resources */ = {isa = PBXBuildFile; fileRef = D23D231C17215D11009088CC /* AppleDoc Snippets */; };
 		D23D231F17215FCA009088CC /* TeXnicleCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		D2026E8917251AEF00710804 /* CompletionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionsController.h; sourceTree = "<group>"; };
 		D2026E8A17251AEF00710804 /* CompletionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionsController.m; sourceTree = "<group>"; };
+		D2026E8F1725871A00710804 /* CodeExtensionEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeExtensionEngine.h; sourceTree = "<group>"; };
+		D2026E901725871A00710804 /* CodeExtensionEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeExtensionEngine.m; sourceTree = "<group>"; };
 		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		D23D231C17215D11009088CC /* AppleDoc Snippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "AppleDoc Snippets"; sourceTree = "<group>"; };
 		D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TeXnicleCompletions.plist; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				D244B503171FC5C70068F4C0 /* PlaceholderServices.m */,
 				D2B0F5AE17200DFE00B6BBC4 /* CompletionHandler.h */,
 				D2B0F5AF17200DFE00B6BBC4 /* CompletionHandler.m */,
+				D2026E8F1725871A00710804 /* CodeExtensionEngine.h */,
+				D2026E901725871A00710804 /* CodeExtensionEngine.m */,
 			);
 			name = EditorServices;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				D2B0F5BE1720869F00B6BBC4 /* CommandCompletion.m in Sources */,
 				D2B0F5C1172086D000B6BBC4 /* EnvironmentCompletion.m in Sources */,
 				D2026E8B17251AEF00710804 /* CompletionsController.m in Sources */,
+				D2026E911725871A00710804 /* CodeExtensionEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

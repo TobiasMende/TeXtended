@@ -14,6 +14,7 @@
 #import "PlaceholderServices.h"
 #import "EditorPlaceholder.h"
 #import "CompletionHandler.h"
+#import "CodeExtensionEngine.h"
 @implementation HighlightingTextView
 
 - (id)initWithFrame:(NSRect)frame
@@ -37,14 +38,17 @@
     codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
+    codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [self setDelegate:self];
+    [self setDisplaysLinkToolTips:YES];
+    [self setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor blueColor], NSForegroundColorAttributeName, nil]];
 
-
+    [self setRichText:YES];
 }
 
 - (NSRange) visibleRange
@@ -96,10 +100,12 @@
     [super updateTrackingAreas];
     [self updateSyntaxHighlighting];
     [codeNavigationAssistant highlight];
+    [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
 - (void)updateSyntaxHighlighting {
     [regexHighlighter highlightVisibleArea];
+    [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
 - (void)insertText:(id)str {
@@ -117,6 +123,7 @@
         NSLog(@"Latex LineBreak");
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
+    [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
 - (void)insertTab:(id)sender {
@@ -204,5 +211,9 @@
 
 #pragma mark -
 #pragma mark Delegate Methods
+
+- (BOOL)textView:(NSTextView *)textView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
+    return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
+}
 
 @end

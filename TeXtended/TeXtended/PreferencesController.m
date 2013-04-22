@@ -41,10 +41,12 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     [[NSColorPanel sharedColorPanel] close];
+    [completionsController saveCompletions];
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification {
     [[NSColorPanel sharedColorPanel] close];
+    
 }
 
 
