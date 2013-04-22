@@ -27,12 +27,17 @@
 @end
 NSInteger commandTag = 1;
 NSInteger environmentTag = 2;
+CompletionsController *instance;
 @implementation CompletionsController
 
 - (id)init {
+    if (instance) {
+        return instance;
+    }
     self = [super init];
     if (self) {
         [self loadCompletions];
+        instance = self;
     }
     return self;
 }

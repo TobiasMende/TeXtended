@@ -19,6 +19,7 @@
     self = [super initWithWindow:window];
     if (self) {
         [window setDelegate:self];
+        completionsController = [[CompletionsController alloc] init];
     }
     
     return self;
