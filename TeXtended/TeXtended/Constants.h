@@ -34,6 +34,7 @@
 #define TMT_EDITOR_FOREGROUND_COLOR @"TMTEditorForegroundColor"
 #define TMT_EDITOR_SELECTION_BACKGROUND_COLOR @"TMTEditorSelectionBackgroundColor"
 #define TMT_EDITOR_SELECTION_FOREGROUND_COLOR @"TMTEditorSelectionForegroundColor"
+#define TMT_TEXDOC_LINK_COLOR @"TMTTexdocLinkColor"
 
 /*
  KVC keys for fonts
@@ -64,7 +65,18 @@
 #define TMT_SHOULD_COMPLETE_COMMANDS @"TMTShouldCompleteCommands"
 #define TMT_SHOULD_COMPLETE_ENVIRONMENTS @"TMTShouldCompleteEnvironments"
 #define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
+#define TMT_SHOULD_UNDERLINE_TEXDOC_LINKS @"TMTShouldUnderlineTexdocLinks"
+#define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
 
+
+/*
+ KVC keys for strings (used for user defaults)
+ */
+
+#define TMT_ENVIRONMENT_PATH @"TMTEnvironmentPath"
+#define TMT_PATH_TO_TEX_COMPILER @"TMTPathToTexCompiler"
+#define TMT_PATH_TO_TEXDOC @"TMTPathToTexdoc"
+#define TMT_PATH_TO_TEXBIN @"TMTPathToTexbin"
 
 /*
  Keys for NSCoding

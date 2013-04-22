@@ -30,6 +30,7 @@ ApplicationController *sharedInstance;
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],TMT_EDITOR_SELECTION_BACKGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_EDITOR_SELECTION_FOREGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_CURRENT_LINE_TEXT_COLOR,
+                              [NSArchiver archivedDataWithRootObject:[NSColor selectedMenuItemColor]], TMT_TEXDOC_LINK_COLOR,
                               
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_INLINE_MATH,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_COMMANDS,
@@ -46,8 +47,13 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_COMMANDS,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_ENVIRONMENTS,
+                              [NSNumber numberWithBool:YES], TMT_SHOULD_LINK_TEXDOC,
+                              [NSNumber numberWithBool:YES], TMT_SHOULD_UNDERLINE_TEXDOC_LINKS,
                               [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
-                              
+                              @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
+                              @"/usr/texbin/pdflatex", TMT_PATH_TO_TEX_COMPILER,
+                              @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,
+                              @"/usr/texbin", TMT_PATH_TO_TEXBIN,
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];

@@ -12,6 +12,7 @@
     IBOutlet NSView *generalPreferencesView;
     IBOutlet NSView *colorPreferencesView;
     IBOutlet NSView *codeAssistantPreferencesView;
+    IBOutlet NSView *previewPreferencesView;
     IBOutlet NSToolbar *toolbar;
     NSUInteger currentViewTag;
     

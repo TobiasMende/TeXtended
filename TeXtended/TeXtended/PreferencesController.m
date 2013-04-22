@@ -56,6 +56,7 @@
 		case 0: default: view = generalPreferencesView; break;
 		case 1: view = colorPreferencesView; break;
 		case 2: view = codeAssistantPreferencesView; break;
+        case 3: view = previewPreferencesView; break;
 	}
     return view;
 }
