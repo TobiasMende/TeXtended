@@ -10,9 +10,7 @@
 #import "Constants.h"
 #import "PreferencesController.h"
 #import "DocumentController.h"
-#import "CommandCompletion.h"
-#import "EnvironmentCompletion.h"
-#import "Completion.h"
+#import "CompletionsController.h"
 ApplicationController *sharedInstance;
 @implementation ApplicationController
 + (void)initialize {
@@ -66,52 +64,20 @@ ApplicationController *sharedInstance;
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
     sharedInstance = self;
     documentController = [[DocumentController alloc] init];
+    preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
 
     
-    [self loadCompletions];    
 }
 
-- (void) loadCompletions {
-    NSString *commandPath = [[NSBundle mainBundle] pathForResource:@"CommandCompletions" ofType:@"plist"];
-    NSString *envPath = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
-    NSArray *commandDicts = [NSArray arrayWithContentsOfFile:commandPath];
-    _systemCommandCompletions = [[NSMutableDictionary alloc] initWithCapacity:commandDicts.count];
-    
-    for(NSDictionary *d in commandDicts) {
-        Completion *c = [[CommandCompletion alloc] initWithDictionary:d];
-        [_systemCommandCompletions setObject:c forKey:[c key]];
-    }
-    NSArray *envDicts = [NSArray arrayWithContentsOfFile:envPath];
-    _systemEnvironmentCompletions = [[NSMutableDictionary alloc] initWithCapacity:envDicts.count];
-    
-    for(NSDictionary *d in envDicts) {
-        Completion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
-        [_systemEnvironmentCompletions setObject:c forKey:[c key]];
-    }
-}
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
-    [self saveCompletions];
+    [preferencesController applicationWillTerminate:(NSNotification *)notification];
 }
 
-- (void) saveCompletions {
-    NSString *commandPath = [[NSBundle mainBundle] pathForResource:@"CommandCompletions" ofType:@"plist"];
-    NSString *envPath = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
-    
-    // Storing Command Completions:
-    NSMutableArray *commandSaving = [[NSMutableArray alloc] initWithCapacity:self.systemCommandCompletions.count];
-    for(CommandCompletion *c in [self.systemCommandCompletions allValues]) {
-        [commandSaving addObject:[c dictionaryRepresentation]];
-    }
-    [commandSaving writeToFile:commandPath atomically:YES];
-    // Storing Environment Completions:
-    NSMutableArray *envSaving = [[NSMutableArray alloc] initWithCapacity:self.systemEnvironmentCompletions.count];
-    for(EnvironmentCompletion *c in [self.systemEnvironmentCompletions allValues]) {
-        [envSaving addObject:[c dictionaryRepresentation]];
-    }
-    [envSaving writeToFile:envPath atomically:YES];
-    
+- (CompletionsController *)completionsController {
+    return [preferencesController completionsController];
 }
+
 - (IBAction)showPreferences:(id)sender {
     if (!preferencesController) {
         preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
@@ -119,4 +85,24 @@ ApplicationController *sharedInstance;
     [preferencesController showWindow:self];
 }
 
+
++ (NSString *)userApplicationSupportDirectoryPath {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    NSURL *applicationSupport = [fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    if (applicationSupport && !error) {
+        BOOL isDirectory = NO;
+        NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"TeXtended"];
+        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDirectory];
+        if (exists && isDirectory) {
+            return directoryPath;
+        } else {
+            [fm createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
+            if (!error) {
+                return  directoryPath;
+            }
+        }
+    }
+    return nil;
+}
 @end

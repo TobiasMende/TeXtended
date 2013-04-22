@@ -7,17 +7,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class CompletionsController;
 @interface PreferencesController : NSWindowController <NSWindowDelegate, NSToolbarDelegate> {
     IBOutlet NSView *generalPreferencesView;
     IBOutlet NSView *colorPreferencesView;
     IBOutlet NSView *codeAssistantPreferencesView;
     IBOutlet NSToolbar *toolbar;
     NSUInteger currentViewTag;
+    
+ IBOutlet CompletionsController *completionsController;
 }
 
+
+- (CompletionsController *)completionsController;
 -(NSView *)viewForTag:(NSUInteger)tag;
 -(IBAction)switchView:(id)sender;
 -(NSRect)newFrameForNewContentView:(NSView *)view;
+- (void)applicationWillTerminate:(NSNotification *)notification;
 
 @end

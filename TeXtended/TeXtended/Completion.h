@@ -14,7 +14,7 @@
  */
 @interface Completion : NSObject <NSCoding>
 /** The basic insertion (e.g. a \command or an environment name) */
-@property (strong) NSString *insertion;
+@property (strong,nonatomic) NSString *insertion;
 
 /** A possibly empty extension (e.g. {@@placeholder@@}) */
 @property (strong) NSString* extension;

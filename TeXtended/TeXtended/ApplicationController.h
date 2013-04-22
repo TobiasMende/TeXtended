@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController,DocumentController;
+@class PreferencesController,DocumentController, CompletionsController;
 @interface ApplicationController : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
     DocumentController *documentController;
 }
 - (IBAction)showPreferences:(id)sender;
+- (CompletionsController*) completionsController;
 + (ApplicationController*) sharedApplicationController;
-@property (strong) NSMutableDictionary* systemCommandCompletions;
-@property (strong) NSMutableDictionary* systemEnvironmentCompletions;
++ (NSString*) userApplicationSupportDirectoryPath;
 @end

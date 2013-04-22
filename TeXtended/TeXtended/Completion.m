@@ -39,6 +39,10 @@ NSRegularExpression *PLACEHOLDER_REGEX;
 return self;
 }
 
+- (id)init {
+    return [self initWithInsertion:@"" containingPlaceholders:YES andExtension:@""];
+}
+
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     NSString *insertion = [dict objectForKey:TMTCompletionInsertionKey];
@@ -118,10 +122,21 @@ return self;
 
 
 
-
-
 - (NSMutableDictionary *)dictionaryRepresentation {
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,[NSNumber numberWithBool:self.hasPlaceholders],TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, nil];
 
+}
+
+- (NSUInteger)hash {
+    return [[self key] hash];
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[Completion class]]) {
+        Completion *other = (Completion *)object;
+        
+        return [self.key isEqualToString:[other key]];
+    }
+    return false;
 }
 @end

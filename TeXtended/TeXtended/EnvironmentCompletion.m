@@ -24,6 +24,14 @@
     return self;
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        _firstLineExtension = @"";
+    }
+    return self;
+}
+
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [super dictionaryRepresentation];
     [dict setObject:self.firstLineExtension forKey:TMTCompletionsFirstLineExtensionKey];

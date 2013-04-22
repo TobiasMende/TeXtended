@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "SyntaxHighlighter.h"
 #import "ApplicationController.h"
+#import "CompletionsController.h"
 #import "Completion.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
@@ -125,7 +126,7 @@ typedef enum {
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
-    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
+    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
@@ -137,7 +138,7 @@ typedef enum {
 
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     NSString *prefix = [view.string substringWithRange:charRange];
-    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemEnvironmentCompletions] ;
+    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions] ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
@@ -181,7 +182,7 @@ typedef enum {
 
 - (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
 
-    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemCommandCompletions] ;
+    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
     CommandCompletion *completion = [completions objectForKey:word];
     if (flag && [self isFinalInsertion:movement]) {
         if ([completion hasPlaceholders]) {
@@ -216,7 +217,7 @@ typedef enum {
     }
     [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     [self skipClosingBracket];
-    NSDictionary *completions = [[ApplicationController sharedApplicationController] systemEnvironmentCompletions];
+    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions];
     EnvironmentCompletion *completion = [completions objectForKey:word];
     NSUInteger position = [view selectedRange].location;
     NSRange visible = [view visibleRange];

@@ -7,7 +7,7 @@
 //
 
 #import "PreferencesController.h"
-
+#import "CompletionsController.h"
 @interface PreferencesController ()
 
 @end
@@ -19,7 +19,6 @@
     self = [super initWithWindow:window];
     if (self) {
         [window setDelegate:self];
-        // Initialization code here.
     }
     
     return self;
@@ -94,8 +93,17 @@
 	
 }
 
+- (CompletionsController *)completionsController {
+    return completionsController;
+}
+
 -(NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)bar {
 	return [[bar items] valueForKey:@"itemIdentifier"];
+}
+
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+    [completionsController saveCompletions];
 }
 
 
