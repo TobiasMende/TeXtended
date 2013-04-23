@@ -27,7 +27,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 
 +(void)initialize {
     NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
-    NSString *pattern = [NSString stringWithFormat:@"%@(usepackage|RequirePackage)(\\[.*\\])?\\{(.*)\\}", backslash];
+    NSString *pattern = [NSString stringWithFormat:@"%@(usepackage|RequirePackage)(\\[.*\\]|\\s)*\\{(.*)\\}", backslash];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     

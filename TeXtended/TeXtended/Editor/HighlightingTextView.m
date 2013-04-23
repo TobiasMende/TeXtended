@@ -152,11 +152,13 @@
 - (void)paste:(id)sender {
     [super paste:sender];
     [regexHighlighter highlightEntireDocument];
+    [codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 -(void)setString:(NSString *)string {
     [super setString:string];
     [regexHighlighter highlightEntireDocument];
+    [codeExtensionEngine addLinksForRange:NSMakeRange(0, string.length)];
 }
 
 #pragma mark -
