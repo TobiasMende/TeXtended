@@ -203,8 +203,6 @@
 				D2B0F5BD1720869F00B6BBC4 /* CommandCompletion.m */,
 				D2B0F5BF172086D000B6BBC4 /* EnvironmentCompletion.h */,
 				D2B0F5C0172086D000B6BBC4 /* EnvironmentCompletion.m */,
-				D2026E8917251AEF00710804 /* CompletionsController.h */,
-				D2026E8A17251AEF00710804 /* CompletionsController.m */,
 			);
 			name = AutoCompletion;
 			sourceTree = "<group>";
@@ -305,6 +303,8 @@
 		D2CC5537171EB0C300D81CF1 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				D2026E8917251AEF00710804 /* CompletionsController.h */,
+				D2026E8A17251AEF00710804 /* CompletionsController.m */,
 				D2FD39A5171EC390008BB864 /* Constants.h */,
 				D2FD39A6171EC390008BB864 /* Constants.m */,
 				D2FD39A7171EC390008BB864 /* PreferencesController.h */,

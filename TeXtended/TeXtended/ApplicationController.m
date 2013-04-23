@@ -98,7 +98,7 @@ ApplicationController *sharedInstance;
     NSURL *applicationSupport = [fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     if (applicationSupport && !error) {
         BOOL isDirectory = NO;
-        NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"TeXtended"];
+        NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"de.uni-luebeck.isp.tmtproject.TeXtended"];
         BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDirectory];
         if (exists && isDirectory) {
             return directoryPath;

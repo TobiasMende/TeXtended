@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CompilerOptions" syncable="YES">
+        <attribute name="option" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CompileSettings" syncable="YES">
+        <attribute name="compilerPath" optional="YES" attributeType="String" defaultValueString="/usr/texbin/pdflatex" syncable="YES"/>
+        <attribute name="compilerRuns" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="draftOptions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CompilerOptions" syncable="YES"/>
+        <relationship name="finalOptions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CompilerOptions" syncable="YES"/>
+    </entity>
+    <entity name="ProjectDocumentModel" syncable="YES">
+        <attribute name="lastOpened" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="compileSettings" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSettings" syncable="YES"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SingleDocumentModel" inverseName="project" inverseEntity="SingleDocumentModel" syncable="YES"/>
+        <relationship name="mainDocuments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SingleDocumentModel" syncable="YES"/>
+    </entity>
+    <entity name="SingleDocumentModel" representedClassName="SimpleDocumentModel" syncable="YES">
+        <attribute name="lastOpened" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="compileSettings" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSettings" syncable="YES"/>
+        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectDocumentModel" inverseName="documents" inverseEntity="ProjectDocumentModel" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CompilerOptions" positionX="108" positionY="309" width="128" height="60"/>
+        <element name="CompileSettings" positionX="450" positionY="198" width="128" height="120"/>
+        <element name="ProjectDocumentModel" positionX="160" positionY="-18" width="128" height="135"/>
+        <element name="SingleDocumentModel" positionX="727" positionY="-57" width="128" height="120"/>
+    </elements>
+</model>

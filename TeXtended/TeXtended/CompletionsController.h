@@ -20,5 +20,7 @@
 @property  (strong) NSIndexSet *selectedEnvironmentIndexes;
 - (IBAction)removeItem:(id)sender;
 - (IBAction)addItem:(id)sender;
+- (IBAction)resetEnvironmentCompletions:(id)sender;
+- (IBAction)resetCommandCompletions:(id)sender;
 - (void) saveCompletions;
 @end

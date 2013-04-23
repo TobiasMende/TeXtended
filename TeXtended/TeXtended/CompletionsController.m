@@ -22,6 +22,8 @@
 - (void) scrollRowToVisible:(NSUInteger) rowIndex inTableView:(NSTableView*) view;
 - (void) removeItemFromCommands;
 - (void) removeItemFromEnvironments;
+- (void) loadCommandCompletionsFromPath:(NSString*) path;
+- (void) loadEnvironmentCompletionsFromPath:(NSString* )path;
 - (void) addItemToEnvironments;
 - (void) addItemToCommands;
 @end
@@ -66,7 +68,14 @@ if(!commandPath) {
 if(!envPath) {
     envPath = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
 }
-    NSArray *commandDicts = [NSArray arrayWithContentsOfFile:commandPath];
+    
+    [self loadCommandCompletionsFromPath:commandPath];
+    [self loadEnvironmentCompletionsFromPath:envPath];
+}
+
+
+- (void)loadCommandCompletionsFromPath:(NSString *)path {
+    NSArray *commandDicts = [NSArray arrayWithContentsOfFile:path];
     _commandCompletions = [[NSMutableDictionary alloc] initWithCapacity:commandDicts.count];
     commandKeys = [[NSMutableArray alloc] initWithCapacity:commandDicts.count];
     
@@ -76,7 +85,11 @@ if(!envPath) {
         [commandKeys addObject:[c key]];
     }
     [commandKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
-    NSArray *envDicts = [NSArray arrayWithContentsOfFile:envPath];
+}
+
+
+- (void)loadEnvironmentCompletionsFromPath:(NSString *)path {
+    NSArray *envDicts = [NSArray arrayWithContentsOfFile:path];
     _environmentCompletions = [[NSMutableDictionary alloc] initWithCapacity:envDicts.count];
     environmentKeys = [[NSMutableArray alloc] initWithCapacity:envDicts.count];
     
@@ -87,7 +100,6 @@ if(!envPath) {
     }
     [environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
 }
-
 
 
 - (void) saveCompletions {
@@ -249,6 +261,18 @@ if(!envPath) {
     } else if(c.tag == environmentTag) {
         [self addItemToEnvironments];
     }
+}
+
+- (IBAction)resetEnvironmentCompletions:(id)sender {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
+    [self loadEnvironmentCompletionsFromPath:path];
+    [self.environmentView reloadData];
+}
+
+- (IBAction)resetCommandCompletions:(id)sender {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"CommandCompletions" ofType:@"plist"];
+    [self loadCommandCompletionsFromPath:path];
+    [self.commandsView reloadData];
 }
 
 - (void)addItemToCommands {
