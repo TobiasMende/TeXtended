@@ -27,7 +27,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 
 +(void)initialize {
     NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
-    NSString *pattern = [NSString stringWithFormat:@"%@(usepackage|RequirePackage)(\\[.*\\]|\\s)*\\{(.*)\\}", backslash];
+    NSString *pattern = [NSString stringWithFormat:@"%@(usepackage|RequirePackage)(\\[.*\\]*\\]|\\s)*\\{(.*)\\}", backslash];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -119,7 +119,6 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
     NSString *url = (NSString*) link;
     if ([[url substringToIndex:TEXDOC_PREFIX.length] isEqualToString:TEXDOC_PREFIX]) {
         NSString *packageName = [url substringFromIndex:TEXDOC_PREFIX.length];
-        NSLog(@"texdoc for Package: %@", packageName);
         NSTask *task = [[NSTask alloc] init];
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         
