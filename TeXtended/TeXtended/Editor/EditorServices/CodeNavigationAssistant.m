@@ -49,7 +49,30 @@
 #pragma mark -
 #pragma mark Current Line Highlighting
 - (void) highlightCurrentLine {
+    [self highlightCurrentLineBackground];
+    [self highlightCurrentLineForegroundWithRange:[view selectedRange]];
+    
+}
+
+- (void)highlightCurrentLineBackground {
+    if(self.shouldHighlightCurrentLine && [view.selectedRanges count] == 1 && view.selectedRange.length == 0) {
     NSRange range = [view selectedRange];
+        if (range.location > view.string.length) {
+            return;
+        }
+    NSRect lineRect = [self lineRectforRange:range];
+    if (lineRect.size.width == 0) {
+        return;
+    }
+    if ([view lockFocusIfCanDraw]) {
+        [self.currentLineColor set];
+        [NSBezierPath fillRect:lineRect];
+        [view unlockFocus];
+    }
+    }
+}
+
+- (void)highlightCurrentLineForegroundWithRange:(NSRange)range {
     if (range.location > view.string.length) {
         return;
     }
@@ -58,8 +81,8 @@
         NSRange lineRange = [self lineTextRangeWithRange:range];
         
         [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
-        [view updateSyntaxHighlighting];
         [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.currentLineTextColor, NSForegroundColorAttributeName, nil] forCharacterRange:lineRange];
+        [view updateSyntaxHighlighting];
         lastLineRange = lineRange;
     } else {
         if (lastLineRange.location != NSNotFound) {
@@ -67,18 +90,6 @@
             lastLineRange = NSMakeRange(NSNotFound, 0);
         }
     }
-    if(self.shouldHighlightCurrentLine && [view.selectedRanges count] == 1 && view.selectedRange.length == 0) {
-        NSRect lineRect = [self lineRectforRange:range];
-        if (lineRect.size.width == 0) {
-            return;
-        }
-        if ([view lockFocusIfCanDraw]) {
-            [self.currentLineColor set];
-            [NSBezierPath fillRect:lineRect];
-            [view unlockFocus];
-        }
-    }
-    
 }
 
 - (void)highlight {
@@ -99,8 +110,9 @@
 - (NSRange) lineTextRangeWithRange:(NSRange) range {
     NSUInteger rangeStartPosition = range.location;
     NSRange startLineRange = [view.string lineRangeForRange:NSMakeRange(rangeStartPosition, 0)];
+    
     NSUInteger rangeEndPosition = NSMaxRange(range);
-    if (rangeEndPosition >= view.string.length) {
+    if (rangeEndPosition > view.string.length) {
         return NSMakeRange(NSNotFound, 0);
     }
     if (rangeEndPosition < rangeStartPosition) {
@@ -233,12 +245,12 @@
 
 - (void)setCurrentLineColor:(NSColor *)currentLineColor {
     _currentLineColor = currentLineColor;
-    [self updateViewDrawing];
+    [self highlightCurrentLine];
 }
 
 - (void)setShouldHighlightCurrentLine:(BOOL)shouldHighlightCurrentLine {
     _shouldHighlightCurrentLine = shouldHighlightCurrentLine;
-    [self updateViewDrawing];
+    [self highlightCurrentLine];
 }
 
 - (void)setCarretColor:(NSColor *)carretColor {

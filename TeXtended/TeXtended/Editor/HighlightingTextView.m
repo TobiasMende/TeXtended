@@ -45,9 +45,12 @@
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [self setDelegate:self];
-    [self setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:nil]];
 
     [self setRichText:NO];
+    [self setGrammarCheckingEnabled:NO];
+    [self setDisplaysLinkToolTips:YES];
+    [self setContinuousSpellCheckingEnabled:NO];
+    [self setAutomaticSpellingCorrectionEnabled:NO];
 }
 
 - (NSRange) visibleRange
@@ -137,6 +140,7 @@
     } else if (!placeholderServicesHandles) {
         [super insertTab:sender];
     }
+    
 }
 
 - (void)insertBacktab:(id)sender {
@@ -175,6 +179,17 @@
     [bracketHighlighter highlightOnMoveRight];
 }
 
+- (void)moveUp:(id)sender {
+    [super moveUp:sender];
+    [self setNeedsDisplay:YES];
+}
+
+- (void)moveDown:(id)sender {
+    [super moveDown:sender];
+    [self setNeedsDisplay:YES];
+
+}
+
 
 - (void)keyDown:(NSEvent *)theEvent {
     [super keyDown:theEvent];
@@ -191,19 +206,16 @@
     
 }
 
-- (void)mouseUp:(NSEvent *)theEvent {
-    [super mouseUp:theEvent];
-    NSLog(@"Mouse up");
-    
-}
 
 #pragma mark -
 #pragma mark Drawing Actions
 
 - (void) drawViewBackgroundInRect:(NSRect)rect
 {
+    [[NSColor clearColor] set];
+    NSRectFill(rect);
     [super drawViewBackgroundInRect:rect];
-    [codeNavigationAssistant highlightCurrentLine];
+    [codeNavigationAssistant highlightCurrentLineBackground];
 }
 
 
@@ -229,8 +241,11 @@
     return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
 }
 
-- (NSString *)textView:(NSTextView *)textView willDisplayToolTip:(NSString *)tooltip forCharacterAtIndex:(NSUInteger)characterIndex {
-    return tooltip;
+
+- (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
+    [codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+    return newSelectedCharRange;
 }
+
 
 @end

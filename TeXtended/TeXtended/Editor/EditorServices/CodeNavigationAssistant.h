@@ -26,6 +26,10 @@
  */
 - (void) highlightCurrentLine;
 
+- (void) highlightCurrentLineBackground;
+
+- (void) highlightCurrentLineForegroundWithRange:(NSRange)range;
+
 /**
  Method for highlighting the carret's position.
  */
