@@ -50,12 +50,12 @@
 		D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD11726889700E2F8EC /* ProjectDocument.xib */; };
 		D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
 		D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* SimpleDocument.xib */; };
-		D21ACBE0172688B400E2F8EC /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
-		D21ACBE1172688B400E2F8EC /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
-		D21ACBE2172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
-		D21ACBE3172688B400E2F8EC /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
-		D21ACBE4172688B400E2F8EC /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
-		D21ACBE5172688B400E2F8EC /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
+		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
+		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
+		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
+		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
+		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
+		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
@@ -84,6 +84,12 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */,
+				D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */,
+				D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */,
+				D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */,
+				D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */,
+				D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,12 +491,6 @@
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
-				D21ACBE0172688B400E2F8EC /* SourceCodePro-Black.ttf in Resources */,
-				D21ACBE1172688B400E2F8EC /* SourceCodePro-Bold.ttf in Resources */,
-				D21ACBE2172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf in Resources */,
-				D21ACBE3172688B400E2F8EC /* SourceCodePro-Light.ttf in Resources */,
-				D21ACBE4172688B400E2F8EC /* SourceCodePro-Regular.ttf in Resources */,
-				D21ACBE5172688B400E2F8EC /* SourceCodePro-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
