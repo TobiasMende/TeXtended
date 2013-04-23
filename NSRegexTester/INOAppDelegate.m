@@ -42,6 +42,7 @@
     NSError * error;
     NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:[self.regexField stringValue] options:self.options error:&error];
     
+    
     NSRange testRange = NSMakeRange(0, [[[self.testText textStorage] string] length]);
     
     NSMutableAttributedString * resultString = [[NSMutableAttributedString alloc] initWithString:[[self.testText textStorage] string]];

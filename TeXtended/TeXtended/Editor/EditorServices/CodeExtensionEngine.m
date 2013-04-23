@@ -27,12 +27,13 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 
 +(void)initialize {
     NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
-    NSString *pattern = [NSString stringWithFormat:@"%@(usepackage|RequirePackage)(\\[.*\\]*\\]|\\s)*\\{(.*)\\}", backslash];
+    NSString *pattern = [NSString stringWithFormat:@"%@(?>usepackage|RequirePackage)+(?>\\[[[\\S|\\s]&&[^[\\]|\\[]]]*\\])?\\{(.*)\\}", backslash];
+    
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
     if (error) {
-        NSLog(@"Error!");
+        NSLog(@"Error! %@", error);
     }
 }
 
@@ -71,9 +72,8 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
     NSError *error;
     NSRegularExpression *split = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     for (NSTextCheckingResult *match in texdocRanges) {
-       
-        if ([match numberOfRanges] > 3) {
-            NSRange mRange = [match rangeAtIndex:3];
+        if ([match numberOfRanges] > 1) {
+            NSRange mRange = [match rangeAtIndex:1];
             [self removeTexdocAttributesForRange:mRange];
             NSArray *matches = [split matchesInString:view.string options:0 range:mRange];
             for (NSTextCheckingResult *r in matches) {
