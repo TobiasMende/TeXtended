@@ -21,54 +21,63 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		D2026E8B17251AEF00710804 /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2026E8A17251AEF00710804 /* CompletionsController.m */; };
-		D2026E911725871A00710804 /* CodeExtensionEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D2026E901725871A00710804 /* CodeExtensionEngine.m */; };
-		D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21F376C171EBFE500F961D6 /* AppledocSettings.plist */; };
-		D23D231D17215D11009088CC /* AppleDoc Snippets in Resources */ = {isa = PBXBuildFile; fileRef = D23D231C17215D11009088CC /* AppleDoc Snippets */; };
-		D23D231F17215FCA009088CC /* TeXnicleCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */; };
-		D23D23211721613D009088CC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23D23201721613D009088CC /* CommandCompletions.plist */; };
-		D244B504171FC5C70068F4C0 /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D244B503171FC5C70068F4C0 /* PlaceholderServices.m */; };
-		D28F5B8F1722E11F002B3C26 /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28F5B8E1722E11F002B3C26 /* EnvironmentCompletions.plist */; };
+		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
+		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
+		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
+		D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB831726868A00E2F8EC /* CommandCompletion.m */; };
+		D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB841726868A00E2F8EC /* CommandCompletions.plist */; };
+		D21ACBA21726868A00E2F8EC /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB861726868A00E2F8EC /* Completion.m */; };
+		D21ACBA31726868A00E2F8EC /* EnvironmentCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */; };
+		D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */; };
+		D21ACBA51726868A00E2F8EC /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */; };
+		D21ACBA61726868A00E2F8EC /* CodeExtensionEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8E1726868A00E2F8EC /* CodeExtensionEngine.m */; };
+		D21ACBA71726868A00E2F8EC /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */; };
+		D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
+		D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
+		D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
+		D21ACBAB1726868A00E2F8EC /* SyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB981726868A00E2F8EC /* SyntaxHighlighter.m */; };
+		D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
+		D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
+		D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
+		D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB11726873900E2F8EC /* ExtendedPdf.m */; };
+		D21ACBB61726875600E2F8EC /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* OutlineViewController.m */; };
+		D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */; };
+		D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBD1726879000E2F8EC /* CompletionsController.m */; };
+		D21ACBC41726879000E2F8EC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
+		D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
+		D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */; };
+		D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD01726889700E2F8EC /* ProjectDocument.m */; };
+		D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD11726889700E2F8EC /* ProjectDocument.xib */; };
+		D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
+		D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* SimpleDocument.xib */; };
+		D21ACBE0172688B400E2F8EC /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
+		D21ACBE1172688B400E2F8EC /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
+		D21ACBE2172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
+		D21ACBE3172688B400E2F8EC /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
+		D21ACBE4172688B400E2F8EC /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
+		D21ACBE5172688B400E2F8EC /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
-		D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439EC171F06800020C15F /* ProjectDocument.m */; };
-		D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A439ED171F06800020C15F /* ProjectDocument.xib */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
-		D2B0F5B017200DFE00B6BBC4 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5AF17200DFE00B6BBC4 /* CompletionHandler.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
-		D2B0F5BB1720854500B6BBC4 /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5BA1720854500B6BBC4 /* Completion.m */; };
-		D2B0F5BE1720869F00B6BBC4 /* CommandCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5BD1720869F00B6BBC4 /* CommandCompletion.m */; };
-		D2B0F5C1172086D000B6BBC4 /* EnvironmentCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5C0172086D000B6BBC4 /* EnvironmentCompletion.m */; };
-		D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
-		D2CC5507171EAFAB00D81CF1 /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */; };
-		D2CC550A171EAFAB00D81CF1 /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
-		D2E5E179171EC4CA00536D1C /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399B171EC34F008BB864 /* HighlightingTextView.m */; };
-		D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */ = {isa = PBXBuildFile; fileRef = D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */; };
-		D2FD3988171EC316008BB864 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */; };
-		D2FD3989171EC316008BB864 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */; };
-		D2FD398A171EC316008BB864 /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */; };
-		D2FD398B171EC316008BB864 /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */; };
-		D2FD398C171EC316008BB864 /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */; };
-		D2FD398D171EC316008BB864 /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */; };
-		D2FD3996171EC33D008BB864 /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD398F171EC33D008BB864 /* BracketHighlighter.m */; };
-		D2FD3997171EC33D008BB864 /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */; };
-		D2FD3998171EC33D008BB864 /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3993171EC33D008BB864 /* EditorService.m */; };
-		D2FD3999171EC33D008BB864 /* SyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */; };
-		D2FD39A0171EC365008BB864 /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399D171EC365008BB864 /* EditorPlaceholder.m */; };
-		D2FD39A1171EC365008BB864 /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */; };
-		D2FD39A4171EC377008BB864 /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */; };
-		D2FD39AA171EC390008BB864 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A6171EC390008BB864 /* Constants.m */; };
-		D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39A8171EC390008BB864 /* PreferencesController.m */; };
-		D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631282B171EB9E300D23B7F /* OutlineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D21ACB6717267A6B00E2F8EC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC5547171EB15500D81CF1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,34 +90,72 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D2026E8917251AEF00710804 /* CompletionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionsController.h; sourceTree = "<group>"; };
-		D2026E8A17251AEF00710804 /* CompletionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionsController.m; sourceTree = "<group>"; };
-		D2026E8F1725871A00710804 /* CodeExtensionEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeExtensionEngine.h; sourceTree = "<group>"; };
-		D2026E901725871A00710804 /* CodeExtensionEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeExtensionEngine.m; sourceTree = "<group>"; };
-		D21F376C171EBFE500F961D6 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
-		D23D231C17215D11009088CC /* AppleDoc Snippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "AppleDoc Snippets"; sourceTree = "<group>"; };
-		D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TeXnicleCompletions.plist; sourceTree = "<group>"; };
-		D23D23201721613D009088CC /* CommandCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommandCompletions.plist; sourceTree = "<group>"; };
-		D244B502171FC5C70068F4C0 /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
-		D244B503171FC5C70068F4C0 /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
-		D28F5B8E1722E11F002B3C26 /* EnvironmentCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnvironmentCompletions.plist; sourceTree = "<group>"; };
+		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
+		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
+		D21ACB751726855000E2F8EC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		D21ACB761726855000E2F8EC /* generate_keys.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generate_keys.rb; sourceTree = "<group>"; };
+		D21ACB771726855000E2F8EC /* sign_update.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
+		D21ACB7D172685C100E2F8EC /* AppleDoc Snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "AppleDoc Snippets"; sourceTree = "<group>"; };
+		D21ACB7E172685C100E2F8EC /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		D21ACB7F172685C100E2F8EC /* ReloadDocset.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReloadDocset.scpt; sourceTree = "<group>"; };
+		D21ACB821726868A00E2F8EC /* CommandCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCompletion.h; sourceTree = "<group>"; };
+		D21ACB831726868A00E2F8EC /* CommandCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCompletion.m; sourceTree = "<group>"; };
+		D21ACB841726868A00E2F8EC /* CommandCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommandCompletions.plist; sourceTree = "<group>"; };
+		D21ACB851726868A00E2F8EC /* Completion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Completion.h; sourceTree = "<group>"; };
+		D21ACB861726868A00E2F8EC /* Completion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Completion.m; sourceTree = "<group>"; };
+		D21ACB871726868A00E2F8EC /* EnvironmentCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentCompletion.h; sourceTree = "<group>"; };
+		D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentCompletion.m; sourceTree = "<group>"; };
+		D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnvironmentCompletions.plist; sourceTree = "<group>"; };
+		D21ACB8B1726868A00E2F8EC /* BracketHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BracketHighlighter.h; sourceTree = "<group>"; };
+		D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BracketHighlighter.m; sourceTree = "<group>"; };
+		D21ACB8D1726868A00E2F8EC /* CodeExtensionEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeExtensionEngine.h; sourceTree = "<group>"; };
+		D21ACB8E1726868A00E2F8EC /* CodeExtensionEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeExtensionEngine.m; sourceTree = "<group>"; };
+		D21ACB8F1726868A00E2F8EC /* CodeNavigationAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeNavigationAssistant.h; sourceTree = "<group>"; };
+		D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeNavigationAssistant.m; sourceTree = "<group>"; };
+		D21ACB911726868A00E2F8EC /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
+		D21ACB921726868A00E2F8EC /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
+		D21ACB931726868A00E2F8EC /* EditorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorService.h; sourceTree = "<group>"; };
+		D21ACB941726868A00E2F8EC /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
+		D21ACB951726868A00E2F8EC /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
+		D21ACB961726868A00E2F8EC /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
+		D21ACB971726868A00E2F8EC /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		D21ACB981726868A00E2F8EC /* SyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighter.m; sourceTree = "<group>"; };
+		D21ACB991726868A00E2F8EC /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
+		D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
+		D21ACB9C1726868A00E2F8EC /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
+		D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholder.m; sourceTree = "<group>"; };
+		D21ACB9E1726868A00E2F8EC /* EditorPlaceholderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholderCell.h; sourceTree = "<group>"; };
+		D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholderCell.m; sourceTree = "<group>"; };
+		D21ACBB01726873900E2F8EC /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
+		D21ACBB11726873900E2F8EC /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
+		D21ACBB41726875600E2F8EC /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		D21ACBB51726875600E2F8EC /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
+		D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LatexExtension.h"; sourceTree = "<group>"; };
+		D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LatexExtension.m"; sourceTree = "<group>"; };
+		D21ACBBC1726879000E2F8EC /* CompletionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionsController.h; sourceTree = "<group>"; };
+		D21ACBBD1726879000E2F8EC /* CompletionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionsController.m; sourceTree = "<group>"; };
+		D21ACBBE1726879000E2F8EC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D21ACBBF1726879000E2F8EC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D21ACBC01726879000E2F8EC /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		D21ACBC11726879000E2F8EC /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		D21ACBCF1726889700E2F8EC /* ProjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDocument.h; sourceTree = "<group>"; };
+		D21ACBD01726889700E2F8EC /* ProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDocument.m; sourceTree = "<group>"; };
+		D21ACBD11726889700E2F8EC /* ProjectDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDocument.xib; sourceTree = "<group>"; };
+		D21ACBD21726889700E2F8EC /* SimpleDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDocument.h; sourceTree = "<group>"; };
+		D21ACBD31726889700E2F8EC /* SimpleDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
+		D21ACBD41726889700E2F8EC /* SimpleDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleDocument.xib; sourceTree = "<group>"; };
+		D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
+		D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
+		D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
+		D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
+		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		D2A439EB171F06800020C15F /* ProjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectDocument.h; path = ../ProjectDocument.h; sourceTree = "<group>"; };
-		D2A439EC171F06800020C15F /* ProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectDocument.m; path = ../ProjectDocument.m; sourceTree = "<group>"; };
-		D2A439ED171F06800020C15F /* ProjectDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProjectDocument.xib; path = ../ProjectDocument.xib; sourceTree = "<group>"; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
-		D2B0F5AE17200DFE00B6BBC4 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
-		D2B0F5AF17200DFE00B6BBC4 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		D2B0F5B91720854500B6BBC4 /* Completion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Completion.h; sourceTree = "<group>"; };
-		D2B0F5BA1720854500B6BBC4 /* Completion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Completion.m; sourceTree = "<group>"; };
-		D2B0F5BC1720869F00B6BBC4 /* CommandCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCompletion.h; sourceTree = "<group>"; };
-		D2B0F5BD1720869F00B6BBC4 /* CommandCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCompletion.m; sourceTree = "<group>"; };
-		D2B0F5BF172086D000B6BBC4 /* EnvironmentCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentCompletion.h; sourceTree = "<group>"; };
-		D2B0F5C0172086D000B6BBC4 /* EnvironmentCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentCompletion.m; sourceTree = "<group>"; };
-		D2C240BA171ED3DC009E33CE /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
-		D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -119,42 +166,9 @@
 		D2CC54FF171EAFAB00D81CF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended-Prefix.pch"; sourceTree = "<group>"; };
 		D2CC5503171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D2CC5505171EAFAB00D81CF1 /* SimpleDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleDocument.h; sourceTree = "<group>"; };
-		D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
-		D2CC5509171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SimpleDocument.xib; sourceTree = "<group>"; };
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReloadDocset.scpt; sourceTree = "<group>"; };
-		D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
-		D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
-		D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
-		D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
-		D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
-		D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
-		D2FD398E171EC33D008BB864 /* BracketHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BracketHighlighter.h; sourceTree = "<group>"; };
-		D2FD398F171EC33D008BB864 /* BracketHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BracketHighlighter.m; sourceTree = "<group>"; };
-		D2FD3990171EC33D008BB864 /* CodeNavigationAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeNavigationAssistant.h; sourceTree = "<group>"; };
-		D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeNavigationAssistant.m; sourceTree = "<group>"; };
-		D2FD3992171EC33D008BB864 /* EditorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorService.h; sourceTree = "<group>"; };
-		D2FD3993171EC33D008BB864 /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
-		D2FD3994171EC33D008BB864 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
-		D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighter.m; sourceTree = "<group>"; };
-		D2FD399A171EC34F008BB864 /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
-		D2FD399B171EC34F008BB864 /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
-		D2FD399C171EC365008BB864 /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
-		D2FD399D171EC365008BB864 /* EditorPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholder.m; sourceTree = "<group>"; };
-		D2FD399E171EC365008BB864 /* EditorPlaceholderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholderCell.h; sourceTree = "<group>"; };
-		D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholderCell.m; sourceTree = "<group>"; };
-		D2FD39A2171EC377008BB864 /* NSString+LatexExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LatexExtension.h"; sourceTree = "<group>"; };
-		D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LatexExtension.m"; sourceTree = "<group>"; };
-		D2FD39A5171EC390008BB864 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		D2FD39A6171EC390008BB864 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		D2FD39A7171EC390008BB864 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
-		D2FD39A8171EC390008BB864 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
-		D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
-		F631282A171EB9E300D23B7F /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
-		F631282B171EB9E300D23B7F /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,47 +178,174 @@
 			files = (
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
+				D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		76DD1641171ED1B10060ED10 /* ExtendedPdf */ = {
+		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D2C240BA171ED3DC009E33CE /* ExtendedPdf.h */,
-				D2C240BB171ED3DC009E33CE /* ExtendedPdf.m */,
+				D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */,
 			);
-			name = ExtendedPdf;
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		D2A439F0171F06910020C15F /* Documents */ = {
+		D21ACB721726855000E2F8EC /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC5505171EAFAB00D81CF1 /* SimpleDocument.h */,
-				D2CC5506171EAFAB00D81CF1 /* SimpleDocument.m */,
-				D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */,
-				D2A439EB171F06800020C15F /* ProjectDocument.h */,
-				D2A439EC171F06800020C15F /* ProjectDocument.m */,
-				D2A439ED171F06800020C15F /* ProjectDocument.xib */,
+				D21ACB731726855000E2F8EC /* appcast.xml */,
+				D21ACB741726855000E2F8EC /* Signing Tools */,
 			);
-			name = Documents;
+			path = Sparkle;
 			sourceTree = "<group>";
 		};
-		D2B0F5B11720246000B6BBC4 /* AutoCompletion */ = {
+		D21ACB741726855000E2F8EC /* Signing Tools */ = {
 			isa = PBXGroup;
 			children = (
-				D23D23201721613D009088CC /* CommandCompletions.plist */,
-				D2B0F5B91720854500B6BBC4 /* Completion.h */,
-				D28F5B8E1722E11F002B3C26 /* EnvironmentCompletions.plist */,
-				D2B0F5BA1720854500B6BBC4 /* Completion.m */,
-				D2B0F5BC1720869F00B6BBC4 /* CommandCompletion.h */,
-				D2B0F5BD1720869F00B6BBC4 /* CommandCompletion.m */,
-				D2B0F5BF172086D000B6BBC4 /* EnvironmentCompletion.h */,
-				D2B0F5C0172086D000B6BBC4 /* EnvironmentCompletion.m */,
+				D21ACB751726855000E2F8EC /* dsa_pub.pem */,
+				D21ACB761726855000E2F8EC /* generate_keys.rb */,
+				D21ACB771726855000E2F8EC /* sign_update.rb */,
 			);
-			name = AutoCompletion;
+			path = "Signing Tools";
+			sourceTree = "<group>";
+		};
+		D21ACB7C172685C100E2F8EC /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACB7D172685C100E2F8EC /* AppleDoc Snippets */,
+				D21ACB7E172685C100E2F8EC /* AppledocSettings.plist */,
+				D21ACB7F172685C100E2F8EC /* ReloadDocset.scpt */,
+			);
+			path = Development;
+			sourceTree = "<group>";
+		};
+		D21ACB801726868A00E2F8EC /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACB811726868A00E2F8EC /* AutoCompletion */,
+				D21ACB8A1726868A00E2F8EC /* EditorServices */,
+				D21ACB991726868A00E2F8EC /* HighlightingTextView.h */,
+				D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */,
+				D21ACB9B1726868A00E2F8EC /* Placeholder */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		D21ACB811726868A00E2F8EC /* AutoCompletion */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACB821726868A00E2F8EC /* CommandCompletion.h */,
+				D21ACB831726868A00E2F8EC /* CommandCompletion.m */,
+				D21ACB841726868A00E2F8EC /* CommandCompletions.plist */,
+				D21ACB851726868A00E2F8EC /* Completion.h */,
+				D21ACB861726868A00E2F8EC /* Completion.m */,
+				D21ACB871726868A00E2F8EC /* EnvironmentCompletion.h */,
+				D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */,
+				D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */,
+			);
+			path = AutoCompletion;
+			sourceTree = "<group>";
+		};
+		D21ACB8A1726868A00E2F8EC /* EditorServices */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACB8B1726868A00E2F8EC /* BracketHighlighter.h */,
+				D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */,
+				D21ACB8D1726868A00E2F8EC /* CodeExtensionEngine.h */,
+				D21ACB8E1726868A00E2F8EC /* CodeExtensionEngine.m */,
+				D21ACB8F1726868A00E2F8EC /* CodeNavigationAssistant.h */,
+				D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */,
+				D21ACB911726868A00E2F8EC /* CompletionHandler.h */,
+				D21ACB921726868A00E2F8EC /* CompletionHandler.m */,
+				D21ACB931726868A00E2F8EC /* EditorService.h */,
+				D21ACB941726868A00E2F8EC /* EditorService.m */,
+				D21ACB951726868A00E2F8EC /* PlaceholderServices.h */,
+				D21ACB961726868A00E2F8EC /* PlaceholderServices.m */,
+				D21ACB971726868A00E2F8EC /* SyntaxHighlighter.h */,
+				D21ACB981726868A00E2F8EC /* SyntaxHighlighter.m */,
+			);
+			path = EditorServices;
+			sourceTree = "<group>";
+		};
+		D21ACB9B1726868A00E2F8EC /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACB9C1726868A00E2F8EC /* EditorPlaceholder.h */,
+				D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */,
+				D21ACB9E1726868A00E2F8EC /* EditorPlaceholderCell.h */,
+				D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */,
+			);
+			path = Placeholder;
+			sourceTree = "<group>";
+		};
+		D21ACBAF1726873900E2F8EC /* PDFView */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBB01726873900E2F8EC /* ExtendedPdf.h */,
+				D21ACBB11726873900E2F8EC /* ExtendedPdf.m */,
+			);
+			path = PDFView;
+			sourceTree = "<group>";
+		};
+		D21ACBB31726875600E2F8EC /* FileViewer */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBB41726875600E2F8EC /* OutlineViewController.h */,
+				D21ACBB51726875600E2F8EC /* OutlineViewController.m */,
+			);
+			path = FileViewer;
+			sourceTree = "<group>";
+		};
+		D21ACBB71726876900E2F8EC /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
+				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		D21ACBBB1726879000E2F8EC /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBBC1726879000E2F8EC /* CompletionsController.h */,
+				D21ACBBD1726879000E2F8EC /* CompletionsController.m */,
+				D21ACBBE1726879000E2F8EC /* Constants.h */,
+				D21ACBBF1726879000E2F8EC /* Constants.m */,
+				D21ACBC01726879000E2F8EC /* PreferencesController.h */,
+				D21ACBC11726879000E2F8EC /* PreferencesController.m */,
+				D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		D21ACBCE1726889700E2F8EC /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
+				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
+				D21ACBD11726889700E2F8EC /* ProjectDocument.xib */,
+				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
+				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
+				D21ACBD41726889700E2F8EC /* SimpleDocument.xib */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		D21ACBD9172688B400E2F8EC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */,
+				D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */,
+				D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */,
+				D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */,
+				D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */,
+				D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		D2CC54E7171EAFAB00D81CF1 = {
@@ -227,6 +368,7 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D21ACB5F17267A1700E2F8EC /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
 				D2CC54F5171EAFAB00D81CF1 /* Other Frameworks */,
@@ -249,17 +391,18 @@
 			children = (
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
-				76DD1641171ED1B10060ED10 /* ExtendedPdf */,
-				F6312829171EB98700D23B7F /* FileViewer */,
-				D2CC5537171EB0C300D81CF1 /* Preferences */,
-				D2CC5536171EB0AD00D81CF1 /* Categories */,
-				D2CC5535171EB08E00D81CF1 /* Editor */,
-				D2A439F0171F06910020C15F /* Documents */,
-				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
-				D2CC54FA171EAFAB00D81CF1 /* Supporting Files */,
 				D2A439F2171F10D60020C15F /* DocumentController.h */,
 				D2A439F3171F10D60020C15F /* DocumentController.m */,
+				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
+				D21ACBB71726876900E2F8EC /* Categories */,
+				D21ACB801726868A00E2F8EC /* Editor */,
+				D21ACBCE1726889700E2F8EC /* Documents */,
+				D21ACBB31726875600E2F8EC /* FileViewer */,
+				D21ACBAF1726873900E2F8EC /* PDFView */,
+				D21ACBBB1726879000E2F8EC /* Preferences */,
+				D2CC54FA171EAFAB00D81CF1 /* Supporting Files */,
 				D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */,
+				D21ACB6917267BFD00E2F8EC /* Resources */,
 			);
 			path = TeXtended;
 			sourceTree = "<group>";
@@ -267,115 +410,16 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D2E5E17A171EC57C00536D1C /* Development */,
-				D2CC5546171EB10A00D81CF1 /* Fonts */,
+				D21ACB7C172685C100E2F8EC /* Development */,
+				D21ACB721726855000E2F8EC /* Sparkle */,
 				D2CC54FB171EAFAB00D81CF1 /* TeXtended-Info.plist */,
+				D21ACBD9172688B400E2F8EC /* Fonts */,
 				D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */,
 				D2CC54FF171EAFAB00D81CF1 /* main.m */,
 				D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */,
 				D2CC5502171EAFAB00D81CF1 /* Credits.rtf */,
-				D21F376C171EBFE500F961D6 /* AppledocSettings.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2CC5535171EB08E00D81CF1 /* Editor */ = {
-			isa = PBXGroup;
-			children = (
-				D2B0F5B11720246000B6BBC4 /* AutoCompletion */,
-				D2CC5539171EB0E700D81CF1 /* Placeholder */,
-				D2CC5538171EB0D500D81CF1 /* EditorServices */,
-				D2FD399A171EC34F008BB864 /* HighlightingTextView.h */,
-				D2FD399B171EC34F008BB864 /* HighlightingTextView.m */,
-			);
-			name = Editor;
-			sourceTree = "<group>";
-		};
-		D2CC5536171EB0AD00D81CF1 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD39A2171EC377008BB864 /* NSString+LatexExtension.h */,
-				D2FD39A3171EC377008BB864 /* NSString+LatexExtension.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		D2CC5537171EB0C300D81CF1 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				D2026E8917251AEF00710804 /* CompletionsController.h */,
-				D2026E8A17251AEF00710804 /* CompletionsController.m */,
-				D2FD39A5171EC390008BB864 /* Constants.h */,
-				D2FD39A6171EC390008BB864 /* Constants.m */,
-				D2FD39A7171EC390008BB864 /* PreferencesController.h */,
-				D2FD39A8171EC390008BB864 /* PreferencesController.m */,
-				D2FD39A9171EC390008BB864 /* PreferencesWindow.xib */,
-			);
-			name = Preferences;
-			sourceTree = "<group>";
-		};
-		D2CC5538171EB0D500D81CF1 /* EditorServices */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD398E171EC33D008BB864 /* BracketHighlighter.h */,
-				D2FD398F171EC33D008BB864 /* BracketHighlighter.m */,
-				D2FD3990171EC33D008BB864 /* CodeNavigationAssistant.h */,
-				D2FD3991171EC33D008BB864 /* CodeNavigationAssistant.m */,
-				D2FD3992171EC33D008BB864 /* EditorService.h */,
-				D2FD3993171EC33D008BB864 /* EditorService.m */,
-				D2FD3994171EC33D008BB864 /* SyntaxHighlighter.h */,
-				D2FD3995171EC33D008BB864 /* SyntaxHighlighter.m */,
-				D244B502171FC5C70068F4C0 /* PlaceholderServices.h */,
-				D244B503171FC5C70068F4C0 /* PlaceholderServices.m */,
-				D2B0F5AE17200DFE00B6BBC4 /* CompletionHandler.h */,
-				D2B0F5AF17200DFE00B6BBC4 /* CompletionHandler.m */,
-				D2026E8F1725871A00710804 /* CodeExtensionEngine.h */,
-				D2026E901725871A00710804 /* CodeExtensionEngine.m */,
-			);
-			name = EditorServices;
-			sourceTree = "<group>";
-		};
-		D2CC5539171EB0E700D81CF1 /* Placeholder */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD399C171EC365008BB864 /* EditorPlaceholder.h */,
-				D2FD399D171EC365008BB864 /* EditorPlaceholder.m */,
-				D2FD399E171EC365008BB864 /* EditorPlaceholderCell.h */,
-				D2FD399F171EC365008BB864 /* EditorPlaceholderCell.m */,
-			);
-			name = Placeholder;
-			sourceTree = "<group>";
-		};
-		D2CC5546171EB10A00D81CF1 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD3982171EC316008BB864 /* SourceCodePro-Black.ttf */,
-				D2FD3983171EC316008BB864 /* SourceCodePro-Bold.ttf */,
-				D2FD3984171EC316008BB864 /* SourceCodePro-ExtraLight.ttf */,
-				D2FD3985171EC316008BB864 /* SourceCodePro-Light.ttf */,
-				D2FD3986171EC316008BB864 /* SourceCodePro-Regular.ttf */,
-				D2FD3987171EC316008BB864 /* SourceCodePro-Semibold.ttf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
-		D2E5E17A171EC57C00536D1C /* Development */ = {
-			isa = PBXGroup;
-			children = (
-				D23D231C17215D11009088CC /* AppleDoc Snippets */,
-				D2E5E17B171EC5A100536D1C /* ReloadDocset.scpt */,
-				D23D231E17215FCA009088CC /* TeXnicleCompletions.plist */,
-			);
-			name = Development;
-			sourceTree = "<group>";
-		};
-		F6312829171EB98700D23B7F /* FileViewer */ = {
-			isa = PBXGroup;
-			children = (
-				F631282A171EB9E300D23B7F /* OutlineViewController.h */,
-				F631282B171EB9E300D23B7F /* OutlineViewController.m */,
-			);
-			name = FileViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +433,7 @@
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
 				D2CC5547171EB15500D81CF1 /* CopyFiles */,
+				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -433,22 +478,19 @@
 			files = (
 				D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */,
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
-				D2CC550A171EAFAB00D81CF1 /* SimpleDocument.xib in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
-				D21F376D171EBFE500F961D6 /* AppledocSettings.plist in Resources */,
-				D2FD3988171EC316008BB864 /* SourceCodePro-Black.ttf in Resources */,
-				D2FD3989171EC316008BB864 /* SourceCodePro-Bold.ttf in Resources */,
-				D2FD398A171EC316008BB864 /* SourceCodePro-ExtraLight.ttf in Resources */,
-				D2FD398B171EC316008BB864 /* SourceCodePro-Light.ttf in Resources */,
-				D2FD398C171EC316008BB864 /* SourceCodePro-Regular.ttf in Resources */,
-				D2FD398D171EC316008BB864 /* SourceCodePro-Semibold.ttf in Resources */,
-				D2FD39AC171EC390008BB864 /* PreferencesWindow.xib in Resources */,
-				D2E5E17C171EC5A100536D1C /* ReloadDocset.scpt in Resources */,
-				D2A439EF171F06800020C15F /* ProjectDocument.xib in Resources */,
-				D23D231D17215D11009088CC /* AppleDoc Snippets in Resources */,
-				D23D231F17215FCA009088CC /* TeXnicleCompletions.plist in Resources */,
-				D23D23211721613D009088CC /* CommandCompletions.plist in Resources */,
-				D28F5B8F1722E11F002B3C26 /* EnvironmentCompletions.plist in Resources */,
+				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
+				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
+				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
+				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
+				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
+				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
+				D21ACBE0172688B400E2F8EC /* SourceCodePro-Black.ttf in Resources */,
+				D21ACBE1172688B400E2F8EC /* SourceCodePro-Bold.ttf in Resources */,
+				D21ACBE2172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf in Resources */,
+				D21ACBE3172688B400E2F8EC /* SourceCodePro-Light.ttf in Resources */,
+				D21ACBE4172688B400E2F8EC /* SourceCodePro-Regular.ttf in Resources */,
+				D21ACBE5172688B400E2F8EC /* SourceCodePro-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,30 +518,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2CC5500171EAFAB00D81CF1 /* main.m in Sources */,
-				F631282C171EB9E300D23B7F /* OutlineViewController.m in Sources */,
-				D2CC5507171EAFAB00D81CF1 /* SimpleDocument.m in Sources */,
-				D2FD3996171EC33D008BB864 /* BracketHighlighter.m in Sources */,
-				D2C240BC171ED3DC009E33CE /* ExtendedPdf.m in Sources */,
-				D2FD3997171EC33D008BB864 /* CodeNavigationAssistant.m in Sources */,
-				D2FD3998171EC33D008BB864 /* EditorService.m in Sources */,
-				D2FD3999171EC33D008BB864 /* SyntaxHighlighter.m in Sources */,
-				D2FD39A0171EC365008BB864 /* EditorPlaceholder.m in Sources */,
-				D2E5E179171EC4CA00536D1C /* HighlightingTextView.m in Sources */,
-				D2FD39A1171EC365008BB864 /* EditorPlaceholderCell.m in Sources */,
-				D2FD39A4171EC377008BB864 /* NSString+LatexExtension.m in Sources */,
-				D2FD39AA171EC390008BB864 /* Constants.m in Sources */,
-				D2FD39AB171EC390008BB864 /* PreferencesController.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
-				D2A439EE171F06800020C15F /* ProjectDocument.m in Sources */,
 				D2A439F4171F10D60020C15F /* DocumentController.m in Sources */,
-				D244B504171FC5C70068F4C0 /* PlaceholderServices.m in Sources */,
-				D2B0F5B017200DFE00B6BBC4 /* CompletionHandler.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
-				D2B0F5BB1720854500B6BBC4 /* Completion.m in Sources */,
-				D2B0F5BE1720869F00B6BBC4 /* CommandCompletion.m in Sources */,
-				D2B0F5C1172086D000B6BBC4 /* EnvironmentCompletion.m in Sources */,
-				D2026E8B17251AEF00710804 /* CompletionsController.m in Sources */,
-				D2026E911725871A00710804 /* CodeExtensionEngine.m in Sources */,
+				D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */,
+				D21ACBA21726868A00E2F8EC /* Completion.m in Sources */,
+				D21ACBA31726868A00E2F8EC /* EnvironmentCompletion.m in Sources */,
+				D21ACBA51726868A00E2F8EC /* BracketHighlighter.m in Sources */,
+				D21ACBA61726868A00E2F8EC /* CodeExtensionEngine.m in Sources */,
+				D21ACBA71726868A00E2F8EC /* CodeNavigationAssistant.m in Sources */,
+				D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */,
+				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
+				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
+				D21ACBAB1726868A00E2F8EC /* SyntaxHighlighter.m in Sources */,
+				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
+				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
+				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
+				D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */,
+				D21ACBB61726875600E2F8EC /* OutlineViewController.m in Sources */,
+				D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */,
+				D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */,
+				D21ACBC41726879000E2F8EC /* Constants.m in Sources */,
+				D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */,
+				D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */,
+				D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,14 +562,6 @@
 				D2CC5503171EAFAB00D81CF1 /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		D2CC5508171EAFAB00D81CF1 /* SimpleDocument.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2CC5509171EAFAB00D81CF1 /* en */,
-			);
-			name = SimpleDocument.xib;
 			sourceTree = "<group>";
 		};
 		D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */ = {
@@ -620,6 +654,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
@@ -632,6 +670,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";

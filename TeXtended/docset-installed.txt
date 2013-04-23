@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/Tobi/Library/Developer/Shared/Documentation/DocSets/tobias mende.textended.TeXtended.docset
+Time: 2013-04-17 11:38:49 +0000
