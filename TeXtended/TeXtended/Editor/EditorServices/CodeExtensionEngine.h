@@ -8,7 +8,9 @@
 
 #import "EditorService.h"
 
-@interface CodeExtensionEngine : EditorService
+@interface CodeExtensionEngine : EditorService {
+    NSPopover *popover;
+}
 
 @property (strong,nonatomic) NSColor *texdocColor;
 @property (nonatomic)BOOL shouldLinkTexdoc;
@@ -17,4 +19,5 @@
 - (void)addLinksForRange:(NSRange) range;
 - (void) addTexdocLinksForRange:(NSRange) range;
 - (BOOL)clickedOnLink:(id)link atIndex:(NSUInteger)charIndex;
+- (void) handleLinkAt:(NSUInteger) position;
 @end

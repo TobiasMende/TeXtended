@@ -47,7 +47,7 @@
     [self setDelegate:self];
     [self setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:nil]];
 
-    [self setRichText:YES];
+    [self setRichText:NO];
 }
 
 - (NSRange) visibleRange
@@ -122,7 +122,8 @@
         NSLog(@"Latex LineBreak");
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
-    [codeExtensionEngine addLinksForRange:[self visibleRange]];
+    NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
+    [codeExtensionEngine addLinksForRange:lineRange];
 }
 
 - (void)insertTab:(id)sender {
@@ -181,6 +182,17 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
     [codeNavigationAssistant highlightCarret];
+    if (self.selectedRanges.count== 1 || self.selectedRange.length==0) {
+        NSUInteger position = self.selectedRange.location;
+        [codeExtensionEngine handleLinkAt:position];
+    }
+    
+}
+
+- (void)mouseUp:(NSEvent *)theEvent {
+    [super mouseUp:theEvent];
+    NSLog(@"Mouse up");
+    
 }
 
 #pragma mark -

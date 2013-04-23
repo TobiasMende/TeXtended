@@ -59,6 +59,9 @@
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
+		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
+		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
+		D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
@@ -162,6 +165,11 @@
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D2C904E41726963E006EFEC2 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
+		D2C904E51726963E006EFEC2 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
+		D2C904E61726963E006EFEC2 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
+		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
+		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -231,6 +239,8 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D2C904E91726A079006EFEC2 /* TexdocSupport */,
+				D2C904E317269614006EFEC2 /* Views */,
 				D21ACB811726868A00E2F8EC /* AutoCompletion */,
 				D21ACB8A1726868A00E2F8EC /* EditorServices */,
 				D21ACB991726868A00E2F8EC /* HighlightingTextView.h */,
@@ -352,6 +362,25 @@
 				D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D2C904E317269614006EFEC2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2C904E41726963E006EFEC2 /* TexdocViewController.h */,
+				D2C904E51726963E006EFEC2 /* TexdocViewController.m */,
+				D2C904E61726963E006EFEC2 /* TexdocView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
+			isa = PBXGroup;
+			children = (
+				D2C904EA1726A086006EFEC2 /* TexdocEntry.h */,
+				D2C904EB1726A086006EFEC2 /* TexdocEntry.m */,
+			);
+			path = TexdocSupport;
 			sourceTree = "<group>";
 		};
 		D2CC54E7171EAFAB00D81CF1 = {
@@ -491,6 +520,7 @@
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
+				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +572,8 @@
 				D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */,
 				D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */,
 				D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */,
+				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
+				D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -133,7 +133,7 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
     NSRect visibleArea = [view visibleRect];
     NSRange visibleGlyphRange = [lm glyphRangeForBoundingRect:visibleArea inTextContainer:view.textContainer];
     NSRange visibleTextRange = [lm characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
-    [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:visibleTextRange];
+    
     [self performHighlightingInRange:visibleTextRange];
 }
 
@@ -196,6 +196,7 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
         NSArray *matches = [regex matchesInString:[[view textStorage] string] options:0 range:totalRange];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match range];
+            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:color forCharacterRange:range];
         }
 }
