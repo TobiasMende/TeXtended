@@ -17,7 +17,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 
 - (void) removeTexdocAttributesForRange:(NSRange) range;
 - (void) invalidateTexdocLinks;
-- (void) texdocReadComplete:(NSNotification *)notification andBoundingRect:(NSRect) rect;
+- (void) texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*)package andBoundingRect:(NSRect) rect;
 - (NSMutableArray*) parseTexdocList:(NSString *)texdocList;
 
 @end
@@ -134,7 +134,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
         [task setStandardOutput:outputPipe];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texdocReadComplete:andBoundingRect:) name:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading]];
         [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            [self texdocReadComplete:note andBoundingRect:boundingRect];
+            [self texdocReadComplete:note withPackageName:packageName andBoundingRect:boundingRect];
         }];
         [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
         [task setArguments: args];
@@ -144,7 +144,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
     return NO;
 }
 
-- (void)texdocReadComplete:(NSNotification *)notification andBoundingRect:(NSRect)rect{
+- (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package andBoundingRect:(NSRect)rect{
     NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSMutableArray *texdocArray = [self parseTexdocList:string];
@@ -152,6 +152,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
     
     TexdocViewController *texdocView = [[TexdocViewController alloc] init];
     [texdocView setContent:texdocArray];
+    [texdocView setPackage:package];
     popover.contentViewController = texdocView;
     [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
     

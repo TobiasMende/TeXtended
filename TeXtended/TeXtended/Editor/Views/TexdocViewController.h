@@ -13,5 +13,6 @@
     IBOutlet NSTableView *listView;
     IBOutlet NSView *notFoundView;
 }
+@property (strong, nonatomic) NSString *package;
 - (void) setContent:(NSMutableArray*) texdoc;
 @end

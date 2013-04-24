@@ -13,10 +13,12 @@
     self = [super init];
     if (self) {
         if (texdoc.count >= 4) {
-            _description = [texdoc objectAtIndex:4];
-            
-            _score = [NSNumber numberWithDouble:[[texdoc objectAtIndex:1] doubleValue]];
             self.path = [texdoc objectAtIndex:2];
+            _description = [texdoc objectAtIndex:4];
+            if (_description.length == 0) {
+                _description = [[_path lastPathComponent] stringByDeletingPathExtension];
+            }
+            _score = [NSNumber numberWithDouble:[[texdoc objectAtIndex:1] doubleValue]];
         }
     }
     

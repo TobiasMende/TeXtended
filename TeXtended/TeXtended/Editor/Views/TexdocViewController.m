@@ -40,6 +40,11 @@
     } 
 }
 
+- (void)setPackage:(NSString *)package {
+    NSString *head = [@"Select Documentation for " stringByAppendingFormat:@"%@:", package];
+    _package = head;
+}
+
 - (id)init {
     self = [self initWithNibName:@"TexdocView" bundle:nil];
     if (self) {
