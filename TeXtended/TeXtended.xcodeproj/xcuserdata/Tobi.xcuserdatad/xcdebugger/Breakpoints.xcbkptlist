@@ -43,11 +43,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388525181.11685"
+         timestampString = "388531956.359977"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "282"
-         endingLineNumber = "282"
+         startingLineNumber = "314"
+         endingLineNumber = "314"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -56,11 +56,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388525181.11685"
+         timestampString = "388533357.373569"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
+         startingLineNumber = "329"
+         endingLineNumber = "329"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -69,11 +69,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388525181.11685"
+         timestampString = "388533357.373569"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
+         startingLineNumber = "328"
+         endingLineNumber = "328"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>

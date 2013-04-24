@@ -279,37 +279,38 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
         return NO;
     }
-    
-    NSUInteger charCounter = 0;
-    NSUInteger lastSpacePosition = NSNotFound;
     NSString *newLineInsertion = [@"\n" stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
     NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
     NSAttributedString *insertion = [[NSAttributedString alloc]initWithString:newLineInsertion attributes:attributes];
-    BOOL finish = NO;
-    while (!finish) {
-    for (NSUInteger position = lineRange.location; position < NSMaxRange(lineRange); position++) {
-        unichar currentChar = [view.string characterAtIndex:position];
-        charCounter++;
-        if ([WHITESPACES containsObject:[NSString stringWithFormat:@"%c",currentChar]]) {
-            lastSpacePosition = position;
-        }
+
+    NSError *error;
+    NSRegularExpression *SPACE = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+" options:0 error:&error];
+    if (error) {
+        NSLog(@"Error!!!");
+    }
+NSArray *spaces = [SPACE matchesInString:view.string options:0 range:lineRange];
+    NSUInteger goodPositionToBreak = NSNotFound;
+    NSUInteger lastBreakLocation = lineRange.location;
+    NSUInteger offset = 0;
+    NSUInteger counter = 0;
+    for (NSTextCheckingResult *match in spaces) {
+        counter++;
+        NSRange matchRange = [match range];
+        matchRange.location += offset;
+        NSUInteger currentPosition = NSMaxRange(matchRange);
         
-        if (charCounter > wrapAfter) {
-            // Should break now
-            NSUInteger total = NSMaxRange(lineRange);
-             if (lastSpacePosition != NSNotFound && lastSpacePosition < total) {
-                 
-                 [view.textStorage insertAttributedString:insertion atIndex:lastSpacePosition+1];
-                [self handleWrappingInLine:NSMakeRange(lastSpacePosition+insertion.length, total-(lastSpacePosition))];
-             } else if(currentChar == '\n') {
-                 return YES;
-             }
-            return YES;
+        if (matchRange.location-lastBreakLocation <= wrapAfter || currentPosition-lastBreakLocation <= wrapAfter || goodPositionToBreak == NSNotFound) {
+            // Break after the spaces:
+            goodPositionToBreak = currentPosition;
+        }
+        if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound) {
+            [view.textStorage insertAttributedString:insertion atIndex:goodPositionToBreak];
+            offset += insertion.length;
+            lastBreakLocation = goodPositionToBreak+1;
+            goodPositionToBreak = NSNotFound;
         }
     }
-    }
-    
-    return NO;
+    return YES;
 }
 
 #pragma mark -

@@ -196,6 +196,7 @@
                                         FLT_MAX)];
             
         }
+
 }
 
 #pragma mark -
@@ -263,7 +264,6 @@
         self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER]]) {
         self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
-        NSLog(@"%@", self.hardWrapAfter);
     }
 }
 
