@@ -26,8 +26,19 @@
  */
 - (void) highlightCurrentLine;
 
+/**
+ Highlights the current lines background.
+ 
+ @warning You shouldn't call this method directly. It's called by the view when needed.
+ */
 - (void) highlightCurrentLineBackground;
 
+/**
+ Method for highlighting the current foreground text in a given range
+ 
+ @param range the selected range in the view
+ 
+ */
 - (void) highlightCurrentLineForegroundWithRange:(NSRange)range;
 
 /**
@@ -35,6 +46,9 @@
  */
 - (void) highlightCarret;
 
+/**
+ Method for highlighting the current line as well as the carrets position.
+ */
 - (void) highlight;
 
 /**
@@ -42,6 +56,11 @@
  */
 - (BOOL) handleTabInsertion;
 
+/**
+ Handles a backtab insertion after insert in a proper way: If there is a tab oder a matching amount of spaces before, delete them, if not: do nothing.
+ 
+ @return `YES` if this method has handled the backtab, `NO` otherwise.
+ */
 - (BOOL) handleBacktabInsertion;
 
 /**

@@ -8,11 +8,26 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+/**
+ The TexdocViewController controlls the view which is displayed when showing a list of package documentation.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface TexdocViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>{
+    /** An array of TexdocEntry objects */
     IBOutlet NSMutableArray *entries;
+    /** The table view to display the entries in */
     IBOutlet NSTableView *listView;
+    
+    /** The view which should be displayed if no matching entries where found */
     IBOutlet NSView *notFoundView;
 }
+/** The package name (returning the heading for the listView */
 @property (strong, nonatomic) NSString *package;
+/** Method for setting the entries 
+ @param texdoc an array of TexdocEntry objects
+ */
 - (void) setContent:(NSMutableArray*) texdoc;
 @end

@@ -83,6 +83,7 @@
     return charVisibleRange;
 }
 
+
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
         [self.undoManager beginUndoGrouping];

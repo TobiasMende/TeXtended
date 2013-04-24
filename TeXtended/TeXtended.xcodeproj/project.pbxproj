@@ -58,6 +58,7 @@
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
+		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
 		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
 		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
@@ -106,7 +107,6 @@
 		D21ACB761726855000E2F8EC /* generate_keys.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generate_keys.rb; sourceTree = "<group>"; };
 		D21ACB771726855000E2F8EC /* sign_update.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
 		D21ACB7D172685C100E2F8EC /* AppleDoc Snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "AppleDoc Snippets"; sourceTree = "<group>"; };
-		D21ACB7E172685C100E2F8EC /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		D21ACB7F172685C100E2F8EC /* ReloadDocset.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReloadDocset.scpt; sourceTree = "<group>"; };
 		D21ACB821726868A00E2F8EC /* CommandCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCompletion.h; sourceTree = "<group>"; };
 		D21ACB831726868A00E2F8EC /* CommandCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCompletion.m; sourceTree = "<group>"; };
@@ -164,6 +164,7 @@
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D2C904E41726963E006EFEC2 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2C904E51726963E006EFEC2 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
@@ -229,8 +230,8 @@
 		D21ACB7C172685C100E2F8EC /* Development */ = {
 			isa = PBXGroup;
 			children = (
+				D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */,
 				D21ACB7D172685C100E2F8EC /* AppleDoc Snippets */,
-				D21ACB7E172685C100E2F8EC /* AppledocSettings.plist */,
 				D21ACB7F172685C100E2F8EC /* ReloadDocset.scpt */,
 			);
 			path = Development;
@@ -521,6 +522,7 @@
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
+				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

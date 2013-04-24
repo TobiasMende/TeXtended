@@ -35,4 +35,12 @@
     }
     return nil;
 }
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"fileName"] || [key isEqualToString:@"fileIcon"]) {
+        keyPaths = [keyPaths setByAddingObject:@"path"];
+    }
+    return keyPaths;
+}
 @end

@@ -15,17 +15,47 @@
 
 @interface CompletionsController()
 
+/**
+ Method for loading the completions and creating appropriate completion objects.
+ 
+ The method tries to load the completions from the application support folder. If no completion lists where found it loads the default lists from the application bundle
+ */
+- (void) loadCompletions;
+
+/** Loads command completions from a specific path
+ @param path the path to load from
+ */
+- (void) loadCommandCompletionsFromPath:(NSString*) path;
+
+/** Loads environment completions from a specific path
+ @param path the path to load from
+ */
+- (void) loadEnvironmentCompletionsFromPath:(NSString* )path;
+
+/**
+ Scrolls a table view until the given row is visible
+ @param rowIndex index of the row to scroll to
+ @param view the table view to scroll
+ */
+- (void) scrollRowToVisible:(NSUInteger) rowIndex inTableView:(NSTableView*) view;
+
+// From here: Only IBAction handling for specific buttons
+
+- (void) removeItemFromCommands;
+- (void) removeItemFromEnvironments;
+- (void) addItemToEnvironments;
+- (void) addItemToCommands;
+
+// To here: IBAction handling for specific buttons
+
+// Frome here: Only NSTableViewDataSource method handling
+
 - (id) commandObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (id) environmentObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (void) commandSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (void) environmentSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
-- (void) scrollRowToVisible:(NSUInteger) rowIndex inTableView:(NSTableView*) view;
-- (void) removeItemFromCommands;
-- (void) removeItemFromEnvironments;
-- (void) loadCommandCompletionsFromPath:(NSString*) path;
-- (void) loadEnvironmentCompletionsFromPath:(NSString* )path;
-- (void) addItemToEnvironments;
-- (void) addItemToCommands;
+
+// To here: NSTableViewDataSource method handling
 @end
 NSInteger commandTag = 1;
 NSInteger environmentTag = 2;

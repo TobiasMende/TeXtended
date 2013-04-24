@@ -14,10 +14,31 @@
 NSRegularExpression *TEXDOC_LINKS;
 NSString *TEXDOC_PREFIX = @"texdoc://";
 @interface CodeExtensionEngine()
-
+/**
+ Removes all texdoc attributes for all texdoc links within the given range
+ 
+ @param range the range to update
+ */
 - (void) removeTexdocAttributesForRange:(NSRange) range;
+
+/**
+ Deletes all texdoc links from the document
+ */
 - (void) invalidateTexdocLinks;
+
+/**
+ Callback method for the texdoc task is called after the texdoc command has finished returning a list of possible documents.
+ 
+ @param notification A `NSFileHandleReadToEndOfFileCompletionNotification` after the command output is available as data.
+ @param package The package name which was clicked
+ @param rect a rect for specifing the position where to show the documents
+ */
 - (void) texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*)package andBoundingRect:(NSRect) rect;
+
+/** 
+ This methods parses the provided answer of the texdoc command into an array of [TexdocEntry] objects
+ @param texdocList the texdoc command machine readable answer
+ */
 - (NSMutableArray*) parseTexdocList:(NSString *)texdocList;
 
 @end
@@ -132,7 +153,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
         NSPipe *outputPipe = [NSPipe pipe];
         NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(charIndex, 1) inTextContainer:view.textContainer];
         [task setStandardOutput:outputPipe];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texdocReadComplete:andBoundingRect:) name:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading]];
+
         [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
             [self texdocReadComplete:note withPackageName:packageName andBoundingRect:boundingRect];
         }];
