@@ -14,7 +14,6 @@
  
  @author Tobias Mende
  */
-
 @interface CodeNavigationAssistant : EditorService {
     /** The last carret range (needed for deleting highlightes) */
     NSRange lastCarretRange;
@@ -69,6 +68,10 @@
 - (void) handleNewLineInsertion;
 
 
+- (BOOL) handleWrappingInRange:(NSRange) textRange;
+- (BOOL) handleWrappingInLine:(NSRange) lineRange;
+- (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
+
 /** Number of spaces which should replace a single tab */
 @property NSNumber *numberOfSpacesForTab;
 
@@ -95,4 +98,5 @@
 
 /** If `YES`, a new line has the same indention as the previous line */
 @property BOOL shouldAutoIndentLines;
+
 @end

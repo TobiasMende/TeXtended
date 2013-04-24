@@ -44,6 +44,8 @@
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [self setDelegate:self];
 
     [self setRichText:NO];
@@ -53,26 +55,10 @@
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
-    [self setWrappingEnabled:NO];
 }
 
 
-- (void) setWrappingEnabled:(BOOL)wrap {
-    //TODO: Handle different wrap modi.
-    if (wrap) {
-        
-    } else {
-        [[self textContainer]
-         setContainerSize:NSMakeSize(FLT_MAX   , FLT_MAX)];
-        [[self textContainer] setWidthTracksTextView:NO];
-        [[self textContainer] setHeightTracksTextView:NO];
-        [self setAutoresizingMask:NSViewNotSizable];
-        [self setMaxSize:NSMakeSize(FLT_MAX,
-                                        FLT_MAX)];
-        [self setHorizontallyResizable:YES];
-        
-    }
-}
+
 
 - (NSRange) visibleRange
 {
@@ -149,6 +135,9 @@
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
     NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
     [codeExtensionEngine addLinksForRange:lineRange];
+    if([codeNavigationAssistant handleWrappingInLine:lineRange]) {
+        [self scrollRangeToVisible:self.selectedRange];
+    }
 }
 
 - (void)insertTab:(id)sender {
@@ -185,6 +174,28 @@
     [super setString:string];
     [regexHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, string.length)];
+}
+
+
+#pragma mark -
+#pragma mark Setter & Getter
+
+- (void)setLineWrapMode:(TMTLineWrappingMode)lineWrapMode {
+    _lineWrapMode = lineWrapMode;
+    
+        if (lineWrapMode == SoftWrap) {
+            [[self textContainer] setWidthTracksTextView:YES];
+            [self setMaxSize:NSMakeSize(self.superview.visibleRect.size.width, FLT_MAX)];
+            [self.textContainer setContainerSize:NSMakeSize(self.superview.visibleRect.size.width, FLT_MAX)];
+        } else {
+            [[self textContainer]
+             setContainerSize:NSMakeSize(FLT_MAX   , FLT_MAX)];
+            [[self textContainer] setWidthTracksTextView:NO];
+            [self setAutoresizingMask:NSViewNotSizable];
+            [self setMaxSize:NSMakeSize(FLT_MAX,
+                                        FLT_MAX)];
+            
+        }
 }
 
 #pragma mark -
@@ -248,6 +259,11 @@
         NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_SELECTION_BACKGROUND_COLOR]];
         NSDictionary *selectionAttributes = [NSDictionary dictionaryWithObjectsAndKeys:textColor,NSForegroundColorAttributeName,backgroundColor,NSBackgroundColorAttributeName, nil];
         [self setSelectedTextAttributes:selectionAttributes];
+    } else if([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE]]) {
+        self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
+    } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER]]) {
+        self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
+        NSLog(@"%@", self.hardWrapAfter);
     }
 }
 

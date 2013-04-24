@@ -7,6 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Constants.h"
+
+
+
 @class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService;
 
 /**
@@ -15,6 +19,7 @@
  **Author:** Tobias Mende
  
  */
+
 @interface HighlightingTextView : NSTextView <NSTextViewDelegate> {
     /** The SyntaxHighlighter highlights latex code by regular expressions */
     SyntaxHighlighter *regexHighlighter;
@@ -33,6 +38,9 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
     CodeExtensionEngine *codeExtensionEngine;
 }
+@property (nonatomic) TMTLineWrappingMode lineWrapMode;
+@property (strong) NSNumber *hardWrapAfter;
+
 
 /**
  Called when the syntax highlighting should be updated

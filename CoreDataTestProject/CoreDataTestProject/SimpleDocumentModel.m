@@ -20,4 +20,7 @@
     return [super initWithEntity:entity insertIntoManagedObjectContext:context];
 }
 
+- (void) bla {
+    self.entity.compileSettings;
+}
 @end

@@ -9,7 +9,18 @@
 #import "CodeNavigationAssistant.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
+NSSet *WHITESPACES;
+NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 @implementation CodeNavigationAssistant
+
++ (void)initialize {
+    WHITESPACES = [NSSet setWithObjects:@" ",@"\t", nil];
+    NSError *error;
+    SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    if(error) {
+        NSLog(@"Regex Error");
+    }
+}
 
 - (id)initWithTextView:(HighlightingTextView *)tv {
     self= [super initWithTextView:tv];
@@ -40,7 +51,7 @@
         self.numberOfSpacesForTab = [[defaults values] valueForKey:TMT_EDITOR_NUM_TAB_SPACES];
         [self bind:@"numberOfSpacesForTab" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_NUM_TAB_SPACES] options:NULL];
 
-        
+
     }
     return self;
 }
@@ -103,7 +114,8 @@
     NSRange glyphRange = [lm glyphRangeForCharacterRange:totalLineRange actualCharacterRange:NULL];
     NSRect boundingRect = [lm boundingRectForGlyphRange:glyphRange inTextContainer:view.textContainer];
     NSRect totalRect = NSMakeRect(0, boundingRect.origin.y, view.bounds.size.width, boundingRect.size.height);
-    return NSOffsetRect(totalRect, view.textContainerOrigin.x, view.textContainerOrigin.y);
+    NSRect lineRect = NSOffsetRect(totalRect, view.textContainerOrigin.x, view.textContainerOrigin.y);
+    return lineRect;
 }
 
 
@@ -225,19 +237,79 @@
     NSUInteger position = view.selectedRange.location;
     NSString *lineBreak = @"\n";
     if (self.shouldAutoIndentLines) {
-        NSError *error;
         NSRange lineRange = [view.string lineRangeForRange:NSMakeRange(position, 0)];
-        NSRegularExpression *spacesAtLineBeginning = [NSRegularExpression regularExpressionWithPattern:@"^(\\t|\\p{Z})*" options:NSRegularExpressionCaseInsensitive error:&error];
-        if(error) {
-            NSLog(@"Regex Error");
-        }
-        NSRange rangeOfFirstMatch = [spacesAtLineBeginning rangeOfFirstMatchInString:[view string] options:0 range:lineRange];
-        if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
-            NSString *substringForFirstMatch = [view.string substringWithRange:rangeOfFirstMatch];
-            lineBreak = [lineBreak stringByAppendingString:substringForFirstMatch];
-        }
+        lineBreak = [lineBreak stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+        
     } 
 [view insertText:lineBreak];
+}
+
+- (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange {
+    NSRange rangeOfFirstMatch = [SPACE_AT_LINE_BEGINNING rangeOfFirstMatchInString:[view string] options:0 range:lineRange];
+    if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+        return [view.string substringWithRange:rangeOfFirstMatch];
+    
+    }
+    return @"";
+}
+
+- (BOOL)handleWrappingInRange:(NSRange)textRange {
+    if (view.lineWrapMode != HardWrap && !view.hardWrapAfter) {
+        return NO;
+    }
+    NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+    NSError *error;
+    NSString *longLinesPattern = [NSString stringWithFormat:@"^(?:.{%ld,})$", wrapAfter+1];
+    NSRegularExpression *longLineRegex = [NSRegularExpression regularExpressionWithPattern:longLinesPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    
+    if (error) {
+        NSLog(@"regex error");
+        return NO;
+    }
+    NSArray *longLines = [longLineRegex matchesInString:view.string options:0 range:textRange];
+    for (NSTextCheckingResult *line in [longLines reverseObjectEnumerator]) {
+        NSRange lineRange = [line range];
+        [self handleWrappingInLine:lineRange];
+    }
+    return YES;
+}
+
+- (BOOL)handleWrappingInLine:(NSRange)lineRange {
+    NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+    if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
+        return NO;
+    }
+    
+    NSUInteger charCounter = 0;
+    NSUInteger lastSpacePosition = NSNotFound;
+    NSString *newLineInsertion = [@"\n" stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+    NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
+    NSAttributedString *insertion = [[NSAttributedString alloc]initWithString:newLineInsertion attributes:attributes];
+    BOOL finish = NO;
+    while (!finish) {
+    for (NSUInteger position = lineRange.location; position < NSMaxRange(lineRange); position++) {
+        unichar currentChar = [view.string characterAtIndex:position];
+        charCounter++;
+        if ([WHITESPACES containsObject:[NSString stringWithFormat:@"%c",currentChar]]) {
+            lastSpacePosition = position;
+        }
+        
+        if (charCounter > wrapAfter) {
+            // Should break now
+            NSUInteger total = NSMaxRange(lineRange);
+             if (lastSpacePosition != NSNotFound && lastSpacePosition < total) {
+                 
+                 [view.textStorage insertAttributedString:insertion atIndex:lastSpacePosition+1];
+                [self handleWrappingInLine:NSMakeRange(lastSpacePosition+insertion.length, total-(lastSpacePosition))];
+             } else if(currentChar == '\n') {
+                 return YES;
+             }
+            return YES;
+        }
+    }
+    }
+    
+    return NO;
 }
 
 #pragma mark -

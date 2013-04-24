@@ -18,17 +18,16 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 #pragma mark Initialization
 
 + (void)initialize {
-    NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
         // In this section,
-    COMMAND_PATTERN = [NSString stringWithFormat:@"%@[a-zA-Z0-9@_]+|%@%@", backslash,backslash,backslash];
+    COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
     
-    INLINE_MATH_PATTERN = [NSString stringWithFormat:@"(\\$(?:[^\\$]+)\\$)|(%@\\[(?:[^\\$]+)%@\\])",backslash,backslash];
+    INLINE_MATH_PATTERN = @"(\\$(?:[^\\$]+)\\$)|(\\\\\\[(?:[^\\$]+)\\\\\\])";
     
-    CURLY_BRACKET_PATTERN = [NSString stringWithFormat:@"(\\{|\\})"];
+    CURLY_BRACKET_PATTERN = @"(\\{|\\})";
     
-    COMMENT_PATTERN = [NSString stringWithFormat:@"(?<!%@)%%(?:.*)",backslash];
+    COMMENT_PATTERN = @"(?:%.*)";
     
-    BRACKET_PATTERN = [NSString stringWithFormat:@"\\(|\\)|%@\\{|%@\\}|(?<!%@)\\[|(?<!%@)\\]", backslash, backslash,backslash, backslash];
+    BRACKET_PATTERN = @"(?:\\(|\\)|\\[|\\]|\\\\\\{|\\\\\\})";
     
     NSError *error;
         //Regular Expression
@@ -146,11 +145,11 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
  
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
+    [self highlightMathBracketsInRange:textRange];
     [self highlightInlineMathInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
     [self highlightCommentInRange:textRange];
-    [self highlightMathBracketsInRange:textRange];
 }
 
 - (void) highlightCommandInRange:(NSRange) totalRange {
@@ -179,7 +178,16 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 
 - (void) highlightCommentInRange:(NSRange) totalRange {
     if (self.shouldHighlightComments) {
-        [self highlightForegroundWithExpression:COMMENT_REGEX andColor:self.commentColor inRange:totalRange];
+         NSLayoutManager *lm = [view layoutManager];
+        NSArray *matches = [COMMENT_REGEX matchesInString:[[view textStorage] string] options:0 range:totalRange];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange range = [match range];
+            if (range.location > 0 && [[view.string substringWithRange:NSMakeRange(range.location-1, 1)] isEqualToString:@"\\"]) {
+                continue;
+            }
+            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
+            [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commentColor forCharacterRange:range];
+        }
     }
     
 }
