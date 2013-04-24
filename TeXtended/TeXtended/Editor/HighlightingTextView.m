@@ -51,6 +51,25 @@
     [self setDisplaysLinkToolTips:YES];
     [self setContinuousSpellCheckingEnabled:NO];
     [self setAutomaticSpellingCorrectionEnabled:NO];
+    [self setWrappingEnabled:NO];
+}
+
+
+- (void) setWrappingEnabled:(BOOL)wrap {
+    //TODO: Handle different wrap modi.
+    if (wrap) {
+        
+    } else {
+        [[self textContainer]
+         setContainerSize:NSMakeSize(FLT_MAX   , FLT_MAX)];
+        [[self textContainer] setWidthTracksTextView:NO];
+        [[self textContainer] setHeightTracksTextView:NO];
+        [self setAutoresizingMask:NSViewNotSizable];
+        [self setMaxSize:NSMakeSize(FLT_MAX,
+                                        FLT_MAX)];
+        [self setHorizontallyResizable:YES];
+        [self setVerticallyResizable:YES];
+    }
 }
 
 - (NSRange) visibleRange

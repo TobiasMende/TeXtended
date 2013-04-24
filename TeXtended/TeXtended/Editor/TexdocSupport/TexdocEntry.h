@@ -11,8 +11,10 @@
 @interface TexdocEntry : NSObject
 @property (strong) NSString *description;
 @property (strong) NSNumber *score;
-@property (strong, nonatomic) NSString *path;
-@property (strong, readonly) NSString *fileName;
+@property (strong) NSString *path;
+
 
 - (id) initWithArray:(NSArray *) texdoc;
+- (NSString *)fileName;
+- (NSImage*) fileIcon;
 @end

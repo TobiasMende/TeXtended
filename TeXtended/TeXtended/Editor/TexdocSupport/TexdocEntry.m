@@ -23,8 +23,14 @@
     return self;
 }
 
-- (void)setPath:(NSString *)path {
-    _path = path;
-    _fileName = [path lastPathComponent];
+- (NSString *)fileName {
+    return [self.path lastPathComponent];
+}
+
+- (NSImage*) fileIcon {
+    if (self.path) {
+        return [[NSWorkspace sharedWorkspace] iconForFile:self.path];
+    }
+    return nil;
 }
 @end
