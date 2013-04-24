@@ -51,7 +51,7 @@
     [self setDisplaysLinkToolTips:YES];
     [self setContinuousSpellCheckingEnabled:NO];
     [self setAutomaticSpellingCorrectionEnabled:NO];
-    [self setWrappingEnabled:NO];
+    [self setWrappingEnabled:YES];
 }
 
 

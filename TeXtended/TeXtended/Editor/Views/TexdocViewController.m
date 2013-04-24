@@ -25,6 +25,13 @@
     return self;
 }
 
+- (id)init {
+    self = [self initWithNibName:@"TexdocView" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     if (!entries || entries.count == 0) {
         [self setView:notFoundView];
@@ -45,12 +52,7 @@
     _package = head;
 }
 
-- (id)init {
-    self = [self initWithNibName:@"TexdocView" bundle:nil];
-    if (self) {
-    }
-    return self;
-}
+
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return entries.count;
