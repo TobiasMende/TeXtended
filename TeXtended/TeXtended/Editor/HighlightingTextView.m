@@ -51,7 +51,9 @@
     [self setDisplaysLinkToolTips:YES];
     [self setContinuousSpellCheckingEnabled:NO];
     [self setAutomaticSpellingCorrectionEnabled:NO];
-    [self setWrappingEnabled:YES];
+    [self setHorizontallyResizable:YES];
+    [self setVerticallyResizable:YES];
+    [self setWrappingEnabled:NO];
 }
 
 
@@ -68,7 +70,7 @@
         [self setMaxSize:NSMakeSize(FLT_MAX,
                                         FLT_MAX)];
         [self setHorizontallyResizable:YES];
-        [self setVerticallyResizable:YES];
+        
     }
 }
 
