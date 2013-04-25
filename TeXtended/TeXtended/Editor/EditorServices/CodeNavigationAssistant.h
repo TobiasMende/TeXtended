@@ -67,6 +67,7 @@
  */
 - (void) handleNewLineInsertion;
 
+- (NSRange) lineTextRangeWithRange:(NSRange) range;
 /**
  Handles automatic hard wrapping of long lines in the provided range
  
@@ -84,7 +85,7 @@
  @return `YES` if this method has wrapped somewhere
  */
 - (BOOL) handleWrappingInLine:(NSRange) lineRange;
-
+- (BOOL) handleWrappingInLine:(NSRange) lineRange ofString:(NSMutableString *) string;
 /**
  Method returns the white space at the beginning of a given line (Usefull for auto-indention)
  

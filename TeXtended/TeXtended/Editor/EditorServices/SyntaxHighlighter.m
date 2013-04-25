@@ -49,6 +49,9 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
     if(self) {
         [self registerDefaults];
         [[NSNotificationCenter defaultCenter] addObserverForName:NSTextViewDidChangeSelectionNotification object:view queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            if (!view.servicesOn) {
+                return;
+            }
             [self highlightVisibleArea];
         }];
     }

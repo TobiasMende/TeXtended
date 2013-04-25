@@ -21,7 +21,12 @@
 }
 
 - (void)insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name {
-    NSDictionary *attributes = [view.textStorage attributesAtIndex:index effectiveRange:NULL];
+    NSDictionary *attributes;
+    if (view.textStorage.length > 0) {
+       attributes= [view.textStorage attributesAtIndex:index effectiveRange:NULL];
+    } else {
+        attributes = [[NSDictionary alloc] init];
+    }
     NSAttributedString *final = [[NSAttributedString alloc]initWithString:insertion attributes:attributes];
     [self insertText:final atIndex:index withActionName:name];
 }
@@ -29,10 +34,20 @@
 - (void)deleteTextInRange:(NSValue *)rangeObject
            withActionName:(NSString *)name {
     NSRange range = [rangeObject rangeValue];
-    NSString *insertion = [view.string substringWithRange:range];
+    NSAttributedString *insertion = [view.textStorage attributedSubstringFromRange:range];
     
     [view.textStorage deleteCharactersInRange:range];
-    [[view.undoManager prepareWithInvocationTarget:self] insertString:insertion atIndex:range.location withActionName:name];
+    [[view.undoManager prepareWithInvocationTarget:self] insertText:insertion atIndex:range.location withActionName:name];
     [view.undoManager setActionName:name];
+}
+
+- (void)setString:(NSString *)string withActionName:(NSString *)name {
+    [[view.undoManager prepareWithInvocationTarget:self] setString:[view.string copy] withActionName:name];
+    [view.undoManager setActionName:name];
+    [view setString:string];
+}
+
+- (void)dealloc {
+    [view.undoManager removeAllActionsWithTarget:self];
 }
 @end

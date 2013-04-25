@@ -263,6 +263,7 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     if (view.lineWrapMode != HardWrap && !view.hardWrapAfter) {
         return NO;
     }
+    NSMutableString *content = [[NSMutableString alloc] initWithString:view.string];
     NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
     NSError *error;
     NSString *longLinesPattern = [NSString stringWithFormat:@"^(?:.{%ld,})$", wrapAfter+1];
@@ -272,13 +273,16 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
         NSLog(@"regex error in long line regex: %@", error);
         return NO;
     }
-    [view.undoManager beginUndoGrouping];
-    NSArray *longLines = [longLineRegex matchesInString:view.string options:0 range:textRange];
+    
+    NSArray *longLines = [longLineRegex matchesInString:content options:0 range:textRange];
     BOOL result = NO;
     for (NSTextCheckingResult *line in [longLines reverseObjectEnumerator]) {
         NSRange lineRange = [line range];
-        result = result || [self handleWrappingInLine:lineRange];
+        result = [self handleWrappingInLine:lineRange ofString:content] || result;
     }
+    [view.undoManager beginUndoGrouping];
+    [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+    [view setString:content];
     [view.undoManager endUndoGrouping];
     return result;
 }
@@ -324,6 +328,44 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
     return YES;
 }
 
+- (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string {
+    NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+    if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
+        return NO;
+    }
+    NSString *newLineInsertion = @"\n";
+    if (self.shouldAutoIndentLines) {
+        newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+    }
+
+    NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineRange];
+    NSUInteger goodPositionToBreak = NSNotFound;
+    NSUInteger lastBreakLocation = lineRange.location;
+    NSUInteger offset = 0;
+    NSUInteger counter = 0;
+    for (NSTextCheckingResult *match in spaces) {
+        counter++;
+        NSRange matchRange = [match range];
+        matchRange.location += offset;
+        NSUInteger currentPosition = NSMaxRange(matchRange);
+        
+        if (matchRange.location-lastBreakLocation <= wrapAfter || currentPosition-lastBreakLocation <= wrapAfter || goodPositionToBreak == NSNotFound) {
+            // Break after the spaces:
+            goodPositionToBreak = currentPosition;
+        }
+        if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound) {
+            [string insertString:newLineInsertion atIndex:goodPositionToBreak];
+            
+            offset += newLineInsertion.length;
+            lastBreakLocation = goodPositionToBreak+1;
+            goodPositionToBreak = NSNotFound;
+        }
+    }
+    return YES;
+}
+
+
+
 #pragma mark -
 #pragma mark Setter & Getter
 
@@ -366,8 +408,5 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
     }
 }
 
-- (void)dealloc {
-    [view.undoManager removeAllActionsWithTarget:self];
-}
 
 @end

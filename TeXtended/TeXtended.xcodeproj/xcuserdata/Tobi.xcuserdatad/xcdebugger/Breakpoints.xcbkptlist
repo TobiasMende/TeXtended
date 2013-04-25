@@ -30,11 +30,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388580944.464724"
+         timestampString = "388603055.643333"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "143"
-         endingLineNumber = "143"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
          landmarkName = "-insertText:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -43,11 +43,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388580886.745824"
+         timestampString = "388604327.35489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "301"
-         endingLineNumber = "301"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -56,12 +56,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388580886.745824"
+         timestampString = "388604327.35489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "315"
-         endingLineNumber = "315"
+         startingLineNumber = "319"
+         endingLineNumber = "319"
          landmarkName = "-handleWrappingInLine:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TeXtended/Editor/EditorServices/UndoSupport.m"
+         timestampString = "388585543.837927"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "-insertString:atIndex:withActionName:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

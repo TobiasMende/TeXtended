@@ -41,6 +41,8 @@
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
+    helperQueue = [[NSOperationQueue alloc] init];
+    [helperQueue setMaxConcurrentOperationCount:1];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
@@ -58,6 +60,7 @@
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
+    self.servicesOn = YES;
     
 }
 
@@ -77,6 +80,9 @@
 
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    if (!self.servicesOn) {
+        return nil;
+    }
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
         [self.undoManager beginUndoGrouping];
         NSArray *completions =[completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
@@ -94,6 +100,9 @@
 }
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    if (!self.servicesOn) {
+        return;
+    }
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
 }
@@ -107,23 +116,35 @@
 }
 
 - (void)jumpToNextPlaceholder {
+    if (!self.servicesOn) {
+        return;
+    }
     [placeholderService handleInsertTab];
 }
 
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
+    if (!self.servicesOn) {
+        return;
+    }
     [self updateSyntaxHighlighting];
     [codeNavigationAssistant highlight];
     [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
 - (void)updateSyntaxHighlighting {
+    if (!self.servicesOn) {
+        return;
+    }
     [regexHighlighter highlightVisibleArea];
     [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
 - (void)insertText:(id)str {
     [super insertText:str];
+    if (!self.servicesOn) {
+        return;
+    }
     if ([str isKindOfClass:[NSAttributedString class]]) {
         return;
     }
@@ -142,9 +163,14 @@
     if([codeNavigationAssistant handleWrappingInLine:lineRange]) {
         [self scrollRangeToVisible:self.selectedRange];
     }
+
 }
 
 - (void)insertTab:(id)sender {
+    if (!self.servicesOn) {
+        [super insertTab:sender];
+        return;
+    }
     BOOL senderIsCompletionHandler = [sender isKindOfClass:[CompletionHandler class]];
     BOOL placeholderServicesHandles = NO;
     if (!senderIsCompletionHandler) {
@@ -159,23 +185,36 @@
 }
 
 - (void)insertBacktab:(id)sender {
+    if (!self.servicesOn) {
+         [super insertBacktab:sender];
+        return;
+    }
     if (![codeNavigationAssistant handleBacktabInsertion] && ![placeholderService handleInsertBacktab]) {
         [super insertBacktab:sender];
     }
 }
 
 - (void)insertNewline:(id)sender {
+    if (!self.servicesOn) {
+        return;
+    }
     [codeNavigationAssistant handleNewLineInsertion];
 }
 
 - (void)paste:(id)sender {
     [super paste:sender];
+    if (!self.servicesOn) {
+        return;
+    }
     [regexHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 -(void)setString:(NSString *)string {
     [super setString:string];
+    if (!self.servicesOn) {
+        return;
+    }
     [regexHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, string.length)];
 }
@@ -208,12 +247,18 @@
 
 - (void)moveLeft:(id)sender {
     [super moveLeft:sender];
+    if (!self.servicesOn) {
+        return;
+    }
     [bracketHighlighter highlightOnMoveLeft];
     
 }
 
 - (void)moveRight:(id)sender {
     [super moveRight:sender];
+    if (!self.servicesOn) {
+        return;
+    }
     [bracketHighlighter highlightOnMoveRight];
 }
 
@@ -231,11 +276,17 @@
 
 - (void)keyDown:(NSEvent *)theEvent {
     [super keyDown:theEvent];
+    if (!self.servicesOn) {
+        return;
+    }
     [codeNavigationAssistant highlightCarret];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
+    if (!self.servicesOn) {
+        return;
+    }
     [codeNavigationAssistant highlightCarret];
     if (self.selectedRanges.count== 1 || self.selectedRange.length==0) {
         NSUInteger position = self.selectedRange.location;
@@ -245,12 +296,54 @@
 }
 
 - (void)hardWrapText:(id)sender {
+    
     TMTLineWrappingMode current = self.lineWrapMode;
-    [self setEditable:NO];
     self.lineWrapMode = HardWrap;
     [codeNavigationAssistant handleWrappingInRange:NSMakeRange(0, self.string.length)];
     self.lineWrapMode = current;
-    [self setEditable:YES];
+    
+}
+
+- (void)doBackground {
+    
+}
+
+- (IBAction)deleteLines:(id)sender {
+    if (self.selectedRanges.count != 1) {
+        return;
+    }
+    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
+
+
+}
+
+- (IBAction)moveLinesDown:(id)sender {
+    if (self.selectedRanges.count != 1) {
+        return;
+    }
+    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    if(NSMaxRange(totalRange) < self.string.length-1) {
+        
+    }
+}
+
+- (IBAction)moveLinesUp:(id)sender {
+    if (self.selectedRanges.count != 1) {
+        return;
+    }
+    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    if(totalRange.location > 0) {
+        [self.undoManager beginUndoGrouping];
+        NSRange lineBefore = [codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(totalRange.location-1, 0)];
+        NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
+        NSAttributedString *line = [self.textStorage attributedSubstringFromRange:totalRange];
+        NSRange newRange = NSMakeRange(lineBefore.location, totalRange.length);
+        [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:actionName];
+        [self.undoSupport insertText:line atIndex:lineBefore.location withActionName:actionName];
+        [self setSelectedRange:newRange];
+        [self.undoManager endUndoGrouping];
+    }
 }
 
 #pragma mark -
@@ -261,6 +354,9 @@
     [[NSColor clearColor] set];
     NSRectFill(rect);
     [super drawViewBackgroundInRect:rect];
+    if (!self.servicesOn) {
+        return;
+    }
     [codeNavigationAssistant highlightCurrentLineBackground];
 }
 
@@ -288,12 +384,17 @@
 #pragma mark Delegate Methods
 
 - (BOOL)textView:(NSTextView *)textView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
+    if (!self.servicesOn) {
+        return NO;
+    }
     return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
 }
 
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
-    [codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+    if (self.servicesOn) {
+        [codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+    }
     return newSelectedCharRange;
 }
 

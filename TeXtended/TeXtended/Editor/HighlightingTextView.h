@@ -38,11 +38,12 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
     CodeExtensionEngine *codeExtensionEngine;
     
-    
+    NSOperationQueue *helperQueue;
 }
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
-
+@property BOOL servicesOn;
+- (void)doBackground;
 /** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
 
@@ -55,6 +56,10 @@
  @param sender the caller of this action.
  */
 - (IBAction)hardWrapText:(id)sender;
+
+- (IBAction)deleteLines:(id)sender;
+- (IBAction)moveLinesDown:(id)sender;
+- (IBAction)moveLinesUp:(id)sender;
 /**
  Called when the syntax highlighting should be updated
  */
