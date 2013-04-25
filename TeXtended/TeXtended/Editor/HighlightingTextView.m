@@ -21,13 +21,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-    
+        
     }
     
     return self;
 }
 
 - (void)awakeFromNib {
+    
      NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:NSUnarchiveFromDataTransformerName,NSValueTransformerNameBindingOption, nil];
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
@@ -55,6 +56,7 @@
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
+    
 }
 
 
@@ -196,8 +198,8 @@
                                         FLT_MAX)];
             
         }
-
 }
+
 
 #pragma mark -
 #pragma mark Input Actions
@@ -240,6 +242,14 @@
     
 }
 
+- (void)hardWrapText:(id)sender {
+    TMTLineWrappingMode current = self.lineWrapMode;
+    [self setEditable:NO];
+    self.lineWrapMode = HardWrap;
+    [codeNavigationAssistant handleWrappingInRange:NSMakeRange(0, self.string.length)];
+    self.lineWrapMode = current;
+    [self setEditable:YES];
+}
 
 #pragma mark -
 #pragma mark Drawing Actions

@@ -37,11 +37,21 @@
     
     /** The CodeExtensionEngine controls auto linking and information adding features */
     CodeExtensionEngine *codeExtensionEngine;
+    
+    
 }
+/** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
+
+/** The number of characters to break after in HardWrapMode */
 @property (strong) NSNumber *hardWrapAfter;
 
 
+/**
+ Method to be called for force hardwrapping the text.
+ @param sender the caller of this action.
+ */
+- (IBAction)hardWrapText:(id)sender;
 /**
  Called when the syntax highlighting should be updated
  */

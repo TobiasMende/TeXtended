@@ -67,10 +67,47 @@
  */
 - (void) handleNewLineInsertion;
 
-
+/**
+ Handles automatic hard wrapping of long lines in the provided range
+ 
+ @param textRange the range to check and wrap
+ 
+ @return `YES` if this method has wrapped something.
+ */
 - (BOOL) handleWrappingInRange:(NSRange) textRange;
+
+/**
+ Handles automatic hard wrapping in the provided line
+ 
+ @param lineRange the line to wrap
+ 
+ @return `YES` if this method has wrapped somewhere
+ */
 - (BOOL) handleWrappingInLine:(NSRange) lineRange;
+
+/**
+ Method returns the white space at the beginning of a given line (Usefull for auto-indention)
+ 
+ @param lineRange the line
+ 
+ @return The whitespaces at the line beginning.
+ */
 - (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
+
+/** 
+ Method for deleting text in the given range. This method is used bei an UndoManager for undoing line wrapping.
+ 
+ @param range The range of the wrap insertion
+ */
+- (void) deleteWrapping:(NSString *)range;
+
+/**
+ This method (re)inserts an insertion at a given position (in most cases for redo support)
+ 
+ @param insertion the text to insert into the text storage
+ @param index the position
+ */
+- (void) insertWrapping:(NSString *)insertion atIndex:(NSUInteger)index;
 
 /** Number of spaces which should replace a single tab */
 @property NSNumber *numberOfSpacesForTab;

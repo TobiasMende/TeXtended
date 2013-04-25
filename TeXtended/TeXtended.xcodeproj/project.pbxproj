@@ -240,6 +240,7 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D2AAF90D172907A000FC09C1 /* UndoSupport */,
 				D2C904E91726A079006EFEC2 /* TexdocSupport */,
 				D2C904E317269614006EFEC2 /* Views */,
 				D21ACB811726868A00E2F8EC /* AutoCompletion */,
@@ -363,6 +364,13 @@
 				D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D2AAF90D172907A000FC09C1 /* UndoSupport */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UndoSupport;
 			sourceTree = "<group>";
 		};
 		D2C904E317269614006EFEC2 /* Views */ = {

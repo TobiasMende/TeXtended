@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "Constants.h"
 NSSet *WHITESPACES;
+NSRegularExpression *SPACE_REGEX;
 NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 @implementation CodeNavigationAssistant
 
@@ -17,6 +18,10 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     WHITESPACES = [NSSet setWithObjects:@" ",@"\t", nil];
     NSError *error;
     SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+" options:0 error:&error];
+    if (error) {
+        NSLog(@"Error!!!");
+    }
     if(error) {
         NSLog(@"Regex Error");
     }
@@ -263,15 +268,18 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     NSRegularExpression *longLineRegex = [NSRegularExpression regularExpressionWithPattern:longLinesPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
     
     if (error) {
-        NSLog(@"regex error");
+        NSLog(@"regex error in long line regex: %@", error);
         return NO;
     }
+    [view.undoManager beginUndoGrouping];
     NSArray *longLines = [longLineRegex matchesInString:view.string options:0 range:textRange];
+    BOOL result = NO;
     for (NSTextCheckingResult *line in [longLines reverseObjectEnumerator]) {
         NSRange lineRange = [line range];
-        [self handleWrappingInLine:lineRange];
+        result = result || [self handleWrappingInLine:lineRange];
     }
-    return YES;
+    [view.undoManager endUndoGrouping];
+    return result;
 }
 
 - (BOOL)handleWrappingInLine:(NSRange)lineRange {
@@ -279,16 +287,13 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
         return NO;
     }
+    [view.undoManager beginUndoGrouping];
     NSString *newLineInsertion = [@"\n" stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
     NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
     NSAttributedString *insertion = [[NSAttributedString alloc]initWithString:newLineInsertion attributes:attributes];
 
-    NSError *error;
-    NSRegularExpression *SPACE = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+" options:0 error:&error];
-    if (error) {
-        NSLog(@"Error!!!");
-    }
-NSArray *spaces = [SPACE matchesInString:view.string options:0 range:lineRange];
+
+NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineRange];
     NSUInteger goodPositionToBreak = NSNotFound;
     NSUInteger lastBreakLocation = lineRange.location;
     NSUInteger offset = 0;
@@ -305,12 +310,33 @@ NSArray *spaces = [SPACE matchesInString:view.string options:0 range:lineRange];
         }
         if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound) {
             [view.textStorage insertAttributedString:insertion atIndex:goodPositionToBreak];
+            [view.undoManager registerUndoWithTarget:self selector:@selector(deleteWrapping:) object:NSStringFromRange(NSMakeRange(goodPositionToBreak, insertion.length))];
+            [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
             offset += insertion.length;
             lastBreakLocation = goodPositionToBreak+1;
             goodPositionToBreak = NSNotFound;
         }
     }
+    [view.undoManager endUndoGrouping];
     return YES;
+}
+
+- (void)deleteWrapping:(NSString *)range {
+    NSRange real = NSRangeFromString(range);
+    NSString *newLineInsertion = [view.string substringWithRange:real];
+    
+    [view.textStorage deleteCharactersInRange:real];
+    [[view.undoManager prepareWithInvocationTarget:self] insertWrapping:newLineInsertion atIndex:real.location];
+    [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+    
+}
+
+- (void)insertWrapping:(NSString *)insertion atIndex:(NSUInteger)index {
+    NSDictionary *attributes = [view.textStorage attributesAtIndex:index effectiveRange:NULL];
+    NSAttributedString *final = [[NSAttributedString alloc]initWithString:insertion attributes:attributes];
+    [view.textStorage insertAttributedString:final atIndex:index];
+    [view.undoManager registerUndoWithTarget:self selector:@selector(deleteWrapping:) object:NSStringFromRange(NSMakeRange(index, insertion.length))];
+    [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
 }
 
 #pragma mark -
@@ -353,6 +379,10 @@ NSArray *spaces = [SPACE matchesInString:view.string options:0 range:lineRange];
         [view drawRect:view.visibleRect];
         [view unlockFocus];
     }
+}
+
+- (void)dealloc {
+    [view.undoManager removeAllActionsWithTarget:self];
 }
 
 @end
