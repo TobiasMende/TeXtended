@@ -15,6 +15,7 @@
 #import "EditorPlaceholder.h"
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
+#import "UndoSupport.h"
 @implementation HighlightingTextView
 
 - (id)initWithFrame:(NSRect)frame
@@ -40,6 +41,7 @@
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
+    _undoSupport = [[UndoSupport alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
     }

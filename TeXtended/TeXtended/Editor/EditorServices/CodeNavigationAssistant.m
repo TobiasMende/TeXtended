@@ -7,6 +7,7 @@
 //
 
 #import "CodeNavigationAssistant.h"
+#import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
 NSSet *WHITESPACES;
@@ -288,7 +289,10 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
         return NO;
     }
     [view.undoManager beginUndoGrouping];
-    NSString *newLineInsertion = [@"\n" stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+    NSString *newLineInsertion = @"\n";
+    if (self.shouldAutoIndentLines) {
+        newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+    }
     NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
     NSAttributedString *insertion = [[NSAttributedString alloc]initWithString:newLineInsertion attributes:attributes];
 
@@ -309,9 +313,8 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
             goodPositionToBreak = currentPosition;
         }
         if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound) {
-            [view.textStorage insertAttributedString:insertion atIndex:goodPositionToBreak];
-            [view.undoManager registerUndoWithTarget:self selector:@selector(deleteWrapping:) object:NSStringFromRange(NSMakeRange(goodPositionToBreak, insertion.length))];
-            [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+            [view.undoSupport insertText:insertion atIndex:goodPositionToBreak withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+         
             offset += insertion.length;
             lastBreakLocation = goodPositionToBreak+1;
             goodPositionToBreak = NSNotFound;
@@ -319,24 +322,6 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
     }
     [view.undoManager endUndoGrouping];
     return YES;
-}
-
-- (void)deleteWrapping:(NSString *)range {
-    NSRange real = NSRangeFromString(range);
-    NSString *newLineInsertion = [view.string substringWithRange:real];
-    
-    [view.textStorage deleteCharactersInRange:real];
-    [[view.undoManager prepareWithInvocationTarget:self] insertWrapping:newLineInsertion atIndex:real.location];
-    [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
-    
-}
-
-- (void)insertWrapping:(NSString *)insertion atIndex:(NSUInteger)index {
-    NSDictionary *attributes = [view.textStorage attributesAtIndex:index effectiveRange:NULL];
-    NSAttributedString *final = [[NSAttributedString alloc]initWithString:insertion attributes:attributes];
-    [view.textStorage insertAttributedString:final atIndex:index];
-    [view.undoManager registerUndoWithTarget:self selector:@selector(deleteWrapping:) object:NSStringFromRange(NSMakeRange(index, insertion.length))];
-    [view.undoManager setActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
 }
 
 #pragma mark -

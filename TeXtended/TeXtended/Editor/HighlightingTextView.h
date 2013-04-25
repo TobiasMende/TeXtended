@@ -11,7 +11,7 @@
 
 
 
-@class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService;
+@class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -40,6 +40,9 @@
     
     
 }
+/** The undo support instance */
+@property (strong) UndoSupport* undoSupport;
+
 /** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
 

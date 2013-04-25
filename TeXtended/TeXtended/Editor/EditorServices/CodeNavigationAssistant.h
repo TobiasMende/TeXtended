@@ -94,20 +94,7 @@
  */
 - (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
 
-/** 
- Method for deleting text in the given range. This method is used bei an UndoManager for undoing line wrapping.
- 
- @param range The range of the wrap insertion
- */
-- (void) deleteWrapping:(NSString *)range;
 
-/**
- This method (re)inserts an insertion at a given position (in most cases for redo support)
- 
- @param insertion the text to insert into the text storage
- @param index the position
- */
-- (void) insertWrapping:(NSString *)insertion atIndex:(NSUInteger)index;
 
 /** Number of spaces which should replace a single tab */
 @property NSNumber *numberOfSpacesForTab;
