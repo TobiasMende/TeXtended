@@ -16,6 +16,11 @@
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
+
+@interface HighlightingTextView()
+- (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
+- (void)swapTextIn:(NSRange)first and:(NSRange)second;
+@end
 @implementation HighlightingTextView
 
 - (id)initWithFrame:(NSRect)frame
@@ -41,8 +46,6 @@
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
-    helperQueue = [[NSOperationQueue alloc] init];
-    [helperQueue setMaxConcurrentOperationCount:1];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
@@ -304,10 +307,6 @@
     
 }
 
-- (void)doBackground {
-    
-}
-
 - (IBAction)deleteLines:(id)sender {
     if (self.selectedRanges.count != 1) {
         return;
@@ -322,9 +321,15 @@
     if (self.selectedRanges.count != 1) {
         return;
     }
-    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
-    if(NSMaxRange(totalRange) < self.string.length-1) {
-        
+    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+    if(NSMaxRange(totalRange) < self.string.length) {
+        NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
+        NSRange nextLine = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(NSMaxRange(totalRange)+1, 0)];
+        [self.undoManager beginUndoGrouping];
+        [self swapTextIn:totalRange and:nextLine];
+        [self setSelectedRange:[self firstRangeAfterSwapping:totalRange and:nextLine]];
+        [self.undoManager setActionName:actionName];
+        [self.undoManager endUndoGrouping];
     }
 }
 
@@ -332,18 +337,42 @@
     if (self.selectedRanges.count != 1) {
         return;
     }
-    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    NSRange totalRange = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
     if(totalRange.location > 0) {
-        [self.undoManager beginUndoGrouping];
-        NSRange lineBefore = [codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(totalRange.location-1, 0)];
         NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-        NSAttributedString *line = [self.textStorage attributedSubstringFromRange:totalRange];
-        NSRange newRange = NSMakeRange(lineBefore.location, totalRange.length);
-        [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:actionName];
-        [self.undoSupport insertText:line atIndex:lineBefore.location withActionName:actionName];
-        [self setSelectedRange:newRange];
+        NSRange lineBefore = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(totalRange.location-1, 0)];
+        [self.undoManager beginUndoGrouping];
+        [self swapTextIn:lineBefore and:totalRange];
+        [self setSelectedRange:NSMakeRange(lineBefore.location, totalRange.length)];
+        [self.undoManager setActionName:actionName];
         [self.undoManager endUndoGrouping];
     }
+}
+- (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second {
+    if (second.length > first.length) {
+        NSUInteger lengthDif = second.length - first.length;
+        first.location = second.location + lengthDif;
+        return first;
+    } else if (first.length > second.length) {
+        NSUInteger lengthDif = first.length-second.length;
+        first.location = second.location -lengthDif;
+        return first;
+    }
+    return second;
+}
+
+- (void)swapTextIn:(NSRange)first and:(NSRange)second {
+    if (first.location > second.location) {
+        // Ensure that first range ist before second range
+        NSRange tmp = first;
+        first = second;
+        second = tmp;
+    }
+NSAttributedString *secondStr = [self.textStorage attributedSubstringFromRange:second];
+NSAttributedString *firstStr = [self.textStorage attributedSubstringFromRange:first];
+[self insertText:firstStr replacementRange:second];
+[self insertText:secondStr replacementRange:first];
+
 }
 
 #pragma mark -

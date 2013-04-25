@@ -30,11 +30,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388603055.643333"
+         timestampString = "388616907.459589"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "164"
-         endingLineNumber = "164"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
          landmarkName = "-insertText:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -43,11 +43,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388604327.35489"
+         timestampString = "388617778.543981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
+         startingLineNumber = "315"
+         endingLineNumber = "315"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -56,11 +56,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/EditorServices/CodeNavigationAssistant.m"
-         timestampString = "388604327.35489"
+         timestampString = "388617778.543981"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "319"
-         endingLineNumber = "319"
+         startingLineNumber = "329"
+         endingLineNumber = "329"
          landmarkName = "-handleWrappingInLine:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -75,6 +75,19 @@
          startingLineNumber = "23"
          endingLineNumber = "23"
          landmarkName = "-insertString:atIndex:withActionName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TeXtended/Editor/HighlightingTextView.m"
+         timestampString = "388617778.543981"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "326"
+         endingLineNumber = "326"
+         landmarkName = "-moveLinesDown:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

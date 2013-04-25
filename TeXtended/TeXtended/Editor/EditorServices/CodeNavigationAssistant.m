@@ -142,6 +142,16 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     return totalLineRange;
 }
 
+- (NSRange)lineTextRangeWithoutLineBreakWithRange:(NSRange)range {
+    NSRange total = [self lineTextRangeWithRange:range];
+    if (total.length > 0) {
+        if ([[view.string substringWithRange:NSMakeRange(NSMaxRange(total)-1, 1)] isEqualToString:@"\n"]) {
+            total.length -= 1;
+        }
+    }
+    return total;
+}
+
 #pragma mark -
 #pragma mark Carret Highlighting
 

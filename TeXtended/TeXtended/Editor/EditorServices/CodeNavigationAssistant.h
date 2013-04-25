@@ -68,6 +68,7 @@
 - (void) handleNewLineInsertion;
 
 - (NSRange) lineTextRangeWithRange:(NSRange) range;
+- (NSRange) lineTextRangeWithoutLineBreakWithRange:(NSRange) range;
 /**
  Handles automatic hard wrapping of long lines in the provided range
  
