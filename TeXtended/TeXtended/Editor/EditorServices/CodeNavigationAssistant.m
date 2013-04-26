@@ -149,6 +149,12 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
             total.length -= 1;
         }
     }
+    if (total.length > 0) {
+        if ([[view.string substringWithRange:NSMakeRange(total.location, 1)] isEqualToString:@"\n"]) {
+            total.length -= 1;
+            total.location += 1;
+        }
+    }
     return total;
 }
 

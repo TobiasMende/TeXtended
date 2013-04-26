@@ -21,7 +21,7 @@
         <relationship name="texCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compiler" syncable="YES"/>
         <relationship name="typoCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compiler" syncable="YES"/>
     </entity>
-    <entity name="Project" syncable="YES">
+    <entity name="Project" representedClassName="Project" syncable="YES">
         <attribute name="lastOpened" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,10 +32,14 @@
         <relationship name="texCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compiler" syncable="YES"/>
         <relationship name="typoCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compiler" syncable="YES"/>
     </entity>
+    <configuration name="CompileSettings">
+        <memberEntity name="CompilerOptions"/>
+        <memberEntity name="Compiler"/>
+    </configuration>
     <elements>
-        <element name="CompilerOptions" positionX="108" positionY="309" width="128" height="60"/>
         <element name="Compiler" positionX="423" positionY="333" width="128" height="118"/>
-        <element name="Project" positionX="160" positionY="-9" width="128" height="178"/>
+        <element name="CompilerOptions" positionX="108" positionY="309" width="128" height="60"/>
         <element name="Document" positionX="421" positionY="-106" width="128" height="178"/>
+        <element name="Project" positionX="160" positionY="-9" width="128" height="178"/>
     </elements>
 </model>

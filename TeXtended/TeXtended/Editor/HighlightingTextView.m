@@ -368,10 +368,33 @@
         first = second;
         second = tmp;
     }
-NSAttributedString *secondStr = [self.textStorage attributedSubstringFromRange:second];
-NSAttributedString *firstStr = [self.textStorage attributedSubstringFromRange:first];
-[self insertText:firstStr replacementRange:second];
-[self insertText:secondStr replacementRange:first];
+    NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
+    NSAttributedString *secondStr;
+    if (second.length == 0) {
+        NSDictionary *attr = [self.textStorage attributesAtIndex:second.location effectiveRange:NULL];
+        secondStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
+    } else {
+        
+        secondStr = [self.textStorage attributedSubstringFromRange:second];
+    }
+    NSAttributedString *firstStr = [self.textStorage attributedSubstringFromRange:first];
+    if (first.length == 0) {
+        NSDictionary *attr = [self.textStorage attributesAtIndex:first.location effectiveRange:NULL];
+        firstStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
+    } else {
+        
+        firstStr = [self.textStorage attributedSubstringFromRange:first];
+    }
+    if (first.length == 0) {
+        [self.undoSupport deleteTextInRange:[NSValue valueWithRange:second] withActionName:@""];
+    } else {
+        [self insertText:firstStr replacementRange:second];
+    }
+    if (second.length == 0) {
+        [self.undoSupport deleteTextInRange:[NSValue valueWithRange:first] withActionName:@""];
+    } else {
+        [self insertText:secondStr replacementRange:first];
+    }
 
 }
 

@@ -44,4 +44,5 @@
 - (void) deleteTextInRange:(NSValue*)range withActionName:(NSString*)name;
 
 - (void) setString:(NSString *)string withActionName:(NSString*)name;
+
 @end

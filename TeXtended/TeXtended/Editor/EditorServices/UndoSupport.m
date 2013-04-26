@@ -47,6 +47,8 @@
     [view setString:string];
 }
 
+
+
 - (void)dealloc {
     [view.undoManager removeAllActionsWithTarget:self];
 }
