@@ -30,11 +30,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388648105.853407"
+         timestampString = "388676084.708961"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
          landmarkName = "-insertText:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -82,11 +82,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388648105.853407"
+         timestampString = "388681335.612058"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "327"
-         endingLineNumber = "327"
+         startingLineNumber = "326"
+         endingLineNumber = "326"
          landmarkName = "-moveLinesDown:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -95,11 +95,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388648454.53706"
+         timestampString = "388681335.612058"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "365"
-         endingLineNumber = "365"
+         startingLineNumber = "364"
+         endingLineNumber = "364"
          landmarkName = "-swapTextIn:and:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -108,11 +108,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388657494.195797"
+         timestampString = "388681335.612058"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "391"
-         endingLineNumber = "391"
+         startingLineNumber = "389"
+         endingLineNumber = "389"
          landmarkName = "-swapTextIn:and:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
+#import "SpellCheckingService.h"
 NSRegularExpression *TEXDOC_LINKS;
 NSString *TEXDOC_PREFIX = @"texdoc://";
 @interface CodeExtensionEngine()
@@ -47,9 +48,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 
 
 +(void)initialize {
-    NSString *backslash = [NSRegularExpression escapedPatternForString:@"\\"];
-    NSString *pattern = [NSString stringWithFormat:@"%@(?>usepackage|RequirePackage)+(?>\\[[[\\S|\\s]&&[^[\\]|\\[]]]*\\])?\\{(.*)\\}", backslash];
-    
+    NSString *pattern = [NSString stringWithFormat:@"(?>\\\\usepackage|\\\\RequirePackage)+(?>\\[[[\\S|\\s]&&[^[\\]|\\[]]]*\\])?\\{(.*)\\}"];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -100,6 +99,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
             for (NSTextCheckingResult *r in matches) {
                 NSRange finalRange = [r rangeAtIndex:0];
                 NSString *package = [view.string substringWithRange:finalRange];
+                [view.spellCheckingService addWordToIgnore:package];
                 NSString *link = [NSString stringWithFormat:@"%@%@", TEXDOC_PREFIX, package];
                 if (self.shouldLinkTexdoc) {
                     
@@ -112,6 +112,9 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
                 }
             }
         }
+    }
+    if (texdocRanges.count > 0) {
+        [view.spellCheckingService updateSpellChecker];
     }
 }
 

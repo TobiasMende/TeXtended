@@ -149,10 +149,10 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
     [self highlightMathBracketsInRange:textRange];
-    [self highlightInlineMathInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
     [self highlightCommentInRange:textRange];
+    [self highlightInlineMathInRange:textRange];
 }
 
 - (void) highlightCommandInRange:(NSRange) totalRange {

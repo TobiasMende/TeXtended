@@ -89,6 +89,11 @@
 #define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
 
 
+/*
+ Notification Names
+ */
+#define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
+#define TMTEnvironmentCompletionsDidChangeNotification @"TMTEnvironmentCompletionsDidChangeNotification"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

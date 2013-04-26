@@ -217,11 +217,15 @@ if(!envPath) {
     [self.commandCompletions removeObjectForKey:key];
     [c setValue:object forKey:tableColumn.identifier];
     [self.commandCompletions setObject:c forKey:[c key]];
+
     [commandKeys setObject:[c key] atIndexedSubscript:row];
     [commandKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     NSUInteger index = [commandKeys indexOfObject:[c key]];
     self.selectedCommandIndexes = [NSIndexSet indexSetWithIndex:index];
     [self scrollRowToVisible:index inTableView:self.commandsView];
+    if (c.insertion && [c.insertion length] != 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCommandCompletionsDidChangeNotification object:self];
+    }
 }
 
 - (void)environmentSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -238,6 +242,9 @@ if(!envPath) {
     NSUInteger index = [environmentKeys indexOfObject:[c key]];
     self.selectedEnvironmentIndexes = [NSIndexSet indexSetWithIndex:index];
     [self scrollRowToVisible:index inTableView:self.environmentView];
+    if (c.insertion && [c.insertion length] != 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
+    }
 }
 
 
@@ -273,12 +280,14 @@ if(!envPath) {
     NSArray *keys = [commandKeys objectsAtIndexes:self.selectedCommandIndexes];
     [self.commandCompletions removeObjectsForKeys:keys];
     [commandKeys removeObjectsInArray:keys];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCommandCompletionsDidChangeNotification object:self];
 }
 
 - (void)removeItemFromEnvironments {
     NSArray *keys = [environmentKeys objectsAtIndexes:self.selectedEnvironmentIndexes];
     [self.environmentCompletions removeObjectsForKeys:keys];
     [environmentKeys removeObjectsInArray:keys];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
 }
 
 - (IBAction)addItem:(id)sender {

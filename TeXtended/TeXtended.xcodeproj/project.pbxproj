@@ -56,6 +56,7 @@
 		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
+		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
@@ -162,6 +163,8 @@
 		D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
 		D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
+		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				D21ACB981726868A00E2F8EC /* SyntaxHighlighter.m */,
 				D2AAF90F17293D8200FC09C1 /* UndoSupport.h */,
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
+				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
+				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
 			);
 			path = EditorServices;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
 				D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */,
 				D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */,
+				D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

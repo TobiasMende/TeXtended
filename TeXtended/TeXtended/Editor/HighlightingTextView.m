@@ -16,7 +16,7 @@
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
-
+#import "SpellCheckingService.h"
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
 - (void)swapTextIn:(NSRange)first and:(NSRange)second;
@@ -47,6 +47,7 @@
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
+    _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [regexHighlighter highlightEntireDocument];
     }
@@ -55,19 +56,16 @@
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [self setDelegate:self];
-
     [self setRichText:NO];
-    [self setGrammarCheckingEnabled:NO];
+    //[self setGrammarCheckingEnabled:NO];
     [self setDisplaysLinkToolTips:YES];
-    [self setContinuousSpellCheckingEnabled:NO];
+    //[self setContinuousSpellCheckingEnabled:NO];
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
     self.servicesOn = YES;
     
 }
-
-
 
 
 - (NSRange) visibleRange
@@ -209,6 +207,7 @@
     if (!self.servicesOn) {
         return;
     }
+    NSLog(@"Paste");
     [regexHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
 }
