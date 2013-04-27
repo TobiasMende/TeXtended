@@ -67,6 +67,11 @@
  
  */
 - (BOOL) isFinalInsertion:(NSUInteger) movement;
-
+/** Checks whether the given insertion is contained in a black list
+ 
+ @param insertion the insertion to check
+ 
+ @return `YES` if the insertion should be completed, `NO` otherwise.
+ */
 - (BOOL) shouldCompleteForInsertion:(NSString*) insertion;
 @end

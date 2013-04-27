@@ -15,7 +15,6 @@ ApplicationController *sharedInstance;
 @implementation ApplicationController
 + (void)initialize {
     //Register default user defaults
-    
     [NSColor colorWithCalibratedRed:36.0/255.0 green:80.0/255 blue:123.0 alpha:1];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],TMT_COMMAND_COLOR,
@@ -50,6 +49,8 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMT_SHOULD_LINK_TEXDOC,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_UNDERLINE_TEXDOC_LINKS,
                               [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
+                              [NSNumber numberWithInt:80], TMT_EDITOR_HARD_WRAP_AFTER,
+                              [NSNumber numberWithInt:HardWrap], TMT_EDITOR_LINE_WRAP_MODE,
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
                               @"/usr/texbin/pdflatex", TMT_PATH_TO_TEX_COMPILER,
                               @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,

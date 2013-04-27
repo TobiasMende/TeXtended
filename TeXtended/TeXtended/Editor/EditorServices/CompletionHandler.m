@@ -194,7 +194,7 @@ typedef enum {
             [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
             [view  insertText:final];
-            [view setSelectedRange:NSMakeRange(charRange.location, 0)];
+            //[view setSelectedRange:NSMakeRange(NSMaxRange(charRange), 0)];
             [view jumpToNextPlaceholder];
             [view.undoManager endUndoGrouping];
         } else {

@@ -15,6 +15,7 @@
 		D21ACB521726651600E2F8EC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB501726651600E2F8EC /* MainMenu.xib */; };
 		D21ACB551726651600E2F8EC /* CoreDataTestProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB531726651600E2F8EC /* CoreDataTestProject.xcdatamodeld */; };
 		D21ACB5E172666E300E2F8EC /* SimpleDocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB5D172666E300E2F8EC /* SimpleDocumentModel.m */; };
+		D2AAF914172A49FC00FC09C1 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF913172A49FC00FC09C1 /* Project.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		D21ACB541726651600E2F8EC /* CoreDataTestProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTestProject.xcdatamodel; sourceTree = "<group>"; };
 		D21ACB5C172666E300E2F8EC /* SimpleDocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDocumentModel.h; sourceTree = "<group>"; };
 		D21ACB5D172666E300E2F8EC /* SimpleDocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDocumentModel.m; sourceTree = "<group>"; };
+		D2AAF912172A49FC00FC09C1 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		D2AAF913172A49FC00FC09C1 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 				D21ACB4E1726651600E2F8EC /* AppDelegate.m */,
 				D21ACB501726651600E2F8EC /* MainMenu.xib */,
 				D21ACB531726651600E2F8EC /* CoreDataTestProject.xcdatamodeld */,
+				D2AAF912172A49FC00FC09C1 /* Project.h */,
+				D2AAF913172A49FC00FC09C1 /* Project.m */,
 				D21ACB421726651600E2F8EC /* Supporting Files */,
 			);
 			path = CoreDataTestProject;
@@ -186,6 +191,7 @@
 				D21ACB4F1726651600E2F8EC /* AppDelegate.m in Sources */,
 				D21ACB551726651600E2F8EC /* CoreDataTestProject.xcdatamodeld in Sources */,
 				D21ACB5E172666E300E2F8EC /* SimpleDocumentModel.m in Sources */,
+				D2AAF914172A49FC00FC09C1 /* Project.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +327,7 @@
 				D21ACB5A1726651600E2F8EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

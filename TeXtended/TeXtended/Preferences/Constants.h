@@ -46,6 +46,8 @@
  KVC keys for numbers
  */
 #define TMT_EDITOR_NUM_TAB_SPACES @"TMTEditorNumTabSpaces"
+#define TMT_EDITOR_HARD_WRAP_AFTER @"TMTEditorHardWrapAfter"
+#define TMT_EDITOR_LINE_WRAP_MODE @"TMTEditorLineWrapMode"
 
 /*
  KVC keys for boolean flags (used for user defaults) 
@@ -85,6 +87,17 @@
 #define TMTCompletionExtensionKey @"TMTCompletionExtensionKey"
 #define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
 #define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
+
+
+/*
+ Notification Names
+ */
+#define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
+#define TMTEnvironmentCompletionsDidChangeNotification @"TMTEnvironmentCompletionsDidChangeNotification"
+
+typedef enum LineWrappingMode {HardWrap = 0,
+                                SoftWrap = 1,
+                                    NoWrap = 2} TMTLineWrappingMode;
 
 /**
     This class is our common place for constants and other global definitions.
