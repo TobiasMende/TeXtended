@@ -17,6 +17,7 @@
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
 #import "SpellCheckingService.h"
+
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
 - (void)swapTextIn:(NSRange)first and:(NSRange)second;
@@ -64,6 +65,8 @@
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
     self.servicesOn = YES;
+    
+    
     
 }
 

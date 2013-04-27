@@ -30,6 +30,13 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    
+    /* initialize and set the linenumber view */
+    lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
+    [self.scrollView setVerticalRulerView:lineNumberView];
+    [self.scrollView setHasHorizontalRuler:NO];
+    [self.scrollView setHasVerticalRuler:YES];
+    [self.scrollView setRulersVisible:YES];
 }
 
 + (BOOL)autosavesInPlace

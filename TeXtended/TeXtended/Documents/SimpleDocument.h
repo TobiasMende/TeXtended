@@ -7,7 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "LineNumberView.h"
 
-@interface SimpleDocument : NSDocument
+@interface SimpleDocument : NSDocument {
+    /** Extention of NSRulerView to show line numbers. */
+    LineNumberView *lineNumberView;
+}
+@property (weak) IBOutlet NSScrollView *scrollView;
 
 @end
