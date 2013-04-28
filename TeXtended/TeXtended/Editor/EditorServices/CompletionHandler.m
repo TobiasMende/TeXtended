@@ -316,6 +316,7 @@ typedef enum {
             break;
         case NSReturnTextMovement:
             return YES;
+            break;
         default:
             return NO;
             break;
