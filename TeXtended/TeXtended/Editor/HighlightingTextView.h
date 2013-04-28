@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "Constants.h"
 
-
-
 @class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService;
 
 /**
@@ -38,10 +36,8 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
     CodeExtensionEngine *codeExtensionEngine;
     
-    
-    
-    
 }
+
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
 @property (strong) SpellCheckingService *spellCheckingService;
