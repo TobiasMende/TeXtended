@@ -89,6 +89,7 @@
     if ((self = [super initWithScrollView:scrollView orientation:NSVerticalRuler]) != nil)
     {
         [self initVariables];
+        [self observeScrolling:scrollView];
         [self setClientView:[scrollView documentView]];
     }
     return self;
@@ -134,12 +135,46 @@
 }
 
 /**
+ * Will set the LineNumberView as observer for scrolling and reszise
+ * changes of the given scrollView.
+ * @param aScrollView the view to observe
+ */
+- (void) observeScrolling:(NSScrollView *) aScrollView {
+    id	oldScrollView;
+	
+	oldScrollView = [self scrollView];
+	
+    if ((oldScrollView != aScrollView) && [oldScrollView isKindOfClass:[NSScrollView class]])
+    {
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+                                              name:NSViewBoundsDidChangeNotification
+                                              object:[aScrollView contentView]];
+    }
+    if ((aScrollView != nil) && [aScrollView isKindOfClass:[NSScrollView class]])
+    {
+		[[aScrollView contentView] setPostsBoundsChangedNotifications:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(contentBoundsDidChange:)
+                                              name:NSViewBoundsDidChangeNotification
+                                              object:[aScrollView contentView]];
+    }
+}
+
+/**
  * Called if the content of the scollView did change.
  * Will (recalculate and) redraw linenumbers.
  * @param notification send from the scrollView
  */
 - (void)textDidChange:(NSNotification *)notification {
     lines = nil;
+    [self setNeedsDisplay:YES];
+}
+
+/**
+ * Called if the bounds of the scrollView did change (i.e. resize or scroll)-
+ * @param notification send from the scrollView
+ */
+- (void)contentBoundsDidChange:(NSNotification *)notification {
     [self setNeedsDisplay:YES];
 }
 
@@ -259,7 +294,7 @@
     float height = 0; 
     NSUInteger index = 0, rectCount;
       
-    for (NSUInteger line = startLine; height < (visibleRect.origin.y + 2 * visibleRect.size.height) && line < [lines count]; line++) {
+    for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
 
         index = [[currentLines objectAtIndex:line] unsignedIntValue];
         
@@ -314,11 +349,6 @@
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
     range.length++;
     NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location inText:text];
-    if (lineLabel > 20) {
-        lineLabel -= 20;
-    } else {
-        lineLabel = 0;
-    }
     NSMutableArray *lineHights;
     
     lineHights = [self calculateLineHeights:lineLabel];
@@ -332,7 +362,7 @@
                        [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
                        };
         
-        if (i % 2 == 0) {
+        if ((lineLabel+i) % 2 == 0) {
             [[self borderColorA] set];
         } else {
             [[self borderColorB] set];
