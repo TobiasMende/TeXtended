@@ -259,7 +259,7 @@
     float height = 0; 
     NSUInteger index = 0, rectCount;
       
-    for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
+    for (NSUInteger line = startLine; height < (visibleRect.origin.y + 2 * visibleRect.size.height) && line < [lines count]; line++) {
 
         index = [[currentLines objectAtIndex:line] unsignedIntValue];
         
@@ -314,7 +314,13 @@
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
     range.length++;
     NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location inText:text];
+    if (lineLabel > 20) {
+        lineLabel -= 20;
+    } else {
+        lineLabel = 0;
+    }
     NSMutableArray *lineHights;
+    
     lineHights = [self calculateLineHeights:lineLabel];
 
     for (int i = 0; i < [lineHights count] - 1; i++) {
