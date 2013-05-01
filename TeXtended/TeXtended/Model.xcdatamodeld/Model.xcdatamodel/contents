@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="BibFile" syncable="YES">
-        <attribute name="lastRead" optional="YES" attributeType="Date" syncable="YES"/>
+    <entity name="BibFile" representedClassName="BibFile" syncable="YES">
+        <attribute name="lastRead" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="bibFiles" inverseEntity="Project" syncable="YES"/>
     </entity>
-    <entity name="Compilable" isAbstract="YES" syncable="YES">
+    <entity name="Compilable" representedClassName="Compilable" isAbstract="YES" syncable="YES">
         <attribute name="draftCompiler" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="finalCompiler" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="liveCompiler" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Document" representedClassName="DocumentModel" parentEntity="Compilable" syncable="YES">
-        <attribute name="lastChanged" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="lastCompile" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="encoding" optional="YES" transient="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastChanged" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastCompile" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="pdfPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="texPath" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="mainDocuments" inverseEntity="Project" syncable="YES"/>
@@ -20,15 +21,15 @@
     <entity name="Project" representedClassName="ProjectModel" parentEntity="Compilable" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="bibFiles" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BibFile" inverseName="project" inverseEntity="BibFile" syncable="YES"/>
-        <relationship name="documents" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
-        <relationship name="mainDocuments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
+        <relationship name="bibFiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BibFile" inverseName="project" inverseEntity="BibFile" syncable="YES"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
+        <relationship name="mainDocuments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
         <relationship name="properties" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BibFile" positionX="385" positionY="-162" width="128" height="90"/>
+        <element name="BibFile" positionX="385" positionY="-162" width="128" height="88"/>
         <element name="Compilable" positionX="25" positionY="-349" width="128" height="88"/>
-        <element name="Document" positionX="-126" positionY="-162" width="128" height="118"/>
-        <element name="Project" positionX="171" positionY="-162" width="128" height="135"/>
+        <element name="Document" positionX="-126" positionY="-162" width="128" height="133"/>
+        <element name="Project" positionX="171" positionY="-162" width="128" height="133"/>
     </elements>
 </model>

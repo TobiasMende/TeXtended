@@ -7,14 +7,23 @@
 //
 
 #import "SimpleDocument.h"
-
+#import "DocumentModel.h"
+#import "HighlightingTextView.h"
+NSSet *standardDocumentTypes;
 @implementation SimpleDocument
+
++ (void)initialize {
+    standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
+}
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
+        _context = [[NSManagedObjectContext alloc] init];
+        self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
+        _model = [[DocumentModel alloc] initWithContext:self.context];
     }
     return self;
 }
@@ -37,6 +46,9 @@
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    if(temporaryTextStorage) {
+        [self.editorView setString:temporaryTextStorage];
+    }
 }
 
 + (BOOL)autosavesInPlace
@@ -44,23 +56,29 @@
     return YES;
 }
 
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
-{
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return nil;
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+    if (![standardDocumentTypes containsObject:typeName]) {
+        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        return NO;
+    }
+    self.model.texPath = [url path];
+    return [self.model saveContent:self.editorView.string error:outError];
 }
 
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
-{
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return YES;
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+    if (![standardDocumentTypes containsObject:typeName]) {
+        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        return NO;
+    }
+    if (!self.model) {
+        _model = [[DocumentModel alloc] initWithContext:self.context];
+    }
+    self.model.texPath = [url path];
+    temporaryTextStorage = [self.model loadContent];
+    if (self.editorView && temporaryTextStorage) {
+        self.editorView.string = temporaryTextStorage;
+    }
+    return temporaryTextStorage != nil;
 }
 
 @end

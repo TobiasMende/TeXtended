@@ -7,7 +7,17 @@
 //
 
 #import "ProjectModel.h"
+#import "BibFile.h"
+#import "DocumentModel.h"
+
 
 @implementation ProjectModel
+
+@dynamic name;
+@dynamic path;
+@dynamic bibFiles;
+@dynamic documents;
+@dynamic mainDocuments;
+@dynamic properties;
 
 @end

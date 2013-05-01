@@ -436,15 +436,6 @@
 
 #pragma mark -
 #pragma mark Delegate Methods
-
-- (BOOL)textView:(NSTextView *)textView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
-    if (!self.servicesOn) {
-        return NO;
-    }
-    return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
-}
-
-
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
     if (self.servicesOn) {
         [codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];

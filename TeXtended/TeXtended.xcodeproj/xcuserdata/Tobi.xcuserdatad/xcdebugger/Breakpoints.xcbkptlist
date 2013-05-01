@@ -30,7 +30,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388848037.57559"
+         timestampString = "389115203.252149"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "165"
@@ -82,7 +82,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388848037.57559"
+         timestampString = "389115203.252149"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "326"
@@ -95,7 +95,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388848037.57559"
+         timestampString = "389115203.252149"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "364"
@@ -108,7 +108,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388848037.57559"
+         timestampString = "389115203.252149"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "389"
@@ -127,6 +127,19 @@
          startingLineNumber = "320"
          endingLineNumber = "320"
          landmarkName = "-isFinalInsertion:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TeXtended/Documents/SimpleDocument.m"
+         timestampString = "389113856.333505"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
