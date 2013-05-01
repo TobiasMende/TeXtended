@@ -127,8 +127,8 @@
 						<reference ref="120842270"/>
 						<reference ref="285034943"/>
 					</array>
-					<array class="NSMutableArray" key="NSToolbarIBDefaultItems"/>
-					<array key="NSToolbarIBSelectableItems" id="0"/>
+					<array key="NSToolbarIBDefaultItems" id="0"/>
+					<reference key="NSToolbarIBSelectableItems" ref="0"/>
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{200, 200}</string>
@@ -183,7 +183,7 @@
 															<array class="NSMutableArray" key="NSTableColumns">
 																<object class="NSTableColumn" id="890956982">
 																	<string key="NSIdentifier">nodeName</string>
-																	<double key="NSWidth">101</double>
+																	<double key="NSWidth">126.33984375</double>
 																	<double key="NSMinWidth">16</double>
 																	<double key="NSMaxWidth">1000</double>
 																	<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -257,7 +257,7 @@
 																</object>
 															</object>
 															<double key="NSRowHeight">17</double>
-															<int key="NSTvFlags">-765460480</int>
+															<int key="NSTvFlags">-769654784</int>
 															<reference key="NSDelegate"/>
 															<reference key="NSDataSource"/>
 															<int key="NSColumnAutoresizingStyle">4</int>
@@ -304,7 +304,8 @@
 													<int key="NSsFlags">1</int>
 													<reference key="NSTarget" ref="566532094"/>
 													<string key="NSAction">_doScroller:</string>
-													<double key="NSPercent">0.66183574879227058</double>
+													<double key="NSCurValue">1</double>
+													<double key="NSPercent">0.94158075601374569</double>
 												</object>
 												<object class="NSClipView" id="787184209">
 													<reference key="NSNextResponder" ref="566532094"/>
@@ -877,6 +878,11 @@
 						<reference key="object" ref="840927488"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100163</int>
+						<reference key="object" ref="972539524"/>
+						<reference key="parent" ref="745564607"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -907,10 +913,9 @@
 				<string key="100146.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100147.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100148.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100151.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100151.userInterfaceItemIdentifier">nodeName</string>
 				<string key="100152.CustomClassName">FileViewController</string>
 				<string key="100152.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100163.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

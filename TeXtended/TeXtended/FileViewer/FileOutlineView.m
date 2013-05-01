@@ -10,19 +10,16 @@
 
 @implementation FileOutlineView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
+
+- (void)keyDown:(NSEvent *)theEvent {
+    // Arrow keys are associated with the numeric keypad
+    unsigned short key = [theEvent keyCode];
+    
+    if(key == 36)
+    {
+        NSLog(@"Return");
+    }
 }
 
 @end
