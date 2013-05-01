@@ -80,7 +80,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
-    NSString *path = @"/Users/Tobi/Uni/Masterfallstudie";
+    NSString *path = @"/Users/Tobias/Documents";
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
     return;
 }
