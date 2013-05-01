@@ -30,7 +30,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388676084.708961"
+         timestampString = "388848037.57559"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "165"
@@ -82,7 +82,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388681335.612058"
+         timestampString = "388848037.57559"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "326"
@@ -95,12 +95,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388681335.612058"
+         timestampString = "388848037.57559"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "364"
          endingLineNumber = "364"
-         landmarkName = "-swapTextIn:and:"
+         landmarkName = "-firstRangeAfterSwapping:and:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -108,12 +108,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TeXtended/Editor/HighlightingTextView.m"
-         timestampString = "388681335.612058"
+         timestampString = "388848037.57559"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "389"
          endingLineNumber = "389"
          landmarkName = "-swapTextIn:and:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TeXtended/Editor/EditorServices/CompletionHandler.m"
+         timestampString = "388847978.589783"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "320"
+         endingLineNumber = "320"
+         landmarkName = "-isFinalInsertion:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

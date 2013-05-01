@@ -30,7 +30,6 @@
         environmentsToIgnore = [[NSMutableSet alloc] init];
         wordsToIgnore = [[NSMutableSet alloc] init];
         [self setupSpellChecker];
-        CompletionsController *c = [[CompletionsController alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCommandsToIgnore) name:TMTCommandCompletionsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEnvironmentsToIgnore) name:TMTEnvironmentCompletionsDidChangeNotification object:nil];
     }
@@ -96,6 +95,10 @@
     [view setContinuousSpellCheckingEnabled:NO];
    [[NSSpellChecker sharedSpellChecker] setIgnoredWords:[allWords allObjects] inSpellDocumentWithTag:view.spellCheckerDocumentTag];
     [view setContinuousSpellCheckingEnabled:YES];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

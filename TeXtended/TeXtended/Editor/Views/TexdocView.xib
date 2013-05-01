@@ -103,7 +103,7 @@
 										<string key="NSFrameSize">{483, 89}</string>
 										<reference key="NSSuperview" ref="771006489"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="30193552"/>
+										<reference key="NSNextKeyView" ref="438944940"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -315,7 +315,7 @@
 						<string key="NSFrameSize">{485, 107}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="438944940"/>
+						<reference key="NSNextKeyView" ref="771006489"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133682</int>
 						<reference key="NSVScroller" ref="842784183"/>
@@ -403,7 +403,7 @@
 				<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 			</object>
 			<object class="NSScrollView" id="599673725">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSClipView" id="762311124">
@@ -560,7 +560,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{240, 135}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="762311124"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<int key="NSsFlags">133682</int>
@@ -1131,16 +1130,6 @@
 						<reference key="parent" ref="581115245"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">127</int>
-						<reference key="object" ref="562790692"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">128</int>
-						<reference key="object" ref="714262785"/>
-						<reference key="parent" ref="1005"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">129</int>
 						<reference key="object" ref="599673725"/>
 						<array class="NSMutableArray" key="children">
@@ -1458,6 +1447,16 @@
 						<reference key="object" ref="1002111571"/>
 						<reference key="parent" ref="1005"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">127</int>
+						<reference key="object" ref="562790692"/>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">128</int>
+						<reference key="object" ref="714262785"/>
+						<reference key="parent" ref="1005"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1573,7 +1572,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">182</int>
+			<int key="maxID">186</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
