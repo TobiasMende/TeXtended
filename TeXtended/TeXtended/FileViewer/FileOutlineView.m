@@ -10,4 +10,16 @@
 
 @implementation FileOutlineView
 
+
+
+- (void)keyDown:(NSEvent *)theEvent {
+    // Arrow keys are associated with the numeric keypad
+    unsigned short key = [theEvent keyCode];
+    
+    if(key == 36)
+    {
+        NSLog(@"Return");
+    }
+}
+
 @end
