@@ -6,9 +6,36 @@
 //  Copyright (c) 2013 Tobias Hecht. All rights reserved.
 //
 
-#import "OutlineViewController.h"
+#import "FileViewController.h"
 
-@implementation OutlineViewStaticAppDeligate
+@implementation FileViewController
+
+- (id)init {
+    self = [self initWithNibName:@"FileView" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Initialization code here.
+    }
+    
+    return self;
+}
+
+- (void)doubleClick:(id)object {
+    NSLog(@"DoubleClick");
+    // This gets called after following steps 1-3.
+    id row = [outline itemAtRow:[outline clickedRow]];
+    NSString *path = [row valueForKey:@"URL"];
+    //NSString *path = @"/Users/Tobias/Documents/Prototyp3.pdf";
+    [self openFileInDefApp:[[NSURL alloc] initWithString:path]];
+    // Do something...
+}
 
 - (id)outlineView:(NSOutlineView *)outlineView
             child:(NSInteger)index
@@ -50,7 +77,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void) awakeFromNib {
     [super awakeFromNib];
     
-    NSString *path = @"/Users/Tobias/Documents/Projects";
+    [self->outline setTarget:self];
+    [self->outline setDoubleAction:@selector(doubleClick:)];
+    
+    NSString *path = @"/Users/Tobias/Documents";
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
     return;
 }
@@ -74,13 +104,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         else if (! [isDirectory boolValue]) {
             NSString *filename = url.lastPathComponent;
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSArray array], @"children", @"Datei", @"nodeDescription",filename, @"nodeName", nil]];
+            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSArray array], @"children", @"Datei", @"nodeDescription",filename, @"nodeName", url.path, @"URL", nil]];
         }
         else
         {
             NSString *dirname = url.lastPathComponent;
             NSArray *dir = [self recursiveFileFinder:url];
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys: dir, @"children", @"Ordner", @"nodeDescription",dirname, @"nodeName",nil]];
+            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys: dir, @"children", @"Ordner", @"nodeDescription",dirname, @"nodeName", url.path, @"URL", nil]];
         }
     }
     NSArray *retList = [[NSArray alloc] initWithArray:node];
@@ -90,7 +120,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)path
 {
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:path]];
-    return YES; 
+    return YES;
+}
+
+- (BOOL)openFileInDefApp: (NSURL*)path
+{
+    NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+    [workspace openFile:path.path];
+    return YES;
 }
 
 @end

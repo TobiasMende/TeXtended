@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OutlineViewStaticAppDeligate : NSObject <NSApplicationDelegate> {
+@interface FileViewController : NSViewController <NSOutlineViewDelegate> {
     NSArray *nodes;
+    
+    IBOutlet NSOutlineView *outline;
 }
 
 - (NSArray*) recursiveFileFinder: (NSURL*)path;
 - (BOOL)loadPath: (NSURL*)path;
+- (void)doubleClick:(id)object;
 
 @end
