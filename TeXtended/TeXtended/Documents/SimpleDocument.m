@@ -9,6 +9,7 @@
 #import "SimpleDocument.h"
 #import "DocumentModel.h"
 #import "HighlightingTextView.h"
+#import "FileViewController.h"
 NSSet *standardDocumentTypes;
 @implementation SimpleDocument
 
