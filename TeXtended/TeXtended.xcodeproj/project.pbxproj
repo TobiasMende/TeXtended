@@ -58,6 +58,7 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
+		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 		D283038D1731349A00E1FC1D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D283038C1731349A00E1FC1D /* DocumentModel.m */; };
 		D2830390173134AB00E1FC1D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D283038F173134AB00E1FC1D /* ProjectModel.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
@@ -75,7 +76,6 @@
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		F6CDAA681730FF110094197C /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CDAA671730FF110094197C /* FileView.xib */; };
-		F6CDAA6B173133040094197C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -622,6 +622,7 @@
 				D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */,
 				D21ACBC41726879000E2F8EC /* Constants.m in Sources */,
 				D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */,
+				D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */,
 				D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */,
 				D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */,
 				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
