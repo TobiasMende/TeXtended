@@ -58,6 +58,9 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
+		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
+		D283038D1731349A00E1FC1D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D283038C1731349A00E1FC1D /* DocumentModel.m */; };
+		D2830390173134AB00E1FC1D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D283038F173134AB00E1FC1D /* ProjectModel.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
@@ -169,6 +172,10 @@
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
+		D283038B1731349A00E1FC1D /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
+		D283038C1731349A00E1FC1D /* DocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel.m; sourceTree = "<group>"; };
+		D283038E173134AB00E1FC1D /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
+		D283038F173134AB00E1FC1D /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
@@ -384,6 +391,17 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D283038A1731346200E1FC1D /* FileModel */ = {
+			isa = PBXGroup;
+			children = (
+				D283038B1731349A00E1FC1D /* DocumentModel.h */,
+				D283038C1731349A00E1FC1D /* DocumentModel.m */,
+				D283038E173134AB00E1FC1D /* ProjectModel.h */,
+				D283038F173134AB00E1FC1D /* ProjectModel.m */,
+			);
+			path = FileModel;
+			sourceTree = "<group>";
+		};
 		D2AAF90D172907A000FC09C1 /* UndoSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +473,7 @@
 			children = (
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				D283038A1731346200E1FC1D /* FileModel */,
 				D2A439F2171F10D60020C15F /* DocumentController.h */,
 				D2A439F3171F10D60020C15F /* DocumentController.m */,
 				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
@@ -600,6 +619,7 @@
 				D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */,
 				D21ACBC41726879000E2F8EC /* Constants.m in Sources */,
 				D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */,
+				D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */,
 				D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */,
 				D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */,
 				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
@@ -607,7 +627,8 @@
 				D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */,
 				D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */,
 				76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */,
-				F6CDAA6B173133040094197C /* FileOutlineView.m in Sources */,
+				D283038D1731349A00E1FC1D /* DocumentModel.m in Sources */,
+				D2830390173134AB00E1FC1D /* ProjectModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
