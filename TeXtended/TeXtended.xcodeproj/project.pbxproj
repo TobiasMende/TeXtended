@@ -41,7 +41,7 @@
 		D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
 		D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
 		D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB11726873900E2F8EC /* ExtendedPdf.m */; };
-		D21ACBB61726875600E2F8EC /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* OutlineViewController.m */; };
+		D21ACBB61726875600E2F8EC /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* FileViewController.m */; };
 		D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */; };
 		D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBD1726879000E2F8EC /* CompletionsController.m */; };
 		D21ACBC41726879000E2F8EC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
@@ -74,6 +74,8 @@
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
+		F6CDAA681730FF110094197C /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CDAA671730FF110094197C /* FileView.xib */; };
+		F6CDAA6B173133040094197C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -145,8 +147,8 @@
 		D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorPlaceholderCell.m; sourceTree = "<group>"; };
 		D21ACBB01726873900E2F8EC /* ExtendedPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdf.h; sourceTree = "<group>"; };
 		D21ACBB11726873900E2F8EC /* ExtendedPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdf.m; sourceTree = "<group>"; };
-		D21ACBB41726875600E2F8EC /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
-		D21ACBB51726875600E2F8EC /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
+		D21ACBB41726875600E2F8EC /* FileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewController.h; sourceTree = "<group>"; };
+		D21ACBB51726875600E2F8EC /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewController.m; sourceTree = "<group>"; };
 		D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LatexExtension.h"; sourceTree = "<group>"; };
 		D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LatexExtension.m"; sourceTree = "<group>"; };
 		D21ACBBC1726879000E2F8EC /* CompletionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionsController.h; sourceTree = "<group>"; };
@@ -199,6 +201,9 @@
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		F6CDAA671730FF110094197C /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
+		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
+		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,8 +335,11 @@
 		D21ACBB31726875600E2F8EC /* FileViewer */ = {
 			isa = PBXGroup;
 			children = (
-				D21ACBB41726875600E2F8EC /* OutlineViewController.h */,
-				D21ACBB51726875600E2F8EC /* OutlineViewController.m */,
+				D21ACBB41726875600E2F8EC /* FileViewController.h */,
+				D21ACBB51726875600E2F8EC /* FileViewController.m */,
+				F6CDAA69173133030094197C /* FileOutlineView.h */,
+				F6CDAA6A173133030094197C /* FileOutlineView.m */,
+				F6CDAA671730FF110094197C /* FileView.xib */,
 			);
 			path = FileViewer;
 			sourceTree = "<group>";
@@ -564,6 +572,7 @@
 				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
+				F6CDAA681730FF110094197C /* FileView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +617,7 @@
 				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
 				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
 				D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */,
-				D21ACBB61726875600E2F8EC /* OutlineViewController.m in Sources */,
+				D21ACBB61726875600E2F8EC /* FileViewController.m in Sources */,
 				D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */,
 				D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */,
 				D21ACBC41726879000E2F8EC /* Constants.m in Sources */,
