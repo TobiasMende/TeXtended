@@ -38,6 +38,7 @@
 }
 
 - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
+    self.lastChanged = [[NSDate alloc] init];
     if (!self.texPath) {
         return NO;
     }
