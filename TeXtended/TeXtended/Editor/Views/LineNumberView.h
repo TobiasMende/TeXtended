@@ -44,6 +44,21 @@
      * can be used in NSRange.
      */
     NSMutableArray  *lines;
+    
+    /**
+     * Holds a key for every line that is anchored.
+     */
+    NSMutableDictionary *lineAnchors;
+    
+    /**
+     * Holds a key for every line that has a warning.
+     */
+    NSMutableDictionary *lineWarnings;
+    
+    /**
+     * Holds a key for every line that has a error.
+     */
+    NSMutableDictionary *lineErrors;
 }
 
 /** The background color of the whole ruler. */
@@ -61,6 +76,24 @@
 /** Color of the line numbers. */
 @property (nonatomic, assign) NSColor *textColor;
 
+/** Color for of line anchors */
+@property (nonatomic, assign) NSColor *anchorColor;
+
+/** Color for border of line anchors */
+@property (nonatomic, assign) NSColor *anchorBorderColor;
+
+/** Color for line warnings */
+@property (nonatomic, assign) NSColor *warningColor;
+
+/** Color for border of line warnings */
+@property (nonatomic, assign) NSColor *warningBorderColor;
+
+/** Color for line errors */
+@property (nonatomic, assign) NSColor *errorColor;
+
+/** Color for border of line errors */
+@property (nonatomic, assign) NSColor *errorBorderColor;
+
 /**
  * Init the LineNumberView with a scrolView.
  * RulerView will then automaticly update, when the
@@ -68,5 +101,80 @@
  * @param aScrollView to show the line numbers in
  */
 - (id)initWithScrollView:(NSScrollView *)aScrollView;
+
+/**
+ * Adds a anchor to the given line.
+ * @param line to add a anchor to
+ */
+- (void) addAnchorToLine: (NSUInteger) line;
+
+/**
+ * Adds a warning to the given line.
+ * @param line to add a warning to
+ */
+- (void) addWarningToLine: (NSUInteger) line;
+
+/**
+ * Adds a error to the given line.
+ * @param line to add a error to
+ */
+- (void) addErrorToLine: (NSUInteger) line;
+
+/**
+ * Removes a anchor from the given line.
+ * @param line to remove a anchor from
+ */
+- (void) removeAnchorFromLine: (NSUInteger) line;
+
+/**
+ * Removes a warning from the given line.
+ * @param line to remove a warning from
+ */
+- (void) removeWarningFromLine: (NSUInteger) line;
+
+/**
+ * Removes a error from the given line.
+ * @param line to remove a error from
+ */
+- (void) removeErrorFromLine: (NSUInteger) line;
+
+/**
+ * Tests if the given line has a anchor.
+ * @param line the line to test
+ * @return YES if the line has a anchor
+ */
+- (BOOL) hasAnchor: (NSUInteger) line;
+
+/**
+ * Tests if the given line has a wanring.
+ * @param line the line to test
+ * @return YES if the line has a warning
+ */
+- (BOOL) hasWarning: (NSUInteger) line;
+
+/**
+ * Tests if the given line has a error.
+ * @param line the line to test
+ * @return YES if the line has a error
+ */
+- (BOOL) hasError: (NSUInteger) line;
+
+/**
+ * Returns a array that holds the linenumbers of all lines with a anchor.
+ * @return NSArray with NSUIntegers for the linenumbers
+ */
+- (NSArray*) getAnchoredLines;
+
+/**
+ * Returns a array that holds the linenumbers of all lines with a warning.
+ * @return NSArray with NSUIntegers for the linenumbers
+ */
+- (NSArray*) getLinesWithWarnings;
+
+/**
+ * Returns a array that holds the linenumbers of all lines with a error.
+ * @return NSArray with NSUIntegers for the linenumbers
+ */
+- (NSArray*) getLinesWithErrors;
 
 @end
