@@ -58,13 +58,11 @@
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [self setDelegate:self];
     [self setRichText:NO];
-    //[self setGrammarCheckingEnabled:NO];
     [self setDisplaysLinkToolTips:YES];
-    //[self setContinuousSpellCheckingEnabled:NO];
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
-    self.servicesOn = YES;
+    self.servicesOn = NO;
     
     
     
@@ -200,6 +198,7 @@
 
 - (void)insertNewline:(id)sender {
     if (!self.servicesOn) {
+        [super insertNewline:sender];
         return;
     }
     [codeNavigationAssistant handleNewLineInsertion];
