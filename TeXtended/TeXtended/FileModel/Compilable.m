@@ -7,12 +7,16 @@
 //
 
 #import "Compilable.h"
-
+#import "CompileSetting.h"
 
 @implementation Compilable
 
 @dynamic draftCompiler;
 @dynamic finalCompiler;
 @dynamic liveCompiler;
+
+- (id)initWithContext:(NSManagedObjectContext *)context {
+    return [super init];
+}
 
 @end

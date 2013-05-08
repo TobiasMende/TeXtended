@@ -62,7 +62,7 @@
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
-    self.servicesOn = NO;
+    self.servicesOn = YES;
     
     
     

@@ -6,9 +6,18 @@
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="bibFiles" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="Compilable" representedClassName="Compilable" isAbstract="YES" syncable="YES">
-        <attribute name="draftCompiler" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="finalCompiler" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="liveCompiler" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="draftCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="compilable2" inverseEntity="CompileSetting" syncable="YES"/>
+        <relationship name="finalCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="compilable3" inverseEntity="CompileSetting" syncable="YES"/>
+        <relationship name="liveCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="compilable1" inverseEntity="CompileSetting" syncable="YES"/>
+    </entity>
+    <entity name="CompileSetting" representedClassName="CompileSetting" syncable="YES">
+        <attribute name="compileBib" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="compilerPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customArgument" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfCompiles" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="compilable1" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compilable" inverseName="liveCompiler" inverseEntity="Compilable" syncable="YES"/>
+        <relationship name="compilable2" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compilable" inverseName="draftCompiler" inverseEntity="Compilable" syncable="YES"/>
+        <relationship name="compilable3" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Compilable" inverseName="finalCompiler" inverseEntity="Compilable" syncable="YES"/>
     </entity>
     <entity name="Document" representedClassName="DocumentModel" parentEntity="Compilable" syncable="YES">
         <attribute name="encoding" optional="YES" transient="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -31,5 +40,6 @@
         <element name="Compilable" positionX="25" positionY="-349" width="128" height="88"/>
         <element name="Document" positionX="-126" positionY="-162" width="128" height="133"/>
         <element name="Project" positionX="171" positionY="-162" width="128" height="133"/>
+        <element name="CompileSetting" positionX="448" positionY="-333" width="128" height="148"/>
     </elements>
 </model>

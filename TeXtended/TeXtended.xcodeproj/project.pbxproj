@@ -58,6 +58,7 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
+		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
 		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 		D2681FF0173143AF003AF83D /* Compilable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FEF173143AF003AF83D /* Compilable.m */; };
 		D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF2173143C2003AF83D /* DocumentModel.m */; };
@@ -77,8 +78,6 @@
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		F6CDAA681730FF110094197C /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CDAA671730FF110094197C /* FileView.xib */; };
-		F6CDAA6B173133040094197C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -175,6 +174,8 @@
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
+		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
+		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
 		D2681FEF173143AF003AF83D /* Compilable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compilable.m; sourceTree = "<group>"; };
 		D2681FF1173143C2003AF83D /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
@@ -401,6 +402,9 @@
 		D283038A1731346200E1FC1D /* FileModel */ = {
 			isa = PBXGroup;
 			children = (
+				D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */,
+				D2656908173A65600030381C /* CompileSetting.h */,
+				D2656909173A65600030381C /* CompileSetting.m */,
 				D2681FF7173143EC003AF83D /* BibFile.h */,
 				D2681FF8173143EC003AF83D /* BibFile.m */,
 				D2681FF4173143E2003AF83D /* ProjectModel.h */,
@@ -495,7 +499,6 @@
 				D21ACBAF1726873900E2F8EC /* PDFView */,
 				D21ACBBB1726879000E2F8EC /* Preferences */,
 				D2CC54FA171EAFAB00D81CF1 /* Supporting Files */,
-				D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */,
 				D21ACB6917267BFD00E2F8EC /* Resources */,
 			);
 			path = TeXtended;
@@ -642,6 +645,7 @@
 				D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */,
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
+				D265690A173A65600030381C /* CompileSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +723,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -746,6 +751,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -761,6 +767,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -777,6 +784,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -821,7 +829,8 @@
 				D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */,
 			);
 			currentVersion = D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
