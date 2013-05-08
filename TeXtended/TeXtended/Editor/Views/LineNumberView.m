@@ -472,12 +472,6 @@
 }
 
 - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect {
-    
-    // there is a bug where the rect is wrong, catch it
-    if (dirtyRect.size.width != [self ruleThickness]) return;
-        
-    
-
     NSRect visibleRect = [[[self scrollView] documentView] visibleRect ];
     
     /* draw small black line */

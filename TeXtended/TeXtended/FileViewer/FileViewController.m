@@ -120,6 +120,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)path
 {
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:path]];
+    //outline.reloadData;
     return YES;
 }
 
