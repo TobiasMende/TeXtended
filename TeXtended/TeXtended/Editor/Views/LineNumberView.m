@@ -15,10 +15,16 @@
 #define BORDER_LINE_SIZE 1.0
 
 /* Distance of the line numbers to the line */
-#define NUMBER_DISTANCE_TO_LINE 1.0
+#define NUMBER_DISTANCE_TO_LINE 2
+
+/** Distance that the number "howers" over the next one */
+#define NUMBER_DISTANCE_TO_NEXTLINE 3.5
 
 /* Minimum width of the ruler view */
-#define START_THICKNESS 30.0
+#define START_THICKNESS 22.0
+
+/** Height of symbols like anchors */
+#define SYMBOL_HEIGHT 14.0
 
 @interface LineNumberView (private)
 
@@ -80,6 +86,67 @@
  */
 - (NSMutableArray*)lines;
 
+/**
+ * Draws a anchor for a selected line.
+ * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
+ * @param visibleRect the currently visbile rect
+ * @param lineHight the hight of the current line
+ */
+- (void) drawAnchorIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+
+/**
+ * Draws a error for a selected line.
+ * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
+ * @param visibleRect the currently visbile rect
+ * @param lineHight the hight of the current line
+ */
+- (void) drawErrorIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+
+/**
+ * Draws a warning for a selected line.
+ * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
+ * @param visibleRect the currently visbile rect
+ * @param lineHight the hight of the current line
+ */
+- (void) drawWarningIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getAnchorColor;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getAnchorBorderColor;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getWarningColor;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getWarningBorderColor;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getErrorColor;
+
+/**
+ * Since we cant init a NSColor with customs color, this method will return the default color until
+ * the proeprty will be overriden.
+ */
+- (NSColor *) getErrorBorderColor;
+
+
 @end
 
 @implementation LineNumberView
@@ -96,14 +163,14 @@
 }
 
 - (void) initVariables {
-    _backgroundColor = [NSColor windowBackgroundColor];
-    _lineColor       = [NSColor blackColor];
-    _borderColorA    = [NSColor lightGrayColor];
-    _borderColorB    = [NSColor grayColor];
-    _textColor       = [NSColor darkGrayColor];
+    _backgroundColor    = [NSColor windowBackgroundColor];
+    _lineColor          = [NSColor blackColor];
+    _borderColorA       = [NSColor lightGrayColor];
+    _borderColorB       = [NSColor grayColor];
+    _textColor          = [NSColor darkGrayColor];
     
     lines = [[NSMutableArray alloc] init];
-    numberFont = [NSFont fontWithName:@"Source Code Pro Black" size:8.0];
+    numberFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:10.0];
     numberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [numberStyle setAlignment:NSRightTextAlignment];
     
@@ -113,6 +180,10 @@
                             [self textColor], NSForegroundColorAttributeName,
                             nil];
 
+    lineAnchors   = [[NSMutableDictionary alloc] init];
+    lineWarnings  = [[NSMutableDictionary alloc] init];
+    lineErrors    = [[NSMutableDictionary alloc] init];
+    
     [self setRuleThickness:START_THICKNESS];
     [self calculateLines];
 }
@@ -183,6 +254,86 @@
         [self calculateLines];
     }
     return lines;
+}
+
+/**
+ * Catch mouse events. Click on a line will add or remove a anchor to the line.
+ * @param theEvent that was send
+ */
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    NSPoint					location;
+	location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+	
+    
+    NSTextView *view                = [[self scrollView] documentView];
+    NSRect visibleRect = [view visibleRect];
+    NSLayoutManager	*manager        = [view layoutManager];
+    NSTextContainer	*container      = [view textContainer];
+    NSString *text                  = [view string];
+    NSRange range, glyphRange;
+    
+    
+    glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
+    range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+    range.length++;
+    NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location inText:text];
+    NSMutableArray *lineHights;
+    lineHights = [self calculateLineHeights:lineLabel];
+    
+    
+    /* calculate the clicked line */
+    NSUInteger current = 0;
+    for (int i = 0; i <[lineHights count]; i++) {
+        
+        if (location.y > [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y) {
+            current = lineLabel + i + 1;
+        }
+    }
+
+    if (![self hasAnchor:current]) {
+        [self addAnchorToLine:current];
+    } else {
+        [self removeAnchorFromLine:current];
+    }
+    
+    [self setNeedsDisplay:YES];
+}
+
+- (void) addAnchorToLine:(NSUInteger)line {
+    [lineAnchors setObject:[NSNumber numberWithInteger:1] forKey:[NSNumber numberWithInteger:line]];
+}
+
+- (void) addWarningToLine:(NSUInteger)line {
+    [lineWarnings setObject:[NSNumber numberWithBool:YES] forKey:[NSNumber numberWithInteger:line]];
+}
+
+- (void) addErrorToLine:(NSUInteger)line {
+    [lineErrors setObject:[NSNumber numberWithBool:YES] forKey:[NSNumber numberWithInteger:line]];
+}
+
+- (void) removeAnchorFromLine:(NSUInteger)line {
+    [lineAnchors removeObjectForKey:[NSNumber numberWithInteger:line]];
+}
+
+- (void) removeWarningFromLine:(NSUInteger)line {
+    [lineWarnings removeObjectForKey:[NSNumber numberWithInteger:line]];
+}
+
+- (void) removeErrorFromLine:(NSUInteger)line {
+    [lineErrors removeObjectForKey:[NSNumber numberWithInteger:line]];
+}
+
+- (BOOL) hasAnchor:(NSUInteger)line {
+    return [[lineAnchors objectForKey:[NSNumber numberWithInteger:line]] integerValue];
+}
+
+- (BOOL) hasWarning:(NSUInteger)line {
+    return [[lineWarnings objectForKey:[NSNumber numberWithInteger:line]] integerValue];
+}
+
+- (BOOL) hasError:(NSUInteger)line {
+    return [[lineErrors objectForKey:[NSNumber numberWithInteger:line]] integerValue];
 }
 
 - (NSUInteger)lineNumberForCharacterIndex:(NSUInteger)index inText:(NSString *)text
@@ -369,9 +520,21 @@
         }
         NSRectFill(rect);
         
+        if ([self hasAnchor:lineLabel+i+1]) {
+            [self drawAnchorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+        }
+        
+        if ([self hasError:lineLabel+i+1]) {
+            [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+        }
+        
+        if ([self hasWarning:lineLabel+i+1]) {
+            [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+        }
+        
         NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel+i+1];
         NSRect rectFront = {0,
-            [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y,
+            [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y - NUMBER_DISTANCE_TO_NEXTLINE,
             dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE - NUMBER_DISTANCE_TO_LINE,
             [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
         };
@@ -380,5 +543,105 @@
     }
 }
 
+- (void) drawAnchorIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
+    NSBezierPath *line = [NSBezierPath bezierPath];
+    
+    /* just move along the path */
+    [line moveToPoint: NSMakePoint(0, lineHight - visibleRect.origin.y + 1)];
+    [line lineToPoint: NSMakePoint(dirtyRect.size.width - 2*BORDER_SIZE, lineHight - visibleRect.origin.y + 1)];
+    [line lineToPoint: NSMakePoint(dirtyRect.size.width, lineHight - visibleRect.origin.y + SYMBOL_HEIGHT/2)];
+    [line lineToPoint: NSMakePoint(dirtyRect.size.width - 2*BORDER_SIZE, lineHight - visibleRect.origin.y + SYMBOL_HEIGHT - 1)];
+    [line lineToPoint: NSMakePoint(0, lineHight - visibleRect.origin.y + SYMBOL_HEIGHT - 1)];
+    
+    [[self getAnchorColor] set];
+    [line fill];
+    [[self getAnchorBorderColor] set];
+    [line stroke];
+}
+
+- (void) drawErrorIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
+    NSBezierPath *line = [NSBezierPath bezierPath];
+    
+    /* just draw a simple circle */
+    [line appendBezierPathWithArcWithCenter: NSMakePoint((dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE)/2, lineHight- visibleRect.origin.y + SYMBOL_HEIGHT/2)
+                                     radius: SYMBOL_HEIGHT/2 - 2
+                                     startAngle: 0
+                                     endAngle: 360];
+    
+    [[self getErrorColor] set];
+    [line fill];
+    [[self getErrorBorderColor] set];
+    [line stroke];
+}
+
+- (void) drawWarningIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
+    NSBezierPath *line = [NSBezierPath bezierPath];
+    
+    /* draw a simple triangular */
+    [line moveToPoint: NSMakePoint((dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE)/2, lineHight - visibleRect.origin.y + 2)];
+    [line lineToPoint: NSMakePoint((dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE)/2 - SYMBOL_HEIGHT/2, lineHight - visibleRect.origin.y + SYMBOL_HEIGHT - 2)];
+    [line lineToPoint: NSMakePoint((dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE)/2 + SYMBOL_HEIGHT/2, lineHight - visibleRect.origin.y + SYMBOL_HEIGHT - 2)];
+    [line closePath];
+    
+    [[self getWarningsColor] set];
+    [line fill];
+    [[self getWarningsBorderColor] set];
+    [line stroke];
+}
+
+
+- (NSColor *) getAnchorColor {
+    if ([self anchorColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0 green:0.29f blue:0.35f alpha:0.25f];
+    }
+    return [self anchorColor];
+}
+
+- (NSColor *) getAnchorBorderColor {
+    if ([self anchorBorderColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0 green:0.29f blue:0.35f alpha:1.0f];
+    }
+    return [self anchorBorderColor];
+}
+
+- (NSColor *) getWarningsColor {
+    if ([self warningColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0.98f green:0.733f blue:0.0f alpha:0.25f] ;
+    }
+    return [self warningColor];
+}
+
+- (NSColor *) getWarningsBorderColor {
+    if ([self warningBorderColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0.98f green:0.733f blue:0.0f alpha:1.0f];
+    }
+    return [self warningBorderColor];
+}
+
+- (NSColor *) getErrorColor {
+    if ([self errorColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0.89f green:0.125f blue:0.196f alpha:0.25f];
+    }
+    return [self errorColor];
+}
+
+- (NSColor *) getErrorBorderColor {
+    if ([self errorBorderColor] == nil) {
+        return [NSColor colorWithCalibratedRed:0.89f green:0.125f blue:0.196f alpha:1.0f];
+    }
+    return [self errorBorderColor];
+}
+
+- (NSArray*) getAnchoredLines {
+    return [lineAnchors allValues];
+}
+
+- (NSArray*) getLinesWithErrors {
+    return [lineErrors allValues];
+}
+
+- (NSArray*) getLinesWithWarnings {
+    return [lineWarnings allValues];
+}
 
 @end

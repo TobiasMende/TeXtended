@@ -60,12 +60,15 @@ NSSet *standardDocumentTypes;
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        NSLog(@"Can't handle type %@", typeName);
         return NO;
-    }
-    self.model.texPath = [url path];
-    return [self.model saveContent:self.editorView.string error:outError];
+    } 
+        self.model.texPath = [url path];
+        BOOL success = [self.model saveContent:self.editorView.string error:outError];
+        [self.editorView breakUndoCoalescing];
+        return success;
+    
 }
-
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
