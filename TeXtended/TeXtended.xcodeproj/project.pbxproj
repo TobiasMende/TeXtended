@@ -77,8 +77,7 @@
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		F6CDAA681730FF110094197C /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CDAA671730FF110094197C /* FileView.xib */; };
-		F6CDAA6B173133040094197C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
+		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -208,6 +207,7 @@
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
 		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -345,6 +345,7 @@
 				D21ACBB51726875600E2F8EC /* FileViewController.m */,
 				F6CDAA69173133030094197C /* FileOutlineView.h */,
 				F6CDAA6A173133030094197C /* FileOutlineView.m */,
+				F692F4D1173A62710032EF32 /* FileView.xib */,
 			);
 			path = FileViewer;
 			sourceTree = "<group>";
@@ -581,6 +582,7 @@
 				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
+				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
