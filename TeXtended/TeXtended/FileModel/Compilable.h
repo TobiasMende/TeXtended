@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+@class CompileSetting;
 @interface Compilable : NSManagedObject
 
-@property (nonatomic, retain) NSString * draftCompiler;
-@property (nonatomic, retain) NSString * finalCompiler;
-@property (nonatomic, retain) NSString * liveCompiler;
+@property (nonatomic, retain) CompileSetting * draftCompiler;
+@property (nonatomic, retain) CompileSetting * finalCompiler;
+@property (nonatomic, retain) CompileSetting * liveCompiler;
 
 - (id) initWithContext:(NSManagedObjectContext*)context;
 @end

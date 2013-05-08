@@ -60,6 +60,14 @@ NSSet *standardDocumentTypes;
     return YES;
 }
 
+- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
+    BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
+    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
+        [self.editorView breakUndoCoalescing];
+    }
+    return success;
+}
+
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
@@ -68,7 +76,6 @@ NSSet *standardDocumentTypes;
     } 
         self.model.texPath = [url path];
         BOOL success = [self.model saveContent:self.editorView.string error:outError];
-        [self.editorView breakUndoCoalescing];
         return success;
     
 }
