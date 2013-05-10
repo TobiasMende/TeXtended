@@ -19,7 +19,6 @@
  IBOutlet CompletionsController *completionsController;
 }
 
-
 - (CompletionsController *)completionsController;
 -(NSView *)viewForTag:(NSUInteger)tag;
 -(IBAction)switchView:(id)sender;

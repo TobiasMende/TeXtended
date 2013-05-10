@@ -7,8 +7,23 @@
 //
 
 #import "CommandCompletion.h"
+#import "Constants.h"
+
+
 
 @implementation CommandCompletion
+
++ (void)initialize {
+    COMPLETION_TYPES = [[NSArray alloc] initWithObjects:@"normal", @"cite", @"label", @"ref", nil];
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict {
+    self = [super initWithDictionary:dict];
+    if (self) {
+        _completionType = [dict valueForKey:TMTCompletionTypeKey];
+    }
+return self;
+}
 
 - (void)setInsertion:(NSString *)insertion {
     if (![[insertion substringToIndex:1] isEqualToString:@"\\"]) {
@@ -17,4 +32,20 @@
         [super setInsertion:insertion];
     }
 }
+
+- (NSString *)completionType {
+    if(_completionType) {
+        return _completionType;
+    }
+    return [[COMPLETION_TYPES objectAtIndex:0] copy];
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *dict = [super dictionaryRepresentation];
+    if(_completionType) {
+        [dict setObject:self.completionType forKey:TMTCompletionTypeKey];
+    }
+    return dict;
+}
+
 @end

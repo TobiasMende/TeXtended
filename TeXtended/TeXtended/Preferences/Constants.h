@@ -87,6 +87,7 @@
 #define TMTCompletionExtensionKey @"TMTCompletionExtensionKey"
 #define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
 #define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
+#define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 
 
 /*
