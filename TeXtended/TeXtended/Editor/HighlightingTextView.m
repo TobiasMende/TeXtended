@@ -7,7 +7,7 @@
 //
 
 #import "HighlightingTextView.h"
-#import "SyntaxHighlighter.h"
+#import "LatexSyntaxHighlighter.h"
 #import "BracketHighlighter.h"
 #import "CodeNavigationAssistant.h"
 #import "NSString+LatexExtension.h"
@@ -41,7 +41,7 @@
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     
     [self bind:@"font" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT] options:option];
-    regexHighlighter = [[SyntaxHighlighter alloc] initWithTextView:self];
+    _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
     bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
     codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
@@ -50,7 +50,7 @@
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
     _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
-        [regexHighlighter highlightEntireDocument];
+        [self.syntaxHighlighter highlightEntireDocument];
     }
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
@@ -138,7 +138,7 @@
     if (!self.servicesOn) {
         return;
     }
-    [regexHighlighter highlightVisibleArea];
+    [self.syntaxHighlighter highlightVisibleArea];
     [codeExtensionEngine addLinksForRange:[self visibleRange]];
 }
 
@@ -210,7 +210,7 @@
         return;
     }
     NSLog(@"Paste");
-    [regexHighlighter highlightEntireDocument];
+    [self.syntaxHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
@@ -219,7 +219,7 @@
     if (!self.servicesOn) {
         return;
     }
-    [regexHighlighter highlightEntireDocument];
+    [self.syntaxHighlighter highlightEntireDocument];
     [codeExtensionEngine addLinksForRange:NSMakeRange(0, string.length)];
 }
 

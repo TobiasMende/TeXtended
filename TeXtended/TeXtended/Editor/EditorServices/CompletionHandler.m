@@ -8,7 +8,7 @@
 
 #import "CompletionHandler.h"
 #import "HighlightingTextView.h"
-#import "SyntaxHighlighter.h"
+#import "LatexSyntaxHighlighter.h"
 #import "ApplicationController.h"
 #import "CompletionsController.h"
 #import "Completion.h"

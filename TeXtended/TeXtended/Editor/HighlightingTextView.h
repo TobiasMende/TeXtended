@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Constants.h"
+#import "SyntaxHighlighter.h"
 
-@class SyntaxHighlighter, BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService;
+@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -20,7 +21,6 @@
 
 @interface HighlightingTextView : NSTextView <NSTextViewDelegate> {
     /** The SyntaxHighlighter highlights latex code by regular expressions */
-    SyntaxHighlighter *regexHighlighter;
     
     /** The BracketHighlighter highlights matching brackets */
     BracketHighlighter *bracketHighlighter;
@@ -37,6 +37,7 @@
     CodeExtensionEngine *codeExtensionEngine;
     
 }
+@property (strong)  id<SyntaxHighlighter> syntaxHighlighter;
 
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;

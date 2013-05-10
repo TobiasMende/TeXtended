@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "SyntaxHighlighter.h"
+#import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
 
 
-@implementation SyntaxHighlighter
+@implementation LatexSyntaxHighlighter
 
 
 #pragma mark Initialization
@@ -119,10 +119,8 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 
 
 - (void)highlightEntireDocument {
-    NSLayoutManager *lm = [view layoutManager];
     NSRange textRange = NSMakeRange(0, [[view textStorage] length]);
-    [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:textRange];
-    [self performHighlightingInRange:textRange];
+    [self highlightRange:textRange];
 }
 
 - (void)highlightNarrowArea {
@@ -136,9 +134,13 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
     NSRange visibleGlyphRange = [lm glyphRangeForBoundingRect:visibleArea inTextContainer:view.textContainer];
     NSRange visibleTextRange = [lm characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
     
-    [self performHighlightingInRange:visibleTextRange];
+    [self highlightRange:visibleTextRange];
 }
 
+- (void) highlightRange:(NSRange)range {
+    [[view layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
+    [self performHighlightingInRange:range];
+}
 
 # pragma mark Private Highlighting Methods
 
