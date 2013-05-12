@@ -88,6 +88,7 @@ NSSet *standardDocumentTypes;
         _model = [[DocumentModel alloc] initWithContext:self.context];
     }
     self.model.texPath = [url path];
+    [self.fileViewController loadPath:[url URLByDeletingLastPathComponent]];
     temporaryTextStorage = [self.model loadContent];
     if (self.editorView && temporaryTextStorage) {
         self.editorView.string = temporaryTextStorage;
