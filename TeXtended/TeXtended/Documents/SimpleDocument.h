@@ -14,8 +14,8 @@
     LineNumberView *lineNumberView;
     NSString *temporaryTextStorage;
 }
-@property (weak) IBOutlet NSSplitView *fileViewArea;
-@property (weak) IBOutlet NSScrollView *scrollView;
+@property (weak) IBOutlet NSSplitView *leftSidebar;
+@property (weak) IBOutlet NSScrollView *editorScrollView;
 @property (unsafe_unretained) IBOutlet HighlightingTextView *editorView;
 @property (strong) IBOutlet FileViewController *fileViewController;
 @property (strong) NSManagedObjectContext *context;

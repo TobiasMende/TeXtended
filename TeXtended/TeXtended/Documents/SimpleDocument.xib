@@ -128,7 +128,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{200, 200}</string>
 				<object class="NSView" key="NSWindowView" id="568628114">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSSplitView" id="99386276">
@@ -145,7 +145,6 @@
 											<array class="NSMutableArray" key="NSSubviews"/>
 											<string key="NSFrameSize">{139, 564}</string>
 											<reference key="NSSuperview" ref="694588343"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="999949516"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<string key="NSClassName">NSView</string>
@@ -153,7 +152,6 @@
 									</array>
 									<string key="NSFrameSize">{139, 564}</string>
 									<reference key="NSSuperview" ref="99386276"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<int key="NSDividerStyle">2</int>
 								</object>
@@ -189,7 +187,6 @@
 													</set>
 													<string key="NSFrameSize">{417, 562}</string>
 													<reference key="NSSuperview" ref="867099288"/>
-													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="207227324"/>
 													<string key="NSReuseIdentifierKey">_NS:13</string>
 													<string key="NSHuggingPriority">{504, 520}</string>
@@ -212,7 +209,7 @@
 														<int key="NSTCFlags">1</int>
 													</object>
 													<object class="NSTextViewSharedData" key="NSSharedData">
-														<int key="NSFlags">67121127</int>
+														<int key="NSFlags">100675559</int>
 														<int key="NSTextCheckingTypes">0</int>
 														<nil key="NSMarkedAttributes"/>
 														<object class="NSColor" key="NSBackgroundColor" id="155000191">
@@ -262,7 +259,6 @@
 											</array>
 											<string key="NSFrame">{{1, 1}, {417, 562}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="991147675"/>
 											<string key="NSReuseIdentifierKey">_NS:11</string>
 											<reference key="NSDocView" ref="991147675"/>
@@ -293,7 +289,6 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrame">{{402, 1}, {16, 562}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="968435107"/>
 											<string key="NSReuseIdentifierKey">_NS:83</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -306,7 +301,6 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{-100, -100}, {87, 18}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="867099288"/>
 											<string key="NSReuseIdentifierKey">_NS:33</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -319,7 +313,6 @@
 									</array>
 									<string key="NSFrame">{{140, 0}, {419, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="867099288"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSHuggingPriority">{857, 855}</string>
@@ -337,14 +330,12 @@
 									<array class="NSMutableArray" key="NSSubviews"/>
 									<string key="NSFrame">{{560, 0}, {414, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:13</string>
 									<string key="NSClassName">ExtendedPdf</string>
 								</object>
 							</array>
 							<string key="NSFrameSize">{974, 564}</string>
 							<reference key="NSSuperview" ref="568628114"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="694588343"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSIsVertical">YES</bool>
@@ -352,8 +343,6 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{974, 564}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="99386276"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -379,14 +368,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">scrollView</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="999949516"/>
-					</object>
-					<int key="connectionID">100114</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">editorView</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="991147675"/>
@@ -395,11 +376,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fileViewArea</string>
+						<string key="label">leftSidebar</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="694588343"/>
 					</object>
-					<int key="connectionID">100169</int>
+					<int key="connectionID">100170</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">editorScrollView</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="999949516"/>
+					</object>
+					<int key="connectionID">100171</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -658,7 +647,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100169</int>
+			<int key="maxID">100171</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
