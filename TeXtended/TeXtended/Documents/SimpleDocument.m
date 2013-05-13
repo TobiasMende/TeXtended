@@ -51,7 +51,6 @@ NSSet *standardDocumentTypes;
         [self.editorView setString:temporaryTextStorage];
     }
     
-    self.fileViewController = [[FileViewController alloc] init];
     [self.fileViewArea addSubview:self.fileViewController.view];
 }
 

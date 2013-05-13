@@ -79,9 +79,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
+    [self->outline setDataSource:self];
 
     NSString *path = [NSString stringWithFormat:@"%@%@",NSHomeDirectory(), @"/Documents"];
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
+    NSLog(@"awakeFromNib");
     return;
 }
 
@@ -91,7 +93,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSURL *directoryURL = path; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
     
-    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:0 error:NULL]];
+    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
     NSUInteger count = [children count];
     NSMutableArray* node = [[NSMutableArray alloc] init];
     
