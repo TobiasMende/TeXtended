@@ -47,11 +47,15 @@ NSSet *standardDocumentTypes;
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    _fileViewController = [[FileViewController alloc] init];
+    [self.fileViewArea setSubviews:[NSArray arrayWithObjects:self.fileViewController.view, nil]];
     if(temporaryTextStorage) {
         [self.editorView setString:temporaryTextStorage];
+        if (self.model.texPath) {
+            [self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
+        }
     }
     
-    [self.fileViewArea addSubview:self.fileViewController.view];
 }
 
 + (BOOL)autosavesInPlace
@@ -87,7 +91,9 @@ NSSet *standardDocumentTypes;
         _model = [[DocumentModel alloc] initWithContext:self.context];
     }
     self.model.texPath = [url path];
-    [self.fileViewController loadPath:[url URLByDeletingLastPathComponent]];
+    if (self.fileViewController) {
+        [self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
+    }
     temporaryTextStorage = [self.model loadContent];
     if (self.editorView && temporaryTextStorage) {
         self.editorView.string = temporaryTextStorage;

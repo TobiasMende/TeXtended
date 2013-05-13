@@ -79,7 +79,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
-    [self->outline setDataSource:self];
 
     NSString *path = [NSString stringWithFormat:@"%@%@",NSHomeDirectory(), @"/Documents"];
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
@@ -122,7 +121,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)path
 {
     nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:path]];
-    //outline.reloadData;
+    [outline reloadData];
     return YES;
 }
 

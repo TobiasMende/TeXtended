@@ -22,7 +22,6 @@
 			<string>NSToolbarSeparatorItem</string>
 			<string>NSToolbarSpaceItem</string>
 			<string>NSView</string>
-			<string>NSViewController</string>
 			<string>NSWindowTemplate</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -155,9 +154,8 @@
 									<string key="NSFrameSize">{139, 564}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
-									<int key="NSDividerStyle">3</int>
+									<int key="NSDividerStyle">2</int>
 								</object>
 								<object class="NSScrollView" id="999949516">
 									<reference key="NSNextResponder" ref="99386276"/>
@@ -368,7 +366,6 @@
 			<object class="NSCustomObject" id="796877042">
 				<string key="NSClassName">NSApplication</string>
 			</object>
-			<object class="NSViewController" id="840927488"/>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -398,19 +395,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fileViewController</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="840927488"/>
-					</object>
-					<int key="connectionID">100158</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">fileViewArea</string>
 						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="922686693"/>
+						<reference key="destination" ref="694588343"/>
 					</object>
-					<int key="connectionID">100168</int>
+					<int key="connectionID">100169</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -630,11 +619,6 @@
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="694588343"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">100152</int>
-						<reference key="object" ref="840927488"/>
-						<reference key="parent" ref="0"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -658,8 +642,6 @@
 				<string key="100122.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100127.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100129.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100152.CustomClassName">FileViewController</string>
-				<string key="100152.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -676,7 +658,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100168</int>
+			<int key="maxID">100169</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -752,7 +734,7 @@
 					<string key="superclassName">NSDocument</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="editorView">HighlightingTextView</string>
-						<string key="fileViewArea">NSView</string>
+						<string key="fileViewArea">NSSplitView</string>
 						<string key="fileViewController">FileViewController</string>
 						<string key="scrollView">NSScrollView</string>
 					</dictionary>
@@ -763,7 +745,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="fileViewArea">
 							<string key="name">fileViewArea</string>
-							<string key="candidateClassName">NSView</string>
+							<string key="candidateClassName">NSSplitView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="fileViewController">
 							<string key="name">fileViewController</string>
