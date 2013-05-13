@@ -88,7 +88,7 @@
 }
 
 - (void)updateSpellChecker {
-    NSLog(@"Updating Spell Checker: \tC:%ld \tE:%ld \tW:%ld", commandsToIgnore.count, environmentsToIgnore.count, wordsToIgnore.count);
+    //NSLog(@"Updating Spell Checker: \tC:%ld \tE:%ld \tW:%ld", commandsToIgnore.count, environmentsToIgnore.count, wordsToIgnore.count);
     NSMutableSet *allWords = [[NSMutableSet alloc] initWithSet:wordsToIgnore];
     [allWords unionSet:environmentsToIgnore];
     [allWords unionSet:commandsToIgnore];
