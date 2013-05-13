@@ -80,16 +80,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
 
-    NSString *path = [NSString stringWithFormat:@"%@%@",NSHomeDirectory(), @"/Documents"];
-    nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
-    NSLog(@"awakeFromNib");
+    //NSString *path = [NSString stringWithFormat:@"%@%@",NSHomeDirectory(), @"/Documents"];
+    //nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
+    //NSLog(@"awakeFromNib");
     return;
 }
 
-- (NSArray*) recursiveFileFinder: (NSURL*)path
+- (NSArray*) recursiveFileFinder: (NSURL*)url
 {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSURL *directoryURL = path; // URL pointing to the directory you want to browse
+    NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
     
     NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
@@ -99,36 +99,36 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     for (NSUInteger i = 0; i < count; i++) {
         NSError *error;
         NSNumber *isDirectory = nil;
-        NSURL *url = [children objectAtIndex:i];
+        NSURL *fileUrl = [children objectAtIndex:i];
         if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            NSString *filename = url.lastPathComponent;
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSArray array], @"children", @"Datei", @"nodeDescription",filename, @"nodeName", url.path, @"URL", nil]];
+            NSString *filename = fileUrl.lastPathComponent;
+            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSArray array], @"children", @"Datei", @"nodeDescription",filename, @"nodeName", fileUrl.path, @"URL", nil]];
         }
         else
         {
-            NSString *dirname = url.lastPathComponent;
-            NSArray *dir = [self recursiveFileFinder:url];
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys: dir, @"children", @"Ordner", @"nodeDescription",dirname, @"nodeName", url.path, @"URL", nil]];
+            NSString *dirname = fileUrl.lastPathComponent;
+            NSArray *dir = [self recursiveFileFinder:fileUrl];
+            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys: dir, @"children", @"Ordner", @"nodeDescription",dirname, @"nodeName", fileUrl.path, @"URL", nil]];
         }
     }
     NSArray *retList = [[NSArray alloc] initWithArray:node];
     return retList;
 }
 
-- (BOOL)loadPath: (NSURL*)path
+- (BOOL)loadPath: (NSURL*)url
 {
-    nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:path]];
+    nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:url]];
     [outline reloadData];
     return YES;
 }
 
-- (BOOL)openFileInDefApp: (NSURL*)path
+- (BOOL)openFileInDefApp: (NSURL*)url
 {
     NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-    [workspace openFile:path.path];
+    [workspace openFile:url.path];
     return YES;
 }
 
