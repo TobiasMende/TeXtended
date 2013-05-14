@@ -28,7 +28,7 @@
 }
 
 - (void)doubleClick:(id)object {
-    NSLog(@"DoubleClick");
+    //NSLog(@"DoubleClick");
     // This gets called after following steps 1-3.
     id row = [outline itemAtRow:[outline clickedRow]];
     NSString *path = [row valueForKey:@"URL"];
