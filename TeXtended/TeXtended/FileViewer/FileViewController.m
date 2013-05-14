@@ -74,16 +74,40 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return [item valueForKey:[tableColumn identifier]];
 }
 
+- (void)outlineView:(NSOutlineView *)outlineView
+     setObjectValue:(id)object
+     forTableColumn:(NSTableColumn *)tableColumn
+             byItem:(id)item
+{
+    //NSLog(@"%@",[tableColumn identifier]);
+    NSDictionary *dic = [item representedObject];
+    NSInteger index = [[dic allKeys] indexOfObject:[tableColumn identifier]];
+    //NSString *str = [[dic allValues] objectAtIndex:index];
+    //str = (NSString*)object;
+    //NSLog(@"%d",index);
+    //[dic setValue:(NSString*)object forKey:[tableColumn identifier]];
+    //[item setValue:(NSString*)object forUndefinedKey:[tableColumn identifier]];
+    NSString* oldFile = [item valueForKey:@"URL"];
+    NSString* newFile = (NSString*)object;
+    NSLog(@"%@ to %@", oldFile, newFile);
+    //[self renameFile:oldFile toNewFile:newFile];
+}
+
+- (id)outlineView:(NSOutlineView *)ov viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item{
+    if ([[item representedObject] parent] == nil) {
+        return [ov makeViewWithIdentifier:@"HeaderCell" owner:self];
+    }else{
+        return [ov makeViewWithIdentifier:@"DataCell" owner:self];
+    }
+}
+
 - (void) awakeFromNib {
     [super awakeFromNib];
     
+    //[fileColumn setDataCell:[[NSBrowserCell alloc] init]];
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
-
-    //NSString *path = [NSString stringWithFormat:@"%@%@",NSHomeDirectory(), @"/Documents"];
-    //nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:[[NSURL alloc] initWithString:path]]];
-    //NSLog(@"awakeFromNib");
-    return;
+    //[[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:[[NSBrowserCell alloc] init]];
 }
 
 - (NSArray*) recursiveFileFinder: (NSURL*)url
@@ -130,6 +154,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
     [workspace openFile:url.path];
     return YES;
+}
+
+- (void)renameFile:(NSString*)oldPath
+         toNewFile:(NSString*)newFile {
+    NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
+    [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
+    //NSLog( @"File renamed to %@", newFile );
 }
 
 @end

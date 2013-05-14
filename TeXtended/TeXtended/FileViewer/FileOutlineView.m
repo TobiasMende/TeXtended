@@ -22,10 +22,12 @@
     }
 }*/
 
-- (void)textDidEndEditing:(NSNotification *)aNotification {
+/*- (void)textDidEndEditing:(NSNotification *)aNotification {
     [super textDidEndEditing:aNotification];
-    //NSLog(@"Edit");
-    NSLog([aNotification name]);
-}
+    NSLog(@"Edit");
+    id row = [self itemAtRow:[self selectedRow]];
+    NSString *path = [row valueForKey:@"nodeName"];
+    NSLog(@"%@", path);
+}*/
 
 @end
