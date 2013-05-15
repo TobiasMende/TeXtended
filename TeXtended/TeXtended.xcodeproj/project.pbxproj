@@ -36,7 +36,6 @@
 		D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
 		D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
 		D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
-		D21ACBAB1726868A00E2F8EC /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */; };
 		D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
 		D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
 		D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
@@ -64,6 +63,7 @@
 		D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF2173143C2003AF83D /* DocumentModel.m */; };
 		D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
 		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
+		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
@@ -140,8 +140,6 @@
 		D21ACB941726868A00E2F8EC /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
 		D21ACB951726868A00E2F8EC /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
 		D21ACB961726868A00E2F8EC /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
-		D21ACB971726868A00E2F8EC /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
-		D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D21ACB991726868A00E2F8EC /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
 		D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
 		D21ACB9C1726868A00E2F8EC /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
@@ -185,10 +183,14 @@
 		D2681FF5173143E2003AF83D /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		D2681FF7173143EC003AF83D /* BibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibFile.h; sourceTree = "<group>"; };
 		D2681FF8173143EC003AF83D /* BibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibFile.m; sourceTree = "<group>"; };
+		D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D27198371743884B00342CB0 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		D27198381743889400342CB0 /* SyntaxHighlighterStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighterStub.h; sourceTree = "<group>"; };
+		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
-		D2A82EFD173D483F000A7508 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		D21ACB8A1726868A00E2F8EC /* EditorServices */ = {
 			isa = PBXGroup;
 			children = (
+				D27198341743880E00342CB0 /* SyntaxHighlighter */,
 				D21ACB8B1726868A00E2F8EC /* BracketHighlighter.h */,
 				D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */,
 				D21ACB8D1726868A00E2F8EC /* CodeExtensionEngine.h */,
@@ -312,13 +315,10 @@
 				D21ACB941726868A00E2F8EC /* EditorService.m */,
 				D21ACB951726868A00E2F8EC /* PlaceholderServices.h */,
 				D21ACB961726868A00E2F8EC /* PlaceholderServices.m */,
-				D21ACB971726868A00E2F8EC /* LatexSyntaxHighlighter.h */,
-				D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */,
 				D2AAF90F17293D8200FC09C1 /* UndoSupport.h */,
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
 				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
 				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
-				D2A82EFD173D483F000A7508 /* SyntaxHighlighter.h */,
 			);
 			path = EditorServices;
 			sourceTree = "<group>";
@@ -402,6 +402,18 @@
 				D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D27198341743880E00342CB0 /* SyntaxHighlighter */ = {
+			isa = PBXGroup;
+			children = (
+				D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */,
+				D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */,
+				D27198371743884B00342CB0 /* SyntaxHighlighter.h */,
+				D27198381743889400342CB0 /* SyntaxHighlighterStub.h */,
+				D27198391743889400342CB0 /* SyntaxHighlighterStub.m */,
+			);
+			path = SyntaxHighlighter;
 			sourceTree = "<group>";
 		};
 		D283038A1731346200E1FC1D /* FileModel */ = {
@@ -629,7 +641,6 @@
 				D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */,
 				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
 				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
-				D21ACBAB1726868A00E2F8EC /* LatexSyntaxHighlighter.m in Sources */,
 				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
 				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
 				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
@@ -652,6 +663,7 @@
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
+				D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
