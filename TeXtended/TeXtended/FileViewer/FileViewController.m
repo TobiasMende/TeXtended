@@ -21,20 +21,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.view.subviews.
     }
     
     return self;
 }
 
 - (void)doubleClick:(id)object {
-    //NSLog(@"DoubleClick");
-    // This gets called after following steps 1-3.
     id row = [outline itemAtRow:[outline clickedRow]];
     NSString *path = [row valueForKey:@"URL"];
-    //NSString *path = @"/Users/Tobias/Documents/Prototyp3.pdf";
     [self openFileInDefApp:[[NSURL alloc] initWithString:path]];
-    // Do something...
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -96,23 +91,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     //[self renameFile:oldFile toNewFile:newFile];
 }
 
-/*- (id)outlineView:(NSOutlineView *)ov viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item{
-    if ([[item representedObject] parent] == nil) {
-        return [ov makeViewWithIdentifier:@"HeaderCell" owner:self];
-    }else{
-        return [ov makeViewWithIdentifier:@"DataCell" owner:self];
-    }
-}*/
-
 - (void)    outlineView:(NSOutlineView *)outlineView
         willDisplayCell:(id)cell
          forTableColumn:(NSTableColumn *)tableColumn
                    item:(id)item
 {
-    CGFloat max = 20;
+    CGFloat max = 17;
     CGFloat scale = 0;
     NSImage *img = [[NSWorkspace sharedWorkspace] iconForFile:[item valueForKey:@"URL"]];
-    /*NSSize size = NSZeroSize;
+    NSSize size = NSZeroSize;
     if(img.size.width > img.size.height)
     {
         scale = img.size.height/img.size.width;
@@ -126,30 +113,19 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         size.width = scale*max;
     }
     
-    NSImageView* kView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
-    [kView setImageScaling:NSImageScaleProportionallyUpOrDown];
-    [kView setImage:img];
+    [img setSize:size];
+    [cell setImage:img];
     
-    NSRect kRect = kView.frame;
-    NSBitmapImageRep* kRep = [kView bitmapImageRepForCachingDisplayInRect:kRect];
-    [kView cacheDisplayInRect:kRect toBitmapImageRep:kRep];
-    
-    NSData* kData = [kRep representationUsingType:NSJPEGFileType properties:nil];
-    NSImage *scImg = [[NSImage alloc] initWithData:kData];
-    
-    [cell setImage:scImg];*/
-    //[cell setImage:img];
-    NSLog(@"displaycell");
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
     
-    //[fileColumn setDataCell:[[NSBrowserCell alloc] init]];
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
-    [self->outline setDelegate:self];
-    //[[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:[[NSBrowserCell alloc] init]];
+    NSBrowserCell *cell = [[NSBrowserCell alloc] init];
+    [cell setLeaf:YES];
+    [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
 }
 
 - (NSArray*) recursiveFileFinder: (NSURL*)url
@@ -202,7 +178,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
          toNewFile:(NSString*)newFile {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
     [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
-    //NSLog( @"File renamed to %@", newFile );
 }
 
 @end
