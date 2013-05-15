@@ -79,26 +79,67 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
      forTableColumn:(NSTableColumn *)tableColumn
              byItem:(id)item
 {
-    //NSLog(@"%@",[tableColumn identifier]);
-    NSDictionary *dic = [item representedObject];
-    NSInteger index = [[dic allKeys] indexOfObject:[tableColumn identifier]];
+    NSLog(@"%@",[tableColumn identifier]);
+    
+    //NSDictionary *dic = [item representedObject];
+    //NSInteger index = [[dic allKeys] indexOfObject:[tableColumn identifier]];
     //NSString *str = [[dic allValues] objectAtIndex:index];
     //str = (NSString*)object;
     //NSLog(@"%d",index);
     //[dic setValue:(NSString*)object forKey:[tableColumn identifier]];
+    
     //[item setValue:(NSString*)object forUndefinedKey:[tableColumn identifier]];
+    NSLog(@"%@",[[item class] description]);
     NSString* oldFile = [item valueForKey:@"URL"];
     NSString* newFile = (NSString*)object;
     NSLog(@"%@ to %@", oldFile, newFile);
     //[self renameFile:oldFile toNewFile:newFile];
 }
 
-- (id)outlineView:(NSOutlineView *)ov viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item{
+/*- (id)outlineView:(NSOutlineView *)ov viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item{
     if ([[item representedObject] parent] == nil) {
         return [ov makeViewWithIdentifier:@"HeaderCell" owner:self];
     }else{
         return [ov makeViewWithIdentifier:@"DataCell" owner:self];
     }
+}*/
+
+- (void)    outlineView:(NSOutlineView *)outlineView
+        willDisplayCell:(id)cell
+         forTableColumn:(NSTableColumn *)tableColumn
+                   item:(id)item
+{
+    CGFloat max = 20;
+    CGFloat scale = 0;
+    NSImage *img = [[NSWorkspace sharedWorkspace] iconForFile:[item valueForKey:@"URL"]];
+    /*NSSize size = NSZeroSize;
+    if(img.size.width > img.size.height)
+    {
+        scale = img.size.height/img.size.width;
+        size.width = max;
+        size.height = scale*max;
+    }
+    else
+    {
+        scale = img.size.width/img.size.height;
+        size.height = max;
+        size.width = scale*max;
+    }
+    
+    NSImageView* kView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
+    [kView setImageScaling:NSImageScaleProportionallyUpOrDown];
+    [kView setImage:img];
+    
+    NSRect kRect = kView.frame;
+    NSBitmapImageRep* kRep = [kView bitmapImageRepForCachingDisplayInRect:kRect];
+    [kView cacheDisplayInRect:kRect toBitmapImageRep:kRep];
+    
+    NSData* kData = [kRep representationUsingType:NSJPEGFileType properties:nil];
+    NSImage *scImg = [[NSImage alloc] initWithData:kData];
+    
+    [cell setImage:scImg];*/
+    //[cell setImage:img];
+    NSLog(@"displaycell");
 }
 
 - (void) awakeFromNib {
@@ -107,6 +148,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     //[fileColumn setDataCell:[[NSBrowserCell alloc] init]];
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
+    [self->outline setDelegate:self];
     //[[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:[[NSBrowserCell alloc] init]];
 }
 

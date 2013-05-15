@@ -52,9 +52,9 @@ NSSet *standardDocumentTypes;
     if(temporaryTextStorage) {
         [self.editorView setString:temporaryTextStorage];
         if (self.model.texPath) {
-            [self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
-            //NSURL *fileUrl = [[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Documents/Projects"];
-            //[self.fileViewController loadPath:fileUrl];
+            //[self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
+            NSURL *fileUrl = [[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Documents/Projects"];
+            [self.fileViewController loadPath:fileUrl];
         }
     }
     
