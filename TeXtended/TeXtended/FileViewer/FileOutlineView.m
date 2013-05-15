@@ -12,7 +12,7 @@
 
 
 
-- (void)keyDown:(NSEvent *)theEvent {
+/*- (void)keyDown:(NSEvent *)theEvent {
     // Arrow keys are associated with the numeric keypad
     unsigned short key = [theEvent keyCode];
     
@@ -20,6 +20,14 @@
     {
         NSLog(@"Return");
     }
-}
+}*/
+
+/*- (void)textDidEndEditing:(NSNotification *)aNotification {
+    [super textDidEndEditing:aNotification];
+    NSLog(@"Edit");
+    id row = [self itemAtRow:[self selectedRow]];
+    NSString *path = [row valueForKey:@"nodeName"];
+    NSLog(@"%@", path);
+}*/
 
 @end
