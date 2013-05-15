@@ -150,7 +150,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "86"
          endingLineNumber = "86"
-         landmarkName = "-awakeFromNib"
+         landmarkName = "-outlineView:setObjectValue:forTableColumn:byItem:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

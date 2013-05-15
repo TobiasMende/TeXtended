@@ -64,6 +64,7 @@
 		D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
 		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
 		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
+		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
@@ -656,14 +657,15 @@
 				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
 				D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */,
 				D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */,
+				D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */,
 				D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */,
+				D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */,
 				76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */,
 				D2681FF0173143AF003AF83D /* Compilable.m in Sources */,
 				D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */,
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
-				D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
