@@ -138,9 +138,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "28"
-         endingLineNumber = "28"
-         landmarkName = "-init"
-         landmarkType = "5">
+         endingLineNumber = "28">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
