@@ -65,6 +65,7 @@
 		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
 		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
 		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
+		D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
@@ -90,6 +91,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D271983E174399FD00342CB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = CompileFlows;
+			dstSubfolderSpec = 7;
+			files = (
+				D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +200,7 @@
 		D27198371743884B00342CB0 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
 		D27198381743889400342CB0 /* SyntaxHighlighterStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighterStub.h; sourceTree = "<group>"; };
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
+		D271983D174398D800342CB0 /* pdflatex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pdflatex.sh; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
@@ -417,6 +429,14 @@
 			path = SyntaxHighlighter;
 			sourceTree = "<group>";
 		};
+		D271983C1743989B00342CB0 /* CompileFlows */ = {
+			isa = PBXGroup;
+			children = (
+				D271983D174398D800342CB0 /* pdflatex.sh */,
+			);
+			path = CompileFlows;
+			sourceTree = "<group>";
+		};
 		D283038A1731346200E1FC1D /* FileModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +545,7 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D271983C1743989B00342CB0 /* CompileFlows */,
 				D21ACB7C172685C100E2F8EC /* Development */,
 				D21ACB721726855000E2F8EC /* Sparkle */,
 				D2CC54FB171EAFAB00D81CF1 /* TeXtended-Info.plist */,
@@ -549,6 +570,7 @@
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
 				D2CC5547171EB15500D81CF1 /* CopyFiles */,
 				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
+				D271983E174399FD00342CB0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
