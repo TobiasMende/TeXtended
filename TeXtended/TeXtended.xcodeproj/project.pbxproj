@@ -66,8 +66,9 @@
 		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
 		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
 		D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
+		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
-		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
+		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
@@ -202,9 +203,13 @@
 		D27198381743889400342CB0 /* SyntaxHighlighterStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighterStub.h; sourceTree = "<group>"; };
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D271983D174398D800342CB0 /* pdflatex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pdflatex.sh; sourceTree = "<group>"; };
+		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
+		D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewControllerProtocol.h; sourceTree = "<group>"; };
+		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
+		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
-		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
+		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
@@ -405,6 +410,7 @@
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
 				D21ACBD41726889700E2F8EC /* SimpleDocument.xib */,
+				D271984317451CD600342CB0 /* MainDocument.h */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -440,6 +446,16 @@
 				D271983D174398D800342CB0 /* pdflatex.sh */,
 			);
 			path = CompileFlows;
+			sourceTree = "<group>";
+		};
+		D2719845174523BB00342CB0 /* DocumentControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D271984A1745241500342CB0 /* DocumentController.h */,
+				D271984B1745241500342CB0 /* DocumentController.m */,
+				D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */,
+			);
+			path = DocumentControllers;
 			sourceTree = "<group>";
 		};
 		D283038A1731346200E1FC1D /* FileModel */ = {
@@ -530,10 +546,11 @@
 			isa = PBXGroup;
 			children = (
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
+				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
 				D283038A1731346200E1FC1D /* FileModel */,
-				D2A439F2171F10D60020C15F /* DocumentController.h */,
-				D2A439F3171F10D60020C15F /* DocumentController.m */,
+				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
+				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
 				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB71726876900E2F8EC /* Categories */,
 				D21ACB801726868A00E2F8EC /* Editor */,
@@ -658,7 +675,6 @@
 			files = (
 				D2CC5500171EAFAB00D81CF1 /* main.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
-				D2A439F4171F10D60020C15F /* DocumentController.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
 				D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */,
 				D21ACBA21726868A00E2F8EC /* Completion.m in Sources */,
@@ -670,6 +686,7 @@
 				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
 				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
 				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
+				D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */,
 				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
 				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
 				D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */,
@@ -694,6 +711,7 @@
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
 				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
+				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

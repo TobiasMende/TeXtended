@@ -25,7 +25,9 @@
         <attribute name="lastCompile" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="pdfPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="texPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mainDocuments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="subDocuments" inverseEntity="Document" syncable="YES"/>
         <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="mainDocuments" inverseEntity="Project" syncable="YES"/>
+        <relationship name="subDocuments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="mainDocuments" inverseEntity="Document" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="ProjectModel" parentEntity="Compilable" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +41,7 @@
         <element name="BibFile" positionX="385" positionY="-162" width="128" height="88"/>
         <element name="Compilable" positionX="25" positionY="-349" width="128" height="88"/>
         <element name="CompileSetting" positionX="448" positionY="-333" width="128" height="148"/>
-        <element name="Document" positionX="-126" positionY="-162" width="128" height="133"/>
+        <element name="Document" positionX="-126" positionY="-162" width="128" height="163"/>
         <element name="Project" positionX="171" positionY="-162" width="128" height="133"/>
     </elements>
 </model>

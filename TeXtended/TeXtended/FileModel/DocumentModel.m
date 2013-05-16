@@ -18,6 +18,8 @@
 @dynamic texPath;
 @dynamic project;
 @dynamic encoding;
+@dynamic mainDocuments;
+@dynamic subDocuments;
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];

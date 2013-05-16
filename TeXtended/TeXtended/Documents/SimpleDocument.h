@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "LineNumberView.h"
+#import "MainDocument.h"
 @class HighlightingTextView, DocumentModel, FileViewController;
-@interface SimpleDocument : NSDocument {
+@interface SimpleDocument : NSDocument <MainDocument> {
     /** Extention of NSRulerView to show line numbers. */
     LineNumberView *lineNumberView;
     NSString *temporaryTextStorage;
