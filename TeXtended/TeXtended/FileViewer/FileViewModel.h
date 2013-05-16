@@ -12,11 +12,17 @@
     NSString* filePath;
     NSString* fileName;
     NSImage* icon;
-    NSMutableArray* childs;
+    NSMutableArray* children;
     FileViewModel *parent;
 }
 
--(void)addChild:(NSString*)path;
--(FileViewModel*)getChild:(NSInteger)index;
+-(void)addPath:(NSString*)path;
+-(FileViewModel*)getChildren:(NSInteger)index;
+-(NSString*)getFileName;
+-(NSString*)getPath;
+-(void)setFileName:(NSString*)oldName
+            toName:(NSString*)newName;
+-(NSImage*)getIcon;
+-(NSInteger)numberOfChildren;
 
 @end

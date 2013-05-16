@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FileViewModel.h"
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> {
-    NSArray *nodes;
+    FileViewModel *nodes;
     
     IBOutlet NSOutlineView *outline;
 }
