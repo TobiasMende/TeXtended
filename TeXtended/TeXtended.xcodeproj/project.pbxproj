@@ -81,6 +81,7 @@
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -229,6 +230,8 @@
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
 		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
+		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
+		F6E8243F1743A11E00FB2CCB /* FileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +367,8 @@
 				F6CDAA69173133030094197C /* FileOutlineView.h */,
 				F6CDAA6A173133030094197C /* FileOutlineView.m */,
 				F692F4D1173A62710032EF32 /* FileView.xib */,
+				F6E8243E1743A11E00FB2CCB /* FileViewModel.h */,
+				F6E8243F1743A11E00FB2CCB /* FileViewModel.m */,
 			);
 			path = FileViewer;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
+				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
