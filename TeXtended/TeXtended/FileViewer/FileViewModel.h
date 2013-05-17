@@ -10,6 +10,8 @@
 
 @interface FileViewModel : NSObject {
     NSString* filePath;
+    NSArray* pathComponents;
+    NSInteger pathIndex;
     NSString* fileName;
     NSImage* icon;
     NSMutableArray* children;

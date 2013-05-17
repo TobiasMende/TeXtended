@@ -19,6 +19,8 @@
         icon = nil;
         children = nil;
         parent = nil;
+        pathComponents = nil;
+        pathIndex = -1;
     }
     return self;
 }
@@ -26,7 +28,7 @@
 - (void)addChildren:(NSString *)path
 {
     FileViewModel* newModel = [FileViewModel alloc];
-    NSString* childName = [[path pathComponents] objectAtIndex:0];
+    NSString* childName = [[path pathComponents] objectAtIndex:pathIndex+1];
     [newModel addPath:path];
     if(children == nil)
         children = [NSMutableArray alloc];
@@ -45,19 +47,15 @@
 
 -(void)addPath:(NSString*)path
 {
-    fileName = [[path pathComponents] objectAtIndex:0];
-    NSRange range;
-    range.location = 1;
-    range.length = [[path pathComponents] count]-1;
-    NSString* newURLString;
-    newURLString = [NSString pathWithComponents:[[path pathComponents] subarrayWithRange:range]];
-    
-    NSComparisonResult result = [fileName compare:newURLString];
-    
-    if(result != NSOrderedSame)
-    {
-        [self addChildren:newURLString];
-    }
+    NSArray* components = [path pathComponents];
+    if([components count] == pathIndex+1)
+        return;
+    fileName = [components objectAtIndex:pathIndex+1];
+    FileViewModel *child = [self getChildren:[components indexOfObject:fileName]];
+    if(child == nil)
+        [self addChildren:path];
+    else
+        [child addPath:path];
 }
 
 -(void)setPath:(NSString*)newPath
@@ -65,6 +63,8 @@
     filePath = newPath;
     fileName = [filePath lastPathComponent];
     icon = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
+    pathComponents = [filePath pathComponents];
+    pathIndex = [pathComponents count]-1;
 }
 
 -(NSString*)getFileName
