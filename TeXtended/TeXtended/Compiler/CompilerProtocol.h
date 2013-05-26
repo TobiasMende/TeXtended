@@ -19,12 +19,12 @@
  * Calls the compile method on the document.
  * @param draft is true, if the draft compile should be used and false for a final compile.
  */
-//- (void) compile:(bool draft);
+- (void) compile:(bool)draft;
 
 /**
  * Controlls if this compile does auto compile or not.
  * @param on is set to true, if auto compile should be used.
  */
-//- (void) setAutoCompile:(bool on);
+- (void) setAutoCompile:(bool)on;
 
 @end

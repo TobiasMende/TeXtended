@@ -7,20 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "LineNumberView.h"
-#import "ExtendedPdf.h"
 #import "MainDocument.h"
-@class HighlightingTextView, DocumentModel, FileViewController;
+@class DocumentModel, MainWindowController, DocumentController;
 @interface SimpleDocument : NSDocument <MainDocument> {
-    /** Extention of NSRulerView to show line numbers. */
-    LineNumberView *lineNumberView;
-    NSString *temporaryTextStorage;
+    
 }
-@property (weak) IBOutlet NSSplitView *leftSidebar;
-@property (weak) IBOutlet NSScrollView *editorScrollView;
-@property (weak) IBOutlet ExtendedPdf *pdfView;
-@property (unsafe_unretained) IBOutlet HighlightingTextView *editorView;
-@property (strong) IBOutlet FileViewController *fileViewController;
 @property (strong) NSManagedObjectContext *context;
 @property (strong) DocumentModel *model;
+@property (strong) MainWindowController *mainWindowController;
+@property (strong) DocumentController *documentController;
+
 @end

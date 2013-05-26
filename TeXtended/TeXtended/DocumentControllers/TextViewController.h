@@ -8,7 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
+@class HighlightingTextView, LineNumberView;
+@interface TextViewController : NSViewController<DocumentControllerProtocol> {
+    LineNumberView *lineNumberView;
+}
+@property (strong) IBOutlet HighlightingTextView *textView;
+@property (strong) IBOutlet NSScrollView *scrollView;
+@property (strong) id<DocumentControllerProtocol> parent;
 
-@interface TextViewController : NSViewController<DocumentControllerProtocol>
+- (NSString *)content;
+- (void) setContent:(NSString*) content;
 
 @end

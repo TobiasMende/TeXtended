@@ -8,8 +8,8 @@
 
 #import "SimpleDocument.h"
 #import "DocumentModel.h"
-#import "HighlightingTextView.h"
-#import "FileViewController.h"
+#import "MainWindowController.h"
+#import "DocumentController.h"
 NSSet *standardDocumentTypes;
 @implementation SimpleDocument
 
@@ -25,16 +25,11 @@ NSSet *standardDocumentTypes;
         _context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
+        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
     }
     return self;
 }
 
-- (NSString *)windowNibName
-{
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"SimpleDocument";
-}
 
 /*- (void)makeWindowControllers {
     
@@ -64,6 +59,7 @@ NSSet *standardDocumentTypes;
     }
 }
 
+
 + (BOOL)autosavesInPlace
 {
     return YES;
@@ -72,7 +68,7 @@ NSSet *standardDocumentTypes;
 - (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
     BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-        [self.editorView breakUndoCoalescing];
+        [self.documentController breakUndoCoalescing];
     }
     return success;
 }
@@ -84,7 +80,7 @@ NSSet *standardDocumentTypes;
         return NO;
     } 
         self.model.texPath = [url path];
-        BOOL success = [self.model saveContent:self.editorView.string error:outError];
+    BOOL success = [self.documentController saveDocument:outError];
         return success;
     
 }
@@ -95,16 +91,15 @@ NSSet *standardDocumentTypes;
     }
     if (!self.model) {
         _model = [[DocumentModel alloc] initWithContext:self.context];
+        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
+        if(self.mainWindowController) {
+            [self.documentController setWindowController:self.mainWindowController];
+        }
     }
     self.model.texPath = [url path];
-    if (self.fileViewController) {
-        [self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
-    }
-    temporaryTextStorage = [self.model loadContent];
-    if (self.editorView && temporaryTextStorage) {
-        self.editorView.string = temporaryTextStorage;
-    }
-    return temporaryTextStorage != nil;
+    [self.documentController loadContent];
+
+    return YES;
 }
 
 @end

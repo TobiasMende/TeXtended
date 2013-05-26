@@ -7,9 +7,10 @@
 //
 
 #import "TextViewController.h"
-
+#import "LineNumberView.h"
+#import "HighlightingTextView.h"
 @interface TextViewController ()
-
+- (void) initialize;
 @end
 
 @implementation TextViewController
@@ -18,10 +19,53 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
+        [self initialize];
     }
     
     return self;
 }
+
+- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
+    self = [super initWithNibName:@"TextView" bundle:nil];
+    if (self) {
+        self.parent = parent;
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize {
+    lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
+    [self.scrollView setVerticalRulerView:lineNumberView];
+    [self.scrollView setHasHorizontalRuler:NO];
+    [self.scrollView setHasVerticalRuler:YES];
+    [self.scrollView setRulersVisible:YES];
+}
+
+
+- (NSString *)content {
+    return [self.textView string];
+}
+
+- (void)setContent:(NSString *)content {
+    [self.textView setString:content];
+}
+
+- (NSSet<DocumentControllerProtocol> *)children {
+    return [NSSet setWithObject:nil];
+}
+
+- (void) documentHasChangedAction {
+}
+
+- (void)breakUndoCoalescing {
+    [self.textView breakUndoCoalescing];
+}
+
+- (DocumentController *)documentController {
+    return [self.parent documentController];
+}
+
+
 
 @end

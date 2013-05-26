@@ -78,7 +78,7 @@
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-    NSLog(@"ok");
+    //NSLog(@"ok");
 }
 
 - (void) drawPage:(PDFPage *) page
