@@ -102,6 +102,7 @@
 													<string key="NSContents">Text Cell</string>
 													<reference key="NSSupport" ref="26"/>
 													<reference key="NSControlView" ref="62904325"/>
+													<bool key="NSDrawsBackground">YES</bool>
 													<object class="NSColor" key="NSBackgroundColor">
 														<int key="NSColorSpace">1</int>
 														<bytes key="NSRGB">MC44MTU5NjA0MjggMC44MTU5NjA0MjggMC44MTU5NjA0MjgAA</bytes>

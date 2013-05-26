@@ -27,9 +27,10 @@
 }
 
 - (void)doubleClick:(id)object {
-    id row = [outline itemAtRow:[outline clickedRow]];
-    NSString *path = [row valueForKey:@"URL"];
-    [self openFileInDefApp:[[NSURL alloc] initWithString:path]];
+    FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
+    NSString *path = [model getPath];
+    NSLog(@"%@",path);
+    [self openFileInDefApp:path];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -81,7 +82,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel *model = (FileViewModel*)item;
     NSString* oldFile = [model getPath];
     NSString* newFile = (NSString*)object;
-    [self renameFile:oldFile toNewFile:newFile];
+    NSLog(@"%@",newFile);
+    //[self renameFile:oldFile toNewFile:newFile];
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
@@ -119,12 +121,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setDoubleAction:@selector(doubleClick:)];
     NSBrowserCell *cell = [[NSBrowserCell alloc] init];
     [cell setLeaf:YES];
+    [cell setEditable:YES];
+    
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
     NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
     nodes = [[FileViewModel alloc] init];
     [nodes setPath:[[NSURL fileURLWithPath:path] path]];
     [self recursiveFileFinder:[NSURL fileURLWithPath:path]];
+    [self initializeEventStream];
 }
 
 - (void) recursiveFileFinder: (NSURL*)url
@@ -164,10 +169,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return YES;
 }
 
-- (BOOL)openFileInDefApp: (NSURL*)url
+- (BOOL)openFileInDefApp: (NSString*)path
 {
     NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-    [workspace openFile:url.path];
+    [workspace openFile:path];
     return YES;
 }
 
@@ -175,6 +180,46 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
          toNewFile:(NSString*)newFile {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
     [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
+}
+
+- (void) initializeEventStream
+{
+    NSArray *paths = [NSArray arrayWithArray:pathsToWatch];
+    void *appPointer = (__bridge void *)self;
+    FSEventStreamContext context = {0, appPointer, NULL, NULL, NULL};
+    NSTimeInterval latency = 3.0;
+    stream = FSEventStreamCreate(NULL,
+                                 &fsevents_callback,
+                                 &context,
+                                 (__bridge CFArrayRef) paths,
+                                 [lastEventId unsignedLongLongValue],
+                                 (CFAbsoluteTime) latency,
+                                 kFSEventStreamCreateFlagUseCFTypes
+                                 );
+    
+    FSEventStreamScheduleWithRunLoop(stream,
+                                     CFRunLoopGetCurrent(),
+                                     kCFRunLoopDefaultMode);
+    FSEventStreamStart(stream);
+}
+
+void fsevents_callback(ConstFSEventStreamRef streamRef,
+                       void *userData,
+                       size_t numEvents,
+                       void *eventPaths,
+                       const FSEventStreamEventFlags eventFlags[],
+                       const FSEventStreamEventId eventIds[])
+{
+    size_t i;
+    for(i=0; i < numEvents; i++){
+        //NSLog(@"%@",[(__bridge NSArray*)eventPaths objectAtIndex:i]);
+    }
+    
+}
+
+- (void)loadDocument:(DocumentModel*)document
+{
+    return;
 }
 
 @end

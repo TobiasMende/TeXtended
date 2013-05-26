@@ -36,9 +36,9 @@ NSSet *standardDocumentTypes;
     return @"SimpleDocument";
 }
 
-- (void)makeWindowControllers {
+/*- (void)makeWindowControllers {
     
-}
+}*/
 
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
