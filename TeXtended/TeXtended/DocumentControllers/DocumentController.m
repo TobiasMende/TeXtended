@@ -45,4 +45,8 @@
     return nil;
 }
 
+- (void)breakUndoCoalescing {
+    [self.textViewController breakUndoCoalescing];
+}
+
 @end
