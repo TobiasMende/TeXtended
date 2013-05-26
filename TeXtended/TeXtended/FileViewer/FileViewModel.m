@@ -40,7 +40,7 @@
     for(NSInteger i = 0; i < [children count]; i++)
     {
         NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] getFileName]];
-        if(result == NSOrderedDescending)
+        if(result == NSOrderedAscending)
         {
             [children insertObject:newModel atIndex:i];
             return;
@@ -79,10 +79,7 @@
 
 -(NSString*)getPath
 {
-    if (children == nil)
-        return nil;
-    else
-        return filePath;
+    return filePath;
 }
 
 -(NSImage*)getIcon
@@ -140,21 +137,3 @@
 }
 
 @end
-/*
-0
- 1
-1
- 2
-2
- 2
-3
- 3
-4
- 4
-5
- 5
-6
- 6
-7
- 
-*/
