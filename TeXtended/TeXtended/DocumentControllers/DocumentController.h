@@ -30,7 +30,7 @@
 @property (strong) OutlineViewController* outlineViewController;
 
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document;
-
+- (void)setupWindowController;
 - (BOOL) saveDocument:(NSError**) outError;
 - (BOOL) loadContent;
 

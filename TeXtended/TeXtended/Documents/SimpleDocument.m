@@ -78,9 +78,9 @@ NSSet *standardDocumentTypes;
         }
     }
     self.model.texPath = [url path];
-    BOOL success = [self.documentController loadContent];
+    [self.documentController loadContent];
 
-    return success;
+    return YES;
 }
 
 @end

@@ -42,6 +42,7 @@
     [self.scrollView setRulersVisible:YES];
 }
 
+
 - (NSString *)content {
     return [self.textView string];
 }

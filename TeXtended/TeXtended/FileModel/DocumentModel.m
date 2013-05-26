@@ -26,6 +26,9 @@
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
     NSString *content;
+    if (!self.texPath) {
+        return nil;
+    }
     if (self.encoding) {
         content = [NSString stringWithContentsOfFile:self.texPath encoding:[self.encoding unsignedLongValue] error:&error];
     } else {

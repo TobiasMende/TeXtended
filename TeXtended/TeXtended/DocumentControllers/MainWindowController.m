@@ -7,7 +7,7 @@
 //
 
 #import "MainWindowController.h"
-
+#import "DocumentController.h"
 @interface MainWindowController ()
 
 @end
@@ -21,7 +21,7 @@
 - (id)init {
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
-        
+        NSLog(@"WindowController: Init");
     }
     return self;
 }
@@ -29,14 +29,13 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self.documentController setupWindowController];
 }
 
 - (void)clearAllDocumentViews {
-    [self.left setSubviews:[NSArray arrayWithObject: nil]];
-    [self.middle setSubviews:[NSArray arrayWithObject: nil]];
-    [self.right setSubviews:[NSArray arrayWithObject: nil]];
+    [self.left setSubviews:[NSArray arrayWithObjects: nil]];
+    [self.middle setSubviews:[NSArray arrayWithObjects: nil]];
+    [self.right setSubviews:[NSArray arrayWithObjects: nil]];
 }
 
 - (void)addConsoleViewsView:(NSView *)view {

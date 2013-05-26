@@ -15,7 +15,6 @@
 
 
 @interface DocumentController ()
-- (void)setupWindowController;
 
 @end
 @implementation DocumentController
@@ -41,19 +40,18 @@
 
 - (void)setWindowController:(id<WindowControllerProtocol>)windowController {
     _windowController = windowController;
-    
-    if (_windowController) {
-        [self setupWindowController];
-        
-    }
+    [self.windowController setDocumentController:self];
 }
 
 - (void)setupWindowController {
+    NSLog(@"Setup WindowController");
+    [self.windowController clearAllDocumentViews];
     [self.windowController setDocumentController:self];
     [self.windowController addOutlineView:self.outlineViewController.view];
     [self.windowController addTextView:self.textViewController.view];
     [self.windowController addConsoleViewsView:self.consolViewsController.view];
     [self.windowController addPDFViewsView:self.pdfViewsController.view];
+    [self loadContent];
 }
 
 - (id <DocumentControllerProtocol>) parent {
