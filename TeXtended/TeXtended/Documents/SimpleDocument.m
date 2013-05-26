@@ -36,6 +36,11 @@ NSSet *standardDocumentTypes;
     return @"SimpleDocument";
 }
 
+- (void)makeWindowControllers {
+    
+}
+
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
@@ -57,7 +62,6 @@ NSSet *standardDocumentTypes;
             [self.fileViewController loadPath:fileUrl];
         }
     }
-    
 }
 
 + (BOOL)autosavesInPlace

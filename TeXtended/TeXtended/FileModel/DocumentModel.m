@@ -20,6 +20,7 @@
 @dynamic encoding;
 @dynamic mainDocuments;
 @dynamic subDocuments;
+@dynamic headerDocument;
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];

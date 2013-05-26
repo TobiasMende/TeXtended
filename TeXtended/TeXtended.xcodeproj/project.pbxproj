@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */ = {isa = PBXBuildFile; fileRef = 76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */; };
+		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
+		76049CA01752085000778E2A /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
 		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
@@ -49,7 +52,7 @@
 		D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD01726889700E2F8EC /* ProjectDocument.m */; };
 		D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD11726889700E2F8EC /* ProjectDocument.xib */; };
 		D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
-		D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* SimpleDocument.xib */; };
+		D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* MainWindow.xib */; };
 		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
 		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
 		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
@@ -69,6 +72,16 @@
 		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
+		D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506A1751FECC00BC05DD /* CompilersController.m */; };
+		D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
+		D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextViewController.xib */; };
+		D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
+		D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsController.xib */; };
+		D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
+		D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */; };
+		D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
+		D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineViewController.xib */; };
+		D2A550841752085700BC05DD /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550821752085600BC05DD /* MainWindowController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
@@ -124,6 +137,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdfControlls.h; sourceTree = "<group>"; };
+		76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdfControlls.m; sourceTree = "<group>"; };
+		76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPdfControlls.xib; sourceTree = "<group>"; };
+		76049C9D1751FE3100778E2A /* CompilerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompilerProtocol.h; sourceTree = "<group>"; };
+		76049C9E1752085000778E2A /* Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compiler.h; sourceTree = "<group>"; };
+		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		76C78773172BD581004FF4C3 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
 		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -178,7 +197,7 @@
 		D21ACBD11726889700E2F8EC /* ProjectDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDocument.xib; sourceTree = "<group>"; };
 		D21ACBD21726889700E2F8EC /* SimpleDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDocument.h; sourceTree = "<group>"; };
 		D21ACBD31726889700E2F8EC /* SimpleDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
-		D21ACBD41726889700E2F8EC /* SimpleDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleDocument.xib; sourceTree = "<group>"; };
+		D21ACBD41726889700E2F8EC /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
 		D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
 		D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -204,12 +223,29 @@
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D271983D174398D800342CB0 /* pdflatex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pdflatex.sh; sourceTree = "<group>"; };
 		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
-		D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewControllerProtocol.h; sourceTree = "<group>"; };
+		D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentControllerProtocol.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
+		D2A550691751FECC00BC05DD /* CompilersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilersController.h; sourceTree = "<group>"; };
+		D2A5506A1751FECC00BC05DD /* CompilersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilersController.m; sourceTree = "<group>"; };
+		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		D2A5506E1751FF4B00BC05DD /* TextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewController.xib; sourceTree = "<group>"; };
+		D2A550711751FFCF00BC05DD /* PDFViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewsController.h; sourceTree = "<group>"; };
+		D2A550721751FFCF00BC05DD /* PDFViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewsController.m; sourceTree = "<group>"; };
+		D2A550731751FFCF00BC05DD /* PDFViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewsController.xib; sourceTree = "<group>"; };
+		D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewsController.h; sourceTree = "<group>"; };
+		D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewsController.m; sourceTree = "<group>"; };
+		D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsController.xib; sourceTree = "<group>"; };
+		D2A5507B1752003A00BC05DD /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		D2A5507C1752003A00BC05DD /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
+		D2A5507D1752003A00BC05DD /* OutlineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineViewController.xib; sourceTree = "<group>"; };
+		D2A550801752081E00BC05DD /* WindowControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowControllerProtocol.h; sourceTree = "<group>"; };
+		D2A550811752085600BC05DD /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = ../DocumentControllers/MainWindowController.h; sourceTree = "<group>"; };
+		D2A550821752085600BC05DD /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = ../DocumentControllers/MainWindowController.m; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
@@ -253,6 +289,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76049C9C1751FDB000778E2A /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				76049C9D1751FE3100778E2A /* CompilerProtocol.h */,
+				76049C9E1752085000778E2A /* Compiler.h */,
+				76049C9F1752085000778E2A /* Compiler.m */,
+			);
+			path = Compiler;
+			sourceTree = "<group>";
+		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +406,9 @@
 			children = (
 				D21ACBB01726873900E2F8EC /* ExtendedPdf.h */,
 				D21ACBB11726873900E2F8EC /* ExtendedPdf.m */,
+				76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */,
+				76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */,
+				76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */,
 			);
 			path = PDFView;
 			sourceTree = "<group>";
@@ -404,12 +453,14 @@
 		D21ACBCE1726889700E2F8EC /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				D2A550811752085600BC05DD /* MainWindowController.h */,
+				D2A550821752085600BC05DD /* MainWindowController.m */,
+				D21ACBD41726889700E2F8EC /* MainWindow.xib */,
 				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
 				D21ACBD11726889700E2F8EC /* ProjectDocument.xib */,
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
-				D21ACBD41726889700E2F8EC /* SimpleDocument.xib */,
 				D271984317451CD600342CB0 /* MainDocument.h */,
 			);
 			path = Documents;
@@ -453,7 +504,22 @@
 			children = (
 				D271984A1745241500342CB0 /* DocumentController.h */,
 				D271984B1745241500342CB0 /* DocumentController.m */,
-				D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */,
+				D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */,
+				D2A550691751FECC00BC05DD /* CompilersController.h */,
+				D2A5506A1751FECC00BC05DD /* CompilersController.m */,
+				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
+				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
+				D2A5506E1751FF4B00BC05DD /* TextViewController.xib */,
+				D2A550711751FFCF00BC05DD /* PDFViewsController.h */,
+				D2A550721751FFCF00BC05DD /* PDFViewsController.m */,
+				D2A550731751FFCF00BC05DD /* PDFViewsController.xib */,
+				D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */,
+				D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */,
+				D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */,
+				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
+				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
+				D2A5507D1752003A00BC05DD /* OutlineViewController.xib */,
+				D2A550801752081E00BC05DD /* WindowControllerProtocol.h */,
 			);
 			path = DocumentControllers;
 			sourceTree = "<group>";
@@ -545,6 +611,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
@@ -643,10 +710,15 @@
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
-				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
+				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
+				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
+				D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */,
+				D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */,
+				D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */,
+				D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,8 +782,16 @@
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
+				76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */,
+				76049CA01752085000778E2A /* Compiler.m in Sources */,
 				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
 				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
+				D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */,
+				D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */,
+				D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */,
+				D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */,
+				D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */,
+				D2A550841752085700BC05DD /* MainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

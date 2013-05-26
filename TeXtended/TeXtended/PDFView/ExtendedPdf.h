@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
+#import "ExtendedPdfControlls.h"
 
 /**
  * This class the PDFView from cocoas PDFKit by functionalitys
@@ -15,7 +16,9 @@
  *
  * @author Max Bannach
  */
-@interface ExtendedPdf : PDFView
+@interface ExtendedPdf : PDFView {
+    ExtendedPdfControlls *controllsView;
+}
 
 /**
  * Describes the distances between to vertical lines in the grid.
@@ -72,5 +75,4 @@
   * Init required variables. Called from all init methods.
   */
 - (void) initVariables;
-
 @end

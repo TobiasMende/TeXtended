@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "LineNumberView.h"
+#import "ExtendedPdf.h"
 #import "MainDocument.h"
 @class HighlightingTextView, DocumentModel, FileViewController;
 @interface SimpleDocument : NSDocument <MainDocument> {
@@ -17,6 +18,7 @@
 }
 @property (weak) IBOutlet NSSplitView *leftSidebar;
 @property (weak) IBOutlet NSScrollView *editorScrollView;
+@property (weak) IBOutlet ExtendedPdf *pdfView;
 @property (unsafe_unretained) IBOutlet HighlightingTextView *editorView;
 @property (strong) IBOutlet FileViewController *fileViewController;
 @property (strong) NSManagedObjectContext *context;
