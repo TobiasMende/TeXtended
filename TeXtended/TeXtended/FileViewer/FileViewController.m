@@ -37,11 +37,11 @@
            ofItem:(id)item
 {
     if(item == nil) {
-        return [nodes getChildren:index];
+        return [nodes getChildrenByIndex:index];
     }
     else {
-        FileViewModel *model = [item representedObject];
-        return [model getChildren:index];
+        FileViewModel *model = (FileViewModel*)item;
+        return [model getChildrenByIndex:index];
     }
     return nil;
 }
@@ -49,7 +49,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)item
 {
-    FileViewModel *model = [item representedObject];
+    FileViewModel *model = (FileViewModel*)item;
     if([model numberOfChildren] > 0) return YES;
     
     return NO;
@@ -61,7 +61,7 @@
     if(item == nil) {
         return [nodes numberOfChildren];
     }
-    FileViewModel *model = [item representedObject];
+    FileViewModel *model = (FileViewModel*)item;
     return [model numberOfChildren];
 }
 
@@ -69,7 +69,7 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn
            byItem:(id)item
 {
-    FileViewModel *model = [item representedObject];
+    FileViewModel *model = (FileViewModel*)item;
     return [model getFileName];
 }
 
@@ -79,10 +79,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
              byItem:(id)item
 {
     
-    NSLog(@"%@",[[item class] description]);
-    NSString* oldFile = [item valueForKey:@"URL"];
-    NSString* newFile = (NSString*)object;
-    NSLog(@"%@ to %@", oldFile, newFile);
+    //NSLog(@"%@",[[item class] description]);
+    //NSString* oldFile = [item valueForKey:@"URL"];
+    //NSString* newFile = (NSString*)object;
+    //NSLog(@"%@ to %@", oldFile, newFile);
     //[self renameFile:oldFile toNewFile:newFile];
 }
 
@@ -91,7 +91,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
          forTableColumn:(NSTableColumn *)tableColumn
                    item:(id)item
 {
-    FileViewModel *model = [item representedObject];
+    FileViewModel *model = (FileViewModel*)item;
     CGFloat max = 17;
     CGFloat scale = 0;
     NSImage *img = [model getIcon];
@@ -122,39 +122,37 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSBrowserCell *cell = [[NSBrowserCell alloc] init];
     [cell setLeaf:YES];
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
+    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
+    nodes = [[FileViewModel alloc] init];
+    [nodes setPath:[[NSURL fileURLWithPath:path] path]];
+    [self recursiveFileFinder:[NSURL fileURLWithPath:path]];
 }
 
-- (NSArray*) recursiveFileFinder: (NSURL*)url
+- (void) recursiveFileFinder: (NSURL*)url
 {
-    /*NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
     
     NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
     NSUInteger count = [children count];
-    NSMutableArray* node = [[NSMutableArray alloc] init];
     
     for (NSUInteger i = 0; i < count; i++) {
         NSError *error;
         NSNumber *isDirectory = nil;
         NSURL *fileUrl = [children objectAtIndex:i];
-        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            NSString *filename = fileUrl.lastPathComponent;
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSArray array], @"children", @"Datei", @"nodeDescription",filename, @"nodeName", fileUrl.path, @"URL", nil]];
+            [self->nodes addPath:[fileUrl path]];
         }
         else
         {
-            NSString *dirname = fileUrl.lastPathComponent;
-            NSArray *dir = [self recursiveFileFinder:fileUrl];
-            [node addObject:[NSDictionary dictionaryWithObjectsAndKeys: dir, @"children", @"Ordner", @"nodeDescription",dirname, @"nodeName", fileUrl.path, @"URL", nil]];
+            [self->nodes addPath:[fileUrl path]];
+            [self recursiveFileFinder:fileUrl];
         }
     }
-    NSArray *retList = [[NSArray alloc] initWithArray:node];
-    return retList;*/
-    return nil;
 }
 
 - (BOOL)loadPath: (NSURL*)url

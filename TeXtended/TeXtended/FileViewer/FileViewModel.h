@@ -19,7 +19,9 @@
 }
 
 -(void)addPath:(NSString*)path;
--(FileViewModel*)getChildren:(NSInteger)index;
+-(void)setPath:(NSString*)newPath;
+-(FileViewModel*)getChildrenByName:(NSString*)name;
+-(FileViewModel*)getChildrenByIndex:(NSInteger)index;
 -(NSString*)getFileName;
 -(NSString*)getPath;
 -(void)setFileName:(NSString*)oldName

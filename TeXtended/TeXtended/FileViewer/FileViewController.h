@@ -15,7 +15,7 @@
     IBOutlet NSOutlineView *outline;
 }
 
-- (NSArray*) recursiveFileFinder: (NSURL*)url;
+- (void) recursiveFileFinder: (NSURL*)url;
 - (BOOL)loadPath: (NSURL*)url;
 - (void)doubleClick:(id)object;
 
