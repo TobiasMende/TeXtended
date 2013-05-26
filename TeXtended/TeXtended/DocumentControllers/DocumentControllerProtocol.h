@@ -46,4 +46,6 @@
  */
 - (void) documentHasChangedAction;
 
+- (void) breakUndoCoalescing;
+
 @end

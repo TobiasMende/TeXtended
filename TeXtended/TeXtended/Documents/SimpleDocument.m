@@ -9,6 +9,7 @@
 #import "SimpleDocument.h"
 #import "DocumentModel.h"
 #import "MainWindowController.h"
+#import "DocumentController.h"
 NSSet *standardDocumentTypes;
 @implementation SimpleDocument
 
@@ -58,7 +59,7 @@ NSSet *standardDocumentTypes;
 - (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
     BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-        [self.editorView breakUndoCoalescing];
+        [self.documentController breakUndoCoalescing];
     }
     return success;
 }
@@ -70,7 +71,7 @@ NSSet *standardDocumentTypes;
         return NO;
     } 
         self.model.texPath = [url path];
-    BOOL success = [self.documentController saveDocument:&outError];
+    BOOL success = [self.documentController saveDocument:outError];
         return success;
     
 }

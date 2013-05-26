@@ -55,7 +55,7 @@
     return [NSSet setWithObject:nil];
 }
 
-- (void)documentWasSaved {
+- (void)breakUndoCoalescing {
     [self.textView breakUndoCoalescing];
 }
 

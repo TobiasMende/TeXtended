@@ -19,5 +19,4 @@
 - (NSString *)content;
 - (void) setContent:(NSString*) content;
 
-- (void) documentWasSaved;
 @end
