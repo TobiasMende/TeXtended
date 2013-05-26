@@ -12,6 +12,7 @@
 
 
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document {
+    //TODO: implement
     return nil;
 }
 
@@ -28,11 +29,20 @@
 }
 
 - (NSSet<DocumentControllerProtocol> *) children {
-    return nil;
+    NSSet<DocumentControllerProtocol> *children = [NSSet setWithObjects:
+                       [self textViewController],
+                       [self pdfViewsController],
+                       [self consolViewsController],
+                       [self outlineViewController], nil];
+    return children;
 }
 
 - (void) documentHasChangedAction {
-    
+    //TODO: call on children
+}
+
+- (bool) saveDocument:(NSError *__autoreleasing *)outError {
+    return nil;
 }
 
 @end
