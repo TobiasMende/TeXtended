@@ -34,6 +34,11 @@
     return self;
 }
 
+- (void)loadView {
+    [super loadView];
+    [self initialize];
+}
+
 - (void)initialize {
     lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
     [self.scrollView setVerticalRulerView:lineNumberView];

@@ -8,6 +8,8 @@
 
 #import "MainWindowController.h"
 #import "DocumentController.h"
+#import "FileOutlineView.h"
+#import "FileViewController.h"
 @interface MainWindowController ()
 
 @end
@@ -30,6 +32,10 @@
 {
     [super windowDidLoad];
     [self.documentController setupWindowController];
+    _fileViewController = [[FileViewController alloc] init];
+    [self.fileViewArea setSubviews:[NSArray arrayWithObject:self.fileViewController.view]];
+    [self.fileViewController loadDocument:self.documentController.model];
+    
 }
 
 - (void)clearAllDocumentViews {
