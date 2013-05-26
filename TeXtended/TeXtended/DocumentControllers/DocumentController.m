@@ -24,6 +24,7 @@
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document {
     self = [super init];
     if (self) {
+        NSLog(@"DocumentController: Init");
         self.model = model;
         mainDocument = document;
         _textViewController = [[TextViewController alloc] initWithParent:self];

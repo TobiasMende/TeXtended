@@ -25,6 +25,7 @@ NSSet *standardDocumentTypes;
         _context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
+        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
     }
     return self;
 }

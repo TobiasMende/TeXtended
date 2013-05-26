@@ -25,7 +25,7 @@
 }
 
 - (id)initWithParent:(id<DocumentControllerProtocol>)parent {
-    self = [super initWithNibName:@"OutlineViewController" bundle:nil];
+    self = [super initWithNibName:@"OutlineView" bundle:nil];
     if (self) {
         self.parent = parent;
         [self initialize];

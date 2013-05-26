@@ -25,7 +25,7 @@
 }
 
 - (id)initWithParent:(id<DocumentControllerProtocol>)parent {
-    self = [super initWithNibName:@"ConsoleViewsController" bundle:nil];
+    self = [super initWithNibName:@"ConsoleViewsView" bundle:nil];
     if (self) {
         self.parent = parent;
         [self initialize];
