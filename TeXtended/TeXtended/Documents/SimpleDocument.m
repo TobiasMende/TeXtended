@@ -29,27 +29,16 @@ NSSet *standardDocumentTypes;
     return self;
 }
 
-- (NSString *)windowNibName
-{
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"SimpleDocument";
-}
 
 - (void)makeWindowControllers {
     _mainWindowController = [[MainWindowController alloc] init];
+   
     [self addWindowController:self.mainWindowController];
+    if (self.documentController) {
+        [self.documentController setWindowController:self.mainWindowController];
+    }
 }
 
-
-- (void)windowControllerDidLoadNib:(NSWindowController *)aController
-{
-    [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    
-    /* initialize and set the linenumber view */
-    
-}
 
 + (BOOL)autosavesInPlace
 {
@@ -82,16 +71,15 @@ NSSet *standardDocumentTypes;
     }
     if (!self.model) {
         _model = [[DocumentModel alloc] initWithContext:self.context];
+        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
+        if(self.mainWindowController) {
+            [self.documentController setWindowController:self.mainWindowController];
+        }
     }
     self.model.texPath = [url path];
-    if (self.fileViewController) {
-        [self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
-    }
-    temporaryTextStorage = [self.model loadContent];
-    if (self.editorView && temporaryTextStorage) {
-        self.editorView.string = temporaryTextStorage;
-    }
-    return temporaryTextStorage != nil;
+    BOOL success = [self.documentController loadContent];
+
+    return success;
 }
 
 @end
