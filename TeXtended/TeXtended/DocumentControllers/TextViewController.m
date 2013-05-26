@@ -42,7 +42,6 @@
     [self.scrollView setRulersVisible:YES];
 }
 
-
 - (NSString *)content {
     return [self.textView string];
 }
@@ -53,6 +52,9 @@
 
 - (NSSet<DocumentControllerProtocol> *)children {
     return [NSSet setWithObject:nil];
+}
+
+- (void) documentHasChangedAction {
 }
 
 - (void)breakUndoCoalescing {

@@ -18,10 +18,36 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
+        [self initialize];
     }
     
     return self;
+}
+
+- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
+    self = [super initWithNibName:@"PDFViewsView" bundle:nil];
+    if (self) {
+        self.parent = parent;
+        [self initialize];
+    }
+    return self;
+}
+
+- (void) initialize {
+    //TODO: add children view depending on current model
+}
+
+- (DocumentController * ) documentController {
+    return [self.parent documentController];
+}
+
+- (void) documentHasChangedAction {
+    for (id<DocumentControllerProtocol> c in self.children) {
+        [c documentHasChangedAction];
+    }
+}
+
+- (void) breakUndoCoalescing{
 }
 
 @end
