@@ -1,5 +1,5 @@
 //
-//  DocumentViewControllerProtocol.h
+//  DocumentControllerProtocol.h
 //  TeXtended
 //
 //  Created by Tobias Mende on 16.05.13.
@@ -13,6 +13,6 @@
  **Author:** Tobias Mende
  
  */
-@protocol DocumentViewControllerProtocol <NSObject>
+@protocol DocumentControllerProtocol <NSObject>
 
 @end

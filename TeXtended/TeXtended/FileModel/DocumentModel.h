@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * texPath;
 @property (nonatomic, retain) NSNumber *encoding;
 @property (nonatomic, retain) ProjectModel *project;
+@property (nonatomic, retain) DocumentModel *headerDocument;
 @property (nonatomic, retain) NSSet *mainDocuments;
 @property (nonatomic, retain) NSSet *subDocuments;
 

@@ -69,6 +69,15 @@
 		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
+		D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506A1751FECC00BC05DD /* CompilersController.m */; };
+		D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
+		D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextViewController.xib */; };
+		D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
+		D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsController.xib */; };
+		D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
+		D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */; };
+		D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
+		D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineViewController.xib */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
@@ -204,12 +213,26 @@
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D271983D174398D800342CB0 /* pdflatex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pdflatex.sh; sourceTree = "<group>"; };
 		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
-		D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewControllerProtocol.h; sourceTree = "<group>"; };
+		D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentControllerProtocol.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
+		D2A550691751FECC00BC05DD /* CompilersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilersController.h; sourceTree = "<group>"; };
+		D2A5506A1751FECC00BC05DD /* CompilersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilersController.m; sourceTree = "<group>"; };
+		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		D2A5506E1751FF4B00BC05DD /* TextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewController.xib; sourceTree = "<group>"; };
+		D2A550711751FFCF00BC05DD /* PDFViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewsController.h; sourceTree = "<group>"; };
+		D2A550721751FFCF00BC05DD /* PDFViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewsController.m; sourceTree = "<group>"; };
+		D2A550731751FFCF00BC05DD /* PDFViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewsController.xib; sourceTree = "<group>"; };
+		D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewsController.h; sourceTree = "<group>"; };
+		D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewsController.m; sourceTree = "<group>"; };
+		D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsController.xib; sourceTree = "<group>"; };
+		D2A5507B1752003A00BC05DD /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		D2A5507C1752003A00BC05DD /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
+		D2A5507D1752003A00BC05DD /* OutlineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineViewController.xib; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
@@ -453,7 +476,21 @@
 			children = (
 				D271984A1745241500342CB0 /* DocumentController.h */,
 				D271984B1745241500342CB0 /* DocumentController.m */,
-				D2719849174523EC00342CB0 /* DocumentViewControllerProtocol.h */,
+				D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */,
+				D2A550691751FECC00BC05DD /* CompilersController.h */,
+				D2A5506A1751FECC00BC05DD /* CompilersController.m */,
+				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
+				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
+				D2A5506E1751FF4B00BC05DD /* TextViewController.xib */,
+				D2A550711751FFCF00BC05DD /* PDFViewsController.h */,
+				D2A550721751FFCF00BC05DD /* PDFViewsController.m */,
+				D2A550731751FFCF00BC05DD /* PDFViewsController.xib */,
+				D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */,
+				D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */,
+				D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */,
+				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
+				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
+				D2A5507D1752003A00BC05DD /* OutlineViewController.xib */,
 			);
 			path = DocumentControllers;
 			sourceTree = "<group>";
@@ -647,6 +684,10 @@
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
+				D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */,
+				D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */,
+				D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */,
+				D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +753,11 @@
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
 				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
 				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
+				D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */,
+				D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */,
+				D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */,
+				D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */,
+				D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
