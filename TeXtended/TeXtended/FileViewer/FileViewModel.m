@@ -29,12 +29,17 @@
 {
     FileViewModel* newModel = [FileViewModel alloc];
     NSString* childName = [[path pathComponents] objectAtIndex:pathIndex+1];
+    NSRange range;
+    range.location = 0;
+    range.length = pathIndex+2;
+    NSArray* newModelPathComponents = [[path pathComponents] subarrayWithRange:range];
+    [newModel setPath:[NSString pathWithComponents:newModelPathComponents]];
     [newModel addPath:path];
     if(children == nil)
-        children = [NSMutableArray alloc];
+        children = [[NSMutableArray alloc] init];
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        NSComparisonResult result = [childName compare:[[self getChildren:i] getFileName]];
+        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] getFileName]];
         if(result == NSOrderedDescending)
         {
             [children insertObject:newModel atIndex:i];
@@ -50,8 +55,8 @@
     NSArray* components = [path pathComponents];
     if([components count] == pathIndex+1)
         return;
-    fileName = [components objectAtIndex:pathIndex+1];
-    FileViewModel *child = [self getChildren:[components indexOfObject:fileName]];
+    NSString* name = [components objectAtIndex:pathIndex+1];
+    FileViewModel *child = [self getChildrenByName:name];
     if(child == nil)
         [self addChildren:path];
     else
@@ -103,12 +108,26 @@
     }
 }
 
--(FileViewModel*)getChildren:(NSInteger)index
+-(FileViewModel*)getChildrenByName:(NSString*)name
 {
     if(children == nil)
         return nil;
-    if([children count] >= index)
+    for (NSInteger i = 0; i < [children count]; i++) {
+        NSComparisonResult result = [name compare:[[children objectAtIndex:i] getFileName]];
+        if (result == NSOrderedSame) {
+            return [children objectAtIndex:i];
+        }
+    }
+    return nil;
+}
+
+-(FileViewModel*)getChildrenByIndex:(NSInteger)index
+{
+    if(children == nil)
         return nil;
+    if ([children count] < index) {
+        return nil;
+    }
     return [children objectAtIndex:index];
 }
 
