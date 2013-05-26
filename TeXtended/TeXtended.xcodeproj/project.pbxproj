@@ -715,6 +715,10 @@
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
+				D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */,
+				D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */,
+				D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */,
+				D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +784,14 @@
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
 				76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */,
 				76049CA01752085000778E2A /* Compiler.m in Sources */,
+				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
+				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
+				D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */,
+				D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */,
+				D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */,
+				D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */,
+				D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */,
+				D2A550841752085700BC05DD /* MainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

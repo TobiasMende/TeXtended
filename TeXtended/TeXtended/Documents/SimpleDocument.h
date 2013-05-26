@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "LineNumberView.h"
 #import "ExtendedPdf.h"
+#import "MainDocument.h"
 @class HighlightingTextView, DocumentModel, FileViewController;
 @interface SimpleDocument : NSDocument <MainDocument> {
     /** Extention of NSRulerView to show line numbers. */
