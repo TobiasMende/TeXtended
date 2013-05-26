@@ -14,7 +14,10 @@
 }
 @property (strong) IBOutlet HighlightingTextView *textView;
 @property (strong) IBOutlet NSScrollView *scrollView;
+@property (strong) id<DocumentControllerProtocol> parent;
 
 - (NSString *)content;
 - (void) setContent:(NSString*) content;
+
+- (void) documentWasSaved;
 @end
