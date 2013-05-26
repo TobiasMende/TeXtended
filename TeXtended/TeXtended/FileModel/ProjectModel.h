@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSSet *documents;
 @property (nonatomic, retain) NSSet *mainDocuments;
 @property (nonatomic, retain) DocumentModel *properties;
+@property (nonatomic, retain) DocumentModel *headerDocument;
 @end
 
 @interface ProjectModel (CoreDataGeneratedAccessors)

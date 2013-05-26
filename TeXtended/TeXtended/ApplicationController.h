@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController,DocumentController, CompletionsController;
+@class PreferencesController,DocumentCreationController, CompletionsController;
 @interface ApplicationController : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
-    DocumentController *documentController;
+    DocumentCreationController *documentCreationController;
 }
 - (IBAction)showPreferences:(id)sender;
 - (CompletionsController*) completionsController;

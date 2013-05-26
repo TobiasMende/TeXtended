@@ -21,20 +21,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.view.subviews.
     }
     
     return self;
 }
 
 - (void)doubleClick:(id)object {
-    //NSLog(@"DoubleClick");
-    // This gets called after following steps 1-3.
     id row = [outline itemAtRow:[outline clickedRow]];
     NSString *path = [row valueForKey:@"URL"];
-    //NSString *path = @"/Users/Tobias/Documents/Prototyp3.pdf";
     [self openFileInDefApp:[[NSURL alloc] initWithString:path]];
-    // Do something...
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -42,10 +37,11 @@
            ofItem:(id)item
 {
     if(item == nil) {
-        return [nodes objectAtIndex:index];
+        return [nodes getChildren:index];
     }
     else {
-        return [[item valueForKey:@"children"] objectAtIndex:index];
+        FileViewModel *model = [item representedObject];
+        return [model getChildren:index];
     }
     return nil;
 }
@@ -53,7 +49,8 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)item
 {
-    if([[item valueForKey:@"children"] count]>0) return YES;
+    FileViewModel *model = [item representedObject];
+    if([model numberOfChildren] > 0) return YES;
     
     return NO;
 }
@@ -62,16 +59,18 @@
   numberOfChildrenOfItem:(id)item
 {
     if(item == nil) {
-        return [nodes count];
+        return [nodes numberOfChildren];
     }
-    return [[item valueForKey:@"children"] count];
+    FileViewModel *model = [item representedObject];
+    return [model numberOfChildren];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
 objectValueForTableColumn:(NSTableColumn *)tableColumn
            byItem:(id)item
 {
-    return [item valueForKey:[tableColumn identifier]];
+    FileViewModel *model = [item representedObject];
+    return [model getFileName];
 }
 
 - (void)outlineView:(NSOutlineView *)outlineView
@@ -79,40 +78,55 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
      forTableColumn:(NSTableColumn *)tableColumn
              byItem:(id)item
 {
-    //NSLog(@"%@",[tableColumn identifier]);
-    NSDictionary *dic = [item representedObject];
-    NSInteger index = [[dic allKeys] indexOfObject:[tableColumn identifier]];
-    //NSString *str = [[dic allValues] objectAtIndex:index];
-    //str = (NSString*)object;
-    //NSLog(@"%d",index);
-    //[dic setValue:(NSString*)object forKey:[tableColumn identifier]];
-    //[item setValue:(NSString*)object forUndefinedKey:[tableColumn identifier]];
+    
+    NSLog(@"%@",[[item class] description]);
     NSString* oldFile = [item valueForKey:@"URL"];
     NSString* newFile = (NSString*)object;
     NSLog(@"%@ to %@", oldFile, newFile);
     //[self renameFile:oldFile toNewFile:newFile];
 }
 
-- (id)outlineView:(NSOutlineView *)ov viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item{
-    if ([[item representedObject] parent] == nil) {
-        return [ov makeViewWithIdentifier:@"HeaderCell" owner:self];
-    }else{
-        return [ov makeViewWithIdentifier:@"DataCell" owner:self];
+- (void)    outlineView:(NSOutlineView *)outlineView
+        willDisplayCell:(id)cell
+         forTableColumn:(NSTableColumn *)tableColumn
+                   item:(id)item
+{
+    FileViewModel *model = [item representedObject];
+    CGFloat max = 17;
+    CGFloat scale = 0;
+    NSImage *img = [model getIcon];
+    NSSize size = NSZeroSize;
+    if(img.size.width > img.size.height)
+    {
+        scale = img.size.height/img.size.width;
+        size.width = max;
+        size.height = scale*max;
     }
+    else
+    {
+        scale = img.size.width/img.size.height;
+        size.height = max;
+        size.width = scale*max;
+    }
+    
+    [img setSize:size];
+    [cell setImage:img];
+    
 }
 
 - (void) awakeFromNib {
     [super awakeFromNib];
     
-    //[fileColumn setDataCell:[[NSBrowserCell alloc] init]];
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
-    //[[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:[[NSBrowserCell alloc] init]];
+    NSBrowserCell *cell = [[NSBrowserCell alloc] init];
+    [cell setLeaf:YES];
+    [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
 }
 
 - (NSArray*) recursiveFileFinder: (NSURL*)url
 {
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    /*NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
     
@@ -139,13 +153,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
     }
     NSArray *retList = [[NSArray alloc] initWithArray:node];
-    return retList;
+    return retList;*/
+    return nil;
 }
 
 - (BOOL)loadPath: (NSURL*)url
 {
-    nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:url]];
-    [outline reloadData];
+    //nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:url]];
+    //[outline reloadData];
     return YES;
 }
 
@@ -160,7 +175,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
          toNewFile:(NSString*)newFile {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
     [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
-    //NSLog( @"File renamed to %@", newFile );
 }
 
 @end

@@ -19,5 +19,5 @@
 @dynamic documents;
 @dynamic mainDocuments;
 @dynamic properties;
-
+@dynamic headerDocument;
 @end

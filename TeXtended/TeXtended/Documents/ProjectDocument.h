@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MainDocument.h"
 
-@interface ProjectDocument : NSDocument
+@interface ProjectDocument : NSDocument<MainDocument>
 
 @end

@@ -35,7 +35,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="580458321">
 			<object class="NSCustomObject" id="512844837">
-				<string key="NSClassName">SimpleDocument</string>
+				<string key="NSClassName">MainWindowController</string>
 			</object>
 			<object class="NSCustomObject" id="613418571">
 				<string key="NSClassName">FirstResponder</string>
@@ -728,25 +728,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">FileViewController</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">outline</string>
-						<string key="NS.object.0">NSOutlineView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">outline</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">outline</string>
-							<string key="candidateClassName">NSOutlineView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FileViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">HighlightingTextView</string>
 					<string key="superclassName">NSTextView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -859,7 +840,7 @@
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+						<string key="minorKey">./Classes/MainWindowController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -917,7 +898,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SimpleDocument.h</string>
+						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
 					</object>
 				</object>
 			</array>

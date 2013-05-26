@@ -39,7 +39,6 @@
 		D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
 		D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
 		D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
-		D21ACBAB1726868A00E2F8EC /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */; };
 		D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
 		D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
 		D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
@@ -53,7 +52,7 @@
 		D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD01726889700E2F8EC /* ProjectDocument.m */; };
 		D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD11726889700E2F8EC /* ProjectDocument.xib */; };
 		D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
-		D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* SimpleDocument.xib */; };
+		D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* MainWindow.xib */; };
 		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
 		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
 		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
@@ -67,8 +66,22 @@
 		D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF2173143C2003AF83D /* DocumentModel.m */; };
 		D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
 		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
+		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
+		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
+		D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
+		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
-		D2A439F4171F10D60020C15F /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentController.m */; };
+		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
+		D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506A1751FECC00BC05DD /* CompilersController.m */; };
+		D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
+		D2A550701751FF4B00BC05DD /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextViewController.xib */; };
+		D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
+		D2A550751751FFCF00BC05DD /* PDFViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsController.xib */; };
+		D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
+		D2A5507A1751FFFB00BC05DD /* ConsoleViewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */; };
+		D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
+		D2A5507F1752003A00BC05DD /* OutlineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineViewController.xib */; };
+		D2A550841752085700BC05DD /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550821752085600BC05DD /* MainWindowController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
@@ -82,6 +95,7 @@
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,6 +106,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D271983E174399FD00342CB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = CompileFlows;
+			dstSubfolderSpec = 7;
+			files = (
+				D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +173,6 @@
 		D21ACB941726868A00E2F8EC /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
 		D21ACB951726868A00E2F8EC /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
 		D21ACB961726868A00E2F8EC /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
-		D21ACB971726868A00E2F8EC /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
-		D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D21ACB991726868A00E2F8EC /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
 		D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
 		D21ACB9C1726868A00E2F8EC /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
@@ -175,7 +197,7 @@
 		D21ACBD11726889700E2F8EC /* ProjectDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDocument.xib; sourceTree = "<group>"; };
 		D21ACBD21726889700E2F8EC /* SimpleDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDocument.h; sourceTree = "<group>"; };
 		D21ACBD31726889700E2F8EC /* SimpleDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
-		D21ACBD41726889700E2F8EC /* SimpleDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleDocument.xib; sourceTree = "<group>"; };
+		D21ACBD41726889700E2F8EC /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
 		D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
 		D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -194,10 +216,36 @@
 		D2681FF5173143E2003AF83D /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		D2681FF7173143EC003AF83D /* BibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibFile.h; sourceTree = "<group>"; };
 		D2681FF8173143EC003AF83D /* BibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibFile.m; sourceTree = "<group>"; };
+		D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D27198371743884B00342CB0 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		D27198381743889400342CB0 /* SyntaxHighlighterStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighterStub.h; sourceTree = "<group>"; };
+		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
+		D271983D174398D800342CB0 /* pdflatex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pdflatex.sh; sourceTree = "<group>"; };
+		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
+		D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentControllerProtocol.h; sourceTree = "<group>"; };
+		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
+		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		D2A439F2171F10D60020C15F /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
-		D2A439F3171F10D60020C15F /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
-		D2A82EFD173D483F000A7508 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
+		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
+		D2A550691751FECC00BC05DD /* CompilersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilersController.h; sourceTree = "<group>"; };
+		D2A5506A1751FECC00BC05DD /* CompilersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilersController.m; sourceTree = "<group>"; };
+		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		D2A5506E1751FF4B00BC05DD /* TextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewController.xib; sourceTree = "<group>"; };
+		D2A550711751FFCF00BC05DD /* PDFViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewsController.h; sourceTree = "<group>"; };
+		D2A550721751FFCF00BC05DD /* PDFViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewsController.m; sourceTree = "<group>"; };
+		D2A550731751FFCF00BC05DD /* PDFViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewsController.xib; sourceTree = "<group>"; };
+		D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewsController.h; sourceTree = "<group>"; };
+		D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewsController.m; sourceTree = "<group>"; };
+		D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsController.xib; sourceTree = "<group>"; };
+		D2A5507B1752003A00BC05DD /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
+		D2A5507C1752003A00BC05DD /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
+		D2A5507D1752003A00BC05DD /* OutlineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineViewController.xib; sourceTree = "<group>"; };
+		D2A550801752081E00BC05DD /* WindowControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowControllerProtocol.h; sourceTree = "<group>"; };
+		D2A550811752085600BC05DD /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = ../DocumentControllers/MainWindowController.h; sourceTree = "<group>"; };
+		D2A550821752085600BC05DD /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = ../DocumentControllers/MainWindowController.m; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
@@ -223,6 +271,8 @@
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
 		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
+		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
+		F6E8243F1743A11E00FB2CCB /* FileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +369,7 @@
 		D21ACB8A1726868A00E2F8EC /* EditorServices */ = {
 			isa = PBXGroup;
 			children = (
+				D27198341743880E00342CB0 /* SyntaxHighlighter */,
 				D21ACB8B1726868A00E2F8EC /* BracketHighlighter.h */,
 				D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */,
 				D21ACB8D1726868A00E2F8EC /* CodeExtensionEngine.h */,
@@ -331,13 +382,10 @@
 				D21ACB941726868A00E2F8EC /* EditorService.m */,
 				D21ACB951726868A00E2F8EC /* PlaceholderServices.h */,
 				D21ACB961726868A00E2F8EC /* PlaceholderServices.m */,
-				D21ACB971726868A00E2F8EC /* LatexSyntaxHighlighter.h */,
-				D21ACB981726868A00E2F8EC /* LatexSyntaxHighlighter.m */,
 				D2AAF90F17293D8200FC09C1 /* UndoSupport.h */,
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
 				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
 				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
-				D2A82EFD173D483F000A7508 /* SyntaxHighlighter.h */,
 			);
 			path = EditorServices;
 			sourceTree = "<group>";
@@ -373,6 +421,8 @@
 				F6CDAA69173133030094197C /* FileOutlineView.h */,
 				F6CDAA6A173133030094197C /* FileOutlineView.m */,
 				F692F4D1173A62710032EF32 /* FileView.xib */,
+				F6E8243E1743A11E00FB2CCB /* FileViewModel.h */,
+				F6E8243F1743A11E00FB2CCB /* FileViewModel.m */,
 			);
 			path = FileViewer;
 			sourceTree = "<group>";
@@ -403,12 +453,15 @@
 		D21ACBCE1726889700E2F8EC /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				D2A550811752085600BC05DD /* MainWindowController.h */,
+				D2A550821752085600BC05DD /* MainWindowController.m */,
+				D21ACBD41726889700E2F8EC /* MainWindow.xib */,
 				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
 				D21ACBD11726889700E2F8EC /* ProjectDocument.xib */,
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
-				D21ACBD41726889700E2F8EC /* SimpleDocument.xib */,
+				D271984317451CD600342CB0 /* MainDocument.h */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -424,6 +477,51 @@
 				D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D27198341743880E00342CB0 /* SyntaxHighlighter */ = {
+			isa = PBXGroup;
+			children = (
+				D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */,
+				D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */,
+				D27198371743884B00342CB0 /* SyntaxHighlighter.h */,
+				D27198381743889400342CB0 /* SyntaxHighlighterStub.h */,
+				D27198391743889400342CB0 /* SyntaxHighlighterStub.m */,
+			);
+			path = SyntaxHighlighter;
+			sourceTree = "<group>";
+		};
+		D271983C1743989B00342CB0 /* CompileFlows */ = {
+			isa = PBXGroup;
+			children = (
+				D271983D174398D800342CB0 /* pdflatex.sh */,
+			);
+			path = CompileFlows;
+			sourceTree = "<group>";
+		};
+		D2719845174523BB00342CB0 /* DocumentControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D271984A1745241500342CB0 /* DocumentController.h */,
+				D271984B1745241500342CB0 /* DocumentController.m */,
+				D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */,
+				D2A550691751FECC00BC05DD /* CompilersController.h */,
+				D2A5506A1751FECC00BC05DD /* CompilersController.m */,
+				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
+				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
+				D2A5506E1751FF4B00BC05DD /* TextViewController.xib */,
+				D2A550711751FFCF00BC05DD /* PDFViewsController.h */,
+				D2A550721751FFCF00BC05DD /* PDFViewsController.m */,
+				D2A550731751FFCF00BC05DD /* PDFViewsController.xib */,
+				D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */,
+				D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */,
+				D2A550781751FFFB00BC05DD /* ConsoleViewsController.xib */,
+				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
+				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
+				D2A5507D1752003A00BC05DD /* OutlineViewController.xib */,
+				D2A550801752081E00BC05DD /* WindowControllerProtocol.h */,
+			);
+			path = DocumentControllers;
 			sourceTree = "<group>";
 		};
 		D283038A1731346200E1FC1D /* FileModel */ = {
@@ -515,10 +613,11 @@
 			children = (
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
+				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
 				D283038A1731346200E1FC1D /* FileModel */,
-				D2A439F2171F10D60020C15F /* DocumentController.h */,
-				D2A439F3171F10D60020C15F /* DocumentController.m */,
+				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
+				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
 				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB71726876900E2F8EC /* Categories */,
 				D21ACB801726868A00E2F8EC /* Editor */,
@@ -535,6 +634,7 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D271983C1743989B00342CB0 /* CompileFlows */,
 				D21ACB7C172685C100E2F8EC /* Development */,
 				D21ACB721726855000E2F8EC /* Sparkle */,
 				D2CC54FB171EAFAB00D81CF1 /* TeXtended-Info.plist */,
@@ -559,6 +659,7 @@
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
 				D2CC5547171EB15500D81CF1 /* CopyFiles */,
 				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
+				D271983E174399FD00342CB0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -609,7 +710,7 @@
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
-				D21ACBD81726889700E2F8EC /* SimpleDocument.xib in Resources */,
+				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
@@ -642,7 +743,6 @@
 			files = (
 				D2CC5500171EAFAB00D81CF1 /* main.m in Sources */,
 				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
-				D2A439F4171F10D60020C15F /* DocumentController.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
 				D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */,
 				D21ACBA21726868A00E2F8EC /* Completion.m in Sources */,
@@ -653,8 +753,8 @@
 				D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */,
 				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
 				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
-				D21ACBAB1726868A00E2F8EC /* LatexSyntaxHighlighter.m in Sources */,
 				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
+				D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */,
 				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
 				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
 				D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */,
@@ -669,7 +769,9 @@
 				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
 				D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */,
 				D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */,
+				D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */,
 				D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */,
+				D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */,
 				76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */,
 				D2681FF0173143AF003AF83D /* Compilable.m in Sources */,
 				D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */,

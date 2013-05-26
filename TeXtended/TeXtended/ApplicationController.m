@@ -9,7 +9,7 @@
 #import "ApplicationController.h"
 #import "Constants.h"
 #import "PreferencesController.h"
-#import "DocumentController.h"
+#import "DocumentCreationController.h"
 #import "CompletionsController.h"
 ApplicationController *sharedInstance;
 @implementation ApplicationController
@@ -70,7 +70,7 @@ ApplicationController *sharedInstance;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
     sharedInstance = self;
-    documentController = [[DocumentController alloc] init];
+    documentCreationController = [[DocumentCreationController alloc] init];
     preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
 
     

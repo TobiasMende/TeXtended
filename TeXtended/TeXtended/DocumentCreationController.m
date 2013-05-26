@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "DocumentController.h"
+#import "DocumentCreationController.h"
 #import "Constants.h"
 
-@implementation DocumentController
+@implementation DocumentCreationController
 
 
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)types {
