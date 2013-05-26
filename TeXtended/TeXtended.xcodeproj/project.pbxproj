@@ -72,7 +72,6 @@
 		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
-		D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506A1751FECC00BC05DD /* CompilersController.m */; };
 		D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
@@ -229,8 +228,6 @@
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
-		D2A550691751FECC00BC05DD /* CompilersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilersController.h; sourceTree = "<group>"; };
-		D2A5506A1751FECC00BC05DD /* CompilersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilersController.m; sourceTree = "<group>"; };
 		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
 		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
 		D2A5506E1751FF4B00BC05DD /* TextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextView.xib; sourceTree = "<group>"; };
@@ -505,8 +502,6 @@
 				D271984A1745241500342CB0 /* DocumentController.h */,
 				D271984B1745241500342CB0 /* DocumentController.m */,
 				D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */,
-				D2A550691751FECC00BC05DD /* CompilersController.h */,
-				D2A5506A1751FECC00BC05DD /* CompilersController.m */,
 				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
 				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
 				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
@@ -786,7 +781,6 @@
 				76049CA01752085000778E2A /* Compiler.m in Sources */,
 				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
 				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
-				D2A5506B1751FECC00BC05DD /* CompilersController.m in Sources */,
 				D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */,
 				D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */,
 				D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */,
