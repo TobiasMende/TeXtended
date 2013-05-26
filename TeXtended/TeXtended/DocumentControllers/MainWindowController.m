@@ -33,7 +33,7 @@
     [super windowDidLoad];
     [self.documentController setupWindowController];
     _fileViewController = [[FileViewController alloc] init];
-    [self.fileViewArea setSubviews:[NSArray arrayWithObject:self.fileViewController.view]];
+    [self.fileViewArea setSubviews:[NSArray arrayWithObjects:self.fileViewController.view, nil]];
     [self.fileViewController loadDocument:self.documentController.model];
     
 }

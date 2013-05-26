@@ -7,7 +7,8 @@
 //
 
 #import "FileViewController.h"
-
+#import "DocumentModel.h"
+#import "ProjectModel.h"
 @implementation FileViewController
 
 - (id)init {
@@ -219,7 +220,15 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
 - (void)loadDocument:(DocumentModel*)document
 {
-    return;
+    NSString *totalPath;
+    if (document.project) {
+        totalPath = document.project.path;
+    } else {
+        totalPath = document.texPath;
+    }
+    NSString *path = [totalPath stringByDeletingLastPathComponent];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    [self loadPath:url];
 }
 
 @end
