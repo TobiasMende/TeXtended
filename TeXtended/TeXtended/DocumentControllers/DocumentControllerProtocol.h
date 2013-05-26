@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DocumentController;
 /**
  View Controller displaying views of the document should implement this protocol.
  
@@ -31,7 +32,7 @@
  * Will call the samemethod on the parent unless it is called on the root.
  * @return id <DocumentControllerProtocol> the root
  */
-- (id <DocumentControllerProtocol>) getDocumentController;
+- (DocumentController * ) documentController;
 
 /**
  * Get a set of the childrens in the controler tree.
