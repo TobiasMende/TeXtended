@@ -7,7 +7,8 @@
 //
 
 #import "TextViewController.h"
-
+#import "LineNumberView.h"
+#import "HighlightingTextView.h"
 @interface TextViewController ()
 
 @end
@@ -18,10 +19,23 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
+        lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
+        [self.scrollView setVerticalRulerView:lineNumberView];
+        [self.scrollView setHasHorizontalRuler:NO];
+        [self.scrollView setHasVerticalRuler:YES];
+        [self.scrollView setRulersVisible:YES];
     }
     
     return self;
+}
+
+
+- (NSString *)content {
+    return [self.textView string];
+}
+
+- (void)setContent:(NSString *)content {
+    [self.textView setString:content];
 }
 
 @end

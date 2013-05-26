@@ -15,11 +15,9 @@
     /** Extention of NSRulerView to show line numbers. */
     LineNumberView *lineNumberView;
     NSString *temporaryTextStorage;
+    
 }
-@property (weak) IBOutlet NSSplitView *leftSidebar;
-@property (weak) IBOutlet NSScrollView *editorScrollView;
 @property (weak) IBOutlet ExtendedPdf *pdfView;
-@property (unsafe_unretained) IBOutlet HighlightingTextView *editorView;
 @property (strong) IBOutlet FileViewController *fileViewController;
 @property (strong) NSManagedObjectContext *context;
 @property (strong) DocumentModel *model;

@@ -47,21 +47,7 @@ NSSet *standardDocumentTypes;
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     
     /* initialize and set the linenumber view */
-    lineNumberView = [[LineNumberView alloc] initWithScrollView:[self editorScrollView]];
-    [self.editorScrollView setVerticalRulerView:lineNumberView];
-    [self.editorScrollView setHasHorizontalRuler:NO];
-    [self.editorScrollView setHasVerticalRuler:YES];
-    [self.editorScrollView setRulersVisible:YES];
-    _fileViewController = [[FileViewController alloc] init];
-    [self.leftSidebar setSubviews:[NSArray arrayWithObjects:self.fileViewController.view, nil]];
-    if(temporaryTextStorage) {
-        [self.editorView setString:temporaryTextStorage];
-        if (self.model.texPath) {
-            //[self.fileViewController loadPath:[[NSURL fileURLWithPath:self.model.texPath] URLByDeletingLastPathComponent]];
-            NSURL *fileUrl = [[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Documents/Projects"];
-            [self.fileViewController loadPath:fileUrl];
-        }
-    }
+    
 }
 
 + (BOOL)autosavesInPlace

@@ -7,7 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "WindowControllerProtocol.h"
+@class DocumentController, FileOutlineView;
+@interface MainWindowController : NSWindowController<WindowControllerProtocol> {
+    
+}
+@property (weak) IBOutlet NSSplitView *left;
+@property (weak) IBOutlet NSSplitView *middle;
+@property (weak) IBOutlet NSSplitView *right;
+@property (weak, nonatomic) DocumentController *documentController;
+@property (weak) IBOutlet FileOutlineView *fileView;
 
-@interface MainWindowController : NSWindowController
 
 @end
