@@ -78,12 +78,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
      forTableColumn:(NSTableColumn *)tableColumn
              byItem:(id)item
 {
-    
-    //NSLog(@"%@",[[item class] description]);
-    //NSString* oldFile = [item valueForKey:@"URL"];
-    //NSString* newFile = (NSString*)object;
-    //NSLog(@"%@ to %@", oldFile, newFile);
-    //[self renameFile:oldFile toNewFile:newFile];
+    FileViewModel *model = (FileViewModel*)item;
+    NSString* oldFile = [model getPath];
+    NSString* newFile = (NSString*)object;
+    [self renameFile:oldFile toNewFile:newFile];
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
@@ -122,6 +120,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSBrowserCell *cell = [[NSBrowserCell alloc] init];
     [cell setLeaf:YES];
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
+    pathsToWatch = [[NSMutableArray alloc] init];
     NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
     nodes = [[FileViewModel alloc] init];
     [nodes setPath:[[NSURL fileURLWithPath:path] path]];
@@ -141,15 +140,17 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         NSError *error;
         NSNumber *isDirectory = nil;
         NSURL *fileUrl = [children objectAtIndex:i];
+        NSString *path = [fileUrl path];
         if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            [self->nodes addPath:[fileUrl path]];
+            [self->nodes addPath:path];
         }
         else
         {
-            [self->nodes addPath:[fileUrl path]];
+            [self->nodes addPath:path];
+            [pathsToWatch addObject:path];
             [self recursiveFileFinder:fileUrl];
         }
     }
@@ -157,8 +158,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (BOOL)loadPath: (NSURL*)url
 {
-    //nodes = [[NSArray alloc] initWithArray:[self recursiveFileFinder:url]];
-    //[outline reloadData];
+    [pathsToWatch removeAllObjects];
+    [self recursiveFileFinder:url];
+    [outline reloadData];
     return YES;
 }
 

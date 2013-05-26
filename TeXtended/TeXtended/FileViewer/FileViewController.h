@@ -11,6 +11,7 @@
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> {
     FileViewModel *nodes;
+    NSMutableArray *pathsToWatch;
     
     IBOutlet NSOutlineView *outline;
 }
