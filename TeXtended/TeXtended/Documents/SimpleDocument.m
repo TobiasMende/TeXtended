@@ -57,7 +57,6 @@ NSSet *standardDocumentTypes;
             //[self.fileViewController loadPath:fileUrl];
         }
     }
-    
 }
 
 + (BOOL)autosavesInPlace

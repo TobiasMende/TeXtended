@@ -45,11 +45,46 @@
     
     [self setGridColor:[[NSColor alloc] init]];
     [self setGridColor:[NSColor grayColor]];
+    
+    // link propertys to application shared
+    [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
+    [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridSpacing"] options:nil];
+    [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridOffset"] options:nil];
+    
+    
+    [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawVGrid"] options:nil];
+    [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
+    [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
+    
+    // some dummy stuff
+//    NSURL *url = [NSURL fileURLWithPath:@"/Users/bannach/Desktop/tex/content.pdf"];
+//    PDFDocument *pdfDoc;
+//    pdfDoc = [[PDFDocument alloc] initWithURL:url];
+//    [self setDocument:pdfDoc];
+    
+    
+    // add the controlls
+    
+
+    controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
+    [controllsView setPdfView:self];
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    [self addSubview:[controllsView view]];
+
+    
+    
 }
 
 
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    NSLog(@"ok");
+}
+
 - (void) drawPage:(PDFPage *) page
 {
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -68,7 +103,6 @@
     int height = size.height;
     int i = 0 ;
     
-    
     /* use the given color */
     [[self gridColor] setStroke];
     
@@ -84,7 +118,7 @@
     }
     
     /* then the horizontal lines */
-    if (self.drawHorizotalLines) {
+    if (self.drawHorizotalLines && [self gridHorizontalSpacing] > 0) {
         for( i = height - [self gridHorizontalOffset]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
             [drawingPath moveToPoint:NSMakePoint(0,i)];
             [drawingPath lineToPoint:NSMakePoint(width, i)];

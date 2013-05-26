@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */ = {isa = PBXBuildFile; fileRef = 76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */; };
+		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
+		76049CA01752085000778E2A /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
 		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
@@ -110,6 +113,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdfControlls.h; sourceTree = "<group>"; };
+		76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdfControlls.m; sourceTree = "<group>"; };
+		76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPdfControlls.xib; sourceTree = "<group>"; };
+		76049C9D1751FE3100778E2A /* CompilerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompilerProtocol.h; sourceTree = "<group>"; };
+		76049C9E1752085000778E2A /* Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compiler.h; sourceTree = "<group>"; };
+		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		76C78773172BD581004FF4C3 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
 		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -230,6 +239,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76049C9C1751FDB000778E2A /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				76049C9D1751FE3100778E2A /* CompilerProtocol.h */,
+				76049C9E1752085000778E2A /* Compiler.h */,
+				76049C9F1752085000778E2A /* Compiler.m */,
+			);
+			path = Compiler;
+			sourceTree = "<group>";
+		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +358,9 @@
 			children = (
 				D21ACBB01726873900E2F8EC /* ExtendedPdf.h */,
 				D21ACBB11726873900E2F8EC /* ExtendedPdf.m */,
+				76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */,
+				76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */,
+				76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */,
 			);
 			path = PDFView;
 			sourceTree = "<group>";
@@ -491,6 +513,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
 				D283038A1731346200E1FC1D /* FileModel */,
@@ -590,6 +613,7 @@
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
+				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +676,8 @@
 				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
 				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
 				D265690A173A65600030381C /* CompileSetting.m in Sources */,
+				76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */,
+				76049CA01752085000778E2A /* Compiler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,6 @@
         [window setDelegate:self];
         completionsController = [[CompletionsController alloc] init];
     }
-    
     return self;
 }
 

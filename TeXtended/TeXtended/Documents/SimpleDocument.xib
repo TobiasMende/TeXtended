@@ -14,6 +14,8 @@
 			<string>IBNSLayoutConstraint</string>
 			<string>NSCustomObject</string>
 			<string>NSCustomView</string>
+			<string>NSMenu</string>
+			<string>NSMenuItem</string>
 			<string>NSScrollView</string>
 			<string>NSScroller</string>
 			<string>NSSplitView</string>
@@ -128,7 +130,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{200, 200}</string>
 				<object class="NSView" key="NSWindowView" id="568628114">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSSplitView" id="99386276">
@@ -145,6 +147,7 @@
 											<array class="NSMutableArray" key="NSSubviews"/>
 											<string key="NSFrameSize">{139, 564}</string>
 											<reference key="NSSuperview" ref="694588343"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="999949516"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<string key="NSClassName">NSView</string>
@@ -152,6 +155,8 @@
 									</array>
 									<string key="NSFrameSize">{139, 564}</string>
 									<reference key="NSSuperview" ref="99386276"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="922686693"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<int key="NSDividerStyle">2</int>
 								</object>
@@ -185,9 +190,10 @@
 														<string>WebURLsWithTitlesPboardType</string>
 														<string>public.url</string>
 													</set>
-													<string key="NSFrameSize">{417, 562}</string>
+													<string key="NSFrameSize">{402, 562}</string>
 													<reference key="NSSuperview" ref="867099288"/>
-													<reference key="NSNextKeyView" ref="207227324"/>
+													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView" ref="179056431"/>
 													<string key="NSReuseIdentifierKey">_NS:13</string>
 													<string key="NSHuggingPriority">{504, 520}</string>
 													<object class="NSTextContainer" key="NSTextContainer" id="760561474">
@@ -205,11 +211,11 @@
 															<nil key="NSDelegate"/>
 														</object>
 														<reference key="NSTextView" ref="991147675"/>
-														<double key="NSWidth">417</double>
+														<double key="NSWidth">402</double>
 														<int key="NSTCFlags">1</int>
 													</object>
 													<object class="NSTextViewSharedData" key="NSSharedData">
-														<int key="NSFlags">100675559</int>
+														<int key="NSFlags">67121127</int>
 														<int key="NSTextCheckingTypes">0</int>
 														<nil key="NSMarkedAttributes"/>
 														<object class="NSColor" key="NSBackgroundColor" id="155000191">
@@ -257,8 +263,9 @@
 													<nil key="NSDelegate"/>
 												</object>
 											</array>
-											<string key="NSFrame">{{1, 1}, {417, 562}}</string>
+											<string key="NSFrame">{{1, 1}, {402, 562}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="991147675"/>
 											<string key="NSReuseIdentifierKey">_NS:11</string>
 											<reference key="NSDocView" ref="991147675"/>
@@ -287,8 +294,9 @@
 										<object class="NSScroller" id="179056431">
 											<reference key="NSNextResponder" ref="999949516"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrame">{{402, 1}, {16, 562}}</string>
+											<string key="NSFrame">{{403, 1}, {15, 562}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="968435107"/>
 											<string key="NSReuseIdentifierKey">_NS:83</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -301,6 +309,7 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{-100, -100}, {87, 18}}</string>
 											<reference key="NSSuperview" ref="999949516"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="867099288"/>
 											<string key="NSReuseIdentifierKey">_NS:33</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -313,7 +322,8 @@
 									</array>
 									<string key="NSFrame">{{140, 0}, {419, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
-									<reference key="NSNextKeyView" ref="867099288"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="207227324"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSHuggingPriority">{857, 855}</string>
 									<int key="NSsFlags">133138</int>
@@ -330,12 +340,15 @@
 									<array class="NSMutableArray" key="NSSubviews"/>
 									<string key="NSFrame">{{560, 0}, {414, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:13</string>
 									<string key="NSClassName">ExtendedPdf</string>
 								</object>
 							</array>
 							<string key="NSFrameSize">{974, 564}</string>
 							<reference key="NSSuperview" ref="568628114"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="694588343"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSIsVertical">YES</bool>
@@ -343,9 +356,11 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{974, 564}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="99386276"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{200, 241}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">3</int>
@@ -354,6 +369,27 @@
 			</object>
 			<object class="NSCustomObject" id="796877042">
 				<string key="NSClassName">NSApplication</string>
+			</object>
+			<object class="NSMenuItem" id="680680746">
+				<string key="NSTitle">Menu</string>
+				<string key="NSKeyEquiv"/>
+				<int key="NSMnemonicLoc">2147483647</int>
+				<reference key="NSOnImage" ref="468188070"/>
+				<reference key="NSMixedImage" ref="427094536"/>
+				<string key="NSAction">submenuAction:</string>
+				<object class="NSMenu" key="NSSubmenu" id="97065192">
+					<string key="NSTitle">Menu</string>
+					<array class="NSMutableArray" key="NSMenuItems">
+						<object class="NSMenuItem" id="153099458">
+							<reference key="NSMenu" ref="97065192"/>
+							<string key="NSTitle">Item</string>
+							<string key="NSKeyEquiv"/>
+							<int key="NSMnemonicLoc">2147483647</int>
+							<reference key="NSOnImage" ref="468188070"/>
+							<reference key="NSMixedImage" ref="427094536"/>
+						</object>
+					</array>
+				</object>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -389,6 +425,14 @@
 						<reference key="destination" ref="999949516"/>
 					</object>
 					<int key="connectionID">100171</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pdfView</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="968435107"/>
+					</object>
+					<int key="connectionID">100177</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -608,6 +652,27 @@
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="694588343"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100172</int>
+						<reference key="object" ref="680680746"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="97065192"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100173</int>
+						<reference key="object" ref="97065192"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="153099458"/>
+						</array>
+						<reference key="parent" ref="680680746"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100174</int>
+						<reference key="object" ref="153099458"/>
+						<reference key="parent" ref="97065192"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -631,6 +696,9 @@
 				<string key="100122.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100127.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100129.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100172.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100173.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100174.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -647,7 +715,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100171</int>
+			<int key="maxID">100177</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -711,6 +779,82 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSDocument</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="browseDocumentVersions:">id</string>
+						<string key="duplicateDocument:">id</string>
+						<string key="lockDocument:">id</string>
+						<string key="moveDocument:">id</string>
+						<string key="moveDocumentToUbiquityContainer:">id</string>
+						<string key="printDocument:">id</string>
+						<string key="renameDocument:">id</string>
+						<string key="revertDocumentToSaved:">id</string>
+						<string key="runPageLayout:">id</string>
+						<string key="saveDocument:">id</string>
+						<string key="saveDocumentAs:">id</string>
+						<string key="saveDocumentTo:">id</string>
+						<string key="unlockDocument:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="browseDocumentVersions:">
+							<string key="name">browseDocumentVersions:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="duplicateDocument:">
+							<string key="name">duplicateDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="lockDocument:">
+							<string key="name">lockDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="moveDocument:">
+							<string key="name">moveDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="moveDocumentToUbiquityContainer:">
+							<string key="name">moveDocumentToUbiquityContainer:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="printDocument:">
+							<string key="name">printDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="renameDocument:">
+							<string key="name">renameDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="revertDocumentToSaved:">
+							<string key="name">revertDocumentToSaved:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="runPageLayout:">
+							<string key="name">runPageLayout:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveDocument:">
+							<string key="name">saveDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveDocumentAs:">
+							<string key="name">saveDocumentAs:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveDocumentTo:">
+							<string key="name">saveDocumentTo:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="unlockDocument:">
+							<string key="name">unlockDocument:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSDocument.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSLayoutConstraint</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -719,30 +863,56 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSTextView</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="orderFrontSharingServicePicker:">id</string>
+						<string key="toggleQuickLookPreviewPanel:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="orderFrontSharingServicePicker:">
+							<string key="name">orderFrontSharingServicePicker:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleQuickLookPreviewPanel:">
+							<string key="name">toggleQuickLookPreviewPanel:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSTextView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">SimpleDocument</string>
 					<string key="superclassName">NSDocument</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="editorScrollView">NSScrollView</string>
 						<string key="editorView">HighlightingTextView</string>
-						<string key="fileViewArea">NSSplitView</string>
 						<string key="fileViewController">FileViewController</string>
-						<string key="scrollView">NSScrollView</string>
+						<string key="leftSidebar">NSSplitView</string>
+						<string key="pdfView">ExtendedPdf</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="editorScrollView">
+							<string key="name">editorScrollView</string>
+							<string key="candidateClassName">NSScrollView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="editorView">
 							<string key="name">editorView</string>
 							<string key="candidateClassName">HighlightingTextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="fileViewArea">
-							<string key="name">fileViewArea</string>
-							<string key="candidateClassName">NSSplitView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="fileViewController">
 							<string key="name">fileViewController</string>
 							<string key="candidateClassName">FileViewController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="scrollView">
-							<string key="name">scrollView</string>
-							<string key="candidateClassName">NSScrollView</string>
+						<object class="IBToOneOutletInfo" key="leftSidebar">
+							<string key="name">leftSidebar</string>
+							<string key="candidateClassName">NSSplitView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pdfView">
+							<string key="name">pdfView</string>
+							<string key="candidateClassName">ExtendedPdf</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
