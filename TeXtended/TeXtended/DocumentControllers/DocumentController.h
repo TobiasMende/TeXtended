@@ -20,6 +20,5 @@
  */
 @interface DocumentController : NSObject<DocumentControllerProtocol>
 
-- initWithDocument:(DocumentModel *)model;
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document;
 @end
