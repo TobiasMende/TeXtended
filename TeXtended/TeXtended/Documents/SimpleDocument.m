@@ -8,8 +8,7 @@
 
 #import "SimpleDocument.h"
 #import "DocumentModel.h"
-#import "HighlightingTextView.h"
-#import "FileViewController.h"
+#import "MainWindowController.h"
 NSSet *standardDocumentTypes;
 @implementation SimpleDocument
 
@@ -37,7 +36,8 @@ NSSet *standardDocumentTypes;
 }
 
 - (void)makeWindowControllers {
-    
+    _mainWindowController = [[MainWindowController alloc] init];
+    [self addWindowController:self.mainWindowController];
 }
 
 
@@ -70,7 +70,7 @@ NSSet *standardDocumentTypes;
         return NO;
     } 
         self.model.texPath = [url path];
-        BOOL success = [self.model saveContent:self.editorView.string error:outError];
+    BOOL success = [self.documentController saveDocument:&outError];
         return success;
     
 }

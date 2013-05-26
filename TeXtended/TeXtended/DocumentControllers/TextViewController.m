@@ -59,6 +59,10 @@
     [self.textView breakUndoCoalescing];
 }
 
+- (DocumentController *)documentController {
+    return [self.parent documentController];
+}
+
 
 
 @end
