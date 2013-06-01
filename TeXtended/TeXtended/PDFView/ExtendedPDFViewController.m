@@ -32,7 +32,7 @@
     return [self.parent documentController];
 }
 
-- (NSSet<DocumentControllerProtocol> *)children {
+- (NSSet*)children {
     return [NSSet setWithObject:nil];
 }
 

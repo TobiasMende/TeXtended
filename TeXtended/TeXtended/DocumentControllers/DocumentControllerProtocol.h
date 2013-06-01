@@ -38,7 +38,7 @@
  * Get a set of the childrens in the controler tree.
  * @return NSSet<DocumentControllerProtocol> * pointer to the set of children
  */
-- (NSSet<DocumentControllerProtocol> *) children;
+- (NSSet *) children;
 
 /**
  * Called if the model has fundamental changed, like a path has changed
