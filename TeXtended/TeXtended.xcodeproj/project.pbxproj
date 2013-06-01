@@ -85,6 +85,7 @@
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
+		D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
 		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
 		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
 		D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
@@ -140,7 +141,6 @@
 		76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdfControlls.h; sourceTree = "<group>"; };
 		76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdfControlls.m; sourceTree = "<group>"; };
 		76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPdfControlls.xib; sourceTree = "<group>"; };
-		76049C9D1751FE3100778E2A /* CompilerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompilerProtocol.h; sourceTree = "<group>"; };
 		76049C9E1752085000778E2A /* Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compiler.h; sourceTree = "<group>"; };
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
@@ -250,6 +250,8 @@
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
+		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
 		D2C904E41726963E006EFEC2 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2C904E51726963E006EFEC2 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
 		D2C904E61726963E006EFEC2 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
@@ -292,9 +294,10 @@
 		76049C9C1751FDB000778E2A /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
-				76049C9D1751FE3100778E2A /* CompilerProtocol.h */,
 				76049C9E1752085000778E2A /* Compiler.h */,
 				76049C9F1752085000778E2A /* Compiler.m */,
+				D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */,
+				D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */,
 				D2A550841752085700BC05DD /* MainWindowController.m in Sources */,
 				760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */,
+				D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

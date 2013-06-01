@@ -10,4 +10,19 @@
 
 @implementation Compiler
 
+- (id) initWithDocumentController:(DocumentController*) controller {
+    self = [super init];
+    if (self) {
+        [self setAutoCompile:NO];
+        documentController = controller;
+    }
+    return self;
+}
+
+
+- (void) compile:(bool)draft {
+    //TODO: compile here
+    [documentController documentHasChangedAction];
+}
+
 @end

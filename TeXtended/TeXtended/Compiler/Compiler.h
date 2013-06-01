@@ -7,8 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CompilerProtocol.h"
+#import "DocumentController.h"
 
-@interface Compiler : NSObject <CompilerProtocol>
+@interface Compiler : NSObject {
+    /**
+     * DocumentController holding the model, which should be compiled.
+     */
+    DocumentController *documentController;
+}
+
+/**
+ * Calls the compile method on the document.
+ * @param draft is true, if the draft compile should be used and false for a final compile.
+ */
+- (void) compile:(bool)draft;
+
+/**
+ * Yes, if autocompile is activated.
+ */
+@property (atomic) BOOL autoCompile;
 
 @end
