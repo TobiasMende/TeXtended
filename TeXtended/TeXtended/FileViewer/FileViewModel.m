@@ -68,6 +68,7 @@
     filePath = newPath;
     fileName = [filePath lastPathComponent];
     icon = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
+    //icon = [[NSWorkspace sharedWorkspace] iconForFile:@"/Users/"];
     pathComponents = [filePath pathComponents];
     pathIndex = [pathComponents count]-1;
 }

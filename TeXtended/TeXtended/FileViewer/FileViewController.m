@@ -227,11 +227,11 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     } else {
         totalPath = document.texPath;
     }
+    //totalPath = @"/Users/Tobias/Music";
     if(!totalPath ||[totalPath length] == 0)
         return;
-    totalPath = @"/Users/Tobias/Documents";
-    //NSString *path = [totalPath stringByDeletingLastPathComponent];
-    NSString* path = totalPath;
+    NSString *path = [totalPath stringByDeletingLastPathComponent];
+    //NSString* path = totalPath;
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
 }
