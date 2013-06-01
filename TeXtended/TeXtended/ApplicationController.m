@@ -12,9 +12,68 @@
 #import "DocumentCreationController.h"
 #import "CompletionsController.h"
 ApplicationController *sharedInstance;
+@interface ApplicationController ()
+
++ (void)registerDefaults;
++ (void)mergeCompileFlows;
+
+@end
+
 @implementation ApplicationController
 + (void)initialize {
     //Register default user defaults
+    [self registerDefaults];
+    // Merging compile flows
+    [self mergeCompileFlows];
+}
+
+
++ (ApplicationController *)sharedApplicationController {
+    if (!sharedInstance) {
+        sharedInstance = [[ApplicationController alloc] init];
+    }
+    return sharedInstance;
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    sharedInstance = self;
+    documentCreationController = [[DocumentCreationController alloc] init];
+    preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+
+    
+}
+
+
+- (void)applicationWillTerminate:(NSNotification *)notification {
+    [preferencesController applicationWillTerminate:(NSNotification *)notification];
+}
+
+- (CompletionsController *)completionsController {
+    return [preferencesController completionsController];
+}
+
+- (IBAction)showPreferences:(id)sender {
+    if (!preferencesController) {
+        preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }
+    [preferencesController showWindow:self];
+}
+
+
++ (NSString *)userApplicationSupportDirectoryPath {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    NSURL *applicationSupport = [fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    if (applicationSupport && !error) {
+        NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"de.uni-luebeck.isp.tmtproject.TeXtended"];
+        if ([self checkForAndCreateFolder:directoryPath]) {
+            return directoryPath;
+        }
+    }
+    return nil;
+}
+
++ (void)registerDefaults {
     [NSColor colorWithCalibratedRed:36.0/255.0 green:80.0/255 blue:123.0 alpha:1];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],TMT_COMMAND_COLOR,
@@ -60,56 +119,35 @@ ApplicationController *sharedInstance;
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
-
-+ (ApplicationController *)sharedApplicationController {
-    if (!sharedInstance) {
-        sharedInstance = [[ApplicationController alloc] init];
++ (void)mergeCompileFlows {
+    NSString* appSupport = [self userApplicationSupportDirectoryPath];
+    NSString* flowPath = [appSupport stringByAppendingPathComponent:@"/flows/"];
+    BOOL exists = [self checkForAndCreateFolder:flowPath];
+    if (exists) {
+        //TODO: Merge flows
     }
-    return sharedInstance;
-}
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification {
-    sharedInstance = self;
-    documentCreationController = [[DocumentCreationController alloc] init];
-    preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
-
-    
 }
 
 
-- (void)applicationWillTerminate:(NSNotification *)notification {
-    [preferencesController applicationWillTerminate:(NSNotification *)notification];
-}
-
-- (CompletionsController *)completionsController {
-    return [preferencesController completionsController];
-}
-
-- (IBAction)showPreferences:(id)sender {
-    if (!preferencesController) {
-        preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }
-    [preferencesController showWindow:self];
-}
-
-
-+ (NSString *)userApplicationSupportDirectoryPath {
++ (BOOL)checkForAndCreateFolder:(NSString *)path {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSError *error;
-    NSURL *applicationSupport = [fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-    if (applicationSupport && !error) {
-        BOOL isDirectory = NO;
-        NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"de.uni-luebeck.isp.tmtproject.TeXtended"];
-        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDirectory];
-        if (exists && isDirectory) {
-            return directoryPath;
+    BOOL isDirectory = NO;
+    BOOL exists = [fm fileExistsAtPath:path isDirectory:&isDirectory];
+    if (exists && isDirectory) {
+        return YES;
+    } else if(exists && !isDirectory) {
+        NSLog(@"Path exists but isn't a directory!: %@", path);
+        return NO;
+    }else {
+        [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (!error) {
+            return  YES;
         } else {
-            [fm createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
-            if (!error) {
-                return  directoryPath;
-            }
+            NSLog(@"Can't create directory %@. Error: %@", path, [error userInfo]);
+            return NO;
         }
     }
-    return nil;
 }
+
 @end

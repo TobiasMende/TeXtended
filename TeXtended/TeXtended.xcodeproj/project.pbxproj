@@ -608,8 +608,8 @@
 			children = (
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
-				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D283038A1731346200E1FC1D /* FileModel */,
 				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
 				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
