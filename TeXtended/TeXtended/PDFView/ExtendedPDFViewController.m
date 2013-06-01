@@ -8,6 +8,8 @@
 
 #import "ExtendedPDFViewController.h"
 
+#define UNTITLED @"Untitled";
+
 @implementation ExtendedPDFViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,5 +52,13 @@
 }
 
 - (void) breakUndoCoalescing {}
+
+- (NSString *) getPdfName {
+    NSString *title = [[[self.pdfView document] outlineRoot] label];
+    if (title == nil) {
+        title = UNTITLED;
+    }
+    return title;
+}
 
 @end
