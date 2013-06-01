@@ -30,14 +30,5 @@
     NSLog(@"%@", path);
 }*/
 
-- _textBackgroundColor
-{
-    return  ([NSColor clearColor]);
-}
-
-- (void)setDrawsBackground: (BOOL)flag
-{
-    [super setDrawsBackground: NO];
-}
 
 @end

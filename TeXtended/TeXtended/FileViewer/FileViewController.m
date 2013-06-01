@@ -125,11 +125,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
-    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
+    //NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
     nodes = [[FileViewModel alloc] init];
-    [nodes setPath:[[NSURL fileURLWithPath:path] path]];
-    [self recursiveFileFinder:[NSURL fileURLWithPath:path]];
-    [self initializeEventStream];
+    //[nodes setPath:[[NSURL fileURLWithPath:path] path]];
+    //[self recursiveFileFinder:[NSURL fileURLWithPath:path]];
+    //[self initializeEventStream];
 }
 
 - (void) recursiveFileFinder: (NSURL*)url
