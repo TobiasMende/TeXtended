@@ -84,7 +84,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSString* oldFile = [model getPath];
     NSString* newFile = (NSString*)object;
     NSLog(@"%@",newFile);
-    //[self renameFile:oldFile toNewFile:newFile];
+    [self renameFile:oldFile toNewFile:newFile];
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
@@ -126,11 +126,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
-    //NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Projects"];
     nodes = [[FileViewModel alloc] init];
-    //[nodes setPath:[[NSURL fileURLWithPath:path] path]];
-    //[self recursiveFileFinder:[NSURL fileURLWithPath:path]];
-    //[self initializeEventStream];
 }
 
 - (void) recursiveFileFinder: (NSURL*)url
@@ -165,8 +161,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)url
 {
     [pathsToWatch removeAllObjects];
+    [self->nodes setPath:[url path]];
     [self recursiveFileFinder:url];
-    [outline reloadData];
+    [self->outline reloadData];
+    //NSLog(@"%p",[self->outline]);
+    [self initializeEventStream];
     return YES;
 }
 
@@ -185,6 +184,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void) initializeEventStream
 {
+    if([pathsToWatch count] == 0 )
+        return;
     NSArray *paths = [NSArray arrayWithArray:pathsToWatch];
     void *appPointer = (__bridge void *)self;
     FSEventStreamContext context = {0, appPointer, NULL, NULL, NULL};
@@ -226,7 +227,11 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     } else {
         totalPath = document.texPath;
     }
-    NSString *path = [totalPath stringByDeletingLastPathComponent];
+    if(!totalPath ||[totalPath length] == 0)
+        return;
+    totalPath = @"/Users/Tobias/Documents";
+    //NSString *path = [totalPath stringByDeletingLastPathComponent];
+    NSString* path = totalPath;
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
 }
