@@ -21,21 +21,21 @@ BIBTEX=/usr/texbin/bibtex
 # TeXtended passes the file to be processed as the first input to this
 # script and the working directory as the second input. Other options follow.
 mainFile=$1
-outputDir=$2
+outputPath=$2
 nCompile=$3
 compileBib=$4
 custom=$5
 
 echo "****************************"
 echo "*** Compiling $mainFile ***"
-echo "*** Output dir:\t$outputDir"
+echo "*** Output path:\t$outputPath"
 echo "*** Number of compiles:\t$nCompile"
 echo "*** Compile bib:\t$compileBib"
 echo "*** Custom parameter:\t$custom"
 echo "****************************"
 
 # Go to the working directory
-cd "$outputDir"
+cd "$outputPath"
 
 # Do the correct number of typesetting runs
 count=1
