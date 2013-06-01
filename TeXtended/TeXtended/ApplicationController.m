@@ -124,7 +124,28 @@ ApplicationController *sharedInstance;
     NSString* flowPath = [appSupport stringByAppendingPathComponent:@"/flows/"];
     BOOL exists = [self checkForAndCreateFolder:flowPath];
     if (exists) {
-        //TODO: Merge flows
+        NSString* bundlePath = [[NSBundle mainBundle] pathForResource:@"CompileFlows" ofType:nil];
+        NSFileManager* fm = [NSFileManager defaultManager];
+        NSError* error;
+        NSArray *files = [fm contentsOfDirectoryAtPath:bundlePath error:&error];
+        if (error) {
+            NSLog(@"Can't read compile flows from %@. Error: %@", bundlePath, [error userInfo]);
+        } else {
+            for(NSString *path in files) {
+                NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
+                NSString* destPath = [flowPath stringByAppendingPathComponent:path];
+                NSLog(@"%@", path);
+                NSError *copyError;
+                [fm copyItemAtPath:srcPath toPath:destPath error:&copyError];
+                if (copyError) {
+                    NSError* underlying = [[copyError userInfo] valueForKey:NSUnderlyingErrorKey];
+                    if (underlying && [underlying code] != 17) {
+                        NSLog(@"Can't merge flow %@:\t %@", path, [copyError userInfo]);
+                        
+                    }
+                }
+            }
+        }
     }
 }
 
