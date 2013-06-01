@@ -26,6 +26,7 @@
  @return the main model of this Document
  */
 - (Compilable*) mainCompilable;
+- (void)postChangeNotification;
 
 @end
 
