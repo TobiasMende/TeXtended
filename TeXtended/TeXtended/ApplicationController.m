@@ -134,7 +134,6 @@ ApplicationController *sharedInstance;
             for(NSString *path in files) {
                 NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
                 NSString* destPath = [flowPath stringByAppendingPathComponent:path];
-                NSLog(@"%@", path);
                 NSError *copyError;
                 [fm copyItemAtPath:srcPath toPath:destPath error:&copyError];
                 if (copyError) {
