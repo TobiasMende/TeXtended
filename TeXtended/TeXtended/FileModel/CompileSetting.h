@@ -16,4 +16,8 @@
 @property (nonatomic, retain) NSNumber * numberOfCompiles;
 @property (nonatomic, retain) NSString * customArgument;
 
+
++ (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context;
++ (CompileSetting *)defaultDraftCompileSettingIn:(NSManagedObjectContext*)context;
++ (CompileSetting *)defaultFinalCompileSettingIn:(NSManagedObjectContext*)context;
 @end

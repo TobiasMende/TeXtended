@@ -36,4 +36,35 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
 }
 
+
+- (CompileSetting *)draftCompiler {
+    [self willAccessValueForKey:@"draftCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
+    [self didAccessValueForKey:@"draftCompiler"];
+    if (setting) {
+        return setting;
+    }
+    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
+}
+
+- (CompileSetting *)finalCompiler {
+    [self willAccessValueForKey:@"finalCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"finalCompiler"];
+    [self didAccessValueForKey:@"finalCompiler"];
+    if (setting) {
+        return setting;
+    }
+    return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
+}
+
+- (CompileSetting *)liveCompiler {
+    [self willAccessValueForKey:@"liveCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"liveCompiler"];
+    [self didAccessValueForKey:@"liveCompiler"];
+    if (setting) {
+        return setting;
+    }
+    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
+}
+
 @end

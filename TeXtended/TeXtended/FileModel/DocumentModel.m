@@ -9,6 +9,7 @@
 #import "DocumentModel.h"
 #import "ProjectModel.h"
 #import "Constants.h"
+#import "CompileSetting.h"
 
 @interface DocumentModel ()
 
@@ -126,6 +127,45 @@
     NSLog(@"prepare");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super prepareForDeletion];
+}
+
+- (CompileSetting *)draftCompiler {
+    [self willAccessValueForKey:@"draftCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
+    [self didAccessValueForKey:@"draftCompiler"];
+    if (setting) {
+        return setting;
+    }
+    if (self.project) {
+        return [self.project draftCompiler];
+    }
+    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
+}
+
+- (CompileSetting *)liveCompiler {
+    [self willAccessValueForKey:@"liveCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"liveCompiler"];
+    [self didAccessValueForKey:@"liveCompiler"];
+    if (setting) {
+        return setting;
+    }
+    if (self.project) {
+        return [self.project liveCompiler];
+    }
+    return [CompileSetting defaultLiveCompileSettingIn:[self managedObjectContext]];
+}
+
+- (CompileSetting *)finalCompiler {
+    [self willAccessValueForKey:@"finalCompiler"];
+    CompileSetting *setting = [self primitiveValueForKey:@"finalCompiler"];
+    [self didAccessValueForKey:@"finalCompiler"];
+    if (setting) {
+        return setting;
+    }
+    if (self.project) {
+        return [self.project finalCompiler];
+    }
+    return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
 }
 
 @end
