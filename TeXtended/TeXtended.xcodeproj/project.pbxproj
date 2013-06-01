@@ -141,7 +141,6 @@
 		76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdfControlls.h; sourceTree = "<group>"; };
 		76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdfControlls.m; sourceTree = "<group>"; };
 		76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPdfControlls.xib; sourceTree = "<group>"; };
-		76049C9D1751FE3100778E2A /* CompilerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompilerProtocol.h; sourceTree = "<group>"; };
 		76049C9E1752085000778E2A /* Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compiler.h; sourceTree = "<group>"; };
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
@@ -295,7 +294,6 @@
 		76049C9C1751FDB000778E2A /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
-				76049C9D1751FE3100778E2A /* CompilerProtocol.h */,
 				76049C9E1752085000778E2A /* Compiler.h */,
 				76049C9F1752085000778E2A /* Compiler.m */,
 				D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */,
