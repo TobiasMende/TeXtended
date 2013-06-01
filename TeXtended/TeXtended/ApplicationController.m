@@ -114,7 +114,7 @@ ApplicationController *sharedInstance;
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
                               @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,
                               @"pdflatex.sh", TMTLiveCompileFlow,
-                              @"testFlow.rb", TMTDraftCompileFlow,
+                              @"pdflatex.sh", TMTDraftCompileFlow,
                               @"pdflatex.sh", TMTFinalCompileFlow,                              
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
                               nil];
