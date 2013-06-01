@@ -34,4 +34,10 @@
 - (BOOL) saveDocument:(NSError**) outError;
 - (BOOL) loadContent;
 - (void) documentModelDidChange;
+
+/**
+ * Draft compiles this document.
+ */
+- (void) draftCompile;
+
 @end

@@ -63,4 +63,12 @@
     [self.right adjustSubviews];
 }
 
+- (IBAction)drawftCompile:(id)sender {
+    [self.documentController draftCompile];
+}
+
+- (IBAction)finalCompile:(id)sender {
+    //TODO: open window with export options
+}
+
 @end
