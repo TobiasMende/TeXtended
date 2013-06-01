@@ -67,9 +67,13 @@
 }
 
 - (NSSet *)mainDocuments {
-    if([super mainDocuments] && [[super mainDocuments] count] > 0) {
-        return [super mainDocuments];
-    } else if(self.project) {
+    if([self primitiveValueForKey:@"mainDocuments"]) {
+        NSSet* md = (NSSet*) [self primitiveValueForKey:@"mainDocuments"];
+        if ([md count] > 0) {
+            return md;
+        }
+    }
+    if(self.project) {
         return [self.project mainDocuments];
     }
     return [NSSet setWithObject:self];
