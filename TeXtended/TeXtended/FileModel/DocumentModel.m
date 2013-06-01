@@ -60,4 +60,11 @@
     }
     return self;
 }
+
+- (Compilable *)mainCompilable {
+    if (self.project) {
+        return [self.project mainCompilable];
+    }
+    return [super mainCompilable];
+}
 @end
