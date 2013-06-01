@@ -137,4 +137,24 @@
         return [children count];
 }
 
+-(void)checkPath:(NSString*)path
+{
+    NSComparisonResult result = [path compare:filePath];
+    if(!(result == NSOrderedSame))
+    {
+        [self getChildrenByName:[[path pathComponents] self->pathIndex+1]];
+    }
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSURL *directoryURL = [NSURL fileURLWithPath:path]; // URL pointing to the directory you want to browse
+    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    
+    NSArray *files = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
+    NSUInteger count = [files count];
+
+    for(NSInteger i = 0; i < count; i++)
+    {
+        NSString* file = [[files objectAtIndex:i] path];
+    }
+}
+
 @end
