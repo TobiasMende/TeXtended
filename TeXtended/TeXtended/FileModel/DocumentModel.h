@@ -22,6 +22,8 @@
 @property (nonatomic, retain) ProjectModel *project;
 @property (nonatomic, retain) NSSet *subCompilabels;
 
+- (NSString*) loadContent;
+- (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 @end
 
 @interface DocumentModel (CoreDataGeneratedAccessors)
@@ -31,7 +33,5 @@
 - (void)addSubCompilabels:(NSSet *)values;
 - (void)removeSubCompilabels:(NSSet *)values;
 
-- (NSString*) loadContent;
-- (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 
 @end
