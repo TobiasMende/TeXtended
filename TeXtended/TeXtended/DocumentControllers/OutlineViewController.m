@@ -45,6 +45,9 @@
     return [NSSet setWithObject:nil];
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+}
+
 - (void) documentHasChangedAction {
 }
 

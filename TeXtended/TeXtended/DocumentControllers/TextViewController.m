@@ -60,6 +60,10 @@
     return [NSSet setWithObject:nil];
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    //TODO: reload file path?
+}
+
 - (void) documentHasChangedAction {
 }
 

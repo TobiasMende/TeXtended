@@ -71,8 +71,18 @@
     return children;
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [[self textViewController] documentModelHasChangedAction:self];
+    [[self pdfViewsController] documentModelHasChangedAction:self];
+    [[self consolViewsController] documentModelHasChangedAction:self];
+    [[self outlineViewController] documentModelHasChangedAction:self];
+}
+
 - (void) documentHasChangedAction {
-    //TODO: call on children
+    [[self textViewController] documentHasChangedAction];
+    [[self pdfViewsController] documentHasChangedAction];
+    [[self consolViewsController] documentHasChangedAction];
+    [[self outlineViewController] documentHasChangedAction];
 }
 
 - (BOOL) saveDocument:(NSError *__autoreleasing *)outError {

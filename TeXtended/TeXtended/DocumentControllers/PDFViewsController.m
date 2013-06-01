@@ -34,8 +34,12 @@
 }
 
 - (void) initialize {
+    [self loadPDFs:self.documentController];
+}
+
+- (void) loadPDFs:(DocumentController*) controller {
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    DocumentModel *mainModel = [self.documentController model];
+    DocumentModel *mainModel = [controller model];
     for (DocumentModel* model in [mainModel mainDocuments]) {
         ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] init];
         
@@ -47,6 +51,13 @@
 
 - (DocumentController * ) documentController {
     return [self.parent documentController];
+}
+
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [self loadPDFs:controller];
+    for (id<DocumentControllerProtocol> c in self.children) {
+        [c documentModelHasChangedAction:controller];
+    }
 }
 
 - (void) documentHasChangedAction {
