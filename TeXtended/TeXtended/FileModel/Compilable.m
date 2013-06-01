@@ -14,6 +14,8 @@
 @dynamic draftCompiler;
 @dynamic finalCompiler;
 @dynamic liveCompiler;
+@dynamic headerDocument;
+@dynamic mainDocuments;
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
     return [super init];

@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CompileSetting;
+@class CompileSetting,DocumentModel;
 @interface Compilable : NSManagedObject
 
 @property (nonatomic, retain) CompileSetting * draftCompiler;
 @property (nonatomic, retain) CompileSetting * finalCompiler;
 @property (nonatomic, retain) CompileSetting * liveCompiler;
+@property (nonatomic, retain) DocumentModel *headerDocument;
+@property (nonatomic, retain) NSSet *mainDocuments;
 
 - (id) initWithContext:(NSManagedObjectContext*)context;
 
@@ -24,4 +26,10 @@
  @return the main model of this Document
  */
 - (Compilable*) mainCompilable;
+
+
+- (void)addMainDocumentsObject:(DocumentModel *)value;
+- (void)removeMainDocumentsObject:(DocumentModel *)value;
+- (void)addMainDocuments:(NSSet *)values;
+- (void)removeMainDocuments:(NSSet *)values;
 @end

@@ -18,9 +18,7 @@
 @dynamic texPath;
 @dynamic project;
 @dynamic encoding;
-@dynamic mainDocuments;
-@dynamic subDocuments;
-@dynamic headerDocument;
+@dynamic subCompilabels;
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
@@ -66,5 +64,14 @@
         return [self.project mainCompilable];
     }
     return [super mainCompilable];
+}
+
+- (NSSet *)mainDocuments {
+    if([super mainDocuments] && [[super mainDocuments] count] > 0) {
+        return [super mainDocuments];
+    } else if(self.project) {
+        return [self.project mainDocuments];
+    }
+    return [NSSet setWithObject:self];
 }
 @end

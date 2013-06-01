@@ -16,4 +16,5 @@
 - (CompletionsController*) completionsController;
 + (ApplicationController*) sharedApplicationController;
 + (NSString*) userApplicationSupportDirectoryPath;
++ (BOOL)checkForAndCreateFolder:(NSString* )path;
 @end

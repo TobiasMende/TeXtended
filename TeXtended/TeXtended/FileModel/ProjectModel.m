@@ -17,7 +17,7 @@
 @dynamic path;
 @dynamic bibFiles;
 @dynamic documents;
-@dynamic mainDocuments;
 @dynamic properties;
-@dynamic headerDocument;
+
+
 @end
