@@ -14,6 +14,7 @@
 
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
+@property (weak) IBOutlet NSTabView *tabView;
 @property (strong) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
 
