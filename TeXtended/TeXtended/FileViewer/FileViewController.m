@@ -227,7 +227,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     } else {
         totalPath = document.texPath;
     }
-    //totalPath = @"/Users/Tobias/Music";
+    totalPath = @"/Users/Tobias/Documents/Projects";
     if(!totalPath ||[totalPath length] == 0)
         return;
     NSString *path = [totalPath stringByDeletingLastPathComponent];

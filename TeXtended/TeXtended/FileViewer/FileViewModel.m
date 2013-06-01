@@ -72,6 +72,18 @@
     pathComponents = [filePath pathComponents];
     pathIndex = [pathComponents count]-1;
     //self.presentedItemURL = [NSURL fileURLWithPath:newPath];
+    _presentedItemOperationQueue = [[NSOperationQueue alloc] init];
+    [_presentedItemOperationQueue setMaxConcurrentOperationCount: 1];
+    
+    _presentedItemURL = [NSURL fileURLWithPath:newPath];
+    
+    [NSFileCoordinator addFilePresenter:self];
+}
+
+- (void)presentedSubitemDidChangeAtURL:(NSURL *)url
+{
+    NSLog(@"%@ shoebox changed %@",fileName ,url);
+    
 }
 
 -(NSString*)getFileName

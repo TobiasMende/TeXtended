@@ -18,6 +18,9 @@
     FileViewModel *parent;
 }
 
+@property (readonly) NSURL *presentedItemURL;
+@property (readonly) NSOperationQueue *presentedItemOperationQueue;
+
 -(void)addPath:(NSString*)path;
 -(void)setPath:(NSString*)newPath;
 -(FileViewModel*)getChildrenByName:(NSString*)name;
