@@ -116,6 +116,9 @@
     }
 }
 
+- (void) draftCompile {
+    //TODO: compile the document
+}
 
 - (void)documentModelDidChange {
     [self documentModelHasChangedAction:self];

@@ -97,6 +97,7 @@
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
+		F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = F61B5FC8175A406000885FEB /* FileViewTitle.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
 /* End PBXBuildFile section */
@@ -274,6 +275,8 @@
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		F61B5FC7175A406000885FEB /* FileViewTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewTitle.h; sourceTree = "<group>"; };
+		F61B5FC8175A406000885FEB /* FileViewTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewTitle.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
 		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 				D21ACBB51726875600E2F8EC /* FileViewController.m */,
 				F6CDAA69173133030094197C /* FileOutlineView.h */,
 				F6CDAA6A173133030094197C /* FileOutlineView.m */,
+				F61B5FC7175A406000885FEB /* FileViewTitle.h */,
+				F61B5FC8175A406000885FEB /* FileViewTitle.m */,
 				F692F4D1173A62710032EF32 /* FileView.xib */,
 				F6E8243E1743A11E00FB2CCB /* FileViewModel.h */,
 				F6E8243F1743A11E00FB2CCB /* FileViewModel.m */,
@@ -802,6 +807,7 @@
 				D2A550841752085700BC05DD /* MainWindowController.m in Sources */,
 				760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */,
 				D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */,
+				F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

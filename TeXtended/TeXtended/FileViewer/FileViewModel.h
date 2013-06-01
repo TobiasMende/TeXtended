@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileViewModel : NSObject {
+@interface FileViewModel : NSObject <NSFilePresenter> {
     NSString* filePath;
     NSArray* pathComponents;
     NSInteger pathIndex;
@@ -17,6 +17,9 @@
     NSMutableArray* children;
     FileViewModel *parent;
 }
+
+@property (readonly) NSURL *presentedItemURL;
+@property (readonly) NSOperationQueue *presentedItemOperationQueue;
 
 -(void)addPath:(NSString*)path;
 -(void)setPath:(NSString*)newPath;
@@ -28,6 +31,6 @@
             toName:(NSString*)newName;
 -(NSImage*)getIcon;
 -(NSInteger)numberOfChildren;
--(NSString*)checkPath;
+-(void)checkPath:(NSString*)path;
 
 @end

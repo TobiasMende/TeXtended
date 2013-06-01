@@ -30,5 +30,11 @@
     NSLog(@"%@", path);
 }*/
 
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    NSLog(@"log");
+    return;
+}
+
 
 @end
