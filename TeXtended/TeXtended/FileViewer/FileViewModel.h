@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileViewModel : NSObject {
+@interface FileViewModel : NSObject <NSFilePresenter> {
     NSString* filePath;
     NSArray* pathComponents;
     NSInteger pathIndex;

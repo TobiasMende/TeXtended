@@ -71,6 +71,7 @@
     //icon = [[NSWorkspace sharedWorkspace] iconForFile:@"/Users/"];
     pathComponents = [filePath pathComponents];
     pathIndex = [pathComponents count]-1;
+    //self.presentedItemURL = [NSURL fileURLWithPath:newPath];
 }
 
 -(NSString*)getFileName

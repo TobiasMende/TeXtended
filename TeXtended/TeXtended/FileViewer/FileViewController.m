@@ -215,7 +215,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     size_t i;
     for(i=0; i < numEvents; i++){
         //NSLog(@"%@",[(__bridge NSArray*)eventPaths objectAtIndex:i]);
-        
     }
     
 }
