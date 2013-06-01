@@ -111,9 +111,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithInt:80], TMT_EDITOR_HARD_WRAP_AFTER,
                               [NSNumber numberWithInt:HardWrap], TMT_EDITOR_LINE_WRAP_MODE,
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
-                              @"/usr/texbin/pdflatex", TMT_PATH_TO_TEX_COMPILER,
                               @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,
-                              @"/usr/texbin", TMT_PATH_TO_TEXBIN,
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];

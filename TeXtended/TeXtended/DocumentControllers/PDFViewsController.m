@@ -48,7 +48,7 @@
        
         // add the view to the tab view
         NSTabViewItem *item = [[NSTabViewItem alloc] init];
-        [item setLabel:pdfViewController.getPdfName];
+        [item setLabel:@"Dummy Title"];
         [item setView:[pdfViewController pdfView]];
         [self.tabView addTabViewItem:item];
         

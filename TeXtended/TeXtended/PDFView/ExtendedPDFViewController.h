@@ -16,10 +16,4 @@
 @property (strong) id<DocumentControllerProtocol> parent;
 @property (strong) ExtendedPdf* pdfView;
 
-/**
- * Returns the name / title of the loaded pdf.
- * @return NSString - the title
- */
-- (NSString *) getPdfName;
-
 @end

@@ -76,9 +76,7 @@
  */
 
 #define TMT_ENVIRONMENT_PATH @"TMTEnvironmentPath"
-#define TMT_PATH_TO_TEX_COMPILER @"TMTPathToTexCompiler"
 #define TMT_PATH_TO_TEXDOC @"TMTPathToTexdoc"
-#define TMT_PATH_TO_TEXBIN @"TMTPathToTexbin"
 
 /*
  Keys for NSCoding
