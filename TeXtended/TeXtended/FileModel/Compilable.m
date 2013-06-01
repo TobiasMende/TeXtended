@@ -19,4 +19,8 @@
     return [super init];
 }
 
+- (Compilable *)mainCompilable {
+    return self;
+}
+
 @end

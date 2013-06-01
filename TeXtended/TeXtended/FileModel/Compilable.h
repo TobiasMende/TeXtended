@@ -17,4 +17,11 @@
 @property (nonatomic, retain) CompileSetting * liveCompiler;
 
 - (id) initWithContext:(NSManagedObjectContext*)context;
+
+/**
+ Getter for the top most compilabel model. In case of a DocumentModel, this method returns the project if the model is part of a project or the DocumentModel itself otherwise.
+ 
+ @return the main model of this Document
+ */
+- (Compilable*) mainCompilable;
 @end
