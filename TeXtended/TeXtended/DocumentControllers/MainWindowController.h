@@ -12,6 +12,7 @@
 @interface MainWindowController : NSWindowController<WindowControllerProtocol> {
     
 }
+@property (weak) IBOutlet NSSplitView *sidebar;
 @property (weak) IBOutlet NSSplitView *left;
 @property (weak) IBOutlet NSSplitView *middle;
 @property (weak) IBOutlet NSSplitView *right;
