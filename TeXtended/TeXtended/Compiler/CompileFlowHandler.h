@@ -12,4 +12,6 @@
 @interface CompileFlowHandler : NSObject {
 }
 + (CompileFlowHandler*)sharedInstance;
+
+- (NSArray *)flows;
 @end
