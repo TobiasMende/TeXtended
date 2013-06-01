@@ -27,9 +27,13 @@
  */
 - (Compilable*) mainCompilable;
 
+@end
+
+@interface Compilable (CoreDataGeneratedAccessors)
 
 - (void)addMainDocumentsObject:(DocumentModel *)value;
 - (void)removeMainDocumentsObject:(DocumentModel *)value;
 - (void)addMainDocuments:(NSSet *)values;
 - (void)removeMainDocuments:(NSSet *)values;
+
 @end

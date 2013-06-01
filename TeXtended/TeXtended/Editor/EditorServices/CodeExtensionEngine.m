@@ -148,7 +148,6 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
         
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
         NSString *command = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_PATH_TO_TEXDOC]];
-        //FIXME: Don't hard code!
         [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
         [task setLaunchPath:command];
         NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", packageName,
