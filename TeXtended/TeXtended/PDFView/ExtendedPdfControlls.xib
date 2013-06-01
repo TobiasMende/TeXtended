@@ -59,7 +59,6 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrame">{{20, 85}, {32, 18}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="307118128">
@@ -94,7 +93,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{64, 96}, {144, 21}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="113044363"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -121,7 +119,6 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrame">{{20, 26}, {31, 18}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="457719032">
@@ -147,7 +144,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{64, 37}, {144, 21}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="213992837"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -173,7 +169,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{214, 93}, {131, 22}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="508802804"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -256,7 +251,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{214, 36}, {131, 22}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="736637371"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -313,7 +307,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{64, 71}, {144, 21}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="526580045"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -339,7 +332,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{214, 70}, {131, 22}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="523954848"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -397,8 +389,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{214, 13}, {131, 22}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="865466475">
@@ -455,7 +445,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{64, 14}, {144, 21}}</string>
 										<reference key="NSSuperview" ref="319358966"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="104608330"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="NSEnabled">YES</bool>
@@ -479,14 +468,12 @@
 								</array>
 								<string key="NSFrame">{{2, 2}, {362, 126}}</string>
 								<reference key="NSSuperview" ref="26833945"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="982804068"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 							</object>
 						</array>
 						<string key="NSFrame">{{17, 16}, {366, 130}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<object class="NSShadow" key="NSViewShadow">
 							<reference key="NSShadowColor" ref="62349962"/>
 						</object>
@@ -512,16 +499,18 @@
 						<int key="NSBoxType">0</int>
 						<int key="NSTitlePosition">0</int>
 						<bool key="NSTransparent">NO</bool>
-						<reference key="NSBorderColor2" ref="62349962"/>
+						<object class="NSColor" key="NSBorderColor2">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
 						<object class="NSColor" key="NSFillColor2">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAgMC4yAA</bytes>
+							<bytes key="NSRGB">MCAwIDAgMC43AA</bytes>
 						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{400, 164}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="26833945"/>
 				<bool key="NSViewIsLayerTreeHost">YES</bool>
 				<string key="NSClassName">NSView</string>
@@ -1759,45 +1748,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">316</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">ExtendedPdf</string>
-					<string key="superclassName">PDFView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ExtendedPdf.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ExtendedPdfControlls</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">update:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">update:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">update:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ExtendedPdfControlls.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

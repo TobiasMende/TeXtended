@@ -36,6 +36,9 @@
     return [NSSet setWithObject:nil];
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [self documentHasChangedAction];
+}
 
 - (void) documentHasChangedAction {
     if ([self pdfPath] != nil) {

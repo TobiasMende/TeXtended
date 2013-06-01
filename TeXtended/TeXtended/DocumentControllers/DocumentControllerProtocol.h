@@ -41,6 +41,13 @@
 - (NSSet<DocumentControllerProtocol> *) children;
 
 /**
+ * Called if the model has fundamental changed, like a path has changed
+ * or the number of mainfiles.
+ * Does nessasary actions and calls this method on the children.
+ */
+- (void) documentModelHasChangedAction : (DocumentController*) controller;
+
+/**
  * Perform operations that are required if the document has changed
  * and will call the same method on all children.
  */
