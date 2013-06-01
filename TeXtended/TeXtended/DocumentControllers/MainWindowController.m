@@ -33,10 +33,8 @@
     [super windowDidLoad];
     [self.documentController setupWindowController];
     _fileViewController = [[FileViewController alloc] init];
-    [self.fileViewArea setSubviews:[NSArray arrayWithObjects:self.fileViewController.view, nil]];
+    [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];
-    [self.sidebar adjustSubviews];
-    
 }
 
 - (void)clearAllDocumentViews {
@@ -58,7 +56,6 @@
 - (void)addOutlineView:(NSView *)view {
     [self.left addSubview:view];
     [self.left adjustSubviews];
-    [self.sidebar adjustSubviews];
 }
 
 - (void)addPDFViewsView:(NSView *)view {

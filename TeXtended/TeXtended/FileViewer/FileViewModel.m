@@ -142,7 +142,7 @@
     NSComparisonResult result = [path compare:filePath];
     if(!(result == NSOrderedSame))
     {
-        [self getChildrenByName:[[path pathComponents] self->pathIndex+1]];
+        //  [self getChildrenByName:[[path pathComponents] self->pathIndex+1]];
     }
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = [NSURL fileURLWithPath:path]; // URL pointing to the directory you want to browse
