@@ -12,6 +12,7 @@
 #import "PDFViewsController.h"
 #import "ConsoleViewsController.h"
 #import "OutlineViewController.h"
+#import "Constants.h"
 
 
 @interface DocumentController ()
@@ -30,6 +31,7 @@
         _pdfViewsController = [[PDFViewsController alloc] initWithParent:self];
         _consolViewsController = [[ConsoleViewsController alloc] initWithParent:self];
         _outlineViewController = [[OutlineViewController alloc] initWithParent:self];
+        
     }
     return self;
 }
@@ -101,4 +103,26 @@
     [self.textViewController breakUndoCoalescing];
 }
 
+
+- (void)setModel:(DocumentModel *)model {
+    if (self.model) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
+    }
+    [self willChangeValueForKey:@"model"];
+    _model = model;
+    [self didChangeValueForKey:@"model"];
+    if (self.model) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
+    }
+}
+
+
+- (void)documentModelDidChange {
+    [self documentModelHasChangedAction:self];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

@@ -378,7 +378,7 @@
         
         secondStr = [self.textStorage attributedSubstringFromRange:second];
     }
-    NSAttributedString *firstStr = [self.textStorage attributedSubstringFromRange:first];
+    NSAttributedString *firstStr;
     if (first.length == 0) {
         NSDictionary *attr = [self.textStorage attributesAtIndex:first.location effectiveRange:NULL];
         firstStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];

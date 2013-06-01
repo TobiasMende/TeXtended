@@ -22,7 +22,7 @@
 @interface DocumentController : NSObject<DocumentControllerProtocol> {
     id<MainDocument> mainDocument;
 }
-@property (weak) DocumentModel *model;
+@property (weak,nonatomic) DocumentModel *model;
 @property (strong,nonatomic) id<WindowControllerProtocol> windowController;
 @property (strong) TextViewController* textViewController;
 @property (strong) PDFViewsController* pdfViewsController;
@@ -33,5 +33,5 @@
 - (void)setupWindowController;
 - (BOOL) saveDocument:(NSError**) outError;
 - (BOOL) loadContent;
-
+- (void) documentModelDidChange;
 @end

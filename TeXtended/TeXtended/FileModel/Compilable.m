@@ -8,6 +8,7 @@
 
 #import "Compilable.h"
 #import "CompileSetting.h"
+#import "Constants.h"
 
 @implementation Compilable
 
@@ -23,6 +24,16 @@
 
 - (Compilable *)mainCompilable {
     return self;
+}
+
+- (void)didChangeValueForKey:(NSString *)key {
+    [super didChangeValueForKey:key];
+    [self postChangeNotification];
+    
+}
+
+- (void)postChangeNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
 }
 
 @end
