@@ -51,4 +51,8 @@
 
 - (void) breakUndoCoalescing {}
 
+- (NSString *) getPdfName {
+    return [[[self.pdfView document] outlineRoot] label];
+}
+
 @end
