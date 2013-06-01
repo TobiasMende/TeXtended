@@ -56,7 +56,7 @@
     [self.textView setString:content];
 }
 
-- (NSSet<DocumentControllerProtocol> *)children {
+- (NSSet *)children {
     return [NSSet setWithObject:nil];
 }
 

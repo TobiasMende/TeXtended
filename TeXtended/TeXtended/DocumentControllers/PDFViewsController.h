@@ -15,6 +15,6 @@
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
 @property (strong) id<DocumentControllerProtocol> parent;
-@property (strong) NSSet<DocumentControllerProtocol> * children;
+@property (strong) NSSet* children;
 
 @end

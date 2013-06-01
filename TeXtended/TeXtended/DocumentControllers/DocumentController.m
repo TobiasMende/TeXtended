@@ -64,7 +64,7 @@
     return self;
 }
 
-- (NSSet<DocumentControllerProtocol> *) children {
+- (NSSet *) children {
     NSSet<DocumentControllerProtocol> *children = [NSSet setWithObjects:
                        [self textViewController],
                        [self pdfViewsController],
