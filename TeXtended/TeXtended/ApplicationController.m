@@ -11,6 +11,7 @@
 #import "PreferencesController.h"
 #import "DocumentCreationController.h"
 #import "CompletionsController.h"
+#import "CompileFlowHandler.h"
 ApplicationController *sharedInstance;
 @interface ApplicationController ()
 
@@ -112,14 +113,16 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithInt:HardWrap], TMT_EDITOR_LINE_WRAP_MODE,
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
                               @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,
+                              @"pdflatex.sh", TMTLiveCompileFlow,
+                              @"testFlow.rb", TMTDraftCompileFlow,
+                              @"pdflatex.sh", TMTFinalCompileFlow,                              
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 + (void)mergeCompileFlows {
-    NSString* appSupport = [self userApplicationSupportDirectoryPath];
-    NSString* flowPath = [appSupport stringByAppendingPathComponent:@"/flows/"];
+    NSString* flowPath = [CompileFlowHandler path];
     BOOL exists = [self checkForAndCreateFolder:flowPath];
     if (exists) {
         NSString* bundlePath = [[NSBundle mainBundle] pathForResource:@"CompileFlows" ofType:nil];

@@ -77,6 +77,9 @@
 
 #define TMT_ENVIRONMENT_PATH @"TMTEnvironmentPath"
 #define TMT_PATH_TO_TEXDOC @"TMTPathToTexdoc"
+#define TMTLiveCompileFlow @"TMTLiveCompileFlow"
+#define TMTDraftCompileFlow @"TMTDraftCompileFlow"
+#define TMTFinalCompileFlow @"TMTFinalCompileFlow"
 
 /*
  Keys for NSCoding

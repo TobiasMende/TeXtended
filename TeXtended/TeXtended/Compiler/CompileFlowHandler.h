@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CompileFlowHandler : NSObject {
+@interface CompileFlowHandler : NSArrayController {
 }
 + (CompileFlowHandler*)sharedInstance;
 
 - (NSArray *)flows;
+/**
+ Returns the path to the CompileFlows-Directory in the application support folder.
+ 
+ 
+ @return the absolut path
+ */
++ (NSString *)path;
 @end

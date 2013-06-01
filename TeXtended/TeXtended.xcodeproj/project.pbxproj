@@ -86,6 +86,8 @@
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
 		D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
+		D2B4FF4C175A416500755C24 /* testFlow.rb in Resources */ = {isa = PBXBuildFile; fileRef = D2B4FF4B175A416500755C24 /* testFlow.rb */; };
+		D2B4FF4D175A417000755C24 /* testFlow.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2B4FF4B175A416500755C24 /* testFlow.rb */; };
 		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
 		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
 		D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
@@ -117,6 +119,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */,
+				D2B4FF4D175A417000755C24 /* testFlow.rb in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +255,7 @@
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
+		D2B4FF4B175A416500755C24 /* testFlow.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = testFlow.rb; sourceTree = "<group>"; };
 		D2C904E41726963E006EFEC2 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2C904E51726963E006EFEC2 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
 		D2C904E61726963E006EFEC2 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				D271983D174398D800342CB0 /* pdflatex.sh */,
+				D2B4FF4B175A416500755C24 /* testFlow.rb */,
 			);
 			path = CompileFlows;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */,
 				D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
+				D2B4FF4C175A416500755C24 /* testFlow.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
