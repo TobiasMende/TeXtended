@@ -28,8 +28,6 @@
 
 - (void)didChangeValueForKey:(NSString *)key {
     [super didChangeValueForKey:key];
-    NSLog(@"Did change: %@", key );
-    
     [self postChangeNotification];
     
 }

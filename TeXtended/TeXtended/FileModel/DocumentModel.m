@@ -116,8 +116,16 @@
     [self willChangeValueForKey:@"project"];
     [self setPrimitiveValue:project forKey:@"project"];
     [self didChangeValueForKey:@"project"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+    if (self.project) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+    }
 }
 
+
+- (void)prepareForDeletion {
+    NSLog(@"prepare");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super prepareForDeletion];
+}
 
 @end
