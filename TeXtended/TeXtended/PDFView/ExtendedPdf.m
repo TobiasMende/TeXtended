@@ -56,16 +56,7 @@
     [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
     
-    // some dummy stuff
-//    NSURL *url = [NSURL fileURLWithPath:@"/Users/bannach/Desktop/tex/content.pdf"];
-//    PDFDocument *pdfDoc;
-//    pdfDoc = [[PDFDocument alloc] initWithURL:url];
-//    [self setDocument:pdfDoc];
-    
-    
     // add the controlls
-    
-
     controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
     [controllsView setPdfView:self];
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
@@ -110,7 +101,7 @@
     NSBezierPath* drawingPath = [NSBezierPath bezierPath];
         
     /* first the vertical lines */
-    if (self.drawVerticalLines) {
+    if (self.drawVerticalLines && [self gridVerticalSpacing] > 0) {
         for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]) {
             [drawingPath moveToPoint:NSMakePoint(i, 0)];
             [drawingPath lineToPoint:NSMakePoint(i, height)];
