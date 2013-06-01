@@ -18,6 +18,7 @@
     NSNumber* lastEventId;
     
     IBOutlet NSOutlineView *outline;
+    IBOutlet NSBox *titleBox;
 }
 
 - (void)doubleClick:(id)object;
