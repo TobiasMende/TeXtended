@@ -34,7 +34,15 @@
 }
 
 - (void) initialize {
-    //TODO: add children view depending on current model
+    NSMutableSet *tmp = [[NSMutableSet alloc] init];
+    DocumentModel *mainModel = [self.documentController model];
+    for (DocumentModel* model in [mainModel mainDocuments]) {
+//        ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] init];
+//        
+//        [pdfViewController setPdfPath:[model pdfPath]];
+//        [tmp addObject:pdfViewController];
+    }
+//    [self setChildren:tmp];
 }
 
 - (DocumentController * ) documentController {

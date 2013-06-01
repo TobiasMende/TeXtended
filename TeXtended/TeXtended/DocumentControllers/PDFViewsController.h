@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
+#import "DocumentController.h"
+#import "DocumentModel.h"
+#import "ExtendedPDFViewController.h"
 
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
