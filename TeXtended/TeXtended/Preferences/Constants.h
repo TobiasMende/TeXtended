@@ -95,6 +95,7 @@
  */
 #define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
 #define TMTEnvironmentCompletionsDidChangeNotification @"TMTEnvironmentCompletionsDidChangeNotification"
+#define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

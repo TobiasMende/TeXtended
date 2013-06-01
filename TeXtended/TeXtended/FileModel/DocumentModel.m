@@ -8,7 +8,11 @@
 
 #import "DocumentModel.h"
 #import "ProjectModel.h"
+#import "Constants.h"
 
+@interface DocumentModel ()
+
+@end
 
 @implementation DocumentModel
 
@@ -55,6 +59,10 @@
     self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
         self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
+        if (self.project) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+        }
+    
     }
     return self;
 }
@@ -67,15 +75,57 @@
 }
 
 - (NSSet *)mainDocuments {
+    NSSet* md;
     if([self primitiveValueForKey:@"mainDocuments"]) {
-        NSSet* md = (NSSet*) [self primitiveValueForKey:@"mainDocuments"];
-        if ([md count] > 0) {
-            return md;
+        [self willAccessValueForKey:@"mainDocuments"];
+        md = (NSSet*) [self primitiveValueForKey:@"mainDocuments"];
+        if ([md count] ==  0) {
+            md = nil;
         }
+        [self didAccessValueForKey:@"mainDocuments"];
     }
-    if(self.project) {
-        return [self.project mainDocuments];
+    if(!md && self.project) {
+        md = [self.project mainDocuments];
     }
-    return [NSSet setWithObject:self];
+    if(!md) {
+        md = [NSSet setWithObject:self];
+    }
+    return md;
 }
+
+- (DocumentModel *)headerDocument {
+    DocumentModel* m;
+    if ([self primitiveValueForKey:@"headerDocument"]) {
+        [self willAccessValueForKey:@"headerDocument"];
+        m = [self primitiveValueForKey:@"headerDocument"];
+        [self didAccessValueForKey:@"headerDocument"];
+    }
+    else if (self.project) {
+        m = [self.project headerDocument];
+    }
+    if (!m) {
+        m = self;
+    }
+    return m;
+}
+
+- (void)setProject:(ProjectModel *)project {
+    if (self.project) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
+    }
+    [self willChangeValueForKey:@"project"];
+    [self setPrimitiveValue:project forKey:@"project"];
+    [self didChangeValueForKey:@"project"];
+    if (self.project) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+    }
+}
+
+
+- (void)prepareForDeletion {
+    NSLog(@"prepare");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super prepareForDeletion];
+}
+
 @end

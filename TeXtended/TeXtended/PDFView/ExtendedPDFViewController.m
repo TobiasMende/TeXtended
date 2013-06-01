@@ -32,10 +32,13 @@
     return [self.parent documentController];
 }
 
-- (NSSet<DocumentControllerProtocol> *)children {
+- (NSSet*)children {
     return [NSSet setWithObject:nil];
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [self documentHasChangedAction];
+}
 
 - (void) documentHasChangedAction {
     if ([self pdfPath] != nil) {
@@ -47,5 +50,9 @@
 }
 
 - (void) breakUndoCoalescing {}
+
+- (NSString *) getPdfName {
+    return [[[self.pdfView document] outlineRoot] label];
+}
 
 @end

@@ -220,14 +220,14 @@ typedef enum {
     NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions];
     EnvironmentCompletion *completion = [completions objectForKey:word];
     NSUInteger position = [view selectedRange].location;
-    NSRange visible = [view visibleRange];
-    NSRange range;
-    if (position > visible.location) {
-        NSUInteger dif = position - visible.location;
-        range = NSMakeRange(position, visible.length-dif);
-    } else {
-        range = visible;
-    }
+    // NSRange visible = [view visibleRange];
+//    NSRange range;
+//    if (position > visible.location) {
+//        NSUInteger dif = position - visible.location;
+//        range = NSMakeRange(position, visible.length-dif);
+//    } else {
+//        range = visible;
+//    }
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
     [view.undoManager beginUndoGrouping];
     [view setSelectedRange:NSMakeRange(position, 0)];

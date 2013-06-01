@@ -34,19 +34,38 @@
 }
 
 - (void) initialize {
+    [self loadPDFs:self.documentController];
+}
+
+- (void) loadPDFs:(DocumentController*) controller {
+    [self clearTabView];
+    
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    DocumentModel *mainModel = [self.documentController model];
+    DocumentModel *mainModel = [controller model];
     for (DocumentModel* model in [mainModel mainDocuments]) {
-//        ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] init];
-//        
-//        [pdfViewController setPdfPath:[model pdfPath]];
-//        [tmp addObject:pdfViewController];
+        ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] init];
+        [pdfViewController setPdfPath:[model pdfPath]];
+       
+        // add the view to the tab view
+        NSTabViewItem *item = [[NSTabViewItem alloc] init];
+        [item setLabel:pdfViewController.getPdfName];
+        [item setView:[pdfViewController pdfView]];
+        [self.tabView addTabViewItem:item];
+        
+        [tmp addObject:pdfViewController];
     }
-//    [self setChildren:tmp];
+    [self setChildren:tmp];
 }
 
 - (DocumentController * ) documentController {
     return [self.parent documentController];
+}
+
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [self loadPDFs:controller];
+    for (id<DocumentControllerProtocol> c in self.children) {
+        [c documentModelHasChangedAction:controller];
+    }
 }
 
 - (void) documentHasChangedAction {
@@ -58,4 +77,12 @@
 - (void) breakUndoCoalescing{
 }
 
+/**
+ * Clear the tabView, i.e. removes all tabs.
+ */
+- (void) clearTabView {
+    for (NSTabViewItem *item in [self.tabView tabViewItems]) {
+        [self.tabView removeTabViewItem:item];
+    }
+}
 @end

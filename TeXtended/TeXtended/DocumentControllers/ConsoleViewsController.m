@@ -41,6 +41,12 @@
     return [self.parent documentController];
 }
 
+- (void) documentModelHasChangedAction : (DocumentController*) controller {
+    for (id<DocumentControllerProtocol> c in self.children) {
+        [c documentModelHasChangedAction:controller];
+    }
+}
+
 - (void) documentHasChangedAction {
     for (id<DocumentControllerProtocol> c in self.children) {
         [c documentHasChangedAction];
