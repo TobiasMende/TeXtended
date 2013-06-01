@@ -18,9 +18,8 @@
 @property (nonatomic, retain) NSString * path;
 @property (nonatomic, retain) NSSet *bibFiles;
 @property (nonatomic, retain) NSSet *documents;
-@property (nonatomic, retain) NSSet *mainDocuments;
 @property (nonatomic, retain) DocumentModel *properties;
-@property (nonatomic, retain) DocumentModel *headerDocument;
+
 @end
 
 @interface ProjectModel (CoreDataGeneratedAccessors)
@@ -35,9 +34,5 @@
 - (void)addDocuments:(NSSet *)values;
 - (void)removeDocuments:(NSSet *)values;
 
-- (void)addMainDocumentsObject:(DocumentModel *)value;
-- (void)removeMainDocumentsObject:(DocumentModel *)value;
-- (void)addMainDocuments:(NSSet *)values;
-- (void)removeMainDocuments:(NSSet *)values;
 
 @end

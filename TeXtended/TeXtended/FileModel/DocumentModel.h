@@ -20,22 +20,16 @@
 @property (nonatomic, retain) NSString * texPath;
 @property (nonatomic, retain) NSNumber *encoding;
 @property (nonatomic, retain) ProjectModel *project;
-@property (nonatomic, retain) DocumentModel *headerDocument;
-@property (nonatomic, retain) NSSet *mainDocuments;
-@property (nonatomic, retain) NSSet *subDocuments;
+@property (nonatomic, retain) NSSet *subCompilabels;
 
 @end
 
 @interface DocumentModel (CoreDataGeneratedAccessors)
-- (void)addMainDocumentsObject:(DocumentModel *)value;
-- (void)removeMainDocumentsObject:(DocumentModel *)value;
-- (void)addMainDocuments:(NSSet *)values;
-- (void)removeMainDocuments:(NSSet *)values;
 
-- (void)addSubDocumentsObject:(DocumentModel *)value;
-- (void)removeSubDocumentsObject:(DocumentModel *)value;
-- (void)addSubDocuments:(NSSet *)values;
-- (void)removeSubDocuments:(NSSet *)values;
+- (void)addSubCompilabelsObject:(Compilable *)value;
+- (void)removeSubCompilabelsObject:(Compilable *)value;
+- (void)addSubCompilabels:(NSSet *)values;
+- (void)removeSubCompilabels:(NSSet *)values;
 
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;

@@ -60,6 +60,7 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
+		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
 		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 		D2681FF0173143AF003AF83D /* Compilable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FEF173143AF003AF83D /* Compilable.m */; };
@@ -68,7 +69,6 @@
 		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
 		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
 		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
-		D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
@@ -114,7 +114,7 @@
 			dstPath = CompileFlows;
 			dstSubfolderSpec = 7;
 			files = (
-				D271983F17439A2100342CB0 /* pdflatex.sh in CopyFiles */,
+				D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,8 +608,8 @@
 			children = (
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
-				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D283038A1731346200E1FC1D /* FileModel */,
 				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
 				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
