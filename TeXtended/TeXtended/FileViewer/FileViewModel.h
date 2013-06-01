@@ -28,6 +28,6 @@
             toName:(NSString*)newName;
 -(NSImage*)getIcon;
 -(NSInteger)numberOfChildren;
--(NSString*)checkPath;
+-(void)checkPath:(NSString*)path;
 
 @end

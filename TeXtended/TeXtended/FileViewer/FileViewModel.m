@@ -142,7 +142,8 @@
     NSComparisonResult result = [path compare:filePath];
     if(!(result == NSOrderedSame))
     {
-        [self getChildrenByName:[[path pathComponents] self->pathIndex+1]];
+        [[self getChildrenByName:[[path pathComponents] objectAtIndex:pathIndex+1]] checkPath:path];
+        return;
     }
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = [NSURL fileURLWithPath:path]; // URL pointing to the directory you want to browse
@@ -153,7 +154,25 @@
 
     for(NSInteger i = 0; i < count; i++)
     {
-        NSString* file = [[files objectAtIndex:i] path];
+        NSString* file = [[[[files objectAtIndex:i] path] pathComponents] objectAtIndex:pathIndex+1];
+        if([children indexOfObject:file]== NSNotFound)
+            [self addPath:path];
+    }
+    for(NSInteger i = 0; i < [children count]; i++)
+    {
+        BOOL exists = FALSE;
+        NSString *childrenName = [children objectAtIndex:i];
+        for(NSInteger j = 0; j < count; j++)
+        {
+            NSString* file = [[[[files objectAtIndex:i] path] pathComponents] objectAtIndex:pathIndex+1];
+            NSComparisonResult result = [childrenName compare:file];
+            if (result == NSOrderedSame) {
+                exists = TRUE;
+            }
+        }
+        if (exists) {
+            [children removeObject:childrenName];
+        }
     }
 }
 
