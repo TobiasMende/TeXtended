@@ -48,6 +48,9 @@
 #define TMT_EDITOR_NUM_TAB_SPACES @"TMTEditorNumTabSpaces"
 #define TMT_EDITOR_HARD_WRAP_AFTER @"TMTEditorHardWrapAfter"
 #define TMT_EDITOR_LINE_WRAP_MODE @"TMTEditorLineWrapMode"
+#define TMTLiveCompileIterations @"TMTLiveCompileIterations"
+#define TMTDraftCompileIterations @"TMTDraftCompileIterations"
+#define TMTFinalCompileIterations @"TMTFinalCompileIterations"
 
 /*
  KVC keys for boolean flags (used for user defaults) 
@@ -69,6 +72,9 @@
 #define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
 #define TMT_SHOULD_UNDERLINE_TEXDOC_LINKS @"TMTShouldUnderlineTexdocLinks"
 #define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
+#define TMTLiveCompileBib @"TMTLiveCompileBib"
+#define TMTDraftCompileBib @"TMTDraftCompileBib"
+#define TMTFinalCompileBib @"TMTFinalCompileBib"
 
 
 /*
@@ -80,6 +86,9 @@
 #define TMTLiveCompileFlow @"TMTLiveCompileFlow"
 #define TMTDraftCompileFlow @"TMTDraftCompileFlow"
 #define TMTFinalCompileFlow @"TMTFinalCompileFlow"
+#define TMTLiveCompileArgs @"TMTLiveCompileArgs"
+#define TMTDraftCompileArgs @"TMTDraftCompileArgs"
+#define TMTFinalCompileArgs @"TMTFinalCompileArgs"
 
 /*
  Keys for NSCoding
