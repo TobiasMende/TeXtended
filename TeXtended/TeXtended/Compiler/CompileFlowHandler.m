@@ -7,6 +7,7 @@
 //
 
 #import "CompileFlowHandler.h"
+#import "ApplicationController.h"
 static CompileFlowHandler* instance;
 @implementation CompileFlowHandler
 
@@ -23,5 +24,22 @@ static CompileFlowHandler* instance;
         instance = [[CompileFlowHandler alloc] init];
     }
     return instance;
+}
+
+- (NSArray *)flows {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    
+    NSString* appSupport = [ApplicationController userApplicationSupportDirectoryPath];
+    NSString* flowPath = [appSupport stringByAppendingPathComponent:@"/flows/"];
+    
+    NSArray* flowPaths = [fm contentsOfDirectoryAtPath:flowPath error:&error];
+    
+    if (error) {
+        NSLog(@"Can't read flows from %@. Error: %@", flowPath, [error userInfo]);
+        return nil;
+    }
+    return flowPaths;
+    
 }
 @end
