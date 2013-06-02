@@ -41,30 +41,40 @@ NSSet *standardDocumentTypes;
 }
 
 
-+ (BOOL)autosavesInPlace
-{
+
+//- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
+//    NSLog(@"%@",[url path]);
+//    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
+//        [self.documentController breakUndoCoalescing];
+//    } else {
+//        
+//    }
+//    BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
+//    NSLog(@"Success: %@", [NSNumber numberWithBool:success]);
+//    return success;
+//}
+
++ (BOOL)autosavesInPlace {
     return YES;
 }
 
-- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
-    BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
+
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
+
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
         [self.documentController breakUndoCoalescing];
     }
-    return success;
-}
-
-- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
         NSLog(@"Can't handle type %@", typeName);
         return NO;
-    } 
-        self.model.texPath = [url path];
+    }
+    self.model.texPath = [url path];
     BOOL success = [self.documentController saveDocument:outError];
-        return success;
-    
+    return success;
 }
+
+
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];

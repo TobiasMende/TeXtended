@@ -313,6 +313,11 @@
         return;
     }
     NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    if (totalRange.location > 0) {
+        // Delete line-break before selection.
+        totalRange.location -= 1;
+        totalRange.length +=1;
+    }
     [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
 
 
