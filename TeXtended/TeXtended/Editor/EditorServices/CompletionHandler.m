@@ -36,7 +36,7 @@ typedef enum {
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
 
-- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type;
 
 /**
  Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \command completions.
@@ -107,13 +107,13 @@ typedef enum {
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
-            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
             break;
         case TMTEndCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
-            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
             break;
         default:
             NSLog(@"NoCompletion");
@@ -136,17 +136,22 @@ typedef enum {
     return matchingKeys;
 }
 
-- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type{
     NSString *prefix = [view.string substringWithRange:charRange];
     NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions] ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-            [matchingCompletions addObject:[completions objectForKey:key]];
+            if (type == TMTBeginCompletion) {
+                [matchingCompletions addObject:[completions objectForKey:key]];
+            } else {
+                [matchingCompletions addObject:[((EnvironmentCompletion*)[completions objectForKey:key]) insertion]];
+            }
         }
     }
     return matchingCompletions;
 }
+
 
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
