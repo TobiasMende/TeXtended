@@ -17,6 +17,6 @@
 - (void) addPDFViewsView:(NSView *) view;
 - (void) addConsoleViewsView:(NSView *) view;
 - (void) addOutlineView:(NSView *) view;
-
+- (void) makeFirstResponder:(NSView*)view;
 
 @end

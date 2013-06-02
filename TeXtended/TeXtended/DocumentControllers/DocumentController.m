@@ -43,6 +43,7 @@
 - (void)setWindowController:(id<WindowControllerProtocol>)windowController {
     _windowController = windowController;
     [self.windowController setDocumentController:self];
+    
 }
 
 - (void)setupWindowController {
@@ -54,6 +55,7 @@
     [self.windowController addConsoleViewsView:self.consolViewsController.view];
     [self.windowController addPDFViewsView:self.pdfViewsController.view];
     [self loadContent];
+    [self.windowController makeFirstResponder:self.textViewController.view];
 }
 
 - (id <DocumentControllerProtocol>) parent {

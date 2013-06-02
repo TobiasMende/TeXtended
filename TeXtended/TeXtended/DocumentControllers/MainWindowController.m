@@ -71,4 +71,8 @@
     //TODO: open window with export options
 }
 
+- (void)makeFirstResponder:(NSView *)view {
+    [[view window] setInitialFirstResponder:view];
+}
+
 @end
