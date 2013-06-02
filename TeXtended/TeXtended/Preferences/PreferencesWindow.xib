@@ -2362,7 +2362,7 @@
 										<object class="NSButtonCell" key="NSCell" id="937762164">
 											<int key="NSCellFlags">-2080374784</int>
 											<int key="NSCellFlags2">268435456</int>
-											<string key="NSContents">Highlight matching bracktes</string>
+											<string key="NSContents">Highlight matching brackets</string>
 											<reference key="NSSupport" ref="88076616"/>
 											<string key="NSCellIdentifier">_NS:9</string>
 											<reference key="NSControlView" ref="192471744"/>
@@ -3807,7 +3807,7 @@
 				<string key="NSAntiCompressionPriority">{1000, 1000}</string>
 			</object>
 			<object class="NSBox" id="320051940">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">12</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSView" id="919774599">
@@ -3815,12 +3815,10 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{1, 1}, {175, 247}}</string>
 						<reference key="NSSuperview" ref="320051940"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{177, 263}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="919774599"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSOffsets">{0, 0}</string>

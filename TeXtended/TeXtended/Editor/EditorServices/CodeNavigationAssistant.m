@@ -185,7 +185,7 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 #pragma mark -
 #pragma mark Auto Indention and Tab Spacing
 - (BOOL)handleTabInsertion {
-    if (view.selectedRanges.count > 1 || view.selectedRange.length > 0) {
+    if (view.selectedRanges.count > 1 ) {
         return NO;
     }
     NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
@@ -251,6 +251,7 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     NSRange newRange = NSMakeRange(0, mString.length-1);
     [beginOfLine replaceMatchesInString:mString options:0 range:newRange withTemplate:tab];
     [view insertText:mString replacementRange:totalRange];
+    totalRange.length = mString.length;
     [view setSelectedRange:totalRange];
     
 }
