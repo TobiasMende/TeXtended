@@ -40,7 +40,7 @@
 
 
 -(NSString *)key {
-    return self.insertion;
+    return [NSString stringWithFormat:@"%@ | %@%@", self.insertion, self.firstLineExtension, self.extension];
 }
 
 - (BOOL)hasFirstLineExtension {

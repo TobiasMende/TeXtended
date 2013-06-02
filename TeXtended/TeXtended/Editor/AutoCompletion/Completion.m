@@ -127,6 +127,7 @@ return self;
 
 }
 
+
 - (NSUInteger)hash {
     return [[self key] hash];
 }
@@ -138,5 +139,24 @@ return self;
         return [self.key isEqualToString:[other key]];
     }
     return false;
+}
+
+#pragma mark -
+#pragma mark String Extension Methods
+
+- (NSSize)sizeWithAttributes:(NSDictionary *)attributes {
+    return [self.key sizeWithAttributes:attributes];
+}
+
+- (NSUInteger)length {
+    return [self.key length];
+}
+
+- (BOOL)isEqualToString:(NSString *)aString {
+    return [self.key isEqualToString:aString];
+}
+
+- (unichar)characterAtIndex:(NSUInteger)index {
+    return [self.key characterAtIndex:index];
 }
 @end

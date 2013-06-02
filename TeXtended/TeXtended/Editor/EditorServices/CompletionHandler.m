@@ -142,7 +142,7 @@ typedef enum {
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-            [matchingCompletions addObject:[[completions objectForKey:key] insertion]];
+            [matchingCompletions addObject:[completions objectForKey:key]];
         }
     }
     return matchingCompletions;
@@ -207,18 +207,18 @@ typedef enum {
 }
 
 - (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    //Attention: Word isn't a string. its an EnvironmentCompletion ;)
+    EnvironmentCompletion *completion = (EnvironmentCompletion*)word;
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     if (type != TMTBeginCompletion) {
         return;
     }
     if (!flag || ![self isFinalInsertion:movement]) {
-        [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+        [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
         return;
     }
-    [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
     [self skipClosingBracket];
-    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions];
-    EnvironmentCompletion *completion = [completions objectForKey:word];
     NSUInteger position = [view selectedRange].location;
     // NSRange visible = [view visibleRange];
 //    NSRange range;
@@ -249,7 +249,7 @@ typedef enum {
             [view insertNewline:self];
             [view insertBacktab:self];
         }
-        [view insertText:[NSString stringWithFormat:@"\\end{%@}", word]];
+        [view insertText:[NSString stringWithFormat:@"\\end{%@}", completion.insertion]];
         
     }
     [view setSelectedRange:NSMakeRange(position, 0)];

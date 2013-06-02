@@ -12,7 +12,7 @@
  
  @author Tobias Mende
  */
-@interface Completion : NSObject <NSCoding>
+@interface Completion : NSString <NSCoding>
 /** The basic insertion (e.g. a \command or an environment name) */
 @property (strong,nonatomic) NSString *insertion;
 
@@ -57,6 +57,8 @@
  @return `YES` if there is a meaningfull extension
  */
 - (BOOL) hasExtension;
+
+
 
 /**
  Method for retreiving a key which represents the completion and can be shown to the user to identify this completion.
