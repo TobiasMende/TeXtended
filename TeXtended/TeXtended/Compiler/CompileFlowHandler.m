@@ -33,10 +33,16 @@ static CompileFlowHandler* instance;
     NSString* flowPath = [CompileFlowHandler path];
     
     NSArray* flowPaths = [fm contentsOfDirectoryAtURL:[NSURL fileURLWithPath:flowPath] includingPropertiesForKeys:[NSArray arrayWithObjects:NSURLPathKey, nil] options:NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants|NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
     
     NSMutableArray *final = [[NSMutableArray alloc] initWithCapacity:[flowPaths count]];
     for(NSString *p in flowPaths) {
         //NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:p,@"path", [p lastPathComponent],@"title", nil];
+        NSError *error1;
+            [fm setAttributes:dict ofItemAtPath:p error:&error1];
+        if (error1) {
+            NSLog(@"Can't set permission for %@. Error: %@",p,[error1 userInfo]);
+        }
         NSString *d = [p lastPathComponent];
         [final addObject:d];
     }
@@ -54,6 +60,7 @@ static CompileFlowHandler* instance;
 }
 
 +(NSString *)path {
-    return [[ApplicationController userApplicationSupportDirectoryPath] stringByAppendingPathComponent:@"/flows/"];
+    NSString *dir =[[ApplicationController userApplicationSupportDirectoryPath] stringByAppendingPathComponent:@"/flows/"];
+    return dir;
 }
 @end
