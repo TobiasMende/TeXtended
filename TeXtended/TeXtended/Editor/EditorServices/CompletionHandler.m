@@ -213,13 +213,18 @@ typedef enum {
 
 - (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     //Attention: Word isn't a string. its an EnvironmentCompletion ;)
+    
     EnvironmentCompletion *completion = (EnvironmentCompletion*)word;
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     if (type != TMTBeginCompletion) {
         return;
     }
     if (!flag || ![self isFinalInsertion:movement]) {
-        [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
+        if([completion respondsToSelector:@selector(insertion)]) {
+            [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
+        } else {
+            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+        }
         return;
     }
     [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
