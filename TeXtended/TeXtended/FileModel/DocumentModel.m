@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 
+static NSArray *TMTProjectObserverKeys;
+
 @interface DocumentModel ()
 - (void) registerProjectObserver;
 - (void) unregisterProjectObserver;
@@ -25,6 +27,11 @@
 @dynamic project;
 @dynamic encoding;
 @dynamic subCompilabels;
+
++ (void)initialize {
+    TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments" nil];
+}
+
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
@@ -73,9 +80,9 @@
         return;
     }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
-    [self.project addObserver:self forKeyPath:@"draftCompiler" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.project addObserver:self forKeyPath:@"finalCompiler" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.project addObserver:self forKeyPath:@"liveCompiler" options:NSKeyValueObservingOptionNew context:NULL];
+    for( NSString *key in TMTProjectObserverKeys) {
+        [self.project addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    }
 }
 
 - (void)unregisterProjectObserver {
@@ -83,9 +90,9 @@
         return;
     }
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
-    [self.project removeObserver:self forKeyPath:@"draftCompiler"];
-    [self.project removeObserver:self forKeyPath:@"finalCompiler"];
-    [self.project removeObserver:self forKeyPath:@"liveCompiler"];
+    for( NSString *key in TMTProjectObserverKeys) {
+        [self.project removeObserver:self forKeyPath:key];
+    }
 }
 
 - (Compilable *)mainCompilable {
@@ -145,6 +152,10 @@
     [super prepareForDeletion];
 }
 
+
+#pragma mark -
+#pragma mark Getter & Setter
+
 - (CompileSetting *)draftCompiler {
     [self willAccessValueForKey:@"draftCompiler"];
     CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
@@ -182,6 +193,17 @@
         return [self.project finalCompiler];
     }
     return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
+}
+
+- (NSString *)pdfPath {
+    NSString *path = [self primitiveValueForKey:@"pdfPath"];
+    if (path && path.length > 0) {
+        return path;
+    }
+    if (self.texPath && self.texPath.length > 0) {
+        path = [self.texPath stringByDeletingPathExtension];
+        return [path stringByAppendingPathExtension:@"pdf"];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
