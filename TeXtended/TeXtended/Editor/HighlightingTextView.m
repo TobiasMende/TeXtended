@@ -339,6 +339,31 @@
     }
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(moveLinesUp:)) {
+        NSRange totalRange = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+        if (totalRange.location == 0 || totalRange.location == self.textStorage.length) {
+            return NO;
+        } else {
+            return YES;
+        }
+    } else if(aSelector == @selector(moveLinesDown:)) {
+        NSRange totalRange = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+        if(NSMaxRange(totalRange) < self.string.length) {
+            NSRange nextLine = [codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(NSMaxRange(totalRange)+1, 0)];
+            if (nextLine.location == self.string.length) {
+                return NO;
+            } else {
+                return YES;
+            }
+        }
+        return NO;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
+
+
 - (IBAction)moveLinesUp:(id)sender {
     if (self.selectedRanges.count != 1) {
         return;
@@ -374,7 +399,8 @@
         first = second;
         second = tmp;
     }
-    NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
+
+// NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
     NSAttributedString *secondStr;
     if (second.length == 0) {
         NSDictionary *attr = [self.textStorage attributesAtIndex:second.location effectiveRange:NULL];
