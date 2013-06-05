@@ -163,6 +163,30 @@ static NSArray *TMTProjectObserverKeys;
 #pragma mark -
 #pragma mark Getter & Setter
 
+- (NSPipe *)inputPipe {
+    if (!inputPipe) {
+        [self setInputPipe:[NSPipe pipe]];
+    }
+    return inputPipe;
+}
+
+- (NSPipe *)outputPipe {
+    if (!outputPipe) {
+        [self setOutputPipe:[NSPipe pipe]];
+    }
+    return outputPipe;
+}
+
+- (void)setOutputPipe:(NSPipe *)pipe {
+    outputPipe = pipe;
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelOutputPipeChangeNotification object:self];
+}
+
+- (void)setInputPipe:(NSPipe *)pipe {
+    inputPipe = pipe;
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelInputPipeChangeNotification object:self];
+}
+
 - (CompileSetting *)draftCompiler {
     [self willAccessValueForKey:@"draftCompiler"];
     CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];

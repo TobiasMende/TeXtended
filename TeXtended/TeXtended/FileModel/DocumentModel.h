@@ -12,7 +12,9 @@
 
 @class ProjectModel;
 
-@interface DocumentModel : Compilable
+@interface DocumentModel : Compilable {
+    NSPipe *inputPipe, *outputPipe;
+}
 
 @property (nonatomic, retain) NSDate * lastChanged;
 @property (nonatomic, retain) NSDate * lastCompile;
@@ -25,6 +27,11 @@
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 - (NSString *)texName;
+- (NSPipe *) outputPipe;
+- (NSPipe *) inputPipe;
+- (void) setOutputPipe:(NSPipe*)pipe;
+- (void) setInputPipe:(NSPipe*)pipe;
+
 @end
 
 @interface DocumentModel (CoreDataGeneratedAccessors)
@@ -33,5 +40,4 @@
 - (void)removeSubCompilabelsObject:(Compilable *)value;
 - (void)addSubCompilabels:(NSSet *)values;
 - (void)removeSubCompilabels:(NSSet *)values;
-
 @end

@@ -10,7 +10,11 @@
 #import "DocumentControllerProtocol.h"
 
 @class DocumentModel;
-@interface ConsoleViewController : NSViewController <DocumentControllerProtocol>
+@interface ConsoleViewController : NSViewController <DocumentControllerProtocol> {
+}
 @property (strong) id<DocumentControllerProtocol> parent;
-@property (assign) DocumentModel *model;
+@property (nonatomic,assign) DocumentModel *model;
+@property (unsafe_unretained) IBOutlet NSTextView *textView;
+
+- (void) handleOutput: (NSNotification*)notification;
 @end

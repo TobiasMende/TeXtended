@@ -38,11 +38,16 @@
         
         CompileSetting *settings = [CompileSetting alloc];
         NSTask *task   = [[NSTask alloc] init];
-        NSPipe *pipe = [[NSPipe alloc] init];
+        model.outputPipe = [NSPipe pipe];
+        model.inputPipe = [NSPipe pipe];
+        [task setStandardOutput:model.outputPipe];
+        [task setStandardInput:model.inputPipe];
         NSFileHandle *handle;
         NSString *consoleOutput;
         NSString *path;
-        
+        NSLog(@"1");
+        [model.outputPipe.fileHandleForReading readInBackgroundAndNotify];
+        NSLog(@"2");
         
         if (draft) {
             settings = [model draftCompiler];
