@@ -8,6 +8,7 @@
 
 #import "Compiler.h"
 #import "DocumentModel.h"
+#import "CompileFlowHandler.h"
 
 @implementation Compiler
 
@@ -15,7 +16,7 @@
     self = [super init];
     if (self) {
         [self setAutoCompile:NO];
-        documentController = controller;
+        _documentController = controller;
         
         // get the settings and observe them
         _draftSettings = [[controller model] draftCompiler];
@@ -31,13 +32,36 @@
 
 
 - (void) compile:(bool)draft {
-    // todo compiler
-    [documentController documentHasChangedAction];
+    
+    NSSet *mainDocuments = [self.documentController.model mainDocuments];
+    for (DocumentModel *model in mainDocuments) {
+        
+        CompileSetting *settings = [CompileSetting alloc];
+        NSTask *task   = [[NSTask alloc] init];
+        NSPipe *pipe = [[NSPipe alloc] init];
+        NSFileHandle *handle;
+        NSString *consoleOutput;
+        NSString *path = [NSString alloc];
+        NSString *arguments = [NSString alloc];
+        
+        
+        if (draft) {
+            settings = [model draftCompiler];
+            path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
+            arguments = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", [model texPath], [model pdfPath], [settings numberOfCompiles], [settings compileBib], [settings customArgument]];
+        }
+        
+        NSLog(arguments);
+        
+        [task setLaunchPath:path];
+    }
+    
+    
+    
+    
+    [self.documentController documentHasChangedAction];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                       change:(NSDictionary *)change context:(void*)context {
-    
-}
+
 
 @end

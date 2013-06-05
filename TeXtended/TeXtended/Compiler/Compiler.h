@@ -10,13 +10,9 @@
 #import "DocumentController.h"
 #import "CompileSetting.h"
 
-@interface Compiler : NSObject {
-    /**
-     * DocumentController holding the model, which should be compiled.
-     */
-    DocumentController *documentController;
-}
+@interface Compiler : NSObject
 
+@property (strong) DocumentController *documentController;
 @property (assign) CompileSetting* draftSettings;
 @property (assign) CompileSetting* liveSettings;
 @property (assign) CompileSetting* finalSettings;
