@@ -32,6 +32,7 @@
 
 - (void) compile:(bool)draft {
     // todo compiler
+    NSLog(@"Compile: %@", [NSNumber numberWithBool:draft]);
     [documentController documentHasChangedAction];
 }
 
