@@ -10,7 +10,8 @@
 #import "MainDocument.h"
 #import "WindowControllerProtocol.h"
 #import "DocumentControllerProtocol.h"
-@class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController;
+
+@class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler;
 /**
  The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
  
@@ -28,6 +29,7 @@
 @property (strong) PDFViewsController* pdfViewsController;
 @property (strong) ConsoleViewsController* consolViewsController;
 @property (strong) OutlineViewController* outlineViewController;
+@property (strong) Compiler* compiler;
 
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document;
 - (void)setupWindowController;

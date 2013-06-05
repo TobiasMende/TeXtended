@@ -13,7 +13,7 @@
 #import "ConsoleViewsController.h"
 #import "OutlineViewController.h"
 #import "Constants.h"
-
+#import "Compiler.h"
 
 @interface DocumentController ()
 
@@ -31,7 +31,7 @@
         _pdfViewsController = [[PDFViewsController alloc] initWithParent:self];
         _consolViewsController = [[ConsoleViewsController alloc] initWithParent:self];
         _outlineViewController = [[OutlineViewController alloc] initWithParent:self];
-        
+        _compiler = [[Compiler alloc] initWithDocumentController:self];
     }
     return self;
 }
@@ -119,7 +119,7 @@
 }
 
 - (void) draftCompile {
-    //TODO: compile the document
+    [self.compiler compile:YES];
 }
 
 - (void)documentModelDidChange {

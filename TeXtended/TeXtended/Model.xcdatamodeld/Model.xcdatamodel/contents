@@ -41,7 +41,7 @@
         <element name="BibFile" positionX="385" positionY="-162" width="128" height="88"/>
         <element name="Compilable" positionX="25" positionY="-349" width="128" height="120"/>
         <element name="CompileSetting" positionX="448" positionY="-333" width="128" height="148"/>
-        <element name="Document" positionX="-126" positionY="-162" width="128" height="150"/>
+        <element name="Document" positionX="-245" positionY="-159" width="128" height="150"/>
         <element name="Project" positionX="171" positionY="-162" width="128" height="120"/>
     </elements>
 </model>

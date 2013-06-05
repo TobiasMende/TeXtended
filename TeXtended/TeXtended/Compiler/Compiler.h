@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DocumentController.h"
+#import "CompileSetting.h"
 
 @interface Compiler : NSObject {
     /**
@@ -15,6 +16,15 @@
      */
     DocumentController *documentController;
 }
+
+@property (assign) CompileSetting* draftSettings;
+@property (assign) CompileSetting* liveSettings;
+@property (assign) CompileSetting* finalSettings;
+
+/**
+ * Constructor
+ */
+- (id)initWithDocumentController:(DocumentController*) controller;
 
 /**
  * Calls the compile method on the document.
