@@ -142,6 +142,7 @@ ApplicationController *sharedInstance;
         if (error) {
             NSLog(@"Can't read compile flows from %@. Error: %@", bundlePath, [error userInfo]);
         } else {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
             for(NSString *path in files) {
                 NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
                 NSString* destPath = [flowPath stringByAppendingPathComponent:path];
@@ -152,6 +153,11 @@ ApplicationController *sharedInstance;
                     if (underlying && [underlying code] != 17) {
                         NSLog(@"Can't merge flow %@:\t %@", path, [copyError userInfo]);
                         
+                    }
+                } else {
+                    [fm setAttributes:dict ofItemAtPath:destPath error:&error];
+                    if (error) {
+                        NSLog(@"Error while setting permission: %@", [error userInfo]);
                     }
                 }
             }
