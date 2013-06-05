@@ -71,7 +71,6 @@
 - (void) drawPage:(PDFPage *) page
 {
     if ([[self subviews] count] == 1) {
-        NSLog(@"asdas");
          [self addSubview:[controllsView view]];
     }
     
