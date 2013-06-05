@@ -55,7 +55,7 @@
         [tmp addObject:pdfViewController];
     }
     if ([[mainModel mainDocuments] count] > 1) {
-        [self.tabView setTabViewType:NSBottomTabsBezelBorder];
+        [self.tabView setTabViewType:NSTopTabsBezelBorder];
     } else {
         [self.tabView setTabViewType:NSNoTabsNoBorder];
     }
