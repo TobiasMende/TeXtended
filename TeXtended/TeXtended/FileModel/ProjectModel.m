@@ -9,7 +9,7 @@
 #import "ProjectModel.h"
 #import "BibFile.h"
 #import "DocumentModel.h"
-
+#import "Constants.h"
 
 @implementation ProjectModel
 
@@ -18,6 +18,10 @@
 @dynamic bibFiles;
 @dynamic documents;
 @dynamic properties;
+
+
+
+
 
 
 

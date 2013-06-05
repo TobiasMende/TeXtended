@@ -11,8 +11,11 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 
-@interface DocumentModel ()
+static NSArray *TMTProjectObserverKeys;
 
+@interface DocumentModel ()
+- (void) registerProjectObserver;
+- (void) unregisterProjectObserver;
 @end
 
 @implementation DocumentModel
@@ -24,6 +27,11 @@
 @dynamic project;
 @dynamic encoding;
 @dynamic subCompilabels;
+
++ (void)initialize {
+    TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments" nil];
+}
+
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
@@ -60,12 +68,31 @@
     self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
         self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
-        if (self.project) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
-        }
+        [self registerProjectObserver];
+        
     
     }
     return self;
+}
+
+- (void)registerProjectObserver {
+    if (!self.project) {
+        return;
+    }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+    for( NSString *key in TMTProjectObserverKeys) {
+        [self.project addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    }
+}
+
+- (void)unregisterProjectObserver {
+    if (!self.project) {
+        return;
+    }
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
+    for( NSString *key in TMTProjectObserverKeys) {
+        [self.project removeObserver:self forKeyPath:key];
+    }
 }
 
 - (Compilable *)mainCompilable {
@@ -111,15 +138,11 @@
 }
 
 - (void)setProject:(ProjectModel *)project {
-    if (self.project) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
-    }
+    [self unregisterProjectObserver];
     [self willChangeValueForKey:@"project"];
     [self setPrimitiveValue:project forKey:@"project"];
     [self didChangeValueForKey:@"project"];
-    if (self.project) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
-    }
+    [self registerProjectObserver];
 }
 
 
@@ -128,6 +151,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super prepareForDeletion];
 }
+
+
+#pragma mark -
+#pragma mark Getter & Setter
 
 - (CompileSetting *)draftCompiler {
     [self willAccessValueForKey:@"draftCompiler"];
@@ -167,5 +194,28 @@
     }
     return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
 }
+
+- (NSString *)pdfPath {
+    NSString *path = [self primitiveValueForKey:@"pdfPath"];
+    if (path && path.length > 0) {
+        return path;
+    }
+    if (self.texPath && self.texPath.length > 0) {
+        path = [self.texPath stringByDeletingPathExtension];
+        return [path stringByAppendingPathExtension:@"pdf"];
+    }
+    return path;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    // Pass notifications if change affects this model:
+    if ([object isEqualTo:self.project]) {
+        if (![self primitiveValueForKey:keyPath]) {
+            [self didChangeValueForKey:keyPath];
+        }
+    }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
 
 @end
