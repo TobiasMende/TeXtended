@@ -204,6 +204,7 @@ static NSArray *TMTProjectObserverKeys;
         path = [self.texPath stringByDeletingPathExtension];
         return [path stringByAppendingPathExtension:@"pdf"];
     }
+    return path;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
