@@ -26,17 +26,6 @@
 }
 
 
-- (void)setModel:(DocumentModel *)model {
-    if (self.model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelOutputPipeChangeNotification object:self.model];
-    }
-    [self willChangeValueForKey:@"model"];
-    _model = model;
-    [self didChangeValueForKey:@"model"];
-    if (self.model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureReadHandle) name:TMTDocumentModelOutputPipeChangeNotification object:self.model];
-    }
-}
 
 - (DocumentController * ) documentController {
     return [self.parent documentController];
@@ -51,7 +40,7 @@
 }
 
 - (void) documentHasChangedAction {
-    
+    [self configureReadHandle];
 }
 
 - (void) breakUndoCoalescing {
@@ -61,16 +50,27 @@
 - (void)handleOutput: (NSNotification*)notification {
     //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
     NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
-    NSLog(@"data: %@", data);
-    NSString *str = [[NSString alloc] initWithData: data encoding: NSASCIIStringEncoding] ;
-    [self.textView setString:str];
+    NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
+    [self.textView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
+    [self.textView scrollToEndOfDocument:self];
     // Do whatever you want with str
-    //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify];
+    if (data.length > 0) {
+        [readHandle readInBackgroundAndNotify];
+    }
 }
 
 - (void)configureReadHandle {
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: self.model.outputPipe.fileHandleForReading] ;
+    
+    if (readHandle && readHandle != [self.model.outputPipe fileHandleForReading]) {
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
+        [self.textView setString:@""];
+    }
+    readHandle = [self.model.outputPipe fileHandleForReading];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
+    [readHandle readInBackgroundAndNotify] ;
+
     
 }
+
 
 @end

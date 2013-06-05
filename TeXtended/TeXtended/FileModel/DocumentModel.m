@@ -43,29 +43,36 @@ static NSArray *TMTProjectObserverKeys;
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
-    NSError *error;
+    NSLog(@"Load");
+    NSError *error, *error2;
     NSString *content;
     if (!self.systemPath) {
         return nil;
     }
-    if (self.encoding) {
+    if (self.encoding && self.encoding.unsignedLongValue > 0) {
         content = [NSString stringWithContentsOfFile:self.systemPath encoding:[self.encoding unsignedLongValue] error:&error];
-    } else {
-        NSStringEncoding encoding;
-        content = [NSString stringWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+    }
+    if (error || !self.encoding || self.encoding.unsignedLongValue == 0) {
+        NSStringEncoding encoding = NSASCIIStringEncoding;
+        content = [NSString stringWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error2];
+        
         self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
-    if (error) {
-        NSLog(@"Error while reading document: %@", error);
-        return nil;
+    if (error2) {
+        NSLog(@"Error while reading document: %@", [error2 userInfo]);
     }
     return content;
 }
+
 
 - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
     self.lastChanged = [[NSDate alloc] init];
     if (!self.systemPath) {
         return NO;
+    }
+    NSStringEncoding encoding = [self.encoding unsignedLongValue];
+    if (!encoding) {
+        self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
     }
     return [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
 }
@@ -75,7 +82,6 @@ static NSArray *TMTProjectObserverKeys;
     NSEntityDescription *description = [NSEntityDescription entityForName:@"Document" inManagedObjectContext:context];
     self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
-        self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
         [self registerProjectObserver];
         
     
@@ -164,29 +170,37 @@ static NSArray *TMTProjectObserverKeys;
 #pragma mark -
 #pragma mark Getter & Setter
 
-- (NSPipe *)inputPipe {
-    if (!inputPipe) {
-        [self setInputPipe:[NSPipe pipe]];
-    }
-    return inputPipe;
+- (NSPipe *)outputPipe {
+    return outputPipe;
 }
 
-- (NSPipe *)outputPipe {
-    if (!outputPipe) {
-        [self setOutputPipe:[NSPipe pipe]];
-    }
-    return outputPipe;
+- (NSPipe *)inputPipe {
+    return inputPipe;
 }
 
 - (void)setOutputPipe:(NSPipe *)pipe {
     outputPipe = pipe;
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelOutputPipeChangeNotification object:self];
 }
 
 - (void)setInputPipe:(NSPipe *)pipe {
     inputPipe = pipe;
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelInputPipeChangeNotification object:self];
 }
+
+
+//- (NSNumber *)encoding {
+//    [self willAccessValueForKey:@"encoding"];
+//    NSNumber *enc = [self primitiveValueForKey:@"encoding"];
+//    
+//    [self didAccessValueForKey:@"encoding"];
+//    if (!enc) {
+//        return [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding];
+//    }
+//    if ([enc unsignedLongValue] == 0) {
+//        return [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
+//    }
+//    return enc;
+//}
+
 
 - (CompileSetting *)draftCompiler {
     [self willAccessValueForKey:@"draftCompiler"];

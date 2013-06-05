@@ -11,9 +11,10 @@
 
 @class DocumentModel;
 @interface ConsoleViewController : NSViewController <DocumentControllerProtocol> {
+    NSFileHandle *readHandle;
 }
 @property (strong) id<DocumentControllerProtocol> parent;
-@property (nonatomic,assign) DocumentModel *model;
+@property (strong) DocumentModel *model;
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
 
 - (void) handleOutput: (NSNotification*)notification;

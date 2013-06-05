@@ -13,7 +13,7 @@
 @class ProjectModel;
 
 @interface DocumentModel : Compilable {
-    NSPipe *inputPipe, *outputPipe;
+    NSPipe *outputPipe, *inputPipe;
 }
 
 @property (nonatomic, retain) NSDate * lastChanged;
@@ -28,10 +28,11 @@
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 - (NSString *)texName;
-- (NSPipe *) outputPipe;
-- (NSPipe *) inputPipe;
-- (void) setOutputPipe:(NSPipe*)pipe;
-- (void) setInputPipe:(NSPipe*)pipe;
+
+- (NSPipe*)outputPipe;
+- (NSPipe*)inputPipe;
+- (void)setOutputPipe:(NSPipe*)pipe;
+- (void)setInputPipe:(NSPipe*)pipe;
 
 @end
 
