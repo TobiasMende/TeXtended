@@ -25,6 +25,7 @@ outputPath=$2
 nCompile=$3
 compileBib=$4
 custom=$5
+outputDir = dirname "$outputPath"
 
 echo "****************************"
 echo "*** Compiling $mainFile ***"
@@ -35,7 +36,7 @@ echo "*** Custom parameter:\t$custom"
 echo "****************************"
 
 # Go to the working directory
-cd "$outputPath"
+cd "$outputDir"
 
 # Do the correct number of typesetting runs
 count=1
