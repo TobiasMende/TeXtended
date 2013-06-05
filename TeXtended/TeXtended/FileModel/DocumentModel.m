@@ -24,6 +24,7 @@ static NSArray *TMTProjectObserverKeys;
 @dynamic lastCompile;
 @dynamic pdfPath;
 @dynamic texPath;
+@dynamic systemPath;
 @dynamic project;
 @dynamic encoding;
 @dynamic subCompilabels;
@@ -37,14 +38,14 @@ static NSArray *TMTProjectObserverKeys;
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
     NSString *content;
-    if (!self.texPath) {
+    if (!self.systemPath) {
         return nil;
     }
     if (self.encoding) {
-        content = [NSString stringWithContentsOfFile:self.texPath encoding:[self.encoding unsignedLongValue] error:&error];
+        content = [NSString stringWithContentsOfFile:self.systemPath encoding:[self.encoding unsignedLongValue] error:&error];
     } else {
         NSStringEncoding encoding;
-        content = [NSString stringWithContentsOfFile:self.texPath usedEncoding:&encoding error:&error];
+        content = [NSString stringWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
         self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
     if (error) {
@@ -56,10 +57,10 @@ static NSArray *TMTProjectObserverKeys;
 
 - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
     self.lastChanged = [[NSDate alloc] init];
-    if (!self.texPath) {
+    if (!self.systemPath) {
         return NO;
     }
-    return [content writeToURL:[NSURL fileURLWithPath:self.texPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
+    return [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
 }
 
 

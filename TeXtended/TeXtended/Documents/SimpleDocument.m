@@ -69,7 +69,8 @@ NSSet *standardDocumentTypes;
         NSLog(@"Can't handle type %@", typeName);
         return NO;
     }
-    self.model.texPath = [url path];
+    self.model.systemPath = [url path];
+    self.model.texPath = [[self fileURL] path];
     BOOL success = [self.documentController saveDocument:outError];
     return success;
 }
@@ -87,7 +88,9 @@ NSSet *standardDocumentTypes;
             [self.documentController setWindowController:self.mainWindowController];
         }
     }
-    self.model.texPath = [url path];
+    
+    self.model.systemPath = [url path];
+    self.model.texPath = [[self fileURL] path];
     [self.documentController loadContent];
 
     return YES;

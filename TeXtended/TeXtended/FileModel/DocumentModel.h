@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSDate * lastCompile;
 @property (nonatomic, retain) NSString * pdfPath;
 @property (nonatomic, retain) NSString * texPath;
+@property (nonatomic, retain) NSString * systemPath;
 @property (nonatomic, retain) NSNumber *encoding;
 @property (nonatomic, retain) ProjectModel *project;
 @property (nonatomic, retain) NSSet *subCompilabels;

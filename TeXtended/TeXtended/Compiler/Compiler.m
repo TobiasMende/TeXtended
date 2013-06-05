@@ -59,9 +59,7 @@
         [task launch];
     }
     
-    
-    
-    
+    //TODO: do this if tash lunsh is done
     [self.documentController documentHasChangedAction];
 }
 

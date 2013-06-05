@@ -60,10 +60,8 @@
     controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
     [controllsView setPdfView:self];
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    [self clearSubviews];
     [self addSubview:[controllsView view]];
-
-    
-    
 }
 
 
@@ -120,5 +118,10 @@
     [drawingPath stroke];
 }
 
+- (void) clearSubviews {
+    for (NSView *view in [self subviews]) {
+        //[view removeFromSuperview];
+    }
+}
 
 @end

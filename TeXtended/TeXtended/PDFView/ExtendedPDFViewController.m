@@ -16,6 +16,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _pdfView = [[ExtendedPdf alloc] init];
     }
     
     return self;
@@ -25,10 +26,10 @@
     self = [super initWithNibName:@"PDFViewsView" bundle:nil];
     if (self) {
         self.parent = parent;
+        _pdfView = [[ExtendedPdf alloc] init];
     }
     return self;
 }
-
 
 - (DocumentController * ) documentController {
     return [self.parent documentController];
@@ -48,6 +49,7 @@
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
         [self.pdfView setDocument:pdfDoc];
+        [self.pdfView setNeedsDisplay:YES];
     }
 }
 
