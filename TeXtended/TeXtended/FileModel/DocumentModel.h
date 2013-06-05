@@ -24,6 +24,7 @@
 
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;
+- (NSString *)texName;
 @end
 
 @interface DocumentModel (CoreDataGeneratedAccessors)

@@ -41,7 +41,7 @@
         NSPipe *pipe = [[NSPipe alloc] init];
         NSFileHandle *handle;
         NSString *consoleOutput;
-        NSString *path = [NSString alloc];
+        NSString *path;
         
         
         if (draft) {

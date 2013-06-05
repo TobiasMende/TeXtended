@@ -33,6 +33,13 @@ static NSArray *TMTProjectObserverKeys;
 }
 
 
+- (NSString *)texName {
+    if (self.texPath) {
+        return [self.texPath lastPathComponent];
+    }
+    return nil;
+}
+
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
