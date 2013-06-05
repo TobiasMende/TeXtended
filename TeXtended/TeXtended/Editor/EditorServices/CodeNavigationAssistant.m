@@ -97,7 +97,7 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
     if (self.shouldHighlightCurrentLineText) {
         NSRange lineRange = [self lineTextRangeWithRange:range];
         
-        [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
+         [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
         [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.currentLineTextColor, NSForegroundColorAttributeName, nil] forCharacterRange:lineRange];
         [view updateSyntaxHighlighting];
         lastLineRange = lineRange;

@@ -46,7 +46,7 @@
     codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
     placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
-    codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
+    _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
     _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
@@ -131,7 +131,7 @@
     }
     [self updateSyntaxHighlighting];
     [codeNavigationAssistant highlight];
-    [codeExtensionEngine addLinksForRange:[self visibleRange]];
+    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
 }
 
 - (void)updateSyntaxHighlighting {
@@ -139,7 +139,7 @@
         return;
     }
     [self.syntaxHighlighter highlightVisibleArea];
-    [codeExtensionEngine addLinksForRange:[self visibleRange]];
+    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
 }
 
 - (void)insertText:(id)str {
@@ -160,8 +160,8 @@
         NSLog(@"Latex LineBreak");
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
+    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
     NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
-    [codeExtensionEngine addLinksForRange:lineRange];
     if([codeNavigationAssistant handleWrappingInLine:lineRange]) {
         [self scrollRangeToVisible:self.selectedRange];
     }
@@ -211,7 +211,7 @@
     }
     NSLog(@"Paste");
     [self.syntaxHighlighter highlightEntireDocument];
-    [codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
+    [self.codeExtensionEngine addTexdocLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 -(void)setString:(NSString *)string {
@@ -220,7 +220,7 @@
         return;
     }
     [self.syntaxHighlighter highlightEntireDocument];
-    [codeExtensionEngine addLinksForRange:NSMakeRange(0, string.length)];
+    [self.codeExtensionEngine addTexdocLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 
@@ -294,7 +294,7 @@
     [codeNavigationAssistant highlightCarret];
     if (self.selectedRanges.count== 1 || self.selectedRange.length==0) {
         NSUInteger position = self.selectedRange.location;
-        [codeExtensionEngine handleLinkAt:position];
+        [self.codeExtensionEngine handleLinkAt:position];
     }
     
 }
@@ -441,7 +441,7 @@
     if (!self.servicesOn) {
         return;
     }
-    [codeNavigationAssistant highlightCurrentLineBackground];
+     [codeNavigationAssistant highlightCurrentLineBackground];
 }
 
 
@@ -467,17 +467,18 @@
 #pragma mark -
 #pragma mark Delegate Methods
 
-- (BOOL)textView:(NSTextView *)textView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
-    if (!self.servicesOn) {
-        return NO;
-    }
-    return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
-}
+//- (BOOL)textView:(NSTextView *)textView clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
+//    if (!self.servicesOn) {
+//        return NO;
+//    }
+//    return [codeExtensionEngine clickedOnLink:link atIndex:charIndex];
+//}
 
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
     if (self.servicesOn) {
         [codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+        
     }
     return newSelectedCharRange;
 }
