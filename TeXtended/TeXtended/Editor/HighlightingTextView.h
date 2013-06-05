@@ -34,10 +34,10 @@
     CompletionHandler *completionHandler;
     
     /** The CodeExtensionEngine controls auto linking and information adding features */
-    CodeExtensionEngine *codeExtensionEngine;
     
 }
 @property (strong)  id<SyntaxHighlighter> syntaxHighlighter;
+@property (strong) CodeExtensionEngine *codeExtensionEngine;
 
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
