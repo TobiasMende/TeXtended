@@ -57,23 +57,35 @@
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
     
     // add the controlls
-   controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
-   [controllsView setPdfView:self];
-   [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+   [self addControlls];
 }
-
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-    //NSLog(@"ok");
+    NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    NSPoint p2 = NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2);
+    
+    if (p.x >= p2.x
+        && p.x <= p2.x + controllsView.view.frame.size.width
+        && p.y >= p2.y
+        && p.y <= p2.y + controllsView.view.frame.size.height) {
+        
+        if ([[self subviews] count] == 1) {
+            [self addControlls];
+            [self addSubview:[controllsView view]];
+            [self setNeedsDisplay:YES];
+        }
+        
+    } else {
+        if ([[self subviews] count] > 1) {
+            [[controllsView view] removeFromSuperview];
+            [self setNeedsDisplay:YES];
+        }
+    }
 }
 
 - (void) drawPage:(PDFPage *) page
 {
-    if ([[self subviews] count] == 1) {
-         [self addSubview:[controllsView view]];
-    }
-    
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
 
     /* get the size of the current page */
@@ -120,5 +132,10 @@
     [drawingPath stroke];
 }
 
+- (void) addControlls {
+    controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
+    [controllsView setPdfView:self];
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+}
 
 @end
