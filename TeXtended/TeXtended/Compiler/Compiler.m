@@ -42,18 +42,21 @@
         NSFileHandle *handle;
         NSString *consoleOutput;
         NSString *path = [NSString alloc];
-        NSString *arguments = [NSString alloc];
         
         
         if (draft) {
             settings = [model draftCompiler];
-            path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
-            arguments = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", [model texPath], [model pdfPath], [settings numberOfCompiles], [settings compileBib], [settings customArgument]];
+        } else {
+            settings = [model finalCompiler];
         }
-        
-        NSLog(arguments);
+        path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
+     
+      
         
         [task setLaunchPath:path];
+        [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
+                            [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
+        [task launch];
     }
     
     
