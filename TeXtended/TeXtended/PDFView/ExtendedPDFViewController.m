@@ -43,7 +43,7 @@
 }
 
 - (void) documentHasChangedAction {
-    if ([self pdfPath] != nil) {
+    if ([self pdfPath]) {
         NSURL *url = [NSURL fileURLWithPath:[self pdfPath]];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
