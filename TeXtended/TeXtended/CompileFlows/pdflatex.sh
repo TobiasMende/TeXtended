@@ -25,13 +25,15 @@ outputPath=$2
 nCompile=$3
 compileBib=$4
 custom=$5
-outputDir = dirname "$outputPath"
+
+outputDir=$(dirname "$outputPath")
 
 echo "****************************"
 echo "*** Compiling $mainFile ***"
-echo "*** Output path:\t$outputPath"
+echo "*** Output path:\t\t$outputPath"
+echo "*** Output dir:\t\t$outputDir"
 echo "*** Number of compiles:\t$nCompile"
-echo "*** Compile bib:\t$compileBib"
+echo "*** Compile bib:\t\t$compileBib"
 echo "*** Custom parameter:\t$custom"
 echo "****************************"
 

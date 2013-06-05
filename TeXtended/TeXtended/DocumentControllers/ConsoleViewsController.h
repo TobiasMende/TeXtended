@@ -13,5 +13,6 @@
 
 @property (strong) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
+@property (weak) IBOutlet NSTabView *tabView;
 
 @end

@@ -10,7 +10,9 @@
 #import <CoreData/CoreData.h>
 
 @class CompileSetting,DocumentModel;
-@interface Compilable : NSManagedObject
+@interface Compilable : NSManagedObject {
+    
+}
 
 @property (nonatomic, retain) CompileSetting * draftCompiler;
 @property (nonatomic, retain) CompileSetting * finalCompiler;
