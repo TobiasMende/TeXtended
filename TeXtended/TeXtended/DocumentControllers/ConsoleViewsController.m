@@ -86,6 +86,11 @@
         
         [tmp addObject:consoleViewController];
     }
+    if ([[mainModel mainDocuments] count] > 1) {
+        [self.tabView setTabViewType:NSBottomTabsBezelBorder];
+    } else {
+        [self.tabView setTabViewType:NSNoTabsNoBorder];
+    }
     [self setChildren:tmp];
 }
 
