@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 
+static NSArray *TMTEncodingsToCheck;
+
 static NSArray *TMTProjectObserverKeys;
 
 @interface DocumentModel ()
@@ -31,6 +33,13 @@ static NSArray *TMTProjectObserverKeys;
 
 + (void)initialize {
     TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments", nil];
+    
+    TMTEncodingsToCheck = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
+                                                    [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
+                                                    [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
+                                                    [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
+                           [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding],
+                           nil];
 }
 
 
@@ -43,23 +52,35 @@ static NSArray *TMTProjectObserverKeys;
 
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
-    NSLog(@"Load");
-    NSError *error, *error2;
-    NSString *content;
+    NSError *error;
     if (!self.systemPath) {
         return nil;
     }
-    if (self.encoding && self.encoding.unsignedLongValue > 0) {
-        content = [NSString stringWithContentsOfFile:self.systemPath encoding:[self.encoding unsignedLongValue] error:&error];
+    NSStringEncoding encoding;
+    if (self.encoding && [self.encoding unsignedLongValue] > 0) {
+        encoding = [self.encoding unsignedLongValue];
     }
-    if (error || !self.encoding || self.encoding.unsignedLongValue == 0) {
-        NSStringEncoding encoding = NSASCIIStringEncoding;
-        content = [NSString stringWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error2];
+    NSString *content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+    if (error) {
+        // Fallback to encoding search:
+        for (NSNumber *number in TMTEncodingsToCheck) {
+            encoding = [number unsignedLongValue];
+            error = nil;
+            content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:encoding error:&error];
+            
+            if (!error) {
+                break;
+            }
+            
+        }
         
-        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
-    if (error2) {
-        NSLog(@"Error while reading document: %@", [error2 userInfo]);
+    
+    if (error) {
+        NSLog(@"Error: %@", [error userInfo]);
+    }{
+        NSLog(@"Detected encoding: %li", encoding);
+        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
     return content;
 }
@@ -70,11 +91,21 @@ static NSArray *TMTProjectObserverKeys;
     if (!self.systemPath) {
         return NO;
     }
-    NSStringEncoding encoding = [self.encoding unsignedLongValue];
-    if (!encoding) {
+    if (!self.encoding || [self.encoding unsignedLongValue] == 0) {
         self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
     }
-    return [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
+    BOOL success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
+    if (*error) {
+        NSStringEncoding alternate = NSUTF8StringEncoding;
+        NSError *error2;
+        success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
+        if (error2) {
+            NSLog(@"Error while saving: %@", [error2 userInfo]);
+        } else {
+            self.encoding = [NSNumber numberWithUnsignedLong:alternate];
+        }
+    }
+    return success;
 }
 
 
