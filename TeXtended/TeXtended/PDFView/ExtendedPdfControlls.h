@@ -14,5 +14,6 @@
 @property (assign) PDFView *pdfView;
 
 - (IBAction)update:(id)sender;
+@property (weak) IBOutlet NSBox *theBox;
 
 @end

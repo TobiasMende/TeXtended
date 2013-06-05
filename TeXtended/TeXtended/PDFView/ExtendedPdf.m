@@ -87,7 +87,8 @@
 - (void) drawPage:(PDFPage *) page
 {
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
-
+    [controllsView update:self];
+    
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -136,6 +137,8 @@
     controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
     [controllsView setPdfView:self];
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    [controllsView.theBox setBorderWidth:0];
+    [controllsView.theBox setCornerRadius:10];
 }
 
 @end

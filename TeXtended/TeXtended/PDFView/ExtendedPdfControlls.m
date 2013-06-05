@@ -18,15 +18,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
         
     }
-    
     return self;
 }
 
 
 - (IBAction)update:(id)sender {
+    [self.view setNeedsDisplay:YES];
     [[self pdfView] setNeedsDisplay:YES];
 }
 
