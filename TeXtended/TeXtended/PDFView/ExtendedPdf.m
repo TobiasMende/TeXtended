@@ -21,7 +21,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initVariables];
+       // [self initVariables];
     }
     return self;
 }
@@ -30,7 +30,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initVariables];
+       // [self initVariables];
     }
     
     return self;
@@ -57,11 +57,9 @@
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
     
     // add the controlls
-    controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
-    [controllsView setPdfView:self];
-    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
-    [self clearSubviews];
-    [self addSubview:[controllsView view]];
+   controllsView = [[ExtendedPdfControlls alloc] initWithNibName:@"ExtendedPdfControlls" bundle:nil];
+   [controllsView setPdfView:self];
+   [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
 }
 
 
@@ -72,8 +70,13 @@
 
 - (void) drawPage:(PDFPage *) page
 {
-    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    if ([[self subviews] count] == 1) {
+        NSLog(@"asdas");
+         [self addSubview:[controllsView view]];
+    }
     
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -118,10 +121,5 @@
     [drawingPath stroke];
 }
 
-- (void) clearSubviews {
-    for (NSView *view in [self subviews]) {
-        //[view removeFromSuperview];
-    }
-}
 
 @end

@@ -58,12 +58,18 @@
         [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
         [task launch];
+       
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                          selector:@selector(updateDocumentController)
+                              name:NSTaskDidTerminateNotification
+                            object:task];
+        
     }
-    
-    //TODO: do this also after task completion
-    [self.documentController documentHasChangedAction];
+    [self updateDocumentController];
 }
 
-
+- (void) updateDocumentController {
+    [self.documentController documentHasChangedAction];
+}
 
 @end
