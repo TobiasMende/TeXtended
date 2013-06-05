@@ -39,10 +39,11 @@ static CompileFlowHandler* instance;
     for(NSString *p in flowPaths) {
         //NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:p,@"path", [p lastPathComponent],@"title", nil];
         NSError *error1;
-            [fm setAttributes:dict ofItemAtPath:p error:&error1];
-        if (error1) {
-            NSLog(@"Can't set permission for %@. Error: %@",p,[error1 userInfo]);
-        }
+            [fm setAttributes:dict ofItemAtPath:[[CompileFlowHandler path] stringByAppendingPathComponent:[p lastPathComponent]] error:&error1];
+            if (error1) {
+                NSLog(@"Can't set permission for %@. Error: %@",p,[error1 userInfo]);
+            }
+        
         NSString *d = [p lastPathComponent];
         [final addObject:d];
     }
