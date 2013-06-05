@@ -29,7 +29,7 @@ static NSArray *TMTProjectObserverKeys;
 @dynamic subCompilabels;
 
 + (void)initialize {
-    TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments" nil];
+    TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments", nil];
 }
 
 
