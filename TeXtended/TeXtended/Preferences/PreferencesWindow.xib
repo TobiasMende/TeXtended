@@ -541,8 +541,6 @@
 										<int key="NSBoxType">1</int>
 										<int key="NSTitlePosition">2</int>
 										<bool key="NSTransparent">NO</bool>
-										<reference key="NSBorderColor2" ref="442890749"/>
-										<reference key="NSFillColor2" ref="442890749"/>
 									</object>
 									<object class="NSBox" id="351086825">
 										<reference key="NSNextResponder" ref="866595434"/>
@@ -844,10 +842,6 @@
 										<int key="NSBoxType">1</int>
 										<int key="NSTitlePosition">2</int>
 										<bool key="NSTransparent">NO</bool>
-										<object class="NSColor" key="NSBorderColor2" id="658538035">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MSAwLjUgMAA</bytes>
-										</object>
 									</object>
 									<object class="NSBox" id="827743062">
 										<reference key="NSNextResponder" ref="866595434"/>
@@ -1149,7 +1143,6 @@
 										<int key="NSBoxType">1</int>
 										<int key="NSTitlePosition">2</int>
 										<bool key="NSTransparent">NO</bool>
-										<reference key="NSBorderColor2" ref="658538035"/>
 									</object>
 									<object class="NSButton" id="14034495">
 										<reference key="NSNextResponder" ref="866595434"/>
