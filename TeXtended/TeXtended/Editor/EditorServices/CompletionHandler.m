@@ -354,4 +354,11 @@ typedef enum {
 - (BOOL)shouldCompleteForInsertion:(NSString *)insertion {
     return ![COMPLETION_ESCAPE_INSERTIONS containsObject:insertion];
 }
+
+
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"CompletionHandler dealloc");
+#endif
+}
 @end

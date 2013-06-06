@@ -50,6 +50,8 @@
 
 
 - (void)dealloc {
-    [view.undoManager removeAllActionsWithTarget:self];
+#ifdef DEBUG
+    NSLog(@"UndoSupport dealloc");
+#endif
 }
 @end

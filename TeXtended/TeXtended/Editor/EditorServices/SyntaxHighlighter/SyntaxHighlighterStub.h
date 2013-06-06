@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SyntaxHighlighter.h"
+#import "EditorService.h"
 
 /**
  A syntax highlighter stub which only prints messages when methods are called.
@@ -15,6 +16,6 @@
  **Author:** Tobias Mende
  
  */
-@interface SyntaxHighlighterStub : NSObject <SyntaxHighlighter>
+@interface SyntaxHighlighterStub : EditorService <SyntaxHighlighter>
 
 @end

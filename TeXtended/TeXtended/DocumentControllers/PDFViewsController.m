@@ -92,6 +92,8 @@
 }
 
 -(void)dealloc {
+#ifdef DEBUG
     NSLog(@"PDFViewsController dealloc");
+#endif
 }
 @end

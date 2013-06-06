@@ -111,4 +111,10 @@
     id attachment = [dict objectForKey:NSAttachmentAttributeName];
     return [attachment isKindOfClass:[EditorPlaceholder class]];
 }
+
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"PlaceholderServices dealloc");
+#endif
+}
 @end

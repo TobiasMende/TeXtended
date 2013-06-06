@@ -638,4 +638,11 @@
     return [lineWarnings allValues];
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"LineNumberView dealloc");
+#endif
+    
+}
+
 @end

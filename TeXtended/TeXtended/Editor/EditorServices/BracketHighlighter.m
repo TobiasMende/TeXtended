@@ -275,4 +275,10 @@ typedef enum {
     return TMTNoBracketType;
 }
 
+
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"BracketHighlighter dealloc");
+#endif
+}
 @end

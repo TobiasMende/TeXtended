@@ -19,10 +19,10 @@
     /** An array of TexdocEntry objects */
     IBOutlet NSMutableArray *entries;
     /** The table view to display the entries in */
-    IBOutlet NSTableView *listView;
+    __weak IBOutlet NSTableView *listView;
     
     /** The view which should be displayed if no matching entries where found */
-    IBOutlet NSView *notFoundView;
+    __unsafe_unretained IBOutlet NSView *notFoundView;
 }
 /** The package name (returning the heading for the listView */
 @property (weak, nonatomic) NSString *package;

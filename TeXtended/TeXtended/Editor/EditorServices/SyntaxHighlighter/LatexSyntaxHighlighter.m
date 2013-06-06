@@ -10,9 +10,14 @@
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
 #import "SpellCheckingService.h"
-NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
-NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
+static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
+static NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
+static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
+@interface LatexSyntaxHighlighter ()
+- (void) unbindFromUserDefaults;
+- (void) highlightAtSelectionChange;
+@end
 
 @implementation LatexSyntaxHighlighter
 
@@ -39,6 +44,7 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
     COMMENT_REGEX = [NSRegularExpression regularExpressionWithPattern:COMMENT_PATTERN options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:&error];
     BRACKET_REGEX = [NSRegularExpression regularExpressionWithPattern:BRACKET_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
     
+    USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor",@"commandColor",@"bracketColor",@"curlyBracketColor",@"commentColor",@"shouldHighlightArguments",@"shouldHighlightCommands",@"shouldHighlightComments",@"shouldHighlightBrackets",@"shouldHighlightInlineMath", nil];
     if (error) {
         NSLog(@"Error!");
     }
@@ -50,16 +56,13 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
     self = [super initWithTextView:tv];
     if(self) {
         [self registerDefaults];
-        [[NSNotificationCenter defaultCenter] addObserverForName:NSTextViewDidChangeSelectionNotification object:view queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            if (!view.servicesOn) {
-                return;
-            }
-            [self highlightVisibleArea];
-            [view.codeExtensionEngine addTexdocLinksForRange:[view visibleRange]];
-        }];
+        
+        [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:view];
     }
     return self;
 }
+
+
 
 - (void) registerDefaults {
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
@@ -119,7 +122,13 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 
 # pragma mark -
 # pragma mark Highlighting Methods
-
+- (void)highlightAtSelectionChange {
+    if (!view.servicesOn) {
+        return;
+    }
+    [self highlightVisibleArea];
+    [view.codeExtensionEngine addTexdocLinksForRange:[view visibleRange]];
+}
 
 - (void)highlightEntireDocument {
     NSRange textRange = NSMakeRange(0, [[view textStorage] length]);
@@ -292,10 +301,19 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 #pragma mark -
 #pragma mark Dealloc
 
--(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)unbindFromUserDefaults {
+    for(NSString *key in USER_DEFAULTS_BINDING_KEYS) {
+        [self unbind:key];
+    }
 }
 
+-(void)dealloc {
+#ifdef DEBUG
+    NSLog(@"LatexSyntaxHighlighter dealloc");
+#endif
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextViewDidChangeSelectionNotification object:view];
+    [self unbindFromUserDefaults];
+}
 
 
 #pragma mark -

@@ -18,6 +18,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"EditorService dealloc");
 }
+
 @end

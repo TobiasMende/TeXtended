@@ -55,7 +55,9 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
     NSLog(@"OutlineViewController dealloc");
+#endif
 }
 
 @end

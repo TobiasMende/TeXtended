@@ -15,7 +15,7 @@
  Superclass for additional services for the HighlightingTextView
  */
 @interface EditorService : NSObject {
-    HighlightingTextView* view;
+    __unsafe_unretained HighlightingTextView* view;
 }
 
 /**

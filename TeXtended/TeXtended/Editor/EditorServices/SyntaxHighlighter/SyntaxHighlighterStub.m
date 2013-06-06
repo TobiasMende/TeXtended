@@ -7,8 +7,16 @@
 //
 
 #import "SyntaxHighlighterStub.h"
+#import "EditorService.h"
 
 @implementation SyntaxHighlighterStub
+- (id)initWithTextView:(HighlightingTextView *)tv {
+    self = [super initWithTextView:tv];
+    if (self) {
+        NSLog(@"Init with text view %@", tv);
+    }
+    return self;
+}
 - (void)highlightEntireDocument {
     NSLog(@"Highlighting entire Document");
 }
@@ -23,6 +31,12 @@
 
 - (void)highlightRange:(NSRange)range {
     NSLog(@"Highlighting range %@", NSStringFromRange(range));
+}
+
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"SyntaxHighlighterStub dealloc");
+#endif
 }
 
 @end

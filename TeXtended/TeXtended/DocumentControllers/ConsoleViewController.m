@@ -51,9 +51,11 @@
     //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
     NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
-    [self.textView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
-    [self.textView scrollToEndOfDocument:self];
-    // Do whatever you want with str
+    if (str) {
+        [self.textView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
+        [self.textView scrollToEndOfDocument:self];
+        // Do whatever you want with str
+    }
     if (data.length > 0) {
         [readHandle readInBackgroundAndNotify];
     }
@@ -73,7 +75,9 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
     NSLog(@"ConsoleViewController dealloc");
+#endif
 }
 
 

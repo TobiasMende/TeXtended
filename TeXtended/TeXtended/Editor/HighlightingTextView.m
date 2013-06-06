@@ -17,12 +17,18 @@
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
 #import "SpellCheckingService.h"
-
+static NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
 - (void)swapTextIn:(NSRange)first and:(NSRange)second;
+- (void) registerUserDefaultsObserver;
+- (void) unregisterUserDefaultsObserver;
 @end
 @implementation HighlightingTextView
+
++ (void)initialize {
+    DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER, nil];
+}
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -34,11 +40,24 @@
     return self;
 }
 
+- (void)registerUserDefaultsObserver {
+    for(NSString *key in DEFAULT_KEYS_TO_OBSERVE) {
+         [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:key] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+    }
+}
+
+- (void)unregisterUserDefaultsObserver {
+    for(NSString *key in DEFAULT_KEYS_TO_OBSERVE) {
+        [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:key]];
+    }
+}
+
 - (void)awakeFromNib {
     
      NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:NSUnarchiveFromDataTransformerName,NSValueTransformerNameBindingOption, nil];
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
+    
     
     [self bind:@"font" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT] options:option];
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
@@ -52,10 +71,7 @@
     if(self.string.length > 0) {
         [self.syntaxHighlighter highlightEntireDocument];
     }
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+    [self registerUserDefaultsObserver];
     [self setDelegate:self];
     [self setRichText:NO];
     [self setDisplaysLinkToolTips:YES];
@@ -460,9 +476,12 @@
 }
 
 -(void)dealloc {
+#ifdef DEBUG
     NSLog(@"HighlightingTextView dealloc");
-    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+#endif
+    [self unregisterUserDefaultsObserver];
 }
+
 
 
 #pragma mark -

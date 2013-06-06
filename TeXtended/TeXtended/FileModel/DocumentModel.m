@@ -291,7 +291,9 @@ static NSArray *TMTProjectObserverKeys;
 
 
 - (void)willTurnIntoFault {
+#ifdef DEBUG
     NSLog(@"DocumentModel will turn into fault");
+#endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self unregisterProjectObserver];
     [super willTurnIntoFault];

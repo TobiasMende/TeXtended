@@ -101,6 +101,9 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 2;
 }
 
 - (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"SpellCheckingService dealloc");
+#endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

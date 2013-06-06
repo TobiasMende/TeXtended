@@ -58,4 +58,10 @@
     return YES;
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"ProjectDocument dealloc");
+#endif
+}
+
 @end
