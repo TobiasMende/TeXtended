@@ -94,4 +94,8 @@
     [self setChildren:tmp];
 }
 
+- (void)dealloc {
+    NSLog(@"ConsoleViewsController dealloc");
+}
+
 @end

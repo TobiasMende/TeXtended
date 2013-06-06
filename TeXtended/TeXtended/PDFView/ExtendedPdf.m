@@ -141,4 +141,8 @@
     [controllsView.theBox setCornerRadius:10];
 }
 
+- (void)dealloc {
+    NSLog(@"ExtendedPDF dealloc");
+}
+
 @end

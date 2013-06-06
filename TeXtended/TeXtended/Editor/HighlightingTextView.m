@@ -460,6 +460,7 @@
 }
 
 -(void)dealloc {
+    NSLog(@"HighlightingTextView dealloc");
     [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 }
 

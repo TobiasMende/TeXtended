@@ -75,6 +75,8 @@
     return [self.parent documentController];
 }
 
-
+- (void)dealloc {
+    NSLog(@"TextViewController dealloc");
+}
 
 @end

@@ -54,4 +54,8 @@
 - (void) breakUndoCoalescing{
 }
 
+- (void)dealloc {
+    NSLog(@"OutlineViewController dealloc");
+}
+
 @end

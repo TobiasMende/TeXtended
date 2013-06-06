@@ -72,5 +72,9 @@
     
 }
 
+- (void)dealloc {
+    NSLog(@"ConsoleViewController dealloc");
+}
+
 
 @end

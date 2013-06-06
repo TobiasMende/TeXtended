@@ -90,4 +90,8 @@
         [self.tabView removeTabViewItem:item];
     }
 }
+
+-(void)dealloc {
+    NSLog(@"PDFViewsController dealloc");
+}
 @end

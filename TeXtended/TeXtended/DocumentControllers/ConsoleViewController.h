@@ -13,9 +13,9 @@
 @interface ConsoleViewController : NSViewController <DocumentControllerProtocol> {
     NSFileHandle *readHandle;
 }
-@property (weak) id<DocumentControllerProtocol> parent;
+@property id<DocumentControllerProtocol> parent;
 @property (weak) DocumentModel *model;
-@property (unsafe_unretained) IBOutlet NSTextView *textView;
+@property (strong) IBOutlet NSTextView *textView;
 
 - (void) handleOutput: (NSNotification*)notification;
 @end

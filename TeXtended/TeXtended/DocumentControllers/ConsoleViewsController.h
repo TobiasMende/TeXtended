@@ -11,7 +11,7 @@
 
 @interface ConsoleViewsController : NSViewController<DocumentControllerProtocol>
 
-@property (weak) id<DocumentControllerProtocol> parent;
+@property id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
 @property (weak) IBOutlet NSTabView *tabView;
 

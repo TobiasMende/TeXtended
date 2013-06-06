@@ -96,4 +96,8 @@ NSSet *standardDocumentTypes;
     return YES;
 }
 
+- (void)dealloc {
+    NSLog(@"SimpleDocument dealloc");
+}
+
 @end

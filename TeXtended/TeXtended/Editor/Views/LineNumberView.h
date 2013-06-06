@@ -62,37 +62,37 @@
 }
 
 /** The background color of the whole ruler. */
-@property (nonatomic, assign) NSColor *backgroundColor;
+@property (nonatomic, strong) NSColor *backgroundColor;
 
 /** Color of the small line beside the numbers */
-@property (nonatomic, assign) NSColor *lineColor;
+@property (nonatomic, strong) NSColor *lineColor;
 
 /** Color for the border of even line numbers. */
-@property (nonatomic, assign) NSColor *borderColorA;
+@property (nonatomic, strong) NSColor *borderColorA;
 
 /** Color for the border of odd line numbers */
-@property (nonatomic, assign) NSColor *borderColorB;
+@property (nonatomic, strong) NSColor *borderColorB;
 
 /** Color of the line numbers. */
-@property (nonatomic, assign) NSColor *textColor;
+@property (nonatomic, strong) NSColor *textColor;
 
 /** Color for of line anchors */
-@property (nonatomic, assign) NSColor *anchorColor;
+@property (nonatomic, strong) NSColor *anchorColor;
 
 /** Color for border of line anchors */
-@property (nonatomic, assign) NSColor *anchorBorderColor;
+@property (nonatomic, strong) NSColor *anchorBorderColor;
 
 /** Color for line warnings */
-@property (nonatomic, assign) NSColor *warningColor;
+@property (nonatomic, strong) NSColor *warningColor;
 
 /** Color for border of line warnings */
-@property (nonatomic, assign) NSColor *warningBorderColor;
+@property (nonatomic, strong) NSColor *warningBorderColor;
 
 /** Color for line errors */
-@property (nonatomic, assign) NSColor *errorColor;
+@property (nonatomic, strong) NSColor *errorColor;
 
 /** Color for border of line errors */
-@property (nonatomic, assign) NSColor *errorBorderColor;
+@property (nonatomic, strong) NSColor *errorBorderColor;
 
 /**
  * Init the LineNumberView with a scrolView.

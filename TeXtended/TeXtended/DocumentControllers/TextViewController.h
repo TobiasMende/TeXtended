@@ -13,8 +13,8 @@
     LineNumberView *lineNumberView;
 }
 @property (strong) IBOutlet HighlightingTextView *textView;
-@property (strong) IBOutlet NSScrollView *scrollView;
-@property (weak) id<DocumentControllerProtocol> parent;
+@property (weak) IBOutlet NSScrollView *scrollView;
+@property id<DocumentControllerProtocol> parent;
 
 - (NSString *)content;
 - (void) setContent:(NSString*) content;

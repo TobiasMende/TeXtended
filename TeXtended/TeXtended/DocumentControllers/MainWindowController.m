@@ -75,4 +75,8 @@
     [[view window] setInitialFirstResponder:view];
 }
 
+-(void)dealloc {
+    NSLog(@"MainWindowController dealloc");
+}
+
 @end

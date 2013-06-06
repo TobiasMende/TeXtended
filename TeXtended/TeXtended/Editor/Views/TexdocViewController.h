@@ -25,7 +25,7 @@
     IBOutlet NSView *notFoundView;
 }
 /** The package name (returning the heading for the listView */
-@property (strong, nonatomic) NSString *package;
+@property (weak, nonatomic) NSString *package;
 /** Method for setting the entries 
  @param texdoc an array of TexdocEntry objects
  */

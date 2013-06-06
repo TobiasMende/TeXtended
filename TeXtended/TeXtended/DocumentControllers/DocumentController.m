@@ -127,7 +127,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc");
+    NSLog(@"DocumentController dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

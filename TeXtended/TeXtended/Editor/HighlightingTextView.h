@@ -36,7 +36,7 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
     
 }
-@property (strong)  id<SyntaxHighlighter> syntaxHighlighter;
+@property  id<SyntaxHighlighter> syntaxHighlighter;
 @property (strong) CodeExtensionEngine *codeExtensionEngine;
 
 /** The undo support instance */

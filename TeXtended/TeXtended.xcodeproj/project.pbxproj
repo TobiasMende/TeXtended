@@ -449,6 +449,7 @@
 		D21ACBB71726876900E2F8EC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 			);
@@ -649,7 +650,6 @@
 				D283038A1731346200E1FC1D /* FileModel */,
 				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
 				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
-				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB71726876900E2F8EC /* Categories */,
 				D21ACB801726868A00E2F8EC /* Editor */,
 				D21ACBCE1726889700E2F8EC /* Documents */,
@@ -856,6 +856,7 @@
 				D2CC550C171EAFAB00D81CF1 /* en */,
 			);
 			name = MainMenu.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
