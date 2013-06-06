@@ -8,6 +8,7 @@
 
 #import "PreferencesController.h"
 #import "CompletionsController.h"
+#import "CompileFlowHandler.h"
 @interface PreferencesController ()
 
 @end
@@ -107,6 +108,10 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
     [completionsController saveCompletions];
+}
+
+- (IBAction)openCompileFlowFolder:(id)sender {
+    [[NSWorkspace sharedWorkspace] openFile:[CompileFlowHandler path]];
 }
 
 

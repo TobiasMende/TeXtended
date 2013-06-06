@@ -16,7 +16,7 @@
 @property (weak) IBOutlet NSSplitView *left;
 @property (weak) IBOutlet NSSplitView *middle;
 @property (weak) IBOutlet NSSplitView *right;
-@property (strong, nonatomic) DocumentController *documentController;
+@property (weak, nonatomic) DocumentController *documentController;
 @property (strong) FileViewController *fileViewController;
 @property (weak) IBOutlet NSBox *fileViewArea;
 

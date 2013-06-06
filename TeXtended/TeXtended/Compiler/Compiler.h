@@ -12,10 +12,10 @@
 
 @interface Compiler : NSObject
 
-@property (strong) DocumentController *documentController;
-@property (assign) CompileSetting* draftSettings;
-@property (assign) CompileSetting* liveSettings;
-@property (assign) CompileSetting* finalSettings;
+@property (weak) DocumentController *documentController;
+@property (weak) CompileSetting* draftSettings;
+@property (weak) CompileSetting* liveSettings;
+@property (weak) CompileSetting* finalSettings;
 
 /**
  * Constructor

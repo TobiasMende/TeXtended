@@ -14,11 +14,11 @@
     
 }
 
-@property (nonatomic, retain) CompileSetting * draftCompiler;
-@property (nonatomic, retain) CompileSetting * finalCompiler;
-@property (nonatomic, retain) CompileSetting * liveCompiler;
-@property (nonatomic, retain) DocumentModel *headerDocument;
-@property (nonatomic, retain) NSSet *mainDocuments;
+@property (nonatomic, strong) CompileSetting * draftCompiler;
+@property (nonatomic, strong) CompileSetting * finalCompiler;
+@property (nonatomic, strong) CompileSetting * liveCompiler;
+@property (nonatomic, strong) DocumentModel *headerDocument;
+@property (nonatomic, strong) NSSet *mainDocuments;
 
 - (id) initWithContext:(NSManagedObjectContext*)context;
 

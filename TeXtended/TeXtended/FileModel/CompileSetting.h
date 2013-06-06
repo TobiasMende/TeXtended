@@ -11,10 +11,10 @@
 
 @interface CompileSetting : NSManagedObject
 
-@property (nonatomic, retain) NSString * compilerPath;
-@property (nonatomic, retain) NSNumber * compileBib;
-@property (nonatomic, retain) NSNumber * numberOfCompiles;
-@property (nonatomic, retain) NSString * customArgument;
+@property (nonatomic, strong) NSString * compilerPath;
+@property (nonatomic, strong) NSNumber * compileBib;
+@property (nonatomic, strong) NSNumber * numberOfCompiles;
+@property (nonatomic, strong) NSString * customArgument;
 
 
 + (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context;

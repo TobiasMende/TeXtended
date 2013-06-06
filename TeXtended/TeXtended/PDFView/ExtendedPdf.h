@@ -23,37 +23,37 @@
 /**
  * Describes the distances between to vertical lines in the grid.
  */
-@property (assign) int gridVerticalSpacing;
+@property int gridVerticalSpacing;
 
 /**
  * Describes the distances between to horizontal lines in the grid.
  */
-@property (assign) int gridHorizontalSpacing;
+@property int gridHorizontalSpacing;
 
 /**
  * 'YES', if the horizontal lines of the grid should be drawn.
  */
-@property (assign) bool drawHorizotalLines;
+@property bool drawHorizotalLines;
 
 /**
  * 'YES', if the vertical lines of the grid should be drawn.
  */
-@property (assign) bool drawVerticalLines;
+@property bool drawVerticalLines;
 
 /**
  * Move the horizontal lines in south direction by the given amount outgoing from (0,0).
  */
-@property (assign) int gridHorizontalOffset;
+@property int gridHorizontalOffset;
 
 /**
  * Move the vertical lines in east direction by the given amount outgoing from (0,0).
  */
-@property (assign) int gridVerticalOffset;
+@property int gridVerticalOffset;
 
 /**
  * Color of the grid, default is gray.
  */
-@property (assign) NSColor *gridColor;
+@property (strong) NSColor *gridColor;
 
 /**
   * Draws a grid of the given size on the current page.

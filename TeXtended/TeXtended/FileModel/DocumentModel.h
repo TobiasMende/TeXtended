@@ -16,14 +16,14 @@
     NSPipe *outputPipe, *inputPipe;
 }
 
-@property (nonatomic, retain) NSDate * lastChanged;
-@property (nonatomic, retain) NSDate * lastCompile;
-@property (nonatomic, retain) NSString * pdfPath;
-@property (nonatomic, retain) NSString * texPath;
-@property (nonatomic, retain) NSString * systemPath;
-@property (nonatomic, retain) NSNumber *encoding;
-@property (nonatomic, retain) ProjectModel *project;
-@property (nonatomic, retain) NSSet *subCompilabels;
+@property (nonatomic, strong) NSDate * lastChanged;
+@property (nonatomic, strong) NSDate * lastCompile;
+@property (nonatomic, strong) NSString * pdfPath;
+@property (nonatomic, strong) NSString * texPath;
+@property (nonatomic, strong) NSString * systemPath;
+@property (nonatomic, strong) NSNumber *encoding;
+@property (nonatomic, strong) ProjectModel *project;
+@property (nonatomic, strong) NSSet *subCompilabels;
 
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;

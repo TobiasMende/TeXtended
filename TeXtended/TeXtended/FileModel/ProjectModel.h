@@ -14,11 +14,11 @@
 
 @interface ProjectModel : Compilable
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * path;
-@property (nonatomic, retain) NSSet *bibFiles;
-@property (nonatomic, retain) NSSet *documents;
-@property (nonatomic, retain) DocumentModel *properties;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * path;
+@property (nonatomic, strong) NSSet *bibFiles;
+@property (nonatomic, strong) NSSet *documents;
+@property (nonatomic, strong) DocumentModel *properties;
 
 @end
 

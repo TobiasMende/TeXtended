@@ -13,8 +13,8 @@
 
 @interface BibFile : NSManagedObject
 
-@property (nonatomic, retain) NSDate * lastRead;
-@property (nonatomic, retain) NSString * path;
-@property (nonatomic, retain) ProjectModel *project;
+@property (nonatomic, strong) NSDate * lastRead;
+@property (nonatomic, strong) NSString * path;
+@property (nonatomic, strong) ProjectModel *project;
 
 @end

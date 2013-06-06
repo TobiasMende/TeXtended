@@ -24,5 +24,6 @@
 -(IBAction)switchView:(id)sender;
 -(NSRect)newFrameForNewContentView:(NSView *)view;
 - (void)applicationWillTerminate:(NSNotification *)notification;
+- (IBAction)openCompileFlowFolder:(id)sender;
 
 @end

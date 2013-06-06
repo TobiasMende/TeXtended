@@ -44,7 +44,7 @@
     [self setGridVerticalOffset:0];
     
     [self setGridColor:[[NSColor alloc] init]];
-    [self setGridColor:[NSColor grayColor]];
+    [self setGridColor:[NSColor lightGrayColor]];
     
     // link propertys to application shared
     [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
