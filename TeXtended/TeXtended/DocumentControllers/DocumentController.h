@@ -24,7 +24,7 @@
     __weak id<MainDocument> mainDocument;
 }
 @property (weak,nonatomic) DocumentModel *model;
-@property (nonatomic) id<WindowControllerProtocol> windowController;
+@property (weak,nonatomic) id<WindowControllerProtocol> windowController;
 @property (strong) TextViewController* textViewController;
 @property (strong) PDFViewsController* pdfViewsController;
 @property (strong) ConsoleViewsController* consolViewsController;

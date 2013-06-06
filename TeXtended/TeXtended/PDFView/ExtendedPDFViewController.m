@@ -63,4 +63,10 @@
     return title;
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"ExtendedPDFViewController dealloc");
+#endif
+}
+
 @end

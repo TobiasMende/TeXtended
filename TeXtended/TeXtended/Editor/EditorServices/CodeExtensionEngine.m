@@ -113,7 +113,7 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
             }
         }
     }
-    if (texdocRanges.count > 0) {
+    if (texdocRanges.count > 0 && self.shouldLinkTexdoc) {
         [view.spellCheckingService updateSpellChecker];
     }
 }
