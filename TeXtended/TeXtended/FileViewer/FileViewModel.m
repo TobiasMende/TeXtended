@@ -189,4 +189,10 @@
     }
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"FileViewModel dealloc");
+#endif
+}
+
 @end

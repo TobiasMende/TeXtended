@@ -644,8 +644,8 @@
 			children = (
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
-				D24EA2AA1760649A00CE56B2 /* Utils */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
+				D24EA2AA1760649A00CE56B2 /* Utils */,
 				D2719845174523BB00342CB0 /* DocumentControllers */,
 				D283038A1731346200E1FC1D /* FileModel */,
 				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,

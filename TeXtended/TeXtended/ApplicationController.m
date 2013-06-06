@@ -187,4 +187,10 @@ ApplicationController *sharedInstance;
     }
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"ApplicationController dealloc");
+#endif
+}
+
 @end

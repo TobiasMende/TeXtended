@@ -236,4 +236,10 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     [self loadPath:url];
 }
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"FileViewController dealloc");
+#endif
+}
+
 @end

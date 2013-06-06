@@ -32,7 +32,7 @@
 {
     [super windowDidLoad];
     [self.documentController setupWindowController];
-    _fileViewController = [[FileViewController alloc] init];
+    // _fileViewController = [[FileViewController alloc] init];
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];
 }
