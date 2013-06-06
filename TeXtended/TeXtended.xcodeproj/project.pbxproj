@@ -215,6 +215,7 @@
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
 		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
+		D24EA2AF176087BE00CE56B2 /* EditorServicesAccessible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditorServicesAccessible.h; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleView.xib; sourceTree = "<group>"; };
@@ -401,6 +402,7 @@
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
 				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
 				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
+				D24EA2AF176087BE00CE56B2 /* EditorServicesAccessible.h */,
 			);
 			path = EditorServices;
 			sourceTree = "<group>";

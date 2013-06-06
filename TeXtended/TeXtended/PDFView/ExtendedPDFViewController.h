@@ -12,7 +12,7 @@
 
 @interface ExtendedPDFViewController : NSViewController<DocumentControllerProtocol>
 
-@property (weak) NSString * pdfPath;
+@property (strong) NSString * pdfPath;
 @property id<DocumentControllerProtocol> parent;
 @property (strong) ExtendedPdf* pdfView;
 

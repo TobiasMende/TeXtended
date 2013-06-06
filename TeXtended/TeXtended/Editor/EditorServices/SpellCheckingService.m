@@ -13,6 +13,8 @@
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
 
+static const NSUInteger SECONDS_BETWEEEN_UPDATES = 2;
+
 @interface SpellCheckingService()
 
 - (void) setupEnvironmentsToIgnore;
@@ -36,9 +38,6 @@
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"%@", keyPath);
-}
 
 - (void)setupEnvironmentsToIgnore {
     CompletionsController *cc = [[CompletionsController alloc] init];
@@ -89,6 +88,10 @@
 
 - (void)updateSpellChecker {
     //NSLog(@"Updating Spell Checker: \tC:%ld \tE:%ld \tW:%ld", commandsToIgnore.count, environmentsToIgnore.count, wordsToIgnore.count);
+    if (lastUpdated && -[lastUpdated timeIntervalSinceNow] < SECONDS_BETWEEEN_UPDATES) {
+        return;
+    }
+    lastUpdated = [[NSDate alloc] init];
     NSMutableSet *allWords = [[NSMutableSet alloc] initWithSet:wordsToIgnore];
     [allWords unionSet:environmentsToIgnore];
     [allWords unionSet:commandsToIgnore];

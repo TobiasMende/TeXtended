@@ -22,10 +22,6 @@
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
         _finalSettings = [[controller model] finalCompiler];
-        
-        [[[controller model] draftCompiler] addObserver:self forKeyPath:@"draftSetting" options:0 context:NULL];
-        [[[controller model] liveCompiler] addObserver:self forKeyPath:@"liveSetting" options:0 context:NULL];
-        [[[controller model] finalCompiler] addObserver:self forKeyPath:@"finalSetting" options:0 context:NULL];
     }
     return self;
 }
@@ -36,7 +32,7 @@
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
     for (DocumentModel *model in mainDocuments) {
         
-        CompileSetting *settings = [CompileSetting alloc];
+        CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
         model.outputPipe = [NSPipe pipe];
         model.inputPipe = [NSPipe pipe];
@@ -70,6 +66,10 @@
 
 - (void) updateDocumentController {
     [self.documentController documentHasChangedAction];
+}
+
+- (void)dealloc {
+    NSLog(@"Compiler dealloc");
 }
 
 @end

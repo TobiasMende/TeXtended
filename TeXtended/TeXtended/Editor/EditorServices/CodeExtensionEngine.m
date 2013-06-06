@@ -217,4 +217,8 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
     [self invalidateTexdocLinks];
 }
 
+- (void)dealloc {
+    NSLog(@"CodeExtensionEngine dealloc");
+}
+
 @end

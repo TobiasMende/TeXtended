@@ -83,7 +83,7 @@ NSSet *standardDocumentTypes;
     }
     if (!self.model) {
         _model = [[DocumentModel alloc] initWithContext:self.context];
-        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
+        //_documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
         if(self.mainWindowController) {
             [self.documentController setWindowController:self.mainWindowController];
         }

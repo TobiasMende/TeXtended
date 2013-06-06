@@ -24,6 +24,8 @@ This class provides a service for customizing the behaviour of the mac spell che
     
     /** A set of custom words to ignore */
     NSMutableSet *wordsToIgnore;
+    
+    NSDate *lastUpdated;
 }
 /**
  Setups the words and completions to ignore

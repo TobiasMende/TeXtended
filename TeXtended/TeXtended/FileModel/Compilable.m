@@ -164,4 +164,10 @@ static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFina
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
+//- (void)willTurnIntoFault {
+//    [self unregisterCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
+//    [self unregisterCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
+//    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
+//}
+
 @end

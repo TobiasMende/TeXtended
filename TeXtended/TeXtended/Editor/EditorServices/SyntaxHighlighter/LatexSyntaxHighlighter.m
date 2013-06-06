@@ -9,6 +9,7 @@
 #import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
+#import "SpellCheckingService.h"
 NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
 
@@ -161,7 +162,17 @@ NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *C
 
 - (void) highlightCommandInRange:(NSRange) totalRange {
     if (self.shouldHighlightCommands) {
-        [self highlightForegroundWithExpression:COMMAND_REGEX andColor:self.commandColor inRange:totalRange];
+        NSLayoutManager *lm = [view layoutManager];
+        
+        
+        NSArray *matches = [COMMAND_REGEX matchesInString:[[view textStorage] string] options:0 range:totalRange];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange range = [match range];
+            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
+            [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commandColor forCharacterRange:range];
+            
+            [view.spellCheckingService addWordToIgnore:[view.string substringWithRange:NSMakeRange(range.location+1, range.length -1)]];
+        }
     }
 }
 

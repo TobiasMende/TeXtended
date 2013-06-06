@@ -191,11 +191,6 @@ static NSArray *TMTProjectObserverKeys;
 }
 
 
-- (void)prepareForDeletion {
-    NSLog(@"prepare");
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super prepareForDeletion];
-}
 
 
 #pragma mark -
@@ -294,5 +289,13 @@ static NSArray *TMTProjectObserverKeys;
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
+
+- (void)willTurnIntoFault {
+    NSLog(@"DocumentModel will turn into fault");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unregisterProjectObserver];
+    [super willTurnIntoFault];
+    
+}
 
 @end

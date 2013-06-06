@@ -21,7 +21,7 @@
  
  */
 @interface DocumentController : NSObject<DocumentControllerProtocol> {
-    id<MainDocument> mainDocument;
+    __weak id<MainDocument> mainDocument;
 }
 @property (weak,nonatomic) DocumentModel *model;
 @property (nonatomic) id<WindowControllerProtocol> windowController;
