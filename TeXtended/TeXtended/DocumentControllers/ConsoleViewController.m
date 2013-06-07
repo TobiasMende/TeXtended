@@ -37,7 +37,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
 }
 
-
 - (DocumentController * ) documentController {
     return [self.parent documentController];
 }
