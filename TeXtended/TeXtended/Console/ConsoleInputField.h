@@ -1,13 +1,13 @@
 //
-//  ConsoleView.h
+//  ConsoleInputField.h
 //  TeXtended
 //
-//  Created by Tobias Mende on 06.06.13.
+//  Created by Tobias Mende on 07.06.13.
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface ConsoleView : NSTextView
+@interface ConsoleInputField : NSTextField
 
 @end

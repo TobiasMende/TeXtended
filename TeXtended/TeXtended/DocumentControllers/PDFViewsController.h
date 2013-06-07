@@ -8,14 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
-#import "DocumentController.h"
-#import "DocumentModel.h"
-#import "ExtendedPDFViewController.h"
 
+@class DocumentModel;
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
 @property (weak) IBOutlet NSTabView *tabView;
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
-
+@property (weak) DocumentModel *model;
 @end

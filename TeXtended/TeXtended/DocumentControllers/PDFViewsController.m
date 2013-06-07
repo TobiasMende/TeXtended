@@ -7,6 +7,9 @@
 //
 
 #import "PDFViewsController.h"
+#import "DocumentController.h"
+#import "ExtendedPDFViewController.h"
+#import "DocumentModel.h"
 
 @interface PDFViewsController ()
 
@@ -34,17 +37,22 @@
 }
 
 - (void) initialize {
+    _model = [[self.parent documentController] model];
+}
+
+- (void)loadView {
+    [super loadView];
     [self loadPDFs:self.documentController];
+    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void) loadPDFs:(DocumentController*) controller {
     [self clearTabView];
     
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    DocumentModel *mainModel = [controller model];
-    for (DocumentModel* model in [mainModel mainDocuments]) {
+    for (DocumentModel* m in [self.model mainDocuments]) {
         ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] initWithParent:self];
-        [pdfViewController setPdfPath:[model pdfPath]];
+        [pdfViewController setPdfPath:[m pdfPath]];
 
         // add the view to the tab view
         NSTabViewItem *item = [[NSTabViewItem alloc] init];
@@ -54,7 +62,7 @@
         
         [tmp addObject:pdfViewController];
     }
-    if ([[mainModel mainDocuments] count] > 1) {
+    if ([[self.model mainDocuments] count] > 1) {
         [self.tabView setTabViewType:NSTopTabsBezelBorder];
     } else {
         [self.tabView setTabViewType:NSNoTabsNoBorder];
@@ -67,7 +75,6 @@
 }
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
-    [self loadPDFs:controller];
     for (id<DocumentControllerProtocol> c in self.children) {
         [c documentModelHasChangedAction:controller];
     }
@@ -91,9 +98,25 @@
     }
 }
 
+
+#pragma mark -
+#pragma mark Observers
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.model]) {
+        if ([keyPath isEqualToString:@"mainDocuments"]) {
+            [self loadPDFs:[self documentController]];
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark Dealloc etc.
+
 -(void)dealloc {
 #ifdef DEBUG
     NSLog(@"PDFViewsController dealloc");
 #endif
+    [self.model removeObserver:self forKeyPath:@"mainDocuments"];
 }
 @end

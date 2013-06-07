@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "ConsoleView.h"
+#import "ConsoleOutputView.h"
 #import "Constants.h"
 
-@implementation ConsoleView
+@implementation ConsoleOutputView
 
 - (id)initWithFrame:(NSRect)frame
 {

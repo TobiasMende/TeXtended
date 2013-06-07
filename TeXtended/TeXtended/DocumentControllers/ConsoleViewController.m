@@ -62,7 +62,7 @@
     NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
     if (str) {
-        [self.outputView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
+        self.outputView.string = [self.outputView.string stringByAppendingString:str];
         [self.outputView scrollToEndOfDocument:self];
         // Do whatever you want with str
     }
@@ -96,6 +96,7 @@
 }
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
+    [self.inputView setStringValue:@""];
     self.consoleActive = NO;
 }
 

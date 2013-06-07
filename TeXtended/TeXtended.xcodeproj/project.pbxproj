@@ -60,7 +60,7 @@
 		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
-		D22785CB1761354C00CFBD12 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleView.m */; };
+		D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
@@ -99,6 +99,7 @@
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
+		D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */; };
 		F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = F61B5FC8175A406000885FEB /* FileViewTitle.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
@@ -211,8 +212,8 @@
 		D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
 		D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
-		D22785C91761354C00CFBD12 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleView.h; sourceTree = "<group>"; };
-		D22785CA1761354C00CFBD12 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleView.m; sourceTree = "<group>"; };
+		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
+		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
@@ -283,6 +284,8 @@
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
+		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
+		D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleInputField.m; sourceTree = "<group>"; };
 		F61B5FC7175A406000885FEB /* FileViewTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewTitle.h; sourceTree = "<group>"; };
 		F61B5FC8175A406000885FEB /* FileViewTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewTitle.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
@@ -511,8 +514,10 @@
 				D25721F4175F56CB00A08F1D /* ConsoleViewController.h */,
 				D25721F5175F56CB00A08F1D /* ConsoleViewController.m */,
 				D25721F6175F56CB00A08F1D /* ConsoleView.xib */,
-				D22785C91761354C00CFBD12 /* ConsoleView.h */,
-				D22785CA1761354C00CFBD12 /* ConsoleView.m */,
+				D22785C91761354C00CFBD12 /* ConsoleOutputView.h */,
+				D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */,
+				D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */,
+				D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */,
 			);
 			path = Console;
 			sourceTree = "<group>";
@@ -841,7 +846,8 @@
 				F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */,
 				D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */,
 				D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */,
-				D22785CB1761354C00CFBD12 /* ConsoleView.m in Sources */,
+				D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */,
+				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "DocumentModel.h"
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
+#import "DocumentControllerProtocol.h"
 
 @interface ConsoleViewsController ()
 - (void)clearTabView;
@@ -26,8 +27,17 @@
     return self;
 }
 
+- (void)loadView {
+    NSLog(@"Load view");
+    [super loadView];
+     [self loadConsoles:[self.parent documentController]];
+}
+
 - (void) initialize {
     //TODO: add children view depending on current model
+   _model = [[self.parent documentController] model];
+    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+   
 }
 
 - (DocumentController * ) documentController {
@@ -35,7 +45,6 @@
 }
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
-    [self loadConsoles:controller];
     for (id<DocumentControllerProtocol> c in self.children) {
         [c documentModelHasChangedAction:controller];
     }
@@ -58,7 +67,6 @@
 
 - (void) loadConsoles:(DocumentController*) controller {
     [self clearTabView];
-    
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
     DocumentModel *mainModel = [controller model];
     for (DocumentModel* model in [mainModel mainDocuments]) {
@@ -84,10 +92,26 @@
     [self setChildren:tmp];
 }
 
+#pragma mark -
+#pragma mark Observers
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.model]) {
+        if ([keyPath isEqualToString:@"mainDocuments"]) {
+            [self loadConsoles:[self.parent documentController]];
+        }
+    }
+}
+
+
+#pragma mark -
+#pragma mark Dealloc etc.
+
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ConsoleViewsController dealloc");
 #endif
+    [self.model removeObserver:self forKeyPath:@"mainDocuments"];
 }
 
 @end
