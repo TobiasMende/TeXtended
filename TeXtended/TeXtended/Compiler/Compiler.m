@@ -9,6 +9,7 @@
 #import "Compiler.h"
 #import "DocumentModel.h"
 #import "CompileFlowHandler.h"
+#import "Constants.h"
 
 @implementation Compiler
 
@@ -53,13 +54,13 @@
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
         [task launch];
-       
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                          selector:@selector(updateDocumentController)
-                              name:NSTaskDidTerminateNotification
-                            object:task];
-        
+        NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification object:task queue:mainQueue usingBlock:^(NSNotification *note) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
+            [self updateDocumentController];
+        }];        
     }
     [self updateDocumentController];
 }

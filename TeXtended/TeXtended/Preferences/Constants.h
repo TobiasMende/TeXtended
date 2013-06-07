@@ -108,6 +108,8 @@
 #define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
 #define TMTDocumentModelOutputPipeChangeNotification @"TMTDocumentModelOutputPipeChangeNotification"
 #define TMTDocumentModelInputPipeChangeNotification @"TMTDocumentModelInputPipeChangeNotification"
+#define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
+#define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

@@ -9,9 +9,13 @@
 #import "ConsoleViewController.h"
 #import "DocumentModel.h"
 #import "Constants.h"
+#import "DocumentControllerProtocol.h"
+#import "DocumentController.h"
 
 @interface ConsoleViewController ()
 - (void)configureReadHandle;
+- (void)compilerDidStartCompiling:(NSNotification*)notification;
+- (void)compilerDidEndCompiling:(NSNotification*)notification;
 @end
 
 @implementation ConsoleViewController
@@ -20,11 +24,18 @@
 - (id) initWithParent:(id<DocumentControllerProtocol>) parent {
     self = [super initWithNibName:@"ConsoleView" bundle:nil];
     if (self) {
-        
+        _parent = parent;
     }
     return self;
 }
 
+- (void)setModel:(DocumentModel *)model {
+    [self willChangeValueForKey:@"model"];
+    _model = model;
+    [self didChangeValueForKey:@"model"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+}
 
 
 - (DocumentController * ) documentController {
@@ -40,7 +51,7 @@
 }
 
 - (void) documentHasChangedAction {
-    [self configureReadHandle];
+
 }
 
 - (void) breakUndoCoalescing {
@@ -58,9 +69,9 @@
     }
     if (data.length > 0) {
         [readHandle readInBackgroundAndNotify];
-        self.consoleActive = TRUE;
+        self.consoleActive = YES;
     } else {
-        self.consoleActive = FALSE;
+        self.consoleActive = NO;
     }
 }
 
@@ -73,9 +84,20 @@
     readHandle = [self.model.outputPipe fileHandleForReading];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
     [readHandle readInBackgroundAndNotify] ;
-    self.consoleActive = TRUE;
+    self.consoleActive = YES;
 
     
+}
+
+#pragma mark -
+#pragma mark Notification Observer
+
+- (void)compilerDidStartCompiling:(NSNotification *)notification {
+    [self configureReadHandle];
+}
+
+- (void)compilerDidEndCompiling:(NSNotification *)notification {
+    self.consoleActive = NO;
 }
 
 #pragma mark -
@@ -98,6 +120,7 @@
 #ifdef DEBUG
     NSLog(@"ConsoleViewController dealloc");
 #endif
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 
