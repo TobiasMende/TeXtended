@@ -52,12 +52,15 @@
     NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
     if (str) {
-        [self.textView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
-        [self.textView scrollToEndOfDocument:self];
+        [self.outputView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
+        [self.outputView scrollToEndOfDocument:self];
         // Do whatever you want with str
     }
     if (data.length > 0) {
         [readHandle readInBackgroundAndNotify];
+        self.consoleActive = TRUE;
+    } else {
+        self.consoleActive = FALSE;
     }
 }
 
@@ -65,14 +68,31 @@
     
     if (readHandle && readHandle != [self.model.outputPipe fileHandleForReading]) {
         [[NSNotificationCenter defaultCenter]removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
-        [self.textView setString:@""];
+        [self.outputView setString:@""];
     }
     readHandle = [self.model.outputPipe fileHandleForReading];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
     [readHandle readInBackgroundAndNotify] ;
+    self.consoleActive = TRUE;
 
     
 }
+
+#pragma mark -
+#pragma mark NSTextFieldDelegate Methods
+
+-(void)controlTextDidEndEditing:(NSNotification *)notification {
+    if ( [[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement )
+    {
+        NSFileHandle *handle = self.model.inputPipe.fileHandleForWriting;
+        NSString *command = [[self.inputView stringValue] stringByAppendingString:@"\n"];
+        [handle writeData:[command dataUsingEncoding:NSUTF8StringEncoding]];
+        [self.inputView setStringValue:@""];
+    }
+}
+
+#pragma mark -
+#pragma mark Dealloc etc.
 
 - (void)dealloc {
 #ifdef DEBUG

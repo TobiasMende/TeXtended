@@ -60,6 +60,7 @@
 		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
+		D22785CB1761354C00CFBD12 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleView.m */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
@@ -210,14 +211,16 @@
 		D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
 		D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		D22785C91761354C00CFBD12 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleView.h; sourceTree = "<group>"; };
+		D22785CA1761354C00CFBD12 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleView.m; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
 		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
-		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewController.h; sourceTree = "<group>"; };
-		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewController.m; sourceTree = "<group>"; };
-		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleView.xib; sourceTree = "<group>"; };
+		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
+		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
+		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
@@ -241,9 +244,9 @@
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
-		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
-		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
-		D2A5506E1751FF4B00BC05DD /* TextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextView.xib; sourceTree = "<group>"; };
+		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewController.h; path = ../DocumentControllers/TextViewController.h; sourceTree = "<group>"; };
+		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewController.m; path = ../DocumentControllers/TextViewController.m; sourceTree = "<group>"; };
+		D2A5506E1751FF4B00BC05DD /* TextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextView.xib; path = ../DocumentControllers/TextView.xib; sourceTree = "<group>"; };
 		D2A550711751FFCF00BC05DD /* PDFViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewsController.h; sourceTree = "<group>"; };
 		D2A550721751FFCF00BC05DD /* PDFViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewsController.m; sourceTree = "<group>"; };
 		D2A550731751FFCF00BC05DD /* PDFViewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewsView.xib; sourceTree = "<group>"; };
@@ -354,6 +357,9 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
+				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
+				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
 				D2AAF90D172907A000FC09C1 /* UndoSupport */,
 				D2C904E91726A079006EFEC2 /* TexdocSupport */,
 				D2C904E317269614006EFEC2 /* Views */,
@@ -499,6 +505,18 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D22785C81761351900CFBD12 /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				D25721F4175F56CB00A08F1D /* ConsoleViewController.h */,
+				D25721F5175F56CB00A08F1D /* ConsoleViewController.m */,
+				D25721F6175F56CB00A08F1D /* ConsoleView.xib */,
+				D22785C91761354C00CFBD12 /* ConsoleView.h */,
+				D22785CA1761354C00CFBD12 /* ConsoleView.m */,
+			);
+			path = Console;
+			sourceTree = "<group>";
+		};
 		D24EA2AA1760649A00CE56B2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,9 +553,6 @@
 				D271984A1745241500342CB0 /* DocumentController.h */,
 				D271984B1745241500342CB0 /* DocumentController.m */,
 				D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */,
-				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
-				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
-				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
 				D2A550711751FFCF00BC05DD /* PDFViewsController.h */,
 				D2A550721751FFCF00BC05DD /* PDFViewsController.m */,
 				D2A550731751FFCF00BC05DD /* PDFViewsView.xib */,
@@ -548,9 +563,6 @@
 				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
 				D2A5507D1752003A00BC05DD /* OutlineView.xib */,
 				D2A550801752081E00BC05DD /* WindowControllerProtocol.h */,
-				D25721F4175F56CB00A08F1D /* ConsoleViewController.h */,
-				D25721F5175F56CB00A08F1D /* ConsoleViewController.m */,
-				D25721F6175F56CB00A08F1D /* ConsoleView.xib */,
 			);
 			path = DocumentControllers;
 			sourceTree = "<group>";
@@ -651,6 +663,7 @@
 				D2A439F2171F10D60020C15F /* DocumentCreationController.h */,
 				D2A439F3171F10D60020C15F /* DocumentCreationController.m */,
 				D21ACBB71726876900E2F8EC /* Categories */,
+				D22785C81761351900CFBD12 /* Console */,
 				D21ACB801726868A00E2F8EC /* Editor */,
 				D21ACBCE1726889700E2F8EC /* Documents */,
 				D21ACBB31726875600E2F8EC /* FileViewer */,
@@ -828,6 +841,7 @@
 				F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */,
 				D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */,
 				D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */,
+				D22785CB1761354C00CFBD12 /* ConsoleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

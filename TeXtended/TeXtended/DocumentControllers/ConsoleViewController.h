@@ -10,12 +10,14 @@
 #import "DocumentControllerProtocol.h"
 
 @class DocumentModel;
-@interface ConsoleViewController : NSViewController <DocumentControllerProtocol> {
+@interface ConsoleViewController : NSViewController <DocumentControllerProtocol,NSTextFieldDelegate> {
     NSFileHandle *readHandle;
 }
+@property (weak) IBOutlet NSTextField *inputView;
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (weak) DocumentModel *model;
-@property (unsafe_unretained) IBOutlet NSTextView *textView;
+@property (unsafe_unretained) IBOutlet NSTextView *outputView;
+@property BOOL consoleActive;
 
 - (void) handleOutput: (NSNotification*)notification;
 @end
