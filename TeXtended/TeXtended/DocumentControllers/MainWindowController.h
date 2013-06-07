@@ -21,6 +21,6 @@
 @property (weak) IBOutlet NSBox *fileViewArea;
 
 
-- (IBAction)drawftCompile:(id)sender;
+- (IBAction)draftCompile:(id)sender;
 - (IBAction)finalCompile:(id)sender;
 @end

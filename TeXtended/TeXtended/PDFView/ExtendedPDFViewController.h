@@ -8,18 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
-#import "ExtendedPdf.h"
+
+@class ExtendedPdf, DocumentModel;
 
 @interface ExtendedPDFViewController : NSViewController<DocumentControllerProtocol>
 
-@property (strong) NSString * pdfPath;
 @property (weak)id<DocumentControllerProtocol> parent;
-@property (strong) ExtendedPdf* pdfView;
-
-/**
- * Returns the name / title of the loaded pdf.
- * @return NSString - the title
- */
-- (NSString *) getPdfName;
+@property (weak,nonatomic) DocumentModel *model;
+@property (unsafe_unretained) IBOutlet ExtendedPdf *pdfView;
 
 @end

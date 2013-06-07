@@ -83,6 +83,7 @@
 }
 
 - (void) documentHasChangedAction {
+    NSLog(@"Has changed");
     [[self textViewController] documentHasChangedAction];
     [[self pdfViewsController] documentHasChangedAction];
     [[self consolViewsController] documentHasChangedAction];
@@ -127,7 +128,9 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
     NSLog(@"DocumentController dealloc");
+#endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

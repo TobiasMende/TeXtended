@@ -43,13 +43,6 @@ static NSArray *TMTProjectObserverKeys;
 }
 
 
-- (NSString *)texName {
-    if (self.texPath) {
-        return [self.texPath lastPathComponent];
-    }
-    return nil;
-}
-
 - (NSString *)loadContent {
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
@@ -140,6 +133,40 @@ static NSArray *TMTProjectObserverKeys;
     }
 }
 
+
+#pragma mark -
+#pragma mark Getter & Setter
+
+- (NSString *)texName {
+    if (self.texPath) {
+        return [self.texPath lastPathComponent];
+    }
+    return nil;
+}
+
+- (NSString *)pdfName {
+    if (self.pdfPath) {
+        return [self.pdfPath lastPathComponent];
+    }
+    return nil;
+}
+
+- (NSPipe *)outputPipe {
+    return outputPipe;
+}
+
+- (NSPipe *)inputPipe {
+    return inputPipe;
+}
+
+- (void)setOutputPipe:(NSPipe *)pipe {
+    outputPipe = pipe;
+}
+
+- (void)setInputPipe:(NSPipe *)pipe {
+    inputPipe = pipe;
+}
+
 - (Compilable *)mainCompilable {
     if (self.project) {
         return [self.project mainCompilable];
@@ -190,27 +217,6 @@ static NSArray *TMTProjectObserverKeys;
     [self registerProjectObserver];
 }
 
-
-
-
-#pragma mark -
-#pragma mark Getter & Setter
-
-- (NSPipe *)outputPipe {
-    return outputPipe;
-}
-
-- (NSPipe *)inputPipe {
-    return inputPipe;
-}
-
-- (void)setOutputPipe:(NSPipe *)pipe {
-    outputPipe = pipe;
-}
-
-- (void)setInputPipe:(NSPipe *)pipe {
-    inputPipe = pipe;
-}
 
 
 //- (NSNumber *)encoding {
@@ -287,6 +293,19 @@ static NSArray *TMTProjectObserverKeys;
         }
     }
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+#pragma mark -
+#pragma mark KVO
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"pdfName"]) {
+        keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
+    } else if([key isEqualToString:@"texName"]) {
+        keyPaths = [keyPaths setByAddingObject:@"texName"];
+    }
+    return keyPaths;
 }
 
 

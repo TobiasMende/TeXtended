@@ -33,8 +33,8 @@
     [super windowDidLoad];
     [self.documentController setupWindowController];
     // _fileViewController = [[FileViewController alloc] init];
-    [self.fileViewArea setContentView:self.fileViewController.view];
-    [self.fileViewController loadDocument:self.documentController.model];
+    //[self.fileViewArea setContentView:self.fileViewController.view];
+    //[self.fileViewController loadDocument:self.documentController.model];
 }
 
 - (void)clearAllDocumentViews {
@@ -63,7 +63,7 @@
     [self.right adjustSubviews];
 }
 
-- (IBAction)drawftCompile:(id)sender {
+- (IBAction)draftCompile:(id)sender {
     [self.documentController draftCompile];
 }
 

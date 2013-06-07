@@ -76,7 +76,9 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
     NSLog(@"TextViewController dealloc");
+#endif
 }
 
 @end

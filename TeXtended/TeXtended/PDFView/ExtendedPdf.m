@@ -8,7 +8,17 @@
 
 #import "ExtendedPdf.h"
 
+static const NSSet *KEYS_TO_UNBIND;
+
+@interface ExtendedPdf ()
+- (void)unbindAll;
+@end
+
 @implementation ExtendedPdf
+
++(void)initialize {
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines",@"gridHorizontalSpacing",@"gridHorizontalOffset",@"drawVerticalLines",@"gridVerticalSpacing",@"gridVerticalOffset", nil];
+}
 
 - (id)init {
     self = [super init];
@@ -21,7 +31,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-       // [self initVariables];
+        [self initVariables];
     }
     return self;
 }
@@ -30,7 +40,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-       // [self initVariables];
+        [self initVariables];
     }
     
     return self;
@@ -43,7 +53,6 @@
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
     
-    [self setGridColor:[[NSColor alloc] init]];
     [self setGridColor:[NSColor lightGrayColor]];
     
     // link propertys to application shared
@@ -62,6 +71,7 @@
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
+    [super mouseMoved:theEvent];
     NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     NSPoint p2 = NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2);
     
@@ -86,6 +96,7 @@
 
 - (void) drawPage:(PDFPage *) page
 {
+    [super drawPage:page];
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
     [controllsView update:self];
     
@@ -142,7 +153,17 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
     NSLog(@"ExtendedPDF dealloc");
+#endif
+    [self unbindAll];
+    
+}
+
+- (void)unbindAll {
+    for(NSString *key in KEYS_TO_UNBIND) {
+        [self unbind:key];
+    }
 }
 
 @end

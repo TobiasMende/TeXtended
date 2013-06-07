@@ -10,7 +10,8 @@
 #import "DocumentController.h"
 #import "CompileSetting.h"
 
-@interface Compiler : NSObject
+@interface Compiler : NSObject {
+}
 
 @property (weak) DocumentController *documentController;
 @property (weak) CompileSetting* draftSettings;
@@ -31,6 +32,6 @@
 /**
  * Yes, if autocompile is activated.
  */
-@property (atomic) BOOL autoCompile;
+@property  BOOL autoCompile;
 
 @end

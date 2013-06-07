@@ -28,7 +28,6 @@
 }
 
 - (void)loadView {
-    NSLog(@"Load view");
     [super loadView];
      [self loadConsoles:[self.parent documentController]];
 }

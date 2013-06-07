@@ -100,6 +100,7 @@
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */; };
+		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = F61B5FC8175A406000885FEB /* FileViewTitle.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
@@ -286,6 +287,7 @@
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
 		D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleInputField.m; sourceTree = "<group>"; };
+		D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPDFView.xib; sourceTree = "<group>"; };
 		F61B5FC7175A406000885FEB /* FileViewTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewTitle.h; sourceTree = "<group>"; };
 		F61B5FC8175A406000885FEB /* FileViewTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewTitle.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */,
 				760922931759E220009FC8B0 /* ExtendedPDFViewController.h */,
 				760922941759E220009FC8B0 /* ExtendedPDFViewController.m */,
+				D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */,
 			);
 			path = PDFView;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
+				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

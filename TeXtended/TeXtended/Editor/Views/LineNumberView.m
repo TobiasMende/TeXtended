@@ -643,6 +643,8 @@
     NSLog(@"LineNumberView dealloc");
 #endif
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 @end

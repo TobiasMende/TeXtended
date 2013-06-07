@@ -52,12 +52,15 @@
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
     for (DocumentModel* m in [self.model mainDocuments]) {
         ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] initWithParent:self];
-        [pdfViewController setPdfPath:[m pdfPath]];
+        [pdfViewController setModel:m];
 
         // add the view to the tab view
         NSTabViewItem *item = [[NSTabViewItem alloc] init];
-        [item setLabel:pdfViewController.getPdfName];
-        [item setView:[pdfViewController pdfView]];
+        if (m.pdfName) {
+            [item setLabel:m.pdfName];
+        }
+        [item bind:@"label" toObject:m withKeyPath:@"pdfName" options:nil];
+        [item setView:[pdfViewController view]];
         [self.tabView addTabViewItem:item];
         
         [tmp addObject:pdfViewController];
@@ -82,7 +85,7 @@
 
 - (void) documentHasChangedAction {
     for (id<DocumentControllerProtocol> c in self.children) {
-        [c documentHasChangedAction];
+         [c documentHasChangedAction];
     }
 }
 

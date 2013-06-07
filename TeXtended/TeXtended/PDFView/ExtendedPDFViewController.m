@@ -7,26 +7,23 @@
 //
 
 #import "ExtendedPDFViewController.h"
+#import "ExtendedPdf.h"
+#import "DocumentModel.h"
+#import "Constants.h"
 
 #define UNTITLED @"Untitled";
 
+@interface ExtendedPDFViewController ()
+- (void)compilerDidEndCompiling:(NSNotification *)notification;
+- (void)loadPDF;
+@end
+
 @implementation ExtendedPDFViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        _pdfView = [[ExtendedPdf alloc] init];
-    }
-    
-    return self;
-}
-
 - (id)initWithParent:(id<DocumentControllerProtocol>)parent {
-    self = [super initWithNibName:@"PDFViewsView" bundle:nil];
+    self = [super initWithNibName:@"ExtendedPDFView" bundle:nil];
     if (self) {
         self.parent = parent;
-        _pdfView = [[ExtendedPdf alloc] init];
     }
     return self;
 }
@@ -35,8 +32,20 @@
     return [self.parent documentController];
 }
 
+- (void)setModel:(DocumentModel *)model {
+    if(_model) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self];
+    }
+    [self willChangeValueForKey:@"model"];
+    _model = model;
+    [self didChangeValueForKey:@"model"];
+    if (_model) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+    }
+}
+
 - (NSSet*)children {
-    return [NSSet setWithObject:nil];
+    return [NSSet setWithObjects:nil];
 }
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
@@ -44,8 +53,12 @@
 }
 
 - (void) documentHasChangedAction {
-    if ([self pdfPath]) {
-        NSURL *url = [NSURL fileURLWithPath:[self pdfPath]];
+    [self loadPDF];
+}
+
+- (void)loadPDF {
+    if (self.model.pdfPath) {
+        NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
         [self.pdfView setDocument:pdfDoc];
@@ -63,10 +76,20 @@
     return title;
 }
 
+#pragma mark -
+#pragma mark Notification Observer
+
+- (void)compilerDidEndCompiling:(NSNotification *)notification {
+    [self loadPDF];
+}
+
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDFViewController dealloc");
 #endif
+     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+
 
 @end

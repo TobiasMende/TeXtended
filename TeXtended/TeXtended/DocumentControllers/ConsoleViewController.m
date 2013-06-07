@@ -30,11 +30,17 @@
 }
 
 - (void)setModel:(DocumentModel *)model {
+    if(_model) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self];
+    }
     [self willChangeValueForKey:@"model"];
     _model = model;
     [self didChangeValueForKey:@"model"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+    if(_model) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+    }
 }
 
 - (DocumentController * ) documentController {

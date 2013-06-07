@@ -28,6 +28,7 @@
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 - (NSString *)texName;
+- (NSString *)pdfName;
 
 - (NSPipe*)outputPipe;
 - (NSPipe*)inputPipe;
