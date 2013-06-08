@@ -80,8 +80,8 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Compiler dealloc");
 #ifdef DEBUG
+    NSLog(@"Compiler dealloc");
 #endif
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];

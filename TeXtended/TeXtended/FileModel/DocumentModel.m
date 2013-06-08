@@ -303,7 +303,7 @@ static NSArray *TMTProjectObserverKeys;
     if ([key isEqualToString:@"pdfName"]) {
         keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
     } else if([key isEqualToString:@"texName"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texName"];
+        keyPaths = [keyPaths setByAddingObject:@"texPath"];
     }
     return keyPaths;
 }

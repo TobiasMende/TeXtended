@@ -10,7 +10,7 @@
 #import "DocumentModel.h"
 #import "MainWindowController.h"
 #import "DocumentController.h"
-NSSet *standardDocumentTypes;
+static const NSSet *standardDocumentTypes;
 @implementation SimpleDocument
 
 + (void)initialize {
@@ -65,7 +65,9 @@ NSSet *standardDocumentTypes;
         [self.documentController breakUndoCoalescing];
     }
     if (![standardDocumentTypes containsObject:typeName]) {
-        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        if(outError) {
+            *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        }
         NSLog(@"Can't handle type %@", typeName);
         return NO;
     }
@@ -78,7 +80,9 @@ NSSet *standardDocumentTypes;
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
     if (![standardDocumentTypes containsObject:typeName]) {
-        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
+        }
         return NO;
     }
     if (!self.model) {

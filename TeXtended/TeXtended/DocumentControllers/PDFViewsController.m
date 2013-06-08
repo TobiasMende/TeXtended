@@ -12,7 +12,7 @@
 #import "DocumentModel.h"
 
 @interface PDFViewsController ()
-
+- (void) unbindAll;
 @end
 
 @implementation PDFViewsController
@@ -47,8 +47,12 @@
 }
 
 - (void) loadPDFs:(DocumentController*) controller {
+    if (self.model.faultingState > 0) {
+        return;
+    }
     [self clearTabView];
     
+
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
     for (DocumentModel* m in [self.model mainDocuments]) {
         ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] initWithParent:self];
@@ -108,7 +112,7 @@
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model]) {
+    if ([object isEqualTo:self.model]  && self.model.faultingState >0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self loadPDFs:[self documentController]];
         }

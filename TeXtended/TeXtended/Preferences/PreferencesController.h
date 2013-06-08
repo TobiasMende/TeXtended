@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 @class CompletionsController;
 @interface PreferencesController : NSWindowController <NSWindowDelegate, NSToolbarDelegate> {
-    IBOutlet NSView *generalPreferencesView;
-    IBOutlet NSView *colorPreferencesView;
-    IBOutlet NSView *codeAssistantPreferencesView;
-    IBOutlet NSView *previewPreferencesView;
-    IBOutlet NSToolbar *toolbar;
+    __weak IBOutlet NSView *generalPreferencesView;
+    __weak IBOutlet NSView *colorPreferencesView;
+    __weak IBOutlet NSView *codeAssistantPreferencesView;
+    __weak IBOutlet NSView *previewPreferencesView;
+    __weak IBOutlet NSToolbar *toolbar;
     NSUInteger currentViewTag;
     
  IBOutlet CompletionsController *completionsController;

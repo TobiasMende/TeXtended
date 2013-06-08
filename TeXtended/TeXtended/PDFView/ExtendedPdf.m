@@ -155,6 +155,7 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDF dealloc");
+     
 #endif
     [self unbindAll];
     

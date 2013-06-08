@@ -33,9 +33,8 @@
 }
 
 - (void) initialize {
-    //TODO: add children view depending on current model
    _model = [[self.parent documentController] model];
-    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
    
 }
 
@@ -65,10 +64,12 @@
 }
 
 - (void) loadConsoles:(DocumentController*) controller {
+    if (self.model.faultingState > 0) {
+        return;
+    }
     [self clearTabView];
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    DocumentModel *mainModel = [controller model];
-    for (DocumentModel* model in [mainModel mainDocuments]) {
+    for (DocumentModel* model in [self.model mainDocuments]) {
         ConsoleViewController *consoleViewController = [[ConsoleViewController alloc] initWithParent:self];
         [consoleViewController setModel:model];
         // add the view to the tab view
@@ -78,12 +79,13 @@
         } else {
             [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
         }
+        [item bind:@"label" toObject:model withKeyPath:@"texName" options:nil];
         [item setView:[consoleViewController view]];
         [self.tabView addTabViewItem:item];
         
         [tmp addObject:consoleViewController];
     }
-    if ([[mainModel mainDocuments] count] > 1) {
+    if ([[self.model mainDocuments] count] > 1) {
         [self.tabView setTabViewType:NSBottomTabsBezelBorder];
     } else {
         [self.tabView setTabViewType:NSNoTabsNoBorder];
@@ -95,9 +97,10 @@
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model]) {
+
+    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
-            [self loadConsoles:[self.parent documentController]];
+            [self loadConsoles:[self documentController]];
         }
     }
 }
@@ -109,6 +112,7 @@
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ConsoleViewsController dealloc");
+    
 #endif
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
 }
