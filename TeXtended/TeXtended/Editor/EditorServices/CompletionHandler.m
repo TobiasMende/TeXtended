@@ -14,8 +14,9 @@
 #import "Completion.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
-NSDictionary *COMPLETION_TYPE_BY_PREFIX;
-NSSet *COMPLETION_ESCAPE_INSERTIONS;
+static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
+static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
+static const NSSet *KEYS_TO_UNBIND;
 typedef enum {
     TMTNoCompletion,
     TMTCommandCompletion,
@@ -61,11 +62,15 @@ typedef enum {
 
 - (void) skipClosingBracket;
 
+- (void) unbindAll;
+
 @end
 
 @implementation CompletionHandler
 
 + (void)initialize {
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", nil];
+    
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", nil];
     
@@ -360,5 +365,12 @@ typedef enum {
 #ifdef DEBUG
     NSLog(@"CompletionHandler dealloc");
 #endif
+    [self unbindAll];
+}
+
+- (void)unbindAll {
+    for(NSString *key in KEYS_TO_UNBIND) {
+        [self unbind:key];
+    }
 }
 @end

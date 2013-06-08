@@ -9,7 +9,7 @@
 #import "Completion.h"
 #import "Constants.h"
 #import "EditorPlaceholder.h"
-NSRegularExpression *PLACEHOLDER_REGEX;
+static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation Completion
 
 + (void)initialize {
@@ -73,6 +73,14 @@ return self;
     return [NSString stringWithFormat:@"%@%@", self.insertion, self.extension];
 }
 
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"key"]) {
+        keyPaths = [keyPaths setByAddingObjectsFromSet:[NSSet setWithObjects:@"insertion",@"extension", nil]];
+    }
+    return keyPaths;
+}
 
 - (NSAttributedString *)substitutePlaceholdersInString:(NSString *)string {
     NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:string];

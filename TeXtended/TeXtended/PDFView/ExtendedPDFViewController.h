@@ -15,6 +15,6 @@
 
 @property (weak)id<DocumentControllerProtocol> parent;
 @property (weak,nonatomic) DocumentModel *model;
-@property (unsafe_unretained) IBOutlet ExtendedPdf *pdfView;
+@property (weak) IBOutlet ExtendedPdf *pdfView;
 
 @end

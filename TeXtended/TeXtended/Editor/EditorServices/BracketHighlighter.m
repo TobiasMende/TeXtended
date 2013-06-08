@@ -10,13 +10,18 @@
 #import "NSString+LatexExtension.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
-NSDictionary *BRACKETS_TO_HIGHLIGHT;
-NSArray *VALID_PRE_CHARS;
+static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
+static const NSArray *VALID_PRE_CHARS;
+static const NSSet *KEYS_TO_UNBIND;
 typedef enum {
     TMTOpeningBracketType,
     TMTClosingBracketType,
     TMTNoBracketType
 } TMTBracketType;
+
+@interface BracketHighlighter ()
+- (void) unbindAll;
+@end
 
 @implementation BracketHighlighter
 
@@ -42,6 +47,8 @@ typedef enum {
                              @"]",@"[",
                              nil];
     VALID_PRE_CHARS = [NSArray arrayWithObject:@"\\"];
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldHighlightMatchingBrackets", @"shouldAutoInsertClosingBrackets" , nil];
+    
 }
 
 - (void)highlightOnMoveLeft {
@@ -280,5 +287,12 @@ typedef enum {
 #ifdef DEBUG
     NSLog(@"BracketHighlighter dealloc");
 #endif
+    [self unbindAll];
+}
+
+- (void)unbindAll {
+    for(NSString *key in KEYS_TO_UNBIND) {
+        [self unbind:key];
+    }
 }
 @end

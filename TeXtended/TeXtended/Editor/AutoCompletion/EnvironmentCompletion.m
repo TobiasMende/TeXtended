@@ -43,6 +43,16 @@
     return [NSString stringWithFormat:@"%@ | %@%@", self.insertion, self.firstLineExtension, self.extension];
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"key"]) {
+        keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
+    } else if([key isEqualToString:@"hasFirstLineExtension"]) {
+        keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
+    }
+    return keyPaths;
+}
+
 - (BOOL)hasFirstLineExtension {
     return self.firstLineExtension && self.firstLineExtension.length > 0;
 }

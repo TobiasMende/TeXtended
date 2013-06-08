@@ -58,6 +58,8 @@
         NSTabViewItem *item = [[NSTabViewItem alloc] init];
         if (m.pdfName) {
             [item setLabel:m.pdfName];
+        } else {
+            [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
         }
         [item bind:@"label" toObject:m withKeyPath:@"pdfName" options:nil];
         [item setView:[pdfViewController view]];

@@ -10,12 +10,22 @@
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
-NSSet *WHITESPACES;
-NSRegularExpression *SPACE_REGEX;
-NSRegularExpression *SPACE_AT_LINE_BEGINNING;
+static const NSSet *WHITESPACES;
+static const NSRegularExpression *SPACE_REGEX;
+static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
+static const NSSet *KEYS_TO_UNBIND;
+static const NSSet *KEYS_TO_OBSERVE;
+
+@interface CodeNavigationAssistant ()
+- (void) unbindAll;
+@end
+
 @implementation CodeNavigationAssistant
 
 + (void)initialize {
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"currentLineColor",@"shouldHighlightCurrentLine",@"currentLineTextColor",@"shouldHighlightCurrentLineText",@"carretColor",@"shouldHighlightCarret",@"shouldUseSpacesAsTabs",@"shouldAutoIndentLines",@"numberOfSpacesForTab", nil];
+    KEYS_TO_OBSERVE = [NSSet setWithObjects:@"currentLineColor",@"shouldHighlightCurrentLine",@"currentLineTextColor",@"shouldHighlightCurrentLineText",@"carretColor",@"shouldHighlightCarret", nil];
+    
     WHITESPACES = [NSSet setWithObjects:@" ",@"\t", nil];
     NSError *error;
     SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -56,6 +66,10 @@ NSRegularExpression *SPACE_AT_LINE_BEGINNING;
         
         self.numberOfSpacesForTab = [[defaults values] valueForKey:TMT_EDITOR_NUM_TAB_SPACES];
         [self bind:@"numberOfSpacesForTab" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_NUM_TAB_SPACES] options:NULL];
+        
+        for (NSString *key in KEYS_TO_OBSERVE) {
+            [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:NULL];
+        }
 
 
     }
@@ -383,39 +397,6 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
 
 
 
-#pragma mark -
-#pragma mark Setter & Getter
-
-- (void)setCurrentLineColor:(NSColor *)currentLineColor {
-    _currentLineColor = currentLineColor;
-    [self highlightCurrentLine];
-}
-
-- (void)setShouldHighlightCurrentLine:(BOOL)shouldHighlightCurrentLine {
-    _shouldHighlightCurrentLine = shouldHighlightCurrentLine;
-    [self highlightCurrentLine];
-}
-
-- (void)setCarretColor:(NSColor *)carretColor {
-    _carretColor = carretColor;
-    [view setInsertionPointColor:carretColor];
-    [self highlightCarret];
-}
-
-- (void)setShouldHighlightCarret:(BOOL)shouldHighlightCarret {
-    _shouldHighlightCarret = shouldHighlightCarret;
-    [self highlightCarret];
-}
-
-- (void)setCurrentLineTextColor:(NSColor *)currentLineTextColor {
-    _currentLineTextColor = currentLineTextColor;
-    [self highlightCurrentLine];
-}
-
-- (void)setShouldHighlightCurrentLineText:(BOOL)shouldHighlightCurrentLineText{
-    _shouldHighlightCurrentLineText = shouldHighlightCurrentLineText;
-    [self highlightCurrentLine];
-}
 
 
 - (void) updateViewDrawing {
@@ -425,11 +406,34 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
     }
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self] && [KEYS_TO_OBSERVE containsObject:keyPath]) {
+        if ([keyPath isEqualToString:@"carretColor"]) {
+            [view setInsertionPointColor:self.carretColor];
+            [self highlightCarret];
+        } else if([keyPath isEqualToString:@"shouldHighlightCarret"]) {
+            [self highlightCarret];
+        } else {
+            [self highlightCurrentLine];
+        }
+    }
+}
+
 
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"CodeNavigationAssistant dealloc");
 #endif
+    [self unbindAll];
+}
+
+- (void)unbindAll {
+    for(NSString *key in KEYS_TO_UNBIND) {
+        [self unbind:key];
+    }
+    for(NSString *key in KEYS_TO_OBSERVE) {
+        [self removeObserver:self forKeyPath:key];
+    }
 }
 
 @end

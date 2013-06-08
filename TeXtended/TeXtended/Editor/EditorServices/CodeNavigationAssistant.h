@@ -102,22 +102,22 @@
 @property NSNumber *numberOfSpacesForTab;
 
 /** The background color for highlighting the current line. */
-@property (strong,nonatomic) NSColor* currentLineColor;
+@property (strong) NSColor* currentLineColor;
 
 /** The text color for highlighting the current line */
-@property (strong,nonatomic) NSColor* currentLineTextColor;
+@property (strong) NSColor* currentLineTextColor;
 
 /** The color for highlighting the character under the carret */
-@property (strong, nonatomic) NSColor* carretColor;
+@property (strong) NSColor* carretColor;
 
 /** If `YES`, line highlighting ist active */
-@property (nonatomic) BOOL shouldHighlightCurrentLine;
+@property BOOL shouldHighlightCurrentLine;
 
 /** If `YES`, carret highlighting is active */
-@property (nonatomic) BOOL shouldHighlightCarret;
+@property BOOL shouldHighlightCarret;
 
 /** If `YES`, the text of the current line is highlighted */
-@property (nonatomic) BOOL shouldHighlightCurrentLineText;
+@property BOOL shouldHighlightCurrentLineText;
 
 /** If `YES`, tabs were replaced during writing */
 @property BOOL shouldUseSpacesAsTabs;

@@ -23,7 +23,9 @@
 - (id)init {
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
+#ifdef DEBUG
         NSLog(@"WindowController: Init");
+#endif
     }
     return self;
 }

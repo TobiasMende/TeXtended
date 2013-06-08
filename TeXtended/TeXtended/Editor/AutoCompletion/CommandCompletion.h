@@ -17,4 +17,3 @@
 
 @property (strong, nonatomic) NSString *completionType;
 @end
-NSArray *COMPLETION_TYPES;

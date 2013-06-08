@@ -11,7 +11,6 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 
-#define UNTITLED @"Untitled";
 
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
@@ -68,13 +67,6 @@
 
 - (void) breakUndoCoalescing {}
 
-- (NSString *) getPdfName {
-    NSString *title = [[[self.pdfView document] outlineRoot] label];
-    if (title == nil) {
-        title = UNTITLED;
-    }
-    return title;
-}
 
 #pragma mark -
 #pragma mark Notification Observer

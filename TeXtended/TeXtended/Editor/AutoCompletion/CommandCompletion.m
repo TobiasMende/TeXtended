@@ -10,7 +10,7 @@
 #import "Constants.h"
 
 
-
+static const NSArray *COMPLETION_TYPES;
 @implementation CommandCompletion
 
 + (void)initialize {

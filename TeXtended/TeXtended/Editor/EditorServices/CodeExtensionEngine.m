@@ -12,8 +12,9 @@
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
 #import "SpellCheckingService.h"
-NSRegularExpression *TEXDOC_LINKS;
-NSString *TEXDOC_PREFIX = @"texdoc://";
+static const NSRegularExpression *TEXDOC_LINKS;
+static NSString *TEXDOC_PREFIX = @"texdoc://";
+static const NSSet *KEYS_TO_UNBIND;
 @interface CodeExtensionEngine()
 /**
  Removes all texdoc attributes for all texdoc links within the given range
@@ -42,12 +43,16 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
  */
 - (NSMutableArray*) parseTexdocList:(NSString *)texdocList;
 
+- (void)unbindAll;
+
 @end
 
 @implementation CodeExtensionEngine
 
 
 +(void)initialize {
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"texdocColor",@"shouldLinkTexdoc", @"shouldUnderlineTexdoc", nil];
+    
     NSString *pattern = [NSString stringWithFormat:@"(?>\\\\usepackage|\\\\RequirePackage)+(?>\\[[[\\S|\\s]&&[^[\\]|\\[]]]*\\])?\\{(.*)\\}"];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
@@ -221,6 +226,14 @@ NSString *TEXDOC_PREFIX = @"texdoc://";
 #ifdef DEBUG
     NSLog(@"CodeExtensionEngine dealloc");
 #endif
+    [self unbindAll];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+- (void)unbindAll {
+    for(NSString *key in KEYS_TO_UNBIND) {
+        [self unbind:key];
+    }
+}
 @end
