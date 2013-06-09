@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FileViewModel.h"
+#import "InfoWindowController.h"
 @class DocumentModel;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> {
@@ -17,9 +18,13 @@
     NSDate* appStartedTimestamp;
     NSNumber* lastEventId;
     
-    IBOutlet NSOutlineView *outline;
-    IBOutlet NSBox *titleBox;
+    __weak IBOutlet NSOutlineView *outline;
+    __weak IBOutlet NSBox *titleBox;
 }
+
+@property (weak) DocumentModel* doc;
+@property (weak) IBOutlet NSTextField *titleLbl;
+@property InfoWindowController *infoWindowController;
 
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;

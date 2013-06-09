@@ -27,11 +27,16 @@
     return self;
 }
 
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    NSLog(@"hh");
+}
+
 - (void)doubleClick:(id)object {
-    FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
-    NSString *path = model.filePath;
-    NSLog(@"%@",path);
-    [self openFileInDefApp:path];
+    //FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
+    //NSString *path = model.filePath;
+    //[self openFileInDefApp:path];
+    [self.infoWindowController showWindow:self.infoWindowController];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -72,7 +77,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
            byItem:(id)item
 {
     FileViewModel *model = (FileViewModel*)item;
-    return [model getFileName];
+    return model.fileName;
 }
 
 - (void)outlineView:(NSOutlineView *)outlineView
@@ -95,7 +100,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel *model = (FileViewModel*)item;
     CGFloat max = 17;
     CGFloat scale = 0;
-    NSImage *img = [model getIcon];
+    NSImage *img = model.icon;
     NSSize size = NSZeroSize;
     if(img.size.width > img.size.height)
     {
@@ -127,6 +132,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
     nodes = [[FileViewModel alloc] init];
+    self.infoWindowController = [[InfoWindowController alloc] init];
 }
 
 - (void) recursiveFileFinder: (NSURL*)url
@@ -165,7 +171,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self recursiveFileFinder:url];
     [outline reloadData];
     //NSLog(@"%p",[self->outline]);
-    [self initializeEventStream];
+    //[self initializeEventStream];
     return YES;
 }
 
@@ -221,19 +227,39 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
 - (void)loadDocument:(DocumentModel*)document
 {
+    self.doc = document;
     NSString *totalPath;
-    if (document.project) {
-        totalPath = document.project.path;
+    NSString *titleText;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    if (self.doc.project) {
+        totalPath = self.doc.project.name;
+        NSString *stringFromDate;
+        if(self.doc.lastCompile)
+        {
+            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
+            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.project.name, stringFromDate];
+        }
+        else
+            titleText = [NSString stringWithFormat:@"%@", _doc.project.name];
     } else {
-        totalPath = document.texPath;
+        totalPath = self.doc.texPath;
+        NSString *stringFromDate;
+        if(self.doc.lastCompile)
+        {
+            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
+            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.texName.stringByDeletingPathExtension, stringFromDate];
+        }
+        else
+            titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];;
     }
-    totalPath = @"/Users/Tobias/Documents/Projects";
+    [self.titleLbl setStringValue:titleText];
     if(!totalPath ||[totalPath length] == 0)
         return;
     NSString *path = [totalPath stringByDeletingLastPathComponent];
-    //NSString* path = totalPath;
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
+    [self.infoWindowController loadDocument:document];
 }
 
 - (void)dealloc {

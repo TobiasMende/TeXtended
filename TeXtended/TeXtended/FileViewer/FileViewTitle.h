@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FileViewTitle : NSBox
+@interface FileViewTitle : NSBox {
+    IBOutlet NSTextField *title;
+}
+
 
 @end
