@@ -70,6 +70,7 @@
 		D252288C1764B83400C203AD /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
 		D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25721F5175F56CB00A08F1D /* ConsoleViewController.m */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
+		D25FF83417651C6200530928 /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
 		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
 		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 		D2681FF0173143AF003AF83D /* Compilable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FEF173143AF003AF83D /* Compilable.m */; };
@@ -235,6 +236,9 @@
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
+		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
+		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
+		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
@@ -326,6 +330,9 @@
 		76049C9C1751FDB000778E2A /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
+				D25FF83117651C5D00530928 /* ExportCompileWindow.xib */,
+				D25FF83217651C5D00530928 /* ExportCompileWindowController.h */,
+				D25FF83317651C5D00530928 /* ExportCompileWindowController.m */,
 				76049C9E1752085000778E2A /* Compiler.h */,
 				76049C9F1752085000778E2A /* Compiler.m */,
 				D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */,
@@ -828,6 +835,7 @@
 				D21ACBA71726868A00E2F8EC /* CodeNavigationAssistant.m in Sources */,
 				D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */,
 				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
+				D25FF83417651C6200530928 /* ExportCompileWindowController.m in Sources */,
 				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
 				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
 				D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */,
