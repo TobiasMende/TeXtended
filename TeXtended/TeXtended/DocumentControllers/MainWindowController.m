@@ -39,8 +39,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.documentController setupWindowController];
     _fileViewController = [[FileViewController alloc] init];
     
-    _exportWindow = [[ExportCompileWindowController alloc] init];
-    [self.exportWindow setController:self.documentController];
+    _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
     
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];
@@ -82,7 +81,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)finalCompile:(id)sender {
-    [self.exportWindow.window makeKeyAndOrderFront:[self.exportWindow window]];
+    [self.exportWindow showWindow:nil];
 }
 
 - (void)genericAction:(id)sender {

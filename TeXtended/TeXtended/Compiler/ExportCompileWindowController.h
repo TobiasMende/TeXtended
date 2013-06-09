@@ -11,6 +11,7 @@
 @interface ExportCompileWindowController : NSWindowController
 
 @property (weak) DocumentController* controller;
+-(id)initWithDocumentController:(DocumentController*) controller;
 - (IBAction)export:(id)sender;
 
 @end
