@@ -472,7 +472,6 @@
 		D21ACBB71726876900E2F8EC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 			);
@@ -499,6 +498,7 @@
 				D2A550811752085600BC05DD /* MainWindowController.h */,
 				D2A550821752085600BC05DD /* MainWindowController.m */,
 				D21ACBD41726889700E2F8EC /* MainWindow.xib */,
+				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
 				D21ACBD11726889700E2F8EC /* ProjectDocument.xib */,
