@@ -82,7 +82,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)finalCompile:(id)sender {
-    NSLog(@"%@", self.exportWindow.window);
     [self.exportWindow.window makeKeyAndOrderFront:[self.exportWindow window]];
 }
 
