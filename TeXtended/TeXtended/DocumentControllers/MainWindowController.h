@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
-@class DocumentController, FileOutlineView, FileViewController;
+@class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController;
 @interface MainWindowController : NSWindowController<WindowControllerProtocol> {
     
 }
@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSSplitView *right;
 @property (weak, nonatomic) DocumentController *documentController;
 @property (strong) FileViewController *fileViewController;
+@property (strong) ExportCompileWindowController* exportWindow;
 @property (weak) IBOutlet NSBox *fileViewArea;
 
 - (IBAction)reportBug:(id)sender;

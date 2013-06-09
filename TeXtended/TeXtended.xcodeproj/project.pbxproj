@@ -25,6 +25,8 @@
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
 		76049CA01752085000778E2A /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
 		760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760922941759E220009FC8B0 /* ExtendedPDFViewController.m */; };
+		76A18D961764C12E00A9C051 /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */; };
+		76A18D971764C12E00A9C051 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */; };
 		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
@@ -158,6 +160,9 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
+		76A18D931764C12E00A9C051 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
+		76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
+		76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		76C78773172BD581004FF4C3 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
 		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		76DADC951764892A002775BA /* lualatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lualatexDraft.sh; sourceTree = "<group>"; };
@@ -332,6 +337,9 @@
 				D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */,
 				76DADC991764AA92002775BA /* FileCompiler.h */,
 				76DADC9A1764AA92002775BA /* FileCompiler.m */,
+				76A18D931764C12E00A9C051 /* ExportCompileWindowController.h */,
+				76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */,
+				76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -791,6 +799,7 @@
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
+				76A18D971764C12E00A9C051 /* ExportCompileWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,6 +881,7 @@
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
 				D252288C1764B83400C203AD /* MainWindow.m in Sources */,
+				76A18D961764C12E00A9C051 /* ExportCompileWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

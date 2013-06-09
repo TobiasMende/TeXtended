@@ -10,6 +10,7 @@
 #import "DocumentController.h"
 #import "FileOutlineView.h"
 #import "FileViewController.h"
+#import "ExportCompileWindowController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -36,6 +37,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 {
     [super windowDidLoad];
     [self.documentController setupWindowController];
+    _exportWindow = [[ExportCompileWindowController alloc] init];
+    [self.exportWindow setController:self.documentController];
     // _fileViewController = [[FileViewController alloc] init];
     //[self.fileViewArea setContentView:self.fileViewController.view];
     //[self.fileViewController loadDocument:self.documentController.model];
@@ -77,7 +80,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)finalCompile:(id)sender {
-    //TODO: open window with export options
+    [self.exportWindow.window makeKeyAndOrderFront:[self.exportWindow window]];
 }
 
 - (void)genericAction:(id)sender {
