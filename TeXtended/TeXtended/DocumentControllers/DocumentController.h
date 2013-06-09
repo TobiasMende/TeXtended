@@ -37,6 +37,7 @@
 - (BOOL) loadContent;
 - (void) documentModelDidChange;
 
+- (void)refreshLiveView;
 /**
  * Draft compiles this document.
  */

@@ -10,6 +10,8 @@
 #import "DocumentController.h"
 #import "FileOutlineView.h"
 #import "FileViewController.h"
+
+static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
 
 @end
@@ -76,6 +78,13 @@
 
 - (IBAction)finalCompile:(id)sender {
     //TODO: open window with export options
+}
+
+- (void)genericAction:(id)sender {
+    if ([sender tag] == REFRESH_LIVE_VIEW_TAG) {
+        
+        [self.documentController refreshLiveView];
+    }
 }
 
 - (void)makeFirstResponder:(NSView *)view {

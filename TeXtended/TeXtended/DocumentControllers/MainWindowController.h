@@ -25,5 +25,5 @@
 - (IBAction)draftCompile:(id)sender;
 - (IBAction)finalCompile:(id)sender;
 
-- (IBAction)refreshLiveView:(id)sender;
+- (IBAction)genericAction:(id)sender;
 @end
