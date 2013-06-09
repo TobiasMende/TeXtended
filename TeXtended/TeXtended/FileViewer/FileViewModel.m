@@ -14,12 +14,6 @@
 {
     self = [super init];
     if (self) {
-        filePath = nil;
-        fileName = nil;
-        icon = nil;
-        children = nil;
-        parent = nil;
-        pathComponents = nil;
         pathIndex = -1;
     }
     return self;
@@ -65,11 +59,13 @@
 
 -(void)setPath:(NSString*)newPath
 {
-    filePath = newPath;
-    fileName = [filePath lastPathComponent];
-    icon = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
+    [self willChangeValueForKey:@"filePath"];
+    _filePath = newPath;
+    [self didChangeValueForKey:@"filePath"];
+    fileName = [self.filePath lastPathComponent];
+    icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
     //icon = [[NSWorkspace sharedWorkspace] iconForFile:@"/Users/"];
-    pathComponents = [filePath pathComponents];
+    pathComponents = [self.filePath pathComponents];
     pathIndex = [pathComponents count]-1;
     //self.presentedItemURL = [NSURL fileURLWithPath:newPath];
     _presentedItemOperationQueue = [[NSOperationQueue alloc] init];
@@ -91,11 +87,6 @@
     return fileName;
 }
 
--(NSString*)getPath
-{
-    return filePath;
-}
-
 -(NSImage*)getIcon
 {
     return icon;
@@ -110,7 +101,7 @@
     }
     else {
         for (NSInteger i = 0; i < [children count]; i++) {
-            NSString* childrenPath = [[children objectAtIndex:i] getPath];
+            NSString* childrenPath = [[children objectAtIndex:i] filePath];
             if (childrenPath != nil) {
                 [[children objectAtIndex:i] setFileName:oldName toName:newName];
             }
@@ -152,7 +143,7 @@
 
 -(void)checkPath:(NSString*)path
 {
-    NSComparisonResult result = [path compare:filePath];
+    NSComparisonResult result = [path compare:self.filePath];
     if(!(result == NSOrderedSame))
     {
         [[self getChildrenByName:[[path pathComponents] objectAtIndex:pathIndex+1]] checkPath:path];

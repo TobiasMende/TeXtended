@@ -29,7 +29,7 @@
 
 - (void)doubleClick:(id)object {
     FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
-    NSString *path = [model getPath];
+    NSString *path = model.filePath;
     NSLog(@"%@",path);
     [self openFileInDefApp:path];
 }
@@ -81,7 +81,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
              byItem:(id)item
 {
     FileViewModel *model = (FileViewModel*)item;
-    NSString* oldFile = [model getPath];
+    NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
     NSLog(@"%@",newFile);
     [self renameFile:oldFile toNewFile:newFile];
@@ -161,9 +161,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)url
 {
     [pathsToWatch removeAllObjects];
-    [self->nodes setPath:[url path]];
+    [nodes setFilePath:[url path]];
     [self recursiveFileFinder:url];
-    [self->outline reloadData];
+    [outline reloadData];
     //NSLog(@"%p",[self->outline]);
     [self initializeEventStream];
     return YES;

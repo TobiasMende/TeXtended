@@ -9,24 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @interface FileViewModel : NSObject <NSFilePresenter> {
-    NSString* filePath;
     NSArray* pathComponents;
     NSInteger pathIndex;
     NSString* fileName;
     NSImage* icon;
     NSMutableArray* children;
-    FileViewModel *parent;
+    __weak FileViewModel *parent;
 }
 
 @property (readonly) NSURL *presentedItemURL;
 @property (readonly) NSOperationQueue *presentedItemOperationQueue;
-
+@property (nonatomic, strong) NSString *filePath;
 -(void)addPath:(NSString*)path;
--(void)setPath:(NSString*)newPath;
 -(FileViewModel*)getChildrenByName:(NSString*)name;
 -(FileViewModel*)getChildrenByIndex:(NSInteger)index;
 -(NSString*)getFileName;
--(NSString*)getPath;
 -(void)setFileName:(NSString*)oldName
             toName:(NSString*)newName;
 -(NSImage*)getIcon;

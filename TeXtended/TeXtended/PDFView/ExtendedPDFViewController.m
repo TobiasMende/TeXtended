@@ -78,6 +78,7 @@
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDFViewController dealloc");
+     NSLog(@"%@",[NSThread callStackSymbols]);
 #endif
      [[NSNotificationCenter defaultCenter]removeObserver:self];
 }

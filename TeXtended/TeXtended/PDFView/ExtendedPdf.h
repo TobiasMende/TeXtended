@@ -62,14 +62,7 @@
   */
 -(void) drawGrid:(NSSize) size;
 
-/**
-  * Overide of PDFKids drawPage.
-  * Will draw the given page and add, if requried,
-  * thinks like the grid.
-  * @param page - the current page of the pdf, that should be drawn
-  * @see [method drawGrid]([ExtendedPdf drawGrid:])
-  */
-- (void) drawPage:(PDFPage *) page;
+
 
 /**
   * Init required variables. Called from all init methods.

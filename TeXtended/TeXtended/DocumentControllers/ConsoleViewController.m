@@ -31,8 +31,8 @@
 
 - (void)setModel:(DocumentModel *)model {
     if(_model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:self];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
     }
     [self willChangeValueForKey:@"model"];
     _model = model;
