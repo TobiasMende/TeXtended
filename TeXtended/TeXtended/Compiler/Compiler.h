@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "DocumentController.h"
-#import "CompileSetting.h"
+
 
 @interface Compiler : NSObject {
 }
 
 @property (weak) DocumentController *documentController;
-@property (weak) CompileSetting* draftSettings;
-@property (weak) CompileSetting* liveSettings;
-@property (weak) CompileSetting* finalSettings;
+@property (weak, readonly) DocumentModel *model;
+@property (strong) NSMutableSet* fileCompiler;
 
 /**
  * Constructor

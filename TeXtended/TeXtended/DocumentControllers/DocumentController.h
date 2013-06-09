@@ -37,9 +37,16 @@
 - (BOOL) loadContent;
 - (void) documentModelDidChange;
 
+- (void)refreshLiveView;
+
 /**
  * Draft compiles this document.
  */
 - (void) draftCompile;
+
+/**
+ * Final compiles this document.
+ */
+- (void) finalCompile;
 
 @end

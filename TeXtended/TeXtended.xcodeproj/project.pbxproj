@@ -25,6 +25,8 @@
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
 		76049CA01752085000778E2A /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
 		760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760922941759E220009FC8B0 /* ExtendedPDFViewController.m */; };
+		76A18D961764C12E00A9C051 /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */; };
+		76A18D971764C12E00A9C051 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */; };
 		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
@@ -67,6 +69,7 @@
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
+		D252288C1764B83400C203AD /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
 		D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25721F5175F56CB00A08F1D /* ConsoleViewController.m */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
@@ -159,6 +162,9 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
+		76A18D931764C12E00A9C051 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
+		76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
+		76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		76C78773172BD581004FF4C3 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
 		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		76DADC951764892A002775BA /* lualatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lualatexDraft.sh; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
 		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
+		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
@@ -334,6 +342,9 @@
 				D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */,
 				76DADC991764AA92002775BA /* FileCompiler.h */,
 				76DADC9A1764AA92002775BA /* FileCompiler.m */,
+				76A18D931764C12E00A9C051 /* ExportCompileWindowController.h */,
+				76A18D941764C12E00A9C051 /* ExportCompileWindowController.m */,
+				76A18D951764C12E00A9C051 /* ExportCompileWindow.xib */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -480,7 +491,6 @@
 		D21ACBB71726876900E2F8EC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 			);
@@ -507,12 +517,15 @@
 				D2A550811752085600BC05DD /* MainWindowController.h */,
 				D2A550821752085600BC05DD /* MainWindowController.m */,
 				D21ACBD41726889700E2F8EC /* MainWindow.xib */,
+				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
 				D21ACBD11726889700E2F8EC /* ProjectDocument.xib */,
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
 				D271984317451CD600342CB0 /* MainDocument.h */,
+				D252288A1764B83400C203AD /* MainWindow.h */,
+				D252288B1764B83400C203AD /* MainWindow.m */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -876,6 +889,8 @@
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 				F61C041D1764AA4400204F04 /* InfoWindowController.m in Sources */,
 				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
+				D252288C1764B83400C203AD /* MainWindow.m in Sources */,
+				76A18D961764C12E00A9C051 /* ExportCompileWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

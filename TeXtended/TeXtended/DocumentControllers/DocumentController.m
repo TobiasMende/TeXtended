@@ -127,6 +127,18 @@
         [self.compiler compile:YES];
 }
 
+- (void) finalCompile {
+    BOOL success = [mainDocument saveEntireDocument];
+    if (!success) {
+        NSLog(@"Error");
+    }
+    [self.compiler compile:NO];
+}
+
+- (void)refreshLiveView {
+    NSLog(@"Test");
+}
+
 - (void)documentModelDidChange {
     [self documentModelHasChangedAction:self];
 }
