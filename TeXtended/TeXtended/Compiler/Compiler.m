@@ -61,7 +61,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [task setTerminationHandler:^(NSTask *task) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
+            if ([NSNotificationCenter defaultCenter]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
+            }
             //FIXME: This line causes a memory leak:
             //[self updateDocumentController];
         }];

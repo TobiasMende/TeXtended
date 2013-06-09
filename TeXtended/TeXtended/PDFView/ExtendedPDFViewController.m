@@ -56,12 +56,11 @@
 }
 
 - (void)loadPDF {
-    if (self.model.pdfPath) {
+    if (self.model.faultingState == 0 && self.model.pdfPath) {
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
-        [self.pdfView setDocument:pdfDoc];
-        [self.pdfView setNeedsDisplay:YES];
+        [self.pdfView performSelectorOnMainThread:@selector(setDocument:) withObject:pdfDoc waitUntilDone:NO];
     }
 }
 
@@ -78,9 +77,7 @@
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDFViewController dealloc");
-     NSLog(@"%@",[NSThread callStackSymbols]);
 #endif
-     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 
