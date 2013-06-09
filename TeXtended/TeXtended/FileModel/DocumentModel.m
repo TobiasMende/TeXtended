@@ -160,11 +160,15 @@ static NSArray *TMTProjectObserverKeys;
 }
 
 - (void)setOutputPipe:(NSPipe *)pipe {
+    [self willChangeValueForKey:@"outputPipe"];
     outputPipe = pipe;
+    [self didChangeValueForKey:@"outputPipe"];
 }
 
 - (void)setInputPipe:(NSPipe *)pipe {
+    [self willChangeValueForKey:@"inputPipe"];
     inputPipe = pipe;
+    [self didChangeValueForKey:@"inputPipe"];
 }
 
 - (Compilable *)mainCompilable {

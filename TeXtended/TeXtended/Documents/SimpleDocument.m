@@ -11,10 +11,12 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 static const NSSet *standardDocumentTypes;
+static BOOL autosave;
 @implementation SimpleDocument
 
 + (void)initialize {
     standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
+    autosave = YES;
 }
 
 - (id)init
@@ -40,7 +42,12 @@ static const NSSet *standardDocumentTypes;
     }
 }
 
-
+- (BOOL)saveEntireDocument {
+    autosave = NO;
+    [self saveDocument:self];
+    autosave = YES;
+    return YES;
+}
 
 //- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
 //    NSLog(@"%@",[url path]);
@@ -55,7 +62,7 @@ static const NSSet *standardDocumentTypes;
 //}
 
 + (BOOL)autosavesInPlace {
-    return YES;
+    return autosave;
 }
 
 
