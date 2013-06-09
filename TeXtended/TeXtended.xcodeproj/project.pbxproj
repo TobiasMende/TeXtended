@@ -103,6 +103,9 @@
 		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
+		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
+		D2F177D317651D5A0089DBC0 /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
+		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
@@ -299,6 +302,9 @@
 		D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended-Prefix.pch"; sourceTree = "<group>"; };
 		D2CC5503171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
+		D2F177D017651D5A0089DBC0 /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
+		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
@@ -687,6 +693,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				D2F177CE17651D5A0089DBC0 /* InfoPanels */,
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
 				D2FD39AF171EC434008BB864 /* ApplicationController.m */,
@@ -722,6 +729,16 @@
 				D2CC5502171EAFAB00D81CF1 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2F177CE17651D5A0089DBC0 /* InfoPanels */ = {
+			isa = PBXGroup;
+			children = (
+				D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */,
+				D2F177D017651D5A0089DBC0 /* InfoWindowController.h */,
+				D2F177D117651D5A0089DBC0 /* InfoWindowController.m */,
+			);
+			path = InfoPanels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -788,6 +805,8 @@
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
+				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
+				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
@@ -880,6 +899,7 @@
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
 				D252288C1764B83400C203AD /* MainWindow.m in Sources */,
+				D2F177D317651D5A0089DBC0 /* InfoWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
