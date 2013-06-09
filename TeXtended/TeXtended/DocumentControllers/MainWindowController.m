@@ -65,6 +65,11 @@
     [self.right adjustSubviews];
 }
 
+- (IBAction)reportBug:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"https://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (IBAction)draftCompile:(id)sender {
     [self.documentController draftCompile];
 }

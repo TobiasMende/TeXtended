@@ -19,6 +19,7 @@
 			<string>NSMenuItem</string>
 			<string>NSSplitView</string>
 			<string>NSToolbar</string>
+			<string>NSToolbarFlexibleSpaceItem</string>
 			<string>NSToolbarItem</string>
 			<string>NSToolbarSeparatorItem</string>
 			<string>NSToolbarSpaceItem</string>
@@ -80,17 +81,17 @@
 							<bool key="NSToolbarIsUserRemovable">YES</bool>
 							<int key="NSToolbarItemVisibilityPriority">0</int>
 						</object>
-						<object class="NSToolbarItem" key="C66D20A3-8102-42ED-B74C-472A0BF692B8" id="513593898">
+						<object class="NSToolbarItem" key="C3039C30-48DA-4768-B637-E656E0E165BA" id="931221626">
 							<object class="NSMutableString" key="NSToolbarItemIdentifier">
-								<characters key="NS.bytes">C66D20A3-8102-42ED-B74C-472A0BF692B8</characters>
+								<characters key="NS.bytes">C3039C30-48DA-4768-B637-E656E0E165BA</characters>
 							</object>
-							<string key="NSToolbarItemLabel">Draft</string>
-							<string key="NSToolbarItemPaletteLabel">Draft Compile</string>
+							<string key="NSToolbarItemLabel">Report Bug</string>
+							<string key="NSToolbarItemPaletteLabel">Report Bug</string>
 							<string key="NSToolbarItemToolTip"/>
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSSlideshowTemplate</string>
+								<string key="NSResourceName">NSActionTemplate</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -98,9 +99,42 @@
 							<string key="NSToolbarItemMaxSize">{0, 0}</string>
 							<bool key="NSToolbarItemEnabled">YES</bool>
 							<bool key="NSToolbarItemAutovalidates">YES</bool>
-							<int key="NSToolbarItemTag">1</int>
+							<int key="NSToolbarItemTag">-1</int>
 							<bool key="NSToolbarIsUserRemovable">YES</bool>
 							<int key="NSToolbarItemVisibilityPriority">0</int>
+						</object>
+						<object class="NSToolbarSeparatorItem" key="NSToolbarSeparatorItem" id="285034943">
+							<string key="NSToolbarItemIdentifier">NSToolbarSeparatorItem</string>
+							<string key="NSToolbarItemLabel"/>
+							<string key="NSToolbarItemPaletteLabel">Flexible Space</string>
+							<nil key="NSToolbarItemToolTip"/>
+							<nil key="NSToolbarItemView"/>
+							<nil key="NSToolbarItemImage"/>
+							<nil key="NSToolbarItemTarget"/>
+							<nil key="NSToolbarItemAction"/>
+							<string key="NSToolbarItemMinSize">{1, 5}</string>
+							<string key="NSToolbarItemMaxSize">{20000, 32}</string>
+							<bool key="NSToolbarItemEnabled">YES</bool>
+							<bool key="NSToolbarItemAutovalidates">YES</bool>
+							<int key="NSToolbarItemTag">-1</int>
+							<bool key="NSToolbarIsUserRemovable">YES</bool>
+							<int key="NSToolbarItemVisibilityPriority">0</int>
+							<object class="NSMenuItem" key="NSToolbarItemMenuFormRepresentation">
+								<bool key="NSIsDisabled">YES</bool>
+								<bool key="NSIsSeparator">YES</bool>
+								<string key="NSTitle"/>
+								<string key="NSKeyEquiv"/>
+								<int key="NSKeyEquivModMask">1048576</int>
+								<int key="NSMnemonicLoc">2147483647</int>
+								<object class="NSCustomResource" key="NSOnImage" id="235880152">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">NSMenuCheckmark</string>
+								</object>
+								<object class="NSCustomResource" key="NSMixedImage" id="169078863">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">NSMenuMixedState</string>
+								</object>
+							</object>
 						</object>
 						<object class="NSToolbarSeparatorItem" key="NSToolbarSeparatorItem" id="285034943">
 							<string key="NSToolbarItemIdentifier">NSToolbarSeparatorItem</string>
@@ -125,14 +159,8 @@
 								<string key="NSKeyEquiv"/>
 								<int key="NSKeyEquivModMask">1048576</int>
 								<int key="NSMnemonicLoc">2147483647</int>
-								<object class="NSCustomResource" key="NSOnImage" id="468188070">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSMenuCheckmark</string>
-								</object>
-								<object class="NSCustomResource" key="NSMixedImage" id="427094536">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSMenuMixedState</string>
-								</object>
+								<reference key="NSOnImage" ref="235880152"/>
+								<reference key="NSMixedImage" ref="169078863"/>
 							</object>
 						</object>
 						<object class="NSToolbarSpaceItem" key="NSToolbarSpaceItem" id="120842270">
@@ -158,8 +186,8 @@
 								<string key="NSKeyEquiv"/>
 								<int key="NSKeyEquivModMask">1048576</int>
 								<int key="NSMnemonicLoc">2147483647</int>
-								<reference key="NSOnImage" ref="468188070"/>
-								<reference key="NSMixedImage" ref="427094536"/>
+								<reference key="NSOnImage" ref="235880152"/>
+								<reference key="NSMixedImage" ref="169078863"/>
 							</object>
 						</object>
 					</dictionary>
@@ -168,8 +196,10 @@
 						<reference ref="1064357787"/>
 						<reference ref="120842270"/>
 						<reference ref="285034943"/>
+						<reference ref="931221626"/>
+						<reference ref="1022123682"/>
 					</array>
-					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
+					<array key="NSToolbarIBDefaultItems">
 						<reference ref="513593898"/>
 						<reference ref="1064357787"/>
 					</array>
@@ -336,7 +366,7 @@
 					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="99386276"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{200, 269}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">3</int>
@@ -350,8 +380,8 @@
 				<string key="NSTitle">Menu</string>
 				<string key="NSKeyEquiv"/>
 				<int key="NSMnemonicLoc">2147483647</int>
-				<reference key="NSOnImage" ref="468188070"/>
-				<reference key="NSMixedImage" ref="427094536"/>
+				<reference key="NSOnImage" ref="235880152"/>
+				<reference key="NSMixedImage" ref="169078863"/>
 				<string key="NSAction">submenuAction:</string>
 				<object class="NSMenu" key="NSSubmenu" id="97065192">
 					<string key="NSTitle">Menu</string>
@@ -361,8 +391,8 @@
 							<string key="NSTitle">Item</string>
 							<string key="NSKeyEquiv"/>
 							<int key="NSMnemonicLoc">2147483647</int>
-							<reference key="NSOnImage" ref="468188070"/>
-							<reference key="NSMixedImage" ref="427094536"/>
+							<reference key="NSOnImage" ref="235880152"/>
+							<reference key="NSMixedImage" ref="169078863"/>
 						</object>
 					</array>
 				</object>
@@ -433,6 +463,14 @@
 						<reference key="destination" ref="513593898"/>
 					</object>
 					<int key="connectionID">100346</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">reportBug:</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="931221626"/>
+					</object>
+					<int key="connectionID">100351</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -655,16 +693,6 @@
 						<reference key="parent" ref="125539657"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">100319</int>
-						<reference key="object" ref="513593898"/>
-						<reference key="parent" ref="1035158474"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">100321</int>
-						<reference key="object" ref="1064357787"/>
-						<reference key="parent" ref="1035158474"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">100183</int>
 						<reference key="object" ref="5402049"/>
 						<reference key="parent" ref="99386276"/>
@@ -830,6 +858,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NSActionTemplate">{15, 15}</string>
 			<string key="NSIChatTheaterTemplate">{15, 13}</string>
 			<string key="NSMenuCheckmark">{11, 11}</string>
 			<string key="NSMenuMixedState">{10, 3}</string>

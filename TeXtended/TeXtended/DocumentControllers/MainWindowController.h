@@ -20,6 +20,7 @@
 @property (strong) FileViewController *fileViewController;
 @property (weak) IBOutlet NSBox *fileViewArea;
 
+- (IBAction)reportBug:(id)sender;
 
 - (IBAction)draftCompile:(id)sender;
 - (IBAction)finalCompile:(id)sender;
