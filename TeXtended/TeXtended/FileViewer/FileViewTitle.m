@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
+
     }
     
     return self;
@@ -29,6 +29,21 @@
 {
     NSLog(@"Box");
     return;
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    NSLog(@"hh");
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+    NSLog(@"aa");
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+{
+    return YES;
 }
 
 @end

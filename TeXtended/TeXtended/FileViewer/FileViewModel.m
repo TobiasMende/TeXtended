@@ -27,13 +27,13 @@
     range.location = 0;
     range.length = pathIndex+2;
     NSArray* newModelPathComponents = [[path pathComponents] subarrayWithRange:range];
-    [newModel setPath:[NSString pathWithComponents:newModelPathComponents]];
+    [newModel setFilePath:[NSString pathWithComponents:newModelPathComponents]];
     [newModel addPath:path];
     if(children == nil)
         children = [[NSMutableArray alloc] init];
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] getFileName]];
+        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
         if(result == NSOrderedAscending)
         {
             [children insertObject:newModel atIndex:i];
@@ -57,19 +57,17 @@
         [child addPath:path];
 }
 
--(void)setPath:(NSString*)newPath
+-(void)setFilePath:(NSString*)newPath
 {
     [self willChangeValueForKey:@"filePath"];
     _filePath = newPath;
     [self didChangeValueForKey:@"filePath"];
-    fileName = [self.filePath lastPathComponent];
-    icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
-    //icon = [[NSWorkspace sharedWorkspace] iconForFile:@"/Users/"];
+    self.fileName = [self.filePath lastPathComponent];
+    self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
     pathComponents = [self.filePath pathComponents];
     pathIndex = [pathComponents count]-1;
-    //self.presentedItemURL = [NSURL fileURLWithPath:newPath];
     _presentedItemOperationQueue = [[NSOperationQueue alloc] init];
-    [_presentedItemOperationQueue setMaxConcurrentOperationCount: 1];
+    [self.presentedItemOperationQueue setMaxConcurrentOperationCount: 1];
     
     _presentedItemURL = [NSURL fileURLWithPath:newPath];
     
@@ -78,26 +76,16 @@
 
 - (void)presentedSubitemDidChangeAtURL:(NSURL *)url
 {
-    NSLog(@"%@ shoebox changed %@",fileName ,url);
+    //NSLog(@"%@ shoebox changed %@",_fileName ,url);
     
-}
-
--(NSString*)getFileName
-{
-    return fileName;
-}
-
--(NSImage*)getIcon
-{
-    return icon;
 }
 
 -(void)setFileName:(NSString*)oldName
             toName:(NSString*)newName
 {
-    NSComparisonResult result = [fileName compare:oldName];
+    NSComparisonResult result = [self.fileName compare:oldName];
     if (result == NSOrderedSame) {
-        fileName = newName;
+        self.fileName = newName;
     }
     else {
         for (NSInteger i = 0; i < [children count]; i++) {
@@ -115,7 +103,7 @@
     if(children == nil)
         return nil;
     for (NSInteger i = 0; i < [children count]; i++) {
-        NSComparisonResult result = [name compare:[[children objectAtIndex:i] getFileName]];
+        NSComparisonResult result = [name compare:[[children objectAtIndex:i] fileName]];
         if (result == NSOrderedSame) {
             return [children objectAtIndex:i];
         }
@@ -185,5 +173,4 @@
     NSLog(@"FileViewModel dealloc");
 #endif
 }
-
 @end
