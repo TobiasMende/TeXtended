@@ -28,6 +28,7 @@
 		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
+		76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
@@ -160,6 +161,8 @@
 		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		76DADC951764892A002775BA /* lualatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lualatexDraft.sh; sourceTree = "<group>"; };
 		76DADC9617648A54002775BA /* xelatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = xelatexDraft.sh; sourceTree = "<group>"; };
+		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
+		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				76049C9F1752085000778E2A /* Compiler.m */,
 				D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */,
 				D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */,
+				76DADC991764AA92002775BA /* FileCompiler.h */,
+				76DADC9A1764AA92002775BA /* FileCompiler.m */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -860,6 +865,7 @@
 				D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */,
 				D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */,
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
+				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
