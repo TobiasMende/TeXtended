@@ -10,4 +10,6 @@
 
 @protocol MainDocument <NSObject>
 
+- (BOOL) saveEntireDocument;
+
 @end

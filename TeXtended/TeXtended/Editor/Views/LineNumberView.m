@@ -190,13 +190,10 @@
 
 - (void)setClientView:(NSView *)aView
 {
-	id	oldClientView;
 	
-	oldClientView = [self clientView];
-	
-    if ((oldClientView != aView) && [oldClientView isKindOfClass:[NSTextView class]])
+    if ((self.clientView != aView) && [self.clientView isKindOfClass:[NSTextView class]])
     {
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:[(NSTextView *)oldClientView textStorage]];
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextStorageDidProcessEditingNotification object:[(NSTextView *)self.clientView textStorage]];
     }
     [super setClientView:aView];
     if ((aView != nil) && [aView isKindOfClass:[NSTextView class]])
@@ -626,15 +623,15 @@
     return [self errorBorderColor];
 }
 
-- (NSArray*) getAnchoredLines {
+- (NSArray*) anchoredLines {
     return [lineAnchors allValues];
 }
 
-- (NSArray*) getLinesWithErrors {
+- (NSArray*) linesWithErrors {
     return [lineErrors allValues];
 }
 
-- (NSArray*) getLinesWithWarnings {
+- (NSArray*) linesWithWarnings {
     return [lineWarnings allValues];
 }
 

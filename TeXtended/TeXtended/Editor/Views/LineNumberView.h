@@ -163,18 +163,18 @@
  * Returns a array that holds the linenumbers of all lines with a anchor.
  * @return NSArray with NSUIntegers for the linenumbers
  */
-- (NSArray*) getAnchoredLines;
+- (NSArray*) anchoredLines;
 
 /**
  * Returns a array that holds the linenumbers of all lines with a warning.
  * @return NSArray with NSUIntegers for the linenumbers
  */
-- (NSArray*) getLinesWithWarnings;
+- (NSArray*) linesWithWarnings;
 
 /**
  * Returns a array that holds the linenumbers of all lines with a error.
  * @return NSArray with NSUIntegers for the linenumbers
  */
-- (NSArray*) getLinesWithErrors;
+- (NSArray*) linesWithErrors;
 
 @end

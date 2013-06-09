@@ -15,21 +15,11 @@
 
 @implementation TextViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self initialize];
-    }
-    
-    return self;
-}
 
 - (id)initWithParent:(id<DocumentControllerProtocol>)parent {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
         self.parent = parent;
-        [self initialize];
     }
     return self;
 }

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-#  pdflatex.sh
+#  lualatexDraft.sh
 #  TeXtended
 #
-#  Created by Tobias Mende on 15.05.13.
+#  Created by Max Bannach on 09.06.13.
 #  Copyright (c) 2013 Tobias Mende. All rights reserved.
 
 if [ $# -lt 2 ]
@@ -14,7 +14,7 @@ fi
 
 # Executable values
 PATH=/usr/texbin:/usr/local/bin:$PATH
-ENGINE=/usr/texbin/pdflatex
+ENGINE=/usr/texbin/lualatex
 BIBTEX=/usr/texbin/bibtex
 
 # Process inputs.
@@ -63,6 +63,6 @@ fi
 count=$(( $count + 1 ))
 done
 
-echo "*** pdflatex compile flow has completed."
+echo "*** lualatex compile flow has completed."
 
 # END

@@ -120,7 +120,11 @@
 }
 
 - (void) draftCompile {
-    [self.compiler compile:YES];
+    BOOL success = [mainDocument saveEntireDocument];
+    if (!success) {
+        NSLog(@"Error");
+    }
+        [self.compiler compile:YES];
 }
 
 - (void)documentModelDidChange {

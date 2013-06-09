@@ -9,12 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 
-@class ExtendedPdf, DocumentModel;
+@class ExtendedPdf, DocumentModel,PDFView;
 
 @interface ExtendedPDFViewController : NSViewController<DocumentControllerProtocol>
 
 @property (weak)id<DocumentControllerProtocol> parent;
 @property (weak,nonatomic) DocumentModel *model;
-@property (weak) IBOutlet ExtendedPdf *pdfView;
+@property (weak) IBOutlet PDFView *pdfView;
 
 @end

@@ -152,6 +152,7 @@ static const NSSet *KEYS_TO_UNBIND;
     [controllsView.theBox setCornerRadius:10];
 }
 
+
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDF dealloc");
