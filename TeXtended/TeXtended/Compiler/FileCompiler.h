@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentModel;
+@class DocumentModel, CompileSetting;
 
 @interface FileCompiler : NSObject
 
-- (id) initWithDocumentModel:(DocumentModel*) model;
+@property  BOOL autoCompile;
+@property (weak) DocumentModel* model;
 
+-(id)initWithDocumentModel:(DocumentModel*) model;
+
+- (void) compile:(bool)draft;
 
 @end
