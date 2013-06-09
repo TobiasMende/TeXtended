@@ -38,6 +38,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [super windowDidLoad];
     [self.documentController setupWindowController];
     _fileViewController = [[FileViewController alloc] init];
+    
+    _exportWindow = [[ExportCompileWindowController alloc] init];
+    [self.exportWindow setController:self.documentController];
+    
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];
 }
