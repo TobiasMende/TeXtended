@@ -68,7 +68,7 @@
         }
         else
             changedText = [NSString stringWithFormat:@"-"];
-        [self.lblCompile setStringValue:changedText];
+        [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Project"];
         [self.lblPath setStringValue:self.doc.project.path];
     }
@@ -95,7 +95,7 @@
         }
         else
             changedText = [NSString stringWithFormat:@"-"];
-        [self.lblCompile setStringValue:changedText];
+        [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Document"];
         [self.lblPath setStringValue:self.doc.texPath];
     }

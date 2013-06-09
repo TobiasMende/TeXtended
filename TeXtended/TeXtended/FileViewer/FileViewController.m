@@ -37,6 +37,7 @@
     //NSString *path = model.filePath;
     //[self openFileInDefApp:path];
     [self.infoWindowController showWindow:self.infoWindowController];
+    [self.infoWindowController loadDocument:self.doc];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -132,6 +133,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
     nodes = [[FileViewModel alloc] init];
+    [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
 }
 
@@ -253,13 +255,14 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         else
             titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];;
     }
+    if([titleText isEqualToString:@"(null)"])
+        return;
     [self.titleLbl setStringValue:titleText];
     if(!totalPath ||[totalPath length] == 0)
         return;
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
-    [self.infoWindowController loadDocument:document];
 }
 
 - (void)dealloc {
