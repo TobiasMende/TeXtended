@@ -127,6 +127,10 @@
         [self.compiler compile:YES];
 }
 
+- (void)refreshLiveView {
+    NSLog(@"Test");
+}
+
 - (void)documentModelDidChange {
     [self documentModelHasChangedAction:self];
 }

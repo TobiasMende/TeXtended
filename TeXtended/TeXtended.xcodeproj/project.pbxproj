@@ -67,6 +67,7 @@
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
+		D252288C1764B83400C203AD /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
 		D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25721F5175F56CB00A08F1D /* ConsoleViewController.m */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
@@ -229,6 +230,8 @@
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
 		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
+		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
@@ -505,6 +508,8 @@
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
 				D271984317451CD600342CB0 /* MainDocument.h */,
+				D252288A1764B83400C203AD /* MainWindow.h */,
+				D252288B1764B83400C203AD /* MainWindow.m */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */,
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
+				D252288C1764B83400C203AD /* MainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
