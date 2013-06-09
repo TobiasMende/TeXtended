@@ -7,10 +7,17 @@
 //
 
 #import "FileCompiler.h"
+#import "DocumentModel.h"
 
 @implementation FileCompiler
 
-
+- (id) initWithDocumentModel:(DocumentModel*) model {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 
 
 @end

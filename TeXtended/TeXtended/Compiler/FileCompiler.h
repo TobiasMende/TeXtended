@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DocumentModel;
 
 @interface FileCompiler : NSObject
+
+- (id) initWithDocumentModel:(DocumentModel*) model;
+
 
 @end
