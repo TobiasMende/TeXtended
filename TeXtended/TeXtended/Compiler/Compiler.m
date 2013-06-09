@@ -24,6 +24,10 @@
     if (self) {
         [self setAutoCompile:NO];
         _documentController = controller;
+        _model = [controller model];
+        
+        [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
+        
         [self loadFileCompiler];
     }
     return self;
@@ -31,19 +35,24 @@
 
 
 - (void) compile:(bool)draft {
-    
-    
+    for (FileCompiler* compiler in [self fileCompiler]) {
+        [compiler compile:draft];
+    }
 }
 
-
 - (void) loadFileCompiler {
-    _fileCompiler = [[NSSet alloc] init];
-    for (DocumentModel* model in [self.documentController.model mainDocuments]) {
+    _fileCompiler = [[NSMutableSet alloc] init];
+    for (DocumentModel* model in [self.model mainDocuments]) {
         FileCompiler *fc = [[FileCompiler alloc] initWithDocumentModel:model];
-        [self.fileCompiler insertValue:fc inPropertyWithKey:nil];
+        [fc setAutoCompile:[self autoCompile]];
+        [self.fileCompiler addObject:fc];
     }
-    
-    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object {
+    if (object == self.model && [keyPath isEqual: @"mainDocuments"]) {
+        [self loadFileCompiler];
+    }
 }
 
 - (void) updateDocumentController {
@@ -56,6 +65,7 @@
 #endif
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [self.model removeObserver:self forKeyPath:@"mainDocuments"];
 }
 
 @end

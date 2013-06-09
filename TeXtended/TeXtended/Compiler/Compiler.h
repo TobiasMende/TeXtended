@@ -14,7 +14,8 @@
 }
 
 @property (weak) DocumentController *documentController;
-@property (strong) NSSet* fileCompiler;
+@property (weak, readonly) DocumentModel *model;
+@property (strong) NSMutableSet* fileCompiler;
 
 /**
  * Constructor
