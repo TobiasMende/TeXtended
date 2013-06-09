@@ -875,6 +875,7 @@
 				D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */,
 				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
 				F61C041D1764AA4400204F04 /* InfoWindowController.m in Sources */,
+				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
