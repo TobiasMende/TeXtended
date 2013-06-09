@@ -40,8 +40,6 @@
         }
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
         
-        
-        
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[[self model] texPath], [[self model] pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
@@ -51,7 +49,6 @@
             if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:[self model]];
             }
- 
         }];
         
         [task launch];
