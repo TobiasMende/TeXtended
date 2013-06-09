@@ -48,7 +48,7 @@ echo " "
 echo "***------------------------------------------------------------"
 echo "*** Run $count..."
 echo "***------------------------------------------------------------"
-$ENGINE -synctex=1 -file-line-error -interaction=nonstopmode "$mainFile"
+$ENGINE -synctex=1 -file-line-error "$mainFile"
 
 # if this is after the first run, run bibtex if requested
 if [ $count -eq 1 ]
