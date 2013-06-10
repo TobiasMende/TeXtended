@@ -314,13 +314,13 @@ static NSArray *TMTProjectObserverKeys;
     } else if([key isEqualToString:@"texName"]) {
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
     }
-//    else if([key isEqualToString:@"liveCompiler"]) {
-//        keyPaths = [keyPaths setByAddingObject:@"project.liveCompiler"];
-//    } else if([key isEqualToString:@"draftCompiler"]) {
-//        keyPaths = [keyPaths setByAddingObject:@"project.draftCompiler"];
-//    } else if([key isEqualToString:@"finalCompiler"]) {
-//        keyPaths = [keyPaths setByAddingObject:@"project.finalCompiler"];
-//    }
+    else if([key isEqualToString:@"liveCompiler"]) {
+        keyPaths = [keyPaths setByAddingObject:@"project.liveCompiler"];
+    } else if([key isEqualToString:@"draftCompiler"]) {
+        keyPaths = [keyPaths setByAddingObject:@"project.draftCompiler"];
+    } else if([key isEqualToString:@"finalCompiler"]) {
+        keyPaths = [keyPaths setByAddingObject:@"project.finalCompiler"];
+    }
     return keyPaths;
 }
 

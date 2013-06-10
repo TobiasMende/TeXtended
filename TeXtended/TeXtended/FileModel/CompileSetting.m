@@ -24,24 +24,18 @@ static CompileSetting *defaultLiveCompiler;
 @dynamic customArgument;
 
 + (CompileSetting *)defaultDraftCompileSettingIn:(NSManagedObjectContext*)context {
-    if (!defaultDraftCompiler) {
         defaultDraftCompiler = [self createCompileSettingFor:TMTDraftCompileFlow bibKey:TMTDraftCompileBib iterationKey:TMTDraftCompileIterations argsKey:TMTDraftCompileArgs andContext:context];
-    }
     return defaultDraftCompiler;
 }
 
 + (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context {
-    if(!defaultLiveCompiler) {
         defaultLiveCompiler =  [self createCompileSettingFor:TMTLiveCompileFlow bibKey:TMTLiveCompileBib iterationKey:TMTLiveCompileIterations argsKey:TMTLiveCompileArgs andContext:context];
-    }
     return defaultLiveCompiler;
 }
 
 + (CompileSetting *)defaultFinalCompileSettingIn:(NSManagedObjectContext*)context {
-    if(!defaultFinalCompiler) {
         
         defaultFinalCompiler = [self createCompileSettingFor:TMTFinalCompileFlow bibKey:TMTFinalCompileBib iterationKey:TMTFinalCompileIterations argsKey:TMTFinalCompileArgs andContext:context];
-    }
     return defaultFinalCompiler;
 }
 
