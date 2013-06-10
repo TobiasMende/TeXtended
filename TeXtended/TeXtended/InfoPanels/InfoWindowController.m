@@ -43,7 +43,8 @@
 
 - (void)loadDocument:(DocumentModel*) document
 {
-    self.doc = document;
+    if(self.doc != document)
+        self.doc = document;
     [self.table reloadData];
     if(self.doc.project)
     {

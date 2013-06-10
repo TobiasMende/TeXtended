@@ -34,6 +34,10 @@
 
 - (IBAction)openInfoView:(id)sender
 {
+    if(!self.doc)
+        return;
+    if(!self.doc.texPath)
+        return;
     [self.infoWindowController showWindow:self.infoWindowController];
     [self.infoWindowController loadDocument:self.doc];
 }
@@ -270,7 +274,10 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     
     // In Sandboxmode
     if([titleText isEqualToString:@"(null)"])
+    {
+        [self.titleButton setTitle:@""];
         return;
+    }
     [self.titleButton setTitle:titleText];
     if(!totalPath ||[totalPath length] == 0)
         return;
@@ -289,6 +296,14 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 }
 
 - (void)dealloc {
+    if (self.doc.project)
+    {
+        NSArray *docs = [self.doc.project.documents allObjects];
+        for(NSInteger i = 0; i < docs.count; i++)
+            [[docs objectAtIndex:i] removeObserver:self forKeyPath:@"texPath"];
+    }
+    else
+        [self.doc removeObserver:self forKeyPath:@"texPath"];
 #ifdef DEBUG
     NSLog(@"FileViewController dealloc");
 #endif
