@@ -241,44 +241,46 @@ static NSArray *TMTProjectObserverKeys;
 - (CompileSetting *)draftCompiler {
     [self willAccessValueForKey:@"draftCompiler"];
     CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
-    [self didAccessValueForKey:@"draftCompiler"];
     if (setting) {
         return setting;
     }
     if (self.project) {
         return [self.project draftCompiler];
     }
+    [self didAccessValueForKey:@"draftCompiler"];
     return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
 }
 
 - (CompileSetting *)liveCompiler {
     [self willAccessValueForKey:@"liveCompiler"];
     CompileSetting *setting = [self primitiveValueForKey:@"liveCompiler"];
-    [self didAccessValueForKey:@"liveCompiler"];
     if (setting) {
         return setting;
     }
     if (self.project) {
         return [self.project liveCompiler];
     }
+    [self didAccessValueForKey:@"liveCompiler"];
     return [CompileSetting defaultLiveCompileSettingIn:[self managedObjectContext]];
 }
 
 - (CompileSetting *)finalCompiler {
     [self willAccessValueForKey:@"finalCompiler"];
     CompileSetting *setting = [self primitiveValueForKey:@"finalCompiler"];
-    [self didAccessValueForKey:@"finalCompiler"];
     if (setting) {
         return setting;
     }
     if (self.project) {
         return [self.project finalCompiler];
     }
+    [self didAccessValueForKey:@"finalCompiler"];
     return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
 }
 
 - (NSString *)pdfPath {
+    [self willAccessValueForKey:@"pdfPath"];
     NSString *path = [self primitiveValueForKey:@"pdfPath"];
+    [self didAccessValueForKey:@"pdfPath"];
     if (path && path.length > 0) {
         return path;
     }
@@ -310,6 +312,16 @@ static NSArray *TMTProjectObserverKeys;
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
     }
     return keyPaths;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if ([key isEqualToString:@"texName"]) {
+        return YES;
+    }
+    if ([key isEqualToString:@"pdfName"]) {
+        return YES;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
 }
 
 

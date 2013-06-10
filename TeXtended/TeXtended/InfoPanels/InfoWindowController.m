@@ -101,6 +101,8 @@
     }
 }
 
+
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     if(self.doc)
@@ -114,4 +116,5 @@
 {
     return [[[self.doc mainDocuments] allObjects] objectAtIndex:rowIndex];
 }
+
 @end
