@@ -75,7 +75,7 @@
 #define TMTLiveCompileBib @"TMTLiveCompileBib"
 #define TMTDraftCompileBib @"TMTDraftCompileBib"
 #define TMTFinalCompileBib @"TMTFinalCompileBib"
-
+#define TMTDocumentEnableLiveCompile @"TMTDocumentEnableLiveCompile"
 
 /*
  KVC keys for strings (used for user defaults)

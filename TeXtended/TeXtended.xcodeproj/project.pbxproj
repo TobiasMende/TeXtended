@@ -93,6 +93,13 @@
 		D2A550841752085700BC05DD /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550821752085600BC05DD /* MainWindowController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
+		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
+		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
+		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
+		D2B0166A1766194F00C6CE23 /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */; };
+		D2B0166D17661AD000C6CE23 /* SplitviewMiddle.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */; };
+		D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */; };
+		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
 		D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
 		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
@@ -283,6 +290,13 @@
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
+		D2B01663176608A800C6CE23 /* ReportBug.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ReportBug.pdf; sourceTree = "<group>"; };
+		D2B0166517660D9900C6CE23 /* Play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Play.pdf; sourceTree = "<group>"; };
+		D2B016671766163E00C6CE23 /* Export.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Export.pdf; sourceTree = "<group>"; };
+		D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
+		D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewMiddle.pdf; sourceTree = "<group>"; };
+		D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewRight.pdf; sourceTree = "<group>"; };
+		D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Livepreview.pdf; sourceTree = "<group>"; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
@@ -352,6 +366,7 @@
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D2B01662176608A800C6CE23 /* Icons */,
 				D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */,
 			);
 			name = Resources;
@@ -631,6 +646,20 @@
 			path = UndoSupport;
 			sourceTree = "<group>";
 		};
+		D2B01662176608A800C6CE23 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */,
+				D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */,
+				D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */,
+				D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */,
+				D2B016671766163E00C6CE23 /* Export.pdf */,
+				D2B0166517660D9900C6CE23 /* Play.pdf */,
+				D2B01663176608A800C6CE23 /* ReportBug.pdf */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		D2C904E317269614006EFEC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +846,13 @@
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
+				D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */,
+				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
+				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
+				D2B0166A1766194F00C6CE23 /* SplitviewLeft.pdf in Resources */,
+				D2B0166D17661AD000C6CE23 /* SplitviewMiddle.pdf in Resources */,
+				D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */,
+				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
