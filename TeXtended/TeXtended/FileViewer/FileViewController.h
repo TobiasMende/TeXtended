@@ -18,6 +18,7 @@
     NSDate* appStartedTimestamp;
     NSNumber* lastEventId;
     
+    __weak NSButton *_titleButton;
     __weak IBOutlet NSOutlineView *outline;
     __weak IBOutlet NSBox *titleBox;
 }
@@ -28,5 +29,7 @@
 
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;
+- (IBAction)openInfoView:(id)sender;
 
+@property (weak) IBOutlet NSButton *titleButton;
 @end

@@ -1599,7 +1599,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">519</int>
+					<int key="connectionID">724</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1712,7 +1712,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">524</int>
+					<int key="connectionID">723</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1809,7 +1809,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">529</int>
+					<int key="connectionID">725</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3855,7 +3855,6 @@
 							<reference ref="350176627"/>
 							<reference ref="567475646"/>
 							<reference ref="847041432"/>
-							<reference ref="915865914"/>
 							<reference ref="690123320"/>
 							<object class="IBNSLayoutConstraint" id="809333780">
 								<reference key="firstItem" ref="567475646"/>
@@ -4082,6 +4081,7 @@
 								<int key="contentType">3</int>
 							</object>
 							<reference ref="1032940478"/>
+							<reference ref="915865914"/>
 						</array>
 						<reference key="parent" ref="557476173"/>
 					</object>
@@ -5805,7 +5805,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">719</int>
+			<int key="maxID">725</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

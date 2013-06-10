@@ -32,12 +32,16 @@
     NSLog(@"hh");
 }
 
-- (void)doubleClick:(id)object {
-    //FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
-    //NSString *path = model.filePath;
-    //[self openFileInDefApp:path];
+- (IBAction)openInfoView:(id)sender
+{
     [self.infoWindowController showWindow:self.infoWindowController];
     [self.infoWindowController loadDocument:self.doc];
+}
+
+- (void)doubleClick:(id)object {
+    FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
+    NSString *path = model.filePath;
+    [self openFileInDefApp:path];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -244,6 +248,11 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         }
         else
             titleText = [NSString stringWithFormat:@"%@", _doc.project.name];
+        
+        // Add Oberserver
+        NSArray *docs = [self.doc.project.documents allObjects];
+        for(NSInteger i = 0; i < docs.count; i++)
+            [[docs objectAtIndex:i] addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
     } else {
         totalPath = self.doc.texPath;
         NSString *stringFromDate;
@@ -253,16 +262,30 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
             titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.texName.stringByDeletingPathExtension, stringFromDate];
         }
         else
-            titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];;
+            titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];
+        
+        // Add Observer
+        [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
     }
+    
+    // In Sandboxmode
     if([titleText isEqualToString:@"(null)"])
         return;
-    [self.titleLbl setStringValue:titleText];
+    [self.titleButton setTitle:titleText];
     if(!totalPath ||[totalPath length] == 0)
         return;
+    
+    // Load Path in FileView
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                       change:(NSDictionary *)change context:(void*)context {
+    DocumentModel *dc = (DocumentModel*)object;
+    //NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], [change valueForKey:NSKeyValueChangeNewKey]);
+    NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], dc.texPath);
 }
 
 - (void)dealloc {
