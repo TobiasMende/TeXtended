@@ -111,6 +111,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:NO], TMTLiveCompileBib,
                               [NSNumber numberWithBool:NO], TMTDraftCompileBib,
                               [NSNumber numberWithBool:YES], TMTFinalCompileBib,
+                              [NSNumber numberWithBool:YES], TMTDocumentEnableLiveCompile,
                               [NSNumber numberWithInt:1], TMTLiveCompileIterations,
                               [NSNumber numberWithInt:2], TMTDraftCompileIterations,
                               [NSNumber numberWithInt:3], TMTFinalCompileIterations,

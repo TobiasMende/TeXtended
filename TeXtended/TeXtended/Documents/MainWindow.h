@@ -11,4 +11,6 @@
 @interface MainWindow : NSWindow
 @property (unsafe_unretained) IBOutlet MainWindowController *controller;
 - (IBAction)genericAction:(id)sender;
+- (IBAction)draftCompile:(id)sender;
+- (IBAction)finalCompile:(id)sender;
 @end

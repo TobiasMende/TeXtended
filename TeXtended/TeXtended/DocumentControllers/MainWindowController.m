@@ -76,6 +76,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
+
 - (IBAction)draftCompile:(id)sender {
     [self.documentController draftCompile];
 }

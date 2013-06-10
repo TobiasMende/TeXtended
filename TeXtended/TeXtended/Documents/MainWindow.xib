@@ -23,6 +23,7 @@
 			<string>NSToolbar</string>
 			<string>NSToolbarFlexibleSpaceItem</string>
 			<string>NSToolbarItem</string>
+			<string>NSUserDefaultsController</string>
 			<string>NSView</string>
 			<string>NSWindowTemplate</string>
 		</array>
@@ -86,7 +87,7 @@
 									</object>
 									<string key="NSCellIdentifier">_NS:9</string>
 									<reference key="NSControlView" ref="493995493"/>
-									<int key="NSButtonFlags">-2033958912</int>
+									<int key="NSButtonFlags">-1228652544</int>
 									<int key="NSButtonFlags2">163</int>
 									<object class="NSCustomResource" key="NSNormalImage" id="562671570">
 										<string key="NSClassName">NSImage</string>
@@ -167,7 +168,7 @@
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="538676730">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{0, 14}, {104, 28}}</string>
+								<string key="NSFrame">{{0, 14}, {104, 24}}</string>
 								<reference key="NSSuperview"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -197,7 +198,6 @@
 											</object>
 											<string key="NSSegmentItemTooltip">Editor</string>
 											<int key="NSSegmentItemTag">1</int>
-											<bool key="NSSegmentItemSelected">YES</bool>
 											<int key="NSSegmentItemImageScaling">0</int>
 										</object>
 										<object class="NSSegmentItem">
@@ -212,14 +212,15 @@
 										</object>
 									</array>
 									<int key="NSSelectedSegment">1</int>
-									<int key="NSSegmentStyle">2</int>
+									<int key="NSTrackingMode">1</int>
+									<int key="NSSegmentStyle">5</int>
 								</object>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 							</object>
 							<nil key="NSToolbarItemImage"/>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
-							<string key="NSToolbarItemMinSize">{104, 28}</string>
+							<string key="NSToolbarItemMinSize">{104, 24}</string>
 							<string key="NSToolbarItemMaxSize">{104, 28}</string>
 							<bool key="NSToolbarItemEnabled">YES</bool>
 							<bool key="NSToolbarItemAutovalidates">YES</bool>
@@ -355,7 +356,7 @@
 							</object>
 						</object>
 					</dictionary>
-					<array class="NSMutableArray" key="NSToolbarIBAllowedItems">
+					<array key="NSToolbarIBAllowedItems">
 						<reference ref="578203949"/>
 						<reference ref="405800691"/>
 						<reference ref="626955908"/>
@@ -555,6 +556,9 @@
 			<object class="NSCustomObject" id="796877042">
 				<string key="NSClassName">NSApplication</string>
 			</object>
+			<object class="NSUserDefaultsController" id="461874640">
+				<bool key="NSSharedInstance">YES</bool>
+			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -653,6 +657,22 @@
 						<reference key="destination" ref="512844837"/>
 					</object>
 					<int key="connectionID">100352</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.TMTDocumentEnableLiveCompile</string>
+						<reference key="source" ref="493995493"/>
+						<reference key="destination" ref="461874640"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="493995493"/>
+							<reference key="NSDestination" ref="461874640"/>
+							<string key="NSLabel">value: values.TMTDocumentEnableLiveCompile</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.TMTDocumentEnableLiveCompile</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">100409</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1043,6 +1063,11 @@
 						<reference key="object" ref="721200420"/>
 						<reference key="parent" ref="538676730"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100407</int>
+						<reference key="object" ref="461874640"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1090,6 +1115,7 @@
 				<integer value="0" key="100404.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="100404.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100405.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100407.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1106,24 +1132,32 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100405</int>
+			<int key="maxID">100409</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">MainWindow</string>
 					<string key="superclassName">NSWindow</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">genericAction:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">genericAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="draftCompile:">id</string>
+						<string key="finalCompile:">id</string>
+						<string key="genericAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="draftCompile:">
+							<string key="name">draftCompile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="finalCompile:">
+							<string key="name">finalCompile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="genericAction:">
 							<string key="name">genericAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">controller</string>
 						<string key="NS.object.0">MainWindowController</string>
