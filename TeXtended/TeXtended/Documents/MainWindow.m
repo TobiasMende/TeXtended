@@ -20,7 +20,7 @@
     [self.controller draftCompile:sender];
 }
 
-- (void)finalCompile:(id)sender {
+- (void)export:(id)sender {
     [self.controller finalCompile:sender];
 }
 @end
