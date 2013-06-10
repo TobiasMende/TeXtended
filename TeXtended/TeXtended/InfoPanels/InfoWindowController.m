@@ -43,7 +43,8 @@
 
 - (void)loadDocument:(DocumentModel*) document
 {
-    self.doc = document;
+    if(self.doc != document)
+        self.doc = document;
     [self.table reloadData];
     if(self.doc.project)
     {
@@ -113,5 +114,11 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     return [[[self.doc mainDocuments] allObjects] objectAtIndex:rowIndex];
+}
+
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"InfoViewController dealloc");
+#endif
 }
 @end
