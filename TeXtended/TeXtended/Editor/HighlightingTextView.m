@@ -78,6 +78,7 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
+    [self setSmartInsertDeleteEnabled:NO];
     self.servicesOn = YES;
     
     
