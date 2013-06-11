@@ -67,7 +67,7 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
-    // _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
+    _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [self.syntaxHighlighter highlightEntireDocument];
     }
