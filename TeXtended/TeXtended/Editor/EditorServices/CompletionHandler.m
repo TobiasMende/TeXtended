@@ -138,6 +138,7 @@ typedef enum {
             [matchingKeys addObject:key];
         }
     }
+    [matchingKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     return matchingKeys;
 }
 
@@ -154,6 +155,7 @@ typedef enum {
             }
         }
     }
+    [matchingCompletions sortUsingSelector:@selector(caseInsensitiveCompare:)];
     return matchingCompletions;
 }
 

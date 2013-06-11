@@ -21,6 +21,7 @@
 @property (strong) ExportCompileWindowController* exportWindow;
 @property (weak) IBOutlet NSBox *fileViewArea;
 
+
 - (IBAction)reportBug:(id)sender;
 
 - (IBAction)draftCompile:(id)sender;

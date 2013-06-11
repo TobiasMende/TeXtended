@@ -13,7 +13,7 @@
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
 
-static const NSUInteger SECONDS_BETWEEEN_UPDATES = 2;
+static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 
 @interface SpellCheckingService()
 

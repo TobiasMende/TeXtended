@@ -67,7 +67,7 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
-    // _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
+    _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [self.syntaxHighlighter highlightEntireDocument];
     }
@@ -78,6 +78,7 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setAutomaticSpellingCorrectionEnabled:NO];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
+    [self setSmartInsertDeleteEnabled:NO];
     self.servicesOn = YES;
     
     
@@ -329,11 +330,11 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     NSRange totalRange = [codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
-    if (totalRange.location > 0) {
-        // Delete line-break before selection.
-        totalRange.location -= 1;
-        totalRange.length +=1;
-    }
+//    if (totalRange.location > 0) {
+//        // Delete line-break before selection.
+//        totalRange.location -= 1;
+//        totalRange.length +=1;
+//    }
     [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
 
 

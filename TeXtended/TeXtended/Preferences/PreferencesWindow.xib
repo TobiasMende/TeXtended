@@ -3739,7 +3739,7 @@
 					<string key="NSHuggingPriority">{1000, 1000}</string>
 					<string key="NSAntiCompressionPriority">{1000, 1000}</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1200}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -3754,6 +3754,9 @@
 				<bool key="NSSelectsInsertedObjects">YES</bool>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSCustomObject" id="97824130">
+				<string key="NSClassName">CompileFlowHandler</string>
 			</object>
 			<object class="NSCustomObject" id="669819713">
 				<string key="NSClassName">NSFontManager</string>
@@ -5075,6 +5078,39 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="470595442"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="666395205">
+							<reference key="NSSource" ref="470595442"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3343</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="470595442"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="580318198">
+							<reference key="NSSource" ref="470595442"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="666395205"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3348</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.TMTLiveCompileIterations</string>
 						<reference key="source" ref="470595442"/>
 						<reference key="destination" ref="911841434"/>
@@ -5084,10 +5120,11 @@
 							<string key="NSLabel">value: values.TMTLiveCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTLiveCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="580318198"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3072</int>
+					<int key="connectionID">3349</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5107,6 +5144,39 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="327662589"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="58551424">
+							<reference key="NSSource" ref="327662589"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3353</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="327662589"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="781827271">
+							<reference key="NSSource" ref="327662589"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="58551424"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3358</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.TMTLiveCompileIterations</string>
 						<reference key="source" ref="327662589"/>
 						<reference key="destination" ref="911841434"/>
@@ -5116,10 +5186,44 @@
 							<string key="NSLabel">value: values.TMTLiveCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTLiveCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="781827271"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3092</int>
+					<int key="connectionID">3359</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="209731208"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="153172865">
+							<reference key="NSSource" ref="209731208"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3374</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="209731208"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="572689288">
+							<reference key="NSSource" ref="209731208"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="153172865"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3378</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5132,10 +5236,44 @@
 							<string key="NSLabel">value: values.TMTDraftCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTDraftCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="572689288"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3215</int>
+					<int key="connectionID">3379</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="785114324"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="779542570">
+							<reference key="NSSource" ref="785114324"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3367</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="785114324"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="267823205">
+							<reference key="NSSource" ref="785114324"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="779542570"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3368</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5148,10 +5286,11 @@
 							<string key="NSLabel">value: values.TMTDraftCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTDraftCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="267823205"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3214</int>
+					<int key="connectionID">3369</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5236,6 +5375,39 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="1062506639"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="911832295">
+							<reference key="NSSource" ref="1062506639"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3392</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="1062506639"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="661610912">
+							<reference key="NSSource" ref="1062506639"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="911832295"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3396</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.TMTFinalCompileIterations</string>
 						<reference key="source" ref="1062506639"/>
 						<reference key="destination" ref="911841434"/>
@@ -5245,10 +5417,44 @@
 							<string key="NSLabel">value: values.TMTFinalCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTFinalCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="661610912"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3221</int>
+					<int key="connectionID">3397</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">maxValue: self.maxIterations</string>
+						<reference key="source" ref="758300373"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="876215598">
+							<reference key="NSSource" ref="758300373"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">maxValue: self.maxIterations</string>
+							<string key="NSBinding">maxValue</string>
+							<string key="NSKeyPath">self.maxIterations</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3387</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">minValue: self.minIterations</string>
+						<reference key="source" ref="758300373"/>
+						<reference key="destination" ref="97824130"/>
+						<object class="NSNibBindingConnector" key="connector" id="580803769">
+							<reference key="NSSource" ref="758300373"/>
+							<reference key="NSDestination" ref="97824130"/>
+							<string key="NSLabel">minValue: self.minIterations</string>
+							<string key="NSBinding">minValue</string>
+							<string key="NSKeyPath">self.minIterations</string>
+							<reference key="NSPreviousConnector" ref="876215598"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3388</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5261,10 +5467,11 @@
 							<string key="NSLabel">value: values.TMTFinalCompileIterations</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTFinalCompileIterations</string>
+							<reference key="NSPreviousConnector" ref="580803769"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">3220</int>
+					<int key="connectionID">3389</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -11297,6 +11504,7 @@
 						<int key="objectID">2685</int>
 						<reference key="object" ref="709688665"/>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Availabel Compilers</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2762</int>
@@ -13648,6 +13856,11 @@
 						<reference key="object" ref="694942701"/>
 						<reference key="parent" ref="299360312"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3339</int>
+						<reference key="object" ref="97824130"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -14809,13 +15022,14 @@
 				<string key="3247.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3248.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3249.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="3339.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="879.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3250</int>
+			<int key="maxID">3397</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
