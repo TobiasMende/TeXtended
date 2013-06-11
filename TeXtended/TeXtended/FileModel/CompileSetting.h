@@ -20,4 +20,10 @@
 + (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context;
 + (CompileSetting *)defaultDraftCompileSettingIn:(NSManagedObjectContext*)context;
 + (CompileSetting *)defaultFinalCompileSettingIn:(NSManagedObjectContext*)context;
+- (void) unbindAll;
+
+- (CompileSetting *)copy:(NSManagedObjectContext*)context;
+- (void) binAllTo:(CompileSetting *)setting;
+
+- (BOOL) containsSameValuesAs:(CompileSetting *)other;
 @end

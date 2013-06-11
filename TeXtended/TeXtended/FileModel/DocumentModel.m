@@ -13,11 +13,13 @@
 
 static NSArray *TMTEncodingsToCheck;
 
-static NSArray *TMTProjectObserverKeys;
 
 @interface DocumentModel ()
 - (void) registerProjectObserver;
 - (void) unregisterProjectObserver;
+- (void) initDefaults;
+- (void) clearInheretedCompilers;
+- (void) setupInheritedCompilers;
 @end
 
 @implementation DocumentModel
@@ -32,7 +34,6 @@ static NSArray *TMTProjectObserverKeys;
 @dynamic subCompilabels;
 
 + (void)initialize {
-    TMTProjectObserverKeys = [NSArray arrayWithObjects:@"draftCompiler",@"finalCompiler", @"liveCompiler", @"mainDocuments", nil];
     
     TMTEncodingsToCheck = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
                                                     [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
@@ -106,6 +107,7 @@ static NSArray *TMTProjectObserverKeys;
     NSEntityDescription *description = [NSEntityDescription entityForName:@"Document" inManagedObjectContext:context];
     self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
+        [self initDefaults];
         [self registerProjectObserver];
         
     
@@ -113,14 +115,56 @@ static NSArray *TMTProjectObserverKeys;
     return self;
 }
 
+- (void)initDefaults {
+    [self setupInheritedCompilers];
+}
+
+- (void)setupInheritedCompilers {
+    if (self.project) {
+        if (!self.liveCompiler) {
+            self.liveCompiler = [self.project.liveCompiler copy:self.managedObjectContext];
+            [self.liveCompiler binAllTo:self.project.liveCompiler];
+        }
+        if (!self.draftCompiler) {
+            self.draftCompiler = [self.project.draftCompiler copy:self.managedObjectContext];
+            [self.draftCompiler binAllTo:self.project.draftCompiler];
+        }
+        if (!self.finalCompiler) {
+            self.finalCompiler = [self.project.finalCompiler copy:self.managedObjectContext];
+            [self.finalCompiler binAllTo:self.project.finalCompiler];
+        }
+    } else {
+        if (!self.liveCompiler) {
+            self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:self.managedObjectContext];
+        }
+        if (!self.draftCompiler) {
+            self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:self.managedObjectContext];
+        }
+        if (!self.finalCompiler) {
+            self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:self.managedObjectContext];
+        }
+    }
+}
+
+- (void)clearInheretedCompilers {
+    if ([self.liveCompiler containsSameValuesAs:self.project.liveCompiler]) {
+        self.liveCompiler = nil;
+    }
+    if ([self.draftCompiler containsSameValuesAs:self.project.draftCompiler]) {
+        self.draftCompiler = nil;
+    }
+    if ([self.finalCompiler containsSameValuesAs:self.project.finalCompiler]) {
+        self.finalCompiler = nil;
+    }
+    
+    
+}
+
 - (void)registerProjectObserver {
     if (!self.project) {
         return;
     }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
-    for( NSString *key in TMTProjectObserverKeys) {
-        [self.project addObserver:self forKeyPath:key options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
-    }
 }
 
 - (void)unregisterProjectObserver {
@@ -128,9 +172,6 @@ static NSArray *TMTProjectObserverKeys;
         return;
     }
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
-    for( NSString *key in TMTProjectObserverKeys) {
-        [self.project removeObserver:self forKeyPath:key];
-    }
 }
 
 
@@ -214,11 +255,13 @@ static NSArray *TMTProjectObserverKeys;
 }
 
 - (void)setProject:(ProjectModel *)project {
+    [self clearInheretedCompilers];
     [self unregisterProjectObserver];
     [self willChangeValueForKey:@"project"];
     [self setPrimitiveValue:project forKey:@"project"];
     [self didChangeValueForKey:@"project"];
     [self registerProjectObserver];
+    [self setupInheritedCompilers];
 }
 
 
@@ -238,43 +281,6 @@ static NSArray *TMTProjectObserverKeys;
 //}
 
 
-- (CompileSetting *)draftCompiler {
-    [self willAccessValueForKey:@"draftCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
-    [self didAccessValueForKey:@"draftCompiler"];
-    if (setting) {
-        return setting;
-    }
-    if (self.project) {
-        return [self.project draftCompiler];
-    }
-    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
-}
-
-- (CompileSetting *)liveCompiler {
-    [self willAccessValueForKey:@"liveCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"liveCompiler"];
-    [self didAccessValueForKey:@"liveCompiler"];
-    if (setting) {
-        return setting;
-    }else if (self.project) {
-        return [self.project liveCompiler];
-    }
-    return [CompileSetting defaultLiveCompileSettingIn:[self managedObjectContext]];
-}
-
-- (CompileSetting *)finalCompiler {
-    [self willAccessValueForKey:@"finalCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"finalCompiler"];
-    [self didAccessValueForKey:@"finalCompiler"];
-    if (setting) {
-        return setting;
-    }
-    if (self.project) {
-        return [self.project finalCompiler];
-    }
-    return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
-}
 
 - (NSString *)pdfPath {
     [self willAccessValueForKey:@"pdfPath"];
@@ -313,13 +319,6 @@ static NSArray *TMTProjectObserverKeys;
         keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
     } else if([key isEqualToString:@"texName"]) {
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
-    }
-    else if([key isEqualToString:@"liveCompiler"]) {
-        keyPaths = [keyPaths setByAddingObject:@"project.liveCompiler"];
-    } else if([key isEqualToString:@"draftCompiler"]) {
-        keyPaths = [keyPaths setByAddingObject:@"project.draftCompiler"];
-    } else if([key isEqualToString:@"finalCompiler"]) {
-        keyPaths = [keyPaths setByAddingObject:@"project.finalCompiler"];
     }
     return keyPaths;
 }

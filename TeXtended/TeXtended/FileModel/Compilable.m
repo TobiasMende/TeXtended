@@ -10,12 +10,9 @@
 #import "CompileSetting.h"
 #import "Constants.h"
 
-static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFinalCompileSettingKeys;
-
+static const NSSet *COMPILER_NAMES;
 
 @interface Compilable ()
-- (void) registerCompilerDefaultsObserver:(NSArray*)keys check:(CompileSetting*)setting;
-- (void) unregisterCompilerDefaultsObserver:(NSArray*)keys check:(CompileSetting*)setting;
 - (void) initDefaults;
 @end
 
@@ -28,9 +25,7 @@ static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFina
 @dynamic mainDocuments;
 
 + (void)initialize {
-    TMTLiveCompileSettingKeys = [NSArray arrayWithObjects:TMTLiveCompileArgs,TMTLiveCompileBib,TMTLiveCompileFlow, TMTLiveCompileIterations, nil];
-    TMTDraftCompileSettingKeys = [NSArray arrayWithObjects:TMTDraftCompileArgs,TMTDraftCompileBib,TMTDraftCompileFlow, TMTDraftCompileIterations, nil];
-    TMTFinalCompileSettingKeys = [NSArray arrayWithObjects:TMTFinalCompileArgs,TMTFinalCompileBib,TMTFinalCompileFlow, TMTFinalCompileIterations, nil];
+    COMPILER_NAMES = [NSSet setWithObjects:@"draftCompiler", @"finalCompiler", @"liveCompiler", nil];
 }
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
@@ -51,11 +46,22 @@ static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFina
 }
 
 - (void)initDefaults {
-    [self registerCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
-    [self registerCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
-    [self registerCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
+    
 }
 
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+    NSArray *components = [keyPath componentsSeparatedByString:@"."];
+    NSString *dest = [components objectAtIndex:0];
+    if ([components count] > 1 && [COMPILER_NAMES containsObject:dest]) {
+        CompileSetting *setting = (CompileSetting*)[self valueForKey:dest];
+        [setting unbindAll];
+        NSMutableArray *mutable = [NSMutableArray arrayWithArray:components];
+        [mutable removeObjectAtIndex:0];
+         [setting setValue:value forKeyPath:[mutable componentsJoinedByString:@"."]];
+    } else {
+        [super setValue:value forKeyPath:keyPath];
+    }
+}
 
 
 #pragma mark -
@@ -65,60 +71,6 @@ static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFina
     return self;
 }
 
-- (void)setDraftCompiler:(CompileSetting *)draftCompiler {
-    [self unregisterCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
-    [self willChangeValueForKey:@"draftCompiler"];
-    [self setPrimitiveValue:draftCompiler forKey:@"draftCompiler"];
-    [self didChangeValueForKey:@"draftCompiler"];
-    [self registerCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
-}
-
-- (void)setLiveCompiler:(CompileSetting *)liveCompiler {
-    [self unregisterCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
-    [self willChangeValueForKey:@"liveCompiler"];
-    [self setPrimitiveValue:liveCompiler forKey:@"liveCompiler"];
-    [self didChangeValueForKey:@"liveCompiler"];
-    [self registerCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
-}
-
-- (void)setFinalCompiler:(CompileSetting *)finalCompiler {
-    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
-    [self willChangeValueForKey:@"finalCompiler"];
-    [self setPrimitiveValue:finalCompiler forKey:@"finalCompiler"];
-    [self didChangeValueForKey:@"finalCompiler"];
-    [self registerCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
-}
-
-
-- (CompileSetting *)draftCompiler {
-    [self willAccessValueForKey:@"draftCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"draftCompiler"];
-    [self didAccessValueForKey:@"draftCompiler"];
-    if (setting) {
-        return setting;
-    }
-    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
-}
-
-- (CompileSetting *)finalCompiler {
-    [self willAccessValueForKey:@"finalCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"finalCompiler"];
-    [self didAccessValueForKey:@"finalCompiler"];
-    if (setting) {
-        return setting;
-    }
-    return [CompileSetting defaultFinalCompileSettingIn:[self managedObjectContext]];
-}
-
-- (CompileSetting *)liveCompiler {
-    [self willAccessValueForKey:@"liveCompiler"];
-    CompileSetting *setting = [self primitiveValueForKey:@"liveCompiler"];
-    [self didAccessValueForKey:@"liveCompiler"];
-    if (setting) {
-        return setting;
-    }
-    return [CompileSetting defaultDraftCompileSettingIn:[self managedObjectContext]];
-}
 
 
 #pragma mark -
@@ -143,26 +95,6 @@ static NSArray *TMTLiveCompileSettingKeys, *TMTDraftCompileSettingKeys, *TMTFina
     }
 }
 
-- (void)unregisterCompilerDefaultsObserver:(NSArray *)keys check:(CompileSetting *)setting {
-    if (!setting) {
-        return;
-    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (NSString *key in keys) {
-        [defaults removeObserver:self forKeyPath:key];
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([TMTLiveCompileSettingKeys containsObject:keyPath]) {
-        [self didChangeValueForKey:@"liveCompiler"];
-    } else if([TMTDraftCompileSettingKeys containsObject:keyPath]) {
-        [self didChangeValueForKey:@"draftCompiler"];
-    } else if([TMTDraftCompileSettingKeys containsObject:keyPath]) {
-        [self didChangeValueForKey:@"finalCompiler"];
-    }
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
 
 //- (void)willTurnIntoFault {
 //    [self unregisterCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
