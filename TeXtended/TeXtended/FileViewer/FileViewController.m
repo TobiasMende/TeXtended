@@ -134,11 +134,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [self->outline setTarget:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
-    NSBrowserCell *cell = [[NSBrowserCell alloc] init];
-    [cell setLeaf:YES];
-    [cell setEditable:YES];
     
-    [[self->outline tableColumnWithIdentifier:@"nodeName"] setDataCell:cell];
     pathsToWatch = [[NSMutableArray alloc] init];
     nodes = [[FileViewModel alloc] init];
     [[self titleLbl] setStringValue:@""];

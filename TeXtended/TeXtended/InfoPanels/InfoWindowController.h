@@ -19,6 +19,10 @@
 @property (weak) IBOutlet NSTextField *lblCompile;
 @property (weak) IBOutlet NSTextField *lblChange;
 @property (weak) IBOutlet NSTextField *lblPath;
+@property (weak) IBOutlet NSTextField *mlPath;
+@property (weak) IBOutlet NSTextField *DraftIt;
+@property (weak) IBOutlet NSTextField *LiveIt;
+@property (weak) IBOutlet NSTextField *FinalIt;
 
 - (void)loadDocument:(DocumentModel*) document;
 @end
