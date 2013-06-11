@@ -14,16 +14,21 @@ static CompileFlowHandler* instance;
 - (id)init {
     if (!instance) {
         self = [super init];
-        return self;
+        if (self) {
+            _maxIterations = [NSNumber numberWithInt:3];
+            _minIterations = [NSNumber numberWithInt:1];
+        }
+        instance = self;
     }
     return instance;
 }
 
 + (CompileFlowHandler *)sharedInstance {
-    if(!instance) {
-        instance = [[CompileFlowHandler alloc] init];
+    CompileFlowHandler *tmp = instance;
+    if(!tmp) {
+        tmp =[[CompileFlowHandler alloc] init];
     }
-    return instance;
+    return tmp;
 }
 
 - (NSArray *)flows {

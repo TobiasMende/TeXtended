@@ -21,4 +21,7 @@
  @return the absolut path
  */
 + (NSString *)path;
+
+@property (readonly) NSNumber *maxIterations;
+@property (readonly) NSNumber *minIterations;
 @end

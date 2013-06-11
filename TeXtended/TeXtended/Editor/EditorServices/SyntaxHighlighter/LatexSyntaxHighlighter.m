@@ -179,8 +179,9 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
             NSRange range = [match range];
             [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commandColor forCharacterRange:range];
-            
-            [view.spellCheckingService addWordToIgnore:[view.string substringWithRange:NSMakeRange(range.location+1, range.length -1)]];
+            if (view.selectedRange.location != NSMaxRange(range)) {
+                [view.spellCheckingService addWordToIgnore:[view.string substringWithRange:NSMakeRange(range.location+1, range.length -1)]];
+            }
         }
     }
 }
