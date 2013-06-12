@@ -63,6 +63,7 @@
 		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
+		D220755A17687A310041890F /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* icon.icns */; };
 		D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */; };
 		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
@@ -235,6 +236,7 @@
 		D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
 		D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		D220755917687A310041890F /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
+				D220755917687A310041890F /* icon.icns */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
@@ -858,6 +861,7 @@
 				D2B0166D17661AD000C6CE23 /* SplitviewMiddle.pdf in Resources */,
 				D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
+				D220755A17687A310041890F /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
