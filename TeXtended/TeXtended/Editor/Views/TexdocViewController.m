@@ -58,6 +58,10 @@
     return entries.count;
 }
 
+
+- (void)setDarkBackgroundMode {
+    [self.label setTextColor:[NSColor controlLightHighlightColor]];
+}
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
     TexdocEntry *entry = [entries objectAtIndex:row];
@@ -77,4 +81,6 @@
     }
 }
 
+- (IBAction)label:(id)sender {
+}
 @end

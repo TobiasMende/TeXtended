@@ -7,7 +7,7 @@
 //
 
 #import "EditorService.h"
-
+#import "TexdocHandlerProtocol.h"
 
 /**
  The CodeExtensionEngine extends it's view with additional funktionality linke links and meta information for pieces of code. Example: Texdoc Links
@@ -17,7 +17,7 @@
  
  @warning *Imporant:* This class is designed to laying out links without the use of attributes of the views textstorage. Therefor it's not necessary to enably rich text. The use of the layout managers temporary attributes for this purpose provides a much better performance and user experience. 
  */
-@interface CodeExtensionEngine : EditorService {
+@interface CodeExtensionEngine : EditorService<TexdocHandlerProtocol> {
     /** The popover to use for texdoc links (and other) */
     NSPopover *popover;
 }

@@ -21,41 +21,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */ = {isa = PBXBuildFile; fileRef = 76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */; };
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
-		76049CA01752085000778E2A /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
-		760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760922941759E220009FC8B0 /* ExtendedPDFViewController.m */; };
-		76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
-		76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
-		D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB831726868A00E2F8EC /* CommandCompletion.m */; };
 		D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB841726868A00E2F8EC /* CommandCompletions.plist */; };
-		D21ACBA21726868A00E2F8EC /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB861726868A00E2F8EC /* Completion.m */; };
-		D21ACBA31726868A00E2F8EC /* EnvironmentCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */; };
 		D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */; };
-		D21ACBA51726868A00E2F8EC /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */; };
-		D21ACBA61726868A00E2F8EC /* CodeExtensionEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8E1726868A00E2F8EC /* CodeExtensionEngine.m */; };
-		D21ACBA71726868A00E2F8EC /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */; };
-		D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
-		D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
-		D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
-		D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
-		D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
-		D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
-		D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB11726873900E2F8EC /* ExtendedPdf.m */; };
-		D21ACBB61726875600E2F8EC /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* FileViewController.m */; };
-		D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */; };
-		D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBD1726879000E2F8EC /* CompletionsController.m */; };
-		D21ACBC41726879000E2F8EC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
-		D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
 		D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */; };
-		D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD01726889700E2F8EC /* ProjectDocument.m */; };
 		D21ACBD61726889700E2F8EC /* ProjectDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD11726889700E2F8EC /* ProjectDocument.xib */; };
-		D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
 		D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* MainWindow.xib */; };
 		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
 		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
@@ -64,36 +39,14 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
-		D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */; };
-		D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
-		D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
-		D252288C1764B83400C203AD /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
-		D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25721F5175F56CB00A08F1D /* ConsoleViewController.m */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
-		D25FF83417651C6200530928 /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
-		D265690A173A65600030381C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
-		D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
-		D2681FF0173143AF003AF83D /* Compilable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FEF173143AF003AF83D /* Compilable.m */; };
-		D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF2173143C2003AF83D /* DocumentModel.m */; };
-		D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
-		D2681FF9173143EC003AF83D /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
-		D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
-		D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
-		D271984C1745241500342CB0 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
-		D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
-		D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
-		D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
 		D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsView.xib */; };
-		D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
 		D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550781751FFFB00BC05DD /* ConsoleViewsView.xib */; };
-		D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
-		D2A550841752085700BC05DD /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550821752085600BC05DD /* MainWindowController.m */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
-		D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
 		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
@@ -102,25 +55,74 @@
 		D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
-		D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
-		D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
 		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
-		D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
-		D2CC5500171EAFAB00D81CF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
+		D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */; };
+		D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
+		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
+		D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
+		D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
+		D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
+		D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
+		D2E7A4E71768E8F400B2BA3C /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
+		D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
+		D2E7A4E91768E8F400B2BA3C /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
+		D2E7A4EA1768E8F400B2BA3C /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
+		D2E7A4EB1768E8F400B2BA3C /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
+		D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
+		D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
+		D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
+		D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF2173143C2003AF83D /* DocumentModel.m */; };
+		D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FEF173143AF003AF83D /* Compilable.m */; };
+		D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A439F3171F10D60020C15F /* DocumentCreationController.m */; };
+		D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */; };
+		D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25721F5175F56CB00A08F1D /* ConsoleViewController.m */; };
+		D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */; };
+		D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */; };
+		D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
+		D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
+		D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */; };
+		D2E7A4FA1768E8F400B2BA3C /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
+		D2E7A4FB1768E8F400B2BA3C /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
+		D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB831726868A00E2F8EC /* CommandCompletion.m */; };
+		D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB861726868A00E2F8EC /* Completion.m */; };
+		D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */; };
+		D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */; };
+		D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */ = {isa = PBXBuildFile; fileRef = D27198391743889400342CB0 /* SyntaxHighlighterStub.m */; };
+		D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8C1726868A00E2F8EC /* BracketHighlighter.m */; };
+		D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB8E1726868A00E2F8EC /* CodeExtensionEngine.m */; };
+		D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */; };
+		D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
+		D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
+		D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
+		D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
+		D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
+		D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
+		D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
+		D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
+		D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550821752085600BC05DD /* MainWindowController.m */; };
+		D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD01726889700E2F8EC /* ProjectDocument.m */; };
+		D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
+		D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
+		D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* FileViewController.m */; };
+		D2E7A5111768E8F400B2BA3C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
+		D2E7A5121768E8F400B2BA3C /* FileViewTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = F61B5FC8175A406000885FEB /* FileViewTitle.m */; };
+		D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
+		D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E2FC9D1767A59F0057C960 /* FileViewCell.m */; };
+		D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB11726873900E2F8EC /* ExtendedPdf.m */; };
+		D2E7A5161768E8F400B2BA3C /* ExtendedPdfControlls.m in Sources */ = {isa = PBXBuildFile; fileRef = 76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */; };
+		D2E7A5171768E8F400B2BA3C /* ExtendedPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760922941759E220009FC8B0 /* ExtendedPDFViewController.m */; };
+		D2E7A5181768E8F400B2BA3C /* CompletionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBD1726879000E2F8EC /* CompletionsController.m */; };
+		D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
+		D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
+		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
-		D2F177D317651D5A0089DBC0 /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
-		D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
-		F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = F61B5FC8175A406000885FEB /* FileViewTitle.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
-		F6E2FC9E1767A59F0057C960 /* FileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E2FC9D1767A59F0057C960 /* FileViewCell.m */; };
-		F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -319,9 +321,15 @@
 		D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended-Prefix.pch"; sourceTree = "<group>"; };
 		D2CC5503171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
+		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
+		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
+		D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocPanel.xib; sourceTree = "<group>"; };
 		D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		D2F177D017651D5A0089DBC0 /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
 		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
+		D2FCB62B1768EB40008C2FE9 /* TexdocController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocController.h; sourceTree = "<group>"; };
+		D2FCB62C1768EB40008C2FE9 /* TexdocController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocController.m; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
@@ -682,8 +690,14 @@
 		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
 			isa = PBXGroup;
 			children = (
+				D2FCB62B1768EB40008C2FE9 /* TexdocController.h */,
+				D2FCB62C1768EB40008C2FE9 /* TexdocController.m */,
 				D2C904EA1726A086006EFEC2 /* TexdocEntry.h */,
 				D2C904EB1726A086006EFEC2 /* TexdocEntry.m */,
+				D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */,
+				D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */,
+				D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */,
+				D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */,
 			);
 			path = TexdocSupport;
 			sourceTree = "<group>";
@@ -862,6 +876,7 @@
 				D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
+				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,64 +903,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2CC5500171EAFAB00D81CF1 /* main.m in Sources */,
-				D2FD39B0171EC434008BB864 /* ApplicationController.m in Sources */,
+				D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */,
+				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
+				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
+				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
+				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
+				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
+				D2E7A4E71768E8F400B2BA3C /* DirectoryFilePresenter.m in Sources */,
+				D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */,
+				D2E7A4E91768E8F400B2BA3C /* PDFViewsController.m in Sources */,
+				D2E7A4EA1768E8F400B2BA3C /* ConsoleViewsController.m in Sources */,
+				D2E7A4EB1768E8F400B2BA3C /* OutlineViewController.m in Sources */,
+				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
+				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
+				D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */,
+				D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */,
+				D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */,
+				D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */,
+				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
+				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
+				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
+				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
+				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
+				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,
+				D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */,
+				D2E7A4FA1768E8F400B2BA3C /* LineNumberView.m in Sources */,
+				D2E7A4FB1768E8F400B2BA3C /* TexdocViewController.m in Sources */,
+				D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */,
+				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
+				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
+				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
+				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
+				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
+				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
+				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,
+				D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */,
+				D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */,
+				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
+				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
+				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
+				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
+				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
+				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
+				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
+				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
+				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
+				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
+				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
+				D2E7A5111768E8F400B2BA3C /* FileOutlineView.m in Sources */,
+				D2E7A5121768E8F400B2BA3C /* FileViewTitle.m in Sources */,
+				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
+				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
+				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
+				D2E7A5161768E8F400B2BA3C /* ExtendedPdfControlls.m in Sources */,
+				D2E7A5171768E8F400B2BA3C /* ExtendedPDFViewController.m in Sources */,
+				D2E7A5181768E8F400B2BA3C /* CompletionsController.m in Sources */,
+				D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */,
+				D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */,
+				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
-				D21ACBA01726868A00E2F8EC /* CommandCompletion.m in Sources */,
-				D21ACBA21726868A00E2F8EC /* Completion.m in Sources */,
-				D21ACBA31726868A00E2F8EC /* EnvironmentCompletion.m in Sources */,
-				D21ACBA51726868A00E2F8EC /* BracketHighlighter.m in Sources */,
-				D21ACBA61726868A00E2F8EC /* CodeExtensionEngine.m in Sources */,
-				D21ACBA71726868A00E2F8EC /* CodeNavigationAssistant.m in Sources */,
-				D21ACBA81726868A00E2F8EC /* CompletionHandler.m in Sources */,
-				D21ACBA91726868A00E2F8EC /* EditorService.m in Sources */,
-				D25FF83417651C6200530928 /* ExportCompileWindowController.m in Sources */,
-				D21ACBAA1726868A00E2F8EC /* PlaceholderServices.m in Sources */,
-				D21ACBAC1726868A00E2F8EC /* HighlightingTextView.m in Sources */,
-				D2A439F4171F10D60020C15F /* DocumentCreationController.m in Sources */,
-				D21ACBAD1726868A00E2F8EC /* EditorPlaceholder.m in Sources */,
-				D21ACBAE1726868A00E2F8EC /* EditorPlaceholderCell.m in Sources */,
-				D21ACBB21726873900E2F8EC /* ExtendedPdf.m in Sources */,
-				D21ACBB61726875600E2F8EC /* FileViewController.m in Sources */,
-				D21ACBBA1726876900E2F8EC /* NSString+LatexExtension.m in Sources */,
-				D21ACBC31726879000E2F8EC /* CompletionsController.m in Sources */,
-				D21ACBC41726879000E2F8EC /* Constants.m in Sources */,
-				D21ACBC51726879000E2F8EC /* PreferencesController.m in Sources */,
-				D2681FE417313A94003AF83D /* FileOutlineView.m in Sources */,
-				D21ACBD51726889700E2F8EC /* ProjectDocument.m in Sources */,
-				D21ACBD71726889700E2F8EC /* SimpleDocument.m in Sources */,
-				D2C904E71726963E006EFEC2 /* TexdocViewController.m in Sources */,
-				D2C904EC1726A086006EFEC2 /* TexdocEntry.m in Sources */,
-				D2AAF91117293D8200FC09C1 /* UndoSupport.m in Sources */,
-				D271983B17438B5600342CB0 /* LatexSyntaxHighlighter.m in Sources */,
-				D22EDBE9172A9D9600E703FE /* SpellCheckingService.m in Sources */,
-				D271983A1743889400342CB0 /* SyntaxHighlighterStub.m in Sources */,
-				76C78775172BD581004FF4C3 /* LineNumberView.m in Sources */,
-				D2681FF0173143AF003AF83D /* Compilable.m in Sources */,
-				D2681FF3173143C2003AF83D /* DocumentModel.m in Sources */,
-				D2681FF6173143E2003AF83D /* ProjectModel.m in Sources */,
-				D2681FF9173143EC003AF83D /* BibFile.m in Sources */,
-				D265690A173A65600030381C /* CompileSetting.m in Sources */,
-				76041825174CF5BA000503E7 /* ExtendedPdfControlls.m in Sources */,
-				76049CA01752085000778E2A /* Compiler.m in Sources */,
-				F6E824401743A11E00FB2CCB /* FileViewModel.m in Sources */,
-				D271984C1745241500342CB0 /* DocumentController.m in Sources */,
-				D2A5506F1751FF4B00BC05DD /* TextViewController.m in Sources */,
-				D2A550741751FFCF00BC05DD /* PDFViewsController.m in Sources */,
-				D2A550791751FFFB00BC05DD /* ConsoleViewsController.m in Sources */,
-				D2A5507E1752003A00BC05DD /* OutlineViewController.m in Sources */,
-				D2A550841752085700BC05DD /* MainWindowController.m in Sources */,
-				760922951759E220009FC8B0 /* ExtendedPDFViewController.m in Sources */,
-				D2B4FF4A175A306D00755C24 /* CompileFlowHandler.m in Sources */,
-				F61B5FC9175A406000885FEB /* FileViewTitle.m in Sources */,
-				D25721F7175F56CB00A08F1D /* ConsoleViewController.m in Sources */,
-				D24EA2AD176064BC00CE56B2 /* DirectoryFilePresenter.m in Sources */,
-				D22785CB1761354C00CFBD12 /* ConsoleOutputView.m in Sources */,
-				D2FDF4DA1762239A002B6F33 /* ConsoleInputField.m in Sources */,
-				76DADC9B1764AA92002775BA /* FileCompiler.m in Sources */,
-				D252288C1764B83400C203AD /* MainWindow.m in Sources */,
-				D2F177D317651D5A0089DBC0 /* InfoWindowController.m in Sources */,
-				F6E2FC9E1767A59F0057C960 /* FileViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

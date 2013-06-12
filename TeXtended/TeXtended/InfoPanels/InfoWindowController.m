@@ -9,6 +9,7 @@
 #import "InfoWindowController.h"
 #import "DocumentModel.h"
 #import "ProjectModel.h"
+#import "CompileFlowHandler.h"
 
 @interface InfoWindowController ()
 

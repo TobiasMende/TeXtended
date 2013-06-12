@@ -10,7 +10,8 @@
 #import "DocumentModel.h"
 #import "CompileFlowHandler.h"
 #import "Constants.h"
-
+#import "CompileSetting.h"
+#import "DocumentController.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;

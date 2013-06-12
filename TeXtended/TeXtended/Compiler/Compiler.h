@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DocumentController.h"
-#import "CompileSetting.h"
-
+@class DocumentController,CompileSetting;
 @interface Compiler : NSObject {
 }
 
