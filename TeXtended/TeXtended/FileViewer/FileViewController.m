@@ -93,6 +93,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
     [self renameFile:oldFile toNewFile:newFile];
+    [model setFileName:oldFile toName:newFile];
+    [outline reloadData];
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView

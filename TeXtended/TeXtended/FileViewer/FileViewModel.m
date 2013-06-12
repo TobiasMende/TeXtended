@@ -64,8 +64,8 @@
     [self didChangeValueForKey:@"filePath"];
     self.fileName = [self.filePath lastPathComponent];
     self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
-    pathComponents = [self.filePath pathComponents];
-    pathIndex = [pathComponents count]-1;
+    self.pathComponents = [self.filePath pathComponents];
+    pathIndex = [self.pathComponents count]-1;
     _presentedItemOperationQueue = [[NSOperationQueue alloc] init];
     [self.presentedItemOperationQueue setMaxConcurrentOperationCount: 1];
     
@@ -80,22 +80,57 @@
     
 }
 
--(void)setFileName:(NSString*)oldName
+-(void)setFileName:(NSString*)oldPath
             toName:(NSString*)newName
 {
-    NSComparisonResult result = [self.fileName compare:oldName];
+    NSComparisonResult result = [self.filePath compare:oldPath];
     if (result == NSOrderedSame) {
         self.fileName = newName;
-    }
-    else {
-        for (NSInteger i = 0; i < [children count]; i++) {
-            NSString* childrenPath = [[children objectAtIndex:i] filePath];
-            if (childrenPath != nil) {
-                [[children objectAtIndex:i] setFileName:oldName toName:newName];
+        NSString* newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newName];
+        [self willChangeValueForKey:@"filePath"];
+        _filePath = newPath;
+        [self didChangeValueForKey:@"filePath"];
+        [self willChangeValueForKey:@"pathComponents"];
+        _pathComponents = [self.filePath pathComponents];
+        [self didChangeValueForKey:@"pathComponents"];
+        if(children)
+        {
+            for (NSInteger i = 0; i < [children count]; i++) {
+                [[self getChildrenByIndex:i] setFileNameOfParent:newName atComponentIndex:pathIndex];
             }
-            [children setObject:newName atIndexedSubscript:i];
         }
     }
+    else {
+        NSArray *components = [oldPath pathComponents];
+        NSInteger index = pathIndex+1;
+        for (NSInteger i = 0; i < [children count]; i++) {
+            FileViewModel* actChildren = [self getChildrenByIndex:i];
+            NSArray* childrenComponents = [actChildren pathComponents];
+            if([[childrenComponents objectAtIndex:index] isEqualToString:[components objectAtIndex:index]])
+                [actChildren setFileName:oldPath toName:newName];
+        }
+    }
+}
+
+-(void)setFileNameOfParent:(NSString*)name
+          atComponentIndex:(NSInteger)index
+{
+    NSString *newPath = @"";
+    for (NSInteger i = 0; i < [self.pathComponents count]; i++) {
+        if(i == index)
+            [newPath stringByAppendingPathComponent:name];
+        else
+            [newPath stringByAppendingPathComponent:[self.pathComponents objectAtIndex:i]];
+    }
+    [self willChangeValueForKey:@"filePath"];
+    _filePath = newPath;
+    [self didChangeValueForKey:@"filePath"];
+    [self willChangeValueForKey:@"pathComponents"];
+    _pathComponents = [self.filePath pathComponents];
+    [self didChangeValueForKey:@"pathComponents"];
+    
+    for(NSInteger i = 0; i < [children count]; i++)
+        [[self getChildrenByIndex:i] setFileNameOfParent:name atComponentIndex:index];
 }
 
 -(FileViewModel*)getChildrenByName:(NSString*)name
