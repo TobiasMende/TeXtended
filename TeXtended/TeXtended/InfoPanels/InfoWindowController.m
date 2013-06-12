@@ -40,6 +40,8 @@
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setMinimum:self.CompilerFlowHandlerObj.minIterations];
+    [formatter setMaximum:self.CompilerFlowHandlerObj.maxIterations];
     [self.DraftIt setFormatter:formatter];
     [self.FinalIt setFormatter:formatter];
     [self.LiveIt setFormatter:formatter];

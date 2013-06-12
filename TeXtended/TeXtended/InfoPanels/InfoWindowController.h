@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CompileFlowHandler.h"
 @class DocumentModel;
 
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
@@ -23,6 +24,7 @@
 @property (weak) IBOutlet NSTextField *DraftIt;
 @property (weak) IBOutlet NSTextField *LiveIt;
 @property (weak) IBOutlet NSTextField *FinalIt;
+@property (weak) IBOutlet CompileFlowHandler *CompilerFlowHandlerObj;
 
 - (void)loadDocument:(DocumentModel*) document;
 @end
