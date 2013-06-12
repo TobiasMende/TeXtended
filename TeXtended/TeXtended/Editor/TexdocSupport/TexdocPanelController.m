@@ -9,6 +9,7 @@
 #import "TexdocPanelController.h"
 #import "TexdocController.m"
 #import "TexdocViewController.h"
+#import "ExtendedTableView.h"
 
 @interface TexdocPanelController ()
 
@@ -59,6 +60,7 @@
     self.searching = NO;
     [self.contentBox setContentView:self.texdocViewController.view];
     [self.texdocViewController setDarkBackgroundMode];
+    [self.window makeFirstResponder:self.texdocViewController.listView];
     
 }
 @end

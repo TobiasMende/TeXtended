@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+@class ExtendedTableView;
 /**
  The TexdocViewController controlls the view which is displayed when showing a list of package documentation.
  
@@ -18,12 +18,13 @@
 @interface TexdocViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>{
     /** An array of TexdocEntry objects */
     IBOutlet NSMutableArray *entries;
-    /** The table view to display the entries in */
-    __weak IBOutlet NSTableView *listView;
+  
     
     /** The view which should be displayed if no matching entries where found */
     __unsafe_unretained IBOutlet NSView *notFoundView;
 }
+  /** The table view to display the entries in */
+@property (weak)IBOutlet ExtendedTableView *listView;;
 @property (weak) IBOutlet NSTextField *label;
 /** The package name (returning the heading for the listView */
 @property (weak, nonatomic) NSString *package;
@@ -32,5 +33,7 @@
  */
 - (void) setContent:(NSMutableArray*) texdoc;
 
+- (IBAction)click:(id)sender;
 - (void)setDarkBackgroundMode;
+- (void) openSelectedDoc;
 @end
