@@ -9,6 +9,8 @@
 #import "FileViewController.h"
 #import "DocumentModel.h"
 #import "ProjectModel.h"
+#import "InfoWindowController.h"
+#import "FileViewModel.h"
 @implementation FileViewController
 
 - (id)init {

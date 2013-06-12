@@ -24,10 +24,13 @@
     /** The view which should be displayed if no matching entries where found */
     __unsafe_unretained IBOutlet NSView *notFoundView;
 }
+@property (weak) IBOutlet NSTextField *label;
 /** The package name (returning the heading for the listView */
 @property (weak, nonatomic) NSString *package;
 /** Method for setting the entries 
  @param texdoc an array of TexdocEntry objects
  */
 - (void) setContent:(NSMutableArray*) texdoc;
+
+- (void)setDarkBackgroundMode;
 @end

@@ -12,6 +12,7 @@
 #import "DocumentCreationController.h"
 #import "CompletionsController.h"
 #import "CompileFlowHandler.h"
+#import "TexdocPanelController.h"
 ApplicationController *sharedInstance;
 @interface ApplicationController ()
 
@@ -51,6 +52,13 @@ ApplicationController *sharedInstance;
 
 - (CompletionsController *)completionsController {
     return [preferencesController completionsController];
+}
+
+- (IBAction)showTexdocPanel:(id)sender {
+    if (!texdocPanelController) {
+        texdocPanelController = [[TexdocPanelController alloc] init];
+    }
+    [texdocPanelController showWindow:self];
 }
 
 - (IBAction)showPreferences:(id)sender {

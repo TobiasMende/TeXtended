@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
-#import "ExtendedPdfControlls.h"
+
+@class ExtendedPdfControlls;
 
 /**
  * This class the PDFView from cocoas PDFKit by functionalitys

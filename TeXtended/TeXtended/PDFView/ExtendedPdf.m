@@ -7,6 +7,7 @@
 //
 
 #import "ExtendedPdf.h"
+#import "ExtendedPdfControlls.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 

@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CompileFlowHandler.h"
-@class DocumentModel;
+@class DocumentModel,CompileFlowHandler;
 
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
 }

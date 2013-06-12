@@ -12,6 +12,9 @@
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
 #import "SpellCheckingService.h"
+#import "TexdocController.h"
+
+#define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 static const NSRegularExpression *TEXDOC_LINKS;
 static NSString *TEXDOC_PREFIX = @"texdoc://";
 static const NSSet *KEYS_TO_UNBIND;
@@ -28,14 +31,7 @@ static const NSSet *KEYS_TO_UNBIND;
  */
 - (void) invalidateTexdocLinks;
 
-/**
- Callback method for the texdoc task is called after the texdoc command has finished returning a list of possible documents.
- 
- @param notification A `NSFileHandleReadToEndOfFileCompletionNotification` after the command output is available as data.
- @param package The package name which was clicked
- @param rect a rect for specifing the position where to show the documents
- */
-- (void) texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*)package andBoundingRect:(NSRect) rect;
+
 
 /** 
  This methods parses the provided answer of the texdoc command into an array of [TexdocEntry] objects
@@ -148,60 +144,22 @@ static const NSSet *KEYS_TO_UNBIND;
     NSString *url = (NSString*) link;
     if ([[url substringToIndex:TEXDOC_PREFIX.length] isEqualToString:TEXDOC_PREFIX]) {
         NSString *packageName = [url substringFromIndex:TEXDOC_PREFIX.length];
-        NSTask *task = [[NSTask alloc] init];
-        NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-        
-        NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
-        NSString *command = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_PATH_TO_TEXDOC]];
-        [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
-        [task setLaunchPath:command];
-        NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", packageName,
-                         nil];
-        NSPipe *outputPipe = [NSPipe pipe];
         NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(charIndex, 1) inTextContainer:view.textContainer];
-        [task setStandardOutput:outputPipe];
-
-        [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            [self texdocReadComplete:note withPackageName:packageName andBoundingRect:boundingRect];
-        }];
-        [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-        [task setArguments: args];
-        [task launch];
+        TexdocController *tc = [[TexdocController alloc] init];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:NSStringFromRect(boundingRect),BOUNDING_RECT_KEY, nil];
+        [tc executeTexdocForPackage:packageName withInfo:dict andHandler:self];
         return YES;
     }
     return NO;
 }
 
-- (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package andBoundingRect:(NSRect)rect{
-    NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSMutableArray *texdocArray = [self parseTexdocList:string];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
-    
-    TexdocViewController *texdocView = [[TexdocViewController alloc] init];
-    [texdocView setContent:texdocArray];
-    [texdocView setPackage:package];
-    popover.contentViewController = texdocView;
-    [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
-    
-}
-
-- (NSMutableArray *)parseTexdocList:(NSString *)texdocList {
-    if (texdocList.length == 0) {
-        return nil;
-    }
-    NSArray *lines = [texdocList componentsSeparatedByString:@"\n"];
-    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:lines.count];
-    for (NSString *line in lines) {
-        NSArray *entry = [line componentsSeparatedByString:@"\t"];
-        TexdocEntry *e = [[TexdocEntry alloc] initWithArray:entry];
-        if (e) {
-            [result addObject:e];
-        }
-    }
-    
-    
-    return result;
+- (void)texdocReadComplete:(NSMutableArray *)texdocArray withPackageName:(NSString *)package andInfo:(NSDictionary *)info {
+   TexdocViewController *texdocView = [[TexdocViewController alloc] init];
+   [texdocView setContent:texdocArray];
+   [texdocView setPackage:package];
+   popover.contentViewController = texdocView;
+    NSRect rect = NSRectFromString([info objectForKey:BOUNDING_RECT_KEY]);
+   [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
 }
 
 #pragma mark -

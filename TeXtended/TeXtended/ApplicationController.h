@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController,DocumentCreationController, CompletionsController;
+@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController;
 @interface ApplicationController : NSObject <NSApplicationDelegate> {
     PreferencesController *preferencesController;
     DocumentCreationController *documentCreationController;
+    TexdocPanelController *texdocPanelController;
 }
+- (IBAction)showTexdocPanel:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (CompletionsController*) completionsController;
 + (ApplicationController*) sharedApplicationController;
