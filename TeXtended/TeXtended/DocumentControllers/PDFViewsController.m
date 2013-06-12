@@ -119,6 +119,28 @@
     }
 }
 
+
+#pragma mark -
+#pragma mark Responder Chain
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(printDocument:)) {
+        NSTabViewItem *item = [self.tabView selectedTabViewItem];
+        return [[item view] respondsToSelector:@selector(print:)];
+    }
+    return [super respondsToSelector:aSelector];
+}
+
+- (id)performSelector:(SEL)aSelector {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if (aSelector == @selector(printDocument:)) {
+        NSTabViewItem *item = [self.tabView selectedTabViewItem];
+        return [[item view] performSelector:@selector(print:)];
+    }
+    return [super performSelector:aSelector];
+#pragma clang diagnostic pop
+}
+
 #pragma mark -
 #pragma mark Dealloc etc.
 

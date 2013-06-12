@@ -151,7 +151,21 @@ static const NSSet *KEYS_TO_UNBIND;
     [controllsView.theBox setBorderWidth:0];
     [controllsView.theBox setCornerRadius:10];
 }
+#pragma mark -
+#pragma mark Responder Chain
 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if (aSelector == @selector(print:)) {
+        return self.document != nil;
+    }
+    return [super respondsToSelector:aSelector];
+    #pragma clang diagnostic pop
+}
+
+#pragma mark -
+#pragma mark Dealloc
 
 - (void)dealloc {
 #ifdef DEBUG

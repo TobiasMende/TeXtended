@@ -15,10 +15,16 @@
 #import "Constants.h"
 #import "Compiler.h"
 
+static const NSSet *SELECTORS_HANDLEY_BY_PDF;
+
 @interface DocumentController ()
 
 @end
 @implementation DocumentController
+
++ (void)initialize {
+    SELECTORS_HANDLEY_BY_PDF = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
+}
 
 
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document {
@@ -142,6 +148,30 @@
 - (void)documentModelDidChange {
     [self documentModelHasChangedAction:self];
 }
+
+#pragma mark - 
+#pragma mark Responder Chain
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([SELECTORS_HANDLEY_BY_PDF containsObject: NSStringFromSelector(aSelector)]) {
+        return [self.pdfViewsController respondsToSelector:aSelector];
+    }
+    return [super respondsToSelector:aSelector];
+}
+
+- (id)performSelector:(SEL)aSelector {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if ([SELECTORS_HANDLEY_BY_PDF containsObject:NSStringFromSelector(aSelector)]) {
+        return [self.pdfViewsController performSelector:aSelector];
+    }
+    return [super performSelector:aSelector];
+#pragma clang diagnostic pop
+}
+
+
+#pragma mark -
+#pragma mark Dealloc
 
 - (void)dealloc {
 #ifdef DEBUG
