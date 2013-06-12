@@ -27,11 +27,6 @@
     return self;
 }
 
-- (void)mouseDown:(NSEvent *)theEvent
-{
-    NSLog(@"hh");
-}
-
 - (IBAction)openInfoView:(id)sender
 {
     if(!self.doc)
@@ -97,7 +92,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel *model = (FileViewModel*)item;
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
-    NSLog(@"%@",newFile);
     [self renameFile:oldFile toNewFile:newFile];
 }
 
@@ -133,6 +127,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [super awakeFromNib];
     
     [self->outline setTarget:self];
+    [self->outline setDelegate:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
     pathsToWatch = [[NSMutableArray alloc] init];

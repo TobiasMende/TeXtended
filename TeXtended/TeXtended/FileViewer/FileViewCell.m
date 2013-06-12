@@ -67,8 +67,11 @@
 
 - (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength
 {
+    NSString* filename = self.title;
+    NSString* file = [filename stringByDeletingPathExtension];
+    NSInteger length = file.length;
     NSRect textFrame = [self titleRectForBounds:aRect];
-    [super selectWithFrame:textFrame inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
+    [super selectWithFrame:textFrame inView:controlView editor:textObj delegate:anObject start:selStart length:length];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView

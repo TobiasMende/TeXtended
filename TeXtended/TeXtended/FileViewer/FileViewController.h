@@ -11,7 +11,7 @@
 #import "InfoWindowController.h"
 @class DocumentModel;
 
-@interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> {
+@interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     FileViewModel *nodes;
     NSMutableArray *pathsToWatch;
     FSEventStreamRef stream;
