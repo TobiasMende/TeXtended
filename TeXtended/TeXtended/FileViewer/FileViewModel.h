@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface FileViewModel : NSObject <NSFilePresenter> {
-    NSArray* pathComponents;
     NSInteger pathIndex;
     NSMutableArray* children;
     __weak FileViewModel *parent;
@@ -20,11 +19,14 @@
 @property (nonatomic, strong) NSString *filePath;
 @property NSImage* icon;
 @property NSString* fileName;
+@property NSArray* pathComponents;
 -(void)addPath:(NSString*)path;
 -(FileViewModel*)getChildrenByName:(NSString*)name;
 -(FileViewModel*)getChildrenByIndex:(NSInteger)index;
--(void)setFileName:(NSString*)oldName
+-(void)setFileName:(NSString*)oldPath
             toName:(NSString*)newName;
+-(void)setFileNameOfParent:(NSString*)name
+          atComponentIndex:(NSInteger)index;
 -(NSInteger)numberOfChildren;
 -(void)checkPath:(NSString*)path;
 

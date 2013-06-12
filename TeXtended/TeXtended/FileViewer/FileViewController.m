@@ -93,6 +93,22 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
     [self renameFile:oldFile toNewFile:newFile];
+    [model setFileName:oldFile toName:newFile];
+    [outline reloadData];
+    if(self.doc.project)
+    {
+        NSArray* docs = [self.doc.project.documents allObjects];
+        for (NSInteger i = 0; i < [docs count]; i++) {
+            DocumentModel *model = [docs objectAtIndex:i];
+            if([model.texPath isEqualToString:oldFile])
+                model.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
+        }
+    }
+    else
+    {
+        self.doc.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
+        [self.titleButton setTitle:[newFile stringByDeletingPathExtension]];
+    }
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
