@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FileViewModel.h"
 #import "InfoWindowController.h"
+#import "DocumentController.h"
+
 @class DocumentModel;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
@@ -26,6 +28,7 @@
 @property (weak) DocumentModel* doc;
 @property (weak) IBOutlet NSTextField *titleLbl;
 @property InfoWindowController *infoWindowController;
+@property (weak) DocumentController *docController;
 
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;

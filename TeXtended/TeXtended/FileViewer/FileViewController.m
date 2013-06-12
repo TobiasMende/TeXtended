@@ -139,6 +139,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
+-(void) outlineViewSelectionDidChange:(NSNotification *)notification
+{
+    FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
+    
+}
+
 - (void) awakeFromNib {
     [super awakeFromNib];
     
