@@ -19,6 +19,8 @@
 @property BOOL searching;
 - (IBAction)startTexdoc:(id)sender;
 - (IBAction)clearSearch:(id)sender;
+@property (weak) IBOutlet NSButton *clearButton;
+@property (weak) IBOutlet NSButton *searchButton;
 
 
 @end

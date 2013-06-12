@@ -38,6 +38,8 @@
     [super loadWindow];
     [self.contentBox setContentView:self.searchPanel];
     [self.window setInitialFirstResponder:self.packageField];
+    [self.clearButton setNextKeyView:self.packageField];
+    [self.searchButton setNextKeyView:self.clearButton];
     
 }
 - (IBAction)startTexdoc:(id)sender {
@@ -50,6 +52,8 @@
     [self.packageField setStringValue:@""];
     [self.contentBox setContentView:self.searchPanel];
     [self.window makeFirstResponder:self.packageField];
+    [self.searchButton setNextKeyView:self.clearButton];
+    [self.clearButton setNextKeyView:self.packageField];
 }
 
 - (void)texdocReadComplete:(NSMutableArray *)texdocArray withPackageName:(NSString *)package andInfo:(NSDictionary *)info {
@@ -61,6 +65,8 @@
     [self.contentBox setContentView:self.texdocViewController.view];
     [self.texdocViewController setDarkBackgroundMode];
     [self.window makeFirstResponder:self.texdocViewController.listView];
+    [self.texdocViewController.listView setNextKeyView:self.clearButton];
+    [self.clearButton setNextKeyView:self.texdocViewController.listView];
     
 }
 @end
