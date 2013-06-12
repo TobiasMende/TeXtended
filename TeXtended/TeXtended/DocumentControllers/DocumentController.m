@@ -32,7 +32,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
     if (self) {
         NSLog(@"DocumentController: Init");
         self.model = model;
-        mainDocument = document;
+        _mainDocument = document;
         _textViewController = [[TextViewController alloc] initWithParent:self];
         _pdfViewsController = [[PDFViewsController alloc] initWithParent:self];
         _consolViewsController = [[ConsoleViewsController alloc] initWithParent:self];
@@ -126,7 +126,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
 }
 
 - (void) draftCompile {
-    BOOL success = [mainDocument saveEntireDocument];
+    BOOL success = [self.mainDocument saveEntireDocument];
     if (!success) {
         NSLog(@"Error");
     }
@@ -134,7 +134,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
 }
 
 - (void) finalCompile {
-    BOOL success = [mainDocument saveEntireDocument];
+    BOOL success = [self.mainDocument saveEntireDocument];
     if (!success) {
         NSLog(@"Error");
     }

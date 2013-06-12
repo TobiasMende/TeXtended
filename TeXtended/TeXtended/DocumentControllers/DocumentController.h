@@ -21,7 +21,6 @@
  
  */
 @interface DocumentController : NSObject<DocumentControllerProtocol> {
-    __weak id<MainDocument> mainDocument;
 }
 @property (weak,nonatomic) DocumentModel *model;
 @property (weak,nonatomic) id<WindowControllerProtocol> windowController;
@@ -30,6 +29,7 @@
 @property (strong) ConsoleViewsController* consolViewsController;
 @property (strong) OutlineViewController* outlineViewController;
 @property (strong) Compiler* compiler;
+@property (weak, readonly) id<MainDocument> mainDocument;
 
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document;
 - (void)setupWindowController;
