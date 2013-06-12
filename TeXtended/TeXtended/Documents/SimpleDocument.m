@@ -12,11 +12,14 @@
 #import "DocumentController.h"
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
+static const NSSet *SELECTORS_HANDLED_BY_DC;
 @implementation SimpleDocument
 
 + (void)initialize {
     standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
     autosave = YES;
+    
+    SELECTORS_HANDLED_BY_DC = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
 }
 
 - (id)init
@@ -40,6 +43,17 @@ static BOOL autosave;
     if (self.documentController) {
         [self.documentController setWindowController:self.mainWindowController];
     }
+}
+
+- (void)printDocument:(id)sender {
+    [self.documentController performSelector:@selector(printDocument:)];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (@selector(printDocument:) == aSelector) {
+        return [self.documentController respondsToSelector:aSelector];
+    }
+    return [super respondsToSelector:aSelector];
 }
 
 - (BOOL)saveEntireDocument {
