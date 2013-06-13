@@ -155,8 +155,31 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (!self.servicesOn) {
         return;
     }
-    [self.syntaxHighlighter highlightVisibleArea];
+    [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
     [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
+}
+
+
+- (NSRange) extendedVisibleRange {
+    NSRange range = [codeNavigationAssistant lineTextRangeWithRange:self.visibleRange];
+    for (NSUInteger iteration = 0; iteration < 10; iteration++) {
+        BOOL update = NO;
+        if (range.location >0) {
+            range.location -= 1;
+            range.length +=1;
+            update = YES;
+        }
+        if (NSMaxRange(range) < self.string.length-1 && NSMaxRange(range) >0) {
+            range.length += 1;
+            update = YES;
+        }
+        if (update) {
+            range = [codeNavigationAssistant lineTextRangeWithRange:range];
+        } else {
+            break;
+        }
+    }
+    return range;
 }
 
 - (void)insertText:(id)str {

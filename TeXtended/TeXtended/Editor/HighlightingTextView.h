@@ -105,4 +105,5 @@
 - (IBAction)toggleComment:(id)sender;
 - (IBAction)commentSelection:(id)sender;
 - (IBAction)uncommentSelection:(id)sender;
+- (NSRange) extendedVisibleRange;
 @end
