@@ -61,11 +61,9 @@
         [collapseState addObject:[NSNumber numberWithBool:[super isSubviewCollapsed:view]]];
         [defaultPosition addObject:[NSNumber numberWithFloat:0]];
     }
-    NSLog(@"%@", collapseState);
 }
 
 - (void)toggleCollapseFor:(NSUInteger)index {
-    NSLog(@"%@", collapseState);
     if ([[collapseState objectAtIndex:index] boolValue]) {
         [self uncollapse:index];
     } else {
