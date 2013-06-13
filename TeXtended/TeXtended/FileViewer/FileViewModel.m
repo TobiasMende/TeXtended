@@ -30,6 +30,7 @@
     NSArray* newModelPathComponents = [[path pathComponents] subarrayWithRange:range];
     [newModel setFilePath:[NSString pathWithComponents:newModelPathComponents]];
     [newModel addPath:path];
+    newModel.parent = self;
     if(children == nil)
         children = [[NSMutableArray alloc] init];
     for(NSInteger i = 0; i < [children count]; i++)
@@ -42,7 +43,6 @@
         }
     }
     [children insertObject:newModel atIndex:[children count]];
-    
 }
 
 -(void)addPath:(NSString*)path
@@ -56,6 +56,25 @@
         [self addChildren:path];
     else
         [child addPath:path];
+}
+
+-(void)addModel:(FileViewModel*)newModel
+{
+    if(children == nil)
+        children = [[NSMutableArray alloc] init];
+    NSString* childName = newModel.fileName;
+    NSInteger index = [children count];
+    for(NSInteger i = 0; i < [children count]; i++)
+    {
+        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
+        if(result == NSOrderedAscending)
+        {
+            index = i;
+        }
+    }
+    [children insertObject:newModel atIndex:index];
+    newModel.parent = self;
+    [newModel updateFilePath:[self.filePath stringByDeletingLastPathComponent]];
 }
 
 -(void)setFilePath:(NSString*)newPath
@@ -73,6 +92,21 @@
     _presentedItemURL = [NSURL fileURLWithPath:newPath];
     
     [NSFileCoordinator addFilePresenter:self];
+}
+
+-(void)updateFilePath:(NSString*)newPath
+{
+    self.filePath = [newPath stringByAppendingPathComponent:self.fileName];
+    self.pathComponents = [self.filePath pathComponents];
+    pathIndex = [self.pathComponents count]-1;
+    
+    if(children)
+    {
+        for(NSInteger i = 0; i < [children count]; i++)
+        {
+            [[children objectAtIndex:i] updateFilePath:self.filePath];
+        }
+    }
 }
 
 - (void)presentedSubitemDidChangeAtURL:(NSURL *)url
@@ -214,6 +248,31 @@
     }
     NSString* childrenName = [[path pathComponents] objectAtIndex:pathIndex+1];
     [[self getChildrenByName:childrenName] addDocumentModel:newModel atPath:path];
+}
+
+-(void)addExitsingChildren:(FileViewModel*)newChildren
+{
+    [newChildren.parent removeChildren:newChildren];
+    if(children == nil)
+        children = [[NSMutableArray alloc] init];
+    NSString* childName = newChildren.fileName;
+    NSInteger index = [children count];
+    for(NSInteger i = 0; i < [children count]; i++)
+    {
+        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
+        if(result == NSOrderedAscending)
+        {
+            index = i;
+        }
+    }
+    [children insertObject:newChildren atIndex:index];
+    newChildren.parent = self;
+    [newChildren updateFilePath:self.filePath];
+}
+
+-(void)removeChildren:(FileViewModel*) childrenModel
+{
+    [children removeObject:childrenModel];
 }
 
 - (void)dealloc {

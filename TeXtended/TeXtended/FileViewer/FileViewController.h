@@ -15,6 +15,7 @@
     FSEventStreamRef stream;
     NSDate* appStartedTimestamp;
     NSNumber* lastEventId;
+    NSArray* draggedItems;
     
     __weak NSButton *_titleButton;
     __weak IBOutlet NSOutlineView *outline;

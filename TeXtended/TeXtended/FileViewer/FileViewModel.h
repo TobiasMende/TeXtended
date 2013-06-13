@@ -12,17 +12,18 @@
 @interface FileViewModel : NSObject <NSFilePresenter> {
     NSInteger pathIndex;
     NSMutableArray* children;
-    __weak FileViewModel *parent;
 }
 
 @property (readonly) NSURL *presentedItemURL;
 @property (readonly) NSOperationQueue *presentedItemOperationQueue;
 @property (weak) DocumentModel *docModel;
+@property (weak) FileViewModel *parent;
 @property (nonatomic, strong) NSString *filePath;
 @property NSImage* icon;
 @property NSString* fileName;
 @property NSArray* pathComponents;
 -(void)addPath:(NSString*)path;
+-(void)addModel:(FileViewModel*)newModel;
 -(FileViewModel*)getChildrenByName:(NSString*)name;
 -(FileViewModel*)getChildrenByIndex:(NSInteger)index;
 -(void)setFileName:(NSString*)oldPath
@@ -31,6 +32,9 @@
           atComponentIndex:(NSInteger)index;
 -(NSInteger)numberOfChildren;
 -(void)checkPath:(NSString*)path;
+-(void)updateFilePath:(NSString*)newPath;
 -(void)addDocumentModel:(DocumentModel*)newModel
                  atPath:(NSString*)path;
+-(void)addExitsingChildren:(FileViewModel*)newChildren;
+-(void)removeChildren:(FileViewModel*) childrenModel;
 @end
