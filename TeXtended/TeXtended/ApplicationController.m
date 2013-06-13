@@ -30,6 +30,7 @@ ApplicationController *sharedInstance;
 }
 
 
+
 + (ApplicationController *)sharedApplicationController {
     if (!sharedInstance) {
         sharedInstance = [[ApplicationController alloc] init];
@@ -41,7 +42,6 @@ ApplicationController *sharedInstance;
     sharedInstance = self;
     documentCreationController = [[DocumentCreationController alloc] init];
     preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
-
     
 }
 

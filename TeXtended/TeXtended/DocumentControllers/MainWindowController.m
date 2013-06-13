@@ -120,8 +120,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-    return YES;
+    return NO;
 }
+
+
 
 -(void)dealloc {
 #ifdef DEBUG
