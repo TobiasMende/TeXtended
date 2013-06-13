@@ -8,6 +8,7 @@
 
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
+#import "ExtendedTableView.h"
 
 @interface TexdocViewController ()
 
@@ -35,16 +36,24 @@
 - (void)awakeFromNib {
     if (!entries || entries.count == 0) {
         [self setView:notFoundView];
+    } else {
+        [self.listView setEnterAction:@selector(click:)];
+        [self.listView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     }
+    
 }
 
 - (void)setContent:(NSMutableArray *)texdoc {
     if (texdoc.count >0) {
         entries = texdoc;
-        if (listView) {
-            [listView reloadData];
+        if (self.listView) {
+            [self.listView reloadData];
         }
     } 
+}
+
+- (IBAction)click:(id)sender {
+    [self openSelectedDoc];
 }
 
 - (void)setPackage:(NSString *)package {
@@ -68,13 +77,12 @@
     return [entry valueForKey:identifier];
 }
 
-- (void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn {
-    
-}
 
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-    NSUInteger row = [listView selectedRow];
-    if (row < entries.count) {
+
+
+- (void)openSelectedDoc {
+    NSInteger row = [self.listView selectedRow];
+    if (row < entries.count && row >= 0) {
         TexdocEntry *entry = [entries objectAtIndex:row];
         NSURL *url = [NSURL fileURLWithPath:entry.path];
         [[NSWorkspace sharedWorkspace] openURL: url];
