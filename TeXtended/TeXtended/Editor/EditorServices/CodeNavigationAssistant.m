@@ -184,17 +184,20 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 - (void)commentSelectionInRange:(NSRange)range {
     NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
-    NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:view.string options:0 range:lineRange];
-    [view.undoManager beginUndoGrouping];
-    [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Comment Selection", "comment")];
+    NSRange tmp = lineRange;
+    NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
+    NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
     for(NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
         NSRange match = [result rangeAtIndex:1];
-        [view.textStorage replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
+        [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
         lineRange.length +=1;
     }
     if (matches.count == 0) {
         NSBeep();
     }
+    [view.undoManager beginUndoGrouping];
+    [view.undoManager registerUndoWithTarget:self selector:@selector(uncommentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
+    [view replaceCharactersInRange:tmp withString:area];
     [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
      [view.undoManager endUndoGrouping];
     
@@ -202,51 +205,71 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 - (void)uncommentSelectionInRange:(NSRange)range {
     NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
-    NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:view.string options:0 range:lineRange];
-    [view.undoManager beginUndoGrouping];
-    [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Uncomment Selection", "uncomment")];
+    NSRange tmp = lineRange;
+    NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
+     NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
     BOOL actionDone = NO;
     for(NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
         NSRange match = [result rangeAtIndex:1];
-        if ([[view.string substringWithRange:match] isEqualToString:@"%"]) {
-            [view.textStorage replaceCharactersInRange:match withString:@""];
+        if ([[area substringWithRange:match] isEqualToString:@"%"]) {
+            [area replaceCharactersInRange:match withString:@""];
             lineRange.length -= 1;
             actionDone = YES;
         }
     }
+    [view.undoManager beginUndoGrouping];
+    [view.undoManager registerUndoWithTarget:self selector:@selector(commentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
+    [view replaceCharactersInRange:tmp withString:area];
+    [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
+    [view.undoManager endUndoGrouping];
     if (!actionDone) {
         NSBeep();
     } else {
         [view setSelectedRange:lineRange];
     }
-    [view.undoManager endUndoGrouping];
 }
+
 
 - (void)toggleCommentInRange:(NSRange)range {
     NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
-    NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:view.string options:0 range:lineRange];
-    [view.undoManager beginUndoGrouping];
-    [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Uncomment Selection", "uncomment")];
+    NSRange tmp = lineRange;
+    NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
+    NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
+
     BOOL actionDone = NO;
     for(NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
         NSRange match = [result rangeAtIndex:1];
-        if ([[view.string substringWithRange:match] isEqualToString:@"%"]) {
-            [view.textStorage replaceCharactersInRange:match withString:@""];
+        if ([[area substringWithRange:match] isEqualToString:@"%"]) {
+            [area replaceCharactersInRange:match withString:@""];
             lineRange.length -= 1;
         } else {
-            [view.textStorage replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
+            [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
             lineRange.length += 1;
         }
         actionDone = YES;
     }
+    [view.undoManager beginUndoGrouping];
+    [view.undoManager registerUndoWithTarget:self selector:@selector(toggleCommentInRangeString:) object:NSStringFromRange(lineRange)];
+    [view replaceCharactersInRange:tmp withString:area];
+    [view.undoManager endUndoGrouping];
     if (!actionDone) {
         NSBeep();
     } else {
         [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
     }
-    [view.undoManager endUndoGrouping];
 }
 
+- (void)uncommentSelectionInRangeString:(NSString *)range {
+    [self uncommentSelectionInRange:NSRangeFromString(range)];
+}
+
+- (void)commentSelectionInRangeString:(NSString *)range {
+    [self commentSelectionInRange:NSRangeFromString(range)];
+}
+
+- (void)toggleCommentInRangeString:(NSString *)range {
+    [self toggleCommentInRange:NSRangeFromString(range)];
+}
 
 
 #pragma mark -
