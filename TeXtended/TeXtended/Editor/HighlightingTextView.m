@@ -375,7 +375,9 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
             }
         }
         return NO;
-    } else {
+    } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
+        return self.selectedRanges.count == 1;
+    }else {
         return [super respondsToSelector:aSelector];
     }
 }
@@ -446,6 +448,20 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 }
+
+
+- (void)commentSelection:(id)sender {
+    [codeNavigationAssistant commentSelectionInRange:self.selectedRange];
+}
+
+- (void)uncommentSelection:(id)sender {
+    [codeNavigationAssistant uncommentSelectionInRange:self.selectedRange];
+}
+
+- (void)toggleComment:(id)sender {
+    [codeNavigationAssistant toggleCommentInRange:self.selectedRange];
+}
+
 
 #pragma mark -
 #pragma mark Drawing Actions

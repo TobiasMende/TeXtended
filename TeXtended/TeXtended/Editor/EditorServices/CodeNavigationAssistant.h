@@ -96,6 +96,9 @@
  */
 - (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
 
+- (IBAction)toggleCommentInRange:(NSRange)range;
+- (IBAction)commentSelectionInRange:(NSRange)range;
+- (IBAction)uncommentSelectionInRange:(NSRange)range;
 
 
 /** Number of spaces which should replace a single tab */

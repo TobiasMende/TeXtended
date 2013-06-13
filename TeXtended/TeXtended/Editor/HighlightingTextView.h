@@ -101,4 +101,8 @@
  Method for jumping to the next visible placeholders (supporting round wrap jumping when at the end of the visible area)
  */
 - (void) jumpToNextPlaceholder;
+
+- (IBAction)toggleComment:(id)sender;
+- (IBAction)commentSelection:(id)sender;
+- (IBAction)uncommentSelection:(id)sender;
 @end
