@@ -8,10 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
-@class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController;
-@interface MainWindowController : NSWindowController<WindowControllerProtocol> {
+@class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController, TMTSplitView;
+@interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate> {
     
 }
+@property (weak) IBOutlet NSSegmentedControl *splitviewControl;
+@property (weak) IBOutlet TMTSplitView *mainView;
 @property (weak) IBOutlet NSSplitView *sidebar;
 @property (weak) IBOutlet NSSplitView *left;
 @property (weak) IBOutlet NSSplitView *middle;
@@ -21,6 +23,7 @@
 @property (strong) ExportCompileWindowController* exportWindow;
 @property (weak) IBOutlet NSBox *fileViewArea;
 
+- (IBAction)collapseView:(id)sender;
 
 - (IBAction)reportBug:(id)sender;
 

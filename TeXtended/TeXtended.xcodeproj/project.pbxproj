@@ -24,6 +24,7 @@
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
+		D217A418176A59FE002DB084 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A417176A59FE002DB084 /* TMTSplitView.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
@@ -180,6 +181,8 @@
 		76DADC9617648A54002775BA /* xelatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = xelatexDraft.sh; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
+		D217A416176A59FE002DB084 /* TMTSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTSplitView.h; sourceTree = "<group>"; };
+		D217A417176A59FE002DB084 /* TMTSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTSplitView.m; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -425,7 +428,6 @@
 				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
 				D2AAF90D172907A000FC09C1 /* UndoSupport */,
 				D2C904E91726A079006EFEC2 /* TexdocSupport */,
-				D2C904E317269614006EFEC2 /* Views */,
 				D21ACB811726868A00E2F8EC /* AutoCompletion */,
 				D21ACB8A1726868A00E2F8EC /* EditorServices */,
 				D21ACB991726868A00E2F8EC /* HighlightingTextView.h */,
@@ -688,8 +690,11 @@
 				D2C904E61726963E006EFEC2 /* TexdocView.xib */,
 				D2FCB62D1768F8F0008C2FE9 /* ExtendedTableView.h */,
 				D2FCB62E1768F8F0008C2FE9 /* ExtendedTableView.m */,
+				D217A416176A59FE002DB084 /* TMTSplitView.h */,
+				D217A417176A59FE002DB084 /* TMTSplitView.m */,
 			);
-			path = Views;
+			name = Views;
+			path = Editor/Views;
 			sourceTree = "<group>";
 		};
 		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
@@ -749,6 +754,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				D2C904E317269614006EFEC2 /* Views */,
 				D2F177CE17651D5A0089DBC0 /* InfoPanels */,
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
@@ -968,6 +974,7 @@
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
 				D2FCB62F1768F8F0008C2FE9 /* ExtendedTableView.m in Sources */,
+				D217A418176A59FE002DB084 /* TMTSplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

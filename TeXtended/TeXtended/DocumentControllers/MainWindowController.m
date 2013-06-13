@@ -11,6 +11,7 @@
 #import "FileOutlineView.h"
 #import "FileViewController.h"
 #import "ExportCompileWindowController.h"
+#import "TMTSplitView.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -44,6 +45,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];
+    [self.splitviewControl setSelected:YES forSegment:0];
+    [self.splitviewControl setSelected:YES forSegment:1];
+    [self.splitviewControl setSelected:YES forSegment:2];
 }
 
 - (void)clearAllDocumentViews {
@@ -72,6 +76,23 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.right adjustSubviews];
 }
 
+- (IBAction)collapseView:(id)sender {
+    NSSegmentedControl *control = sender;
+    BOOL s0 = [control isSelectedForSegment:0];
+    BOOL s1 = [control isSelectedForSegment:1];
+    BOOL s2 = [control isSelectedForSegment:2];
+    
+    if (s0 == [self.mainView isCollapsed:0]) {
+        [self.mainView toggleCollapseFor:0];
+    }
+    if (s1 == [self.mainView isCollapsed:1]) {
+        [self.mainView toggleCollapseFor:1];
+    }
+    if (s2 == [self.mainView isCollapsed:2]) {
+        [self.mainView toggleCollapseFor:2];
+    }
+}
+
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
@@ -95,6 +116,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)makeFirstResponder:(NSView *)view {
     [[view window] setInitialFirstResponder:view];
+}
+
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    return YES;
 }
 
 -(void)dealloc {
