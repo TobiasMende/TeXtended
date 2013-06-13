@@ -12,6 +12,7 @@
 #import "InfoWindowController.h"
 #import "FileViewModel.h"
 #import "DocumentController.h"
+#import "DocumentCreationController.h"
 @implementation FileViewController
 
 - (id)init {
@@ -169,8 +170,19 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void) outlineViewSelectionDidChange:(NSNotification *)notification
 {
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
-    [self.docController.mainDocument saveEntireDocument];
-    //[self.docController.model
+    if(!model)
+        return;
+    
+    if(self.doc.project)
+    {
+        //TODO
+    }
+    else
+    {
+        FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
+        if(![model.filePath isEqualToString:self.doc.texPath])
+            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
+    }
 }
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
