@@ -154,9 +154,30 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    //NSLog(@"%d",(long)index);
     NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    if(index == -1)
+    if(item)
+    {
+        FileViewModel *model = (FileViewModel*)item;
+        BOOL b = false;
+        [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
+        if(b)
+        {
+            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            {
+                NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+            }
+        }
+        else
+        {
+            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            {
+                NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+            }
+        }
+    }
+    else
     {
         for(NSInteger i = 0; i < [draggedFilenames count]; i++)
         {
