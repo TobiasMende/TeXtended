@@ -145,47 +145,103 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
-    NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-        if(![[[draggedFilenames objectAtIndex:0] pathExtension] isEqualToString:@"tex"])
-            return NSDragOperationNone;
-    return NSDragOperationCopy;
+    if ([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]]) {
+        return NSDragOperationMove;
+    }
+    if ([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
+    {
+        NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+        for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            if(![[[draggedFilenames objectAtIndex:0] pathExtension] isEqualToString:@"tex"])
+                return NSDragOperationNone;
+        return NSDragOperationCopy;
+    }
+    return NSDragOperationNone;
 }
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    if(item)
+    if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
     {
-        FileViewModel *model = (FileViewModel*)item;
-        BOOL b = false;
-        [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
-        if(b)
+        if(item)
         {
-            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            FileViewModel *model = (FileViewModel*)item;
+            BOOL b = false;
+            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
+            if(b)
             {
-                NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames   objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
+            }
+            else
+            {
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
             }
         }
         else
         {
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
             for(NSInteger i = 0; i < [draggedFilenames count]; i++)
             {
-                NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+                NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
             }
         }
     }
-    else
+    
+    if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]])
     {
-        for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+        if(item)
         {
-            NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-            [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+            FileViewModel *model = (FileViewModel*)item;
+            BOOL b = false;
+            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
+            if(b)
+            {
+                for(NSInteger i = 0; i < [draggedItems count]; i++)
+                {
+                    FileViewModel* moved = (FileViewModel*)[draggedItems objectAtIndex:i];
+                    [self moveFile:moved.filePath toPath:[model.filePath stringByAppendingPathComponent:moved.fileName] withinProject:YES];
+                    [model addExitsingChildren:moved];
+                }
+            }
+            else
+            {
+                for(NSInteger i = 0; i < [draggedItems count]; i++)
+                {
+                    FileViewModel* moved = (FileViewModel*)[draggedItems objectAtIndex:i];
+                    [self moveFile:moved.filePath toPath:[model.parent.filePath stringByAppendingPathComponent:moved.fileName] withinProject:YES];
+                    [model.parent addExitsingChildren:moved];
+                }
+            }
         }
+        else
+        {
+            for(NSInteger i = 0; i < [draggedItems count]; i++)
+            {
+                FileViewModel* moved = (FileViewModel*)[draggedItems objectAtIndex:i];
+                [self moveFile:moved.filePath toPath:[nodes.filePath stringByAppendingPathComponent:moved.fileName] withinProject:YES];
+                [nodes addExitsingChildren:moved];
+            }
+        }
+        [outline reloadData];
     }
     return TRUE;
+}
+
+-(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
+{
+    [pasteboard declareTypes:[NSArray arrayWithObjects:@"FileViewModel", nil] owner:self];
+    draggedItems = items;
+    return YES;
 }
 
 -(void) outlineViewSelectionDidChange:(NSNotification *)notification
@@ -193,7 +249,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
     if(!model)
         return;
-    
+    if (![[model.fileName pathExtension] isEqualToString:@"tex"]) {
+        return;
+    }
     if(self.doc.project)
     {
         //TODO
@@ -204,11 +262,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         if(![model.filePath isEqualToString:self.doc.texPath])
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
     }
-}
-
--(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
-{
-    return TRUE;
 }
 
 - (void) awakeFromNib {
@@ -222,6 +275,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     nodes = [[FileViewModel alloc] init];
     [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
+    [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
 }
 
 - (void) recursiveFileFinder: (NSURL*)url
@@ -376,12 +430,15 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
 - (void)moveFile:(NSString*)oldPath
           toPath:(NSString*)newPath
+   withinProject:(BOOL)within
 {
     if([[NSFileManager defaultManager] isReadableFileAtPath:oldPath])
     {
         [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
-        [nodes addPath:newPath];
-        [outline reloadData];
+        if (!within) {
+            [nodes addPath:newPath];
+            [outline reloadData];
+        }
     }
 }
 
