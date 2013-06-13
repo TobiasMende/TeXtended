@@ -38,6 +38,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [super windowDidLoad];
     [self.documentController setupWindowController];
     _fileViewController = [[FileViewController alloc] init];
+    _fileViewController.docController = self.documentController;
     
     _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
     

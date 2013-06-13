@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DocumentModel;
 
 @interface FileViewModel : NSObject <NSFilePresenter> {
     NSInteger pathIndex;
@@ -16,6 +17,7 @@
 
 @property (readonly) NSURL *presentedItemURL;
 @property (readonly) NSOperationQueue *presentedItemOperationQueue;
+@property (weak) DocumentModel *docModel;
 @property (nonatomic, strong) NSString *filePath;
 @property NSImage* icon;
 @property NSString* fileName;
@@ -29,5 +31,6 @@
           atComponentIndex:(NSInteger)index;
 -(NSInteger)numberOfChildren;
 -(void)checkPath:(NSString*)path;
-
+-(void)addDocumentModel:(DocumentModel*)newModel
+                 atPath:(NSString*)path;
 @end

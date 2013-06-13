@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentModel, FileViewModel, InfoWindowController;
+@class DocumentModel, FileViewModel, InfoWindowController, DocumentController;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     FileViewModel *nodes;
@@ -24,6 +24,7 @@
 @property (weak) DocumentModel* doc;
 @property (weak) IBOutlet NSTextField *titleLbl;
 @property InfoWindowController *infoWindowController;
+@property (weak) DocumentController *docController;
 
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;
