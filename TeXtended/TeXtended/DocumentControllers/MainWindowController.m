@@ -86,11 +86,25 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [self.mainView toggleCollapseFor:0];
     }
     if (s1 == [self.mainView isCollapsed:1]) {
-        [self.mainView toggleCollapseFor:1];
+        if ([self.mainView isCollapsed:1] || ![self.mainView isCollapsed:2]) {
+            [self.mainView toggleCollapseFor:1];
+        } else {
+            NSBeep();
+        }
     }
     if (s2 == [self.mainView isCollapsed:2]) {
-        [self.mainView toggleCollapseFor:2];
+        if (![self.mainView isCollapsed:1] || [self.mainView isCollapsed:2]) {
+            [self.mainView toggleCollapseFor:2];
+        } else {
+            NSBeep();
+        }
+        
     }
+    
+    for (NSUInteger index = 0; index < control.segmentCount; index++) {
+        [control setSelected:![self.mainView isCollapsed:index] forSegment:index];
+    }
+    
 }
 
 - (IBAction)reportBug:(id)sender {
