@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FileOutlineView : NSOutlineView
+@interface FileOutlineView : NSOutlineView <NSDraggingDestination>
 
 @end

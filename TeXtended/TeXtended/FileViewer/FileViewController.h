@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FileViewModel.h"
-#import "InfoWindowController.h"
-#import "DocumentController.h"
-
-@class DocumentModel;
+@class DocumentModel, FileViewModel, InfoWindowController, DocumentController;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     FileViewModel *nodes;

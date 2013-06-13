@@ -11,6 +11,7 @@
 #import "ProjectModel.h"
 #import "InfoWindowController.h"
 #import "FileViewModel.h"
+#import "DocumentController.h"
 @implementation FileViewController
 
 - (id)init {
@@ -141,10 +142,40 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
+-(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
+{
+    NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+    for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+        if(![[[draggedFilenames objectAtIndex:0] pathExtension] isEqualToString:@"tex"])
+            return NSDragOperationNone;
+    return NSDragOperationCopy;
+}
+
+-(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
+{
+    //NSLog(@"%d",(long)index);
+    NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+    if(index == -1)
+    {
+        for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+        {
+            NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+            [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath];
+        }
+    }
+    return TRUE;
+}
+
 -(void) outlineViewSelectionDidChange:(NSNotification *)notification
 {
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
-    
+    [self.docController.mainDocument saveEntireDocument];
+    //[self.docController.model
+}
+
+-(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
+{
+    return TRUE;
 }
 
 - (void) awakeFromNib {
@@ -195,7 +226,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [nodes setFilePath:[url path]];
     [self recursiveFileFinder:url];
     [outline reloadData];
-    //NSLog(@"%p",[self->outline]);
     //[self initializeEventStream];
     return YES;
 }
@@ -299,6 +329,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     
     // Load Path in FileView
     NSString *path = [totalPath stringByDeletingLastPathComponent];
+    //NSString* path = @"/Users/Tobias/Documents/LatexDummies";
     NSURL *url = [NSURL fileURLWithPath:path];
     [self loadPath:url];
 }
@@ -308,6 +339,17 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     DocumentModel *dc = (DocumentModel*)object;
     //NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], [change valueForKey:NSKeyValueChangeNewKey]);
     NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], dc.texPath);
+}
+
+- (void)moveFile:(NSString*)oldPath
+          toPath:(NSString*)newPath
+{
+    if([[NSFileManager defaultManager] isReadableFileAtPath:oldPath])
+    {
+        [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
+        [nodes addPath:newPath];
+        [outline reloadData];
+    }
 }
 
 - (void)dealloc {

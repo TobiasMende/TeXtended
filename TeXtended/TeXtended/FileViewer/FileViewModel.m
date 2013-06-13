@@ -7,6 +7,7 @@
 //
 
 #import "FileViewModel.h"
+#import "DocumentModel.h"
 
 @implementation FileViewModel
 
@@ -201,6 +202,18 @@
             [children removeObject:childrenName];
         }
     }
+}
+
+-(void)addDocumentModel:(DocumentModel*)newModel
+                 atPath:(NSString*)path
+{
+    if([path isEqualToString:self.filePath])
+    {
+        self.docModel = newModel;
+        return;
+    }
+    NSString* childrenName = [[path pathComponents] objectAtIndex:pathIndex+1];
+    [[self getChildrenByName:childrenName] addDocumentModel:newModel atPath:path];
 }
 
 - (void)dealloc {
