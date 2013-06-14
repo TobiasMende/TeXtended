@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Publication : NSObject
+@interface DBLPPublication : NSObject<NSURLConnectionDataDelegate> {
+    NSMutableData *receivedData;
+}
 - initWithXMLUrl:(NSURL*)url;
 @property NSXMLNode *xml;
 @property NSString *key;

@@ -16,7 +16,7 @@
 }
 @property (weak) IBOutlet NSTextField *resultLabel;
 @property BOOL searchinAuthor;
-@property (weak) IBOutlet NSDictionaryController *resultController;
+@property (weak) IBOutlet NSDictionaryController *authorsController;
 @property (weak) IBOutlet NSTableView *authorTable;
 @property (weak) IBOutlet NSArrayController *publicationsController;
 @property (weak) IBOutlet NSTableView *publicationTable;

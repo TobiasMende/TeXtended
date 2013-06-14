@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Publication;
+@class DBLPPublication;
 @interface BibtexWindowController : NSWindowController
 @property (unsafe_unretained) IBOutlet NSTextView *bibtexView;
-@property Publication *publication;
+@property DBLPPublication *publication;
 
-- (id)initWithPublication:(Publication *)publication;
-- (void) showPublication:(Publication *)publication;
+- (id)initWithPublication:(DBLPPublication *)publication;
+- (void) showPublication:(DBLPPublication *)publication;
 @end

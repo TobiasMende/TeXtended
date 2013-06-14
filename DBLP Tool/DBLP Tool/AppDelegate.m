@@ -20,7 +20,7 @@
 
 - (void)finishedFetcheingAuthors:(NSMutableDictionary *)authors {
     self.searchinAuthor = NO;
-    [self.resultController setContent:authors];
+    [self.authorsController setContent:authors];
 }
 
 - (void)startedFetcheingAuthors:(NSString *)authorName {
@@ -35,26 +35,29 @@
 
 - (void)controlTextDidChange:(NSNotification *)obj {
     if (self.authorField.stringValue.length >= 2) {
-        NSLog(@"%@, %@", self.authorField, dblp);
-        
+        [self.publicationsController setContent:nil];
         [dblp searchAuthor:self.authorField.stringValue];
     }
 }
 - (IBAction)clickedAuthorTable:(id)sender {
     NSUInteger row = [self.authorTable selectedRow];
-    NSString *name = [[self.resultController.arrangedObjects objectAtIndex:row] value];
-    NSString *urlpt = [[self.resultController.arrangedObjects objectAtIndex:row] key];
-    self.resultLabel.stringValue = [@"Results for " stringByAppendingFormat:@"%@:", name];
-    [dblp publicationsForAuthor:urlpt];
+    if (row < [self.authorsController.arrangedObjects count]) {
+        NSString *name = [[self.authorsController.arrangedObjects objectAtIndex:row] value];
+        NSString *urlpt = [[self.authorsController.arrangedObjects objectAtIndex:row] key];
+        self.resultLabel.stringValue = [@"Results for " stringByAppendingFormat:@"%@:", name];
+        [dblp publicationsForAuthor:urlpt];
+    }
 }
 
 - (IBAction)clickedPublicationTable:(id)sender {
     NSUInteger index = [self.publicationTable selectedRow];
-    Publication *pub = [self.publicationsController.arrangedObjects objectAtIndex:index];
-    if (!bc) {
-        bc = [[BibtexWindowController alloc] initWithPublication:pub];
+    if (index < [self.publicationsController.arrangedObjects count]) {
+        DBLPPublication *pub = [self.publicationsController.arrangedObjects objectAtIndex:index];
+        if (!bc) {
+            bc = [[BibtexWindowController alloc] initWithPublication:pub];
+        }
+        [bc showPublication:pub];
     }
-    [bc showPublication:pub];
 }
 
 

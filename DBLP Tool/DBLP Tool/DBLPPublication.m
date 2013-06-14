@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "Publication.h"
+#import "DBLPPublication.h"
 
-@interface Publication ()
+@interface DBLPPublication ()
 - (void) parseDocument:(NSURL *)url;
 - (void) fetchGeneralInfos:(NSXMLDocument*)doc;
 - (void) fetchAuthors:(NSXMLDocument*)doc;
@@ -16,7 +16,7 @@
 - (NSString*)lineBeginFor:(NSString *)key;
 - (NSString*)bibtexLineFor:(NSString *)key andValue:(NSString*)value;
 @end
-@implementation Publication
+@implementation DBLPPublication
 - (id)initWithXMLUrl:(NSURL *)url {
     self = [super init];
     if (self) {
@@ -26,14 +26,39 @@
 }
 
 - (void)parseDocument:(NSURL *)url {
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
+                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                          timeoutInterval:60.0];
+    NSURLConnection *connection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    if (connection) {
+        // Create the NSMutableData to hold the received data.
+        // receivedData is an instance variable declared elsewhere.
+        receivedData = [NSMutableData data];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+        [receivedData setLength:0];
+
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+        [receivedData appendData:data];
+
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError *error;
-    NSXMLDocument *doc = [[NSXMLDocument alloc] initWithContentsOfURL:url options:0 error:&error];
+    NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:receivedData options:0 error:&error];
     if (error) {
         NSLog(@"Can't parse doc. %@", [error userInfo]);
+    } else {
+        [self fetchGeneralInfos:doc];
+        [self fetchAuthors:doc];
+        [self generateBibtex:doc];
     }
-    [self fetchGeneralInfos:doc];
-    [self fetchAuthors:doc];
-    [self generateBibtex:doc];
+
 }
 
 - (void)fetchGeneralInfos:(NSXMLDocument *)doc {

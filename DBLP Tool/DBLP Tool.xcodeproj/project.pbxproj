@@ -14,7 +14,7 @@
 		D217A439176B442C002DB084 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A438176B442C002DB084 /* AppDelegate.m */; };
 		D217A43C176B442C002DB084 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D217A43A176B442C002DB084 /* MainMenu.xib */; };
 		D217A444176B463C002DB084 /* DBLPInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A443176B463C002DB084 /* DBLPInterface.m */; };
-		D2AB7DE5176B700900D1AB7B /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DE4176B700900D1AB7B /* Publication.m */; };
+		D2AB7DE5176B700900D1AB7B /* DBLPPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DE4176B700900D1AB7B /* DBLPPublication.m */; };
 		D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */; };
 		D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */; };
 /* End PBXBuildFile section */
@@ -36,8 +36,8 @@
 		D217A442176B463C002DB084 /* DBLPInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPInterface.h; sourceTree = "<group>"; };
 		D217A443176B463C002DB084 /* DBLPInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPInterface.m; sourceTree = "<group>"; };
 		D217A445176B471A002DB084 /* DBLPCallbackHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLPCallbackHandler.h; sourceTree = "<group>"; };
-		D2AB7DE3176B700900D1AB7B /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publication.h; sourceTree = "<group>"; };
-		D2AB7DE4176B700900D1AB7B /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publication.m; sourceTree = "<group>"; };
+		D2AB7DE3176B700900D1AB7B /* DBLPPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPPublication.h; sourceTree = "<group>"; };
+		D2AB7DE4176B700900D1AB7B /* DBLPPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPPublication.m; sourceTree = "<group>"; };
 		D2AB7DEE176B8FAB00D1AB7B /* BibtexWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexWindowController.h; sourceTree = "<group>"; };
 		D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibtexWindowController.m; sourceTree = "<group>"; };
 		D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BibtexWindow.xib; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 				D217A445176B471A002DB084 /* DBLPCallbackHandler.h */,
 				D217A43A176B442C002DB084 /* MainMenu.xib */,
 				D217A42C176B442C002DB084 /* Supporting Files */,
-				D2AB7DE3176B700900D1AB7B /* Publication.h */,
-				D2AB7DE4176B700900D1AB7B /* Publication.m */,
+				D2AB7DE3176B700900D1AB7B /* DBLPPublication.h */,
+				D2AB7DE4176B700900D1AB7B /* DBLPPublication.m */,
 			);
 			path = "DBLP Tool";
 			sourceTree = "<group>";
@@ -190,7 +190,7 @@
 				D217A432176B442C002DB084 /* main.m in Sources */,
 				D217A439176B442C002DB084 /* AppDelegate.m in Sources */,
 				D217A444176B463C002DB084 /* DBLPInterface.m in Sources */,
-				D2AB7DE5176B700900D1AB7B /* Publication.m in Sources */,
+				D2AB7DE5176B700900D1AB7B /* DBLPPublication.m in Sources */,
 				D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

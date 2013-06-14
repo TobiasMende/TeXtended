@@ -7,7 +7,7 @@
 //
 
 #import "DBLPInterface.h"
-#import "Publication.h"
+#import "DBLPPublication.h"
 
 @interface DBLPInterface ()
 - (void)finishAuthorsLoading;
@@ -90,6 +90,9 @@
             [results setObject:[node stringValue] forKey:urlpt];
             [self.handler finishedFetcheingAuthors:results];
         }
+        if (a.count == 0) {
+            [self.handler finishedFetcheingAuthors:results];
+        }
     }
 }
 
@@ -114,7 +117,7 @@
             if (!personRecord) {
                 NSString *appendix = [node stringValue];
                 NSString *bibUrl = [dblpUrl stringByAppendingFormat:@"%@%@.xml", bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                Publication *pub = [[Publication alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
+                DBLPPublication *pub = [[DBLPPublication alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
                 [results addObject:pub];
             } 
         }
