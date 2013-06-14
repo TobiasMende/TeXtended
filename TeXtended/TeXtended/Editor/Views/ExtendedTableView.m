@@ -15,7 +15,9 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (keyChar == NSEnterCharacter || keyChar == NSCarriageReturnCharacter) {
-        [self.delegate performSelector:self.enterAction];
+        if ([self.delegate respondsToSelector:self.enterAction]) {
+            [self.delegate performSelector:self.enterAction withObject:self];
+        }
         return;
     }
 #pragma clang diagnostic pop
