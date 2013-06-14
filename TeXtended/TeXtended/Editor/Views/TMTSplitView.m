@@ -7,6 +7,7 @@
 //
 
 #import "TMTSplitView.h"
+#import <Quartz/Quartz.h>
 
 @interface TMTSplitView ()
 - (void) refreshSubviews;
@@ -74,7 +75,6 @@
 
 - (void)collapse:(NSUInteger)index {
     CGFloat oldPosition;
-    NSView *view = [self viewForIndex:index];
     if (index == self.subviews.count -1) {
         oldPosition = [self positionOfDividerAtIndex:index-1];
         [self setPosition:[self maxPossiblePositionOfDividerAtIndex:index-1] ofDividerAtIndex:index-1];
@@ -82,7 +82,6 @@
         oldPosition = [self positionOfDividerAtIndex:index];
         [self setPosition:[self minPossiblePositionOfDividerAtIndex:index] ofDividerAtIndex:index];
     }
-    [view setHidden:YES];
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
     if (defaultPosition.count > index) {
         [defaultPosition replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:oldPosition]];
@@ -92,8 +91,6 @@
 }
 
 - (void)uncollapse:(NSUInteger)index {
-    NSView *view = [self viewForIndex:index];
-    [view setHidden:NO];
     if (index == self.subviews.count -1) {
         [self setPosition:[[defaultPosition objectAtIndex:index] floatValue] ofDividerAtIndex:index-1];
     } else {
@@ -103,9 +100,11 @@
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:NO]];
 }
 
+
+
 - (BOOL)isSubviewCollapsed:(NSView *)subview {
     NSUInteger index = [self indexForView:subview];
-    return [self isCollapsed:index] || [super isSubviewCollapsed:subview];
+    return [self isCollapsed:index];// || [super isSubviewCollapsed:subview];
 }
 
 - (NSUInteger)indexForView:(NSView *)view {

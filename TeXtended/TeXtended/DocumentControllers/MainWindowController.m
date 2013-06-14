@@ -134,6 +134,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    if ([self.mainView indexForView:subview] == 1) {
+        return YES;
+    }
     return NO;
 }
 
