@@ -10,6 +10,7 @@
 #import "NSString+LatexExtension.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
+#import "UndoSupport.h"
 static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
 static const NSArray *VALID_PRE_CHARS;
 static const NSSet *KEYS_TO_UNBIND;
@@ -82,12 +83,24 @@ typedef enum {
 - (void)handleBracketsOnInsertWithInsertion:(NSString *)str{
     // Call the highlighting algorithm to find matching brackets
     NSArray *ranges =[self highlightOnInsertWithInsertion:str];
-    
     //If no matching brackets where found: insert pendant
     if(!ranges) {
+        lastAutoinsert = [NSDate new];
         [self autoInsertMatchingBracket:str];
     }
 
+}
+
+-(BOOL)shouldInsert:(NSString *)str {
+    if (![self stringIsBracket:str]) {
+        return YES;
+    }
+    if(lastAutoinsert && lastAutoinsert.timeIntervalSinceNow > -0.5 && [self bracketTypeForString:str] == TMTClosingBracketType ) {
+        [self highlightOnInsertWithInsertion:[view.string substringWithRange:NSMakeRange(view.selectedRange.location-1, 1)]];
+        return NO;
+    }
+    lastAutoinsert = nil;
+    return YES;
 }
 
 
@@ -108,7 +121,7 @@ typedef enum {
     }
     
     //insert the closing bracket and reset cursor to current insertion point
-    [view insertText:extClosingBracket];
+    [view.undoSupport insertString:extClosingBracket atIndex:insertionPoint withActionName:NSLocalizedString(@"Autoinsert Matching Bracket", "Autoinsert Matching Bracket")];
     [view setSelectedRange:NSMakeRange(insertionPoint, 0)];
 }
 

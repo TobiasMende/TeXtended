@@ -183,10 +183,14 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)insertText:(id)str {
-    [super insertText:str];
     if (!self.servicesOn) {
+        [super insertText:str];
         return;
     }
+    if (![bracketHighlighter shouldInsert:str]) {
+        return;
+    }
+    [super insertText:str];
     if ([str isKindOfClass:[NSAttributedString class]]) {
         return;
     }

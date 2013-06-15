@@ -15,10 +15,14 @@
  
  */
 @interface BracketHighlighter : EditorService {
+    
+    NSDate *lastAutoinsert;
 }
 @property BOOL shouldHighlightMatchingBrackets;
 @property BOOL shouldAutoInsertClosingBrackets;
 
+
+- (BOOL) shouldInsert:(NSString*)str;
 /**
  Method for analyze the given input and highlight brackets according to matching rules.
  @param str the current input

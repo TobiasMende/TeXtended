@@ -72,7 +72,7 @@ typedef enum {
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", nil];
     
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
-    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", nil];
+    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
     
 }
 
@@ -99,7 +99,6 @@ typedef enum {
 
 
 - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     switch (type) {
         case TMTCommandCompletion:
@@ -129,7 +128,7 @@ typedef enum {
 }
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    
+   
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
@@ -162,6 +161,9 @@ typedef enum {
 
 
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    if (movement == NSRightTextMovement) {
+        return;
+    }
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     
     switch (type) {
@@ -193,7 +195,7 @@ typedef enum {
 }
 
 - (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-
+     
     NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
     CommandCompletion *completion = [completions objectForKey:word];
     if (flag && [self isFinalInsertion:movement]) {

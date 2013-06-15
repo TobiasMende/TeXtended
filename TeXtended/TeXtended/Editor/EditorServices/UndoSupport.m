@@ -13,8 +13,11 @@
 - (void)insertText:(NSAttributedString *)insertion
            atIndex:(NSUInteger)index
     withActionName:(NSString *)name {
-   
-    [view.textStorage insertAttributedString:insertion atIndex:index];
+    if (index >= view.string.length-1) {
+        [view.textStorage appendAttributedString:insertion];
+    } else {
+        [view.textStorage insertAttributedString:insertion atIndex:index];
+    }
     [[view.undoManager prepareWithInvocationTarget:self] deleteTextInRange:[NSValue valueWithRange:NSMakeRange(index, insertion.length)] withActionName:name];
     [view.undoManager setActionName:name];
     
@@ -22,7 +25,7 @@
 
 - (void)insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name {
     NSDictionary *attributes;
-    if (view.textStorage.length > 0) {
+    if (view.textStorage.length > 0 &&  index < view.string.length) {
        attributes= [view.textStorage attributesAtIndex:index effectiveRange:NULL];
     } else {
         attributes = [[NSDictionary alloc] init];
