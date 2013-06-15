@@ -13,7 +13,7 @@
 - (void)insertText:(NSAttributedString *)insertion
            atIndex:(NSUInteger)index
     withActionName:(NSString *)name {
-    if (index >= view.string.length-1) {
+    if (index >= view.string.length) {
         [view.textStorage appendAttributedString:insertion];
     } else {
         [view.textStorage insertAttributedString:insertion atIndex:index];
@@ -26,7 +26,10 @@
 - (void)insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name {
     NSDictionary *attributes;
     if (view.textStorage.length > 0 &&  index < view.string.length) {
-       attributes= [view.textStorage attributesAtIndex:index effectiveRange:NULL];
+        // Do nothing
+        attributes= [view.textStorage attributesAtIndex:index effectiveRange:NULL];
+    } else if (view.textStorage.length > 0 &&  index-1 < view.string.length && index > 0){
+         attributes= [view.textStorage attributesAtIndex:index-1 effectiveRange:NULL];
     } else {
         attributes = [[NSDictionary alloc] init];
     }

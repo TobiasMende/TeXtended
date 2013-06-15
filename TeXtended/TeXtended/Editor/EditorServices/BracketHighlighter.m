@@ -82,21 +82,22 @@ typedef enum {
 
 - (void)handleBracketsOnInsertWithInsertion:(NSString *)str{
     // Call the highlighting algorithm to find matching brackets
-    NSArray *ranges =[self highlightOnInsertWithInsertion:str];
+    //NSArray *ranges =[self highlightOnInsertWithInsertion:str];
     //If no matching brackets where found: insert pendant
-    if(!ranges) {
-        lastAutoinsert = [NSDate new];
+    //if(!ranges) {
         [self autoInsertMatchingBracket:str];
-    }
+    //}
 
 }
 
 -(BOOL)shouldInsert:(NSString *)str {
     if (![self stringIsBracket:str]) {
+        lastAutoinsert = nil;
         return YES;
     }
-    if(lastAutoinsert && lastAutoinsert.timeIntervalSinceNow > -0.5 && [self bracketTypeForString:str] == TMTClosingBracketType ) {
+    if(lastAutoinsert && lastAutoinsert.timeIntervalSinceNow > -0.33 && [self bracketTypeForString:str] == TMTClosingBracketType ) {
         [self highlightOnInsertWithInsertion:[view.string substringWithRange:NSMakeRange(view.selectedRange.location-1, 1)]];
+        lastAutoinsert = nil;
         return NO;
     }
     lastAutoinsert = nil;
@@ -107,6 +108,7 @@ typedef enum {
 - (void)autoInsertMatchingBracket:(NSString*) bracket {
     if ([self bracketTypeForString:bracket] != TMTOpeningBracketType || !self.shouldAutoInsertClosingBrackets   ) {
         //should not auto insert or the string is not an opening bracket.
+        lastAutoinsert = nil;
         return;
     }
     NSUInteger insertionPoint = [view selectedRange].location;
@@ -132,10 +134,9 @@ typedef enum {
     NSRange visibleGlyphRange = [lm glyphRangeForBoundingRect:visibleArea inTextContainer:view.textContainer];
     NSRange range = [lm characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
     NSArray *rangesToHighlight = [self findMatchingBracketFor:str withStart:pos inRange:range];
+    
     if (rangesToHighlight && self.shouldHighlightMatchingBrackets) {
-        for(NSValue *rv in rangesToHighlight) {
-            [view showFindIndicatorForRange:[rv rangeValue]];
-        }
+            [view showFindIndicatorForRange:[[rangesToHighlight lastObject] rangeValue]];
     }
     return rangesToHighlight;
     
