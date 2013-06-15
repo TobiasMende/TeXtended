@@ -100,8 +100,11 @@ typedef enum {
         lastAutoinsert = nil;
         return NO;
     }
-    
-    lastAutoinsert = nil;
+    if ([self bracketTypeForString:str]== TMTOpeningBracketType) {
+        lastAutoinsert = [NSDate new];
+    } else {
+        lastAutoinsert = nil;
+    }
     return YES;
 }
 
