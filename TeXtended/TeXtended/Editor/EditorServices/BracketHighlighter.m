@@ -123,6 +123,7 @@ typedef enum {
     //insert the closing bracket and reset cursor to current insertion point
     [view.undoSupport insertString:extClosingBracket atIndex:insertionPoint withActionName:NSLocalizedString(@"Autoinsert Matching Bracket", "Autoinsert Matching Bracket")];
     [view setSelectedRange:NSMakeRange(insertionPoint, 0)];
+    [view showFindIndicatorForRange:NSMakeRange(insertionPoint, extClosingBracket.length)];
 }
 
 - (NSArray*)highlightBracketWithInsertion:(NSString *)str andPosition:(NSUInteger) pos{
