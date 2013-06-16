@@ -547,7 +547,16 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     //NSString* path = @"/Users/Tobias/Documents/LatexDummies";
     NSURL *url = [NSURL fileURLWithPath:path];
-    [self loadPath:url];
+    @try {
+        [self loadPath:url];
+    }
+    @catch (NSException *exception) {
+        [self.titleButton setTitle:@""];
+        [self.titleButton setEnabled:FALSE];
+    }
+    @finally {
+        return;
+    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
