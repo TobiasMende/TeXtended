@@ -16,6 +16,7 @@
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
 - (void)loadPDF;
+- (void)updatePDFPosition:(NSDictionary*)info;
 @end
 
 @implementation ExtendedPDFViewController
@@ -54,7 +55,7 @@
 
 - (void) documentHasChangedAction {
     if (!self.pdfView.document) {
-        [self loadPDF];
+        [self performSelectorOnMainThread:@selector(loadPDF) withObject:nil waitUntilDone:YES];
     }
 }
 
@@ -63,7 +64,7 @@
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
-        [self.pdfView performSelectorOnMainThread:@selector(setDocument:) withObject:pdfDoc waitUntilDone:YES];
+        [self.pdfView setDocument:pdfDoc];
     }
 }
 
@@ -74,17 +75,23 @@
 #pragma mark Notification Observer
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
-    [self loadPDF];
+    [self performSelectorOnMainThread:@selector(updatePDFPosition:) withObject:[notification userInfo] waitUntilDone:NO];
+}
+
+- (void)updatePDFPosition:(NSDictionary *)info {
     PDFDocument *doc = self.pdfView.document;
+    [self loadPDF];
     if (doc) {
-        ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
+        ForwardSynctex *synctex = [info objectForKey:TMTForwardSynctexKey];
         if (synctex.page > 0) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
             NSPoint point = NSMakePoint(synctex.h, y);
-            [self.pdfView goToRect:NSMakeRect(point.x, point.y+20, 0, 0) onPage:p];
+            NSRect rect = NSMakeRect(point.x, point.y+20, 0, 0);
+            [self.pdfView goToRect:rect onPage:p];
         }
     }
+    
 }
 
 - (void)dealloc {
