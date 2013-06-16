@@ -19,6 +19,7 @@
 - (void) handleCompilerEnd:(NSNotification *)note;
 - (void) registerModelObserver;
 - (void) unregisterModelObserver;
+- (void) syncPDF:(DocumentModel *)model;
 @end
 
 @implementation TextViewController
@@ -62,6 +63,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 - (void)loadView {
     [super loadView];
     [self initialize];
+    [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
     
 }
 
@@ -92,6 +94,21 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
     }
     //TODO: reload file path?
+}
+
+
+- (void)syncPDF:(DocumentModel *)model {
+    if (model) {
+        ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:model.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
+        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+    } else {
+        for (DocumentModel *m in self.model.mainDocuments) {
+            ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
+            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+        }
+    }
 }
 
 - (void) documentHasChangedAction {
@@ -132,6 +149,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 
 - (void)textViewDidChangeSelection:(NSNotification *)notification {
     [self.scrollView.verticalRulerView setNeedsDisplay:YES];
+    
 }
 
 - (void)textDidChange:(NSNotification *)notification {
@@ -147,6 +165,8 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self registerModelObserver];
         }
+    } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
+        [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
     }
 }
 
@@ -158,6 +178,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 #ifdef DEBUG
     NSLog(@"TextViewController dealloc");
 #endif
+    [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
 }
 

@@ -82,7 +82,7 @@
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
             NSPoint point = NSMakePoint(synctex.h, y);
-            [self.pdfView goToRect:NSMakeRect(point.x, point.y+20, 10, 10) onPage:p];
+            [self.pdfView goToRect:NSMakeRect(point.x, point.y+20, 0, 0) onPage:p];
         }
     }
 }
