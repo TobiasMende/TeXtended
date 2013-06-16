@@ -506,8 +506,14 @@
      * Calculate the current line and the first visible line, this is needed from other views
      * and set here, because the lines are allready calculated.
      */
-    [view setCurrentRow:[self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1];
-    [view setFirstVisibleRow:lineLabel+1];
+    NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1;
+    if (view.currentRow != currentLine) {
+        [view setCurrentRow:currentLine];
+    }
+    if (view.firstVisibleRow != lineLabel+1) {
+        [view setFirstVisibleRow:lineLabel+1];
+    }
+    
     
     for (int i = 0; i < [lineHights count] - 1; i++) {
 
