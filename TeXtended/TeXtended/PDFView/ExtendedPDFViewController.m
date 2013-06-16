@@ -80,9 +80,9 @@
         ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
         if (synctex.page > 0) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
-//            [self.pdfView goToRect:NSMakeRect(synctex.x, synctex.y, 10, 10) onPage:p];
-            [self.pdfView goToPage:p];
-            NSLog(@"%@", NSStringFromRect([self.pdfView rectForPage:synctex.page]));
+            CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
+            NSPoint point = NSMakePoint(synctex.h, y);
+            [self.pdfView goToRect:NSMakeRect(point.x, point.y+20, 10, 10) onPage:p];
         }
     }
 }
