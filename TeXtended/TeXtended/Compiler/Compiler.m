@@ -30,12 +30,21 @@
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
         _finalSettings = [[controller model] finalCompiler];
+        _idleTimeForLiveCompile = 1;
     }
     return self;
 }
 
 
 - (void) compile:(bool)draft {
+    if (draft) {
+        [self compileWithMode:0];
+    } else {
+        [self compileWithMode:1];
+    }
+}
+
+- (void) compileWithMode:(int)mode {
     
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
     for (DocumentModel *model in mainDocuments) {
@@ -47,15 +56,17 @@
         [task setStandardInput:model.inputPipe];
         NSString *path;
         
-        if (draft) {
+        //TODO: use enum
+        if (mode == 0) {
             settings = [model draftCompiler];
-        } else {
+        } else if (mode == 1) {
             settings = [model finalCompiler];
+        } else if (mode == 2) {
+            settings = [model liveCompiler];
         }
+        
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
      
-      
-        
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
@@ -71,8 +82,21 @@
     }
 }
 
+-(void) liveCompile {
+    [self.documentController.mainDocument saveEntireDocument];
+    [self compileWithMode:2];
+}
+
 - (void)textDidChange:(NSNotification *)notification {
-    NSLog(@"TEST");
+    if ([self.liveTimer isValid]) {
+        [self.liveTimer invalidate];
+    }
+    
+    [self setLiveTimer:[NSTimer scheduledTimerWithTimeInterval: [self idleTimeForLiveCompile]
+                                                        target: self
+                                                      selector:@selector(liveCompile)
+                                                      userInfo: nil
+                                                       repeats: NO]];
 }
 
 - (void) updateDocumentController {
