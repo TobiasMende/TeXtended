@@ -32,7 +32,9 @@
     [newModel addPath:path];
     newModel.parent = self;
     if(children == nil)
+    {
         children = [[NSMutableArray alloc] init];
+    }
     for(NSInteger i = 0; i < [children count]; i++)
     {
         NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
@@ -48,20 +50,28 @@
 -(void)addPath:(NSString*)path
 {
     if([path isEqualToString:self.filePath])
+    {
         return;
+    }
     NSMutableArray* components = [[path pathComponents] mutableCopy];
     NSString* name = [components objectAtIndex:pathIndex+1];
     FileViewModel *child = [self getChildrenByName:name];
     if(child == nil)
+    {
         [self addChildren:path];
+    }
     else
+    {
         [child addPath:path];
+    }
 }
 
 -(void)addModel:(FileViewModel*)newModel
 {
     if(children == nil)
+    {
         children = [[NSMutableArray alloc] init];
+    }
     NSString* childName = newModel.fileName;
     NSInteger index = [children count];
     for(NSInteger i = 0; i < [children count]; i++)
@@ -142,7 +152,9 @@
             FileViewModel* actChildren = [self getChildrenByIndex:i];
             NSArray* childrenComponents = [actChildren pathComponents];
             if([[childrenComponents objectAtIndex:index] isEqualToString:[components objectAtIndex:index]])
+            {
                 [actChildren setFileName:oldPath toName:newName];
+            }
         }
     }
 }
@@ -153,9 +165,13 @@
     NSString *newPath = @"";
     for (NSInteger i = 0; i < [self.pathComponents count]; i++) {
         if(i == index)
+        {
             [newPath stringByAppendingPathComponent:name];
+        }
         else
+        {
             [newPath stringByAppendingPathComponent:[self.pathComponents objectAtIndex:i]];
+        }
     }
     [self willChangeValueForKey:@"filePath"];
     _filePath = newPath;
@@ -165,13 +181,17 @@
     [self didChangeValueForKey:@"pathComponents"];
     
     for(NSInteger i = 0; i < [children count]; i++)
+    {
         [[self getChildrenByIndex:i] setFileNameOfParent:name atComponentIndex:index];
+    }
 }
 
 -(FileViewModel*)getChildrenByName:(NSString*)name
 {
     if(children == nil)
+    {
         return nil;
+    }
     for (NSInteger i = 0; i < [children count]; i++) {
         NSComparisonResult result = [name compare:[[children objectAtIndex:i] fileName]];
         if (result == NSOrderedSame) {
@@ -184,7 +204,9 @@
 -(FileViewModel*)getChildrenByIndex:(NSInteger)index
 {
     if(children == nil)
+    {
         return nil;
+    }
     if ([children count] < index) {
         return nil;
     }
@@ -194,9 +216,13 @@
 -(NSInteger)numberOfChildren
 {
     if(children == nil)
+    {
         return 0;
+    }
     else
+    {
         return [children count];
+    }
 }
 
 -(void)checkPath:(NSString*)path
@@ -218,7 +244,9 @@
     {
         NSString* file = [[[[files objectAtIndex:i] path] pathComponents] objectAtIndex:pathIndex+1];
         if([children indexOfObject:file]== NSNotFound)
+        {
             [self addPath:path];
+        }
     }
     for(NSInteger i = 0; i < [children count]; i++)
     {
@@ -254,7 +282,9 @@
 {
     [newChildren.parent removeChildren:newChildren];
     if(children == nil)
+    {
         children = [[NSMutableArray alloc] init];
+    }
     NSString* childName = newChildren.fileName;
     NSInteger index = [children count];
     for(NSInteger i = 0; i < [children count]; i++)

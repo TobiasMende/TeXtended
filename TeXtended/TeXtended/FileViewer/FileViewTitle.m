@@ -20,30 +20,4 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
-}
-
-- (void)rightMouseDown:(NSEvent *)theEvent
-{
-    NSLog(@"Box");
-    return;
-}
-
-- (void)mouseDown:(NSEvent *)theEvent
-{
-    NSLog(@"hh");
-}
-
-- (void)mouseEntered:(NSEvent *)theEvent
-{
-    NSLog(@"aa");
-}
-
-- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
-{
-    return YES;
-}
-
 @end
