@@ -488,11 +488,10 @@
     NSString *text                  = [view string];
     NSRange range, glyphRange;
 
-    /* 
-     * Calculate the current line, this is needed from other views
-     * and set here, because the lines are allready calculated.
-     */
-    [view setCurrentRow:[self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1];
+    
+    
+    
+   
     
     glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
@@ -502,6 +501,20 @@
     
     lineHights = [self calculateLineHeights:lineLabel];
 
+    
+    /*
+     * Calculate the current line and the first visible line, this is needed from other views
+     * and set here, because the lines are allready calculated.
+     */
+    NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1;
+    if (view.currentRow != currentLine) {
+        [view setCurrentRow:currentLine];
+    }
+    if (view.firstVisibleRow != lineLabel+1) {
+        [view setFirstVisibleRow:lineLabel+1];
+    }
+    
+    
     for (int i = 0; i < [lineHights count] - 1; i++) {
 
         /* draw rect for current line */
