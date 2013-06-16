@@ -48,9 +48,7 @@
         for (NSString *arg in task.arguments) {
             [command appendFormat:@" %@", arg];
         }
-        NSLog(@"%@", command);
         [self parseOutput:stringRead];
-        NSLog(@"\n%@", self);
     }
     return self;
 }
