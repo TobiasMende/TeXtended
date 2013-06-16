@@ -118,6 +118,9 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)initDefaults {
     [self setupInheritedCompilers];
+    if (!self.liveCompile) {
+       [self setLiveCompile:[NSNumber numberWithBool:YES]];
+    }
 }
 
 - (void)setupInheritedCompilers {

@@ -10,7 +10,7 @@
 #import "DocumentControllerProtocol.h"
 #import "TextViewObserver.h"
 @class HighlightingTextView, LineNumberView, DocumentModel;
-@interface TextViewController : NSViewController<DocumentControllerProtocol,NSTextViewDelegate,NSTextDelegate> {
+@interface TextViewController : NSViewController<DocumentControllerProtocol,NSTextViewDelegate> {
     LineNumberView *lineNumberView;
     NSMutableSet *observers;
 }
