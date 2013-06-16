@@ -39,6 +39,7 @@
 @property  (strong)id<SyntaxHighlighter> syntaxHighlighter;
 @property (strong) CodeExtensionEngine *codeExtensionEngine;
 @property NSUInteger currentRow;
+@property NSUInteger firstVisibleRow;
 
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
@@ -81,7 +82,6 @@
  Called when the syntax highlighting should be updated
  */
 - (void) updateSyntaxHighlighting;
-
 
 
 /**
