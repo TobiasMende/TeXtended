@@ -58,12 +58,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return [super respondsToSelector:aSelector];
 }
 
-- (BOOL)saveEntireDocument {
+
+- (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     autosave = NO;
-    [self saveDocument:self];
-    [self updateChangeCount:NSSaveOperation];
+    [self saveDocumentWithDelegate:delegate didSaveSelector:action contextInfo:NULL];
     autosave = YES;
-    return YES;
+    [self updateChangeCount:NSSaveOperation];
 }
 
 
@@ -86,7 +86,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
-    [self updateChangeCount:saveOperation];
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
         [self.documentController breakUndoCoalescing];
     }
@@ -94,13 +93,17 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         if(outError) {
             *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
         }
-        NSLog(@"Can't handle type %@", typeName);
         return NO;
     }
+    
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
+    
+    NSLog(@"%@\n%@", self.model.texPath, self.model.systemPath);
     BOOL success = [self.documentController saveDocument:outError];
     return success;
+
+
 }
 
 

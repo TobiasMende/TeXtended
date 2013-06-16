@@ -10,6 +10,6 @@
 
 @protocol MainDocument <NSObject>
 
-- (BOOL) saveEntireDocument;
+- (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
 
 @end

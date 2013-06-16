@@ -135,27 +135,36 @@ static NSUInteger calls = 0;
 }
 
 - (void) draftCompile {
-    BOOL success = [self.mainDocument saveEntireDocument];
-    if (!success) {
-        NSLog(@"Error");
-    }
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(draftCompile:didSave:contextInfo:)];
+    
+}
+
+- (void)draftCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
+    if (didSave) {
         [self.compiler compile:draft];
+    }
 }
 
 - (void) finalCompile {
-    BOOL success = [self.mainDocument saveEntireDocument];
-    if (!success) {
-        NSLog(@"Error");
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(finalCompile:didSave:contextInfo:)];
+   
+}
+
+- (void)finalCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
+    if (didSave) {
+         [self.compiler compile:final];
     }
-    [self.compiler compile:final];
 }
 
 - (void)refreshLiveView {
-    BOOL success = [self.mainDocument saveEntireDocument];
-    if (!success) {
-        NSLog(@"Error");
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+    
+}
+
+- (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
+    if (didSave) {
+        [self.compiler compile:live];
     }
-    [self.compiler compile:live];
 }
 
 - (void)documentModelDidChange {

@@ -79,11 +79,14 @@
 }
 
 -(void) liveCompile {
-    BOOL success = [self.documentController.mainDocument saveEntireDocument];
-    if (!success) {
-        NSLog(@"Failed to save file while live compiling.");
+    [self.documentController.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+    
+}
+
+- (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
+    if (didSave) {
+        [self compile:live];
     }
-    [self compile:live];
 }
 
 - (void)textDidChange:(NSNotification *)notification {

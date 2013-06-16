@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, CompileMode) {
  * Call for a live compile perform.
  */
 -(void) liveCompile;
+- (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
 
 /**
  * Yes, if autocompile is activated.
