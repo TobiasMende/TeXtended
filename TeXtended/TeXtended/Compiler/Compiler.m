@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "DocumentController.h"
+#import "ForwardSynctex.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -30,13 +31,16 @@
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
         _finalSettings = [[controller model] finalCompiler];
+        _idleTimeForLiveCompile = 1;
     }
     return self;
 }
 
 
-- (void) compile:(bool)draft {
-    
+
+
+- (void) compile:(CompileMode)mode {
+    [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
     for (DocumentModel *model in mainDocuments) {
         CompileSetting *settings;
@@ -47,15 +51,16 @@
         [task setStandardInput:model.inputPipe];
         NSString *path;
         
-        if (draft) {
+        if (mode == draft) {
             settings = [model draftCompiler];
-        } else {
+        } else if (mode == final) {
             settings = [model finalCompiler];
+        } else if (mode == live) {
+            settings = [model liveCompiler];
         }
+        
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
      
-      
-        
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
@@ -65,14 +70,30 @@
             if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
+            
+            //FIXME: Dynamic rows and cols
+            ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:model.texPath outputPath:model.pdfPath row:42 andColumn:10];
         }];
         
         [task launch];
     }
 }
 
+-(void) liveCompile {
+    [self.documentController.mainDocument saveEntireDocument];
+    [self compile:live];
+}
+
 - (void)textDidChange:(NSNotification *)notification {
-    NSLog(@"TEST");
+    if ([self.liveTimer isValid]) {
+        [self.liveTimer invalidate];
+    }
+    
+    [self setLiveTimer:[NSTimer scheduledTimerWithTimeInterval: [self idleTimeForLiveCompile]
+                                                        target: self
+                                                      selector:@selector(liveCompile)
+                                                      userInfo: nil
+                                                       repeats: NO]];
 }
 
 - (void) updateDocumentController {

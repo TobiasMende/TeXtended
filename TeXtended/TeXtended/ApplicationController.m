@@ -128,7 +128,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithInt:80], TMT_EDITOR_HARD_WRAP_AFTER,
                               [NSNumber numberWithInt:HardWrap], TMT_EDITOR_LINE_WRAP_MODE,
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
-                              @"/usr/texbin/texdoc", TMT_PATH_TO_TEXDOC,
+                              @"/usr/texbin", TMT_PATH_TO_TEXBIN,
                               @"pdflatex.sh", TMTLiveCompileFlow,
                               @"pdflatex.sh", TMTDraftCompileFlow,
                               @"pdflatex.sh", TMTFinalCompileFlow,

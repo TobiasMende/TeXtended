@@ -12,6 +12,14 @@
 @interface Compiler : NSObject <TextViewObserver> {
 }
 
+typedef NS_ENUM(NSInteger, CompileMode) {
+    live,
+    draft,
+    final
+};
+
+@property (strong) NSTimer *liveTimer;
+@property (atomic) int idleTimeForLiveCompile;
 @property (weak) DocumentController *documentController;
 @property (weak) CompileSetting* draftSettings;
 @property (weak) CompileSetting* liveSettings;
@@ -24,9 +32,14 @@
 
 /**
  * Calls the compile method on the document.
- * @param draft is true, if the draft compile should be used and false for a final compile.
+ * @param CompileMode defines, in which mode the compiler should run.
  */
-- (void) compile:(bool)draft;
+- (void) compile:(CompileMode)mode;
+
+/**
+ * Call for a live compile perform.
+ */
+-(void) liveCompile;
 
 /**
  * Yes, if autocompile is activated.

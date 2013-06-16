@@ -9,6 +9,7 @@
 #import "TexdocController.h"
 #import "TexdocEntry.h"
 #import "Constants.h"
+#import "PathFactory.h"
 
 @interface TexdocController ()
 - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package info:(NSDictionary*)info andHandler:(id<TexdocHandlerProtocol>)handler;
@@ -50,7 +51,7 @@
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     
     NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
-    NSString *command = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_PATH_TO_TEXDOC]];
+    NSString *command = [PathFactory texdoc];
     [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
     [task setLaunchPath:command];
     NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", name,

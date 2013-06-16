@@ -82,7 +82,7 @@
  */
 
 #define TMT_ENVIRONMENT_PATH @"TMTEnvironmentPath"
-#define TMT_PATH_TO_TEXDOC @"TMTPathToTexdoc"
+#define TMT_PATH_TO_TEXBIN @"TMTPathToTexbin"
 #define TMTLiveCompileFlow @"TMTLiveCompileFlow"
 #define TMTDraftCompileFlow @"TMTDraftCompileFlow"
 #define TMTFinalCompileFlow @"TMTFinalCompileFlow"
