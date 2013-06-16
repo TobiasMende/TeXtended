@@ -17,6 +17,7 @@
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
 #import "SpellCheckingService.h"
+#import "LineNumberView.h"
 static NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
@@ -286,6 +287,26 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
                                         FLT_MAX)];
             
         }
+}
+
+
+- (NSUInteger)currentCol {
+    return [self colForRange:self.selectedRange];
+}
+
+- (NSUInteger)colForRange:(NSRange)range {
+    NSUInteger location = 0;
+    
+    NSRange window = NSMakeRange(range.location, 1);
+    while (window.location > 0 && NSMaxRange(window) < self.string.length) {
+        if ([[self.string substringWithRange:window] isEqualToString:@"\n"]) {
+            return location;
+        } else {
+            location ++;
+            window.location --;
+        }
+    }
+    return location;
 }
 
 

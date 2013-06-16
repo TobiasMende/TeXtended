@@ -274,7 +274,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
     pathsToWatch = [[NSMutableArray alloc] init];
-    nodes = [[FileViewModel alloc] init];
     [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
@@ -312,6 +311,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)url
 {
     [pathsToWatch removeAllObjects];
+    nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
     [self recursiveFileFinder:url];
     [outline reloadData];
@@ -547,7 +547,16 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     //NSString* path = @"/Users/Tobias/Documents/LatexDummies";
     NSURL *url = [NSURL fileURLWithPath:path];
-    [self loadPath:url];
+    @try {
+        [self loadPath:url];
+    }
+    @catch (NSException *exception) {
+        [self.titleButton setTitle:@""];
+        [self.titleButton setEnabled:FALSE];
+    }
+    @finally {
+        return;
+    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object

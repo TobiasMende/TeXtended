@@ -59,9 +59,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 - (BOOL)saveEntireDocument {
     autosave = NO;
     [self saveDocument:self];
+    [self updateChangeCount:NSSaveOperation];
     autosave = YES;
     return YES;
 }
+
+
 
 //- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
 //    NSLog(@"%@",[url path]);

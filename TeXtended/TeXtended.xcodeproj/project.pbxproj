@@ -43,6 +43,7 @@
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
+		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsView.xib */; };
@@ -281,6 +282,8 @@
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardSynctex.h; sourceTree = "<group>"; };
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
+		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
+		D2A0E631176DCAA700EDAB5B /* PathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathFactory.m; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */,
 				D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */,
 				D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */,
+				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
+				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -983,6 +988,7 @@
 				D2FCB62F1768F8F0008C2FE9 /* ExtendedTableView.m in Sources */,
 				D217A418176A59FE002DB084 /* TMTSplitView.m in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
+				D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

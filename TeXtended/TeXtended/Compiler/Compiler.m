@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "DocumentController.h"
+#import "ForwardSynctex.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -69,6 +70,8 @@
             if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
+            
+           
         }];
         
         [task launch];
