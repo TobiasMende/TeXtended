@@ -35,9 +35,13 @@
 - (IBAction)openInfoView:(id)sender
 {
     if(!self.doc)
+    {
         return;
+    }
     if(!self.doc.texPath)
+    {
         return;
+    }
     [self.infoWindowController showWindow:self.infoWindowController];
     [self.infoWindowController loadDocument:self.doc];
 }
@@ -54,9 +58,13 @@
     
     NSURL *url;
     if (self.doc.project)
+    {
         url = [NSURL fileURLWithPath:self.doc.project.path];
+    }
     else
+    {
         url = [NSURL fileURLWithPath:[self.doc.texPath stringByDeletingLastPathComponent]];
+    }
     [self loadPath:url];
 }
 
@@ -84,7 +92,10 @@
    isItemExpandable:(id)item
 {
     FileViewModel *model = (FileViewModel*)item;
-    if([model numberOfChildren] > 0) return YES;
+    if([model numberOfChildren] > 0)
+    {
+        return YES;
+    }
     
     return NO;
 }
@@ -120,11 +131,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
     if(self.doc.project)
     {
-        NSArray* docs = [self.doc.project.documents allObjects];
-        for (NSInteger i = 0; i < [docs count]; i++) {
-            DocumentModel *model = [docs objectAtIndex:i];
+        for (DocumentModel* model in self.doc.project.documents) {
             if([model.texPath isEqualToString:oldFile])
+            {
                 model.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
+            }
         }
     }
     else
@@ -174,8 +185,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     {
         NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
         for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+        {
             if(![[[draggedFilenames objectAtIndex:0] pathExtension] isEqualToString:@"tex"])
+            {
                 return NSDragOperationNone;
+            }
+        }
         return NSDragOperationCopy;
     }
     return NSDragOperationNone;
@@ -270,7 +285,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 {
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
     if(!model)
+    {
         return;
+    }
+    
     if (![[model.fileName pathExtension] isEqualToString:@"tex"]) {
         return;
     }
@@ -281,7 +299,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     else
     {
         if(![model.filePath isEqualToString:self.doc.texPath])
+        {
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
+        }
     }
 }
 
@@ -339,15 +359,21 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
+    {
         [self createFile:nodes.filePath];
+    }
     else
     {
         BOOL isDir;
         [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
         if(isDir)
+        {
             [self createFile:model.filePath];
+        }
         else
+        {
             [self createFile:[model.filePath stringByDeletingLastPathComponent]];
+        }
     }
 }
 
@@ -361,9 +387,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         BOOL isDir;
         [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
         if(isDir)
+        {
             [self createFolder:model.filePath];
+        }
         else
+        {
             [self createFolder:[model.filePath stringByDeletingLastPathComponent]];
+        }
     }
 }
 
@@ -459,7 +489,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (IBAction)openFolderinFinder:(id)sender
 {
-    [self openFileInDefApp:nodes.filePath];
+    //[self openFileInDefApp:nodes.filePath];
+    NSLog(@"%@", self.doc.systemPath);
 }
 
 - (BOOL)openFileInDefApp: (NSString*)path
@@ -491,12 +522,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.project.name, stringFromDate];
         }
         else
+        {
             titleText = [NSString stringWithFormat:@"%@", _doc.project.name];
+        }
         
         // Add Oberserver
         NSArray *docs = [self.doc.project.documents allObjects];
-        for(NSInteger i = 0; i < docs.count; i++)
-            [[docs objectAtIndex:i] addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
+        for(DocumentModel *model in self.doc.project.documents)
+            [model addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
     } else {
         totalPath = self.doc.texPath;
         NSString *stringFromDate;
@@ -506,14 +539,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.texName.stringByDeletingPathExtension, stringFromDate];
         }
         else
+        {
             titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];
+        }
         
         // Add Observer
         [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
     }
     
     // In Sandboxmode
-    if([titleText isEqualToString:@"(null)"])
+    if(titleText)
     {
         [self.titleButton setTitle:@""];
         return;
@@ -543,7 +578,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     DocumentModel *dc = (DocumentModel*)object;
     //NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], [change valueForKey:NSKeyValueChangeNewKey]);
     NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], dc.texPath);
-    if (!nodes && ![dc.texPath isEqualToString:@"(null)"]) {
+    if (!nodes && !dc.texPath) {
         //[self updateFileViewModel:nil];
     }
 }
@@ -577,12 +612,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)dealloc {
     if (self.doc.project)
     {
-        NSArray *docs = [self.doc.project.documents allObjects];
-        for(NSInteger i = 0; i < docs.count; i++)
-            [[docs objectAtIndex:i] removeObserver:self forKeyPath:@"texPath"];
+        for(DocumentModel* model in self.doc.project.documents)
+        {
+            [model removeObserver:self forKeyPath:@"texPath"];
+        }
     }
     else
+    {
         [self.doc removeObserver:self forKeyPath:@"texPath"];
+    }
+    
     if (self.docController) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }

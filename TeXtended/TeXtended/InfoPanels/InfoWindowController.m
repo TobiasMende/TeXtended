@@ -52,7 +52,10 @@
 - (void)loadDocument:(DocumentModel*) document
 {
     if(self.doc != document)
+    {
         self.doc = document;
+    }
+    
     if(self.doc.project)
     {
         [self.lblName setStringValue:self.doc.project.name];
@@ -64,7 +67,9 @@
             compileText = [formatter stringFromDate:self.doc.lastCompile];
         }
         else
+        {
             compileText = [NSString stringWithFormat:@"-"];
+        }
         [self.lblCompile setStringValue:compileText];
         
         NSString *changedText;
@@ -75,16 +80,22 @@
             changedText = [formatter stringFromDate:self.doc.lastChanged];
         }
         else
+        {
             changedText = [NSString stringWithFormat:@"-"];
+        }
         [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Project"];
         [self.lblPath setStringValue:self.doc.project.path];
         [self.addButton setEnabled:TRUE];
         [self.removeButton setEnabled:TRUE];
         NSArray* temp = [self.doc.project.documents allObjects];
-        for(NSInteger i = 0; i < [temp count]; i++)
-            if ([[[[temp objectAtIndex:i] texName] pathExtension] isEqualToString:@"tex"])
-                [texDocs addObject:[temp objectAtIndex:i]];
+        for(DocumentModel* model in self.doc.project.documents)
+        {
+            if ([[[model texName] pathExtension] isEqualToString:@"tex"])
+            {
+                [texDocs addObject:model];
+            }
+        }
     }
     else
     {
@@ -97,7 +108,9 @@
             compileText = [formatter stringFromDate:self.doc.lastCompile];
         }
         else
+        {
             compileText = [NSString stringWithFormat:@"-"];
+        }
         [self.lblCompile setStringValue:compileText];
         
         NSString *changedText;
@@ -108,7 +121,9 @@
             changedText = [formatter stringFromDate:self.doc.lastChanged];
         }
         else
+        {
             changedText = [NSString stringWithFormat:@"-"];
+        }
         [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Document"];
         [self.lblPath setStringValue:self.doc.texPath];

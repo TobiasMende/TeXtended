@@ -19,25 +19,4 @@
     return self;
 }
 
-/*- (BOOL)performDragOperation:(id < NSDraggingInfo >)sender {
-    NSLog(@"Perform");
-    NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-        if(![[[draggedFilenames objectAtIndex:0] pathExtension] isEqualToString:@"tex"])
-            return NO;
-    return YES;
-}*/
-
-/*-(void)draggingExited:(id<NSDraggingInfo>)sender
-{
-    [self setNeedsDisplay: NO];
-}*/
-
-/*- (void)concludeDragOperation:(id <NSDraggingInfo>)sender{
-    NSLog(@"Conclude");
-    NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-    //for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-        //[self]
-}*/
-
 @end
