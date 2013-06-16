@@ -47,6 +47,11 @@
     if (!self.doc) {
         return;
     }
+    
+    if (!nodes) {
+        return;
+    }
+    
     NSURL *url;
     if (self.doc.project)
         url = [NSURL fileURLWithPath:self.doc.project.path];
@@ -564,7 +569,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self willChangeValueForKey:@"docController"];
     _docController = docController;
     [self didChangeValueForKey:@"docController"];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:nil];
+    for (DocumentModel* model in self.doc.mainDocuments) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:model];
+    }
 }
 
 - (void)dealloc {
