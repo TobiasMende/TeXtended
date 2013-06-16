@@ -490,7 +490,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (IBAction)openFolderinFinder:(id)sender
 {
     //[self openFileInDefApp:nodes.filePath];
-    NSLog(@"%@", self.doc.systemPath);
+    NSLog(@"%@", self.doc.texPath);
 }
 
 - (BOOL)openFileInDefApp: (NSString*)path
@@ -539,7 +539,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         else
         {
-            titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];
+            if (!self.doc.texName) {
+                titleText = @"";
+            }
+            else
+            {
+                titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];
+            }
         }
         
         // Add Observer
@@ -547,7 +553,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     // In Sandboxmode
-    if(!titleText)
+    if([titleText isEqualToString:@""])
     {
         [self.titleButton setTitle:@""];
         return;
