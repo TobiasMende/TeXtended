@@ -25,6 +25,7 @@
         <attribute name="encoding" optional="YES" transient="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="lastChanged" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastCompile" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="liveCompile" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="pdfPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="systemPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="texPath" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,7 +43,7 @@
         <element name="BibFile" positionX="385" positionY="-162" width="128" height="88"/>
         <element name="Compilable" positionX="25" positionY="-349" width="128" height="120"/>
         <element name="CompileSetting" positionX="448" positionY="-333" width="128" height="148"/>
-        <element name="Document" positionX="-245" positionY="-159" width="128" height="165"/>
+        <element name="Document" positionX="-245" positionY="-159" width="128" height="180"/>
         <element name="Project" positionX="171" positionY="-162" width="128" height="120"/>
     </elements>
 </model>

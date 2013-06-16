@@ -486,6 +486,11 @@
     NSString *text                  = [view string];
     NSRange range, glyphRange;
 
+    /* 
+     * Calculate the current line, this is needed from other views
+     * and set here, because the lines are allready calculated.
+     */
+    //[self setCurrentLine:[self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1];
     
     glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
