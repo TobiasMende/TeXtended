@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TextViewObserver.h"
 @class DocumentController,CompileSetting;
-@interface Compiler : NSObject {
+@interface Compiler : NSObject <TextViewObserver> {
 }
 
 @property (weak) DocumentController *documentController;

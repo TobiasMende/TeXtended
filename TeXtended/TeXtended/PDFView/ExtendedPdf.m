@@ -68,6 +68,8 @@ static const NSSet *KEYS_TO_UNBIND;
     
     // add the controlls
    [self addControlls];
+   [self addSubview:[controllsView view]];
+   [[controllsView view] setHidden:YES];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
@@ -81,15 +83,14 @@ static const NSSet *KEYS_TO_UNBIND;
         && p.y >= p2.y
         && p.y <= p2.y + controllsView.view.frame.size.height) {
         
-        if ([[self subviews] count] == 1) {
-            [self addControlls];
-            [self addSubview:[controllsView view]];
+        if ([[controllsView view] isHidden]) {
+            [[controllsView view] setHidden:NO];
             [self setNeedsDisplay:YES];
         }
         
     } else {
         if ([[self subviews] count] > 1) {
-            [[controllsView view] removeFromSuperview];
+            [[controllsView view] setHidden:YES];
             [self setNeedsDisplay:YES];
         }
     }
@@ -100,6 +101,8 @@ static const NSSet *KEYS_TO_UNBIND;
     [super drawPage:page];
     [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
     [controllsView update:self];
+    
+    //NSLog(@"%li / %li", [self.document pageCount], [self.document pageCount]);
     
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
