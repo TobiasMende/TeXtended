@@ -72,7 +72,7 @@
 										<string key="NSFrameSize">{455, 397}</string>
 										<reference key="NSSuperview" ref="438429443"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="705059121"/>
+										<reference key="NSNextKeyView" ref="783237092"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<object class="NSTextContainer" key="NSTextContainer" id="549277320">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -175,6 +175,7 @@
 								<string key="NSFrame">{{440, 1}, {16, 397}}</string>
 								<reference key="NSSuperview" ref="830351946"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:83</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="830351946"/>
@@ -200,7 +201,7 @@
 						<string key="NSFrameSize">{457, 399}</string>
 						<reference key="NSSuperview" ref="947996288"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="438429443"/>
+						<reference key="NSNextKeyView" ref="705059121"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{1, 1}</string>
 						<int key="NSsFlags">133138</int>
@@ -215,6 +216,7 @@
 				<string key="NSFrameSize">{457, 399}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="830351946"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -243,15 +245,7 @@
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="584217018"/>
 					</object>
-					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="584217018"/>
-						<reference key="destination" ref="1001"/>
-					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">25</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -425,7 +419,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSNumber *encoding;
 @property (nonatomic, strong) ProjectModel *project;
 @property (nonatomic, strong) NSSet *subCompilabels;
+@property (nonatomic, strong) NSNumber* liveCompile;
 
 - (NSString*) loadContent;
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;

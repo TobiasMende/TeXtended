@@ -68,9 +68,12 @@
 							<string key="NSToolbarItemPaletteLabel">Live</string>
 							<string key="NSToolbarItemToolTip">Enable/ Disable Livecompile</string>
 							<object class="NSButton" key="NSToolbarItemView" id="493995493">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{0, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="178519761">
@@ -116,9 +119,12 @@
 							<string key="NSToolbarItemPaletteLabel">Final</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="147505985">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="703661583">
@@ -160,9 +166,12 @@
 							<string key="NSToolbarItemPaletteLabel">View</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="538676730">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {104, 24}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="721200420">
@@ -227,9 +236,12 @@
 							<string key="NSToolbarItemPaletteLabel">Report</string>
 							<string key="NSToolbarItemToolTip">Report a Bug</string>
 							<object class="NSButton" key="NSToolbarItemView" id="277962861">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{7, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="338127929">
@@ -271,9 +283,12 @@
 							<string key="NSToolbarItemPaletteLabel">Draft</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="158262745">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="376759161">
@@ -501,6 +516,7 @@
 									<string key="NSFrame">{{595, 0}, {379, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSAntiCompressionPriority">{1, 1}</string>
 									<int key="NSDividerStyle">2</int>
@@ -533,7 +549,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="99386276"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{200, 274}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<int key="NSWindowAnimationBehavior">3</int>
@@ -679,19 +695,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.TMTDocumentEnableLiveCompile</string>
-						<reference key="source" ref="493995493"/>
-						<reference key="destination" ref="461874640"/>
+						<string key="label">value: self.documentController.model.liveCompile</string>
+						<reference key="source" ref="178519761"/>
+						<reference key="destination" ref="512844837"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="493995493"/>
-							<reference key="NSDestination" ref="461874640"/>
-							<string key="NSLabel">value: values.TMTDocumentEnableLiveCompile</string>
+							<reference key="NSSource" ref="178519761"/>
+							<reference key="NSDestination" ref="512844837"/>
+							<string key="NSLabel">value: self.documentController.model.liveCompile</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.TMTDocumentEnableLiveCompile</string>
+							<string key="NSKeyPath">self.documentController.model.liveCompile</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100409</int>
+					<int key="connectionID">100426</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1152,7 +1168,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100417</int>
+			<int key="maxID">100426</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1202,6 +1218,7 @@
 						<string key="draftCompile:">id</string>
 						<string key="finalCompile:">id</string>
 						<string key="genericAction:">id</string>
+						<string key="liveCompile:">id</string>
 						<string key="reportBug:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1219,6 +1236,10 @@
 						</object>
 						<object class="IBActionInfo" key="genericAction:">
 							<string key="name">genericAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="liveCompile:">
+							<string key="name">liveCompile:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="reportBug:">

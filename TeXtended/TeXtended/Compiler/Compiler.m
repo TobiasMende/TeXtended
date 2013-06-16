@@ -71,8 +71,7 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
             
-            //FIXME: Dynamic rows and cols
-            ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:model.texPath outputPath:model.pdfPath row:42 andColumn:10];
+           
         }];
         
         [task launch];
@@ -80,11 +79,18 @@
 }
 
 -(void) liveCompile {
-    [self.documentController.mainDocument saveEntireDocument];
+    BOOL success = [self.documentController.mainDocument saveEntireDocument];
+    if (!success) {
+        NSLog(@"Failed to save file while live compiling.");
+    }
     [self compile:live];
 }
 
 - (void)textDidChange:(NSNotification *)notification {
+    if (![[self.documentController.model liveCompile] boolValue]) {
+        return; // live compile deactivated
+    }
+        
     if ([self.liveTimer isValid]) {
         [self.liveTimer invalidate];
     }

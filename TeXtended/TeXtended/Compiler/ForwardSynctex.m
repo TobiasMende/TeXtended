@@ -18,6 +18,10 @@
 
 - (id)initWithInputPath:(NSString *)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col {
     self = [super init];
+    if (!inPath && !outPath) {
+        NSLog(@"Can't perform synctex. No file was set.");
+        return self;
+    }
     if (self) {
         NSTask *task = [[NSTask alloc] init];
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];

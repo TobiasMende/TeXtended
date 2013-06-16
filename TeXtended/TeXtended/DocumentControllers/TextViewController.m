@@ -10,8 +10,15 @@
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
 #import "CodeNavigationAssistant.h"
+#import "DocumentController.h"
+#import "Constants.h"
+#import "DocumentModel.h"
+#import "ForwardSynctex.h"
 @interface TextViewController ()
 - (void) initialize;
+- (void) handleCompilerEnd:(NSNotification *)note;
+- (void) registerModelObserver;
+- (void) unregisterModelObserver;
 @end
 
 @implementation TextViewController
@@ -22,14 +29,40 @@
     if (self) {
         self.parent = parent;
         observers = [NSMutableSet new];
+        self.model = [[self.parent documentController] model];
+        
+        [self registerModelObserver];
     }
     return self;
+}
+
+- (void)registerModelObserver {
+    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    for (DocumentModel *m in self.model.mainDocuments) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
+    }
+}
+
+- (void)unregisterModelObserver {
+    [self.model removeObserver:self forKeyPath:@"mainDocuments"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+}
+
+- (void)handleCompilerEnd:(NSNotification *)note {
+    DocumentModel *m = [note object];
+    if (![self.model.mainDocuments containsObject:m]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:m];
+        return;
+    }
+ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
+NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
 }
 
 - (void)loadView {
     [super loadView];
     [self initialize];
-    [self.textView setDelegate:self];
+    
 }
 
 - (void)initialize {
@@ -38,6 +71,7 @@
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    [self.textView setDelegate:self];
 }
 
 
@@ -54,6 +88,10 @@
 }
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    for (DocumentModel *m in self.model.mainDocuments) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
+    }
     //TODO: reload file path?
 }
 
@@ -94,9 +132,22 @@
 
 
 - (void)textDidChange:(NSNotification *)notification {
+    NSLog(@"Bla");
+}
+- (void)controlTextDidChange:(NSNotification *)notification {
+    NSLog(@"Test");
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
+        [self unregisterModelObserver];
+        if ([keyPath isEqualToString:@"mainDocuments"]) {
+            [self registerModelObserver];
+        }
+    }
+}
 
 
 #pragma mark -
@@ -106,6 +157,7 @@
 #ifdef DEBUG
     NSLog(@"TextViewController dealloc");
 #endif
+    [self unregisterModelObserver];
 }
 
 @end

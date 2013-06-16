@@ -101,6 +101,12 @@
 
 
 /*
+ Keys for user infos in NSNotification
+ */
+
+#define TMTForwardSynctexKey @"TMTForwardSynctexKey"
+
+/*
  Notification Names
  */
 #define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
@@ -110,6 +116,7 @@
 #define TMTDocumentModelInputPipeChangeNotification @"TMTDocumentModelInputPipeChangeNotification"
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
+#define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
