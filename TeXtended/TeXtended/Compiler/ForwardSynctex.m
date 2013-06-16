@@ -44,7 +44,13 @@
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+        NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
+        for (NSString *arg in task.arguments) {
+            [command appendFormat:@" %@", arg];
+        }
+        NSLog(@"%@", command);
         [self parseOutput:stringRead];
+        NSLog(@"\n%@", self);
     }
     return self;
 }
@@ -74,8 +80,23 @@
     } else if([key isEqualToString:@"H"]) {
         self.height = [value floatValue];
     }
+        if (self.page > 0 && self.x > 0 && self.y > 0 && self.h >0 && self.v >0 && self.width >0 && self.height >0) {
+            break;
+        }
     }
     
+}
+
+
+- (NSString *)description {
+    NSMutableString *output = [NSMutableString stringWithFormat:@"Page:%li",self.page];
+    [output appendFormat:@"\nx:%lf",self.x];
+    [output appendFormat:@"\ny:%lf",self.y];
+    [output appendFormat:@"\nh:%lf",self.h];
+    [output appendFormat:@"\nv:%lf",self.v];
+    [output appendFormat:@"\nW:%lf",self.width];
+    [output appendFormat:@"\nH:%lf",self.height];
+    return output;
 }
 
 @end

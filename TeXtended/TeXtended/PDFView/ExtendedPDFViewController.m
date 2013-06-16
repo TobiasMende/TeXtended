@@ -78,11 +78,11 @@
     PDFDocument *doc = self.pdfView.document;
     if (doc) {
         ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
-        NSLog(@"Synctex: %li",synctex.page);
         if (synctex.page > 0) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
-            NSLog(@"Page: %@",p);
-            [self.pdfView goToRect:NSMakeRect(synctex.x, synctex.y, 1, 1) onPage:p];
+//            [self.pdfView goToRect:NSMakeRect(synctex.x, synctex.y, 10, 10) onPage:p];
+            [self.pdfView goToPage:p];
+            NSLog(@"%@", NSStringFromRect([self.pdfView rectForPage:synctex.page]));
         }
     }
 }

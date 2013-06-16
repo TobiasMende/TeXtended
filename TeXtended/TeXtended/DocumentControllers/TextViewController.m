@@ -130,6 +130,9 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 
+- (void)textViewDidChangeSelection:(NSNotification *)notification {
+    [self.scrollView.verticalRulerView setNeedsDisplay:YES];
+}
 
 - (void)textDidChange:(NSNotification *)notification {
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];

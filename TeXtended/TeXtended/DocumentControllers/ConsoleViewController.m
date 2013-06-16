@@ -67,7 +67,7 @@
     //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
     NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
-    if (str) {
+    if (str && data.length > 0) {
         self.outputView.string = [self.outputView.string stringByAppendingString:str];
         [self.outputView scrollToEndOfDocument:self];
         // Do whatever you want with str
