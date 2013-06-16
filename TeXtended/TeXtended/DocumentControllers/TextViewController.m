@@ -9,6 +9,7 @@
 #import "TextViewController.h"
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
+#import "CodeNavigationAssistant.h"
 @interface TextViewController ()
 - (void) initialize;
 @end
@@ -20,6 +21,7 @@
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
         self.parent = parent;
+        observers = [NSMutableSet new];
     }
     return self;
 }
@@ -27,6 +29,7 @@
 - (void)loadView {
     [super loadView];
     [self initialize];
+    [self.textView setDelegate:self];
 }
 
 - (void)initialize {
@@ -64,6 +67,36 @@
 - (DocumentController *)documentController {
     return [self.parent documentController];
 }
+
+
+#pragma mark -
+#pragma mark Observers
+
+- (void)addObserver:(id<TextViewObserver>)observer {
+    [observers addObject:observer];
+}
+
+- (void)removeObserver:(id<TextViewObserver>)observer {
+    [observers removeObject:observer];
+}
+
+#pragma mark -
+#pragma mark Delegate Methods
+
+
+- (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
+    if (self.textView.servicesOn) {
+        [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+        
+    }
+    return newSelectedCharRange;
+}
+
+
+
+
+#pragma mark -
+#pragma mark Dealloc
 
 - (void)dealloc {
 #ifdef DEBUG
