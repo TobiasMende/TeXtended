@@ -32,6 +32,7 @@ static NSArray *TMTEncodingsToCheck;
 @dynamic project;
 @dynamic encoding;
 @dynamic subCompilabels;
+@dynamic liveCompile;
 
 + (void)initialize {
     

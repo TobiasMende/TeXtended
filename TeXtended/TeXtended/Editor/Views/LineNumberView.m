@@ -7,6 +7,7 @@
 //
 
 #import "LineNumberView.h"
+#import "HighlightingTextView.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 4.0
@@ -480,12 +481,18 @@
     };
     NSRectFill(rect);
     
-    NSTextView *view                = [[self scrollView] documentView];
+    
+    HighlightingTextView *view = [[self scrollView] documentView];
     NSLayoutManager	*manager        = [view layoutManager];
     NSTextContainer	*container      = [view textContainer];
     NSString *text                  = [view string];
     NSRange range, glyphRange;
 
+    /* 
+     * Calculate the current line, this is needed from other views
+     * and set here, because the lines are allready calculated.
+     */
+    [view setCurrentRow:[self lineNumberForCharacterIndex:[view selectedRange].location inText:text]+1];
     
     glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
