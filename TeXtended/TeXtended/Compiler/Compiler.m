@@ -71,8 +71,7 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
             
-            //FIXME: Dynamic rows and cols
-            ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:model.texPath outputPath:model.pdfPath row:42 andColumn:10];
+           
         }];
         
         [task launch];

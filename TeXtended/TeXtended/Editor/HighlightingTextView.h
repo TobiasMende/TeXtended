@@ -38,6 +38,7 @@
 @property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
 @property  (strong)id<SyntaxHighlighter> syntaxHighlighter;
 @property (strong) CodeExtensionEngine *codeExtensionEngine;
+@property NSUInteger currentRow;
 
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
@@ -81,6 +82,8 @@
  */
 - (void) updateSyntaxHighlighting;
 
+
+
 /**
  Getter for the visible range
  @return the visible range
@@ -106,4 +109,7 @@
 - (IBAction)commentSelection:(id)sender;
 - (IBAction)uncommentSelection:(id)sender;
 - (NSRange) extendedVisibleRange;
+
+- (NSUInteger) currentCol;
+- (NSUInteger) colForRange:(NSRange) range;
 @end
