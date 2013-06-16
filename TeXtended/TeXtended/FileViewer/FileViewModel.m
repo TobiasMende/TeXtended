@@ -50,20 +50,6 @@
     if([path isEqualToString:self.filePath])
         return;
     NSMutableArray* components = [[path pathComponents] mutableCopy];
-    /*NSRange range;
-    range.location = 0;
-    range.length = [components count]-1;
-    NSMutableArray* subarray = [[components subarrayWithRange:range] mutableCopy];
-    NSMutableArray* mutComponents = [self.pathComponents mutableCopy];
-    BOOL safe = FALSE;
-    while (!safe) {
-        safe = TRUE;
-        if (![mutComponents isEqualToArray:subarray]) {
-            safe = FALSE;
-            [mutComponents removeObjectAtIndex:1];
-        }
-    }*/
-
     NSString* name = [components objectAtIndex:pathIndex+1];
     FileViewModel *child = [self getChildrenByName:name];
     if(child == nil)
