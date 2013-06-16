@@ -131,7 +131,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
     if (!success) {
         NSLog(@"Error");
     }
-        [self.compiler compile:YES];
+        [self.compiler compile:draft];
 }
 
 - (void) finalCompile {
@@ -139,11 +139,15 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
     if (!success) {
         NSLog(@"Error");
     }
-    [self.compiler compile:NO];
+    [self.compiler compile:final];
 }
 
 - (void)refreshLiveView {
-    NSLog(@"Test");
+    BOOL success = [self.mainDocument saveEntireDocument];
+    if (!success) {
+        NSLog(@"Error");
+    }
+    [self.compiler compile:live];
 }
 
 - (void)documentModelDidChange {
