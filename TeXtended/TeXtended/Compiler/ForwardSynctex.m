@@ -8,6 +8,7 @@
 
 #import "ForwardSynctex.h"
 #import "Constants.h"
+#import "PathFactory.h"
 
 @interface ForwardSynctex ()
 - (void)parseOutput:(NSString*) output;
@@ -21,18 +22,24 @@
         NSTask *task = [[NSTask alloc] init];
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
+        NSString *path = [outPath stringByDeletingLastPathComponent];
         
         [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
-        [task setLaunchPath:@"synctex"];
-        NSString *arguments = [NSString stringWithFormat:@"view -i %li:%li:%@ -o %@", row,col,inPath,outPath];
-        [task setArguments:[NSArray arrayWithObject:arguments]];
+        [task setLaunchPath:[PathFactory synctex]];
+        NSString *inArg = [NSString stringWithFormat:@"%li:%li:%@", row, col, inPath];
+        NSString *outArg = [NSString stringWithFormat:@"%@",outPath];
+        [task setCurrentDirectoryPath:path];
+        
+        [task setArguments:[NSArray arrayWithObjects:@"view",@"-i",inArg,@"-o",outArg, nil]];
+        
         NSPipe *outPipe = [NSPipe pipe];
+        [task setStandardOutput:outPipe];
         [task launch];
+        
         [task waitUntilExit];
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", stringRead);
         [self parseOutput:stringRead];
     }
     return self;
@@ -41,7 +48,6 @@
 
 - (void)parseOutput:(NSString *)output {
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
-    
     for (NSString *line in lines) {
         NSArray *comps = [line componentsSeparatedByString:@":"];
         if (comps.count < 2) {
@@ -65,6 +71,7 @@
         self.height = [value floatValue];
     }
     }
+    
 }
 
 @end

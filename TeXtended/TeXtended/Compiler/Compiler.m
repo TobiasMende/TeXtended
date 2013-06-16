@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "DocumentController.h"
+#import "ForwardSynctex.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -76,6 +77,9 @@
             if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
+            
+            //FIXME: Dynamic rows and cols
+            ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:model.texPath outputPath:model.pdfPath row:42 andColumn:10];
         }];
         
         [task launch];
