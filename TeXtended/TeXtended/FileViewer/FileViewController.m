@@ -527,7 +527,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         
         // Add Oberserver
-        NSArray *docs = [self.doc.project.documents allObjects];
         for(DocumentModel *model in self.doc.project.documents)
             [model addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
     } else {
@@ -548,7 +547,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     // In Sandboxmode
-    if(titleText)
+    if(!titleText)
     {
         [self.titleButton setTitle:@""];
         return;
@@ -600,7 +599,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void) setDocController:(DocumentController *)docController
 {
     if(_docController)
+    {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+    }
     [self willChangeValueForKey:@"docController"];
     _docController = docController;
     [self didChangeValueForKey:@"docController"];

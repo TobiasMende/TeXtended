@@ -88,7 +88,6 @@
         [self.lblPath setStringValue:self.doc.project.path];
         [self.addButton setEnabled:TRUE];
         [self.removeButton setEnabled:TRUE];
-        NSArray* temp = [self.doc.project.documents allObjects];
         for(DocumentModel* model in self.doc.project.documents)
         {
             if ([[[model texName] pathExtension] isEqualToString:@"tex"])
