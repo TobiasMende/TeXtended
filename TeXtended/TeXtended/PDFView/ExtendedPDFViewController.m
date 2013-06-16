@@ -79,10 +79,11 @@
     if (doc) {
         ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
         NSLog(@"Synctex: %li",synctex.page);
-        
-        PDFPage *p = [doc pageAtIndex:synctex.page-1];
-        NSLog(@"Page: %@",p);
-        [self.pdfView goToRect:NSMakeRect(synctex.h, synctex.v, 1, 1) onPage:p];
+        if (synctex.page > 0) {
+            PDFPage *p = [doc pageAtIndex:synctex.page-1];
+            NSLog(@"Page: %@",p);
+            [self.pdfView goToRect:NSMakeRect(synctex.h, synctex.v, 1, 1) onPage:p];
+        }
     }
 }
 

@@ -62,7 +62,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 - (void)loadView {
     [super loadView];
     [self initialize];
-    [self.textView setDelegate:self];
+    
 }
 
 - (void)initialize {
@@ -71,6 +71,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    [self.textView setDelegate:self];
 }
 
 
@@ -129,12 +130,12 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     return newSelectedCharRange;
 }
 
-- (void)textViewDidChangeSelection:(NSNotification *)notification {
-    [self.scrollView.verticalRulerView setNeedsDisplay:YES];
-}
-
 
 - (void)textDidChange:(NSNotification *)notification {
+    NSLog(@"Bla");
+}
+- (void)controlTextDidChange:(NSNotification *)notification {
+    NSLog(@"Test");
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 

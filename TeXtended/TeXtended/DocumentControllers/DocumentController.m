@@ -15,7 +15,8 @@
 #import "Constants.h"
 #import "Compiler.h"
 
-static const NSSet *SELECTORS_HANDLEY_BY_PDF;
+static const NSSet *SELECTORS_HANDLED_BY_PDF;
+static NSUInteger calls = 0;
 
 @interface DocumentController ()
 
@@ -23,7 +24,14 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
 @implementation DocumentController
 
 + (void)initialize {
-    SELECTORS_HANDLEY_BY_PDF = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
+    if (self == [DocumentController class]) {
+        
+        /* put initialization code here */
+        
+        calls++;
+        SELECTORS_HANDLED_BY_PDF = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
+    }
+    assert(calls < 2);
 }
 
 
@@ -158,7 +166,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
 #pragma mark Responder Chain
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([SELECTORS_HANDLEY_BY_PDF containsObject: NSStringFromSelector(aSelector)]) {
+    if ([SELECTORS_HANDLED_BY_PDF containsObject: NSStringFromSelector(aSelector)]) {
         return [self.pdfViewsController respondsToSelector:aSelector];
     }
     return [super respondsToSelector:aSelector];
@@ -167,7 +175,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
 - (id)performSelector:(SEL)aSelector {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if ([SELECTORS_HANDLEY_BY_PDF containsObject:NSStringFromSelector(aSelector)]) {
+    if ([SELECTORS_HANDLED_BY_PDF containsObject:NSStringFromSelector(aSelector)]) {
         return [self.pdfViewsController performSelector:aSelector];
     }
     return [super performSelector:aSelector];
