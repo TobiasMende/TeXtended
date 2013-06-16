@@ -82,7 +82,7 @@
         if (synctex.page > 0) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             NSLog(@"Page: %@",p);
-            [self.pdfView goToRect:NSMakeRect(synctex.h, synctex.v, 1, 1) onPage:p];
+            [self.pdfView goToRect:NSMakeRect(synctex.x, synctex.y, 1, 1) onPage:p];
         }
     }
 }
