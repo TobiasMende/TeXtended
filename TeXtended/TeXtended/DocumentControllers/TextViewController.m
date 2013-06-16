@@ -166,7 +166,9 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
             [self registerModelObserver];
         }
     } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
-        [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:TMTDocumentEnableLiveScrolling] boolValue]) {
+            [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
+        }
     }
 }
 
