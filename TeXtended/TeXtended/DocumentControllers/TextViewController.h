@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (weak) DocumentModel *model;
+@property BOOL liveScrolling;
 
 - (NSString *)content;
 - (void) setContent:(NSString*) content;

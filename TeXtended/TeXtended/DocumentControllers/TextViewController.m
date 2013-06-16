@@ -31,7 +31,7 @@
         self.parent = parent;
         observers = [NSMutableSet new];
         self.model = [[self.parent documentController] model];
-        
+        [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self registerModelObserver];
     }
     return self;
@@ -166,7 +166,8 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
             [self registerModelObserver];
         }
     } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:TMTDocumentEnableLiveScrolling] boolValue]) {
+        if (self.liveScrolling) {
+            NSLog(@"Bla");
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
         }
     }
@@ -180,6 +181,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 #ifdef DEBUG
     NSLog(@"TextViewController dealloc");
 #endif
+    [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
 }
