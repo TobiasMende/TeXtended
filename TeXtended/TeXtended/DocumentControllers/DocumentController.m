@@ -38,6 +38,7 @@ static const NSSet *SELECTORS_HANDLEY_BY_PDF;
         _consolViewsController = [[ConsoleViewsController alloc] initWithParent:self];
         _outlineViewController = [[OutlineViewController alloc] initWithParent:self];
         _compiler = [[Compiler alloc] initWithDocumentController:self];
+        [self.textViewController addObserver:self.compiler];
     }
     return self;
 }
