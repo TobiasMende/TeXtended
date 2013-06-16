@@ -10,6 +10,7 @@
 #import "ExtendedPdf.h"
 #import "DocumentModel.h"
 #import "Constants.h"
+#import "ForwardSynctex.h"
 
 
 @interface ExtendedPDFViewController ()
@@ -33,13 +34,13 @@
 
 - (void)setModel:(DocumentModel *)model {
     if(_model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
     }
     [self willChangeValueForKey:@"model"];
     _model = model;
     [self didChangeValueForKey:@"model"];
     if (_model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
     }
 }
 
@@ -72,12 +73,19 @@
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
     [self loadPDF];
+    PDFDocument *doc = self.pdfView.document;
+    if (doc) {
+        ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
+        PDFPage *p = [doc pageAtIndex:synctex.page-1];
+        [self.pdfView goToPage:p];
+    }
 }
 
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"ExtendedPDFViewController dealloc");
 #endif
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

@@ -129,6 +129,10 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     return newSelectedCharRange;
 }
 
+- (void)textViewDidChangeSelection:(NSNotification *)notification {
+    [self.scrollView.verticalRulerView setNeedsDisplay:YES];
+}
+
 
 - (void)textDidChange:(NSNotification *)notification {
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
