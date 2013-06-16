@@ -18,7 +18,7 @@
 #import "UndoSupport.h"
 #import "SpellCheckingService.h"
 #import "LineNumberView.h"
-static NSSet *DEFAULT_KEYS_TO_OBSERVE;
+static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
 - (void)swapTextIn:(NSRange)first and:(NSRange)second;
@@ -28,7 +28,9 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @implementation HighlightingTextView
 
 + (void)initialize {
-    DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER, nil];
+    if (self == [HighlightingTextView class]) {
+        DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER, nil];
+    }
 }
 
 - (id)initWithFrame:(NSRect)frame
@@ -253,7 +255,6 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (!self.servicesOn) {
         return;
     }
-    NSLog(@"Paste");
     [self.syntaxHighlighter highlightEntireDocument];
     [self.codeExtensionEngine addTexdocLinksForRange:NSMakeRange(0, self.string.length)];
 }
@@ -288,6 +289,7 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
             
         }
 }
+
 
 
 - (NSUInteger)currentCol {
@@ -523,7 +525,6 @@ static NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
      [self.codeNavigationAssistant highlightCurrentLineBackground];
 }
-
 
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

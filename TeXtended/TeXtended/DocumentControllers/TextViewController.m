@@ -71,7 +71,6 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
-    [self.textView setDelegate:self];
 }
 
 
@@ -131,13 +130,16 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 
+
 - (void)textDidChange:(NSNotification *)notification {
     NSLog(@"Bla");
-}
-- (void)controlTextDidChange:(NSNotification *)notification {
-    NSLog(@"Test");
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+    NSLog(@"Control");
+}
+
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

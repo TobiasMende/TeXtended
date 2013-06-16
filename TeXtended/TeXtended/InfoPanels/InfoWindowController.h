@@ -10,6 +10,7 @@
 @class DocumentModel,CompileFlowHandler;
 
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
+    NSMutableArray *texDocs;
 }
 
 @property (weak) IBOutlet NSTableView *table;
@@ -24,6 +25,10 @@
 @property (weak) IBOutlet NSTextField *LiveIt;
 @property (weak) IBOutlet NSTextField *FinalIt;
 @property (weak) IBOutlet CompileFlowHandler *CompilerFlowHandlerObj;
+@property (weak) IBOutlet NSButton *addButton;
+@property (weak) IBOutlet NSButton *removeButton;
 
 - (void)loadDocument:(DocumentModel*) document;
+- (IBAction)addMainDocument:(id)sender;
+- (IBAction)removeMainDocument:(id)sender;
 @end
