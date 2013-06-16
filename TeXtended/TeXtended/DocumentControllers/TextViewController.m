@@ -167,7 +167,6 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
         }
     } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
         if (self.liveScrolling) {
-            NSLog(@"Bla");
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
         }
     }
