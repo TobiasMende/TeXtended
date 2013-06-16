@@ -1394,14 +1394,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">genericAction:</string>
-						<reference key="source" ref="1014"/>
-						<reference key="destination" ref="492465025"/>
-					</object>
-					<int key="connectionID">566</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">draftCompile:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="482457354"/>
@@ -1439,6 +1431,14 @@
 						<reference key="destination" ref="356051310"/>
 					</object>
 					<int key="connectionID">581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">liveCompile:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="492465025"/>
+					</object>
+					<int key="connectionID">582</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2322,7 +2322,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">581</int>
+			<int key="maxID">582</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2526,6 +2526,7 @@
 						<string key="draftCompile:">id</string>
 						<string key="finalCompile:">id</string>
 						<string key="genericAction:">id</string>
+						<string key="liveCompile:">id</string>
 						<string key="reportBug:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -2543,6 +2544,10 @@
 						</object>
 						<object class="IBActionInfo" key="genericAction:">
 							<string key="name">genericAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="liveCompile:">
+							<string key="name">liveCompile:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="reportBug:">

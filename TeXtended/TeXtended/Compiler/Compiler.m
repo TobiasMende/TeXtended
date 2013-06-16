@@ -37,16 +37,10 @@
 }
 
 
-- (void) compile:(bool)draft {
-    if (draft) {
-        [self compileWithMode:0];
-    } else {
-        [self compileWithMode:1];
-    }
-}
 
-- (void) compileWithMode:(int)mode {
-    
+
+- (void) compile:(CompileMode)mode {
+    [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
     for (DocumentModel *model in mainDocuments) {
         CompileSetting *settings;
@@ -57,12 +51,11 @@
         [task setStandardInput:model.inputPipe];
         NSString *path;
         
-        //TODO: use enum
-        if (mode == 0) {
+        if (mode == draft) {
             settings = [model draftCompiler];
-        } else if (mode == 1) {
+        } else if (mode == final) {
             settings = [model finalCompiler];
-        } else if (mode == 2) {
+        } else if (mode == live) {
             settings = [model liveCompiler];
         }
         
@@ -88,7 +81,7 @@
 
 -(void) liveCompile {
     [self.documentController.mainDocument saveEntireDocument];
-    [self compileWithMode:2];
+    [self compile:live];
 }
 
 - (void)textDidChange:(NSNotification *)notification {

@@ -29,6 +29,7 @@
 
 - (IBAction)draftCompile:(id)sender;
 - (IBAction)finalCompile:(id)sender;
+- (IBAction)liveCompile:(id)sender;
 
 - (IBAction)genericAction:(id)sender;
 @end
