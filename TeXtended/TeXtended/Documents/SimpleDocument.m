@@ -16,10 +16,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 @implementation SimpleDocument
 
 + (void)initialize {
-    standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
-    autosave = YES;
-    
-    SELECTORS_HANDLED_BY_DC = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
+    if (self == [SimpleDocument class]) {
+        standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
+        autosave = YES;
+        
+        SELECTORS_HANDLED_BY_DC = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
+    }
 }
 
 - (id)init
@@ -84,7 +86,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
-
+    [self updateChangeCount:saveOperation];
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
         [self.documentController breakUndoCoalescing];
     }
