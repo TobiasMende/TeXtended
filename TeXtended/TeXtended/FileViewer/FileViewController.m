@@ -538,6 +538,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     DocumentModel *dc = (DocumentModel*)object;
     //NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], [change valueForKey:NSKeyValueChangeNewKey]);
     NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], dc.texPath);
+    if (!nodes && ![dc.texPath isEqualToString:@"(null)"]) {
+        //[self updateFileViewModel:nil];
+    }
 }
 
 - (void)moveFile:(NSString*)oldPath
@@ -561,7 +564,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self willChangeValueForKey:@"docController"];
     _docController = docController;
     [self didChangeValueForKey:@"docController"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:nil];
 }
 
 - (void)dealloc {
