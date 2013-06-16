@@ -274,7 +274,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
     pathsToWatch = [[NSMutableArray alloc] init];
-    nodes = [[FileViewModel alloc] init];
     [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
@@ -312,6 +311,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)url
 {
     [pathsToWatch removeAllObjects];
+    nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
     [self recursiveFileFinder:url];
     [outline reloadData];

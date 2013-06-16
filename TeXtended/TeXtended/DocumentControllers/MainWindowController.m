@@ -141,7 +141,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 
-
 -(void)dealloc {
 #ifdef DEBUG
     NSLog(@"MainWindowController dealloc");
