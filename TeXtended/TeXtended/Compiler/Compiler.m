@@ -65,17 +65,14 @@
             if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             }
-            //FIXME: This line causes a memory leak:
-            //[self updateDocumentController];
         }];
         
         [task launch];
-        
-        
-        
-
     }
-    //[self updateDocumentController];
+}
+
+- (void)textDidChange:(NSNotification *)notification {
+    NSLog(@"TEST");
 }
 
 - (void) updateDocumentController {
