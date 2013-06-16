@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
 @class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController, TMTSplitView;
-@interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate> {
+@interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate, NSWindowDelegate> {
     
 }
 @property (weak) IBOutlet NSSegmentedControl *splitviewControl;
