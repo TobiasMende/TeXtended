@@ -11,7 +11,6 @@
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     FileViewModel *nodes;
-    NSMutableArray *pathsToWatch;
     FSEventStreamRef stream;
     NSDate* appStartedTimestamp;
     NSNumber* lastEventId;
@@ -25,10 +24,11 @@
 @property (weak) DocumentModel* doc;
 @property (weak) IBOutlet NSTextField *titleLbl;
 @property InfoWindowController *infoWindowController;
-@property (weak) DocumentController *docController;
+@property (weak, nonatomic) DocumentController *docController;
 
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;
+- (void)updateFileViewModel:(NSNotification*) notification;
 - (IBAction)openInfoView:(id)sender;
 - (IBAction)openFolderinFinder:(id)sender;
 - (IBAction)newFile:(id)sender;

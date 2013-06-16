@@ -13,6 +13,7 @@
 #import "FileViewModel.h"
 #import "DocumentController.h"
 #import "DocumentCreationController.h"
+#import "Constants.h"
 @implementation FileViewController
 
 - (id)init {
@@ -39,6 +40,19 @@
         return;
     [self.infoWindowController showWindow:self.infoWindowController];
     [self.infoWindowController loadDocument:self.doc];
+}
+
+- (void)updateFileViewModel:(NSNotification*) notification
+{
+    if (!self.doc) {
+        return;
+    }
+    NSURL *url;
+    if (self.doc.project)
+        url = [NSURL fileURLWithPath:self.doc.project.path];
+    else
+        url = [NSURL fileURLWithPath:[self.doc.texPath stringByDeletingLastPathComponent]];
+    [self loadPath:url];
 }
 
 - (void)doubleClick:(id)object {
@@ -273,7 +287,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setDelegate:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
-    pathsToWatch = [[NSMutableArray alloc] init];
     [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
@@ -302,7 +315,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         else
         {
             [self->nodes addPath:path];
-            [pathsToWatch addObject:path];
             [self recursiveFileFinder:fileUrl];
         }
     }
@@ -310,7 +322,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (BOOL)loadPath: (NSURL*)url
 {
-    [pathsToWatch removeAllObjects];
     nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
     [self recursiveFileFinder:url];
@@ -459,43 +470,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
 }
 
-- (void) initializeEventStream
-{
-    if([pathsToWatch count] == 0 )
-        return;
-    NSArray *paths = [NSArray arrayWithArray:pathsToWatch];
-    void *appPointer = (__bridge void *)self;
-    FSEventStreamContext context = {0, appPointer, NULL, NULL, NULL};
-    NSTimeInterval latency = 3.0;
-    stream = FSEventStreamCreate(NULL,
-                                 &fsevents_callback,
-                                 &context,
-                                 (__bridge CFArrayRef) paths,
-                                 [lastEventId unsignedLongLongValue],
-                                 (CFAbsoluteTime) latency,
-                                 kFSEventStreamCreateFlagUseCFTypes
-                                 );
-    
-    FSEventStreamScheduleWithRunLoop(stream,
-                                     CFRunLoopGetCurrent(),
-                                     kCFRunLoopDefaultMode);
-    FSEventStreamStart(stream);
-}
-
-void fsevents_callback(ConstFSEventStreamRef streamRef,
-                       void *userData,
-                       size_t numEvents,
-                       void *eventPaths,
-                       const FSEventStreamEventFlags eventFlags[],
-                       const FSEventStreamEventId eventIds[])
-{
-    size_t i;
-    for(i=0; i < numEvents; i++){
-        //NSLog(@"%@",[(__bridge NSArray*)eventPaths objectAtIndex:i]);
-    }
-    
-}
-
 - (void)loadDocument:(DocumentModel*)document
 {
     self.doc = document;
@@ -580,6 +554,16 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     }
 }
 
+-(void) setDocController:(DocumentController *)docController
+{
+    if(_docController)
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+    [self willChangeValueForKey:@"docController"];
+    _docController = docController;
+    [self didChangeValueForKey:@"docController"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:nil];
+}
+
 - (void)dealloc {
     if (self.doc.project)
     {
@@ -589,6 +573,9 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     }
     else
         [self.doc removeObserver:self forKeyPath:@"texPath"];
+    if (self.docController) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
 #ifdef DEBUG
     NSLog(@"FileViewController dealloc");
 #endif

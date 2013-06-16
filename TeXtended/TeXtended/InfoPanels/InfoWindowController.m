@@ -53,7 +53,6 @@
 {
     if(self.doc != document)
         self.doc = document;
-    [self.table reloadData];
     if(self.doc.project)
     {
         [self.lblName setStringValue:self.doc.project.name];
@@ -80,6 +79,12 @@
         [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Project"];
         [self.lblPath setStringValue:self.doc.project.path];
+        [self.addButton setEnabled:TRUE];
+        [self.removeButton setEnabled:TRUE];
+        NSArray* temp = [self.doc.project.documents allObjects];
+        for(NSInteger i = 0; i < [temp count]; i++)
+            if ([[[[temp objectAtIndex:i] texName] pathExtension] isEqualToString:@"tex"])
+                [texDocs addObject:[temp objectAtIndex:i]];
     }
     else
     {
@@ -107,7 +112,10 @@
         [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Document"];
         [self.lblPath setStringValue:self.doc.texPath];
+        [self.addButton setEnabled:FALSE];
+        [self.removeButton setEnabled:FALSE];
     }
+    [self.table reloadData];
 }
 
 
@@ -116,14 +124,28 @@
 {
     if(self.doc)
     {
-        return [[self.doc mainDocuments ]count];
+        return [[self.doc mainDocuments ] count];
     }
     return 0;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    return [[[self.doc mainDocuments] allObjects] objectAtIndex:rowIndex];
+    return [[[[[self.doc mainDocuments] allObjects] objectAtIndex:rowIndex] texName] stringByDeletingPathExtension];
+}
+
+- (IBAction)addMainDocument:(id)sender
+{
+    NSLog(@"Add Main Document");
+}
+
+- (IBAction)removeMainDocument:(id)sender
+{
+    NSLog(@"Remove Main Document");
+    NSMutableArray* mainDocs = [[self.doc.mainDocuments allObjects] mutableCopy];
+    [mainDocs removeObjectAtIndex:[self.table selectedRow]];
+    self.doc.mainDocuments = [NSSet setWithArray:mainDocs];
+    [self.table reloadData];
 }
 
 @end
