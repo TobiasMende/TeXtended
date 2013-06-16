@@ -93,6 +93,10 @@
 }
 
 
+- (void)textDidChange:(NSNotification *)notification {
+    [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
+}
+
 
 
 #pragma mark -
