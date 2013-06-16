@@ -69,6 +69,7 @@ static const NSSet *KEYS_TO_UNBIND;
     // add the controlls
    [self addControlls];
    [self addSubview:[controllsView view]];
+   [[controllsView view] setHidden:YES];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
