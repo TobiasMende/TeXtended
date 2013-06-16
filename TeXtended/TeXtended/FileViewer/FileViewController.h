@@ -30,6 +30,12 @@
 - (void)doubleClick:(id)object;
 - (void)loadDocument:(DocumentModel*)document;
 - (IBAction)openInfoView:(id)sender;
+- (IBAction)openFolderinFinder:(id)sender;
+- (IBAction)newFile:(id)sender;
+- (IBAction)newFolder:(id)sender;
+- (IBAction)duplicate:(id)sender;
+- (IBAction)renameFile:(id)sender;
+- (IBAction)deleteFile:(id)sender;
 
 @property (weak) IBOutlet NSButton *titleButton;
 @end

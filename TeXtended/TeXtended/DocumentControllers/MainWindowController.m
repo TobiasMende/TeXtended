@@ -141,6 +141,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 
+- (NSSize)window:(NSWindow *)window willResizeForVersionBrowserWithMaxPreferredSize:(NSSize)maxPreferredSize maxAllowedSize:(NSSize)maxAllowedSize {
+    return maxPreferredSize;
+}
+
 
 -(void)dealloc {
 #ifdef DEBUG
