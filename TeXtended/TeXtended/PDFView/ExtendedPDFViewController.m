@@ -53,7 +53,9 @@
 }
 
 - (void) documentHasChangedAction {
-    [self loadPDF];
+    if (!self.pdfView.document) {
+        [self loadPDF];
+    }
 }
 
 - (void)loadPDF {
@@ -61,7 +63,7 @@
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
-        [self.pdfView performSelectorOnMainThread:@selector(setDocument:) withObject:pdfDoc waitUntilDone:NO];
+        [self.pdfView performSelectorOnMainThread:@selector(setDocument:) withObject:pdfDoc waitUntilDone:YES];
     }
 }
 
@@ -76,8 +78,11 @@
     PDFDocument *doc = self.pdfView.document;
     if (doc) {
         ForwardSynctex *synctex = [[notification userInfo] objectForKey:TMTForwardSynctexKey];
+        NSLog(@"Synctex: %li",synctex.page);
+        
         PDFPage *p = [doc pageAtIndex:synctex.page-1];
-        [self.pdfView goToPage:p];
+        NSLog(@"Page: %@",p);
+        [self.pdfView goToRect:NSMakeRect(synctex.h, synctex.v, 1, 1) onPage:p];
     }
 }
 
