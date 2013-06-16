@@ -110,8 +110,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     else
     {
-        self.doc.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-        [self.titleButton setTitle:[newFile stringByDeletingPathExtension]];
+        if([self.doc.texPath isEqualToString:oldFile])
+        {
+            self.doc.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
+            [self.titleButton setTitle:[newFile stringByDeletingPathExtension]];
+        }
     }
 }
 
@@ -258,7 +261,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     else
     {
-        FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
         if(![model.filePath isEqualToString:self.doc.texPath])
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
     }
@@ -315,6 +317,133 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
     //[self initializeEventStream];
     return YES;
+}
+
+- (IBAction)newFile:(id)sender
+{
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model)
+        [self createFile:nodes.filePath];
+    else
+    {
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
+        if(isDir)
+            [self createFile:model.filePath];
+        else
+            [self createFile:[model.filePath stringByDeletingLastPathComponent]];
+    }
+}
+
+- (IBAction)newFolder:(id)sender
+{
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model)
+        [self createFolder:nodes.filePath];
+    else
+    {
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
+        if(isDir)
+            [self createFolder:model.filePath];
+        else
+            [self createFolder:[model.filePath stringByDeletingLastPathComponent]];
+    }
+}
+
+- (IBAction)duplicate:(id)sender
+{
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model)
+        return;
+    [self duplicateFile:model.filePath];
+    NSIndexSet* index = [NSIndexSet indexSetWithIndex:[outline clickedRow]];
+    [outline selectRowIndexes:index byExtendingSelection:NO];
+    [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
+}
+
+- (IBAction)renameFile:(id)sender
+{
+    NSIndexSet* index = [NSIndexSet indexSetWithIndex:[outline clickedRow]];
+    [outline selectRowIndexes:index byExtendingSelection:NO];
+    [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
+}
+
+- (IBAction)deleteFile:(id)sender
+{
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model)
+        return;
+    [self deleteFileatPath:model.filePath];
+    [model.parent removeChildren:model];
+    [outline reloadData];
+}
+
+- (void) createFile:(NSString*)atPath
+{
+    NSString* newPath = [atPath stringByAppendingPathComponent:@"New File.tex"];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
+    {
+        int counter = 2;
+        while ([[NSFileManager defaultManager] fileExistsAtPath:newPath]) {
+            newPath = [[newPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"New File (%d).tex", counter]];
+            counter++;
+        }
+    }
+    
+    [[NSFileManager defaultManager] createFileAtPath:newPath contents:nil attributes:nil];
+    [nodes addPath:newPath];
+    [outline reloadData];
+}
+
+- (void) createFolder:(NSString*)atPath
+{
+    NSString* newPath = [atPath stringByAppendingPathComponent:@"New Folder"];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
+    {
+        int counter = 2;
+        while ([[NSFileManager defaultManager] fileExistsAtPath:newPath]) {
+            newPath = [[newPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"New Folder (%d)", counter]];
+            counter++;
+        }
+    }
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:newPath withIntermediateDirectories:NO attributes:nil error:nil];
+    [nodes addPath:newPath];
+    [outline reloadData];
+}
+
+- (void) duplicateFile:(NSString*)filePath
+{
+    NSString* fileName = [[filePath lastPathComponent] stringByDeletingPathExtension];
+    NSString* fileExtension = [filePath pathExtension];
+    NSString* path = [filePath stringByDeletingLastPathComponent];
+    NSString* newPath = [NSString stringWithFormat:@"%@/%@ (copy).%@",path,fileName,fileExtension];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
+    {
+        int counter = 2;
+        while ([[NSFileManager defaultManager] fileExistsAtPath:newPath]) {
+            newPath = [NSString stringWithFormat:@"%@/%@ (copy) (%d).%@",path,fileName,counter,fileExtension];
+            counter++;
+        }
+    }
+    
+    [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:newPath error:nil];
+    [nodes addPath:newPath];
+    [outline reloadData];
+}
+
+- (void) deleteFileatPath:(NSString*)path
+{
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+}
+
+- (IBAction)openFolderinFinder:(id)sender
+{
+    [self openFileInDefApp:nodes.filePath];
 }
 
 - (BOOL)openFileInDefApp: (NSString*)path
