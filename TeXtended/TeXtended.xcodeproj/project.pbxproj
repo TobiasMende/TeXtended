@@ -299,6 +299,7 @@
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
 		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
+		D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewObserver.h; sourceTree = "<group>"; };
 		D2B01663176608A800C6CE23 /* ReportBug.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ReportBug.pdf; sourceTree = "<group>"; };
 		D2B0166517660D9900C6CE23 /* Play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Play.pdf; sourceTree = "<group>"; };
 		D2B016671766163E00C6CE23 /* Export.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Export.pdf; sourceTree = "<group>"; };
@@ -433,6 +434,7 @@
 				D21ACB991726868A00E2F8EC /* HighlightingTextView.h */,
 				D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */,
 				D21ACB9B1726868A00E2F8EC /* Placeholder */,
+				D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */,
 			);
 			path = Editor;
 			sourceTree = "<group>";

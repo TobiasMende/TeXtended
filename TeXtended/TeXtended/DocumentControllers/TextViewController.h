@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
+#import "TextViewObserver.h"
 @class HighlightingTextView, LineNumberView;
-@interface TextViewController : NSViewController<DocumentControllerProtocol> {
+@interface TextViewController : NSViewController<DocumentControllerProtocol,NSTextViewDelegate> {
     LineNumberView *lineNumberView;
+    NSMutableSet *observers;
 }
 @property (unsafe_unretained) IBOutlet HighlightingTextView *textView;
 @property (weak) IBOutlet NSScrollView *scrollView;
@@ -18,5 +20,7 @@
 
 - (NSString *)content;
 - (void) setContent:(NSString*) content;
+- (void) addObserver:(id<TextViewObserver>) observer;
+- (void) removeObserver:(id<TextViewObserver>) observer;
 
 @end

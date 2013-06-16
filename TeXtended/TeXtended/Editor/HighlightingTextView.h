@@ -19,14 +19,13 @@
  
  */
 
-@interface HighlightingTextView : NSTextView <NSTextViewDelegate> {
+@interface HighlightingTextView : NSTextView {
     /** The SyntaxHighlighter highlights latex code by regular expressions */
     
     /** The BracketHighlighter highlights matching brackets */
     BracketHighlighter *bracketHighlighter;
     
     /** The CodeNavigationAssistant handles line and carret highlighting as well as tab and new line insertion */
-    CodeNavigationAssistant *codeNavigationAssistant;
     /** The PlaceholderServices handles placeholder navigation */
     PlaceholderServices *placeholderService;
     
@@ -36,6 +35,7 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
     
 }
+@property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
 @property  (strong)id<SyntaxHighlighter> syntaxHighlighter;
 @property (strong) CodeExtensionEngine *codeExtensionEngine;
 
