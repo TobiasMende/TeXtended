@@ -99,7 +99,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
     
-    NSLog(@"%@\n%@", self.model.texPath, self.model.systemPath);
     BOOL success = [self.documentController saveDocument:outError];
     return success;
 
