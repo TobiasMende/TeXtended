@@ -57,7 +57,9 @@
     NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", name,
                      nil];
     NSPipe *outputPipe = [NSPipe pipe];
-    
+    NSTask *t2 = [NSTask new];
+    [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
+
     [task setStandardOutput:outputPipe];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {

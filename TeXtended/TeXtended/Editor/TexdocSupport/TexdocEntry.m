@@ -13,7 +13,12 @@
     self = [super init];
     if (self) {
         if (texdoc.count >= 4) {
-            self.path = [texdoc objectAtIndex:2];
+            NSString *path = [texdoc objectAtIndex:2];
+            if ([path isAbsolutePath]) {
+                self.path = path;
+            } else {
+                self.path = [[@"~/" stringByAppendingString:path] stringByExpandingTildeInPath];
+            }
             _description = [texdoc objectAtIndex:4];
             if (_description.length == 0) {
                 _description = [[_path lastPathComponent] stringByDeletingPathExtension];
