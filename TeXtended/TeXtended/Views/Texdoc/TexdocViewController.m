@@ -8,7 +8,7 @@
 
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
-#import "ExtendedTableView.h"
+#import "TMTTableView.h"
 
 @interface TexdocViewController ()
 

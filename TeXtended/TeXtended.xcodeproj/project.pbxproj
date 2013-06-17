@@ -24,7 +24,6 @@
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
-		D217A418176A59FE002DB084 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A417176A59FE002DB084 /* TMTSplitView.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
@@ -40,11 +39,16 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
-		D2278A9F176F40A400112F73 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2278A9D176F40A400112F73 /* GoToLineSheetController.m */; };
-		D2278AA0176F40A400112F73 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2278A9E176F40A400112F73 /* GoToLineSheet.xib */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
+		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
+		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
+		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
+		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
+		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
+		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
+		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
@@ -61,7 +65,6 @@
 		D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
-		D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C904E61726963E006EFEC2 /* TexdocView.xib */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
@@ -91,8 +94,6 @@
 		D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5506D1751FF4B00BC05DD /* TextViewController.m */; };
 		D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904EB1726A086006EFEC2 /* TexdocEntry.m */; };
 		D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */; };
-		D2E7A4FA1768E8F400B2BA3C /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C78773172BD581004FF4C3 /* LineNumberView.m */; };
-		D2E7A4FB1768E8F400B2BA3C /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C904E51726963E006EFEC2 /* TexdocViewController.m */; };
 		D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB831726868A00E2F8EC /* CommandCompletion.m */; };
 		D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB861726868A00E2F8EC /* Completion.m */; };
 		D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */; };
@@ -127,7 +128,6 @@
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
-		D2FCB62F1768F8F0008C2FE9 /* ExtendedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FCB62E1768F8F0008C2FE9 /* ExtendedTableView.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 /* End PBXBuildFile section */
@@ -180,14 +180,10 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
-		76C78773172BD581004FF4C3 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
-		76C78774172BD581004FF4C3 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		76DADC951764892A002775BA /* lualatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lualatexDraft.sh; sourceTree = "<group>"; };
 		76DADC9617648A54002775BA /* xelatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = xelatexDraft.sh; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
-		D217A416176A59FE002DB084 /* TMTSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTSplitView.h; sourceTree = "<group>"; };
-		D217A417176A59FE002DB084 /* TMTSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTSplitView.m; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -250,9 +246,6 @@
 		D220755917687A310041890F /* TeXtended.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TeXtended.icns; sourceTree = "<group>"; };
 		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
-		D2278A9C176F40A400112F73 /* GoToLineSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoToLineSheetController.h; sourceTree = "<group>"; };
-		D2278A9D176F40A400112F73 /* GoToLineSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoToLineSheetController.m; sourceTree = "<group>"; };
-		D2278A9E176F40A400112F73 /* GoToLineSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoToLineSheet.xib; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
@@ -269,6 +262,18 @@
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
+		D2668617176F5B39001699A8 /* GoToLineSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoToLineSheet.xib; sourceTree = "<group>"; };
+		D2668618176F5B39001699A8 /* GoToLineSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoToLineSheetController.h; sourceTree = "<group>"; };
+		D2668619176F5B39001699A8 /* GoToLineSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoToLineSheetController.m; sourceTree = "<group>"; };
+		D266861B176F5B39001699A8 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
+		D266861C176F5B39001699A8 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
+		D266861E176F5B39001699A8 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
+		D266861F176F5B39001699A8 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
+		D2668620176F5B39001699A8 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
+		D2668622176F5B39001699A8 /* TMTSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTSplitView.h; sourceTree = "<group>"; };
+		D2668623176F5B39001699A8 /* TMTSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTSplitView.m; sourceTree = "<group>"; };
+		D2668625176F5B39001699A8 /* TMTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableView.h; sourceTree = "<group>"; };
+		D2668626176F5B39001699A8 /* TMTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableView.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
 		D2681FEF173143AF003AF83D /* Compilable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compilable.m; sourceTree = "<group>"; };
 		D2681FF1173143C2003AF83D /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
@@ -323,9 +328,6 @@
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
-		D2C904E41726963E006EFEC2 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
-		D2C904E51726963E006EFEC2 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
-		D2C904E61726963E006EFEC2 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
 		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
 		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,8 +350,6 @@
 		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
 		D2FCB62B1768EB40008C2FE9 /* TexdocController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocController.h; sourceTree = "<group>"; };
 		D2FCB62C1768EB40008C2FE9 /* TexdocController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocController.m; sourceTree = "<group>"; };
-		D2FCB62D1768F8F0008C2FE9 /* ExtendedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedTableView.h; sourceTree = "<group>"; };
-		D2FCB62E1768F8F0008C2FE9 /* ExtendedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedTableView.m; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		D2FD39AF171EC434008BB864 /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
@@ -618,6 +618,65 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D2668615176F5B39001699A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2668616176F5B39001699A8 /* GoToLine */,
+				D266861A176F5B39001699A8 /* LineNumber */,
+				D266861D176F5B39001699A8 /* Texdoc */,
+				D2668621176F5B39001699A8 /* TMTSplitView */,
+				D2668624176F5B39001699A8 /* TMTTableView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2668616176F5B39001699A8 /* GoToLine */ = {
+			isa = PBXGroup;
+			children = (
+				D2668617176F5B39001699A8 /* GoToLineSheet.xib */,
+				D2668618176F5B39001699A8 /* GoToLineSheetController.h */,
+				D2668619176F5B39001699A8 /* GoToLineSheetController.m */,
+			);
+			path = GoToLine;
+			sourceTree = "<group>";
+		};
+		D266861A176F5B39001699A8 /* LineNumber */ = {
+			isa = PBXGroup;
+			children = (
+				D266861B176F5B39001699A8 /* LineNumberView.h */,
+				D266861C176F5B39001699A8 /* LineNumberView.m */,
+			);
+			path = LineNumber;
+			sourceTree = "<group>";
+		};
+		D266861D176F5B39001699A8 /* Texdoc */ = {
+			isa = PBXGroup;
+			children = (
+				D266861E176F5B39001699A8 /* TexdocView.xib */,
+				D266861F176F5B39001699A8 /* TexdocViewController.h */,
+				D2668620176F5B39001699A8 /* TexdocViewController.m */,
+			);
+			path = Texdoc;
+			sourceTree = "<group>";
+		};
+		D2668621176F5B39001699A8 /* TMTSplitView */ = {
+			isa = PBXGroup;
+			children = (
+				D2668622176F5B39001699A8 /* TMTSplitView.h */,
+				D2668623176F5B39001699A8 /* TMTSplitView.m */,
+			);
+			path = TMTSplitView;
+			sourceTree = "<group>";
+		};
+		D2668624176F5B39001699A8 /* TMTTableView */ = {
+			isa = PBXGroup;
+			children = (
+				D2668625176F5B39001699A8 /* TMTTableView.h */,
+				D2668626176F5B39001699A8 /* TMTTableView.m */,
+			);
+			path = TMTTableView;
+			sourceTree = "<group>";
+		};
 		D27198341743880E00342CB0 /* SyntaxHighlighter */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,26 +758,6 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		D2C904E317269614006EFEC2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				76C78773172BD581004FF4C3 /* LineNumberView.m */,
-				76C78774172BD581004FF4C3 /* LineNumberView.h */,
-				D2C904E41726963E006EFEC2 /* TexdocViewController.h */,
-				D2C904E51726963E006EFEC2 /* TexdocViewController.m */,
-				D2C904E61726963E006EFEC2 /* TexdocView.xib */,
-				D2FCB62D1768F8F0008C2FE9 /* ExtendedTableView.h */,
-				D2FCB62E1768F8F0008C2FE9 /* ExtendedTableView.m */,
-				D217A416176A59FE002DB084 /* TMTSplitView.h */,
-				D217A417176A59FE002DB084 /* TMTSplitView.m */,
-				D2278A9C176F40A400112F73 /* GoToLineSheetController.h */,
-				D2278A9D176F40A400112F73 /* GoToLineSheetController.m */,
-				D2278A9E176F40A400112F73 /* GoToLineSheet.xib */,
-			);
-			name = Views;
-			path = Editor/Views;
-			sourceTree = "<group>";
-		};
 		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,11 +776,11 @@
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
-				D26685F6176F56DA001699A8 /* texicon.icns */,
-				D220755917687A310041890F /* TeXtended.icns */,
-				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
+				D26685F6176F56DA001699A8 /* texicon.icns */,
+				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
+				D220755917687A310041890F /* TeXtended.icns */,
 			);
 			sourceTree = "<group>";
 		};
@@ -777,7 +816,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
-				D2C904E317269614006EFEC2 /* Views */,
+				D2668615176F5B39001699A8 /* Views */,
 				D2F177CE17651D5A0089DBC0 /* InfoPanels */,
 				76049C9C1751FDB000778E2A /* Compiler */,
 				D2FD39AE171EC434008BB864 /* ApplicationController.h */,
@@ -892,7 +931,6 @@
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
-				D2C904E81726963E006EFEC2 /* TexdocView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
@@ -911,8 +949,9 @@
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
 				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
-				D2278AA0176F40A400112F73 /* GoToLineSheet.xib in Resources */,
 				D26685F7176F56DA001699A8 /* texicon.icns in Resources */,
+				D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */,
+				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,8 +1002,6 @@
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
 				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,
 				D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */,
-				D2E7A4FA1768E8F400B2BA3C /* LineNumberView.m in Sources */,
-				D2E7A4FB1768E8F400B2BA3C /* TexdocViewController.m in Sources */,
 				D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */,
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
@@ -998,11 +1035,13 @@
 				D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */,
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
-				D2FCB62F1768F8F0008C2FE9 /* ExtendedTableView.m in Sources */,
-				D217A418176A59FE002DB084 /* TMTSplitView.m in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
 				D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */,
-				D2278A9F176F40A400112F73 /* GoToLineSheetController.m in Sources */,
+				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
+				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
+				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
+				D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */,
+				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

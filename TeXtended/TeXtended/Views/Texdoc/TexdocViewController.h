@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ExtendedTableView;
+@class TMTTableView;
 /**
  The TexdocViewController controlls the view which is displayed when showing a list of package documentation.
  
@@ -24,7 +24,7 @@
     __unsafe_unretained IBOutlet NSView *notFoundView;
 }
   /** The table view to display the entries in */
-@property (weak)IBOutlet ExtendedTableView *listView;;
+@property (weak)IBOutlet TMTTableView *listView;;
 @property (weak) IBOutlet NSTextField *label;
 /** The package name (returning the heading for the listView */
 @property (weak, nonatomic) NSString *package;

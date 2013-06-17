@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "ExtendedTableView.h"
+#import "TMTTableView.h"
 
-@implementation ExtendedTableView
+@implementation TMTTableView
 
 - (void)keyDown:(NSEvent *)theEvent {
     char keyChar = [[theEvent characters] characterAtIndex:0];

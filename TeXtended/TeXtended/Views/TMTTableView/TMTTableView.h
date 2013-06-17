@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ExtendedTableView : NSTableView
+@interface TMTTableView : NSTableView
 @property SEL enterAction;
 @end
