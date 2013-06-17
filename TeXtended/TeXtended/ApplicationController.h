@@ -13,6 +13,7 @@
     DocumentCreationController *documentCreationController;
     TexdocPanelController *texdocPanelController;
 }
+@property (weak) NSWindowController *delegate;
 - (IBAction)showTexdocPanel:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (CompletionsController*) completionsController;

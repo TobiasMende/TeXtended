@@ -12,6 +12,7 @@
 #import "FileViewController.h"
 #import "ExportCompileWindowController.h"
 #import "TMTSplitView.h"
+#import "ApplicationController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -106,6 +107,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [control setSelected:![self.mainView isCollapsed:index] forSegment:index];
     }
     
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    [[ApplicationController sharedApplicationController] setDelegate:self];
 }
 
 - (IBAction)reportBug:(id)sender {

@@ -831,7 +831,7 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
-								<object class="NSMenuItem" id="209043423">
+								<object class="NSMenuItem" id="434723069">
 									<reference key="NSMenu" ref="225026294"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<bool key="NSIsSeparator">YES</bool>
@@ -841,7 +841,17 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
-								<object class="NSMenuItem" id="69427559">
+								<object class="NSMenuItem" id="931516223">
+									<reference key="NSMenu" ref="225026294"/>
+									<bool key="NSIsAlternate">YES</bool>
+									<string key="NSTitle">Live Compile</string>
+									<string key="NSKeyEquiv">c</string>
+									<int key="NSKeyEquivModMask">1572864</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="1033313550"/>
+									<reference key="NSMixedImage" ref="310636482"/>
+								</object>
+								<object class="NSMenuItem" id="300825620">
 									<reference key="NSMenu" ref="225026294"/>
 									<bool key="NSIsAlternate">YES</bool>
 									<string key="NSTitle">Live Scrolling</string>
@@ -986,7 +996,7 @@
 			<object class="NSCustomObject" id="317081158">
 				<string key="NSClassName">SUUpdater</string>
 			</object>
-			<object class="NSUserDefaultsController" id="974542908">
+			<object class="NSUserDefaultsController" id="731865319">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -1491,11 +1501,11 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.TMTDocumentEnableLiveScrolling</string>
-						<reference key="source" ref="69427559"/>
-						<reference key="destination" ref="974542908"/>
+						<reference key="source" ref="300825620"/>
+						<reference key="destination" ref="731865319"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="69427559"/>
-							<reference key="NSDestination" ref="974542908"/>
+							<reference key="NSSource" ref="300825620"/>
+							<reference key="NSDestination" ref="731865319"/>
 							<string key="NSLabel">value: values.TMTDocumentEnableLiveScrolling</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTDocumentEnableLiveScrolling</string>
@@ -1503,6 +1513,22 @@
 						</object>
 					</object>
 					<int key="connectionID">587</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.delegate.documentController.model.liveCompile</string>
+						<reference key="source" ref="931516223"/>
+						<reference key="destination" ref="374122865"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="931516223"/>
+							<reference key="NSDestination" ref="374122865"/>
+							<string key="NSLabel">value: self.delegate.documentController.model.liveCompile</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.delegate.documentController.model.liveCompile</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">591</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2192,8 +2218,9 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="492465025"/>
 							<reference ref="482457354"/>
-							<reference ref="209043423"/>
-							<reference ref="69427559"/>
+							<reference ref="434723069"/>
+							<reference ref="300825620"/>
+							<reference ref="931516223"/>
 						</array>
 						<reference key="parent" ref="722482832"/>
 					</object>
@@ -2239,18 +2266,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">583</int>
-						<reference key="object" ref="209043423"/>
+						<reference key="object" ref="434723069"/>
 						<reference key="parent" ref="225026294"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">584</int>
-						<reference key="object" ref="69427559"/>
+						<reference key="object" ref="300825620"/>
 						<reference key="parent" ref="225026294"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">585</int>
-						<reference key="object" ref="974542908"/>
+						<reference key="object" ref="731865319"/>
 						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">588</int>
+						<reference key="object" ref="931516223"/>
+						<reference key="parent" ref="225026294"/>
 					</object>
 				</array>
 			</object>
@@ -2366,6 +2398,7 @@
 				<string key="583.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="584.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="585.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="588.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2382,7 +2415,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">587</int>
+			<int key="maxID">591</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
