@@ -223,5 +223,45 @@
 		<key>TMTCompletionInsertionKey</key>
 		<string>quotation</string>
 	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@math@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>align</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@math@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>align*</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@proof@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>proof</string>
+	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string>@@proof@@</string>
+		<key>TMTCompletionFirstLineExtensionKey</key>
+		<string>[@@name@@]</string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>proof</string>
+	</dict>
 </array>
 </plist>
