@@ -144,6 +144,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [placeholderService handleInsertTab];
 }
 
+- (void)jumpToPreviousPlaceholder {
+    if (!self.servicesOn) {
+        return;
+    }
+    [placeholderService handleInsertBacktab];
+}
+
 - (void)updateTrackingAreas {
     [super updateTrackingAreas];
     if (!self.servicesOn) {

@@ -205,7 +205,7 @@ typedef enum {
             [view delete:nil];
             [view  insertText:final];
             //[view setSelectedRange:NSMakeRange(NSMaxRange(charRange), 0)];
-            [view jumpToNextPlaceholder];
+            [view jumpToPreviousPlaceholder];
             [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
@@ -274,6 +274,7 @@ typedef enum {
     }
     [view setSelectedRange:NSMakeRange(position, 0)];
     if ([completion hasPlaceholders]) {
+        [view setSelectedRange:NSMakeRange(position, 0)];
         [view jumpToNextPlaceholder];
     }
     [view.undoManager endUndoGrouping];

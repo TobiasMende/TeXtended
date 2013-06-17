@@ -105,6 +105,7 @@ GoToLineSheetController *goToLineSheet;
  Method for jumping to the next visible placeholders (supporting round wrap jumping when at the end of the visible area)
  */
 - (void) jumpToNextPlaceholder;
+- (void) jumpToPreviousPlaceholder;
 
 - (IBAction)toggleComment:(id)sender;
 - (IBAction)commentSelection:(id)sender;
