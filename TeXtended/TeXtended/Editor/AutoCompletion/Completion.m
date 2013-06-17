@@ -48,10 +48,16 @@ return self;
     NSString *insertion = [dict objectForKey:TMTCompletionInsertionKey];
     BOOL hasPlaceholders = [[dict objectForKey:TMTCompletionHasPlaceholdersKey] boolValue];
     NSString *extension = [dict objectForKey:TMTCompletionExtensionKey];
+    NSString *counter = [dict objectForKey:TMTCompletionCounterKey];
     if (extension) {
-        return [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders andExtension:extension];
+        self = [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders andExtension:extension];
+    } else {
+        self = [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders];
     }
-    return [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders];
+    if (self && counter) {
+        self.counter = [counter integerValue];
+    }
+    return self;
 }
 
 
@@ -107,6 +113,17 @@ return self;
     return [self substitutePlaceholdersInString:self.extension];
 }
 
+- (NSComparisonResult)compare:(NSString *)string {
+    if ([string isKindOfClass:[Completion class]]) {
+        Completion *c = (Completion *)string;
+        if (self.counter > c.counter) {
+            return NSOrderedAscending;
+        } else if (self.counter < c.counter) {
+            return NSOrderedDescending;
+        }
+    }
+    return [self caseInsensitiveCompare:string];
+}
 
 
 #pragma mark -
@@ -117,6 +134,7 @@ return self;
         _insertion = [aDecoder decodeObjectForKey:TMTCompletionInsertionKey];
         _extension = [aDecoder decodeObjectForKey:TMTCompletionExtensionKey];
         _hasPlaceholders = [aDecoder decodeBoolForKey:TMTCompletionHasPlaceholdersKey];
+        _counter = [aDecoder decodeIntegerForKey:TMTCompletionCounterKey];
     }
     return self;
 }
@@ -126,12 +144,13 @@ return self;
     [aCoder encodeObject:self.insertion forKey:TMTCompletionInsertionKey];
     [aCoder encodeObject:self.extension forKey:TMTCompletionExtensionKey];
     [aCoder encodeBool:self.hasPlaceholders forKey:TMTCompletionHasPlaceholdersKey];
+    [aCoder encodeInteger:self.counter forKey:TMTCompletionCounterKey];
 }
 
 
 
 - (NSMutableDictionary *)dictionaryRepresentation {
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,[NSNumber numberWithBool:self.hasPlaceholders],TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, nil];
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,[NSNumber numberWithBool:self.hasPlaceholders],TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter],TMTCompletionCounterKey, nil];
 
 }
 
@@ -147,6 +166,12 @@ return self;
         return [self.key isEqualToString:[other key]];
     }
     return false;
+}
+
+- (void)setCounter:(NSUInteger)counter {
+    [self willChangeValueForKey:@"counter"];
+    _counter = counter;
+    [self didChangeValueForKey:@"counter"];
 }
 
 #pragma mark -

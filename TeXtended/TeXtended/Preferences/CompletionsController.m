@@ -334,4 +334,16 @@ if(!envPath) {
     [self.environmentView editColumn:0 row:self.environmentCompletions.count-1 withEvent:nil select:YES];
 }
 
+- (void)resetCommandCompletionRanking:(id)sender {
+    for (NSString *key in self.commandCompletions) {
+        [[self.commandCompletions objectForKey:key] setCounter:0];
+    }
+}
+
+- (void)resetEnvironmentCompletionRanking:(id)sender {
+    for (NSString *key in self.environmentCompletions) {
+        [[self.environmentCompletions objectForKey:key] setCounter:0];
+    }
+}
+
 @end

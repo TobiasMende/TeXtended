@@ -68,6 +68,17 @@
  */
 - (IBAction)resetCommandCompletions:(id)sender;
 
+/**
+ Resets the internal completion counter for all command completions so that they are ordered alphabetically.
+ @param sender the sender
+ */
+- (IBAction)resetCommandCompletionRanking:(id)sender;
+/**
+ Resets the internal completion counter for all environment completions so that they are ordered alphabetically.
+ @param sender the sender
+ */
+- (IBAction)resetEnvironmentCompletionRanking:(id)sender;
+
 /** Stores completions to the disk using the applications support folder if possible */
 - (void) saveCompletions;
 @end

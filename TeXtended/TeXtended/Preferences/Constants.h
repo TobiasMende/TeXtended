@@ -100,7 +100,7 @@
 #define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
 #define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
-
+#define TMTCompletionCounterKey @"TMTCompletionCounterKey"
 
 /*
  Keys for user infos in NSNotification

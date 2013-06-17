@@ -134,10 +134,10 @@ typedef enum {
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-            [matchingKeys addObject:key];
+            [matchingKeys addObject:[completions objectForKey:key]];
         }
     }
-    [matchingKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    [matchingKeys sortUsingSelector:@selector(compare:)];
     return matchingKeys;
 }
 
@@ -147,14 +147,10 @@ typedef enum {
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-            if (type == TMTBeginCompletion) {
                 [matchingCompletions addObject:[completions objectForKey:key]];
-            } else {
-                [matchingCompletions addObject:[((EnvironmentCompletion*)[completions objectForKey:key]) insertion]];
-            }
         }
     }
-    [matchingCompletions sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    [matchingCompletions sortUsingSelector:@selector(compare:)];
     return matchingCompletions;
 }
 
@@ -183,7 +179,7 @@ typedef enum {
             if (!self.shouldCompleteEnvironments) {
                 return;
             }
-            [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+            [view insertFinalCompletion:[(Completion*)word insertion] forPartialWordRange:charRange movement:movement isFinal:flag];
             if (flag && [self isFinalInsertion:movement]) {
                 [self skipClosingBracket];
             }
@@ -196,9 +192,9 @@ typedef enum {
 
 - (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
      
-    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
-    CommandCompletion *completion = [completions objectForKey:word];
+    CommandCompletion *completion = (CommandCompletion *)word;
     if (flag && [self isFinalInsertion:movement]) {
+        completion.counter++;
         if ([completion hasPlaceholders]) {
         
         
@@ -215,7 +211,11 @@ typedef enum {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     } else {
-        [view insertFinalCompletion:[completion.insertion substringWithRange:NSMakeRange(1, completion.insertion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+        if ([completion respondsToSelector:@selector(insertion)]) {
+            [view insertFinalCompletion:[completion.insertion substringWithRange:NSMakeRange(1, completion.insertion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+        } else {
+            [view insertFinalCompletion:[completion substringWithRange:NSMakeRange(1, completion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+        }
     }
     
 }
@@ -236,6 +236,7 @@ typedef enum {
         }
         return;
     }
+    completion.counter++;
     [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
     [self skipClosingBracket];
     NSUInteger position = [view selectedRange].location;
