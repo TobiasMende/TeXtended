@@ -14,7 +14,7 @@
 				<string>tex</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string></string>
+			<string>texicon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-latex</string>
@@ -51,6 +51,8 @@
 			<array>
 				<string>cls</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>texicon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-latex</string>
@@ -67,6 +69,8 @@
 			<array>
 				<string>sty</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>texicon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-latex</string>
@@ -137,6 +141,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Latex Document</string>
+			<key>UTTypeIconFile</key>
+			<string>texicon.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.plain-text</string>
 			<key>UTTypeTagSpecification</key>
