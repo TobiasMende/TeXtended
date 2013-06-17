@@ -80,7 +80,9 @@
 }
 
 -(void) liveCompile {
-    [self.documentController.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+    if (self.documentController.model.texPath) {
+        [self.documentController.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+    }
     
 }
 
