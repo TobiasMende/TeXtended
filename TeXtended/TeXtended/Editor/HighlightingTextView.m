@@ -18,6 +18,7 @@
 #import "UndoSupport.h"
 #import "SpellCheckingService.h"
 #import "LineNumberView.h"
+#import "GoToLineSheetController.h"
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
@@ -213,6 +214,53 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 }
+
+- (void)goToLine:(id)sender {
+    if (!goToLineSheet) {
+        goToLineSheet = [[GoToLineSheetController alloc] init];
+    }
+    goToLineSheet.line = [NSNumber numberWithInteger:self.currentRow];
+    goToLineSheet.max = [NSNumber numberWithInteger:self.lineRanges.count];
+    [NSApp beginSheet:[goToLineSheet window]
+       modalForWindow: [self window]
+        modalDelegate: self
+       didEndSelector: @selector(sheetDidEnd:returnCode:contextInfo:)
+          contextInfo: nil];
+    [NSApp runModalForWindow:[self window]];
+}
+
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
+    if (returnCode == NSRunStoppedResponse) {
+        [self showLine:[goToLineSheet.line integerValue]];
+    }
+}
+
+- (void)showLine:(NSUInteger)line {
+    NSArray *ranges = [self lineRanges];
+    if (line <= ranges.count && line > 0) {
+        NSTextCheckingResult *r = [ranges objectAtIndex:line-1];
+        [self scrollRangeToVisible:r.range];
+        [self setSelectedRange:NSMakeRange(r.range.location, 0)];
+    } else {
+        NSBeep();
+    }
+    
+}
+
+- (NSArray *)lineRanges {
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    
+    if (error) {
+        NSLog(@"Error: %@", [error userInfo]);
+        return nil;
+    }
+    
+    NSArray *ranges = [regex matchesInString:self.string options:0 range:NSMakeRange(0, self.string.length)];
+    return ranges;
+    
+}
+
 
 - (void)insertTab:(id)sender {
     if (!self.servicesOn) {
@@ -545,6 +593,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSLog(@"HighlightingTextView dealloc");
 #endif
     [self unregisterUserDefaultsObserver];
+  
 }
 
 @end

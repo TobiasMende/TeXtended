@@ -113,6 +113,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[ApplicationController sharedApplicationController] setDelegate:self];
 }
 
+
+- (void)windowWillClose:(NSNotification *)notification {
+    if ([[ApplicationController sharedApplicationController] delegate] == self) {
+        [[ApplicationController sharedApplicationController] setDelegate:nil];
+    }
+}
+
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
@@ -157,6 +164,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 #ifdef DEBUG
     NSLog(@"MainWindowController dealloc");
 #endif
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 

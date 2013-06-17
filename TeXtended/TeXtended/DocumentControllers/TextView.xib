@@ -72,7 +72,7 @@
 										<string key="NSFrameSize">{455, 397}</string>
 										<reference key="NSSuperview" ref="438429443"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="783237092"/>
+										<reference key="NSNextKeyView" ref="705059121"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<object class="NSTextContainer" key="NSTextContainer" id="549277320">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -175,7 +175,6 @@
 								<string key="NSFrame">{{440, 1}, {16, 397}}</string>
 								<reference key="NSSuperview" ref="830351946"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:83</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="830351946"/>
@@ -201,7 +200,7 @@
 						<string key="NSFrameSize">{457, 399}</string>
 						<reference key="NSSuperview" ref="947996288"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="705059121"/>
+						<reference key="NSNextKeyView" ref="438429443"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{1, 1}</string>
 						<int key="NSsFlags">133138</int>
@@ -427,7 +426,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">49</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -437,6 +436,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="commentSelection:">id</string>
 						<string key="deleteLines:">id</string>
+						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
@@ -450,6 +450,10 @@
 						</object>
 						<object class="IBActionInfo" key="deleteLines:">
 							<string key="name">deleteLines:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goToLine:">
+							<string key="name">goToLine:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="hardWrapText:">

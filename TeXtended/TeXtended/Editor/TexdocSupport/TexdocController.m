@@ -57,7 +57,6 @@
     NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", name,
                      nil];
     NSPipe *outputPipe = [NSPipe pipe];
-    NSTask *t2 = [NSTask new];
     [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
 
     [task setStandardOutput:outputPipe];
@@ -68,6 +67,10 @@
     [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     [task setArguments: args];
     [task launch];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

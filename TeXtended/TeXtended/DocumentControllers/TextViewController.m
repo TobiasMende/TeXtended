@@ -111,6 +111,10 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     }
 }
 
+- (void)goToLine:(id)sender {
+    NSLog(@"Go to line");
+}
+
 - (void) documentHasChangedAction {
 }
 
@@ -130,7 +134,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     [observers addObject:observer];
 }
 
-- (void)removeObserver:(id<TextViewObserver>)observer {
+- (void)removeDelegateObserver:(id<TextViewObserver>)observer {
     [observers removeObject:observer];
 }
 
@@ -183,6 +187,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

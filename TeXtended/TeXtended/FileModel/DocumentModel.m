@@ -312,8 +312,6 @@ static NSArray *TMTEncodingsToCheck;
 
 
 
-
-
 #pragma mark -
 #pragma mark KVO
 

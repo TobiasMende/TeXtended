@@ -13,6 +13,7 @@
 #import "CompileSetting.h"
 #import "DocumentController.h"
 #import "ForwardSynctex.h"
+#import "TextViewController.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -115,6 +116,7 @@
 #endif
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [self.documentController.textViewController removeDelegateObserver:self];
 }
 
 @end

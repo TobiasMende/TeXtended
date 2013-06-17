@@ -23,6 +23,6 @@
 - (NSString *)content;
 - (void) setContent:(NSString*) content;
 - (void) addObserver:(id<TextViewObserver>) observer;
-- (void) removeObserver:(id<TextViewObserver>) observer;
+- (void) removeDelegateObserver:(id<TextViewObserver>) observer;
 
 @end

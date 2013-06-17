@@ -740,6 +740,15 @@
 												<reference key="NSOnImage" ref="1033313550"/>
 												<reference key="NSMixedImage" ref="310636482"/>
 											</object>
+											<object class="NSMenuItem" id="484142616">
+												<reference key="NSMenu" ref="870546083"/>
+												<string key="NSTitle">Go To Line</string>
+												<string key="NSKeyEquiv">l</string>
+												<int key="NSKeyEquivModMask">1048576</int>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="1033313550"/>
+												<reference key="NSMixedImage" ref="310636482"/>
+											</object>
 											<object class="NSMenuItem" id="988364834">
 												<reference key="NSMenu" ref="870546083"/>
 												<string key="NSTitle">Move Lines Up</string>
@@ -831,7 +840,7 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
-								<object class="NSMenuItem" id="434723069">
+								<object class="NSMenuItem" id="182200965">
 									<reference key="NSMenu" ref="225026294"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<bool key="NSIsSeparator">YES</bool>
@@ -841,7 +850,7 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
-								<object class="NSMenuItem" id="931516223">
+								<object class="NSMenuItem" id="514802322">
 									<reference key="NSMenu" ref="225026294"/>
 									<bool key="NSIsAlternate">YES</bool>
 									<string key="NSTitle">Live Compile</string>
@@ -851,7 +860,7 @@
 									<reference key="NSOnImage" ref="1033313550"/>
 									<reference key="NSMixedImage" ref="310636482"/>
 								</object>
-								<object class="NSMenuItem" id="300825620">
+								<object class="NSMenuItem" id="725500030">
 									<reference key="NSMenu" ref="225026294"/>
 									<bool key="NSIsAlternate">YES</bool>
 									<string key="NSTitle">Live Scrolling</string>
@@ -996,7 +1005,7 @@
 			<object class="NSCustomObject" id="317081158">
 				<string key="NSClassName">SUUpdater</string>
 			</object>
-			<object class="NSUserDefaultsController" id="731865319">
+			<object class="NSUserDefaultsController" id="962598972">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -1476,6 +1485,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
+						<string key="label">goToLine:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="484142616"/>
+					</object>
+					<int key="connectionID">593</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
 						<reference key="source" ref="374122865"/>
 						<reference key="destination" ref="609285721"/>
@@ -1501,11 +1518,11 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.TMTDocumentEnableLiveScrolling</string>
-						<reference key="source" ref="300825620"/>
-						<reference key="destination" ref="731865319"/>
+						<reference key="source" ref="725500030"/>
+						<reference key="destination" ref="962598972"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="300825620"/>
-							<reference key="NSDestination" ref="731865319"/>
+							<reference key="NSSource" ref="725500030"/>
+							<reference key="NSDestination" ref="962598972"/>
 							<string key="NSLabel">value: values.TMTDocumentEnableLiveScrolling</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.TMTDocumentEnableLiveScrolling</string>
@@ -1517,10 +1534,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: self.delegate.documentController.model.liveCompile</string>
-						<reference key="source" ref="931516223"/>
+						<reference key="source" ref="514802322"/>
 						<reference key="destination" ref="374122865"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="931516223"/>
+							<reference key="NSSource" ref="514802322"/>
 							<reference key="NSDestination" ref="374122865"/>
 							<string key="NSLabel">value: self.delegate.documentController.model.liveCompile</string>
 							<string key="NSBinding">value</string>
@@ -2186,6 +2203,7 @@
 							<reference ref="997191461"/>
 							<reference ref="988364834"/>
 							<reference ref="40985198"/>
+							<reference ref="484142616"/>
 						</array>
 						<reference key="parent" ref="874989227"/>
 					</object>
@@ -2218,9 +2236,9 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="492465025"/>
 							<reference ref="482457354"/>
-							<reference ref="434723069"/>
-							<reference ref="300825620"/>
-							<reference ref="931516223"/>
+							<reference ref="182200965"/>
+							<reference ref="725500030"/>
+							<reference ref="514802322"/>
 						</array>
 						<reference key="parent" ref="722482832"/>
 					</object>
@@ -2266,23 +2284,28 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">583</int>
-						<reference key="object" ref="434723069"/>
+						<reference key="object" ref="182200965"/>
 						<reference key="parent" ref="225026294"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">584</int>
-						<reference key="object" ref="300825620"/>
+						<reference key="object" ref="725500030"/>
 						<reference key="parent" ref="225026294"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">585</int>
-						<reference key="object" ref="731865319"/>
+						<reference key="object" ref="962598972"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">588</int>
-						<reference key="object" ref="931516223"/>
+						<reference key="object" ref="514802322"/>
 						<reference key="parent" ref="225026294"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">592</int>
+						<reference key="object" ref="484142616"/>
+						<reference key="parent" ref="870546083"/>
 					</object>
 				</array>
 			</object>
@@ -2399,6 +2422,7 @@
 				<string key="584.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="585.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="588.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="592.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2415,7 +2439,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">591</int>
+			<int key="maxID">593</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2469,6 +2493,7 @@
 						<string key="duplicateDocument:">id</string>
 						<string key="finalCompile:">id</string>
 						<string key="genericAction:">id</string>
+						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
@@ -2500,6 +2525,10 @@
 							<string key="name">genericAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="goToLine:">
+							<string key="name">goToLine:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="hardWrapText:">
 							<string key="name">hardWrapText:</string>
 							<string key="candidateClassName">id</string>
@@ -2527,11 +2556,34 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">GoToLineSheetController</string>
+					<string key="superclassName">NSWindowController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancelSheet:">id</string>
+						<string key="goToLine:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cancelSheet:">
+							<string key="name">cancelSheet:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goToLine:">
+							<string key="name">goToLine:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GoToLineSheetController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">HighlightingTextView</string>
 					<string key="superclassName">NSTextView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="commentSelection:">id</string>
 						<string key="deleteLines:">id</string>
+						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
@@ -2545,6 +2597,10 @@
 						</object>
 						<object class="IBActionInfo" key="deleteLines:">
 							<string key="name">deleteLines:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goToLine:">
+							<string key="name">goToLine:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="hardWrapText:">
