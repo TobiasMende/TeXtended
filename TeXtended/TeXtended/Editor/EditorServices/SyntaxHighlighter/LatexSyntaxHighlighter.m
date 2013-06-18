@@ -9,6 +9,7 @@
 #import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
+#import "CodeNavigationAssistant.h"
 #import "SpellCheckingService.h"
 static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 static NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
@@ -162,6 +163,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
  
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
+    [view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];

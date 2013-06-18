@@ -114,9 +114,8 @@ static const NSSet *KEYS_TO_OBSERVE;
     if (self.shouldHighlightCurrentLineText) {
         NSRange lineRange = [self lineTextRangeWithRange:range];
         
-         [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
+        // [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
         [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.currentLineTextColor, NSForegroundColorAttributeName, nil] forCharacterRange:lineRange];
-        [view updateSyntaxHighlighting];
         lastLineRange = lineRange;
     } else {
         if (lastLineRange.location != NSNotFound) {
