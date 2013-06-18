@@ -69,6 +69,7 @@
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
 		D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */; };
+		D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF617917709CA900ACC3D5 /* TrackingMessage.m */; };
 		D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */; };
 		D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
 		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
@@ -341,6 +342,8 @@
 		D2CC5501171EAFAB00D81CF1 /* TeXtended-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended-Prefix.pch"; sourceTree = "<group>"; };
 		D2CC5503171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D2CC550C171EAFAB00D81CF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2CF617817709CA900ACC3D5 /* TrackingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingMessage.h; sourceTree = "<group>"; };
+		D2CF617917709CA900ACC3D5 /* TrackingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingMessage.m; sourceTree = "<group>"; };
 		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 		76049C9C1751FDB000778E2A /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF617717709B3400ACC3D5 /* ErrorTrackingAssistant */,
 				D25FF83117651C5D00530928 /* ExportCompileWindow.xib */,
 				D25FF83217651C5D00530928 /* ExportCompileWindowController.h */,
 				D25FF83317651C5D00530928 /* ExportCompileWindowController.m */,
@@ -855,6 +859,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D2CF617717709B3400ACC3D5 /* ErrorTrackingAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				D2CF617817709CA900ACC3D5 /* TrackingMessage.h */,
+				D2CF617917709CA900ACC3D5 /* TrackingMessage.m */,
+			);
+			path = ErrorTrackingAssistant;
+			sourceTree = "<group>";
+		};
 		D2F177CE17651D5A0089DBC0 /* InfoPanels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1042,6 +1055,7 @@
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
 				D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */,
 				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
+				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

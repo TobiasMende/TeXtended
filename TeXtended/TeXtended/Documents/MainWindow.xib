@@ -381,20 +381,20 @@
 									<array class="NSMutableArray" key="NSSubviews">
 										<object class="NSBox" id="277993537">
 											<reference key="NSNextResponder" ref="125539657"/>
-											<int key="NSvFlags">12</int>
+											<int key="NSvFlags">268</int>
 											<array class="NSMutableArray" key="NSSubviews">
 												<object class="NSView" id="173732326">
 													<reference key="NSNextResponder" ref="277993537"/>
 													<int key="NSvFlags">274</int>
 													<array class="NSMutableArray" key="NSSubviews"/>
-													<string key="NSFrameSize">{160, 563}</string>
+													<string key="NSFrameSize">{200, 563}</string>
 													<reference key="NSSuperview" ref="277993537"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="235925191"/>
 													<string key="NSReuseIdentifierKey">_NS:11</string>
 												</object>
 											</array>
-											<string key="NSFrameSize">{160, 563}</string>
+											<string key="NSFrameSize">{200, 563}</string>
 											<reference key="NSSuperview" ref="125539657"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="173732326"/>
@@ -452,7 +452,7 @@
 													<reference key="NSNextResponder" ref="235925191"/>
 													<int key="NSvFlags">268</int>
 													<array class="NSMutableArray" key="NSSubviews"/>
-													<string key="NSFrameSize">{171, 30}</string>
+													<string key="NSFrameSize">{211, 30}</string>
 													<reference key="NSSuperview" ref="235925191"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="1018424202"/>
@@ -460,7 +460,7 @@
 													<int key="NSDividerStyle">3</int>
 												</object>
 											</array>
-											<string key="NSFrame">{{0, 564}, {160, 0}}</string>
+											<string key="NSFrame">{{0, 564}, {200, 0}}</string>
 											<reference key="NSSuperview" ref="125539657"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="102709776"/>
@@ -468,12 +468,13 @@
 											<string key="NSClassName">NSView</string>
 										</object>
 									</array>
-									<string key="NSFrameSize">{160, 564}</string>
+									<string key="NSFrameSize">{200, 564}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="277993537"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
-									<string key="NSAntiCompressionPriority">{1, 1}</string>
+									<string key="NSHuggingPriority">{250, 250}</string>
+									<string key="NSAntiCompressionPriority">{250, 250}</string>
 									<int key="NSDividerStyle">2</int>
 									<object class="NSMutableDictionary" key="NSHoldingPriorities">
 										<bool key="EncodedWithXMLCoder">YES</bool>
@@ -495,7 +496,7 @@
 											<reference key="NSNextResponder" ref="1018424202"/>
 											<int key="NSvFlags">268</int>
 											<array class="NSMutableArray" key="NSSubviews"/>
-											<string key="NSFrameSize">{387, 564}</string>
+											<string key="NSFrameSize">{386, 564}</string>
 											<reference key="NSSuperview" ref="1018424202"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="112595321"/>
@@ -507,7 +508,7 @@
 											<reference key="NSNextResponder" ref="1018424202"/>
 											<int key="NSvFlags">268</int>
 											<array class="NSMutableArray" key="NSSubviews"/>
-											<string key="NSFrame">{{388, 0}, {425, 564}}</string>
+											<string key="NSFrame">{{387, 0}, {386, 564}}</string>
 											<reference key="NSSuperview" ref="1018424202"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView"/>
@@ -516,11 +517,12 @@
 											<int key="NSDividerStyle">2</int>
 										</object>
 									</array>
-									<string key="NSFrame">{{161, 0}, {813, 564}}</string>
+									<string key="NSFrame">{{201, 0}, {773, 564}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="5402049"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
+									<string key="NSAntiCompressionPriority">{250, 250}</string>
 									<bool key="NSIsVertical">YES</bool>
 									<int key="NSDividerStyle">2</int>
 								</object>
@@ -540,8 +542,8 @@
 									<integer value="2"/>
 								</array>
 								<array key="dict.values">
-									<real value="463"/>
-									<real value="250"/>
+									<real value="1"/>
+									<real value="1"/>
 									<real value="250"/>
 								</array>
 							</object>
@@ -863,20 +865,20 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="277993537"/>
 							<reference ref="235925191"/>
-							<object class="IBNSLayoutConstraint" id="847926602">
+							<object class="IBNSLayoutConstraint" id="912537519">
 								<reference key="firstItem" ref="125539657"/>
 								<int key="firstAttribute">7</int>
-								<int key="relation">0</int>
+								<int key="relation">-1</int>
 								<nil key="secondItem"/>
 								<int key="secondAttribute">0</int>
 								<float key="multiplier">1</float>
 								<object class="IBLayoutConstant" key="constant">
-									<double key="value">160</double>
+									<double key="value">200</double>
 								</object>
-								<float key="priority">1000</float>
+								<float key="priority">503</float>
 								<reference key="containingView" ref="125539657"/>
-								<int key="scoringType">3</int>
-								<float key="scoringTypeFloat">9</float>
+								<int key="scoringType">9</int>
+								<float key="scoringTypeFloat">40</float>
 								<int key="contentType">1</int>
 							</object>
 						</array>
@@ -1125,11 +1127,6 @@
 						<reference key="parent" ref="235925191"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">100440</int>
-						<reference key="object" ref="847926602"/>
-						<reference key="parent" ref="125539657"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">100427</int>
 						<reference key="object" ref="1018424202"/>
 						<array class="NSMutableArray" key="children">
@@ -1150,6 +1147,11 @@
 						<reference key="parent" ref="1018424202"/>
 						<string key="objectName">Middle SplitView</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100465</int>
+						<reference key="object" ref="912537519"/>
+						<reference key="parent" ref="125539657"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1165,8 +1167,8 @@
 				<string key="100113.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100183.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100187.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<array key="100278.IBNSViewMetadataConstraints">
-					<reference ref="847926602"/>
+				<array class="NSMutableArray" key="100278.IBNSViewMetadataConstraints">
+					<reference ref="912537519"/>
 				</array>
 				<string key="100278.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100297.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1203,8 +1205,8 @@
 				<string key="100407.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100427.CustomClassName">TMTSplitView</string>
 				<string key="100427.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="100440.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100441.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100465.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1221,7 +1223,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100450</int>
+			<int key="maxID">100486</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
