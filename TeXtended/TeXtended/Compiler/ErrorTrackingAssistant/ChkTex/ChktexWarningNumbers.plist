@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    
-</dict>
+    <dict>
+        <key>11</key>
+        <string>Simply typing three “.” in a row will not give a perfect spacing withing the between the dots. The \ldots is much more suitable for this.
+            In math mode, you should also distinguish between \cdots and \ldots</string>
+        
+        <key>18</key>
+        <string>Self-explanatory. Look in the example, and you’ll understand why.
+            This is an "example"
+            This is an "example"
+            This is an ‘‘example’’
+            This is an “example”</string>
+        <key>19</key>
+        <string>On some keyboards you might get the wrong quote. This quote looks, IMHO, ugly compared to the standard quotes, it doesn’t even come out as a quote!</string>
+        <key>25</key>
+        <string>This warning is given whenever ChkTEX finds a “ˆ”’ or a “_” followed by either two or more numberic digits or two or more alphabetic characters. In most situations, this means that you’ve forgotten some {}’s.</string>
+        <key>35</key>
+        <string>Most mathematical operators should be set as standard roman font, instead of the math italic LATEX uses for variables. For many opera- tors, LATEX provides a pre-defined command which will typeset the operator correctly. Look below for an illustration of the point.
+            VerbEnvir</string>
+        <key>43</key>
+        <string>LATEX’ error message when calling \left \{ instead of left \{ is unfortunately rather poor. This warning detects this and similar errors.</string>
+        
+    </dict>
 </plist>

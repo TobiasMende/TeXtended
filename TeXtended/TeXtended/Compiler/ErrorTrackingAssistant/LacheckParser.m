@@ -11,13 +11,20 @@
 #import "DocumentModel.h"
 #import "PathFactory.h"
 #import "TrackingMessage.h"
+#import "MessageCollection.h"
 
 
 @implementation LacheckParser
 
 
-- (NSSet *)parseDocument:(NSString *)path {
+- (MessageCollection *)parseDocument:(NSString *)path {
     if (!path) {
+        return nil;
+    }
+    TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
+    
+    if (thresh < WARNING) {
+        // ATM this object only creates warning objects. so nothing to do for ERROR or less.
         return nil;
     }
     NSTask *task = [[NSTask alloc] init];
@@ -46,8 +53,8 @@
     return [self parseOutput:stringRead withBaseDir:dirPath];
 }
 
-- (NSSet *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
-    NSMutableSet *messages= [NSMutableSet new];
+- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+    MessageCollection *collection = [MessageCollection new];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\"(.*)\",\\sline\\s(.*):\\s(.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -66,12 +73,12 @@
             NSString *info = [line substringWithRange:[result rangeAtIndex:3]];
             if (path && [self infoValid:info] && lineNumber >0) {
                 TrackingMessage *m = [TrackingMessage warningInDocument:[self absolutPath:path withBaseDir:base] inLine:lineNumber withTitle:@"Lacheck Warning" andInfo:info];
-                [messages addObject:m];
+                [collection addMessage:m];
             }
         }
     }
     
-    return messages;
+    return collection;
     
 }
 

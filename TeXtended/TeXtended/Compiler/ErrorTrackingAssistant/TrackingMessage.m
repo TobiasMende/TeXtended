@@ -26,7 +26,7 @@
     return [[TrackingMessage alloc] initMessage:TMTDebugMessage inDocument:document inLine:line withTitle:title andInfo:info];
 }
 
-- (id)initMessage:(MessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
+- (id)initMessage:(TMTTrackingMessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     self = [super init];
     if (self) {
         _type = type;
@@ -39,7 +39,7 @@
 }
 
 - (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%li) for %@ in %li:\n", self.type,self.document,self.line];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%i) for %@ in %li:\n", self.type,self.document,self.line];
     [string appendFormat:@"\t *** %@ ***\n", self.title];
     [string appendFormat:@"%@", self.info];
     return string;

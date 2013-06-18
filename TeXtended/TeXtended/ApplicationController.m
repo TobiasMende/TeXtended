@@ -127,6 +127,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
                               [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
                               [NSNumber numberWithInt:80], TMT_EDITOR_HARD_WRAP_AFTER,
+                              [NSNumber numberWithInt:WARNING], TMTLatexLogLevelKey,
                               [NSNumber numberWithInt:HardWrap], TMT_EDITOR_LINE_WRAP_MODE,
                               @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
                               @"/usr/texbin", TMT_PATH_TO_TEXBIN,

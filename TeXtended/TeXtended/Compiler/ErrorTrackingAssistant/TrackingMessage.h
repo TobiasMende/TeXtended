@@ -7,13 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
-typedef NS_ENUM(NSInteger, MessageType) {
-    TMTDebugMessage,
-    TMTInfoMessage,
-    TMTWarningMessage,
-    TMTErrorMessage
-};
 
 
 @interface TrackingMessage : NSObject
@@ -22,12 +17,12 @@ typedef NS_ENUM(NSInteger, MessageType) {
 @property NSString* document;
 @property NSUInteger line;
 @property NSUInteger column;
-@property MessageType type;
+@property TMTTrackingMessageType type;
 @property NSString *title;
 @property NSString *info;
 @property NSString *furtherInfo;
 
-- (id) initMessage:(MessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
+- (id) initMessage:(TMTTrackingMessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
 + (id) errorInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
 + (id) warningInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
 + (id) infoInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;

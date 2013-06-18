@@ -9,6 +9,7 @@
 #import "ChktexParser.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import "MessageCollection.h"
 
 static const NSDictionary *WARNING_NUMBERS;
 static const NSDictionary *INFO_NUMBERS;
@@ -28,7 +29,7 @@ static const NSDictionary *DEBUG_NUMBERS;
 }
 
 
-- (NSSet *)parseDocument:(NSString *)path {
+- (MessageCollection *)parseDocument:(NSString *)path {
     if (!path) {
         return nil;
     }
@@ -58,23 +59,65 @@ static const NSDictionary *DEBUG_NUMBERS;
     return [self parseOutput:stringRead withBaseDir:dirPath];
 }
 
-- (NSSet *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
-    NSMutableSet *messages= [NSMutableSet new];
+- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+    TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
+    MessageCollection *collection = [MessageCollection new];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     
     for (NSString *line in lines) {
         NSArray *components = [line componentsSeparatedByString:@":"];
-        if (components.count < 4) {
+        if (components.count < 5) {
             continue;
         }
         NSString *path = [self absolutPath:[components objectAtIndex:0] withBaseDir:base];
         NSUInteger line = [[components objectAtIndex:1] integerValue];
         NSUInteger column = [[components objectAtIndex:2] integerValue];
         NSInteger warning = [[components objectAtIndex:3] integerValue];
+        NSString *info = [components objectAtIndex:4];
+        TMTTrackingMessageType type = [self typeForChktexNumber:warning];
         
-        //FIXME: check message type and create matching TrackingMessage. Maybe handle the current loglevel first.
+        if (type <= thresh) {
+            TrackingMessage *m = [[TrackingMessage alloc] initMessage:type inDocument:path inLine:line withTitle:@"Chktex Warning" andInfo:info];
+            m.furtherInfo = [self messageForChktexNumber:warning ofType:type];
+            m.column = column;
+            [collection addMessage:m];
+        }
     }
 
-    return messages;
+    return collection;
+}
+
+- (TMTTrackingMessageType)typeForChktexNumber:(NSInteger)number {
+    NSNumber *key = [NSNumber numberWithInteger:number];
+    if ([WARNING_NUMBERS objectForKey:key]) {
+        return TMTWarningMessage;
+    }
+    if ([INFO_NUMBERS objectForKey:key]) {
+        return TMTInfoMessage;
+    }
+    if ([DEBUG_NUMBERS objectForKey:key]) {
+        return TMTDebugMessage;
+    }
+    NSLog(@"WARNING: Unknown message type for %li", number);
+    return TMTDebugMessage;
+}
+
+- (NSString *)messageForChktexNumber:(NSInteger)number ofType:(TMTTrackingMessageType)type {
+    NSNumber *key = [NSNumber numberWithInteger:number];
+    switch (type) {
+        case TMTWarningMessage:
+            return [WARNING_NUMBERS objectForKey:key];
+            break;
+        case TMTInfoMessage:
+            return [INFO_NUMBERS objectForKey:key];
+            break;
+        case TMTDebugMessage:
+            return [DEBUG_NUMBERS objectForKey:key];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
 }
 @end

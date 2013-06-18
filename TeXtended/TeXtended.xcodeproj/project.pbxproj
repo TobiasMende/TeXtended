@@ -76,6 +76,10 @@
 		D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61861770BBDC00ACC3D5 /* ChktexDebugNumbers.plist */; };
 		D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61881770BD0000ACC3D5 /* ChktexInfoNumbers.plist */; };
 		D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF618A1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist */; };
+		D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */; };
+		D2CF61911770FC7600ACC3D5 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF618F1770FC7600ACC3D5 /* check.png */; };
+		D2CF61921770FC7600ACC3D5 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61901770FC7600ACC3D5 /* error.png */; };
+		D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */; };
 		D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */; };
 		D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
 		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
@@ -359,6 +363,12 @@
 		D2CF61861770BBDC00ACC3D5 /* ChktexDebugNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexDebugNumbers.plist; sourceTree = "<group>"; };
 		D2CF61881770BD0000ACC3D5 /* ChktexInfoNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexInfoNumbers.plist; sourceTree = "<group>"; };
 		D2CF618A1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexWarningNumbers.plist; sourceTree = "<group>"; };
+		D2CF618C1770E93C00ACC3D5 /* MessageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollection.h; sourceTree = "<group>"; };
+		D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollection.m; sourceTree = "<group>"; };
+		D2CF618F1770FC7600ACC3D5 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		D2CF61901770FC7600ACC3D5 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
+		D2CF61931770FD6100ACC3D5 /* EnvironmentSetupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentSetupController.h; sourceTree = "<group>"; };
+		D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSetupController.m; sourceTree = "<group>"; };
 		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
@@ -575,6 +585,8 @@
 				D21ACBC01726879000E2F8EC /* PreferencesController.h */,
 				D21ACBC11726879000E2F8EC /* PreferencesController.m */,
 				D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */,
+				D2CF61931770FD6100ACC3D5 /* EnvironmentSetupController.h */,
+				D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -766,6 +778,8 @@
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF618F1770FC7600ACC3D5 /* check.png */,
+				D2CF61901770FC7600ACC3D5 /* error.png */,
 				D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */,
 				D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */,
 				D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */,
@@ -886,6 +900,8 @@
 				D2CF61801770B13E00ACC3D5 /* ChktexParser.m */,
 				D2CF61821770B31200ACC3D5 /* Parser.h */,
 				D2CF61831770B31200ACC3D5 /* Parser.m */,
+				D2CF618C1770E93C00ACC3D5 /* MessageCollection.h */,
+				D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */,
 			);
 			path = ErrorTrackingAssistant;
 			sourceTree = "<group>";
@@ -1000,6 +1016,8 @@
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
+				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
+				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,6 +1112,8 @@
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
 				D2CF61841770B31200ACC3D5 /* Parser.m in Sources */,
+				D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */,
+				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

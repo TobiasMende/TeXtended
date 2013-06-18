@@ -51,6 +51,7 @@
 #define TMTLiveCompileIterations @"TMTLiveCompileIterations"
 #define TMTDraftCompileIterations @"TMTDraftCompileIterations"
 #define TMTFinalCompileIterations @"TMTFinalCompileIterations"
+#define TMTLatexLogLevelKey @"TMTLatexLogLevelKey" 
 
 /*
  KVC keys for boolean flags (used for user defaults) 
@@ -123,6 +124,18 @@
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
                                     NoWrap = 2} TMTLineWrappingMode;
+
+typedef enum LatexLogLevel {OFF = 0,
+                            ERROR = 1,
+                            WARNING = 2,
+                            INFO = 3,
+                            ALL = 4} TMTLatexLogLevel;
+
+typedef enum TrackingMessageType{
+    TMTDebugMessage,
+    TMTInfoMessage,
+    TMTWarningMessage,
+    TMTErrorMessage} TMTTrackingMessageType;
 
 /**
     This class is our common place for constants and other global definitions.

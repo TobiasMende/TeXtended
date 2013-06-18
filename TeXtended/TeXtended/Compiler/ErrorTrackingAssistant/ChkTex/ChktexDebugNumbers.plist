@@ -9,5 +9,38 @@
     <string>This is a warning which you may ignore, but for maximum aestethic pleasure, you should enclose your bracket characters with ‘{}’s.</string>
     <key>9</key>
     <string>‘%s’ expected, found ‘%s’.</string>
+    <key>14</key>
+    <string>ChkTEX will in some cases need the argument of a function to detect an error. As ChkTEX currently processes the LATEX file on a line-by- line basis, it won’t find the argument if the command which needed it was on the previous line. On the other hand, this may also be an error; you ought to check it to be safe.</string>
+    <key>15</key>
+    <string>This warning is triggered if we find a single, opening bracket or environment. While bracket matching is not an explicit error, it is usually a sign that something is wrong.</string>
+    <key>16</key>
+    <string>This error is triggered if you at some point have turned on math- mode, and ChkTEX couldn’t see that you remembered to turn it off.</string>
+    <key>17</key>
+    <string>Should be self-explanatory. ChkTEX didn’t find the same number of an opening bracket as it found of a closing bracket.</string>
+    <key>20</key>
+    <string>A substring you’ve specified using USERWARN in the “chktexrc” file, has been found.</string>
+    <key>21</key>
+    <string>I implemented this because a friend of mine kept on making these mistakes. Easily done if you haven’t gotten quite into the syntax of LATEX.</string>
+    <key>22</key>
+    <string>ChkTEX dumps all comments it finds, which in some cases is useful. I usually keep all my notes in the comments, and like to review them before I ship the final version. For commenting out parts of the document, the “comment” environment is better suited.</string>
+    <key>27</key>
+    <string>Some LATEX commands will be interpreted by ChkTEX; however, some of them are sensible to errors in the LATEX source. Most no- tably, the \input command relies on that the input file exists...</string>
+    <key>28</key>
+    <string>Italic correction should generally not be used in front of small punc- tuation characters like ‘.’ and ‘,’; as it looks better when the pre- ceding italic character leans “over” the punctum or comma.</string>
+    <key>31</key>
+    <string>Certain implementations of the verbatim environment and deriva- tions of that, ignore all text on the same line as \end{verbatim}. This will warn you about this.</string>
+    <key>32</key>
+    <string></string>
+    <key>33</key>
+    <string></string>
+    <key>34</key>
+    <string>Proper quotations should start with a ‘ and end with a ’; anything else isn’t very pretty. Both these warnings are relative to this; look in the example below.</string>
+    <key>38</key>
+    <string>For best looking documents, you should decide on how you wish to put quotes relative to punctuation. ChkTEX recognizes two styles; you may specify which you use in the “chktexrc” file.</string>
+    <key>39</key>
+    <string>This warning is triggered whenever ChkTEX finds a space in front of a hard space, or vice versa. This will be rendered as two spaces (which you usually don’t wish).</string>
+    <key>42</key>
+    <string>Some commands should not be prepended by a space character, for cosmetical reasons. This notes you of this whenever this has hap- pened.</string>
+    
 </dict>
 </plist>

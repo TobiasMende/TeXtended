@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Parser.h"
-
+#import "TrackingMessage.h"
 @interface ChktexParser : Parser
 
+- (TMTTrackingMessageType) typeForChktexNumber:(NSInteger)number;
+- (NSString *) messageForChktexNumber: (NSInteger)number ofType:(TMTTrackingMessageType)type;
 @end

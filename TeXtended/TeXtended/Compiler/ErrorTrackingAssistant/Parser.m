@@ -10,7 +10,7 @@
 
 @implementation Parser
 
-- (NSSet *)parseDocument:(NSString *)path {
+- (MessageCollection *)parseDocument:(NSString *)path {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return nil;
@@ -20,7 +20,7 @@
     return NO;
 }
 
-- (NSSet *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return nil;

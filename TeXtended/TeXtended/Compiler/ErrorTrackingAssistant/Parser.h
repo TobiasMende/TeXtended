@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class MessageCollection;
 @interface Parser : NSObject {
     
 }
@@ -19,9 +20,9 @@
  
  @return a set of messages
  */
-- (NSSet *)parseDocument:(NSString *)path;
+- (MessageCollection *)parseDocument:(NSString *)path;
 
-- (NSSet *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
+- (MessageCollection *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
 - (BOOL) infoValid:(NSString*)info;
 - (NSString*)absolutPath:(NSString*)path withBaseDir:(NSString*)base;
 @end
