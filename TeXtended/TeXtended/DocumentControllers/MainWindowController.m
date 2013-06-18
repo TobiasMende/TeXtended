@@ -87,25 +87,25 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (s0 == [self.mainView isCollapsed:0]) {
         [self.mainView toggleCollapseFor:0];
     }
-    if (s1 == [self.mainView isCollapsed:1]) {
-        if ([self.mainView isCollapsed:1] || ![self.mainView isCollapsed:2]) {
-            [self.mainView toggleCollapseFor:1];
+    if (s1 == [self.contentView isCollapsed:0]) {
+        if ([self.contentView isCollapsed:0] || ![self.contentView isCollapsed:1]) {
+            [self.contentView toggleCollapseFor:0];
         } else {
             NSBeep();
         }
     }
-    if (s2 == [self.mainView isCollapsed:2]) {
-        if (![self.mainView isCollapsed:1] || [self.mainView isCollapsed:2]) {
-            [self.mainView toggleCollapseFor:2];
+    if (s2 == [self.contentView isCollapsed:1]) {
+        if (![self.contentView isCollapsed:0] || [self.contentView isCollapsed:1]) {
+            [self.contentView toggleCollapseFor:1];
         } else {
             NSBeep();
         }
         
     }
     
-    for (NSUInteger index = 0; index < control.segmentCount; index++) {
-        [control setSelected:![self.mainView isCollapsed:index] forSegment:index];
-    }
+    [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
+    [control setSelected:![self.contentView isCollapsed:0] forSegment:1];
+    [control setSelected:![self.contentView isCollapsed:1] forSegment:2];
     
 }
 
@@ -154,7 +154,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-    if ([self.mainView indexForView:subview] == 1) {
+    if ([(TMTSplitView*)splitView indexForView:subview] == 0) {
         return YES;
     }
     return NO;

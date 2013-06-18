@@ -56,6 +56,7 @@
 }
 
 - (void)refreshSubviews {
+    NSLog(@"%li", self.subviews.count);
     collapseState = [NSMutableArray arrayWithCapacity:self.subviews.count];
     defaultPosition = [NSMutableArray arrayWithCapacity:self.subviews.count];
     for (NSView *view in self.subviews) {
@@ -82,6 +83,11 @@
         oldPosition = [self positionOfDividerAtIndex:index];
         [self setPosition:[self minPossiblePositionOfDividerAtIndex:index] ofDividerAtIndex:index];
     }
+    if (self.isVertical) {
+        oldPosition /= self.bounds.size.width;
+    } else {
+        oldPosition /= self.bounds.size.height;
+    }
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
     if (defaultPosition.count > index) {
         [defaultPosition replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:oldPosition]];
@@ -91,10 +97,16 @@
 }
 
 - (void)uncollapse:(NSUInteger)index {
-    if (index == self.subviews.count -1) {
-        [self setPosition:[[defaultPosition objectAtIndex:index] floatValue] ofDividerAtIndex:index-1];
+    CGFloat position = [[defaultPosition objectAtIndex:index] floatValue];
+    if (self.isVertical) {
+        position *= self.bounds.size.width;
     } else {
-        [self setPosition:[[defaultPosition objectAtIndex:index] floatValue] ofDividerAtIndex:index];
+        position *= self.bounds.size.height;
+    }
+    if (index == self.subviews.count -1) {
+        [self setPosition:position ofDividerAtIndex:index-1];
+    } else {
+        [self setPosition:position ofDividerAtIndex:index];
     }
     
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:NO]];

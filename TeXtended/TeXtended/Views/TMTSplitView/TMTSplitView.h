@@ -18,6 +18,7 @@
 - (void) collapse:(NSUInteger)index;
 - (CGFloat)positionOfDividerAtIndex:(NSInteger)dividerIndex;
 
+
 - (NSUInteger)indexForView:(NSView*)view;
 - (NSView*)viewForIndex:(NSUInteger)index;
 @end

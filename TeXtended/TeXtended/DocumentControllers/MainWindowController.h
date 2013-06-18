@@ -11,6 +11,7 @@
 @class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController, TMTSplitView;
 @interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate, NSWindowDelegate> {
 }
+@property (weak) IBOutlet TMTSplitView *contentView;
 @property (weak) IBOutlet NSSegmentedControl *splitviewControl;
 @property (weak) IBOutlet TMTSplitView *mainView;
 @property (weak) IBOutlet NSSplitView *sidebar;
