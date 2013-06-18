@@ -1,5 +1,5 @@
 //
-//  LacheckParser.h
+//  ChktexParser.h
 //  TeXtended
 //
 //  Created by Tobias Mende on 18.06.13.
@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Parser.h"
 
-
-@class DocumentModel;
-
-@interface LacheckParser : Parser
-
+@interface ChktexParser : Parser
 
 @end

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>4</key>
+    <string>If you try to use the \/ command when ChkTEX believes that the buffer is not outputted as italic, you’ll get this warning.</string>
+    <key>5</key>
+    <string>If the buffer is italic, and you try to use the \/ command more than once, you’ll get this warning.</string>
+    <key>6</key>
+    <string>You get this error if ChkTEX believes that you are switching from italic to non-italic, and you’ve forgot to use the \/ command to insert that extra little spacing. If you use the “em” option, you may ignore this warning.</string>
+    <key>7</key>
+    <string>If you’re using accenting commands, ‘i’ and ‘j’ should lose their dots before they get accented. This is accomplished by using the \i, \j, \imath and \jmath command.</string>
+    <key>8</key>
+    <string>This warning suggests that a wrong number of dashes may have been used. It does this by classifying the dash according to the the character in front and after the dashes.
+        If they are of the same type, ChkTEX will determine which keyword to use in the “chktexrc” file. If not, it will shut up and accept that it doesn’t know.</string>
+    <key>10</key>
+    <string>Either brackets or environments don’t match. ChkTEX expects to find matching brackets/environments in the same order as their op- posites were found, and no closing delimiters which haven’t been preceded by an opening one.
+        While bracket matching is not an explicit error, it is usually a sign that something is wrong.</string>
+</dict>
+</plist>

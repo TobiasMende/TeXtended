@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<dict>
+    <key>1</key>
+    <string>You tried to terminate a command with a blank space. Usually, this is an error as these are ignored by LATEX. In most cases, you would like to have a real space there.</string>
+    <key>2</key>
+    <string>When reading a document, it is not very pretty when references are split across lines. If you use the ~ character, LATEX will assign a very high penalty for splitting a line at that point. ChkTEX issues this warning if you have forgot to do this.</string>
+    <key>3</key>
+    <string>This is a warning which you may ignore, but for maximum aestethic pleasure, you should enclose your bracket characters with ‘{}’s.</string>
+    <key>9</key>
+    <string>‘%s’ expected, found ‘%s’.</string>
+</dict>
+</plist>

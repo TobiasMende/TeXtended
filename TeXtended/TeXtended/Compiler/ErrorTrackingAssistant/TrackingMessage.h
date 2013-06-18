@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, MessageType) {
 
 
 @property NSString* document;
-@property NSUInteger lineNumber;
+@property NSUInteger line;
+@property NSUInteger column;
 @property MessageType type;
 @property NSString *title;
 @property NSString *info;

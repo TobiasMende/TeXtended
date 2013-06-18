@@ -31,7 +31,7 @@
     if (self) {
         _type = type;
         _document = document;
-        _lineNumber = line;
+        _line = line;
         _title = title;
         _info = info;
     }
@@ -39,7 +39,7 @@
 }
 
 - (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%li) for %@ in %li:\n", self.type,self.document,self.lineNumber];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%li) for %@ in %li:\n", self.type,self.document,self.line];
     [string appendFormat:@"\t *** %@ ***\n", self.title];
     [string appendFormat:@"%@", self.info];
     return string;

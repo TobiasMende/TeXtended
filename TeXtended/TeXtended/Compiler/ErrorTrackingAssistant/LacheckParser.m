@@ -12,11 +12,6 @@
 #import "PathFactory.h"
 #import "TrackingMessage.h"
 
-@interface LacheckParser ()
-- (NSSet *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
-- (BOOL) infoValid:(NSString*)info;
-- (NSString*)absolutPath:(NSString*)path withBaseDir:(NSString*)base;
-@end
 
 @implementation LacheckParser
 
@@ -94,12 +89,5 @@
     
     return NO;
     
-}
-
-- (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base {
-    if ([path isAbsolutePath]) {
-        return path;
-    }
-    return [base stringByAppendingPathComponent:path];
 }
 @end
