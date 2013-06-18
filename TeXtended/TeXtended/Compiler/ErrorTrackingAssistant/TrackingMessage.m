@@ -10,23 +10,23 @@
 
 @implementation TrackingMessage
 
-+ (id)errorInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
++ (id)errorInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     return [[TrackingMessage alloc] initMessage:TMTErrorMessage inDocument:document inLine:line withTitle:title andInfo:info];
 }
 
-+(id)warningInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
++(id)warningInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     return [[TrackingMessage alloc] initMessage:TMTWarningMessage inDocument:document inLine:line withTitle:title andInfo:info];
 }
 
-+ (id)infoInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
++ (id)infoInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     return [[TrackingMessage alloc] initMessage:TMTInfoMessage inDocument:document inLine:line withTitle:title andInfo:info];
 }
 
-+ (id)debugInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
++ (id)debugInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     return [[TrackingMessage alloc] initMessage:TMTDebugMessage inDocument:document inLine:line withTitle:title andInfo:info];
 }
 
-- (id)initMessage:(MessageType)type inDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
+- (id)initMessage:(MessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString *)title andInfo:(NSString *)info {
     self = [super init];
     if (self) {
         _type = type;
@@ -36,6 +36,13 @@
         _info = info;
     }
     return self;
+}
+
+- (NSString *)description {
+    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%li) for %@ in %li:\n", self.type,self.document,self.lineNumber];
+    [string appendFormat:@"\t *** %@ ***\n", self.title];
+    [string appendFormat:@"%@", self.info];
+    return string;
 }
 
 @end

@@ -11,5 +11,7 @@
 @interface PathFactory : NSObject
 + (NSString*) texdoc;
 + (NSString*) synctex;
++ (NSString*) lacheck;
++ (NSString*) chktex;
 + (NSString*) texbin;
 @end

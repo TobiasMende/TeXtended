@@ -25,4 +25,12 @@
 + (NSString *)synctex {
     return [[self texbin] stringByAppendingPathComponent:@"synctex"];
 }
+
++ (NSString *)lacheck {
+    return [[self texbin] stringByAppendingPathComponent:@"lacheck"];
+}
+
++ (NSString *)chktex {
+    return [[self texbin] stringByAppendingPathComponent:@"chktex"];
+}
 @end

@@ -15,21 +15,20 @@ typedef NS_ENUM(NSInteger, MessageType) {
     TMTErrorMessage
 };
 
-@class DocumentModel;
 
 @interface TrackingMessage : NSObject
 
 
-@property (weak) DocumentModel* document;
+@property NSString* document;
 @property NSUInteger lineNumber;
 @property MessageType type;
 @property NSString *title;
 @property NSString *info;
-@property NSString *description;
+@property NSString *furtherInfo;
 
-- (id) initMessage:(MessageType)type inDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
-+ (id) errorInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
-+ (id) warningInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
-+ (id) infoInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
-+ (id) debugInDocument:(DocumentModel *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
+- (id) initMessage:(MessageType)type inDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
++ (id) errorInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
++ (id) warningInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
++ (id) infoInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
++ (id) debugInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
 @end
