@@ -80,6 +80,8 @@
 		D2CF61911770FC7600ACC3D5 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF618F1770FC7600ACC3D5 /* check.png */; };
 		D2CF61921770FC7600ACC3D5 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61901770FC7600ACC3D5 /* error.png */; };
 		D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */; };
+		D2CF6198177247E200ACC3D5 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF6196177247E200ACC3D5 /* info.png */; };
+		D2CF6199177247E200ACC3D5 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF6197177247E200ACC3D5 /* warning.png */; };
 		D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */; };
 		D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F177D117651D5A0089DBC0 /* InfoWindowController.m */; };
 		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
@@ -369,6 +371,8 @@
 		D2CF61901770FC7600ACC3D5 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		D2CF61931770FD6100ACC3D5 /* EnvironmentSetupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentSetupController.h; sourceTree = "<group>"; };
 		D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSetupController.m; sourceTree = "<group>"; };
+		D2CF6196177247E200ACC3D5 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		D2CF6197177247E200ACC3D5 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
@@ -770,6 +774,8 @@
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D2CF6196177247E200ACC3D5 /* info.png */,
+				D2CF6197177247E200ACC3D5 /* warning.png */,
 				D2CF618F1770FC7600ACC3D5 /* check.png */,
 				D2CF61901770FC7600ACC3D5 /* error.png */,
 				D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */,
@@ -1010,6 +1016,8 @@
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
+				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
+				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
