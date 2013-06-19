@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ An extended NSTextView for handling console specific layout of the text.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface ConsoleOutputView : NSTextView
 
 @end

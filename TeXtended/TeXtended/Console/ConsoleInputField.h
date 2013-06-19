@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ An extended subclass of a NSTextField for handling console specific layout of the input
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface ConsoleInputField : NSTextField
 
 @end
