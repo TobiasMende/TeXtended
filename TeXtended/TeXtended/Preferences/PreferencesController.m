@@ -11,6 +11,14 @@
 #import "CompileFlowHandler.h"
 @interface PreferencesController ()
 
+/** Method for calculating a new matching frame for a given view.
+ 
+ @param view the view to calculate a frame for.
+ 
+ @return the new frame.
+ 
+ */
+-(NSRect)newFrameForNewContentView:(NSView *)view;
 @end
 
 @implementation PreferencesController
