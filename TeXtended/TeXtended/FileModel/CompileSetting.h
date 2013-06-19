@@ -33,7 +33,7 @@
 
 /** Getter for a default live compile setting generated using the user defaults
  
- @param The context to insert the new object into
+ @param context The context to insert the new object into
  
  return a new compile setting object
  */
@@ -41,7 +41,7 @@
 
 /** Getter for a default draft compile setting generated using the user defaults
  
- @param The context to insert the new object into
+ @param context The context to insert the new object into
  
  return a new compile setting object
  */
@@ -49,7 +49,7 @@
 
 /** Getter for a default final compile setting generated using the user defaults
  
- @param The context to insert the new object into
+ @param context The context to insert the new object into
  
  return a new compile setting object
  */
@@ -61,7 +61,7 @@
 /**
  Method for getting a copy of the current CompileSetting object in another or the same context
  
- @param The context for the copy
+ @param context The context for the copy
  
  @return an identical setting object in the given context
  */
@@ -72,14 +72,14 @@
  
  This method is usefull when handling the symbiosis between ProjectModel and DocumentModel.
  
- @param the settings to bind to
+ @param setting the settings to bind to
  */
 - (void) binAllTo:(CompileSetting *)setting;
 
 /**
  Method for checking equality of the properties
  
- @param the other setting object to check against
+ @param other the other setting object to check against
  
  @return `YES` if all properties are equal, `NO` otherwise.
  */

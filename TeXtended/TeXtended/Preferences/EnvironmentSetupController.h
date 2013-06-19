@@ -36,7 +36,7 @@
 /**
  Method for getting a state image for the given path
  
- @param the path to check
+ @param path the path to check
  
  @return the image. A check mark, if the path points to a valid executable, an error sign otherwise.
  */

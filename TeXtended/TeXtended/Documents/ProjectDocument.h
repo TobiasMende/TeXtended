@@ -9,6 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import "MainDocument.h"
 
+/**
+ The ProjectDocument is a NSDocument instance holding all information, model and controller connections for a project.
+ In general a ProjectDocument has a single ProjectModel containing multiple DocumentModel and other attributes.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface ProjectDocument : NSDocument<MainDocument>
 
 @end

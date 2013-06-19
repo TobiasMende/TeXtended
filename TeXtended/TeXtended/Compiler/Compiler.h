@@ -26,13 +26,15 @@ typedef NS_ENUM(NSInteger, CompileMode) {
 @property (weak) CompileSetting* finalSettings;
 
 /**
- * Constructor
+ * Constructor initializing a new compiler for a given DocumentController.
+ 
+ @param controller the document controller
  */
 - (id)initWithDocumentController:(DocumentController*) controller;
 
 /**
  * Calls the compile method on the document.
- * @param CompileMode defines, in which mode the compiler should run.
+ * @param mode defines, in which mode the compiler should run.
  */
 - (void) compile:(CompileMode)mode;
 
@@ -51,7 +53,7 @@ typedef NS_ENUM(NSInteger, CompileMode) {
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
 
 /**
- * Yes, if autocompile is activated.
+ * `YES`, if autocompile is activated.
  */
 @property  BOOL autoCompile;
 

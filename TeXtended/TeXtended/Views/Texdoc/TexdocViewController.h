@@ -33,7 +33,9 @@
  */
 - (void) setContent:(NSMutableArray*) texdoc;
 
-/** Method for catching the click on the table view */
+/** Method for catching the click on the table view 
+ @param sender the sender
+ */
 - (IBAction)click:(id)sender;
 
 /** Method for setting the views design to dark background mode */

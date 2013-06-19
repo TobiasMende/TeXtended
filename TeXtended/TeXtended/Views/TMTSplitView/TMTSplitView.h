@@ -60,7 +60,7 @@
 /**
  Getter for the position of the divider with the given index
  
- @param index the dividers index
+ @param dividerIndex the dividers index
  
  @return the position
  */

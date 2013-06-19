@@ -34,7 +34,7 @@
 
 /**
  Getter for the further description for a message with a given chktex warning number and a message type 
- (see *texdoc chktex* for further information)
+ (use *texdoc chktex* for further information)
  
  @param number the chktex warning number
  @param type the message type

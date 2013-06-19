@@ -22,9 +22,13 @@
 /** Property for the maximum number of lines */
 @property NSNumber *max;
 
-/** Method for aborting the sheet */
+/** Method for aborting the sheet 
+ @param sender the sender
+ */
 - (IBAction)cancelSheet:(id)sender;
 
-/** Method for starting the go to line action */
+/** Method for starting the go to line action 
+ @param sender the sender
+ */
 - (IBAction)goToLine:(id)sender;
 @end

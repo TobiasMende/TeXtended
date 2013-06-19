@@ -49,7 +49,10 @@
 */
 -(NSView *)viewForTag:(NSUInteger)tag;
 
-/** Method for switching the preference windows subviews */
+/** Method for switching the preference windows subviews 
+ 
+ @param sender the sender
+ */
 -(IBAction)switchView:(id)sender;
 
 /**
@@ -59,7 +62,10 @@
  */
 - (void)applicationWillTerminate:(NSNotification *)notification;
 
-/** Action for opening the compile flow folder in the default application (e.g. Finder) */
+/** Action for opening the compile flow folder in the default application (e.g. Finder) 
+ 
+ @param sender the sender
+ */
 - (IBAction)openCompileFlowFolder:(id)sender;
 
 @end

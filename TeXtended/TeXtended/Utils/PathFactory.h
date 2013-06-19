@@ -55,7 +55,7 @@
 /**
  Method for creating a directory path if it didn't exist.
  
- @param the path to the directory
+ @param path the path to the directory
  
  @return `YES` if a directory exists at the given path or could be created succesful, `NO` otherwise.
  */
