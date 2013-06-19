@@ -11,6 +11,12 @@
 #import "PathFactory.h"
 
 @interface ForwardSynctex ()
+
+/**
+ Method for parsing the output string of the synctex task.
+ 
+ @param output the tasks answer.
+ */
 - (void)parseOutput:(NSString*) output;
 @end
 

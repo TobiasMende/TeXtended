@@ -40,6 +40,14 @@ typedef NS_ENUM(NSInteger, CompileMode) {
  * Call for a live compile perform.
  */
 -(void) liveCompile;
+/**
+ Callback method for the autosave answer when starting live compile
+ 
+ @param doc the document which was saved
+ @param didSave `YES` if the document was saved succesfull, `NO` otherwise.
+ @param context `NULL` in most cases.
+ 
+ */
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
 
 /**
