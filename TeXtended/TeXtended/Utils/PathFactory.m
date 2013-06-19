@@ -33,4 +33,29 @@
 + (NSString *)chktex {
     return [[self texbin] stringByAppendingPathComponent:@"chktex"];
 }
+
+
+
+
++ (BOOL)checkForAndCreateFolder:(NSString *)path {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error;
+    BOOL isDirectory = NO;
+    BOOL exists = [fm fileExistsAtPath:path isDirectory:&isDirectory];
+    if (exists && isDirectory) {
+        return YES;
+    } else if(exists && !isDirectory) {
+        NSLog(@"Path exists but isn't a directory!: %@", path);
+        return NO;
+    }else {
+        [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (!error) {
+            return  YES;
+        } else {
+            NSLog(@"Can't create directory %@. Error: %@", path, [error userInfo]);
+            return NO;
+        }
+    }
+}
+
 @end

@@ -196,24 +196,24 @@ static NSArray *TMTEncodingsToCheck;
     return nil;
 }
 
-- (NSPipe *)outputPipe {
-    return outputPipe;
+- (NSPipe *)consoleOutputPipe {
+    return consoleOutputPipe;
 }
 
-- (NSPipe *)inputPipe {
-    return inputPipe;
+- (NSPipe *)consoleInputPipe {
+    return consoleInputPipe;
 }
 
-- (void)setOutputPipe:(NSPipe *)pipe {
-    [self willChangeValueForKey:@"outputPipe"];
-    outputPipe = pipe;
-    [self didChangeValueForKey:@"outputPipe"];
+- (void)setConsoleOutputPipe:(NSPipe *)pipe {
+    [self willChangeValueForKey:@"consoleOutputPipe"];
+    consoleOutputPipe = pipe;
+    [self didChangeValueForKey:@"consoleOutputPipe"];
 }
 
-- (void)setInputPipe:(NSPipe *)pipe {
-    [self willChangeValueForKey:@"inputPipe"];
-    inputPipe = pipe;
-    [self didChangeValueForKey:@"inputPipe"];
+- (void)setConsoleInputPipe:(NSPipe *)pipe {
+    [self willChangeValueForKey:@"consoleInputPipe"];
+    consoleInputPipe = pipe;
+    [self didChangeValueForKey:@"consoleInputPipe"];
 }
 
 - (Compilable *)mainCompilable {

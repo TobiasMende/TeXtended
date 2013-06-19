@@ -27,10 +27,10 @@
   
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
-        [self model].outputPipe = [NSPipe pipe];
-        [self model].inputPipe = [NSPipe pipe];
-        [task setStandardOutput:[self model].outputPipe];
-        [task setStandardInput:[self model].inputPipe];
+        [self model].consoleOutputPipe = [NSPipe pipe];
+        [self model].consoleInputPipe = [NSPipe pipe];
+        [task setStandardOutput:[self model].consoleOutputPipe];
+        [task setStandardInput:[self model].consoleInputPipe];
         NSString *path;
         
         if (draft) {

@@ -46,10 +46,10 @@
     for (DocumentModel *model in mainDocuments) {
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
-        model.outputPipe = [NSPipe pipe];
-        model.inputPipe = [NSPipe pipe];
-        [task setStandardOutput:model.outputPipe];
-        [task setStandardInput:model.inputPipe];
+        model.consoleOutputPipe = [NSPipe pipe];
+        model.consoleInputPipe = [NSPipe pipe];
+        [task setStandardOutput:model.consoleOutputPipe];
+        [task setStandardInput:model.consoleInputPipe];
         NSString *path;
         
         if (mode == draft) {

@@ -10,16 +10,39 @@
 #import <CoreData/CoreData.h>
 
 @class CompileSetting,DocumentModel;
+
+/**
+ Abstract parent class for ProjectModel and DocumentModel which combines similar properties of both subclasses.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface Compilable : NSManagedObject {
     
 }
 
+/** The draft compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * draftCompiler;
+
+/** The final compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * finalCompiler;
+
+/** The live compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * liveCompiler;
+
+/** The header document for this compilabel */
 @property (nonatomic, strong) DocumentModel *headerDocument;
+
+/** A set of mainDocuments that should be compiled instead of this compilabel itself */
 @property (nonatomic, strong) NSSet *mainDocuments;
 
+/**
+ Initialites a new compilabel whithin a given context
+ 
+ @param context the context
+ 
+ @return a new instance
+ */
 - (id) initWithContext:(NSManagedObjectContext*)context;
 
 /**
@@ -28,6 +51,11 @@
  @return the main model of this Document
  */
 - (Compilable*) mainCompilable;
+
+/**
+ Method for posting a notification to the notificatio center if this object might have any changes.
+ 
+ */
 - (void)postChangeNotification;
 
 @end

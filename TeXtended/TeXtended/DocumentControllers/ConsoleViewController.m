@@ -82,11 +82,11 @@
 
 - (void)configureReadHandle {
     
-    if (readHandle && readHandle != [self.model.outputPipe fileHandleForReading]) {
+    if (readHandle && readHandle != [self.model.consoleOutputPipe fileHandleForReading]) {
         [[NSNotificationCenter defaultCenter]removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
         [self.outputView setString:@""];
     }
-    readHandle = [self.model.outputPipe fileHandleForReading];
+    readHandle = [self.model.consoleOutputPipe fileHandleForReading];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
     [readHandle readInBackgroundAndNotify] ;
     self.consoleActive = YES;
@@ -112,7 +112,7 @@
 -(void)controlTextDidEndEditing:(NSNotification *)notification {
     if ( [[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement )
     {
-        NSFileHandle *handle = self.model.inputPipe.fileHandleForWriting;
+        NSFileHandle *handle = self.model.consoleInputPipe.fileHandleForWriting;
         NSString *command = [[self.inputView stringValue] stringByAppendingString:@"\n"];
         [handle writeData:[command dataUsingEncoding:NSUTF8StringEncoding]];
         [self.inputView setStringValue:@""];

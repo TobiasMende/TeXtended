@@ -13,6 +13,7 @@
 #import "CompletionsController.h"
 #import "CompileFlowHandler.h"
 #import "TexdocPanelController.h"
+#import "PathFactory.h"
 ApplicationController *sharedInstance;
 @interface ApplicationController ()
 
@@ -75,7 +76,7 @@ ApplicationController *sharedInstance;
     NSURL *applicationSupport = [fm URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     if (applicationSupport && !error) {
         NSString *directoryPath = [[applicationSupport path] stringByAppendingPathComponent:@"de.uni-luebeck.isp.tmtproject.TeXtended"];
-        if ([self checkForAndCreateFolder:directoryPath]) {
+        if ([PathFactory checkForAndCreateFolder:directoryPath]) {
             return directoryPath;
         }
     }
@@ -144,7 +145,7 @@ ApplicationController *sharedInstance;
 
 + (void)mergeCompileFlows {
     NSString* flowPath = [CompileFlowHandler path];
-    BOOL exists = [self checkForAndCreateFolder:flowPath];
+    BOOL exists = [PathFactory checkForAndCreateFolder:flowPath];
     if (exists) {
         NSString* bundlePath = [[NSBundle mainBundle] pathForResource:@"CompileFlows" ofType:nil];
         NSFileManager* fm = [NSFileManager defaultManager];
@@ -177,26 +178,7 @@ ApplicationController *sharedInstance;
 }
 
 
-+ (BOOL)checkForAndCreateFolder:(NSString *)path {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSError *error;
-    BOOL isDirectory = NO;
-    BOOL exists = [fm fileExistsAtPath:path isDirectory:&isDirectory];
-    if (exists && isDirectory) {
-        return YES;
-    } else if(exists && !isDirectory) {
-        NSLog(@"Path exists but isn't a directory!: %@", path);
-        return NO;
-    }else {
-        [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-        if (!error) {
-            return  YES;
-        } else {
-            NSLog(@"Can't create directory %@. Error: %@", path, [error userInfo]);
-            return NO;
-        }
-    }
-}
+
 
 - (void)dealloc {
 #ifdef DEBUG

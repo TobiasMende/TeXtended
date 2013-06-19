@@ -13,6 +13,12 @@
 #import "CompileSetting.h"
 
 @interface ProjectModel ()
+
+/** Method for configuring the default settings of a project
+ 
+ @param context the context.
+ 
+ */
 - (void)initDefaults:(NSManagedObjectContext*)context;
 @end
 
