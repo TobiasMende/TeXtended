@@ -8,9 +8,23 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ Controller for the go to line sheet panel
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface GoToLineSheetController : NSWindowController
-- (IBAction)cancelSheet:(id)sender;
-- (IBAction)goToLine:(id)sender;
+
+/** Property for the current line */
 @property NSNumber *line;
+
+/** Property for the maximum number of lines */
 @property NSNumber *max;
+
+/** Method for aborting the sheet */
+- (IBAction)cancelSheet:(id)sender;
+
+/** Method for starting the go to line action */
+- (IBAction)goToLine:(id)sender;
 @end

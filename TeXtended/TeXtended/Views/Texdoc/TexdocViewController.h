@@ -33,7 +33,12 @@
  */
 - (void) setContent:(NSMutableArray*) texdoc;
 
+/** Method for catching the click on the table view */
 - (IBAction)click:(id)sender;
+
+/** Method for setting the views design to dark background mode */
 - (void)setDarkBackgroundMode;
+
+/** Method for opening the currently selected entry */
 - (void) openSelectedDoc;
 @end
