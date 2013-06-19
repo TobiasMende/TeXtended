@@ -67,7 +67,22 @@
  */
 - (void) handleNewLineInsertion;
 
+/**
+ Getter for the line range for a provided range
+ 
+ @param range the range to get the entire line range.
+ 
+ @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
+ */
 - (NSRange) lineTextRangeWithRange:(NSRange) range;
+
+/**
+ Getter for the line range for a provided range
+ 
+ @param range the range to get the entire line range.
+ 
+ @return the containing line range or a range of multiple lines if the provided range was bigger than a single line. The returned line range doesn't contain the line break at beginning and end of the selected lines.
+ */
 - (NSRange) lineTextRangeWithoutLineBreakWithRange:(NSRange) range;
 /**
  Handles automatic hard wrapping of long lines in the provided range
@@ -86,6 +101,15 @@
  @return `YES` if this method has wrapped somewhere
  */
 - (BOOL) handleWrappingInLine:(NSRange) lineRange;
+
+/**
+ Handles automatic hard wrapping in the provided line and string
+ 
+ @param lineRange the line to wrap
+ @param string the string to wrap in.
+ 
+ @return `YES` if this method has wrapped somewhere
+ */
 - (BOOL) handleWrappingInLine:(NSRange) lineRange ofString:(NSMutableString *) string;
 /**
  Method returns the white space at the beginning of a given line (Usefull for auto-indention)
@@ -96,11 +120,54 @@
  */
 - (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
 
+
+/**
+ This method toggles the comment in each selected line.
+ 
+ If a line has a comment sign at the beginning, it is removed otherwise a new comment sign is added.
+ 
+ @param range the range to toggle comments for
+ */
 - (IBAction)toggleCommentInRange:(NSRange)range;
+/**
+ This method toggles the comment in each selected line.
+ 
+ If a line has a comment sign at the beginning, it is removed otherwise a new comment sign is added.
+ 
+ @warning This method is only used as undo target. Use the method [CodeNavigationAssistant toggleCommentInRange:] instead.
+ 
+ @param range the string to toggle comments in
+ */
 - (IBAction)toggleCommentInRangeString:(NSString*)range;
+/**
+ This method adds a comment sign at the beginning of each line within the provided range
+ 
+ @param range the range to comment lines in.
+ */
 - (IBAction)commentSelectionInRange:(NSRange)range;
+/**
+ This method adds a comment sign at the beginning of each line within the provided range.
+ 
+  @warning This method is only used as undo target. Use the method [CodeNavigationAssistant commentSelectionInRange:] instead.
+ 
+ @param range the range to comment lines in.
+ */
 - (IBAction)commentSelectionInRangeString:(NSString*)range;
+
+/**
+ This method removes a comment sign at the beginning of each line within the provided range
+ 
+ @param range the range to uncomment lines in.
+ */
 - (IBAction)uncommentSelectionInRange:(NSRange)range;
+
+/**
+ This method removes a comment sign at the beginning of each line within the provided range
+ 
+  @warning This method is only used as undo target. Use the method [CodeNavigationAssistant uncommentSelectionInRange:] instead.
+ 
+ @param range the range to uncomment lines in.
+ */
 - (IBAction)uncommentSelectionInRangeString:(NSString*)range;
 
 

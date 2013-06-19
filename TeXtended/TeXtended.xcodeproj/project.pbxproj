@@ -471,7 +471,6 @@
 				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
 				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
 				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
-				D2AAF90D172907A000FC09C1 /* UndoSupport */,
 				D2C904E91726A079006EFEC2 /* TexdocSupport */,
 				D21ACB811726868A00E2F8EC /* AutoCompletion */,
 				D21ACB8A1726868A00E2F8EC /* EditorServices */,
@@ -766,13 +765,6 @@
 				D2681FEF173143AF003AF83D /* Compilable.m */,
 			);
 			path = FileModel;
-			sourceTree = "<group>";
-		};
-		D2AAF90D172907A000FC09C1 /* UndoSupport */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UndoSupport;
 			sourceTree = "<group>";
 		};
 		D2B01662176608A800C6CE23 /* Icons */ = {

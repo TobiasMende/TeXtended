@@ -10,19 +10,66 @@
 #import "DocumentControllerProtocol.h"
 #import "TextViewObserver.h"
 @class HighlightingTextView, LineNumberView, DocumentModel;
+
+/**
+ This view controller handles the HighlightingTextView and other important objects connected to it.
+ 
+ It acts according to the DocumentControllerProtocol and is part of the DocumentController controller tree.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface TextViewController : NSViewController<DocumentControllerProtocol,NSTextViewDelegate> {
+    /** The line number view of the HighlightingTextView */
     LineNumberView *lineNumberView;
+    
+    /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
     NSMutableSet *observers;
 }
+
+/** The view showing the latex source code to the user */
 @property (unsafe_unretained) IBOutlet HighlightingTextView *textView;
+
+/** The scroll view containing the LineNumberView and the HighlightingTextView */
 @property (weak) IBOutlet NSScrollView *scrollView;
+
+/** The parent node in the controller tree. */
 @property (weak) id<DocumentControllerProtocol> parent;
+
+/** The DocumentModel which's content is displayed by the view of this controller */
 @property (weak) DocumentModel *model;
+
+/** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;
 
+
+/**
+ Getter for the text views content
+ 
+ return the source code
+ */
 - (NSString *)content;
+
+/**
+ Setter for the content of the TextViewController's view.
+ 
+ @param content the new content
+ */
 - (void) setContent:(NSString*) content;
+
+/**
+ Method for adding a observer whichs needs to be informed if an NSTextViewDelegate method is called. Furthermore these observers are informed by additional methods defined in the TextViewObserver protocol.
+ 
+ @param observer the new observer
+ 
+ */
 - (void) addObserver:(id<TextViewObserver>) observer;
+
+/**
+ Method for removing a TextViewObserver
+ 
+ @param observer the observer to remove
+ */
 - (void) removeDelegateObserver:(id<TextViewObserver>) observer;
 
 @end

@@ -32,11 +32,21 @@ typedef enum {
  @param charRange the prefix range
  @param index the selected entry
  
- @return an array of command completions
+ @return an array of CommandCompletion objects
  */
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
 
+
+/**
+ Used by [CompletionHandler completionsForPartialWordRange:indexOfSelectedItem:] for handling \begin{...} and \end{...} completions.
+ 
+ @param charRange the prefix range
+ @param index the selected entry
+ @param type the type of the completion
+ 
+ @return an array of EnvironmentCompletion objects
+ */
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type;
 
 /**
@@ -49,6 +59,15 @@ typedef enum {
  */
 - (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
+
+/**
+ Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \begin{...} and \end{...} completions.
+ 
+ @param word the completion word
+ @param charRange the prefix range
+ @param movement the text movement
+ @param flag useless flag
+ */
 - (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 /**
@@ -60,6 +79,7 @@ typedef enum {
  */
 - (TMTCompletionType) completionTypeForPartialWordRange:(NSRange) charRange;
 
+/** Method for detecting and skipping the closing bracket of a \begin{...} statement */
 - (void) skipClosingBracket;
 
 - (void) unbindAll;

@@ -21,9 +21,29 @@
 #import "GoToLineSheetController.h"
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
+
+/**
+ Method for getting the new first range after swapping two ranges.
+ 
+ @param first a random line range
+ @param second another random line range
+ 
+ @return the first range, if it was the first range before, the second otherwise.
+ */
 - (NSRange) firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
+
+/** Method for swapping text in two ranges 
+ 
+ @param first first range
+ @param second second range
+ 
+ */
 - (void)swapTextIn:(NSRange)first and:(NSRange)second;
+
+/** Method for setting up all user defaults observer */
 - (void) registerUserDefaultsObserver;
+
+/** Method for deleting all observations and bindings to the user defaults */
 - (void) unregisterUserDefaultsObserver;
 @end
 @implementation HighlightingTextView

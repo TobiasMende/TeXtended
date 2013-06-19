@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+/**
+ The TexdocHandlerProtocol must be implemented by any class dealing the the TexdocController.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @protocol TexdocHandlerProtocol <NSObject>
 /**
  Callback method for the texdoc task is called after the texdoc command has finished returning a list of possible documents.

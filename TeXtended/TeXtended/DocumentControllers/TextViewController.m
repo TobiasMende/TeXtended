@@ -15,10 +15,25 @@
 #import "DocumentModel.h"
 #import "ForwardSynctex.h"
 @interface TextViewController ()
+/** Method for handling the initial setup of this object */
 - (void) initialize;
+
+/** Method for handling the and of a compiler task
+ 
+ @param note the TMTCompilerDidEndCompiling notification
+*/
 - (void) handleCompilerEnd:(NSNotification *)note;
+
+/** Method for setting up the model observations */
 - (void) registerModelObserver;
+
+/** Method for unregistering this object as model observer */
 - (void) unregisterModelObserver;
+
+/** Method for syncing the pdf output with the HighlightingTextView
+ 
+ @param model the model to sync for
+ */
 - (void) syncPDF:(DocumentModel *)model;
 @end
 

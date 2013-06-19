@@ -15,9 +15,21 @@
  @author Tobias Mende
  */
 @interface EnvironmentCompletion : Completion <NSCoding>
+
+/** The extension which should be inserted directly after the `\begin{...}` tag. */
 @property (strong) NSString *firstLineExtension;
 
+/** 
+ Checks whether a firstLineExtension is available or not.
+ @return `YES` if the firstLineExtension is not `nil` and not empty
+ */
 - (BOOL) hasFirstLineExtension;
+
+/**
+ Getter for the firstLineExtension with substitued placeholders.
+ 
+ @return the substituted first line extension
+ */
 - (NSAttributedString*) substitutedFirstLineExtension;
 
 @end

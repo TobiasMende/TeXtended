@@ -12,7 +12,23 @@
 #import "PathFactory.h"
 
 @interface TexdocController ()
+/**
+ Method called when the task terminates
+ 
+ @param notification the NSFileHandleReadToEndOfFileCompletionNotification notification
+ @param package the package name
+ @param info the additional user info
+ @param handler the callback handler
+ */
 - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package info:(NSDictionary*)info andHandler:(id<TexdocHandlerProtocol>)handler;
+
+/**
+ Parser method for extracting TexdocEntry objects from the tasks output
+ 
+ @param texdocList the task output to parse
+ 
+ @return an array of TexdocEntry objects.
+ */
 - (NSMutableArray *)parseTexdocList:(NSString *)texdocList;
 @end
 

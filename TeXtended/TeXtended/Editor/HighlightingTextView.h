@@ -36,15 +36,32 @@
 GoToLineSheetController *goToLineSheet;
 
 }
+
+/** The code navigation assistant */
 @property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
+
+/** The syntax highlighter */
 @property  (strong)id<SyntaxHighlighter> syntaxHighlighter;
+
+/** The code extension engine, adding linking like texdoc etc. */
 @property (strong) CodeExtensionEngine *codeExtensionEngine;
+
+/** property for the current row 
+ 
+ @warning This property is set by the LineNumberView and might be outdated.
+ */
 @property NSUInteger currentRow;
+
+/** Property for the first visble row in the visible area */
 @property NSUInteger firstVisibleRow;
 
 /** The undo support instance */
 @property (strong) UndoSupport* undoSupport;
+
+/** The spell checker */
 @property (strong) SpellCheckingService *spellCheckingService;
+
+/** if `YES` all services are on, if `NO` this object behaves in general like a normal NSTextView. */
 @property BOOL servicesOn;
 /** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
@@ -105,18 +122,79 @@ GoToLineSheetController *goToLineSheet;
  Method for jumping to the next visible placeholders (supporting round wrap jumping when at the end of the visible area)
  */
 - (void) jumpToNextPlaceholder;
+
+/** Method for jumping to the previous placeholder (supporting round wrap jumping when at the beginning of the visible area) 
+ */
 - (void) jumpToPreviousPlaceholder;
 
+/** Method for toggling the comment state for the selected lines 
+ 
+ @param sender the sender
+ */
 - (IBAction)toggleComment:(id)sender;
+
+/**
+ Method for adding a comment sign (%) at the beginning of every selected line
+ 
+ @param sender the sender
+ */
 - (IBAction)commentSelection:(id)sender;
+
+/**
+ Method for deleting a comment sign (%) at the beginning of every selected line
+ 
+ @param sender the sender
+ */
 - (IBAction)uncommentSelection:(id)sender;
+
+/**
+ Getter for an extended visible range (adding some additional lines at begin and end of the visible range)
+ 
+ @return a range which has a larger size or the same size as the visible range.
+ */
 - (NSRange) extendedVisibleRange;
 
+
+/** Getter for the currently selected column
+ 
+ @return the selected column
+ */
 - (NSUInteger) currentCol;
+
+/** Getter for the column for the selected range
+ @param range the range to get the column for.
+ 
+ @return the column of the provided ranges location
+ */
 - (NSUInteger) colForRange:(NSRange) range;
+
+/**
+ Method for showing a given line in the view.
+ 
+ @param line the line to scroll to.
+ */
 - (void) showLine:(NSUInteger)line;
+/**
+ Action for starting the GoToLineSheetController's dialog.
+ 
+ @param sender the sender
+ */
 - (IBAction)goToLine:(id)sender;
+
+/**
+ Getter for an array of NSTextCheckingResult object where each object has a single range with the meaning of the range of the line indexed by the arrays inded.
+ 
+ @return the line ranges.
+ */
 - (NSArray*) lineRanges;
 
+/**
+ Notification about the end of the GoToLineSheetController's sheet.
+ 
+ 
+ @param sheet the sheet which ends.
+ @param returnCode the termination state of the sheet.
+@param context `NULL` in most cases.
+ */
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 @end

@@ -62,7 +62,10 @@
  */
 - (void) invalidateHighlighting;
 
-
+/** Getter for the command regex
+ 
+ @return the regular expression used for detecting commands.
+ */
 + (NSRegularExpression *) commandExpression;
 
 @end

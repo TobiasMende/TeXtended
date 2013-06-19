@@ -15,13 +15,23 @@
  
  */
 @interface BracketHighlighter : EditorService {
-    
+    /** The date of the last auto insertion of a closing bracket */
     NSDate *lastAutoinsert;
 }
+/** if `YES` matching brackets where automatically highlighted */
 @property BOOL shouldHighlightMatchingBrackets;
+
+/** if `YES` machting closing brackets where automatically inserted */
 @property BOOL shouldAutoInsertClosingBrackets;
 
 
+/**
+ Method for checking if a matching bracket should be auto inserted for the provided bracket
+ 
+ @param str the bracket
+ 
+ @return `YES` if the bracket should be autocompleted, `NO` otherwise
+ */
 - (BOOL) shouldInsert:(NSString*)str;
 /**
  Method for analyze the given input and highlight brackets according to matching rules.

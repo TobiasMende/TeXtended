@@ -23,9 +23,34 @@
 /** If `YES` [Completion substitutedExtension] will substitute all placeholders in the [Completion extension] */
 @property BOOL hasPlaceholders;
 
-
+/**
+ Method for initializing a new completion with a simple insertion
+ 
+ @param insertion the completion itself
+ 
+ @return a new completion object
+ */
 - (id)initWithInsertion:(NSString*) insertion;
+
+/**
+ An intializer for a new completion with placeholders
+ 
+ @param insertion the insertions name
+ @param flag if `YES` placeholders in the insertion where automatically substituted
+ 
+ @return a new completion
+ */
 - (id)initWithInsertion:(NSString*) insertion containingPlaceholders:(BOOL)flag;
+
+/**
+ Initializer for an insertion with an extension.
+ 
+ @param insertion the insertions name
+ @param flag if `YES` placeholders where substituted automatically
+ @param extension the extension of the completion
+ 
+ @return a new completion object
+ */
 - (id)initWithInsertion:(NSString*) insertion containingPlaceholders:(BOOL)flag andExtension:(NSString*) extension;
 
 /**
@@ -51,6 +76,13 @@
  */
 - (NSAttributedString*) substitutedExtension;
 
+/**
+ Method for substituting placeholders (e.g. @@placeholder@@) with an EditorPlaceholder.
+ 
+ @param string the string to substite
+ 
+ @return an attributed string containing the replaced placeholders.
+ */
 - (NSAttributedString*) substitutePlaceholdersInString:(NSString *) string;
 
 /**

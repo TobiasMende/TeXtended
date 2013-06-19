@@ -15,5 +15,6 @@
  */
 @interface CommandCompletion : Completion <NSCoding>
 
+/** The type of this completion (e.g. normal, cite, label or ref) */
 @property (strong, nonatomic) NSString *completionType;
 @end

@@ -43,6 +43,13 @@
  */
 - (void) deleteTextInRange:(NSValue*)range withActionName:(NSString*)name;
 
+
+/**
+ Method for setting the string in the textview with a given action name
+ 
+ @param string the string to set
+ @param name the action name to store
+ */
 - (void) setString:(NSString *)string withActionName:(NSString*)name;
 
 @end

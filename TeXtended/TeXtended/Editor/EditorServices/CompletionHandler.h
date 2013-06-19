@@ -9,8 +9,14 @@
 #import "EditorService.h"
 
 @interface CompletionHandler : EditorService
+
+/** if `YES` the environment content is automatically indended on the next line */
 @property BOOL shouldAutoIndentEnvironment;
+
+/** if `YES` commands where automatically completed */
 @property BOOL shouldCompleteCommands;
+
+/** if `YES` environments where automatically compelted */
 @property BOOL shouldCompleteEnvironments;
 
 
