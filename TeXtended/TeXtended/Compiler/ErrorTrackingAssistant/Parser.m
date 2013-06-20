@@ -16,6 +16,12 @@
     return nil;
 }
 
+- (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (BOOL)infoValid:(NSString *)info {
     return NO;
 }

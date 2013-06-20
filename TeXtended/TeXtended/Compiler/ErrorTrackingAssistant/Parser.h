@@ -30,6 +30,16 @@
 - (MessageCollection *)parseDocument:(NSString *)path;
 
 /**
+ Parses the given document content for the document specified by path
+ 
+ @param content the content to extract messages from
+ @param path the path from which to get the base dir.
+ 
+ @return a set of messages
+ */
+- (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path;
+
+/**
  Method for parsing the output of any internal syntac checker or log file parser
  
  @param output the checkers output
