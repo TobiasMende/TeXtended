@@ -44,16 +44,11 @@
     imageSize = [self.image size];
     NSDivideRect(cellRect, &imageFrame, &cellRect, 3 + imageSize.width, NSMinXEdge);
     
-    imageFrame.origin.x += kImageOriginXOffset;
-    imageFrame.origin.y -= kImageOriginYOffset;
     imageFrame.size = imageSize;
     
     imageFrame.origin.y += ceil((cellRect.size.height - imageFrame.size.height) / 2);
     
     NSRect newFrame = cellRect;
-    newFrame.origin.x += kTextOriginXOffset;
-    newFrame.origin.y += kTextOriginYOffset;
-    newFrame.size.height -= kTextHeightAdjust;
     
     return newFrame;
 }
@@ -109,7 +104,6 @@
             CGFloat yOffset = floor((NSHeight(newCellFrame) - [[self attributedStringValue] size].height) / 2.0);
             
             newCellFrame.origin.y += yOffset;
-            newCellFrame.size.height -= (kTextOriginYOffset*yOffset);
         }
     }
     [super drawWithFrame:newCellFrame inView:controlView];

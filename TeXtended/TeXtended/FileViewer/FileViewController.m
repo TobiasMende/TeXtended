@@ -68,7 +68,7 @@
     [self loadPath:url];
 }
 
-- (void)doubleClick:(id)object {
+- (void)doubleClick:(id)sender {
     FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
     NSString *path = model.filePath;
     [self openFileInDefApp:path];
@@ -312,7 +312,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->outline setDelegate:self];
     [self->outline setDoubleAction:@selector(doubleClick:)];
     
-    [[self titleLbl] setStringValue:@""];
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
 }
