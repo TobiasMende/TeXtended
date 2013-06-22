@@ -39,10 +39,30 @@
 }
 
 - (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%i) for %@ in %li:\n", self.type,self.document,self.line];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"%@ for %@ in %li:\n", [TrackingMessage typeToString:self.type],self.document,self.line];
     [string appendFormat:@"\t *** %@ ***\n", self.title];
     [string appendFormat:@"%@", self.info];
     return string;
+}
+
++ (id)typeToString:(TMTTrackingMessageType)type {
+    switch (type) {
+        case TMTErrorMessage:
+            return @"Error";
+            break;
+        case TMTWarningMessage:
+            return @"Warning";
+            break;
+        case TMTInfoMessage:
+            return @"Info";
+            break;
+        case TMTDebugMessage:
+            return @"Debug";
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

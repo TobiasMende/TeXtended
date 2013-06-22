@@ -103,4 +103,6 @@
  @return a new debug message
  */
 + (id) debugInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
+
++ typeToString:(TMTTrackingMessageType)type;
 @end

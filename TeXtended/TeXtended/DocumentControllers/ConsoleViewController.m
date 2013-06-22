@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import "DocumentControllerProtocol.h"
 #import "DocumentController.h"
+#import "LogfileParser.h"
+#import "MessageCollection.h"
 
 @interface ConsoleViewController ()
 - (void)configureReadHandle;
@@ -102,6 +104,9 @@
 }
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
+//    LogfileParser *parser = [LogfileParser new];
+//    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
+//    NSLog(@"Collection: %@", collection);
     [self.inputView setStringValue:@""];
     self.consoleActive = NO;
 }

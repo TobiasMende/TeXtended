@@ -102,6 +102,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
+    [self setAutomaticTextReplacementEnabled:NO];
     self.servicesOn = YES;
     
     
