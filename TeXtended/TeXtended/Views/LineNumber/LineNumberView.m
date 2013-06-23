@@ -9,6 +9,7 @@
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
 #import "MessageCollection.h"
+#import "MessageViewController.h"
 #import "TrackingMessage.h"
 
 /* Size of the small line borders */
@@ -114,6 +115,14 @@
 - (void) drawWarningIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
 
 /**
+ * Draws a info for a selected line.
+ * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
+ * @param visibleRect the currently visbile rect
+ * @param lineHight the hight of the current line
+ */
+- (void) drawinfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+
+/**
  * Since we cant init a NSColor with customs color, this method will return the default color until
  * the proeprty will be overriden.
  */
@@ -165,7 +174,9 @@
     [errorImage setFlipped:YES];
     warningImage = [NSImage imageNamed:@"warning.png"];
     [warningImage setFlipped:YES];
-        
+    infoImage = [NSImage imageNamed:@"info.png"];
+    [infoImage setFlipped:YES];
+    
     [self setRuleThickness:START_THICKNESS];
     [self calculateLines];
 }
@@ -275,6 +286,12 @@
     } else {
         [self removeAnchorFromLine:current];
     }
+
+//    NSPopover *pop = [[NSPopover alloc] init];
+//    NSRect rec = NSMakeRect(location.x, location.y, location.x, location.y);
+//    
+//    MessageViewController *messageView = [[MessageViewController alloc] init];
+//    [pop showRelativeToRect:rec ofView:view preferredEdge:NSMinYEdge];
     
     [self setNeedsDisplay:YES];
 }
@@ -303,6 +320,16 @@
 
 - (BOOL) hasError:(NSUInteger)line {
     for (TrackingMessage *m in [self.messageCollection errorMessages]) {
+        if (m.line == line) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (BOOL) hasInfo:(NSUInteger)line {
+    for (TrackingMessage *m in [self.messageCollection infoMessages]) {
         if (m.line == line) {
             return YES;
         }
@@ -508,9 +535,7 @@
         
         if ([self hasError:lineLabel+i+1]) {
             [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
-        }
-        
-        if ([self hasWarning:lineLabel+i+1]) {
+        } else if ([self hasWarning:lineLabel+i+1]) {
             [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
         }
         
@@ -531,7 +556,7 @@
     /* just move along the path */
     [line moveToPoint: NSMakePoint(0, lineHight - visibleRect.origin.y + 1)];
     [line lineToPoint: NSMakePoint(dirtyRect.size.width - 2*BORDER_SIZE, lineHight - visibleRect.origin.y + 1)];
-    [line lineToPoint: NSMakePoint(dirtyRect.size.width, lineHight - visibleRect.origin.y + SYMBOL_SIZE)];
+    [line lineToPoint: NSMakePoint(dirtyRect.size.width, lineHight - visibleRect.origin.y + 0.75*SYMBOL_SIZE + 0.5)];
     [line lineToPoint: NSMakePoint(dirtyRect.size.width - 2*BORDER_SIZE, lineHight - visibleRect.origin.y + 1.5*SYMBOL_SIZE - 1)];
     [line lineToPoint: NSMakePoint(0, lineHight - visibleRect.origin.y + 1.5*SYMBOL_SIZE - 1)];
     
@@ -559,6 +584,14 @@
     [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
 }
 
+- (void) drawInfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
+    NSRect pos = NSMakeRect(0,
+                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
+                            SYMBOL_SIZE,
+                            SYMBOL_SIZE);
+    
+    [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+}
 
 - (NSColor *) getAnchorColor {
     if ([self anchorColor] == nil) {
@@ -584,7 +617,7 @@
 #endif
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    [self unbind:@"messageCollection"];
 }
 
 @end
