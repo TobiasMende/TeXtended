@@ -84,29 +84,34 @@
 - (void)logMessagesChanged:(NSNotification *)note {
     consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
     self.messages = [consoleMessages merge:internalMessages];
-    NSLog(@"%@", self.messages);
+    NSLog(@"%@", consoleMessages);
     lineNumberView.messageCollection = self.messages;
 }
 
 - (void)updateMessageCollection {
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
-    if (thresh > TMTWarningMessage) {
+    if (thresh < WARNING) {
         return;
     }
     internalMessages = [MessageCollection new];
-    ChktexParser *chktex = [ChktexParser new];
-   [chktex parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
-    
-    LacheckParser *lacheck = [LacheckParser new];
-    [lacheck parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
+    if (countRunningParsers == 0) {
+        countRunningParsers = 2;
+        ChktexParser *chktex = [ChktexParser new];
+        [chktex parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
+        
+        LacheckParser *lacheck = [LacheckParser new];
+        [lacheck parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
+    }
     
     
 }
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     [messageLock lock];
+    countRunningParsers--;
     internalMessages = [internalMessages merge:messages];
     self.messages = [internalMessages merge:consoleMessages];
+    NSLog(@"%@", self.messages);
     lineNumberView.messageCollection = self.messages;
     [messageLock unlock];
 }

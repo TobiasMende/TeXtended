@@ -57,10 +57,10 @@
                                      
 - (MessageCollection *)copy {
     MessageCollection *col = [MessageCollection new];
-    col.debugMessages = self.debugMessages;
-    col.infoMessages = self.infoMessages;
-    col.warningMessages = self.warningMessages;
-    col.errorMessages = self.errorMessages;
+    col.debugMessages = [self.debugMessages mutableCopy];
+    col.infoMessages = [self.infoMessages mutableCopy];
+    col.warningMessages = [self.warningMessages mutableCopy];
+    col.errorMessages = [self.errorMessages mutableCopy];
     return col;
 }
 

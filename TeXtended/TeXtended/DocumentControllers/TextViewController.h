@@ -28,6 +28,7 @@
     NSMutableSet *observers;
     MessageCollection *internalMessages;
     MessageCollection *consoleMessages;
+    NSInteger countRunningParsers;
 }
 
 /** The view showing the latex source code to the user */

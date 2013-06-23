@@ -1375,7 +1375,7 @@
 				<string key="NSAntiCompressionPriority">{1000, 1000}</string>
 			</object>
 			<object class="NSView" id="829279159">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSBox" id="997414389">
@@ -2286,11 +2286,10 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{561, 425}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="997414389"/>
 			</object>
 			<object class="NSView" id="663461202">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="1026206483">
@@ -2314,7 +2313,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{561, 425}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="1026206483"/>
 				<string key="NSHuggingPriority">{1000, 1000}</string>
 				<string key="NSAntiCompressionPriority">{1000, 1000}</string>
@@ -3867,32 +3865,22 @@
 											<string key="NSKeyEquivalent"/>
 											<int key="NSPeriodicDelay">400</int>
 											<int key="NSPeriodicInterval">75</int>
-											<object class="NSMenuItem" key="NSMenuItem" id="548678774">
+											<object class="NSMenuItem" key="NSMenuItem" id="1019194084">
 												<reference key="NSMenu" ref="386671828"/>
-												<string key="NSTitle">Warning</string>
+												<string key="NSTitle">No Messages</string>
 												<string key="NSKeyEquiv"/>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<int key="NSState">1</int>
 												<reference key="NSOnImage" ref="370371141"/>
 												<reference key="NSMixedImage" ref="338061884"/>
 												<string key="NSAction">_popUpItemAction:</string>
-												<int key="NSTag">2</int>
 												<reference key="NSTarget" ref="220713081"/>
 											</object>
 											<bool key="NSMenuItemRespectAlignment">YES</bool>
 											<object class="NSMenu" key="NSMenu" id="386671828">
 												<string key="NSTitle">OtherViews</string>
 												<array class="NSMutableArray" key="NSMenuItems">
-													<object class="NSMenuItem" id="1019194084">
-														<reference key="NSMenu" ref="386671828"/>
-														<string key="NSTitle">No Messages</string>
-														<string key="NSKeyEquiv"/>
-														<int key="NSMnemonicLoc">2147483647</int>
-														<reference key="NSOnImage" ref="370371141"/>
-														<reference key="NSMixedImage" ref="338061884"/>
-														<string key="NSAction">_popUpItemAction:</string>
-														<reference key="NSTarget" ref="220713081"/>
-													</object>
+													<reference ref="1019194084"/>
 													<object class="NSMenuItem" id="476067580">
 														<reference key="NSMenu" ref="386671828"/>
 														<string key="NSTitle">Error</string>
@@ -3904,7 +3892,17 @@
 														<int key="NSTag">1</int>
 														<reference key="NSTarget" ref="220713081"/>
 													</object>
-													<reference ref="548678774"/>
+													<object class="NSMenuItem" id="548678774">
+														<reference key="NSMenu" ref="386671828"/>
+														<string key="NSTitle">Warning</string>
+														<string key="NSKeyEquiv"/>
+														<int key="NSMnemonicLoc">2147483647</int>
+														<reference key="NSOnImage" ref="370371141"/>
+														<reference key="NSMixedImage" ref="338061884"/>
+														<string key="NSAction">_popUpItemAction:</string>
+														<int key="NSTag">2</int>
+														<reference key="NSTarget" ref="220713081"/>
+													</object>
 													<object class="NSMenuItem" id="648668865">
 														<reference key="NSMenu" ref="386671828"/>
 														<string key="NSTitle">Info</string>
@@ -3930,7 +3928,6 @@
 												</array>
 												<reference key="NSMenuFont" ref="88076616"/>
 											</object>
-											<int key="NSSelectedIndex">2</int>
 											<int key="NSPreferredEdge">1</int>
 											<bool key="NSUsesItemFromMenu">YES</bool>
 											<bool key="NSAltersState">YES</bool>
@@ -4095,15 +4092,14 @@
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="1006">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews"/>
 					<string key="NSFrameSize">{561, 425}</string>
-					<reference key="NSSuperview"/>
 					<string key="NSHuggingPriority">{1000, 1000}</string>
 					<string key="NSAntiCompressionPriority">{1000, 1000}</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
