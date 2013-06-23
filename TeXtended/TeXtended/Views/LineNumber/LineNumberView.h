@@ -147,9 +147,16 @@
 /**
  * Tests if the given line has a info.
  * @param line the line to test
- * @return YES if the line has a error
+ * @return YES if the line has a info
  */
 - (BOOL) hasInfo: (NSUInteger) line;
+
+/**
+ * Tests if the given line has a debug.
+ * @param line the line to test
+ * @return YES if the line has a debug
+ */
+- (BOOL) hasDebug: (NSUInteger) line;
 
 /**
  * Returns a array that holds the linenumbers of all lines with a anchor.

@@ -120,7 +120,15 @@
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
-- (void) drawinfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+- (void) drawInfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
+
+/**
+ * Draws a debug for a selected line.
+ * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
+ * @param visibleRect the currently visbile rect
+ * @param lineHight the hight of the current line
+ */
+- (void) drawDebugIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight;
 
 /**
  * Since we cant init a NSColor with customs color, this method will return the default color until
@@ -170,10 +178,10 @@
     lineAnchors   = [[NSMutableDictionary alloc] init];
     
 
-    [[self messageCollection] addObserver:self
-                              forKeyPath:@"messageCollection"
-                              options: NSKeyValueObservingOptionInitial
-                              context:NULL];
+    [self addObserver:self
+          forKeyPath:@"messageCollection"
+          options: NSKeyValueObservingOptionInitial
+          context:NULL];
     
     /* load images */
     errorImage = [NSImage imageNamed:@"error.png"];
@@ -346,6 +354,16 @@
 
 - (BOOL) hasInfo:(NSUInteger)line {
     for (TrackingMessage *m in [self.messageCollection infoMessages]) {
+        if (m.line == line) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL) hasDebug:(NSUInteger)line {
+    for (TrackingMessage *m in [self.messageCollection debugMessages]) {
         if (m.line == line) {
             return YES;
         }
@@ -555,6 +573,8 @@
             [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
         } else if ([self hasInfo:lineLabel+i+1]) {
             [self drawInfoIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+        } else if ([self hasDebug:lineLabel+i+1]) {
+            [self drawDebugIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
         }
         
         NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel+i+1];
@@ -603,6 +623,15 @@
 }
 
 - (void) drawInfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
+    NSRect pos = NSMakeRect(0,
+                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
+                            SYMBOL_SIZE,
+                            SYMBOL_SIZE);
+    
+    [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+}
+
+- (void) drawDebugIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
     NSRect pos = NSMakeRect(0,
                             lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
                             SYMBOL_SIZE,
