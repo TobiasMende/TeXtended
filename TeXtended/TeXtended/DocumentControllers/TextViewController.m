@@ -50,6 +50,7 @@
 /** Method for rerunning lacheck and chktex for updates of the message collection */
 - (void) updateMessageCollection:(NSNotification *)note;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
+- (void) handleLineUpdateNotification:(NSNotification*)note;
 @end
 
 @implementation TextViewController
@@ -71,6 +72,7 @@
 
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
@@ -81,7 +83,13 @@
 - (void)unregisterModelObserver {
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+}
+
+- (void)handleLineUpdateNotification:(NSNotification *)note {
+    NSInteger row = [[note.userInfo objectForKey:TMTIntegerKey] integerValue];
+    [self.textView showLine:row];
 }
 
 - (void)logMessagesChanged:(NSNotification *)note {
@@ -89,6 +97,7 @@
     if (countRunningParsers == 0) {
         self.messages = [consoleMessages merge:internalMessages];
         lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
+        [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
     }
 }
 
@@ -134,6 +143,7 @@
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
         lineNumberView.messageCollection = subset;
+        [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
     }
     [messageLock unlock];
 }
@@ -247,9 +257,9 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-    //NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
-    //[backgroundQueue addOperation:op];
-    // [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
+    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
+    [backgroundQueue addOperation:op];
+    [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 
 

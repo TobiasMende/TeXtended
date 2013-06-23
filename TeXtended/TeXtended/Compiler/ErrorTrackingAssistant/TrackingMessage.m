@@ -113,4 +113,68 @@
 }
 
 
++ (NSImage *)imageForType:(TMTTrackingMessageType)type {
+    switch (type) {
+        case TMTErrorMessage:
+            return [NSImage imageNamed:@"error.png"];
+            break;
+        case TMTWarningMessage:
+            return [NSImage imageNamed:@"warning.png"];
+            break;
+        case TMTInfoMessage:
+            return [NSImage imageNamed:@"info.png"];
+            break;
+        case TMTDebugMessage:
+            return [NSImage imageNamed:@"info.png"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
++ (NSColor *)backgroundColorForType:(TMTTrackingMessageType)type {
+    switch (type) {
+        case TMTErrorMessage:
+            return [NSColor colorWithCalibratedRed:0.87f green:0.09f blue:0.00f alpha:0.30f];
+            break;
+        case TMTWarningMessage:
+            return [NSColor colorWithCalibratedRed:1.00f green:0.69f blue:0.00f alpha:0.30f];
+            break;
+        case TMTInfoMessage:
+            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:0.30f];
+            break;
+        case TMTDebugMessage:
+            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:0.30f];
+            break;
+        default:
+            return [NSColor whiteColor];
+            break;
+    }
+}
+
+-(NSComparisonResult)compare:(TrackingMessage *)other {
+    if (self.type < other.type) {
+        return NSOrderedAscending;
+    }
+    if (self.type > other.type) {
+        return NSOrderedDescending;
+    }
+    if (self.line < other.line) {
+        return NSOrderedAscending;
+    }
+    if (self.line > other.line) {
+        return NSOrderedDescending;
+    }
+    if (self.column < other.column) {
+        return NSOrderedAscending;
+    }
+    if (self.column > other.column) {
+        return NSOrderedDescending;
+    }
+    return [self.title compare:other.title];
+}
+
+
 @end

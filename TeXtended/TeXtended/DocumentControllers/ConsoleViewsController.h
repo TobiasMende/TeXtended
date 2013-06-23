@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
-@class DocumentModel;
+@class DocumentModel, MessageDataSource;
 @interface ConsoleViewsController : NSViewController<DocumentControllerProtocol>
+@property (weak) IBOutlet MessageDataSource *messageDataSource;
 
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
 @property (weak) IBOutlet NSTabView *tabView;
+@property (weak) IBOutlet NSTableView *messageOutline;
 @property (weak) DocumentModel *model;
 
 @end

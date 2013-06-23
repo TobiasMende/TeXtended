@@ -82,4 +82,5 @@ Method for getting the entire collection as single set
  */
 - (NSSet *) set;
 
+- (NSUInteger)count;
 @end

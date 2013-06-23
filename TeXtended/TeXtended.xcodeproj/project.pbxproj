@@ -42,6 +42,8 @@
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D24297351759ED53004AF6A7 /* pdflatex.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = D271983D174398D800342CB0 /* pdflatex.sh */; };
+		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
+		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
@@ -267,6 +269,10 @@
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
+		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
+		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
+		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
+		D248E4DE1777647E008DDE80 /* MessageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataSource.m; sourceTree = "<group>"; };
 		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
 		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
@@ -648,6 +654,17 @@
 			path = Console;
 			sourceTree = "<group>";
 		};
+		D248E4D9177763C7008DDE80 /* TMTMessageCellView */ = {
+			isa = PBXGroup;
+			children = (
+				D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */,
+				D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */,
+				D248E4DD1777647E008DDE80 /* MessageDataSource.h */,
+				D248E4DE1777647E008DDE80 /* MessageDataSource.m */,
+			);
+			path = TMTMessageCellView;
+			sourceTree = "<group>";
+		};
 		D24EA2AA1760649A00CE56B2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +680,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D248E4D9177763C7008DDE80 /* TMTMessageCellView */,
 				D2668616176F5B39001699A8 /* GoToLine */,
 				D266861A176F5B39001699A8 /* LineNumber */,
 				D266861D176F5B39001699A8 /* Texdoc */,
@@ -1130,6 +1148,8 @@
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				7664EBB6177704D000D8D247 /* MessageViewController.m in Sources */,
+				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
+				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

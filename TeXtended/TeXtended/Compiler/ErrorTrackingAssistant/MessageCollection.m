@@ -91,4 +91,8 @@
     return string;
 }
 
+- (NSUInteger)count {
+    return self.errorMessages.count + self.warningMessages.count + self.debugMessages.count + self.infoMessages.count;
+}
+
 @end

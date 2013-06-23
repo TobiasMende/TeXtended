@@ -105,4 +105,10 @@
 + (id) debugInDocument:(NSString *)document inLine:(NSUInteger)line withTitle:(NSString*)title andInfo:(NSString *)info;
 
 + (NSString*)typeToString:(TMTTrackingMessageType)type;
+
++ (NSImage *)imageForType:(TMTTrackingMessageType)type;
+
++ (NSColor *) backgroundColorForType:(TMTTrackingMessageType)type;
+
+- (NSComparisonResult)compare:(TrackingMessage*)other;
 @end

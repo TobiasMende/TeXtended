@@ -11,6 +11,7 @@
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
 #import "DocumentControllerProtocol.h"
+#import "MessageDataSource.h"
 
 @interface ConsoleViewsController ()
 - (void)clearTabView;
@@ -30,12 +31,14 @@
 - (void)loadView {
     [super loadView];
      [self loadConsoles:[self.parent documentController]];
+    
+    [self.messageDataSource setModel:self.model];
 }
 
 - (void) initialize {
    _model = [[self.parent documentController] model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
-   
+    
 }
 
 - (DocumentController * ) documentController {
