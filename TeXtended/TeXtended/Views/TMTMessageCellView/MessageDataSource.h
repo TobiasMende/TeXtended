@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class DocumentModel, MessageCollection, TrackingMessage;
+@class DocumentModel, MessageCollection, TrackingMessage, TMTTableView;
 @interface MessageDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
 }
-@property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet TMTTableView *tableView;
 @property NSArray *messages;
 @property (weak,nonatomic) DocumentModel *model;
 @end

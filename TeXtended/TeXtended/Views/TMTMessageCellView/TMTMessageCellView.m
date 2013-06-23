@@ -19,6 +19,11 @@
 }
 
 - (NSString *)lineString {
+    if (self.message.column > 0) {
+        return [NSString stringWithFormat:@"%li:%li", self.message.line, self.message.column];
+    } else{
+        return [NSString stringWithFormat:@"%li", self.message.line];
+    }
     return [NSLocalizedString(@"Line", @"line") stringByAppendingFormat:@" %li", self.message.line];
 }
 

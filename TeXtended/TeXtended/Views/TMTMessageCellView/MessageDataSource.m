@@ -12,10 +12,12 @@
 #import "Constants.h"
 #import "MessageCollection.h"
 #import "DocumentModel.h"
+#import "TMTTableView.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
 - (void) handleDoubleClick:(id)sender;
+- (void) handleClick:(id)sender;
 @end
 
 @implementation MessageDataSource
@@ -30,6 +32,7 @@
 - (void)awakeFromNib {
     [self.tableView setTarget:self];
     [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
+    [self.tableView setAction:@selector(handleClick:)];
     
 }
 
@@ -55,6 +58,14 @@
     }
 }
 
+- (void)handleClick:(id)sender {
+    NSInteger row = [self.tableView clickedRow];
+    if (row < self.messages.count) {
+        //TrackingMessage *message = [self.messages objectAtIndex:row];
+        //TODO: show popover
+    }
+
+}
 
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
