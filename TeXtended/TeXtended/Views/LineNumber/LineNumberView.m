@@ -169,6 +169,12 @@
 
     lineAnchors   = [[NSMutableDictionary alloc] init];
     
+
+    [[self messageCollection] addObserver:self
+                              forKeyPath:@"messageCollection"
+                              options: NSKeyValueObservingOptionInitial
+                              context:NULL];
+    
     /* load images */
     errorImage = [NSImage imageNamed:@"error.png"];
     [errorImage setFlipped:YES];
@@ -232,6 +238,14 @@
 }
 
 /**
+ * Called if observed values did change.
+ */
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                       change:(NSDictionary *)change context:(void*)context {
+    [self setNeedsDisplay:YES];
+}
+
+/**
  * Called if the bounds of the scrollView did change (i.e. resize or scroll)-
  * @param notification send from the scrollView
  */
@@ -286,12 +300,14 @@
     } else {
         [self removeAnchorFromLine:current];
     }
-
-//    NSPopover *pop = [[NSPopover alloc] init];
-//    NSRect rec = NSMakeRect(location.x, location.y, location.x, location.y);
-//    
-//    MessageViewController *messageView = [[MessageViewController alloc] init];
-//    [pop showRelativeToRect:rec ofView:view preferredEdge:NSMinYEdge];
+    
+    //NSPopover *pop = [[NSPopover alloc] init];
+    //NSRect rec = NSMakeRect(location.x, location.y, location.x, location.y);
+    
+    //MessageViewController *messageView = [[MessageViewController alloc] init];
+    //[pop setAnimates:YES];
+    //NSLog(@"%@", messageView.view);
+    //[pop showRelativeToRect:rec ofView:messageView.view preferredEdge:NSMinYEdge];
     
     [self setNeedsDisplay:YES];
 }
