@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 #import "TextViewObserver.h"
-@class HighlightingTextView, LineNumberView, DocumentModel;
+@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection;
 
 /**
  This view controller handles the HighlightingTextView and other important objects connected to it.
@@ -25,6 +25,11 @@
     
     /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
     NSMutableSet *observers;
+    NSOperationQueue *backgroundQueue;
+    NSLock *messageLock;
+    MessageCollection *internalMessages;
+    MessageCollection *consoleMessages;
+    NSInteger countRunningParsers;
 }
 
 /** The view showing the latex source code to the user */
@@ -42,6 +47,7 @@
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;
 
+@property MessageCollection *messages;
 
 /**
  Getter for the text views content

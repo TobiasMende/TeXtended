@@ -108,6 +108,9 @@
  */
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
+#define TMTMessageCollectionKey @"TMTMessageCollectionKey"
+#define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
+#define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
 
 /*
  Notification Names
@@ -120,6 +123,7 @@
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
+#define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
@@ -132,10 +136,12 @@ typedef enum LatexLogLevel {OFF = 0,
                             ALL = 4} TMTLatexLogLevel;
 
 typedef enum TrackingMessageType{
-    TMTDebugMessage,
-    TMTInfoMessage,
+    TMTUnknownMessage,
+    TMTErrorMessage,
     TMTWarningMessage,
-    TMTErrorMessage} TMTTrackingMessageType;
+    TMTInfoMessage,
+    TMTDebugMessage
+    } TMTTrackingMessageType;
 
 /**
     This class is our common place for constants and other global definitions.

@@ -39,10 +39,78 @@
 }
 
 - (NSString *)description {
-    NSMutableString *string = [NSMutableString stringWithFormat:@"Message(%i) for %@ in %li:\n", self.type,self.document,self.line];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"%@ for %@ in %li:\n", [TrackingMessage typeToString:self.type],self.document,self.line];
     [string appendFormat:@"\t *** %@ ***\n", self.title];
     [string appendFormat:@"%@", self.info];
     return string;
 }
+
++ (id)typeToString:(TMTTrackingMessageType)type {
+    switch (type) {
+        case TMTErrorMessage:
+            return @"Error";
+            break;
+        case TMTWarningMessage:
+            return @"Warning";
+            break;
+        case TMTInfoMessage:
+            return @"Info";
+            break;
+        case TMTDebugMessage:
+            return @"Debug";
+            break;
+            
+        default:
+            return @"Unknown";
+            break;
+    }
+}
+
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + self.line;
+    result = prime * result + self.column;
+    result = prime * result + self.type;
+    result = prime * result + self.document.hash;
+    result = prime * result + self.title.hash;
+    result = prime * result + self.info.hash;
+    result = prime * result + self.furtherInfo.hash;
+    return result;
+}
+
+- (BOOL)isEqual:(id)obj {
+    if (obj == self) {
+        return YES;
+    }
+    if (!obj || ![obj isKindOfClass:self.class]) {
+        return NO;
+    }
+    TrackingMessage *other = obj;
+    if (![self.document isEqualToString:other.document]) {
+        return NO;
+    }
+    if (![self.info isEqualToString:other.info]) {
+        return NO;
+    }
+    if (![self.title isEqualToString:other.title]) {
+        return NO;
+    }
+    if (![self.furtherInfo isEqualToString:other.furtherInfo]) {
+        return NO;
+    }
+    if (self.line != other.line) {
+        return NO;
+    }
+    if (self.column != other.column) {
+        return NO;
+    }
+    if (self.type != other.type) {
+        return NO;
+    }
+    return YES;
+}
+
 
 @end

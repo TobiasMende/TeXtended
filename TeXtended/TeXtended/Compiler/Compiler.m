@@ -44,6 +44,9 @@
     [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
     for (DocumentModel *model in mainDocuments) {
+        if (!model.texPath) {
+            continue;
+        }
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
         model.consoleOutputPipe = [NSPipe pipe];
@@ -59,9 +62,12 @@
         } else if (mode == live) {
             settings = [model liveCompiler];
         }
-        
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
-     
+        NSMutableDictionary *environment = [NSMutableDictionary dictionaryWithDictionary:[[NSProcessInfo processInfo] environment]];
+        [environment setObject:@"1000" forKey:@"max_print_line"];
+        [environment setObject:@"254" forKey:@"error_line"];
+        [environment setObject:@"238" forKey:@"half_error_line"];
+        [task setEnvironment:environment];
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];

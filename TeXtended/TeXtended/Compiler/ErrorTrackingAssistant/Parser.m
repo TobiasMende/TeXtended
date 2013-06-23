@@ -7,13 +7,14 @@
 //
 
 #import "Parser.h"
+#import "PathFactory.h"
 
 @implementation Parser
 
-- (MessageCollection *)parseDocument:(NSString *)path {
+- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-    return nil;
+    return;
 }
 
 - (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path {
@@ -34,8 +35,8 @@
 
 - (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base {
     if ([path isAbsolutePath]) {
-        return path;
+        return [PathFactory realPathFromTemporaryStorage:path];
     }
-    return [base stringByAppendingPathComponent:path];
+    return [PathFactory realPathFromTemporaryStorage:[base stringByAppendingPathComponent:path]];
 }
 @end

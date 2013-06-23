@@ -31,6 +31,12 @@ static const NSSet *KEYS_TO_UNBIND;
  */
 - (void) invalidateTexdocLinks;
 
+/**
+ Adds texdoc links if some are found within the given range
+ 
+ @param range the range to update
+ */
+- (void) addTexdocLinksForRange:(NSRange) range;
 
 
 /** 
@@ -49,7 +55,7 @@ static const NSSet *KEYS_TO_UNBIND;
 +(void)initialize {
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"texdocColor",@"shouldLinkTexdoc", @"shouldUnderlineTexdoc", nil];
     
-    NSString *pattern = [NSString stringWithFormat:@"(?>\\\\usepackage|\\\\RequirePackage)+(?>\\[[[\\S|\\s]&&[^[\\]|\\[]]]*\\])?\\{(.*)\\}"];
+    NSString *pattern = [NSString stringWithFormat:@"\\\\usepackage[\\s\\S]*?\\{(.*)\\}|\\\\RequirePackage[\\s\\S]*\\{(.*)\\}"];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -87,29 +93,36 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 
 - (void)addTexdocLinksForRange:(NSRange)range {
-    
-    NSArray *texdocRanges = [TEXDOC_LINKS matchesInString:view.string options:0 range:range];
-    NSString *pattern = @"(\\w|@|_)+";
+    if (lastUpdate && lastUpdate.timeIntervalSinceNow > -1) {
+        //  return;
+    }
+    lastUpdate = [NSDate new];
+    NSString *str = view.string;
+    NSLayoutManager *lm = view.layoutManager;
+    NSArray *texdocRanges = [TEXDOC_LINKS matchesInString:str options:0 range:range];
+    NSString *pattern = @"(\\w|@|_|-)+";
     NSError *error;
     NSRegularExpression *split = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     for (NSTextCheckingResult *match in texdocRanges) {
         if ([match numberOfRanges] > 1) {
             NSRange mRange = [match rangeAtIndex:1];
-            [self removeTexdocAttributesForRange:mRange];
-            NSArray *matches = [split matchesInString:view.string options:0 range:mRange];
+            // [self removeTexdocAttributesForRange:mRange];
+            NSArray *matches = [split matchesInString:str options:0 range:mRange];
             for (NSTextCheckingResult *r in matches) {
                 NSRange finalRange = [r rangeAtIndex:0];
-                NSString *package = [view.string substringWithRange:finalRange];
+                NSString *package = [str substringWithRange:finalRange];
                 [view.spellCheckingService addWordToIgnore:package];
                 NSString *link = [NSString stringWithFormat:@"%@%@", TEXDOC_PREFIX, package];
                 if (self.shouldLinkTexdoc) {
                     
-                    [view.layoutManager addTemporaryAttribute:NSLinkAttributeName value:link forCharacterRange:finalRange];
-                    [view.layoutManager addTemporaryAttribute:NSToolTipAttributeName value:[@"Open documentation for " stringByAppendingString:package] forCharacterRange:finalRange];
-                    [view.layoutManager addTemporaryAttribute:NSForegroundColorAttributeName value:self.texdocColor forCharacterRange:finalRange];
+                    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
+                    
+                     [attributes setObject:link forKey:NSLinkAttributeName];
+                    [attributes setObject:self.texdocColor forKey:NSForegroundColorAttributeName];
                     if (self.shouldUnderlineTexdoc) {
-                        [view.layoutManager addTemporaryAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] forCharacterRange:finalRange];
+                        [attributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
                     }
+                    [lm addTemporaryAttributes:attributes forCharacterRange:finalRange];
                 }
             }
         }

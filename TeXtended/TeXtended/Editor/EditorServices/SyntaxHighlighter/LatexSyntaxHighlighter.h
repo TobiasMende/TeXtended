@@ -18,6 +18,7 @@
  @author Tobias Mende
  */
 @interface LatexSyntaxHighlighter : EditorService <SyntaxHighlighter> {
+    NSDate *time;
 }
 /** The color in which to highlight math (text between $ and $ or \[ and \] */
 @property (strong,nonatomic) NSColor *inlineMathColor;

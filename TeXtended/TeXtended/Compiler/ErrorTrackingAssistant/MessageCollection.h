@@ -58,4 +58,28 @@
  */
 - (void) addObject:(TrackingMessage*)message;
 
+/**
+ This method creates a copy of the current object.
+ 
+ @return the identical copy where [MessageCollection isEqual:] returns `YES` and `==` returns `NO`
+ */
+- (MessageCollection*)copy;
+
+/**
+ Creates a new message collection containing only messages for a given document. The new collection is a subset of the current one.
+ 
+ @param path the document
+ 
+ @return a new message collection
+ */
+- (MessageCollection *)messagesForDocument:(NSString *)path;
+
+/**
+Method for getting the entire collection as single set
+ 
+ @return all messages as set
+ 
+ */
+- (NSSet *) set;
+
 @end

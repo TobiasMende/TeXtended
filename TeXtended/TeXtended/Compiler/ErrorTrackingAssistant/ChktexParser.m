@@ -29,9 +29,9 @@ static const NSDictionary *DEBUG_NUMBERS;
 }
 
 
-- (MessageCollection *)parseDocument:(NSString *)path {
+- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action {
     if (!path) {
-        return nil;
+        return;
     }
     NSTask *task = [[NSTask alloc] init];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
@@ -46,17 +46,18 @@ static const NSDictionary *DEBUG_NUMBERS;
     
     NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
+    [task setTerminationHandler:^(NSTask *task) {
+        NSFileHandle * read = [outPipe fileHandleForReading];
+        NSData * dataRead = [read readDataToEndOfFile];
+        NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+        MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [obj performSelector:action withObject:messages];
+#pragma clang diagnostic pop
+    }];
     [task launch];
     
-    [task waitUntilExit];
-    NSFileHandle * read = [outPipe fileHandleForReading];
-    NSData * dataRead = [read readDataToEndOfFile];
-    NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-    NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
-    for (NSString *arg in task.arguments) {
-        [command appendFormat:@" %@", arg];
-    }
-    return [self parseOutput:stringRead withBaseDir:dirPath];
 }
 
 - (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
@@ -88,7 +89,7 @@ static const NSDictionary *DEBUG_NUMBERS;
 }
 
 - (TMTTrackingMessageType)typeForChktexNumber:(NSInteger)number {
-    NSNumber *key = [NSNumber numberWithInteger:number];
+    NSString *key = [NSString stringWithFormat:@"%li", number];
     if ([WARNING_NUMBERS objectForKey:key]) {
         return TMTWarningMessage;
     }
@@ -103,7 +104,7 @@ static const NSDictionary *DEBUG_NUMBERS;
 }
 
 - (NSString *)messageForChktexNumber:(NSInteger)number ofType:(TMTTrackingMessageType)type {
-    NSNumber *key = [NSNumber numberWithInteger:number];
+    NSString *key = [NSString stringWithFormat:@"%li", number];
     switch (type) {
         case TMTWarningMessage:
             return [WARNING_NUMBERS objectForKey:key];
