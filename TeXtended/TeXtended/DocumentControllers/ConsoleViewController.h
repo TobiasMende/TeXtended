@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 
-@class DocumentModel;
+@class DocumentModel, MessageCollection;
 
 /**
  Viewcontroller for handling interaction with a single console view
@@ -36,6 +36,9 @@
 
 /** Flag for showing whether the console is active or not */
 @property BOOL consoleActive;
+
+/** The messages extracted from the latex log */
+@property (nonatomic) MessageCollection *consoleMessages;
 
 /** Method for handling the compilers output when new data arrives on the models output pipe
  

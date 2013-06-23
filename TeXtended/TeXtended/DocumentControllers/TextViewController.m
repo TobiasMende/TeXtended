@@ -13,7 +13,10 @@
 #import "DocumentController.h"
 #import "Constants.h"
 #import "DocumentModel.h"
+#import "MessageCollection.h"
 #import "ForwardSynctex.h"
+#import "LacheckParser.h"
+#import "ChktexParser.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -35,6 +38,16 @@
  @param model the model to sync for
  */
 - (void) syncPDF:(DocumentModel *)model;
+
+/** Notifies this object about changes in the log messages. This method updates it's messages with the new arriving message collection
+ 
+ @param note a notification with a new MessageCollection in it's user info.
+ 
+ */
+- (void) logMessagesChanged:(NSNotification*)note;
+
+/** Method for rerunning lacheck and chktex for updates of the message collection */
+- (void) updateMessageCollection;
 @end
 
 @implementation TextViewController
@@ -53,6 +66,7 @@
 }
 
 - (void)registerModelObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
@@ -61,7 +75,27 @@
 
 - (void)unregisterModelObserver {
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+}
+
+- (void)logMessagesChanged:(NSNotification *)note {
+    consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    self.messages = [consoleMessages merge:internalMessages];
+}
+
+- (void)updateMessageCollection {
+    TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
+    if (thresh > TMTWarningMessage) {
+        return;
+    }
+    ChktexParser *chktex = [ChktexParser new];
+    internalMessages = [chktex parseDocument:self.model.texPath];
+    
+    LacheckParser *lacheck = [LacheckParser new];
+    internalMessages = [internalMessages merge:[lacheck parseDocument:self.model.texPath]];
+    
+    self.messages = [internalMessages merge:consoleMessages];
 }
 
 - (void)handleCompilerEnd:(NSNotification *)note {
@@ -158,6 +192,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
+    [self updateMessageCollection];
     if (self.textView.servicesOn) {
         [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
         
