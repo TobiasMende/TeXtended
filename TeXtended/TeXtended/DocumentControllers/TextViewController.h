@@ -24,6 +24,7 @@
     LineNumberView *lineNumberView;
     
     /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
+    NSLock *messageLock;
     NSMutableSet *observers;
     MessageCollection *internalMessages;
     MessageCollection *consoleMessages;

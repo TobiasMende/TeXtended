@@ -10,10 +10,10 @@
 
 @implementation Parser
 
-- (MessageCollection *)parseDocument:(NSString *)path {
+- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-    return nil;
+    return;
 }
 
 - (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path {

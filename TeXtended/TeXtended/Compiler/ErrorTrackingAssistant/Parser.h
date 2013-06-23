@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @class MessageCollection;
 
 /**
@@ -20,31 +19,31 @@
     
 }
 
+@property MessageCollection *messages;
+
 /**
  Parses the file for a given document and returns a set of TrackingMessages
  
  @param path the document to check
- 
- @return a set of messages
+ @param obj the object that starts the parser
+ @param action the callback action which accepts a single parameter of type MessageCollection
  */
-- (MessageCollection *)parseDocument:(NSString *)path;
+- (void )parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action;
 
 /**
  Parses the given document content for the document specified by path
  
  @param content the content to extract messages from
  @param path the path from which to get the base dir.
- 
- @return a set of messages
  */
 - (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path;
-
 /**
  Method for parsing the output of any internal syntac checker or log file parser
  
  @param output the checkers output
  @param base the base dir from where the checker was executed (needed to extend relative paths in the output)
- 
+ @param obj the object that starts the parser
+ @param action the callback action which accepts a single parameter of type MessageCollection
  @return a message collection, containing all found messages lower or equal to the current log level.
  */
 - (MessageCollection *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
