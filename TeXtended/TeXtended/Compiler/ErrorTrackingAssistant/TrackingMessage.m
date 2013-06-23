@@ -61,6 +61,7 @@
             break;
             
         default:
+            return @"Unknown";
             break;
     }
 }

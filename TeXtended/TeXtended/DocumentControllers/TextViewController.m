@@ -47,7 +47,7 @@
 - (void) logMessagesChanged:(NSNotification*)note;
 
 /** Method for rerunning lacheck and chktex for updates of the message collection */
-- (void) updateMessageCollection;
+- (void) updateMessageCollection:(NSNotification *)note;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 @end
 
@@ -69,6 +69,7 @@
 
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
@@ -78,6 +79,7 @@
 - (void)unregisterModelObserver {
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDidSaveDocumentModelContent object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
 }
 
@@ -88,7 +90,7 @@
     lineNumberView.messageCollection = self.messages;
 }
 
-- (void)updateMessageCollection {
+- (void)updateMessageCollection:(NSNotification *)note {
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
     if (thresh < WARNING) {
         return;
@@ -225,8 +227,6 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-    [self updateMessageCollection];
-    [lineNumberView setMessageCollection:self.messages];
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 

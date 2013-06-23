@@ -100,6 +100,9 @@ static NSArray *TMTEncodingsToCheck;
             self.encoding = [NSNumber numberWithUnsignedLong:alternate];
         }
     }
+    if (success) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
+    }
     return success;
 }
 

@@ -89,8 +89,12 @@
         return NO;
     }
     NSRange unmatchedRange = [[info lowercaseString] rangeOfString:@"unmatched"];
+    NSRange unwantedRange = [[info lowercaseString] rangeOfString:@"unwanted"];
     NSRange eofRange = [[info lowercaseString] rangeOfString:@"end of file"];
     if (unmatchedRange.location != NSNotFound && eofRange.location == NSNotFound) {
+        return YES;
+    }
+    if (unwantedRange.location != NSNotFound) {
         return YES;
     }
     

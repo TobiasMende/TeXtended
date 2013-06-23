@@ -109,6 +109,7 @@
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
 #define TMTMessageCollectionKey @"TMTMessageCollectionKey"
+#define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 
 /*
  Notification Names
