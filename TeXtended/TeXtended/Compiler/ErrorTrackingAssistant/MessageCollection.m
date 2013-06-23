@@ -46,13 +46,23 @@
 }
 
 - (MessageCollection *)merge:(MessageCollection *)other {
-    [self.errorMessages unionSet:other.errorMessages];
-    [self.warningMessages unionSet:other.warningMessages];
-    [self.infoMessages unionSet:other.infoMessages];
-    [self.debugMessages unionSet:other.debugMessages];
-    return self;
+    MessageCollection *col = [self copy];
+    [col.errorMessages unionSet:other.errorMessages];
+    [col.warningMessages unionSet:other.warningMessages];
+    [col.infoMessages unionSet:other.infoMessages];
+    [col.debugMessages unionSet:other.debugMessages];
+    return col;
 }
 
+                                     
+- (MessageCollection *)copy {
+    MessageCollection *col = [MessageCollection new];
+    col.debugMessages = self.debugMessages;
+    col.infoMessages = self.infoMessages;
+    col.warningMessages = self.warningMessages;
+    col.errorMessages = self.errorMessages;
+    return col;
+}
 
 - (NSString *)description {
     NSMutableString *string = [NSMutableString stringWithFormat:@"errors(%li) = %@\n",self.errorMessages.count, self.errorMessages];

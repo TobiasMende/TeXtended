@@ -58,4 +58,11 @@
  */
 - (void) addObject:(TrackingMessage*)message;
 
+/**
+ This method creates a copy of the current object.
+ 
+ @return the identical copy where [MessageCollection isEqual:] returns `YES` and `==` returns `NO`
+ */
+- (MessageCollection*)copy;
+
 @end

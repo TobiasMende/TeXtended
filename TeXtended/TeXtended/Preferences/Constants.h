@@ -108,6 +108,7 @@
  */
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
+#define TMTMessageCollectionKey @"TMTMessageCollectionKey"
 
 /*
  Notification Names
@@ -120,6 +121,7 @@
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
+#define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

@@ -72,6 +72,9 @@
     if (str && data.length > 0) {
         self.outputView.string = [self.outputView.string stringByAppendingString:str];
         [self.outputView scrollToEndOfDocument:self];
+        LogfileParser *parser = [LogfileParser new];
+        MessageCollection *collection = [parser parseContent:str forDocument:self.model.texPath];
+        self.consoleMessages = [self.consoleMessages merge:collection];
         // Do whatever you want with str
     }
     if (data.length > 0) {
@@ -79,6 +82,16 @@
         self.consoleActive = YES;
     } else {
         self.consoleActive = NO;
+    }
+}
+
+- (void)setConsoleMessages:(MessageCollection *)consoleMessages {
+    [self willChangeValueForKey:@"consoleMessages"];
+    _consoleMessages = consoleMessages;
+    [self didChangeValueForKey:@"consoleMessages"];
+    DocumentModel *model = [[self documentController] model];
+    if (model && consoleMessages) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
     }
 }
 
@@ -101,12 +114,10 @@
 
 - (void)compilerDidStartCompiling:(NSNotification *)notification {
     [self configureReadHandle];
+    self.consoleMessages = [MessageCollection new];
 }
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
-//    LogfileParser *parser = [LogfileParser new];
-//    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
-//    NSLog(@"Collection: %@", collection);
     [self.inputView setStringValue:@""];
     self.consoleActive = NO;
 }
