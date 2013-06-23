@@ -70,12 +70,17 @@
      * Image shown if a warning appears.
      */
     NSImage *warningImage;
+    
+    /**
+     * Image shown if a info appears.
+     */
+    NSImage *infoImage;
 }
 
 /**
  * This class holds all infos, warnings, errors and so on.
  */
-@property (strong) MessageCollection *messageCollection;
+@property (weak) MessageCollection *messageCollection;
 
 /** The background color of the whole ruler. */
 @property (nonatomic, strong) NSColor *backgroundColor;
@@ -138,6 +143,13 @@
  * @return YES if the line has a error
  */
 - (BOOL) hasError: (NSUInteger) line;
+
+/**
+ * Tests if the given line has a info.
+ * @param line the line to test
+ * @return YES if the line has a error
+ */
+- (BOOL) hasInfo: (NSUInteger) line;
 
 /**
  * Returns a array that holds the linenumbers of all lines with a anchor.
