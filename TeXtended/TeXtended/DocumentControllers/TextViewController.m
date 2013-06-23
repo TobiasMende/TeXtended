@@ -84,7 +84,6 @@
 - (void)logMessagesChanged:(NSNotification *)note {
     consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
     self.messages = [consoleMessages merge:internalMessages];
-    NSLog(@"%@", self.messages);
     lineNumberView.messageCollection = self.messages;
 }
 
