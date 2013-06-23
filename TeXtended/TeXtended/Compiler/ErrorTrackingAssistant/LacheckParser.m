@@ -23,7 +23,7 @@
     }
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
     
-    if (thresh < WARNING) {
+    if (thresh > WARNING) {
         // ATM this object only creates warning objects. so nothing to do for ERROR or less.
         return;
     }
