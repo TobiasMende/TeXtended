@@ -90,7 +90,7 @@
 
 - (void)updateMessageCollection {
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
-    if (thresh > TMTWarningMessage) {
+    if (thresh < WARNING) {
         return;
     }
     internalMessages = [MessageCollection new];

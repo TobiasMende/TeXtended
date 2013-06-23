@@ -134,10 +134,12 @@ typedef enum LatexLogLevel {OFF = 0,
                             ALL = 4} TMTLatexLogLevel;
 
 typedef enum TrackingMessageType{
-    TMTDebugMessage,
-    TMTInfoMessage,
+    TMTUnknownMessage,
+    TMTErrorMessage,
     TMTWarningMessage,
-    TMTErrorMessage} TMTTrackingMessageType;
+    TMTInfoMessage,
+    TMTDebugMessage
+    } TMTTrackingMessageType;
 
 /**
     This class is our common place for constants and other global definitions.

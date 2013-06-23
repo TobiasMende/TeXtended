@@ -77,7 +77,7 @@ static const NSDictionary *DEBUG_NUMBERS;
         NSString *info = [components objectAtIndex:4];
         TMTTrackingMessageType type = [self typeForChktexNumber:warning];
         
-        if (type >= thresh) {
+        if (type <= thresh) {
             TrackingMessage *m = [[TrackingMessage alloc] initMessage:type inDocument:path inLine:line withTitle:@"Chktex Warning" andInfo:info];
             m.furtherInfo = [self messageForChktexNumber:warning ofType:type];
             m.column = column;
