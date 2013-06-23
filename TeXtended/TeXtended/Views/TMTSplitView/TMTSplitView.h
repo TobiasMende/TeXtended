@@ -22,6 +22,8 @@
     
     /** The default devider position for each subview */
     NSMutableArray *defaultPosition;
+    
+    NSMutableArray *relativePosition;
 }
 
 /**

@@ -85,18 +85,22 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     BOOL s2 = [control isSelectedForSegment:2];
     
     if (s0 == [self.mainView isCollapsed:0]) {
-        [self.mainView toggleCollapseFor:0];
-    }
-    if (s1 == [self.contentView isCollapsed:0]) {
-        if ([self.contentView isCollapsed:0] || ![self.contentView isCollapsed:1]) {
-            [self.contentView toggleCollapseFor:0];
+        if ([self.mainView isCollapsed:0] || !([self.mainView isCollapsed:1] && [self.mainView isCollapsed:2])) {
+            [self.mainView toggleCollapseFor:0];
         } else {
             NSBeep();
         }
     }
-    if (s2 == [self.contentView isCollapsed:1]) {
-        if (![self.contentView isCollapsed:0] || [self.contentView isCollapsed:1]) {
-            [self.contentView toggleCollapseFor:1];
+    if (s1 == [self.mainView isCollapsed:1]) {
+        if ([self.mainView isCollapsed:1] || !([self.mainView isCollapsed:0] && [self.mainView isCollapsed:2])) {
+            [self.mainView toggleCollapseFor:1];
+        } else {
+            NSBeep();
+        }
+    }
+    if (s2 == [self.mainView isCollapsed:2]) {
+        if (!([self.mainView isCollapsed:0] && [self.mainView isCollapsed:1]) || [self.mainView isCollapsed:2]) {
+            [self.mainView toggleCollapseFor:2];
         } else {
             NSBeep();
         }
@@ -104,8 +108,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
     
     [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
-    [control setSelected:![self.contentView isCollapsed:0] forSegment:1];
-    [control setSelected:![self.contentView isCollapsed:1] forSegment:2];
+    [control setSelected:![self.mainView isCollapsed:1] forSegment:1];
+    [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
     
 }
 
@@ -154,7 +158,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-    if ([(TMTSplitView*)splitView indexForView:subview] == 0) {
+
+    if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
         return YES;
     }
     return NO;
