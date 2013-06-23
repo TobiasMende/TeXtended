@@ -537,6 +537,8 @@
             [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
         } else if ([self hasWarning:lineLabel+i+1]) {
             [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+        } else if ([self hasInfo:lineLabel+i+1]) {
+            [self drawInfoIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
         }
         
         NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel+i+1];
