@@ -17,15 +17,15 @@
 @implementation LacheckParser
 
 
-- (MessageCollection *)parseDocument:(NSString *)path {
+- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action{
     if (!path) {
-        return nil;
+        return;
     }
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
     
     if (thresh < WARNING) {
         // ATM this object only creates warning objects. so nothing to do for ERROR or less.
-        return nil;
+        return;
     }
     NSTask *task = [[NSTask alloc] init];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
@@ -40,17 +40,19 @@
     
     NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
+    
+    [task setTerminationHandler:^(NSTask *task) {
+        NSFileHandle * read = [outPipe fileHandleForReading];
+        NSData * dataRead = [read readDataToEndOfFile];
+        NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+        MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [obj performSelector:action withObject:messages];
+#pragma clang diagnostic pop
+    }];
     [task launch];
     
-    [task waitUntilExit];
-    NSFileHandle * read = [outPipe fileHandleForReading];
-    NSData * dataRead = [read readDataToEndOfFile];
-    NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-    NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
-    for (NSString *arg in task.arguments) {
-        [command appendFormat:@" %@", arg];
-    }
-    return [self parseOutput:stringRead withBaseDir:dirPath];
 }
 
 - (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {

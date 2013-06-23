@@ -48,6 +48,7 @@
 
 /** Method for rerunning lacheck and chktex for updates of the message collection */
 - (void) updateMessageCollection;
+- (void) mergeMessageCollection:(MessageCollection *)messages;
 @end
 
 @implementation TextViewController
@@ -57,6 +58,7 @@
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
         self.parent = parent;
+        messageLock = [NSLock new];
         observers = [NSMutableSet new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
@@ -82,6 +84,8 @@
 - (void)logMessagesChanged:(NSNotification *)note {
     consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
     self.messages = [consoleMessages merge:internalMessages];
+    NSLog(@"%@", self.messages);
+    lineNumberView.messageCollection = self.messages;
 }
 
 - (void)updateMessageCollection {
@@ -89,13 +93,22 @@
     if (thresh > TMTWarningMessage) {
         return;
     }
+    internalMessages = [MessageCollection new];
     ChktexParser *chktex = [ChktexParser new];
-    internalMessages = [chktex parseDocument:self.model.texPath];
+   [chktex parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
     
     LacheckParser *lacheck = [LacheckParser new];
-    internalMessages = [internalMessages merge:[lacheck parseDocument:self.model.texPath]];
+    [lacheck parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
     
+    
+}
+
+- (void)mergeMessageCollection:(MessageCollection *)messages {
+    [messageLock lock];
+    internalMessages = [internalMessages merge:messages];
     self.messages = [internalMessages merge:consoleMessages];
+    lineNumberView.messageCollection = self.messages;
+    [messageLock unlock];
 }
 
 - (void)handleCompilerEnd:(NSNotification *)note {
@@ -192,7 +205,7 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
-    [self updateMessageCollection];
+    
     if (self.textView.servicesOn) {
         [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
         
@@ -207,6 +220,8 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 - (void)textDidChange:(NSNotification *)notification {
+    [self updateMessageCollection];
+    [lineNumberView setMessageCollection:self.messages];
     [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 
