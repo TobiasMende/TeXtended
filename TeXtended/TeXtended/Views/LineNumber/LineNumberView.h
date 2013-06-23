@@ -24,6 +24,7 @@
  *
  * @author Max Bannach
  */
+@class MessageCollection;
 @interface LineNumberView : NSRulerView {
     
     /** Font of the line numbers. */
@@ -59,7 +60,22 @@
      * Holds a key for every line that has a error.
      */
     NSMutableDictionary *lineErrors;
+    
+    /**
+     * Image shown if a error appears.
+     */
+    NSImage *errorImage;
+    
+    /**
+     * Image shown if a warning appears.
+     */
+    NSImage *warningImage;
 }
+
+/**
+ * This class holds all infos, warnings, errors and so on.
+ */
+@property (strong) MessageCollection *messageCollection;
 
 /** The background color of the whole ruler. */
 @property (nonatomic, strong) NSColor *backgroundColor;
@@ -82,18 +98,6 @@
 /** Color for border of line anchors */
 @property (nonatomic, strong) NSColor *anchorBorderColor;
 
-/** Color for line warnings */
-@property (nonatomic, strong) NSColor *warningColor;
-
-/** Color for border of line warnings */
-@property (nonatomic, strong) NSColor *warningBorderColor;
-
-/** Color for line errors */
-@property (nonatomic, strong) NSColor *errorColor;
-
-/** Color for border of line errors */
-@property (nonatomic, strong) NSColor *errorBorderColor;
-
 /**
  * Init the LineNumberView with a scrolView.
  * RulerView will then automaticly update, when the
@@ -109,34 +113,10 @@
 - (void) addAnchorToLine: (NSUInteger) line;
 
 /**
- * Adds a warning to the given line.
- * @param line to add a warning to
- */
-- (void) addWarningToLine: (NSUInteger) line;
-
-/**
- * Adds a error to the given line.
- * @param line to add a error to
- */
-- (void) addErrorToLine: (NSUInteger) line;
-
-/**
  * Removes a anchor from the given line.
  * @param line to remove a anchor from
  */
 - (void) removeAnchorFromLine: (NSUInteger) line;
-
-/**
- * Removes a warning from the given line.
- * @param line to remove a warning from
- */
-- (void) removeWarningFromLine: (NSUInteger) line;
-
-/**
- * Removes a error from the given line.
- * @param line to remove a error from
- */
-- (void) removeErrorFromLine: (NSUInteger) line;
 
 /**
  * Tests if the given line has a anchor.
@@ -164,17 +144,5 @@
  * @return NSArray with NSUIntegers for the linenumbers
  */
 - (NSArray*) anchoredLines;
-
-/**
- * Returns a array that holds the linenumbers of all lines with a warning.
- * @return NSArray with NSUIntegers for the linenumbers
- */
-- (NSArray*) linesWithWarnings;
-
-/**
- * Returns a array that holds the linenumbers of all lines with a error.
- * @return NSArray with NSUIntegers for the linenumbers
- */
-- (NSArray*) linesWithErrors;
 
 @end
