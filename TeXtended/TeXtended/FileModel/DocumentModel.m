@@ -77,6 +77,10 @@ static NSArray *TMTEncodingsToCheck;
         NSLog(@"Detected encoding: %li", encoding);
         self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
+    if (content) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidLoadDocumentModelContent object:self];
+    }
+    
     return content;
 }
 

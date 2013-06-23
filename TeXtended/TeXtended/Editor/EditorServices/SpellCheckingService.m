@@ -34,6 +34,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
         [self setupSpellChecker];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCommandsToIgnore) name:TMTCommandCompletionsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEnvironmentsToIgnore) name:TMTEnvironmentCompletionsDidChangeNotification object:nil];
+        backgroundQueue = [NSOperationQueue new];
     }
     return self;
 }
@@ -71,7 +72,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 }
 
 - (void)addWordToIgnore:(NSString *)string {
-    [wordsToIgnore addObject:string];
+     [wordsToIgnore addObject:string];
 }
 
 - (void)removeWordToIgnore:(NSString *)string {
@@ -92,12 +93,12 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
         return;
     }
     lastUpdated = [[NSDate alloc] init];
-    NSMutableSet *allWords = [[NSMutableSet alloc] initWithSet:wordsToIgnore];
-    [allWords unionSet:environmentsToIgnore];
-    [allWords unionSet:commandsToIgnore];
-    [view setContinuousSpellCheckingEnabled:NO];
-   [[NSSpellChecker sharedSpellChecker] setIgnoredWords:[allWords allObjects] inSpellDocumentWithTag:view.spellCheckerDocumentTag];
-    [view setContinuousSpellCheckingEnabled:YES];
+    [backgroundQueue addOperationWithBlock:^{
+        NSMutableSet *allWords = [[NSMutableSet alloc] initWithSet:wordsToIgnore];
+        [allWords unionSet:environmentsToIgnore];
+        [allWords unionSet:commandsToIgnore];
+        [[NSSpellChecker sharedSpellChecker] setIgnoredWords:[allWords allObjects] inSpellDocumentWithTag:view.spellCheckerDocumentTag];
+    }];
 }
 
 - (void)dealloc {

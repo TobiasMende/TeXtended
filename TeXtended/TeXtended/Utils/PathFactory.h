@@ -60,4 +60,20 @@
  @return `YES` if a directory exists at the given path or could be created succesful, `NO` otherwise.
  */
 + (BOOL)checkForAndCreateFolder:(NSString* )path;
+
+/**
+ Method for extending a given path to get a temporary storage path
+ @param path the path to extend
+ 
+ @return a path containing the extension .TMTTemporaryStorage
+ */
++ (NSString *)pathToTemporaryStorage:(NSString *)path;
+
+/**
+ Method for converting a temporary object path to a real object path
+ @param temp the temporary path
+ @return the real path
+ 
+ */
++ (NSString *) realPathFromTemporaryStorage:(NSString *)temp;
 @end

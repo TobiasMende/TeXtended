@@ -58,7 +58,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if(self) {
         [self registerDefaults];
         
-        [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:view];
+         [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:view];
     }
     return self;
 }
@@ -127,8 +127,9 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if (!view.servicesOn) {
         return;
     }
+
     [self highlightVisibleArea];
-    [view.codeExtensionEngine addTexdocLinksForRange:[view visibleRange]];
+    
 }
 
 - (void)highlightEntireDocument {
@@ -169,20 +170,20 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     [self highlightCurlyBracketsInRange:textRange];
     [self highlightCommentInRange:textRange];
     [self highlightInlineMathInRange:textRange];
+    [view.codeExtensionEngine addLinksForRange:textRange];
 }
 
 - (void) highlightCommandInRange:(NSRange) totalRange {
     if (self.shouldHighlightCommands) {
         NSLayoutManager *lm = [view layoutManager];
         
-        
-        NSArray *matches = [COMMAND_REGEX matchesInString:[[view textStorage] string] options:0 range:totalRange];
+        NSString *str = view.string;
+        NSArray *matches = [COMMAND_REGEX matchesInString:str options:0 range:totalRange];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match range];
-            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commandColor forCharacterRange:range];
             if (view.selectedRange.location != NSMaxRange(range)) {
-                [view.spellCheckingService addWordToIgnore:[view.string substringWithRange:NSMakeRange(range.location+1, range.length -1)]];
+                [view.spellCheckingService addWordToIgnore:[str substringWithRange:NSMakeRange(range.location+1, range.length -1)]];
             }
         }
     }
@@ -209,13 +210,13 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 - (void) highlightCommentInRange:(NSRange) totalRange {
     if (self.shouldHighlightComments) {
          NSLayoutManager *lm = [view layoutManager];
-        NSArray *matches = [COMMENT_REGEX matchesInString:[[view textStorage] string] options:0 range:totalRange];
+        NSString *str = view.string;
+        NSArray *matches = [COMMENT_REGEX matchesInString:str options:0 range:totalRange];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match range];
-            if (range.location > 0 && [[view.string substringWithRange:NSMakeRange(range.location-1, 1)] isEqualToString:@"\\"]) {
+            if (range.location > 0 && [[str substringWithRange:NSMakeRange(range.location-1, 1)] isEqualToString:@"\\"]) {
                 continue;
             }
-            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commentColor forCharacterRange:range];
         }
     }
@@ -234,7 +235,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
         NSArray *matches = [regex matchesInString:[[view textStorage] string] options:0 range:totalRange];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match range];
-            [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:color forCharacterRange:range];
         }
 }

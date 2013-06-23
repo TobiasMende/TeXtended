@@ -9,6 +9,7 @@
 #import "PathFactory.h"
 #import "Constants.h"
 
+static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
 @implementation PathFactory
 
 
@@ -56,6 +57,17 @@
             return NO;
         }
     }
+}
+
++ (NSString *)pathToTemporaryStorage:(NSString *)path {
+    return [path stringByAppendingPathExtension:TEMP_EXTENSION];
+}
+
++ (NSString *)realPathFromTemporaryStorage:(NSString *)temp {
+    if ([[temp pathExtension] isEqualToString:TEMP_EXTENSION]) {
+        return [temp stringByDeletingPathExtension];
+    }
+    return  temp;
 }
 
 @end

@@ -20,6 +20,7 @@
 @interface CodeExtensionEngine : EditorService<TexdocHandlerProtocol> {
     /** The popover to use for texdoc links (and other) */
     NSPopover *popover;
+    NSDate *lastUpdate;
 }
 /** The color for texdoc links */
 @property (strong,nonatomic) NSColor *texdocColor;
@@ -35,12 +36,6 @@
  */
 - (void)addLinksForRange:(NSRange) range;
 
-/**
- Adds texdoc links if some are found within the given range
- 
- @param range the range to update
- */
-- (void) addTexdocLinksForRange:(NSRange) range;
 
 /**
  Needs to be called if the user has clicked a link in the view

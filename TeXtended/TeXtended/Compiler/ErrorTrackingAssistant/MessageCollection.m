@@ -64,6 +64,25 @@
     return col;
 }
 
+- (MessageCollection *)messagesForDocument:(NSString *)path {
+    MessageCollection *subset = [MessageCollection new];
+    
+    for (TrackingMessage *message in self.set) {
+        if ([message.document isEqualToString:path]) {
+            [subset addMessage:message];
+        }
+    }
+    return subset;
+}
+
+- (NSSet *)set {
+    NSMutableSet *set = [NSMutableSet setWithSet:self.errorMessages];
+    [set unionSet:self.warningMessages];
+    [set unionSet:self.infoMessages];
+    [set unionSet:self.debugMessages];
+    return set;
+}
+
 - (NSString *)description {
     NSMutableString *string = [NSMutableString stringWithFormat:@"errors(%li) = %@\n",self.errorMessages.count, self.errorMessages];
     [string appendFormat:@"warnings(%li) = %@\n", self.warningMessages.count, self.warningMessages];

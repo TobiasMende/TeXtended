@@ -179,7 +179,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     [self updateSyntaxHighlighting];
     [self.codeNavigationAssistant highlight];
-    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
 }
 
 - (void)updateSyntaxHighlighting {
@@ -187,7 +186,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
-    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
 }
 
 
@@ -235,7 +233,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSLog(@"Latex LineBreak");
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
-    [self.codeExtensionEngine addTexdocLinksForRange:[self visibleRange]];
     NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
     if([self.codeNavigationAssistant handleWrappingInLine:lineRange]) {
         [self scrollRangeToVisible:self.selectedRange];
@@ -332,7 +329,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self.syntaxHighlighter highlightEntireDocument];
-    [self.codeExtensionEngine addTexdocLinksForRange:NSMakeRange(0, self.string.length)];
+    [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 -(void)setString:(NSString *)string {
@@ -341,7 +338,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self.syntaxHighlighter highlightEntireDocument];
-    [self.codeExtensionEngine addTexdocLinksForRange:NSMakeRange(0, self.string.length)];
 }
 
 

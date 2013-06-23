@@ -27,6 +27,8 @@ This class provides a service for customizing the behaviour of the mac spell che
     
     /** Date storing the last update of the NSSpellChecker */
     NSDate *lastUpdated;
+    
+    NSOperationQueue *backgroundQueue;
 }
 /**
  Setups the words and completions to ignore

@@ -17,6 +17,7 @@
 #import "ForwardSynctex.h"
 #import "LacheckParser.h"
 #import "ChktexParser.h"
+#import "PathFactory.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -60,6 +61,7 @@
         self.parent = parent;
         messageLock = [NSLock new];
         observers = [NSMutableSet new];
+        backgroundQueue = [NSOperationQueue new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self registerModelObserver];
@@ -69,7 +71,7 @@
 
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
@@ -79,30 +81,36 @@
 - (void)unregisterModelObserver {
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDidSaveDocumentModelContent object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
 }
 
 - (void)logMessagesChanged:(NSNotification *)note {
     consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
-    self.messages = [consoleMessages merge:internalMessages];
-    NSLog(@"%@", consoleMessages);
-    lineNumberView.messageCollection = self.messages;
+    if (countRunningParsers == 0) {
+        self.messages = [consoleMessages merge:internalMessages];
+        lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
+    }
 }
 
 - (void)updateMessageCollection:(NSNotification *)note {
+    NSError *error;
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
     if (thresh < WARNING) {
         return;
     }
-    internalMessages = [MessageCollection new];
     if (countRunningParsers == 0) {
+        NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
+        [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
+        if (error) {
+            NSLog(@"Error: %@", error.userInfo);
+            return;
+        }
         countRunningParsers = 2;
         ChktexParser *chktex = [ChktexParser new];
-        [chktex parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
+        [chktex parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
         
         LacheckParser *lacheck = [LacheckParser new];
-        [lacheck parseDocument:self.model.texPath forObject:self selector:@selector(mergeMessageCollection:)];
+        [lacheck parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
     }
     
     
@@ -110,11 +118,23 @@
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     [messageLock lock];
+    if (countRunningParsers == 2) {
+        internalMessages = [MessageCollection new];
+    }
     countRunningParsers--;
+    
+    
     internalMessages = [internalMessages merge:messages];
-    self.messages = [internalMessages merge:consoleMessages];
-    NSLog(@"%@", self.messages);
-    lineNumberView.messageCollection = self.messages;
+    if (countRunningParsers == 0) {
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:&error];
+        if (error) {
+            NSLog(@"Error: %@", error.userInfo);
+        }
+        self.messages = [internalMessages merge:consoleMessages];
+        MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
+        lineNumberView.messageCollection = subset;
+    }
     [messageLock unlock];
 }
 
@@ -227,7 +247,9 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-    [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
+    //NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
+    //[backgroundQueue addOperation:op];
+    // [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
 }
 
 

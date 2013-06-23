@@ -7,6 +7,7 @@
 //
 
 #import "Parser.h"
+#import "PathFactory.h"
 
 @implementation Parser
 
@@ -34,8 +35,8 @@
 
 - (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base {
     if ([path isAbsolutePath]) {
-        return path;
+        return [PathFactory realPathFromTemporaryStorage:path];
     }
-    return [base stringByAppendingPathComponent:path];
+    return [PathFactory realPathFromTemporaryStorage:[base stringByAppendingPathComponent:path]];
 }
 @end

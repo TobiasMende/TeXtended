@@ -65,4 +65,21 @@
  */
 - (MessageCollection*)copy;
 
+/**
+ Creates a new message collection containing only messages for a given document. The new collection is a subset of the current one.
+ 
+ @param path the document
+ 
+ @return a new message collection
+ */
+- (MessageCollection *)messagesForDocument:(NSString *)path;
+
+/**
+Method for getting the entire collection as single set
+ 
+ @return all messages as set
+ 
+ */
+- (NSSet *) set;
+
 @end
