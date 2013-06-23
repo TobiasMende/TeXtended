@@ -31,6 +31,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         defaultPosition = [NSMutableArray array];
+        relativePosition = [NSMutableArray array];
         collapseState = [NSMutableArray array];
         [self refreshSubviews];
     }
@@ -45,9 +46,8 @@
 
 - (void)adjustSubviews {
     [super adjustSubviews];
-    for (NSUInteger index = 0; index < self.subviews.count; index++) {
-        [defaultPosition replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:[self positionOfDividerAtIndex:(index < self.subviews.count-1 ? index : index-1)]]];
-    }
+    
+    [self calculateRelativePositions];
 }
 
 - (void)setSubviews:(NSArray *)newSubviews {
@@ -56,12 +56,35 @@
 }
 
 - (void)refreshSubviews {
-    NSLog(@"%li", self.subviews.count);
     collapseState = [NSMutableArray arrayWithCapacity:self.subviews.count];
     defaultPosition = [NSMutableArray arrayWithCapacity:self.subviews.count];
+    relativePosition = [NSMutableArray arrayWithCapacity:self.subviews.count];
     for (NSView *view in self.subviews) {
         [collapseState addObject:[NSNumber numberWithBool:[super isSubviewCollapsed:view]]];
         [defaultPosition addObject:[NSNumber numberWithFloat:0]];
+        [relativePosition addObject:[NSNumber numberWithFloat:0]];
+    }
+    
+    [self calculateRelativePositions];
+}
+
+- (void)calculateRelativePositions
+{
+    CGFloat sum = 0;
+    for (NSInteger i = 0; i < self.subviews.count; i++) {
+        if (self.isVertical) {
+            CGFloat sizeOfSuperview = self.bounds.size.width;
+            NSView *view = [self.subviews objectAtIndex:i];
+            CGFloat sizeOfView = view.bounds.size.width;
+            sum += sizeOfView/sizeOfSuperview;
+            [relativePosition replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:sum]];
+        } else {
+            CGFloat sizeOfSuperview = self.bounds.size.height;
+            NSView *view = [self.subviews objectAtIndex:i];
+            CGFloat sizeOfView = view.bounds.size.height;
+            sum += sizeOfView/sizeOfSuperview;
+            [relativePosition replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:sum]];
+        }
     }
 }
 
@@ -76,18 +99,29 @@
 
 - (void)collapse:(NSUInteger)index {
     CGFloat oldPosition;
+    CGFloat positionOfNextDivider;
+    CGFloat positionOfPreviousDivider;
+    CGFloat sizeOfView;
+    
+    if (self.isVertical) {
+        sizeOfView = self.bounds.size.width;
+    } else {
+        sizeOfView = self.bounds.size.height;
+    }
+    
     if (index == self.subviews.count -1) {
         oldPosition = [self positionOfDividerAtIndex:index-1];
         [self setPosition:[self maxPossiblePositionOfDividerAtIndex:index-1] ofDividerAtIndex:index-1];
+        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
+        oldPosition = (oldPosition-positionOfPreviousDivider)/(sizeOfView-positionOfPreviousDivider);
     } else {
         oldPosition = [self positionOfDividerAtIndex:index];
         [self setPosition:[self minPossiblePositionOfDividerAtIndex:index] ofDividerAtIndex:index];
+        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
+        positionOfNextDivider = [self positionOfNextDividerAtIndex:index+1];
+        oldPosition = 1-(positionOfNextDivider-oldPosition)/(positionOfNextDivider-positionOfPreviousDivider);
     }
-    if (self.isVertical) {
-        oldPosition /= self.bounds.size.width;
-    } else {
-        oldPosition /= self.bounds.size.height;
-    }
+    
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
     if (defaultPosition.count > index) {
         [defaultPosition replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:oldPosition]];
@@ -97,15 +131,20 @@
 }
 
 - (void)uncollapse:(NSUInteger)index {
-    CGFloat position = [[defaultPosition objectAtIndex:index] floatValue];
-    if (self.isVertical) {
-        position *= self.bounds.size.width;
-    } else {
-        position *= self.bounds.size.height;
-    }
+    CGFloat relPosition = [[defaultPosition objectAtIndex:index] floatValue];
+    CGFloat positionOfNextDivider;
+    CGFloat positionOfPreviousDivider;
+    CGFloat position;
+    
     if (index == self.subviews.count -1) {
+        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
+        positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
+        position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
         [self setPosition:position ofDividerAtIndex:index-1];
     } else {
+        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
+        positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
+        position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
         [self setPosition:position ofDividerAtIndex:index];
     }
     
@@ -138,12 +177,30 @@
 
 
 - (CGFloat)positionOfDividerAtIndex:(NSInteger)dividerIndex {
+    
+    NSRect priorViewFrame = [[[self subviews] objectAtIndex:dividerIndex] frame];
+    return [self isVertical] ? NSMaxX(priorViewFrame) : NSMaxY(priorViewFrame);
+}
+
+- (CGFloat)positionOfPreviousDividerAtIndex:(NSInteger)dividerIndex {
     // It looks like NSSplitView relies on its subviews being ordered left->right or top->bottom so we can too.
     // It also raises w/ array bounds exception if you use its API with dividerIndex > count of subviews.
     while (dividerIndex >= 0 && [self isSubviewCollapsed:[[self subviews] objectAtIndex:dividerIndex]])
         dividerIndex--;
     if (dividerIndex < 0)
         return 0.0f;
+    
+    NSRect priorViewFrame = [[[self subviews] objectAtIndex:dividerIndex] frame];
+    return [self isVertical] ? NSMaxX(priorViewFrame) : NSMaxY(priorViewFrame);
+}
+
+- (CGFloat)positionOfNextDividerAtIndex:(NSInteger)dividerIndex {
+    // It looks like NSSplitView relies on its subviews being ordered left->right or top->bottom so we can too.
+    // It also raises w/ array bounds exception if you use its API with dividerIndex > count of subviews.
+    while (dividerIndex < [[self subviews] count]-1 && [self isSubviewCollapsed:[[self subviews] objectAtIndex:dividerIndex]])
+        dividerIndex++;
+    if (dividerIndex >= [[self subviews] count]-1)
+        return [self isVertical] ? self.bounds.size.width : self.bounds.size.height;
     
     NSRect priorViewFrame = [[[self subviews] objectAtIndex:dividerIndex] frame];
     return [self isVertical] ? NSMaxX(priorViewFrame) : NSMaxY(priorViewFrame);
