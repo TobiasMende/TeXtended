@@ -98,7 +98,7 @@ ApplicationController *sharedInstance;
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],TMT_EDITOR_SELECTION_BACKGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_EDITOR_SELECTION_FOREGROUND_COLOR,
                               [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_CURRENT_LINE_TEXT_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor selectedMenuItemColor]], TMT_TEXDOC_LINK_COLOR,
+                              [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], TMT_TEXDOC_LINK_COLOR,
                               
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_INLINE_MATH,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_COMMANDS,

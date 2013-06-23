@@ -72,6 +72,7 @@ static const NSSet *KEYS_TO_UNBIND;
         popover = [[NSPopover alloc] init];
         popover.animates = YES;
         popover.behavior = NSPopoverBehaviorTransient;
+        
         self.texdocColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_TEXDOC_LINK_COLOR]];
         [self bind:@"texdocColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
         
@@ -116,8 +117,8 @@ static const NSSet *KEYS_TO_UNBIND;
                 if (self.shouldLinkTexdoc) {
                     
                     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
-                    
-                     [attributes setObject:link forKey:NSLinkAttributeName];
+                    [attributes setObject:link forKey:NSLinkAttributeName];
+                    [attributes setObject:[@"Open documentation for " stringByAppendingString:package] forKey:NSToolTipAttributeName];
                     [attributes setObject:self.texdocColor forKey:NSForegroundColorAttributeName];
                     if (self.shouldUnderlineTexdoc) {
                         [attributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
