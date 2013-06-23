@@ -88,16 +88,16 @@
         return NO;
     }
     TrackingMessage *other = obj;
-    if (![self.document isEqualToString:other.document]) {
+    if (self.document != other.document &&![self.document isEqualToString:other.document]) {
         return NO;
     }
-    if (![self.info isEqualToString:other.info]) {
+    if (self.info != other.info &&![self.info isEqualToString:other.info]) {
         return NO;
     }
-    if (![self.title isEqualToString:other.title]) {
+    if (self.title != other.title &&![self.title isEqualToString:other.title]) {
         return NO;
     }
-    if (![self.furtherInfo isEqualToString:other.furtherInfo]) {
+    if (self.furtherInfo != other.furtherInfo && ![self.furtherInfo isEqualToString:other.furtherInfo]) {
         return NO;
     }
     if (self.line != other.line) {

@@ -73,7 +73,7 @@
         self.outputView.string = [self.outputView.string stringByAppendingString:str];
         [self.outputView scrollToEndOfDocument:self];
         LogfileParser *parser = [LogfileParser new];
-        MessageCollection *collection = [parser parseContent:str forDocument:self.model.texPath];
+        MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
         self.consoleMessages = [self.consoleMessages merge:collection];
         // Do whatever you want with str
     }
