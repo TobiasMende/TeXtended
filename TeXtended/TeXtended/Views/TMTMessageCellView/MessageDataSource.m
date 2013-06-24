@@ -63,6 +63,9 @@
         TrackingMessage *message = [self.messages objectAtIndex:row];
         if ([message.document isEqualToString:self.model.texPath]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+        } else {
+            //TODO: Hanlde external path
+            NSBeep();
         }
     }
 }
