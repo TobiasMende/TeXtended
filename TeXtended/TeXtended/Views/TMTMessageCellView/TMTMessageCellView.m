@@ -8,6 +8,7 @@
 
 #import "TMTMessageCellView.h"
 #import "TrackingMessage.h"
+#import "DocumentModel.h"
 
 @implementation TMTMessageCellView
 
@@ -40,5 +41,9 @@
          keys = [keys setByAddingObject:@"objectValue"];
     }
     return keys;
+}
+
+- (BOOL)isExternal {
+    return ![self.model.texPath isEqualToString:self.message.document];
 }
 @end

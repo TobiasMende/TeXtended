@@ -13,6 +13,7 @@
 #import "MessageCollection.h"
 #import "DocumentModel.h"
 #import "TMTTableView.h"
+#import "TMTTableRowView.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
@@ -40,13 +41,21 @@
     return self.messages.count;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if (row < self.messages.count) {
-        return [self.messages objectAtIndex:row];
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+    TMTMessageCellView *result = [tableView makeViewWithIdentifier:@"TMTMessageCellView" owner:self];
+    if (!result) {
+        NSViewController *c = [[NSViewController alloc] initWithNibName:@"TMTMessageCellView" bundle:nil];
+        result = (TMTMessageCellView*)c.view;
     }
-    return nil;
+    TrackingMessage *item = [self.messages objectAtIndex:row];
+    result.model = self.model;
+    result.objectValue = item;
+    return result;
 }
 
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
+    return [[TMTTableRowView alloc] init];
+}
 
 - (void)handleDoubleClick:(id)sender {
     NSInteger row = [self.tableView clickedRow];
@@ -57,6 +66,7 @@
         }
     }
 }
+
 
 - (void)handleClick:(id)sender {
     NSInteger row = [self.tableView clickedRow];

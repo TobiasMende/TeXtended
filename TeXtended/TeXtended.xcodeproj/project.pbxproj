@@ -26,6 +26,8 @@
 		7664EBB7177704D000D8D247 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7664EBB5177704D000D8D247 /* MessageViewController.xib */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
+		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
+		D213171817782A3C002966FC /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
@@ -205,6 +207,9 @@
 		76DADC9617648A54002775BA /* xelatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = xelatexDraft.sh; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
+		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
+		D213171617782A3C002966FC /* TMTTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableRowView.h; sourceTree = "<group>"; };
+		D213171717782A3C002966FC /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -661,6 +666,7 @@
 				D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */,
 				D248E4DD1777647E008DDE80 /* MessageDataSource.h */,
 				D248E4DE1777647E008DDE80 /* MessageDataSource.m */,
+				D213171417782485002966FC /* TMTMessageCellView.xib */,
 			);
 			path = TMTMessageCellView;
 			sourceTree = "<group>";
@@ -736,6 +742,8 @@
 			children = (
 				D2668625176F5B39001699A8 /* TMTTableView.h */,
 				D2668626176F5B39001699A8 /* TMTTableView.m */,
+				D213171617782A3C002966FC /* TMTTableRowView.h */,
+				D213171717782A3C002966FC /* TMTTableRowView.m */,
 			);
 			path = TMTTableView;
 			sourceTree = "<group>";
@@ -1021,6 +1029,7 @@
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
+				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
@@ -1150,6 +1159,7 @@
 				7664EBB6177704D000D8D247 /* MessageViewController.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
+				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
