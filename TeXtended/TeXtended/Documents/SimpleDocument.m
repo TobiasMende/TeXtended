@@ -68,7 +68,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [delegate performSelector:action];
+        typedef void (*MethodType)(id, SEL, NSDocument*, BOOL, void*);
+        MethodType methodToCall;
+        methodToCall = (MethodType)[delegate methodForSelector:action];
+        methodToCall(delegate, action, self, YES, NULL);
 #pragma clang diagnostic pop
     }
 }

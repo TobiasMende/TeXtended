@@ -76,7 +76,9 @@
         [task setTerminationHandler:^(NSTask *task) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
             
-           
+            if (mode == final) {
+                [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
+            }
         }];
         
         [task launch];

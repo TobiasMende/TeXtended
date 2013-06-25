@@ -82,7 +82,7 @@ typedef enum {
 
 - (void)handleBracketsOnInsertWithInsertion:(NSString *)str{
     // Call the highlighting algorithm to find matching brackets
-    [self highlightOnInsertWithInsertion:str];
+    //[self highlightOnInsertWithInsertion:str];
     //If no matching brackets where found: insert pendant
     //if(!ranges) {
         [self autoInsertMatchingBracket:str];
