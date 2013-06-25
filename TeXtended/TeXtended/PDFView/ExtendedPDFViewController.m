@@ -83,7 +83,7 @@
     [self loadPDF];
     if (doc) {
         ForwardSynctex *synctex = [info objectForKey:TMTForwardSynctexKey];
-        if (synctex.page > 0) {
+        if (synctex.page > 0 && doc.pageCount > synctex.page-1) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
             NSPoint point = NSMakePoint(synctex.h, y);

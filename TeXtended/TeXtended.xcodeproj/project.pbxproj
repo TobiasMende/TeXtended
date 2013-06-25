@@ -55,6 +55,7 @@
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
 		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
+		D28DC0D5177A340100E4C711 /* LatexErrorExtensions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
@@ -321,6 +322,7 @@
 		D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentControllerProtocol.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardSynctex.h; sourceTree = "<group>"; };
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */,
 				D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */,
 				D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */,
+				D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */,
 			);
 			path = ErrorTrackingAssistant;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
 				7664EBB7177704D000D8D247 /* MessageViewController.xib in Resources */,
+				D28DC0D5177A340100E4C711 /* LatexErrorExtensions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
