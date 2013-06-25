@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 /**
- * This class displays line numbers and markers at the side of 
+ * This class displays line numbers and markers at the side of
  * a NSScrollView.
  * It is a extention of the NSRulerView and thus can be added as
  * such to a NSScrollView. It will then automaticly update its model
- * when the text in the NSSCrollViews documentView changes and will 
+ * when the text in the NSSCrollViews documentView changes and will
  * automaticly scroll with the NSScrollViews content.
  *
  * Implementation of this class is inspired and based on
@@ -35,7 +35,7 @@
     
     /**
      * Format for the line numbers based on
-     * [numberFont](numberFont), [numberStyle](numberStyle) 
+     * [numberFont](numberFont), [numberStyle](numberStyle)
      * and [textColor](textColor).
      */
     NSDictionary *attributesForNumbers;
@@ -75,6 +75,11 @@
      * Image shown if a info appears.
      */
     NSImage *infoImage;
+    
+    /**
+     * The window showing massages.
+     */
+    NSPopover *messageWindow;
 }
 
 /**
