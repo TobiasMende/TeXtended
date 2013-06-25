@@ -1322,7 +1322,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{202, 13}, {171, 23}}</string>
 										<reference key="NSSuperview" ref="866595434"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:22</string>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="800820416">
@@ -2634,7 +2633,7 @@
 														<array class="NSMutableArray" key="NSSubviews"/>
 														<string key="NSFrameSize">{830, 126}</string>
 														<reference key="NSSuperview" ref="381571737"/>
-														<reference key="NSNextKeyView" ref="685121847"/>
+														<reference key="NSNextKeyView" ref="313132153"/>
 														<string key="NSReuseIdentifierKey">_NS:13</string>
 														<int key="NSTag">1</int>
 														<bool key="NSEnabled">YES</bool>
@@ -2936,7 +2935,7 @@
 										</array>
 										<string key="NSFrame">{{18, 37}, {832, 144}}</string>
 										<reference key="NSSuperview" ref="54432444"/>
-										<reference key="NSNextKeyView" ref="313132153"/>
+										<reference key="NSNextKeyView" ref="381571737"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<int key="NSsFlags">133682</int>
 										<reference key="NSVScroller" ref="685121847"/>
@@ -3105,7 +3104,7 @@
 														<array class="NSMutableArray" key="NSSubviews"/>
 														<string key="NSFrameSize">{835, 133}</string>
 														<reference key="NSSuperview" ref="687773866"/>
-														<reference key="NSNextKeyView" ref="654915442"/>
+														<reference key="NSNextKeyView" ref="933959178"/>
 														<string key="NSReuseIdentifierKey">_NS:13</string>
 														<int key="NSTag">2</int>
 														<bool key="NSEnabled">YES</bool>
@@ -3314,7 +3313,7 @@
 										</array>
 										<string key="NSFrame">{{18, 37}, {837, 151}}</string>
 										<reference key="NSSuperview" ref="821227790"/>
-										<reference key="NSNextKeyView" ref="933959178"/>
+										<reference key="NSNextKeyView" ref="687773866"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<int key="NSsFlags">133682</int>
 										<reference key="NSVScroller" ref="654915442"/>
@@ -3854,7 +3853,6 @@
 										<int key="NSvFlags">268</int>
 										<string key="NSFrame">{{142, 42}, {141, 26}}</string>
 										<reference key="NSSuperview" ref="354239834"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<string key="NSAntiCompressionPriority">{387, 421}</string>
 										<bool key="NSEnabled">YES</bool>
@@ -3870,21 +3868,22 @@
 											<string key="NSKeyEquivalent"/>
 											<int key="NSPeriodicDelay">400</int>
 											<int key="NSPeriodicInterval">75</int>
-											<nil key="NSMenuItem"/>
+											<object class="NSMenuItem" key="NSMenuItem" id="1019194084">
+												<reference key="NSMenu" ref="386671828"/>
+												<string key="NSTitle">No Messages</string>
+												<string key="NSKeyEquiv"/>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<int key="NSState">1</int>
+												<reference key="NSOnImage" ref="370371141"/>
+												<reference key="NSMixedImage" ref="338061884"/>
+												<string key="NSAction">_popUpItemAction:</string>
+												<reference key="NSTarget" ref="220713081"/>
+											</object>
 											<bool key="NSMenuItemRespectAlignment">YES</bool>
 											<object class="NSMenu" key="NSMenu" id="386671828">
 												<string key="NSTitle">OtherViews</string>
 												<array class="NSMutableArray" key="NSMenuItems">
-													<object class="NSMenuItem" id="1019194084">
-														<reference key="NSMenu" ref="386671828"/>
-														<string key="NSTitle">No Messages</string>
-														<string key="NSKeyEquiv"/>
-														<int key="NSMnemonicLoc">2147483647</int>
-														<reference key="NSOnImage" ref="370371141"/>
-														<reference key="NSMixedImage" ref="338061884"/>
-														<string key="NSAction">_popUpItemAction:</string>
-														<reference key="NSTarget" ref="220713081"/>
-													</object>
+													<reference ref="1019194084"/>
 													<object class="NSMenuItem" id="476067580">
 														<reference key="NSMenu" ref="386671828"/>
 														<string key="NSTitle">Error</string>

@@ -8,27 +8,40 @@
 
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
-static CompileFlowHandler* instance;
+#import "PathObserverFactory.h"
+
+@interface CompileFlowHandler ()
+/** Notification of changes in the compile flow directory */
+- (void) compileFlowsChanged;
+@end
+
 @implementation CompileFlowHandler
 
 - (id)init {
-    if (!instance) {
         self = [super init];
         if (self) {
             _maxIterations = [NSNumber numberWithInt:3];
             _minIterations = [NSNumber numberWithInt:1];
+            [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
+            NSLog(@"init: %@",self);
         }
-        instance = self;
-    }
-    return instance;
+    return self;
+}
+
+- (void)compileFlowsChanged {
+    [self willChangeValueForKey:@"arrangedObjects"];
+     [self didChangeValueForKey:@"arrangedObjects"];
+    
 }
 
 + (CompileFlowHandler *)sharedInstance {
-    CompileFlowHandler *tmp = instance;
-    if(!tmp) {
-        tmp =[[CompileFlowHandler alloc] init];
-    }
-    return tmp;
+    static CompileFlowHandler *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[CompileFlowHandler alloc] init];
+        // Do any other initialisation stuff here
+    });
+    return sharedInstance;
 }
 
 - (NSArray *)flows {
@@ -69,4 +82,11 @@ static CompileFlowHandler* instance;
     NSString *dir =[[ApplicationController userApplicationSupportDirectoryPath] stringByAppendingPathComponent:@"/flows/"];
     return dir;
 }
+
+- (void)dealloc {
+    NSLog(@"Dealloc: %@",self);
+    [PathObserverFactory removeObserver:self];
+}
+
+
 @end
