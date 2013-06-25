@@ -15,7 +15,7 @@ static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 
 + (void)initialize {
     if (self == [LogfileParser class]) {
-        NSString *regex = @"^([.|/].*?):(.*?): (.*)(?:\\n|.)*?^l\\.(?:.*) (.*)$";
+        NSString *regex = @"^([.|/].*?):(.*?): (.*)(?:\\n|.)*?^l\\.(?:.*?)\\s(.*)$";
         NSError *error;
         ERROR_LINES_EXPRESSION = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionAnchorsMatchLines error:&error];
         if (error) {
