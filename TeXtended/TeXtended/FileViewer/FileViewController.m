@@ -52,10 +52,6 @@
         return;
     }
     
-    if (!nodes) {
-        return;
-    }
-    
     NSURL *url;
     if (self.doc.project)
     {
@@ -507,6 +503,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)loadDocument:(DocumentModel*)document
 {
+    if(self.doc)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDidSaveDocumentModelContent object:nil];
+    }
+    
     self.doc = document;
     NSString *totalPath;
     NSString *titleText;
@@ -549,6 +550,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         
         // Add Observer
         [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTDidSaveDocumentModelContent object:self.doc];
     }
     
     // In Sandboxmode
@@ -628,7 +631,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [self.doc removeObserver:self forKeyPath:@"texPath"];
     }
     
-    if (self.docController) {
+    if (self.docController || self.doc) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 #ifdef DEBUG
