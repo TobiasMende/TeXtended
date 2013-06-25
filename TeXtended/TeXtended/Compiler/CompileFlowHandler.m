@@ -9,7 +9,7 @@
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
 #import "PathObserverFactory.h"
-
+static CompileFlowHandler *sharedInstance;
 @interface CompileFlowHandler ()
 /** Notification of changes in the compile flow directory */
 - (void) compileFlowsChanged;
@@ -17,31 +17,47 @@
 
 @implementation CompileFlowHandler
 
-- (id)init {
-        self = [super init];
-        if (self) {
-            _maxIterations = [NSNumber numberWithInt:3];
-            _minIterations = [NSNumber numberWithInt:1];
-            [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
-            NSLog(@"init: %@",self);
-        }
-    return self;
-}
-
 - (void)compileFlowsChanged {
     [self willChangeValueForKey:@"arrangedObjects"];
      [self didChangeValueForKey:@"arrangedObjects"];
     
 }
 
+
 + (CompileFlowHandler *)sharedInstance {
-    static CompileFlowHandler *sharedInstance = nil;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[CompileFlowHandler alloc] init];
+        sharedInstance = [[CompileFlowHandler actualAlloc] initActual];
         // Do any other initialisation stuff here
     });
     return sharedInstance;
+}
+
++ (id)actualAlloc {
+    return [super alloc];
+}
+
++ (id)alloc {
+    return [CompileFlowHandler sharedInstance];
+}
+
+- (id)initActual {
+    self = [super init];
+    if (self) {
+        _maxIterations = [NSNumber numberWithInt:3];
+        _minIterations = [NSNumber numberWithInt:1];
+        [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
+    }
+    return self;
+}
+
+- (id)init {
+    return [CompileFlowHandler sharedInstance];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    return [CompileFlowHandler sharedInstance];
 }
 
 - (NSArray *)flows {
@@ -84,7 +100,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Dealloc: %@",self);
     [PathObserverFactory removeObserver:self];
 }
 

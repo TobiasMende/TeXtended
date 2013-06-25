@@ -120,8 +120,6 @@ return observer;
     if (index != NSNotFound) {
         [observers removeObjectAtIndex:index];
         [actions removeObjectAtIndex:index];
-    } else {
-        NSLog(@"Can't find the observer to remove");
     }
     
     if (observers.count == 0) {
@@ -164,6 +162,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         while (scan < stop) {
             if (flags & scan->bitflag) {
                 shouldHandleEvent = YES;
+                //printf ("    %s\n", scan->description);
                 goto after_loop;
             }
             scan++;
