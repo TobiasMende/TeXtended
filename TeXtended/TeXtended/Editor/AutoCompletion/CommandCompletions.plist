@@ -1410,5 +1410,13 @@
 		<key>TMTCompletionInsertionKey</key>
 		<string>\bigcap_{@@set@@}</string>
 	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\text{@@text@@}</string>
+	</dict>
 </array>
 </plist>
