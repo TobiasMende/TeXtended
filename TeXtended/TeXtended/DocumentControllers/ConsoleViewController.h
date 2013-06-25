@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 
-@class DocumentModel, MessageCollection;
+@class DocumentModel, MessageCollection, ConsoleOutputView;
 
 /**
  Viewcontroller for handling interaction with a single console view
@@ -32,7 +32,7 @@
 @property (weak,nonatomic) DocumentModel *model;
 
 /** The output view for showing the compilers output to the user */
-@property (unsafe_unretained) IBOutlet NSTextView *outputView;
+@property (unsafe_unretained) IBOutlet ConsoleOutputView *outputView;
 
 /** Flag for showing whether the console is active or not */
 @property BOOL consoleActive;

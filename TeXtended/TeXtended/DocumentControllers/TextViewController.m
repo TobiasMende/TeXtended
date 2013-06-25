@@ -47,7 +47,10 @@
  */
 - (void) logMessagesChanged:(NSNotification*)note;
 
-/** Method for rerunning lacheck and chktex for updates of the message collection */
+/** Method for rerunning lacheck and chktex for updates of the message collection 
+ 
+ @param note the notification
+ */
 - (void) updateMessageCollection:(NSNotification *)note;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;

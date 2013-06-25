@@ -8,27 +8,56 @@
 
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
-static CompileFlowHandler* instance;
+#import "PathObserverFactory.h"
+static CompileFlowHandler *sharedInstance;
+@interface CompileFlowHandler ()
+/** Notification of changes in the compile flow directory */
+- (void) compileFlowsChanged;
+@end
+
 @implementation CompileFlowHandler
 
-- (id)init {
-    if (!instance) {
-        self = [super init];
-        if (self) {
-            _maxIterations = [NSNumber numberWithInt:3];
-            _minIterations = [NSNumber numberWithInt:1];
-        }
-        instance = self;
-    }
-    return instance;
+- (void)compileFlowsChanged {
+    [self willChangeValueForKey:@"arrangedObjects"];
+     [self didChangeValueForKey:@"arrangedObjects"];
+    
 }
 
+
 + (CompileFlowHandler *)sharedInstance {
-    CompileFlowHandler *tmp = instance;
-    if(!tmp) {
-        tmp =[[CompileFlowHandler alloc] init];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[CompileFlowHandler actualAlloc] initActual];
+        // Do any other initialisation stuff here
+    });
+    return sharedInstance;
+}
+
++ (id)actualAlloc {
+    return [super alloc];
+}
+
++ (id)alloc {
+    return [CompileFlowHandler sharedInstance];
+}
+
+- (id)initActual {
+    self = [super init];
+    if (self) {
+        _maxIterations = [NSNumber numberWithInt:3];
+        _minIterations = [NSNumber numberWithInt:1];
+        [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
     }
-    return tmp;
+    return self;
+}
+
+- (id)init {
+    return [CompileFlowHandler sharedInstance];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    return [CompileFlowHandler sharedInstance];
 }
 
 - (NSArray *)flows {
@@ -69,4 +98,10 @@ static CompileFlowHandler* instance;
     NSString *dir =[[ApplicationController userApplicationSupportDirectoryPath] stringByAppendingPathComponent:@"/flows/"];
     return dir;
 }
+
+- (void)dealloc {
+    [PathObserverFactory removeObserver:self];
+}
+
+
 @end

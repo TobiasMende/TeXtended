@@ -42,8 +42,6 @@
  
  @param output the checkers output
  @param base the base dir from where the checker was executed (needed to extend relative paths in the output)
- @param obj the object that starts the parser
- @param action the callback action which accepts a single parameter of type MessageCollection
  @return a message collection, containing all found messages lower or equal to the current log level.
  */
 - (MessageCollection *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;

@@ -96,7 +96,7 @@
 		D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
 		D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
 		D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		D2E7A4E71768E8F400B2BA3C /* DirectoryFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */; };
+		D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */; };
 		D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2E7A4E91768E8F400B2BA3C /* PDFViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550721751FFCF00BC05DD /* PDFViewsController.m */; };
 		D2E7A4EA1768E8F400B2BA3C /* ConsoleViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */; };
@@ -278,9 +278,8 @@
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
 		D248E4DE1777647E008DDE80 /* MessageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataSource.m; sourceTree = "<group>"; };
-		D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryFilePresenter.h; sourceTree = "<group>"; };
-		D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryFilePresenter.m; sourceTree = "<group>"; };
-		D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePresenterObserver.h; sourceTree = "<group>"; };
+		D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathObserverFactory.h; sourceTree = "<group>"; };
+		D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathObserverFactory.m; sourceTree = "<group>"; };
 		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
@@ -674,9 +673,8 @@
 		D24EA2AA1760649A00CE56B2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D24EA2AB176064BC00CE56B2 /* DirectoryFilePresenter.h */,
-				D24EA2AC176064BC00CE56B2 /* DirectoryFilePresenter.m */,
-				D24EA2AE1760655200CE56B2 /* FilePresenterObserver.h */,
+				D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */,
+				D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
 			);
@@ -1091,11 +1089,11 @@
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
 				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
 				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
-				D2E7A4E71768E8F400B2BA3C /* DirectoryFilePresenter.m in Sources */,
 				D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */,
 				D2E7A4E91768E8F400B2BA3C /* PDFViewsController.m in Sources */,
 				D2E7A4EA1768E8F400B2BA3C /* ConsoleViewsController.m in Sources */,
 				D2E7A4EB1768E8F400B2BA3C /* OutlineViewController.m in Sources */,
+				D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */,
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
 				D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */,

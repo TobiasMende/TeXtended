@@ -74,9 +74,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [task setTerminationHandler:^(NSTask *task) {
-            if ([NSNotificationCenter defaultCenter]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
-            }
             
            
         }];

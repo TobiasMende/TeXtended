@@ -13,6 +13,7 @@
 #import "DocumentController.h"
 #import "LogfileParser.h"
 #import "MessageCollection.h"
+#import "ConsoleOutputView.h"
 
 @interface ConsoleViewController ()
 - (void)configureReadHandle;
@@ -43,6 +44,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
     }
+}
+
+- (void)loadView {
+    [super loadView];
+    [self.outputView bind:@"documentsModel" toObject:self.documentController withKeyPath:@"model" options:nil];
+    [self.outputView bind:@"compiledModel" toObject:self withKeyPath:@"model" options:nil];
 }
 
 - (DocumentController * ) documentController {

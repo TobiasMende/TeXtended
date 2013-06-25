@@ -76,4 +76,6 @@
  
  */
 + (NSString *) realPathFromTemporaryStorage:(NSString *)temp;
+
++ (NSString *) absolutPathFor:(NSString *)path withBasedir:(NSString *)dir;
 @end

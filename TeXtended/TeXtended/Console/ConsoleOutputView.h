@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class DocumentModel;
 /**
  An extended NSTextView for handling console specific layout of the text.
  
@@ -15,5 +16,13 @@
  
  */
 @interface ConsoleOutputView : NSTextView
+@property NSColor *linkColor;
+@property BOOL shouldUnderlineLinks;
+
+/** The document model currently handled by the DocumentController */
+@property DocumentModel *documentsModel;
+
+/** The document model whichs texPath was compiled */
+@property DocumentModel *compiledModel;
 
 @end
