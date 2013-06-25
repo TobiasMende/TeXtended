@@ -21,9 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760346EB1779FA6200CCE0AD /* MessageViewController.m */; };
+		760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760346EC1779FA6200CCE0AD /* MessageView.xib */; };
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
-		7664EBB6177704D000D8D247 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664EBB4177704D000D8D247 /* MessageViewController.m */; };
-		7664EBB7177704D000D8D247 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7664EBB5177704D000D8D247 /* MessageViewController.xib */; };
 		76DADC9717648B9F002775BA /* lualatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC951764892A002775BA /* lualatexDraft.sh */; };
 		76DADC9817648B9F002775BA /* xelatexDraft.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DADC9617648A54002775BA /* xelatexDraft.sh */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
@@ -194,6 +194,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		760346EA1779FA6200CCE0AD /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		760346EB1779FA6200CCE0AD /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		760346EC1779FA6200CCE0AD /* MessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
 		76041822174CF5BA000503E7 /* ExtendedPdfControlls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPdfControlls.h; sourceTree = "<group>"; };
 		76041823174CF5BA000503E7 /* ExtendedPdfControlls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPdfControlls.m; sourceTree = "<group>"; };
 		76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPdfControlls.xib; sourceTree = "<group>"; };
@@ -201,9 +204,6 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
-		7664EBB3177704D000D8D247 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		7664EBB4177704D000D8D247 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		7664EBB5177704D000D8D247 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		76DADC951764892A002775BA /* lualatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lualatexDraft.sh; sourceTree = "<group>"; };
 		76DADC9617648A54002775BA /* xelatexDraft.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = xelatexDraft.sh; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
@@ -711,9 +711,9 @@
 			children = (
 				D266861B176F5B39001699A8 /* LineNumberView.h */,
 				D266861C176F5B39001699A8 /* LineNumberView.m */,
-				7664EBB3177704D000D8D247 /* MessageViewController.h */,
-				7664EBB4177704D000D8D247 /* MessageViewController.m */,
-				7664EBB5177704D000D8D247 /* MessageViewController.xib */,
+				760346EA1779FA6200CCE0AD /* MessageViewController.h */,
+				760346EB1779FA6200CCE0AD /* MessageViewController.m */,
+				760346EC1779FA6200CCE0AD /* MessageView.xib */,
 			);
 			path = LineNumber;
 			sourceTree = "<group>";
@@ -1059,8 +1059,7 @@
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
-				7664EBB7177704D000D8D247 /* MessageViewController.xib in Resources */,
-				D28DC0D5177A340100E4C711 /* LatexErrorExtensions.plist in Resources */,
+				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,10 +1157,10 @@
 				D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */,
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
-				7664EBB6177704D000D8D247 /* MessageViewController.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
 				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
+				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

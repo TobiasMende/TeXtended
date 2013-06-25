@@ -9,8 +9,8 @@
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
 #import "MessageCollection.h"
-#import "MessageViewController.h"
 #import "TrackingMessage.h"
+#import "MessageViewController.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 4.0
@@ -74,10 +74,10 @@
  * until the first line who outraches the visible area.
  * @param startLine first line to look at
  * @return NSMutableArray of the hights
- * 
+ *
  * @note The calculation of the line heights is intensive, since the layout managet
- * has to line up all the glyphs for every line. Anyway, this method calculates only 
- * the heights for visibily lines and is therefore fast. It can and should be called 
+ * has to line up all the glyphs for every line. Anyway, this method calculates only
+ * the heights for visibily lines and is therefore fast. It can and should be called
  * more oft then [calculateLines](calculateLines:), likewise everytime the view has to be redrawn.
  */
 - (NSMutableArray*) calculateLineHeights:(NSUInteger) startLine;
@@ -142,6 +142,14 @@
  */
 - (NSColor *) getAnchorBorderColor;
 
+
+/**
+ * Calculates all messages for a given line.
+ * @param line the line number
+ * @return NSMutabelSet a set with the messages
+ */
+- (NSMutableSet*) messagesForLine:(NSUInteger)line;
+
 @end
 
 @implementation LineNumberView
@@ -174,14 +182,17 @@
                             numberStyle, NSParagraphStyleAttributeName,
                             [self textColor], NSForegroundColorAttributeName,
                             nil];
-
+    
     lineAnchors   = [[NSMutableDictionary alloc] init];
     
-
+    /* message controlling */
     [self addObserver:self
-          forKeyPath:@"messageCollection"
-          options: NSKeyValueObservingOptionInitial
-          context:NULL];
+           forKeyPath:@"messageCollection"
+              options: NSKeyValueObservingOptionInitial
+              context:NULL];
+    messageWindow = [[NSPopover alloc] init];
+    [messageWindow setAnimates:YES];
+    [messageWindow setBehavior:NSPopoverBehaviorTransient];
     
     /* load images */
     errorImage = [NSImage imageNamed:@"error.png"];
@@ -222,16 +233,16 @@
     if ((oldScrollView != aScrollView) && [oldScrollView isKindOfClass:[NSScrollView class]])
     {
 		[[NSNotificationCenter defaultCenter] removeObserver:self
-                                              name:NSViewBoundsDidChangeNotification
-                                              object:[aScrollView contentView]];
+                                                        name:NSViewBoundsDidChangeNotification
+                                                      object:[aScrollView contentView]];
     }
     if ((aScrollView != nil) && [aScrollView isKindOfClass:[NSScrollView class]])
     {
 		[[aScrollView contentView] setPostsBoundsChangedNotifications:YES];
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                              selector:@selector(contentBoundsDidChange:)
-                                              name:NSViewBoundsDidChangeNotification
-                                              object:[aScrollView contentView]];
+                                                 selector:@selector(contentBoundsDidChange:)
+                                                     name:NSViewBoundsDidChangeNotification
+                                                   object:[aScrollView contentView]];
     }
 }
 
@@ -258,6 +269,7 @@
  * @param notification send from the scrollView
  */
 - (void)contentBoundsDidChange:(NSNotification *)notification {
+    [messageWindow close];
     [self setNeedsDisplay:YES];
 }
 
@@ -276,7 +288,6 @@
 {
     NSPoint					location;
 	location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-	
     
     NSTextView *view                = [[self scrollView] documentView];
     NSRect visibleRect = [view visibleRect];
@@ -284,7 +295,6 @@
     NSTextContainer	*container      = [view textContainer];
     NSString *text                  = [view string];
     NSRange range, glyphRange;
-    
     
     glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
     range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
@@ -297,25 +307,27 @@
     /* calculate the clicked line */
     NSUInteger current = 0;
     for (int i = 0; i <[lineHights count]; i++) {
-        
         if (location.y > [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y) {
             current = lineLabel + i + 1;
         }
     }
-
-    if (![self hasAnchor:current]) {
+    
+    NSMutableSet* messages = [self messagesForLine:current];
+    if ([messages count] > 0) {
+        NSRect rec = NSMakeRect(4,
+                                [[lineHights objectAtIndex:current-lineLabel-1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
+                                1,
+                                1);
+        
+        MessageViewController *mvc = [[MessageViewController alloc] initWithTrackingMessages:messages];
+        [messageWindow setContentViewController:mvc];
+        
+        [messageWindow showRelativeToRect:rec ofView:self.scrollView preferredEdge:NSMinXEdge];
+    } else if (![self hasAnchor:current]) {
         [self addAnchorToLine:current];
     } else {
         [self removeAnchorFromLine:current];
     }
-    
-    //NSPopover *pop = [[NSPopover alloc] init];
-    //NSRect rec = NSMakeRect(location.x, location.y, location.x, location.y);
-    
-    //MessageViewController *messageView = [[MessageViewController alloc] init];
-    //[pop setAnimates:YES];
-    //NSLog(@"%@", messageView.view);
-    //[pop showRelativeToRect:rec ofView:messageView.view preferredEdge:NSMinYEdge];
     
     [self setNeedsDisplay:YES];
 }
@@ -330,6 +342,31 @@
 
 - (BOOL) hasAnchor:(NSUInteger)line {
     return [[lineAnchors objectForKey:[NSNumber numberWithInteger:line]] integerValue];
+}
+
+- (NSMutableSet*) messagesForLine:(NSUInteger)line {
+    NSMutableSet *messages = [[NSMutableSet alloc] init];
+    for (TrackingMessage *m in [self.messageCollection errorMessages]) {
+        if (m.line == line) {
+            [messages addObject:m];
+        }
+    }
+    for (TrackingMessage *m in [self.messageCollection warningMessages]) {
+        if (m.line == line) {
+            [messages addObject:m];
+        }
+    }
+    for (TrackingMessage *m in [self.messageCollection infoMessages]) {
+        if (m.line == line) {
+            [messages addObject:m];
+        }
+    }
+    for (TrackingMessage *m in [self.messageCollection debugMessages]) {
+        if (m.line == line) {
+            [messages addObject:m];
+        }
+    }
+    return messages;
 }
 
 - (BOOL) hasWarning:(NSUInteger)line {
@@ -348,7 +385,7 @@
             return YES;
         }
     }
-
+    
     return NO;
 }
 
@@ -448,7 +485,7 @@
     {
         [lines addObject:[NSNumber numberWithUnsignedInteger:index]];
     }
-
+    
     CGFloat oldThickness, newThickness;
     oldThickness = [self ruleThickness];
     newThickness = [self requiredThickness];
@@ -478,17 +515,17 @@
     NSRange nullRange;
     NSRect *rects;
     
-    float height = 0; 
+    float height = 0;
     NSUInteger index = 0, rectCount;
-      
+    
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
-
+        
         index = [[currentLines objectAtIndex:line] unsignedIntValue];
         
         rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
-                             withinSelectedCharacterRange:nullRange
-                                          inTextContainer:container
-                                                rectCount:&rectCount];
+                       withinSelectedCharacterRange:nullRange
+                                    inTextContainer:container
+                                          rectCount:&rectCount];
         height = rects->origin.y;
         [heights addObject:[NSNumber numberWithFloat:height]];
     }
@@ -533,7 +570,7 @@
     NSMutableArray *lineHights;
     
     lineHights = [self calculateLineHeights:lineLabel];
-
+    
     
     /*
      * Calculate the current line and the first visible line, this is needed from other views
@@ -548,13 +585,13 @@
     }
     
     for (int i = 0; i < [lineHights count] - 1; i++) {
-
+        
         /* draw rect for current line */
         NSRect rect = {dirtyRect.size.width - BORDER_SIZE ,
-                       [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y,
-                       BORDER_SIZE,
-                       [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
-                       };
+            [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y,
+            BORDER_SIZE,
+            [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
+        };
         
         if ((lineLabel+i) % 2 == 0) {
             [[self borderColorA] set];
@@ -664,6 +701,7 @@
 #endif
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeObserver:self forKeyPath:@"messageCollection"];
     [self unbind:@"messageCollection"];
 }
 

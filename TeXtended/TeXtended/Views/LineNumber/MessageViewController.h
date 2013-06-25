@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MessageViewController : NSViewController
+@interface MessageViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate> {
+    NSMutableArray *elements;
+}
+
+- (void) setSize;
+- (id) initWithTrackingMessages:(NSMutableSet*) messages;
+
 
 @end
