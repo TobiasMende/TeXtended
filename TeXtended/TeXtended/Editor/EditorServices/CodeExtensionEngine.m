@@ -55,7 +55,7 @@ static const NSSet *KEYS_TO_UNBIND;
 +(void)initialize {
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"texdocColor",@"shouldLinkTexdoc", @"shouldUnderlineTexdoc", nil];
     
-    NSString *pattern = [NSString stringWithFormat:@"\\\\usepackage[\\s\\S]*?\\{(.*)\\}|\\\\RequirePackage[\\s\\S]*\\{(.*)\\}"];
+    NSString *pattern = [NSString stringWithFormat:@"(?:\\\\usepackage|\\\\RequirePackage)[\\s\\S]*?\\{(.*)\\}"];
     NSError *error;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
@@ -100,6 +100,7 @@ static const NSSet *KEYS_TO_UNBIND;
     lastUpdate = [NSDate new];
     NSString *str = view.string;
     NSLayoutManager *lm = view.layoutManager;
+
     NSArray *texdocRanges = [TEXDOC_LINKS matchesInString:str options:0 range:range];
     NSString *pattern = @"(\\w|@|_|-)+";
     NSError *error;
