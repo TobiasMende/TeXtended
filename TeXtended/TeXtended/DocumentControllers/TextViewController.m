@@ -110,11 +110,11 @@
     if (thresh < WARNING) {
         return;
     }
-    if (countRunningParsers == 0) {
+    if (countRunningParsers == 0 && self.model.texPath) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
         if (error) {
-            NSLog(@"Error: %@", error.userInfo);
+            NSLog(@"TextViewController: Can't write temporary file: %@", error.userInfo);
             return;
         }
         countRunningParsers = 2;
@@ -141,7 +141,7 @@
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:&error];
         if (error) {
-            NSLog(@"Error: %@", error.userInfo);
+            NSLog(@"TextViewController: Can't remove temporary file: %@", error.userInfo);
         }
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];

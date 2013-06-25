@@ -47,7 +47,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     
     USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor",@"commandColor",@"bracketColor",@"curlyBracketColor",@"commentColor",@"shouldHighlightArguments",@"shouldHighlightCommands",@"shouldHighlightComments",@"shouldHighlightBrackets",@"shouldHighlightInlineMath", nil];
     if (error) {
-        NSLog(@"Error!");
+        NSLog(@"Syntax Highlighter Error: %@", error.userInfo);
     }
     
 }

@@ -277,7 +277,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     
     if (error) {
-        NSLog(@"Error: %@", [error userInfo]);
+        NSLog(@"Line Ranges Error: %@", [error userInfo]);
         return nil;
     }
     

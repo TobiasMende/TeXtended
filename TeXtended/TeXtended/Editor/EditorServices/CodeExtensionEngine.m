@@ -60,7 +60,7 @@ static const NSSet *KEYS_TO_UNBIND;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
     if (error) {
-        NSLog(@"Error! %@", error);
+        NSLog(@"CodeExtensionEngine: %@", error.userInfo);
     }
 }
 
