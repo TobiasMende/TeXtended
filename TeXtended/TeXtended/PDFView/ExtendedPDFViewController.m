@@ -29,6 +29,11 @@
     return self;
 }
 
+- (void)loadView {
+    [super loadView];
+    [self loadPDF];
+}
+
 - (DocumentController * ) documentController {
     return [self.parent documentController];
 }
@@ -42,6 +47,7 @@
     [self didChangeValueForKey:@"model"];
     if (_model) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+        
     }
 }
 

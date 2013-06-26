@@ -56,8 +56,8 @@
     NSMutableSet *tmp = [[NSMutableSet alloc] init];
     for (DocumentModel* m in [self.model mainDocuments]) {
         ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] initWithParent:self];
+        
         [pdfViewController setModel:m];
-
         // add the view to the tab view
         NSTabViewItem *item = [[NSTabViewItem alloc] init];
         if (m.pdfName) {
