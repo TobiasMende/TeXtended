@@ -18,4 +18,5 @@
 
 /** Property containing a selector performed when the user presses enter on this view */
 @property SEL enterAction;
+@property BOOL opaque;
 @end

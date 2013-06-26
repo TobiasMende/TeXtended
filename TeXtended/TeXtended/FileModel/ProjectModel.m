@@ -60,4 +60,17 @@
     //FIME: Complete implementation
 }
 
+
+- (DocumentModel *)modelForTexPath:(NSString *)path {
+    for (DocumentModel *model in self.documents) {
+        if ([model.texPath isEqualToString:path]) {
+            return model;
+        }
+    }
+    DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
+    model.texPath = path;
+    [self addDocumentsObject:model];
+    return model;
+}
+
 @end

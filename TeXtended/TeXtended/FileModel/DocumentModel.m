@@ -84,6 +84,18 @@ static NSArray *TMTEncodingsToCheck;
     return content;
 }
 
+- (DocumentModel *)modelForTexPath:(NSString *)path {
+    if ([self.texPath isEqualToString:path]) {
+        return self;
+    } else if(self.project) {
+        return [self.project modelForTexPath:path];
+    } else {
+        DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
+        model.texPath = path;
+        return model;
+    }
+}
+
 
 - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
     self.lastChanged = [[NSDate alloc] init];
@@ -247,6 +259,25 @@ static NSArray *TMTEncodingsToCheck;
         md = [NSSet setWithObject:self];
     }
     return md;
+}
+
+- (void)addMainDocumentsObject:(DocumentModel *)value {
+    if(![self primitiveValueForKey:@"mainDocuments"]) {
+        [self setMainDocuments:self.mainDocuments];
+    }
+    NSSet * set = [NSSet setWithObject:value];
+    [self willChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:set];
+    [self setPrimitiveValue:[self.mainDocuments setByAddingObjectsFromSet:set] forKey:@"mainDocuments"];
+    [self didChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:set];
+}
+
+- (void)addMainDocuments:(NSSet *)values {
+    if(![self primitiveValueForKey:@"mainDocuments"]) {
+        [self setMainDocuments:self.mainDocuments];
+    }
+    [self willChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    [self setPrimitiveValue:[self.mainDocuments setByAddingObjectsFromSet:values] forKey:@"mainDocuments"];
+    [self didChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
 }
 
 - (DocumentModel *)headerDocument {

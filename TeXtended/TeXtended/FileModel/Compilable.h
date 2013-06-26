@@ -53,6 +53,15 @@
 - (Compilable*) mainCompilable;
 
 /**
+ In project mode, this method searches a appropriate DocumentModel for the given path and creates a new DocumentModel if no match was found. The new model is added to the projects documents set.
+ 
+ @param path the absolute path to a to the tex document
+ 
+ @return a matching document model.
+ */
+- (DocumentModel *) modelForTexPath:(NSString *)path;
+
+/**
  Method for posting a notification to the notificatio center if this object might have any changes.
  
  */

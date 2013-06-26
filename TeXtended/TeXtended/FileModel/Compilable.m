@@ -71,6 +71,10 @@ static const NSSet *COMPILER_NAMES;
     return self;
 }
 
+- (DocumentModel *)modelForTexPath:(NSString *)path {
+    NSLog(@"This is not my job. Ask ProjectModel or DocumentModel instead.");
+    return nil;
+}
 
 
 #pragma mark -

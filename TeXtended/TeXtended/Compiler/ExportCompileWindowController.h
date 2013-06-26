@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DocumentController,DocumentModel;
-@interface ExportCompileWindowController : NSWindowController
+@class DocumentController,DocumentModel, TMTTableView;
+@interface ExportCompileWindowController : NSWindowController<NSOpenSavePanelDelegate> {
+    NSSavePanel *pdfPathPanel;
+    NSOpenPanel *texPathPanel;
+}
 @property (weak) IBOutlet NSButton *bibCheckbox;
-@property (weak) IBOutlet NSTableView *selectionTable;
+@property (weak) IBOutlet TMTTableView *selectionTable;
 @property (weak) IBOutlet NSBox *selectionView;
 @property (weak) IBOutlet NSBox *settingsView;
 @property (weak) DocumentModel *model;
@@ -18,5 +21,8 @@
 @property (strong) IBOutlet NSArrayController *mainDocumentsController;
 -(id)initWithDocumentController:(DocumentController*) controller;
 - (IBAction)export:(id)sender;
-
+- (IBAction)exportPathDialog:(id)sender;
+- (IBAction)removeMainDocument:(id)sender;
+- (IBAction)addMainDocument:(id)sender;
+- (BOOL) canRemoveEntry;
 @end
