@@ -64,6 +64,8 @@
     for (NSTabViewItem *item in [self.tabView tabViewItems]) {
         [self.tabView removeTabViewItem:item];
     }
+    [self.view setNeedsDisplay:YES];
+    
 }
 
 - (void) loadConsoles:(DocumentController*) controller {
@@ -87,21 +89,19 @@
         [self.tabView addTabViewItem:item];
         
         [tmp addObject:consoleViewController];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.view display];
+        }];
     }
-    if ([[self.model mainDocuments] count] > 1) {
-        [self.tabView setTabViewType:NSBottomTabsBezelBorder];
-    } else {
-        [self.tabView setTabViewType:NSNoTabsNoBorder];
-    }
-    [self setChildren:tmp];
+    
 }
 
 #pragma mark -
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
+    NSLog(@"Observer");
+    if ([object isEqualTo:self.model] && self.model.faultingState == 0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self loadConsoles:[self documentController]];
         }

@@ -71,11 +71,6 @@
         
         [tmp addObject:pdfViewController];
     }
-    if ([[self.model mainDocuments] count] > 1) {
-        [self.tabView setTabViewType:NSTopTabsBezelBorder];
-    } else {
-        [self.tabView setTabViewType:NSNoTabsNoBorder];
-    }
     [self setChildren:tmp];
 }
 
@@ -112,7 +107,7 @@
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model]  && self.model.faultingState >0) {
+    if ([object isEqualTo:self.model]  && self.model.faultingState == 0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self loadPDFs:[self documentController]];
         }
