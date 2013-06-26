@@ -25,9 +25,18 @@
 }
 
 - (void) showWindow:(id)sender {
-
-    
     [super showWindow:sender];
+    
+}
+
+- (void)awakeFromNib {
+    [self.selectionView.titleCell setTextColor:[NSColor controlLightHighlightColor]];
+    [self.settingsView.titleCell setTextColor:[NSColor controlLightHighlightColor]];
+    NSMutableAttributedString *title = [[self.bibCheckbox attributedTitle] mutableCopy];
+    [title addAttribute:NSForegroundColorAttributeName value:[NSColor controlLightHighlightColor] range:NSMakeRange(0, title.length)];
+    
+    [self.bibCheckbox setAttributedTitle:title];
+    [[self.selectionTable enclosingScrollView] setDrawsBackground:NO];
 }
 
 - (IBAction)export:(id)sender {
