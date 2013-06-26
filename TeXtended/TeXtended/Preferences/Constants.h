@@ -108,6 +108,7 @@
  */
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
+#define TMTBackwardSynctexKey @"TMTBackwardSynctexKey"
 #define TMTMessageCollectionKey @"TMTMessageCollectionKey"
 #define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
@@ -124,6 +125,7 @@
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
+#define TMTViewSynctexChanged @"TMTViewSynctexChanged"
 #define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"

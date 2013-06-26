@@ -58,6 +58,7 @@
 		D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
 		D28DC0DD177AEDF400E4C711 /* lualatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
 		D28DC0DE177AEDF700E4C711 /* xelatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
+		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
@@ -325,6 +326,8 @@
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
 		D28DC0D9177AEBC900E4C711 /* xelatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xelatex.rb; sourceTree = "<group>"; };
 		D28DC0DB177AED2900E4C711 /* lualatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lualatex.rb; sourceTree = "<group>"; };
+		D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardSynctex.h; sourceTree = "<group>"; };
+		D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardSynctex.h; sourceTree = "<group>"; };
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
@@ -449,6 +452,8 @@
 				76DADC9A1764AA92002775BA /* FileCompiler.m */,
 				D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */,
 				D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */,
+				D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */,
+				D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -1166,6 +1171,7 @@
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
 				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
+				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

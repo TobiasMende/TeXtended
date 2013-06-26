@@ -11,6 +11,10 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "ForwardSynctex.h"
+#import "BackwardSynctex.h"
+#import "DocumentCreationController.h"
+#import "MainDocument.h"
+
 
 
 @interface ExtendedPDFViewController ()
@@ -31,7 +35,28 @@
 
 - (void)loadView {
     [super loadView];
+    [(ExtendedPdf*)self.pdfView setController:self];
     [self loadPDF];
+}
+
+- (void) startBackwardSynctex:(id)sender {
+    PDFSelection *currentSelection = [self.pdfView currentSelection];
+    if (currentSelection) {
+        PDFPage *p = [currentSelection.pages objectAtIndex:0];
+        NSRect selectionBounds = [currentSelection boundsForPage:p];
+        NSRect pageBounds = [p boundsForBox:kPDFDisplayBoxMediaBox];
+       
+        NSPoint position;
+        position.x = selectionBounds.origin.x;
+        position.y = NSMaxY(pageBounds)-selectionBounds.origin.y;
+        NSUInteger index = [self.pdfView.document indexForPage:p];
+        BackwardSynctex *backwardSynctex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:position];
+        DocumentModel *m = [self.model modelForTexPath:backwardSynctex.inputPath];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObject:backwardSynctex forKey:TMTBackwardSynctexKey]];
+        // TODO: add support for not opened documents!
+    } else {
+        NSBeep();
+    }
 }
 
 - (DocumentController * ) documentController {

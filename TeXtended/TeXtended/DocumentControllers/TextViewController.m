@@ -18,6 +18,7 @@
 #import "LacheckParser.h"
 #import "ChktexParser.h"
 #import "PathFactory.h"
+#import "BackwardSynctex.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -54,6 +55,7 @@
 - (void) updateMessageCollection:(NSNotification *)note;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
+- (void) handleBackwardSynctex:(NSNotification*)note;
 @end
 
 @implementation TextViewController
@@ -76,6 +78,7 @@
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
@@ -88,11 +91,17 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
 
 - (void)handleLineUpdateNotification:(NSNotification *)note {
     NSInteger row = [[note.userInfo objectForKey:TMTIntegerKey] integerValue];
     [self.textView showLine:row];
+}
+
+- (void)handleBackwardSynctex:(NSNotification *)note {
+    BackwardSynctex *synctex = [note.userInfo objectForKey:TMTBackwardSynctexKey];
+    [self.textView showLine:synctex.line];
 }
 
 - (void)logMessagesChanged:(NSNotification *)note {
