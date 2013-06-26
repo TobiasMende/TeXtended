@@ -89,9 +89,6 @@
         [self.tabView addTabViewItem:item];
         
         [tmp addObject:consoleViewController];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.view display];
-        }];
     }
     
 }
@@ -100,7 +97,6 @@
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"Observer");
     if ([object isEqualTo:self.model] && self.model.faultingState == 0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self loadConsoles:[self documentController]];

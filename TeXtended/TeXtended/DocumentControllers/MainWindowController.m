@@ -156,6 +156,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[view window] setInitialFirstResponder:view];
 }
 
+- (void)windowDidResize:(NSNotification *)notification{
+    [self.window setViewsNeedDisplay:YES];
+}
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
 
