@@ -12,6 +12,7 @@
 @interface MessageDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
 }
 @property (weak) IBOutlet TMTTableView *tableView;
+@property MessageCollection *collection;
 @property NSArray *messages;
 @property (weak,nonatomic) DocumentModel *model;
 @end

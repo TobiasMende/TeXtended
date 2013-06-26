@@ -14,6 +14,8 @@
 #import "DocumentModel.h"
 #import "TMTTableView.h"
 #import "TMTTableRowView.h"
+#import "DocumentCreationController.h"
+#import "SimpleDocument.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
@@ -63,9 +65,23 @@
         TrackingMessage *message = [self.messages objectAtIndex:row];
         if ([message.document isEqualToString:self.model.texPath]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
-        } else {
-            //TODO: Hanlde external path
+        } else if(self.model.project){
+            //TODO: Hanlde external path in project mode
             NSBeep();
+        } else {
+            // Open new single document:
+            NSURL *url = [NSURL fileURLWithPath:message.document];
+            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+                if (error) {
+                    [[NSWorkspace sharedWorkspace] openURL:url];
+                } else {
+                    if ([document isKindOfClass:[SimpleDocument class]]) {
+                        DocumentModel *m = [(SimpleDocument*) document model];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.collection forKey:TMTMessageCollectionKey]];
+                    }
+                }
+            }];
         }
     }
 }
@@ -101,9 +117,9 @@
 
 
 - (void)handleMessageUpdate:(NSNotification *)note {
-    MessageCollection *messages = [note.userInfo objectForKey:TMTMessageCollectionKey];
-    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:messages.count];
-    for (TrackingMessage *message in messages.set) {
+    self.collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:self.collection.count];
+    for (TrackingMessage *message in self.collection.set) {
         [temp addObject:message];
     }
     [temp sortUsingSelector:@selector(compare:)];

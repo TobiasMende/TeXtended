@@ -9,7 +9,10 @@
 #import "ConsoleOutputView.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import "DocumentCreationController.h"
+#import "SimpleDocument.h"
 #import "DocumentModel.h"
+#import "ConsoleViewController.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSSet *KEYS_TO_UNBIND;
@@ -127,9 +130,23 @@ static const NSSet *KEYS_TO_UNBIND;
     
     if ([path isEqualToString:self.documentsModel.texPath]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-    } else {
-        //TODO: open external link
+    } else if(self.documentsModel.project){
+        //TODO: Hanlde external path in project mode
         NSBeep();
+    } else {
+        // Open new single document:
+        NSURL *url = [NSURL fileURLWithPath:path];
+        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+            if (error) {
+                [[NSWorkspace sharedWorkspace] openURL:url];
+            } else {
+                if ([document isKindOfClass:[SimpleDocument class]]) {
+                    DocumentModel *m = [(SimpleDocument*) document model];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                }
+            }
+        }];
     }
 }
 

@@ -50,6 +50,7 @@
     [super loadView];
     [self.outputView bind:@"documentsModel" toObject:self.documentController withKeyPath:@"model" options:nil];
     [self.outputView bind:@"compiledModel" toObject:self withKeyPath:@"model" options:nil];
+    self.outputView.controller = self;
 }
 
 - (DocumentController * ) documentController {
