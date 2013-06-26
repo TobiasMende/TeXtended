@@ -60,6 +60,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void)stringDidChange {
     NSString *content = self.string;
+    [self clearAttachments];
     NSArray *matches = [ERROR_LINES_EXPRESSION matchesInString:self.string options:0 range:NSMakeRange(0, content.length)];
     for (NSTextCheckingResult *match in matches) {
         if (match.numberOfRanges < 5) {
@@ -113,16 +114,15 @@ static const NSSet *KEYS_TO_UNBIND;
     [self.layoutManager removeTemporaryAttribute:NSLinkAttributeName forCharacterRange:total];
     [self.layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:total];
     [self.layoutManager removeTemporaryAttribute:NSUnderlineStyleAttributeName forCharacterRange:total];
-    NSMutableAttributedString *string =  [self.attributedString mutableCopy];
-    [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.attributedString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
-        [string deleteCharactersInRange:range];
-    }];
 }
 
 - (void)handleLinkAt:(NSUInteger)position {
     NSRange effective;
     NSDictionary *attributes = [self.layoutManager temporaryAttributesAtCharacterIndex:position effectiveRange:&effective];
     NSString *attribute = [attributes objectForKey:NSLinkAttributeName];
+    if (!attribute) {
+        return;
+    }
     NSArray *values = [attribute componentsSeparatedByString:@":"];
     NSString *path = [values objectAtIndex:0];
     NSUInteger line = [[values objectAtIndex:1] integerValue];

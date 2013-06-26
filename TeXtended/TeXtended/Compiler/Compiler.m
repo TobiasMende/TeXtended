@@ -69,8 +69,12 @@
         [environment setObject:@"238" forKey:@"half_error_line"];
         [task setEnvironment:environment];
         [task setLaunchPath:path];
-        [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
-                            [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
+        NSNumber *compileMode = [NSNumber numberWithInt:mode];
+        NSMutableArray *arguments = [NSMutableArray arrayWithObjects:model.texPath, model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
+        if (settings.customArgument && settings.customArgument.length > 0) {
+            [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
+        }
+        [task setArguments:arguments];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [task setTerminationHandler:^(NSTask *task) {
