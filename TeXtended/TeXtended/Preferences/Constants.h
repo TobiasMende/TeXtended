@@ -108,7 +108,8 @@
  */
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
-#define TMTBackwardSynctexKey @"TMTBackwardSynctexKey"
+#define TMTBackwardSynctexBeginKey @"TMTBackwardSynctexBeginKey"
+#define TMTBackwardSynctexEndKey @"TMTBackwardSynctexEndKey"
 #define TMTMessageCollectionKey @"TMTMessageCollectionKey"
 #define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"

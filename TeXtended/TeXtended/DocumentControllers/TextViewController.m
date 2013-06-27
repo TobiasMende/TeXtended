@@ -100,8 +100,20 @@
 }
 
 - (void)handleBackwardSynctex:(NSNotification *)note {
-    BackwardSynctex *synctex = [note.userInfo objectForKey:TMTBackwardSynctexKey];
-    [self.textView showLine:synctex.line];
+    BackwardSynctex *first = [note.userInfo objectForKey:TMTBackwardSynctexBeginKey];
+    BackwardSynctex *second = [note.userInfo objectForKey:TMTBackwardSynctexEndKey];
+    
+    NSRange firstLine = [self.textView rangeForLine:first.line];
+    NSRange secondLine = [self.textView rangeForLine:second.line];
+    NSRange total;
+    if (firstLine.location != NSNotFound) {
+        total = firstLine;
+        if (secondLine.location != NSNotFound) {
+            total = NSUnionRange(total, secondLine);
+        }
+    }
+    [self.textView scrollRangeToVisible:total];
+    [self.textView showFindIndicatorForRange:total];
 }
 
 - (void)logMessagesChanged:(NSNotification *)note {

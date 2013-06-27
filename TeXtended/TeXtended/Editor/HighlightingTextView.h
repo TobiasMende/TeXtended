@@ -189,6 +189,15 @@ GoToLineSheetController *goToLineSheet;
 - (NSArray*) lineRanges;
 
 /**
+ Getter for a line range for a given line index.
+ 
+ @param line the lines 1-based index
+ 
+ @return the range of the given line
+ */
+- (NSRange) rangeForLine:(NSUInteger)index;
+
+/**
  Notification about the end of the GoToLineSheetController's sheet.
  
  

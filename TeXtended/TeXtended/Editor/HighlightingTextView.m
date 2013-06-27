@@ -286,6 +286,15 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
+- (NSRange)rangeForLine:(NSUInteger)index {
+    NSArray *ranges = [self lineRanges];
+    if (index <= ranges.count && index > 0) {
+        return [[ranges objectAtIndex:index-1] range];
+    } else {
+        return NSMakeRange(NSNotFound, 0);
+    }
+}
+
 
 - (void)insertTab:(id)sender {
     if (!self.servicesOn) {

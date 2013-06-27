@@ -46,13 +46,17 @@
         NSRect selectionBounds = [currentSelection boundsForPage:p];
         NSRect pageBounds = [p boundsForBox:kPDFDisplayBoxMediaBox];
        
-        NSPoint position;
-        position.x = selectionBounds.origin.x;
-        position.y = NSMaxY(pageBounds)-selectionBounds.origin.y;
+        NSPoint beginPos, endPos;
+        beginPos.x = selectionBounds.origin.x;
+        beginPos.y = NSMaxY(pageBounds)-NSMaxY(selectionBounds);
+        
+        endPos.x = NSMaxX(selectionBounds);
+        endPos.y = NSMaxY(pageBounds)- selectionBounds.origin.y;
         NSUInteger index = [self.pdfView.document indexForPage:p];
-        BackwardSynctex *backwardSynctex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:position];
-        DocumentModel *m = [self.model modelForTexPath:backwardSynctex.inputPath];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObject:backwardSynctex forKey:TMTBackwardSynctexKey]];
+        BackwardSynctex *beginTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:beginPos];
+        BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
+        DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
         // TODO: add support for not opened documents!
     } else {
         NSBeep();
