@@ -18,6 +18,7 @@
 #import "LacheckParser.h"
 #import "ChktexParser.h"
 #import "PathFactory.h"
+#import "BackwardSynctex.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -54,6 +55,8 @@
 - (void) updateMessageCollection:(NSNotification *)note;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
+- (void) handleBackwardSynctex:(NSNotification*)note;
+- (void) clearConsoleMessages:(NSNotification*)note;
 @end
 
 @implementation TextViewController
@@ -66,6 +69,8 @@
         messageLock = [NSLock new];
         observers = [NSMutableSet new];
         backgroundQueue = [NSOperationQueue new];
+        consoleMessages = [MessageCollection new];
+        internalMessages = [MessageCollection new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self registerModelObserver];
@@ -75,7 +80,9 @@
 
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearConsoleMessages:) name:TMTCompilerWillStartCompilingMainDocuments object:self.model];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
     for (DocumentModel *m in self.model.mainDocuments) {
@@ -88,6 +95,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
 
 - (void)handleLineUpdateNotification:(NSNotification *)note {
@@ -95,12 +104,52 @@
     [self.textView showLine:row];
 }
 
-- (void)logMessagesChanged:(NSNotification *)note {
-    consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
+- (void)handleBackwardSynctex:(NSNotification *)note {
+    BackwardSynctex *first = [note.userInfo objectForKey:TMTBackwardSynctexBeginKey];
+    BackwardSynctex *second = [note.userInfo objectForKey:TMTBackwardSynctexEndKey];
+    
+    NSRange firstLine = [self.textView rangeForLine:first.line];
+    NSRange secondLine = [self.textView rangeForLine:second.line];
+    NSRange total;
+    
+    if (first.column < firstLine.length) {
+        firstLine.location += first.column;
+        firstLine.length -= first.column;
+    }
+    if (second.column > 0 && second.column < secondLine.length) {
+        secondLine.length = second.column;
+    }
+    if (firstLine.location != NSNotFound) {
+        total = firstLine;
+        if (secondLine.location != NSNotFound) {
+            
+            total = NSUnionRange(total, secondLine);
+        }
+    }
+    [self.textView scrollRangeToVisible:total];
+    [self.textView showFindIndicatorForRange:total];
+}
+
+- (void)clearConsoleMessages:(NSNotification *)note {
+    consoleMessages = [MessageCollection new];
     if (countRunningParsers == 0) {
         self.messages = [consoleMessages merge:internalMessages];
         lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
         [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+    }
+}
+
+
+
+- (void)logMessagesChanged:(NSNotification *)note {
+    MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    if (collection) {
+        consoleMessages = [consoleMessages merge:collection];
+        if (countRunningParsers == 0 && self.messages) {
+            self.messages = [consoleMessages merge:internalMessages];
+            lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
+            [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        }
     }
 }
 
@@ -110,11 +159,11 @@
     if (thresh < WARNING) {
         return;
     }
-    if (countRunningParsers == 0) {
+    if (countRunningParsers == 0 && self.model.texPath) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
         if (error) {
-            NSLog(@"Error: %@", error.userInfo);
+            NSLog(@"TextViewController: Can't write temporary file: %@", error.userInfo);
             return;
         }
         countRunningParsers = 2;
@@ -141,12 +190,14 @@
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:&error];
         if (error) {
-            NSLog(@"Error: %@", error.userInfo);
+            NSLog(@"TextViewController: Can't remove temporary file: %@", error.userInfo);
         }
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
         lineNumberView.messageCollection = subset;
-        [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        if (self.messages) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        }
     }
     [messageLock unlock];
 }
@@ -158,8 +209,10 @@
         return;
     }
 ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-[[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+    if (synctex) {
+        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+    }
 }
 
 - (void)loadView {
@@ -202,13 +255,17 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 - (void)syncPDF:(DocumentModel *)model {
     if (model) {
         ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:model.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+        if (synctex) {
+            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+        }
     } else {
         for (DocumentModel *m in self.model.mainDocuments) {
             ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+            if (synctex) {
+                NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+            }
         }
     }
 }

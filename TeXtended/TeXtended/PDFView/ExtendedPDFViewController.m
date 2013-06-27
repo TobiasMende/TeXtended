@@ -11,6 +11,10 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "ForwardSynctex.h"
+#import "BackwardSynctex.h"
+#import "DocumentCreationController.h"
+#import "MainDocument.h"
+
 
 
 @interface ExtendedPDFViewController ()
@@ -29,6 +33,37 @@
     return self;
 }
 
+- (void)loadView {
+    [super loadView];
+    [(ExtendedPdf*)self.pdfView setController:self];
+    [self loadPDF];
+}
+
+- (void) startBackwardSynctex:(id)sender {
+    PDFSelection *currentSelection = [self.pdfView currentSelection];
+    if (currentSelection) {
+        PDFPage *p = [currentSelection.pages objectAtIndex:0];
+        NSRect selectionBounds = [currentSelection boundsForPage:p];
+        NSRect pageBounds = [p boundsForBox:kPDFDisplayBoxMediaBox];
+        NSPoint beginPos, endPos;
+        beginPos.x = selectionBounds.origin.x;
+        beginPos.y = NSMaxY(pageBounds)-NSMaxY(selectionBounds);
+        
+        endPos.x = NSMaxX(selectionBounds);
+        endPos.y = NSMaxY(pageBounds)- selectionBounds.origin.y;
+        NSUInteger index = [self.pdfView.document indexForPage:p];
+        BackwardSynctex *beginTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:beginPos];
+        BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
+        if (beginTex && endTex) {
+            DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+        }
+        // TODO: add support for not opened documents!
+    } else {
+        NSBeep();
+    }
+}
+
 - (DocumentController * ) documentController {
     return [self.parent documentController];
 }
@@ -42,6 +77,7 @@
     [self didChangeValueForKey:@"model"];
     if (_model) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+        
     }
 }
 
@@ -83,7 +119,7 @@
     [self loadPDF];
     if (doc) {
         ForwardSynctex *synctex = [info objectForKey:TMTForwardSynctexKey];
-        if (synctex.page > 0) {
+        if (synctex.page > 0 && doc.pageCount > synctex.page-1) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
             NSPoint point = NSMakePoint(synctex.h, y);

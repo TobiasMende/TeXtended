@@ -8,6 +8,7 @@
 
 #import "ExtendedPdf.h"
 #import "ExtendedPdfControlls.h"
+#import "ExtendedPDFViewController.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -69,8 +70,22 @@ static const NSSet *KEYS_TO_UNBIND;
     // add the controlls
    [self addControlls];
    [self addSubview:[controllsView view]];
+    [self setAutoScales:YES];
    [[controllsView view] setHidden:YES];
 }
+
+- (void) startBackwardSynctex:(id)sender {
+    [self.controller startBackwardSynctex:sender];
+}
+
+- (NSMenu *)menuForEvent:(NSEvent *)event {
+    NSMenu *menu = [super menuForEvent:event];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Show Selection In Text", @"Show selection in text") action:@selector(startBackwardSynctex:) keyEquivalent:@"j"];
+    [item setKeyEquivalentModifierMask:NSCommandKeyMask | NSShiftKeyMask];
+    [menu insertItem:item atIndex:0];
+    return menu;
+}
+
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {

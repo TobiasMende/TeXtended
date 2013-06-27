@@ -24,5 +24,16 @@
     [super keyDown:theEvent];
 }
 
+- (BOOL)isOpaque {
+    return _opaque;
+}
+
+- (void)drawBackgroundInClipRect:(NSRect)clipRect {
+    if (!self.opaque) {
+        return;
+    }
+    [super drawBackgroundInClipRect:clipRect];
+}
+
 
 @end

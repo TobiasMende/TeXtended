@@ -22,6 +22,9 @@
 @interface DocumentModel : Compilable {
     /** The pipes used for communication with the latex compiler */
     NSPipe *consoleOutputPipe, *consoleInputPipe;
+    
+    void (^removeLiveCompileObserver)(void);
+    void (^removeOpenOnExportObserver)(void);
 }
 
 /** The date of the last application internal change of the represented file */
@@ -58,6 +61,8 @@
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;
 
+/** If on, the pdf is opened in the default pdf viewer after export */
+@property (nonatomic, strong) NSNumber* openOnExport;
 
 /**
  Method for loading the content of the represented file

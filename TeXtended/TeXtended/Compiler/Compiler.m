@@ -32,7 +32,7 @@
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
         _finalSettings = [[controller model] finalCompiler];
-        _idleTimeForLiveCompile = 1;
+        _idleTimeForLiveCompile = 1.5;
     }
     return self;
 }
@@ -43,6 +43,7 @@
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.documentController.model];
     for (DocumentModel *model in mainDocuments) {
         if (!model.texPath) {
             continue;
@@ -69,14 +70,20 @@
         [environment setObject:@"238" forKey:@"half_error_line"];
         [task setEnvironment:environment];
         [task setLaunchPath:path];
-        [task setArguments:[NSArray arrayWithObjects:[model texPath], [model pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
-                            [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
+        NSNumber *compileMode = [NSNumber numberWithInt:mode];
+        NSMutableArray *arguments = [NSMutableArray arrayWithObjects:model.texPath, model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
+        if (settings.customArgument && settings.customArgument.length > 0) {
+            [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
+        }
+        [task setArguments:arguments];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [task setTerminationHandler:^(NSTask *task) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
-            
-           
+            model.lastCompile = [NSDate new];
+            if (mode == final && [model.openOnExport boolValue]) {
+                [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
+            }
         }];
         
         [task launch];

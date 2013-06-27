@@ -78,7 +78,7 @@
 #define TMTFinalCompileBib @"TMTFinalCompileBib"
 #define TMTDocumentEnableLiveCompile @"TMTDocumentEnableLiveCompile"
 #define TMTDocumentEnableLiveScrolling @"TMTDocumentEnableLiveScrolling"
-
+#define TMTDocumentAutoOpenOnExport @"TMTDocumentAutoOpenOnExport"
 
 /*
  KVC keys for strings (used for user defaults)
@@ -108,6 +108,8 @@
  */
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
+#define TMTBackwardSynctexBeginKey @"TMTBackwardSynctexBeginKey"
+#define TMTBackwardSynctexEndKey @"TMTBackwardSynctexEndKey"
 #define TMTMessageCollectionKey @"TMTMessageCollectionKey"
 #define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
@@ -121,9 +123,11 @@
 #define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
 #define TMTDocumentModelOutputPipeChangeNotification @"TMTDocumentModelOutputPipeChangeNotification"
 #define TMTDocumentModelInputPipeChangeNotification @"TMTDocumentModelInputPipeChangeNotification"
+#define TMTCompilerWillStartCompilingMainDocuments @"TMTCompilerWillStartCompilingMainDocuments"
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
+#define TMTViewSynctexChanged @"TMTViewSynctexChanged"
 #define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"

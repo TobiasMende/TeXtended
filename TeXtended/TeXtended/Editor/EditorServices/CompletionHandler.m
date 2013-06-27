@@ -225,7 +225,8 @@ typedef enum {
             [view delete:nil];
             [view  insertText:final];
             //[view setSelectedRange:NSMakeRange(NSMaxRange(charRange), 0)];
-            [view jumpToPreviousPlaceholder];
+            [view setSelectedRange:NSMakeRange(charRange.location, 0)];
+            [view jumpToNextPlaceholder];
             [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];

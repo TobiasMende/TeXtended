@@ -9,7 +9,10 @@
 #import "ConsoleOutputView.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import "DocumentCreationController.h"
+#import "SimpleDocument.h"
 #import "DocumentModel.h"
+#import "ConsoleViewController.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSSet *KEYS_TO_UNBIND;
@@ -57,6 +60,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void)stringDidChange {
     NSString *content = self.string;
+    [self clearAttachments];
     NSArray *matches = [ERROR_LINES_EXPRESSION matchesInString:self.string options:0 range:NSMakeRange(0, content.length)];
     for (NSTextCheckingResult *match in matches) {
         if (match.numberOfRanges < 5) {
@@ -110,16 +114,15 @@ static const NSSet *KEYS_TO_UNBIND;
     [self.layoutManager removeTemporaryAttribute:NSLinkAttributeName forCharacterRange:total];
     [self.layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:total];
     [self.layoutManager removeTemporaryAttribute:NSUnderlineStyleAttributeName forCharacterRange:total];
-    NSMutableAttributedString *string =  [self.attributedString mutableCopy];
-    [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.attributedString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
-        [string deleteCharactersInRange:range];
-    }];
 }
 
 - (void)handleLinkAt:(NSUInteger)position {
     NSRange effective;
     NSDictionary *attributes = [self.layoutManager temporaryAttributesAtCharacterIndex:position effectiveRange:&effective];
     NSString *attribute = [attributes objectForKey:NSLinkAttributeName];
+    if (!attribute) {
+        return;
+    }
     NSArray *values = [attribute componentsSeparatedByString:@":"];
     NSString *path = [values objectAtIndex:0];
     NSUInteger line = [[values objectAtIndex:1] integerValue];
@@ -127,9 +130,25 @@ static const NSSet *KEYS_TO_UNBIND;
     
     if ([path isEqualToString:self.documentsModel.texPath]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-    } else {
-        //TODO: open external link
+    } else if(self.documentsModel.project){
+        //TODO: Hanlde external path in project mode
         NSBeep();
+    } else {
+        // Open new single document:
+        NSURL *url = [NSURL fileURLWithPath:path];
+        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+            if (error) {
+                [[NSWorkspace sharedWorkspace] openURL:url];
+            } else {
+                if ([document isKindOfClass:[SimpleDocument class]]) {
+                    DocumentModel *m = [(SimpleDocument*) document model];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+                    if (self.controller.consoleMessages) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                    }
+                }
+            }
+        }];
     }
 }
 

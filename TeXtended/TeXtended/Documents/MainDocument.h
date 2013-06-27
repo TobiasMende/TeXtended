@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class Compilable;
 @protocol MainDocument <NSObject>
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
-
+- (Compilable *) model;
 @end

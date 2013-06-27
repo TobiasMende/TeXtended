@@ -15,6 +15,7 @@
 
 @interface ConsoleViewsController ()
 - (void)clearTabView;
+- (void)addTabItemFor:(ConsoleViewController *)controller;
 @end
 
 @implementation ConsoleViewsController
@@ -64,6 +65,8 @@
     for (NSTabViewItem *item in [self.tabView tabViewItems]) {
         [self.tabView removeTabViewItem:item];
     }
+    [self.view setNeedsDisplay:YES];
+    
 }
 
 - (void) loadConsoles:(DocumentController*) controller {
@@ -71,37 +74,46 @@
         return;
     }
     [self clearTabView];
-    NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    for (DocumentModel* model in [self.model mainDocuments]) {
-        ConsoleViewController *consoleViewController = [[ConsoleViewController alloc] initWithParent:self];
-        [consoleViewController setModel:model];
-        // add the view to the tab view
-        NSTabViewItem *item = [[NSTabViewItem alloc] init];
-        if ([model texName]) {
-            [item setLabel:[model texName]];
-        } else {
-            [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
+    NSMutableSet *newChilds = [[NSMutableSet alloc] initWithCapacity:self.model.mainDocuments.count];
+    for (DocumentModel *m in self.model.mainDocuments) {
+        BOOL controllerExists = NO;
+        for(ConsoleViewController *controller in self.children) {
+            if ([controller.model isEqualTo:m]) {
+                [newChilds addObject:controller];
+                [self addTabItemFor:controller];
+                controllerExists = YES;
+                break;
+            }
         }
-        [item bind:@"label" toObject:model withKeyPath:@"texName" options:nil];
-        [item setView:[consoleViewController view]];
-        [self.tabView addTabViewItem:item];
-        
-        [tmp addObject:consoleViewController];
+        if (!controllerExists) {
+            ConsoleViewController *consoleViewController = [[ConsoleViewController alloc] initWithParent:self];
+            [consoleViewController setModel:m];
+            [newChilds addObject:consoleViewController];
+            [self addTabItemFor:consoleViewController];
+        }
     }
-    if ([[self.model mainDocuments] count] > 1) {
-        [self.tabView setTabViewType:NSBottomTabsBezelBorder];
+    self.children = newChilds;
+    
+}
+
+- (void)addTabItemFor:(ConsoleViewController *)controller {
+    DocumentModel *m = controller.model;
+    NSTabViewItem *item = [[NSTabViewItem alloc] init];
+    if ([m texName]) {
+        [item setLabel:[m texName]];
     } else {
-        [self.tabView setTabViewType:NSNoTabsNoBorder];
+        [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
     }
-    [self setChildren:tmp];
+    [item bind:@"label" toObject:m withKeyPath:@"texName" options:nil];
+    [item setView:[controller view]];
+    [self.tabView addTabViewItem:item];
 }
 
 #pragma mark -
 #pragma mark Observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
+    if ([object isEqualTo:self.model] && self.model.faultingState == 0) {
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self loadConsoles:[self documentController]];
         }

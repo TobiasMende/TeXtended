@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
-@class ExtendedPdfControlls;
+@class ExtendedPdfControlls, ExtendedPDFViewController;
 
 /**
  * This class the PDFView from cocoas PDFKit by functionalitys
@@ -55,6 +55,8 @@
  * Color of the grid, default is gray.
  */
 @property (strong) NSColor *gridColor;
+
+@property ExtendedPDFViewController *controller;
 
 /**
   * Draws a grid of the given size on the current page.

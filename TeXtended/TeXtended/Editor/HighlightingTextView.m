@@ -277,13 +277,22 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     
     if (error) {
-        NSLog(@"Error: %@", [error userInfo]);
+        NSLog(@"Line Ranges Error: %@", [error userInfo]);
         return nil;
     }
     
     NSArray *ranges = [regex matchesInString:self.string options:0 range:NSMakeRange(0, self.string.length)];
     return ranges;
     
+}
+
+- (NSRange)rangeForLine:(NSUInteger)index {
+    NSArray *ranges = [self lineRanges];
+    if (index <= ranges.count && index > 0) {
+        return [[ranges objectAtIndex:index-1] range];
+    } else {
+        return NSMakeRange(NSNotFound, 0);
+    }
 }
 
 
