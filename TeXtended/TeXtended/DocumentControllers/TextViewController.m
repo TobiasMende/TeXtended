@@ -106,9 +106,18 @@
     NSRange firstLine = [self.textView rangeForLine:first.line];
     NSRange secondLine = [self.textView rangeForLine:second.line];
     NSRange total;
+    
+    if (first.column < firstLine.length) {
+        firstLine.location += first.column;
+        firstLine.length -= first.column;
+    }
+    if (second.column > 0 && second.column < secondLine.length) {
+        secondLine.length = second.column;
+    }
     if (firstLine.location != NSNotFound) {
         total = firstLine;
         if (secondLine.location != NSNotFound) {
+            
             total = NSUnionRange(total, secondLine);
         }
     }
