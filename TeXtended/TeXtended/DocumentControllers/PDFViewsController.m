@@ -51,28 +51,40 @@
         return;
     }
     [self clearTabView];
-    
-
-    NSMutableSet *tmp = [[NSMutableSet alloc] init];
-    for (DocumentModel* m in [self.model mainDocuments]) {
-        ExtendedPDFViewController *pdfViewController = [[ExtendedPDFViewController alloc] initWithParent:self];
-        
-        [pdfViewController setModel:m];
-        // add the view to the tab view
-        NSTabViewItem *item = [[NSTabViewItem alloc] init];
-        if (m.pdfName) {
-            [item setLabel:m.pdfName];
-        } else {
-            [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
+    NSMutableSet *newChilds = [[NSMutableSet alloc] initWithCapacity:self.model.mainDocuments.count];
+    for (DocumentModel *m in self.model.mainDocuments) {
+        BOOL controllerExists = NO;
+        for(ExtendedPDFViewController *controller in self.children) {
+            if ([controller.model isEqualTo:m]) {
+                [newChilds addObject:controller];
+                [self addTabItemFor:controller];
+                controllerExists = YES;
+                break;
+            }
         }
-        [item bind:@"label" toObject:m withKeyPath:@"pdfName" options:nil];
-        [item setView:[pdfViewController view]];
-        [self.tabView addTabViewItem:item];
-        
-        [tmp addObject:pdfViewController];
+        if (!controllerExists) {
+            ExtendedPDFViewController *controller = [[ExtendedPDFViewController alloc] initWithParent:self];
+            [controller setModel:m];
+            [newChilds addObject:controller];
+            [self addTabItemFor:controller];
+        }
     }
-    [self setChildren:tmp];
+    self.children = newChilds;
+    }
+
+- (void)addTabItemFor:(ExtendedPDFViewController *)controller {
+    DocumentModel *m = controller.model;
+    NSTabViewItem *item = [[NSTabViewItem alloc] init];
+    if ([m texName]) {
+        [item setLabel:[m texName]];
+    } else {
+        [item setLabel:NSLocalizedString(@"Untitled", @"Untitled")];
+    }
+    [item bind:@"label" toObject:m withKeyPath:@"pdfName" options:nil];
+    [item setView:[controller view]];
+    [self.tabView addTabViewItem:item];
 }
+
 
 - (DocumentController * ) documentController {
     return [self.parent documentController];

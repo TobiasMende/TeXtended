@@ -125,6 +125,8 @@
     [self.textView showFindIndicatorForRange:total];
 }
 
+
+
 - (void)logMessagesChanged:(NSNotification *)note {
     consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
     if (countRunningParsers == 0) {

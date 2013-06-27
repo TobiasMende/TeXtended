@@ -45,7 +45,6 @@
         PDFPage *p = [currentSelection.pages objectAtIndex:0];
         NSRect selectionBounds = [currentSelection boundsForPage:p];
         NSRect pageBounds = [p boundsForBox:kPDFDisplayBoxMediaBox];
-       
         NSPoint beginPos, endPos;
         beginPos.x = selectionBounds.origin.x;
         beginPos.y = NSMaxY(pageBounds)-NSMaxY(selectionBounds);

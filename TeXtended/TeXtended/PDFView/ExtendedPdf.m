@@ -86,6 +86,7 @@ static const NSSet *KEYS_TO_UNBIND;
     return menu;
 }
 
+
 - (void)mouseMoved:(NSEvent *)theEvent
 {
     [super mouseMoved:theEvent];
