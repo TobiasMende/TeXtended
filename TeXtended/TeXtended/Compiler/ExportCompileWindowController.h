@@ -12,6 +12,7 @@
     NSSavePanel *pdfPathPanel;
     NSOpenPanel *texPathPanel;
 }
+@property (weak) IBOutlet NSButton *openCheckbox;
 @property (weak) IBOutlet NSButton *bibCheckbox;
 @property (weak) IBOutlet TMTTableView *selectionTable;
 @property (weak) IBOutlet NSBox *selectionView;

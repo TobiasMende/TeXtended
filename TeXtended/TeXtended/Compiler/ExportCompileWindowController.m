@@ -39,10 +39,13 @@
 - (void)awakeFromNib {
     [self.selectionView.titleCell setTextColor:[NSColor controlLightHighlightColor]];
     [self.settingsView.titleCell setTextColor:[NSColor controlLightHighlightColor]];
-    NSMutableAttributedString *title = [[self.bibCheckbox attributedTitle] mutableCopy];
-    [title addAttribute:NSForegroundColorAttributeName value:[NSColor controlLightHighlightColor] range:NSMakeRange(0, title.length)];
+    NSMutableAttributedString *bibCheckboxTitle = [[self.bibCheckbox attributedTitle] mutableCopy];
+    [bibCheckboxTitle addAttribute:NSForegroundColorAttributeName value:[NSColor controlLightHighlightColor] range:NSMakeRange(0, bibCheckboxTitle.length)];
+    NSMutableAttributedString *openCheckboxTitle = [[self.openCheckbox attributedTitle] mutableCopy];
+    [openCheckboxTitle addAttribute:NSForegroundColorAttributeName value:[NSColor controlLightHighlightColor] range:NSMakeRange(0, openCheckboxTitle.length)];
     
-    [self.bibCheckbox setAttributedTitle:title];
+    [self.bibCheckbox setAttributedTitle:bibCheckboxTitle];
+    [self.openCheckbox setAttributedTitle:openCheckboxTitle];
     [self.selectionTable setBackgroundColor:[NSColor clearColor]];
     if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
         [self.mainDocumentsController setSelectionIndex:0];

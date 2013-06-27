@@ -79,8 +79,8 @@
         
         [task setTerminationHandler:^(NSTask *task) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
-            
-            if (mode == final) {
+            model.lastCompile = [NSDate new];
+            if (mode == final && [model.openOnExport boolValue]) {
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
             }
         }];

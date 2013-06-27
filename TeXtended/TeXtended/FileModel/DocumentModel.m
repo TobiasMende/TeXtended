@@ -20,6 +20,7 @@ static NSArray *TMTEncodingsToCheck;
 - (void) initDefaults;
 - (void) clearInheretedCompilers;
 - (void) setupInheritedCompilers;
+- (void) internalSetValue:(id)value forKey:(NSString *)key;
 @end
 
 @implementation DocumentModel
@@ -33,6 +34,7 @@ static NSArray *TMTEncodingsToCheck;
 @dynamic encoding;
 @dynamic subCompilabels;
 @dynamic liveCompile;
+@dynamic openOnExport;
 
 + (void)initialize {
     
@@ -136,9 +138,19 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)initDefaults {
+    __weak typeof(self) weakSelf = self;
     [self setupInheritedCompilers];
     if (!self.liveCompile) {
-       [self setLiveCompile:[NSNumber numberWithBool:YES]];
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+        removeLiveCompileObserver = ^(void) {
+            [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
+        };
+    }
+    if (!self.openOnExport) {
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+        removeOpenOnExportObserver = ^(void) {
+            [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
+        };
     }
 }
 
@@ -181,6 +193,29 @@ static NSArray *TMTEncodingsToCheck;
     }
     
     
+}
+
+- (void)setLiveCompile:(NSNumber *)liveCompile {
+    if (removeLiveCompileObserver) {
+        removeLiveCompileObserver();
+        removeLiveCompileObserver = nil;
+    }
+    [self internalSetValue:liveCompile forKey:@"liveCompile"];
+    
+}
+
+- (void)setOpenOnExport:(NSNumber *)openOnExport {
+    if (removeOpenOnExportObserver) {
+        removeOpenOnExportObserver();
+        removeOpenOnExportObserver = nil;
+    }
+    [self internalSetValue:openOnExport forKey:@"openOnExport"];
+}
+
+- (void) internalSetValue:(id)value forKey:(NSString *)key {
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:value forKey:key];
+    [self didChangeValueForKey:key];
 }
 
 - (void)registerProjectObserver {
@@ -299,9 +334,7 @@ static NSArray *TMTEncodingsToCheck;
 - (void)setProject:(ProjectModel *)project {
     [self clearInheretedCompilers];
     [self unregisterProjectObserver];
-    [self willChangeValueForKey:@"project"];
-    [self setPrimitiveValue:project forKey:@"project"];
-    [self didChangeValueForKey:@"project"];
+    [self internalSetValue:project forKey:@"project"];
     [self registerProjectObserver];
     [self setupInheritedCompilers];
 }
@@ -345,6 +378,16 @@ static NSArray *TMTEncodingsToCheck;
             [self didChangeValueForKey:keyPath];
         }
     }
+    if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
+        if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]]) {
+            [self internalSetValue:[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]] forKey:@"liveCompile"];
+            return;
+        }
+        if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
+            [self internalSetValue:[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]] forKey:@"openOnExport"];
+            return;
+        }
+    }
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
@@ -379,6 +422,8 @@ static NSArray *TMTEncodingsToCheck;
     NSLog(@"DocumentModel will turn into fault");
 #endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unbind:@"liveCompile"];
+    [self unbind:@"openOnExport"];
     [self unregisterProjectObserver];
     [super willTurnIntoFault];
     

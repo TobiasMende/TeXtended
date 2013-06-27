@@ -78,7 +78,7 @@
 #define TMTFinalCompileBib @"TMTFinalCompileBib"
 #define TMTDocumentEnableLiveCompile @"TMTDocumentEnableLiveCompile"
 #define TMTDocumentEnableLiveScrolling @"TMTDocumentEnableLiveScrolling"
-
+#define TMTDocumentAutoOpenOnExport @"TMTDocumentAutoOpenOnExport"
 
 /*
  KVC keys for strings (used for user defaults)
