@@ -54,8 +54,10 @@
         NSUInteger index = [self.pdfView.document indexForPage:p];
         BackwardSynctex *beginTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:beginPos];
         BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
-        DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
+        if (beginTex && endTex) {
+            DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+        }
         // TODO: add support for not opened documents!
     } else {
         NSBeep();

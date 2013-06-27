@@ -32,7 +32,7 @@
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
         _finalSettings = [[controller model] finalCompiler];
-        _idleTimeForLiveCompile = 1;
+        _idleTimeForLiveCompile = 1.5;
     }
     return self;
 }

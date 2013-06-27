@@ -24,7 +24,7 @@
 
 - (id)initWithInputPath:(NSString *)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col {
     self = [super init];
-    if (!inPath && !outPath) {
+    if (!inPath || !outPath) {
         return nil;
     }
     if (self) {
@@ -32,8 +32,9 @@
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
         NSString *path = [outPath stringByDeletingLastPathComponent];
-        
-        [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+        if (pathVariables) {
+            [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+        }
         [task setLaunchPath:[PathFactory synctex]];
         NSString *inArg = [NSString stringWithFormat:@"%li:%li:%@", row, col, inPath];
         NSString *outArg = [NSString stringWithFormat:@"%@",outPath];

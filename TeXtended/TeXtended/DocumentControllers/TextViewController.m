@@ -178,7 +178,9 @@
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
         lineNumberView.messageCollection = subset;
-        [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        if (self.messages) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        }
     }
     [messageLock unlock];
 }
@@ -190,8 +192,10 @@
         return;
     }
 ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-[[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+    if (synctex) {
+        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+    }
 }
 
 - (void)loadView {
@@ -234,13 +238,17 @@ NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwa
 - (void)syncPDF:(DocumentModel *)model {
     if (model) {
         ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:model.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+        if (synctex) {
+            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+        }
     } else {
         for (DocumentModel *m in self.model.mainDocuments) {
             ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
-            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+            if (synctex) {
+                NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+            }
         }
     }
 }

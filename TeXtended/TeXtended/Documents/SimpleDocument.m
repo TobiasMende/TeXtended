@@ -94,6 +94,13 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return autosave;
 }
 
+- (void)saveToFile:(NSString *)fileName saveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
+    [super saveToFile:fileName saveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+    if (!self.model.texPath) {
+        self.model.texPath = fileName;
+    }
+}
+
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
@@ -105,10 +112,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         }
         return NO;
     }
-    
     self.model.systemPath = [url path];
-    self.model.texPath = [[self fileURL] path];
-    
+    if ([[self fileURL] path]) {
+        self.model.texPath = [[self fileURL] path];
+    }
     BOOL success = [self.documentController saveDocument:outError];
     return success;
 

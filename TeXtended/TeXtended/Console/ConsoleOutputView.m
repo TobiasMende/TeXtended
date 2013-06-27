@@ -143,7 +143,9 @@ static const NSSet *KEYS_TO_UNBIND;
                 if ([document isKindOfClass:[SimpleDocument class]]) {
                     DocumentModel *m = [(SimpleDocument*) document model];
                     [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                    if (self.controller.consoleMessages) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                    }
                 }
             }
         }];

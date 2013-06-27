@@ -39,8 +39,9 @@ static const NSRegularExpression *SYNCTEX_REGEX;
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
         NSString *path = [outPath stringByDeletingLastPathComponent];
-        
-        [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+        if (pathVariables) {
+            [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+        }
         [task setLaunchPath:[PathFactory synctex]];
         NSString *outArg = [NSString stringWithFormat:@"%li:%lf:%lf:%@", page,position.x, position.y, outPath];
         [task setCurrentDirectoryPath:path];
