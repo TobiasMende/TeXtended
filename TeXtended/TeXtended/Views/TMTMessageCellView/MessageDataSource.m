@@ -118,6 +118,7 @@
 
 - (void)handleMessageUpdate:(NSNotification *)note {
     self.collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    
     NSMutableArray *temp = [NSMutableArray arrayWithCapacity:self.collection.count];
     for (TrackingMessage *message in self.collection.set) {
         [temp addObject:message];

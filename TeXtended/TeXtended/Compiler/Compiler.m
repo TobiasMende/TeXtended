@@ -43,6 +43,7 @@
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.documentController.model];
     for (DocumentModel *model in mainDocuments) {
         if (!model.texPath) {
             continue;

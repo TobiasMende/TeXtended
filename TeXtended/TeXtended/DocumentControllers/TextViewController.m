@@ -56,6 +56,7 @@
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
+- (void) clearConsoleMessages:(NSNotification*)note;
 @end
 
 @implementation TextViewController
@@ -68,6 +69,8 @@
         messageLock = [NSLock new];
         observers = [NSMutableSet new];
         backgroundQueue = [NSOperationQueue new];
+        consoleMessages = [MessageCollection new];
+        internalMessages = [MessageCollection new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self registerModelObserver];
@@ -77,6 +80,7 @@
 
 - (void)registerModelObserver {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearConsoleMessages:) name:TMTCompilerWillStartCompilingMainDocuments object:self.model];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
@@ -91,6 +95,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
 
@@ -125,14 +130,26 @@
     [self.textView showFindIndicatorForRange:total];
 }
 
-
-
-- (void)logMessagesChanged:(NSNotification *)note {
-    consoleMessages = [note.userInfo objectForKey:TMTMessageCollectionKey];
+- (void)clearConsoleMessages:(NSNotification *)note {
+    consoleMessages = [MessageCollection new];
     if (countRunningParsers == 0) {
         self.messages = [consoleMessages merge:internalMessages];
         lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
         [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+    }
+}
+
+
+
+- (void)logMessagesChanged:(NSNotification *)note {
+    MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    if (collection) {
+        consoleMessages = [consoleMessages merge:collection];
+        if (countRunningParsers == 0 && self.messages) {
+            self.messages = [consoleMessages merge:internalMessages];
+            lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
+            [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        }
     }
 }
 

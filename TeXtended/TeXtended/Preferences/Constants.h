@@ -123,6 +123,7 @@
 #define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
 #define TMTDocumentModelOutputPipeChangeNotification @"TMTDocumentModelOutputPipeChangeNotification"
 #define TMTDocumentModelInputPipeChangeNotification @"TMTDocumentModelInputPipeChangeNotification"
+#define TMTCompilerWillStartCompilingMainDocuments @"TMTCompilerWillStartCompilingMainDocuments"
 #define TMTCompilerDidStartCompiling @"TMTCompilerDidStartCompiling"
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
