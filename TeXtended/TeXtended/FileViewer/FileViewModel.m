@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         pathIndex = -1;
+        self.expandable = FALSE;
     }
     return self;
 }
@@ -34,11 +35,11 @@
     if(children == nil)
     {
         children = [[NSMutableArray alloc] init];
+        self.expandable = TRUE;
     }
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
-        if(result == NSOrderedAscending)
+        if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
         {
             [children insertObject:newModel atIndex:i];
             return;
@@ -76,8 +77,7 @@
     NSInteger index = [children count];
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
-        if(result == NSOrderedAscending)
+        if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
         {
             index = i;
         }
@@ -96,12 +96,7 @@
     self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
     self.pathComponents = [self.filePath pathComponents];
     pathIndex = [self.pathComponents count]-1;
-    _presentedItemOperationQueue = [[NSOperationQueue alloc] init];
-    [self.presentedItemOperationQueue setMaxConcurrentOperationCount: 1];
-    
-    _presentedItemURL = [NSURL fileURLWithPath:newPath];
-    
-    [NSFileCoordinator addFilePresenter:self];
+    [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:&_isDir];
 }
 
 -(void)updateFilePath:(NSString*)newPath
@@ -119,17 +114,10 @@
     }
 }
 
-- (void)presentedSubitemDidChangeAtURL:(NSURL *)url
-{
-    //NSLog(@"%@ shoebox changed %@",_fileName ,url);
-    
-}
-
 -(void)setFileName:(NSString*)oldPath
             toName:(NSString*)newName
 {
-    NSComparisonResult result = [self.filePath compare:oldPath];
-    if (result == NSOrderedSame) {
+    if ([oldPath isEqualToString:self.filePath]) {
         self.fileName = newName;
         NSString* newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newName];
         [self willChangeValueForKey:@"filePath"];
@@ -193,8 +181,7 @@
         return nil;
     }
     for (NSInteger i = 0; i < [children count]; i++) {
-        NSComparisonResult result = [name compare:[[children objectAtIndex:i] fileName]];
-        if (result == NSOrderedSame) {
+        if ([[[children objectAtIndex:i] fileName] isEqualToString:name]) {
             return [children objectAtIndex:i];
         }
     }
@@ -227,8 +214,7 @@
 
 -(void)checkPath:(NSString*)path
 {
-    NSComparisonResult result = [path compare:self.filePath];
-    if(!(result == NSOrderedSame))
+    if([path isEqualToString:self.filePath])
     {
         [[self getChildrenByName:[[path pathComponents] objectAtIndex:pathIndex+1]] checkPath:path];
         return;
@@ -255,8 +241,7 @@
         for(NSInteger j = 0; j < count; j++)
         {
             NSString* file = [[[[files objectAtIndex:i] path] pathComponents] objectAtIndex:pathIndex+1];
-            NSComparisonResult result = [childrenName compare:file];
-            if (result == NSOrderedSame) {
+            if ([childrenName isEqualToString:file]) {
                 exists = TRUE;
             }
         }
@@ -289,8 +274,7 @@
     NSInteger index = [children count];
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        NSComparisonResult result = [childName compare:[[self getChildrenByIndex:i] fileName]];
-        if(result == NSOrderedAscending)
+        if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
         {
             index = i;
         }

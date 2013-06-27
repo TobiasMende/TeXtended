@@ -22,6 +22,9 @@
 @property NSImage* icon;
 @property NSString* fileName;
 @property NSArray* pathComponents;
+@property (readonly) BOOL isDir;
+@property BOOL expandable;
+
 -(void)addPath:(NSString*)path;
 -(void)addModel:(FileViewModel*)newModel;
 -(FileViewModel*)getChildrenByName:(NSString*)name;

@@ -75,10 +75,22 @@
            ofItem:(id)item
 {
     if(item == nil) {
-        return [nodes getChildrenByIndex:index];
+        FileViewModel* children = [nodes getChildrenByIndex:index];
+        if (children.isDir) {
+            if (!children.expandable) {
+                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
+            }
+        }
+        return children;
     }
     else {
         FileViewModel *model = (FileViewModel*)item;
+        FileViewModel* children = [model getChildrenByIndex:index];
+        if (children.isDir) {
+            if (!children.expandable) {
+                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
+            }
+        }
         return [model getChildrenByIndex:index];
     }
     return nil;
@@ -150,7 +162,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
                    item:(id)item
 {
     FileViewModel *model = (FileViewModel*)item;
-    CGFloat max = 17;
+    CGFloat max = 12;
     CGFloat scale = 0;
     NSImage *img = model.icon;
     NSSize size = NSZeroSize;
@@ -312,7 +324,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
 }
 
-- (void) recursiveFileFinder: (NSURL*)url
+- (void) simpleFileFinder: (NSURL*)url
 {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
@@ -335,7 +347,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         else
         {
             [self->nodes addPath:path];
-            [self recursiveFileFinder:fileUrl];
+            // For recursiveFileFinder:
+            //[self recursiveFileFinder:fileUrl];
         }
     }
 }
@@ -344,9 +357,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 {
     nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
-    [self recursiveFileFinder:url];
+    [self simpleFileFinder:url];
     [outline reloadData];
-    //[self initializeEventStream];
     return YES;
 }
 
@@ -484,8 +496,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (IBAction)openFolderinFinder:(id)sender
 {
-    //[self openFileInDefApp:nodes.filePath];
-    NSLog(@"%@", self.doc.texPath);
+    [self openFileInDefApp:nodes.filePath];
 }
 
 - (BOOL)openFileInDefApp: (NSString*)path
@@ -560,10 +571,20 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [self.titleButton setTitle:@""];
         return;
     }
-    [self.titleButton setTitle:titleText];
-    if(!totalPath ||[totalPath length] == 0)
-        return;
     
+    if ([titleText length] >= 50) {
+        [self.titleButton setTitle:[titleText substringToIndex:50]];
+    }
+    else
+    {
+        [self.titleButton setTitle:titleText];
+    }
+
+    if (!totalPath)
+    {
+        return;
+    }
+
     // Load Path in FileView
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     //NSString* path = @"/Users/Tobias/Documents/LatexDummies";
