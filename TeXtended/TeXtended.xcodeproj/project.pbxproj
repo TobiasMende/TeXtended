@@ -978,6 +978,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2CC5510171EAFAB00D81CF1 /* Build configuration list for PBXNativeTarget "TeXtended" */;
 			buildPhases = (
+				D28DC0EB177C042F00E4C711 /* Auto Icrement Build Number */,
 				D2CC54EC171EAFAB00D81CF1 /* Sources */,
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
@@ -1088,6 +1089,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\n# Add documentation to Xcode\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/Development/ReloadDocset.scpt\"";
+		};
+		D28DC0EB177C042F00E4C711 /* Auto Icrement Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Auto Icrement Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nbuildPlist=\"$SRCROOT/$INFOPLIST_FILE\"\necho \"The build plist file $buildPlist\"\n\nCFBundleVersion=\"$(cd $SRCROOT;/usr/bin/git rev-parse --short=9 HEAD)\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
