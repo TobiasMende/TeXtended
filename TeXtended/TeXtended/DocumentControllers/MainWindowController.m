@@ -41,9 +41,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.documentController setupWindowController];
     
     _fileViewController = [[FileViewController alloc] init];
-    _fileViewController.docController = self.documentController;
-    
-    
     
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController loadDocument:self.documentController.model];

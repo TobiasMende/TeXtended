@@ -27,9 +27,6 @@
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;
 
-/** Controller to work with documents */
-@property (weak, nonatomic) DocumentController *docController;
-
 /** Method for catching double clicks on outlineview
  @param sender is the sender
  */

@@ -514,32 +514,26 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)loadDocument:(DocumentModel*)document
 {
-    if(self.doc)
-    {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDidSaveDocumentModelContent object:nil];
-    }
-    
     self.doc = document;
     NSString *totalPath;
     NSString *titleText;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     if (self.doc.project) {
-        totalPath = self.doc.project.name;
+        totalPath = self.doc.project.path;
         NSString *stringFromDate;
         if(self.doc.lastCompile)
         {
             stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.project.name, stringFromDate];
+            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", self.doc.project.name, stringFromDate];
         }
         else
         {
-            titleText = [NSString stringWithFormat:@"%@", _doc.project.name];
+            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
         }
         
         // Add Oberserver
-        for(DocumentModel *model in self.doc.project.documents)
-            [model addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
+        [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
     } else {
         totalPath = self.doc.texPath;
         NSString *stringFromDate;
@@ -561,8 +555,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         
         // Add Observer
         [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTDidSaveDocumentModelContent object:self.doc];
     }
     
     // In Sandboxmode
@@ -604,8 +596,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
     DocumentModel *dc = (DocumentModel*)object;
-    //NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], [change valueForKey:NSKeyValueChangeNewKey]);
-    NSLog(@"Pfad geändert: %@ zu %@", [change valueForKey:NSKeyValueChangeOldKey], dc.texPath);
     if (!nodes && !dc.texPath) {
         //[self updateFileViewModel:nil];
     }
@@ -625,35 +615,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
--(void) setDocController:(DocumentController *)docController
-{
-    if(_docController)
-    {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
-    }
-    [self willChangeValueForKey:@"docController"];
-    _docController = docController;
-    [self didChangeValueForKey:@"docController"];
-    for (DocumentModel* model in self.doc.mainDocuments) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFileViewModel:) name:TMTCompilerDidEndCompiling object:model];
-    }
-}
-
 - (void)dealloc {
     if (self.doc.project)
     {
-        for(DocumentModel* model in self.doc.project.documents)
-        {
-            [model removeObserver:self forKeyPath:@"texPath"];
-        }
+        [self.doc.project removeObserver:self forKeyPath:@"Path"];
     }
     else
     {
         [self.doc removeObserver:self forKeyPath:@"texPath"];
-    }
-    
-    if (self.docController || self.doc) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 #ifdef DEBUG
     NSLog(@"FileViewController dealloc");
