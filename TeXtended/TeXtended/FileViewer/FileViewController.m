@@ -14,6 +14,8 @@
 #import "DocumentController.h"
 #import "DocumentCreationController.h"
 #import "Constants.h"
+#import "PathObserverFactory.h"
+
 @implementation FileViewController
 
 - (id)init {
@@ -46,7 +48,7 @@
     [self.infoWindowController loadDocument:self.doc];
 }
 
-- (void)updateFileViewModel:(NSNotification*) notification
+- (void)updateFileViewModel:(id)sender
 {
     if (!self.doc) {
         return;
@@ -61,7 +63,9 @@
     {
         url = [NSURL fileURLWithPath:[self.doc.texPath stringByDeletingLastPathComponent]];
     }
-    [self loadPath:url];
+    
+    [self recursiveFileUpdater:url];
+    [outline reloadData];
 }
 
 - (void)doubleClick:(id)sender {
@@ -358,6 +362,37 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
+- (void) recursiveFileUpdater: (NSURL*)url
+{
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSURL *directoryURL = url; // URL pointing to the directory you want to browse
+    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    
+    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
+    NSUInteger count = [children count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        NSURL *fileUrl = [children objectAtIndex:i];
+        NSString *path = [fileUrl path];
+        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+        }
+        else if (! [isDirectory boolValue]) {
+            [self->nodes addPath:path];
+        }
+        else
+        {
+            [self->nodes addPath:path];
+            if ([self->nodes expandableAtPath:path]) {
+                [self recursiveFileUpdater:fileUrl];
+            }
+        }
+    }
+    [self->nodes clean];
+}
+
 - (BOOL)loadPath: (NSURL*)url
 {
     nodes = [[FileViewModel alloc] init];
@@ -581,10 +616,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     {
         return;
     }
+    
+    observer = [PathObserverFactory pathObserverForPath:[totalPath stringByDeletingLastPathComponent]];
+    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
 
     // Load Path in FileView
     NSString *path = [totalPath stringByDeletingLastPathComponent];
-    //NSString* path = @"/Users/Tobias/Documents/LatexDummies";
     NSURL *url = [NSURL fileURLWithPath:path];
     @try {
         [self loadPath:url];
@@ -601,9 +638,22 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
     DocumentModel *dc = (DocumentModel*)object;
-    if (!nodes && !dc.texPath) {
-        //[self updateFileViewModel:nil];
+    if (dc.project) {
+        if (observer) {
+            [observer removeObserver:self];
+            observer = [PathObserverFactory pathObserverForPath:[dc.project.path stringByDeletingLastPathComponent]];
+            [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+        }
     }
+    else
+    {
+        if (observer) {
+            [observer removeObserver:self];
+            observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
+            [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+        }
+    }
+    
 }
 
 - (void)moveFile:(NSString*)oldPath
@@ -628,6 +678,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     else
     {
         [self.doc removeObserver:self forKeyPath:@"texPath"];
+    }
+    if (observer) {
+        [observer removeObserver:self];
     }
 #ifdef DEBUG
     NSLog(@"FileViewController dealloc");

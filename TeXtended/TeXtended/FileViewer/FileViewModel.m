@@ -96,7 +96,9 @@
     self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
     self.pathComponents = [self.filePath pathComponents];
     pathIndex = [self.pathComponents count]-1;
+    [self willChangeValueForKey:@"isDir"];
     [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:&_isDir];
+    [self didChangeValueForKey:@"isDirs"];
 }
 
 -(void)updateFilePath:(NSString*)newPath
@@ -251,6 +253,19 @@
     }
 }
 
+-(BOOL)expandableAtPath:(NSString*)path
+{
+    if ([path isEqualToString:self.filePath]) {
+        return self.expandable;
+    }
+    else
+    {
+        NSArray* components = [path pathComponents];
+        NSString* childrenName = [components objectAtIndex:pathIndex+1];
+        return [[self getChildrenByName:childrenName] expandableAtPath:path];
+    }
+}
+
 -(void)addDocumentModel:(DocumentModel*)newModel
                  atPath:(NSString*)path
 {
@@ -287,6 +302,27 @@
 -(void)removeChildren:(FileViewModel*) childrenModel
 {
     [children removeObject:childrenModel];
+}
+
+-(void)clean
+{
+    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[children count]];
+    for (FileViewModel* model in children) {
+        if([[NSFileManager defaultManager]fileExistsAtPath: model.filePath])
+        {
+            if (model.isDir) {
+                [model clean];
+            }
+        }
+        else
+        {
+            [temp addObject:model];
+        }
+    }
+    
+    for (FileViewModel* model in temp) {
+        [children removeObject:model];
+    }
 }
 
 - (void)dealloc {

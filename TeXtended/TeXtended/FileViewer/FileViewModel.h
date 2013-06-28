@@ -36,8 +36,10 @@
 -(NSInteger)numberOfChildren;
 -(void)checkPath:(NSString*)path;
 -(void)updateFilePath:(NSString*)newPath;
+-(BOOL)expandableAtPath:(NSString*)path;
 -(void)addDocumentModel:(DocumentModel*)newModel
                  atPath:(NSString*)path;
 -(void)addExitsingChildren:(FileViewModel*)newChildren;
 -(void)removeChildren:(FileViewModel*) childrenModel;
+-(void)clean;
 @end
