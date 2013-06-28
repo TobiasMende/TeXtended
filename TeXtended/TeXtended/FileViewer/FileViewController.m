@@ -565,7 +565,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         if(self.doc.lastCompile)
         {
             stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", self.doc.project.name, stringFromDate];
+            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
         }
         else
         {
@@ -589,7 +589,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             }
             else
             {
-                titleText = [NSString stringWithFormat:@"%@", _doc.texName.stringByDeletingPathExtension];
+                titleText = [NSString stringWithFormat:@"%@", self.doc.texName.stringByDeletingPathExtension];
             }
         }
         
@@ -616,15 +616,18 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     {
         return;
     }
-    
-    observer = [PathObserverFactory pathObserverForPath:[totalPath stringByDeletingLastPathComponent]];
-    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
 
     // Load Path in FileView
     NSString *path = [totalPath stringByDeletingLastPathComponent];
     NSURL *url = [NSURL fileURLWithPath:path];
     @try {
         [self loadPath:url];
+        
+        if (observer) {
+            [observer removeObserver:self];
+        }
+        //observer = [PathObserverFactory pathObserverForPath:path];
+        //[observer addObserver:self withSelector:@selector(updateFileViewModel:)];
     }
     @catch (NSException *exception) {
         [self.titleButton setTitle:@""];
@@ -638,12 +641,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
     DocumentModel *dc = (DocumentModel*)object;
+    NSString *titleText;
     if (dc.project) {
         if (observer) {
             [observer removeObserver:self];
             observer = [PathObserverFactory pathObserverForPath:[dc.project.path stringByDeletingLastPathComponent]];
             [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
         }
+        titleText = [NSString stringWithFormat:@"%@", dc.project.name];
     }
     else
     {
@@ -652,6 +657,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
             [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
         }
+        titleText = [NSString stringWithFormat:@"%@", dc.texName.stringByDeletingPathExtension];
+    }
+    
+    if ([titleText length] >= 50) {
+        [self.titleButton setTitle:[titleText substringToIndex:50]];
+    }
+    else
+    {
+        [self.titleButton setTitle:titleText];
     }
     
 }
