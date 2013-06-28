@@ -228,6 +228,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    [self.scrollView setAutoresizesSubviews:YES];
 }
 
 
