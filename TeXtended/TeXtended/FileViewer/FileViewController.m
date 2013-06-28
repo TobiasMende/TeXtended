@@ -184,6 +184,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
+-(CGFloat) outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item
+{
+    return 15;
+}
+
 -(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
     if ([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]]) {
