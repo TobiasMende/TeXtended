@@ -19,12 +19,7 @@
 @property NSColor *linkColor;
 @property BOOL shouldUnderlineLinks;
 
-@property ConsoleViewController *controller;
+@property (weak, nonatomic) ConsoleViewController *controller;
 
-/** The document model currently handled by the DocumentController */
-@property DocumentModel *documentsModel;
-
-/** The document model whichs texPath was compiled */
-@property DocumentModel *compiledModel;
 
 @end

@@ -715,7 +715,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)dealloc {
     if (self.doc.project)
     {
-        [self.doc.project removeObserver:self forKeyPath:@"Path"];
+        [self.doc.project removeObserver:self forKeyPath:@"path"];
     }
     else
     {

@@ -91,7 +91,9 @@
 
 - (void) documentHasChangedAction {
     if (!self.pdfView.document) {
-        [self performSelectorOnMainThread:@selector(loadPDF) withObject:nil waitUntilDone:YES];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self loadPDF];
+        }];
     }
 }
 
@@ -111,7 +113,9 @@
 #pragma mark Notification Observer
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
-    [self performSelectorOnMainThread:@selector(updatePDFPosition:) withObject:[notification userInfo] waitUntilDone:NO];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self updatePDFPosition:[notification userInfo]];
+    }];
 }
 
 - (void)updatePDFPosition:(NSDictionary *)info {

@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 @class DocumentModel;
 
-@interface FileViewModel : NSObject <NSFilePresenter> {
+@interface FileViewModel : NSObject {
     NSInteger pathIndex;
     NSMutableArray* children;
 }
 
-@property (readonly) NSURL *presentedItemURL;
-@property (readonly) NSOperationQueue *presentedItemOperationQueue;
 @property (weak) DocumentModel *docModel;
 @property (weak) FileViewModel *parent;
 @property (nonatomic, strong) NSString *filePath;

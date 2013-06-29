@@ -175,6 +175,4 @@
     }
     return [self.title compare:other.title];
 }
-
-
 @end

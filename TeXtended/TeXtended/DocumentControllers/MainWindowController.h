@@ -44,7 +44,7 @@
 @property (weak) IBOutlet NSSplitView *right;
 
 /** the DocumentController controlling the current DocumentModel */
-@property (weak, nonatomic) DocumentController *documentController;
+@property (strong, nonatomic) DocumentController *documentController;
 
 /** the FileViewController containing the file outline view */
 @property (strong) FileViewController *fileViewController;

@@ -105,6 +105,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 #ifdef DEBUG
     NSLog(@"SpellCheckingService dealloc");
 #endif
+    [backgroundQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

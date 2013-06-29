@@ -33,10 +33,10 @@
 }
 
 /** The view showing the latex source code to the user */
-@property (unsafe_unretained) IBOutlet HighlightingTextView *textView;
+@property (strong) IBOutlet HighlightingTextView *textView;
 
 /** The scroll view containing the LineNumberView and the HighlightingTextView */
-@property (weak) IBOutlet NSScrollView *scrollView;
+@property (strong) IBOutlet NSScrollView *scrollView;
 
 /** The parent node in the controller tree. */
 @property (weak) id<DocumentControllerProtocol> parent;
