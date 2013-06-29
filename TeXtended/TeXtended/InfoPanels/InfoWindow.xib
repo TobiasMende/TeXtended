@@ -2273,6 +2273,38 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentName</string>
+						<reference key="source" ref="584840832"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="584840832"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentName</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentName</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1558</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentType</string>
+						<reference key="source" ref="162916837"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="162916837"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentType</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentType</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1561</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: self.doc.lastCompile</string>
 						<reference key="source" ref="726834356"/>
 						<reference key="destination" ref="1001"/>
@@ -2302,6 +2334,22 @@
 						</object>
 					</object>
 					<int key="connectionID">1547</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentPath</string>
+						<reference key="source" ref="782282948"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="782282948"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentPath</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentPath</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1563</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -6185,7 +6233,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1555</int>
+			<int key="maxID">1563</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

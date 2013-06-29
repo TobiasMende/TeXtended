@@ -49,9 +49,9 @@
     
     if(self.doc.project)
     {
-        [self.lblName setStringValue:self.doc.project.name];
-        [self.lblType setStringValue:@"Project"];
-        [self.lblPath setStringValue:self.doc.project.path];
+        self.documentName = self.doc.project.name;
+        self.documentType = @"Project";
+        self.documentPath = self.doc.project.path;
         for(DocumentModel* model in self.doc.project.documents)
         {
             if ([[[model texName] pathExtension] isEqualToString:@"tex"])
@@ -62,9 +62,9 @@
     }
     else
     {
-        [self.lblName setStringValue:self.doc.texName];
-        [self.lblType setStringValue:@"Document"];
-        [self.lblPath setStringValue:self.doc.texPath];
+        self.documentName = self.doc.texName;
+        self.documentType = @"Document";
+        self.documentPath = self.doc.texPath;
     }
     [self.table reloadData];
 }

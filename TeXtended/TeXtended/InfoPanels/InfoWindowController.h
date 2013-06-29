@@ -39,6 +39,12 @@
 @property (weak) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
 @property (weak) IBOutlet NSButton *removeButton;
+/** Name of the Document */
+@property (weak) NSString* documentName;
+/** Type of the Document */
+@property (weak) NSString* documentType;
+/** Path of the Document */
+@property (weak) NSString* documentPath;
 
 /** Method for loading a document to display
  @param document is the document to display
