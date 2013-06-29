@@ -294,6 +294,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
     [pasteboard declareTypes:[NSArray arrayWithObjects:@"FileViewModel", nil] owner:self];
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:[items count]];
+    for (FileViewModel* item in items)
+    {
+        [array addObject:item.filePath];
+    }
+    [pasteboard setPropertyList:array forType:@"FileViewModel"];
+    [pasteboard setPropertyList:array forType:NSFilenamesPboardType];
     draggedItems = items;
     return YES;
 }
@@ -595,11 +602,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     
-    if (observer) {
+    /*if (observer) {
         [observer removeObserver:self];
     }
     observer = [PathObserverFactory pathObserverForPath:path];
-    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];*/
     self.titleButtonEnabled = TRUE;
 }
 
