@@ -8,6 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ The FileOutlineView makes the outline view within the FileView draggable.
+ 
+ **Author:** Tobias Hecht
+ 
+ */
+
 @interface FileOutlineView : NSOutlineView <NSDraggingDestination>
 
 @end

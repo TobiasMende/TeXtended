@@ -9,6 +9,15 @@
 #import <Cocoa/Cocoa.h>
 @class DocumentModel,CompileFlowHandler;
 
+/**
+ This view controller handles the InfoWindow and other important objects connected to it.
+ 
+ It is the data source of the Maindocuments table within the InfoWindow.
+ 
+ **Author:** Tobias Hecht
+ 
+ */
+
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
     NSMutableArray *texDocs;
 }

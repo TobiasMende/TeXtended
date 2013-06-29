@@ -193,42 +193,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
-    {
-        if(item)
-        {
-            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            FileViewModel *model = (FileViewModel*)item;
-            BOOL b = false;
-            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
-            if(b)
-            {
-                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-                {
-                    NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames   objectAtIndex:i] lastPathComponent]];
-                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-                }
-            }
-            else
-            {
-                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-                {
-                    NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-                }
-            }
-        }
-        else
-        {
-            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-            {
-                NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-            }
-        }
-    }
-    
     if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]])
     {
         if(item)
@@ -266,6 +230,41 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         [outline reloadData];
     }
+    else if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
+    {
+        if(item)
+        {
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            FileViewModel *model = (FileViewModel*)item;
+            BOOL b = false;
+            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
+            if(b)
+            {
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames   objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
+            }
+            else
+            {
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
+            }
+        }
+        else
+        {
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            {
+                NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+            }
+        }
+    }
     return TRUE;
 }
 
@@ -277,7 +276,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     {
         [array addObject:item.filePath];
     }
-    [pasteboard setPropertyList:array forType:@"FileViewModel"];
     [pasteboard setPropertyList:array forType:NSFilenamesPboardType];
     draggedItems = items;
     return YES;

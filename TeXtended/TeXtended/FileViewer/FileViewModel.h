@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 @class DocumentModel;
 
+/**
+ The FilewViewModel holds all the important content and information about the files represented by the FileViewModel. The FileViewModel is hierarchically ordered ad a tree structure. Moreover, the FileViewModel is used as items for the data source of the FileOutlineView within the FileView.
+ 
+ **Author:** Tobias Hecht
+ */
+
 @interface FileViewModel : NSObject {
     /** Index of filename in the pathcomponents */
     NSInteger pathIndex;
