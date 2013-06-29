@@ -23,7 +23,7 @@
 }
 
 /** The input view for sending messages to the compiler */
-@property (weak) IBOutlet NSTextField *inputView;
+@property (strong) IBOutlet NSTextField *inputView;
 
 /** The parent controller according to the DocumentControllerProtocol. */
 @property (weak) id<DocumentControllerProtocol> parent;
@@ -32,7 +32,7 @@
 @property (weak,nonatomic) DocumentModel *model;
 
 /** The output view for showing the compilers output to the user */
-@property (unsafe_unretained) IBOutlet ConsoleOutputView *outputView;
+@property (strong) IBOutlet ConsoleOutputView *outputView;
 
 /** Flag for showing whether the console is active or not */
 @property BOOL consoleActive;

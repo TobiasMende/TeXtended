@@ -47,7 +47,7 @@ static CompileFlowHandler *sharedInstance;
     if (self) {
         _maxIterations = [NSNumber numberWithInt:3];
         _minIterations = [NSNumber numberWithInt:1];
-        [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
+         [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
     }
     return self;
 }

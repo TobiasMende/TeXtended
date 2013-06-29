@@ -110,7 +110,7 @@
     
     NSRange firstLine = [self.textView rangeForLine:first.line];
     NSRange secondLine = [self.textView rangeForLine:second.line];
-    NSRange total;
+    NSRange total = NSMakeRange(NSNotFound, 0);
     
     if (first.column < firstLine.length) {
         firstLine.location += first.column;
@@ -126,8 +126,10 @@
             total = NSUnionRange(total, secondLine);
         }
     }
-    [self.textView scrollRangeToVisible:total];
-    [self.textView showFindIndicatorForRange:total];
+    if (total.location != NSNotFound) {
+        [self.textView scrollRangeToVisible:total];
+        [self.textView showFindIndicatorForRange:total];
+    }
 }
 
 - (void)clearConsoleMessages:(NSNotification *)note {
@@ -228,6 +230,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [self.scrollView setHasHorizontalRuler:NO];
     [self.scrollView setHasVerticalRuler:YES];
     [self.scrollView setRulersVisible:YES];
+    [self.scrollView setAutoresizesSubviews:YES];
 }
 
 
@@ -349,6 +352,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
+    [backgroundQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

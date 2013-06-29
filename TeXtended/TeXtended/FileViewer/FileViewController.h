@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentModel, FileViewModel, InfoWindowController, DocumentController;
+@class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     
@@ -17,8 +17,14 @@
     /** Items to drop within fileview */
     NSArray* draggedItems;
     
+    /** Observer to catch changes in folder */
+    __weak PathObserver *observer;
+    
     /** Outlioneview to display the fileviewmidel */
     __weak IBOutlet NSOutlineView *outline;
+    
+    /** Flag to keep if the document is saved */
+    BOOL initialized;
 }
 
 /** Documentmodel which is displayed */
@@ -38,9 +44,9 @@
 - (void)loadDocument:(DocumentModel*)document;
 
 /** Method to work with the notification handler after compiling
- @param notification is the notification which is sent
+ @param sender is the sender
  */
-- (void)updateFileViewModel:(NSNotification*) notification;
+- (void)updateFileViewModel:(id)sender;
 
 /** Method for catching clicks on titlebutton
  @param sender is the sender

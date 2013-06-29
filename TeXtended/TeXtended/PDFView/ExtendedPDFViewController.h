@@ -15,6 +15,6 @@
 
 @property (weak)id<DocumentControllerProtocol> parent;
 @property (weak,nonatomic) DocumentModel *model;
-@property (weak) IBOutlet PDFView *pdfView;
+@property (strong) IBOutlet PDFView *pdfView;
 - (void) startBackwardSynctex:(id)sender;
 @end

@@ -129,6 +129,12 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"MessageDataSource dealloc");
+#endif
+    self.tableView.dataSource = nil;
+    
+    self.tableView.delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

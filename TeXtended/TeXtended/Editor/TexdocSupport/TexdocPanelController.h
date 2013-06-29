@@ -32,7 +32,7 @@
 @property (strong) IBOutlet TexdocViewController *texdocViewController;
 
 /** The search panel for starting a request */
-@property (strong) IBOutlet NSView *searchPanel;
+@property (weak) IBOutlet NSView *searchPanel;
 
 /** If `YES` the task is searching for results. */
 @property BOOL searching;

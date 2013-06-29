@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, CompileMode) {
 };
 
 @property (strong) NSTimer *liveTimer;
-@property (atomic) int idleTimeForLiveCompile;
+@property int idleTimeForLiveCompile;
 @property (weak) DocumentController *documentController;
 @property (weak) CompileSetting* draftSettings;
 @property (weak) CompileSetting* liveSettings;
