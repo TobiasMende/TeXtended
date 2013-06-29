@@ -24,13 +24,13 @@
     self = [super initWithNibName:@"ConsoleViewsView" bundle:nil];
     if (self) {
         self.parent = parent;
-        [self initialize];
     }
     return self;
 }
 
 - (void)loadView {
     [super loadView];
+    [self initialize];
      [self loadConsoles:[self.parent documentController]];
     
     [self.messageDataSource setModel:self.model];
@@ -132,6 +132,7 @@
     //self.messageOutline.dataSource = nil;
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 @end

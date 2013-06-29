@@ -352,6 +352,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
+    [backgroundQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
