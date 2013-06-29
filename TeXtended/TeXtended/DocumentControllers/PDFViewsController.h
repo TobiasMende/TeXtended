@@ -12,7 +12,7 @@
 @class DocumentModel;
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
-@property (weak) IBOutlet NSTabView *tabView;
+@property (strong) IBOutlet NSTabView *tabView;
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
 @property (weak) DocumentModel *model;
