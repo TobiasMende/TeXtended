@@ -155,7 +155,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         if([self.doc.texPath isEqualToString:oldFile])
         {
             self.doc.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-            [self.titleButton setTitle:[newFile stringByDeletingPathExtension]];
+            self.titleOfButton = [newFile stringByDeletingPathExtension];
         }
     }
 }
@@ -537,12 +537,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (IBAction)openFolderinFinder:(id)sender
 {
-    if (observer) {
-        [observer removeObserver:self];
-    }
-    observer = [PathObserverFactory pathObserverForPath:[self.doc.texPath stringByDeletingLastPathComponent]];
-    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-    //[self openFileInDefApp:nodes.filePath];
+    [self openFileInDefApp:nodes.filePath];
 }
 
 - (BOOL)openFileInDefApp: (NSString*)path
@@ -562,35 +557,20 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 {
     self.doc = document;
     NSString *totalPath;
-    NSString *titleText;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     if (self.doc.project) {
         totalPath = self.doc.project.path;
-        titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
+        self.titleOfButton = self.doc.project.name;
         
         // Add Oberserver
         [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
     } else {
         totalPath = self.doc.texPath;
-        if (!self.doc.texName) {
-            titleText = @"";
-        }
-        else
-        {
-            titleText = [NSString stringWithFormat:@"%@", self.doc.texName.stringByDeletingPathExtension];
-        }
+        self.titleOfButton = [self.doc.texName stringByDeletingPathExtension];
         
         // Add Observer
         [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
-    }
-    
-    if ([titleText length] >= 50) {
-        [self.titleButton setTitle:[titleText substringToIndex:50]];
-    }
-    else
-    {
-        [self.titleButton setTitle:titleText];
     }
 
     if (!totalPath)
@@ -610,23 +590,22 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [self loadPath:url];
     }
     @catch (NSException *exception) {
-        [self.titleButton setTitle:@""];
-        [self.titleButton setEnabled:FALSE];
+        self.titleOfButton = @"";
+        self.titleButtonEnabled = FALSE;
         return;
     }
-    @finally {
-        /*if (observer) {
-            [observer removeObserver:self];
-        }
-        observer = [PathObserverFactory pathObserverForPath:path];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];*/
+    
+    if (observer) {
+        [observer removeObserver:self];
     }
+    observer = [PathObserverFactory pathObserverForPath:path];
+    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+    self.titleButtonEnabled = TRUE;
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
     DocumentModel *dc = (DocumentModel*)object;
-    NSString *titleText;
     
     if ([keyPath isEqualToString:@"texPath"]) {
         if (initialized || !dc.texPath) {
@@ -639,18 +618,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
         observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-        titleText = [NSString stringWithFormat:@"%@", dc.texName.stringByDeletingPathExtension];
         [self loadPath:[NSURL fileURLWithPath:[dc.texPath stringByDeletingLastPathComponent]]];
         
-        if ([titleText length] >= 50) {
-            [self.titleButton setTitle:[titleText substringToIndex:50]];
-        }
-        else
-        {
-            [self.titleButton setTitle:titleText];
-        }
+        self.titleOfButton = [dc.texName stringByDeletingPathExtension];
         
         initialized = TRUE;
+        self.titleButtonEnabled = TRUE;
     }
     
     if ([keyPath isEqualToString:@"Path"]) {
@@ -663,18 +636,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         observer = [PathObserverFactory pathObserverForPath:[dc.project.path stringByDeletingLastPathComponent]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-        titleText = [NSString stringWithFormat:@"%@", dc.project.name];
         [self loadPath:[NSURL fileURLWithPath:[dc.project.path stringByDeletingLastPathComponent]]];
         
-        if ([titleText length] >= 50) {
-            [self.titleButton setTitle:[titleText substringToIndex:50]];
-        }
-        else
-        {
-            [self.titleButton setTitle:titleText];
-        }
+        self.titleOfButton = dc.project.name;
         
         initialized = TRUE;
+        self.titleButtonEnabled = TRUE;
     }
 }
 
@@ -690,11 +657,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             [outline reloadData];
         }
     }
-}
-
--(void) loadView
-{
-    [super loadView];
 }
 
 - (void)dealloc {

@@ -85,4 +85,10 @@
 
 /** Button to display infoview */
 @property (weak) IBOutlet NSButton *titleButton;
+
+/** Title of the TitleButton */
+@property (weak) NSString* titleOfButton;
+
+/** Flag to enable or disable the Titlebutton */
+@property BOOL titleButtonEnabled;
 @end

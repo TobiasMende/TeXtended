@@ -511,6 +511,38 @@
 					<int key="connectionID">24</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: self.titleOfButton</string>
+						<reference key="source" ref="994472837"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="994472837"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">title: self.titleOfButton</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">self.titleOfButton</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">276</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.titleButtonEnabled</string>
+						<reference key="source" ref="994472837"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="994472837"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: self.titleButtonEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.titleButtonEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">278</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">menu</string>
 						<reference key="source" ref="237180003"/>
@@ -928,7 +960,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">270</int>
+			<int key="maxID">278</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
