@@ -567,47 +567,22 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [formatter setDateFormat:@"HH:mm"];
     if (self.doc.project) {
         totalPath = self.doc.project.path;
-        NSString *stringFromDate;
-        if(self.doc.lastCompile)
-        {
-            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
-        }
-        else
-        {
-            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
-        }
+        titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
         
         // Add Oberserver
         [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
     } else {
         totalPath = self.doc.texPath;
-        NSString *stringFromDate;
-        if(self.doc.lastCompile)
-        {
-            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.texName.stringByDeletingPathExtension, stringFromDate];
+        if (!self.doc.texName) {
+            titleText = @"";
         }
         else
         {
-            if (!self.doc.texName) {
-                titleText = @"";
-            }
-            else
-            {
-                titleText = [NSString stringWithFormat:@"%@", self.doc.texName.stringByDeletingPathExtension];
-            }
+            titleText = [NSString stringWithFormat:@"%@", self.doc.texName.stringByDeletingPathExtension];
         }
         
         // Add Observer
         [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
-    }
-    
-    // In Sandboxmode
-    if([titleText isEqualToString:@""])
-    {
-        [self.titleButton setTitle:@""];
-        return;
     }
     
     if ([titleText length] >= 50) {
@@ -640,11 +615,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     @finally {
-        if (observer) {
+        /*if (observer) {
             [observer removeObserver:self];
         }
         observer = [PathObserverFactory pathObserverForPath:path];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];*/
     }
 }
 
@@ -654,13 +629,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSString *titleText;
     
     if ([keyPath isEqualToString:@"texPath"]) {
-        if (initialized) {
+        if (initialized || !dc.texPath) {
             return;
         }
         
         if (observer) {
             [observer removeObserver:self];
         }
+
         observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
         titleText = [NSString stringWithFormat:@"%@", dc.texName.stringByDeletingPathExtension];
@@ -678,6 +654,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     if ([keyPath isEqualToString:@"Path"]) {
+        if (initialized || !dc.texPath) {
+            return;
+        }
+        
         if (observer) {
             [observer removeObserver:self];
         }
@@ -710,6 +690,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             [outline reloadData];
         }
     }
+}
+
+-(void) loadView
+{
+    [super loadView];
 }
 
 - (void)dealloc {

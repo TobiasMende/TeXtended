@@ -50,35 +50,8 @@
     if(self.doc.project)
     {
         [self.lblName setStringValue:self.doc.project.name];
-        NSString *compileText;
-        if(self.doc.lastCompile)
-        {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM dd, yyyy - HH:mm"];
-            compileText = [formatter stringFromDate:self.doc.lastCompile];
-        }
-        else
-        {
-            compileText = [NSString stringWithFormat:@"-"];
-        }
-        [self.lblCompile setStringValue:compileText];
-        
-        NSString *changedText;
-        if(self.doc.lastChanged)
-        {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM dd, yyyy - HH:mm"];
-            changedText = [formatter stringFromDate:self.doc.lastChanged];
-        }
-        else
-        {
-            changedText = [NSString stringWithFormat:@"-"];
-        }
-        [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Project"];
         [self.lblPath setStringValue:self.doc.project.path];
-        [self.addButton setEnabled:TRUE];
-        [self.removeButton setEnabled:TRUE];
         for(DocumentModel* model in self.doc.project.documents)
         {
             if ([[[model texName] pathExtension] isEqualToString:@"tex"])
@@ -90,35 +63,8 @@
     else
     {
         [self.lblName setStringValue:self.doc.texName];
-        NSString *compileText;
-        if(self.doc.lastCompile)
-        {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM dd, yyyy - HH:mm"];
-            compileText = [formatter stringFromDate:self.doc.lastCompile];
-        }
-        else
-        {
-            compileText = [NSString stringWithFormat:@"-"];
-        }
-        [self.lblCompile setStringValue:compileText];
-        
-        NSString *changedText;
-        if(self.doc.lastChanged)
-        {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM dd, yyyy - HH:mm"];
-            changedText = [formatter stringFromDate:self.doc.lastChanged];
-        }
-        else
-        {
-            changedText = [NSString stringWithFormat:@"-"];
-        }
-        [self.lblChange setStringValue:changedText];
         [self.lblType setStringValue:@"Document"];
         [self.lblPath setStringValue:self.doc.texPath];
-        [self.addButton setEnabled:FALSE];
-        [self.removeButton setEnabled:FALSE];
     }
     [self.table reloadData];
 }
