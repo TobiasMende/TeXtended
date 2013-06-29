@@ -56,7 +56,7 @@
  */
 @property (strong) NSColor *gridColor;
 
-@property ExtendedPDFViewController *controller;
+@property (weak) ExtendedPDFViewController *controller;
 
 /**
   * Draws a grid of the given size on the current page.

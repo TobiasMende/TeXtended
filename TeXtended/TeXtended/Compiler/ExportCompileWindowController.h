@@ -19,7 +19,7 @@
 @property (weak) IBOutlet NSBox *settingsView;
 @property (weak) DocumentModel *model;
 @property (weak) DocumentController* controller;
-@property (strong) IBOutlet NSArrayController *mainDocumentsController;
+@property (weak) IBOutlet NSArrayController *mainDocumentsController;
 -(id)initWithDocumentController:(DocumentController*) controller;
 - (IBAction)export:(id)sender;
 - (IBAction)exportPathDialog:(id)sender;

@@ -61,6 +61,10 @@ static NSUInteger calls = 0;
     
 }
 
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
+    [super addObserver:observer forKeyPath:keyPath options:options context:context];
+}
+
 - (void)setupWindowController {
     NSLog(@"Setup WindowController");
     [self.windowController clearAllDocumentViews];

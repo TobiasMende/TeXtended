@@ -129,7 +129,9 @@
     NSLog(@"ConsoleViewsController dealloc");
     
 #endif
+    //self.messageOutline.dataSource = nil;
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

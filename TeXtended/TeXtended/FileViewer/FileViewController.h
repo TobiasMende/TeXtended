@@ -18,7 +18,7 @@
     NSArray* draggedItems;
     
     /** Observer to catch changes in folder */
-    PathObserver *observer;
+    __weak PathObserver *observer;
     
     /** Outlioneview to display the fileviewmidel */
     __weak IBOutlet NSOutlineView *outline;

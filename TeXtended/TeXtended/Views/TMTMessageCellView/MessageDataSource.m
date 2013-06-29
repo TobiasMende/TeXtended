@@ -129,6 +129,9 @@
 }
 
 - (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"MessageDataSource dealloc");
+#endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

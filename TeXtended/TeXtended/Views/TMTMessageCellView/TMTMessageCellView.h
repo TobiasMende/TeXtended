@@ -15,5 +15,5 @@
 - (TrackingMessage*) message;
 - (BOOL) isExternal;
 
-@property DocumentModel *model;
+@property (weak) DocumentModel *model;
 @end

@@ -110,7 +110,7 @@
     
     NSRange firstLine = [self.textView rangeForLine:first.line];
     NSRange secondLine = [self.textView rangeForLine:second.line];
-    NSRange total;
+    NSRange total = NSMakeRange(NSNotFound, 0);
     
     if (first.column < firstLine.length) {
         firstLine.location += first.column;
@@ -126,8 +126,10 @@
             total = NSUnionRange(total, secondLine);
         }
     }
-    [self.textView scrollRangeToVisible:total];
-    [self.textView showFindIndicatorForRange:total];
+    if (total.location != NSNotFound) {
+        [self.textView scrollRangeToVisible:total];
+        [self.textView showFindIndicatorForRange:total];
+    }
 }
 
 - (void)clearConsoleMessages:(NSNotification *)note {

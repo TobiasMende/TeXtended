@@ -13,6 +13,7 @@
 #import "SimpleDocument.h"
 #import "DocumentModel.h"
 #import "ConsoleViewController.h"
+#import "DocumentController.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSSet *KEYS_TO_UNBIND;
@@ -30,7 +31,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 + (void)initialize {
     if (self == [ConsoleOutputView class]) {
-        KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldUnderlineLinks",@"linkColor",@"documentsModel", @"compiledModel", nil];
+        KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldUnderlineLinks",@"linkColor", nil];
         NSString *regex = @"^([.|/].*?):(.*?): (.*)(?:\\n|.)*?^(l\\.(?:.*))$";
         NSError *error;
         ERROR_LINES_EXPRESSION = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -39,6 +40,8 @@ static const NSSet *KEYS_TO_UNBIND;
         }
     }
 }
+
+
 
 - (void)awakeFromNib {
     NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:NSUnarchiveFromDataTransformerName,NSValueTransformerNameBindingOption, nil];
@@ -126,11 +129,13 @@ static const NSSet *KEYS_TO_UNBIND;
     NSArray *values = [attribute componentsSeparatedByString:@":"];
     NSString *path = [values objectAtIndex:0];
     NSUInteger line = [[values objectAtIndex:1] integerValue];
-    path = [PathFactory absolutPathFor:path withBasedir:[self.compiledModel.texPath stringByDeletingLastPathComponent]];
+    DocumentModel *compiledModel = self.controller.model;
+    DocumentModel *documentsModel = self.controller.documentController.model;
+    path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
     
-    if ([path isEqualToString:self.documentsModel.texPath]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-    } else if(self.documentsModel.project){
+    if ([path isEqualToString:compiledModel.texPath]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+    } else if(documentsModel.project){
         //TODO: Hanlde external path in project mode
         NSBeep();
     } else {
@@ -159,8 +164,8 @@ static const NSSet *KEYS_TO_UNBIND;
 #endif
     for (NSString *key in KEYS_TO_UNBIND) {
         [self unbind:key];
-        [self removeObserver:self forKeyPath:@"string"];
     }
+    [self removeObserver:self forKeyPath:@"string"];
     
 }
 
