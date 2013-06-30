@@ -24,7 +24,6 @@
 }
 
 - (void) compile:(bool)draft {
-  
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
         [self model].consoleOutputPipe = [NSPipe pipe];

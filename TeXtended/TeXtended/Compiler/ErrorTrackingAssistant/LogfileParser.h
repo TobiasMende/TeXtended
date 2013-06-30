@@ -8,6 +8,11 @@
 
 #import "Parser.h"
 
+/**
+ * A parser for logfiles.
+ *
+ * **Author:** Tobias Mende
+ */
 @interface LogfileParser : Parser
 
 @end

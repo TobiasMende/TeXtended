@@ -11,21 +11,21 @@
 #import "PathObserverFactory.h"
 static CompileFlowHandler *sharedInstance;
 @interface CompileFlowHandler ()
+
 /** Notification of changes in the compile flow directory */
 - (void) compileFlowsChanged;
+
 @end
 
 @implementation CompileFlowHandler
 
+/** Inform that a compile flow has changed. */
 - (void)compileFlowsChanged {
     [self willChangeValueForKey:@"arrangedObjects"];
-     [self didChangeValueForKey:@"arrangedObjects"];
-    
+    [self didChangeValueForKey:@"arrangedObjects"];
 }
 
-
 + (CompileFlowHandler *)sharedInstance {
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[CompileFlowHandler actualAlloc] initActual];
@@ -102,6 +102,5 @@ static CompileFlowHandler *sharedInstance;
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
 }
-
 
 @end

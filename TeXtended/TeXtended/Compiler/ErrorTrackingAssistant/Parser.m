@@ -39,4 +39,5 @@
     }
     return [PathFactory realPathFromTemporaryStorage:[base stringByAppendingPathComponent:path]];
 }
+
 @end

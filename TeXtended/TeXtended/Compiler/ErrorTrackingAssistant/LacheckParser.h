@@ -13,13 +13,11 @@
 @class DocumentModel;
 
 /**
- Implementation of a parser which parses the output of the lacheck command, generating warnings about missing brackets, $ and $$.
- 
- **Author:** Tobias Mende
- 
+ * Implementation of a parser which parses the output of the lacheck command, generating warnings about missing brackets, $ and $$.
+ *
+ * **Author:** Tobias Mende
+ *
  */
-
 @interface LacheckParser : Parser
-
 
 @end

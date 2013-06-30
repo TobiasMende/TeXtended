@@ -196,11 +196,8 @@
     
     /* load images */
     errorImage = [NSImage imageNamed:@"error.png"];
-    [errorImage setFlipped:YES];
     warningImage = [NSImage imageNamed:@"warning.png"];
-    [warningImage setFlipped:YES];
     infoImage = [NSImage imageNamed:@"info.png"];
-    [infoImage setFlipped:YES];
     
     [self setRuleThickness:START_THICKNESS];
     [self calculateLines];
@@ -647,7 +644,9 @@
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
+    [errorImage setFlipped:YES];
     [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+    [errorImage setFlipped:NO];
 }
 
 - (void) drawWarningIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
@@ -656,7 +655,9 @@
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
+    [warningImage setFlipped:YES];
     [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+    [warningImage setFlipped:NO];
 }
 
 - (void) drawInfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
@@ -665,7 +666,9 @@
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
+    [infoImage setFlipped:YES];
     [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+    [infoImage setFlipped:NO];
 }
 
 - (void) drawDebugIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
@@ -674,7 +677,9 @@
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
+    [infoImage setFlipped:YES];
     [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+    [infoImage setFlipped:NO];
 }
 
 - (NSColor *) getAnchorColor {

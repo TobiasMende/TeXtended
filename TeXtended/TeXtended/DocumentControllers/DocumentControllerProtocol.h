@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 @class DocumentController;
+
 /**
- View Controller displaying views of the document should implement this protocol.
- 
- **Author:** Tobias Mende
- 
+ * View Controller displaying views of the document should implement this protocol.
+ *
+ * **Author:** Tobias Mende
  */
 @protocol DocumentControllerProtocol <NSObject>
 
@@ -53,6 +53,7 @@
  */
 - (void) documentHasChangedAction;
 
+/** Needed to call breakUndoCoalescing on the text view */
 - (void) breakUndoCoalescing;
 
 @end

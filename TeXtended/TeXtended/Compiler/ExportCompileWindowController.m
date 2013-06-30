@@ -13,7 +13,6 @@
 #import "TMTTableView.h"
 
 @interface ExportCompileWindowController ()
-
 @end
 
 @implementation ExportCompileWindowController
@@ -21,7 +20,6 @@
 + (void)initialize {
     [self exposeBinding:@"canRemoveEntry"];
 }
-
 
 -(id)initWithDocumentController:(DocumentController*) controller {
     self = [super initWithWindowNibName:@"ExportCompileWindow"];
@@ -58,6 +56,7 @@
         [self.window orderOut:nil];
     }
 }
+
 - (IBAction)exportPathDialog:(id)sender {
     pdfPathPanel = [NSSavePanel savePanel];
     [pdfPathPanel setTitle:NSLocalizedString(@"Choose a pdf path", @"choosePDFPath")];
@@ -114,4 +113,5 @@
         }
     }];
 }
+
 @end
