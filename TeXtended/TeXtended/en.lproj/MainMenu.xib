@@ -652,19 +652,47 @@
 									<object class="NSMenu" key="NSSubmenu" id="870546083">
 										<string key="NSTitle">Code Navigation</string>
 										<array class="NSMutableArray" key="NSMenuItems">
-											<object class="NSMenuItem" id="40985198">
+											<object class="NSMenuItem" id="484142616">
 												<reference key="NSMenu" ref="870546083"/>
-												<string key="NSTitle">Delete Lines</string>
-												<string key="NSKeyEquiv">d</string>
+												<string key="NSTitle">Go To Line</string>
+												<string key="NSKeyEquiv">l</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="1033313550"/>
 												<reference key="NSMixedImage" ref="310636482"/>
 											</object>
-											<object class="NSMenuItem" id="484142616">
+											<object class="NSMenuItem" id="420410565">
 												<reference key="NSMenu" ref="870546083"/>
-												<string key="NSTitle">Go To Line</string>
-												<string key="NSKeyEquiv">l</string>
+												<string key="NSTitle">Next Anchor</string>
+												<string key="NSKeyEquiv">&lt;</string>
+												<int key="NSKeyEquivModMask">1048576</int>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="1033313550"/>
+												<reference key="NSMixedImage" ref="310636482"/>
+											</object>
+											<object class="NSMenuItem" id="797110502">
+												<reference key="NSMenu" ref="870546083"/>
+												<string key="NSTitle">Previous Anchor</string>
+												<string key="NSKeyEquiv">&lt;</string>
+												<int key="NSKeyEquivModMask">1179648</int>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="1033313550"/>
+												<reference key="NSMixedImage" ref="310636482"/>
+											</object>
+											<object class="NSMenuItem" id="735439442">
+												<reference key="NSMenu" ref="870546083"/>
+												<bool key="NSIsDisabled">YES</bool>
+												<bool key="NSIsSeparator">YES</bool>
+												<string key="NSTitle"/>
+												<string key="NSKeyEquiv"/>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="1033313550"/>
+												<reference key="NSMixedImage" ref="310636482"/>
+											</object>
+											<object class="NSMenuItem" id="40985198">
+												<reference key="NSMenu" ref="870546083"/>
+												<string key="NSTitle">Delete Lines</string>
+												<string key="NSKeyEquiv">d</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="1033313550"/>
@@ -1383,6 +1411,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
+						<string key="label">jumpNextAnchor:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="420410565"/>
+					</object>
+					<int key="connectionID">599</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">jumpPreviousAnchor:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="797110502"/>
+					</object>
+					<int key="connectionID">600</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
 						<reference key="source" ref="374122865"/>
 						<reference key="destination" ref="609285721"/>
@@ -2037,6 +2081,9 @@
 							<reference ref="988364834"/>
 							<reference ref="40985198"/>
 							<reference ref="484142616"/>
+							<reference ref="735439442"/>
+							<reference ref="420410565"/>
+							<reference ref="797110502"/>
 						</array>
 						<reference key="parent" ref="874989227"/>
 					</object>
@@ -2144,6 +2191,21 @@
 						<int key="objectID">594</int>
 						<reference key="object" ref="297759038"/>
 						<reference key="parent" ref="466310130"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">596</int>
+						<reference key="object" ref="735439442"/>
+						<reference key="parent" ref="870546083"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">597</int>
+						<reference key="object" ref="420410565"/>
+						<reference key="parent" ref="870546083"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">598</int>
+						<reference key="object" ref="797110502"/>
+						<reference key="parent" ref="870546083"/>
 					</object>
 				</array>
 			</object>
@@ -2253,6 +2315,9 @@
 				<string key="588.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="592.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="594.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="596.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="597.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="598.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2269,7 +2334,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">595</int>
+			<int key="maxID">600</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2325,6 +2390,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bibCheckbox">NSButton</string>
 						<string key="mainDocumentsController">NSArrayController</string>
+						<string key="openCheckbox">NSButton</string>
 						<string key="selectionTable">TMTTableView</string>
 						<string key="selectionView">NSBox</string>
 						<string key="settingsView">NSBox</string>
@@ -2337,6 +2403,10 @@
 						<object class="IBToOneOutletInfo" key="mainDocumentsController">
 							<string key="name">mainDocumentsController</string>
 							<string key="candidateClassName">NSArrayController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="openCheckbox">
+							<string key="name">openCheckbox</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="selectionTable">
 							<string key="name">selectionTable</string>
@@ -2367,6 +2437,8 @@
 						<string key="genericAction:">id</string>
 						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
+						<string key="jumpNextAnchor:">id</string>
+						<string key="jumpPreviousAnchor:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
 						<string key="startBackwardSynctex:">id</string>
@@ -2404,6 +2476,14 @@
 						</object>
 						<object class="IBActionInfo" key="hardWrapText:">
 							<string key="name">hardWrapText:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpNextAnchor:">
+							<string key="name">jumpNextAnchor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpPreviousAnchor:">
+							<string key="name">jumpPreviousAnchor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="moveLinesDown:">
@@ -2462,6 +2542,8 @@
 						<string key="deleteLines:">id</string>
 						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
+						<string key="jumpNextAnchor:">id</string>
+						<string key="jumpPreviousAnchor:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
 						<string key="toggleComment:">id</string>
@@ -2482,6 +2564,14 @@
 						</object>
 						<object class="IBActionInfo" key="hardWrapText:">
 							<string key="name">hardWrapText:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpNextAnchor:">
+							<string key="name">jumpNextAnchor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpPreviousAnchor:">
+							<string key="name">jumpPreviousAnchor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="moveLinesDown:">

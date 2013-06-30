@@ -206,4 +206,19 @@ GoToLineSheetController *goToLineSheet;
 @param context `NULL` in most cases.
  */
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+
+/** Method for jumping to the next anchor in the line number view
+ 
+ @param sender the actions calller
+ 
+ */
+- (IBAction)jumpNextAnchor:(id)sender;
+
+
+/** Method for jumping to the previous anchor in the line number view
+ 
+ @param sender the actions calller
+ 
+ */
+- (IBAction)jumpPreviousAnchor:(id)sender;
 @end
