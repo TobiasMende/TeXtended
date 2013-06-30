@@ -534,6 +534,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)updateFileViewModel
 {
+    if (!self.document.mainCompilable.path) {
+        return;
+    }
+    
     NSURL *url  = [NSURL fileURLWithPath:[self.document.mainCompilable.path stringByDeletingLastPathComponent]];
     [self recursiveFileUpdater:url];
     [outline reloadData];
