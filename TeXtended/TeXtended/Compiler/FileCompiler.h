@@ -16,7 +16,10 @@
  */
 @interface FileCompiler : NSObject
 
-@property  BOOL autoCompile;
+/** 'YES' if in live compile mode */
+@property BOOL autoCompile;
+
+/** The model that is handeld by this class. */
 @property (strong) DocumentModel* model;
 
 /** Init with the given model */

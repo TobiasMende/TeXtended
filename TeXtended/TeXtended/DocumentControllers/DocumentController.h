@@ -20,7 +20,11 @@
  */
 @interface DocumentController : NSObject<DocumentControllerProtocol> {
 }
+
+/** The model handeld by this controller. */
 @property (strong,nonatomic) DocumentModel *model;
+
+/** The controller for the window. */
 @property (weak,nonatomic) id<WindowControllerProtocol> windowController;
 
 /** Controller for the TextView. */

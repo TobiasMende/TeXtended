@@ -27,5 +27,8 @@
 
 /** Children in the document controller tree */
 @property (strong) NSSet* children;
+
+/** The DocumentModel this view is for */
 @property (strong) DocumentModel *model;
+
 @end

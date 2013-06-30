@@ -33,7 +33,11 @@
 
 /** Box arround the settings views. */
 @property (weak) IBOutlet NSBox *settingsView;
+
+/** The DocomentModel for which the export is called. */
 @property (strong) DocumentModel *model;
+
+/** The DocumentController for which the export is called. */
 @property (weak) DocumentController* controller;
 
 /** Controller for the MainDocuments of the given DocumentController. */

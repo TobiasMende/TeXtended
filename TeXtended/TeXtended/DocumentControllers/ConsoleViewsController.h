@@ -32,6 +32,8 @@
 
 /** A tableview holding outline informations for messages like warnings. */
 @property (strong) IBOutlet NSTableView *messageOutline;
+
+/** The DocumentModel the console views are for. */
 @property (strong) DocumentModel *model;
 
 @end
