@@ -402,6 +402,10 @@ static NSArray *TMTEncodingsToCheck;
         keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
     } else if([key isEqualToString:@"texName"]) {
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
+    } else if([key isEqualToString:@"path"]) {
+        keyPaths = [keyPaths setByAddingObject:@"texPath"];
+    } else if([key isEqualToString:@"name"]) {
+        keyPaths = [keyPaths setByAddingObject:@"texName"];  
     }
     return keyPaths;
 }
@@ -427,6 +431,21 @@ static NSArray *TMTEncodingsToCheck;
     [self unregisterProjectObserver];
     [super willTurnIntoFault];
     
+}
+
+#pragma mark -
+#pragma mark Getter
+
+- (NSString *)type {
+    return NSLocalizedString(@"Document", @"Document");
+}
+
+- (NSString *)name {
+    return self.texName;
+}
+
+- (NSString *)path {
+    return self.texPath;
 }
 
 @end

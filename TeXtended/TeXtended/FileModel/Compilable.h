@@ -77,3 +77,11 @@
 - (void)removeMainDocuments:(NSSet *)values;
 
 @end
+
+
+@interface Compilable (Getter)
+- (NSString *) name;
+- (NSString *) path;
+- (NSString *) type;
+
+@end
