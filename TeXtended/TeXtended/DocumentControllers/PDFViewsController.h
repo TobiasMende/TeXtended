@@ -29,6 +29,6 @@
 @property (strong) NSSet* children;
 
 /** The DocumentModel this view is for */
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 
 @end

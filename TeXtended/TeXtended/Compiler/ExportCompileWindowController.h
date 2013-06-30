@@ -35,7 +35,7 @@
 @property (weak) IBOutlet NSBox *settingsView;
 
 /** The DocomentModel for which the export is called. */
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 
 /** The DocumentController for which the export is called. */
 @property (weak) DocumentController* controller;

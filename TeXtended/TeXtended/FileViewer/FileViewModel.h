@@ -24,7 +24,7 @@
 }
 
 /** Documentmodel represented by fileviewmodel */
-@property (weak) DocumentModel *docModel;
+@property (strong) DocumentModel *docModel;
 /** Parent of fileviewmodel in hierarchy */
 @property (weak) FileViewModel *parent;
 /** Filepath of file represented by fileviewmodel */

@@ -42,7 +42,7 @@
 @property (weak) id<DocumentControllerProtocol> parent;
 
 /** The DocumentModel which's content is displayed by the view of this controller */
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;

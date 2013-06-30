@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DocumentModel,CompileFlowHandler;
+@class DocumentModel,CompileFlowHandler,Compilable;
 
 /**
  This view controller handles the InfoWindow and other important objects connected to it.
@@ -20,12 +20,14 @@
 
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
     NSMutableArray *texDocs;
+    
+    NSOpenPanel *texPathPanel;
 }
 
 /** Tableview displaying the Maindocuments */
 @property (weak) IBOutlet NSTableView *table;
 /** Documentmodel which is displayed */
-@property (weak) DocumentModel* doc;
+@property (strong, nonatomic) DocumentModel* doc;
 /** Label for the Document- or Projectname */
 @property (weak) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
@@ -48,17 +50,14 @@
 @property (weak) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
 @property (weak) IBOutlet NSButton *removeButton;
+/** */
+@property (weak) IBOutlet NSArrayController *mainDocumentsController;
 /** Name of the Document */
 @property (weak) NSString* documentName;
 /** Type of the Document */
 @property (weak) NSString* documentType;
 /** Path of the Document */
 @property (weak) NSString* documentPath;
-
-/** Method for loading a document to display
- @param document is the document to display
- */
-- (void)loadDocument:(DocumentModel*) document;
 
 /** Method for catching clicks on the addButton
  @param sender is the sender
@@ -69,4 +68,10 @@
  @param sender is the sender
  */
 - (IBAction)removeMainDocument:(id)sender;
+
+/**
+ 
+ return
+ */
+- (BOOL) canRemoveEntry;
 @end

@@ -433,6 +433,10 @@ static NSArray *TMTEncodingsToCheck;
     
 }
 
+- (void)dealloc {
+    NSLog(@"Dealloc");
+}
+
 #pragma mark -
 #pragma mark Getter
 

@@ -34,6 +34,6 @@
 @property (strong) IBOutlet NSTableView *messageOutline;
 
 /** The DocumentModel the console views are for. */
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 
 @end

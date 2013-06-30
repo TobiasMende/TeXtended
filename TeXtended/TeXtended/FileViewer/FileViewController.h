@@ -29,14 +29,13 @@
     /** Observer to catch changes in folder */
     __weak PathObserver *observer;
     
-    /** Outlioneview to display the fileviewmidel */
-    IBOutlet NSOutlineView *outline;
+    /** Outlioneview to display the fileviewmodel */
+    __weak IBOutlet NSOutlineView *outline;
 }
 
 /** Documentmodel which is displayed */
-@property (weak, nonatomic) DocumentModel* document;
+@property (strong,nonatomic) DocumentModel* document;
 
-@property (weak, nonatomic) Compilable *mainCompilabel;
 
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;

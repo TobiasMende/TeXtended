@@ -23,10 +23,10 @@
 }
 
 /** Property holding the content view (e.g. the editor and pdf view) */
-@property (weak) IBOutlet TMTSplitView *contentView;
+@property  (weak) IBOutlet TMTSplitView *contentView;
 
 /** Reference to the splitview control for controling the state of the splitviews subviews */
-@property (weak) IBOutlet NSSegmentedControl *splitviewControl;
+@property IBOutlet NSSegmentedControl *splitviewControl;
 
 /** The main view containing the left and content view */
 @property (weak) IBOutlet TMTSplitView *mainView;
@@ -35,25 +35,25 @@
 @property (weak) IBOutlet NSSplitView *sidebar;
 
 /** The subview of the sidebar */
-@property (weak) IBOutlet NSSplitView *left;
+@property  (weak) IBOutlet NSSplitView *left;
 
 /** The middle view containing editor and console in most cases */
-@property (weak) IBOutlet NSSplitView *middle;
+@property  (weak) IBOutlet NSSplitView *middle;
 
 /** The right view containing the pdf view in most cases */
-@property (weak) IBOutlet NSSplitView *right;
+@property  (weak) IBOutlet NSSplitView *right;
 
 /** the DocumentController controlling the current DocumentModel */
 @property (strong, nonatomic) DocumentController *documentController;
 
 /** the FileViewController containing the file outline view */
-@property (strong) FileViewController *fileViewController;
+@property  FileViewController *fileViewController;
 
 /** The controller controlling the export window */
-@property (strong) ExportCompileWindowController* exportWindow;
+@property  ExportCompileWindowController* exportWindow;
 
 /** The area in which to show the file view itself */
-@property (weak) IBOutlet NSBox *fileViewArea;
+@property (weak)  IBOutlet NSBox *fileViewArea;
 
 
 /** Method for toggling the collapse state of a view which is determined by the senders tag. See TMTSplitView for further details 

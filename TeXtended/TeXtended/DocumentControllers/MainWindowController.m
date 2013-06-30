@@ -121,6 +121,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
 }
 
+
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];

@@ -20,7 +20,7 @@
 @property BOOL autoCompile;
 
 /** The model that is handeld by this class. */
-@property (weak) DocumentModel* model;
+@property (strong) DocumentModel* model;
 
 /** Init with the given model */
 -(id)initWithDocumentModel:(DocumentModel*) model;

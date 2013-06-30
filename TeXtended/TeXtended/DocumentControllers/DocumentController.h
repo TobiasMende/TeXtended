@@ -22,7 +22,7 @@
 }
 
 /** The model handeld by this controller. */
-@property (weak,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
 
 /** The controller for the window. */
 @property (weak,nonatomic) id<WindowControllerProtocol> windowController;
