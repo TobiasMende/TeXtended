@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver;
+@class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver, Compilable;
 
 /**
  This view controller handles the FileView and other important objects connected to it.
@@ -30,14 +30,16 @@
     __weak PathObserver *observer;
     
     /** Outlioneview to display the fileviewmidel */
-    __weak IBOutlet NSOutlineView *outline;
+    IBOutlet NSOutlineView *outline;
     
     /** Flag to keep if the document is saved */
     BOOL initialized;
 }
 
 /** Documentmodel which is displayed */
-@property (weak) DocumentModel* doc;
+@property (weak, nonatomic) DocumentModel* document;
+
+@property (nonatomic) Compilable *mainCompilabel;
 
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;
@@ -45,17 +47,12 @@
 /** Method for catching double clicks on outlineview
  @param sender is the sender
  */
-- (void)doubleClick:(id)sender;
+- (IBAction)doubleClick:(id)sender;
 
-/**Method for loading a document to display
- @param document is the document to display
- */
-- (void)loadDocument:(DocumentModel*)document;
 
 /** Method to work with the notification handler after compiling
- @param sender is the sender
  */
-- (void)updateFileViewModel:(id)sender;
+- (void)updateFileViewModel;
 
 /** Method for catching clicks on titlebutton
  @param sender is the sender
@@ -91,13 +88,4 @@
  @param sender is the sender
  */
 - (IBAction)deleteFile:(id)sender;
-
-/** Button to display infoview */
-@property (weak) IBOutlet NSButton *titleButton;
-
-/** Title of the TitleButton */
-@property (weak) NSString* titleOfButton;
-
-/** Flag to enable or disable the Titlebutton */
-@property BOOL titleButtonEnabled;
 @end

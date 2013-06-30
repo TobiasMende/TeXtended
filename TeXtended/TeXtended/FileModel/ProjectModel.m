@@ -73,4 +73,9 @@
     return model;
 }
 
+- (NSString *)type {
+    return NSLocalizedString(@"Project", @"Project");
+}
+
+
 @end
