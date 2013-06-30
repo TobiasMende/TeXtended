@@ -10,25 +10,43 @@
 #import "TrackingMessage.h"
 #import "TMTMessageCellView.h"
 
-@interface MessageViewController ()
-
+@interface MessageViewController (private)
+    /** Set the size of the view, high will depend on the number of elements. */
+    - (void) setSize;
 @end
 
 @implementation MessageViewController
 
-- (id) initWithTrackingMessages:(NSMutableSet*) messages {
+- (id) initWithTrackingMessages:(NSMutableSet*) messages forRec:(NSRect)rec onView:(NSView*) view withPreferredEdge:(NSRectEdge) preferredEdge {
     self = [super initWithNibName:@"MessageView" bundle:nil];
     if (self) {
+        displayPosition = rec;
+        displayView = view;
+        prefEdge = preferredEdge;
         elements = [[NSMutableArray alloc] init];
         for (TrackingMessage *msg in messages) {
             [elements addObject:msg];
         }
+        
+        popover = [[NSPopover alloc] init];
+        [popover setAnimates:YES];
+        [popover setBehavior:NSPopoverBehaviorTransient];
+        [popover setContentViewController:self];
     }
     return self;
 }
 
 - (void) awakeFromNib {
     [self setSize];
+}
+
+- (void) pop {
+    [popover setContentSize:self.view.frame.size];
+    [popover showRelativeToRect:displayPosition ofView:displayView preferredEdge:prefEdge];
+}
+
+- (void) close {
+    [popover close];
 }
 
 - (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
@@ -42,7 +60,6 @@
         result = (TMTMessageCellView*)c.view;
     }
     TrackingMessage *item = [elements objectAtIndex:row];
-    //result.model = self.model;
     result.objectValue = item;
     return result;
 }
@@ -54,11 +71,11 @@
 
 - (void) setSize {
     if ([elements count] == 1) {
-        [self.view setFrameSize:NSSizeFromString(@"{300,38}")];
+        [self.view setFrameSize:NSSizeFromString(@"{250,38}")];
     } else if ([elements count] == 2) {
-        [self.view setFrameSize:NSSizeFromString(@"{300,74}")];
+        [self.view setFrameSize:NSSizeFromString(@"{250,74}")];
     } else {
-        [self.view setFrameSize:NSSizeFromString(@"{300,110}")];
+        [self.view setFrameSize:NSSizeFromString(@"{250,110}")];
     }
 }
 

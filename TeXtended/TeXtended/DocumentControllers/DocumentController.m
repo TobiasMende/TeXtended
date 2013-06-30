@@ -127,14 +127,14 @@ static NSUInteger calls = 0;
 
 
 - (void)setModel:(DocumentModel *)model {
-    if (self.model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
-    }
-    [self willChangeValueForKey:@"model"];
-    _model = model;
-    [self didChangeValueForKey:@"model"];
-    if (self.model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
+    if (model != _model) {
+        if (self.model) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
+        }
+        _model = model;
+        if (self.model) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
+        }
     }
 }
 

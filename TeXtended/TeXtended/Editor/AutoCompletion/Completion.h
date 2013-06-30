@@ -16,7 +16,7 @@
 /** The basic insertion (e.g. a \command or an environment name) */
 @property (strong,nonatomic) NSString *insertion;
 /** Counter for the number of insertions */
-@property (nonatomic) NSUInteger counter;
+@property NSUInteger counter;
 /** A possibly empty extension (e.g. {@@placeholder@@}) */
 @property (strong) NSString* extension;
 

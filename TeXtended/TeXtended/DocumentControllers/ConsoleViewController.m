@@ -33,16 +33,16 @@
 }
 
 - (void)setModel:(DocumentModel *)model {
-    if(_model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
-    }
-    [self willChangeValueForKey:@"model"];
-    _model = model;
-    [self didChangeValueForKey:@"model"];
-    if(_model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+    if (model != _model) {
+        if(_model) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
+        }
+        _model = model;
+        if(_model) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+        }
     }
 }
 
@@ -92,12 +92,12 @@
 }
 
 - (void)setConsoleMessages:(MessageCollection *)consoleMessages {
-    [self willChangeValueForKey:@"consoleMessages"];
-    _consoleMessages = consoleMessages;
-    [self didChangeValueForKey:@"consoleMessages"];
-    DocumentModel *model = [[self documentController] model];
-    if (model && consoleMessages) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
+    if (consoleMessages != _consoleMessages) {
+        _consoleMessages = consoleMessages;
+        DocumentModel *model = [[self documentController] model];
+        if (model && consoleMessages) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
+        }
     }
 }
 

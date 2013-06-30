@@ -24,7 +24,7 @@
  *
  * @author Max Bannach
  */
-@class MessageCollection;
+@class MessageCollection, MessageViewController;
 @interface LineNumberView : NSRulerView {
     
     /** Font of the line numbers. */
@@ -79,7 +79,7 @@
     /**
      * The window showing massages.
      */
-    NSPopover *messageWindow;
+    MessageViewController *messageWindow;
 }
 
 /**
