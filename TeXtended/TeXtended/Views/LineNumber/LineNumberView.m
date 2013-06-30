@@ -695,7 +695,7 @@
 }
 
 - (NSArray*) anchoredLines {
-    return [lineAnchors allValues];
+    return [lineAnchors allKeys];
 }
 
 - (void)dealloc {
