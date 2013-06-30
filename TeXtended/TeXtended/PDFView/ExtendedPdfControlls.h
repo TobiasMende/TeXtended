@@ -9,11 +9,26 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
 
+/**
+ * This class handles the controlls in the ExtendedPdfView.
+ *
+ * @author Max Bannach
+ */
 @interface ExtendedPdfControlls : NSViewController
 
+/** The PdfView were this controlls depend on */
 @property (weak) PDFView *pdfView;
 
+/** 
+ * Called if the controlls have changed.
+ * Will redraw the controlls and the PDFView.
+ */
 - (IBAction)update:(id)sender;
+
+/**
+ * The box of the controlls.
+ * Needed for costum adjustments. 
+ */
 @property (weak) IBOutlet NSBox *theBox;
 
 @end
