@@ -31,6 +31,8 @@
     
     /** Outlioneview to display the fileviewmodel */
     __weak IBOutlet NSOutlineView *outline;
+    
+    __weak IBOutlet NSButton *infoLoadButton;
 }
 
 /** Documentmodel which is displayed */

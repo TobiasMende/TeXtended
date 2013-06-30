@@ -41,6 +41,12 @@
 -(void)loadView {
     [super loadView];
     
+    /*NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(outline, infoLoadButton);
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[outline(==infoLoadButton)]"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:viewsDictionary];
+    [infoLoadButton addConstraints:constraints];*/
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
 }

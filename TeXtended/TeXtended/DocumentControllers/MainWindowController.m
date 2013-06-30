@@ -79,53 +79,26 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (IBAction)collapseView:(id)sender {
     NSSegmentedControl *control = sender;
     BOOL s0 = [control isSelectedForSegment:0];
-    BOOL s1 = [control isSelectedForSegment:1];
+    //BOOL s1 = [control isSelectedForSegment:1];
     BOOL s2 = [control isSelectedForSegment:2];
     
     if (s0 == [self.mainView isCollapsed:0]) {
         if ([self.mainView isCollapsed:0] || !([self.mainView isCollapsed:1] && [self.mainView isCollapsed:2])) {
             [self.mainView toggleCollapseFor:0];
-            /*if ([self.mainView isCollapsed:0]) {
-                [self.mainView toggleCollapseFor:0];
-                [self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
-                [self.left setNeedsDisplay:YES];
-            }
-            else {
-                [self.left setTranslatesAutoresizingMaskIntoConstraints:NO];
-                [self.mainView toggleCollapseFor:0];
-            }*/
         } else {
             NSBeep();
         }
     }
-    if (s1 == [self.mainView isCollapsed:1]) {
+    /*if (s1 == [self.mainView isCollapsed:1]) {
         if ([self.mainView isCollapsed:1] || !([self.mainView isCollapsed:0] && [self.mainView isCollapsed:2])) {
             [self.mainView toggleCollapseFor:1];
-            /*if ([self.mainView isCollapsed:1]) {
-                [self.mainView toggleCollapseFor:1];
-                [self.middle setTranslatesAutoresizingMaskIntoConstraints:YES];
-                [self.middle setNeedsDisplay:YES];
-            }
-            else {
-                [self.middle setTranslatesAutoresizingMaskIntoConstraints:NO];
-                [self.mainView toggleCollapseFor:1];
-            }*/
         } else {
             NSBeep();
         }
-    }
+    }*/
     if (s2 == [self.mainView isCollapsed:2]) {
         if (!([self.mainView isCollapsed:0] && [self.mainView isCollapsed:1]) || [self.mainView isCollapsed:2]) {
             [self.mainView toggleCollapseFor:2];
-            /*if ([self.mainView isCollapsed:2]) {
-                [self.mainView toggleCollapseFor:2];
-                [self.right setTranslatesAutoresizingMaskIntoConstraints:YES];
-                [self.right setNeedsDisplay:YES];
-            }
-            else {
-                [self.right setTranslatesAutoresizingMaskIntoConstraints:NO];
-                [self.mainView toggleCollapseFor:2];
-            }*/
         } else {
             NSBeep();
         }

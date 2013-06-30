@@ -75,11 +75,13 @@
     
     if (index == self.subviews.count -1) {
         oldPosition = [self positionOfDividerAtIndex:index-1];
+        oldPosition /= self.isVertical ? self.bounds.size.width : self.bounds.size.height;
         [self setPosition:[self maxPossiblePositionOfDividerAtIndex:index-1] ofDividerAtIndex:index-1];
         
         [defaultPosition replaceObjectAtIndex:index-1 withObject:[NSNumber numberWithFloat:oldPosition]];
     } else {
         oldPosition = [self positionOfDividerAtIndex:index];
+        oldPosition /= self.isVertical ? self.bounds.size.width : self.bounds.size.height;
         [self setPosition:[self minPossiblePositionOfDividerAtIndex:index] ofDividerAtIndex:index];
         
         [defaultPosition replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:oldPosition]];
@@ -92,9 +94,11 @@
     
     if (index == self.subviews.count -1) {
         CGFloat position = [[defaultPosition objectAtIndex:index-1] floatValue];
+        position *= self.isVertical ? self.bounds.size.width : self.bounds.size.height;
         [self setPosition:position ofDividerAtIndex:index-1];
     } else {
         CGFloat position = [[defaultPosition objectAtIndex:index] floatValue];
+        position *= self.isVertical ? self.bounds.size.width : self.bounds.size.height;
         [self setPosition:position ofDividerAtIndex:index];
     }
     
