@@ -53,7 +53,7 @@
 										<reference key="NSNextResponder" ref="39121085"/>
 										<int key="NSvFlags">256</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrameSize">{244, 274}</string>
+										<string key="NSFrameSize">{245, 274}</string>
 										<reference key="NSSuperview" ref="39121085"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="969017641"/>
@@ -70,7 +70,7 @@
 										</object>
 										<array class="NSMutableArray" key="NSTableColumns">
 											<object class="NSTableColumn" id="534028935">
-												<double key="NSWidth">241.1015625</double>
+												<double key="NSWidth">241.6015625</double>
 												<double key="NSMinWidth">40</double>
 												<double key="NSMaxWidth">1000</double>
 												<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -149,7 +149,7 @@
 										<int key="NSTableViewGroupRowStyle">1</int>
 									</object>
 								</array>
-								<string key="NSFrame">{{1, 1}, {244, 274}}</string>
+								<string key="NSFrame">{{1, 1}, {245, 274}}</string>
 								<reference key="NSSuperview" ref="540747570"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="477225329"/>
@@ -161,7 +161,7 @@
 							<object class="NSScroller" id="969017641">
 								<reference key="NSNextResponder" ref="540747570"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
+								<string key="NSFrame">{{-100, -100}, {16, 274}}</string>
 								<reference key="NSSuperview" ref="540747570"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="384403088"/>
@@ -170,7 +170,6 @@
 								<reference key="NSTarget" ref="540747570"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSPercent">0.99630996309963105</double>
-								<int key="NSKnobStyle">1</int>
 							</object>
 							<object class="NSScroller" id="384403088">
 								<reference key="NSNextResponder" ref="540747570"/>
@@ -185,19 +184,17 @@
 								<reference key="NSTarget" ref="540747570"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSPercent">0.99626865671641796</double>
-								<int key="NSKnobStyle">1</int>
 							</object>
 						</array>
-						<string key="NSFrameSize">{246, 276}</string>
+						<string key="NSFrameSize">{247, 276}</string>
 						<reference key="NSSuperview" ref="445622175"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="39121085"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="NSsFlags">133650</int>
+						<int key="NSsFlags">133122</int>
 						<reference key="NSVScroller" ref="969017641"/>
 						<reference key="NSHScroller" ref="384403088"/>
 						<reference key="NSContentView" ref="39121085"/>
-						<int key="NSScrollerKnobStyle">1</int>
 						<bytes key="NSScrollAmts">QSAAAEEgAABCEAAAQhAAAA</bytes>
 						<double key="NSMinMagnification">0.25</double>
 						<double key="NSMaxMagnification">4</double>
@@ -206,7 +203,7 @@
 					<object class="NSTabView" id="825173468">
 						<reference key="NSNextResponder" ref="445622175"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{240, -4}, {416, 285}}</string>
+						<string key="NSFrame">{{241, -4}, {415, 285}}</string>
 						<reference key="NSSuperview" ref="445622175"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>

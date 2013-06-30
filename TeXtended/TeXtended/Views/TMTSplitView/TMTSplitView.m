@@ -99,27 +99,27 @@
 
 - (void)collapse:(NSUInteger)index {
     CGFloat oldPosition;
-    CGFloat positionOfNextDivider;
-    CGFloat positionOfPreviousDivider;
-    CGFloat sizeOfView;
+    //CGFloat positionOfNextDivider;
+    //CGFloat positionOfPreviousDivider;
+    //CGFloat sizeOfView;
     
-    if (self.isVertical) {
-        sizeOfView = self.bounds.size.width;
-    } else {
-        sizeOfView = self.bounds.size.height;
-    }
+//    if (self.isVertical) {
+//        sizeOfView = self.bounds.size.width;
+//    } else {
+//        sizeOfView = self.bounds.size.height;
+//    }
     
     if (index == self.subviews.count -1) {
         oldPosition = [self positionOfDividerAtIndex:index-1];
         [self setPosition:[self maxPossiblePositionOfDividerAtIndex:index-1] ofDividerAtIndex:index-1];
-        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
-        oldPosition = (oldPosition-positionOfPreviousDivider)/(sizeOfView-positionOfPreviousDivider);
+        //positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
+        //oldPosition = (oldPosition-positionOfPreviousDivider)/(sizeOfView-positionOfPreviousDivider);
     } else {
         oldPosition = [self positionOfDividerAtIndex:index];
         [self setPosition:[self minPossiblePositionOfDividerAtIndex:index] ofDividerAtIndex:index];
-        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
-        positionOfNextDivider = [self positionOfNextDividerAtIndex:index+1];
-        oldPosition = 1-(positionOfNextDivider-oldPosition)/(positionOfNextDivider-positionOfPreviousDivider);
+        //positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
+        //positionOfNextDivider = [self positionOfNextDividerAtIndex:index+1];
+        //oldPosition = 1-(positionOfNextDivider-oldPosition)/(positionOfNextDivider-positionOfPreviousDivider);
     }
     
     [collapseState replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
@@ -131,20 +131,21 @@
 }
 
 - (void)uncollapse:(NSUInteger)index {
-    CGFloat relPosition = [[defaultPosition objectAtIndex:index] floatValue];
-    CGFloat positionOfNextDivider;
-    CGFloat positionOfPreviousDivider;
-    CGFloat position;
+    //CGFloat relPosition = [[defaultPosition objectAtIndex:index] floatValue];
+    CGFloat position = [[defaultPosition objectAtIndex:index] floatValue];
+    //CGFloat positionOfNextDivider;
+    //CGFloat positionOfPreviousDivider;
+    //CGFloat position;
     
     if (index == self.subviews.count -1) {
-        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
-        positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
-        position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
+        //positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-2];
+        //positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
+        //position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
         [self setPosition:position ofDividerAtIndex:index-1];
     } else {
-        positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
-        positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
-        position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
+        //positionOfPreviousDivider = [self positionOfPreviousDividerAtIndex:index-1];
+        //positionOfNextDivider = [self positionOfNextDividerAtIndex:index];
+        //position = (positionOfNextDivider-positionOfPreviousDivider)*relPosition+ positionOfPreviousDivider;
         [self setPosition:position ofDividerAtIndex:index];
     }
     
