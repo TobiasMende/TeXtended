@@ -26,14 +26,14 @@
 }
 
 - (void)setDocument:(DocumentModel *)document {
-    if (_document) {
-        [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
-    }
-    [self willChangeValueForKey:@"document"];
-    _document = document;
-    [self didChangeValueForKey:@"document"];
-    if (_document) {
-        [self.document addObserver:self forKeyPath:@"self.mainCompilable.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+    if (document != _document) {
+        if (_document) {
+            [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
+        }
+        _document = document;
+        if (_document) {
+            [self.document addObserver:self forKeyPath:@"self.mainCompilable.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        }
     }
 }
 
@@ -516,8 +516,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
-    NSLog(@"%@", change);
-    if ([keyPath isEqualToString:@"mainCompilable.path"]) {
+    if ([keyPath isEqualToString:@"self.mainCompilable.path"]) {
         if (!self.document.mainCompilable.path) {
             return;
         }

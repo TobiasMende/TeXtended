@@ -104,14 +104,14 @@
 }
 
 - (void)setModel:(DocumentModel *)model {
-    if (_model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessageCollectionChanged object:_model];
-    }
-    [self willChangeValueForKey:@"model"];
-    _model = model;
-    [self didChangeValueForKey:@"model"];
-    if (_model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessageUpdate:) name:TMTMessageCollectionChanged object:_model];
+    if (model != _model) {
+        if (_model) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessageCollectionChanged object:_model];
+        }
+        _model = model;
+        if (_model) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessageUpdate:) name:TMTMessageCollectionChanged object:_model];
+        }
     }
 }
 

@@ -36,7 +36,7 @@
 /** Components of path represented by fileviewmodel */
 @property NSArray* pathComponents;
 /** Flag to keep the information if the file represented by fileviewmodel is a directory */
-@property (readonly) BOOL isDir;
+@property BOOL isDir;
 /** Flag to keep the information if the fileviewmodel is expandable */
 @property BOOL expandable;
 
