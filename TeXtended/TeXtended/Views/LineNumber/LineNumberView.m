@@ -142,7 +142,6 @@
  */
 - (NSColor *) getAnchorBorderColor;
 
-
 /**
  * Calculates all messages for a given line.
  * @param line the line number
@@ -190,9 +189,6 @@
            forKeyPath:@"messageCollection"
               options: NSKeyValueObservingOptionInitial
               context:NULL];
-    messageWindow = [[NSPopover alloc] init];
-    [messageWindow setAnimates:YES];
-    [messageWindow setBehavior:NSPopoverBehaviorTransient];
     
     /* load images */
     errorImage = [NSImage imageNamed:@"error.png"];
@@ -311,15 +307,17 @@
     
     NSMutableSet* messages = [self messagesForLine:current];
     if ([messages count] > 0) {
+        if (messageWindow) {
+            [messageWindow close];
+            messageWindow = nil;
+        }
         NSRect rec = NSMakeRect(4,
                                 [[lineHights objectAtIndex:current-lineLabel-1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
                                 1,
                                 1);
         
-        MessageViewController *mvc = [[MessageViewController alloc] initWithTrackingMessages:messages];
-        [messageWindow setContentViewController:mvc];
-        
-        [messageWindow showRelativeToRect:rec ofView:self.scrollView preferredEdge:NSMinXEdge];
+        messageWindow = [[MessageViewController alloc] initWithTrackingMessages:messages forRec:rec onView:self.scrollView withPreferredEdge:NSMinXEdge];
+        [messageWindow pop];
     } else if (![self hasAnchor:current]) {
         [self addAnchorToLine:current];
     } else {
