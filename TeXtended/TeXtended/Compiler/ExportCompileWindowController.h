@@ -17,7 +17,7 @@
 @property (weak) IBOutlet TMTTableView *selectionTable;
 @property (weak) IBOutlet NSBox *selectionView;
 @property (weak) IBOutlet NSBox *settingsView;
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 @property (weak) DocumentController* controller;
 @property (weak) IBOutlet NSArrayController *mainDocumentsController;
 -(id)initWithDocumentController:(DocumentController*) controller;

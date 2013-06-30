@@ -15,5 +15,5 @@
 @property (strong) IBOutlet NSTabView *tabView;
 @property (weak) id<DocumentControllerProtocol> parent;
 @property (strong) NSSet* children;
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 @end

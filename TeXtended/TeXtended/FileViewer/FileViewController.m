@@ -26,21 +26,14 @@
 }
 
 - (void)setDocument:(DocumentModel *)document {
+    if (_document) {
+        [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
+    }
     [self willChangeValueForKey:@"document"];
     _document = document;
     [self didChangeValueForKey:@"document"];
-    self.mainCompilabel = document.mainCompilable;
-}
-
-- (void)setMainCompilabel:(Compilable *)mainCompilabel {
-    if (_mainCompilabel) {
-        [self.mainCompilabel removeObserver:self forKeyPath:@"path"];
-    }
-    [self willChangeValueForKey:@"mainCompilabel"];
-    _mainCompilabel = mainCompilabel;
-    [self didChangeValueForKey:@"mainCompilabel"];
-    if (_mainCompilabel) {
-        [self.mainCompilabel addObserver:self forKeyPath:@"path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    if (_document) {
+        [self.document addObserver:self forKeyPath:@"self.mainCompilable.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
 }
 
@@ -60,8 +53,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView
             child:(NSInteger)index
-           ofItem:(id)item
-{
+           ofItem:(id)item {
     if(item == nil) {
         FileViewModel* children = [nodes getChildrenByIndex:index];
         if (children.isDir) {
@@ -85,8 +77,7 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView
-   isItemExpandable:(id)item
-{
+   isItemExpandable:(id)item {
     FileViewModel *model = (FileViewModel*)item;
     if([model numberOfChildren] > 0)
     {
@@ -97,8 +88,7 @@
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
-  numberOfChildrenOfItem:(id)item
-{
+  numberOfChildrenOfItem:(id)item {
     if(item == nil) {
         return [nodes numberOfChildren];
     }
@@ -108,8 +98,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView
 objectValueForTableColumn:(NSTableColumn *)tableColumn
-           byItem:(id)item
-{
+           byItem:(id)item {
     FileViewModel *model = (FileViewModel*)item;
     return model.fileName;
 }
@@ -117,8 +106,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)outlineView:(NSOutlineView *)outlineView
      setObjectValue:(id)object
      forTableColumn:(NSTableColumn *)tableColumn
-             byItem:(id)item
-{
+             byItem:(id)item {
     FileViewModel *model = (FileViewModel*)item;
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
@@ -126,29 +114,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [model setFileName:oldFile toName:newFile];
     [outline reloadData];
     
-//    if(self.document.project)
-//    {
-//        for (DocumentModel* model in self.document.project.documents) {
-//            if([model.texPath isEqualToString:oldFile])
-//            {
-//                model.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-//            }
-//        }
-//    }
-//    else
-//    {
-//        if([self.document.texPath isEqualToString:oldFile])
-//        {
-//            self.document.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-//        }
-//    }
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
         willDisplayCell:(id)cell
          forTableColumn:(NSTableColumn *)tableColumn
-                   item:(id)item
-{
+                   item:(id)item {
     FileViewModel *model = (FileViewModel*)item;
     CGFloat max = 12;
     CGFloat scale = 0;
@@ -172,13 +143,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
--(CGFloat) outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item
-{
-    return 15;
-}
-
--(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
-{
+-(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
     if ([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]]) {
         return NSDragOperationMove;
     }
@@ -197,8 +162,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return NSDragOperationNone;
 }
 
--(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
-{
+-(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
     if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]])
     {
         if(item)
@@ -274,8 +238,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return TRUE;
 }
 
--(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
-{
+-(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
     [pasteboard declareTypes:[NSArray arrayWithObjects:@"FileViewModel", nil] owner:self];
     NSMutableArray* array = [NSMutableArray arrayWithCapacity:[items count]];
     for (FileViewModel* item in items)
@@ -287,8 +250,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return YES;
 }
 
--(void) outlineViewSelectionDidChange:(NSNotification *)notification
-{
+-(void) outlineViewSelectionDidChange:(NSNotification *)notification {
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
     if(!model)
     {
@@ -311,58 +273,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-//- (void)loadDocument:(DocumentModel*)document
-//{
-//    self.doc = document;
-//    NSString *totalPath;
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"HH:mm"];
-//    if (self.doc.project) {
-//        totalPath = self.doc.project.path;
-//        self.titleOfButton = self.doc.project.name;
-//        
-//        // Add Oberserver
-//        [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
-//    } else {
-//        totalPath = self.doc.texPath;
-//        self.titleOfButton = [self.doc.texName stringByDeletingPathExtension];
-//        
-//        // Add Observer
-//        [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
-//    }
-//    
-//    if (!totalPath)
-//    {
-//        initialized = FALSE;
-//        return;
-//    }
-//    else
-//    {
-//        initialized = TRUE;
-//    }
-//    
-//    // Load Path in FileView
-//    NSString *path = [totalPath stringByDeletingLastPathComponent];
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    @try {
-//        [self loadPath:url];
-//    }
-//    @catch (NSException *exception) {
-//        self.titleOfButton = @"";
-//        self.titleButtonEnabled = FALSE;
-//        return;
-//    }
-//    
-//    /*if (observer) {
-//     [observer removeObserver:self];
-//     }
-//     observer = [PathObserverFactory pathObserverForPath:path];
-//     [observer addObserver:self withSelector:@selector(updateFileViewModel:)];*/
-//    self.titleButtonEnabled = TRUE;
-//}
-
-- (BOOL)loadPath: (NSURL*)url
-{
+- (BOOL)loadPath: (NSURL*)url {
     nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
     [self simpleFileFinder:url];
@@ -370,8 +281,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return YES;
 }
 
-- (void) simpleFileFinder: (NSURL*)url
-{
+- (void) simpleFileFinder: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
@@ -399,8 +309,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (void) recursiveFileUpdater: (NSURL*)url
-{
+- (void) recursiveFileUpdater: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
@@ -430,8 +339,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->nodes clean];
 }
 
-- (IBAction)openInfoView:(id)sender
-{
+- (IBAction)openInfoView:(id)sender {
     if(!self.document)
     {
         return;
@@ -444,8 +352,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self.infoWindowController loadDocument:self.document];
 }
 
-- (IBAction)newFile:(id)sender
-{
+- (IBAction)newFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
     {
@@ -466,8 +373,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (IBAction)newFolder:(id)sender
-{
+- (IBAction)newFolder:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         [self createFolder:nodes.filePath];
@@ -611,15 +517,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
     NSLog(@"%@", change);
-    if ([keyPath isEqualToString:@"path"]) {
-        if (!self.mainCompilabel.path) {
+    if ([keyPath isEqualToString:@"mainCompilable.path"]) {
+        if (!self.document.mainCompilable.path) {
             return;
         }
         
         if (observer) {
             [observer removeObserver:self];
         }
-        NSString *path = [self.mainCompilabel.path stringByDeletingLastPathComponent];
+        NSString *path = [self.document.mainCompilable.path stringByDeletingLastPathComponent];
         observer = [PathObserverFactory pathObserverForPath:path];
         [self loadPath:[NSURL fileURLWithPath:path]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel)];
@@ -629,14 +535,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)updateFileViewModel
 {
-    NSURL *url  = [NSURL fileURLWithPath:[self.mainCompilabel.path stringByDeletingLastPathComponent]];
+    NSURL *url  = [NSURL fileURLWithPath:[self.document.mainCompilable.path stringByDeletingLastPathComponent]];
     [self recursiveFileUpdater:url];
     [outline reloadData];
 }
 
+
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
-    [self.mainCompilabel removeObserver:self forKeyPath:@"path"];
+    [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
 #ifdef DEBUG
     NSLog(@"FileViewController dealloc");
 #endif

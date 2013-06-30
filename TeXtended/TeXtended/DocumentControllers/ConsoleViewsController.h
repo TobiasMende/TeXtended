@@ -16,6 +16,6 @@
 @property (strong) NSSet* children;
 @property (strong) IBOutlet NSTabView *tabView;
 @property (strong) IBOutlet NSTableView *messageOutline;
-@property (weak) DocumentModel *model;
+@property (strong) DocumentModel *model;
 
 @end

@@ -22,7 +22,7 @@
  */
 @interface DocumentController : NSObject<DocumentControllerProtocol> {
 }
-@property (weak,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
 @property (weak,nonatomic) id<WindowControllerProtocol> windowController;
 @property (strong) TextViewController* textViewController;
 @property (strong) PDFViewsController* pdfViewsController;

@@ -14,5 +14,5 @@
 @property (weak) IBOutlet TMTTableView *tableView;
 @property (weak) MessageCollection *collection;
 @property NSArray *messages;
-@property (weak,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
 @end

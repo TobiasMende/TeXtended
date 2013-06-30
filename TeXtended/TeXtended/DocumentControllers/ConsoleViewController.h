@@ -29,7 +29,7 @@
 @property (weak) id<DocumentControllerProtocol> parent;
 
 /** The document model to deal with in this view */
-@property (weak,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
 
 /** The output view for showing the compilers output to the user */
 @property (strong) IBOutlet ConsoleOutputView *outputView;

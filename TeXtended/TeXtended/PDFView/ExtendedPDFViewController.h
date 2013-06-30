@@ -22,7 +22,7 @@
 @property (weak)id<DocumentControllerProtocol> parent;
 
 /** Current model from which the pdf is handeld by this class. */
-@property (weak,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
 
 /** The coresponding PdfView. */
 @property (strong) IBOutlet PDFView *pdfView;
