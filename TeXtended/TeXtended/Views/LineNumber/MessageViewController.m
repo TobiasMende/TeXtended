@@ -9,6 +9,8 @@
 #import "MessageViewController.h"
 #import "TrackingMessage.h"
 #import "TMTMessageCellView.h"
+#import "MessageInfoViewController.h"
+#import "TMTCustomView.h"
 
 @interface MessageViewController (private)
     /** Set the size of the view, high will depend on the number of elements. */
@@ -27,6 +29,7 @@
         for (TrackingMessage *msg in messages) {
             [elements addObject:msg];
         }
+        [elements sortUsingSelector:@selector(compare:)];
         
         popover = [[NSPopover alloc] init];
         [popover setAnimates:YES];
@@ -79,4 +82,29 @@
     }
 }
 
+- (IBAction)handleClick:(id)sender {
+    if (popover) {
+        [popover close];
+        popover = nil;
+    }
+    NSInteger row = self.messageTable.selectedRow;
+    TrackingMessage *message = [elements objectAtIndex:row];
+    if (row < 0) {
+        return;
+    }
+    if (!infoController) {
+        infoController = [[MessageInfoViewController alloc] init];
+    }
+    infoController.message = message;
+    //infoController.model = self.model;
+    [(TMTCustomView*)infoController.view setBackgroundColor:[TrackingMessage backgroundColorForType:message.type]];
+    if (!popover) {
+        popover = [[NSPopover alloc] init];
+        [popover setAnimates:YES];
+        [popover setBehavior:NSPopoverBehaviorTransient];
+        [popover setContentViewController:self];
+    }
+    popover.contentViewController = infoController;
+    [popover showRelativeToRect:displayPosition ofView:displayView preferredEdge:prefEdge];
+}
 @end

@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MessageInfoViewController;
 /**
  * This class handels a view for messages to diplay in a popover beside a line number.
  *
@@ -26,10 +27,12 @@
     
     /** The preferredEdge of the popover */
     NSRectEdge prefEdge;
-    
+    MessageInfoViewController *infoController;
     /** View where the popover should be shown in  */
     __weak NSView* displayView;
 }
+@property (strong) IBOutlet NSTableView *messageTable;
+- (IBAction)handleClick:(id)sender;
 
 /** Display the popover */
 - (void) pop;
@@ -45,4 +48,5 @@
  */
 - (id) initWithTrackingMessages:(NSMutableSet*) messages forRec:(NSRect)rec onView:(NSView*) view withPreferredEdge:(NSRectEdge)preferredEdge;
 
+@property (strong) IBOutlet NSTableView *_messageTable;
 @end

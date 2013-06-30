@@ -50,6 +50,6 @@
 
 
 - (BOOL)isExternal {
-    return ![self.model.texPath isEqualToString:self.message.document];
+    return ![self.model.texPath isEqualToString:self.message.document] && (self.message.document != nil && self.model.texPath != nil);
 }
 @end
