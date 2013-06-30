@@ -14,8 +14,16 @@
 #import "MessageDataSource.h"
 
 @interface ConsoleViewsController ()
+
+/** Clears the tab view, i.e. removes all elements. */
 - (void)clearTabView;
-- (void)addTabItemFor:(ConsoleViewController *)controller;
+
+/**
+ * Add a item to the tab view for the given controller of a console view.
+ *
+ * @param controller the ConsoleViewController
+ */
+- (void)addTabItemFor:(ConsoleViewController*)controller;
 @end
 
 @implementation ConsoleViewsController
@@ -69,6 +77,11 @@
     
 }
 
+/**
+ * Load the consoles for all main documents of the give DocumentController.
+ *
+ * @param controller the given DocumentController
+ */
 - (void) loadConsoles:(DocumentController*) controller {
     if (self.model.faultingState > 0) {
         return;
@@ -120,7 +133,6 @@
     }
 }
 
-
 #pragma mark -
 #pragma mark Dealloc etc.
 
@@ -129,7 +141,6 @@
     NSLog(@"ConsoleViewsController dealloc");
     
 #endif
-    //self.messageOutline.dataSource = nil;
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     

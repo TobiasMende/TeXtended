@@ -10,10 +10,25 @@
 #import "DocumentControllerProtocol.h"
 
 @class DocumentModel;
+
+/**
+ * This class handels pdf view controllser for all pdf views of all main documents.
+ * It implements the DocumentControllerProtocol.
+ *
+ * @author Max Bannach
+ */
 @interface PDFViewsController : NSViewController<DocumentControllerProtocol>
 
+/** A tabview holds a PDFView for every MainDocument */
 @property (strong) IBOutlet NSTabView *tabView;
+
+/** Parent in the document controller tree */ 
 @property (weak) id<DocumentControllerProtocol> parent;
+
+/** Children in the document controller tree */
 @property (strong) NSSet* children;
+
+/** The DocumentModel this view is for */
 @property (weak) DocumentModel *model;
+
 @end
