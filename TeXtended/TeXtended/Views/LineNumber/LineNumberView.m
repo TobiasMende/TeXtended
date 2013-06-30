@@ -508,16 +508,14 @@
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
     NSRange nullRange;
-    NSRect *rects = 0; // init pointer
+    NSRect *rects; // init pointer
     
     float height = 0;
     NSUInteger index = 0, rectCount;
     
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
-
-        index = [[currentLines objectAtIndex:line] unsignedIntValue];
         
-        if (rects) { // just work with a init pointer to be nice
+        index = [[currentLines objectAtIndex:line] unsignedIntValue];        
             rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
                        withinSelectedCharacterRange:nullRange
                                     inTextContainer:container
@@ -525,13 +523,12 @@
             
             height = rects->origin.y;
             [heights addObject:[NSNumber numberWithFloat:height]];
-        }
     }
     
     // to draw the last line
-    if (rects) { // catch null pointer logic error
-        [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
-    }
+    //if (&rects) {
+    [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
+    //}
     return heights;
 }
 
@@ -555,7 +552,6 @@
         2*visibleRect.size.height,
     };
     NSRectFill(rect);
-    
     
     HighlightingTextView *view = [[self scrollView] documentView];
     NSLayoutManager	*manager        = [view layoutManager];
@@ -585,7 +581,6 @@
     }
     
     for (int i = 0; i < [lineHights count] - 1; i++) {
-        
         /* draw rect for current line */
         NSRect rect = {dirtyRect.size.width - BORDER_SIZE ,
             [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y,
