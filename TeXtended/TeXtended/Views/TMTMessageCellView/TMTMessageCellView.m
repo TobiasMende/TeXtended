@@ -39,9 +39,15 @@
         keys = [keys setByAddingObject:@"objectValue"];
     } else if ([key isEqualToString:@"lineString"]){
          keys = [keys setByAddingObject:@"objectValue"];
+        
+    } else if ([key isEqualToString:@"message"]){
+        keys = [keys setByAddingObject:@"objectValue"];
+    } else if ([key isEqualToString:@"isExternal"]) {
+        keys = [keys setByAddingObjectsFromArray:[NSArray arrayWithObjects:@"self.model.texPath", @"self.message.document", nil]];
     }
     return keys;
 }
+
 
 - (BOOL)isExternal {
     return ![self.model.texPath isEqualToString:self.message.document];

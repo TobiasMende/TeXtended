@@ -13,6 +13,7 @@
 
 - (void)drawSeparatorInRect:(NSRect)dirtyRect
 {
+    [super drawSeparatorInRect:dirtyRect];
     // Define our drawing colors
     NSColor *bg = [self backgroundColor];
     NSColor *normalColor = [bg colorWithAlphaComponent:1.0];
