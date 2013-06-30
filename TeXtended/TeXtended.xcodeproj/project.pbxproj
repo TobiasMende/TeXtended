@@ -702,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				D296059217807E6C007C599B /* TMTCustomView */,
+				F6F259DE178083EF0075F677 /* EncodingView */,
 				D248E4D9177763C7008DDE80 /* TMTMessageCellView */,
 				D2668616176F5B39001699A8 /* GoToLine */,
 				D266861A176F5B39001699A8 /* LineNumber */,
@@ -1098,6 +1099,7 @@
 				D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */,
 				D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */,
 				D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */,
+				F6F259E0178084180075F677 /* EncodingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
