@@ -68,9 +68,12 @@
 							<string key="NSToolbarItemPaletteLabel">Live</string>
 							<string key="NSToolbarItemToolTip">Enable/ Disable Livecompile</string>
 							<object class="NSButton" key="NSToolbarItemView" id="493995493">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{0, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="178519761">
@@ -116,9 +119,12 @@
 							<string key="NSToolbarItemPaletteLabel">Final</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="147505985">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="703661583">
@@ -160,9 +166,12 @@
 							<string key="NSToolbarItemPaletteLabel">View</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="538676730">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {104, 24}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="721200420">
@@ -185,7 +194,7 @@
 											<double key="NSSegmentItemWidth">32</double>
 											<object class="NSCustomResource" key="NSSegmentItemImage">
 												<string key="NSClassName">NSImage</string>
-												<string key="NSResourceName">SplitviewMiddle</string>
+												<string key="NSResourceName">SplitviewBottom</string>
 											</object>
 											<string key="NSSegmentItemTooltip">Editor</string>
 											<int key="NSSegmentItemTag">1</int>
@@ -227,9 +236,12 @@
 							<string key="NSToolbarItemPaletteLabel">Report</string>
 							<string key="NSToolbarItemToolTip">Report a Bug</string>
 							<object class="NSButton" key="NSToolbarItemView" id="277962861">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{7, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="338127929">
@@ -271,9 +283,12 @@
 							<string key="NSToolbarItemPaletteLabel">Draft</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="158262745">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="376759161">
@@ -1137,7 +1152,7 @@
 				<string key="100400.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100401.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100403.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<integer value="0" key="100404.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey"/>
+				<integer value="1" key="100404.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="100404.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100405.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100407.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1318,8 +1333,8 @@
 			<string key="NSMenuMixedState">{10, 3}</string>
 			<string key="Play">{19, 19}</string>
 			<string key="ReportBug">{19, 19}</string>
+			<string key="SplitviewBottom">{19, 19}</string>
 			<string key="SplitviewLeft">{19, 19}</string>
-			<string key="SplitviewMiddle">{19, 19}</string>
 			<string key="SplitviewRight">{19, 19}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
