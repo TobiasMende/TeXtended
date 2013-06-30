@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 #import "TextViewObserver.h"
+#import "Constants.h"
 @class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection;
 
 /**
@@ -32,6 +33,7 @@
     NSInteger countRunningParsers;
 }
 
+@property(nonatomic) TMTLatexLogLevel logLevel;
 /** The view showing the latex source code to the user */
 @property (strong) IBOutlet HighlightingTextView *textView;
 
