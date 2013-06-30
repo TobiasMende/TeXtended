@@ -26,6 +26,8 @@
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
 		D213171817782A3C002966FC /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
+		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
+		D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */; };
 		D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACB5F17267A1700E2F8EC /* Sparkle.framework */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
@@ -59,6 +61,10 @@
 		D28DC0DD177AEDF400E4C711 /* lualatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
 		D28DC0DE177AEDF700E4C711 /* xelatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
+		D296059517807E7C007C599B /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D296059417807E7C007C599B /* TMTCustomView.m */; };
+		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
+		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
+		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
@@ -70,9 +76,6 @@
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
 		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
-		D2B0166A1766194F00C6CE23 /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */; };
-		D2B0166D17661AD000C6CE23 /* SplitviewMiddle.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */; };
-		D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
@@ -212,6 +215,9 @@
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
 		D213171617782A3C002966FC /* TMTTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableRowView.h; sourceTree = "<group>"; };
 		D213171717782A3C002966FC /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
+		D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoViewController.h; sourceTree = "<group>"; };
+		D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoViewController.m; sourceTree = "<group>"; };
+		D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInfoView.xib; sourceTree = "<group>"; };
 		D21ACB5F17267A1700E2F8EC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -328,6 +334,11 @@
 		D28DC0DB177AED2900E4C711 /* lualatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lualatex.rb; sourceTree = "<group>"; };
 		D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardSynctex.h; sourceTree = "<group>"; };
 		D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackwardSynctex.m; sourceTree = "<group>"; };
+		D296059317807E7C007C599B /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
+		D296059417807E7C007C599B /* TMTCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTCustomView.m; sourceTree = "<group>"; };
+		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
+		D296059D178091F7007C599B /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
+		D296059E178091F7007C599B /* SplitviewRight.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewRight.pdf; sourceTree = "<group>"; };
 		D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardSynctex.h; sourceTree = "<group>"; };
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
@@ -357,9 +368,6 @@
 		D2B01663176608A800C6CE23 /* ReportBug.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ReportBug.pdf; sourceTree = "<group>"; };
 		D2B0166517660D9900C6CE23 /* Play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Play.pdf; sourceTree = "<group>"; };
 		D2B016671766163E00C6CE23 /* Export.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Export.pdf; sourceTree = "<group>"; };
-		D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
-		D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewMiddle.pdf; sourceTree = "<group>"; };
-		D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewRight.pdf; sourceTree = "<group>"; };
 		D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Livepreview.pdf; sourceTree = "<group>"; };
 		D2B0F5B717202C9600B6BBC4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
@@ -672,6 +680,9 @@
 				D248E4DD1777647E008DDE80 /* MessageDataSource.h */,
 				D248E4DE1777647E008DDE80 /* MessageDataSource.m */,
 				D213171417782485002966FC /* TMTMessageCellView.xib */,
+				D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */,
+				D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */,
+				D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */,
 			);
 			path = TMTMessageCellView;
 			sourceTree = "<group>";
@@ -690,6 +701,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D296059217807E6C007C599B /* TMTCustomView */,
 				F6F259DE178083EF0075F677 /* EncodingView */,
 				D248E4D9177763C7008DDE80 /* TMTMessageCellView */,
 				D2668616176F5B39001699A8 /* GoToLine */,
@@ -813,17 +825,26 @@
 			path = FileModel;
 			sourceTree = "<group>";
 		};
+		D296059217807E6C007C599B /* TMTCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				D296059317807E7C007C599B /* TMTCustomView.h */,
+				D296059417807E7C007C599B /* TMTCustomView.m */,
+			);
+			path = TMTCustomView;
+			sourceTree = "<group>";
+		};
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
 				D2CF6196177247E200ACC3D5 /* info.png */,
 				D2CF6197177247E200ACC3D5 /* warning.png */,
+				D296059C178091F7007C599B /* SplitviewBottom.pdf */,
+				D296059D178091F7007C599B /* SplitviewLeft.pdf */,
+				D296059E178091F7007C599B /* SplitviewRight.pdf */,
 				D2CF618F1770FC7600ACC3D5 /* check.png */,
 				D2CF61901770FC7600ACC3D5 /* error.png */,
 				D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */,
-				D2B016691766194E00C6CE23 /* SplitviewLeft.pdf */,
-				D2B0166B17661AD000C6CE23 /* SplitviewMiddle.pdf */,
-				D2B0166C17661AD000C6CE23 /* SplitviewRight.pdf */,
 				D2B016671766163E00C6CE23 /* Export.pdf */,
 				D2B0166517660D9900C6CE23 /* Play.pdf */,
 				D2B01663176608A800C6CE23 /* ReportBug.pdf */,
@@ -1057,9 +1078,6 @@
 				D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */,
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
 				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
-				D2B0166A1766194F00C6CE23 /* SplitviewLeft.pdf in Resources */,
-				D2B0166D17661AD000C6CE23 /* SplitviewMiddle.pdf in Resources */,
-				D2B0166E17661AD000C6CE23 /* SplitviewRight.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
 				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
@@ -1077,7 +1095,11 @@
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
 				D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */,
 				D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */,
+				D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */,
 				F6F259E0178084180075F677 /* EncodingView.xib in Resources */,
+				D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */,
+				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
+				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,6 +1215,8 @@
 				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
+				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
+				D296059517807E7C007C599B /* TMTCustomView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,8 @@
 #import "TMTTableRowView.h"
 #import "DocumentCreationController.h"
 #import "SimpleDocument.h"
+#import "MessageInfoViewController.h"
+#import "TMTCustomView.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
@@ -88,10 +90,30 @@
 
 
 - (void)handleClick:(id)sender {
+    if (popover) {
+        [popover close];
+        popover = nil;
+    }
     NSInteger row = [self.tableView clickedRow];
+    if (row < 0) {
+        return;
+    }
+    NSView *view = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
     if (row < self.messages.count) {
-        //TrackingMessage *message = [self.messages objectAtIndex:row];
-        //TODO: show popover
+        TrackingMessage *message = [self.messages objectAtIndex:row];
+        if (!infoController) {
+            infoController = [[MessageInfoViewController alloc] init];
+        }
+        if (!popover) {
+            popover = [[NSPopover alloc] init];
+            popover.animates = YES;
+            popover.behavior = NSPopoverBehaviorTransient;
+        }
+        infoController.message = message;
+        infoController.model = self.model;
+        [(TMTCustomView*)infoController.view setBackgroundColor:[TrackingMessage backgroundColorForType:message.type]];
+        popover.contentViewController = infoController;
+        [popover showRelativeToRect:self.tableView.bounds ofView:view preferredEdge:NSMaxXEdge];
     }
 
 }
@@ -101,6 +123,7 @@
     //[rowView setBackgroundColor:[NSColor greenColor]];
     TrackingMessage *m = [self.messages objectAtIndex:row];
     [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
+    
 }
 
 - (void)setModel:(DocumentModel *)model {
