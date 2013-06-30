@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 @class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver;
 
+/**
+ This view controller handles the FileView and other important objects connected to it.
+ 
+ It is the data source and the delegate of the FileOutlineView within the FileView.
+ 
+ **Author:** Tobias Hecht
+ 
+ */
+
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSTextDelegate> {
     
     /** Rootnode for the fileviewmodel */
@@ -85,4 +94,10 @@
 
 /** Button to display infoview */
 @property (weak) IBOutlet NSButton *titleButton;
+
+/** Title of the TitleButton */
+@property (weak) NSString* titleOfButton;
+
+/** Flag to enable or disable the Titlebutton */
+@property BOOL titleButtonEnabled;
 @end

@@ -17,6 +17,7 @@
 			<string>NSButton</string>
 			<string>NSButtonCell</string>
 			<string>NSCustomObject</string>
+			<string>NSDateFormatter</string>
 			<string>NSMenu</string>
 			<string>NSMenuItem</string>
 			<string>NSNumberFormatter</string>
@@ -506,7 +507,7 @@
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="NSTextFieldCell" key="NSCell" id="488884464">
 																				<int key="NSCellFlags">-1804599231</int>
-																				<int key="NSCellFlags2">272630784</int>
+																				<int key="NSCellFlags2">-1874852864</int>
 																				<string key="NSContents"/>
 																				<reference key="NSSupport" ref="551165019"/>
 																				<string key="NSCellIdentifier">_NS:9</string>
@@ -1361,7 +1362,7 @@
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="369652436">
 												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">272630784</int>
+												<int key="NSCellFlags2">-1874852864</int>
 												<string key="NSContents">Last change:</string>
 												<reference key="NSSupport" ref="551165019"/>
 												<string key="NSCellIdentifier">_NS:1535</string>
@@ -1403,7 +1404,7 @@
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="584840832">
 												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">272630784</int>
+												<int key="NSCellFlags2">-1874852864</int>
 												<string key="NSContents">Label</string>
 												<reference key="NSSupport" ref="551165019"/>
 												<string key="NSCellIdentifier">_NS:1535</string>
@@ -1445,9 +1446,19 @@
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="726834356">
 												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">272630784</int>
+												<int key="NSCellFlags2">-1874852864</int>
 												<string key="NSContents">Label</string>
 												<reference key="NSSupport" ref="551165019"/>
+												<object class="NSDateFormatter" key="NSFormatter" id="811623194">
+													<dictionary class="NSMutableDictionary" key="NS.attributes">
+														<string key="dateFormat">MMM d, y - HH:mm</string>
+														<integer value="3" key="dateStyle"/>
+														<integer value="1040" key="formatterBehavior"/>
+														<integer value="2" key="timeStyle"/>
+													</dictionary>
+													<string key="NS.format">MMM d, y - HH:mm</string>
+													<bool key="NS.natural">NO</bool>
+												</object>
 												<string key="NSCellIdentifier">_NS:1535</string>
 												<reference key="NSControlView" ref="174803405"/>
 												<reference key="NSBackgroundColor" ref="134823376"/>
@@ -1466,9 +1477,19 @@
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="213677156">
 												<int key="NSCellFlags">68157504</int>
-												<int key="NSCellFlags2">272630784</int>
+												<int key="NSCellFlags2">-1874852864</int>
 												<string key="NSContents">Label</string>
 												<reference key="NSSupport" ref="551165019"/>
+												<object class="NSDateFormatter" key="NSFormatter" id="1068900591">
+													<dictionary class="NSMutableDictionary" key="NS.attributes">
+														<string key="dateFormat">MMM d, y - HH:mm</string>
+														<integer value="3" key="dateStyle"/>
+														<integer value="1040" key="formatterBehavior"/>
+														<integer value="2" key="timeStyle"/>
+													</dictionary>
+													<string key="NS.format">MMM d, y - HH:mm</string>
+													<bool key="NS.natural">NO</bool>
+												</object>
 												<string key="NSCellIdentifier">_NS:1535</string>
 												<reference key="NSControlView" ref="216260143"/>
 												<reference key="NSBackgroundColor" ref="134823376"/>
@@ -2217,6 +2238,118 @@
 						</object>
 					</object>
 					<int key="connectionID">543</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.doc.project</string>
+						<reference key="source" ref="767132593"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="767132593"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: self.doc.project</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.doc.project</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1551</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: self.doc.project</string>
+						<reference key="source" ref="953129244"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="953129244"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: self.doc.project</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">self.doc.project</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1555</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentName</string>
+						<reference key="source" ref="584840832"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="584840832"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentName</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentName</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1558</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentType</string>
+						<reference key="source" ref="162916837"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="162916837"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentType</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentType</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1561</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.doc.lastCompile</string>
+						<reference key="source" ref="726834356"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="726834356"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.doc.lastCompile</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.doc.lastCompile</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1541</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.doc.lastChanged</string>
+						<reference key="source" ref="213677156"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="213677156"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.doc.lastChanged</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.doc.lastChanged</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1547</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.documentPath</string>
+						<reference key="source" ref="782282948"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="782282948"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.documentPath</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.documentPath</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1563</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3382,6 +3515,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">659</int>
 						<reference key="object" ref="369652436"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="685413901"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -3439,6 +3573,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">680</int>
 						<reference key="object" ref="584840832"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="81437767"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -3470,6 +3605,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">690</int>
 						<reference key="object" ref="726834356"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="811623194"/>
+						</array>
 						<reference key="parent" ref="174803405"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -3483,6 +3621,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">694</int>
 						<reference key="object" ref="213677156"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="1068900591"/>
+						</array>
 						<reference key="parent" ref="216260143"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -4042,6 +4183,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">269</int>
 						<reference key="object" ref="488884464"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="608162769"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -5614,6 +5756,16 @@
 						<reference key="object" ref="498672505"/>
 						<reference key="parent" ref="298570337"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1537</int>
+						<reference key="object" ref="811623194"/>
+						<reference key="parent" ref="726834356"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1542</int>
+						<reference key="object" ref="1068900591"/>
+						<reference key="parent" ref="213677156"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5733,6 +5885,10 @@
 				<integer value="1041" key="1513.IBNumberFormatterBehaviorMetadataKey"/>
 				<boolean value="YES" key="1513.IBNumberFormatterLocalizesFormatMetadataKey"/>
 				<string key="1513.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<integer value="2" key="1537.IBDateFormatterBehaviorMetadataKey"/>
+				<string key="1537.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<integer value="2" key="1542.IBDateFormatterBehaviorMetadataKey"/>
+				<string key="1542.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<array class="NSMutableArray" key="2.IBNSViewMetadataConstraints">
 					<reference ref="243455122"/>
 					<reference ref="468593850"/>
@@ -6077,7 +6233,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1536</int>
+			<int key="maxID">1563</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

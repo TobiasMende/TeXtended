@@ -9,6 +9,15 @@
 #import <Cocoa/Cocoa.h>
 @class DocumentModel,CompileFlowHandler;
 
+/**
+ This view controller handles the InfoWindow and other important objects connected to it.
+ 
+ It is the data source of the Maindocuments table within the InfoWindow.
+ 
+ **Author:** Tobias Hecht
+ 
+ */
+
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
     NSMutableArray *texDocs;
 }
@@ -39,6 +48,12 @@
 @property (weak) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
 @property (weak) IBOutlet NSButton *removeButton;
+/** Name of the Document */
+@property (weak) NSString* documentName;
+/** Type of the Document */
+@property (weak) NSString* documentType;
+/** Path of the Document */
+@property (weak) NSString* documentPath;
 
 /** Method for loading a document to display
  @param document is the document to display

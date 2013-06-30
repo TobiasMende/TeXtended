@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ The FileViewCell is used to display the content of the FileViewModel in the FileOutlineView. It is able to display an image and to be editable in an intuitive behavior.
+ 
+ **Author:** Tobias Hecht
+ */
+
 @interface FileViewCell : NSTextFieldCell <NSTextDelegate>
 
 /** Image for the fileicon */

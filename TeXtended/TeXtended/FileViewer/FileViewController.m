@@ -34,38 +34,16 @@
     return self;
 }
 
-- (IBAction)openInfoView:(id)sender
-{
-    if(!self.doc)
-    {
-        return;
-    }
-    if(!self.doc.texPath)
-    {
-        return;
-    }
-    [self.infoWindowController showWindow:self.infoWindowController];
-    [self.infoWindowController loadDocument:self.doc];
-}
-
-- (void)updateFileViewModel:(id)sender
-{
-    if (!self.doc) {
-        return;
-    }
+- (void) awakeFromNib {
+    [super awakeFromNib];
     
-    NSURL *url;
-    if (self.doc.project)
-    {
-        url = [NSURL fileURLWithPath:[self.doc.project.path stringByDeletingLastPathComponent]];
-    }
-    else
-    {
-        url = [NSURL fileURLWithPath:[self.doc.texPath stringByDeletingLastPathComponent]];
-    }
+    [self->outline setTarget:self];
+    [self->outline setDelegate:self];
+    [self->outline setDoubleAction:@selector(doubleClick:)];
     
-    [self recursiveFileUpdater:url];
-    [outline reloadData];
+    self.infoWindowController = [[InfoWindowController alloc] init];
+    [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
+    initialized = FALSE;
 }
 
 - (void)doubleClick:(id)sender {
@@ -155,7 +133,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         if([self.doc.texPath isEqualToString:oldFile])
         {
             self.doc.texPath = [[oldFile stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-            [self.titleButton setTitle:[newFile stringByDeletingPathExtension]];
+            self.titleOfButton = [newFile stringByDeletingPathExtension];
         }
     }
 }
@@ -215,42 +193,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
-    if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
-    {
-        if(item)
-        {
-            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            FileViewModel *model = (FileViewModel*)item;
-            BOOL b = false;
-            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
-            if(b)
-            {
-                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-                {
-                    NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames   objectAtIndex:i] lastPathComponent]];
-                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-                }
-            }
-            else
-            {
-                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-                {
-                    NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-                }
-            }
-        }
-        else
-        {
-            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
-            {
-                NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
-                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
-            }
-        }
-    }
-    
     if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:@"FileViewModel"]])
     {
         if(item)
@@ -288,12 +230,53 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         [outline reloadData];
     }
+    else if([[info draggingPasteboard] availableTypeFromArray:[NSArray arrayWithObject:NSFilenamesPboardType]])
+    {
+        if(item)
+        {
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            FileViewModel *model = (FileViewModel*)item;
+            BOOL b = false;
+            [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&b];
+            if(b)
+            {
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [model.filePath stringByAppendingPathComponent:[[draggedFilenames   objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
+            }
+            else
+            {
+                for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+                {
+                    NSString* newPath = [[model.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                    [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+                }
+            }
+        }
+        else
+        {
+            NSArray *draggedFilenames = [[info draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            for(NSInteger i = 0; i < [draggedFilenames count]; i++)
+            {
+                NSString* newPath = [nodes.filePath stringByAppendingPathComponent:[[draggedFilenames objectAtIndex:i] lastPathComponent]];
+                [self moveFile:[draggedFilenames objectAtIndex:i] toPath:newPath withinProject:NO];
+            }
+        }
+    }
     return TRUE;
 }
 
 -(BOOL) outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard
 {
     [pasteboard declareTypes:[NSArray arrayWithObjects:@"FileViewModel", nil] owner:self];
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:[items count]];
+    for (FileViewModel* item in items)
+    {
+        [array addObject:item.filePath];
+    }
+    [pasteboard setPropertyList:array forType:NSFilenamesPboardType];
     draggedItems = items;
     return YES;
 }
@@ -322,16 +305,63 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (void) awakeFromNib {
-    [super awakeFromNib];
+- (void)loadDocument:(DocumentModel*)document
+{
+    self.doc = document;
+    NSString *totalPath;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    if (self.doc.project) {
+        totalPath = self.doc.project.path;
+        self.titleOfButton = self.doc.project.name;
+        
+        // Add Oberserver
+        [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
+    } else {
+        totalPath = self.doc.texPath;
+        self.titleOfButton = [self.doc.texName stringByDeletingPathExtension];
+        
+        // Add Observer
+        [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
+    }
     
-    [self->outline setTarget:self];
-    [self->outline setDelegate:self];
-    [self->outline setDoubleAction:@selector(doubleClick:)];
+    if (!totalPath)
+    {
+        initialized = FALSE;
+        return;
+    }
+    else
+    {
+        initialized = TRUE;
+    }
     
-    self.infoWindowController = [[InfoWindowController alloc] init];
-    [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
-    initialized = FALSE;
+    // Load Path in FileView
+    NSString *path = [totalPath stringByDeletingLastPathComponent];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    @try {
+        [self loadPath:url];
+    }
+    @catch (NSException *exception) {
+        self.titleOfButton = @"";
+        self.titleButtonEnabled = FALSE;
+        return;
+    }
+    
+    /*if (observer) {
+     [observer removeObserver:self];
+     }
+     observer = [PathObserverFactory pathObserverForPath:path];
+     [observer addObserver:self withSelector:@selector(updateFileViewModel:)];*/
+    self.titleButtonEnabled = TRUE;
+}
+
+- (BOOL)loadPath: (NSURL*)url
+{
+    nodes = [[FileViewModel alloc] init];
+    [nodes setFilePath:[url path]];
+    [self simpleFileFinder:url];
+    [outline reloadData];
+    return YES;
 }
 
 - (void) simpleFileFinder: (NSURL*)url
@@ -394,13 +424,18 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->nodes clean];
 }
 
-- (BOOL)loadPath: (NSURL*)url
+- (IBAction)openInfoView:(id)sender
 {
-    nodes = [[FileViewModel alloc] init];
-    [nodes setFilePath:[url path]];
-    [self simpleFileFinder:url];
-    [outline reloadData];
-    return YES;
+    if(!self.doc)
+    {
+        return;
+    }
+    if(!self.doc.texPath)
+    {
+        return;
+    }
+    [self.infoWindowController showWindow:self.infoWindowController];
+    [self.infoWindowController loadDocument:self.doc];
 }
 
 - (IBAction)newFile:(id)sender
@@ -473,6 +508,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
+- (IBAction)openFolderinFinder:(id)sender
+{
+    [self openFileInDefApp:nodes.filePath];
+}
+
 - (void) createFile:(NSString*)atPath
 {
     NSString* newPath = [atPath stringByAppendingPathComponent:@"New File.tex"];
@@ -535,16 +575,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
 
-- (IBAction)openFolderinFinder:(id)sender
-{
-    if (observer) {
-        [observer removeObserver:self];
-    }
-    observer = [PathObserverFactory pathObserverForPath:[self.doc.texPath stringByDeletingLastPathComponent]];
-    [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-    //[self openFileInDefApp:nodes.filePath];
-}
-
 - (BOOL)openFileInDefApp: (NSString*)path
 {
     NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
@@ -556,146 +586,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
          toNewFile:(NSString*)newFile {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
     [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
-}
-
-- (void)loadDocument:(DocumentModel*)document
-{
-    self.doc = document;
-    NSString *totalPath;
-    NSString *titleText;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
-    if (self.doc.project) {
-        totalPath = self.doc.project.path;
-        NSString *stringFromDate;
-        if(self.doc.lastCompile)
-        {
-            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
-        }
-        else
-        {
-            titleText = [NSString stringWithFormat:@"%@", self.doc.project.name];
-        }
-        
-        // Add Oberserver
-        [self.doc.project addObserver:self forKeyPath:@"path" options:0 context:NULL];
-    } else {
-        totalPath = self.doc.texPath;
-        NSString *stringFromDate;
-        if(self.doc.lastCompile)
-        {
-            stringFromDate = [formatter stringFromDate:self.doc.lastCompile];
-            titleText = [NSString stringWithFormat:@"%@ - Last compile %@", _doc.texName.stringByDeletingPathExtension, stringFromDate];
-        }
-        else
-        {
-            if (!self.doc.texName) {
-                titleText = @"";
-            }
-            else
-            {
-                titleText = [NSString stringWithFormat:@"%@", self.doc.texName.stringByDeletingPathExtension];
-            }
-        }
-        
-        // Add Observer
-        [self.doc addObserver:self forKeyPath:@"texPath" options:0 context:NULL];
-    }
-    
-    // In Sandboxmode
-    if([titleText isEqualToString:@""])
-    {
-        [self.titleButton setTitle:@""];
-        return;
-    }
-    
-    if ([titleText length] >= 50) {
-        [self.titleButton setTitle:[titleText substringToIndex:50]];
-    }
-    else
-    {
-        [self.titleButton setTitle:titleText];
-    }
-
-    if (!totalPath)
-    {
-        initialized = FALSE;
-        return;
-    }
-    else
-    {
-        initialized = TRUE;
-    }
-
-    // Load Path in FileView
-    NSString *path = [totalPath stringByDeletingLastPathComponent];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    @try {
-        [self loadPath:url];
-    }
-    @catch (NSException *exception) {
-        [self.titleButton setTitle:@""];
-        [self.titleButton setEnabled:FALSE];
-        return;
-    }
-    @finally {
-        if (observer) {
-            [observer removeObserver:self];
-        }
-        observer = [PathObserverFactory pathObserverForPath:path];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-    }
-}
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                       change:(NSDictionary *)change context:(void*)context {
-    DocumentModel *dc = (DocumentModel*)object;
-    NSString *titleText;
-    
-    if ([keyPath isEqualToString:@"texPath"]) {
-        if (initialized) {
-            return;
-        }
-        
-        if (observer) {
-            [observer removeObserver:self];
-        }
-        observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-        titleText = [NSString stringWithFormat:@"%@", dc.texName.stringByDeletingPathExtension];
-        [self loadPath:[NSURL fileURLWithPath:[dc.texPath stringByDeletingLastPathComponent]]];
-        
-        if ([titleText length] >= 50) {
-            [self.titleButton setTitle:[titleText substringToIndex:50]];
-        }
-        else
-        {
-            [self.titleButton setTitle:titleText];
-        }
-        
-        initialized = TRUE;
-    }
-    
-    if ([keyPath isEqualToString:@"Path"]) {
-        if (observer) {
-            [observer removeObserver:self];
-        }
-        observer = [PathObserverFactory pathObserverForPath:[dc.project.path stringByDeletingLastPathComponent]];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
-        titleText = [NSString stringWithFormat:@"%@", dc.project.name];
-        [self loadPath:[NSURL fileURLWithPath:[dc.project.path stringByDeletingLastPathComponent]]];
-        
-        if ([titleText length] >= 50) {
-            [self.titleButton setTitle:[titleText substringToIndex:50]];
-        }
-        else
-        {
-            [self.titleButton setTitle:titleText];
-        }
-        
-        initialized = TRUE;
-    }
 }
 
 - (void)moveFile:(NSString*)oldPath
@@ -710,6 +600,68 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             [outline reloadData];
         }
     }
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                       change:(NSDictionary *)change context:(void*)context {
+    DocumentModel *dc = (DocumentModel*)object;
+    
+    if ([keyPath isEqualToString:@"texPath"]) {
+        if (initialized || !dc.texPath) {
+            return;
+        }
+        
+        if (observer) {
+            [observer removeObserver:self];
+        }
+
+        observer = [PathObserverFactory pathObserverForPath:[dc.texPath stringByDeletingLastPathComponent]];
+        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+        [self loadPath:[NSURL fileURLWithPath:[dc.texPath stringByDeletingLastPathComponent]]];
+        
+        self.titleOfButton = [dc.texName stringByDeletingPathExtension];
+        
+        initialized = TRUE;
+        self.titleButtonEnabled = TRUE;
+    }
+    
+    if ([keyPath isEqualToString:@"Path"]) {
+        if (initialized || !dc.texPath) {
+            return;
+        }
+        
+        if (observer) {
+            [observer removeObserver:self];
+        }
+        observer = [PathObserverFactory pathObserverForPath:[dc.project.path stringByDeletingLastPathComponent]];
+        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
+        [self loadPath:[NSURL fileURLWithPath:[dc.project.path stringByDeletingLastPathComponent]]];
+        
+        self.titleOfButton = dc.project.name;
+        
+        initialized = TRUE;
+        self.titleButtonEnabled = TRUE;
+    }
+}
+
+- (void)updateFileViewModel:(id)sender
+{
+    if (!self.doc) {
+        return;
+    }
+    
+    NSURL *url;
+    if (self.doc.project)
+    {
+        url = [NSURL fileURLWithPath:[self.doc.project.path stringByDeletingLastPathComponent]];
+    }
+    else
+    {
+        url = [NSURL fileURLWithPath:[self.doc.texPath stringByDeletingLastPathComponent]];
+    }
+    
+    [self recursiveFileUpdater:url];
+    [outline reloadData];
 }
 
 - (void)dealloc {
