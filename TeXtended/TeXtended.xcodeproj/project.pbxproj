@@ -153,6 +153,7 @@
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6F259E0178084180075F677 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F259DF178084180075F677 /* EncodingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -418,6 +419,7 @@
 		F6E2FC9D1767A59F0057C960 /* FileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewCell.m; sourceTree = "<group>"; };
 		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
 		F6E8243F1743A11E00FB2CCB /* FileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewModel.m; sourceTree = "<group>"; };
+		F6F259DF178084180075F677 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +690,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F6F259DE178083EF0075F677 /* EncodingView */,
 				D248E4D9177763C7008DDE80 /* TMTMessageCellView */,
 				D2668616176F5B39001699A8 /* GoToLine */,
 				D266861A176F5B39001699A8 /* LineNumber */,
@@ -966,6 +969,14 @@
 			path = InfoPanels;
 			sourceTree = "<group>";
 		};
+		F6F259DE178083EF0075F677 /* EncodingView */ = {
+			isa = PBXGroup;
+			children = (
+				F6F259DF178084180075F677 /* EncodingView.xib */,
+			);
+			path = EncodingView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1066,6 +1077,7 @@
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
 				D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */,
 				D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */,
+				F6F259E0178084180075F677 /* EncodingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

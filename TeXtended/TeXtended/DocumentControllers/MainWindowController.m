@@ -84,38 +84,40 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     if (s0 == [self.mainView isCollapsed:0]) {
         if ([self.mainView isCollapsed:0] || !([self.mainView isCollapsed:1] && [self.mainView isCollapsed:2])) {
-            //[self.mainView toggleCollapseFor:0];
-            if ([self.mainView isCollapsed:0]) {
+            [self.mainView toggleCollapseFor:0];
+            /*if ([self.mainView isCollapsed:0]) {
                 [self.mainView toggleCollapseFor:0];
-                //[self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
-                //[self.left setNeedsDisplay:YES];
+                [self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
+                [self.left setNeedsDisplay:YES];
             }
             else {
                 [self.left setTranslatesAutoresizingMaskIntoConstraints:NO];
                 [self.mainView toggleCollapseFor:0];
-            }
+            }*/
         } else {
             NSBeep();
         }
     }
     if (s1 == [self.mainView isCollapsed:1]) {
         if ([self.mainView isCollapsed:1] || !([self.mainView isCollapsed:0] && [self.mainView isCollapsed:2])) {
-            if ([self.mainView isCollapsed:1]) {
+            [self.mainView toggleCollapseFor:1];
+            /*if ([self.mainView isCollapsed:1]) {
                 [self.mainView toggleCollapseFor:1];
-                //[self.middle setTranslatesAutoresizingMaskIntoConstraints:YES];
-                //[self.middle setNeedsDisplay:YES];
+                [self.middle setTranslatesAutoresizingMaskIntoConstraints:YES];
+                [self.middle setNeedsDisplay:YES];
             }
             else {
                 [self.middle setTranslatesAutoresizingMaskIntoConstraints:NO];
                 [self.mainView toggleCollapseFor:1];
-            }
+            }*/
         } else {
             NSBeep();
         }
     }
     if (s2 == [self.mainView isCollapsed:2]) {
         if (!([self.mainView isCollapsed:0] && [self.mainView isCollapsed:1]) || [self.mainView isCollapsed:2]) {
-            if ([self.mainView isCollapsed:2]) {
+            [self.mainView toggleCollapseFor:2];
+            /*if ([self.mainView isCollapsed:2]) {
                 [self.mainView toggleCollapseFor:2];
                 [self.right setTranslatesAutoresizingMaskIntoConstraints:YES];
                 [self.right setNeedsDisplay:YES];
@@ -123,7 +125,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             else {
                 [self.right setTranslatesAutoresizingMaskIntoConstraints:NO];
                 [self.mainView toggleCollapseFor:2];
-            }
+            }*/
         } else {
             NSBeep();
         }
@@ -183,9 +185,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.mainView setDelegate:self];
 }
 
-- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
-    return 0;
-}
+//- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
+//    return 0;
+//}
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
