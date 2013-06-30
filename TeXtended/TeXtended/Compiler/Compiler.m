@@ -37,9 +37,6 @@
     return self;
 }
 
-
-
-
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];

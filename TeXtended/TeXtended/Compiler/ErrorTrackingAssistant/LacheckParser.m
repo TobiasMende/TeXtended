@@ -16,7 +16,13 @@
 
 @implementation LacheckParser
 
-
+/**
+ * This parses a document.
+ *
+ * @param path to the document
+ * @param obj
+ * @param action
+ */
 - (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action{
     if (!path) {
         return;
@@ -55,6 +61,14 @@
     
 }
 
+/**
+ * Parse the outbut of Lacheck.
+ *
+ * @param output of lacheck as NSString
+ * @param base as NSString
+ *
+ * @return the output oas MessageCollection
+ */
 - (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
     MessageCollection *collection = [MessageCollection new];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
@@ -84,6 +98,13 @@
     
 }
 
+/**
+ * Check if a given info is valid.
+ *
+ * @param info as NSString
+ *
+ * @return ´YES´ if the info is valid
+ */
 - (BOOL)infoValid:(NSString *)info {
     if (!info) {
         return NO;
@@ -103,4 +124,5 @@
     return NO;
     
 }
+
 @end

@@ -9,24 +9,23 @@
 #import <Foundation/Foundation.h>
 
 /**
- This class provides the functionality of doing a forward synctex synchronisation.
- 
- It synchronizes the output pdf with the current position in the source code by getting a code position and returning the best matching position in the pdf file.
- 
- **Author:** Tobias Mende
- 
+ * This class provides the functionality of doing a forward synctex synchronisation.
+ *
+ * It synchronizes the output pdf with the current position in the source code by getting a code position and returning the best matching position in the pdf file.
+ *
+ * **Author:** Tobias Mende
+ *
  */
 @interface ForwardSynctex : NSObject
 
 /**
- Initializes the algorithm.
- 
- @param inPath the path to the latex file
- @param outPath the path of the pdf file
- @param row the line in the latex file
- @param col the column in the latex file
- 
- @return an instance which automatically starts a synctex task and blocks until it returns.
+ * Initializes the algorithm.
+ *
+ * @param inPath the path to the latex file
+ * @param outPath the path of the pdf file
+ * @param row the line in the latex file
+ * @param col the column in the latex file
+ * @return an instance which automatically starts a synctex task and blocks until it returns.
  */
 - initWithInputPath:(NSString*)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col;
 

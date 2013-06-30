@@ -30,8 +30,16 @@ static const NSDictionary *LATEX_ERROR_EXTENSIONS;
     }
 }
 
--(MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path {
-    
+/**
+ * Parse a content given as string for a document given by a path and returns
+ * the extracted result as MessageCollection.
+ *
+ * @param content as NSString
+ * @param path for the document
+ *
+ * @return a MessageCollection holding the result
+ */
+-(MessageCollection*)parseContent:(NSString *)content forDocument:(NSString *)path {
     MessageCollection *collection = [MessageCollection new];
     NSArray *matches = [ERROR_LINES_EXPRESSION matchesInString:content options:0 range:NSMakeRange(0, content.length)];
     
@@ -54,6 +62,14 @@ static const NSDictionary *LATEX_ERROR_EXTENSIONS;
     return collection;
 }
 
+/**
+ * Returns extended informations for a given error and info.
+ *
+ * @param title of the error
+ * @param info for the error
+ *
+ * @return more informations for the title and info
+ */
 - (NSString *)furtherInformationForError:(NSString *)title andInfo:(NSString *)info{
     NSString *furtherInformation;
     for (NSString* key in LATEX_ERROR_EXTENSIONS) {
