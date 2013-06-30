@@ -132,6 +132,7 @@ static const NSSet *KEYS_TO_UNBIND;
     showPageNumbers = NO;
 }
 
+
 - (void) drawPage:(PDFPage *) page
 {
     [super drawPage:page];
