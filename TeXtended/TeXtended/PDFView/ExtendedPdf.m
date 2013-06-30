@@ -57,6 +57,19 @@ static const NSSet *KEYS_TO_UNBIND;
     
     [self setGridColor:[NSColor lightGrayColor]];
     
+    // set attributes for the page numbers
+    pageNumberFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:16.0];
+    pageNumberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [pageNumberStyle setAlignment:NSCenterTextAlignment];
+    
+    attributesForPageNumbers = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              pageNumberFont,
+                                              NSFontAttributeName,
+                                              pageNumberStyle,
+                                              NSParagraphStyleAttributeName,
+                                              [NSColor whiteColor],
+                                              NSForegroundColorAttributeName, nil];
+    
     // link propertys to application shared
     [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
     [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridSpacing"] options:nil];
@@ -85,7 +98,6 @@ static const NSSet *KEYS_TO_UNBIND;
     return menu;
 }
 
-
 - (void)mouseMoved:(NSEvent *)theEvent
 {
     [super mouseMoved:theEvent];
@@ -110,14 +122,22 @@ static const NSSet *KEYS_TO_UNBIND;
     }
 }
 
+- (void) beginGestureWithEvent:(NSEvent *)event {
+    [super beginGestureWithEvent:event];
+    showPageNumbers = YES;
+}
+
+- (void) endGestureWithEvent:(NSEvent *)event {
+    [super beginGestureWithEvent:event];
+    showPageNumbers = NO;
+}
+
 - (void) drawPage:(PDFPage *) page
 {
     [super drawPage:page];
     
-    //NSLog(@"/%lu", [page ], [page.document pageCount]);
-    
-    
-    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
+                                                     (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
     [controllsView update:self];
     
     /* get the size of the current page */
@@ -128,9 +148,13 @@ static const NSSet *KEYS_TO_UNBIND;
         [self drawGrid:size];
     }
     
+    /** may draw a hud with the page numbers */
+    if (showPageNumbers) {
+        [self drawPageNumber:page];
+    }
+    
     /* draw pdf content */
     [page drawWithBox:[self displayBox]];
-    
 }
 
 - (void) drawGrid:(NSSize) size {
@@ -162,6 +186,27 @@ static const NSSet *KEYS_TO_UNBIND;
     
     /* actual draw it */
     [drawingPath stroke];
+}
+
+/**
+ * Draws the number of the current page and the total number of pages of the document.
+ * @param page is the current page of the pdf
+ */
+- (void) drawPageNumber:(PDFPage *) page {
+    NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
+    
+    // draw the hud
+    NSRect rect = {size.width - 100, size.height - 149, 100, 29};
+    [[NSColor darkGrayColor] set];
+    NSRectFill(rect);
+    
+    NSRect line = {size.width - 100, size.height - 150, 100, 1};
+    [[NSColor orangeColor] set];
+    NSRectFill(line);
+    
+    // draw the line numbers to the hud
+    NSString* pageNumber = [NSString stringWithFormat:@"%lu/%lu", [self.document indexForPage:page]+1, [page.document pageCount]];
+    [pageNumber drawInRect:rect withAttributes:attributesForPageNumbers];
 }
 
 - (void) addControlls {
