@@ -276,8 +276,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (BOOL)loadPath: (NSURL*)url {
     nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];
-    [self simpleFileFinder:url];
-    [outline reloadData];
+    @try {
+        [self simpleFileFinder:url];
+        [outline reloadData];
+    }
+    @catch (NSException *exception) {
+        /*
+         * In the revert to functionallity the texPath is systematically wrong.
+         */
+        return NO;
+    }
     return YES;
 }
 
