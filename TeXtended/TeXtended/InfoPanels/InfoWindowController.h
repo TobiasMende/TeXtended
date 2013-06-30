@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DocumentModel,CompileFlowHandler;
+@class DocumentModel,CompileFlowHandler,Compilable;
 
 /**
  This view controller handles the InfoWindow and other important objects connected to it.
@@ -25,7 +25,9 @@
 /** Tableview displaying the Maindocuments */
 @property (weak) IBOutlet NSTableView *table;
 /** Documentmodel which is displayed */
-@property (weak) DocumentModel* doc;
+@property (weak, nonatomic) DocumentModel* doc;
+
+@property (nonatomic) Compilable *mainCompilabel;
 /** Label for the Document- or Projectname */
 @property (weak) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
@@ -54,11 +56,6 @@
 @property (weak) NSString* documentType;
 /** Path of the Document */
 @property (weak) NSString* documentPath;
-
-/** Method for loading a document to display
- @param document is the document to display
- */
-- (void)loadDocument:(DocumentModel*) document;
 
 /** Method for catching clicks on the addButton
  @param sender is the sender

@@ -10,6 +10,7 @@
 #import "DocumentModel.h"
 #import "ProjectModel.h"
 #import "CompileFlowHandler.h"
+#import "Compilable.h"
 
 @interface InfoWindowController ()
 
@@ -40,33 +41,23 @@
     [super windowDidLoad];
 }
 
-- (void)loadDocument:(DocumentModel*) document
-{
-    if(self.doc != document)
-    {
-        self.doc = document;
+- (void)setDocument:(DocumentModel *)document {
+    [self willChangeValueForKey:@"doc"];
+    _doc = document;
+    [self didChangeValueForKey:@"doc"];
+    self.mainCompilabel = document.project? document.project : document;
+}
+
+- (void)setMainCompilabel:(Compilable *)mainCompilabel {
+    if (_mainCompilabel) {
+        [self.mainCompilabel removeObserver:self forKeyPath:@"path"];
     }
-    
-    if(self.doc.project)
-    {
-        self.documentName = self.doc.project.name;
-        self.documentType = @"Project";
-        self.documentPath = self.doc.project.path;
-        for(DocumentModel* model in self.doc.project.documents)
-        {
-            if ([[[model texName] pathExtension] isEqualToString:@"tex"])
-            {
-                [texDocs addObject:model];
-            }
-        }
+    [self willChangeValueForKey:@"mainCompilabel"];
+    _mainCompilabel = mainCompilabel;
+    [self didChangeValueForKey:@"mainCompilabel"];
+    if (_mainCompilabel) {
+        [self.mainCompilabel addObserver:self forKeyPath:@"path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     }
-    else
-    {
-        self.documentName = self.doc.texName;
-        self.documentType = @"Document";
-        self.documentPath = self.doc.texPath;
-    }
-    [self.table reloadData];
 }
 
 
