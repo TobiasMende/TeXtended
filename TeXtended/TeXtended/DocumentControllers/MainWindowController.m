@@ -84,14 +84,15 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     if (s0 == [self.mainView isCollapsed:0]) {
         if ([self.mainView isCollapsed:0] || !([self.mainView isCollapsed:1] && [self.mainView isCollapsed:2])) {
-            if ([self.mainView isCollapsed:0]) {
+            [self.mainView toggleCollapseFor:0];
+            /*if ([self.mainView isCollapsed:0]) {
                 [self.mainView toggleCollapseFor:0];
                 [self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
             }
             else {
                 [self.left setTranslatesAutoresizingMaskIntoConstraints:NO];
                 [self.mainView toggleCollapseFor:0];
-            }
+            }*/
         } else {
             NSBeep();
         }
