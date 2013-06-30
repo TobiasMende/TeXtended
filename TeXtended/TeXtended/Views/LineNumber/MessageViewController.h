@@ -8,12 +8,41 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ * This class handels a view for messages to diplay in a popover beside a line number.
+ *
+ * @author Max Bannach
+ */
 @interface MessageViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate> {
+    
+    /** Elements (messages) to diplay in the view */
     NSMutableArray *elements;
+    
+    /** The Popover that will be shown */
+    NSPopover* popover;
+    
+    /** Position where the popover should be shown */
+    NSRect displayPosition;
+    
+    /** The preferredEdge of the popover */
+    NSRectEdge prefEdge;
+    
+    /** View where the popover should be shown in  */
+    __weak NSView* displayView;
 }
 
-- (void) setSize;
-- (id) initWithTrackingMessages:(NSMutableSet*) messages;
+/** Display the popover */
+- (void) pop;
 
+/** Closes the popover */
+- (void) close;
+
+/**
+ * Init with a set of messages, these messages will be displayed.
+ *
+ * @param messages
+ * @return ide
+ */
+- (id) initWithTrackingMessages:(NSMutableSet*) messages forRec:(NSRect)rec onView:(NSView*) view withPreferredEdge:(NSRectEdge)preferredEdge;
 
 @end
