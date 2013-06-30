@@ -18,6 +18,10 @@
  * @author Max Bannach
  */
 @interface ExtendedPdf : PDFView {
+    Boolean showPageNumbers;
+    NSMutableParagraphStyle* pageNumberStyle;
+    NSFont* pageNumberFont;
+    NSDictionary* attributesForPageNumbers;
     ExtendedPdfControlls *controllsView;
 }
 
