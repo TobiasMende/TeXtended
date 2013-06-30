@@ -31,15 +31,12 @@
     
     /** Outlioneview to display the fileviewmidel */
     IBOutlet NSOutlineView *outline;
-    
-    /** Flag to keep if the document is saved */
-    BOOL initialized;
 }
 
 /** Documentmodel which is displayed */
 @property (weak, nonatomic) DocumentModel* document;
 
-@property (nonatomic) Compilable *mainCompilabel;
+@property (weak, nonatomic) Compilable *mainCompilabel;
 
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;

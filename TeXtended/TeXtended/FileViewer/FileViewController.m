@@ -29,7 +29,7 @@
     [self willChangeValueForKey:@"document"];
     _document = document;
     [self didChangeValueForKey:@"document"];
-    self.mainCompilabel = document.project? document.project : document;
+    self.mainCompilabel = document.mainCompilable;
 }
 
 - (void)setMainCompilabel:(Compilable *)mainCompilabel {
