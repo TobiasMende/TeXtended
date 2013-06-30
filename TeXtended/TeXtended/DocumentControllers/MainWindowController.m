@@ -84,15 +84,16 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     if (s0 == [self.mainView isCollapsed:0]) {
         if ([self.mainView isCollapsed:0] || !([self.mainView isCollapsed:1] && [self.mainView isCollapsed:2])) {
-            [self.mainView toggleCollapseFor:0];
-            /*if ([self.mainView isCollapsed:0]) {
+            //[self.mainView toggleCollapseFor:0];
+            if ([self.mainView isCollapsed:0]) {
                 [self.mainView toggleCollapseFor:0];
-                [self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
+                //[self.left setTranslatesAutoresizingMaskIntoConstraints:YES];
+                //[self.left setNeedsDisplay:YES];
             }
             else {
                 [self.left setTranslatesAutoresizingMaskIntoConstraints:NO];
                 [self.mainView toggleCollapseFor:0];
-            }*/
+            }
         } else {
             NSBeep();
         }
@@ -101,7 +102,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         if ([self.mainView isCollapsed:1] || !([self.mainView isCollapsed:0] && [self.mainView isCollapsed:2])) {
             if ([self.mainView isCollapsed:1]) {
                 [self.mainView toggleCollapseFor:1];
-                [self.middle setTranslatesAutoresizingMaskIntoConstraints:YES];
+                //[self.middle setTranslatesAutoresizingMaskIntoConstraints:YES];
+                //[self.middle setNeedsDisplay:YES];
             }
             else {
                 [self.middle setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -116,6 +118,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             if ([self.mainView isCollapsed:2]) {
                 [self.mainView toggleCollapseFor:2];
                 [self.right setTranslatesAutoresizingMaskIntoConstraints:YES];
+                [self.right setNeedsDisplay:YES];
             }
             else {
                 [self.right setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -130,7 +133,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
     [control setSelected:![self.mainView isCollapsed:1] forSegment:1];
     [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
-    
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
