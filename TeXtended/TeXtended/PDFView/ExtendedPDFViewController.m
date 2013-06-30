@@ -15,8 +15,6 @@
 #import "DocumentCreationController.h"
 #import "MainDocument.h"
 
-
-
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
 - (void)loadPDF;
@@ -33,6 +31,7 @@
     return self;
 }
 
+/** Load the view and add a controlls panel */
 - (void)loadView {
     [super loadView];
     [(ExtendedPdf*)self.pdfView setController:self];
@@ -140,7 +139,5 @@
 #endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-
 
 @end
