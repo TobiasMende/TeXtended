@@ -135,16 +135,37 @@
 + (NSColor *)backgroundColorForType:(TMTTrackingMessageType)type {
     switch (type) {
         case TMTErrorMessage:
-            return [NSColor colorWithCalibratedRed:0.87f green:0.09f blue:0.00f alpha:0.30f];
+            return [NSColor colorWithCalibratedRed:0.97f green:0.76f blue:0.72f alpha:1.00f];
             break;
         case TMTWarningMessage:
-            return [NSColor colorWithCalibratedRed:1.00f green:0.69f blue:0.00f alpha:0.30f];
+            return [NSColor colorWithCalibratedRed:1.00f green:0.92f blue:0.74f alpha:1.00f];
             break;
         case TMTInfoMessage:
-            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:0.30f];
+            return [NSColor colorWithCalibratedRed:0.71f green:0.86f blue:0.95f alpha:1.00f];
             break;
         case TMTDebugMessage:
-            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:0.30f];
+            return [NSColor colorWithCalibratedRed:0.71f green:0.86f blue:0.95f alpha:1.00f];
+            break;
+        default:
+            return [NSColor whiteColor];
+            break;
+    }
+}
+
+
++ (NSColor *)colorForType:(TMTTrackingMessageType)type {
+    switch (type) {
+        case TMTErrorMessage:
+            return [NSColor colorWithCalibratedRed:0.87f green:0.09f blue:0.00f alpha:1.00f];
+            break;
+        case TMTWarningMessage:
+            return [NSColor colorWithCalibratedRed:1.00f green:0.69f blue:0.00f alpha:1.00f];
+            break;
+        case TMTInfoMessage:
+            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:1.00f];
+            break;
+        case TMTDebugMessage:
+            return [NSColor colorWithCalibratedRed:0.01f green:0.45f blue:0.78f alpha:1.00f];
             break;
         default:
             return [NSColor whiteColor];
