@@ -34,7 +34,6 @@ static NSUInteger calls = 0;
     assert(calls < 2);
 }
 
-
 - initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document {
     self = [super init];
     if (self) {
@@ -194,7 +193,6 @@ static NSUInteger calls = 0;
     return [super performSelector:aSelector];
 #pragma clang diagnostic pop
 }
-
 
 #pragma mark -
 #pragma mark Dealloc

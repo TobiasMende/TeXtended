@@ -12,13 +12,11 @@
 #import "DocumentModel.h"
 
 @interface PDFViewsController ()
-- (void) unbindAll;
 @end
 
 @implementation PDFViewsController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self initialize];
@@ -46,6 +44,11 @@
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
 }
 
+/**
+ * Load pdfs for the main models of the controller.
+ *
+ * @param controller the DocumentController
+ */
 - (void) loadPDFs:(DocumentController*) controller {
     if (self.model.faultingState > 0) {
         return;
@@ -72,7 +75,12 @@
     self.children = newChilds;
     }
 
-- (void)addTabItemFor:(ExtendedPDFViewController *)controller {
+/**
+ * Add a tabItem for the given PDFViewController.
+ *
+ * @param controller the ExtendedPDFViewController
+ */
+- (void)addTabItemFor:(ExtendedPDFViewController*)controller {
     DocumentModel *m = controller.model;
     NSTabViewItem *item = [[NSTabViewItem alloc] init];
     if ([m texName]) {
@@ -86,11 +94,11 @@
 }
 
 
-- (DocumentController * ) documentController {
+- (DocumentController*) documentController {
     return [self.parent documentController];
 }
 
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
+- (void) documentModelHasChangedAction:(DocumentController*) controller {
     for (id<DocumentControllerProtocol> c in self.children) {
         [c documentModelHasChangedAction:controller];
     }
@@ -125,7 +133,6 @@
         }
     }
 }
-
 
 #pragma mark -
 #pragma mark Responder Chain

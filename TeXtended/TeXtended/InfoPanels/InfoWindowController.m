@@ -10,6 +10,7 @@
 #import "DocumentModel.h"
 #import "ProjectModel.h"
 #import "CompileFlowHandler.h"
+#import "Compilable.h"
 
 @interface InfoWindowController ()
 
@@ -17,8 +18,7 @@
 
 @implementation InfoWindowController
 
-- (id)initWithWindow:(NSWindow *)window
-{
+- (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
     }
@@ -35,68 +35,48 @@
     return self;
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
     [super windowDidLoad];
 }
 
-- (void)loadDocument:(DocumentModel*) document
-{
-    if(self.doc != document)
-    {
-        self.doc = document;
+- (void)awakeFromNib {
+    if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
+        [self.mainDocumentsController setSelectionIndex:0];
     }
-    
-    if(self.doc.project)
-    {
-        self.documentName = self.doc.project.name;
-        self.documentType = @"Project";
-        self.documentPath = self.doc.project.path;
-        for(DocumentModel* model in self.doc.project.documents)
-        {
-            if ([[[model texName] pathExtension] isEqualToString:@"tex"])
-            {
-                [texDocs addObject:model];
-            }
+}
+
+- (void)setDoc:(DocumentModel *)doc {
+    [self willChangeValueForKey:@"doc"];
+    _doc = doc;
+    [self didChangeValueForKey:@"doc"];
+}
+
+- (IBAction)addMainDocument:(id)sender {
+    texPathPanel = [NSOpenPanel openPanel];
+    [texPathPanel setTitle:NSLocalizedString(@"Choose a tex document", @"chooseTexPath")];
+    [texPathPanel setCanCreateDirectories:YES];
+    [texPathPanel setCanSelectHiddenExtension:YES];
+    [texPathPanel setAllowedFileTypes:[NSArray arrayWithObjects:@"tex", nil]];
+    NSURL *url= [NSURL fileURLWithPath:[self.doc.mainCompilable.path stringByDeletingLastPathComponent]];
+    [texPathPanel setDirectoryURL:url];
+    [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *file = [texPathPanel URL];
+            DocumentModel *m = [self.doc modelForTexPath:file.path];
+            [self.doc addMainDocumentsObject:m];
         }
-    }
-    else
-    {
-        self.documentName = self.doc.texName;
-        self.documentType = @"Document";
-        self.documentPath = self.doc.texPath;
-    }
-    [self.table reloadData];
+    }];
 }
 
-
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
-{
-    if(self.doc)
-    {
-        return [[self.doc mainDocuments ] count];
-    }
-    return 0;
-}
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-{
-    return [[[[[self.doc mainDocuments] allObjects] objectAtIndex:rowIndex] texName] stringByDeletingPathExtension];
-}
-
-- (IBAction)addMainDocument:(id)sender
-{
-    NSLog(@"Add Main Document");
-}
-
-- (IBAction)removeMainDocument:(id)sender
-{
-    NSLog(@"Remove Main Document");
+- (IBAction)removeMainDocument:(id)sender {
     NSMutableArray* mainDocs = [[self.doc.mainDocuments allObjects] mutableCopy];
     [mainDocs removeObjectAtIndex:[self.table selectedRow]];
     self.doc.mainDocuments = [NSSet setWithArray:mainDocs];
     [self.table reloadData];
+}
+
+- (BOOL)canRemoveEntry {
+    return [self.mainDocumentsController.arrangedObjects count] > 1;
 }
 
 @end

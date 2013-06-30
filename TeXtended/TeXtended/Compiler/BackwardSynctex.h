@@ -20,7 +20,10 @@
 /** The input document for the given position */
 @property NSString *inputPath;
 
+/** A given offset */
 @property NSInteger offset;
 
+/** The context to work in */
 @property NSString *context;
+
 @end

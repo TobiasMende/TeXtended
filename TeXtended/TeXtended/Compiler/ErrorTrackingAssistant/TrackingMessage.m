@@ -59,13 +59,11 @@
         case TMTDebugMessage:
             return @"Debug";
             break;
-            
         default:
             return @"Unknown";
             break;
     }
 }
-
 
 - (NSUInteger)hash {
     NSUInteger prime = 31;

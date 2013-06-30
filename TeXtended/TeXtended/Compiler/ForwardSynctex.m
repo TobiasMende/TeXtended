@@ -13,9 +13,9 @@
 @interface ForwardSynctex ()
 
 /**
- Method for parsing the output string of the synctex task.
- 
- @param output the tasks answer.
+ * Method for parsing the output string of the synctex task.
+ *
+ * @param output the tasks answer.
  */
 - (void)parseOutput:(NSString*) output;
 @end
@@ -59,7 +59,6 @@
     return self;
 }
 
-
 - (void)parseOutput:(NSString *)output {
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     for (NSString *line in lines) {
@@ -90,7 +89,6 @@
     }
     
 }
-
 
 - (NSString *)description {
     NSMutableString *output = [NSMutableString stringWithFormat:@"Page:%li",self.page];

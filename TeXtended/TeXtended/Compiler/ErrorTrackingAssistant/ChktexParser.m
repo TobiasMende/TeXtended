@@ -28,7 +28,13 @@ static const NSDictionary *DEBUG_NUMBERS;
     }
 }
 
-
+/**
+ * This parses a document.
+ *
+ * @param path to the document
+ * @param obj
+ * @param action
+ */
 - (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action {
     if (!path) {
         return;
@@ -60,6 +66,14 @@ static const NSDictionary *DEBUG_NUMBERS;
     
 }
 
+/**
+ * Parse the outbut of Chtex.
+ *
+ * @param output of lacheck as NSString
+ * @param base as NSString
+ *
+ * @return the output oas MessageCollection
+ */
 - (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
     MessageCollection *collection = [MessageCollection new];
@@ -88,6 +102,13 @@ static const NSDictionary *DEBUG_NUMBERS;
     return collection;
 }
 
+/**
+ * Transform a chtexnumber to a TrackingMessageType.
+ *
+ * @param number a chtexnumber as NSInteger
+ *
+ * @return the corresponding TMTTrackingMessageType
+ */
 - (TMTTrackingMessageType)typeForChktexNumber:(NSInteger)number {
     NSString *key = [NSString stringWithFormat:@"%li", number];
     if ([WARNING_NUMBERS objectForKey:key]) {
@@ -103,6 +124,14 @@ static const NSDictionary *DEBUG_NUMBERS;
     return TMTDebugMessage;
 }
 
+/**
+ * Transform a chtexnumber and a TrackingmessageType to a message as String.
+ *
+ * @param number a chtexnumber as NSInteger
+ * @param type the type of the TMTTrackingMessageType
+ *
+ * @return the corresponding message as NSString
+ */
 - (NSString *)messageForChktexNumber:(NSInteger)number ofType:(TMTTrackingMessageType)type {
     NSString *key = [NSString stringWithFormat:@"%li", number];
     switch (type) {
@@ -121,4 +150,5 @@ static const NSDictionary *DEBUG_NUMBERS;
             break;
     }
 }
+
 @end

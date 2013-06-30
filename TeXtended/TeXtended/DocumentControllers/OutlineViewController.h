@@ -9,8 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
 
+/**
+ * This class handels the outlineView.
+ */
 @interface OutlineViewController : NSViewController<DocumentControllerProtocol>
 
+/** Parent the document controller tree. */
 @property (weak) id<DocumentControllerProtocol> parent;
 
 @end

@@ -22,40 +22,50 @@
 @property MessageCollection *messages;
 
 /**
- Parses the file for a given document and returns a set of TrackingMessages
- 
- @param path the document to check
- @param obj the object that starts the parser
- @param action the callback action which accepts a single parameter of type MessageCollection
+ * Parses the file for a given document and returns a set of TrackingMessages
+ *
+ * @param path the document to check
+ * @param obj the object that starts the parser
+ * @param action the callback action which accepts a single parameter of type MessageCollection
  */
 - (void )parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action;
 
 /**
- Parses the given document content for the document specified by path
- 
- @param content the content to extract messages from
- @param path the path from which to get the base dir.
+ * Parses the given document content for the document specified by path
+ *
+ * @param content the content to extract messages from
+ * @param path the path from which to get the base dir.
  */
 - (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path;
+
 /**
- Method for parsing the output of any internal syntac checker or log file parser
- 
- @param output the checkers output
- @param base the base dir from where the checker was executed (needed to extend relative paths in the output)
- @return a message collection, containing all found messages lower or equal to the current log level.
+ * Method for parsing the output of any internal syntac checker or log file parser
+ *
+ * @param output the checkers output
+ * @param base the base dir from where the checker was executed (needed to extend relative paths in the output)
+ * @return a message collection, containing all found messages lower or equal to the current log level.
  */
 - (MessageCollection *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
 
 /**
- Method for checking whether the given info string is a valid message and should be added to a trackin message or not. 
- 
- @warning This method is only used by subclasses for checking whether a message should be added to the message collection or not.
- 
- @param info the info message
- @return `YES` if the message should be added, `NO`otherwise.
- @see MessageCollection
- @see TrackingMessage
+ * Method for checking whether the given info string is a valid message and should be added to a trackin message or not.
+ *
+ * @warning This method is only used by subclasses for checking whether a message should be added to the message collection or not.
+ *
+ * @param info the info message
+ * @return `YES` if the message should be added, `NO`otherwise.
+ * @see MessageCollection
+ * @see TrackingMessage
  */
 - (BOOL) infoValid:(NSString*)info;
+
+/**
+ * Generate the absolut path for a path and a baseDir.
+ *
+ * @param path of the document
+ * @param base the basedir of the document
+ *
+ * @return the absolut path to the document
+ */
 - (NSString*)absolutPath:(NSString*)path withBaseDir:(NSString*)base;
 @end
