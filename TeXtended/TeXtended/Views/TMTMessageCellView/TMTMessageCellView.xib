@@ -173,7 +173,6 @@
 						<string key="NSFrame">{{216, 3}, {14, 14}}</string>
 						<reference key="NSSuperview" ref="408505193"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="506947451">

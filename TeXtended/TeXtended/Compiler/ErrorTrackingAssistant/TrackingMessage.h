@@ -128,6 +128,7 @@
  * @return the NSColor representing the background color for the given TrackingMessageTyp.
  */
 + (NSColor*) backgroundColorForType:(TMTTrackingMessageType)type;
++ (NSColor*) colorForType:(TMTTrackingMessageType)type;
 
 /**
  * Compares to TrackingMessageTyp.
