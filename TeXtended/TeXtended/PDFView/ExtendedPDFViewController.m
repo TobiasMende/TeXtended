@@ -68,15 +68,15 @@
 }
 
 - (void)setModel:(DocumentModel *)model {
-    if(_model) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
-    }
-    [self willChangeValueForKey:@"model"];
-    _model = model;
-    [self didChangeValueForKey:@"model"];
-    if (_model) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
-        
+    if (model != _model) {
+        if(_model) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
+        }
+        _model = model;
+        if (_model) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+            
+        }
     }
 }
 

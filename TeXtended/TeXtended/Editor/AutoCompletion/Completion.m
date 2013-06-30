@@ -168,11 +168,6 @@ return self;
     return false;
 }
 
-- (void)setCounter:(NSUInteger)counter {
-    [self willChangeValueForKey:@"counter"];
-    _counter = counter;
-    [self didChangeValueForKey:@"counter"];
-}
 
 #pragma mark -
 #pragma mark String Extension Methods

@@ -102,16 +102,16 @@
 
 -(void)setFilePath:(NSString*)newPath
 {
-    [self willChangeValueForKey:@"filePath"];
-    _filePath = newPath;
-    [self didChangeValueForKey:@"filePath"];
-    self.fileName = [self.filePath lastPathComponent];
-    self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
-    self.pathComponents = [self.filePath pathComponents];
-    pathIndex = [self.pathComponents count]-1;
-    [self willChangeValueForKey:@"isDir"];
-    [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:&_isDir];
-    [self didChangeValueForKey:@"isDirs"];
+    if (_filePath != newPath) {
+        _filePath = newPath;
+        self.fileName = [self.filePath lastPathComponent];
+        self.icon = [[NSWorkspace sharedWorkspace] iconForFile:self.filePath];
+        self.pathComponents = [self.filePath pathComponents];
+        pathIndex = [self.pathComponents count]-1;
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:&isDir];
+        self.isDir = isDir;
+    }
 }
 
 -(void)setFileName:(NSString*)oldPath

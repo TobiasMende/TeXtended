@@ -45,12 +45,6 @@
     }
 }
 
-- (void)setDoc:(DocumentModel *)doc {
-    [self willChangeValueForKey:@"doc"];
-    _doc = doc;
-    [self didChangeValueForKey:@"doc"];
-}
-
 - (IBAction)addMainDocument:(id)sender {
     texPathPanel = [NSOpenPanel openPanel];
     [texPathPanel setTitle:NSLocalizedString(@"Choose a tex document", @"chooseTexPath")];
@@ -77,6 +71,9 @@
 
 - (BOOL)canRemoveEntry {
     return [self.mainDocumentsController.arrangedObjects count] > 1;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 }
 
 @end
