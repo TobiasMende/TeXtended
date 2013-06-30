@@ -20,14 +20,14 @@
 
 @interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
     NSMutableArray *texDocs;
+    
+    NSOpenPanel *texPathPanel;
 }
 
 /** Tableview displaying the Maindocuments */
 @property (weak) IBOutlet NSTableView *table;
 /** Documentmodel which is displayed */
 @property (weak, nonatomic) DocumentModel* doc;
-
-@property (nonatomic) Compilable *mainCompilabel;
 /** Label for the Document- or Projectname */
 @property (weak) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
@@ -50,6 +50,8 @@
 @property (weak) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
 @property (weak) IBOutlet NSButton *removeButton;
+/** */
+@property (weak) IBOutlet NSArrayController *mainDocumentsController;
 /** Name of the Document */
 @property (weak) NSString* documentName;
 /** Type of the Document */
@@ -66,4 +68,10 @@
  @param sender is the sender
  */
 - (IBAction)removeMainDocument:(id)sender;
+
+/**
+ 
+ return
+ */
+- (BOOL) canRemoveEntry;
 @end

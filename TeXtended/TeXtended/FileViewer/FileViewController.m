@@ -441,7 +441,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     [self.infoWindowController showWindow:self.infoWindowController];
-    [self.infoWindowController loadDocument:self.document];
+    self.infoWindowController.doc = self.document;
 }
 
 - (IBAction)newFile:(id)sender
