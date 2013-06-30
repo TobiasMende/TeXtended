@@ -178,7 +178,6 @@
     if (countRunningParsers == 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
-        NSLog(@"tempPath: %@", tempPath);
         if (error) {
             NSLog(@"TextViewController: Can't write temporary file: %@", error.userInfo);
             return;
