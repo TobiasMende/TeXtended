@@ -508,25 +508,30 @@
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
     NSRange nullRange;
-    NSRect *rects;
+    NSRect *rects = 0; // init pointer
     
     float height = 0;
     NSUInteger index = 0, rectCount;
     
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
-        
+
         index = [[currentLines objectAtIndex:line] unsignedIntValue];
         
-        rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
+        if (rects) { // just work with a init pointer to be nice
+            rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
                        withinSelectedCharacterRange:nullRange
                                     inTextContainer:container
                                           rectCount:&rectCount];
-        height = rects->origin.y;
-        [heights addObject:[NSNumber numberWithFloat:height]];
+            
+            height = rects->origin.y;
+            [heights addObject:[NSNumber numberWithFloat:height]];
+        }
     }
     
     // to draw the last line
-    [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
+    if (rects) { // catch null pointer logic error
+        [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
+    }
     return heights;
 }
 
