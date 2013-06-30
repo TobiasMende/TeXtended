@@ -28,7 +28,7 @@
 
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
- 
+    [super drawWithFrame:cellFrame inView:controlView];
     NSColor *cellColor = [NSColor colorWithSRGBRed:169.0/255.0 green:176.0/255.0 blue:191.0/255.0 alpha:1.0];
     [cellColor set];
     //	NSRectFill(cellFrame);

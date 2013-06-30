@@ -507,28 +507,28 @@
     NSLayoutManager	*manager        = [view layoutManager];
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
-    NSRange nullRange;
-    NSRect *rects; // init pointer
+    NSRange nullRange               = NSMakeRange(0, 0);
+    NSRect *rects = 0;
     
     float height = 0;
     NSUInteger index = 0, rectCount;
     
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
         
-        index = [[currentLines objectAtIndex:line] unsignedIntValue];        
-            rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
-                       withinSelectedCharacterRange:nullRange
-                                    inTextContainer:container
-                                          rectCount:&rectCount];
-            
-            height = rects->origin.y;
-            [heights addObject:[NSNumber numberWithFloat:height]];
+        index = [[currentLines objectAtIndex:line] unsignedIntValue];
+        rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
+                      withinSelectedCharacterRange:nullRange
+                                   inTextContainer:container
+                                         rectCount:&rectCount];
+        
+        height = rects->origin.y;
+        [heights addObject:[NSNumber numberWithFloat:height]];
     }
     
     // to draw the last line
-    //if (&rects) {
-    [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
-    //}
+    if (rects) {
+        [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
+    }
     return heights;
 }
 

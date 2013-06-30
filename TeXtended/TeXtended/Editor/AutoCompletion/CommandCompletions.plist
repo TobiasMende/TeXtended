@@ -1068,99 +1068,99 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@overlined@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\overline{@@overlined@@}</string>
+		<string>\overline</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@underlined@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\underline{@@underlined@@}</string>
+		<string>\underline</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\overrightarrow{@@math@@}</string>
+		<string>\overrightarrow</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\overleftarrow{@@math@@}</string>
+		<string>\overleftarrow</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\widehat{@@math@@}</string>
+		<string>\widehat</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\widetilde{@@math@@}</string>
+		<string>\widetilde</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}^{@@high@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\overbrace{@@math@@}^{@@high@@}</string>
+		<string>\overbrace</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\overbrace{@@math@@}</string>
+		<string>\overbrace</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\underbrace{@@math@@}</string>
+		<string>\underbrace</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@math@@}_{@@low@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\underbrace{@@math@@}_{@@low@@}</string>
+		<string>\underbrace</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@set@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\bigwedge_{@@set@@}</string>
+		<string>\bigwedge</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@set@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\bigvee_{@@set@@}</string>
+		<string>\bigvee</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -1268,11 +1268,11 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@to@@} @@function@@</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\lim_{@@to@@} @@function@@</string>
+		<string>\lim</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -1300,67 +1300,67 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@n@@}{@@k@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\binom{@@n@@}{@@k@@}</string>
+		<string>\binom</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@from@@}^{@@to@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\int_{@@from@@}^{@@to@@}</string>
+		<string>\int</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@from@@}^{@@to@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\sum_{@@from@@}^{@@to@@}</string>
+		<string>\sum</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@set@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\sum_{@@set@@}</string>
+		<string>\sum</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@sans serif@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\mathsf{@@sans serif@@}</string>
+		<string>\mathsf</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@fraktur@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\mathfrak{@@fraktur@@}</string>
+		<string>\mathfrak</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@roman@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\mathrm{@@roman@@}</string>
+		<string>\mathrm</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@letter@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\mathbb{@@letter@@}</string>
+		<string>\mathbb</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -1380,43 +1380,43 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@x@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\sqrt{@@x@@}</string>
+		<string>\sqrt</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>[@@n@@]{@@x@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\sqrt[@@n@@]{@@x@@}</string>
+		<string>\sqrt</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@set@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\bigcup_{@@set@@}</string>
+		<string>\bigcup</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>_{@@set@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\bigcap_{@@set@@}</string>
+		<string>\bigcap</string>
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>{@@text@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\text{@@text@@}</string>
+		<string>\text</string>
 	</dict>
 </array>
 </plist>

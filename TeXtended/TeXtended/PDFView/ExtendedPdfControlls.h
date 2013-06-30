@@ -18,6 +18,10 @@
 
 /** The PdfView were this controlls depend on */
 @property (weak) PDFView *pdfView;
+@property (weak) IBOutlet NSSlider *gridHSpacingSlider;
+@property (weak) IBOutlet NSSlider *gridHOffsetSlider;
+@property (weak) IBOutlet NSSlider *gridVSpacingSlider;
+@property (weak) IBOutlet NSSlider *gridVOffsetSlider;
 
 /** 
  * Called if the controlls have changed.

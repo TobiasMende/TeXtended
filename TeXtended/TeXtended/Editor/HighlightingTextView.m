@@ -601,10 +601,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [[NSColor clearColor] set];
     NSRectFill(rect);
     [super drawViewBackgroundInRect:rect];
-    if (!self.servicesOn) {
-        return;
+    if (self.servicesOn) {
+        [self.codeNavigationAssistant highlightCurrentLineBackground];
     }
-     [self.codeNavigationAssistant highlightCurrentLineBackground];
 }
 
 

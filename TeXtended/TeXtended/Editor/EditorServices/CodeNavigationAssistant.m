@@ -499,10 +499,7 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
 
 
 - (void) updateViewDrawing {
-    if ([view lockFocusIfCanDraw]) {
-        [view drawRect:view.visibleRect];
-        [view unlockFocus];
-    }
+  
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
