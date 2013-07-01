@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
-@class ExtendedPdfControlls, ExtendedPDFViewController;
+@class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController;
 
 /**
  * This class extends the PDFView from cocoas PDFKit by functionalitys
@@ -18,11 +18,8 @@
  * @author Max Bannach
  */
 @interface ExtendedPdf : PDFView {
-    Boolean showPageNumbers;
-    NSMutableParagraphStyle* pageNumberStyle;
-    NSFont* pageNumberFont;
-    NSDictionary* attributesForPageNumbers;
     ExtendedPdfControlls *controllsView;
+    PageNumberViewController *pageNumbers;
 }
 
 /**
@@ -60,6 +57,7 @@
  */
 @property (strong) NSColor *gridColor;
 
+/** The controller */
 @property (weak) ExtendedPDFViewController *controller;
 
 /**
