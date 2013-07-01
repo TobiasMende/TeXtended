@@ -58,16 +58,15 @@ ENV['PATH']     ="/usr/texbin:/usr/local/bin:#{ENV['PATH']}"
 puts "==========================================================="
 puts "\t Typesetting #{texPath}"
 puts "\t Output Path:\t\t #{pdfPath}"
-puts "\t Output Dir:\t\t #{outputDir}" unless argCount < 3
-puts "\t Iterations:\t\t #{iterations}" unless argCount < 4
+puts "\t Iterations:\t\t #{iterations}" unless argCount < 3
 puts "\t Compile bib:\t\t #{(compileBib > 0? 'YES' : 'NO')}" unless argCount < 5
 puts "\t Custom parameter:\t #{customArguments}" unless argCount < 6
-puts "\t Compile Mode:\t\t #{Mode::to_s(mode)}"
+puts "\t Compile Mode:\t\t #{Mode::to_s(mode)}" unless argCount < 4
 puts "==========================================================="
 
 
 for iteration in 1..iterations do
-    puts "------------------------------------------------------------"
+    puts "==========================================================="
     puts "\t Iteration #{iteration} ..."
     puts "-----------------------------------------------------------"
     case mode
