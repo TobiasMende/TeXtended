@@ -974,7 +974,24 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">100183</int>
 						<reference key="object" ref="5402049"/>
-						<array class="NSMutableArray" key="children"/>
+						<array class="NSMutableArray" key="children">
+							<object class="IBNSLayoutConstraint" id="59973870">
+								<reference key="firstItem" ref="5402049"/>
+								<int key="firstAttribute">7</int>
+								<int key="relation">1</int>
+								<nil key="secondItem"/>
+								<int key="secondAttribute">0</int>
+								<float key="multiplier">1</float>
+								<object class="IBLayoutConstant" key="constant">
+									<double key="value">50</double>
+								</object>
+								<float key="priority">1000</float>
+								<reference key="containingView" ref="5402049"/>
+								<int key="scoringType">9</int>
+								<float key="scoringTypeFloat">40</float>
+								<int key="contentType">1</int>
+							</object>
+						</array>
 						<reference key="parent" ref="99386276"/>
 						<string key="objectName">Middle SplitView</string>
 					</object>
@@ -1104,6 +1121,11 @@
 						<reference key="object" ref="882289690"/>
 						<reference key="parent" ref="235925191"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100528</int>
+						<reference key="object" ref="59973870"/>
+						<reference key="parent" ref="5402049"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1115,6 +1137,9 @@
 				<string key="100051.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100183.CustomClassName">TMTSplitView</string>
+				<array key="100183.IBNSViewMetadataConstraints">
+					<reference ref="59973870"/>
+				</array>
 				<string key="100183.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100187.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100278.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1154,6 +1179,7 @@
 				<string key="100516.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100517.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100525.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100528.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1170,7 +1196,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100527</int>
+			<int key="maxID">100528</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
