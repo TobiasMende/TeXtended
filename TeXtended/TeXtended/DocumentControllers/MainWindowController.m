@@ -165,10 +165,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return NO;
 }
 
-- (void)windowDidResize:(NSNotification *)notification{
-    [self.window setViewsNeedDisplay:YES];
-}
-
 -(void)dealloc {
 #ifdef DEBUG
     NSLog(@"MainWindowController dealloc");
