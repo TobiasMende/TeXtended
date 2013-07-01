@@ -675,10 +675,10 @@
 								<object class="IBLayoutConstant" key="constant">
 									<double key="value">3</double>
 								</object>
-								<float key="priority">1000</float>
+								<float key="priority">999</float>
 								<reference key="containingView" ref="408505193"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
+								<int key="scoringType">9</int>
+								<float key="scoringTypeFloat">40</float>
 								<int key="contentType">3</int>
 							</object>
 							<reference ref="755979883"/>
