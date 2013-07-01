@@ -20,6 +20,7 @@
 @interface ConsoleViewController : NSViewController <DocumentControllerProtocol,NSTextFieldDelegate> {
     /** A file handle for reading the console output */
     NSFileHandle *readHandle;
+    NSTimer *logMessageUpdateTimer;
 }
 
 /** The input view for sending messages to the compiler */

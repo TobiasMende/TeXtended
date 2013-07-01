@@ -197,7 +197,7 @@
 				<reference key="NSNextKeyView" ref="438429443"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSAntiCompressionPriority">{1, 1}</string>
-				<int key="NSsFlags">133138</int>
+				<int key="NSsFlags">198674</int>
 				<reference key="NSVScroller" ref="783237092"/>
 				<reference key="NSHScroller" ref="705059121"/>
 				<reference key="NSContentView" ref="438429443"/>
@@ -320,6 +320,8 @@
 						<string key="deleteLines:">id</string>
 						<string key="goToLine:">id</string>
 						<string key="hardWrapText:">id</string>
+						<string key="jumpNextAnchor:">id</string>
+						<string key="jumpPreviousAnchor:">id</string>
 						<string key="moveLinesDown:">id</string>
 						<string key="moveLinesUp:">id</string>
 						<string key="toggleComment:">id</string>
@@ -340,6 +342,14 @@
 						</object>
 						<object class="IBActionInfo" key="hardWrapText:">
 							<string key="name">hardWrapText:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpNextAnchor:">
+							<string key="name">jumpNextAnchor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpPreviousAnchor:">
+							<string key="name">jumpPreviousAnchor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="moveLinesDown:">

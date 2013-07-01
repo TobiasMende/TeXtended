@@ -20,7 +20,6 @@ static NSArray *TMTEncodingsToCheck;
 - (void) initDefaults;
 - (void) clearInheretedCompilers;
 - (void) setupInheritedCompilers;
-- (void) internalSetValue:(id)value forKey:(NSString *)key;
 @end
 
 @implementation DocumentModel
@@ -212,11 +211,6 @@ static NSArray *TMTEncodingsToCheck;
     [self internalSetValue:openOnExport forKey:@"openOnExport"];
 }
 
-- (void) internalSetValue:(id)value forKey:(NSString *)key {
-    [self willChangeValueForKey:key];
-    [self setPrimitiveValue:value forKey:key];
-    [self didChangeValueForKey:key];
-}
 
 - (void)registerProjectObserver {
     if (!self.project) {
@@ -420,6 +414,19 @@ static NSArray *TMTEncodingsToCheck;
     return [super automaticallyNotifiesObserversForKey:key];
 }
 
+- (void)setTexPath:(NSString *)texPath {
+    NSString *old = [self primitiveValueForKey:@"texPath"];
+    if (![old isEqualToString:texPath]) {
+        [self internalSetValue:texPath forKey:@"texPath"];
+    }
+}
+
+- (void)setPdfPath:(NSString *)pdfPath {
+    NSString *old = [self primitiveValueForKey:@"pdfPath"];
+    if (![old isEqualToString:pdfPath]) {
+        [self internalSetValue:pdfPath forKey:@"pdfPath"];
+    }
+}
 
 - (void)willTurnIntoFault {
 #ifdef DEBUG
@@ -435,6 +442,10 @@ static NSArray *TMTEncodingsToCheck;
 
 #pragma mark -
 #pragma mark Getter
+
+- (NSString *)infoTitle {
+    return NSLocalizedString(@"Documentinformation", @"Documentinformation");
+}
 
 - (NSString *)type {
     return NSLocalizedString(@"Document", @"Document");

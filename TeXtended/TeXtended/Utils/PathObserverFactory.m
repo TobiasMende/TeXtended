@@ -109,14 +109,14 @@ return observer;
 
 - (void)addObserver:(id)observer withSelector:(SEL)action {
     [observersLock lock];
-    [observers addObject:observer];
+    [observers addObject:[NSValue valueWithNonretainedObject:observer]];
     [actions addObject:NSStringFromSelector(action)];
     [observersLock unlock];
 }
 
 - (void)removeObserver:(id)observer {
     [observersLock lock];
-    NSUInteger index = [observers indexOfObject:observer];
+    NSUInteger index = [observers indexOfObject:[NSValue valueWithNonretainedObject:observer]];
     if (index != NSNotFound) {
         [observers removeObjectAtIndex:index];
         [actions removeObjectAtIndex:index];
@@ -135,7 +135,7 @@ return observer;
     [observersLock lock];
     for (NSUInteger i = 0; i < observers.count; i++) {
         SEL action = NSSelectorFromString([actions objectAtIndex:i]);
-        [[observers objectAtIndex:i] performSelector:action];
+        [[[observers objectAtIndex:i] nonretainedObjectValue] performSelector:action];
     }
     [observersLock unlock];
 }

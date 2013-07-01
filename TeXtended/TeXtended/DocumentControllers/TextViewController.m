@@ -57,6 +57,7 @@
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
 - (void) clearConsoleMessages:(NSNotification*)note;
+- (void) adapteMessageToLevel;
 @end
 
 @implementation TextViewController
@@ -73,9 +74,23 @@
         internalMessages = [MessageCollection new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
+        [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
     }
     return self;
+}
+
+- (void)setLogLevel:(TMTLatexLogLevel)logLevel {
+    _logLevel = logLevel;
+    [self adapteMessageToLevel];
+}
+
+- (void)adapteMessageToLevel {
+    [consoleMessages adaptToLevel:self.logLevel];
+    internalMessages = [MessageCollection new];
+    [self updateMessageCollection:nil];
+    self.messages = [internalMessages merge:consoleMessages];
+    [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
 }
 
 - (void)registerModelObserver {
@@ -157,14 +172,12 @@
 
 - (void)updateMessageCollection:(NSNotification *)note {
     NSError *error;
-    TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
-    if (thresh < WARNING) {
+    if (self.logLevel < WARNING) {
         return;
     }
     if (countRunningParsers == 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
-        NSLog(@"tempPath: %@", tempPath);
         if (error) {
             NSLog(@"TextViewController: Can't write temporary file: %@", error.userInfo);
             return;
@@ -295,11 +308,11 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Observers
 
 - (void)addObserver:(id<TextViewObserver>)observer {
-    [observers addObject:observer];
+    [observers addObject:[NSValue valueWithNonretainedObject:observer]];
 }
 
 - (void)removeDelegateObserver:(id<TextViewObserver>)observer {
-    [observers removeObject:observer];
+    [observers removeObject:[NSValue valueWithNonretainedObject:observer]];
 }
 
 #pragma mark -
@@ -324,7 +337,9 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 - (void)textDidChange:(NSNotification *)notification {
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
     [backgroundQueue addOperation:op];
-    [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
+    for (NSValue *observerValue in observers) {
+        [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
+    }
 }
 
 
@@ -352,6 +367,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     NSLog(@"TextViewController dealloc");
 #endif
     [self unbind:@"liveScrolling"];
+    [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
     [backgroundQueue cancelAllOperations];

@@ -8,6 +8,8 @@
 
 #import "MessageCollection.h"
 #import "TrackingMessage.h"
+#import "Constants.h"
+
 
 @implementation MessageCollection
 - (id)init {
@@ -93,6 +95,21 @@
 
 - (NSUInteger)count {
     return self.errorMessages.count + self.warningMessages.count + self.debugMessages.count + self.infoMessages.count;
+}
+
+- (void)adaptToLevel:(TMTLatexLogLevel)level {
+    if (level < DEBUG) {
+        self.debugMessages = [NSMutableSet new];
+    }
+    if (level < INFO) {
+        self.infoMessages = [NSMutableSet new];
+    }
+    if (level < WARNING) {
+        self.warningMessages = [NSMutableSet new];
+    }
+    if (level < ERROR) {
+        self.errorMessages = [NSMutableSet new];
+    }
 }
 
 @end

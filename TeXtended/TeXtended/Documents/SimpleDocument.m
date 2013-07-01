@@ -118,7 +118,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     }
     BOOL success = [self.documentController saveDocument:outError];
     
-    NSLog(@"%@",[[self fileURL] path]);
     return success;
 
 

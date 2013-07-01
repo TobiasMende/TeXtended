@@ -12,6 +12,7 @@
 @interface MessageDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
     MessageInfoViewController *infoController;
     NSPopover *popover;
+    NSLock *messageLock;
 }
 @property (strong) IBOutlet TMTTableView *tableView;
 @property (strong) MessageCollection *collection;

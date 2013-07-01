@@ -15,10 +15,14 @@
 #import "MessageCollection.h"
 #import "ConsoleOutputView.h"
 
+
+static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
+
 @interface ConsoleViewController ()
 - (void)configureReadHandle;
 - (void)compilerDidStartCompiling:(NSNotification*)notification;
 - (void)compilerDidEndCompiling:(NSNotification*)notification;
+- (void)updateLogMessages;
 @end
 
 @implementation ConsoleViewController
@@ -78,9 +82,15 @@
     if (str && data.length > 0) {
         self.outputView.string = [self.outputView.string stringByAppendingString:str];
         [self.outputView scrollToEndOfDocument:self];
-        LogfileParser *parser = [LogfileParser new];
-        MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
-        self.consoleMessages = [self.consoleMessages merge:collection];
+        if ([logMessageUpdateTimer isValid]) {
+            [logMessageUpdateTimer invalidate];
+        }
+        logMessageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval: LOG_MESSAGE_UPDATE_INTERVAL
+                                                            target: self
+                                                          selector:@selector(updateLogMessages)
+                                                          userInfo: nil
+                                                           repeats: NO];
+        
         // Do whatever you want with str
     }
     if (data.length > 0) {
@@ -89,6 +99,12 @@
     } else {
         self.consoleActive = NO;
     }
+}
+
+- (void)updateLogMessages {
+    LogfileParser *parser = [LogfileParser new];
+    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
+    self.consoleMessages = [self.consoleMessages merge:collection];
 }
 
 - (void)setConsoleMessages:(MessageCollection *)consoleMessages {

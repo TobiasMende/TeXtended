@@ -79,24 +79,21 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (IBAction)collapseView:(id)sender {
     NSSegmentedControl *control = sender;
     BOOL s0 = [control isSelectedForSegment:0];
-    //BOOL s1 = [control isSelectedForSegment:1];
+    BOOL s1 = [control isSelectedForSegment:1];
     BOOL s2 = [control isSelectedForSegment:2];
     
     if (s0 == [self.mainView isCollapsed:0]) {
-            [self.mainView toggleCollapseFor:0];
+        [self.mainView toggleCollapseFor:0];
     }
-    /*if (s1 == [self.mainView isCollapsed:1]) {
-        if ([self.mainView isCollapsed:1] || !([self.mainView isCollapsed:0] && [self.mainView isCollapsed:2])) {
-            [self.mainView toggleCollapseFor:1];
-        } else {
-            NSBeep();
-        }
-    }*/
+    if (s1 == [self.middle isCollapsed:1]) {
+        [self.middle toggleCollapseFor:1];
+    }
     if (s2 == [self.mainView isCollapsed:2]) {
-            [self.mainView toggleCollapseFor:2];
+        [self.mainView toggleCollapseFor:2];
     }
     
     [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
+    [control setSelected:![self.middle isCollapsed:1] forSegment:1];
     [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
 }
 
@@ -148,21 +145,24 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.mainView setDelegate:self];
 }
 
-//- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
-//    return 0;
-//}
-
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
 
-    if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
-        return YES;
+    if (splitView == self.middle) {
+        if (![self.splitviewControl isSelectedForSegment:1]) {
+            return YES;
+        }
+    }
+    
+    if (splitView == self.mainView) {
+        if (self.middle == subview) {
+            return NO;
+        }
+        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
+            return YES;
+        }
     }
     return NO;
-}
-
-- (void)windowDidResize:(NSNotification *)notification{
-    [self.window setViewsNeedDisplay:YES];
 }
 
 -(void)dealloc {
