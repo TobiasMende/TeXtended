@@ -672,6 +672,14 @@
 					<int key="connectionID">100323</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="5402049"/>
+						<reference key="destination" ref="512844837"/>
+					</object>
+					<int key="connectionID">100527</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: self.documentController.model.liveCompile</string>
 						<reference key="source" ref="493995493"/>
@@ -1106,6 +1114,7 @@
 				<boolean value="NO" key="100051.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="100051.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100183.CustomClassName">TMTSplitView</string>
 				<string key="100183.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100187.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100278.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1161,7 +1170,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100526</int>
+			<int key="maxID">100527</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1245,7 +1254,7 @@
 						<string key="fileViewArea">NSBox</string>
 						<string key="left">NSSplitView</string>
 						<string key="mainView">TMTSplitView</string>
-						<string key="middle">NSSplitView</string>
+						<string key="middle">TMTSplitView</string>
 						<string key="right">NSSplitView</string>
 						<string key="sidebar">NSSplitView</string>
 						<string key="splitviewControl">NSSegmentedControl</string>
@@ -1269,7 +1278,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="middle">
 							<string key="name">middle</string>
-							<string key="candidateClassName">NSSplitView</string>
+							<string key="candidateClassName">TMTSplitView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="right">
 							<string key="name">right</string>
