@@ -85,13 +85,15 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (s0 == [self.mainView isCollapsed:0]) {
         [self.mainView toggleCollapseFor:0];
     }
-    if (s1 == [self.mainView isCollapsed:1]) {
+    if (s1 == [self.middle isCollapsed:1]) {
+        [self.middle toggleCollapseFor:1];
     }
     if (s2 == [self.mainView isCollapsed:2]) {
         [self.mainView toggleCollapseFor:2];
     }
     
     [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
+    [control setSelected:![self.middle isCollapsed:1] forSegment:1];
     [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
 }
 
@@ -143,15 +145,19 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.mainView setDelegate:self];
 }
 
-//- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex {
-//    return 0;
-//}
-
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
 
-    if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
-        return YES;
+    if (splitView == self.middle) {
+        if (![self.splitviewControl isSelectedForSegment:1]) {
+            return YES;
+        }
+    }
+    
+    if (splitView == self.mainView) {
+        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
+            return YES;
+        }
     }
     return NO;
 }

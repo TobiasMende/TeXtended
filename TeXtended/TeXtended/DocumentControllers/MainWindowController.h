@@ -38,7 +38,7 @@
 @property  (weak) IBOutlet NSSplitView *left;
 
 /** The middle view containing editor and console in most cases */
-@property  (weak) IBOutlet NSSplitView *middle;
+@property  (weak) IBOutlet TMTSplitView *middle;
 
 /** The right view containing the pdf view in most cases */
 @property  (weak) IBOutlet NSSplitView *right;
