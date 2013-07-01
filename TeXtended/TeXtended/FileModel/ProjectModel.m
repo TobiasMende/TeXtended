@@ -81,4 +81,11 @@
     return NSLocalizedString(@"Projectinformation", @"Projectinformation");
 }
 
+- (void)setPath:(NSString *)path {
+    NSString *old = [self primitiveValueForKey:@"path"];
+    if (![old isEqualToString:path]) {
+        [self internalSetValue:path forKey:@"path"];
+    }
+}
+
 @end
