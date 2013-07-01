@@ -35,6 +35,7 @@
 }
 
 - (void)awakeFromNib {
+    messageLock = [[NSLock alloc] init];
     [self.tableView setTarget:self];
     [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
     [self.tableView setAction:@selector(handleClick:)];
@@ -51,14 +52,20 @@
         NSViewController *c = [[NSViewController alloc] initWithNibName:@"TMTMessageCellView" bundle:nil];
         result = (TMTMessageCellView*)c.view;
     }
+    [messageLock lock];
     TrackingMessage *item = [self.messages objectAtIndex:row];
+    [messageLock unlock];
     result.model = self.model;
     result.objectValue = item;
     return result;
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
-    return [[TMTTableRowView alloc] init];
+    TMTTableRowView *view = [tableView makeViewWithIdentifier:@"TMTTableRowView" owner:self];
+    if (!view) {
+        view = [[TMTTableRowView alloc] init];
+    }
+    return view;
 }
 
 - (void)handleDoubleClick:(id)sender {
@@ -121,8 +128,10 @@
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
     //[rowView setBackgroundColor:[NSColor greenColor]];
+    [messageLock lock];
     TrackingMessage *m = [self.messages objectAtIndex:row];
     [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
+    [messageLock unlock];
     
 }
 
@@ -147,7 +156,9 @@
         [temp addObject:message];
     }
     [temp sortUsingSelector:@selector(compare:)];
+    [messageLock lock];
     self.messages = temp;
+    [messageLock unlock];
     [self.tableView reloadData];
 }
 

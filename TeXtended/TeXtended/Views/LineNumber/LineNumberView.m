@@ -535,14 +535,14 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     /* clear background */
-    [[self backgroundColor] set]; //TODO background color as property
+    [[self backgroundColor] set];
     NSRectFill(dirtyRect);
     
     [super drawRect:dirtyRect];
 }
 
 - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect {
-    NSRect visibleRect = [[[self scrollView] documentView] visibleRect ];
+    NSRect visibleRect = [[[self scrollView] documentView] visibleRect];
     
     /* draw small black line */
     [[self lineColor] set];
@@ -567,6 +567,10 @@
     
     lineHights = [self calculateLineHeights:lineLabel];
     
+    // catch cases where the textview has size 0
+    if ([lineHights count] == 0) {
+        return;
+    }
     
     /*
      * Calculate the current line and the first visible line, this is needed from other views
