@@ -54,7 +54,6 @@ static const NSSet *KEYS_TO_UNBIND;
     [self setGridVerticalSpacing:1];
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
-    
     [self setGridColor:[NSColor lightGrayColor]];
     
     // set attributes for the page numbers
@@ -82,8 +81,9 @@ static const NSSet *KEYS_TO_UNBIND;
     // add the controlls
    [self addControlls];
    [self addSubview:[controllsView view]];
-    [self setAutoScales:YES];
-   [[controllsView view] setHidden:YES];
+   [self setAutoScales:YES];
+    
+   [[[controllsView view] animator] setAlphaValue:0.0f];
 }
 
 - (void) startBackwardSynctex:(id)sender {
@@ -109,14 +109,14 @@ static const NSSet *KEYS_TO_UNBIND;
         && p.y >= p2.y
         && p.y <= p2.y + controllsView.view.frame.size.height) {
         
-        if ([[controllsView view] isHidden]) {
-            [[controllsView view] setHidden:NO];
+        if ([[[controllsView view] animator] alphaValue] == 0) {
+            [[[controllsView view] animator] setAlphaValue:0.75f];
             [self setNeedsDisplay:YES];
         }
         
     } else {
         if ([[self subviews] count] > 1) {
-            [[controllsView view] setHidden:YES];
+            [[[controllsView view] animator] setAlphaValue:0.0f];
             [self setNeedsDisplay:YES];
         }
     }

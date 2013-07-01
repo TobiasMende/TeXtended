@@ -92,7 +92,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
     
     [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
-    [control setSelected:![self.mainView isCollapsed:1] forSegment:1];
     [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
 }
 

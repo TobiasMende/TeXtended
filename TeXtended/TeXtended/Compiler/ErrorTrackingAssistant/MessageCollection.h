@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @class TrackingMessage;
 
@@ -84,4 +85,6 @@
  * @return number of elements
  */
 - (NSUInteger)count;
+
+- (void) adaptToLevel:(TMTLatexLogLevel) level;
 @end

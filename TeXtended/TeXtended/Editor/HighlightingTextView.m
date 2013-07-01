@@ -45,6 +45,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 /** Method for deleting all observations and bindings to the user defaults */
 - (void) unregisterUserDefaultsObserver;
+
+- (LineNumberView*) lineNumberView;
 @end
 @implementation HighlightingTextView
 
@@ -139,6 +141,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void)complete:(id)sender {
     [super complete:sender];
     
+    
+}
+
+- (LineNumberView *)lineNumberView {
+    if ([self.enclosingScrollView.verticalRulerView isKindOfClass:[LineNumberView class]]) {
+        return (LineNumberView *)self.enclosingScrollView.verticalRulerView;
+    }
+    return nil;
     
 }
 
@@ -507,6 +517,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return NO;
     } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
         return self.selectedRanges.count == 1;
+    } else if (aSelector == @selector(jumpNextAnchor:) || aSelector == @selector(jumpPreviousAnchor:)) {
+        if (self.lineNumberView && self.lineNumberView.anchoredLines.count > 0) {
+            return YES;
+        } else {
+            return NO;
+        }
     }else {
         return [super respondsToSelector:aSelector];
     }
@@ -590,6 +606,40 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)toggleComment:(id)sender {
     [self.codeNavigationAssistant toggleCommentInRange:self.selectedRange];
+}
+
+- (void)jumpNextAnchor:(id)sender {
+    NSUInteger current = [self currentRow];
+    NSArray *anchors = self.lineNumberView.anchoredLines;
+    anchors = [anchors sortedArrayUsingSelector:@selector(compare:)];
+    NSUInteger nextLine = NSNotFound;
+    for (NSNumber *line in anchors) {
+        if (nextLine == NSNotFound) {
+            nextLine = line.integerValue;
+        }
+        if (line.integerValue > current) {
+            nextLine = line.integerValue;
+            break;
+        }
+    }
+    [self showLine:nextLine];
+}
+
+- (void)jumpPreviousAnchor:(id)sender {
+    NSUInteger current = [self currentRow];
+    NSArray *anchors = self.lineNumberView.anchoredLines;
+    anchors = [anchors sortedArrayUsingSelector:@selector(compare:)];
+    NSUInteger nextLine = NSNotFound;
+    for (NSNumber *line in [anchors reverseObjectEnumerator]) {
+        if (nextLine == NSNotFound) {
+            nextLine = line.integerValue;
+        }
+        if (line.integerValue < current) {
+            nextLine = line.integerValue;
+            break;
+        }
+    }
+    [self showLine:nextLine];
 }
 
 

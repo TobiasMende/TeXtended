@@ -57,6 +57,7 @@
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
 - (void) clearConsoleMessages:(NSNotification*)note;
+- (void) adapteMessageToLevel;
 @end
 
 @implementation TextViewController
@@ -73,9 +74,23 @@
         internalMessages = [MessageCollection new];
         self.model = [[self.parent documentController] model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
+        [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
     }
     return self;
+}
+
+- (void)setLogLevel:(TMTLatexLogLevel)logLevel {
+    _logLevel = logLevel;
+    [self adapteMessageToLevel];
+}
+
+- (void)adapteMessageToLevel {
+    [consoleMessages adaptToLevel:self.logLevel];
+    internalMessages = [MessageCollection new];
+    [self updateMessageCollection:nil];
+    self.messages = [internalMessages merge:consoleMessages];
+    [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
 }
 
 - (void)registerModelObserver {
@@ -157,11 +172,10 @@
 
 - (void)updateMessageCollection:(NSNotification *)note {
     NSError *error;
-    TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
-    if (thresh < WARNING) {
+    if (self.logLevel < WARNING) {
         return;
     }
-    if (countRunningParsers == 0 && self.model.texPath) {
+    if (countRunningParsers == 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
         if (error) {
@@ -240,6 +254,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 - (void)setContent:(NSString *)content {
     [self.textView setString:content];
+    [self updateMessageCollection:nil];
 }
 
 - (NSSet *)children {
@@ -350,6 +365,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     NSLog(@"TextViewController dealloc");
 #endif
     [self unbind:@"liveScrolling"];
+    [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
     [backgroundQueue cancelAllOperations];

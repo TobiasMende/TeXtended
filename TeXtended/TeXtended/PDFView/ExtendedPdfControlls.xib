@@ -410,6 +410,7 @@
 								<string key="NSFrame">{{280, 15}, {65, 22}}</string>
 								<reference key="NSSuperview" ref="319358966"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSTextFieldCell" key="NSCell" id="865466475">
@@ -502,6 +503,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="319358966"/>
+				<bool key="NSViewIsLayerTreeHost">YES</bool>
 				<object class="NSShadow" key="NSViewShadow">
 					<reference key="NSShadowColor" ref="62349962"/>
 				</object>
