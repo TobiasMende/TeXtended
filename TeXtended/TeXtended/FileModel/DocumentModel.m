@@ -443,6 +443,10 @@ static NSArray *TMTEncodingsToCheck;
 #pragma mark -
 #pragma mark Getter
 
+- (NSString *)infoTitle {
+    return NSLocalizedString(@"Documentinformation", @"Documentinformation");
+}
+
 - (NSString *)type {
     return NSLocalizedString(@"Document", @"Document");
 }
