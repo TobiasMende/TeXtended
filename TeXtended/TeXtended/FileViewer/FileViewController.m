@@ -40,14 +40,6 @@
 
 -(void)loadView {
     [super loadView];
-
-    //[infoLoadButton removeConstraints:[infoLoadButton constraints]];
-    /*NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(outline, infoLoadButton);
-    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[outline(==infoLoadButton)]"
-                                                                   options:0
-                                                                   metrics:nil
-                                                                     views:viewsDictionary];
-    [infoLoadButton addConstraints:constraints];*/
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
 }
@@ -289,7 +281,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     @catch (NSException *exception) {
         /*
-         * In the revert to functionallity the texPath is systematically wrong.
+         * In the "revert to" functionallity the texPath is systematically wrong.
          */
         return NO;
     }
@@ -300,6 +292,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    NSArray *ignoredFileTypes = [NSArray arrayWithObjects:@"TMTTemporaryStorage", nil];
     
     NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
     NSUInteger count = [children count];
@@ -313,7 +306,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            [self->nodes addPath:path];
+            if (![ignoredFileTypes containsObject:[path pathExtension]]) {
+                [self->nodes addPath:path];
+            }
         }
         else
         {
@@ -328,6 +323,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    NSArray *ignoredFileTypes = [NSArray arrayWithObjects:@"TMTTemporaryStorage", nil];
     
     NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
     NSUInteger count = [children count];
@@ -341,7 +337,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            [self->nodes addPath:path];
+            if (![ignoredFileTypes containsObject:[path pathExtension]]) {
+                [self->nodes addPath:path];
+            }
         }
         else
         {
