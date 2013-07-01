@@ -155,6 +155,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
     
     if (splitView == self.mainView) {
+        if (self.middle == subview) {
+            return NO;
+        }
         if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
             return YES;
         }
