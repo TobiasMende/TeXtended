@@ -38,7 +38,7 @@
 
 
 - (BOOL)isExternal {
-    return ![self.model.texPath isEqualToString:self.message.document];
+    return ![self.model.texPath isEqualToString:self.message.document] &&(self.model.texPath && self.message.document);
 }
 
 - (NSImage *)image {

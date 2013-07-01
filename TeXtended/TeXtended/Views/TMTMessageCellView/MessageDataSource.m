@@ -58,7 +58,11 @@
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
-    return [[TMTTableRowView alloc] init];
+    TMTTableRowView *view = [tableView makeViewWithIdentifier:@"TMTTableRowView" owner:self];
+    if (!view) {
+        view = [[TMTTableRowView alloc] init];
+    }
+    return view;
 }
 
 - (void)handleDoubleClick:(id)sender {

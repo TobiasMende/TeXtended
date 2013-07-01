@@ -308,11 +308,11 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Observers
 
 - (void)addObserver:(id<TextViewObserver>)observer {
-    [observers addObject:observer];
+    [observers addObject:[NSValue valueWithNonretainedObject:observer]];
 }
 
 - (void)removeDelegateObserver:(id<TextViewObserver>)observer {
-    [observers removeObject:observer];
+    [observers removeObject:[NSValue valueWithNonretainedObject:observer]];
 }
 
 #pragma mark -
@@ -337,7 +337,9 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 - (void)textDidChange:(NSNotification *)notification {
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
     [backgroundQueue addOperation:op];
-    [observers makeObjectsPerformSelector:@selector(textDidChange:) withObject:notification];
+    for (NSValue *observerValue in observers) {
+        [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
+    }
 }
 
 
