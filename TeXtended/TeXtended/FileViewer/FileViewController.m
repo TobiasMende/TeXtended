@@ -40,7 +40,8 @@
 
 -(void)loadView {
     [super loadView];
-    
+
+    //[infoLoadButton removeConstraints:[infoLoadButton constraints]];
     /*NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(outline, infoLoadButton);
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[outline(==infoLoadButton)]"
                                                                    options:0

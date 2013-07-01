@@ -77,5 +77,8 @@
     return NSLocalizedString(@"Project", @"Project");
 }
 
+- (NSString *)infoTitle {
+    return NSLocalizedString(@"Projectinformation", @"Projectinformation");
+}
 
 @end

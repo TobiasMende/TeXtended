@@ -83,5 +83,6 @@
 - (NSString *) name;
 - (NSString *) path;
 - (NSString *) type;
+- (NSString *) infoTitle;
 
 @end
