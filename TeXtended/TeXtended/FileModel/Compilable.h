@@ -66,7 +66,7 @@
  
  */
 - (void)postChangeNotification;
-
+- (void) internalSetValue:(id)value forKey:(NSString *)key;
 @end
 
 @interface Compilable (CoreDataGeneratedAccessors)

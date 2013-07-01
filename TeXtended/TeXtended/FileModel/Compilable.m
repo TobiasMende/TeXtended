@@ -64,6 +64,12 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
+- (void) internalSetValue:(id)value forKey:(NSString *)key {
+    [self willChangeValueForKey:key];
+    [self setPrimitiveValue:value forKey:key];
+    [self didChangeValueForKey:key];
+}
+
 #pragma mark -
 #pragma mark Getter & Setter
 
