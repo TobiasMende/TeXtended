@@ -16,14 +16,18 @@
  **Author:** Tobias Mende
  
  */
-@interface TMTSplitView : NSSplitView {
+@interface TMTSplitView : NSSplitView <NSAnimationDelegate> {
     /** The collapse state of each subview */
     NSMutableArray *collapseState;
     
     /** The default devider position for each subview */
     NSMutableArray *defaultPosition;
     
-    NSMutableArray *relativePosition;
+//    NSMutableArray *direction;
+//    NSMutableArray *target;
+//    NSTimer *timer;
+    CGFloat newPosition;
+    NSInteger divIndex;
 }
 
 /**
@@ -85,4 +89,6 @@
  @return the view or `nil` if the index is out of the receivers bounds.
  */
 - (NSView*)viewForIndex:(NSUInteger)index;
+
+//-(void)moveDivider:(NSTimer*)theTimer;
 @end

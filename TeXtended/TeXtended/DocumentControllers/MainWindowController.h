@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
-@class DocumentController, FileOutlineView, FileViewController, ExportCompileWindowController, TMTSplitView;
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView;
 
 /**
  The MainWindowController is the controller of the main window of each document. 

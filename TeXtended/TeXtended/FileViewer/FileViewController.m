@@ -42,12 +42,16 @@
     [super loadView];
     self.infoWindowController = [[InfoWindowController alloc] init];
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
+    [outline setTarget:self];
+    [outline setDoubleAction:@selector(doubleClick:)];
 }
 
-- (void)doubleClick:(id)sender {
+- (IBAction)doubleClick:(id)sender {
     FileViewModel* model = (FileViewModel*)[outline itemAtRow:[outline clickedRow]];
-    NSString *path = model.filePath;
-    [self openFileInDefApp:path];
+    if (!model) {
+        return;
+    }
+    [self openFileInDefApp:model.filePath];
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView
@@ -249,7 +253,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return YES;
 }
 
--(void) outlineViewSelectionDidChange:(NSNotification *)notification {
+/*-(void) outlineViewSelectionDidChange:(NSNotification *)notification {
     FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
     if(!model)
     {
@@ -270,7 +274,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
         }
     }
-}
+}*/
 
 - (BOOL)loadPath: (NSURL*)url {
     nodes = [[FileViewModel alloc] init];
@@ -405,8 +409,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (IBAction)duplicate:(id)sender
-{
+- (IBAction)duplicate:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         return;
@@ -416,15 +419,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
 }
 
-- (IBAction)renameFile:(id)sender
-{
+- (IBAction)renameFile:(id)sender {
     NSIndexSet* index = [NSIndexSet indexSetWithIndex:[outline clickedRow]];
     [outline selectRowIndexes:index byExtendingSelection:NO];
     [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
 }
 
-- (IBAction)deleteFile:(id)sender
-{
+- (IBAction)deleteFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         return;
@@ -433,13 +434,31 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (IBAction)openFolderinFinder:(id)sender
-{
+- (IBAction)openFolderinFinder:(id)sender {
     [self openFileInDefApp:nodes.filePath];
 }
 
-- (void) createFile:(NSString*)atPath
-{
+- (IBAction)renameProject:(id)sender {
+    NSLog(@"renameProject not implemented yet...");
+}
+
+- (IBAction)closeProject:(id)sender {
+    NSLog(@"closeProject not implemented yet...");
+}
+
+- (IBAction)openFile:(id)sender {
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model) {
+        return;
+    }
+    [self openFileInDefApp:model.filePath];
+}
+
+- (IBAction)openInfoViewForFile:(id)sender {
+    NSLog(@"openInfoViewForFile not implemented yet...");
+}
+
+- (void) createFile:(NSString*)atPath {
     NSString* newPath = [atPath stringByAppendingPathComponent:@"New File.tex"];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
@@ -456,8 +475,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (void) createFolder:(NSString*)atPath
-{
+- (void) createFolder:(NSString*)atPath {
     NSString* newPath = [atPath stringByAppendingPathComponent:NSLocalizedString(@"New Folder", @"New Folder")];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
@@ -474,8 +492,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (void) duplicateFile:(NSString*)filePath
-{
+- (void) duplicateFile:(NSString*)filePath {
     NSString* fileName = [[filePath lastPathComponent] stringByDeletingPathExtension];
     NSString* fileExtension = [filePath pathExtension];
     NSString* path = [filePath stringByDeletingLastPathComponent];
@@ -495,16 +512,23 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (void) deleteFileatPath:(NSString*)path
-{
+- (void) deleteFileatPath:(NSString*)path {
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
 
-- (BOOL)openFileInDefApp: (NSString*)path
-{
-    NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-    [workspace openFile:path];
-    return YES;
+- (void)openFileInDefApp: (NSString*)path {
+    NSArray *allowedFileTypes = [NSArray arrayWithObjects:@"tex", nil];
+    NSLog(@"%@ - %@", path, self.document.mainCompilable.path);
+    if ([allowedFileTypes containsObject:[path pathExtension]]) {
+        if(![path isEqualToString:self.document.mainCompilable.path]) {
+            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
+        }
+        return;
+    }
+    else {
+        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+        [workspace openFile:path];
+    }
 }
 
 - (void)renameFile:(NSString*)oldPath
@@ -515,8 +539,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)moveFile:(NSString*)oldPath
           toPath:(NSString*)newPath
-   withinProject:(BOOL)within
-{
+   withinProject:(BOOL)within {
     if([[NSFileManager defaultManager] isReadableFileAtPath:oldPath])
     {
         [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
@@ -545,8 +568,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
-- (void)updateFileViewModel
-{
+- (void)updateFileViewModel {
     if (!self.document.mainCompilable.path) {
         return;
     }

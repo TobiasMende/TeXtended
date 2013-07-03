@@ -8,7 +8,6 @@
 
 #import "MainWindowController.h"
 #import "DocumentController.h"
-#import "FileOutlineView.h"
 #import "FileViewController.h"
 #import "ExportCompileWindowController.h"
 #import "TMTSplitView.h"

@@ -86,4 +86,24 @@
  @param sender is the sender
  */
 - (IBAction)deleteFile:(id)sender;
+
+/** Method for catching clicks on rename project in contextmenu
+ @param sender is the sender
+ */
+- (IBAction)renameProject:(id)sender;
+
+/** Method for catching clicks on close project in contextmenu
+ @param sender is the sender
+ */
+- (IBAction)closeProject:(id)sender;
+
+/** Method for catching clicks on open in contextmenu
+ @param sender is the sender
+ */
+- (IBAction)openFile:(id)sender;
+
+/** Method for catching clicks on information in contextmenu
+ @param sender is the sender
+ */
+- (IBAction)openInfoViewForFile:(id)sender;
 @end

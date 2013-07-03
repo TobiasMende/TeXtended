@@ -144,7 +144,6 @@
 		D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBD31726889700E2F8EC /* SimpleDocument.m */; };
 		D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D252288B1764B83400C203AD /* MainWindow.m */; };
 		D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB51726875600E2F8EC /* FileViewController.m */; };
-		D2E7A5111768E8F400B2BA3C /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CDAA6A173133030094197C /* FileOutlineView.m */; };
 		D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8243F1743A11E00FB2CCB /* FileViewModel.m */; };
 		D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E2FC9D1767A59F0057C960 /* FileViewCell.m */; };
 		D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBB11726873900E2F8EC /* ExtendedPdf.m */; };
@@ -426,8 +425,6 @@
 		D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleInputField.m; sourceTree = "<group>"; };
 		D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPDFView.xib; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
-		F6CDAA69173133030094197C /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
-		F6CDAA6A173133030094197C /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
 		F6E2FC9C1767A59F0057C960 /* FileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewCell.h; sourceTree = "<group>"; };
 		F6E2FC9D1767A59F0057C960 /* FileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewCell.m; sourceTree = "<group>"; };
 		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
@@ -598,8 +595,6 @@
 			children = (
 				D21ACBB41726875600E2F8EC /* FileViewController.h */,
 				D21ACBB51726875600E2F8EC /* FileViewController.m */,
-				F6CDAA69173133030094197C /* FileOutlineView.h */,
-				F6CDAA6A173133030094197C /* FileOutlineView.m */,
 				F692F4D1173A62710032EF32 /* FileView.xib */,
 				F6E8243E1743A11E00FB2CCB /* FileViewModel.h */,
 				F6E8243F1743A11E00FB2CCB /* FileViewModel.m */,
@@ -1194,7 +1189,6 @@
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
-				D2E7A5111768E8F400B2BA3C /* FileOutlineView.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
