@@ -38,13 +38,6 @@ static const NSSet *KEYS_TO_UNBIND;
  */
 - (void) addTexdocLinksForRange:(NSRange) range;
 
-
-/** 
- This methods parses the provided answer of the texdoc command into an array of [TexdocEntry] objects
- @param texdocList the texdoc command machine readable answer
- */
-- (NSMutableArray*) parseTexdocList:(NSString *)texdocList;
-
 - (void)unbindAll;
 
 @end
@@ -168,7 +161,7 @@ static const NSSet *KEYS_TO_UNBIND;
     return NO;
 }
 
-- (void)texdocReadComplete:(NSMutableArray *)texdocArray withPackageName:(NSString *)package andInfo:(NSDictionary *)info {
+- (void)texdocReadComplete:(NSMutableArray*)texdocArray withPackageName:(NSString*) package andInfo:(NSDictionary *)info; {
    TexdocViewController *texdocView = [[TexdocViewController alloc] init];
    [texdocView setContent:texdocArray];
    [texdocView setPackage:package];

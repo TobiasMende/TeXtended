@@ -98,7 +98,7 @@
 }
 
 - (void)adaptToLevel:(TMTLatexLogLevel)level {
-    if (level < DEBUG) {
+    if (level < ALL) {
         self.debugMessages = [NSMutableSet new];
     }
     if (level < INFO) {
