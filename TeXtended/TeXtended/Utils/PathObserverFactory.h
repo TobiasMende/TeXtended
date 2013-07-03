@@ -42,7 +42,7 @@
     /** The identifier of the last file event */
     NSNumber* lastEventId;
 }
-
+- (NSUInteger) numberOfObservers;
 /**
  Initializes a new PathObserver for a given path
  
@@ -64,13 +64,6 @@
  */
 - (void) addObserver:(id)observer withSelector:(SEL)action;
 
-/**
- Method for removing an observer from the PathObserver.
- This method causes the PathObserverFactory to free the current PathObserver if the last observer is removed.
- 
- @param observer the observer to remove
- */
-- (void) removeObserver:(id)observer;
 @end
 
 /**

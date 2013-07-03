@@ -34,6 +34,20 @@ static FlagMap USED_FLAGS[] = {
     { kFSEventStreamEventFlagItemRemoved,      "item removed"       }
 };
 
+@interface PathObserver ()
+/** Method for initializing the event stream */
+- (void) initializeEventStream;
+
+/**
+ Method for removing an observer from the PathObserver.
+ This method causes the PathObserverFactory to free the current PathObserver if the last observer is removed.
+ 
+ @param observer the observer to remove
+ */
+- (void) removeObserver:(id)observer;
+@end
+
+
 @implementation PathObserverFactory
 
 + (void)initialize {
@@ -59,20 +73,29 @@ return observer;
 }
 
 + (void)removeObserver:(id)observer {
+    NSMutableArray *keysToDelete = [NSMutableArray new];
     for (NSString *key in PATH_OBSERVER_DICTIONARY) {
-        [[PATH_OBSERVER_DICTIONARY objectForKey:key] removeObserver:observer];
+        PathObserver *po = [PATH_OBSERVER_DICTIONARY objectForKey:key];
+        [po removeObserver:observer];
+        if ([po numberOfObservers] == 0) {
+            [keysToDelete addObject:key];
+        }
+    }
+    
+    for (NSString *key in keysToDelete) {
+        [PATH_OBSERVER_DICTIONARY removeObjectForKey:key];
     }
 }
 
 @end
 
 
-@interface PathObserver ()
-/** Method for initializing the event stream */
-- (void) initializeEventStream;
-@end
 
 @implementation PathObserver
+
+- (NSUInteger)numberOfObservers {
+    return observers.count;
+}
 
 - (id)initWithPath:(NSString *)path {
     self = [super init];
@@ -122,9 +145,6 @@ return observer;
         [actions removeObjectAtIndex:index];
     }
     
-    if (observers.count == 0) {
-        [PathObserverFactory removePathObserverForPath:filePath];
-    }
     [observersLock unlock];
 }
 

@@ -558,7 +558,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
         
         if (observer) {
-            [observer removeObserver:self];
+            [PathObserverFactory removeObserver:self];
         }
         NSString *path = [self.document.mainCompilable.path stringByDeletingLastPathComponent];
         observer = [PathObserverFactory pathObserverForPath:path];
