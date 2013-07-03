@@ -145,6 +145,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.mainView setDelegate:self];
 }
 
+- (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
+    return proposedOptions|NSApplicationPresentationAutoHideToolbar;
+}
+
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
 
