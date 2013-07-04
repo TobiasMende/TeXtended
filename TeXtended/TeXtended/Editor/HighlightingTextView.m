@@ -469,7 +469,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (self.selectedRanges.count != 1) {
         return;
     }
-    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
 //    if (totalRange.location > 0) {
 //        // Delete line-break before selection.
 //        totalRange.location -= 1;
@@ -484,10 +484,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (self.selectedRanges.count != 1) {
         return;
     }
-    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
     if(NSMaxRange(totalRange) < self.string.length) {
         NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-        NSRange nextLine = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(NSMaxRange(totalRange)+1, 0)];
+        NSRange nextLine = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(NSMaxRange(totalRange)+1, 0)];
         [self.undoManager beginUndoGrouping];
         [self swapTextIn:totalRange and:nextLine];
         [self setSelectedRange:[self firstRangeAfterSwapping:totalRange and:nextLine]];
@@ -498,23 +498,19 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
     if (aSelector == @selector(moveLinesUp:)) {
-        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
-        if (totalRange.location == 0 || totalRange.location == self.textStorage.length) {
+        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+        if (totalRange.location == 0) {
             return NO;
         } else {
             return YES;
         }
     } else if(aSelector == @selector(moveLinesDown:)) {
-        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
         if(NSMaxRange(totalRange) < self.string.length) {
-            NSRange nextLine = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(NSMaxRange(totalRange)+1, 0)];
-            if (nextLine.location == self.string.length) {
-                return NO;
-            } else {
-                return YES;
-            }
+            return YES;
+        } else {
+            return NO;
         }
-        return NO;
     } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
         return self.selectedRanges.count == 1;
     } else if (aSelector == @selector(jumpNextAnchor:) || aSelector == @selector(jumpPreviousAnchor:)) {
@@ -533,10 +529,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (self.selectedRanges.count != 1) {
         return;
     }
-    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:self.selectedRange];
+    NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
     if(totalRange.location > 0) {
         NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-        NSRange lineBefore = [self.codeNavigationAssistant lineTextRangeWithoutLineBreakWithRange:NSMakeRange(totalRange.location-1, 0)];
+        NSRange lineBefore = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(totalRange.location-1, 0)];
         [self.undoManager beginUndoGrouping];
         [self swapTextIn:lineBefore and:totalRange];
         [self setSelectedRange:NSMakeRange(lineBefore.location, totalRange.length)];
@@ -567,8 +563,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 // NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
     NSAttributedString *secondStr;
+    NSLog(@"%li", self.string.length);
     if (second.length == 0) {
-        NSDictionary *attr = [self.textStorage attributesAtIndex:second.location effectiveRange:NULL];
+        NSUInteger pos = second.location > 0 ? second.location -1 : 0;
+        NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
         secondStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
     } else {
         
@@ -576,7 +574,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     NSAttributedString *firstStr;
     if (first.length == 0) {
-        NSDictionary *attr = [self.textStorage attributesAtIndex:first.location effectiveRange:NULL];
+        NSUInteger pos = first.location > 0 ? first.location -1 : 0;
+        NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
         firstStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
     } else {
         

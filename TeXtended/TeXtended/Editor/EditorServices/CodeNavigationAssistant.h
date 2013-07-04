@@ -70,20 +70,23 @@
 /**
  Getter for the line range for a provided range
  
- @param range the range to get the entire line range.
+ @param range the range to get the entire line range without line terminator.
  
  @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
  */
 - (NSRange) lineTextRangeWithRange:(NSRange) range;
 
+
 /**
  Getter for the line range for a provided range
  
  @param range the range to get the entire line range.
+ @param flag if `YES`, the range contains the line termiantor at the end. 
  
- @return the containing line range or a range of multiple lines if the provided range was bigger than a single line. The returned line range doesn't contain the line break at beginning and end of the selected lines.
+ @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
  */
-- (NSRange) lineTextRangeWithoutLineBreakWithRange:(NSRange) range;
+- (NSRange) lineTextRangeWithRange:(NSRange) range withLineTerminator:(BOOL)flag;
+
 /**
  Handles automatic hard wrapping of long lines in the provided range
  

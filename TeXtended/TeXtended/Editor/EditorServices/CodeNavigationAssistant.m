@@ -151,44 +151,31 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 
 - (NSRange) lineTextRangeWithRange:(NSRange) range {
-    NSUInteger rangeStartPosition = range.location;
-    NSRange startLineRange = [view.string lineRangeForRange:NSMakeRange(rangeStartPosition, 0)];
-    
-    NSUInteger rangeEndPosition = NSMaxRange(range);
-    if (rangeEndPosition > view.string.length) {
-        return NSMakeRange(NSNotFound, 0);
-    }
-    if (rangeEndPosition < rangeStartPosition) {
-        rangeEndPosition = rangeStartPosition;
-    }
-    NSRange endLineRange = [view.string lineRangeForRange:NSMakeRange(rangeEndPosition, 0)];
-    
-    NSRange totalLineRange = NSMakeRange(startLineRange.location, NSMaxRange(endLineRange)-startLineRange.location);
-    return totalLineRange;
+    return [self lineTextRangeWithRange:range withLineTerminator:NO];
 }
 
-- (NSRange)lineTextRangeWithoutLineBreakWithRange:(NSRange)range {
-    NSRange total = [self lineTextRangeWithRange:range];
-    if (total.length > 0) {
-        if ([[view.string substringWithRange:NSMakeRange(NSMaxRange(total)-1, 1)] isEqualToString:@"\n"]) {
-            total.length -= 1;
-        }
+- (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag {
+    NSUInteger rangeStart, contentsEnd,rangeEnd;
+    [view.string getLineStart:&rangeStart end:&rangeEnd contentsEnd:&contentsEnd forRange:range];
+    
+    NSRange result;
+    
+    if (flag) {
+        NSUInteger length = rangeEnd-rangeStart;
+        result =  NSMakeRange(rangeStart, length);
+        
+    } else {
+        NSUInteger length = contentsEnd-rangeStart;
+        result =  NSMakeRange(rangeStart, length);
     }
-    if (total.length > 0) {
-        if ([[view.string substringWithRange:NSMakeRange(total.location, 1)] isEqualToString:@"\n"]) {
-            total.length -= 1;
-            total.location += 1;
-        }
-    }
-    return total;
+    return result;
 }
-
 
 #pragma mark -
 #pragma mark Comment & Uncomment
 
 - (void)commentSelectionInRange:(NSRange)range {
-    NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
+    NSRange lineRange = [self lineTextRangeWithRange:range];
     NSRange tmp = lineRange;
     NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
     NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
@@ -203,13 +190,13 @@ static const NSSet *KEYS_TO_OBSERVE;
     [view.undoManager beginUndoGrouping];
     [view.undoManager registerUndoWithTarget:self selector:@selector(uncommentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
     [view replaceCharactersInRange:tmp withString:area];
-    [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
+    [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
      [view.undoManager endUndoGrouping];
     
 }
 
 - (void)uncommentSelectionInRange:(NSRange)range {
-    NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
+    NSRange lineRange = [self lineTextRangeWithRange:range];
     NSRange tmp = lineRange;
     NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
      NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
@@ -225,7 +212,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     [view.undoManager beginUndoGrouping];
     [view.undoManager registerUndoWithTarget:self selector:@selector(commentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
     [view replaceCharactersInRange:tmp withString:area];
-    [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
+    [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
     [view.undoManager endUndoGrouping];
     if (!actionDone) {
         NSBeep();
@@ -236,7 +223,7 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 
 - (void)toggleCommentInRange:(NSRange)range {
-    NSRange lineRange = [self lineTextRangeWithoutLineBreakWithRange:range];
+    NSRange lineRange = [self lineTextRangeWithRange:range];
     NSRange tmp = lineRange;
     NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
     NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
@@ -260,7 +247,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     if (!actionDone) {
         NSBeep();
     } else {
-        [view setSelectedRange:[self lineTextRangeWithoutLineBreakWithRange:lineRange]];
+        [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
     }
 }
 
