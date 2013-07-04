@@ -20,6 +20,7 @@
     }
     [[view.undoManager prepareWithInvocationTarget:self] deleteTextInRange:[NSValue valueWithRange:NSMakeRange(index, insertion.length)] withActionName:name];
     [view.undoManager setActionName:name];
+    [view didChangeText];
     
 }
 
@@ -45,6 +46,7 @@
     [view.textStorage deleteCharactersInRange:range];
     [[view.undoManager prepareWithInvocationTarget:self] insertText:insertion atIndex:range.location withActionName:name];
     [view.undoManager setActionName:name];
+    [view didChangeText];
 }
 
 - (void)setString:(NSString *)string withActionName:(NSString *)name {

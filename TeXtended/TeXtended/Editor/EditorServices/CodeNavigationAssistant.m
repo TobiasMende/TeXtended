@@ -192,6 +192,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     [view replaceCharactersInRange:tmp withString:area];
     [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
      [view.undoManager endUndoGrouping];
+    [view didChangeText];
     
 }
 
@@ -219,6 +220,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     } else {
         [view setSelectedRange:lineRange];
     }
+    [view didChangeText];
 }
 
 
@@ -249,6 +251,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     } else {
         [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
     }
+    [view didChangeText];
 }
 
 - (void)uncommentSelectionInRangeString:(NSString *)range {
