@@ -171,15 +171,12 @@
 }
 
 - (void)updateMessageCollection:(NSNotification *)note {
-    NSError *error;
     if (self.logLevel < WARNING) {
         return;
     }
     if (countRunningParsers == 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
-        [self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:&error];
-        if (error) {
-            NSLog(@"TextViewController: Can't write temporary file: %@", error.userInfo);
+        if (![self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:NULL]) {
             return;
         }
         countRunningParsers = 2;
@@ -203,11 +200,7 @@
     
     internalMessages = [internalMessages merge:messages];
     if (countRunningParsers == 0) {
-        NSError *error;
-        [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:&error];
-        if (error) {
-            NSLog(@"TextViewController: Can't remove temporary file: %@", error.userInfo);
-        }
+        [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
         lineNumberView.messageCollection = subset;
