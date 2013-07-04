@@ -20,6 +20,12 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 @interface CodeNavigationAssistant ()
 - (void) unbindAll;
+
+- (void) handleMultiLineIndent;
+
+- (void) handleMultiLineUnindent;
+
+- (NSString *) singleTab;
 @end
 
 @implementation CodeNavigationAssistant
@@ -317,8 +323,17 @@ static const NSSet *KEYS_TO_OBSERVE;
 }
 
 - (BOOL)handleBacktabInsertion {
-    if (view.selectedRanges.count > 1 || view.selectedRange.length > 0) {
+    if (view.selectedRanges.count > 1) {
         return NO;
+    }
+    NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
+    if (lineRange.location != NSNotFound) {
+        NSRange totalRange = NSUnionRange(lineRange
+                                          , view.selectedRange);
+        if (view.selectedRange.length > 0 && view.selectedRange.location == totalRange.location) {
+            [self handleMultiLineUnindent];
+            return YES;
+        }
     }
     NSString *tab = [self singleTab];
     NSUInteger position = view.selectedRange.location;
@@ -363,6 +378,21 @@ static const NSSet *KEYS_TO_OBSERVE;
     NSMutableString *mString = [string mutableCopy];
     NSRange newRange = NSMakeRange(0, mString.length-1);
     [beginOfLine replaceMatchesInString:mString options:0 range:newRange withTemplate:tab];
+    [view insertText:mString replacementRange:totalRange];
+    totalRange.length = mString.length;
+    [view setSelectedRange:totalRange];
+    
+}
+
+- (void) handleMultiLineUnindent {
+    NSString *pattern = [NSString stringWithFormat:@"^(\\t| {%li})", self.numberOfSpacesForTab.integerValue];
+    NSRange totalRange = NSUnionRange([self lineTextRangeWithRange:view.selectedRange], view.selectedRange);
+    NSError *error;
+    NSRegularExpression *beginOfLine = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:&error];
+    NSString *string = [view.string substringWithRange:totalRange];
+    NSMutableString *mString = [string mutableCopy];
+    NSRange newRange = NSMakeRange(0, mString.length-1);
+    [beginOfLine replaceMatchesInString:mString options:0 range:newRange withTemplate:@""];
     [view insertText:mString replacementRange:totalRange];
     totalRange.length = mString.length;
     [view setSelectedRange:totalRange];
