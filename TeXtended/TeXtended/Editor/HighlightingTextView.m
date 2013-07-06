@@ -563,7 +563,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 // NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
     NSAttributedString *secondStr;
-    NSLog(@"%li", self.string.length);
     if (second.length == 0) {
         NSUInteger pos = second.location > 0 ? second.location -1 : 0;
         NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
