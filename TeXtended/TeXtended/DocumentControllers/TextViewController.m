@@ -149,7 +149,7 @@
 
 - (void)clearConsoleMessages:(NSNotification *)note {
     consoleMessages = [MessageCollection new];
-    if (countRunningParsers == 0) {
+    if (countRunningParsers <= 0) {
         self.messages = [consoleMessages merge:internalMessages];
         lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
         [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
@@ -174,7 +174,7 @@
     if (self.logLevel < WARNING) {
         return;
     }
-    if (countRunningParsers == 0 && self.model.texPath && self.content) {
+    if (countRunningParsers <= 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         if (![self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:NULL]) {
             return;
@@ -199,7 +199,7 @@
     
     
     internalMessages = [internalMessages merge:messages];
-    if (countRunningParsers == 0) {
+    if (countRunningParsers <= 0) {
         [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
         self.messages = [internalMessages merge:consoleMessages];
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
@@ -316,6 +316,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     
     if (self.textView.servicesOn) {
         [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
+        [self.textView.syntaxHighlighter highlightVisibleArea];
         
     }
     return newSelectedCharRange;
