@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Max Bannach. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
 @class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController;

@@ -26,9 +26,7 @@
         displayView = view;
         prefEdge = preferredEdge;
         elements = [[NSMutableArray alloc] init];
-        for (TrackingMessage *msg in messages) {
-            [elements addObject:msg];
-        }
+        [elements addObjectsFromArray:[messages allObjects]];
         [elements sortUsingSelector:@selector(compare:)];
         
         popover = [[NSPopover alloc] init];

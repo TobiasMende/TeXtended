@@ -152,9 +152,7 @@
     self.collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
     
     NSMutableArray *temp = [NSMutableArray arrayWithCapacity:self.collection.count];
-    for (TrackingMessage *message in self.collection.set) {
-        [temp addObject:message];
-    }
+    [temp addObjectsFromArray:[self.collection.set allObjects]];
     [temp sortUsingSelector:@selector(compare:)];
     [messageLock lock];
     self.messages = temp;
