@@ -113,7 +113,7 @@ static const NSSet *KEYS_TO_OBSERVE;
 }
 
 - (void)highlightCurrentLineForegroundWithRange:(NSRange)range {
-    if (range.location > view.string.length) {
+    if (NSMaxRange(range) > view.string.length) {
         return;
     }
     NSLayoutManager *lm = [view layoutManager];
@@ -156,17 +156,22 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 - (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag {
     NSUInteger rangeStart, contentsEnd,rangeEnd;
-    [view.string getLineStart:&rangeStart end:&rangeEnd contentsEnd:&contentsEnd forRange:range];
-    
     NSRange result;
-    
-    if (flag) {
-        NSUInteger length = rangeEnd-rangeStart;
-        result =  NSMakeRange(rangeStart, length);
+    if (range.location != NSNotFound && NSMaxRange(range) <= view.string.length) {
+        [view.string getLineStart:&rangeStart end:&rangeEnd contentsEnd:&contentsEnd forRange:range];
         
+        
+        if (flag) {
+            NSUInteger length = rangeEnd-rangeStart;
+            result =  NSMakeRange(rangeStart, length);
+            
+        } else {
+            NSUInteger length = contentsEnd-rangeStart;
+            result =  NSMakeRange(rangeStart, length);
+        }
     } else {
-        NSUInteger length = contentsEnd-rangeStart;
-        result =  NSMakeRange(rangeStart, length);
+        result = NSMakeRange(NSNotFound, 0);
+        NSLog(@"Error for provided range: %@",NSStringFromRange(range));
     }
     return result;
 }

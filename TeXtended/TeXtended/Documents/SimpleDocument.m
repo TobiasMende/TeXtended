@@ -63,8 +63,8 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (self.isDocumentEdited) {
         autosave = NO;
         [self saveDocumentWithDelegate:delegate didSaveSelector:action contextInfo:NULL];
-        autosave = YES;
         [self updateChangeCount:NSSaveOperation];
+        autosave = YES;
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"

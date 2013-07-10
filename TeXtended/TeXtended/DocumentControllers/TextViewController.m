@@ -196,7 +196,9 @@
         internalMessages = [MessageCollection new];
     }
     countRunningParsers--;
-    
+    if (countRunningParsers < 0) {
+        NSLog(@"Why???");
+    }
     
     internalMessages = [internalMessages merge:messages];
     if (countRunningParsers <= 0) {

@@ -52,11 +52,11 @@
         NSViewController *c = [[NSViewController alloc] initWithNibName:@"TMTMessageCellView" bundle:nil];
         result = (TMTMessageCellView*)c.view;
     }
-    [messageLock lock];
-    TrackingMessage *item = [self.messages objectAtIndex:row];
-    [messageLock unlock];
-    result.model = self.model;
-    result.objectValue = item;
+    if (row < self.messages.count) {
+        TrackingMessage *item = [self.messages objectAtIndex:row];
+        result.model = self.model;
+        result.objectValue = item;
+    }
     return result;
 }
 
@@ -149,15 +149,17 @@
 
 
 - (void)handleMessageUpdate:(NSNotification *)note {
+    [messageLock lock];
     self.collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
     
     NSMutableArray *temp = [NSMutableArray arrayWithCapacity:self.collection.count];
     [temp addObjectsFromArray:[self.collection.set allObjects]];
     [temp sortUsingSelector:@selector(compare:)];
-    [messageLock lock];
     self.messages = temp;
     [messageLock unlock];
-    [self.tableView reloadData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)dealloc {

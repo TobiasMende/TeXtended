@@ -137,6 +137,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (void)makeFirstResponder:(NSView *)view {
+    NSLog(@"%@", view);
     [[view window] setInitialFirstResponder:view];
 }
 
