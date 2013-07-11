@@ -61,10 +61,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     if (self.isDocumentEdited) {
-        autosave = NO;
+        //autosave = NO;
         [self saveDocumentWithDelegate:delegate didSaveSelector:action contextInfo:NULL];
-        [self updateChangeCount:NSSaveOperation];
-        autosave = YES;
+        [self updateChangeCount:NSAutosaveInPlaceOperation];
+        //autosave = YES;
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -91,7 +91,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 //}
 
 + (BOOL)autosavesInPlace {
-    return autosave;
+    return YES;
 }
 - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
     [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
@@ -101,7 +101,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-        [self.documentController breakUndoCoalescing];
+          [self.documentController breakUndoCoalescing];
     }
     if (![standardDocumentTypes containsObject:typeName]) {
         if(outError) {
