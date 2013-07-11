@@ -63,7 +63,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (self.isDocumentEdited) {
         //autosave = NO;
         [self saveDocumentWithDelegate:delegate didSaveSelector:action contextInfo:NULL];
-        [self updateChangeCount:NSAutosaveInPlaceOperation];
+        //[self updateChangeCount:NSAutosaveInPlaceOperation];
         //autosave = YES;
     } else {
 #pragma clang diagnostic push
