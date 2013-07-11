@@ -62,7 +62,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     if (self.isDocumentEdited) {
         //autosave = NO;
-        NSLog(@"%i", NSAutosaveInPlaceOperation);
         [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
         //autosave = YES;
     } else {
