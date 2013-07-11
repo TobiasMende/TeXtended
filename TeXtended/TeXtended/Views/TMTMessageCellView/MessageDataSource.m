@@ -129,8 +129,10 @@
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
     //[rowView setBackgroundColor:[NSColor greenColor]];
     [messageLock lock];
-    TrackingMessage *m = [self.messages objectAtIndex:row];
-    [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
+    if (row < self.messages.count) {
+        TrackingMessage *m = [self.messages objectAtIndex:row];
+        [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
+    }
     [messageLock unlock];
     
 }

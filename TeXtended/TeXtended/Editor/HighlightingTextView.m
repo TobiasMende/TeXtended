@@ -188,7 +188,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self updateSyntaxHighlighting];
-    [self.codeNavigationAssistant highlight];
 }
 
 - (void)updateSyntaxHighlighting {
@@ -196,6 +195,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
+}
+
+- (void)setNeedsDisplay:(BOOL)flag {
+    [super setNeedsDisplay:flag];
+    if (flag) {
+        [self.codeNavigationAssistant highlight];
+    }
 }
 
 
@@ -414,6 +420,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     [bracketHighlighter highlightOnMoveLeft];
     
+    
 }
 
 - (void)moveRight:(id)sender {
@@ -422,17 +429,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [bracketHighlighter highlightOnMoveRight];
-}
-
-- (void)moveUp:(id)sender {
-    [super moveUp:sender];
-    [self setNeedsDisplay:YES];
-}
-
-- (void)moveDown:(id)sender {
-    [super moveDown:sender];
-    [self setNeedsDisplay:YES];
-
 }
 
 
@@ -651,7 +647,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSRectFill(rect);
     [super drawViewBackgroundInRect:rect];
     if (self.servicesOn) {
-        [self.codeNavigationAssistant highlightCurrentLineBackground];
+        [self.codeNavigationAssistant highlight];
     }
 }
 
