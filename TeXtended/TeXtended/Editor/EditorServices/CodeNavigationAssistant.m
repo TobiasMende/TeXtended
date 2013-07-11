@@ -37,7 +37,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     WHITESPACES = [NSSet setWithObjects:@" ",@"\t", nil];
     NSError *error;
     SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
-    SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+" options:0 error:&error];
+    SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+(?!$)" options:NSRegularExpressionAnchorsMatchLines error:&error];
     FIRST_NONWHITESPACE_IN_LINE = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\s*)(\\S)(?:.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     if (error) {
         NSLog(@"Error!!!");
@@ -471,7 +471,7 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
             // Break after the spaces:
             goodPositionToBreak = currentPosition;
         }
-        if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound) {
+        if ((currentPosition-lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) ) && goodPositionToBreak != NSNotFound ) {
             [view.undoSupport insertText:insertion atIndex:goodPositionToBreak withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
          
             offset += insertion.length;
@@ -479,6 +479,7 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
             goodPositionToBreak = NSNotFound;
         }
     }
+
     [view.undoManager endUndoGrouping];
     return YES;
 }

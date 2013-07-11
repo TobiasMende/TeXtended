@@ -244,6 +244,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
     NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
+    [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
     if([self.codeNavigationAssistant handleWrappingInLine:lineRange]) {
         [self scrollRangeToVisible:self.selectedRange];
     }
