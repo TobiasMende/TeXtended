@@ -143,10 +143,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 }
 
 - (void)highlightVisibleArea {
-    NSLayoutManager *lm = [view layoutManager];
-    NSRect visibleArea = [view visibleRect];
-    NSRange visibleGlyphRange = [lm glyphRangeForBoundingRect:visibleArea inTextContainer:view.textContainer];
-    NSRange visibleTextRange = [lm characterRangeForGlyphRange:visibleGlyphRange actualGlyphRange:NULL];
+    NSRange visibleTextRange = [view extendedVisibleRange];
     
     [self highlightRange:visibleTextRange];
 }

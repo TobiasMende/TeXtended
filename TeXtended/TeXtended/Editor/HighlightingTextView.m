@@ -206,8 +206,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 - (NSRange) extendedVisibleRange {
-    NSRange range = [self.codeNavigationAssistant lineTextRangeWithRange:self.visibleRange];
-    for (NSUInteger iteration = 0; iteration < 10; iteration++) {
+    NSRange range = [self.codeNavigationAssistant lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
+    for (NSUInteger iteration = 0; iteration < 5; iteration++) {
         BOOL update = NO;
         if (range.location >0) {
             range.location -= 1;
