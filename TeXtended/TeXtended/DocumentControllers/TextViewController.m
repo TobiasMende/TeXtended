@@ -162,7 +162,7 @@
     MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
     if (collection) {
         consoleMessages = [consoleMessages merge:collection];
-        if (countRunningParsers == 0 && self.messages) {
+        if (countRunningParsers <= 0 && self.messages) {
             self.messages = [consoleMessages merge:internalMessages];
             lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
             [[NSNotificationCenter defaultCenter]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
@@ -176,7 +176,7 @@
     }
     if (countRunningParsers <= 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
-        if (![self.textView.string writeToFile:tempPath atomically:YES encoding:[self.model.encoding intValue]  error:NULL]) {
+        if (![self.textView.string writeToFile:tempPath atomically:NO encoding:[self.model.encoding intValue]  error:NULL]) {
             return;
         }
         countRunningParsers = 2;
@@ -196,9 +196,6 @@
         internalMessages = [MessageCollection new];
     }
     countRunningParsers--;
-    if (countRunningParsers < 0) {
-        NSLog(@"Why???");
-    }
     
     internalMessages = [internalMessages merge:messages];
     if (countRunningParsers <= 0) {

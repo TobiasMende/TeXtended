@@ -89,13 +89,13 @@
 
 -(void) liveCompile {
     if (self.documentController.model.texPath) {
-        [self.documentController.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+        [self.documentController refreshLiveView];
     }
     
 }
 
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
-    if (didSave) {
+    if (self.documentController.model.texPath) {
         [self compile:live];
     }
 }

@@ -144,7 +144,7 @@ static NSUInteger calls = 0;
 }
 
 - (void)draftCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
-    if (didSave) {
+    if (self.model.texPath) {
         [self.compiler compile:draft];
     }
 }
@@ -155,7 +155,7 @@ static NSUInteger calls = 0;
 }
 
 - (void)finalCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
-    if (didSave) {
+    if (self.model.texPath) {
          [self.compiler compile:final];
     }
 }
@@ -166,7 +166,7 @@ static NSUInteger calls = 0;
 }
 
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
-    if (didSave) {
+    if (self.model.texPath) {
         [self.compiler compile:live];
     }
 }

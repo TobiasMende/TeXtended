@@ -60,19 +60,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
-    if (self.isDocumentEdited) {
-        //autosave = NO;
         [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
-        //autosave = YES;
-    } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        typedef void (*MethodType)(id, SEL, NSDocument*, BOOL, void*);
-        MethodType methodToCall;
-        methodToCall = (MethodType)[delegate methodForSelector:action];
-        methodToCall(delegate, action, self, YES, NULL);
-#pragma clang diagnostic pop
-    }
 }
 
 
