@@ -85,6 +85,8 @@ typedef enum {
 /** Method for detecting and skipping the closing bracket of a \begin{...} statement */
 - (void) skipClosingBracket;
 
+- (NSAttributedString*)expandWhiteSpacesInAttrString:(NSAttributedString *) string;
+
 - (void) unbindAll;
 
 @end
@@ -229,7 +231,7 @@ typedef enum {
         
         
         NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
-            [final appendAttributedString:[completion substitutedExtension]];
+            [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
             [view.undoManager beginUndoGrouping];
             [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
@@ -296,16 +298,7 @@ typedef enum {
         [string appendAttributedString:singleTab];
     }
     if (completion && [completion hasPlaceholders]) {
-        NSMutableAttributedString *extension = [[completion substitutedExtension] mutableCopy];
-        NSArray *tabs = [TAB_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
-        for(NSTextCheckingResult *r in [tabs reverseObjectEnumerator]) {
-            [extension replaceCharactersInRange:r.range withAttributedString:singleTab];
-        }
-        NSArray *newlines = [NEW_LINE_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
-        for(NSTextCheckingResult *r in [newlines reverseObjectEnumerator]) {
-            [extension replaceCharactersInRange:r.range withAttributedString:newLine];
-        }
-        [string appendAttributedString:extension];
+        [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
     }
     }
     if (endRange.location == NSNotFound) {
@@ -327,6 +320,20 @@ typedef enum {
     
 }
 
+- (NSAttributedString*)expandWhiteSpacesInAttrString:(NSAttributedString *) string {
+    NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
+    NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
+    NSMutableAttributedString *extension = [string mutableCopy];
+    NSArray *tabs = [TAB_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
+    for(NSTextCheckingResult *r in [tabs reverseObjectEnumerator]) {
+        [extension replaceCharactersInRange:r.range withAttributedString:singleTab];
+    }
+    NSArray *newlines = [NEW_LINE_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
+    for(NSTextCheckingResult *r in [newlines reverseObjectEnumerator]) {
+        [extension replaceCharactersInRange:r.range withAttributedString:newLine];
+    }
+    return extension;
+}
 
 
 - (NSRange) matchingEndForEnvironment:(NSString*) name inRange:(NSRange) range {
