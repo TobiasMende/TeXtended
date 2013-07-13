@@ -442,6 +442,14 @@
 		<key>TMTCompletionInsertionKey</key>
 		<string>\item</string>
 	</dict>
+    <dict>
+		<key>TMTCompletionExtensionKey</key>
+		<string></string>
+		<key>TMTCompletionHasPlaceholdersKey</key>
+		<true/>
+		<key>TMTCompletionInsertionKey</key>
+		<string>\item[@@label@@]</string>
+	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
 		<string></string>

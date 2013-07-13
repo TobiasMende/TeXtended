@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>@@content@@</string>
+		<string>\item[@@label@@] @@content@@</string>
 		<key>TMTCompletionFirstLineExtensionKey</key>
 		<string></string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
