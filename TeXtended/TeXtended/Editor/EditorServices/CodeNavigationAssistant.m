@@ -25,7 +25,6 @@ static const NSSet *KEYS_TO_OBSERVE;
 
 - (void) handleMultiLineUnindent;
 
-- (NSString *) singleTab;
 @end
 
 @implementation CodeNavigationAssistant
@@ -394,15 +393,20 @@ static const NSSet *KEYS_TO_OBSERVE;
     
 }
 
-- (void)handleNewLineInsertion {
+- (NSString *)lineBreak {
     NSUInteger position = view.selectedRange.location;
     NSString *lineBreak = @"\n";
     if (self.shouldAutoIndentLines) {
         NSRange lineRange = [view.string lineRangeForRange:NSMakeRange(position, 0)];
         lineBreak = [lineBreak stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
         
-    } 
-[view insertText:lineBreak];
+    }
+    return lineBreak;
+}
+
+- (void)handleNewLineInsertion {
+   
+[view insertText:[self lineBreak]];
 }
 
 - (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange {

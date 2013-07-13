@@ -174,6 +174,10 @@
 - (IBAction)uncommentSelectionInRangeString:(NSString*)range;
 
 
+- (NSString*) lineBreak;
+
+- (NSString *) singleTab;
+
 /** Number of spaces which should replace a single tab */
 @property NSNumber *numberOfSpacesForTab;
 

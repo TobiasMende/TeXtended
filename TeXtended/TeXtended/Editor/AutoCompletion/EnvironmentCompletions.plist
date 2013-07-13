@@ -104,8 +104,7 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>@@content@@
-    \caption{@@title@@}</string>
+		<string>@@content@@\n\t\caption{@@title@@}</string>
 		<key>TMTCompletionFirstLineExtensionKey</key>
 		<string>[@@placement@@]</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>

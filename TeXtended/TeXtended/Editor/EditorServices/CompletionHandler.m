@@ -14,9 +14,12 @@
 #import "Completion.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
+#import "UndoSupport.h"
+#import "CodeNavigationAssistant.h";
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 static const NSSet *KEYS_TO_UNBIND;
+static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 typedef enum {
     TMTNoCompletion,
     TMTCommandCompletion,
@@ -93,6 +96,13 @@ typedef enum {
     
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
+    NSError *error;
+    TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\t|\\\\t)" options:0 error:&error];
+    NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
+    
+    if (error) {
+        NSLog(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
+    }
     
 }
 
@@ -269,30 +279,43 @@ typedef enum {
 //    } else {
 //        range = visible;
 //    }
+    
+   
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
     [view.undoManager beginUndoGrouping];
     [view setSelectedRange:NSMakeRange(position, 0)];
+    NSMutableAttributedString *string = [NSMutableAttributedString new];
     if ([completion hasFirstLineExtension]) {
-        [view insertText:[completion substitutedFirstLineExtension]];
+        [string appendAttributedString:[completion substitutedFirstLineExtension]];
     }
     if ([completion hasExtension]) {
-        
+        NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
+        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
     if (self.shouldAutoIndentEnvironment) {
-        [view insertNewline:self];
-        [view insertTab:self];
+        [string appendAttributedString:newLine];
+        [string appendAttributedString:singleTab];
     }
     if (completion && [completion hasPlaceholders]) {
-        [view insertText:[completion substitutedExtension]];
+        NSMutableAttributedString *extension = [[completion substitutedExtension] mutableCopy];
+        NSArray *tabs = [TAB_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
+        for(NSTextCheckingResult *r in [tabs reverseObjectEnumerator]) {
+            [extension replaceCharactersInRange:r.range withAttributedString:singleTab];
+        }
+        NSArray *newlines = [NEW_LINE_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
+        for(NSTextCheckingResult *r in [newlines reverseObjectEnumerator]) {
+            [extension replaceCharactersInRange:r.range withAttributedString:newLine];
+        }
+        [string appendAttributedString:extension];
     }
     }
     if (endRange.location == NSNotFound) {
         if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
-            [view insertNewline:self];
-            [view insertBacktab:self];
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
         }
-        [view insertText:[NSString stringWithFormat:@"\\end{%@}", completion.insertion]];
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
         
     }
+    [view insertText:string];
     [view setSelectedRange:NSMakeRange(position, 0)];
     if ([completion hasPlaceholders]) {
         [view setSelectedRange:NSMakeRange(position, 0)];
