@@ -160,6 +160,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
+- (void)flagsChanged:(NSEvent *)theEvent {
+    [super flagsChanged:theEvent];
+    self.currentModifierFlags = theEvent.modifierFlags;
+}
+
 - (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
@@ -318,25 +323,19 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertTab:sender];
         return;
     }
-    BOOL senderIsCompletionHandler = [sender isKindOfClass:[CompletionHandler class]];
-    BOOL placeholderServicesHandles = NO;
-    if (!senderIsCompletionHandler) {
-        placeholderServicesHandles = [placeholderService handleInsertTab];
-    }
-    if ( senderIsCompletionHandler|| !placeholderServicesHandles) {
-        [self.codeNavigationAssistant handleTabInsertion];
-    } else if (!placeholderServicesHandles) {
+    if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
         [super insertTab:sender];
-    }
+    } 
     
 }
+
 
 - (void)insertBacktab:(id)sender {
     if (!self.servicesOn) {
          [super insertBacktab:sender];
         return;
     }
-    if (![self.codeNavigationAssistant handleBacktabInsertion] && ![placeholderService handleInsertBacktab]) {
+    if (![placeholderService handleInsertBacktab] && ![self.codeNavigationAssistant handleBacktabInsertion]) {
         [super insertBacktab:sender];
     }
 }
@@ -434,7 +433,16 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 - (void)keyDown:(NSEvent *)theEvent {
-    [super keyDown:theEvent];
+    if (theEvent.keyCode == TMTTabKeyCode && theEvent.modifierFlags&NSAlternateKeyMask) {
+        if (theEvent.modifierFlags & NSShiftKeyMask) {
+            [self.codeNavigationAssistant handleBacktabInsertion];
+        } else {
+            [self.codeNavigationAssistant handleTabInsertion];
+        }
+    } else {
+        [super keyDown:theEvent];
+    }
+    
     if (!self.servicesOn) {
         return;
     }

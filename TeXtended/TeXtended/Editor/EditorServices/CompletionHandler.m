@@ -284,37 +284,39 @@ typedef enum {
     
    
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
-    [view.undoManager beginUndoGrouping];
-    [view setSelectedRange:NSMakeRange(position, 0)];
-    NSMutableAttributedString *string = [NSMutableAttributedString new];
-    if ([completion hasFirstLineExtension]) {
-        [string appendAttributedString:[completion substitutedFirstLineExtension]];
-    }
-    if ([completion hasExtension]) {
-        NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
-        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
-    if (self.shouldAutoIndentEnvironment) {
-        [string appendAttributedString:newLine];
-        [string appendAttributedString:singleTab];
-    }
-    if (completion && [completion hasPlaceholders]) {
-        [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
-    }
-    }
-    if (endRange.location == NSNotFound) {
-        if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
-            [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
-        }
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
-        
-    }
-    [view insertText:string];
-    [view setSelectedRange:NSMakeRange(position, 0)];
-    if ([completion hasPlaceholders]) {
+    if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
+        [view.undoManager beginUndoGrouping];
         [view setSelectedRange:NSMakeRange(position, 0)];
-        [view jumpToNextPlaceholder];
+        NSMutableAttributedString *string = [NSMutableAttributedString new];
+        if ([completion hasFirstLineExtension]) {
+            [string appendAttributedString:[completion substitutedFirstLineExtension]];
+        }
+        if ([completion hasExtension]) {
+            NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
+            NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
+            if (self.shouldAutoIndentEnvironment) {
+                [string appendAttributedString:newLine];
+                [string appendAttributedString:singleTab];
+            }
+            if (completion && [completion hasPlaceholders]) {
+                [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
+            }
+        }
+        if (endRange.location == NSNotFound) {
+            if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
+                [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
+            }
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
+            
+        }
+        [view insertText:string];
+        [view setSelectedRange:NSMakeRange(position, 0)];
+        if ([completion hasPlaceholders]) {
+            [view setSelectedRange:NSMakeRange(position, 0)];
+            [view jumpToNextPlaceholder];
+        }
+        [view.undoManager endUndoGrouping];
     }
-    [view.undoManager endUndoGrouping];
     
     
     

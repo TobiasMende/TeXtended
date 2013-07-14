@@ -37,6 +37,8 @@ GoToLineSheetController *goToLineSheet;
 
 }
 
+@property NSUInteger currentModifierFlags;
+
 /** The code navigation assistant */
 @property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
 
