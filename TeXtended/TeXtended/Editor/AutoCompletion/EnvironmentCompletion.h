@@ -32,4 +32,6 @@
  */
 - (NSAttributedString*) substitutedFirstLineExtension;
 
++ (EnvironmentCompletion *)dummyCompletion:(NSString*) name;
+
 @end

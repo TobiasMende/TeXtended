@@ -60,4 +60,11 @@
 - (NSAttributedString *)substitutedFirstLineExtension {
     return [self substitutePlaceholdersInString:self.firstLineExtension];
 }
+
++ (EnvironmentCompletion *)dummyCompletion:(NSString *)name {
+    EnvironmentCompletion *completion = [EnvironmentCompletion new];
+    completion.insertion = name;
+    completion.extension = @"@@content@@";
+    return completion;
+}
 @end

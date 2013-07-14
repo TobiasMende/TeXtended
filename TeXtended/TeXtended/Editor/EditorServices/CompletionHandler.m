@@ -183,6 +183,9 @@ typedef enum {
         }
     }
     [matchingCompletions sortUsingSelector:@selector(compare:)];
+    if(matchingCompletions.count == 0) {
+        [matchingCompletions addObject:[EnvironmentCompletion dummyCompletion:prefix]];
+    }
     return matchingCompletions;
 }
 
