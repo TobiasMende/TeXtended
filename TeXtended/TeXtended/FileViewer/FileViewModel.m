@@ -24,7 +24,6 @@
 - (FileViewModel*)addChildren:(NSString *)path
 {
     FileViewModel* newModel = [FileViewModel alloc];
-    NSString* childName = [[path pathComponents] objectAtIndex:pathIndex+1];
     NSRange range;
     range.location = 0;
     range.length = pathIndex+2;
@@ -37,15 +36,7 @@
         children = [[NSMutableArray alloc] init];
         self.expandable = TRUE;
     }
-    for(NSInteger i = 0; i < [children count]; i++)
-    {
-        if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
-        {
-            [children insertObject:newModel atIndex:i];
-            return newModel;
-        }
-    }
-    [children insertObject:newModel atIndex:[children count]];
+    [self addChilrenInOrder:newModel];
     return newModel;
 }
 
@@ -87,18 +78,35 @@
     {
         children = [[NSMutableArray alloc] init];
     }
-    NSString* childName = newChildren.fileName;
-    NSInteger index = [children count];
+    NSInteger count = [children count];
     for(NSInteger i = 0; i < [children count]; i++)
     {
-        if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
+        NSComparisonResult result = [[[self getChildrenByIndex:i] fileName] compare:newChildren.fileName options:NSCaseInsensitiveSearch];
+        if(result == NSOrderedDescending)
         {
-            index = i;
+            [children insertObject:newChildren atIndex:i];
+            newChildren.parent = self;
+            [newChildren updateFilePath:self.filePath];
+            return;
         }
     }
-    [children insertObject:newChildren atIndex:index];
+    [children insertObject:newChildren atIndex:count];
     newChildren.parent = self;
     [newChildren updateFilePath:self.filePath];
+}
+
+-(void)addChilrenInOrder:(FileViewModel*) newChildren {
+    NSInteger count = [children count];
+    for(NSInteger i = 0; i < count; i++)
+    {
+        NSComparisonResult result = [[[self getChildrenByIndex:i] fileName] compare:newChildren.fileName options:NSCaseInsensitiveSearch];
+        if(result == NSOrderedDescending)
+        {
+            [children insertObject:newChildren atIndex:i];
+            return;
+        }
+    }
+    [children insertObject:newChildren atIndex:count];
 }
 
 -(void)setFilePath:(NSString*)newPath
@@ -127,6 +135,8 @@
         [self willChangeValueForKey:@"pathComponents"];
         _pathComponents = [self.filePath pathComponents];
         [self didChangeValueForKey:@"pathComponents"];
+        [self.parent removeChildren:self];
+        [self.parent addExitsingChildren:self];
         if(children)
         {
             for (NSInteger i = 0; i < [children count]; i++) {

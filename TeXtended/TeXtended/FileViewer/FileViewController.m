@@ -113,10 +113,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel *model = (FileViewModel*)item;
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
-    [self renameFile:oldFile toNewFile:newFile];
-    [model setFileName:oldFile toName:newFile];
-    [outline reloadData];
-    
+    if([self renameFile:oldFile toNewFile:newFile])
+    {
+        [model setFileName:oldFile toName:newFile];
+        [outline reloadData];
+        [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:[outline rowForItem:item]] byExtendingSelection:NO];
+    }
+    else
+    {
+        // Errormessage?
+    }
 }
 
 - (void)    outlineView:(NSOutlineView *)outlineView
@@ -143,7 +149,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
     [img setSize:size];
     [cell setImage:img];
-    
 }
 
 -(NSDragOperation) outlineView:(NSOutlineView *)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
@@ -531,10 +536,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (void)renameFile:(NSString*)oldPath
+- (BOOL)renameFile:(NSString*)oldPath
          toNewFile:(NSString*)newFile {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-    [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
+    return [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
 }
 
 - (void)moveFile:(NSString*)oldPath
