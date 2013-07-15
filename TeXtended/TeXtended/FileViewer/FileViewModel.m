@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)addChildren:(NSString *)path
+- (FileViewModel*)addChildren:(NSString *)path
 {
     FileViewModel* newModel = [FileViewModel alloc];
     NSString* childName = [[path pathComponents] objectAtIndex:pathIndex+1];
@@ -42,28 +42,29 @@
         if([[[self getChildrenByIndex:i] fileName] isEqualToString:childName])
         {
             [children insertObject:newModel atIndex:i];
-            return;
+            return newModel;
         }
     }
     [children insertObject:newModel atIndex:[children count]];
+    return newModel;
 }
 
--(void)addPath:(NSString*)path
+-(FileViewModel*)addPath:(NSString*)path
 {
     if([path isEqualToString:self.filePath])
     {
-        return;
+        return self;
     }
     NSMutableArray* components = [[path pathComponents] mutableCopy];
     NSString* name = [components objectAtIndex:pathIndex+1];
     FileViewModel *child = [self getChildrenByName:name];
     if(child == nil)
     {
-        [self addChildren:path];
+        return [self addChildren:path];
     }
     else
     {
-        [child addPath:path];
+        return [child addPath:path];
     }
 }
 

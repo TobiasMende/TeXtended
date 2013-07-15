@@ -43,7 +43,7 @@
 /** Add a new fileviewmodel to represent a new path
  @param path is the path to add
  */
--(void)addPath:(NSString*)path;
+-(FileViewModel*)addPath:(NSString*)path;
 /** Adds a Documentmodel to the fileviewmodel specified by path 
  @param newModel is the Documentmodel
  @param path is the path to specify the fileviewmodel

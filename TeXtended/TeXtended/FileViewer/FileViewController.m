@@ -413,15 +413,14 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         return;
-    [self duplicateFile:model.filePath];
-    NSIndexSet* index = [NSIndexSet indexSetWithIndex:[outline clickedRow]];
-    [outline selectRowIndexes:index byExtendingSelection:NO];
-    [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
+    FileViewModel* duplicate = [self duplicateFile:model.filePath];
+    NSInteger i = [outline rowForItem:duplicate];
+    [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
+    [outline editColumn:[outline clickedColumn] row:i withEvent:nil select:YES];
 }
 
 - (IBAction)renameFile:(id)sender {
-    NSIndexSet* index = [NSIndexSet indexSetWithIndex:[outline clickedRow]];
-    [outline selectRowIndexes:index byExtendingSelection:NO];
+    [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:[outline clickedRow]] byExtendingSelection:NO];
     [outline editColumn:[outline clickedColumn] row:[outline clickedRow] withEvent:nil select:YES];
 }
 
@@ -492,7 +491,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (void) duplicateFile:(NSString*)filePath {
+- (FileViewModel*) duplicateFile:(NSString*)filePath {
     NSString* fileName = [[filePath lastPathComponent] stringByDeletingPathExtension];
     NSString* fileExtension = [filePath pathExtension];
     NSString* path = [filePath stringByDeletingLastPathComponent];
@@ -508,8 +507,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:newPath error:nil];
-    [nodes addPath:newPath];
+    FileViewModel* model = [nodes addPath:newPath];
     [outline reloadData];
+    return model;
 }
 
 - (void) deleteFileatPath:(NSString*)path {
@@ -570,6 +570,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)updateFileViewModel {
     if (!self.document.mainCompilable.path) {
+        return;
+    }
+    
+    if (![outline editedColumn]) {
         return;
     }
     
