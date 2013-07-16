@@ -376,9 +376,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (IBAction)newFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    FileViewModel* newModel;
     if(!model)
     {
-        [self createFile:nodes.filePath];
+        newModel = [self createFile:nodes.filePath];
     }
     else
     {
@@ -386,32 +387,41 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
         if(isDir)
         {
-            [self createFile:model.filePath];
+            newModel = [self createFile:model.filePath];
         }
         else
         {
-            [self createFile:[model.filePath stringByDeletingLastPathComponent]];
+            newModel = [self createFile:[model.filePath stringByDeletingLastPathComponent]];
         }
     }
+    
+    NSInteger i = [outline rowForItem:newModel];
+    [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
+    [outline editColumn:[outline clickedColumn] row:i withEvent:nil select:YES];
 }
 
 - (IBAction)newFolder:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    FileViewModel* newModel;
     if(!model)
-        [self createFolder:nodes.filePath];
+        newModel = [self createFolder:nodes.filePath];
     else
     {
         BOOL isDir;
         [[NSFileManager defaultManager] fileExistsAtPath:model.filePath isDirectory:&isDir];
         if(isDir)
         {
-            [self createFolder:model.filePath];
+            newModel = [self createFolder:model.filePath];
         }
         else
         {
-            [self createFolder:[model.filePath stringByDeletingLastPathComponent]];
+            newModel = [self createFolder:[model.filePath stringByDeletingLastPathComponent]];
         }
     }
+    
+    NSInteger i = [outline rowForItem:newModel];
+    [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
+    [outline editColumn:[outline clickedColumn] row:i withEvent:nil select:YES];
 }
 
 - (IBAction)duplicate:(id)sender {
@@ -462,7 +472,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSLog(@"openInfoViewForFile not implemented yet...");
 }
 
-- (void) createFile:(NSString*)atPath {
+- (FileViewModel*) createFile:(NSString*)atPath {
     NSString* newPath = [atPath stringByAppendingPathComponent:@"New File.tex"];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
@@ -475,11 +485,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     [[NSFileManager defaultManager] createFileAtPath:newPath contents:nil attributes:nil];
-    [nodes addPath:newPath];
+    FileViewModel* newModel = [nodes addPath:newPath];
     [outline reloadData];
+    return newModel;
 }
 
-- (void) createFolder:(NSString*)atPath {
+- (FileViewModel*) createFolder:(NSString*)atPath {
     NSString* newPath = [atPath stringByAppendingPathComponent:NSLocalizedString(@"New Folder", @"New Folder")];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:newPath])
@@ -492,8 +503,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     [[NSFileManager defaultManager] createDirectoryAtPath:newPath withIntermediateDirectories:NO attributes:nil error:nil];
-    [nodes addPath:newPath];
+    FileViewModel* newModel = [nodes addPath:newPath];
     [outline reloadData];
+    return newModel;
 }
 
 - (FileViewModel*) duplicateFile:(NSString*)filePath {
