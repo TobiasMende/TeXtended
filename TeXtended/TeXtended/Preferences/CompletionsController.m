@@ -217,8 +217,7 @@ if(!envPath) {
     [self.commandCompletions removeObjectForKey:key];
     [c setValue:object forKey:tableColumn.identifier];
     [self.commandCompletions setObject:c forKey:[c key]];
-
-    [commandKeys setObject:[c key] atIndexedSubscript:row];
+    [commandKeys replaceObjectAtIndex:row withObject:[c key]];
     [commandKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     NSUInteger index = [commandKeys indexOfObject:[c key]];
     self.selectedCommandIndexes = [NSIndexSet indexSetWithIndex:index];
@@ -237,7 +236,7 @@ if(!envPath) {
     [self.environmentCompletions removeObjectForKey:key];
     [c setValue:object forKey:tableColumn.identifier];
     [self.environmentCompletions setObject:c forKey:[c key]];
-    [environmentKeys setObject:[c key] atIndexedSubscript:row];
+    [environmentKeys replaceObjectAtIndex:row withObject:[c key]];
     [environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     NSUInteger index = [environmentKeys indexOfObject:[c key]];
     self.selectedEnvironmentIndexes = [NSIndexSet indexSetWithIndex:index];

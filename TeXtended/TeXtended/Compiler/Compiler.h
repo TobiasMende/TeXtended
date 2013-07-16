@@ -22,11 +22,12 @@
 }
 
 /** Defines the different compilemodes that are possible */
-typedef NS_ENUM(NSInteger, CompileMode) {
-    live,
-    draft,
-    final
-};
+typedef enum {
+    live = 0,
+    draft = 1,
+    final = 2
+} CompileMode;
+
 
 
 /** Timer that trigger a liveCompile when in live mode. */

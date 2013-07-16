@@ -15,7 +15,7 @@
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
 #import "UndoSupport.h"
-#import "CodeNavigationAssistant.h";
+#import "CodeNavigationAssistant.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 static const NSSet *KEYS_TO_UNBIND;

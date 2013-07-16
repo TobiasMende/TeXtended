@@ -20,7 +20,7 @@
 
 - (NSString *)typeForContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing *)outError {
     NSString *type = [super typeForContentsOfURL:url error:outError];
-    if(!type && CFURLHasDirectoryPath((CFURLRef)url)) {
+    if(!type && CFURLHasDirectoryPath((__bridge CFURLRef)url)) {
         // If no type was found yet and the url is a path to a directory, its a project folder type
         type = TMT_FOLDER_DOCUMENT_TYPE;
     }

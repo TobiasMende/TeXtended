@@ -29,7 +29,7 @@
                http://textended.tobsolution.de/app/0.4.html
            </sparkle:releaseNotesLink>
            <pubDate>Tue, 16 Jul 2013 13:37:00 +0200</pubDate>
-           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.zip" sparkle:version="0.4" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCGp+S0LdES1ziYdOCo7MeFoztGHQIVAMGaZ5Go0BbLPS4xFdS6dmCze6Dr" />
+           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.zip" sparkle:version="a96301723" sparkle:shortVersionString="0.4" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFBTbWnscwLfvqZtuJwUrdK9VLgZ2AhUAlu26LCpC7Y5Nz7JpEqA6bcejFIo=" />
            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
        </item>
 
