@@ -144,22 +144,22 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-//
-//    if (splitView == self.middle) {
-//        if (![self.splitviewControl isSelectedForSegment:1]) {
-//            return YES;
-//        }
-//    }
-//    
-//    if (splitView == self.mainView) {
-//        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
-//            return YES;
-//        }
-//    }
-//    
-//    if (splitView == self.sidebar) {
-//        return YES;
-//    }
+
+    if (splitView == self.middle) {
+        if (![self.splitviewControl isSelectedForSegment:1]) {
+            return YES;
+        }
+    }
+    
+    if (splitView == self.mainView) {
+        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
+            return YES;
+        }
+    }
+    
+    if (splitView == self.sidebar) {
+        return YES;
+    }
     return NO;
 }
 
