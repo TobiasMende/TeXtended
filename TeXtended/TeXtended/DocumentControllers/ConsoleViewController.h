@@ -27,7 +27,7 @@
 @property (strong) IBOutlet NSTextField *inputView;
 
 /** The parent controller according to the DocumentControllerProtocol. */
-@property (assign) id<DocumentControllerProtocol> parent;
+@property (weak) id<DocumentControllerProtocol> parent;
 
 /** The document model to deal with in this view */
 @property (strong,nonatomic) DocumentModel *model;

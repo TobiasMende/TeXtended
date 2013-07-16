@@ -11,8 +11,8 @@
 @interface PageNumberViewController : NSViewController {
     __weak PDFView* pdfView;
 }
-@property (assign) IBOutlet NSBox *theBox;
-@property (assign) IBOutlet NSTextField *theLabel;
+@property (weak) IBOutlet NSBox *theBox;
+@property (weak) IBOutlet NSTextField *theLabel;
 - (id) initInPdfView:(PDFView*) view;
 - (void) update;
 @end

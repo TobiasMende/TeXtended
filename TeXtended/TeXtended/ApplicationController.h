@@ -28,7 +28,7 @@
 }
 
 /** The delegate is in most cases the window controller of the top most window to which some menu actions should be directed. The controllers must set themselfe as delegate when they become a key window.*/
-@property (assign) NSWindowController *delegate;
+@property (weak) NSWindowController *delegate;
 
 /** Method for showing the texdoc panel to the user 
  

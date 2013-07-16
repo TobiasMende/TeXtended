@@ -25,39 +25,39 @@
 }
 
 /** Tableview displaying the Maindocuments */
-@property (assign) IBOutlet NSTableView *table;
+@property (weak) IBOutlet NSTableView *table;
 /** Documentmodel which is displayed */
 @property (strong) DocumentModel* doc;
 /** Label for the Document- or Projectname */
-@property (assign) IBOutlet NSTextField *lblName;
+@property (weak) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
-@property (assign) IBOutlet NSTextField *lblType;
+@property (weak) IBOutlet NSTextField *lblType;
 /** Label for the date of last compile */
-@property (assign) IBOutlet NSTextField *lblCompile;
+@property (weak) IBOutlet NSTextField *lblCompile;
 /** Label for the date of last change */
-@property (assign) IBOutlet NSTextField *lblChange;
+@property (weak) IBOutlet NSTextField *lblChange;
 /** Label for the documentpath */
-@property (assign) IBOutlet NSTextField *lblPath;
+@property (weak) IBOutlet NSTextField *lblPath;
 /** Textfield for the number of iterations of draft compiler */
-@property (assign) IBOutlet NSTextField *DraftIt;
+@property (weak) IBOutlet NSTextField *DraftIt;
 /** Textfield for the number of iterations of live compiler */
-@property (assign) IBOutlet NSTextField *LiveIt;
+@property (weak) IBOutlet NSTextField *LiveIt;
 /** Textfield for the number of iterations of final compiler */
-@property (assign) IBOutlet NSTextField *FinalIt;
+@property (weak) IBOutlet NSTextField *FinalIt;
 /** Compileflowhandler for the iterationslimits */
-@property (assign) IBOutlet CompileFlowHandler *CompilerFlowHandlerObj;
+@property (weak) IBOutlet CompileFlowHandler *CompilerFlowHandlerObj;
 /** Button to add maindocuments */
-@property (assign) IBOutlet NSButton *addButton;
+@property (weak) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
-@property (assign) IBOutlet NSButton *removeButton;
+@property (weak) IBOutlet NSButton *removeButton;
 /** */
-@property (assign) IBOutlet NSArrayController *mainDocumentsController;
+@property (weak) IBOutlet NSArrayController *mainDocumentsController;
 /** Name of the Document */
-@property (assign) NSString* documentName;
+@property (weak) NSString* documentName;
 /** Type of the Document */
-@property (assign) NSString* documentType;
+@property (weak) NSString* documentType;
 /** Path of the Document */
-@property (assign) NSString* documentPath;
+@property (weak) NSString* documentPath;
 
 /** Method for catching clicks on the addButton
  @param sender is the sender

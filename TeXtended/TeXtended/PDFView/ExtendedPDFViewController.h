@@ -19,7 +19,7 @@
 @interface ExtendedPDFViewController : NSViewController<DocumentControllerProtocol>
 
 /** Parent in the controller tree. */
-@property (assign)id<DocumentControllerProtocol> parent;
+@property (weak)id<DocumentControllerProtocol> parent;
 
 /** Current model from which the pdf is handeld by this class. */
 @property (strong,nonatomic) DocumentModel *model;

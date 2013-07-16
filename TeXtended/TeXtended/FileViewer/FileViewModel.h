@@ -26,7 +26,7 @@
 /** Documentmodel represented by fileviewmodel */
 @property (strong) DocumentModel *docModel;
 /** Parent of fileviewmodel in hierarchy */
-@property (assign) FileViewModel *parent;
+@property (weak) FileViewModel *parent;
 /** Filepath of file represented by fileviewmodel */
 @property (nonatomic, strong) NSString *filePath;
 /** Icon of file represented by fileviewmodel */

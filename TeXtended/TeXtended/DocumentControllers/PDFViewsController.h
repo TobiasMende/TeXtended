@@ -23,7 +23,7 @@
 @property (strong) IBOutlet NSTabView *tabView;
 
 /** Parent in the document controller tree */ 
-@property (assign) id<DocumentControllerProtocol> parent;
+@property (weak) id<DocumentControllerProtocol> parent;
 
 /** Children in the document controller tree */
 @property (strong) NSSet* children;

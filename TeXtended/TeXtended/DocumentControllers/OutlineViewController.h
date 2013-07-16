@@ -15,6 +15,6 @@
 @interface OutlineViewController : NSViewController<DocumentControllerProtocol>
 
 /** Parent the document controller tree. */
-@property (assign) id<DocumentControllerProtocol> parent;
+@property (weak) id<DocumentControllerProtocol> parent;
 
 @end

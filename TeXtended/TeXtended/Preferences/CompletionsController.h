@@ -27,10 +27,10 @@
 }
 
 /** The environment completion view */
-@property (assign) IBOutlet NSTableView *environmentView;
+@property (weak) IBOutlet NSTableView *environmentView;
 
 /** The command completion view */
-@property (assign) IBOutlet NSTableView *commandsView;
+@property (weak) IBOutlet NSTableView *commandsView;
 
 /** The command completions
  @see CommandCompletion

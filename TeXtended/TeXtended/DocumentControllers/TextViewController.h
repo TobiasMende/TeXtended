@@ -41,7 +41,7 @@
 @property (strong) IBOutlet NSScrollView *scrollView;
 
 /** The parent node in the controller tree. */
-@property (assign) id<DocumentControllerProtocol> parent;
+@property (weak) id<DocumentControllerProtocol> parent;
 
 /** The DocumentModel which's content is displayed by the view of this controller */
 @property (strong) DocumentModel *model;

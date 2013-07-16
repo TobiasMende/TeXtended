@@ -19,7 +19,7 @@
 @property NSColor *linkColor;
 @property BOOL shouldUnderlineLinks;
 
-@property (assign, nonatomic) ConsoleViewController *controller;
+@property (weak, nonatomic) ConsoleViewController *controller;
 
 
 @end
