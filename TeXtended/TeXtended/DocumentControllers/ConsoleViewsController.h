@@ -19,10 +19,10 @@
 @interface ConsoleViewsController : NSViewController<DocumentControllerProtocol>
 
 /** The data source for messages */
-@property (weak) IBOutlet MessageDataSource *messageDataSource;
+@property (assign) IBOutlet MessageDataSource *messageDataSource;
 
 /** Parent in the document controller tree.*/
-@property (weak) id<DocumentControllerProtocol> parent;
+@property (assign) id<DocumentControllerProtocol> parent;
 
 /** Children in the document controller tree. */
 @property (strong) NSSet* children;

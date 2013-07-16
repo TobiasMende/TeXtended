@@ -20,28 +20,28 @@
 }
 
 /** ´YES´ if the PDFs should be opend (by a extern editor) after the export. */
-@property (weak) IBOutlet NSButton *openCheckbox;
+@property (assign) IBOutlet NSButton *openCheckbox;
 
 /** ´YES´ fi bibtex should be used. */
-@property (weak) IBOutlet NSButton *bibCheckbox;
+@property (assign) IBOutlet NSButton *bibCheckbox;
 
 /** Selected TableView in the tabke. */
-@property (weak) IBOutlet TMTTableView *selectionTable;
+@property (assign) IBOutlet TMTTableView *selectionTable;
 
 /** Box arround the selection views. */
-@property (weak) IBOutlet NSBox *selectionView;
+@property (assign) IBOutlet NSBox *selectionView;
 
 /** Box arround the settings views. */
-@property (weak) IBOutlet NSBox *settingsView;
+@property (assign) IBOutlet NSBox *settingsView;
 
 /** The DocomentModel for which the export is called. */
 @property (strong) DocumentModel *model;
 
 /** The DocumentController for which the export is called. */
-@property (weak) DocumentController* controller;
+@property (assign) DocumentController* controller;
 
 /** Controller for the MainDocuments of the given DocumentController. */
-@property (weak) IBOutlet NSArrayController *mainDocumentsController;
+@property (assign) IBOutlet NSArrayController *mainDocumentsController;
 
 /** Init with a DocumentController which should be exported. */
 -(id)initWithDocumentController:(DocumentController*) controller;

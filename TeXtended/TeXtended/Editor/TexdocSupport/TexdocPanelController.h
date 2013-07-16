@@ -20,19 +20,19 @@
 @interface TexdocPanelController : NSWindowController<NSTextFieldDelegate,TexdocHandlerProtocol>
 
 /** The content box of the panel */
-@property (weak) IBOutlet NSBox *contentBox;
+@property (assign) IBOutlet NSBox *contentBox;
 
 /** The main view of the panel */
-@property (weak) IBOutlet NSView *view;
+@property (assign) IBOutlet NSView *view;
 
 /** The field in which to enter the package name */
-@property (weak) IBOutlet NSTextField *packageField;
+@property (assign) IBOutlet NSTextField *packageField;
 
 /** The TexdocViewController controlling the results and the according view */
 @property (strong) IBOutlet TexdocViewController *texdocViewController;
 
 /** The search panel for starting a request */
-@property (weak) IBOutlet NSView *searchPanel;
+@property (assign) IBOutlet NSView *searchPanel;
 
 /** If `YES` the task is searching for results. */
 @property BOOL searching;
@@ -50,10 +50,10 @@
 - (IBAction)clearSearch:(id)sender;
 
 /** Outlet to the clear button */
-@property (weak) IBOutlet NSButton *clearButton;
+@property (assign) IBOutlet NSButton *clearButton;
 
 /** Outlet to the search button */
-@property (weak) IBOutlet NSButton *searchButton;
+@property (assign) IBOutlet NSButton *searchButton;
 
 
 @end
