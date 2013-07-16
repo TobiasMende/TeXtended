@@ -234,14 +234,18 @@ typedef enum {
         
         
         NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
-            [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
+            if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
+                [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
+            }
             [view.undoManager beginUndoGrouping];
             [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
             [view  insertText:final];
             //[view setSelectedRange:NSMakeRange(NSMaxRange(charRange), 0)];
+            if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
             [view setSelectedRange:NSMakeRange(charRange.location, 0)];
             [view jumpToNextPlaceholder];
+            }
             [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];

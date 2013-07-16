@@ -24,7 +24,7 @@
            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
        </item>
        <item>
-           <title>Version 0.4 (Sparkle Test)</title>
+           <title>Beta Release 1 (TeXtended 0.4)</title>
            <sparkle:releaseNotesLink>
                http://textended.tobsolution.de/app/0.4.html
            </sparkle:releaseNotesLink>
