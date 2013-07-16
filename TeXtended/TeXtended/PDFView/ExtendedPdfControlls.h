@@ -17,11 +17,11 @@
 @interface ExtendedPdfControlls : NSViewController
 
 /** The PdfView were this controlls depend on */
-@property (weak) PDFView *pdfView;
-@property (weak) IBOutlet NSSlider *gridHSpacingSlider;
-@property (weak) IBOutlet NSSlider *gridHOffsetSlider;
-@property (weak) IBOutlet NSSlider *gridVSpacingSlider;
-@property (weak) IBOutlet NSSlider *gridVOffsetSlider;
+@property (assign) PDFView *pdfView;
+@property (assign) IBOutlet NSSlider *gridHSpacingSlider;
+@property (assign) IBOutlet NSSlider *gridHOffsetSlider;
+@property (assign) IBOutlet NSSlider *gridVSpacingSlider;
+@property (assign) IBOutlet NSSlider *gridVOffsetSlider;
 
 /** 
  * Called if the controlls have changed.
@@ -33,6 +33,6 @@
  * The box of the controlls.
  * Needed for costum adjustments. 
  */
-@property (weak) IBOutlet NSBox *theBox;
+@property (assign) IBOutlet NSBox *theBox;
 
 @end

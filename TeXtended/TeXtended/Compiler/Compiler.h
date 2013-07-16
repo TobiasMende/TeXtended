@@ -40,16 +40,16 @@ typedef enum {
 @property int idleTimeForLiveCompile;
 
 /** The DocumentController from which this class handels the MainDocuments. */
-@property (weak) DocumentController *documentController;
+@property (assign) DocumentController *documentController;
 
 /** CompileSettings for compiling in draft mode. */
-@property (weak) CompileSetting* draftSettings;
+@property (assign) CompileSetting* draftSettings;
 
 /** CompileSettings for compiling in live mode. */
-@property (weak) CompileSetting* liveSettings;
+@property (assign) CompileSetting* liveSettings;
 
 /** CompileSettings for compiling in final mode. */
-@property (weak) CompileSetting* finalSettings;
+@property (assign) CompileSetting* finalSettings;
 
 /**
  * Constructor initializing a new compiler for a given DocumentController.

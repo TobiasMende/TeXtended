@@ -66,9 +66,5 @@
  */
 - (void) makeFirstResponder:(NSView*)view;
 
-/**
- * Sets the delegate of mainView to self.
- */
-- (void) setDelegateOfMainView;
 
 @end

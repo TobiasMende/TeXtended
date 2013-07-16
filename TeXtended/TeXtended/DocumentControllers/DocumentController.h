@@ -25,7 +25,7 @@
 @property (strong,nonatomic) DocumentModel *model;
 
 /** The controller for the window. */
-@property (weak,nonatomic) id<WindowControllerProtocol> windowController;
+@property (assign,nonatomic) id<WindowControllerProtocol> windowController;
 
 /** Controller for the TextView. */
 @property (strong) TextViewController* textViewController;
@@ -43,7 +43,7 @@
 @property (strong) Compiler* compiler;
 
 /** The main document. */
-@property (weak, readonly) id<MainDocument> mainDocument;
+@property (assign, readonly) id<MainDocument> mainDocument;
 
 /**
  * Init the class with a model and a main document.

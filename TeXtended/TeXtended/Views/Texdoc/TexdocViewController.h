@@ -24,10 +24,10 @@
     __unsafe_unretained IBOutlet NSView *notFoundView;
 }
   /** The table view to display the entries in */
-@property (weak)IBOutlet TMTTableView *listView;;
-@property (weak) IBOutlet NSTextField *label;
+@property (assign)IBOutlet TMTTableView *listView;;
+@property (assign) IBOutlet NSTextField *label;
 /** The package name (returning the heading for the listView */
-@property (weak, nonatomic) NSString *package;
+@property (assign, nonatomic) NSString *package;
 /** Method for setting the entries 
  @param texdoc an array of TexdocEntry objects
  */

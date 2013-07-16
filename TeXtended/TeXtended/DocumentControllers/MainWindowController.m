@@ -57,22 +57,22 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)addConsoleViewsView:(NSView *)view {
     [self.middle addSubview:view];
-    [self.middle adjustSubviews];
+//    [self.middle adjustSubviews];
 }
 
 - (void)addTextView:(NSView *)view {
     [self.middle addSubview:view];
-    [self.middle adjustSubviews];
+//    [self.middle adjustSubviews];
 }
 
 - (void)addOutlineView:(NSView *)view {
     [self.left addSubview:view];
-    [self.left adjustSubviews];
+//    [self.left adjustSubviews];
 }
 
 - (void)addPDFViewsView:(NSView *)view {
     [self.right addSubview:view];
-    [self.right adjustSubviews];
+//    [self.right adjustSubviews];
 }
 
 - (IBAction)collapseView:(id)sender {
@@ -141,9 +141,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[view window] setInitialFirstResponder:view];
 }
 
-- (void)setDelegateOfMainView {
-    [self.mainView setDelegate:self];
-}
 
 - (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
@@ -159,12 +156,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
     
     if (splitView == self.mainView) {
-        if (self.middle == subview) {
-            return NO;
-        }
         if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
             return YES;
         }
+    }
+    
+    if (splitView == self.sidebar) {
+        return YES;
     }
     return NO;
 }

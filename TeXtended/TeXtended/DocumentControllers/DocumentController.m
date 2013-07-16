@@ -73,7 +73,6 @@ static NSUInteger calls = 0;
     [self.windowController addConsoleViewsView:self.consolViewsController.view];
     [self.windowController addPDFViewsView:self.pdfViewsController.view];
     [self loadContent];
-    [self.windowController setDelegateOfMainView];
     [self.windowController makeFirstResponder:self.textViewController.view];
 }
 
