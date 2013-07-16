@@ -142,6 +142,7 @@ ApplicationController *sharedInstance;
                               [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
 }
 
 + (void)mergeCompileFlows {

@@ -49,9 +49,6 @@
 //    [target addObject:[NSNumber numberWithFloat:0]];
 }
 
-- (void)adjustSubviews {
-    [super adjustSubviews];
-}
 
 - (void)setSubviews:(NSArray *)newSubviews {
     [super setSubviews:newSubviews];

@@ -57,22 +57,18 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)addConsoleViewsView:(NSView *)view {
     [self.middle addSubview:view];
-//    [self.middle adjustSubviews];
 }
 
 - (void)addTextView:(NSView *)view {
     [self.middle addSubview:view];
-//    [self.middle adjustSubviews];
 }
 
 - (void)addOutlineView:(NSView *)view {
     [self.left addSubview:view];
-//    [self.left adjustSubviews];
 }
 
 - (void)addPDFViewsView:(NSView *)view {
     [self.right addSubview:view];
-//    [self.right adjustSubviews];
 }
 
 - (IBAction)collapseView:(id)sender {
@@ -109,7 +105,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (IBAction)reportBug:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"https://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
+    NSURL *url = [NSURL URLWithString:@"http://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
@@ -148,22 +144,22 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-
-    if (splitView == self.middle) {
-        if (![self.splitviewControl isSelectedForSegment:1]) {
-            return YES;
-        }
-    }
-    
-    if (splitView == self.mainView) {
-        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
-            return YES;
-        }
-    }
-    
-    if (splitView == self.sidebar) {
-        return YES;
-    }
+//
+//    if (splitView == self.middle) {
+//        if (![self.splitviewControl isSelectedForSegment:1]) {
+//            return YES;
+//        }
+//    }
+//    
+//    if (splitView == self.mainView) {
+//        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
+//            return YES;
+//        }
+//    }
+//    
+//    if (splitView == self.sidebar) {
+//        return YES;
+//    }
     return NO;
 }
 

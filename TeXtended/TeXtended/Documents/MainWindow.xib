@@ -67,10 +67,9 @@
 							<string key="NSToolbarItemPaletteLabel">Live</string>
 							<string key="NSToolbarItemToolTip">Enable/ Disable Livecompile</string>
 							<object class="NSButton" key="NSToolbarItemView" id="493995493">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{0, 14}, {30, 28}}</string>
-								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="178519761">
@@ -116,10 +115,9 @@
 							<string key="NSToolbarItemPaletteLabel">Final</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="147505985">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
-								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="703661583">
@@ -161,10 +159,9 @@
 							<string key="NSToolbarItemPaletteLabel">View</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="538676730">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {104, 24}}</string>
-								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="721200420">
@@ -229,10 +226,9 @@
 							<string key="NSToolbarItemPaletteLabel">Report</string>
 							<string key="NSToolbarItemToolTip">Report a Bug</string>
 							<object class="NSButton" key="NSToolbarItemView" id="277962861">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{7, 14}, {30, 28}}</string>
-								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="338127929">
@@ -274,10 +270,9 @@
 							<string key="NSToolbarItemPaletteLabel">Draft</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="158262745">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
-								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="376759161">
@@ -468,7 +463,7 @@
 									<reference key="NSNextResponder" ref="99386276"/>
 									<int key="NSvFlags">268</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrame">{{157, 0}, {435, 559}}</string>
+									<string key="NSFrame">{{157, 0}, {442, 559}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="112595321"/>
@@ -480,7 +475,7 @@
 									<reference key="NSNextResponder" ref="99386276"/>
 									<int key="NSvFlags">268</int>
 									<array class="NSMutableArray" key="NSSubviews"/>
-									<string key="NSFrame">{{593, 0}, {391, 559}}</string>
+									<string key="NSFrame">{{600, 0}, {384, 559}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
