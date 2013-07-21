@@ -140,8 +140,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)complete:(id)sender {
     [super complete:sender];
-    
-    
+}
+
+- (NSRange)rangeForUserCompletion {
+    __block NSRange range = NSMakeRange(NSNotFound, 0);
+    [self.string enumerateSubstringsInRange:[self.string lineRangeForRange:self.selectedRange] options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if (NSMaxRange(substringRange) == self.selectedRange.location) {
+            range = substringRange;
+            *stop = YES;
+        }
+    }];
+    return range;
 }
 
 - (LineNumberView *)lineNumberView {

@@ -41,7 +41,15 @@
            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.1.zip" sparkle:version="3c30d102d" sparkle:shortVersionString="0.4.1" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCJZfP7xJuj4DOF/qsCVslFrItKXQIUBunEYNdqnjCO5gpV4Oq7hRA7Z9E=" />
            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
        </item>
-
+       <item>
+           <title>Small Fixes in the user defaults</title>
+           <sparkle:releaseNotesLink>
+               http://textended.tobsolution.de/app/0.4.2.html
+           </sparkle:releaseNotesLink>
+           <pubDate>Tue, 18 Jul 2013 19:00:00 +0200</pubDate>
+           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.2.zip" sparkle:version="0deb6831b" sparkle:shortVersionString="0.4.2" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFFLF9jx3hFgaslMjoQhaNEu0w6Z+AhUAh9d997JcjyjD4mCs3BHyPf8ItO8=" />
+           <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
+       </item>
        
    </channel>
 </rss>
