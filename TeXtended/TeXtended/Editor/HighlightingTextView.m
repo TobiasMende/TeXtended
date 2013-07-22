@@ -144,12 +144,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (NSRange)rangeForUserCompletion {
     __block NSRange range = NSMakeRange(NSNotFound, 0);
-    [self.string enumerateSubstringsInRange:[self.string lineRangeForRange:self.selectedRange] options:NSStringEnumerationByWords usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-        if (NSMaxRange(substringRange) == self.selectedRange.location) {
-            range = substringRange;
+    NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
+    if (NSMaxRange(lineRange) >= NSMaxRange(self.selectedRange) && lineRange.location <= self.selectedRange.location) {
+        NSUInteger length = self.selectedRange.location - lineRange.location;
+        NSRange searchRange = NSMakeRange(lineRange.location, length);
+        [self.string enumerateSubstringsInRange:searchRange options:NSStringEnumerationByWords|NSStringEnumerationReverse usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+            if (NSMaxRange(substringRange) == self.selectedRange.location) {
+                range = substringRange;
+            }
             *stop = YES;
-        }
-    }];
+        }];
+    }
     return range;
 }
 
