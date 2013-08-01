@@ -326,6 +326,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     
 }
 
+
 - (void)textDidChange:(NSNotification *)notification {
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
     [backgroundQueue addOperation:op];

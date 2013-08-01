@@ -19,6 +19,7 @@
 #import "SpellCheckingService.h"
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
+#import "AutoCompletionViewController.h"
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 
@@ -47,6 +48,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void) unregisterUserDefaultsObserver;
 
 - (LineNumberView*) lineNumberView;
+
+- (void) extendedComplete:(id)sender;
+
+- (void) updateTextMovement:(unsigned short)keyCode;
 @end
 @implementation HighlightingTextView
 
@@ -139,7 +144,29 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)complete:(id)sender {
-    [super complete:sender];
+    //TODO: implement extendedComplete and replace cocoa defaults.
+    //   [self extendedComplete:sender];
+        [super complete:sender];
+}
+
+- (void)extendedComplete:(id)sender {
+    NSRange wordRange = [self rangeForUserCompletion];
+    if (wordRange.location == NSNotFound) {
+        return;
+    }
+    NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0];
+    if (completions.count > 0) {
+        if (!autoCompletionController) {
+            autoCompletionController = [AutoCompletionViewController new];
+            [self addSubview:autoCompletionController.view];
+        }
+        [autoCompletionController.view setFrameOrigin:[self.layoutManager locationForGlyphAtIndex:self.selectedRange.location-1]];
+        autoCompletionController.content = completions;
+        [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
+    } else {
+        [autoCompletionController.view removeFromSuperview];
+        autoCompletionController = nil;
+    }
 }
 
 - (NSRange)rangeForUserCompletion {
@@ -169,6 +196,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (!self.servicesOn) {
         return;
+    }
+    if (flag || movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
+        [autoCompletionController.view removeFromSuperview];
+        autoCompletionController = nil;
     }
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
@@ -359,7 +390,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertNewline:sender];
         return;
     }
-    [self.codeNavigationAssistant handleNewLineInsertion];
+    if (autoCompletionController) {
+        [self insertCompletion:[autoCompletionController.content objectAtIndex:0] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+    } else {
+        [self.codeNavigationAssistant handleNewLineInsertion];
+    }
 }
 
 - (void)paste:(id)sender {
@@ -447,6 +482,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 - (void)keyDown:(NSEvent *)theEvent {
+    [self updateTextMovement:theEvent.keyCode];
     if (theEvent.keyCode == TMTTabKeyCode && theEvent.modifierFlags&NSAlternateKeyMask) {
         if (theEvent.modifierFlags & NSShiftKeyMask) {
             [self.codeNavigationAssistant handleBacktabInsertion];
@@ -462,6 +498,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     [self.codeNavigationAssistant highlightCarret];
 }
+
+- (void)updateTextMovement:(unsigned short)keyCode {
+    //FIXME: implement textMovement extraction
+}
+
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
@@ -687,6 +728,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
     }
 }
+
 
 -(void)dealloc {
 #ifdef DEBUG

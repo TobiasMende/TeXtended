@@ -56,6 +56,8 @@
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
 		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
+		D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */; };
+		D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2788291179DF8CA005201C9 /* AutoCompletionView.xib */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -332,6 +334,9 @@
 		D2719849174523EC00342CB0 /* DocumentControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentControllerProtocol.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D278828F179DF8CA005201C9 /* AutoCompletionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletionViewController.h; sourceTree = "<group>"; };
+		D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletionViewController.m; sourceTree = "<group>"; };
+		D2788291179DF8CA005201C9 /* AutoCompletionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionView.xib; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
 		D28DC0D9177AEBC900E4C711 /* xelatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xelatex.rb; sourceTree = "<group>"; };
@@ -533,6 +538,9 @@
 				D21ACB871726868A00E2F8EC /* EnvironmentCompletion.h */,
 				D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */,
 				D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */,
+				D278828F179DF8CA005201C9 /* AutoCompletionViewController.h */,
+				D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */,
+				D2788291179DF8CA005201C9 /* AutoCompletionView.xib */,
 			);
 			path = AutoCompletion;
 			sourceTree = "<group>";
@@ -1104,6 +1112,7 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
+				D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1230,7 @@
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				D296059517807E7C007C599B /* TMTCustomView.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
+				D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
