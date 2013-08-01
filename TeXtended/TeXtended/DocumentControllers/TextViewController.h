@@ -27,6 +27,7 @@
     /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
     NSMutableSet *observers;
     NSOperationQueue *backgroundQueue;
+    NSTimer *messageUpdateTimer;
     NSLock *messageLock;
     MessageCollection *internalMessages;
     MessageCollection *consoleMessages;

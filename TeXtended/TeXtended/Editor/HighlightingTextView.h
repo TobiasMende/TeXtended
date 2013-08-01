@@ -37,6 +37,7 @@ GoToLineSheetController *goToLineSheet;
     
     AutoCompletionViewController *autoCompletionController;
     NSUInteger currentTextMovement;
+    NSTimer *scrollTimer;
 
 }
 

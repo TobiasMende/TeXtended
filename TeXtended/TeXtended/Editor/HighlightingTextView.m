@@ -52,6 +52,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void) extendedComplete:(id)sender;
 
 - (void) updateTextMovement:(unsigned short)keyCode;
+- (void) finalyUpdateTrackingAreas:(id)userInfo;
 @end
 @implementation HighlightingTextView
 
@@ -233,12 +234,22 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)updateTrackingAreas {
+    if (scrollTimer) {
+        [scrollTimer invalidate];
+    }
+    scrollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(finalyUpdateTrackingAreas:) userInfo:nil repeats:NO];
+    
+}
+
+- (void)finalyUpdateTrackingAreas:(id)userInfo {
     [super updateTrackingAreas];
     if (!self.servicesOn) {
         return;
     }
+    
     [self updateSyntaxHighlighting];
 }
+
 
 - (void)updateSyntaxHighlighting {
     if (!self.servicesOn) {
@@ -728,6 +739,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
     }
 }
+
 
 
 -(void)dealloc {

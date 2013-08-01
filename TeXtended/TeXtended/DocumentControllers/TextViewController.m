@@ -328,8 +328,10 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 
 - (void)textDidChange:(NSNotification *)notification {
-    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMessageCollection:) object:nil];
-    [backgroundQueue addOperation:op];
+    if (messageUpdateTimer) {
+        [messageUpdateTimer invalidate];
+    }
+    messageUpdateTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
     }
