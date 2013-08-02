@@ -88,4 +88,18 @@
     }
 }
 
+- (NSString *)folderPath {
+    return [self.path stringByDeletingLastPathComponent];
+}
+
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"folderPath"]) {
+        keys = [keys setByAddingObject:@"path"];
+    }
+    
+    return keys;
+}
+
 @end
