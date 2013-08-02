@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "ProjectDocument.h"
 #import "ProjectModel.h"
+#import "DocumentModel.h"
 
 @interface DocumentCreationController ()
 
