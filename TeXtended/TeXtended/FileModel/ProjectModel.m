@@ -30,9 +30,13 @@
 @dynamic documents;
 @dynamic properties;
 
+- (id)init {
+    return nil;
+}
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
-    self = [super initWithContext:context];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"Project" inManagedObjectContext:context];
+    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
         [self initDefaults:context];
     }
@@ -68,8 +72,8 @@
         }
     }
     DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
-    model.texPath = path;
     [self addDocumentsObject:model];
+    model.texPath = path;
     return model;
 }
 
@@ -78,7 +82,7 @@
 }
 
 - (NSString *)infoTitle {
-    return NSLocalizedString(@"Projectinformation", @"Projectinformation");
+    return NSLocalizedString(@"Project Information", @"Projectinformation");
 }
 
 - (void)setPath:(NSString *)path {

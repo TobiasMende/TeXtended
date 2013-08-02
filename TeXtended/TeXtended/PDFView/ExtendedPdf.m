@@ -66,17 +66,8 @@ static const NSSet *KEYS_TO_UNBIND;
     [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
     
-    // add the controlls
-   [self addControlls];
-   [self addSubview:[controllsView view]];
-   [self setAutoScales:YES];
-   [[[controllsView view] animator] setAlphaValue:0.0f];
-    
-    // add page numbers
-    pageNumbers = [[PageNumberViewController alloc] initInPdfView:self];
-    [self addSubview:[pageNumbers view]];
-    [[pageNumbers view] setAlphaValue:0.0f];
-    [[pageNumbers view] setFrameOrigin:NSMakePoint(0, 0)];
+    // to init things at the first draw
+    firstDraw = true;
 }
 
 - (void) startBackwardSynctex:(id)sender {
@@ -143,10 +134,28 @@ static const NSSet *KEYS_TO_UNBIND;
                                                                       repeats: NO]];
 }
 
+- (void) initSubViews {
+    // add the controlls
+    [self addControlls];
+    [self addSubview:[controllsView view]];
+    [self setAutoScales:YES];
+    [[[controllsView view] animator] setAlphaValue:0.0f];
+    
+    // add page numbers
+    pageNumbers = [[PageNumberViewController alloc] initInPdfView:self];
+    [self addSubview:[pageNumbers view]];
+    [[pageNumbers view] setAlphaValue:0.0f];
+    [[pageNumbers view] setFrameOrigin:NSMakePoint(0, 0)];
+}
 
 - (void) drawPage:(PDFPage *) page
 {
     [super drawPage:page];
+    
+    if (firstDraw) {
+        firstDraw = false;
+        [self initSubViews];
+    }
     
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,

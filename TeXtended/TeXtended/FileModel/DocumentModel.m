@@ -10,6 +10,7 @@
 #import "ProjectModel.h"
 #import "Constants.h"
 #import "CompileSetting.h"
+#import "NSString+PathExtension.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -53,7 +54,7 @@ static NSArray *TMTEncodingsToCheck;
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
     if (!self.systemPath) {
-        return nil;
+        self.systemPath = self.texPath;
     }
     NSStringEncoding encoding;
     if (self.encoding && [self.encoding unsignedLongValue] > 0) {
@@ -433,19 +434,15 @@ static NSArray *TMTEncodingsToCheck;
     [self willAccessValueForKey:key];
     NSString *path = [self primitiveValueForKey:key];
     [self didAccessValueForKey:key];
-    if (![path isAbsolutePath] && self.project) {
-        NSURL *projectURL = [NSURL URLWithString:self.project.folderPath];
-        NSURL *url = [NSURL URLWithString:path relativeToURL:projectURL];
-        path = [url path];
+    if (path && ![path isAbsolutePath] && self.project) {
+        path = [path absolutePathWithBase:self.project.folderPath];
     }
     return path;
 }
 
 - (void)internalSetPath:(NSString *)path forKey:(NSString *)key {
-    if ([path isAbsolutePath] && self.project) {
-        NSURL *projectURL = [NSURL URLWithString:self.project.folderPath];
-        NSURL *url = [NSURL URLWithString:path relativeToURL:projectURL];
-        path = [url relativePath];
+    if (path && [path isAbsolutePath] && self.project) {
+        path = [path relativePathWithBase:self.project.folderPath];
     }
     [self internalSetValue:path forKey:key];
 }
@@ -453,7 +450,7 @@ static NSArray *TMTEncodingsToCheck;
 - (void)setPdfPath:(NSString *)pdfPath {
     NSString *old = [self internalPathForKey:@"pdfPath"];
     if (![old isEqualToString:pdfPath]) {
-        [self internalSetValue:pdfPath forKey:@"pdfPath"];
+        [self internalSetPath:pdfPath forKey:@"pdfPath"];
     }
 }
 
@@ -473,7 +470,7 @@ static NSArray *TMTEncodingsToCheck;
 #pragma mark Getter
 
 - (NSString *)infoTitle {
-    return NSLocalizedString(@"Documentinformation", @"Documentinformation");
+    return NSLocalizedString(@"Document Information", @"Documentinformation");
 }
 
 - (NSString *)type {

@@ -95,4 +95,7 @@
     return YES;
 }
 
+- (void) initDefaults {
+    NSLog(@"NOOOOO");
+}
 @end

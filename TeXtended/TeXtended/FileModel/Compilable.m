@@ -29,7 +29,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"CompileSetting" inManagedObjectContext:context];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"Compilable" inManagedObjectContext:context];
     self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
         [self initDefaults];

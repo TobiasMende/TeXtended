@@ -19,6 +19,7 @@
 @interface ExtendedPdf : PDFView {
     ExtendedPdfControlls *controllsView;
     PageNumberViewController *pageNumbers;
+    BOOL firstDraw;
 }
 
 /**
