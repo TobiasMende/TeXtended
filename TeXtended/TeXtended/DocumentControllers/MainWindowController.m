@@ -39,11 +39,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 {
     [super windowDidLoad];
     [self.documentController setupWindowController];
+    NSLog(@"%@", self.documentController);
+    self.fileViewController = [[FileViewController alloc] init];
     
-    _fileViewController = [[FileViewController alloc] init];
-    
-    //[self.fileViewArea setContentView:self.fileViewController.view];
-    //[self.fileViewController setDocument:self.documentController.model];
+    [self.fileViewController setDocument:self.documentController.model];
+    [self.fileViewArea setContentView:self.fileViewController.view];
     [self.splitviewControl setSelected:YES forSegment:0];
     [self.splitviewControl setSelected:YES forSegment:1];
     [self.splitviewControl setSelected:YES forSegment:2];
