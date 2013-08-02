@@ -9,6 +9,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "FileViewController.h"
+#import "InfoWindowController.h"
 #import "ExportCompileWindowController.h"
 #import "TMTSplitView.h"
 #import "ApplicationController.h"
@@ -101,6 +102,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if ([[ApplicationController sharedApplicationController] delegate] == self) {
         [[ApplicationController sharedApplicationController] setDelegate:nil];
     }
+    [self.fileViewController.infoWindowController.window close];
+    [self.exportWindow.window close];
 }
 
 
@@ -125,7 +128,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
     else
     {
-        [self.exportWindow setModel:self.documentController.model];
+        if (self.exportWindow.window.isVisible) {
+            [self.exportWindow setModel:self.documentController.model];
+        }
     }
 }
 
