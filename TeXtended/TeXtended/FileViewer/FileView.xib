@@ -56,7 +56,7 @@
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="994472837">
-							<int key="NSCellFlags">-2080374720</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">134350848</int>
 							<string key="NSContents">Gradient Button</string>
 							<object class="NSFont" key="NSSupport" id="26">
@@ -66,7 +66,7 @@
 							</object>
 							<string key="NSCellIdentifier">_NS:22</string>
 							<reference key="NSControlView" ref="683014040"/>
-							<int key="NSButtonFlags">-2030288896</int>
+							<int key="NSButtonFlags">922501120</int>
 							<int key="NSButtonFlags2">162</int>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
