@@ -81,6 +81,7 @@
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
+		D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE8D517ABCE5400298D11 /* OutlineElement.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
@@ -381,6 +382,8 @@
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
 		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
 		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
+		D2CAE8D417ABCE5400298D11 /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
+		D2CAE8D517ABCE5400298D11 /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -819,6 +822,8 @@
 			isa = PBXGroup;
 			children = (
 				D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */,
+				D2CAE8D417ABCE5400298D11 /* OutlineElement.h */,
+				D2CAE8D517ABCE5400298D11 /* OutlineElement.m */,
 				D2656908173A65600030381C /* CompileSetting.h */,
 				D2656909173A65600030381C /* CompileSetting.m */,
 				D2681FF7173143EC003AF83D /* BibFile.h */,
@@ -1227,6 +1232,7 @@
 				D296059517807E7C007C599B /* TMTCustomView.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
 				D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */,
+				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

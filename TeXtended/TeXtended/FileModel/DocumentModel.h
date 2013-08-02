@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Compilable.h"
 
-@class ProjectModel;
+@class ProjectModel,OutlineElement;
 
 
 /**
@@ -57,6 +57,8 @@
  
  */
 @property (nonatomic, strong) NSSet *subCompilabels;
+
+@property (nonatomic, strong) NSSet *outlineElements;
 
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;
@@ -132,4 +134,13 @@
 - (void)removeSubCompilabelsObject:(Compilable *)value;
 - (void)addSubCompilabels:(NSSet *)values;
 - (void)removeSubCompilabels:(NSSet *)values;
+- (void)addOutlineElementsObject:(OutlineElement *)value;
+- (void)removeOutlineElementsObject:(OutlineElement *)value;
+- (void)addOutlineElements:(NSSet *)values;
+- (void)removeOutlineElements:(NSSet *)values;
+@end
+
+
+@interface DocumentModel (DocumentModelExtension)
+- (void) initOutlineElements;
 @end

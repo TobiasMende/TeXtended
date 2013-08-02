@@ -36,6 +36,7 @@ static NSArray *TMTEncodingsToCheck;
 @dynamic subCompilabels;
 @dynamic liveCompile;
 @dynamic openOnExport;
+@dynamic outlineElements;
 
 + (void)initialize {
     
@@ -485,6 +486,14 @@ static NSArray *TMTEncodingsToCheck;
 
 - (NSString *)path {
     return self.texPath;
+}
+
+
+#pragma mark -
+#pragma mark DocumentModelExtension
+
+- (void)initOutlineElements {
+    NSString *content = [self loadContent];
 }
 
 @end

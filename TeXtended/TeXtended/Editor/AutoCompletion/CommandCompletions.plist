@@ -305,6 +305,8 @@
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\label</string>
+        <key>TMTCompletionTypeKey</key>
+		<string>label</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -313,6 +315,8 @@
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\cite</string>
+        <key>TMTCompletionTypeKey</key>
+		<string>cite</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
@@ -321,6 +325,8 @@
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
 		<string>\ref</string>
+        <key>TMTCompletionTypeKey</key>
+		<string>ref</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
