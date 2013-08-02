@@ -120,9 +120,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (IBAction)finalCompile:(id)sender {
     if (!self.exportWindow) {
         _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
+        [self.exportWindow setModel:self.documentController.model];
+        [self.exportWindow showWindow:nil];
     }
-    [self.exportWindow setModel:self.documentController.model];
-    [self.exportWindow showWindow:nil];
+    else
+    {
+        [self.exportWindow setModel:self.documentController.model];
+    }
 }
 
 - (void)genericAction:(id)sender {

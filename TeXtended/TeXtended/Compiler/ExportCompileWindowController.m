@@ -29,9 +29,9 @@
     return self;
 }
 
-- (void) showWindow:(id)sender {
-    [super showWindow:sender];
-    
+- (void)windowDidLoad {
+    self.window.isVisible = NO;
+    [super windowDidLoad];
 }
 
 - (void)awakeFromNib {
@@ -112,6 +112,18 @@
             [self.model addMainDocumentsObject:m];
         }
     }];
+}
+
+#pragma mark -
+#pragma mark Delegate Methods
+
+- (void)windowWillClose:(NSNotification *)notification {
+    self.window.isVisible = NO;
+}
+
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    self.window.isVisible = YES;
 }
 
 @end
