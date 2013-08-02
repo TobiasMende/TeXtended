@@ -41,6 +41,8 @@
         [dc saveDocument:error];
     }
     
+    
+    
     return [super writeToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:error];
 }
 
@@ -48,6 +50,13 @@
 
     if (!self.projectModel) {
         _projectModel = [[ProjectModel alloc] init];
+        if (self.documentControllers) {
+            for (DocumentController* dc in self.documentControllers) {
+                if ([[[self.projectModel.documents allObjects] objectAtIndex:0] isEqual:dc.model]) {
+                    [dc setWindowController:self.mainWindowController];
+                }
+            }
+        }
     }
     
     return [super readFromURL:absoluteURL ofType:typeName error:error];
