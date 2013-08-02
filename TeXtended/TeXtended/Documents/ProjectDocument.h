@@ -25,6 +25,7 @@
 /** A set of all document controllers of the project */
 @property (strong) NSMutableSet *documentControllers;
 
+/** The model of the project. */
 @property (strong) ProjectModel *projectModel;
 
 @end
