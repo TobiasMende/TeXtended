@@ -410,14 +410,6 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openInfoView:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="683014040"/>
-					</object>
-					<int key="connectionID">203</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openInfoView:</string>
-						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="393875677"/>
 					</object>
 					<int key="connectionID">222</int>
@@ -577,6 +569,22 @@
 						</object>
 					</object>
 					<int key="connectionID">342</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.infoWindowController.window.isVisible</string>
+						<reference key="source" ref="683014040"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="683014040"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.infoWindowController.window.isVisible</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.infoWindowController.window.isVisible</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">395</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -761,8 +769,8 @@
 								<float key="scoringTypeFloat">29</float>
 								<int key="contentType">3</int>
 							</object>
-							<reference ref="683014040"/>
 							<reference ref="367256631"/>
+							<reference ref="683014040"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1034,7 +1042,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">380</int>
+			<int key="maxID">395</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

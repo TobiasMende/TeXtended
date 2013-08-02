@@ -28,6 +28,7 @@
 
 - (id)init {
     self = [super initWithWindowNibName:@"InfoWindow"];
+    
     if (self) {
         // Initialization code here.
     }
@@ -36,10 +37,12 @@
 }
 
 - (void)windowDidLoad {
+    self.window.isVisible = NO;
     [super windowDidLoad];
 }
 
 - (void)awakeFromNib {
+    
     if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
         [self.mainDocumentsController setSelectionIndex:0];
     }
@@ -75,5 +78,20 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 }
+
+
+
+#pragma mark -
+#pragma mark Delegate Methods
+
+- (void)windowWillClose:(NSNotification *)notification {
+    self.window.isVisible = NO;
+}
+
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    self.window.isVisible = YES;
+}
+
 
 @end

@@ -52,10 +52,6 @@
  */
 - (void)updateFileViewModel;
 
-/** Method for catching clicks on titlebutton
- @param sender is the sender
- */
-- (IBAction)openInfoView:(id)sender;
 
 /** Method for catching clicks on open folder in contextmenu
  @param sender is the sender
