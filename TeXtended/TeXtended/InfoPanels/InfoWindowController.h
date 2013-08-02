@@ -18,11 +18,12 @@
  
  */
 
-@interface InfoWindowController : NSWindowController <NSTableViewDataSource> {
+@interface InfoWindowController : NSWindowController <NSTableViewDataSource, NSWindowDelegate> {
     NSMutableArray *texDocs;
     
     NSOpenPanel *texPathPanel;
 }
+
 
 /** Tableview displaying the Maindocuments */
 @property (assign) IBOutlet NSTableView *table;

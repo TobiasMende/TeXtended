@@ -31,6 +31,7 @@
             [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
         }
         _document = document;
+        self.infoWindowController.doc = document;
         if (_document) {
             [self.document addObserver:self forKeyPath:@"self.mainCompilable.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
         }
@@ -44,6 +45,7 @@
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
+    //[infoLoadButton bind:@"state" toObject:self.infoWindowController.window withKeyPath:@"isVisible" options:nil];
 }
 
 - (IBAction)doubleClick:(id)sender {
@@ -361,19 +363,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->nodes clean];
 }
 
-- (IBAction)openInfoView:(id)sender {
-    if(!self.document)
-    {
-        return;
-    }
-    if(!self.document.texPath)
-    {
-        return;
-    }
-    [self.infoWindowController showWindow:self.infoWindowController];
-    self.infoWindowController.doc = self.document;
-}
-
 - (IBAction)newFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     FileViewModel* newModel;
@@ -583,6 +572,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [observer addObserver:self withSelector:@selector(updateFileViewModel)];
     }
     
+    if ([keyPath isEqualToString:@"self.window.isVisible"]) {
+        NSLog(@"%d",self.infoWindowController.window.isVisible);
+    }
 }
 
 - (void)updateFileViewModel {

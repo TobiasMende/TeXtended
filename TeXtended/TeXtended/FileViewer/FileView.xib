@@ -56,7 +56,7 @@
 						<string key="NSReuseIdentifierKey">_NS:22</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="994472837">
-							<int key="NSCellFlags">-2080374720</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">134350848</int>
 							<string key="NSContents">Gradient Button</string>
 							<object class="NSFont" key="NSSupport" id="26">
@@ -66,7 +66,7 @@
 							</object>
 							<string key="NSCellIdentifier">_NS:22</string>
 							<reference key="NSControlView" ref="683014040"/>
-							<int key="NSButtonFlags">-2030288896</int>
+							<int key="NSButtonFlags">922501120</int>
 							<int key="NSButtonFlags2">162</int>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
@@ -229,6 +229,7 @@
 								<string key="NSFrame">{{1, 255}, {283, 16}}</string>
 								<reference key="NSSuperview" ref="367256631"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<int key="NSsFlags">1</int>
@@ -409,14 +410,6 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openInfoView:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="683014040"/>
-					</object>
-					<int key="connectionID">203</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openInfoView:</string>
-						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="393875677"/>
 					</object>
 					<int key="connectionID">222</int>
@@ -576,6 +569,22 @@
 						</object>
 					</object>
 					<int key="connectionID">342</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.infoWindowController.window.isVisible</string>
+						<reference key="source" ref="683014040"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="683014040"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: self.infoWindowController.window.isVisible</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.infoWindowController.window.isVisible</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">395</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -760,8 +769,8 @@
 								<float key="scoringTypeFloat">29</float>
 								<int key="contentType">3</int>
 							</object>
-							<reference ref="683014040"/>
 							<reference ref="367256631"/>
+							<reference ref="683014040"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1033,7 +1042,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">371</int>
+			<int key="maxID">395</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
