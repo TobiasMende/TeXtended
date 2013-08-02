@@ -14,7 +14,7 @@
  * 
  * @author Max Bananch
  */
-@interface ExportCompileWindowController : NSWindowController<NSOpenSavePanelDelegate> {
+@interface ExportCompileWindowController : NSWindowController<NSOpenSavePanelDelegate, NSWindowDelegate> {
     NSSavePanel *pdfPathPanel;
     NSOpenPanel *texPathPanel;
 }

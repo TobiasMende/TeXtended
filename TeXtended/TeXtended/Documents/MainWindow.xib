@@ -67,9 +67,12 @@
 							<string key="NSToolbarItemPaletteLabel">Live</string>
 							<string key="NSToolbarItemToolTip">Enable/ Disable Livecompile</string>
 							<object class="NSButton" key="NSToolbarItemView" id="493995493">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{0, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="178519761">
@@ -115,9 +118,12 @@
 							<string key="NSToolbarItemPaletteLabel">Final</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="147505985">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="703661583">
@@ -127,7 +133,7 @@
 									<reference key="NSSupport" ref="65583441"/>
 									<string key="NSCellIdentifier">_NS:9</string>
 									<reference key="NSControlView" ref="147505985"/>
-									<int key="NSButtonFlags">-2033958912</int>
+									<int key="NSButtonFlags">918831104</int>
 									<int key="NSButtonFlags2">163</int>
 									<object class="NSCustomResource" key="NSNormalImage" id="296309035">
 										<string key="NSClassName">NSImage</string>
@@ -159,9 +165,12 @@
 							<string key="NSToolbarItemPaletteLabel">View</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="538676730">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {104, 24}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="721200420">
@@ -226,9 +235,12 @@
 							<string key="NSToolbarItemPaletteLabel">Report</string>
 							<string key="NSToolbarItemToolTip">Report a Bug</string>
 							<object class="NSButton" key="NSToolbarItemView" id="277962861">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{7, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="338127929">
@@ -270,9 +282,12 @@
 							<string key="NSToolbarItemPaletteLabel">Draft</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="158262745">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">12</int>
 								<string key="NSFrame">{{2, 14}, {30, 28}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="376759161">
@@ -478,6 +493,7 @@
 									<string key="NSFrame">{{600, 0}, {384, 559}}</string>
 									<reference key="NSSuperview" ref="99386276"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSAntiCompressionPriority">{1, 1}</string>
 									<int key="NSDividerStyle">2</int>
@@ -661,6 +677,22 @@
 						<reference key="destination" ref="512844837"/>
 					</object>
 					<int key="connectionID">100546</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.exportWindow.window.isVisible</string>
+						<reference key="source" ref="147505985"/>
+						<reference key="destination" ref="512844837"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="147505985"/>
+							<reference key="NSDestination" ref="512844837"/>
+							<string key="NSLabel">value: self.exportWindow.window.isVisible</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.exportWindow.window.isVisible</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">100553</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1043,7 +1075,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100548</int>
+			<int key="maxID">100553</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

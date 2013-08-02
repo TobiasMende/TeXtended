@@ -34,9 +34,32 @@
     }
 }
 
-- (BOOL)save:(NSError **)error {
+- (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)error {
+    
+    /* save all documents */
+    for (DocumentController* dc in self.documentControllers) {
+        [dc saveDocument:error];
+    }
+    
+    
+    
+    return [super writeToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:error];
+}
 
-    return YES;
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
+
+    if (!self.projectModel) {
+        _projectModel = [[ProjectModel alloc] init];
+        if (self.documentControllers) {
+            for (DocumentController* dc in self.documentControllers) {
+                if ([[[self.projectModel.documents allObjects] objectAtIndex:0] isEqual:dc.model]) {
+                    [dc setWindowController:self.mainWindowController];
+                }
+            }
+        }
+    }
+    
+    return [super readFromURL:absoluteURL ofType:typeName error:error];
 }
 
 + (BOOL)autosavesInPlace
