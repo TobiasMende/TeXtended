@@ -77,7 +77,7 @@
 				<string key="NSClassName">CompileFlowHandler</string>
 			</object>
 			<object class="NSWindowTemplate" id="769631795">
-				<int key="NSWindowStyleMask">287</int>
+				<int key="NSWindowStyleMask">31</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 132}, {640, 509}}</string>
 				<int key="NSWTFlags">-1535638528</int>
@@ -792,7 +792,6 @@
 																			<string key="NSFrame">{{5, 8}, {141, 138}}</string>
 																			<reference key="NSSuperview" ref="294090304"/>
 																			<reference key="NSWindow"/>
-																			<reference key="NSNextKeyView"/>
 																			<string key="NSReuseIdentifierKey">_NS:9</string>
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="NSTextFieldCell" key="NSCell" id="1069496244">

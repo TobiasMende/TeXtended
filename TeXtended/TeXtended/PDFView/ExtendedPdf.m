@@ -116,12 +116,31 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void) beginGestureWithEvent:(NSEvent *)event {
     [super beginGestureWithEvent:event];
-    [[[pageNumbers view] animator] setAlphaValue:0.75f];
+    
+    if ([self.displayPageNumbersTimer isValid]) {
+        [self.displayPageNumbersTimer invalidate];
+    } else {
+        [[[pageNumbers view] animator] setAlphaValue:0.75f];
+    }
+    
+}
+
+- (void) deactivatePageNumbers {
+    [[[pageNumbers view] animator] setAlphaValue:0.0f];
 }
 
 - (void) endGestureWithEvent:(NSEvent *)event {
-    [super beginGestureWithEvent:event];
-    [[[pageNumbers view] animator] setAlphaValue:0.0f];
+    [super endGestureWithEvent:event];
+    
+    if ([self.displayPageNumbersTimer isValid]) {
+        [self.displayPageNumbersTimer invalidate];
+    }
+    
+    [self setDisplayPageNumbersTimer:[NSTimer scheduledTimerWithTimeInterval:2
+                                                                      target: self
+                                                                      selector:@selector(deactivatePageNumbers)
+                                                                      userInfo: nil
+                                                                      repeats: NO]];
 }
 
 

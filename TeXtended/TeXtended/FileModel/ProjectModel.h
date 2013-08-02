@@ -50,5 +50,10 @@
 - (void)addDocuments:(NSSet *)values;
 - (void)removeDocuments:(NSSet *)values;
 
+@end
+
+
+@interface ProjectModel (ProjectModelExtension)
+- (NSString*) folderPath;
 
 @end

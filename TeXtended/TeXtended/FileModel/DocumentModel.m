@@ -20,6 +20,8 @@ static NSArray *TMTEncodingsToCheck;
 - (void) initDefaults;
 - (void) clearInheretedCompilers;
 - (void) setupInheritedCompilers;
+- (void)internalSetPath:(NSString*)path forKey:(NSString*)key;
+- (NSString *)internalPathForKey:(NSString*)key;
 @end
 
 @implementation DocumentModel
@@ -352,9 +354,7 @@ static NSArray *TMTEncodingsToCheck;
 
 
 - (NSString *)pdfPath {
-    [self willAccessValueForKey:@"pdfPath"];
-    NSString *path = [self primitiveValueForKey:@"pdfPath"];
-    [self didAccessValueForKey:@"pdfPath"];
+    NSString *path = [self internalPathForKey:@"pdfPath"];
     if (path && path.length > 0) {
         return path;
     }
@@ -415,14 +415,42 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)setTexPath:(NSString *)texPath {
-    NSString *old = [self primitiveValueForKey:@"texPath"];
+    NSString *old = self.texPath;
     if (![old isEqualToString:texPath]) {
-        [self internalSetValue:texPath forKey:@"texPath"];
+        [self internalSetPath:texPath forKey:@"texPath"];
     }
 }
 
+- (NSString *)texPath {
+    return [self internalPathForKey:@"texPath"];
+}
+
+
+
+
+- (NSString *)internalPathForKey:(NSString *)key {
+    [self willAccessValueForKey:key];
+    NSString *path = [self primitiveValueForKey:key];
+    [self didAccessValueForKey:key];
+    if (![path isAbsolutePath] && self.project) {
+        NSURL *projectURL = [NSURL URLWithString:self.project.folderPath];
+        NSURL *url = [NSURL URLWithString:path relativeToURL:projectURL];
+        path = [url path];
+    }
+    return path;
+}
+
+- (void)internalSetPath:(NSString *)path forKey:(NSString *)key {
+    if ([path isAbsolutePath] && self.project) {
+        NSURL *projectURL = [NSURL URLWithString:self.project.folderPath];
+        NSURL *url = [NSURL URLWithString:path relativeToURL:projectURL];
+        path = [url relativePath];
+    }
+    [self internalSetValue:path forKey:key];
+}
+
 - (void)setPdfPath:(NSString *)pdfPath {
-    NSString *old = [self primitiveValueForKey:@"pdfPath"];
+    NSString *old = [self internalPathForKey:@"pdfPath"];
     if (![old isEqualToString:pdfPath]) {
         [self internalSetValue:pdfPath forKey:@"pdfPath"];
     }

@@ -146,8 +146,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)complete:(id)sender {
     //TODO: implement extendedComplete and replace cocoa defaults.
-    //   [self extendedComplete:sender];
-        [super complete:sender];
+    //[self extendedComplete:sender];
+    [super complete:sender];
 }
 
 - (void)extendedComplete:(id)sender {
