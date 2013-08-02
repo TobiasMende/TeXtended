@@ -27,9 +27,13 @@
     
     [self addWindowController:self.mainWindowController];
     if (!self.documentControllers || self.documentControllers.count == 0) {
-        DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
-        
-        self.documentControllers = [NSMutableSet setWithObject:dc];
+        if (self.projectModel.mainDocuments.count > 0) {
+            DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
+            
+            self.documentControllers = [NSMutableSet setWithObject:dc];
+        } else {
+            NSLog(@"ProjectDocument: ProjectModel seems corrupted: \n%@", self.projectModel);
+        }
     }
     for (DocumentController* dc in self.documentControllers) {
             [dc loadContent];
@@ -95,11 +99,17 @@
     
     NSError *fetchError;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+    if (fetchedObjects.count != 1) {
+        NSLog(@"ProjectDocument: WARNING: Number of ProjectModels is %li", fetchedObjects.count);
+    }
     if (fetchedObjects == nil) {
         NSLog(@"ProjectDocument: %@", fetchError.userInfo);
         success = NO;
     } else {
         self.projectModel = [fetchedObjects objectAtIndex:0];
+        if (![self.projectModel.path isEqualToString:finalURL.path]) {
+            self.projectModel.path = finalURL.path;
+        }
     }
     return success;
 }
@@ -108,11 +118,6 @@
 {
     return YES;
     
-}
-
-- (void)updateChangeCount:(NSDocumentChangeType)change {
-     [super updateChangeCount: change];
-    NSLog(@"%@", [NSThread callStackSymbols]);
 }
 
 - (void)dealloc {

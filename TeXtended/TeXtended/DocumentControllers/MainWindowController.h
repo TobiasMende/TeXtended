@@ -50,7 +50,7 @@
 @property  FileViewController *fileViewController;
 
 /** The controller controlling the export window */
-@property  ExportCompileWindowController* exportWindow;
+@property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
 
 /** The area in which to show the file view itself */
 @property (assign)  IBOutlet NSBox *fileViewArea;

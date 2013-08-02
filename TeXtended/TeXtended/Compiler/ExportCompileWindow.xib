@@ -92,6 +92,7 @@
 							<string key="NSFrame">{{14, 13}, {509, 32}}</string>
 							<reference key="NSSuperview" ref="679954243"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="376709653">
@@ -952,7 +953,7 @@
 								<object class="NSTextField" id="870834287">
 									<reference key="NSNextResponder" ref="752747516"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{0, 14}, {151.5, 17}}</string>
+									<string key="NSFrame">{{0, 14}, {152, 17}}</string>
 									<reference key="NSSuperview" ref="752747516"/>
 									<reference key="NSNextKeyView" ref="184129555"/>
 									<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -971,7 +972,7 @@
 								<object class="NSTextField" id="184129555">
 									<reference key="NSNextResponder" ref="752747516"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{0, -3}, {151.5, 17}}</string>
+									<string key="NSFrame">{{0, -3}, {152, 17}}</string>
 									<reference key="NSSuperview" ref="752747516"/>
 									<reference key="NSNextKeyView" ref="241847667"/>
 									<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -988,7 +989,7 @@
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								</object>
 							</array>
-							<string key="NSFrame">{{1, 1}, {151.5, 31}}</string>
+							<string key="NSFrame">{{1, 1}, {152, 31}}</string>
 							<reference key="NSNextKeyView" ref="870834287"/>
 						</object>
 						<reference key="destination" ref="870834287"/>

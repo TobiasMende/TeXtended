@@ -102,8 +102,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if ([[ApplicationController sharedApplicationController] delegate] == self) {
         [[ApplicationController sharedApplicationController] setDelegate:nil];
     }
-    [self.fileViewController.infoWindowController.window close];
-    [self.exportWindow.window close];
+    [self.fileViewController.infoWindowController close];
+    [self.exportWindow close];
 }
 
 
@@ -120,18 +120,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.documentController draftCompile];
 }
 
+- (ExportCompileWindowController *)exportWindow {
+    if (!_exportWindow) {
+        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
+    }
+    return _exportWindow;
+}
+
 - (IBAction)finalCompile:(id)sender {
-    if (!self.exportWindow) {
-        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
-        [self.exportWindow setModel:self.documentController.model];
-        [self.exportWindow showWindow:nil];
-    }
-    else
-    {
-        if (self.exportWindow.window.isVisible) {
-            [self.exportWindow setModel:self.documentController.model];
-        }
-    }
 }
 
 - (void)genericAction:(id)sender {
