@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DocumentCreationController : NSDocumentController
-
+@interface DocumentCreationController : NSDocumentController {
+    NSOpenPanel *createProjectPanel, *configurationPanel;
+}
+- (void) newProject:(id)sender;
 @end

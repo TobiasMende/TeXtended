@@ -32,7 +32,8 @@
 
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
-    self = [super initWithContext:context];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"Project" inManagedObjectContext:context];
+    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
     if (self) {
         [self initDefaults:context];
     }
