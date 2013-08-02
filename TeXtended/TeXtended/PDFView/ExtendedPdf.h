@@ -59,6 +59,9 @@
 /** The controller */
 @property (assign) ExtendedPDFViewController *controller;
 
+/** Timer which defines how long the page numbers are shown after a scroll event */
+@property (strong) NSTimer *displayPageNumbersTimer;
+
 /**
   * Draws a grid of the given size on the current page.
   * @param size the grid should have.
