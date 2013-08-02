@@ -44,6 +44,7 @@
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
+    //[infoLoadButton bind:@"state" toObject:self.infoWindowController.window withKeyPath:@"isVisible" options:nil];
 }
 
 - (IBAction)doubleClick:(id)sender {
@@ -362,7 +363,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (IBAction)openInfoView:(id)sender {
-    if(!self.document)
+    /*if(!self.document)
     {
         return;
     }
@@ -371,7 +372,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     [self.infoWindowController showWindow:self.infoWindowController];
-    self.infoWindowController.doc = self.document;
+    self.infoWindowController.doc = self.document;*/
 }
 
 - (IBAction)newFile:(id)sender {
