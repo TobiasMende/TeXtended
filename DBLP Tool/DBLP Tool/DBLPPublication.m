@@ -15,6 +15,7 @@
 - (void) generateBibtex:(NSXMLDocument*)doc;
 - (NSString*)lineBeginFor:(NSString *)key;
 - (NSString*)bibtexLineFor:(NSString *)key andValue:(NSString*)value;
+- (NSString*)modifyValue:(NSString*) value forKey:(NSString*) key;
 @end
 @implementation DBLPPublication
 - (id)initWithXMLUrl:(NSURL *)url {
@@ -113,12 +114,24 @@
         }
         for(NSXMLElement *e in array) {
             if (![e.name isEqualToString:@"author"]) {
-                [entry appendString:[self bibtexLineFor:e.name andValue:e.stringValue]];
+                
+                [entry appendString:[self bibtexLineFor:e.name andValue:[self modifyValue:e.stringValue forKey:e.name]]];
             }
         }
     }
 [entry appendString:@"}"];
 self.bibtex = entry;
+}
+
+- (NSString *)modifyValue:(NSString *)value forKey:(NSString *)key {
+    NSString *result;
+    if ([key isEqualToString:@"url"] || [key isEqualToString:@"crossref"]) {
+        result = [@"http://dblp.uni-trier.de/" stringByAppendingString:value];
+    } else {
+        result = value;
+    }
+    return result;
+    
 }
 - (NSString *)bibtexLineFor:(NSString *)key andValue:(NSString *)value {
     NSString *LINE_END = @"},\n";

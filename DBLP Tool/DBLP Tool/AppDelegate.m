@@ -21,6 +21,7 @@
 - (void)finishedFetcheingAuthors:(NSMutableDictionary *)authors {
     self.searchinAuthor = NO;
     [self.authorsController setContent:authors];
+    [self clickedAuthorTable:self];
 }
 
 - (void)startedFetcheingAuthors:(NSString *)authorName {
@@ -37,14 +38,13 @@
     if (self.authorField.stringValue.length >= 2) {
         [self.publicationsController setContent:nil];
         [dblp searchAuthor:self.authorField.stringValue];
+        
     }
 }
 - (IBAction)clickedAuthorTable:(id)sender {
     NSUInteger row = [self.authorTable selectedRow];
     if (row < [self.authorsController.arrangedObjects count]) {
-        NSString *name = [[self.authorsController.arrangedObjects objectAtIndex:row] value];
         NSString *urlpt = [[self.authorsController.arrangedObjects objectAtIndex:row] key];
-        self.resultLabel.stringValue = [@"Results for " stringByAppendingFormat:@"%@:", name];
         [dblp publicationsForAuthor:urlpt];
     }
 }
