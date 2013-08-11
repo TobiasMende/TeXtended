@@ -9,12 +9,50 @@
 #import "DBLPPublication.h"
 
 @interface DBLPPublication ()
+/** Method for starting asynchronous DBLP information fetching 
+ 
+ @param url the DBLP URL
+ */
 - (void) parseDocument:(NSURL *)url;
+
+/**
+ Method for fetching general bibliography informations like title, type and mdate from the provided document
+ 
+ @param doc the XML document
+ */
 - (void) fetchGeneralInfos:(NSXMLDocument*)doc;
-- (void) fetchAuthors:(NSXMLDocument*)doc;
-- (void) generateBibtex:(NSXMLDocument*)doc;
+
+/**
+ Generates the dictionary representation of the provided document
+ 
+ @param doc the XML document
+ */
+- (void) generateDictionary:(NSXMLDocument*)doc;
+
+/** Method for generating the bing of a new bibtex line (@\tkey={@)
+ 
+ @param key the name of the entry
+ @return The line begining
+ */
 - (NSString*)lineBeginFor:(NSString *)key;
+
+/**
+ Method for generating a new line in the bibtex document
+ @param key the name of the entry
+ @param value the value of the entry
+ 
+ @return the entire line
+ */
 - (NSString*)bibtexLineFor:(NSString *)key andValue:(NSString*)value;
+
+/**
+ Some values need to be modified for better quality of the bibtex output. This method modifies the values for some key
+ 
+ @param value the value that might be modified
+ @param key the name of the value
+ 
+ @return the possibly modified value.
+ */
 - (NSString*)modifyValue:(NSString*) value forKey:(NSString*) key;
 @end
 @implementation DBLPPublication
@@ -56,8 +94,6 @@
         NSLog(@"Can't parse doc. %@", [error userInfo]);
     } else {
         [self fetchGeneralInfos:doc];
-        [self fetchAuthors:doc];
-        [self generateBibtex:doc];
     }
 
 }
@@ -66,61 +102,63 @@
     NSError *error;
     NSArray *array = [doc nodesForXPath:@"/dblp/*" error:&error];
     NSXMLElement *e = [array objectAtIndex:0];
+    [self generateDictionary:doc];
     self.xml = e;
     self.type = e.name;
     self.key = [@"DBLP:" stringByAppendingString:[[e attributeForName:@"key"] stringValue]];
     self.mdate = [NSDate dateWithString:[[e attributeForName:@"mdate"] stringValue]];
-    NSArray *titleNodes = [e nodesForXPath:@"title" error:&error];
-    if (error) {
-        NSLog(@"DBLPPublication: %@", error.userInfo);
-    } else if(titleNodes.count >0){
-        NSXMLElement *titleElement = [titleNodes objectAtIndex:0];
-        self.title = titleElement.stringValue;
-    }
     
 }
 
-- (void)fetchAuthors:(NSXMLDocument *)doc {
-    NSError *error;
-     NSArray *array = [doc nodesForXPath:@"/dblp/*/author" error:&error];
-    self.authors = [NSMutableArray arrayWithCapacity:array.count];
-    if (error) {
-        NSLog(@"Can't fetch authors. %@", [error userInfo]);
-    }
-    for (NSXMLElement *element in array) {
-        NSString *name = [element stringValue];
-        if (name && name.length >0) {
-            [self.authors addObject:name];
-        }
-    }
-}
-
-- (void)generateBibtex:(NSXMLDocument *)doc {
-    NSMutableString *entry = [[NSMutableString alloc] init];
-    [entry appendFormat:@"@%@{%@,\n", self.type, self.key];
-    
+- (void)generateDictionary:(NSXMLDocument *)doc {
     NSError *error;
     NSArray *array = [doc nodesForXPath:@"/dblp/*/*" error:&error];
     if (error) {
-        NSLog(@"Can't generate bibtex");
+        NSLog(@"Can't generate dictionary");
     } else {
-        if (self.authors && self.authors.count > 0) {
-            NSMutableString *authors = [[NSMutableString alloc] init];
-            for (NSString *author in self.authors) {
-                [authors appendFormat:@"%@ and ", author];
-            }
-            [authors deleteCharactersInRange:NSMakeRange(authors.length-5, 5)];
-            [entry appendString:[self bibtexLineFor:@"author" andValue:authors]];
-        }
+        self.dictionary = [NSMutableDictionary dictionaryWithCapacity:array.count];
         for(NSXMLElement *e in array) {
-            if (![e.name isEqualToString:@"author"]) {
-                
-                [entry appendString:[self bibtexLineFor:e.name andValue:[self modifyValue:e.stringValue forKey:e.name]]];
+            [self willChangeValueForKey:e.name];
+            if ([e.name isEqualToString:@"author"]) {
+                NSMutableSet *authors = [self.dictionary objectForKey:e.name];
+                if (authors) {
+                    [authors addObject:e.stringValue];
+                } else {
+                    authors = [NSMutableSet setWithObject:e.stringValue];
+                    [self.dictionary setObject:authors forKey:e.name];
+                }
+            } else {
+                [self.dictionary setObject:[self modifyValue:e.stringValue forKey:e.name] forKey:e.name];
             }
+            [self didChangeValueForKey:e.name];
         }
     }
-[entry appendString:@"}"];
-self.bibtex = entry;
+}
+
+- (NSString *)bibtex{
+    if (!self.dictionary) {
+        NSLog(@"Can't generate bibtex");
+    } else {
+        NSMutableString *entry = [[NSMutableString alloc] init];
+        [entry appendFormat:@"@%@{%@,\n", self.type, self.key];
+        NSMutableSet *authorSet = [self.dictionary objectForKey:@"author"];
+            if (authorSet && authorSet.count > 0) {
+                NSMutableString *authors = [[NSMutableString alloc] init];
+                for (NSString *author in authorSet) {
+                    [authors appendFormat:@"%@ and ", author];
+                }
+                [authors deleteCharactersInRange:NSMakeRange(authors.length-5, 5)];
+                [entry appendString:[self bibtexLineFor:@"author" andValue:authors]];
+            }
+            for(NSString *key in self.dictionary.keyEnumerator) {
+                if (![key isEqualToString:@"author"]) {
+                    [entry appendString:[self bibtexLineFor:key andValue:[self.dictionary objectForKey:key]]];
+                }
+            }
+        [entry appendString:@"}"];
+        return entry;
+    }
+    return nil;
 }
 
 - (NSString *)modifyValue:(NSString *)value forKey:(NSString *)key {
@@ -144,5 +182,13 @@ self.bibtex = entry;
         [space appendString:@" "];
     }
     return [NSString stringWithFormat:@"\t%@%@=\t{", key, space];
+}
+
+- (id)valueForUndefinedKey:(NSString *)key {
+    return [self.dictionary objectForKey:key];
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    [self.dictionary setObject:value forKey:key];
 }
 @end

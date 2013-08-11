@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DBLPCallbackHandler.h"
+
+/**
+ This class provides an interface to a DBLP database and handles search requests for authors and bib entries.
+ 
+ **Author:** Tobias Mende
+ 
+ */
 @interface DBLPInterface : NSObject<NSURLConnectionDataDelegate, NSXMLParserDelegate> {
     NSString *dblpUrl;
     NSString *authorSearchAppendix;
