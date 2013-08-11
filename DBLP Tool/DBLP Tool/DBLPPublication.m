@@ -7,6 +7,7 @@
 //
 
 #import "DBLPPublication.h"
+#import "DBLPConfiguration.h"
 
 @interface DBLPPublication ()
 /** Method for starting asynchronous DBLP information fetching 
@@ -164,7 +165,7 @@
 - (NSString *)modifyValue:(NSString *)value forKey:(NSString *)key {
     NSString *result;
     if ([key isEqualToString:@"url"] || [key isEqualToString:@"crossref"]) {
-        result = [@"http://dblp.uni-trier.de/" stringByAppendingString:value];
+        result = [[DBLPConfiguration sharedInstance].server stringByAppendingString:value];
     } else {
         result = value;
     }
