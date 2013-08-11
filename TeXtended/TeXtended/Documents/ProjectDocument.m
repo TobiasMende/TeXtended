@@ -11,6 +11,10 @@
 #import "DocumentController.h"
 #import "ProjectModel.h"
 
+@interface ProjectDocument ()
+- (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
+@end
+
 @implementation ProjectDocument
 
 - (id)init
@@ -112,6 +116,10 @@
         }
     }
     return success;
+}
+
+- (NSURL *)projectFileUrlFromDirectory:(NSURL *)directory {
+    NSString *lastComponent = [directory lastPathComponent];
 }
 
 + (BOOL)autosavesInPlace

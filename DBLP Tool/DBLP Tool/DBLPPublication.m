@@ -69,6 +69,13 @@
     self.type = e.name;
     self.key = [@"DBLP:" stringByAppendingString:[[e attributeForName:@"key"] stringValue]];
     self.mdate = [NSDate dateWithString:[[e attributeForName:@"mdate"] stringValue]];
+    NSArray *titleNodes = [e nodesForXPath:@"title" error:&error];
+    if (error) {
+        NSLog(@"DBLPPublication: %@", error.userInfo);
+    } else if(titleNodes.count >0){
+        NSXMLElement *titleElement = [titleNodes objectAtIndex:0];
+        self.title = titleElement.stringValue;
+    }
     
 }
 
