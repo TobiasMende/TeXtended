@@ -41,7 +41,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     _fileViewController = [[FileViewController alloc] init];
     
-    [self.fileViewArea setContentView:self.fileViewController.view];
+    
+    //FIXME: das ist irgendwie kaput, da das view geht macht kram beim loaden
+    //[self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController setDocument:self.documentController.model];
     [self.splitviewControl setSelected:YES forSegment:0];
     [self.splitviewControl setSelected:YES forSegment:1];
