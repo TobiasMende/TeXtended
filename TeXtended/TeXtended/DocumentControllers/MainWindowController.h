@@ -29,13 +29,13 @@
 @property IBOutlet NSSegmentedControl *splitviewControl;
 
 /** The main view containing the left and content view */
-@property (assign) IBOutlet TMTSplitView *mainView;
+@property (strong) IBOutlet TMTSplitView *mainView;
 
 /** The left sidebar containing the file view and an outline view */
-@property (assign) IBOutlet NSSplitView *sidebar;
+@property (strong) IBOutlet NSSplitView *sidebar;
 
 /** The subview of the sidebar */
-@property  (assign) IBOutlet NSSplitView *left;
+@property  (strong) IBOutlet NSSplitView *left;
 
 /** The middle view containing editor and console in most cases */
 @property  (assign) IBOutlet TMTSplitView *middle;
@@ -50,10 +50,10 @@
 @property  FileViewController *fileViewController;
 
 /** The controller controlling the export window */
-@property  ExportCompileWindowController* exportWindow;
+@property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
 
 /** The area in which to show the file view itself */
-@property (assign)  IBOutlet NSBox *fileViewArea;
+@property (strong)  IBOutlet NSBox *fileViewArea;
 
 
 /** Method for toggling the collapse state of a view which is determined by the senders tag. See TMTSplitView for further details 

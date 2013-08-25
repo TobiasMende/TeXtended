@@ -38,14 +38,10 @@
 
 - (void)windowDidLoad {
     self.window.isVisible = NO;
-    [super windowDidLoad];
-}
-
-- (void)awakeFromNib {
-    
     if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
         [self.mainDocumentsController setSelectionIndex:0];
     }
+    [super windowDidLoad];
 }
 
 - (IBAction)addMainDocument:(id)sender {
@@ -75,11 +71,6 @@
 - (BOOL)canRemoveEntry {
     return [self.mainDocumentsController.arrangedObjects count] > 1;
 }
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-}
-
-
 
 #pragma mark -
 #pragma mark Delegate Methods

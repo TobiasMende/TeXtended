@@ -13,6 +13,7 @@
 #import "TMTTableView.h"
 
 @interface ExportCompileWindowController ()
+- (void) internalSetActive:(BOOL)active;
 @end
 
 @implementation ExportCompileWindowController
@@ -114,16 +115,31 @@
     }];
 }
 
+
+- (void)setActive:(BOOL)active {
+    if (active) {
+        [self showWindow:self];
+    } else {
+        [self close];
+    }
+    _active = active;
+}
+
+- (void)internalSetActive:(BOOL)active {
+    [self willChangeValueForKey:@"active"];
+    _active = active;
+    [self didChangeValueForKey:@"active"];
+}
 #pragma mark -
 #pragma mark Delegate Methods
 
-- (void)windowWillClose:(NSNotification *)notification {
-    self.window.isVisible = NO;
+- (void)windowWillClose:(NSNotification *)notification {    
+    [self internalSetActive:NO];
 }
 
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
-    self.window.isVisible = YES;
+    [self internalSetActive:YES];
 }
 
 @end

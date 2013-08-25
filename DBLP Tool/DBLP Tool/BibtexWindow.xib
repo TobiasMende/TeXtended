@@ -37,7 +37,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="520371321">
-				<int key="NSWindowStyleMask">8223</int>
+				<int key="NSWindowStyleMask">8351</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {605, 435}}</string>
 				<int key="NSWTFlags">611845120</int>
@@ -63,7 +63,7 @@
 											<string key="NSFrameSize">{565, 395}</string>
 											<reference key="NSSuperview" ref="988457740"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="1047939184"/>
+											<reference key="NSNextKeyView" ref="420109697"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="694651939">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -84,7 +84,7 @@
 												<int key="NSTCFlags">1</int>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
-												<int key="NSFlags">10752</int>
+												<int key="NSFlags">67119616</int>
 												<int key="NSTextCheckingTypes">0</int>
 												<nil key="NSMarkedAttributes"/>
 												<object class="NSColor" key="NSBackgroundColor" id="93310879">
@@ -145,7 +145,7 @@
 									<reference key="NSDocView" ref="346498147"/>
 									<reference key="NSBGColor" ref="93310879"/>
 									<object class="NSCursor" key="NSCursor">
-										<string key="NSHotSpot">{5, 5}</string>
+										<string key="NSHotSpot">{1, -1}</string>
 										<int key="NSCursorType">0</int>
 									</object>
 									<int key="NScvFlags">2</int>
@@ -181,7 +181,7 @@
 							<string key="NSFrame">{{20, 20}, {565, 395}}</string>
 							<reference key="NSSuperview" ref="239713704"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="420109697"/>
+							<reference key="NSNextKeyView" ref="988457740"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133136</int>
 							<reference key="NSVScroller" ref="1047939184"/>

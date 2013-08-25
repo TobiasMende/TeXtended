@@ -82,6 +82,7 @@
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2B0F5B617202C9600B6BBC4 /* Model.xcdatamodeld */; };
 		D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE8D517ABCE5400298D11 /* OutlineElement.m */; };
+		D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
@@ -384,6 +385,8 @@
 		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
 		D2CAE8D417ABCE5400298D11 /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
 		D2CAE8D517ABCE5400298D11 /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
+		D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathExtension.h"; sourceTree = "<group>"; };
+		D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PathExtension.m"; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -618,6 +621,8 @@
 			children = (
 				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
+				D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */,
+				D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1233,6 +1238,7 @@
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
 				D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
+				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

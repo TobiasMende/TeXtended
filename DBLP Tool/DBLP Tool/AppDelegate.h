@@ -10,7 +10,7 @@
 #import "DBLPCallbackHandler.h"
 
 @class DBLPInterface, BibtexWindowController;
-@interface AppDelegate : NSObject <NSApplicationDelegate, DBLPCallbackHandler, NSTextFieldDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, DBLPCallbackHandler, NSTextFieldDelegate, NSTableViewDelegate> {
     DBLPInterface *dblp;
     BibtexWindowController *bc;
 }
@@ -24,6 +24,5 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *authorField;
 - (IBAction)clickedAuthorTable:(id)sender;
-- (IBAction)clickedPublicationTable:(id)sender;
 
 @end

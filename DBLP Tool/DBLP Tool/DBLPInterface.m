@@ -8,6 +8,7 @@
 
 #import "DBLPInterface.h"
 #import "DBLPPublication.h"
+#import "DBLPConfiguration.h"
 
 @interface DBLPInterface ()
 - (void)finishAuthorsLoading;
@@ -19,16 +20,13 @@
     self = [super init];
     if (self) {
         _handler = handler;
-        dblpUrl = @"http://dblp.uni-trier.de/";
-        keySearchAppendix = @"rec/pers/";
-        authorSearchAppendix = @"search/author?xauthor=";
-        bibtexSearchAppendix = @"rec/bibtex/";
+        config = [DBLPConfiguration sharedInstance];
     }
     return self;
 }
 
 - (void)searchAuthor:(NSString *)query {
-    NSString *total = [dblpUrl stringByAppendingFormat:@"%@%@", authorSearchAppendix, [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *total = [config.server stringByAppendingFormat:@"%@%@", config.authorSearchAppendix, [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url  = [NSURL URLWithString:total];
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -40,10 +38,11 @@
     if (authorConnection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-        [self.handler startedFetcheingAuthors:query];
+        [self.handler startedFetchingAuthors:query];
         receivedAuthorData = [NSMutableData data];
     } else {
-        [self.handler failedFetchingAuthors];
+        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:[NSDictionary dictionaryWithObject:@"DBLP Connection failed" forKey:@"description"]];
+        [self.handler failedFetchingAuthors:error];
         // Inform the user that the connection failed.
     }
 }
@@ -81,17 +80,17 @@
     NSMutableDictionary *results;
     if (error) {
         NSLog(@"Can't fetch anything");
-        [self.handler failedFetchingAuthors];
+        [self.handler failedFetchingAuthors:error];
     } else {
         NSArray *a = [xml nodesForXPath:@"/authors/author" error:&error];
         results = [NSMutableDictionary dictionaryWithCapacity:a.count];
         for (NSXMLElement *node in a) {
             NSString *urlpt = [[node attributeForName:@"urlpt"] stringValue];
             [results setObject:[node stringValue] forKey:urlpt];
-            [self.handler finishedFetcheingAuthors:results];
+            [self.handler finishedFetchingAuthors:results];
         }
         if (a.count == 0) {
-            [self.handler finishedFetcheingAuthors:results];
+            [self.handler finishedFetchingAuthors:results];
         }
     }
 }
@@ -105,7 +104,7 @@
     
     if (error) {
         NSLog(@"Can't fetch anything");
-        [self.handler failedFetchingKeys];
+        [self.handler failedFetchingKeys:error];
     } else {
         NSArray *a = [xml nodesForXPath:@"/dblpperson/dblpkey" error:&error];
         results = [NSMutableArray arrayWithCapacity:a.count];
@@ -116,7 +115,7 @@
             NSString *personRecord = [[node attributeForName:@"type"] stringValue];
             if (!personRecord) {
                 NSString *appendix = [node stringValue];
-                NSString *bibUrl = [dblpUrl stringByAppendingFormat:@"%@%@.xml", bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                NSString *bibUrl = [config.server stringByAppendingFormat:@"%@%@.xml", config.bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
                 DBLPPublication *pub = [[DBLPPublication alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
                 [results addObject:pub];
             } 
@@ -127,7 +126,7 @@
 
 
 - (void)publicationsForAuthor:(NSString *)urlpt {
-    NSString *total = [dblpUrl stringByAppendingFormat:@"%@%@/xk", keySearchAppendix, [urlpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *total = [config.server stringByAppendingFormat:@"%@%@/xk", config.keySearchAppendix, [urlpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:total];
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -142,7 +141,8 @@
         [self.handler startedFetchingKeys:urlpt];
         receivedKeyData = [NSMutableData data];
     } else {
-        [self.handler failedFetchingKeys];
+        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:[NSDictionary dictionaryWithObject:@"DBLP Connection failed" forKey:@"description"]];
+        [self.handler failedFetchingKeys:error];
         // Inform the user that the connection failed.
     }
 }

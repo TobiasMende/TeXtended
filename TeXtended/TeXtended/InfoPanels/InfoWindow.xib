@@ -6273,8 +6273,10 @@
 				<string key="1490.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1491.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1492.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="1499.IBNSWindowAutoPositionCentersHorizontal"/>
+				<boolean value="YES" key="1499.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="1499.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="YES" key="1499.NSWindowTemplate.visibleAtLaunch"/>
+				<boolean value="NO" key="1499.NSWindowTemplate.visibleAtLaunch"/>
 				<array key="1500.IBNSViewMetadataConstraints">
 					<reference ref="443671338"/>
 					<reference ref="680229088"/>

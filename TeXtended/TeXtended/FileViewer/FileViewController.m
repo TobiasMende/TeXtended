@@ -46,7 +46,6 @@
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
-    //[infoLoadButton bind:@"state" toObject:self.infoWindowController.window withKeyPath:@"isVisible" options:nil];
 }
 
 - (IBAction)doubleClick:(id)sender {
@@ -299,6 +298,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     return YES;
 }
+
 
 - (void) simpleFileFinder: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -573,9 +573,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [observer addObserver:self withSelector:@selector(updateFileViewModel)];
     }
     
-    if ([keyPath isEqualToString:@"self.window.isVisible"]) {
-        NSLog(@"%d",self.infoWindowController.window.isVisible);
-    }
 }
 
 - (void)updateFileViewModel {

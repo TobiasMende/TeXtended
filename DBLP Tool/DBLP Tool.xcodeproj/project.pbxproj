@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20ABB3517B7AE3D00F88324 /* DBLPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */; };
+		D20ABB3717B7B1B600F88324 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
 		D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
 		D217A430176B442C002DB084 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D217A42E176B442C002DB084 /* InfoPlist.strings */; };
 		D217A432176B442C002DB084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A431176B442C002DB084 /* main.m */; };
@@ -20,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPConfiguration.h; sourceTree = "<group>"; };
+		D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPConfiguration.m; sourceTree = "<group>"; };
+		D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DBLPConfiguration.plist; sourceTree = "<group>"; };
 		D217A422176B442C002DB084 /* DBLP Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DBLP Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D217A425176B442C002DB084 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D217A428176B442C002DB084 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +111,9 @@
 				D217A42C176B442C002DB084 /* Supporting Files */,
 				D2AB7DE3176B700900D1AB7B /* DBLPPublication.h */,
 				D2AB7DE4176B700900D1AB7B /* DBLPPublication.m */,
+				D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */,
+				D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */,
+				D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */,
 			);
 			path = "DBLP Tool";
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 				D217A436176B442C002DB084 /* Credits.rtf in Resources */,
 				D217A43C176B442C002DB084 /* MainMenu.xib in Resources */,
 				D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */,
+				D20ABB3717B7B1B600F88324 /* DBLPConfiguration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +201,7 @@
 				D217A444176B463C002DB084 /* DBLPInterface.m in Sources */,
 				D2AB7DE5176B700900D1AB7B /* DBLPPublication.m in Sources */,
 				D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */,
+				D20ABB3517B7AE3D00F88324 /* DBLPConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

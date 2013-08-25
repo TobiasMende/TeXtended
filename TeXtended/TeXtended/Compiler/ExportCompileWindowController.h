@@ -43,6 +43,8 @@
 /** Controller for the MainDocuments of the given DocumentController. */
 @property (assign) IBOutlet NSArrayController *mainDocumentsController;
 
+@property (nonatomic) BOOL active;
+
 /** Init with a DocumentController which should be exported. */
 -(id)initWithDocumentController:(DocumentController*) controller;
 

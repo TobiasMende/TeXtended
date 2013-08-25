@@ -9,6 +9,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "FileViewController.h"
+#import "InfoWindowController.h"
 #import "ExportCompileWindowController.h"
 #import "TMTSplitView.h"
 #import "ApplicationController.h"
@@ -38,6 +39,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 {
     [super windowDidLoad];
     [self.documentController setupWindowController];
+    NSLog(@"%@", self.documentController);
+    self.fileViewController = [[FileViewController alloc] init];
     
     _fileViewController = [[FileViewController alloc] init];
     
@@ -45,6 +48,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     //FIXME: das ist irgendwie kaput, da das view geht macht kram beim loaden
     //[self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController setDocument:self.documentController.model];
+    [self.fileViewArea setContentView:self.fileViewController.view];
     [self.splitviewControl setSelected:YES forSegment:0];
     [self.splitviewControl setSelected:YES forSegment:1];
     [self.splitviewControl setSelected:YES forSegment:2];
@@ -103,6 +107,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if ([[ApplicationController sharedApplicationController] delegate] == self) {
         [[ApplicationController sharedApplicationController] setDelegate:nil];
     }
+    [self.fileViewController.infoWindowController close];
+    [self.exportWindow close];
 }
 
 
@@ -119,16 +125,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.documentController draftCompile];
 }
 
+- (ExportCompileWindowController *)exportWindow {
+    if (!_exportWindow) {
+        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
+    }
+    return _exportWindow;
+}
+
 - (IBAction)finalCompile:(id)sender {
-    if (!self.exportWindow) {
-        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
-        [self.exportWindow setModel:self.documentController.model];
-        [self.exportWindow showWindow:nil];
-    }
-    else
-    {
-        [self.exportWindow setModel:self.documentController.model];
-    }
 }
 
 - (void)genericAction:(id)sender {

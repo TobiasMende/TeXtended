@@ -408,14 +408,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">openInfoView:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="393875677"/>
-					</object>
-					<int key="connectionID">222</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">openFolderinFinder:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="422189862"/>
@@ -605,10 +597,14 @@
 							<string key="NSLabel">enabled: self.document.project</string>
 							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">self.document.project</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">347</int>
+					<int key="connectionID">422</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -621,10 +617,14 @@
 							<string key="NSLabel">enabled: self.document.project</string>
 							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">self.document.project</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">351</int>
+					<int key="connectionID">424</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1042,7 +1042,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">395</int>
+			<int key="maxID">424</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1066,7 +1066,6 @@
 						<string key="newFolder:">id</string>
 						<string key="openFile:">id</string>
 						<string key="openFolderinFinder:">id</string>
-						<string key="openInfoView:">id</string>
 						<string key="openInfoViewForFile:">id</string>
 						<string key="renameFile:">id</string>
 						<string key="renameProject:">id</string>
@@ -1102,10 +1101,6 @@
 						</object>
 						<object class="IBActionInfo" key="openFolderinFinder:">
 							<string key="name">openFolderinFinder:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openInfoView:">
-							<string key="name">openInfoView:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="openInfoViewForFile:">
