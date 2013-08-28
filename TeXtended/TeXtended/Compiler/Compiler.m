@@ -47,8 +47,14 @@
         }
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
-        model.consoleOutputPipe = [NSPipe pipe];
-        model.consoleInputPipe = [NSPipe pipe];
+        NSPipe *outPipe = [NSPipe pipe];
+        NSPipe *inPipe = [NSPipe pipe];
+        if (!outPipe || !inPipe) {
+            NSLog(@"ERROR: One of the pipes could not be initialized. Aborting compile for model %@", model);
+            continue;
+        }
+        model.consoleOutputPipe = outPipe;
+        model.consoleInputPipe = inPipe;
         [task setStandardOutput:model.consoleOutputPipe];
         [task setStandardInput:model.consoleInputPipe];
         NSString *path;
