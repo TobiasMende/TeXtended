@@ -11,16 +11,16 @@
 
 @class DocumentModel;
 
-typedef enum LatexLogLevel {
-CHAPTER,
-    SECTION,
-    SUBSECTION,
-    INPUT,
-    INCLUDE,
-    LABEL,
-    REF,
-    TODO
-} TMTLatexLogLevel;
+typedef enum OutlineElementType {
+    CHAPTER = 4201,
+    SECTION = 4202,
+    SUBSECTION = 4203,
+    INPUT = 4204,
+    INCLUDE = 4205,
+    LABEL = 4206,
+    REF = 4207,
+    TODO = 4208
+} OutlineElementType;
 
 @interface OutlineElement : NSManagedObject
 
@@ -30,5 +30,9 @@ CHAPTER,
 @property (nonatomic, retain) DocumentModel *document;
 
 + (NSSet*)extractIn:(NSString *)content for:(DocumentModel*)model;
+
++ (NSRegularExpression *)regexForElementType:(OutlineElementType)type;
+
++ (NSString *)stringForType:(OutlineElementType)type;
 
 @end

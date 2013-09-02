@@ -156,6 +156,8 @@
 		D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
 		D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
+		D2EAC45717D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */; };
+		D2EAC45917D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
@@ -423,6 +425,8 @@
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
 		D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocPanel.xib; sourceTree = "<group>"; };
+		D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeLookupTable.plist; sourceTree = "<group>"; };
+		D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeStringLookupTable.plist; sourceTree = "<group>"; };
 		D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		D2F177D017651D5A0089DBC0 /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
 		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
@@ -839,6 +843,8 @@
 				D2681FF2173143C2003AF83D /* DocumentModel.m */,
 				D2681FEE173143AF003AF83D /* Compilable.h */,
 				D2681FEF173143AF003AF83D /* Compilable.m */,
+				D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */,
+				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
 			sourceTree = "<group>";
@@ -1119,6 +1125,8 @@
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */,
+				D2EAC45717D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist in Resources */,
+				D2EAC45917D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
