@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
+/** Delay for message collection updates in seconds */
+static const double MESSAGE_UPDATE_DELAY = 1.5;
+
 #import "TextViewController.h"
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
@@ -331,7 +334,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     if (messageUpdateTimer) {
         [messageUpdateTimer invalidate];
     }
-    messageUpdateTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
+    messageUpdateTimer = [NSTimer timerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
     }

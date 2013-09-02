@@ -72,7 +72,7 @@
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
     NSURL *finalURL;
     if ([typeName isEqualToString:@"TeXtendedProjectFolder"]) {
-        //FIXME: Get Project URL and open it.
+        finalURL = [self projectFileUrlFromDirectory:absoluteURL];
     } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
         finalURL = absoluteURL;
     }
@@ -92,7 +92,7 @@
 //            }
 //        }
 //    }
-    BOOL success = [super readFromURL:absoluteURL ofType:typeName error:error];
+    BOOL success = [super readFromURL:finalURL ofType:@"TeXtendedProjectFile" error:error];
     if (!success) {
         return NO;
     }
@@ -119,7 +119,30 @@
 }
 
 - (NSURL *)projectFileUrlFromDirectory:(NSURL *)directory {
+    NSFileManager *fm = [NSFileManager defaultManager];
     NSString *lastComponent = [directory lastPathComponent];
+    NSArray * dirContents =
+    [fm contentsOfDirectoryAtURL:directory
+      includingPropertiesForKeys:@[]
+                         options:NSDirectoryEnumerationSkipsHiddenFiles
+                           error:nil];
+    NSPredicate * fltr = [NSPredicate predicateWithFormat:@"pathExtension='textendedproj'"];
+    NSArray * projectFiles = [dirContents filteredArrayUsingPredicate:fltr];
+    if (projectFiles.count == 1) {
+        return [projectFiles objectAtIndex:0];
+    }else if(projectFiles.count > 1) {
+        NSURL *defaultFileURL = [directory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.textendedproj",lastComponent]];
+        for (NSURL *url in projectFiles) {
+            if ([url.path isEqualToString:defaultFileURL.path]) {
+                return url;
+            }
+        }
+        return [projectFiles objectAtIndex:0];
+    }
+    return nil;
+    
+    
+    
 }
 
 + (BOOL)autosavesInPlace
