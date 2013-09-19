@@ -106,7 +106,6 @@ static const NSSet *KEYS_TO_UNBIND;
             for (NSTextCheckingResult *r in matches) {
                 NSRange finalRange = [r rangeAtIndex:0];
                 NSString *package = [str substringWithRange:finalRange];
-                [view.spellCheckingService addWordToIgnore:package];
                 NSString *link = [NSString stringWithFormat:@"%@%@", TEXDOC_PREFIX, package];
                 if (self.shouldLinkTexdoc) {
                     
@@ -121,9 +120,6 @@ static const NSSet *KEYS_TO_UNBIND;
                 }
             }
         }
-    }
-    if (texdocRanges.count > 0 && self.shouldLinkTexdoc) {
-        [view.spellCheckingService updateSpellChecker];
     }
 }
 

@@ -20,6 +20,7 @@
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionViewController.h"
+static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
 
@@ -237,7 +238,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (scrollTimer) {
         [scrollTimer invalidate];
     }
-    scrollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(finalyUpdateTrackingAreas:) userInfo:nil repeats:NO];
+    scrollTimer = [NSTimer scheduledTimerWithTimeInterval:UPDATE_AFTER_SCROLL_DELAY target:self selector:@selector(finalyUpdateTrackingAreas:) userInfo:nil repeats:NO];
     
 }
 

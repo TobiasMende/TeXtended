@@ -48,9 +48,4 @@ This class provides a service for customizing the behaviour of the mac spell che
  @param string the word to remove
  */
 - (void) removeWordToIgnore:(NSString*)string;
-
-/**
- Method for updating the ignore list in the mac spell checker. Should be called after some new words where added.
- */
-- (void) updateSpellChecker;
 @end

@@ -16,7 +16,10 @@
 static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 
 @interface SpellCheckingService()
-
+/**
+ Method for updating the ignore list in the mac spell checker. Should be called after some new words where added.
+ */
+- (void) updateSpellChecker;
 - (void) setupEnvironmentsToIgnore;
 - (void) setupCommandsToIgnore;
 - (void) updateEnvironmentsToIgnore;
@@ -98,6 +101,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
         [allWords unionSet:environmentsToIgnore];
         [allWords unionSet:commandsToIgnore];
         [[NSSpellChecker sharedSpellChecker] setIgnoredWords:[allWords allObjects] inSpellDocumentWithTag:view.spellCheckerDocumentTag];
+        [view setSpellingState:NSSpellingStateSpellingFlag range:NSMakeRange(0, view.string.length)];
     }];
 }
 
