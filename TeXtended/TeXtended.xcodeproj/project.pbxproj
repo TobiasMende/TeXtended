@@ -24,8 +24,16 @@
 		760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760346EB1779FA6200CCE0AD /* MessageViewController.m */; };
 		760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760346EC1779FA6200CCE0AD /* MessageView.xib */; };
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
+		762DA21817CA4B210013D864 /* article.tex in Resources */ = {isa = PBXBuildFile; fileRef = 762DA21617CA4B210013D864 /* article.tex */; };
+		762DA21917CA4B210013D864 /* formal_letter.tex in Resources */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
+		762DA21B17CA4B870013D864 /* article.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21617CA4B210013D864 /* article.tex */; };
+		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
+		7651063217E723750011ADEF /* NewTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7651063117E723750011ADEF /* NewTemplateController.m */; };
+		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
+		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
+		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
 		D213171817782A3C002966FC /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
@@ -164,6 +172,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		762DA21A17CA4B780013D864 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = TemplateFiles;
+			dstSubfolderSpec = 7;
+			files = (
+				762DA21B17CA4B870013D864 /* article.tex in CopyFiles */,
+				762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D21ACB6717267A6B00E2F8EC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,9 +233,17 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
+		762DA21617CA4B210013D864 /* article.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.tex; sourceTree = "<group>"; };
+		762DA21717CA4B210013D864 /* formal_letter.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = formal_letter.tex; sourceTree = "<group>"; };
+		7651063017E723750011ADEF /* NewTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTemplateController.h; sourceTree = "<group>"; };
+		7651063117E723750011ADEF /* NewTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTemplateController.m; sourceTree = "<group>"; };
+		7651063317E723860011ADEF /* NewTemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTemplateSheet.xib; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
+		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
+		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
+		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
@@ -474,6 +501,28 @@
 				D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */,
 			);
 			path = Compiler;
+			sourceTree = "<group>";
+		};
+		762DA20C17CA3A5E0013D864 /* TemplateFiles */ = {
+			isa = PBXGroup;
+			children = (
+				762DA21617CA4B210013D864 /* article.tex */,
+				762DA21717CA4B210013D864 /* formal_letter.tex */,
+			);
+			path = TemplateFiles;
+			sourceTree = "<group>";
+		};
+		768BA48117E4B31000B9DAF3 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				768BA48217E4B31C00B9DAF3 /* TemplateController.h */,
+				768BA48317E4B31C00B9DAF3 /* TemplateController.m */,
+				768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */,
+				7651063017E723750011ADEF /* NewTemplateController.h */,
+				7651063117E723750011ADEF /* NewTemplateController.m */,
+				7651063317E723860011ADEF /* NewTemplateSheet.xib */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
@@ -928,6 +977,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				768BA48117E4B31000B9DAF3 /* Templates */,
 				D2668615176F5B39001699A8 /* Views */,
 				D2F177CE17651D5A0089DBC0 /* InfoPanels */,
 				76049C9C1751FDB000778E2A /* Compiler */,
@@ -954,6 +1004,7 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				762DA20C17CA3A5E0013D864 /* TemplateFiles */,
 				D271983C1743989B00342CB0 /* CompileFlows */,
 				D21ACB7C172685C100E2F8EC /* Development */,
 				D21ACB721726855000E2F8EC /* Sparkle */,
@@ -1030,6 +1081,7 @@
 				D2CC5547171EB15500D81CF1 /* CopyFiles */,
 				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
 				D271983E174399FD00342CB0 /* CopyFiles */,
+				762DA21A17CA4B780013D864 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1119,6 +1171,10 @@
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */,
+				762DA21817CA4B210013D864 /* article.tex in Resources */,
+				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
+				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
+				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,6 +1295,8 @@
 				D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
+				768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */,
+				7651063217E723750011ADEF /* NewTemplateController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

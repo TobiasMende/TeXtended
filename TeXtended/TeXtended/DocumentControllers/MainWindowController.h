@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView;
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -55,6 +55,8 @@
 /** The area in which to show the file view itself */
 @property (strong)  IBOutlet NSBox *fileViewArea;
 
+/** Controller to a shett to choose templates */
+@property (strong) TemplateController* templateController;
 
 /** Method for toggling the collapse state of a view which is determined by the senders tag. See TMTSplitView for further details 
  
@@ -67,6 +69,9 @@
  @param sender the sender
  */
 - (IBAction)reportBug:(id)sender;
+
+/** New file from template, opens the template selection */
+- (IBAction) openTemplateSheet:(id)sender;
 
 /** Action initiating the draft compile on the DocumentController 
  

@@ -3197,7 +3197,7 @@
 														<reference key="NSNextResponder" ref="687773866"/>
 														<int key="NSvFlags">256</int>
 														<array class="NSMutableArray" key="NSSubviews"/>
-														<string key="NSFrameSize">{835.5, 133}</string>
+														<string key="NSFrameSize">{835, 133}</string>
 														<reference key="NSSuperview" ref="687773866"/>
 														<reference key="NSNextKeyView" ref="933959178"/>
 														<string key="NSReuseIdentifierKey">_NS:13</string>
@@ -3208,7 +3208,7 @@
 														<object class="NSTableHeaderView" key="NSHeaderView" id="923593406">
 															<reference key="NSNextResponder" ref="933959178"/>
 															<int key="NSvFlags">256</int>
-															<string key="NSFrameSize">{835.5, 17}</string>
+															<string key="NSFrameSize">{835, 17}</string>
 															<reference key="NSSuperview" ref="933959178"/>
 															<reference key="NSNextKeyView" ref="687773866"/>
 															<string key="NSReuseIdentifierKey">_NS:16</string>
@@ -4199,7 +4199,7 @@
 					<string key="NSHuggingPriority">{1000, 1000}</string>
 					<string key="NSAntiCompressionPriority">{1000, 1000}</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>

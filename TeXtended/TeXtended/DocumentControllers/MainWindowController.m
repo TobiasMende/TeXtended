@@ -13,6 +13,7 @@
 #import "ExportCompileWindowController.h"
 #import "TMTSplitView.h"
 #import "ApplicationController.h"
+#import "TemplateController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -44,14 +45,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     _fileViewController = [[FileViewController alloc] init];
     
-    
-    //FIXME: das ist irgendwie kaput, da das view geht macht kram beim loaden
-    //[self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController setDocument:self.documentController.model];
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.splitviewControl setSelected:YES forSegment:0];
     [self.splitviewControl setSelected:YES forSegment:1];
     [self.splitviewControl setSelected:YES forSegment:2];
+    
+    [self setTemplateController:[[TemplateController alloc] init]];
 }
 
 - (void)clearAllDocumentViews {
@@ -115,6 +115,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"http://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction) openTemplateSheet:(id)sender {
+    [self.templateController openSheetIn:[self window]];
 }
 
 - (IBAction)liveCompile:(id)sender {
