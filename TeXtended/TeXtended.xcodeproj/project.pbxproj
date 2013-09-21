@@ -170,6 +170,7 @@
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6F259E0178084180075F677 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F259DF178084180075F677 /* EncodingView.xib */; };
+		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -471,6 +472,7 @@
 		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
 		F6E8243F1743A11E00FB2CCB /* FileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewModel.m; sourceTree = "<group>"; };
 		F6F259DF178084180075F677 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
+		F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsView2.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -871,6 +873,7 @@
 				D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */,
 				D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */,
 				D2A550781751FFFB00BC05DD /* ConsoleViewsView.xib */,
+				F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView2.xib */,
 				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
 				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
 				D2A5507D1752003A00BC05DD /* OutlineView.xib */,
@@ -1157,6 +1160,7 @@
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */,
+				F6F6117017EDB7DC0047DBEC /* ConsoleViewsView2.xib in Resources */,
 				D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
