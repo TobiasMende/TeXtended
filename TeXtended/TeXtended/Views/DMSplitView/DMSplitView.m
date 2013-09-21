@@ -507,6 +507,7 @@
         else
             targetSize = NSMakeSize(NSWidth(self.bounds), subviewsSizes[subviewIndex]);
         [subview setFrameSize:targetSize];
+     
     }];
     [self layoutSubviews];
 }
