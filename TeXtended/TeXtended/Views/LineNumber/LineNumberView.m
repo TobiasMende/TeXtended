@@ -508,7 +508,7 @@
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
     NSRange nullRange               = NSMakeRange(0, 0);
-    NSRect *rects = 0;
+    NSRectArray rects;
     
     float height = 0;
     NSUInteger index = 0, rectCount;
@@ -537,8 +537,8 @@
     /* clear background */
     [[self backgroundColor] set];
     NSRectFill(dirtyRect);
-    
     [super drawRect:dirtyRect];
+    
 }
 
 - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect {

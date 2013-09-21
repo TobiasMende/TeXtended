@@ -112,6 +112,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
     [self setAutomaticTextReplacementEnabled:NO];
+    [self setCanDrawConcurrently:YES];
     self.servicesOn = YES;
     
     
