@@ -54,8 +54,8 @@
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.message.info" id="327"/>
                         <binding destination="-2" name="value" keyPath="self.message.info" id="192"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.message.info" id="327"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="79">
@@ -75,8 +75,8 @@
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.message.furtherInfo" id="326"/>
                         <binding destination="-2" name="value" keyPath="self.message.furtherInfo" id="104"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.message.furtherInfo" id="326"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="107">
@@ -120,12 +120,12 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="value" keyPath="self.message.column" id="199"/>
                         <binding destination="-2" name="hidden" keyPath="self.message.column" id="203">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="value" keyPath="self.message.column" id="199"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="148">
@@ -163,8 +163,8 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.message.document" id="341"/>
                         <binding destination="-2" name="value" keyPath="self.message.document" id="214"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.message.document" id="341"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="289">

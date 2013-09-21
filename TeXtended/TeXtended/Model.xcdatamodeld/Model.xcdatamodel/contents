@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="BibFile" representedClassName="BibFile" syncable="YES">
         <attribute name="lastRead" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,9 +8,9 @@
     <entity name="Compilable" representedClassName="Compilable" isAbstract="YES" syncable="YES">
         <relationship name="draftCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="draftCompilabels" inverseEntity="CompileSetting" syncable="YES"/>
         <relationship name="finalCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="finalCompilabels" inverseEntity="CompileSetting" syncable="YES"/>
-        <relationship name="headerDocument" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="subCompilabels" inverseEntity="Document" syncable="YES"/>
+        <relationship name="headerDocument" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" syncable="YES"/>
         <relationship name="liveCompiler" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CompileSetting" inverseName="liveCompilabels" inverseEntity="CompileSetting" syncable="YES"/>
-        <relationship name="mainDocuments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="subCompilabels" inverseEntity="Document" syncable="YES"/>
+        <relationship name="mainDocuments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" syncable="YES"/>
     </entity>
     <entity name="CompileSetting" representedClassName="CompileSetting" syncable="YES">
         <attribute name="compileBib" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -31,8 +31,7 @@
         <attribute name="systemPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="texPath" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="outlineElements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OutlineElement" inverseName="document" inverseEntity="OutlineElement" syncable="YES"/>
-        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" syncable="YES"/>
-        <relationship name="subCompilabels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Compilable" inverseName="headerDocument" inverseEntity="Compilable" syncable="YES"/>
+        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="documents" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="OutlineElement" representedClassName="OutlineElement" syncable="YES">
         <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,14 +44,14 @@
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="bibFiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BibFile" inverseName="project" inverseEntity="BibFile" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
-        <relationship name="properties" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="project" inverseEntity="Document" syncable="YES"/>
+        <relationship name="properties" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Document" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BibFile" positionX="385" positionY="-162" width="128" height="88"/>
-        <element name="Compilable" positionX="25" positionY="-349" width="128" height="120"/>
-        <element name="CompileSetting" positionX="448" positionY="-333" width="128" height="148"/>
-        <element name="Document" positionX="-245" positionY="-159" width="128" height="208"/>
-        <element name="Project" positionX="171" positionY="-162" width="128" height="120"/>
-        <element name="OutlineElement" positionX="-180" positionY="-657" width="128" height="103"/>
+        <element name="BibFile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Compilable" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CompileSetting" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Document" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="OutlineElement" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Project" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

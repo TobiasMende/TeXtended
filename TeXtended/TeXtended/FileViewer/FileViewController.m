@@ -43,6 +43,7 @@
 -(void)loadView {
     [super loadView];
     self.infoWindowController = [[InfoWindowController alloc] init];
+    self.infoWindowController.doc = self.document;
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
