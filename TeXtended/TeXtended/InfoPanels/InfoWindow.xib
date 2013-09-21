@@ -34,7 +34,7 @@
         <arrayController id="494" customClass="CompileFlowHandler"/>
         <customObject id="1440" userLabel="CompilerFlowHandlerObj" customClass="CompileFlowHandler"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1499" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="196" y="132" width="640" height="509"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="1500">
