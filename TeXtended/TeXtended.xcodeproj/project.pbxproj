@@ -166,6 +166,7 @@
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
+		F672063617EDD10400BD8CD5 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F672063517EDD10400BD8CD5 /* EncodingController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6F259E0178084180075F677 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F259DF178084180075F677 /* EncodingView.xib */; };
 		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */; };
@@ -461,6 +462,8 @@
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
 		D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleInputField.m; sourceTree = "<group>"; };
 		D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPDFView.xib; sourceTree = "<group>"; };
+		F672063417EDD10400BD8CD5 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
+		F672063517EDD10400BD8CD5 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6E2FC9C1767A59F0057C960 /* FileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewCell.h; sourceTree = "<group>"; };
 		F6E2FC9D1767A59F0057C960 /* FileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewCell.m; sourceTree = "<group>"; };
@@ -1066,6 +1069,8 @@
 		F6F259DE178083EF0075F677 /* EncodingView */ = {
 			isa = PBXGroup;
 			children = (
+				F672063417EDD10400BD8CD5 /* EncodingController.h */,
+				F672063517EDD10400BD8CD5 /* EncodingController.m */,
 				F6F259DF178084180075F677 /* EncodingView.xib */,
 			);
 			path = EncodingView;
@@ -1260,6 +1265,7 @@
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
+				F672063617EDD10400BD8CD5 /* EncodingController.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,

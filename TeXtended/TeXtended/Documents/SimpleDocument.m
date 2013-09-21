@@ -130,6 +130,16 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return YES;
 }
 
+-(void)saveDocument:(id)sender
+{
+    [super saveDocument:sender];
+}
+
+-(void)saveDocumentAs:(id)sender
+{
+    [super saveDocumentAs:sender];
+}
+
 - (void)dealloc {
 #ifdef DEBUG
     NSLog(@"SimpleDocument dealloc");

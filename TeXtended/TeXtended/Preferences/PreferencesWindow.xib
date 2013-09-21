@@ -725,12 +725,12 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TNTShouldHighlightInlineMath" id="1271"/>
                                     <binding destination="10" name="value" keyPath="values.TMTInlineMathColor" id="1284">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TNTShouldHighlightInlineMath" id="1271"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="1090">
@@ -741,12 +741,12 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCommand" id="1301"/>
                                     <binding destination="10" name="value" keyPath="values.TMTCommandColor" id="1270">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCommand" id="1301"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="1092">
@@ -757,12 +757,12 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightComment" id="1282"/>
                                     <binding destination="10" name="value" keyPath="values.TMTCommentColor" id="1295">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightComment" id="1282"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="1087">
@@ -773,12 +773,12 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightBracket" id="1285"/>
                                     <binding destination="10" name="value" keyPath="values.TMTBracketColor" id="1266">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightBracket" id="1285"/>
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1088">
@@ -875,12 +875,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightArgument" id="1300"/>
                                     <binding destination="10" name="value" keyPath="values.TMTArgumentColor" id="1268">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightArgument" id="1300"/>
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1095">
@@ -964,13 +964,13 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCurrentLine" id="1265"/>
                                     <binding destination="10" name="value" keyPath="values.TMTCurrentLineColor" id="1277">
                                         <dictionary key="options">
                                             <bool key="NSValidatesImmediately" value="YES"/>
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCurrentLine" id="1265"/>
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1205">
@@ -1004,13 +1004,13 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCurrentLineText" id="1299"/>
                                     <binding destination="10" name="value" keyPath="values.TMTCurrentLineTextColor" id="1269">
                                         <dictionary key="options">
                                             <bool key="NSValidatesImmediately" value="YES"/>
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldHighlightCurrentLineText" id="1299"/>
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1159">
@@ -1447,8 +1447,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldUseSpacesAsTabs" id="1368"/>
                                     <binding destination="10" name="value" keyPath="values.TMTEditorNumTabSpaces" id="1370"/>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldUseSpacesAsTabs" id="1368"/>
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1153">
@@ -1456,8 +1456,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="4" id="1223"/>
                                 <connections>
-                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldUseSpacesAsTabs" id="1287"/>
                                     <binding destination="10" name="value" keyPath="values.TMTEditorNumTabSpaces" id="1275"/>
+                                    <binding destination="10" name="enabled" keyPath="values.TMTShouldUseSpacesAsTabs" id="1287"/>
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1359">
@@ -1619,7 +1619,7 @@
                                     <rect key="frame" x="1" y="127" width="830" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" id="1718">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="1718">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1719,7 +1719,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1733" id="1731">
-                                            <rect key="frame" x="0.0" y="0.0" width="835.5" height="133"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="835" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1764,7 +1764,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="hasPlaceholders" width="180" minWidth="10" maxWidth="3.4028234663852886e+38" id="1752">
+                                                <tableColumn identifier="hasPlaceholders" width="179.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="1752">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions contain placeholders">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1785,16 +1785,16 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" id="1732">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1732">
                                     <rect key="frame" x="1" y="134" width="835" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" id="1734">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="1734">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="1733">
-                                    <rect key="frame" x="0.0" y="0.0" width="835.5" height="17"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="835" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1957,7 +1957,7 @@
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Hard Wrap" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="2541" id="2539">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="2540">
                                         <items>
                                             <menuItem title="Hard Wrap" state="on" tag="1" id="2541"/>
@@ -2062,12 +2062,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="4197"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="No Messages" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="4163">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="4163">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="4164">
                                         <items>
-                                            <menuItem title="No Messages" state="on" id="4169">
+                                            <menuItem title="No Messages" id="4169">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Error" tag="1" id="4168">
