@@ -29,7 +29,7 @@
 @implementation ConsoleViewsController
 
 - (id)initWithParent:(id<DocumentControllerProtocol>)parent {
-    self = [super initWithNibName:@"ConsoleViewsView2" bundle:nil];
+    self = [super initWithNibName:@"ConsoleViewsView" bundle:nil];
     if (self) {
         self.parent = parent;
     }
