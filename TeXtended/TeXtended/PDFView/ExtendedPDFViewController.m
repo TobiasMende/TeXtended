@@ -35,6 +35,7 @@
 - (void)loadView {
     [super loadView];
     [(ExtendedPdf*)self.pdfView setController:self];
+    
     [self loadPDF];
 }
 

@@ -41,8 +41,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     _documentController = documentController;
     
     ((NSBox *)[self.middle.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.textViewController).view;
-    ((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
-    //((NSBox *)[self.right.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.pdfViewsController).view;
+    //((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
+    ((NSBox *)[self.contentView.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.pdfViewsController).view;
     // ((NSBox *)[self.sidebar.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.outlineViewController).view;
 }
 
