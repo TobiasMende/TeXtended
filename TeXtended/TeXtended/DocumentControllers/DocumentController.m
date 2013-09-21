@@ -66,12 +66,7 @@ static NSUInteger calls = 0;
 
 - (void)setupWindowController {
     NSLog(@"Setup WindowController");
-    [self.windowController clearAllDocumentViews];
     [self.windowController setDocumentController:self];
-    [self.windowController addOutlineView:self.outlineViewController.view];
-    [self.windowController addTextView:self.textViewController.view];
-    [self.windowController addConsoleViewsView:self.consolViewsController.view];
-    [self.windowController addPDFViewsView:self.pdfViewsController.view];
     [self loadContent];
     [self.windowController makeFirstResponder:self.textViewController.view];
 }

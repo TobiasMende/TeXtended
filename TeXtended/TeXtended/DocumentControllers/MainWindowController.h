@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "WindowControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController;
+#import "DMSplitView.h"
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -19,29 +20,28 @@
  
  */
 
-@interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate, NSWindowDelegate> {
+@interface MainWindowController : NSWindowController<WindowControllerProtocol,NSWindowDelegate,DMSplitViewDelegate> {
 }
 
-/** Property holding the content view (e.g. the editor and pdf view) */
-@property  (assign) IBOutlet TMTSplitView *contentView;
+@property (strong) IBOutlet NSButton *leftViewToggle;
+@property (strong) IBOutlet NSButton *bottomViewToggle;
+@property (strong) IBOutlet NSButton *rightViewToggle;
 
-/** Reference to the splitview control for controling the state of the splitviews subviews */
-@property IBOutlet NSSegmentedControl *splitviewControl;
 
 /** The main view containing the left and content view */
-@property (strong) IBOutlet TMTSplitView *mainView;
+@property (strong) IBOutlet DMSplitView *mainView;
 
 /** The left sidebar containing the file view and an outline view */
-@property (strong) IBOutlet NSSplitView *sidebar;
+@property (strong) IBOutlet DMSplitView *sidebar;
 
 /** The subview of the sidebar */
-@property  (strong) IBOutlet NSSplitView *left;
+@property  (strong) IBOutlet DMSplitView *left;
 
 /** The middle view containing editor and console in most cases */
-@property  (assign) IBOutlet TMTSplitView *middle;
+@property  (assign) IBOutlet DMSplitView *middle;
 
 /** The right view containing the pdf view in most cases */
-@property  (assign) IBOutlet NSSplitView *right;
+@property  (assign) IBOutlet DMSplitView *right;
 
 /** the DocumentController controlling the current DocumentModel */
 @property (strong, nonatomic) DocumentController *documentController;
@@ -57,12 +57,6 @@
 
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;
-
-/** Method for toggling the collapse state of a view which is determined by the senders tag. See TMTSplitView for further details 
- 
- @param sender the sender
- */
-- (IBAction)collapseView:(id)sender;
 
 /** Action for opening the redmine ticket system in the default web browser 
  
@@ -100,4 +94,10 @@
  
  */
 - (IBAction)genericAction:(id)sender;
+
+- (IBAction)toggleLeftView:(id)sender;
+- (IBAction)toggleBottomView:(id)sender;
+- (IBAction)toggleRightView:(id)sender;
+
+
 @end

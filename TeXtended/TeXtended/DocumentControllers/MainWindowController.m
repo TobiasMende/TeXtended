@@ -11,9 +11,9 @@
 #import "FileViewController.h"
 #import "InfoWindowController.h"
 #import "ExportCompileWindowController.h"
-#import "TMTSplitView.h"
 #import "ApplicationController.h"
 #import "TemplateController.h"
+#import "DMSplitView.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -32,12 +32,25 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 #ifdef DEBUG
         NSLog(@"WindowController: Init");
 #endif
+        [self.mainView setDelegate:nil];
+        [self.middle setDelegate:nil];
     }
     return self;
 }
 
+
+- (void)setDocumentController:(DocumentController *)documentController {
+    _documentController = documentController;
+    
+    //((NSBox *)[self.middle.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.textViewController).view;
+    // ((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
+    //((NSBox *)[self.right.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.pdfViewsController).view;
+      ((NSBox *)[self.left.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.outlineViewController).view;
+}
+
 - (void)windowDidLoad
 {
+
     [super windowDidLoad];
     [self.documentController setupWindowController];
     NSLog(@"%@", self.documentController);
@@ -47,55 +60,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self.fileViewController setDocument:self.documentController.model];
     [self.fileViewArea setContentView:self.fileViewController.view];
-    [self.splitviewControl setSelected:YES forSegment:0];
-    [self.splitviewControl setSelected:YES forSegment:1];
-    [self.splitviewControl setSelected:YES forSegment:2];
+    [self.mainView setEventsDelegate:self];
+    [self.middle setEventsDelegate:self];
+    [self.leftViewToggle setState:NSOnState];
+    [self.bottomViewToggle setState:NSOnState];
+    [self.rightViewToggle setState:NSOnState];
     
     [self setTemplateController:[[TemplateController alloc] init]];
-}
-
-- (void)clearAllDocumentViews {
-    [self.left setSubviews:[NSArray arrayWithObjects: nil]];
-    [self.middle setSubviews:[NSArray arrayWithObjects: nil]];
-    [self.right setSubviews:[NSArray arrayWithObjects: nil]];
-    
-}
-
-- (void)addConsoleViewsView:(NSView *)view {
-    [self.middle addSubview:view];
-}
-
-- (void)addTextView:(NSView *)view {
-    [self.middle addSubview:view];
-}
-
-- (void)addOutlineView:(NSView *)view {
-    [self.left addSubview:view];
-}
-
-- (void)addPDFViewsView:(NSView *)view {
-    [self.right addSubview:view];
-}
-
-- (IBAction)collapseView:(id)sender {
-    NSSegmentedControl *control = sender;
-    BOOL s0 = [control isSelectedForSegment:0];
-    BOOL s1 = [control isSelectedForSegment:1];
-    BOOL s2 = [control isSelectedForSegment:2];
-    
-    if (s0 == [self.mainView isCollapsed:0]) {
-        [self.mainView toggleCollapseFor:0];
-    }
-    if (s1 == [self.middle isCollapsed:1]) {
-        [self.middle toggleCollapseFor:1];
-    }
-    if (s2 == [self.mainView isCollapsed:2]) {
-        [self.mainView toggleCollapseFor:2];
-    }
-    
-    [control setSelected:![self.mainView isCollapsed:0] forSegment:0];
-    [control setSelected:![self.middle isCollapsed:1] forSegment:1];
-    [control setSelected:![self.mainView isCollapsed:2] forSegment:2];
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
@@ -154,6 +125,39 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
 }
 
+- (IBAction)toggleLeftView:(id)sender {
+    [self.mainView collapseOrExpandSubviewAtIndex:0 animated:YES];
+}
+
+- (IBAction)toggleBottomView:(id)sender {
+    [self.middle collapseOrExpandSubviewAtIndex:1 animated:YES];
+}
+
+- (IBAction)toggleRightView:(id)sender {
+    [self.mainView collapseOrExpandSubviewAtIndex:2 animated:YES];
+}
+
+- (void)splitView:(DMSplitView *)splitView subview:(NSUInteger)subviewIndex stateChanged:(DMSplitViewState)newState {
+    NSLog(@"TEST");
+    if (splitView == self.middle) {
+        if (subviewIndex == 1) {
+            [self.bottomViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
+        }
+    } else if (splitView == self.mainView) {
+        switch (subviewIndex) {
+            case 0:
+                [self.leftViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
+                break;
+            case 2:
+                [self.rightViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
+            default:
+                break;
+        }
+    } else {
+        NSLog(@"MainWindowController: unhandled split view change");
+    }
+}
+
 - (void)makeFirstResponder:(NSView *)view {
     NSLog(@"%@", view);
     [[view window] setInitialFirstResponder:view];
@@ -164,26 +168,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
 }
 
-
-- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
-
-    if (splitView == self.middle) {
-        if (![self.splitviewControl isSelectedForSegment:1]) {
-            return YES;
-        }
-    }
-    
-    if (splitView == self.mainView) {
-        if (![self.splitviewControl isSelectedForSegment:[self.mainView.subviews indexOfObject:subview]]) {
-            return YES;
-        }
-    }
-    
-    if (splitView == self.sidebar) {
-        return YES;
-    }
-    return NO;
-}
 
 -(void)dealloc {
 #ifdef DEBUG

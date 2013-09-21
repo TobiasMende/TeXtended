@@ -72,6 +72,7 @@
 		D28DC0DD177AEDF400E4C711 /* lualatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
 		D28DC0DE177AEDF700E4C711 /* xelatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
+		D291F56817EDD7AB00BD54AD /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D291F56717EDD7AB00BD54AD /* DMSplitView.m */; };
 		D296059517807E7C007C599B /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D296059417807E7C007C599B /* TMTCustomView.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -164,8 +165,6 @@
 		D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
 		D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
-		D2EAC45717D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */; };
-		D2EAC45917D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
@@ -372,6 +371,8 @@
 		D28DC0DB177AED2900E4C711 /* lualatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lualatex.rb; sourceTree = "<group>"; };
 		D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardSynctex.h; sourceTree = "<group>"; };
 		D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackwardSynctex.m; sourceTree = "<group>"; };
+		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
+		D291F56717EDD7AB00BD54AD /* DMSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSplitView.m; sourceTree = "<group>"; };
 		D296059317807E7C007C599B /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
 		D296059417807E7C007C599B /* TMTCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTCustomView.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -770,6 +771,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D291F56517EDD7AB00BD54AD /* DMSplitView */,
 				D296059217807E6C007C599B /* TMTCustomView */,
 				F6F259DE178083EF0075F677 /* EncodingView */,
 				D248E4D9177763C7008DDE80 /* TMTMessageCellView */,
@@ -896,6 +898,15 @@
 				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
+			sourceTree = "<group>";
+		};
+		D291F56517EDD7AB00BD54AD /* DMSplitView */ = {
+			isa = PBXGroup;
+			children = (
+				D291F56617EDD7AB00BD54AD /* DMSplitView.h */,
+				D291F56717EDD7AB00BD54AD /* DMSplitView.m */,
+			);
+			path = DMSplitView;
 			sourceTree = "<group>";
 		};
 		D296059217807E6C007C599B /* TMTCustomView */ = {
@@ -1263,6 +1274,7 @@
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
+				D291F56817EDD7AB00BD54AD /* DMSplitView.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
