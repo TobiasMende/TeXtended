@@ -30,7 +30,7 @@
             NSStringEncoding nsEncoding = CFStringConvertEncodingToNSStringEncoding(tmp[cnt]);
             if (nsEncoding && [NSString localizedNameOfStringEncoding:nsEncoding]) [allEncodings addObject:[NSNumber numberWithUnsignedInteger:nsEncoding]];
         }
-        encodings = [NSArray arrayWithArray:allEncodings];
+        self.encodings = [NSArray arrayWithArray:allEncodings];
         free(tmp);
     }
     return self;

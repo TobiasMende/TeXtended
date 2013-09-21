@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface EncodingController : NSViewController {
-   IBOutlet NSArray * encodings;
 }
+
+@property NSArray* encodings;
 @end
