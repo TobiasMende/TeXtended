@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="120">
-                        <rect key="frame" x="13" y="-47" width="48" height="29"/>
+                        <rect key="frame" x="13" y="-176" width="48" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" title="H" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="121">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -38,7 +38,7 @@
                         </connections>
                     </button>
                     <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="124">
-                        <rect key="frame" x="64" y="-30" width="210" height="21"/>
+                        <rect key="frame" x="64" y="-159" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="206" id="537"/>
@@ -54,7 +54,7 @@
                         </connections>
                     </slider>
                     <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130">
-                        <rect key="frame" x="13" y="-107" width="47" height="29"/>
+                        <rect key="frame" x="13" y="-236" width="47" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" title="V" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="131">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -66,7 +66,7 @@
                         </connections>
                     </button>
                     <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="134">
-                        <rect key="frame" x="64" y="-90" width="210" height="21"/>
+                        <rect key="frame" x="64" y="-219" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" minValue="1" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="135"/>
                         <connections>
@@ -79,7 +79,7 @@
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="143">
-                        <rect key="frame" x="280" y="-33" width="65" height="22"/>
+                        <rect key="frame" x="280" y="-162" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="528"/>
@@ -109,7 +109,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="150">
-                        <rect key="frame" x="280" y="-91" width="65" height="22"/>
+                        <rect key="frame" x="280" y="-220" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="151">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," id="204">
@@ -133,7 +133,7 @@
                         </connections>
                     </textField>
                     <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="213">
-                        <rect key="frame" x="64" y="-55" width="210" height="21"/>
+                        <rect key="frame" x="64" y="-184" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="214"/>
                         <connections>
@@ -146,7 +146,7 @@
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                        <rect key="frame" x="280" y="-56" width="65" height="22"/>
+                        <rect key="frame" x="280" y="-185" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="225">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," id="303">
@@ -172,7 +172,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="238">
-                        <rect key="frame" x="280" y="-114" width="65" height="22"/>
+                        <rect key="frame" x="280" y="-243" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="239">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," currencyDecimalSeparator="," id="304">
@@ -196,7 +196,7 @@
                         </connections>
                     </textField>
                     <slider autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="245">
-                        <rect key="frame" x="64" y="-113" width="210" height="21"/>
+                        <rect key="frame" x="64" y="-242" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="246"/>
                         <connections>

@@ -118,8 +118,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.name" id="1818"/>
                                         <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.name" id="1815"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.name" id="1818"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="685">
@@ -131,8 +131,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.type" id="1819"/>
                                         <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.type" id="1816"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.type" id="1819"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="689">
@@ -170,8 +170,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.path" id="1820"/>
                                         <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.path" id="1817"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.path" id="1820"/>
                                     </connections>
                                 </textField>
                             </subviews>
@@ -266,9 +266,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="144"/>
                                                 <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.numberOfCompiles" previousBinding="1447" id="1448"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1445"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1445" id="1447"/>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.numberOfCompiles" previousBinding="1447" id="1448"/>
                                                 </connections>
                                             </stepper>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="147">
@@ -401,9 +401,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="471"/>
                                                 <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.numberOfCompiles" previousBinding="1455" id="1456"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1453"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1453" id="1455"/>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.numberOfCompiles" previousBinding="1455" id="1456"/>
                                                 </connections>
                                             </stepper>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="441">
@@ -533,9 +533,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="426"/>
                                                 <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.numberOfCompiles" previousBinding="1451" id="1452"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1449"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1449" id="1451"/>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.numberOfCompiles" previousBinding="1451" id="1452"/>
                                                 </connections>
                                             </stepper>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="396">
@@ -675,6 +675,7 @@
                                     </buttonCell>
                                     <connections>
                                         <action selector="removeMainDocument:" target="-2" id="1495"/>
+                                        <binding destination="1797" name="enabled" keyPath="selectedObjects.@count" id="1809"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.canRemoveEntry" previousBinding="1809" id="1812">
                                             <dictionary key="options">
                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -683,7 +684,6 @@
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="1797" name="enabled" keyPath="selectedObjects.@count" id="1809"/>
                                     </connections>
                                 </button>
                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1468">
@@ -726,8 +726,8 @@
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                         <connections>
-                                                                            <binding destination="1848" name="toolTip" keyPath="objectValue.texName" id="1858"/>
                                                                             <binding destination="1848" name="value" keyPath="objectValue.texName" id="1856"/>
+                                                                            <binding destination="1848" name="toolTip" keyPath="objectValue.texName" id="1858"/>
                                                                         </connections>
                                                                     </textField>
                                                                 </subviews>
@@ -796,8 +796,8 @@
                 </constraints>
             </view>
             <connections>
-                <binding destination="-2" name="representedFilename" keyPath="self.doc.texPath" id="1757"/>
-                <binding destination="-2" name="title" keyPath="self.doc.texName" previousBinding="1757" id="1760"/>
+                <binding destination="-2" name="representedFilename" keyPath="self.doc.mainCompilable.name" id="vL1-zt-Mg6"/>
+                <binding destination="-2" name="title" keyPath="self.doc.mainCompilable.texName" previousBinding="vL1-zt-Mg6" id="PhF-4x-oc8"/>
                 <outlet property="delegate" destination="-2" id="1566"/>
             </connections>
         </window>

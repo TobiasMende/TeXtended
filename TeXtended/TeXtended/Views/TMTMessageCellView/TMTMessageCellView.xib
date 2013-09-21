@@ -28,8 +28,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="1" name="toolTip" keyPath="objectValue.title" id="32"/>
                         <binding destination="1" name="value" keyPath="objectValue.title" id="31"/>
+                        <binding destination="1" name="toolTip" keyPath="objectValue.title" id="32"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3">
@@ -44,8 +44,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="1" name="toolTip" keyPath="objectValue.info" id="34"/>
                         <binding destination="1" name="value" keyPath="objectValue.info" id="33"/>
+                        <binding destination="1" name="toolTip" keyPath="objectValue.info" id="34"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
@@ -104,12 +104,12 @@
                     </constraints>
                     <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="NSFollowLinkFreestandingTemplate" id="41"/>
                     <connections>
+                        <binding destination="1" name="toolTip" keyPath="objectValue.document" id="115"/>
                         <binding destination="1" name="hidden" keyPath="self.isExternal" id="310">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="1" name="toolTip" keyPath="objectValue.document" id="115"/>
                     </connections>
                 </imageView>
             </subviews>
