@@ -14,9 +14,12 @@
 @implementation TemplateController
 
 - (id)init {
-    newTemplateController = [[NewTemplateController alloc] initWithTemplateController:self];
-    templates = [[NSMutableArray alloc] init];
-    [self mergeTemplates];
+    self = [super init];
+    if (self) {
+        newTemplateController = [[NewTemplateController alloc] initWithTemplateController:self];
+        templates = [[NSMutableArray alloc] init];
+        [self mergeTemplates];
+    }
     return self;
 }
 

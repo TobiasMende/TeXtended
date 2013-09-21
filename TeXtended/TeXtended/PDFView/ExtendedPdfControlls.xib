@@ -19,14 +19,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="ExtendedPdf"/>
         <box wantsLayer="YES" boxType="custom" borderType="line" titlePosition="noTitle" id="87">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="157"/>
+            <rect key="frame" x="0.0" y="0.0" width="354" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView">
-                <rect key="frame" x="1" y="1" width="352" height="155"/>
+                <rect key="frame" x="1" y="1" width="352" height="117"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="120">
-                        <rect key="frame" x="25" y="-198" width="44" height="25"/>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="120">
+                        <rect key="frame" x="25" y="74" width="44" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="jD4-1R-8sH"/>
@@ -41,8 +41,8 @@
                             <binding destination="169" name="value" keyPath="values.TMTdrawHGrid" id="179"/>
                         </connections>
                     </button>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="124">
-                        <rect key="frame" x="50" y="-185" width="210" height="21"/>
+                    <slider focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="124">
+                        <rect key="frame" x="50" y="87" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="206" id="537"/>
@@ -57,11 +57,12 @@
                             </binding>
                         </connections>
                     </slider>
-                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130">
-                        <rect key="frame" x="25" y="-286" width="33" height="29"/>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="130">
+                        <rect key="frame" x="25" y="19" width="33" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="29" id="Rtd-Co-OMl"/>
+                            <constraint firstAttribute="height" constant="22" id="piH-Ay-iZ0"/>
                         </constraints>
                         <buttonCell key="cell" type="check" title="V" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="131">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -72,8 +73,8 @@
                             <binding destination="169" name="value" keyPath="values.TMTdrawVGrid" id="181"/>
                         </connections>
                     </button>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="134">
-                        <rect key="frame" x="50" y="-271" width="210" height="21"/>
+                    <slider focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="134">
+                        <rect key="frame" x="50" y="34" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" minValue="1" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="135"/>
                         <connections>
@@ -85,8 +86,8 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="143">
-                        <rect key="frame" x="266" y="-187" width="65" height="22"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="143">
+                        <rect key="frame" x="266" y="85" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="528"/>
@@ -115,8 +116,8 @@
                             </binding>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="150">
-                        <rect key="frame" x="266" y="-272" width="65" height="22"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="150">
+                        <rect key="frame" x="266" y="34" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="151">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," id="204">
@@ -139,8 +140,8 @@
                             </binding>
                         </connections>
                     </textField>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="213">
-                        <rect key="frame" x="50" y="-210" width="210" height="21"/>
+                    <slider focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="213">
+                        <rect key="frame" x="50" y="62" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="214"/>
                         <connections>
@@ -152,8 +153,8 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                        <rect key="frame" x="266" y="-210" width="65" height="22"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
+                        <rect key="frame" x="266" y="62" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="225">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," id="303">
@@ -178,8 +179,8 @@
                             <action selector="update:" target="-2" id="327"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="238">
-                        <rect key="frame" x="266" y="-295" width="65" height="22"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="238">
+                        <rect key="frame" x="266" y="11" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="239">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.##" negativeFormat="#,##0.##" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," currencyDecimalSeparator="," id="304">
@@ -202,8 +203,8 @@
                             </binding>
                         </connections>
                     </textField>
-                    <slider autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="245">
-                        <rect key="frame" x="50" y="-294" width="210" height="21"/>
+                    <slider autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="245">
+                        <rect key="frame" x="50" y="11" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="246"/>
                         <connections>
@@ -215,8 +216,8 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-Jb-7rW">
-                        <rect key="frame" x="11" y="-192" width="20" height="20"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-Jb-7rW">
+                        <rect key="frame" x="11" y="79" width="20" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="H" id="GWr-WW-6IW">
                             <font key="font" metaFont="system"/>
@@ -224,8 +225,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ij-Oq-LGy">
-                        <rect key="frame" x="11" y="-280" width="20" height="20"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ij-Oq-LGy">
+                        <rect key="frame" x="11" y="16" width="20" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="V" id="oxf-co-vee">
                             <font key="font" metaFont="system"/>
@@ -236,41 +237,32 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="245" firstAttribute="leading" secondItem="134" secondAttribute="leading" id="0ML-B5-5jb"/>
-                <constraint firstItem="124" firstAttribute="top" secondItem="87" secondAttribute="top" constant="12" id="2W9-FN-BFa"/>
-                <constraint firstItem="213" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="8" symbolic="YES" id="2sg-8C-tZP"/>
-                <constraint firstItem="H6Z-Jb-7rW" firstAttribute="top" secondItem="87" secondAttribute="top" constant="18" id="5jG-dK-zib"/>
-                <constraint firstAttribute="bottom" secondItem="H6Z-Jb-7rW" secondAttribute="bottom" constant="119" id="63N-Kc-c5A"/>
-                <constraint firstItem="9Ij-Oq-LGy" firstAttribute="top" secondItem="H6Z-Jb-7rW" secondAttribute="bottom" constant="68" id="7XF-97-TvJ"/>
-                <constraint firstItem="H6Z-Jb-7rW" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="15" id="8jU-CR-yBJ"/>
-                <constraint firstAttribute="bottom" secondItem="130" secondAttribute="bottom" constant="27" id="DDI-vc-xPM"/>
-                <constraint firstItem="238" firstAttribute="leading" secondItem="150" secondAttribute="leading" id="E2v-YY-JFW"/>
-                <constraint firstItem="124" firstAttribute="trailing" secondItem="134" secondAttribute="trailing" id="Eqs-Sa-9VZ"/>
-                <constraint firstItem="124" firstAttribute="leading" secondItem="134" secondAttribute="leading" id="KBQ-kY-9uy"/>
-                <constraint firstItem="143" firstAttribute="leading" secondItem="124" secondAttribute="trailing" constant="8" symbolic="YES" id="KQu-td-mUk"/>
-                <constraint firstItem="245" firstAttribute="centerY" secondItem="238" secondAttribute="centerY" id="LRl-zf-9zj"/>
-                <constraint firstItem="124" firstAttribute="trailing" secondItem="213" secondAttribute="trailing" id="Mlm-uO-taT"/>
-                <constraint firstItem="238" firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="QBF-Nh-2Yh"/>
-                <constraint firstItem="120" firstAttribute="top" secondItem="87" secondAttribute="top" constant="21" id="R7g-qV-aAz"/>
-                <constraint firstItem="124" firstAttribute="top" secondItem="143" secondAttribute="top" constant="1" id="RDB-6U-WPI"/>
-                <constraint firstItem="238" firstAttribute="trailing" secondItem="143" secondAttribute="trailing" id="SwA-4C-F49"/>
-                <constraint firstItem="H6Z-Jb-7rW" firstAttribute="trailing" secondItem="9Ij-Oq-LGy" secondAttribute="trailing" id="V31-dG-e6r"/>
-                <constraint firstItem="238" firstAttribute="top" secondItem="150" secondAttribute="bottom" constant="1" id="ajh-0Z-cgB"/>
-                <constraint firstItem="134" firstAttribute="top" secondItem="120" secondAttribute="bottom" constant="56" id="asQ-He-wMs"/>
-                <constraint firstItem="120" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="28" id="cwL-cE-FdU"/>
-                <constraint firstItem="H6Z-Jb-7rW" firstAttribute="leading" secondItem="9Ij-Oq-LGy" secondAttribute="leading" id="dYc-jx-Qto"/>
-                <constraint firstItem="124" firstAttribute="trailing" secondItem="245" secondAttribute="trailing" id="e6j-4U-nfT"/>
-                <constraint firstItem="238" firstAttribute="trailing" secondItem="150" secondAttribute="trailing" id="hWg-YN-8pM"/>
-                <constraint firstItem="120" firstAttribute="leading" secondItem="130" secondAttribute="leading" id="j8s-cP-je7"/>
-                <constraint firstItem="124" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="53" id="kV2-WW-ex3"/>
-                <constraint firstItem="130" firstAttribute="centerY" secondItem="9Ij-Oq-LGy" secondAttribute="centerY" constant="1.5" id="ncu-LF-62j"/>
-                <constraint firstItem="130" firstAttribute="top" secondItem="213" secondAttribute="bottom" constant="51" id="o73-8y-olp"/>
-                <constraint firstItem="238" firstAttribute="leading" secondItem="245" secondAttribute="trailing" constant="8" symbolic="YES" id="oq9-b2-ilk"/>
-                <constraint firstItem="238" firstAttribute="leading" secondItem="224" secondAttribute="leading" id="por-t9-9gD"/>
-                <constraint firstItem="245" firstAttribute="leading" secondItem="9Ij-Oq-LGy" secondAttribute="trailing" constant="24" id="rze-Yt-h7G"/>
-                <constraint firstItem="245" firstAttribute="top" secondItem="134" secondAttribute="bottom" constant="6" id="s3X-82-lBT"/>
-                <constraint firstItem="124" firstAttribute="leading" secondItem="213" secondAttribute="leading" id="yVY-14-7QY"/>
-                <constraint firstItem="224" firstAttribute="baseline" secondItem="213" secondAttribute="baseline" id="zW5-8t-mJH"/>
+                <constraint firstItem="213" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="53" id="0gh-bv-n1c"/>
+                <constraint firstItem="130" firstAttribute="leading" secondItem="120" secondAttribute="leading" id="2FK-Az-hnh"/>
+                <constraint firstItem="213" firstAttribute="trailing" secondItem="124" secondAttribute="trailing" id="2uT-RZ-gaW"/>
+                <constraint firstItem="238" firstAttribute="baseline" secondItem="245" secondAttribute="baseline" id="53I-Rb-UaK"/>
+                <constraint firstItem="143" firstAttribute="leading" secondItem="150" secondAttribute="leading" id="6nG-wM-5PO"/>
+                <constraint firstItem="213" firstAttribute="trailing" secondItem="134" secondAttribute="trailing" id="7v7-CP-YZB"/>
+                <constraint firstItem="213" firstAttribute="trailing" secondItem="245" secondAttribute="trailing" id="Bh6-M0-F9B"/>
+                <constraint firstItem="143" firstAttribute="trailing" secondItem="238" secondAttribute="trailing" id="Djy-mn-KIe"/>
+                <constraint firstItem="213" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="8" symbolic="YES" id="Ekj-Ws-86Q"/>
+                <constraint firstItem="213" firstAttribute="leading" secondItem="124" secondAttribute="leading" id="KSg-5V-mea"/>
+                <constraint firstItem="130" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="28" id="OUr-vd-WQe"/>
+                <constraint firstItem="143" firstAttribute="leading" secondItem="124" secondAttribute="trailing" constant="8" symbolic="YES" id="Oba-GF-t4I"/>
+                <constraint firstItem="134" firstAttribute="top" secondItem="120" secondAttribute="bottom" constant="23" id="OoL-Se-6eO"/>
+                <constraint firstItem="224" firstAttribute="leading" secondItem="213" secondAttribute="trailing" constant="8" symbolic="YES" id="P3Q-b1-hIx"/>
+                <constraint firstAttribute="bottom" secondItem="238" secondAttribute="bottom" constant="12" id="a6O-dO-8od"/>
+                <constraint firstItem="213" firstAttribute="leading" secondItem="134" secondAttribute="leading" id="akw-od-GNg"/>
+                <constraint firstItem="134" firstAttribute="top" secondItem="213" secondAttribute="bottom" constant="11" id="bhn-Tx-1Qy"/>
+                <constraint firstItem="143" firstAttribute="leading" secondItem="238" secondAttribute="leading" id="edR-8v-4pI"/>
+                <constraint firstItem="213" firstAttribute="baseline" secondItem="224" secondAttribute="baseline" id="iRU-0g-7UC"/>
+                <constraint firstAttribute="bottom" secondItem="130" secondAttribute="bottom" constant="22" id="j3V-2W-PJC"/>
+                <constraint firstItem="143" firstAttribute="trailing" secondItem="150" secondAttribute="trailing" id="kiF-Zw-IQL"/>
+                <constraint firstItem="224" firstAttribute="top" secondItem="143" secondAttribute="bottom" constant="1" id="lSe-UC-H7A"/>
+                <constraint firstItem="143" firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="nyQ-vb-UGy"/>
+                <constraint firstItem="238" firstAttribute="top" secondItem="150" secondAttribute="bottom" constant="1" id="rxW-f6-8jS"/>
+                <constraint firstItem="130" firstAttribute="top" secondItem="213" secondAttribute="bottom" constant="21" id="seS-Yi-vm5"/>
+                <constraint firstItem="213" firstAttribute="leading" secondItem="245" secondAttribute="leading" id="zvy-Fv-WD4"/>
             </constraints>
             <shadow key="shadow">
                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
