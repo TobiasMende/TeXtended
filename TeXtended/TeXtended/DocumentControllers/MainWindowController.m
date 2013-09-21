@@ -137,6 +137,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)finalCompile:(id)sender {
+    if (!self.exportWindow) {
+        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
+        [self.exportWindow setModel:self.documentController.model];
+    }
+    else {
+        [self.exportWindow setModel:self.documentController.model];
+    }
+    self.exportWindow.window.isVisible = YES;
 }
 
 - (void)genericAction:(id)sender {

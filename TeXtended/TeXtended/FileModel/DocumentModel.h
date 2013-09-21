@@ -51,13 +51,6 @@
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, strong) ProjectModel *project;
 
-/** A set ob subcomilabels
- 
- @warning This property is for cocoa internal use only!
- 
- */
-@property (nonatomic, strong) NSSet *subCompilabels;
-
 @property (nonatomic, strong) NSSet *outlineElements;
 
 /** Flag determing whether live compile is active for this document or not */
@@ -130,10 +123,6 @@
 
 @interface DocumentModel (CoreDataGeneratedAccessors)
 
-- (void)addSubCompilabelsObject:(Compilable *)value;
-- (void)removeSubCompilabelsObject:(Compilable *)value;
-- (void)addSubCompilabels:(NSSet *)values;
-- (void)removeSubCompilabels:(NSSet *)values;
 - (void)addOutlineElementsObject:(OutlineElement *)value;
 - (void)removeOutlineElementsObject:(OutlineElement *)value;
 - (void)addOutlineElements:(NSSet *)values;

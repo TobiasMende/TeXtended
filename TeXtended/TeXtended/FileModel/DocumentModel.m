@@ -34,7 +34,6 @@ static NSArray *TMTEncodingsToCheck;
 @dynamic systemPath;
 @dynamic project;
 @dynamic encoding;
-@dynamic subCompilabels;
 @dynamic liveCompile;
 @dynamic openOnExport;
 @dynamic outlineElements;
@@ -54,6 +53,9 @@ static NSArray *TMTEncodingsToCheck;
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
     if (!self.systemPath) {
+        if (!self.texPath) {
+            return nil;
+        }
         self.systemPath = self.texPath;
     }
     NSStringEncoding encoding;

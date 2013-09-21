@@ -80,12 +80,12 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="-2" name="title" keyPath="self.document.mainCompilable.infoTitle" id="342"/>
                         <binding destination="-2" name="enabled" keyPath="self.document.mainCompilable.path" id="314">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="title" keyPath="self.document.mainCompilable.infoTitle" id="342"/>
                         <binding destination="-2" name="value" keyPath="self.infoWindowController.window.isVisible" id="395"/>
                     </connections>
                 </button>
