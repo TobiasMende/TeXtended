@@ -112,7 +112,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
     [self setAutomaticTextReplacementEnabled:NO];
-    [self setCanDrawConcurrently:YES];
     self.servicesOn = YES;
     
     
@@ -720,12 +719,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void) drawViewBackgroundInRect:(NSRect)rect
 {
-    [[NSColor clearColor] set];
-    NSRectFill(rect);
-    [super drawViewBackgroundInRect:rect];
-    if (self.servicesOn) {
-        [self.codeNavigationAssistant highlight];
-    }
+        [[NSColor clearColor] set];
+        NSRectFill(rect);
+        [super drawViewBackgroundInRect:rect];
+        if (self.servicesOn) {
+            [self.codeNavigationAssistant highlight];
+        }
 }
 
 

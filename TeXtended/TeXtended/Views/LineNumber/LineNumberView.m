@@ -504,10 +504,9 @@
     NSMutableArray *heights         = [[NSMutableArray alloc] init];
     NSMutableArray *currentLines    = [self lines];
     NSTextView *view                = [[self scrollView] documentView];
-    NSLayoutManager	*manager        = [view layoutManager];
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
-    NSRange nullRange               = NSMakeRange(0, 0);
+    NSRange nullRange               = NSMakeRange(NSNotFound, 0);
     NSRectArray rects;
     
     float height = 0;
@@ -516,7 +515,7 @@
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
         
         index = [[currentLines objectAtIndex:line] unsignedIntValue];
-        rects = [manager rectArrayForCharacterRange:NSMakeRange(index, 0)
+        rects = [[view layoutManager] rectArrayForCharacterRange:NSMakeRange(index, 0)
                       withinSelectedCharacterRange:nullRange
                                    inTextContainer:container
                                          rectCount:&rectCount];
