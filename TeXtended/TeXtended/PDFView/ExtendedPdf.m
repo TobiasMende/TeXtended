@@ -164,7 +164,7 @@ static const NSSet *KEYS_TO_UNBIND;
     [controllsView update:self];
     
     [[pageNumbers view] setFrameOrigin:
-     NSMakePoint((int)self.frame.size.width  - 1.5 * pageNumbers.view.frame.size.width,
+     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
                  (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
                 )];
     [pageNumbers update];
