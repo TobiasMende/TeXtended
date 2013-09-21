@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="984" height="559"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <splitView horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" dividerStyle="thin" id="100278">
+                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" dividerStyle="thin" id="100278">
                                 <rect key="frame" x="0.0" y="0.0" width="156" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -53,14 +53,14 @@
                                     <outlet property="delegate" destination="-2" id="100546"/>
                                 </connections>
                             </splitView>
-                            <splitView horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100183" userLabel="Middle SplitView" customClass="TMTSplitView">
+                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100183" userLabel="Middle SplitView" customClass="TMTSplitView">
                                 <rect key="frame" x="157" y="0.0" width="442" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="-2" id="100527"/>
                                 </connections>
                             </splitView>
-                            <splitView horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100187" userLabel="Right SplitView">
+                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100187" userLabel="Right SplitView">
                                 <rect key="frame" x="600" y="0.0" width="384" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </splitView>
