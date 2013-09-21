@@ -158,8 +158,8 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="B1322598-6CA7-4C02-969D-0F887F3A1A46" label="View" paletteLabel="View" id="100405">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="104" height="24"/>
-                        <size key="maxSize" width="104" height="28"/>
+                        <size key="minSize" width="104" height="22"/>
+                        <size key="maxSize" width="108" height="28"/>
                         <segmentedControl key="view" verticalHuggingPriority="750" id="100403">
                             <rect key="frame" x="0.0" y="14" width="104" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
