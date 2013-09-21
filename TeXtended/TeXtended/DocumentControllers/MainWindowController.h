@@ -34,8 +34,7 @@
 /** The left sidebar containing the file view and an outline view */
 @property (strong) IBOutlet DMSplitView *sidebar;
 
-/** The subview of the sidebar */
-@property  (strong) IBOutlet DMSplitView *left;
+@property (strong) IBOutlet DMSplitView *contentView;
 
 /** The middle view containing editor and console in most cases */
 @property  (assign) IBOutlet DMSplitView *middle;

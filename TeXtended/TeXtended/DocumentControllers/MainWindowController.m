@@ -32,8 +32,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 #ifdef DEBUG
         NSLog(@"WindowController: Init");
 #endif
-        [self.mainView setDelegate:nil];
-        [self.middle setDelegate:nil];
     }
     return self;
 }
@@ -42,16 +40,33 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (void)setDocumentController:(DocumentController *)documentController {
     _documentController = documentController;
     
-    //((NSBox *)[self.middle.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.textViewController).view;
-    // ((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
+    ((NSBox *)[self.middle.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.textViewController).view;
+    ((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
     //((NSBox *)[self.right.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.pdfViewsController).view;
-      ((NSBox *)[self.left.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.outlineViewController).view;
+    // ((NSBox *)[self.sidebar.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.outlineViewController).view;
 }
 
 - (void)windowDidLoad
 {
 
     [super windowDidLoad];
+    
+    
+    
+    
+    [self.mainView setMinSize:150 ofSubviewAtIndex:0];
+    [self.mainView setCanCollapse:NO subviewAtIndex:0];
+    self.mainView.eventsDelegate = self;
+    [self.mainView setCanCollapse:NO subviewAtIndex:1];
+    
+    
+    [self.middle setMinSize:150 ofSubviewAtIndex:1];
+    [self.middle setMaxSize:300 ofSubviewAtIndex:1];
+    [self.middle setCanCollapse:NO subviewAtIndex:0];
+    [self.middle setCanCollapse:YES subviewAtIndex:1];
+    
+    self.contentView.subviewsResizeMode = DMSplitViewResizeModeUniform;
+    
     [self.documentController setupWindowController];
     NSLog(@"%@", self.documentController);
     self.fileViewController = [[FileViewController alloc] init];
@@ -60,8 +75,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self.fileViewController setDocument:self.documentController.model];
     [self.fileViewArea setContentView:self.fileViewController.view];
-    [self.mainView setEventsDelegate:self];
-    [self.middle setEventsDelegate:self];
+    
     [self.leftViewToggle setState:NSOnState];
     [self.bottomViewToggle setState:NSOnState];
     [self.rightViewToggle setState:NSOnState];
@@ -134,7 +148,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)toggleRightView:(id)sender {
-    [self.mainView collapseOrExpandSubviewAtIndex:2 animated:YES];
+    [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
 - (void)splitView:(DMSplitView *)splitView subview:(NSUInteger)subviewIndex stateChanged:(DMSplitViewState)newState {

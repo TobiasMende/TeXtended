@@ -8,13 +8,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
                 <outlet property="bottomViewToggle" destination="wax-zH-FXx" id="TMd-I5-s5U"/>
-                <outlet property="left" destination="2Q4-MI-hRE" id="BXj-KB-Wmf"/>
+                <outlet property="contentView" destination="Dg6-Os-sFX" id="q1p-ev-hqx"/>
                 <outlet property="leftViewToggle" destination="rJY-Cm-FxO" id="tpZ-bO-6Nk"/>
-                <outlet property="mainView" destination="100051" id="100412"/>
-                <outlet property="middle" destination="5fg-jq-yY5" id="Fmj-RZ-KDo"/>
-                <outlet property="right" destination="100187" id="hVK-ok-8h6"/>
+                <outlet property="mainView" destination="yMa-FR-WCa" id="p1k-2f-R5O"/>
+                <outlet property="middle" destination="YyG-Hr-pyD" id="MIB-Vq-UKY"/>
                 <outlet property="rightViewToggle" destination="BQT-eF-usa" id="BFW-zu-V8c"/>
-                <outlet property="sidebar" destination="100278" id="100288"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -29,33 +27,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="984" height="559"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="100051" userLabel="Main" customClass="DMSplitView">
-                        <rect key="frame" x="0.0" y="0.0" width="984" height="559"/>
+                    <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMa-FR-WCa" customClass="DMSplitView">
+                        <rect key="frame" x="1" y="1" width="982" height="557"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" dividerStyle="thin" id="100278" userLabel="Sidebar" customClass="DMSplitView">
-                                <rect key="frame" x="0.0" y="0.0" width="148" height="559"/>
+                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" id="lWM-RQ-5Uk">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="557"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView">
+                                    <rect key="frame" x="1" y="1" width="165" height="555"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </box>
+                            <splitView fixedFrame="YES" dividerStyle="thin" vertical="YES" id="Dg6-Os-sFX" customClass="DMSplitView">
+                                <rect key="frame" x="168" y="0.0" width="814" height="557"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <splitView fixedFrame="YES" dividerStyle="paneSplitter" id="2Q4-MI-hRE" userLabel="Left SplitView" customClass="DMSplitView">
-                                        <rect key="frame" x="0.0" y="0.0" width="148" height="559"/>
+                                    <splitView fixedFrame="YES" dividerStyle="thin" id="YyG-Hr-pyD" customClass="DMSplitView">
+                                        <rect key="frame" x="0.0" y="0.0" width="403" height="557"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="tEe-dU-qax">
-                                                <rect key="frame" x="0.0" y="0.0" width="148" height="346"/>
+                                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" id="T8g-ah-AOB">
+                                                <rect key="frame" x="0.0" y="0.0" width="403" height="398"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <view key="contentView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="148" height="346"/>
+                                                    <rect key="frame" x="1" y="1" width="401" height="396"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </box>
-                                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="HH6-Jn-lws">
-                                                <rect key="frame" x="0.0" y="356" width="148" height="203"/>
+                                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" id="xl2-7m-m1D">
+                                                <rect key="frame" x="0.0" y="399" width="403" height="158"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <view key="contentView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="148" height="203"/>
+                                                    <rect key="frame" x="1" y="1" width="401" height="156"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -67,33 +75,11 @@
                                             <real value="250"/>
                                         </holdingPriorities>
                                     </splitView>
-                                </subviews>
-                                <holdingPriorities>
-                                    <real value="254"/>
-                                </holdingPriorities>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="100546"/>
-                                </connections>
-                            </splitView>
-                            <splitView fixedFrame="YES" dividerStyle="thin" id="5fg-jq-yY5" userLabel="Middle SplitView" customClass="DMSplitView">
-                                <rect key="frame" x="149" y="0.0" width="401" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="0gW-yM-0Mc">
-                                        <rect key="frame" x="0.0" y="0.0" width="401" height="346"/>
+                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" id="4tf-d3-bg9">
+                                        <rect key="frame" x="404" y="0.0" width="410" height="557"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="401" height="346"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </box>
-                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="Be8-NU-YdJ">
-                                        <rect key="frame" x="0.0" y="347" width="401" height="212"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="401" height="212"/>
+                                            <rect key="frame" x="1" y="1" width="408" height="555"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -102,41 +88,21 @@
                                 </subviews>
                                 <holdingPriorities>
                                     <real value="250"/>
-                                    <real value="250"/>
-                                </holdingPriorities>
-                            </splitView>
-                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100187" userLabel="Right SplitView" customClass="DMSplitView">
-                                <rect key="frame" x="551" y="0.0" width="433" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="jdy-et-xgc">
-                                        <rect key="frame" x="0.0" y="0.0" width="433" height="559"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="433" height="559"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </box>
-                                </subviews>
-                                <holdingPriorities>
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
                         </subviews>
                         <holdingPriorities>
-                            <real value="351"/>
-                            <real value="350"/>
-                            <real value="350"/>
+                            <real value="250"/>
+                            <real value="250"/>
                         </holdingPriorities>
                     </splitView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="100051" firstAttribute="top" secondItem="6" secondAttribute="top" id="100112"/>
-                    <constraint firstItem="100051" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" id="100515"/>
-                    <constraint firstItem="100051" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="100516"/>
-                    <constraint firstItem="100051" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="100517"/>
+                    <constraint firstItem="yMa-FR-WCa" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="1" id="FuM-37-haF"/>
+                    <constraint firstItem="yMa-FR-WCa" firstAttribute="top" secondItem="6" secondAttribute="top" constant="1" id="NYy-Wg-24y"/>
+                    <constraint firstAttribute="trailing" secondItem="yMa-FR-WCa" secondAttribute="trailing" constant="1" id="klc-86-8l5"/>
+                    <constraint firstAttribute="bottom" secondItem="yMa-FR-WCa" secondAttribute="bottom" constant="1" id="tYz-BR-FY4"/>
                 </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368">

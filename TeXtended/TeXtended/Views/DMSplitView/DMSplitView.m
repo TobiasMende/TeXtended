@@ -292,9 +292,7 @@
             break;
         case DMSplitViewResizeModeProportional: // PROPORTIONAL RESIZE
         default:
-            if (oldSize.width >= 0 && oldSize.height >= 0) {
-                [self applyProportionalResizeFromOldSize:oldSize];
-            }
+            [self applyProportionalResizeFromOldSize:oldSize];
             break;
     }
 }
