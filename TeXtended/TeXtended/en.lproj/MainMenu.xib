@@ -395,7 +395,7 @@
                             <menuItem title="Live Compile" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <binding destination="534" name="value" keyPath="self.delegate.documentController.model.liveCompile" id="591"/>
+                                    <binding destination="534" name="value" keyPath="self.delegate.activeDocumentController.model.liveCompile" id="cdI-aj-66A"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Live Scrolling" alternate="YES" keyEquivalent="L" id="584">

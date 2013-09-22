@@ -95,7 +95,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (ExportCompileWindowController *)exportWindow {
     DocumentController *current = self.activeDocumentController;
     if (!_exportWindow || ![_exportWindow.controller isEqualTo:current]) {
-        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
+        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
     }
     return _exportWindow;
 }
