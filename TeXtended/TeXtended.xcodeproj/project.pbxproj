@@ -66,6 +66,9 @@
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
 		D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */; };
 		D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2788291179DF8CA005201C9 /* AutoCompletionView.xib */; };
+		D28AAFE317EF347B0033BDD4 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AAFE117EF347B0033BDD4 /* TMTTabViewController.m */; };
+		D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */; };
+		D28AAFE717EF34BE0033BDD4 /* TMTTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -363,6 +366,11 @@
 		D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletionViewController.m; sourceTree = "<group>"; };
 		D2788291179DF8CA005201C9 /* AutoCompletionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionView.xib; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
+		D28AAFE017EF347B0033BDD4 /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewController.h; path = TMTTabView/TMTTabViewController.h; sourceTree = "<group>"; };
+		D28AAFE117EF347B0033BDD4 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewController.m; path = TMTTabView/TMTTabViewController.m; sourceTree = "<group>"; };
+		D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabView.xib; path = TMTTabView/TMTTabView.xib; sourceTree = "<group>"; };
+		D28AAFE517EF34BE0033BDD4 /* TMTTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabView.h; sourceTree = "<group>"; };
+		D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabView.m; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
 		D28DC0D9177AEBC900E4C711 /* xelatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xelatex.rb; sourceTree = "<group>"; };
@@ -763,6 +771,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D28AAFDF17EF34500033BDD4 /* TMTTabView */,
 				D291F56517EDD7AB00BD54AD /* DMSplitView */,
 				D296059217807E6C007C599B /* TMTCustomView */,
 				F6F259DE178083EF0075F677 /* EncodingView */,
@@ -886,6 +895,18 @@
 				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
+			sourceTree = "<group>";
+		};
+		D28AAFDF17EF34500033BDD4 /* TMTTabView */ = {
+			isa = PBXGroup;
+			children = (
+				D28AAFE017EF347B0033BDD4 /* TMTTabViewController.h */,
+				D28AAFE117EF347B0033BDD4 /* TMTTabViewController.m */,
+				D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */,
+				D28AAFE517EF34BE0033BDD4 /* TMTTabView.h */,
+				D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */,
+			);
+			name = TMTTabView;
 			sourceTree = "<group>";
 		};
 		D291F56517EDD7AB00BD54AD /* DMSplitView */ = {
@@ -1175,6 +1196,7 @@
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
+				D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
 				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
@@ -1253,6 +1275,7 @@
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
 				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
+				D28AAFE717EF34BE0033BDD4 /* TMTTabView.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
@@ -1284,6 +1307,7 @@
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
 				D2CF61841770B31200ACC3D5 /* Parser.m in Sources */,
 				D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */,
+				D28AAFE317EF347B0033BDD4 /* TMTTabViewController.m in Sources */,
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
