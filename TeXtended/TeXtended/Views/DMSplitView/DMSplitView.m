@@ -27,6 +27,9 @@
 /** YES if at least one dimension constraint has been set */
 @property (nonatomic,readonly)  BOOL        hasSizeContraints;
 
+
+- (CGFloat) sizeScaleFactor;
+
 @end
 
 @implementation DMSubviewConstraint
@@ -351,7 +354,7 @@
         [subviewContraints enumerateObjectsUsingBlock:^(DMSubviewConstraint *constraint, NSUInteger subviewIndex, BOOL *stop) {
             BOOL isSubviewResizable = resizableSubviews[subviewIndex];
             if (isSubviewResizable) {
-                CGFloat oldSubviewSize = subviewsSizes[subviewIndex];
+                CGFloat oldSubviewSize = subviewsSizes[subviewIndex] * [self sizeScaleFactor];
                 CGFloat newSubviewSize = oldSubviewSize;
                 
                 // Resize subview according to max/min constraint
@@ -368,7 +371,7 @@
                     newSubviewSize = constraint.maxSize;
                 }
                 
-                subviewsSizes[subviewIndex] = newSubviewSize;
+                subviewsSizes[subviewIndex] = newSubviewSize/[self sizeScaleFactor];
                 deltaValue -= (newSubviewSize - oldSubviewSize);
                 if (fabs(deltaValue) <= 0.5f)
                     *stop = YES;
@@ -409,8 +412,12 @@
     
     /* Proportionally increment/decrement subview size. Need to loop because if we hit min/max of a subview, there'll be left over delta. */
 
-    while (fabs(deltaValue)) {
+    [subviewContraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        subviewsSizes[idx] = subviewsSizes[idx] * [self sizeScaleFactor];
+    }];
+    while (fabs(deltaValue) > 0.1f) {
         __block CGFloat remainingDeltaValue = deltaValue;
+        
         
         [subviewContraints enumerateObjectsUsingBlock:^(DMSubviewConstraint* constraint, NSUInteger subviewIndex, BOOL *stop) {
             CGFloat oldSize = subviewsSizes[subviewIndex];
@@ -426,12 +433,14 @@
             
             // reduce delta
             remainingDeltaValue -= (newSize-oldSize);
-            if (fabs(remainingDeltaValue) <= 0.5f)
+            if (fabs(remainingDeltaValue) <= 0.1f)
                 *stop = YES;
         }];
         deltaValue = remainingDeltaValue;
     }
-    
+    [subviewContraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        subviewsSizes[idx] = subviewsSizes[idx] / [self sizeScaleFactor];
+    }];
     [self setSubviewsSizes:subviewsSizes];
     free(subviewsSizes); free(subviewsProportions); free(resizableSubviews);
 }
@@ -499,13 +508,17 @@
 
 #pragma mark - Additional Methods
 
+- (CGFloat) sizeScaleFactor {
+    return (self.isVertical ? NSWidth(self.bounds) : NSHeight(self.bounds));
+}
+
 - (void) setSubviewsSizes:(CGFloat *) subviewsSizes {
     [self.subviews enumerateObjectsUsingBlock:^(NSView *subview, NSUInteger subviewIndex, BOOL *stop) {
         CGSize targetSize;
         if (self.isVertical)
-            targetSize = NSMakeSize(subviewsSizes[subviewIndex], NSHeight(self.bounds));
+            targetSize = NSMakeSize(subviewsSizes[subviewIndex] * [self sizeScaleFactor], NSHeight(self.bounds));
         else
-            targetSize = NSMakeSize(NSWidth(self.bounds), subviewsSizes[subviewIndex]);
+            targetSize = NSMakeSize(NSWidth(self.bounds), subviewsSizes[subviewIndex] * [self sizeScaleFactor]);
         [subview setFrameSize:targetSize];
      
     }];
@@ -515,7 +528,7 @@
 - (void) calculateSubviewsSizesArrayInto:(CGFloat *) subviewsSizesArray {
     [self.subviews enumerateObjectsUsingBlock:^(NSView *subview, NSUInteger viewIndex, BOOL *stop) {
         CGFloat size = (self.isVertical ? NSWidth(subview.frame) : NSHeight(subview.frame));
-        subviewsSizesArray[viewIndex] = size;
+        subviewsSizesArray[viewIndex] = size/[self sizeScaleFactor];
     }];
 }
 
@@ -589,7 +602,9 @@
 
 - (BOOL) setPositions:(NSArray *)newPositions ofDividersAtIndexes:(NSArray *)indexes animated:(BOOL) animated completitionBlock:(void (^)(BOOL isEnded)) completition {
     __block NSUInteger numberOfSubviews = self.subviews.count;
-    
+    if (isAnimating) {
+        return NO;
+    }
     // indexes and newPositions arrays must have the same object count
     if (indexes.count == newPositions.count == NO) return NO;
     // trying to move too many dividers
