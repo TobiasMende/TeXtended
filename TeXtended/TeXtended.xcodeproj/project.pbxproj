@@ -81,7 +81,6 @@
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550731751FFCF00BC05DD /* PDFViewsView.xib */; };
-		D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A550781751FFFB00BC05DD /* ConsoleViewsView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
@@ -164,13 +163,13 @@
 		D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
 		D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
-		D2EAC45717D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */; };
-		D2EAC45917D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
+		F672063617EDD10400BD8CD5 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F672063517EDD10400BD8CD5 /* EncodingController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6F259E0178084180075F677 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F259DF178084180075F677 /* EncodingView.xib */; };
+		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -392,7 +391,6 @@
 		D2A550731751FFCF00BC05DD /* PDFViewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFViewsView.xib; sourceTree = "<group>"; };
 		D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewsController.h; sourceTree = "<group>"; };
 		D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewsController.m; sourceTree = "<group>"; };
-		D2A550781751FFFB00BC05DD /* ConsoleViewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsView.xib; sourceTree = "<group>"; };
 		D2A5507B1752003A00BC05DD /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
 		D2A5507C1752003A00BC05DD /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
 		D2A5507D1752003A00BC05DD /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
@@ -464,12 +462,15 @@
 		D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleInputField.h; sourceTree = "<group>"; };
 		D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleInputField.m; sourceTree = "<group>"; };
 		D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtendedPDFView.xib; sourceTree = "<group>"; };
+		F672063417EDD10400BD8CD5 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
+		F672063517EDD10400BD8CD5 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6E2FC9C1767A59F0057C960 /* FileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewCell.h; sourceTree = "<group>"; };
 		F6E2FC9D1767A59F0057C960 /* FileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewCell.m; sourceTree = "<group>"; };
 		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
 		F6E8243F1743A11E00FB2CCB /* FileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewModel.m; sourceTree = "<group>"; };
 		F6F259DF178084180075F677 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
+		F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -867,7 +868,7 @@
 				D2A550731751FFCF00BC05DD /* PDFViewsView.xib */,
 				D2A550761751FFFB00BC05DD /* ConsoleViewsController.h */,
 				D2A550771751FFFB00BC05DD /* ConsoleViewsController.m */,
-				D2A550781751FFFB00BC05DD /* ConsoleViewsView.xib */,
+				F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */,
 				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
 				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
 				D2A5507D1752003A00BC05DD /* OutlineView.xib */,
@@ -1068,6 +1069,8 @@
 		F6F259DE178083EF0075F677 /* EncodingView */ = {
 			isa = PBXGroup;
 			children = (
+				F672063417EDD10400BD8CD5 /* EncodingController.h */,
+				F672063517EDD10400BD8CD5 /* EncodingController.m */,
 				F6F259DF178084180075F677 /* EncodingView.xib */,
 			);
 			path = EncodingView;
@@ -1146,7 +1149,7 @@
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D2A550751751FFCF00BC05DD /* PDFViewsView.xib in Resources */,
-				D2A5507A1751FFFB00BC05DD /* ConsoleViewsView.xib in Resources */,
+				F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
@@ -1262,6 +1265,7 @@
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
+				F672063617EDD10400BD8CD5 /* EncodingController.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
