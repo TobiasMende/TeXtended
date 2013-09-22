@@ -8,10 +8,10 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
                 <outlet property="contentView" destination="Dg6-Os-sFX" id="q1p-ev-hqx"/>
-                <outlet property="leftViewToggle" destination="rJY-Cm-FxO" id="tpZ-bO-6Nk"/>
                 <outlet property="mainView" destination="yMa-FR-WCa" id="p1k-2f-R5O"/>
                 <outlet property="secondViewToggle" destination="BQT-eF-usa" id="nzC-4c-hAs"/>
                 <outlet property="sidebar" destination="uqN-3K-M8J" id="GuX-si-k0A"/>
+                <outlet property="sidebarViewToggle" destination="rJY-Cm-FxO" id="xxN-o7-Y8m"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>

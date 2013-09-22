@@ -36,7 +36,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 #endif
         self.mainDocument = document;
         self.mainCompilable = self.mainDocument.model;
-        _documentControllers = [NSMutableSet new];
+        self.documentControllers = [NSMutableSet new];
         for (DocumentModel *m in self.mainCompilable.mainDocuments) {
             DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
             [self.documentControllers addObject:dc];
@@ -52,10 +52,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     self.fileViewController = [[FileViewController alloc] init];
     
-    _fileViewController = [[FileViewController alloc] init];
     // TODO: Set mainCompilable (project/ doc) in FVC
     // TODO: Add file view to main window
-    // TODO: Set default toggle states
+    [self.sidebarViewToggle setState:NSOnState];
+    [self.secondViewToggle setState:NSOnState];
     
     [self setTemplateController:[[TemplateController alloc] init]];
 }
@@ -94,8 +94,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (ExportCompileWindowController *)exportWindow {
     DocumentController *current = self.activeDocumentController;
-    if (!_exportWindow || ![_exportWindow.controller isEqualTo:current]) {
-        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
+    if (current && (!_exportWindow || ![_exportWindow.controller isEqualTo:current])) {
+        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
     }
     return _exportWindow;
 }
