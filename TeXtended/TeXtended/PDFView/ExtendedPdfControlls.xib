@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
@@ -25,13 +25,9 @@
                 <rect key="frame" x="1" y="1" width="352" height="117"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="120">
+                    <button id="120">
                         <rect key="frame" x="25" y="-43" width="44" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="jD4-1R-8sH"/>
-                            <constraint firstAttribute="height" constant="21" id="rqP-05-AWe"/>
-                        </constraints>
                         <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="121">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -41,12 +37,9 @@
                             <binding destination="169" name="value" keyPath="values.TMTdrawHGrid" id="179"/>
                         </connections>
                     </button>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="124">
+                    <slider focusRingType="none" verticalHuggingPriority="750" id="124">
                         <rect key="frame" x="50" y="-30" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="206" id="537"/>
-                        </constraints>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" minValue="1" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="125"/>
                         <connections>
                             <action selector="update:" target="-2" id="317"/>
@@ -57,13 +50,9 @@
                             </binding>
                         </connections>
                     </slider>
-                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130">
+                    <button id="130">
                         <rect key="frame" x="25" y="-98" width="33" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="29" id="Rtd-Co-OMl"/>
-                            <constraint firstAttribute="height" constant="22" id="piH-Ay-iZ0"/>
-                        </constraints>
                         <buttonCell key="cell" type="check" title="V" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="131">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -73,7 +62,7 @@
                             <binding destination="169" name="value" keyPath="values.TMTdrawVGrid" id="181"/>
                         </connections>
                     </button>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="134">
+                    <slider focusRingType="none" verticalHuggingPriority="750" id="134">
                         <rect key="frame" x="50" y="-83" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" minValue="1" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="135"/>
@@ -86,12 +75,9 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="143">
+                    <textField verticalHuggingPriority="750" id="143">
                         <rect key="frame" x="266" y="-32" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="65" id="528"/>
-                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="144">
                             <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" allowsFloats="NO" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="2" decimalSeparator="," currencySymbol="¤" internationalCurrencySymbol="¤¤" currencyDecimalSeparator="," id="315">
                                 <real key="roundingIncrement" value="0.0"/>
@@ -116,7 +102,7 @@
                             </binding>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="150">
+                    <textField verticalHuggingPriority="750" id="150">
                         <rect key="frame" x="266" y="-83" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="151">
@@ -140,7 +126,7 @@
                             </binding>
                         </connections>
                     </textField>
-                    <slider focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="213">
+                    <slider focusRingType="none" verticalHuggingPriority="750" id="213">
                         <rect key="frame" x="50" y="-55" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="214"/>
@@ -153,7 +139,7 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
+                    <textField verticalHuggingPriority="750" id="224">
                         <rect key="frame" x="266" y="-55" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="225">
@@ -179,7 +165,7 @@
                             <action selector="update:" target="-2" id="327"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="238">
+                    <textField verticalHuggingPriority="750" id="238">
                         <rect key="frame" x="266" y="-106" width="65" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="239">
@@ -203,7 +189,7 @@
                             </binding>
                         </connections>
                     </textField>
-                    <slider autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="245">
+                    <slider autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" id="245">
                         <rect key="frame" x="50" y="-106" width="210" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="600" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="246"/>
@@ -216,8 +202,8 @@
                             </binding>
                         </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-Jb-7rW">
-                        <rect key="frame" x="11" y="-38" width="20" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="H6Z-Jb-7rW">
+                        <rect key="frame" x="12" y="-91" width="14" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="H" id="GWr-WW-6IW">
                             <font key="font" metaFont="system"/>
@@ -225,8 +211,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ij-Oq-LGy">
-                        <rect key="frame" x="11" y="-101" width="20" height="23"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="9Ij-Oq-LGy">
+                        <rect key="frame" x="12" y="-37" width="13" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="V" id="oxf-co-vee">
                             <font key="font" metaFont="system"/>
@@ -236,34 +222,6 @@
                     </textField>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="213" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="53" id="0gh-bv-n1c"/>
-                <constraint firstItem="130" firstAttribute="leading" secondItem="120" secondAttribute="leading" id="2FK-Az-hnh"/>
-                <constraint firstItem="213" firstAttribute="trailing" secondItem="124" secondAttribute="trailing" id="2uT-RZ-gaW"/>
-                <constraint firstItem="238" firstAttribute="baseline" secondItem="245" secondAttribute="baseline" id="53I-Rb-UaK"/>
-                <constraint firstItem="143" firstAttribute="leading" secondItem="150" secondAttribute="leading" id="6nG-wM-5PO"/>
-                <constraint firstItem="213" firstAttribute="trailing" secondItem="134" secondAttribute="trailing" id="7v7-CP-YZB"/>
-                <constraint firstItem="213" firstAttribute="trailing" secondItem="245" secondAttribute="trailing" id="Bh6-M0-F9B"/>
-                <constraint firstItem="143" firstAttribute="trailing" secondItem="238" secondAttribute="trailing" id="Djy-mn-KIe"/>
-                <constraint firstItem="213" firstAttribute="top" secondItem="124" secondAttribute="bottom" constant="8" symbolic="YES" id="Ekj-Ws-86Q"/>
-                <constraint firstItem="213" firstAttribute="leading" secondItem="124" secondAttribute="leading" id="KSg-5V-mea"/>
-                <constraint firstItem="130" firstAttribute="leading" secondItem="87" secondAttribute="leading" constant="28" id="OUr-vd-WQe"/>
-                <constraint firstItem="143" firstAttribute="leading" secondItem="124" secondAttribute="trailing" constant="8" symbolic="YES" id="Oba-GF-t4I"/>
-                <constraint firstItem="134" firstAttribute="top" secondItem="120" secondAttribute="bottom" constant="23" id="OoL-Se-6eO"/>
-                <constraint firstItem="224" firstAttribute="leading" secondItem="213" secondAttribute="trailing" constant="8" symbolic="YES" id="P3Q-b1-hIx"/>
-                <constraint firstAttribute="bottom" secondItem="238" secondAttribute="bottom" constant="12" id="a6O-dO-8od"/>
-                <constraint firstItem="213" firstAttribute="leading" secondItem="134" secondAttribute="leading" id="akw-od-GNg"/>
-                <constraint firstItem="134" firstAttribute="top" secondItem="213" secondAttribute="bottom" constant="11" id="bhn-Tx-1Qy"/>
-                <constraint firstItem="143" firstAttribute="leading" secondItem="238" secondAttribute="leading" id="edR-8v-4pI"/>
-                <constraint firstItem="213" firstAttribute="baseline" secondItem="224" secondAttribute="baseline" id="iRU-0g-7UC"/>
-                <constraint firstAttribute="bottom" secondItem="130" secondAttribute="bottom" constant="22" id="j3V-2W-PJC"/>
-                <constraint firstItem="143" firstAttribute="trailing" secondItem="150" secondAttribute="trailing" id="kiF-Zw-IQL"/>
-                <constraint firstItem="224" firstAttribute="top" secondItem="143" secondAttribute="bottom" constant="1" id="lSe-UC-H7A"/>
-                <constraint firstItem="143" firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="nyQ-vb-UGy"/>
-                <constraint firstItem="238" firstAttribute="top" secondItem="150" secondAttribute="bottom" constant="1" id="rxW-f6-8jS"/>
-                <constraint firstItem="130" firstAttribute="top" secondItem="213" secondAttribute="bottom" constant="21" id="seS-Yi-vm5"/>
-                <constraint firstItem="213" firstAttribute="leading" secondItem="245" secondAttribute="leading" id="zvy-Fv-WD4"/>
-            </constraints>
             <shadow key="shadow">
                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             </shadow>
