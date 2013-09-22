@@ -31,7 +31,5 @@
 /** The controller of the documents main window */
 @property (strong) MainWindowController *mainWindowController;
 
-/** The document controller handling the users interaction with the model and other components */
-@property (strong) DocumentController *documentController;
 
 @end

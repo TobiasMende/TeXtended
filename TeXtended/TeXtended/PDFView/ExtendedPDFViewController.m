@@ -13,6 +13,7 @@
 #import "ForwardSynctex.h"
 #import "BackwardSynctex.h"
 #import "DocumentCreationController.h"
+#import "DocumentController.h"
 #import "MainDocument.h"
 
 @interface ExtendedPDFViewController ()
@@ -23,10 +24,10 @@
 
 @implementation ExtendedPDFViewController
 
-- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
+- (id)initWithDocumentController:(DocumentController *)dc {
     self = [super initWithNibName:@"ExtendedPDFView" bundle:nil];
     if (self) {
-        self.parent = parent;
+        self.documentController = dc;
     }
     return self;
 }
@@ -64,9 +65,6 @@
     }
 }
 
-- (DocumentController * ) documentController {
-    return [self.parent documentController];
-}
 
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
@@ -81,9 +79,6 @@
     }
 }
 
-- (NSSet*)children {
-    return [NSSet setWithObjects:nil];
-}
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
     [self documentHasChangedAction];
@@ -105,8 +100,6 @@
         [self.pdfView setDocument:pdfDoc];
     }
 }
-
-- (void) breakUndoCoalescing {}
 
 
 #pragma mark -

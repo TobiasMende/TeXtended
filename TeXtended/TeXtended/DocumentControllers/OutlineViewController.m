@@ -24,34 +24,14 @@
     return self;
 }
 
-- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
-    self = [super initWithNibName:@"OutlineView" bundle:nil];
-    if (self) {
-        self.parent = parent;
-        [self initialize];
-    }
-    return self;
-}
 
 - (void) initialize {
     //TODO: add children view depending on current model
 }
 
-- (DocumentController * ) documentController {
-    return [self.parent documentController];
-}
 
 - (NSSet*)children {
     return [NSSet setWithObject:nil];
-}
-
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
-}
-
-- (void) documentHasChangedAction {
-}
-
-- (void) breakUndoCoalescing{
 }
 
 - (void)dealloc {

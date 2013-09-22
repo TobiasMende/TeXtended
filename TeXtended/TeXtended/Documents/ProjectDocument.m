@@ -32,9 +32,9 @@
     [self addWindowController:self.mainWindowController];
     if (!self.documentControllers || self.documentControllers.count == 0) {
         if (self.projectModel.mainDocuments.count > 0) {
-            DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
+            // DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
             
-            self.documentControllers = [NSMutableSet setWithObject:dc];
+            //self.documentControllers = [NSMutableSet setWithObject:dc];
         } else {
             NSLog(@"ProjectDocument: ProjectModel seems corrupted: \n%@", self.projectModel);
         }
@@ -43,7 +43,7 @@
             [dc loadContent];
         if ([[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] isEqual:dc.model]) {
             [dc setWindowController:self.mainWindowController];
-            [self.mainWindowController setDocumentController:dc];
+            // [self.mainWindowController setDocumentController:dc];
         }
     }
 }

@@ -66,16 +66,17 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 @implementation TextViewController
 
 
-- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
+- (id)initWithDocumentController:(DocumentController *)dc {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
-        self.parent = parent;
         messageLock = [NSLock new];
+        
+        self.documentController = dc;
         observers = [NSMutableSet new];
         backgroundQueue = [NSOperationQueue new];
         consoleMessages = [MessageCollection new];
         internalMessages = [MessageCollection new];
-        self.model = [[self.parent documentController] model];
+        self.model = [self.documentController model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -286,17 +287,9 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     NSLog(@"Go to line");
 }
 
-- (void) documentHasChangedAction {
-}
-
 - (void)breakUndoCoalescing {
     [self.textView breakUndoCoalescing];
 }
-
-- (DocumentController *)documentController {
-    return [self.parent documentController];
-}
-
 
 #pragma mark -
 #pragma mark Observers

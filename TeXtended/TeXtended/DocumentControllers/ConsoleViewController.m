@@ -9,7 +9,6 @@
 #import "ConsoleViewController.h"
 #import "DocumentModel.h"
 #import "Constants.h"
-#import "DocumentControllerProtocol.h"
 #import "DocumentController.h"
 #import "LogfileParser.h"
 #import "MessageCollection.h"
@@ -28,10 +27,9 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 @implementation ConsoleViewController
 
 
-- (id) initWithParent:(id<DocumentControllerProtocol>) parent {
+- (id) init {
     self = [super initWithNibName:@"ConsoleView" bundle:nil];
     if (self) {
-        _parent = parent;
     }
     return self;
 }
@@ -55,25 +53,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
     self.outputView.controller = self;
 }
 
-- (DocumentController * ) documentController {
-    return [self.parent documentController];
-}
-
-- (NSSet *) children {
-    return [NSSet setWithObjects: nil];
-}
-
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
-    
-}
-
-- (void) documentHasChangedAction {
-
-}
-
-- (void) breakUndoCoalescing {
-    
-}
 
 - (void)handleOutput: (NSNotification*)notification {
     //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
@@ -110,7 +89,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 - (void)setConsoleMessages:(MessageCollection *)consoleMessages {
     if (consoleMessages != _consoleMessages) {
         _consoleMessages = consoleMessages;
-        DocumentModel *model = [[self documentController] model];
+        DocumentModel *model = [self.documentController model];
         if (model && consoleMessages) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
         }

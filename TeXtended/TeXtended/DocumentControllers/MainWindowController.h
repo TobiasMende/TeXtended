@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "WindowControllerProtocol.h"
 #import "DMSplitView.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView;
+#import "MainDocument.h"
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -20,12 +20,11 @@
  
  */
 
-@interface MainWindowController : NSWindowController<WindowControllerProtocol,NSWindowDelegate,DMSplitViewDelegate> {
+@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
 
-@property (strong) IBOutlet NSButton *leftViewToggle;
-@property (strong) IBOutlet NSButton *bottomViewToggle;
-@property (strong) IBOutlet NSButton *rightViewToggle;
+@property (strong) IBOutlet NSButton *sidebarViewToggle;
+@property (strong) IBOutlet NSButton *secondViewToggle;
 
 
 /** The main view containing the left and content view */
@@ -34,16 +33,16 @@
 /** The left sidebar containing the file view and an outline view */
 @property (strong) IBOutlet DMSplitView *sidebar;
 
-@property (strong) IBOutlet DMSplitView *contentView;
+/** The content split view (editor + pdf) */
+@property  (assign) IBOutlet DMSplitView *contentView;
 
-/** The middle view containing editor and console in most cases */
-@property  (assign) IBOutlet DMSplitView *middle;
 
-/** The right view containing the pdf view in most cases */
-@property  (assign) IBOutlet DMSplitView *right;
+@property (assign) id<MainDocument> mainDocument;
 
 /** the DocumentController controlling the current DocumentModel */
-@property (strong, nonatomic) DocumentController *documentController;
+@property (strong) NSMutableSet *documentControllers;
+
+@property (strong) Compilable *mainCompilable;
 
 /** the FileViewController containing the file outline view */
 @property  FileViewController *fileViewController;
@@ -51,8 +50,8 @@
 /** The controller controlling the export window */
 @property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
 
-/** The area in which to show the file view itself */
-@property (strong)  IBOutlet NSBox *fileViewArea;
+/** Controller that handels the outlineView. */
+@property (strong) OutlineViewController* outlineViewController;
 
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;
@@ -94,9 +93,10 @@
  */
 - (IBAction)genericAction:(id)sender;
 
-- (IBAction)toggleLeftView:(id)sender;
-- (IBAction)toggleBottomView:(id)sender;
-- (IBAction)toggleRightView:(id)sender;
+- (IBAction)toggleSidebarView:(id)sender;
+- (IBAction)toggleSecondView:(id)sender;
 
+
+- (DocumentController *)activeDocumentController;
 
 @end

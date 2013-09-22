@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "DocumentControllerProtocol.h"
 #import "TextViewObserver.h"
 #import "Constants.h"
-@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection;
+#import "ViewControllerProtocol.h"
+@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController;
 
 /**
  This view controller handles the HighlightingTextView and other important objects connected to it.
@@ -20,7 +20,7 @@
  **Author:** Tobias Mende
  
  */
-@interface TextViewController : NSViewController<DocumentControllerProtocol,NSTextViewDelegate> {
+@interface TextViewController : NSViewController<NSTextViewDelegate, ViewControllerProtocol> {
     /** The line number view of the HighlightingTextView */
     LineNumberView *lineNumberView;
     
@@ -41,11 +41,11 @@
 /** The scroll view containing the LineNumberView and the HighlightingTextView */
 @property (strong) IBOutlet NSScrollView *scrollView;
 
-/** The parent node in the controller tree. */
-@property (assign) id<DocumentControllerProtocol> parent;
-
 /** The DocumentModel which's content is displayed by the view of this controller */
 @property (strong) DocumentModel *model;
+
+
+@property (assign) DocumentController *documentController;
 
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;

@@ -7,25 +7,25 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "DocumentControllerProtocol.h"
+#import "ViewControllerProtocol.h"
 
 /**
  * A Controller for a view handeling a ExtendedPdf.
  *
  * @author Max Bannach
  */
-@class ExtendedPdf, DocumentModel,PDFView;
+@class ExtendedPdf, DocumentModel,PDFView, DocumentController;
 
-@interface ExtendedPDFViewController : NSViewController<DocumentControllerProtocol>
+@interface ExtendedPDFViewController : NSViewController<ViewControllerProtocol>
 
-/** Parent in the controller tree. */
-@property (assign)id<DocumentControllerProtocol> parent;
 
 /** Current model from which the pdf is handeld by this class. */
 @property (strong,nonatomic) DocumentModel *model;
 
 /** The coresponding PdfView. */
 @property (strong) IBOutlet PDFView *pdfView;
+
+@property (assign) DocumentController *documentController;
 
 /** 
  * Setup synctex from the pdf back to tex.

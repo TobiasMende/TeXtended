@@ -32,7 +32,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         _context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
-        _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
     }
     return self;
 }
@@ -42,21 +41,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     _mainWindowController = [[MainWindowController alloc] init];
    
     [self addWindowController:self.mainWindowController];
-    if (self.documentController) {
-        [self.documentController setWindowController:self.mainWindowController];
-    }
 }
 
 - (void)printDocument:(id)sender {
-    [self.documentController performSelector:@selector(printDocument:)];
+    [self.mainWindowController.activeDocumentController performSelector:@selector(printDocument:)];
 }
 
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if (@selector(printDocument:) == aSelector) {
-        return [self.documentController respondsToSelector:aSelector];
-    }
-    return [super respondsToSelector:aSelector];
-}
 
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
@@ -88,7 +78,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-          [self.documentController breakUndoCoalescing];
+        // TODO: Call breakUndoCoalescing on MainWindowController -> DOcumentController -> TVC
     }
     if (![standardDocumentTypes containsObject:typeName]) {
         if(outError) {
@@ -100,7 +90,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if ([[self fileURL] path]) {
         self.model.texPath = [[self fileURL] path];
     }
-    BOOL success = [self.documentController saveDocument:outError];
+    BOOL success = [self.mainWindowController.activeDocumentController saveDocument:outError];
     
     return success;
 
@@ -117,15 +107,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     }
     if (!self.model) {
         _model = [[DocumentModel alloc] initWithContext:self.context];
-        //_documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
-        if(self.mainWindowController) {
-            [self.documentController setWindowController:self.mainWindowController];
-        }
     }
     
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
-    [self.documentController loadContent];
+    [self.mainWindowController.activeDocumentController loadContent];
 
     return YES;
 }

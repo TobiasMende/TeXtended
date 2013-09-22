@@ -14,6 +14,8 @@
 #import "ApplicationController.h"
 #import "TemplateController.h"
 #import "DMSplitView.h"
+#import "Compilable.h"
+#import "MainDocument.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -26,24 +28,21 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return @"MainWindow";
 }
 
-- (id)init {
+- (id)initWithMainDocument:(id<MainDocument>) document {
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
 #ifdef DEBUG
         NSLog(@"WindowController: Init");
 #endif
+        self.mainDocument = document;
+        self.mainCompilable = self.mainDocument.model;
+        _documentControllers = [NSMutableSet new];
+        for (DocumentModel *m in self.mainCompilable.mainDocuments) {
+            DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
+            [self.documentControllers addObject:dc];
+        }
     }
     return self;
-}
-
-
-- (void)setDocumentController:(DocumentController *)documentController {
-    _documentController = documentController;
-    
-    ((NSBox *)[self.middle.subviews objectAtIndex:0]).contentView = ((NSViewController*)documentController.textViewController).view;
-    ((NSBox *)[self.middle.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.consolViewsController).view;
-    ((NSBox *)[self.contentView.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.pdfViewsController).view;
-    // ((NSBox *)[self.sidebar.subviews objectAtIndex:1]).contentView = ((NSViewController*)documentController.outlineViewController).view;
 }
 
 - (void)windowDidLoad
@@ -51,34 +50,12 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
     [super windowDidLoad];
     
-    
-    
-    
-    [self.mainView setMinSize:150 ofSubviewAtIndex:0];
-    [self.mainView setCanCollapse:NO subviewAtIndex:0];
-    self.mainView.eventsDelegate = self;
-    [self.mainView setCanCollapse:NO subviewAtIndex:1];
-    
-    
-    [self.middle setMinSize:150 ofSubviewAtIndex:1];
-    [self.middle setMaxSize:300 ofSubviewAtIndex:1];
-    [self.middle setCanCollapse:NO subviewAtIndex:0];
-    [self.middle setCanCollapse:YES subviewAtIndex:1];
-    
-    self.contentView.subviewsResizeMode = DMSplitViewResizeModeUniform;
-    
-    [self.documentController setupWindowController];
-    NSLog(@"%@", self.documentController);
     self.fileViewController = [[FileViewController alloc] init];
     
     _fileViewController = [[FileViewController alloc] init];
-    
-    [self.fileViewController setDocument:self.documentController.model];
-    [self.fileViewArea setContentView:self.fileViewController.view];
-    
-    [self.leftViewToggle setState:NSOnState];
-    [self.bottomViewToggle setState:NSOnState];
-    [self.rightViewToggle setState:NSOnState];
+    // TODO: Set mainCompilable (project/ doc) in FVC
+    // TODO: Add file view to main window
+    // TODO: Set default toggle states
     
     [self setTemplateController:[[TemplateController alloc] init]];
 }
@@ -107,69 +84,51 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)liveCompile:(id)sender {
-    [self.documentController refreshLiveView];
+    [self.activeDocumentController refreshLiveView];
+    // TODO: Get DC for active view and do live compile
 }
 
 - (IBAction)draftCompile:(id)sender {
-    [self.documentController draftCompile];
+    [self.activeDocumentController draftCompile];
 }
 
 - (ExportCompileWindowController *)exportWindow {
-    if (!_exportWindow) {
-        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
+    DocumentController *current = self.activeDocumentController;
+    if (!_exportWindow || ![_exportWindow.controller isEqualTo:current]) {
+        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
     }
     return _exportWindow;
 }
 
 - (IBAction)finalCompile:(id)sender {
-    if (!self.exportWindow) {
-        _exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:self.documentController];
-        [self.exportWindow setModel:self.documentController.model];
-    }
-    else {
-        [self.exportWindow setModel:self.documentController.model];
-    }
+    [self.exportWindow setModel:self.activeDocumentController.model];
     self.exportWindow.window.isVisible = YES;
+}
+
+- (DocumentController *)activeDocumentController {
+    // FIXME: get the active DC
+    return nil;
 }
 
 - (void)genericAction:(id)sender {
     if ([sender tag] == REFRESH_LIVE_VIEW_TAG) {
         
-        [self.documentController refreshLiveView];
+        [self.activeDocumentController refreshLiveView];
     }
 }
 
-- (IBAction)toggleLeftView:(id)sender {
+- (IBAction)toggleSidebarView:(id)sender {
     [self.mainView collapseOrExpandSubviewAtIndex:0 animated:YES];
 }
 
-- (IBAction)toggleBottomView:(id)sender {
-    [self.middle collapseOrExpandSubviewAtIndex:1 animated:YES];
-}
 
-- (IBAction)toggleRightView:(id)sender {
+- (IBAction)toggleSecondView:(id)sender {
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
 - (void)splitView:(DMSplitView *)splitView subview:(NSUInteger)subviewIndex stateChanged:(DMSplitViewState)newState {
     NSLog(@"TEST");
-    if (splitView == self.middle) {
-        if (subviewIndex == 1) {
-            [self.bottomViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
-        }
-    } else if (splitView == self.mainView) {
-        switch (subviewIndex) {
-            case 0:
-                [self.leftViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
-                break;
-            case 2:
-                [self.rightViewToggle setState:(newState == DMSplitViewStateCollapsed ? NSOffState : NSOnState)];
-            default:
-                break;
-        }
-    } else {
-        NSLog(@"MainWindowController: unhandled split view change");
-    }
+    // TODO: Handle DMSplitview callback
 }
 
 - (void)makeFirstResponder:(NSView *)view {

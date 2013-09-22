@@ -26,7 +26,7 @@
     NSLog(@"Compiler init");
     if (self) {
         [self setAutoCompile:NO];
-        _documentController = controller;
+        self.documentController = controller;
         
         // get the settings and observe them
         _draftSettings = [[controller model] draftCompiler];
