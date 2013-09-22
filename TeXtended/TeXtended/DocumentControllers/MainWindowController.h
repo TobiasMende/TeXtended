@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DMSplitView.h"
 #import "MainDocument.h"
+#import "ViewControllerProtocol.h"
 @class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable;
 
 /**
@@ -20,7 +21,7 @@
  
  */
 
-@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
+@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate, ViewControllerProtocol> {
 }
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
@@ -55,6 +56,9 @@
 
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;
+
+
+- (id)initWithMainDocument:(id<MainDocument>) document;
 
 /** Action for opening the redmine ticket system in the default web browser 
  

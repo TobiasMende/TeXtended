@@ -27,9 +27,6 @@
 /** YES if at least one dimension constraint has been set */
 @property (nonatomic,readonly)  BOOL        hasSizeContraints;
 
-
-- (CGFloat) sizeScaleFactor;
-
 @end
 
 @implementation DMSubviewConstraint
@@ -66,6 +63,8 @@
     CGFloat                 collapsedSubviewDimension;
     BOOL                    isAnimating; // an animation is in progress
 }
+
+- (CGFloat) sizeScaleFactor;
 @end
 
 @implementation DMSplitView
@@ -340,6 +339,10 @@
         which then causes not all of the delta to be used. Since this is uniform, if
         we loop, the remaining is uniformly split over the views which can still resize.
      */
+    
+    [subviewContraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        subviewsSizes[idx] = subviewsSizes[idx] * [self sizeScaleFactor];
+    }];
     while (fabs(deltaValue) > 0.5f) {
         // The amount we'll resize each view by to start with
         CGFloat deltaPerSubview = (deltaValue / (CGFloat)numberOfResizableSubviews);
@@ -354,31 +357,35 @@
         [subviewContraints enumerateObjectsUsingBlock:^(DMSubviewConstraint *constraint, NSUInteger subviewIndex, BOOL *stop) {
             BOOL isSubviewResizable = resizableSubviews[subviewIndex];
             if (isSubviewResizable) {
-                CGFloat oldSubviewSize = subviewsSizes[subviewIndex] * [self sizeScaleFactor];
+                CGFloat oldSubviewSize = subviewsSizes[subviewIndex];
                 CGFloat newSubviewSize = oldSubviewSize;
                 
                 // Resize subview according to max/min constraint
-                newSubviewSize += deltaPerSubview;
-                if ((constraint.minSize > 0) && (newSubviewSize < constraint.minSize)) {
-                    numberOfResizableSubviews--;
-                    resizableSubviews[subviewIndex] = NO;
-                    newSubviewSize = constraint.minSize;
+                if (oldSubviewSize > 0.0f) {
+                    newSubviewSize += deltaPerSubview;
+                    if ((constraint.minSize > 0) && (newSubviewSize < constraint.minSize)) {
+                        numberOfResizableSubviews--;
+                        resizableSubviews[subviewIndex] = NO;
+                        newSubviewSize = constraint.minSize;
+                    }
+                    
+                    if ((constraint.maxSize > 0) && (newSubviewSize > constraint.maxSize)) {
+                        numberOfResizableSubviews --;
+                        resizableSubviews[subviewIndex] = NO;
+                        newSubviewSize = constraint.maxSize;
+                    }
                 }
                 
-                if ((constraint.maxSize > 0) && (newSubviewSize > constraint.maxSize)) {
-                    numberOfResizableSubviews --;
-                    resizableSubviews[subviewIndex] = NO;
-                    newSubviewSize = constraint.maxSize;
-                }
-                
-                subviewsSizes[subviewIndex] = newSubviewSize/[self sizeScaleFactor];
+                subviewsSizes[subviewIndex] = newSubviewSize;
                 deltaValue -= (newSubviewSize - oldSubviewSize);
                 if (fabs(deltaValue) <= 0.5f)
                     *stop = YES;
             }
         }];
     }
-    
+    [subviewContraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        subviewsSizes[idx] = subviewsSizes[idx] / [self sizeScaleFactor];
+    }];
     [self setSubviewsSizes:subviewsSizes];
     free(subviewsSizes); free(resizableSubviews);
 }
@@ -427,8 +434,8 @@
             CGFloat subviewDelta = roundf(subviewsProportions[subviewIndex]*deltaValue);
             // resize it according to max/min
             newSize +=  subviewDelta;
-            if (constraint.minSize > 0.0f) newSize = MAX(constraint.minSize,newSize);
-            if (constraint.maxSize > 0.0f) newSize = MIN(constraint.maxSize,newSize);
+            if (constraint.minSize > 0.0f && oldSize > 0.0f) newSize = MAX(constraint.minSize,newSize);
+            if (constraint.maxSize > 0.0f && oldSize > 0.0f) newSize = MIN(constraint.maxSize,newSize);
             subviewsSizes[subviewIndex] = newSize;
             
             // reduce delta
@@ -612,7 +619,7 @@
     
 	if (animated) {
 		if ([self.eventsDelegate respondsToSelector:@selector(splitView:splitViewIsAnimating:)])
-			[((id <DMSplitViewDelegate>)self.delegate) splitView:self splitViewIsAnimating:YES];
+			[self.eventsDelegate splitView:self splitViewIsAnimating:YES];
         
         isAnimating = YES;        
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -634,7 +641,7 @@
             
             if (completition != nil) completition(YES);
             if ([self.eventsDelegate respondsToSelector:@selector(splitView:splitViewIsAnimating:)])
-                [((id <DMSplitViewDelegate>)self.delegate) splitView:self splitViewIsAnimating:NO];
+                [self.eventsDelegate splitView:self splitViewIsAnimating:NO];
         }];
 	} else {
         NSRect newRect[numberOfSubviews];

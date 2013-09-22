@@ -38,7 +38,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (void)makeWindowControllers {
-    _mainWindowController = [[MainWindowController alloc] init];
+    _mainWindowController = [[MainWindowController alloc] initWithMainDocument:self];
    
     [self addWindowController:self.mainWindowController];
 }
@@ -78,7 +78,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-        // TODO: Call breakUndoCoalescing on MainWindowController -> DOcumentController -> TVC
+        [self.mainWindowController breakUndoCoalescing];
     }
     if (![standardDocumentTypes containsObject:typeName]) {
         if(outError) {

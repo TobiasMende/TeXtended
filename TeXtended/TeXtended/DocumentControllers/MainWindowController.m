@@ -57,6 +57,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.sidebarViewToggle setState:NSOnState];
     [self.secondViewToggle setState:NSOnState];
     
+    [self.mainView setMinSize:150 ofSubviewAtIndex:0];
+    [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
+    [self.mainView setEventsDelegate:self];
+    
+    //[self.contentView setSubviewsResizeMode:DMSplitViewResizeModeUniform];
+    [self.contentView setEventsDelegate:self];
+    [self.contentView setCanCollapse:YES subviewAtIndex:1];
+    
     [self setTemplateController:[[TemplateController alloc] init]];
 }
 
@@ -126,10 +134,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
-- (void)splitView:(DMSplitView *)splitView subview:(NSUInteger)subviewIndex stateChanged:(DMSplitViewState)newState {
-    NSLog(@"TEST");
-    // TODO: Handle DMSplitview callback
-}
+
 
 - (void)makeFirstResponder:(NSView *)view {
     NSLog(@"%@", view);
@@ -140,6 +145,47 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
 }
+
+#pragma mark - ViewControllerProtocol
+
+- (void)breakUndoCoalescing {
+    for (DocumentController *dc in self.documentControllers) {
+        [dc breakUndoCoalescing];
+    }
+}
+
+
+#pragma mark - DMSplitViewDelegate
+
+
+- (void)splitView:(DMSplitView *)splitView divider:(NSInteger)dividerIndex movedAt:(CGFloat)newPosition {
+    if (splitView == self.mainView) {
+        if (dividerIndex == 0) {
+            if (newPosition < 1.1f) {
+                if (self.sidebarViewToggle.state != NSOffState) {
+                    self.sidebarViewToggle.state = NSOffState;
+                }
+            } else if(self.sidebarViewToggle.state != NSOnState) {
+                self.sidebarViewToggle.state = NSOnState;
+            }
+        }
+    }
+    
+    if (splitView == self.contentView) {
+        CGFloat hiddenPosition = (self.contentView.isVertical ? NSWidth(self.contentView.bounds) : NSHeight(self.contentView.bounds));
+        NSLog(@"%f, %f, %f", newPosition, hiddenPosition, fabs(newPosition - hiddenPosition));
+        if (fabs(newPosition - hiddenPosition) < 1.1f) {
+            if (self.secondViewToggle.state != NSOffState) {
+                self.secondViewToggle.state = NSOffState;
+            }
+        } else if(self.secondViewToggle.state != NSOnState) {
+            self.secondViewToggle.state = NSOnState;
+        }
+    }
+    
+}
+
+#pragma mark - Terminate
 
 
 -(void)dealloc {
