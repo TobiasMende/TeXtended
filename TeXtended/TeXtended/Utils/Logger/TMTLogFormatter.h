@@ -11,4 +11,8 @@
 
 @interface TMTLogFormatter : NSObject <DDLogFormatter>
 
+@property BOOL extended;
+
+- (id)initExtended:(BOOL)isExtended;
+
 @end

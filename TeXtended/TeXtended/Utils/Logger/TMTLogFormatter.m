@@ -10,6 +10,24 @@
 
 @implementation TMTLogFormatter
 
+
+- (id)initExtended:(BOOL)isExtended {
+    self = [self init];
+    if (self) {
+        self.extended = isExtended;
+    }
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.extended = NO;
+    }
+    return self;
+}
+
+
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
     NSString *logLevel;
@@ -25,10 +43,18 @@
     NSString *file = [[tmp lastPathComponent] stringByDeletingPathExtension];
     
     NSString *output;
-    if (logMessage->threadName.length >0) {
-        output = [NSString stringWithFormat:@"%@| %@ (%@) | %@", logLevel,file, logMessage->threadName, logMessage->logMsg];
+    if (self.extended) {
+        if (logMessage->threadName.length >0) {
+            output = [NSString stringWithFormat:@"%@ - %@| %@.%s (%@) | %@", logMessage->timestamp, logLevel,file, logMessage->function, logMessage->threadName, logMessage->logMsg];
+        } else {
+            output = [NSString stringWithFormat:@"%@ - %@| %@.%s | %@", logMessage->timestamp, logLevel,file, logMessage->function, logMessage->logMsg];
+        }
     } else {
-        output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel,file, logMessage->logMsg];
+        if (logMessage->threadName.length >0) {
+            output = [NSString stringWithFormat:@"%@| %@ (%@) | %@", logLevel,file, logMessage->threadName, logMessage->logMsg];
+        } else {
+            output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel,file, logMessage->logMsg];
+        }
     }
     
     return output;
