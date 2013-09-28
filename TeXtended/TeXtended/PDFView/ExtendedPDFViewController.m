@@ -15,6 +15,7 @@
 #import "DocumentCreationController.h"
 #import "DocumentController.h"
 #import "MainDocument.h"
+#import "TMTLog.h"
 
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
@@ -129,7 +130,7 @@
 
 - (void)dealloc {
 #ifdef DEBUG
-    NSLog(@"ExtendedPDFViewController dealloc");
+    DDLogError(@"ExtendedPDFViewController dealloc");
 #endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

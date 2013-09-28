@@ -14,6 +14,7 @@
 #import "DocumentController.h"
 #import "ForwardSynctex.h"
 #import "TextViewController.h"
+#import "TMTLog.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -23,7 +24,7 @@
 
 - (id)initWithDocumentController:(DocumentController*) controller {
     self = [super init];
-    NSLog(@"Compiler init");
+    DDLogVerbose(@"init");
     if (self) {
         [self setAutoCompile:NO];
         self.documentController = controller;
@@ -50,7 +51,7 @@
         NSPipe *outPipe = [NSPipe pipe];
         NSPipe *inPipe = [NSPipe pipe];
         if (!outPipe || !inPipe) {
-            NSLog(@"ERROR: One of the pipes could not be initialized. Aborting compile for model %@", model);
+            DDLogError(@"One of the pipes could not be initialized. Aborting compile for model %@", model);
             continue;
         }
         model.consoleOutputPipe = outPipe;
@@ -127,9 +128,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"Compiler dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.documentController.textViewController removeDelegateObserver:self];

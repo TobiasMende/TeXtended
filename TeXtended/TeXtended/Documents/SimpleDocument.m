@@ -10,6 +10,7 @@
 #import "DocumentModel.h"
 #import "MainWindowController.h"
 #import "DocumentController.h"
+#import "TMTLog.h"
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
 static const NSSet *SELECTORS_HANDLED_BY_DC;
@@ -56,14 +57,14 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 //- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
-//    NSLog(@"%@",[url path]);
+//    DDLogInfo(@"%@",[url path]);
 //    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
 //        [self.documentController breakUndoCoalescing];
 //    } else {
 //        
 //    }
 //    BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
-//    NSLog(@"Success: %@", [NSNumber numberWithBool:success]);
+//    DDLogInfo(@"Success: %@", [NSNumber numberWithBool:success]);
 //    return success;
 //}
 
@@ -117,9 +118,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"SimpleDocument dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
 }
 
 @end

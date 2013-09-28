@@ -7,6 +7,7 @@
 //
 
 #import "TMTSplitView.h"
+#import "TMTLog.h"
 #import <Quartz/Quartz.h>
 
 #define STEP 5.0
@@ -132,7 +133,7 @@
 
 //-(void)moveDivider:(NSTimer*)theTimer
 //{
-//    NSLog(@"Timer");
+//    DDLogInfo(@"Timer");
 //    if (!([direction containsObject:[NSNumber numberWithInteger:-1]] || [direction containsObject:[NSNumber numberWithInteger:1]])) {
 //        [timer invalidate];
 //        timer = nil;
@@ -226,7 +227,7 @@
 
 //-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 //{
-//    NSLog(@"Stop");
+//    DDLogInfo(@"Stop");
 //    [self setPosition:newPosition ofDividerAtIndex:divIndex];
 //}
 @end

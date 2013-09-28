@@ -16,6 +16,7 @@
 #import "DMSplitView.h"
 #import "Compilable.h"
 #import "MainDocument.h"
+#import "TMTLog.h"
 
 #import "TMTTabViewWindow.h"
 
@@ -33,9 +34,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (id)initWithMainDocument:(id<MainDocument>) document {
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
-#ifdef DEBUG
-        NSLog(@"WindowController: Init");
-#endif
+        DDLogVerbose(@"Init");
         self.mainDocument = document;
         self.mainCompilable = self.mainDocument.model;
         self.documentControllers = [NSMutableSet new];
@@ -59,7 +58,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.sidebarViewToggle setState:NSOnState];
     [self.secondViewToggle setState:NSOnState];
     
-    [self.mainView setMinSize:150 ofSubviewAtIndex:0];
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
     
@@ -146,7 +144,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (void)makeFirstResponder:(NSView *)view {
-    NSLog(@"%@", view);
+    DDLogInfo(@"%@", view);
     [[view window] setInitialFirstResponder:view];
 }
 
@@ -182,7 +180,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     if (splitView == self.contentView) {
         CGFloat hiddenPosition = (self.contentView.isVertical ? NSWidth(self.contentView.bounds) : NSHeight(self.contentView.bounds));
-        NSLog(@"%f, %f, %f", newPosition, hiddenPosition, fabs(newPosition - hiddenPosition));
+        DDLogInfo(@"%f, %f, %f", newPosition, hiddenPosition, fabs(newPosition - hiddenPosition));
         if (fabs(newPosition - hiddenPosition) < 1.1f) {
             if (self.secondViewToggle.state != NSOffState) {
                 self.secondViewToggle.state = NSOffState;
@@ -198,9 +196,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 -(void)dealloc {
-#ifdef DEBUG
-    NSLog(@"MainWindowController dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 }

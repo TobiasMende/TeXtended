@@ -10,6 +10,7 @@
 #import "PathFactory.h"
 #import "ApplicationController.h"
 #import "newTemplateController.h"
+#import "TMTLog.h"
 
 @implementation TemplateController
 
@@ -131,7 +132,7 @@
         NSError* error;
         NSArray *files = [fm contentsOfDirectoryAtPath:bundlePath error:&error];
         if (error) {
-            NSLog(@"Can't read template from %@. Error: %@", bundlePath, [error userInfo]);
+            DDLogError(@"Can't read template from %@. Error: %@", bundlePath, [error userInfo]);
         } else {
             NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
             for(NSString *path in files) {
@@ -142,13 +143,13 @@
                 if (copyError) {
                     NSError* underlying = [[copyError userInfo] valueForKey:NSUnderlyingErrorKey];
                     if (underlying && [underlying code] != 17) {
-                        NSLog(@"Can't merge template %@:\t %@", path, [copyError userInfo]);
+                        DDLogError(@"Can't merge template %@:\t %@", path, [copyError userInfo]);
                         
                     }
                 } else {
                     [fm setAttributes:dict ofItemAtPath:destPath error:&error];
                     if (error) {
-                        NSLog(@"Error while setting permission: %@", [error userInfo]);
+                        DDLogError(@"Error while setting permission: %@", [error userInfo]);
                     }
                 }
             }

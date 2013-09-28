@@ -10,6 +10,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "ProjectModel.h"
+#import "TMTLog.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -36,7 +37,7 @@
             
             //self.documentControllers = [NSMutableSet setWithObject:dc];
         } else {
-            NSLog(@"ProjectDocument: ProjectModel seems corrupted: \n%@", self.projectModel);
+            DDLogError(@"ProjectModel seems corrupted: \n%@", self.projectModel);
         }
     }
     for (DocumentController* dc in self.documentControllers) {
@@ -62,7 +63,7 @@
     for (DocumentController* dc in self.documentControllers) {
         [dc saveDocument:error];
         if (*error) {
-            NSLog(@"ProjectDocument: %@", (*error).userInfo);
+            DDLogError(@"%@", (*error).userInfo);
         }
     }
     
@@ -76,7 +77,7 @@
     } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
         finalURL = absoluteURL;
     }
-    NSLog(@"Project(%@): %@", typeName, absoluteURL);
+    DDLogError(@"Project(%@): %@", typeName, absoluteURL);
     
     if (!finalURL) {
         // Abort reading if no matching project was found
@@ -104,10 +105,10 @@
     NSError *fetchError;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
     if (fetchedObjects.count != 1) {
-        NSLog(@"ProjectDocument: WARNING: Number of ProjectModels is %li", fetchedObjects.count);
+        DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
     }
     if (fetchedObjects == nil) {
-        NSLog(@"ProjectDocument: %@", fetchError.userInfo);
+        DDLogError(@"%@", fetchError.userInfo);
         success = NO;
     } else {
         self.projectModel = [fetchedObjects objectAtIndex:0];
@@ -152,9 +153,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ProjectDocument dealloc");
-#endif
+    DDLogVerbose(@"ProjectDocument dealloc");
 }
 
 @end

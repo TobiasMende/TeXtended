@@ -422,7 +422,7 @@
     [subviewContraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         subviewsSizes[idx] = subviewsSizes[idx] * [self sizeScaleFactor];
     }];
-    while (fabs(deltaValue) > 0.1f) {
+    while (fabs(deltaValue) >= 0.6f) {
         __block CGFloat remainingDeltaValue = deltaValue;
         
         
@@ -440,7 +440,7 @@
             
             // reduce delta
             remainingDeltaValue -= (newSize-oldSize);
-            if (fabs(remainingDeltaValue) <= 0.1f)
+            if (fabs(remainingDeltaValue) <= 0.5f)
                 *stop = YES;
         }];
         deltaValue = remainingDeltaValue;

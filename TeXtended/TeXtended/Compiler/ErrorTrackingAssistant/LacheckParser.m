@@ -12,6 +12,7 @@
 #import "PathFactory.h"
 #import "TrackingMessage.h"
 #import "MessageCollection.h"
+#import "TMTLog.h"
 
 
 @implementation LacheckParser
@@ -75,7 +76,7 @@
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\"(.*)\",\\sline\\s(.*):\\s(.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     if (error) {
-        NSLog(@"Lacheck Regex Invalid: %@", [error userInfo]);
+        DDLogError(@"Lacheck Regex Invalid: %@", [error userInfo]);
         return nil;
     }
     

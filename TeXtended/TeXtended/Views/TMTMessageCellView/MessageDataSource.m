@@ -18,6 +18,7 @@
 #import "SimpleDocument.h"
 #import "MessageInfoViewController.h"
 #import "TMTCustomView.h"
+#import "TMTLog.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
@@ -165,9 +166,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"MessageDataSource dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     self.tableView.dataSource = nil;
     
     self.tableView.delegate = nil;

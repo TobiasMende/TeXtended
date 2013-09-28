@@ -9,6 +9,7 @@
 #import "Compilable.h"
 #import "CompileSetting.h"
 #import "Constants.h"
+#import "TMTLog.h"
 
 static const NSSet *COMPILER_NAMES;
 
@@ -78,7 +79,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path {
-    NSLog(@"This is not my job. Ask ProjectModel or DocumentModel instead.");
+    DDLogError(@"This is not my job. Ask ProjectModel or DocumentModel instead.");
     return nil;
 }
 

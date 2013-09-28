@@ -12,6 +12,7 @@
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
+#import "TMTLog.h"
 
 static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 
@@ -83,7 +84,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 }
 
 - (void)setupSpellChecker {
-    // NSLog(@"%@", ignore);
+    // DDLogInfo(@"%@", ignore);
     [self setupEnvironmentsToIgnore];
     [self setupCommandsToIgnore];
     [self updateSpellChecker];
@@ -91,7 +92,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 }
 
 - (void)updateSpellChecker {
-    //NSLog(@"Updating Spell Checker: \tC:%ld \tE:%ld \tW:%ld", commandsToIgnore.count, environmentsToIgnore.count, wordsToIgnore.count);
+    //DDLogInfo(@"Updating Spell Checker: \tC:%ld \tE:%ld \tW:%ld", commandsToIgnore.count, environmentsToIgnore.count, wordsToIgnore.count);
     if (lastUpdated && -[lastUpdated timeIntervalSinceNow] < SECONDS_BETWEEEN_UPDATES) {
         return;
     }
@@ -106,9 +107,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"SpellCheckingService dealloc");
-#endif
+    DDLogVerbose(@"SpellCheckingService dealloc");
     [backgroundQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

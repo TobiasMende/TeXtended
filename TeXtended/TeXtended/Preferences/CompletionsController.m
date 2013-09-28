@@ -11,6 +11,7 @@
 #import "EnvironmentCompletion.h"
 #import "ApplicationController.h"
 #import "Constants.h"
+#import "TMTLog.h"
 
 
 @interface CompletionsController()
@@ -159,7 +160,7 @@ if(!envPath) {
         }
         [envSaving writeToFile:envPath atomically:YES];
     } else {
-        NSLog(@"Can't store user completions");
+        DDLogWarn(@"Can't store user completions");
     }
     
     

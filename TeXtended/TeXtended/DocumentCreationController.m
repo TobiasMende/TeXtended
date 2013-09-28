@@ -11,6 +11,7 @@
 #import "ProjectDocument.h"
 #import "ProjectModel.h"
 #import "DocumentModel.h"
+#import "TMTLog.h"
 
 @interface DocumentCreationController ()
 
@@ -64,7 +65,7 @@
             model.path = [doc.fileURL path];
             doc.projectModel = model;
             if (error) {
-                NSLog(@"DocumentCreationController: %@", error.userInfo);
+                DDLogError(@"%@", error.userInfo);
             }
             [self addDocument:doc];
             [self initializeProject:doc];
@@ -83,7 +84,6 @@
     configurationPanel.allowsMultipleSelection = YES;
     configurationPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
     [configurationPanel beginWithCompletionHandler:^(NSInteger result) {
-        NSLog(@"Test");
         if (result == NSFileHandlingPanelOKButton) {
             for (NSURL *url in configurationPanel.URLs) {
                 DocumentModel *model = [project.projectModel modelForTexPath:url.path];
