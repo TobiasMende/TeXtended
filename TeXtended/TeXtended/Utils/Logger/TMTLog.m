@@ -20,13 +20,6 @@
     [[DDASLLogger sharedInstance] setLogFormatter:[TMTLogFormatter new]];
     [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithCalibratedRed:0.00f green:0.52f blue:0.00f alpha:1.00f] backgroundColor:Nil forFlag:LOG_FLAG_INFO];
     [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithCalibratedRed:0.31f green:0.51f blue:0.53f alpha:1.00f] backgroundColor:nil forFlag:LOG_FLAG_VERBOSE];
-<<<<<<< HEAD
-    DDLogVerbose(@"Verbose");
-    DDLogInfo(@"Verbose");
-    DDLogWarn(@"Warn");
-    DDLogError(@"Error");
-=======
->>>>>>> Refactoring Logging: CocoaJumberjack and Style definitions
 }
 
 @end
