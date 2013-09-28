@@ -9,6 +9,7 @@
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
 #import "PathObserverFactory.h"
+#import "TMTLog.h"
 static CompileFlowHandler *sharedInstance;
 @interface CompileFlowHandler ()
 
@@ -75,7 +76,7 @@ static CompileFlowHandler *sharedInstance;
         NSError *error1;
             [fm setAttributes:dict ofItemAtPath:[p path] error:&error1];
             if (error1) {
-                NSLog(@"Can't set permission for %@. Error: %@",p,[error1 userInfo]);
+                DDLogError(@"Can't set permission for %@. Error: %@",p,[error1 userInfo]);
             }
         
         NSString *d = [p lastPathComponent];
@@ -83,7 +84,7 @@ static CompileFlowHandler *sharedInstance;
     }
     
     if (error) {
-        NSLog(@"Can't read flows from %@. Error: %@", flowPath, [error userInfo]);
+        DDLogError(@"Can't read flows from %@. Error: %@", flowPath, [error userInfo]);
         return nil;
     }
     return final;

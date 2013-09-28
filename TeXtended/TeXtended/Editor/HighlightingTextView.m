@@ -20,6 +20,7 @@
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionViewController.h"
+#import "TMTLog.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -308,7 +309,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self complete:self];
         }
     } else {
-        NSLog(@"Latex LineBreak");
+        DDLogInfo(@"Latex LineBreak");
     }
     [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
     NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
@@ -356,7 +357,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     
     if (error) {
-        NSLog(@"Line Ranges Error: %@", [error userInfo]);
+        DDLogError(@"Line Ranges Error: %@", [error userInfo]);
         return nil;
     }
     
@@ -634,7 +635,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         second = tmp;
     }
 
-// NSLog(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
+// DDLogInfo(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
     NSAttributedString *secondStr;
     if (second.length == 0) {
         NSUInteger pos = second.location > 0 ? second.location -1 : 0;
@@ -744,9 +745,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 -(void)dealloc {
-#ifdef DEBUG
-    NSLog(@"HighlightingTextView dealloc");
-#endif
+    DDLogVerbose(@"HighlightingTextView dealloc");
     [self unregisterUserDefaultsObserver];
   
 }

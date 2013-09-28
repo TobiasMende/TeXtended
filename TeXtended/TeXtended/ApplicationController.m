@@ -14,7 +14,10 @@
 #import "CompileFlowHandler.h"
 #import "TexdocPanelController.h"
 #import "PathFactory.h"
+#import "TMTLog.h"
 ApplicationController *sharedInstance;
+
+
 @interface ApplicationController ()
 
 + (void)registerDefaults;
@@ -43,8 +46,10 @@ ApplicationController *sharedInstance;
     sharedInstance = self;
     documentCreationController = [[DocumentCreationController alloc] init];
     preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    [TMTLog customizeLogger];
     
 }
+
 
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
@@ -154,7 +159,7 @@ ApplicationController *sharedInstance;
         NSError* error;
         NSArray *files = [fm contentsOfDirectoryAtPath:bundlePath error:&error];
         if (error) {
-            NSLog(@"Can't read compile flows from %@. Error: %@", bundlePath, [error userInfo]);
+            DDLogError(@"Can't read compile flows from %@. Error: %@", bundlePath, [error userInfo]);
         } else {
             NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
             for(NSString *path in files) {
@@ -165,13 +170,13 @@ ApplicationController *sharedInstance;
                 if (copyError) {
                     NSError* underlying = [[copyError userInfo] valueForKey:NSUnderlyingErrorKey];
                     if (underlying && [underlying code] != 17) {
-                        NSLog(@"Can't merge flow %@:\t %@", path, [copyError userInfo]);
+                        DDLogError(@"Can't merge flow %@:\t %@", path, [copyError userInfo]);
                         
                     }
                 } else {
                     [fm setAttributes:dict ofItemAtPath:destPath error:&error];
                     if (error) {
-                        NSLog(@"Error while setting permission: %@", [error userInfo]);
+                        DDLogError(@"Error while setting permission: %@", [error userInfo]);
                     }
                 }
             }
@@ -183,9 +188,7 @@ ApplicationController *sharedInstance;
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ApplicationController dealloc");
-#endif
+    DDLogVerbose(@"ApplicationController dealloc");
 }
 
 @end

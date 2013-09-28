@@ -14,6 +14,8 @@
 #import "Compiler.h"
 #import "ViewControllerProtocol.h"
 #import "MainWindowController.h"
+#import "DDLog.h"
+#import "TMTLog.h"
 
 static const NSSet *SELECTORS_HANDLED_BY_PDF;
 static NSUInteger calls = 0;
@@ -37,7 +39,7 @@ static NSUInteger calls = 0;
 - (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc {
     self = [super init];
     if (self) {
-        NSLog(@"DocumentController: Init");
+        DDLogVerbose(@"DocumentController: Init");
         self.model = model;
         _windowController = wc;
         // FIXME: Set main document
@@ -132,9 +134,7 @@ static NSUInteger calls = 0;
 #pragma mark Dealloc
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"DocumentController dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

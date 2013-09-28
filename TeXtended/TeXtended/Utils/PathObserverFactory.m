@@ -8,6 +8,7 @@
 
 #import "PathObserverFactory.h"
 #import "PathFactory.h"
+#import "TMTLog.h"
 
 static NSMutableDictionary *PATH_OBSERVER_DICTIONARY;
 typedef struct FlagMap {
@@ -62,14 +63,14 @@ static FlagMap USED_FLAGS[] = {
     if (!observer) {
         observer = [[PathObserver alloc] initWithPath:path];
         [PATH_OBSERVER_DICTIONARY setObject:observer forKey:path];
-        NSLog(@"Creating pathObserver: %@ (%@)", observer, path);
+        DDLogInfo(@"Creating pathObserver: %@ (%@)", observer, path);
     }
 return observer;
 }
 
 + (void)removePathObserverForPath:(NSString *)path {
     [PATH_OBSERVER_DICTIONARY removeObjectForKey:path];
-    NSLog(@"Removing pathObserver (%@)", path);
+    DDLogInfo(@"Removing pathObserver (%@)", path);
 }
 
 + (void)removeObserver:(id)observer {
@@ -215,9 +216,7 @@ void fsevents_debug(const FSEventStreamEventFlags eventFlags[], size_t numEvents
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"PathObserver (%@) dealloc", filePath);
-#endif
+    DDLogVerbose(@"%@ dealloc", filePath);
     FSEventStreamStop(stream);
     FSEventStreamInvalidate(stream);
     

@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
 #import "CodeNavigationAssistant.h"
+#import "TMTLog.h"
 static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 static NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
@@ -46,7 +47,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     
     USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor",@"commandColor",@"bracketColor",@"curlyBracketColor",@"commentColor",@"shouldHighlightArguments",@"shouldHighlightCommands",@"shouldHighlightComments",@"shouldHighlightBrackets",@"shouldHighlightInlineMath", nil];
     if (error) {
-        NSLog(@"Syntax Highlighter Error: %@", error.userInfo);
+        DDLogError(@"Syntax Highlighter Error: %@", error.userInfo);
     }
     
 }
@@ -305,9 +306,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 }
 
 -(void)dealloc {
-#ifdef DEBUG
-    NSLog(@"LatexSyntaxHighlighter dealloc");
-#endif
+    DDLogVerbose(@"LatexSyntaxHighlighter dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextViewDidChangeSelectionNotification object:view];
     [self unbindFromUserDefaults];
 }

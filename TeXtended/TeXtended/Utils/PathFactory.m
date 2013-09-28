@@ -8,6 +8,7 @@
 
 #import "PathFactory.h"
 #import "Constants.h"
+#import "TMTLog.h"
 
 static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
 @implementation PathFactory
@@ -46,14 +47,14 @@ static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
     if (exists && isDirectory) {
         return YES;
     } else if(exists && !isDirectory) {
-        NSLog(@"Path exists but isn't a directory!: %@", path);
+        DDLogWarn(@"Path exists but isn't a directory!: %@", path);
         return NO;
     }else {
         [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (!error) {
             return  YES;
         } else {
-            NSLog(@"Can't create directory %@. Error: %@", path, [error userInfo]);
+            DDLogError(@"Can't create directory %@. Error: %@", path, [error userInfo]);
             return NO;
         }
     }

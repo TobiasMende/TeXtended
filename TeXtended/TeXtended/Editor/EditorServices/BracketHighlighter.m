@@ -11,6 +11,7 @@
 #import "HighlightingTextView.h"
 #import "Constants.h"
 #import "UndoSupport.h"
+#import "TMTLog.h"
 static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
 static const NSArray *VALID_PRE_CHARS;
 static const NSSet *KEYS_TO_UNBIND;
@@ -149,7 +150,7 @@ typedef enum {
 - (NSArray *)findMatchingBracketFor:(NSString *)bracket
                           withStart:(NSUInteger)position inRange:(NSRange)range {
     if (position > view.string.length) {
-        NSLog(@"invalid position");
+        DDLogWarn(@"invalid position");
         return nil;
     }
     TMTBracketType type = [self bracketTypeForString:bracket];
@@ -303,9 +304,7 @@ typedef enum {
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"BracketHighlighter dealloc");
-#endif
+    DDLogVerbose(@"BracketHighlighter dealloc");
     [self unbindAll];
 }
 
