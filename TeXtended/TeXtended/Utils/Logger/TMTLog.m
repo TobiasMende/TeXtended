@@ -16,9 +16,9 @@
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [[DDTTYLogger sharedInstance] setLogFormatter:[TMTLogFormatter new]];
-    [[DDASLLogger sharedInstance] setLogFormatter:[TMTLogFormatter new]];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithCalibratedRed:0.00f green:0.52f blue:0.00f alpha:1.00f] backgroundColor:Nil forFlag:LOG_FLAG_INFO];
+    [[DDTTYLogger sharedInstance] setLogFormatter:[[TMTLogFormatter alloc] initExtended:NO]];
+    [[DDASLLogger sharedInstance] setLogFormatter:[[TMTLogFormatter alloc] initExtended:YES]];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithCalibratedRed:0.30f green:0.75f blue:0.34f alpha:1.00f] backgroundColor:Nil forFlag:LOG_FLAG_INFO];
     [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithCalibratedRed:0.31f green:0.51f blue:0.53f alpha:1.00f] backgroundColor:nil forFlag:LOG_FLAG_VERBOSE];
 }
 
