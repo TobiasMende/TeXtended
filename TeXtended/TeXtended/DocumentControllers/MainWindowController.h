@@ -10,7 +10,7 @@
 #import "DMSplitView.h"
 #import "MainDocument.h"
 #import "ViewControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable;
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable, TMTTabViewWindow;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -22,7 +22,10 @@
  */
 
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate, ViewControllerProtocol> {
+    TMTTabViewWindow* tabWindow1;
+    TMTTabViewWindow* tabWindow2;
 }
+
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;

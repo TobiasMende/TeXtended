@@ -8,6 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TMTTabView : NSTabView
+@class NSTabViewItem;
+@interface TMTTabView : NSTabView {
+    NSPoint mouse;
+}
+
+@property (weak) NSTabViewItem* draggedItem;
 
 @end

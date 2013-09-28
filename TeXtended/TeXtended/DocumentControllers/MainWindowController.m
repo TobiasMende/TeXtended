@@ -17,6 +17,8 @@
 #import "Compilable.h"
 #import "MainDocument.h"
 
+#import "TMTTabViewWindow.h"
+
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
 
@@ -66,6 +68,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView setCanCollapse:YES subviewAtIndex:1];
     
     [self setTemplateController:[[TemplateController alloc] init]];
+    
+    
+    
+    tabWindow1 = [[TMTTabViewWindow alloc] init];
+    tabWindow2 =[[TMTTabViewWindow alloc] init];
+    [tabWindow1 showWindow:nil];
+    [tabWindow2 showWindow:nil];
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
