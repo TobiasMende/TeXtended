@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
@@ -7,12 +7,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
-                <outlet property="fileViewArea" destination="100297" id="100298"/>
-                <outlet property="mainView" destination="100051" id="100412"/>
-                <outlet property="middle" destination="100183" id="100191"/>
-                <outlet property="right" destination="100187" id="100192"/>
-                <outlet property="sidebar" destination="100278" id="100288"/>
-                <outlet property="splitviewControl" destination="100403" id="100415"/>
+                <outlet property="contentView" destination="Dg6-Os-sFX" id="q1p-ev-hqx"/>
+                <outlet property="mainView" destination="yMa-FR-WCa" id="p1k-2f-R5O"/>
+                <outlet property="secondViewToggle" destination="BQT-eF-usa" id="nzC-4c-hAs"/>
+                <outlet property="sidebar" destination="uqN-3K-M8J" id="GuX-si-k0A"/>
+                <outlet property="sidebarViewToggle" destination="rJY-Cm-FxO" id="xxN-o7-Y8m"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -27,60 +26,65 @@
                 <rect key="frame" x="0.0" y="0.0" width="984" height="559"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="100051" userLabel="Main" customClass="TMTSplitView">
-                        <rect key="frame" x="0.0" y="0.0" width="984" height="559"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <splitView dividerStyle="thin" vertical="YES" id="yMa-FR-WCa" customClass="DMSplitView">
+                        <rect key="frame" x="1" y="1" width="982" height="557"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" dividerStyle="thin" id="100278">
-                                <rect key="frame" x="0.0" y="0.0" width="156" height="559"/>
+                            <splitView dividerStyle="paneSplitter" id="uqN-3K-M8J" customClass="DMSplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="143" height="557"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <box fixedFrame="YES" title="Box" boxType="custom" borderType="none" id="100297">
-                                        <rect key="frame" x="0.0" y="0.0" width="156" height="559"/>
+                                    <customView id="2a4-Yl-sJO">
+                                        <rect key="frame" x="0.0" y="0.0" width="143" height="267"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                    <customView id="y51-lu-TIH">
+                                        <rect key="frame" x="0.0" y="277" width="143" height="280"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="250"/>
+                                    <real value="250"/>
+                                </holdingPriorities>
+                            </splitView>
+                            <splitView dividerStyle="thin" vertical="YES" id="Dg6-Os-sFX" customClass="DMSplitView">
+                                <rect key="frame" x="144" y="0.0" width="838" height="557"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" id="4tf-d3-bg9">
+                                        <rect key="frame" x="0.0" y="0.0" width="557" height="557"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="0.0" y="0.0" width="156" height="559"/>
+                                            <rect key="frame" x="1" y="1" width="555" height="555"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
-                                        <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="fillColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </box>
+                                    <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" id="HOb-Bk-FoQ">
+                                        <rect key="frame" x="558" y="0.0" width="280" height="557"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView">
+                                            <rect key="frame" x="1" y="1" width="278" height="555"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                 </subviews>
                                 <holdingPriorities>
-                                    <real value="254"/>
+                                    <real value="250"/>
+                                    <real value="250"/>
                                 </holdingPriorities>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="100546"/>
-                                </connections>
-                            </splitView>
-                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100183" userLabel="Middle SplitView" customClass="TMTSplitView">
-                                <rect key="frame" x="157" y="0.0" width="442" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="100527"/>
-                                </connections>
-                            </splitView>
-                            <splitView canDrawConcurrently="YES" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" dividerStyle="thin" id="100187" userLabel="Right SplitView">
-                                <rect key="frame" x="600" y="0.0" width="384" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </splitView>
                         </subviews>
                         <holdingPriorities>
-                            <real value="351"/>
-                            <real value="350"/>
-                            <real value="350"/>
+                            <real value="250"/>
+                            <real value="250"/>
                         </holdingPriorities>
-                        <connections>
-                            <outlet property="delegate" destination="-2" id="100547"/>
-                        </connections>
                     </splitView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="100051" firstAttribute="top" secondItem="6" secondAttribute="top" id="100112"/>
-                    <constraint firstItem="100051" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" id="100515"/>
-                    <constraint firstItem="100051" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="100516"/>
-                    <constraint firstItem="100051" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="100517"/>
-                </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368">
                 <allowedToolbarItems>
@@ -148,46 +152,51 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <connections>
-                                    <binding destination="-2" name="value" keyPath="self.documentController.model.liveCompile" id="100426"/>
+                                    <binding destination="-2" name="value" keyPath="self.activeDocumentController.model.liveCompile" id="sbk-8g-Atu"/>
                                 </connections>
                             </buttonCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.documentController.model.liveCompile" id="100523"/>
+                                <binding destination="-2" name="value" keyPath="self.activeDocumentController.model.liveCompile" id="IQA-po-8PN"/>
                             </connections>
                         </button>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B1322598-6CA7-4C02-969D-0F887F3A1A46" label="View" paletteLabel="View" id="100405">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="104" height="22"/>
-                        <size key="maxSize" width="108" height="28"/>
-                        <segmentedControl key="view" verticalHuggingPriority="750" id="100403">
-                            <rect key="frame" x="0.0" y="14" width="104" height="24"/>
+                    <toolbarItem implicitItemIdentifier="FA7DCFFE-A714-4233-90AA-9C37788CABD7" label="" paletteLabel="Outline Toggle" toolTip="Toggle Outline View" image="SplitviewLeft" id="fGm-Vj-2Vx">
+                        <size key="minSize" width="30" height="28"/>
+                        <size key="maxSize" width="30" height="40"/>
+                        <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="rJY-Cm-FxO">
+                            <rect key="frame" x="29" y="14" width="30" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <segmentedCell key="cell" alignment="left" style="capsule" trackingMode="selectAny" id="100404">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewLeft" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ava-Fo-koC">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
-                                <segments>
-                                    <segment toolTip="Outline" image="SplitviewLeft" width="32">
-                                        <nil key="label"/>
-                                    </segment>
-                                    <segment toolTip="Editor" image="SplitviewBottom" width="32" tag="1">
-                                        <nil key="label"/>
-                                    </segment>
-                                    <segment toolTip="Preview" image="SplitviewRight" width="32" tag="2">
-                                        <nil key="label"/>
-                                    </segment>
-                                </segments>
-                            </segmentedCell>
+                            </buttonCell>
                             <connections>
-                                <action selector="collapseView:" target="-2" id="100416"/>
+                                <action selector="toggleSidebarView:" target="-2" id="pgp-lT-vZM"/>
                             </connections>
-                        </segmentedControl>
+                        </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="166EEB9F-F3AB-4E36-8822-C8DE762FAEBE" label="" paletteLabel="Preview Toggle" toolTip="Toggle Outline View" image="SplitviewRight" id="KhF-ac-Z4O">
+                        <size key="minSize" width="30" height="28"/>
+                        <size key="maxSize" width="30" height="40"/>
+                        <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="BQT-eF-usa">
+                            <rect key="frame" x="29" y="14" width="30" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewRight" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EYC-hs-kdu">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="toggleSecondView:" target="-2" id="vDg-CP-mLp"/>
+                            </connections>
+                        </button>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="100390"/>
                     <toolbarItem reference="100393"/>
                     <toolbarItem reference="100380"/>
-                    <toolbarItem reference="100405"/>
+                    <toolbarItem reference="fGm-Vj-2Vx"/>
+                    <toolbarItem reference="KhF-ac-Z4O"/>
                     <toolbarItem reference="100380"/>
                     <toolbarItem reference="100399"/>
                     <toolbarItem reference="100376"/>
@@ -196,7 +205,6 @@
             <connections>
                 <outlet property="controller" destination="-2" id="100352"/>
                 <outlet property="delegate" destination="-2" id="100530"/>
-                <outlet property="initialFirstResponder" destination="100183" id="100323"/>
             </connections>
         </window>
         <customObject id="-3" userLabel="Application"/>
@@ -207,7 +215,6 @@
         <image name="Livepreview" width="19" height="19"/>
         <image name="Play" width="19" height="19"/>
         <image name="ReportBug" width="19" height="19"/>
-        <image name="SplitviewBottom" width="19" height="19"/>
         <image name="SplitviewLeft" width="19" height="19"/>
         <image name="SplitviewRight" width="19" height="19"/>
     </resources>

@@ -8,6 +8,7 @@
 
 #import "OutlineElement.h"
 #import "DocumentModel.h"
+#import "TMTLog.h"
 
 static const NSDictionary *ELEMENT_EXTRACTOR_REGEX_LOOKUP;
 static const NSDictionary *TYPE_STRING_LOOKUP;
@@ -40,7 +41,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     }
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
     if (error) {
-        NSLog(@"OutlineElement: Can't create regex for type %i and pattern %@", type,regexStr);
+        DDLogError(@"OutlineElement: Can't create regex for type %i and pattern %@", type,regexStr);
         return nil;
     }
     return regex;

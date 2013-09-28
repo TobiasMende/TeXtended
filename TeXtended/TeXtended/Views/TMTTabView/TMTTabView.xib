@@ -5,18 +5,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PDFViewsController">
+        <customObject id="-2" userLabel="File's Owner" customClass="TMTTabViewController">
             <connections>
-                <outlet property="tabView" destination="3" id="18"/>
-                <outlet property="view" destination="3" id="19"/>
+                <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <tabView controlSize="small" type="bottomTabsBezelBorder" id="3">
-            <rect key="frame" x="0.0" y="0.0" width="494" height="281"/>
+        <customView id="1" customClass="TMTTabView">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <tabViewItems/>
-        </tabView>
+        </customView>
     </objects>
 </document>

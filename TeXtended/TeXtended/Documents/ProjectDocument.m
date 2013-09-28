@@ -10,6 +10,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "ProjectModel.h"
+#import "TMTLog.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -32,18 +33,18 @@
     [self addWindowController:self.mainWindowController];
     if (!self.documentControllers || self.documentControllers.count == 0) {
         if (self.projectModel.mainDocuments.count > 0) {
-            DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
+            // DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
             
-            self.documentControllers = [NSMutableSet setWithObject:dc];
+            //self.documentControllers = [NSMutableSet setWithObject:dc];
         } else {
-            NSLog(@"ProjectDocument: ProjectModel seems corrupted: \n%@", self.projectModel);
+            DDLogError(@"ProjectModel seems corrupted: \n%@", self.projectModel);
         }
     }
     for (DocumentController* dc in self.documentControllers) {
             [dc loadContent];
         if ([[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] isEqual:dc.model]) {
             [dc setWindowController:self.mainWindowController];
-            [self.mainWindowController setDocumentController:dc];
+            // [self.mainWindowController setDocumentController:dc];
         }
     }
 }
@@ -62,7 +63,7 @@
     for (DocumentController* dc in self.documentControllers) {
         [dc saveDocument:error];
         if (*error) {
-            NSLog(@"ProjectDocument: %@", (*error).userInfo);
+            DDLogError(@"%@", (*error).userInfo);
         }
     }
     
@@ -76,7 +77,7 @@
     } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
         finalURL = absoluteURL;
     }
-    NSLog(@"Project(%@): %@", typeName, absoluteURL);
+    DDLogError(@"Project(%@): %@", typeName, absoluteURL);
     
     if (!finalURL) {
         // Abort reading if no matching project was found
@@ -104,10 +105,10 @@
     NSError *fetchError;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
     if (fetchedObjects.count != 1) {
-        NSLog(@"ProjectDocument: WARNING: Number of ProjectModels is %li", fetchedObjects.count);
+        DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
     }
     if (fetchedObjects == nil) {
-        NSLog(@"ProjectDocument: %@", fetchError.userInfo);
+        DDLogError(@"%@", fetchError.userInfo);
         success = NO;
     } else {
         self.projectModel = [fetchedObjects objectAtIndex:0];
@@ -152,9 +153,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ProjectDocument dealloc");
-#endif
+    DDLogVerbose(@"ProjectDocument dealloc");
 }
 
 @end

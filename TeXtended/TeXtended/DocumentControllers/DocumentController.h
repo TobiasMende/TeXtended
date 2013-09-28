@@ -8,36 +8,30 @@
 
 #import <Foundation/Foundation.h>
 #import "MainDocument.h"
-#import "WindowControllerProtocol.h"
-#import "DocumentControllerProtocol.h"
+#import "ViewControllerProtocol.h"
 
-@class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler;
+@class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler, MainWindowController;
 /**
  * The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
  *
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentController : NSObject<DocumentControllerProtocol> {
+@interface DocumentController : NSObject<ViewControllerProtocol> {
 }
 
 /** The model handeld by this controller. */
 @property (strong,nonatomic) DocumentModel *model;
 
 /** The controller for the window. */
-@property (assign,nonatomic) id<WindowControllerProtocol> windowController;
+@property (assign) MainWindowController *windowController;
 
 /** Controller for the TextView. */
 @property (strong) TextViewController* textViewController;
 
-/** Controller handeling all the pdfViews (one pdfViewController for each main document). */
-@property (strong) PDFViewsController* pdfViewsController;
+@property (strong) NSMutableSet *pdfViewControllers;
+@property (strong) NSMutableSet *consoleViewControllers;
 
-/** Controller handeling all the consoleViews (one for each main document). */
-@property (strong) ConsoleViewsController* consolViewsController;
-
-/** Controller that handels the outlineView. */
-@property (strong) OutlineViewController* outlineViewController;
 
 /** The compiler that will be used to compile the main documents. */
 @property (strong) Compiler* compiler;
@@ -49,9 +43,8 @@
  * Init the class with a model and a main document.
  *
  * @param model the DocumentModel
- * @param document the main document
  */
-- initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document;
+- (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc;
 
 /** Init all the window controller */
 - (void)setupWindowController;

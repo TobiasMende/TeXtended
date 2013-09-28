@@ -7,8 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "WindowControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController;
+#import "DMSplitView.h"
+#import "MainDocument.h"
+#import "ViewControllerProtocol.h"
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable, TMTTabViewWindow;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -19,32 +21,32 @@
  
  */
 
-@interface MainWindowController : NSWindowController<WindowControllerProtocol, NSSplitViewDelegate, NSWindowDelegate> {
+@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate, ViewControllerProtocol> {
+    TMTTabViewWindow* tabWindow1;
+    TMTTabViewWindow* tabWindow2;
 }
 
-/** Property holding the content view (e.g. the editor and pdf view) */
-@property  (assign) IBOutlet TMTSplitView *contentView;
 
-/** Reference to the splitview control for controling the state of the splitviews subviews */
-@property IBOutlet NSSegmentedControl *splitviewControl;
+@property (strong) IBOutlet NSButton *sidebarViewToggle;
+@property (strong) IBOutlet NSButton *secondViewToggle;
+
 
 /** The main view containing the left and content view */
-@property (strong) IBOutlet TMTSplitView *mainView;
+@property (strong) IBOutlet DMSplitView *mainView;
 
 /** The left sidebar containing the file view and an outline view */
-@property (strong) IBOutlet NSSplitView *sidebar;
+@property (strong) IBOutlet DMSplitView *sidebar;
 
-/** The subview of the sidebar */
-@property  (strong) IBOutlet NSSplitView *left;
+/** The content split view (editor + pdf) */
+@property  (assign) IBOutlet DMSplitView *contentView;
 
-/** The middle view containing editor and console in most cases */
-@property  (assign) IBOutlet TMTSplitView *middle;
 
-/** The right view containing the pdf view in most cases */
-@property  (assign) IBOutlet NSSplitView *right;
+@property (assign) id<MainDocument> mainDocument;
 
 /** the DocumentController controlling the current DocumentModel */
-@property (strong, nonatomic) DocumentController *documentController;
+@property (strong) NSMutableSet *documentControllers;
+
+@property (strong) Compilable *mainCompilable;
 
 /** the FileViewController containing the file outline view */
 @property  FileViewController *fileViewController;
@@ -52,17 +54,14 @@
 /** The controller controlling the export window */
 @property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
 
-/** The area in which to show the file view itself */
-@property (strong)  IBOutlet NSBox *fileViewArea;
+/** Controller that handels the outlineView. */
+@property (strong) OutlineViewController* outlineViewController;
 
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;
 
-/** Method for toggling the collapse state of a view which is determined by the senders tag. See TMTSplitView for further details 
- 
- @param sender the sender
- */
-- (IBAction)collapseView:(id)sender;
+
+- (id)initWithMainDocument:(id<MainDocument>) document;
 
 /** Action for opening the redmine ticket system in the default web browser 
  
@@ -100,4 +99,11 @@
  
  */
 - (IBAction)genericAction:(id)sender;
+
+- (IBAction)toggleSidebarView:(id)sender;
+- (IBAction)toggleSecondView:(id)sender;
+
+
+- (DocumentController *)activeDocumentController;
+
 @end

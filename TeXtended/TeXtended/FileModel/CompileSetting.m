@@ -8,6 +8,7 @@
 
 #import "CompileSetting.h"
 #import "Constants.h"
+#import "TMTLog.h"
 
 @interface CompileSetting ()
 + (CompileSetting*) createCompileSettingFor:(NSString*) path bibKey:(NSString*)bib iterationKey:(NSString*)iteration argsKey:(NSString*)args andContext:(NSManagedObjectContext*) context;
@@ -96,6 +97,6 @@
 }
 
 - (void) initDefaults {
-    NSLog(@"NOOOOO");
+    DDLogError(@"NOOOOO");
 }
 @end

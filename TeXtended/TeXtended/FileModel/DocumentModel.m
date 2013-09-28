@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "NSString+PathExtension.h"
+#import "TMTLog.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -79,9 +80,9 @@ static NSArray *TMTEncodingsToCheck;
     }
     
     if (error) {
-        NSLog(@"DocumentModel: Error while loading content: %@", [error userInfo]);
+        DDLogError(@"Error while loading content: %@", [error userInfo]);
     }{
-        NSLog(@"Detected encoding: %li", encoding);
+        DDLogInfo(@"Detected encoding: %li", encoding);
         self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }
     if (content) {
@@ -118,7 +119,7 @@ static NSArray *TMTEncodingsToCheck;
         NSError *error2;
         success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
         if (error2) {
-            NSLog(@"Error while saving: %@", [error2 userInfo]);
+            DDLogError(@"Error while saving: %@", [error2 userInfo]);
         } else {
             self.encoding = [NSNumber numberWithUnsignedLong:alternate];
         }
@@ -472,9 +473,7 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)willTurnIntoFault {
-#ifdef DEBUG
-    NSLog(@"DocumentModel will turn into fault");
-#endif
+    DDLogInfo(@"will turn into fault");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];

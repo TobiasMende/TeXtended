@@ -13,6 +13,7 @@
 #import "DocumentModel.h"
 #import "EncodingController.h"
 #import "SimpleDocument.h"
+#import "TMTLog.h"
 
 @interface DocumentCreationController ()
 
@@ -54,7 +55,7 @@
 
 - (void)newProject:(id)sender {
     [self showProjectCreationPanel];
-   
+    
 }
 
 - (void)showProjectCreationPanel {
@@ -79,7 +80,7 @@
             model.path = [doc.fileURL path];
             doc.projectModel = model;
             if (error) {
-                NSLog(@"DocumentCreationController: %@", error.userInfo);
+                DDLogError(@"%@", error.userInfo);
             }
             [self addDocument:doc];
             [self initializeProject:doc];
@@ -98,7 +99,6 @@
     configurationPanel.allowsMultipleSelection = YES;
     configurationPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
     [configurationPanel beginWithCompletionHandler:^(NSInteger result) {
-        NSLog(@"Test");
         if (result == NSFileHandlingPanelOKButton) {
             for (NSURL *url in configurationPanel.URLs) {
                 DocumentModel *model = [project.projectModel modelForTexPath:url.path];

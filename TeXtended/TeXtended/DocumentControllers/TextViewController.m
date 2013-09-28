@@ -22,6 +22,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "ChktexParser.h"
 #import "PathFactory.h"
 #import "BackwardSynctex.h"
+#import "TMTLog.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -66,16 +67,17 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 @implementation TextViewController
 
 
-- (id)initWithParent:(id<DocumentControllerProtocol>)parent {
+- (id)initWithDocumentController:(DocumentController *)dc {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
-        self.parent = parent;
         messageLock = [NSLock new];
+        
+        self.documentController = dc;
         observers = [NSMutableSet new];
         backgroundQueue = [NSOperationQueue new];
         consoleMessages = [MessageCollection new];
         internalMessages = [MessageCollection new];
-        self.model = [[self.parent documentController] model];
+        self.model = [self.documentController model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -283,20 +285,12 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 }
 
 - (void)goToLine:(id)sender {
-    NSLog(@"Go to line");
-}
-
-- (void) documentHasChangedAction {
+    DDLogInfo(@"Go to line");
 }
 
 - (void)breakUndoCoalescing {
     [self.textView breakUndoCoalescing];
 }
-
-- (DocumentController *)documentController {
-    return [self.parent documentController];
-}
-
 
 #pragma mark -
 #pragma mark Observers
@@ -361,9 +355,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Dealloc
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"TextViewController dealloc");
-#endif
+    DDLogVerbose(@"TextViewController dealloc");
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];

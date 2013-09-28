@@ -9,6 +9,7 @@
 #import "PlaceholderServices.h"
 #import "HighlightingTextView.h"
 #import "EditorPlaceholder.h"
+#import "TMTLog.h"
 
 @implementation PlaceholderServices
 
@@ -113,8 +114,6 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"PlaceholderServices dealloc");
-#endif
+    DDLogVerbose(@"PlaceholderServices dealloc");
 }
 @end

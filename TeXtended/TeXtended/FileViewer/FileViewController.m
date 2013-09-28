@@ -16,6 +16,7 @@
 #import "DocumentCreationController.h"
 #import "Constants.h"
 #import "PathObserverFactory.h"
+#import "TMTLog.h"
 
 @implementation FileViewController
 
@@ -444,11 +445,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (IBAction)renameProject:(id)sender {
-    NSLog(@"renameProject not implemented yet...");
+    DDLogError(@"renameProject not implemented yet...");
 }
 
 - (IBAction)closeProject:(id)sender {
-    NSLog(@"closeProject not implemented yet...");
+    DDLogError(@"closeProject not implemented yet...");
 }
 
 - (IBAction)openFile:(id)sender {
@@ -460,7 +461,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (IBAction)openInfoViewForFile:(id)sender {
-    NSLog(@"openInfoViewForFile not implemented yet...");
+    DDLogError(@"openInfoViewForFile not implemented yet...");
 }
 
 - (FileViewModel*) createFile:(NSString*)atPath {
@@ -526,7 +527,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)openFileInDefApp: (NSString*)path {
     NSArray *allowedFileTypes = [NSArray arrayWithObjects:@"tex", nil];
-    NSLog(@"%@ - %@", path, self.document.mainCompilable.path);
+    DDLogInfo(@"%@ - %@", path, self.document.mainCompilable.path);
     if ([allowedFileTypes containsObject:[path pathExtension]]) {
         if(![path isEqualToString:self.document.mainCompilable.path]) {
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
@@ -594,9 +595,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
     [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
-#ifdef DEBUG
-    NSLog(@"FileViewController dealloc");
-#endif
+    DDLogVerbose(@"FileViewController dealloc");
 }
 
 @end

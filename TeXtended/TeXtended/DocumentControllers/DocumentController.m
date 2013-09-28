@@ -9,11 +9,13 @@
 #import "DocumentController.h"
 #import "DocumentModel.h"
 #import "TextViewController.h"
-#import "PDFViewsController.h"
-#import "ConsoleViewsController.h"
 #import "OutlineViewController.h"
 #import "Constants.h"
 #import "Compiler.h"
+#import "ViewControllerProtocol.h"
+#import "MainWindowController.h"
+#import "DDLog.h"
+#import "TMTLog.h"
 
 static const NSSet *SELECTORS_HANDLED_BY_PDF;
 static NSUInteger calls = 0;
@@ -34,79 +36,29 @@ static NSUInteger calls = 0;
     assert(calls < 2);
 }
 
-- initWithDocument:(DocumentModel *)model andMainDocument:(id<MainDocument>) document {
+- (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc {
     self = [super init];
     if (self) {
-        NSLog(@"DocumentController: Init");
+        DDLogVerbose(@"DocumentController: Init");
         self.model = model;
-        _mainDocument = document;
-        _textViewController = [[TextViewController alloc] initWithParent:self];
-        _pdfViewsController = [[PDFViewsController alloc] initWithParent:self];
-        _consolViewsController = [[ConsoleViewsController alloc] initWithParent:self];
-        _outlineViewController = [[OutlineViewController alloc] initWithParent:self];
+        _windowController = wc;
+        // FIXME: Set main document
+        _textViewController = [[TextViewController alloc] initWithDocumentController:self];
+        _pdfViewControllers = [NSMutableSet new];
+        _consoleViewControllers = [NSMutableSet new];
+        
+        // TODO: init my view controllers by asking the MainWindowController
         _compiler = [[Compiler alloc] initWithDocumentController:self];
         [self.textViewController addObserver:self.compiler];
     }
     return self;
 }
 
-- (id) initWithParent:(id<DocumentControllerProtocol>) parent {
-    return nil;
-}
-
-- (void)setWindowController:(id<WindowControllerProtocol>)windowController {
-    _windowController = windowController;
-    [self.windowController setDocumentController:self];
-    
-}
-
 - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
     [super addObserver:observer forKeyPath:keyPath options:options context:context];
 }
 
-- (void)setupWindowController {
-    NSLog(@"Setup WindowController");
-    [self.windowController clearAllDocumentViews];
-    [self.windowController setDocumentController:self];
-    [self.windowController addOutlineView:self.outlineViewController.view];
-    [self.windowController addTextView:self.textViewController.view];
-    [self.windowController addConsoleViewsView:self.consolViewsController.view];
-    [self.windowController addPDFViewsView:self.pdfViewsController.view];
-    [self loadContent];
-    [self.windowController makeFirstResponder:self.textViewController.view];
-}
 
-- (id <DocumentControllerProtocol>) parent {
-    return nil;
-}
-
-- (DocumentController * ) documentController {
-    return self;
-}
-
-- (NSSet *) children {
-    NSSet<DocumentControllerProtocol> *children = [NSSet setWithObjects:
-                       [self textViewController],
-                       [self pdfViewsController],
-                       [self consolViewsController],
-                       [self outlineViewController], nil];
-    return children;
-}
-
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
-    [[self textViewController] documentModelHasChangedAction:self];
-    [[self pdfViewsController] documentModelHasChangedAction:self];
-    [[self consolViewsController] documentModelHasChangedAction:self];
-    [[self outlineViewController] documentModelHasChangedAction:self];
-}
-
-- (void) documentHasChangedAction {
-    NSLog(@"Has changed");
-    [[self textViewController] documentHasChangedAction];
-    [[self pdfViewsController] documentHasChangedAction];
-    [[self consolViewsController] documentHasChangedAction];
-    [[self outlineViewController] documentHasChangedAction];
-}
 
 - (BOOL) saveDocument:(NSError *__autoreleasing *)outError {
     return [self.model saveContent:[self.textViewController content] error:outError];
@@ -174,33 +126,15 @@ static NSUInteger calls = 0;
     [self documentModelHasChangedAction:self];
 }
 
-#pragma mark - 
-#pragma mark Responder Chain
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([SELECTORS_HANDLED_BY_PDF containsObject: NSStringFromSelector(aSelector)]) {
-        return [self.pdfViewsController respondsToSelector:aSelector];
-    }
-    return [super respondsToSelector:aSelector];
-}
-
-- (id)performSelector:(SEL)aSelector {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if ([SELECTORS_HANDLED_BY_PDF containsObject:NSStringFromSelector(aSelector)]) {
-        return [self.pdfViewsController performSelector:aSelector];
-    }
-    return [super performSelector:aSelector];
-#pragma clang diagnostic pop
+- (void)documentModelHasChangedAction:(DocumentController *)dc {
+    // TODO: call on all children
 }
 
 #pragma mark -
 #pragma mark Dealloc
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"DocumentController dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -16,6 +16,7 @@
 #import "EnvironmentCompletion.h"
 #import "UndoSupport.h"
 #import "CodeNavigationAssistant.h"
+#import "TMTLog.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 static const NSSet *KEYS_TO_UNBIND;
@@ -103,7 +104,7 @@ typedef enum {
     NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
     
     if (error) {
-        NSLog(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
+        DDLogError(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
     }
     
 }
@@ -152,7 +153,7 @@ typedef enum {
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
             break;
         default:
-            NSLog(@"NoCompletion");
+            DDLogInfo(@"NoCompletion");
             return [view completionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
     }
@@ -220,7 +221,7 @@ typedef enum {
             }
             break;
         default:
-            NSLog(@"NoCompletion");
+            DDLogInfo(@"NoCompletion");
             break;
     }
 }
@@ -347,7 +348,7 @@ typedef enum {
 
 - (NSRange) matchingEndForEnvironment:(NSString*) name inRange:(NSRange) range {
     //FIXME: doesn't work.
-    NSLog(@"Range: %@, total: %@", NSStringFromRange(range), NSStringFromRange(view.visibleRange));
+    DDLogInfo(@"Range: %@, total: %@", NSStringFromRange(range), NSStringFromRange(view.visibleRange));
     
     NSString *start = [NSString stringWithFormat:@"\\begin{%@}", name];
     NSString *end = [NSString stringWithFormat:@"\\end{%@}", name];
@@ -355,16 +356,16 @@ typedef enum {
     NSUInteger counter = 0;
     for (NSUInteger position = range.location; position < range.location+range.length; position++) {
         if (position+start.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, start.length)] isEqualToString:start]) {
-            NSLog(@"Found Begin");
+            DDLogVerbose(@"Found Begin");
             counter ++;
             continue;
         }
         if (position+end.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, end.length)] isEqualToString:end]) {
             if (counter == 0) {
-                NSLog(@"Match!");
+                DDLogVerbose(@"Match!");
                 return NSMakeRange(position, end.length);
             }
-            NSLog(@"Found End");
+            DDLogVerbose(@"Found End");
             counter --;
             continue;
         }
@@ -428,9 +429,7 @@ typedef enum {
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"CompletionHandler dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [self unbindAll];
 }
 

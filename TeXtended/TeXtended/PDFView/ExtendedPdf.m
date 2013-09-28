@@ -10,6 +10,7 @@
 #import "ExtendedPdfControlls.h"
 #import "ExtendedPDFViewController.h"
 #import "PageNumberViewController.h"
+#import "TMTLog.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -236,10 +237,7 @@ static const NSSet *KEYS_TO_UNBIND;
 #pragma mark Dealloc
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ExtendedPDF dealloc");
-     
-#endif
+    DDLogVerbose(@"dealloc");
     [self unbindAll];
     
 }
