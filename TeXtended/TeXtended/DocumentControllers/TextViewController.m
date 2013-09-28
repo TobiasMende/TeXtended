@@ -232,6 +232,10 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [super loadView];
     [self initialize];
     [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
+    NSString *content = [self.model loadContent];
+    if (content) {
+        [self setContent:content];
+    }
     
 }
 

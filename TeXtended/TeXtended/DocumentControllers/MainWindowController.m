@@ -16,6 +16,7 @@
 #import "DMSplitView.h"
 #import "Compilable.h"
 #import "MainDocument.h"
+#import "TextViewController.h"
 #import "TMTLog.h"
 
 #import "TMTTabViewWindow.h"
@@ -40,6 +41,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         self.documentControllers = [NSMutableSet new];
         for (DocumentModel *m in self.mainCompilable.mainDocuments) {
             DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
+            
             [self.documentControllers addObject:dc];
         }
     }
@@ -67,6 +69,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self setTemplateController:[[TemplateController alloc] init]];
     
+    ((NSBox *)[[self.contentView subviews] objectAtIndex:0]).contentView = [[self.activeDocumentController textViewController] view];
     
     
     tabWindow1 = [[TMTTabViewWindow alloc] init];
@@ -122,7 +125,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (DocumentController *)activeDocumentController {
     // FIXME: get the active DC
-    return nil;
+    DocumentController *dc = [[self.documentControllers allObjects] objectAtIndex:0];
+    return dc;
 }
 
 - (void)genericAction:(id)sender {
