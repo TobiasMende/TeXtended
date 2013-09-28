@@ -36,6 +36,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         _context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
+        
     }
     return self;
 }
@@ -80,6 +81,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (!self.model.texPath) {
         self.model.texPath = [absoluteURL path];
     }
+    self.model.encoding = [[self.encController.popUp selectedItem] representedObject];
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
