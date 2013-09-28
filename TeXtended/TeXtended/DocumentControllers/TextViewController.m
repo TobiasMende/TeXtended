@@ -22,6 +22,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "ChktexParser.h"
 #import "PathFactory.h"
 #import "BackwardSynctex.h"
+#import "TMTLog.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initialize;
@@ -284,7 +285,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 }
 
 - (void)goToLine:(id)sender {
-    NSLog(@"Go to line");
+    DDLogInfo(@"Go to line");
 }
 
 - (void)breakUndoCoalescing {
@@ -354,9 +355,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Dealloc
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"TextViewController dealloc");
-#endif
+    DDLogVerbose(@"TextViewController dealloc");
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];

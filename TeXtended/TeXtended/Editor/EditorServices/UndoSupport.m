@@ -8,6 +8,7 @@
 
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
+#import "TMTLog.h"
 
 @implementation UndoSupport
 - (void)insertText:(NSAttributedString *)insertion
@@ -58,8 +59,6 @@
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"UndoSupport dealloc");
-#endif
+    DDLogVerbose(@"UndoSupport dealloc");
 }
 @end

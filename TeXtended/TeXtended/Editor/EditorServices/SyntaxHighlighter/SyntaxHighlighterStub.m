@@ -8,35 +8,34 @@
 
 #import "SyntaxHighlighterStub.h"
 #import "EditorService.h"
+#import "TMTLog.h"
 
 @implementation SyntaxHighlighterStub
 - (id)initWithTextView:(HighlightingTextView *)tv {
     self = [super initWithTextView:tv];
     if (self) {
-        NSLog(@"Init with text view %@", tv);
+        DDLogInfo(@"Init with text view %@", tv);
     }
     return self;
 }
 - (void)highlightEntireDocument {
-    NSLog(@"Highlighting entire Document");
+    DDLogInfo(@"Highlighting entire Document");
 }
 
 - (void)highlightVisibleArea {
-    NSLog(@"Highlighting visible area");
+    DDLogInfo(@"Highlighting visible area");
 }
 
 - (void)highlightNarrowArea {
-    NSLog(@"Highlighting narrow area");
+    DDLogInfo(@"Highlighting narrow area");
 }
 
 - (void)highlightRange:(NSRange)range {
-    NSLog(@"Highlighting range %@", NSStringFromRange(range));
+    DDLogInfo(@"Highlighting range %@", NSStringFromRange(range));
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"SyntaxHighlighterStub dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
 }
 
 @end

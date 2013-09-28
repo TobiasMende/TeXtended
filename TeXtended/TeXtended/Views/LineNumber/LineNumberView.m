@@ -11,6 +11,7 @@
 #import "MessageCollection.h"
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
+#import "TMTLog.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 4.0
@@ -702,9 +703,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"LineNumberView dealloc");
-#endif
+    DDLogVerbose(@"LineNumberView dealloc");
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"messageCollection"];

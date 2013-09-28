@@ -8,6 +8,7 @@
 
 #import "FileViewModel.h"
 #import "DocumentModel.h"
+#import "TMTLog.h"
 
 @implementation FileViewModel
 
@@ -278,8 +279,6 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"FileViewModel dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
 }
 @end

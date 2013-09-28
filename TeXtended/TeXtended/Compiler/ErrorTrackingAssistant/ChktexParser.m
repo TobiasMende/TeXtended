@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "PathFactory.h"
 #import "MessageCollection.h"
+#import "TMTLog.h"
 
 static const NSDictionary *WARNING_NUMBERS;
 static const NSDictionary *INFO_NUMBERS;
@@ -120,7 +121,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     if ([DEBUG_NUMBERS objectForKey:key]) {
         return TMTDebugMessage;
     }
-    NSLog(@"WARNING: Unknown message type for %li", number);
+    DDLogWarn(@"Unknown message type for %li", number);
     return TMTDebugMessage;
 }
 

@@ -13,6 +13,7 @@
 #import "TexdocEntry.h"
 #import "SpellCheckingService.h"
 #import "TexdocController.h"
+#import "TMTLog.h"
 
 #define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 static const NSRegularExpression *TEXDOC_LINKS;
@@ -53,7 +54,7 @@ static const NSSet *KEYS_TO_UNBIND;
     TEXDOC_LINKS = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
     if (error) {
-        NSLog(@"CodeExtensionEngine: %@", error.userInfo);
+        DDLogError(@"%@", error.userInfo);
     }
 }
 
@@ -185,9 +186,7 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"CodeExtensionEngine dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [self unbindAll];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

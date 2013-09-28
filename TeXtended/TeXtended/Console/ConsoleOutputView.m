@@ -14,6 +14,7 @@
 #import "DocumentModel.h"
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
+#import "TMTLog.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSSet *KEYS_TO_UNBIND;
@@ -36,7 +37,7 @@ static const NSSet *KEYS_TO_UNBIND;
         NSError *error;
         ERROR_LINES_EXPRESSION = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionAnchorsMatchLines error:&error];
         if (error) {
-            NSLog(@"Error while generating log file parser regex: %@", [error userInfo]);
+            DDLogError(@"Error while generating log file parser regex: %@", [error userInfo]);
         }
     }
 }
@@ -159,9 +160,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ConsoleOutputView dealloc");
-#endif
+    DDLogError(@"dealloc");
     for (NSString *key in KEYS_TO_UNBIND) {
         [self unbind:key];
     }

@@ -9,6 +9,7 @@
 #import "Completion.h"
 #import "Constants.h"
 #import "EditorPlaceholder.h"
+#import "TMTLog.h"
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation Completion
 
@@ -16,7 +17,7 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
     NSError *error;
     PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:&error];
     if (error) {
-        NSLog(@"Regex Error");
+        DDLogError(@"Regex Error");
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 #import "OutlineViewController.h"
+#import "TMTLog.h"
 
 @interface OutlineViewController ()
 
@@ -35,9 +36,7 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"OutlineViewController dealloc");
-#endif
+    DDLogVerbose(@"OutlineViewController dealloc");
 }
 
 @end

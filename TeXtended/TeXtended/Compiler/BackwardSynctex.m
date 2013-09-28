@@ -9,6 +9,7 @@
 #import "BackwardSynctex.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import "TMTLog.h"
 
 static const NSRegularExpression *SYNCTEX_REGEX;
 
@@ -25,7 +26,7 @@ static const NSRegularExpression *SYNCTEX_REGEX;
         SYNCTEX_REGEX = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
         
         if (error) {
-            NSLog(@"BackwardSynctex: %@",error.userInfo);
+            DDLogError(@"BackwardSynctex: %@",error.userInfo);
         }
     }
 }
@@ -81,7 +82,7 @@ static const NSRegularExpression *SYNCTEX_REGEX;
             self.column = (column >= 0 ? column : 0);
         }
     } else {
-        NSLog(@"BackwardSynctex: Can't extract information from %@", output);
+        DDLogError(@"BackwardSynctex: Can't extract information from %@", output);
     }
 }
 

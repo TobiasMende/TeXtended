@@ -10,6 +10,7 @@
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
+#import "TMTLog.h"
 static const NSSet *WHITESPACES;
 static const NSRegularExpression *SPACE_REGEX;
 static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
@@ -39,10 +40,10 @@ static const NSSet *KEYS_TO_OBSERVE;
     SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+(?!$)" options:NSRegularExpressionAnchorsMatchLines error:&error];
     FIRST_NONWHITESPACE_IN_LINE = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\s*)(\\S)(?:.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
     if (error) {
-        NSLog(@"Error!!!");
+        DDLogError(@"Error!!!");
     }
     if(error) {
-        NSLog(@"Regex Error");
+        DDLogError(@"Regex Error");
     }
 }
 
@@ -170,7 +171,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         }
     } else {
         result = NSMakeRange(NSNotFound, 0);
-        NSLog(@"Error for provided range: %@",NSStringFromRange(range));
+        DDLogError(@"Error for provided range: %@",NSStringFromRange(range));
     }
     return result;
 }
@@ -429,7 +430,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     NSRegularExpression *longLineRegex = [NSRegularExpression regularExpressionWithPattern:longLinesPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
     
     if (error) {
-        NSLog(@"regex error in long line regex: %@", error);
+        DDLogError(@"regex error in long line regex: %@", error);
         return NO;
     }
     
@@ -547,9 +548,7 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
 
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"CodeNavigationAssistant dealloc");
-#endif
+    DDLogVerbose(@"dealloc");
     [self unbindAll];
 }
 

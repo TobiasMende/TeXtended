@@ -13,6 +13,7 @@
 #import "LogfileParser.h"
 #import "MessageCollection.h"
 #import "ConsoleOutputView.h"
+#import "TMTLog.h"
 
 
 static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
@@ -140,9 +141,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 #pragma mark Dealloc etc.
 
 - (void)dealloc {
-#ifdef DEBUG
-    NSLog(@"ConsoleViewController dealloc");
-#endif
+    DDLogVerbose(@"ConsoleViewController dealloc");
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
