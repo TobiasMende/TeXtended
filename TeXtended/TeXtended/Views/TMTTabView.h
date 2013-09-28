@@ -11,6 +11,7 @@
 @class NSTabViewItem;
 @interface TMTTabView : NSTabView {
     NSPoint mouse;
+    NSMutableSet* windows;
 }
 
 @property (weak) NSTabViewItem* draggedItem;
