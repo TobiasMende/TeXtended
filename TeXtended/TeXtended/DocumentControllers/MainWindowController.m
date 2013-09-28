@@ -55,8 +55,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     self.fileViewController = [[FileViewController alloc] init];
     
-    // TODO: Set mainCompilable (project/ doc) in FVC
-    // TODO: Add file view to main window
+    [self.fileViewArea setContentView:self.fileViewController.view];
+    [self.fileViewController setDocument:self.activeDocumentController.model];
+    
     [self.sidebarViewToggle setState:NSOnState];
     [self.secondViewToggle setState:NSOnState];
     
