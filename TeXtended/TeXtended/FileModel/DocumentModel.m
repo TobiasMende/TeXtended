@@ -81,7 +81,7 @@ static NSArray *TMTEncodingsToCheck;
     
     if (error) {
         DDLogError(@"Error while loading content: %@", [error userInfo]);
-    }{
+    } else {
         DDLogInfo(@"Detected encoding: %li", encoding);
         self.encoding = [NSNumber numberWithUnsignedLong:encoding];
     }

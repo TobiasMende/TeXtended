@@ -41,7 +41,6 @@
         }
     }
     for (DocumentController* dc in self.documentControllers) {
-            [dc loadContent];
         if ([[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] isEqual:dc.model]) {
             [dc setWindowController:self.mainWindowController];
             // [self.mainWindowController setDocumentController:dc];

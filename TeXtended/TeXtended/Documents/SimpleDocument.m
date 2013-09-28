@@ -48,6 +48,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     [self addWindowController:self.mainWindowController];
 }
 
+
 - (void)printDocument:(id)sender {
     [self.mainWindowController.activeDocumentController performSelector:@selector(printDocument:)];
 }
@@ -112,13 +113,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         return NO;
     }
     if (!self.model) {
-        _model = [[DocumentModel alloc] initWithContext:self.context];
+        DDLogError(@"The document model should not be nil!");
     }
     
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
-    [self.mainWindowController.activeDocumentController loadContent];
-    
     return YES;
 }
 

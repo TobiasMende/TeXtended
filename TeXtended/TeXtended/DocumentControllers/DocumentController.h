@@ -57,12 +57,6 @@
  */
 - (BOOL) saveDocument:(NSError**) outError;
 
-/**
- * Load the content of the document.
- *
- * @return ´YES´ if the loading was succesfull
- */
-- (BOOL) loadContent;
 
 /**
  * Called if the document model has changed.
