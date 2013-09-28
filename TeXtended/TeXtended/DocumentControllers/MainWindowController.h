@@ -30,6 +30,8 @@
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;
 
+@property (strong) IBOutlet NSBox *fileViewArea;
+@property (strong) IBOutlet NSBox *outlineViewArea;
 
 /** The main view containing the left and content view */
 @property (strong) IBOutlet DMSplitView *mainView;

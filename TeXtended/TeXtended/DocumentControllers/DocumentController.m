@@ -64,13 +64,6 @@ static NSUInteger calls = 0;
     return [self.model saveContent:[self.textViewController content] error:outError];
 }
 
--(BOOL)loadContent {
-    NSString *content = [self.model loadContent];
-    if (content) {
-        [self.textViewController setContent:content];
-    }
-    return content != nil;
-}
 
 - (void)breakUndoCoalescing {
     [self.textViewController breakUndoCoalescing];
