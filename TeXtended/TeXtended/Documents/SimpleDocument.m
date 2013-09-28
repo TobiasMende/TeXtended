@@ -10,9 +10,12 @@
 #import "DocumentModel.h"
 #import "MainWindowController.h"
 #import "DocumentController.h"
+#import "EncodingController.h"
+
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
 static const NSSet *SELECTORS_HANDLED_BY_DC;
+
 @implementation SimpleDocument
 
 + (void)initialize {
@@ -33,6 +36,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
         _documentController = [[DocumentController alloc] initWithDocument:self.model andMainDocument:self];
+        self.encController = [[EncodingController alloc] init];
     }
     return self;
 }
@@ -100,6 +104,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if ([[self fileURL] path]) {
         self.model.texPath = [[self fileURL] path];
     }
+    self.model.encoding = [self.encController.encodings objectAtIndex:[self.encController.popUp indexOfItem:self.encController.popUp.selectedItem]];
     BOOL success = [self.documentController saveDocument:outError];
     
     return success;
@@ -130,14 +135,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return YES;
 }
 
--(void)saveDocument:(id)sender
+-(BOOL) prepareSavePanel:(NSSavePanel *)savePanel
 {
-    [super saveDocument:sender];
-}
-
--(void)saveDocumentAs:(id)sender
-{
-    [super saveDocumentAs:sender];
+    [savePanel setAccessoryView:[self.encController view]];
+    [self.encController.popUp selectItemAtIndex:[self.encController.encodings indexOfObject:self.model.encoding]];
+    return YES;
 }
 
 - (void)dealloc {

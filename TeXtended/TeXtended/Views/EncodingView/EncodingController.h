@@ -11,5 +11,6 @@
 @interface EncodingController : NSViewController {
 }
 
+@property IBOutlet NSPopUpButton *popUp;
 @property NSArray* encodings;
 @end

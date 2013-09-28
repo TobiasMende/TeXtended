@@ -50,4 +50,19 @@ int encodingCompare(const void *firstPtr, const void *secondPtr) {
     return -1;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    [self.popUp removeAllItems];
+    // Fill with encodings
+    for (NSInteger cnt = 0; cnt < [self.encodings count]; cnt++) {
+        NSNumber *encodingNumber = [self.encodings objectAtIndex:cnt];
+        NSStringEncoding encoding = [encodingNumber unsignedIntegerValue];
+        [self.popUp addItemWithTitle:[[NSString localizedNameOfStringEncoding:encoding] stringByAppendingString:[NSString stringWithFormat:@" (%ld)", encoding]]];
+        [[self.popUp lastItem] setRepresentedObject:encodingNumber];
+        [[self.popUp lastItem] setEnabled:YES];
+    }
+}
+
 @end

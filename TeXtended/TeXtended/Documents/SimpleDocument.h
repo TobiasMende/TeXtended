@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MainDocument.h"
+
+@class EncodingController;
 @class DocumentModel, MainWindowController, DocumentController;
 
 /**
@@ -33,5 +35,7 @@
 
 /** The document controller handling the users interaction with the model and other components */
 @property (strong) DocumentController *documentController;
+
+@property EncodingController *encController;
 
 @end

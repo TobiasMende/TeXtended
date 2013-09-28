@@ -339,6 +339,13 @@ static NSArray *TMTEncodingsToCheck;
     [self setupInheritedCompilers];
 }
 
+-(void)setEncoding:(NSNumber *)encoding
+{
+    [self willChangeValueForKey:@"encoding"];
+    NSLog(@"Set Encoding: Old %ld - New %ld", (long)[self.encoding integerValue], (long)[encoding integerValue]);
+    [self setPrimitiveValue:encoding forKey:@"encoding"];
+    [self didChangeValueForKey:@"encoding"];
+}
 
 
 //- (NSNumber *)encoding {
@@ -354,6 +361,14 @@ static NSArray *TMTEncodingsToCheck;
 //    }
 //    return enc;
 //}
+
+- (NSNumber *)encoding {
+    [self willAccessValueForKey:@"encoding"];
+    NSNumber *enc = [self primitiveValueForKey:@"encoding"];
+    [self didAccessValueForKey:@"encoding"];
+    NSLog(@"Return encoding: %ld",(long)[enc integerValue]);
+    return enc;
+}
 
 
 
