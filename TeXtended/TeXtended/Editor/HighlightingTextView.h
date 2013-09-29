@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "SyntaxHighlighter.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionViewController;
+@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -35,8 +35,7 @@
     /** The CodeExtensionEngine controls auto linking and information adding features */
 GoToLineSheetController *goToLineSheet;
     
-    AutoCompletionViewController *autoCompletionController;
-    NSUInteger currentTextMovement;
+    AutoCompletionWindowController *autoCompletionController;
     NSTimer *scrollTimer;
 
 }

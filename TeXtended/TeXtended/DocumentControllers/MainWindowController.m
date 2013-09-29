@@ -185,7 +185,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     if (splitView == self.contentView) {
         CGFloat hiddenPosition = (self.contentView.isVertical ? NSWidth(self.contentView.bounds) : NSHeight(self.contentView.bounds));
-        DDLogInfo(@"%f, %f, %f", newPosition, hiddenPosition, fabs(newPosition - hiddenPosition));
         if (fabs(newPosition - hiddenPosition) < 1.1f) {
             if (self.secondViewToggle.state != NSOffState) {
                 self.secondViewToggle.state = NSOffState;
