@@ -67,7 +67,6 @@
     NSRect layoutRect = [self.parent.layoutManager boundingRectForGlyphRange:theTextRange inTextContainer:self.parent.textContainer];
     NSRect globalCharBound = [self toGlobalCharBounds:layoutRect];
     
-    
     [self.window setFrame:[self calculateFinalFrame:globalCharBound] display:YES animate:NO];
     [self.window orderFront:self];
     if (content.count > 0) {
@@ -78,7 +77,7 @@
 
 
 - (NSRect)calculateFinalFrame:(NSRect)globalCharBounds {
-    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, self.content.count * 17);
+    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, self.content.count * 16);
     NSPoint origin;
     
     CGFloat screenEnd = NSMaxX([[NSScreen mainScreen] visibleFrame]);
@@ -124,7 +123,7 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     if (row >= 0 && row < self.content.count) {
-        return [self.content objectAtIndex:row];
+        return ((Completion*)[self.content objectAtIndex:row]).key;
     }
     return nil;
 }

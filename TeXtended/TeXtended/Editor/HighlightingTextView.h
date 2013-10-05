@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "SyntaxHighlighter.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController;
+@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -121,7 +121,9 @@ GoToLineSheetController *goToLineSheet;
  @param movement the movement constant
  @param flag is this insertion realy final?
  */
-- (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertFinalCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 /**
  Method for jumping to the next visible placeholders (supporting round wrap jumping when at the end of the visible area)

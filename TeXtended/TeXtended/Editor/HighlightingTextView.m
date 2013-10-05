@@ -13,6 +13,7 @@
 #import "NSString+LatexExtension.h"
 #import "PlaceholderServices.h"
 #import "EditorPlaceholder.h"
+#import "Completion.h"
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
@@ -201,7 +202,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (!self.servicesOn) {
         return;
     }
@@ -218,12 +219,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     self.currentModifierFlags = theEvent.modifierFlags;
 }
 
-- (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertFinalCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
         return;
     }
-    [super insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
 }
 
 - (void)jumpToNextPlaceholder {

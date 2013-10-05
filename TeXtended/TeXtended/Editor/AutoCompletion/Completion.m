@@ -114,16 +114,13 @@ return self;
     return [self substitutePlaceholdersInString:self.extension];
 }
 
-- (NSComparisonResult)compare:(NSString *)string {
-    if ([string isKindOfClass:[Completion class]]) {
-        Completion *c = (Completion *)string;
-        if (self.counter > c.counter) {
+- (NSComparisonResult)compare:(Completion *)other {
+        if (self.counter > other.counter) {
             return NSOrderedAscending;
-        } else if (self.counter < c.counter) {
+        } else if (self.counter < other.counter) {
             return NSOrderedDescending;
         }
-    }
-    return [self caseInsensitiveCompare:string];
+    return [self.insertion caseInsensitiveCompare:other.insertion];
 }
 
 
@@ -174,21 +171,4 @@ return self;
 }
 
 
-#pragma mark - String Extension Methods
-
-- (NSSize)sizeWithAttributes:(NSDictionary *)attributes {
-    return [self.key sizeWithAttributes:attributes];
-}
-
-- (NSUInteger)length {
-    return [self.key length];
-}
-
-- (BOOL)isEqualToString:(NSString *)aString {
-    return [self.key isEqualToString:aString];
-}
-
-- (unichar)characterAtIndex:(NSUInteger)index {
-    return [self.key characterAtIndex:index];
-}
 @end
