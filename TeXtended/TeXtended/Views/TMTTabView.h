@@ -9,11 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 @class NSTabViewItem;
-@interface TMTTabView : NSTabView {
-    NSPoint mouse;
+@interface TMTTabView : NSTabView <NSDraggingDestination, NSDraggingSource, NSPasteboardItemDataProvider>{
     NSMutableSet* windows;
+    NSTabViewItem *clickedItem;
 }
 
-@property (weak) NSTabViewItem* draggedItem;
 
 @end
