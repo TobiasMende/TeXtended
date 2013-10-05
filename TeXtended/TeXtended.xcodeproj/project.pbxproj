@@ -184,6 +184,8 @@
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3776E18000AB900B42BF6 /* StatsPanelController.m */; };
+		F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3776F18000AB900B42BF6 /* StatsPanel.xib */; };
 		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */; };
 /* End PBXBuildFile section */
 
@@ -509,6 +511,9 @@
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
+		F6D3776D18000AB900B42BF6 /* StatsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsPanelController.h; sourceTree = "<group>"; };
+		F6D3776E18000AB900B42BF6 /* StatsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsPanelController.m; sourceTree = "<group>"; };
+		F6D3776F18000AB900B42BF6 /* StatsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsPanel.xib; sourceTree = "<group>"; };
 		F6E2FC9C1767A59F0057C960 /* FileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewCell.h; sourceTree = "<group>"; };
 		F6E2FC9D1767A59F0057C960 /* FileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewCell.m; sourceTree = "<group>"; };
 		F6E8243E1743A11E00FB2CCB /* FileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewModel.h; sourceTree = "<group>"; };
@@ -1076,6 +1081,7 @@
 		D2CC54F9171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXGroup;
 			children = (
+				F6D3776C18000A7000B42BF6 /* StatsPanel */,
 				768BA48117E4B31000B9DAF3 /* Templates */,
 				D2668615176F5B39001699A8 /* Views */,
 				D2F177CE17651D5A0089DBC0 /* InfoPanels */,
@@ -1179,6 +1185,16 @@
 			path = EncodingView;
 			sourceTree = "<group>";
 		};
+		F6D3776C18000A7000B42BF6 /* StatsPanel */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3776D18000AB900B42BF6 /* StatsPanelController.h */,
+				F6D3776E18000AB900B42BF6 /* StatsPanelController.m */,
+				F6D3776F18000AB900B42BF6 /* StatsPanel.xib */,
+			);
+			path = StatsPanel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1240,6 +1256,7 @@
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
+				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
@@ -1344,6 +1361,7 @@
 				D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */,
 				D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */,
 				D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */,
+				F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */,
 				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
 				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,

@@ -10,7 +10,7 @@
 #import "DMSplitView.h"
 #import "MainDocument.h"
 #import "ViewControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable, TMTTabViewWindow;
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable, TMTTabViewWindow, StatsPanelController;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -62,6 +62,8 @@
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;
 
+@property (strong) StatsPanelController* statsPanel;
+
 
 - (id)initWithMainDocument:(id<MainDocument>) document;
 
@@ -105,6 +107,7 @@
 - (IBAction)toggleSidebarView:(id)sender;
 - (IBAction)toggleSecondView:(id)sender;
 
+- (IBAction)showStatistics:(id)sender;
 
 - (DocumentController *)activeDocumentController;
 
