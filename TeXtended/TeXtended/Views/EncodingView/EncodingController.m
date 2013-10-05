@@ -7,6 +7,7 @@
 //
 
 #import "EncodingController.h"
+#import "TMTLog.h"
 
 @interface EncodingController ()
 
@@ -32,6 +33,7 @@
         }
         self.encodings = [NSArray arrayWithArray:allEncodings];
         free(tmp);
+        self.selectionDidChange = NO;
     }
     return self;
 }
@@ -63,6 +65,23 @@ int encodingCompare(const void *firstPtr, const void *secondPtr) {
         [[self.popUp lastItem] setRepresentedObject:encodingNumber];
         [[self.popUp lastItem] setEnabled:YES];
     }
+}
+
+- (void) panelSelectionDidChange:(id)sender
+{
+    NSOpenPanel *openPanel = (NSOpenPanel*)sender;
+    NSStringEncoding encoding;
+    NSError *error;
+    NSString *content = [[NSString alloc] initWithContentsOfFile:[[openPanel URL] path] usedEncoding:&encoding error:&error];
+#pragma unused(content)
+    [self.popUp selectItemAtIndex:[self.encodings indexOfObject:[NSNumber numberWithUnsignedInteger:encoding]]];
+    self.selectionDidChange = YES;
+}
+
+-(NSStringEncoding)selection
+{
+    self.selectionDidChange = NO;
+    return [[self.encodings objectAtIndex:self.popUp.indexOfSelectedItem] unsignedIntegerValue];
 }
 
 @end

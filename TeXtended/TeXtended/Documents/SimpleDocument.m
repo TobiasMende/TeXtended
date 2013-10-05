@@ -36,7 +36,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         _context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
-        
+        self.encController = [[EncodingController alloc] init];
     }
     return self;
 }
@@ -124,7 +124,13 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 -(BOOL) prepareSavePanel:(NSSavePanel *)savePanel
 {
     [savePanel setAccessoryView:[self.encController view]];
-    [self.encController.popUp selectItemAtIndex:[self.encController.encodings indexOfObject:self.model.encoding]];
+    if ([self.model.encoding integerValue]) {
+        [self.encController.popUp selectItemAtIndex:[self.encController.encodings indexOfObject:self.model.encoding]];
+    }
+    else {
+        [self.encController.popUp selectItemAtIndex:[self.encController.encodings indexOfObject:[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding]]];
+    }
+    
     return YES;
 }
 

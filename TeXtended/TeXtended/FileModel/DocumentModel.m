@@ -12,6 +12,8 @@
 #import "CompileSetting.h"
 #import "NSString+PathExtension.h"
 #import "TMTLog.h"
+#import "DocumentCreationController.h"
+#import "EncodingController.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -64,7 +66,7 @@ static NSArray *TMTEncodingsToCheck;
         encoding = [self.encoding unsignedLongValue];
     }
     NSString *content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
-    if (error) {
+    /*if (error) {
         // Fallback to encoding search:
         for (NSNumber *number in TMTEncodingsToCheck) {
             encoding = [number unsignedLongValue];
@@ -77,13 +79,18 @@ static NSArray *TMTEncodingsToCheck;
             
         }
         
-    }
+    }*/
     
     if (error) {
         DDLogError(@"Error while loading content: %@", [error userInfo]);
     } else {
-        DDLogInfo(@"Detected encoding: %li", encoding);
-        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
+        DocumentCreationController* contr = [DocumentCreationController sharedDocumentController];
+        if (contr.encController.selectionDidChange) {
+            self.encoding = [NSNumber numberWithUnsignedLong:[contr.encController selection]];
+        }
+        else {
+            self.encoding = [NSNumber numberWithUnsignedLong:encoding];
+        }
     }
     if (content) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidLoadDocumentModelContent object:self];
@@ -343,7 +350,6 @@ static NSArray *TMTEncodingsToCheck;
 -(void)setEncoding:(NSNumber *)encoding
 {
     [self willChangeValueForKey:@"encoding"];
-    DDLogInfo(@"Set Encoding: Old %ld - New %ld", (long)[self.encoding integerValue], (long)[encoding integerValue]);
     [self setPrimitiveValue:encoding forKey:@"encoding"];
     [self didChangeValueForKey:@"encoding"];
 }
@@ -352,7 +358,6 @@ static NSArray *TMTEncodingsToCheck;
     [self willAccessValueForKey:@"encoding"];
     NSNumber *enc = [self primitiveValueForKey:@"encoding"];
     [self didAccessValueForKey:@"encoding"];
-    DDLogInfo(@"Return encoding: %ld",(long)[enc integerValue]);
     return enc;
 }
 
