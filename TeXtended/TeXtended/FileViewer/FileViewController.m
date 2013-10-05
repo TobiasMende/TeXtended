@@ -262,29 +262,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     return YES;
 }
 
-/*-(void) outlineViewSelectionDidChange:(NSNotification *)notification {
-    FileViewModel* model = [outline itemAtRow:[outline selectedRow]];
-    if(!model)
-    {
-        return;
-    }
-    
-    if (![[model.fileName pathExtension] isEqualToString:@"tex"]) {
-        return;
-    }
-    if(self.document.project)
-    {
-        //TODO
-    }
-    else
-    {
-        if(![model.filePath isEqualToString:self.document.texPath])
-        {
-            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:model.filePath] display:YES error:nil];
-        }
-    }
-}*/
-
 - (BOOL)loadPath: (NSURL*)url {
     nodes = [[FileViewModel alloc] init];
     [nodes setFilePath:[url path]];

@@ -18,7 +18,7 @@
 #import "MainDocument.h"
 #import "TextViewController.h"
 #import "TMTLog.h"
-
+#import "StatsPanelController.h"
 #import "TMTTabViewWindow.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
@@ -57,6 +57,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController setDocument:self.activeDocumentController.model];
+    
+    self.statsPanel = [[StatsPanelController alloc] init];
     
     [self.sidebarViewToggle setState:NSOnState];
     [self.secondViewToggle setState:NSOnState];
@@ -146,7 +148,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
-
+- (IBAction)showStatistics:(id)sender {
+    [self.statsPanel showStatistics:self.mainCompilable.path];
+}
 
 - (void)makeFirstResponder:(NSView *)view {
     DDLogInfo(@"%@", view);
