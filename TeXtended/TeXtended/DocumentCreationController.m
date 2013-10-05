@@ -31,16 +31,8 @@
         self.encController = [[EncodingController alloc] init];
     }
     [openPanel setAccessoryView:[self.encController view]];
+    [openPanel setDelegate:self.encController];
     return [super runModalOpenPanel:openPanel forTypes:types];
-}
-
-
-- (void) openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *, BOOL, NSError *))completionHandler
-{
-    [super openDocumentWithContentsOfURL:url display:displayDocument completionHandler:completionHandler];
-    SimpleDocument *currDoc = self.currentDocument;
-    NSNumber *num = [self.encController.encodings objectAtIndex:[self.encController.popUp indexOfItem:self.encController.popUp.selectedItem]];
-    currDoc.model.encoding = num;
 }
 
 

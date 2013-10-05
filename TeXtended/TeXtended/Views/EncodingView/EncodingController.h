@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface EncodingController : NSViewController {
+@interface EncodingController : NSViewController <NSOpenSavePanelDelegate> {
 }
 
 @property IBOutlet NSPopUpButton *popUp;
 @property NSArray* encodings;
+@property BOOL selectionDidChange;
+
+-(NSStringEncoding)selection;
 @end
