@@ -386,7 +386,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertTab:sender];
         return;
     }
-    if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
+    if (autoCompletionController) {
+        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
+    }else if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
         [super insertTab:sender];
     } 
     

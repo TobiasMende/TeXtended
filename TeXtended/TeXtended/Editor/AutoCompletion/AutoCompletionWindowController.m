@@ -25,9 +25,6 @@
 
 - (void) textViewDidEndEditing:(NSNotification *)note;
 
-- (void) updateSelection:(NSInteger)currentIndex;
-
-
 @end
 
 @implementation AutoCompletionWindowController
@@ -132,34 +129,8 @@
     return nil;
 }
 
-#pragma mark - Key Events
-
-- (void)arrowDown {
-    NSInteger count = self.tableView.numberOfRows;
-    NSInteger current = [self.tableView selectedRow];
-    DDLogWarn(@"%ld - %ld", (long)count, current);
-    if (count == 0 || current < 0) {
-        return;
-    }
-    current = (current + 1)% count;
-    [self updateSelection:current];
-}
-
-- (void)arrowUp {
-    NSInteger count = self.tableView.numberOfRows;
-    NSInteger current = [self.tableView selectedRow];
-    if (count == 0 || current < 0) {
-        return;
-    }
-    current = (current > 0 ? current-1 : count-1);
-    [self updateSelection:current];
-}
-
-
-#pragma mark - Helper Methods
-
-- (void)updateSelection:(NSInteger)currentIndex {
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:currentIndex] byExtendingSelection:NO];
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger currentIndex = self.tableView.selectedRow;
     Completion *completion = [self.content objectAtIndex:currentIndex];
     NSRange prefixRange = [self.parent rangeForUserCompletion];
     if (prefixRange.location == NSNotFound) {
@@ -173,6 +144,32 @@
     [self.parent setSelectedRange:NSMakeRange(location, replacement.length)];
     [self.parent.undoManager endUndoGrouping];
 }
+
+#pragma mark - Key Events
+
+- (void)arrowDown {
+    NSInteger count = self.tableView.numberOfRows;
+    NSInteger current = [self.tableView selectedRow];
+    if (count == 0 || current < 0) {
+        return;
+    }
+    current = (current + 1)% count;
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+}
+
+- (void)arrowUp {
+    NSInteger count = self.tableView.numberOfRows;
+    NSInteger current = [self.tableView selectedRow];
+    if (count == 0 || current < 0) {
+        return;
+    }
+    current = (current > 0 ? current-1 : count-1);
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+}
+
+
+
+
 
 
 
