@@ -8,6 +8,7 @@
 
 #import "AutoCompletionWindowController.h"
 #import "TMTLog.h"
+#import "Completion.h"
 
 @interface AutoCompletionWindowController ()
 
@@ -23,6 +24,8 @@
 
 
 - (void) textViewDidEndEditing:(NSNotification *)note;
+
+- (void) updateSelection:(NSInteger)currentIndex;
 
 
 @end
@@ -139,7 +142,7 @@
         return;
     }
     current = (current + 1)% count;
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+    [self updateSelection:current];
 }
 
 - (void)arrowUp {
@@ -149,8 +152,26 @@
         return;
     }
     current = (current > 0 ? current-1 : count-1);
-    DDLogWarn(@"%ld - %ld", (long)count, current);
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+    [self updateSelection:current];
+}
+
+
+#pragma mark - Helper Methods
+
+- (void)updateSelection:(NSInteger)currentIndex {
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:currentIndex] byExtendingSelection:NO];
+    Completion *completion = [self.content objectAtIndex:currentIndex];
+    NSRange prefixRange = [self.parent rangeForUserCompletion];
+    if (prefixRange.location == NSNotFound) {
+        DDLogWarn(@"Got invalid prefix for user completion");
+        return;
+    }
+    [self.parent.undoManager beginUndoGrouping];
+    NSString *replacement = [completion.autoCompletionWord substringFromIndex:prefixRange.length];
+    NSUInteger location = self.parent.selectedRange.location;
+    [self.parent replaceCharactersInRange:self.parent.selectedRange withString:replacement];
+    [self.parent setSelectedRange:NSMakeRange(location, replacement.length)];
+    [self.parent.undoManager endUndoGrouping];
 }
 
 

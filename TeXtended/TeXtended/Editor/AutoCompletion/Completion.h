@@ -98,4 +98,7 @@
  @return a key string
  */
 - (NSString*)key;
+
+/** Method returns the word which is used during auto completion */
+- (NSString*)autoCompletionWord;
 @end

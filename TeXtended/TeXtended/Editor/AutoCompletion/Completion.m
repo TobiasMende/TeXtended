@@ -169,9 +169,12 @@ return self;
     return false;
 }
 
+- (NSString *)autoCompletionWord {
+    return self.insertion;
+}
 
-#pragma mark -
-#pragma mark String Extension Methods
+
+#pragma mark - String Extension Methods
 
 - (NSSize)sizeWithAttributes:(NSDictionary *)attributes {
     return [self.key sizeWithAttributes:attributes];

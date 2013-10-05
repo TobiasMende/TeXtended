@@ -48,4 +48,8 @@ return self;
     return dict;
 }
 
+- (NSString *)autoCompletionWord {
+    return [self.insertion substringFromIndex:1];
+}
+
 @end

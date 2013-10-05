@@ -409,7 +409,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     if (autoCompletionController) {
-        [self insertCompletion:[autoCompletionController.content objectAtIndex:0] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
     } else {
         [self.codeNavigationAssistant handleNewLineInsertion];
     }
@@ -501,12 +502,20 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)keyDown:(NSEvent *)theEvent {
     if (autoCompletionController) {
-        if (theEvent.keyCode == TMTArrowDownKeyCode) {
-            [autoCompletionController arrowDown];
-            return;
-        } else if(theEvent.keyCode == TMTArrowUpKeyCode) {
-            [autoCompletionController arrowUp];
-            return;
+        switch (theEvent.keyCode) {
+            case TMTArrowDownKeyCode:
+                [autoCompletionController arrowDown];
+                return;
+            case TMTArrowUpKeyCode:
+                [autoCompletionController arrowUp];
+                return;
+            case TMTBackKeyCode:
+                // [self complete:self];
+                [autoCompletionController.window orderOut:self];
+                autoCompletionController = nil;
+                break;
+            default:
+                break;
         }
         
     }
