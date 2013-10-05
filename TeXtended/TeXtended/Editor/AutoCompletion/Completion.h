@@ -12,7 +12,7 @@
  
  @author Tobias Mende
  */
-@interface Completion : NSString <NSCoding>
+@interface Completion : NSObject
 /** The basic insertion (e.g. a \command or an environment name) */
 @property (strong,nonatomic) NSString *insertion;
 /** Counter for the number of insertions */
@@ -98,4 +98,7 @@
  @return a key string
  */
 - (NSString*)key;
+
+/** Method returns the word which is used during auto completion */
+- (NSString*)autoCompletionWord;
 @end

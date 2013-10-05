@@ -156,6 +156,7 @@ typedef enum TrackingMessageType{
 #define TMTTabKeyCode 48
 #define TMTArrowDownKeyCode 125
 #define TMTArrowUpKeyCode 126
+#define TMTBackKeyCode 51
 /**
     This class is our common place for constants and other global definitions.
     E.g. keys used in the user defaults are defined here as global macros.

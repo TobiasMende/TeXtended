@@ -8,6 +8,8 @@
 
 #import "TMTLogFormatter.h"
 
+NSUInteger MAX_CLASS_NAME_LENGTH = 25;
+
 @implementation TMTLogFormatter
 
 
@@ -50,14 +52,32 @@
             output = [NSString stringWithFormat:@"%@ - %@| %@.%s | %@", logMessage->timestamp, logLevel,file, logMessage->function, logMessage->logMsg];
         }
     } else {
+        NSString *classPart;
         if (logMessage->threadName.length >0) {
-            output = [NSString stringWithFormat:@"%@| %@ (%@) | %@", logLevel,file, logMessage->threadName, logMessage->logMsg];
+            classPart = [NSString stringWithFormat:@"%@ (%@)", file, logMessage->threadName];
         } else {
-            output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel,file, logMessage->logMsg];
+            classPart = file;
         }
+        [TMTLogFormatter updateMaxLength:classPart.length];
+        classPart = [TMTLogFormatter extendClassPart:classPart];
+        output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel, classPart, logMessage->logMsg];
     }
     
     return output;
+}
+
++ (void)updateMaxLength:(NSUInteger)length {
+    if (length > MAX_CLASS_NAME_LENGTH) {
+        MAX_CLASS_NAME_LENGTH = length;
+    }
+}
+
++ (NSString *)extendClassPart:(NSString *)classPart {
+    NSUInteger diff = MAX_CLASS_NAME_LENGTH - classPart.length;
+    if (MAX_CLASS_NAME_LENGTH > classPart.length) {
+        return [classPart stringByPaddingToLength:MAX_CLASS_NAME_LENGTH withString:@" " startingAtIndex:0];
+    }
+    return classPart;
 }
 
 @end

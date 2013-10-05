@@ -61,7 +61,7 @@ typedef enum {
  @param movement the text movement
  @param flag useless flag
  */
-- (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertCommandCompletion:(CommandCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 
 /**
@@ -72,7 +72,7 @@ typedef enum {
  @param movement the text movement
  @param flag useless flag
  */
-- (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertEnvironmentCompletion:(EnvironmentCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 /**
  Method for detecting the completion type by the prefix range.
@@ -192,7 +192,7 @@ typedef enum {
 
 
 
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSRightTextMovement) {
         return;
     }
@@ -203,19 +203,19 @@ typedef enum {
             if (!self.shouldCompleteCommands) {
                 return;
             }
-            [self insertCommandCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+            [self insertCommandCompletion:(CommandCompletion*)word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTBeginCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return;
             }
-            [self insertEnvironmentCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+            [self insertEnvironmentCompletion:(EnvironmentCompletion*)word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
         case TMTEndCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return;
             }
-            [view insertFinalCompletion:[(Completion*)word insertion] forPartialWordRange:charRange movement:movement isFinal:flag];
+            [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
             if (flag && [self isFinalInsertion:movement]) {
                 [self skipClosingBracket];
             }
@@ -226,9 +226,8 @@ typedef enum {
     }
 }
 
-- (void)insertCommandCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertCommandCompletion:(CommandCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
      
-    CommandCompletion *completion = (CommandCompletion *)word;
     if (flag && [self isFinalInsertion:movement]) {
         completion.counter++;
         if ([completion hasPlaceholders]) {
@@ -249,36 +248,31 @@ typedef enum {
             }
             [view.undoManager endUndoGrouping];
         } else {
-            [view insertFinalCompletion:[word substringWithRange:NSMakeRange(1, word.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     } else {
         if ([completion respondsToSelector:@selector(insertion)]) {
-            [view insertFinalCompletion:[completion.insertion substringWithRange:NSMakeRange(1, completion.insertion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         } else {
-            [view insertFinalCompletion:[completion substringWithRange:NSMakeRange(1, completion.length-1)] forPartialWordRange:charRange movement:movement isFinal:flag];
+            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     }
     
 }
 
-- (void)insertEnvironmentCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertEnvironmentCompletion:(EnvironmentCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     //Attention: Word isn't a string. its an EnvironmentCompletion ;)
     
-    EnvironmentCompletion *completion = (EnvironmentCompletion*)word;
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     if (type != TMTBeginCompletion) {
         return;
     }
     if (!flag || ![self isFinalInsertion:movement]) {
-        if([completion respondsToSelector:@selector(insertion)]) {
-            [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
-        } else {
-            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
-        }
+        [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         return;
     }
     completion.counter++;
-    [view insertFinalCompletion:completion.insertion forPartialWordRange:charRange movement:movement isFinal:flag];
+    [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
     [self skipClosingBracket];
     NSUInteger position = [view selectedRange].location;
     // NSRange visible = [view visibleRange];

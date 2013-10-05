@@ -8,6 +8,7 @@
 
 #import "AutoCompletionWindowController.h"
 #import "TMTLog.h"
+#import "Completion.h"
 
 @interface AutoCompletionWindowController ()
 
@@ -23,7 +24,6 @@
 
 
 - (void) textViewDidEndEditing:(NSNotification *)note;
-
 
 @end
 
@@ -67,7 +67,6 @@
     NSRect layoutRect = [self.parent.layoutManager boundingRectForGlyphRange:theTextRange inTextContainer:self.parent.textContainer];
     NSRect globalCharBound = [self toGlobalCharBounds:layoutRect];
     
-    
     [self.window setFrame:[self calculateFinalFrame:globalCharBound] display:YES animate:NO];
     [self.window orderFront:self];
     if (content.count > 0) {
@@ -78,7 +77,7 @@
 
 
 - (NSRect)calculateFinalFrame:(NSRect)globalCharBounds {
-    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, self.content.count * 17);
+    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, self.content.count * 16);
     NSPoint origin;
     
     CGFloat screenEnd = NSMaxX([[NSScreen mainScreen] visibleFrame]);
@@ -124,9 +123,25 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     if (row >= 0 && row < self.content.count) {
-        return [self.content objectAtIndex:row];
+        return ((Completion*)[self.content objectAtIndex:row]).key;
     }
     return nil;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger currentIndex = self.tableView.selectedRow;
+    Completion *completion = [self.content objectAtIndex:currentIndex];
+    NSRange prefixRange = [self.parent rangeForUserCompletion];
+    if (prefixRange.location == NSNotFound) {
+        DDLogWarn(@"Got invalid prefix for user completion");
+        return;
+    }
+    [self.parent.undoManager beginUndoGrouping];
+    NSString *replacement = [completion.autoCompletionWord substringFromIndex:prefixRange.length];
+    NSUInteger location = self.parent.selectedRange.location;
+    [self.parent replaceCharactersInRange:self.parent.selectedRange withString:replacement];
+    [self.parent setSelectedRange:NSMakeRange(location, replacement.length)];
+    [self.parent.undoManager endUndoGrouping];
 }
 
 #pragma mark - Key Events
@@ -134,7 +149,6 @@
 - (void)arrowDown {
     NSInteger count = self.tableView.numberOfRows;
     NSInteger current = [self.tableView selectedRow];
-    DDLogWarn(@"%ld - %ld", (long)count, current);
     if (count == 0 || current < 0) {
         return;
     }
@@ -149,9 +163,12 @@
         return;
     }
     current = (current > 0 ? current-1 : count-1);
-    DDLogWarn(@"%ld - %ld", (long)count, current);
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
 }
+
+
+
+
 
 
 

@@ -14,5 +14,7 @@
 @property BOOL extended;
 
 - (id)initExtended:(BOOL)isExtended;
++ (void) updateMaxLength:(NSUInteger)length;
++ (NSString *) extendClassPart:(NSString *)classPart;
 
 @end

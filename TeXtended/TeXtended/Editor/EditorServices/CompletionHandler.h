@@ -7,7 +7,7 @@
 //
 
 #import "EditorService.h"
-
+@class Completion;
 @interface CompletionHandler : EditorService
 
 /** if `YES` the environment content is automatically indended on the next line */
@@ -62,7 +62,7 @@
  @param flag if `YES` the completion is final
  
  */
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 /**
  Method for detecting whether the insertion is final or not depending on the text movement type

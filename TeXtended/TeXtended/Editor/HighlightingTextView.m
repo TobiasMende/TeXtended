@@ -13,6 +13,7 @@
 #import "NSString+LatexExtension.h"
 #import "PlaceholderServices.h"
 #import "EditorPlaceholder.h"
+#import "Completion.h"
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
@@ -201,7 +202,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (!self.servicesOn) {
         return;
     }
@@ -218,12 +219,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     self.currentModifierFlags = theEvent.modifierFlags;
 }
 
-- (void)insertFinalCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertFinalCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
         return;
     }
-    [super insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
 }
 
 - (void)jumpToNextPlaceholder {
@@ -386,7 +387,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertTab:sender];
         return;
     }
-    if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
+    if (autoCompletionController) {
+        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
+    }else if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
         [super insertTab:sender];
     } 
     
@@ -409,7 +413,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     if (autoCompletionController) {
-        [self insertCompletion:[autoCompletionController.content objectAtIndex:0] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
     } else {
         [self.codeNavigationAssistant handleNewLineInsertion];
     }
@@ -501,12 +506,20 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)keyDown:(NSEvent *)theEvent {
     if (autoCompletionController) {
-        if (theEvent.keyCode == TMTArrowDownKeyCode) {
-            [autoCompletionController arrowDown];
-            return;
-        } else if(theEvent.keyCode == TMTArrowUpKeyCode) {
-            [autoCompletionController arrowUp];
-            return;
+        switch (theEvent.keyCode) {
+            case TMTArrowDownKeyCode:
+                [autoCompletionController arrowDown];
+                return;
+            case TMTArrowUpKeyCode:
+                [autoCompletionController arrowUp];
+                return;
+            case TMTBackKeyCode:
+                // [self complete:self];
+                [autoCompletionController.window orderOut:self];
+                autoCompletionController = nil;
+                break;
+            default:
+                break;
         }
         
     }
