@@ -279,25 +279,30 @@
 	return currentCoordinate + (shrinkingSize - minimumSize);
 }
 
-- (void)splitView:(NSSplitView *)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
-    if (isAnimating) { // if we are inside an animated session we want to redraw correctly NSSplitView elements (as like the moving divider)
-        [self setNeedsDisplay:YES];
-        return; // relayout constraint does not happend while animating... we don't want to interfere with animation.
-    }
-    
-    switch (self.subviewsResizeMode) {
-        case DMSplitViewResizeModeUniform: // UNIFORM RESIZE
-            [self applyUniformResizeFromOldSize:oldSize];
-            break;
-        case DMSplitViewResizeModePriorityBased: // PRIORITY BASED RESIZE
-            [self applyPriorityResizeFromOldSize:oldSize];
-            break;
-        case DMSplitViewResizeModeProportional: // PROPORTIONAL RESIZE
-        default:
-            [self applyProportionalResizeFromOldSize:oldSize];
-            break;
-    }
-}
+
+/*
+ The following method breaks the entire behavior... So it is just here for later user...
+ */
+
+//- (void)splitView:(NSSplitView *)splitView resizeSubviewsWithOldSize:(NSSize)oldSize {
+//    if (isAnimating) { // if we are inside an animated session we want to redraw correctly NSSplitView elements (as like the moving divider)
+//        [self setNeedsDisplay:YES];
+//        return; // relayout constraint does not happend while animating... we don't want to interfere with animation.
+//    }
+//    
+//    switch (self.subviewsResizeMode) {
+//        case DMSplitViewResizeModeUniform: // UNIFORM RESIZE
+//            [self applyUniformResizeFromOldSize:oldSize];
+//            break;
+//        case DMSplitViewResizeModePriorityBased: // PRIORITY BASED RESIZE
+//            [self applyPriorityResizeFromOldSize:oldSize];
+//            break;
+//        case DMSplitViewResizeModeProportional: // PROPORTIONAL RESIZE
+//        default:
+//            [self applyProportionalResizeFromOldSize:oldSize];
+//            break;
+//    }
+//}
 
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
     BOOL canCollapse = [self constraintForSubview:subview].canCollapse;
@@ -368,7 +373,6 @@
                         resizableSubviews[subviewIndex] = NO;
                         newSubviewSize = constraint.minSize;
                     }
-                    
                     if ((constraint.maxSize > 0) && (newSubviewSize > constraint.maxSize)) {
                         numberOfResizableSubviews --;
                         resizableSubviews[subviewIndex] = NO;

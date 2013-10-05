@@ -60,6 +60,8 @@
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
+		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
+		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
@@ -70,8 +72,6 @@
 		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
 		D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D268FB1917F6C30900C9E59E /* TMTLogFormatter.m */; };
-		D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */; };
-		D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2788291179DF8CA005201C9 /* AutoCompletionView.xib */; };
 		D28AAFE317EF347B0033BDD4 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AAFE117EF347B0033BDD4 /* TMTTabViewController.m */; };
 		D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */; };
 		D28AAFE717EF34BE0033BDD4 /* TMTTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */; };
@@ -347,6 +347,9 @@
 		D248E4DE1777647E008DDE80 /* MessageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataSource.m; sourceTree = "<group>"; };
 		D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathObserverFactory.h; sourceTree = "<group>"; };
 		D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathObserverFactory.m; sourceTree = "<group>"; };
+		D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletionWindowController.h; sourceTree = "<group>"; };
+		D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletionWindowController.m; sourceTree = "<group>"; };
+		D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionWindow.xib; sourceTree = "<group>"; };
 		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
@@ -388,9 +391,6 @@
 		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
-		D278828F179DF8CA005201C9 /* AutoCompletionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletionViewController.h; sourceTree = "<group>"; };
-		D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletionViewController.m; sourceTree = "<group>"; };
-		D2788291179DF8CA005201C9 /* AutoCompletionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionView.xib; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28AAFE017EF347B0033BDD4 /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewController.h; path = TMTTabView/TMTTabViewController.h; sourceTree = "<group>"; };
 		D28AAFE117EF347B0033BDD4 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewController.m; path = TMTTabView/TMTTabViewController.m; sourceTree = "<group>"; };
@@ -639,9 +639,9 @@
 				D21ACB871726868A00E2F8EC /* EnvironmentCompletion.h */,
 				D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */,
 				D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */,
-				D278828F179DF8CA005201C9 /* AutoCompletionViewController.h */,
-				D2788290179DF8CA005201C9 /* AutoCompletionViewController.m */,
-				D2788291179DF8CA005201C9 /* AutoCompletionView.xib */,
+				D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */,
+				D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */,
+				D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */,
 			);
 			path = AutoCompletion;
 			sourceTree = "<group>";
@@ -1249,6 +1249,7 @@
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
+				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */,
@@ -1283,7 +1284,6 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
-				D2788293179DF8CA005201C9 /* AutoCompletionView.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
@@ -1381,6 +1381,7 @@
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
+				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
 				D2F3DE2A17F6BEDA00A99066 /* DDLog.m in Sources */,
@@ -1419,7 +1420,6 @@
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
 				D2F3DE2B17F6BEDA00A99066 /* DDTTYLogger.m in Sources */,
 				D2F3DE2817F6BEDA00A99066 /* DDASLLogger.m in Sources */,
-				D2788292179DF8CA005201C9 /* AutoCompletionViewController.m in Sources */,
 				D2F3DE2D17F6BEDA00A99066 /* DispatchQueueLogFormatter.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,

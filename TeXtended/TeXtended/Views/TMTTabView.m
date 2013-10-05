@@ -7,6 +7,7 @@
 //
 
 #import "TMTTabView.h"
+#import "TMTLog.h"
 
 @implementation TMTTabView
 
@@ -29,6 +30,18 @@
 }
 
 - (void) mouseDown:(NSEvent *)theEvent {
+    
+    // new event -> detect application windows
+    windows = [[NSMutableSet alloc] init];
+    NSArray *allWindows  = (__bridge NSArray*)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    NSString* appName = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSApplicationName"];
+    for (NSDictionary* window in allWindows) {
+        if ([[window objectForKey:@"kCGWindowOwnerName"] isEqualToString:appName]) {
+            [windows addObject:window];
+        }
+    }
+    
+    // detect event location
     NSPoint p = [self convertPoint: [theEvent locationInWindow]
                           fromView: nil];
     
@@ -40,7 +53,7 @@
         // hitted a tabView
         if ([self.selectedTabViewItem isEqual:[self tabViewItemAtPoint:p]]) {
             // drag it, if it was selected
-            NSLog(@"start dragging: %@", [[self tabViewItemAtPoint:p] label]);
+            DDLogVerbose(@"start dragging: %@", [[self tabViewItemAtPoint:p] label]);
             [self setDraggedItem:[self tabViewItemAtPoint:p]];
         }
     }
@@ -50,7 +63,29 @@
 - (void) mouseDragged:(NSEvent *)theEvent {
     NSPoint p = [self convertPoint: [theEvent locationInWindow]
                           fromView: nil];
-    mouse = p;
+    mouse = NSMakePoint(
+                        [theEvent locationInWindow].x + self.window.frame.origin.x,
+                        [theEvent locationInWindow].y + self.window.frame.origin.y
+                       );
+    
+    for (NSDictionary* window in windows) {
+        
+        NSRect w = NSMakeRect(
+                                         [[[window objectForKey:@"kCGWindowBounds"] objectForKey:@"X"] floatValue],
+                                         [[[window objectForKey:@"kCGWindowBounds"] objectForKey:@"Y"] floatValue],
+                                         [[[window objectForKey:@"kCGWindowBounds"] objectForKey:@"Width"] floatValue],
+                                         [[[window objectForKey:@"kCGWindowBounds"] objectForKey:@"Height"] floatValue]
+                                        );
+        if (mouse.x >= w.origin.x
+            && mouse.x <= w.origin.x + w.size.width
+            && mouse.y >= w.origin.y
+            && mouse.y <= w.origin.y + w.size.height) {
+            
+            long win = [[window objectForKey:@"kCGWindowNumber"] integerValue];
+            [[NSApp windowWithWindowNumber:win] orderFront:self];
+        }
+    }
+    
     
     if ([self draggedItem] && [self tabViewItemAtPoint:p] && ![self.draggedItem isEqual:[self tabViewItemAtPoint:p]]) {
         long i = [self indexOfTabViewItem:self.draggedItem];
@@ -70,9 +105,12 @@
         }
         [self selectTabViewItem:tmp1];
         
-        NSLog(@"dragging: %@", [self.draggedItem label]);
+        DDLogVerbose(@"dragging: %@", [self.draggedItem label]);
     }
-    
+}
+
+- (BOOL)isFlipped {
+    return YES;
 }
 
 - (void) mouseUp:(NSEvent *)theEvent {
@@ -97,7 +135,7 @@
         }
         [self selectTabViewItem:tmp1];
         
-        NSLog(@"stop dragging: %@", [self.draggedItem label]);
+        DDLogVerbose(@"stop dragging: %@", [self.draggedItem label]);
         [self setDraggedItem:nil];
     }
 }
