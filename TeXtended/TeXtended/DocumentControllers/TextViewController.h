@@ -34,6 +34,8 @@
     NSInteger countRunningParsers;
 }
 
+@property (strong) NSTabViewItem* tabViewItem;
+
 @property(nonatomic) TMTLatexLogLevel logLevel;
 /** The view showing the latex source code to the user */
 @property (strong) IBOutlet HighlightingTextView *textView;

@@ -26,6 +26,7 @@
 @property (strong) IBOutlet PDFView *pdfView;
 
 @property (assign) DocumentController *documentController;
+@property (strong) NSTabViewItem* tabViewItem;
 
 /** 
  * Setup synctex from the pdf back to tex.

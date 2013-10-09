@@ -81,6 +81,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
+        
+        id identifier = self.model.texPath ? self.model.texPath : @"UnknownTex";
+        self.tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:identifier];
+        [self.tabViewItem bind:@"label" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        self.tabViewItem.view = self.view;
     }
     return self;
 }
@@ -353,7 +358,6 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
         }
     }
 }
-
 
 #pragma mark -
 #pragma mark Dealloc

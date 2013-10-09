@@ -18,5 +18,6 @@
 - (void)documentModelHasChangedAction:(DocumentController*)dc;
 - (void)documentHasChangedAction;
 - (void)breakUndoCoalescing;
+- (NSTabViewItem *)tabViewItem;
 
 @end
