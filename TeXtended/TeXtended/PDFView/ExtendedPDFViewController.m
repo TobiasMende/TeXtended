@@ -21,6 +21,7 @@
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
 - (void)loadPDF;
 - (void)updatePDFPosition:(NSDictionary*)info;
+- (void)updateTabViewItem;
 @end
 
 @implementation ExtendedPDFViewController
@@ -37,7 +38,6 @@
 - (void)loadView {
     [super loadView];
     [(ExtendedPdf*)self.pdfView setController:self];
-    
     [self loadPDF];
 }
 
@@ -73,10 +73,23 @@
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
         }
         _model = model;
+        [self updateTabViewItem];
         if (_model) {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
             
         }
+    }
+}
+
+- (void)updateTabViewItem {
+    if (!self.model) {
+        return;
+    }
+    id identifier = self.model.texPath ? self.model.texPath : @"UntitledPDF";
+    if (!self.tabViewItem) {
+        self.tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:identifier];
+        self.tabViewItem.view = self.view;
+        [self.tabViewItem bind:@"label" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
     }
 }
 

@@ -86,27 +86,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self setTemplateController:[[TemplateController alloc] init]];
     
-    NSString *firstItemTitle = self.activeDocumentController.model.texPath ? self.activeDocumentController.model.texName : @"Untitled";
-    
-    NSTabViewItem *textViewItem = [[NSTabViewItem alloc] initWithIdentifier:firstItemTitle];
-    textViewItem.view = [[self.activeDocumentController textViewController] view];
-    textViewItem.label = firstItemTitle;
-    [((TMTTabView *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:textViewItem];
+    [((TMTTabView *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
     
     TMTTabView *secondTabView = ((TMTTabView *)[[self.contentView subviews] objectAtIndex:1]);
     for (ExtendedPDFViewController *vc in self.activeDocumentController.pdfViewControllers) {
-        NSString *ident, *label;
-        if (vc.model.pdfPath) {
-            ident = vc.model.pdfPath;
-            label = vc.model.pdfName;
-        } else {
-            ident = @"Untitled";
-            label = @"Untitled";
-        }
-        NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:ident];
-        item.view = vc.view;
-        item.label = label;
-        [secondTabView addTabViewItem:item];
+        [secondTabView addTabViewItem:vc.tabViewItem];
     }
     
 }

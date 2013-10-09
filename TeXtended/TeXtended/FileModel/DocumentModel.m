@@ -410,6 +410,8 @@ static NSArray *TMTEncodingsToCheck;
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
     } else if([key isEqualToString:@"name"]) {
         keyPaths = [keyPaths setByAddingObject:@"texName"];  
+    } else if([key isEqualToString:@"pdfPath"]) {
+        keyPaths = [keyPaths setByAddingObject:@"texPath"];
     }
     return keyPaths;
 }
