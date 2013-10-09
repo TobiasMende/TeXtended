@@ -47,15 +47,27 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             [self.documentControllers addObject:dc];
             firsTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
             secondTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
         }
     }
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:TMTViewOrderAppearance] && [object isEqualTo:[NSUserDefaults standardUserDefaults]]) {
+        BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
+        [self.contentView setVertical:flag];
+        [self.contentView adjustSubviews];
+    }
+}
+
+
 - (void)windowDidLoad
 {
 
     [super windowDidLoad];
+    BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
+    [self.contentView setVertical:flag];
     [self.contentView setSubviews:[NSArray arrayWithObjects:firsTabViewController.view, secondTabViewController.view, nil]];
     
     self.fileViewController = [[FileViewController alloc] init];
@@ -209,6 +221,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //[self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
 

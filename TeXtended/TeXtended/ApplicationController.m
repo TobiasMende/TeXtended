@@ -130,6 +130,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMTDocumentAutoOpenOnExport,
                               [NSNumber numberWithInt:NSOnState], TMT_LEFT_TABVIEW_COLLAPSED,
                               [NSNumber numberWithInt:NSOnState], TMT_RIGHT_TABVIEW_COLLAPSED,
+                              [NSNumber numberWithInt:TMTVertical], TMTViewOrderAppearance,
                               [NSNumber numberWithInt:1], TMTLiveCompileIterations,
                               [NSNumber numberWithInt:2], TMTDraftCompileIterations,
                               [NSNumber numberWithInt:3], TMTFinalCompileIterations,
