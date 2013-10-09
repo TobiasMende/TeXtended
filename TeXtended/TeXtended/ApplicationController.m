@@ -128,6 +128,8 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMTDocumentEnableLiveCompile,
                               [NSNumber numberWithBool:YES], TMTDocumentEnableLiveScrolling,
                               [NSNumber numberWithBool:YES], TMTDocumentAutoOpenOnExport,
+                              [NSNumber numberWithInt:NSOnState], TMT_LEFT_TABVIEW_COLLAPSED,
+                              [NSNumber numberWithInt:NSOnState], TMT_RIGHT_TABVIEW_COLLAPSED,
                               [NSNumber numberWithInt:1], TMTLiveCompileIterations,
                               [NSNumber numberWithInt:2], TMTDraftCompileIterations,
                               [NSNumber numberWithInt:3], TMTFinalCompileIterations,
