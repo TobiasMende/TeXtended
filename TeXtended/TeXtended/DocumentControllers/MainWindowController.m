@@ -59,9 +59,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.fileViewController setDocument:self.activeDocumentController.model];
     
     self.statsPanel = [[StatsPanelController alloc] init];
-    
-    [self.sidebarViewToggle setState:NSOnState];
-    [self.secondViewToggle setState:NSOnState];
+    //[self.sidebarViewToggle setState:[[NSUserDefaultsController sharedUserDefaultsController] integerForKey:TMT_LEFT_TABVIEW_COLLAPSED]];
+    //[self.secondViewToggle setState:[[NSUserDefaultsController sharedUserDefaultsController] integerForKey:TMT_RIGHT_TABVIEW_COLLAPSED]];
     
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
@@ -76,7 +75,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     
     tabWindow1 = [[TMTTabViewWindow alloc] init];
-    tabWindow2 =[[TMTTabViewWindow alloc] init];
+    tabWindow2 = [[TMTTabViewWindow alloc] init];
     [tabWindow1 showWindow:nil];
     [tabWindow2 showWindow:nil];
 }
@@ -206,6 +205,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
 
 }
 
