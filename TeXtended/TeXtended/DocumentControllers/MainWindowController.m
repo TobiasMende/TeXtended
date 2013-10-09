@@ -19,7 +19,9 @@
 #import "TextViewController.h"
 #import "TMTLog.h"
 #import "StatsPanelController.h"
-#import "TMTTabViewWindow.h"
+#import "TMTTabView.h"
+#import "DocumentModel.h"
+#import "ExtendedPDFViewController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -43,6 +45,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
             
             [self.documentControllers addObject:dc];
+            firsTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
+            secondTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
         }
     }
     return self;
@@ -52,6 +56,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 {
 
     [super windowDidLoad];
+    [self.contentView setSubviews:[NSArray arrayWithObjects:firsTabViewController.view, secondTabViewController.view, nil]];
     
     self.fileViewController = [[FileViewController alloc] init];
     
@@ -72,13 +77,29 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self setTemplateController:[[TemplateController alloc] init]];
     
-    ((NSBox *)[[self.contentView subviews] objectAtIndex:0]).contentView = [[self.activeDocumentController textViewController] view];
+    NSString *firstItemTitle = self.activeDocumentController.model.texPath ? self.activeDocumentController.model.texName : @"Untitled";
     
+    NSTabViewItem *textViewItem = [[NSTabViewItem alloc] initWithIdentifier:firstItemTitle];
+    textViewItem.view = [[self.activeDocumentController textViewController] view];
+    textViewItem.label = firstItemTitle;
+    [((TMTTabView *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:textViewItem];
     
-    tabWindow1 = [[TMTTabViewWindow alloc] init];
-    tabWindow2 =[[TMTTabViewWindow alloc] init];
-    [tabWindow1 showWindow:nil];
-    [tabWindow2 showWindow:nil];
+    TMTTabView *secondTabView = ((TMTTabView *)[[self.contentView subviews] objectAtIndex:1]);
+    for (ExtendedPDFViewController *vc in self.activeDocumentController.pdfViewControllers) {
+        NSString *ident, *label;
+        if (vc.model.pdfPath) {
+            ident = vc.model.pdfPath;
+            label = vc.model.pdfName;
+        } else {
+            ident = @"Untitled";
+            label = @"Untitled";
+        }
+        NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:ident];
+        item.view = vc.view;
+        item.label = label;
+        [secondTabView addTabViewItem:item];
+    }
+    
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {

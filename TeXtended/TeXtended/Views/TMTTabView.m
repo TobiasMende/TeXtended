@@ -28,10 +28,6 @@ static NSTabViewItem *CURRENT_DRAG_ITEM;
 }
 
 
-- (void) addTabViewItem:(NSTabViewItem *)tabViewItem {
-    [super addTabViewItem:tabViewItem];
-}
-
 - (void)mouseDown:(NSEvent *)theEvent {
     NSPoint p = [self convertPoint:theEvent.locationInWindow fromView:nil];
     clickedItem = [self tabViewItemAtPoint:p];

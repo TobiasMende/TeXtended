@@ -46,9 +46,6 @@
  */
 - (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc;
 
-/** Init all the window controller */
-- (void)setupWindowController;
-
 /**
  * Save the handeld document.
  *

@@ -16,12 +16,13 @@
 #import "MainWindowController.h"
 #import "DDLog.h"
 #import "TMTLog.h"
+#import "ExtendedPDFViewController.h"
 
 static const NSSet *SELECTORS_HANDLED_BY_PDF;
 static NSUInteger calls = 0;
 
 @interface DocumentController ()
-
+- (void) updateViewsAfterModelChange;
 @end
 @implementation DocumentController
 
@@ -43,8 +44,7 @@ static NSUInteger calls = 0;
         self.model = model;
         _windowController = wc;
         // FIXME: Set main document
-        _textViewController = [[TextViewController alloc] initWithDocumentController:self];
-        _pdfViewControllers = [NSMutableSet new];
+        
         _consoleViewControllers = [NSMutableSet new];
         
         // TODO: init my view controllers by asking the MainWindowController
@@ -76,9 +76,21 @@ static NSUInteger calls = 0;
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
         }
         _model = model;
+        
+        [self updateViewsAfterModelChange];
         if (self.model) {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
         }
+    }
+}
+
+- (void)updateViewsAfterModelChange {
+    _textViewController = [[TextViewController alloc] initWithDocumentController:self];
+    self.pdfViewControllers = [NSMutableSet new];
+    for(DocumentModel *model in self.model.mainDocuments) {
+        ExtendedPDFViewController *cont = [[ExtendedPDFViewController alloc] initWithDocumentController:self];
+        cont.model = model;
+        [self.pdfViewControllers addObject:cont];
     }
 }
 

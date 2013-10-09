@@ -22,8 +22,8 @@
  */
 
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate, ViewControllerProtocol> {
-    TMTTabViewWindow* tabWindow1;
-    TMTTabViewWindow* tabWindow2;
+    NSViewController *firsTabViewController;
+    NSViewController *secondTabViewController;
 }
 
 

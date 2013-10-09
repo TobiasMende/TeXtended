@@ -25,6 +25,7 @@
         // Initialization code here.
         
         [self refreshSubviews];
+        [self setCanDrawConcurrently:YES];
     }
     
     return self;

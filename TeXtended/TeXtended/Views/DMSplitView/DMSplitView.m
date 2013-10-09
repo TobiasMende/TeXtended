@@ -625,7 +625,7 @@
 		if ([self.eventsDelegate respondsToSelector:@selector(splitView:splitViewIsAnimating:)])
 			[self.eventsDelegate splitView:self splitViewIsAnimating:YES];
         
-        isAnimating = YES;        
+        isAnimating = YES;
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
             context.duration = DMSubviewAnimationDuration;
             NSRect newRect[numberOfSubviews];
@@ -641,7 +641,7 @@
             }
         } completionHandler:^{
             isAnimating = NO;
-            [self setNeedsDisplay:YES];
+            //[self setNeedsDisplay:YES];
             
             if (completition != nil) completition(YES);
             if ([self.eventsDelegate respondsToSelector:@selector(splitView:splitViewIsAnimating:)])
