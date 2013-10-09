@@ -96,6 +96,12 @@
 #define TMTFinalCompileArgs @"TMTFinalCompileArgs"
 
 /*
+ KVC keys for tabview collapsed states
+ */
+#define TMT_LEFT_TABVIEW_COLLAPSED @"TMTLeftTabviewCollapsed"
+#define TMT_RIGHT_TABVIEW_COLLAPSED @"TMTRightTabviewCollapsed"
+
+/*
  Keys for NSCoding
  */
 #define TMTCompletionInsertionKey @"TMTCompletionInsertionKey"
