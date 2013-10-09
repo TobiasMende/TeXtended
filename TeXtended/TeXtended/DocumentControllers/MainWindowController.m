@@ -64,8 +64,18 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.fileViewController setDocument:self.activeDocumentController.model];
     
     self.statsPanel = [[StatsPanelController alloc] init];
-    //[self.sidebarViewToggle setState:[[NSUserDefaultsController sharedUserDefaultsController] integerForKey:TMT_LEFT_TABVIEW_COLLAPSED]];
-    //[self.secondViewToggle setState:[[NSUserDefaultsController sharedUserDefaultsController] integerForKey:TMT_RIGHT_TABVIEW_COLLAPSED]];
+    
+    //[self.sidebarViewToggle setState:[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue]];
+    //[self.secondViewToggle setState: [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue]];
+    
+    if (self.sidebarViewToggle.state == NSOffState)
+    {
+        [self toggleSidebarView:self];
+    }
+    
+    if (self.secondViewToggle.state == NSOffState) {
+        [self toggleSecondView:self];
+    }
     
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];

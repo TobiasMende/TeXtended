@@ -11,9 +11,9 @@
                 <outlet property="fileViewArea" destination="w4f-Hp-LoY" id="d6w-3u-lKV"/>
                 <outlet property="mainView" destination="yMa-FR-WCa" id="p1k-2f-R5O"/>
                 <outlet property="outlineViewArea" destination="s7Z-NP-bat" id="Q5t-tb-lxs"/>
-                <outlet property="secondViewToggle" destination="BQT-eF-usa" id="nzC-4c-hAs"/>
+                <outlet property="secondViewToggle" destination="BQT-eF-usa" id="flF-yX-a3D"/>
                 <outlet property="sidebar" destination="uqN-3K-M8J" id="GuX-si-k0A"/>
-                <outlet property="sidebarViewToggle" destination="rJY-Cm-FxO" id="xxN-o7-Y8m"/>
+                <outlet property="sidebarViewToggle" destination="rJY-Cm-FxO" id="8y1-vF-Jta"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -186,7 +186,7 @@
                             </buttonCell>
                             <connections>
                                 <action selector="toggleSidebarView:" target="-2" id="pgp-lT-vZM"/>
-                                <binding destination="100407" name="value" keyPath="values.TMT_LEFT_TABVIEW_COLLAPSED" id="qzz-GB-1JM"/>
+                                <binding destination="100407" name="value" keyPath="values.TMTLeftTabviewCollapsed" id="8Nf-wy-OqO"/>
                             </connections>
                         </button>
                     </toolbarItem>
@@ -202,7 +202,7 @@
                             </buttonCell>
                             <connections>
                                 <action selector="toggleSecondView:" target="-2" id="vDg-CP-mLp"/>
-                                <binding destination="100407" name="value" keyPath="values.TMT_RIGHT_TABVIEW_COLLAPSED" id="b7e-jM-dpj"/>
+                                <binding destination="100407" name="value" keyPath="values.TMTRightTabviewCollapsed" id="3r3-nN-PGf"/>
                             </connections>
                         </button>
                     </toolbarItem>
