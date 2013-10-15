@@ -81,6 +81,8 @@
 #define TMTDocumentEnableLiveCompile @"TMTDocumentEnableLiveCompile"
 #define TMTDocumentEnableLiveScrolling @"TMTDocumentEnableLiveScrolling"
 #define TMTDocumentAutoOpenOnExport @"TMTDocumentAutoOpenOnExport"
+/* No for Horizontal order, Yes for Vertical order */
+#define TMTViewOrderAppearance @"TMTViewOrderAppearance"
 
 /*
  KVC keys for strings (used for user defaults)
@@ -157,6 +159,10 @@ typedef enum TrackingMessageType{
     TMTInfoMessage,
     TMTDebugMessage
     } TMTTrackingMessageType;
+
+typedef enum SplitViewOrderType {
+    TMTHorizontal = 0,
+    TMTVertical = 1} TMTSplitViewOrderType;
 
 
 #define TMTTabKeyCode 48
