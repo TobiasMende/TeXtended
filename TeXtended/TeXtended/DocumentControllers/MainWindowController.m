@@ -53,15 +53,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:TMTViewOrderAppearance] && [object isEqualTo:[NSUserDefaults standardUserDefaults]]) {
-        BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
-        [self.contentView setVertical:flag];
-        [self.contentView adjustSubviews];
-    }
-}
-
-
 - (void)windowDidLoad
 {
 
@@ -206,6 +197,12 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             self.secondViewToggle.state = state;
             [self toggleSecondView:self];
         }
+    }
+    
+    if ([keyPath isEqualToString:TMTViewOrderAppearance] && [object isEqualTo:[NSUserDefaults standardUserDefaults]]) {
+        BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
+        [self.contentView setVertical:flag];
+        [self.contentView adjustSubviews];
     }
 }
 
