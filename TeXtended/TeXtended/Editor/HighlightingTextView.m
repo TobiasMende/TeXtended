@@ -22,6 +22,7 @@
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
 #import "TMTLog.h"
+#import "MatrixViewController.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -340,9 +341,27 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [NSApp runModalForWindow:[self window]];
 }
 
+- (IBAction)matrixView:(id)sender {
+    if (!matrixView) {
+        matrixView = [[MatrixViewController alloc] init];
+    }
+    [NSApp beginSheet:[matrixView window]
+       modalForWindow: [self window]
+        modalDelegate: self
+       didEndSelector: @selector(matrixSheetDidEnd:returnCode:contextInfo:)
+          contextInfo: nil];
+    [NSApp runModalForWindow:[self window]];
+}
+
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
     if (returnCode == NSRunStoppedResponse) {
         [self showLine:[goToLineSheet.line integerValue]];
+    }
+}
+
+- (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
+    if (returnCode == NSRunStoppedResponse) {
+        [self insertText:matrixView.matrixTemplate];
     }
 }
 

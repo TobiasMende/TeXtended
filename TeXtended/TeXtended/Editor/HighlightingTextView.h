@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "SyntaxHighlighter.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion;
+@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -34,6 +34,9 @@
     
     /** The CodeExtensionEngine controls auto linking and information adding features */
 GoToLineSheetController *goToLineSheet;
+    
+    /** The MatrixViewController controls the window for creating matrix templates. */
+    MatrixViewController *matrixView;
     
     AutoCompletionWindowController *autoCompletionController;
     NSTimer *scrollTimer;
@@ -189,6 +192,13 @@ GoToLineSheetController *goToLineSheet;
 - (IBAction)goToLine:(id)sender;
 
 /**
+ Action for starting the MatrixViewController's dialog.
+ 
+ @param sender the sender
+ */
+- (IBAction)matrixView:(id)sender;
+
+/**
  Getter for an array of NSTextCheckingResult object where each object has a single range with the meaning of the range of the line indexed by the arrays inded.
  
  @return the line ranges.
@@ -213,6 +223,16 @@ GoToLineSheetController *goToLineSheet;
 @param context `NULL` in most cases.
  */
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+
+/**
+ Notification about the end of the MatrixViewController's sheet.
+ 
+ 
+ @param sheet the sheet which ends.
+ @param returnCode the termination state of the sheet.
+ @param context `NULL` in most cases.
+ */
+- (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 
 /** Method for jumping to the next anchor in the line number view
  

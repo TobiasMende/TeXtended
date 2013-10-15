@@ -65,18 +65,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     self.statsPanel = [[StatsPanelController alloc] init];
     
-    //[self.sidebarViewToggle setState:[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue]];
-    //[self.secondViewToggle setState: [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue]];
-    
-    if (self.sidebarViewToggle.state == NSOffState)
-    {
-        [self toggleSidebarView:self];
-    }
-    
-    if (self.secondViewToggle.state == NSOffState) {
-        [self toggleSecondView:self];
-    }
-    
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
     
@@ -93,6 +81,16 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [secondTabView addTabViewItem:vc.tabViewItem];
     }
     
+    if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {
+        [self toggleSidebarView:self];
+    }
+    
+    if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {
+        [self toggleSecondView:self];
+    }
+    
+    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED] options:0 context:NULL];
+    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED] options:0 context:NULL];
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
@@ -176,6 +174,29 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]]) {
+        DDLogCInfo(@"Left collapsed state is %li",[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue]);
+        NSInteger newState = [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue];
+        NSInteger oldState = self.sidebarViewToggle.state;
+        self.sidebarViewToggle.state = newState;
+        
+        if (oldState != newState) {
+            [self toggleSidebarView:self];
+        }
+    }
+    
+    if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]]) {
+        DDLogCInfo(@"Right collapsed state is %li",[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue]);
+        NSInteger state = [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue];
+        if (self.secondViewToggle.state != state) {
+            self.secondViewToggle.state = state;
+            [self toggleSecondView:self];
+        }
+    }
+}
+
 #pragma mark - ViewControllerProtocol
 
 - (void)breakUndoCoalescing {
@@ -192,11 +213,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (splitView == self.mainView) {
         if (dividerIndex == 0) {
             if (newPosition < 1.1f) {
-                if (self.sidebarViewToggle.state != NSOffState) {
-                    self.sidebarViewToggle.state = NSOffState;
-                }
+                [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOffState] forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
             } else if(self.sidebarViewToggle.state != NSOnState) {
-                self.sidebarViewToggle.state = NSOnState;
+                if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOnState) {
+                    [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOnState] forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
+                }
             }
         }
     }
@@ -204,11 +225,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (splitView == self.contentView) {
         CGFloat hiddenPosition = (self.contentView.isVertical ? NSWidth(self.contentView.bounds) : NSHeight(self.contentView.bounds));
         if (fabs(newPosition - hiddenPosition) < 1.1f) {
-            if (self.secondViewToggle.state != NSOffState) {
-                self.secondViewToggle.state = NSOffState;
-            }
+            [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOffState] forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
         } else if(self.secondViewToggle.state != NSOnState) {
-            self.secondViewToggle.state = NSOnState;
+            if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue] == NSOnState) {
+                [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOnState] forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
+            }
         }
     }
     
@@ -220,7 +241,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    //[self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
+    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 
 }
 

@@ -180,6 +180,8 @@
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
+		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
 		F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3776E18000AB900B42BF6 /* StatsPanelController.m */; };
 		F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3776F18000AB900B42BF6 /* StatsPanel.xib */; };
 		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */; };
@@ -500,6 +502,9 @@
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
+		F6B77905180DB83E0079EFF6 /* MatrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixViewController.h; sourceTree = "<group>"; };
+		F6B77906180DB83E0079EFF6 /* MatrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixViewController.m; sourceTree = "<group>"; };
+		F6B77907180DB83E0079EFF6 /* MatrixView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatrixView.xib; sourceTree = "<group>"; };
 		F6D3776D18000AB900B42BF6 /* StatsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsPanelController.h; sourceTree = "<group>"; };
 		F6D3776E18000AB900B42BF6 /* StatsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsPanelController.m; sourceTree = "<group>"; };
 		F6D3776F18000AB900B42BF6 /* StatsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsPanel.xib; sourceTree = "<group>"; };
@@ -809,6 +814,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F6B77904180DB8080079EFF6 /* MatrixView */,
 				D2FF0D7617F70017003423F7 /* EncodingView */,
 				D28AAFDF17EF34500033BDD4 /* TMTTabView */,
 				D291F56517EDD7AB00BD54AD /* DMSplitView */,
@@ -1167,6 +1173,16 @@
 			path = EncodingView;
 			sourceTree = "<group>";
 		};
+		F6B77904180DB8080079EFF6 /* MatrixView */ = {
+			isa = PBXGroup;
+			children = (
+				F6B77905180DB83E0079EFF6 /* MatrixViewController.h */,
+				F6B77906180DB83E0079EFF6 /* MatrixViewController.m */,
+				F6B77907180DB83E0079EFF6 /* MatrixView.xib */,
+			);
+			path = MatrixView;
+			sourceTree = "<group>";
+		};
 		F6D3776C18000A7000B42BF6 /* StatsPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1257,6 +1273,7 @@
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
 				D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */,
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
+				F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */,
 				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
@@ -1388,6 +1405,7 @@
 				D2E7A5181768E8F400B2BA3C /* CompletionsController.m in Sources */,
 				D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */,
 				D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */,
+				F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */,
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2B0F5B817202C9600B6BBC4 /* Model.xcdatamodeld in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
