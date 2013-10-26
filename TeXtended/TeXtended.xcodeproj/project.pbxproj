@@ -30,7 +30,6 @@
 		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
 		7651063217E723750011ADEF /* NewTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7651063117E723750011ADEF /* NewTemplateController.m */; };
 		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
-		7660E79117F6BD0B00A6574D /* TMTTabViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7660E79017F6BD0B00A6574D /* TMTTabViewItem.m */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
@@ -259,8 +258,6 @@
 		7651063017E723750011ADEF /* NewTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTemplateController.h; sourceTree = "<group>"; };
 		7651063117E723750011ADEF /* NewTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTemplateController.m; sourceTree = "<group>"; };
 		7651063317E723860011ADEF /* NewTemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTemplateSheet.xib; sourceTree = "<group>"; };
-		7660E78F17F6BD0B00A6574D /* TMTTabViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewItem.h; path = TMTTabView/TMTTabViewItem.h; sourceTree = "<group>"; };
-		7660E79017F6BD0B00A6574D /* TMTTabViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewItem.m; path = TMTTabView/TMTTabViewItem.m; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
@@ -992,8 +989,6 @@
 				D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */,
 				D28AAFE517EF34BE0033BDD4 /* TMTTabView.h */,
 				D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */,
-				7660E78F17F6BD0B00A6574D /* TMTTabViewItem.h */,
-				7660E79017F6BD0B00A6574D /* TMTTabViewItem.m */,
 			);
 			name = TMTTabView;
 			sourceTree = "<group>";
@@ -1409,7 +1404,6 @@
 				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
 				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
-				7660E79117F6BD0B00A6574D /* TMTTabViewItem.m in Sources */,
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
 				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,

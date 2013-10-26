@@ -22,12 +22,6 @@ static NSTabViewItem *CURRENT_DRAG_ITEM;
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    [super drawRect:dirtyRect];
-}
-
-
 - (void)mouseDown:(NSEvent *)theEvent {
     NSPoint p = [self convertPoint:theEvent.locationInWindow fromView:nil];
     clickedItem = [self tabViewItemAtPoint:p];
