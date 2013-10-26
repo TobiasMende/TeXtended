@@ -10,7 +10,7 @@
 #import "DMSplitView.h"
 #import "MainDocument.h"
 #import "ViewControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, OutlineViewController, Compilable, TMTTabViewWindow, StatsPanelController;
+@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, Compilable, TMTTabViewWindow, StatsPanelController, OutlineTabViewController;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -43,6 +43,8 @@
 @property  (assign) IBOutlet DMSplitView *contentView;
 
 
+@property IBOutlet OutlineTabViewController* outlineController;
+
 @property (assign) id<MainDocument> mainDocument;
 
 /** the DocumentController controlling the current DocumentModel */
@@ -56,8 +58,6 @@
 /** The controller controlling the export window */
 @property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
 
-/** Controller that handels the outlineView. */
-@property (strong) OutlineViewController* outlineViewController;
 
 /** Controller to a shett to choose templates */
 @property (strong) TemplateController* templateController;

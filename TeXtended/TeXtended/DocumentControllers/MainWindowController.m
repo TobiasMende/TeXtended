@@ -22,6 +22,7 @@
 #import "TMTTabView.h"
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"
+#import "OutlineTabViewController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -60,6 +61,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
     [self.contentView setVertical:flag];
     [self.contentView setSubviews:[NSArray arrayWithObjects:firsTabViewController.view, secondTabViewController.view, nil]];
+    self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
+    self.outlineViewArea.contentView = self.outlineController.view;
     
     self.fileViewController = [[FileViewController alloc] init];
     
