@@ -43,8 +43,6 @@
     [self.tableView setTarget:self];
     [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
     [self.tableView setAction:@selector(handleClick:)];
-    DDLogInfo(@"awakeFromNib");
-    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -156,7 +154,6 @@
 
 
 - (void)handleMessageUpdate:(NSNotification *)note {
-    DDLogInfo(@"handleMessageUpdate");
     [messageLock lock];
     MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
     if (![note.object isKindOfClass:[Compilable class]]) {

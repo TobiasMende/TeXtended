@@ -122,10 +122,5 @@ static const NSSet *COMPILER_NAMES;
 //    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
 //}
 
--(void)willTurnIntoFault {
-    if ([self isEqualTo:self.mainCompilable]) {
-        [TMTNotificationCenter removeCenterForCompilable:self];
-    }
-}
 
 @end
