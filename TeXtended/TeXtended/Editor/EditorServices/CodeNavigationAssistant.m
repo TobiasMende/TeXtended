@@ -104,7 +104,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     if (lineRect.size.width == 0) {
         return;
     }
-    if ([view lockFocusIfCanDraw]) {
+    if ([[NSGraphicsContext currentContext] CIContext] && [view lockFocusIfCanDraw]) {
         [self.currentLineColor set];
         [NSBezierPath fillRect:lineRect];
         [view unlockFocus];
