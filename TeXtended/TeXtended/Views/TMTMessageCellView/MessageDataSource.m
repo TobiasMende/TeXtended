@@ -17,10 +17,10 @@
 #import "DocumentCreationController.h"
 #import "SimpleDocument.h"
 #import "MessageInfoViewController.h"
-#import "TMTCustomView.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 #import "Compilable.h"
+#import "TMTCustomView.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;

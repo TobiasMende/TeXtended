@@ -46,10 +46,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
             
             [self.documentControllers addObject:dc];
-            firsTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
-            secondTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
-            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
         }
+        firsTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
+        secondTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
     return self;
 }

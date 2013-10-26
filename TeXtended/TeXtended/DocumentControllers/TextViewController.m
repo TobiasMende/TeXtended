@@ -26,7 +26,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "TMTNotificationCenter.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
-- (void) initialize;
+- (void) initializeAttributes;
 
 /** Method for handling the and of a compiler task
  
@@ -87,6 +87,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         self.tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:identifier];
         [self.tabViewItem bind:@"label" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
         self.tabViewItem.view = self.view;
+        
     }
     return self;
 }
@@ -236,7 +237,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 - (void)loadView {
     [super loadView];
-    [self initialize];
+    [self initializeAttributes];
     [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
     NSString *content = [self.model loadContent];
     if (content) {
@@ -245,7 +246,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     
 }
 
-- (void)initialize {
+- (void)initializeAttributes {
     lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
     [self.scrollView setVerticalRulerView:lineNumberView];
     [self.scrollView setHasHorizontalRuler:NO];

@@ -34,7 +34,6 @@ ApplicationController *sharedInstance;
 }
 
 
-
 + (ApplicationController *)sharedApplicationController {
     if (!sharedInstance) {
         sharedInstance = [[ApplicationController alloc] init];

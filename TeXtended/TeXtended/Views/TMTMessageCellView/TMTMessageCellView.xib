@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="233" height="34"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                    <rect key="frame" x="31" y="14" width="167" height="17"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="19">
+                    <rect key="frame" x="32" y="14" width="165" height="17"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="20"/>
@@ -32,8 +32,8 @@
                         <binding destination="1" name="toolTip" keyPath="objectValue.title" id="32"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                    <rect key="frame" x="31" y="2" width="167" height="17"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                    <rect key="frame" x="32" y="2" width="165" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="255"/>
@@ -48,8 +48,8 @@
                         <binding destination="1" name="toolTip" keyPath="objectValue.info" id="34"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="174" y="14" width="59" height="17"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="175" y="14" width="57" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="53" id="287"/>
