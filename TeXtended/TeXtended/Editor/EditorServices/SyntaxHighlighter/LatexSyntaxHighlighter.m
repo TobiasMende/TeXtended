@@ -29,7 +29,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
         // In this section,
     COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
     
-    INLINE_MATH_PATTERN = @"(\\$(?:[^\\$]+)\\$)|(\\\\\\[(?:[^\\$]+)\\\\\\])|(\\$\\$(?:[^\\$]+)\\$\\$)";
+    INLINE_MATH_PATTERN = @"(?:[^\\\\])(?:\\$(?:[^\\$]+)\\$)|(\\\\\\[(?:[^\\$]+)\\\\\\])|(\\$\\$(?:[^\\$]+)\\$\\$)";
     
     CURLY_BRACKET_PATTERN = @"(\\{|\\})";
     
