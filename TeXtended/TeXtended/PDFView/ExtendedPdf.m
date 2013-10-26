@@ -95,7 +95,7 @@ static const NSSet *KEYS_TO_UNBIND;
         && p.y <= p2.y + controllsView.view.frame.size.height) {
         
         if ([[[controllsView view] animator] alphaValue] == 0) {
-            [[[controllsView view] animator] setAlphaValue:0.75f];
+            [[[controllsView view] animator] setAlphaValue:0.9f];
             [self setNeedsDisplay:YES];
         }
         
@@ -112,7 +112,7 @@ static const NSSet *KEYS_TO_UNBIND;
     if ([self.displayPageNumbersTimer isValid]) {
         [self.displayPageNumbersTimer invalidate];
     } else {
-        [[[pageNumbers view] animator] setAlphaValue:0.75f];
+        [[[pageNumbers view] animator] setAlphaValue:0.9f];
     }
     
 }
