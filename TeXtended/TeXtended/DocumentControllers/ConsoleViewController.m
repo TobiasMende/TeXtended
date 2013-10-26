@@ -14,6 +14,7 @@
 #import "MessageCollection.h"
 #import "ConsoleOutputView.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 
 static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
@@ -38,13 +39,13 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if(_model) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
         }
         _model = model;
         if(_model) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
         }
     }
 }
@@ -92,7 +93,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
         _consoleMessages = consoleMessages;
         DocumentModel *model = [self.documentController model];
         if (model && consoleMessages) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
+            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
         }
     }
 }
@@ -142,6 +143,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 
 - (void)dealloc {
     DDLogVerbose(@"ConsoleViewController dealloc");
+    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 

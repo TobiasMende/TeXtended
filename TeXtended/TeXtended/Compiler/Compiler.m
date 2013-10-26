@@ -15,6 +15,7 @@
 #import "ForwardSynctex.h"
 #import "TextViewController.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 @interface Compiler ()
 - (void) updateDocumentController;
@@ -41,7 +42,7 @@
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
     NSSet *mainDocuments = [self.documentController.model mainDocuments];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.documentController.model];
+    [[TMTNotificationCenter centerForCompilable:self.documentController.model] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.documentController.model];
     for (DocumentModel *model in mainDocuments) {
         if (!model.texPath) {
             continue;
@@ -80,10 +81,10 @@
             [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
         }
         [task setArguments:arguments];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
+        [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [task setTerminationHandler:^(NSTask *task) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
+                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
             model.lastCompile = [NSDate new];
             if (mode == final && [model.openOnExport boolValue]) {
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];

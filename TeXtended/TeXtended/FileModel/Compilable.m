@@ -10,6 +10,7 @@
 #import "CompileSetting.h"
 #import "Constants.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 static const NSSet *COMPILER_NAMES;
 
@@ -36,6 +37,10 @@ static const NSSet *COMPILER_NAMES;
         [self initDefaults];
     }
     return self;
+}
+
+- (NSString *)dictionaryKey {
+    return [[[self objectID] URIRepresentation] absoluteString];
 }
 
 - (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
@@ -79,6 +84,10 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path {
+    [self modelForTexPath:path byCreating:YES];
+}
+
+- (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
     DDLogError(@"This is not my job. Ask ProjectModel or DocumentModel instead.");
     return nil;
 }
@@ -93,7 +102,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (void)postChangeNotification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
+    [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
 }
 
 - (void)registerCompilerDefaultsObserver:(NSArray *)keys check:(CompileSetting *)setting {
@@ -112,5 +121,11 @@ static const NSSet *COMPILER_NAMES;
 //    [self unregisterCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
 //    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
 //}
+
+-(void)willTurnIntoFault {
+    if ([self isEqualTo:self.mainCompilable]) {
+        [TMTNotificationCenter removeCenterForCompilable:self];
+    }
+}
 
 @end

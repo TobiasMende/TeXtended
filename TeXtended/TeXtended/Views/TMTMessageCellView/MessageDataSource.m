@@ -19,6 +19,8 @@
 #import "MessageInfoViewController.h"
 #import "TMTCustomView.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
+#import "Compilable.h"
 
 @interface MessageDataSource ()
 - (void) handleMessageUpdate:(NSNotification *)note;
@@ -37,9 +39,11 @@
 
 - (void)awakeFromNib {
     messageLock = [[NSLock alloc] init];
+    self.collections = [[NSMutableDictionary alloc] init];
     [self.tableView setTarget:self];
     [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
     [self.tableView setAction:@selector(handleClick:)];
+    DDLogInfo(@"awakeFromNib");
     
 }
 
@@ -55,7 +59,8 @@
     }
     if (row < self.messages.count) {
         TrackingMessage *item = [self.messages objectAtIndex:row];
-        result.model = self.model;
+        //FIXME: TrackingMessage should have model
+        result.model = [self.model modelForTexPath:item.document byCreating:NO];
         result.objectValue = item;
     }
     return result;
@@ -73,11 +78,9 @@
     NSInteger row = [self.tableView clickedRow];
     if (row < self.messages.count) {
         TrackingMessage *message = [self.messages objectAtIndex:row];
-        if ([message.document isEqualToString:self.model.texPath]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:self.model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
-        } else if(self.model.project){
-            //TODO: Hanlde external path in project mode
-            NSBeep();
+        DocumentModel *doc = [self.model modelForTexPath:message.document byCreating:NO];
+        if (doc) {
+            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTShowLineInTextViewNotification object:self.model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
         } else {
             // Open new single document:
             NSURL *url = [NSURL fileURLWithPath:message.document];
@@ -87,8 +90,9 @@
                 } else {
                     if ([document isKindOfClass:[SimpleDocument class]]) {
                         DocumentModel *m = [(SimpleDocument*) document model];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
-                         [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.collection forKey:TMTMessageCollectionKey]];
+                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+                        
+//                         [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.collection forKey:TMTMessageCollectionKey]];
                     }
                 }
             }];
@@ -141,22 +145,36 @@
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if (_model) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessageCollectionChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTMessageCollectionChanged object:nil];
         }
         _model = model;
         if (_model) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessageUpdate:) name:TMTMessageCollectionChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(handleMessageUpdate:) name:TMTMessageCollectionChanged object:nil];
         }
     }
 }
 
 
 - (void)handleMessageUpdate:(NSNotification *)note {
+    DDLogInfo(@"handleMessageUpdate");
     [messageLock lock];
-    self.collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    if (![note.object isKindOfClass:[Compilable class]]) {
+        DDLogError(@"Unexpected sender!");
+        return;
+    }
+    if (collection) {
+            [self.collections setObject:[note.userInfo objectForKey:TMTMessageCollectionKey] forKey:[(Compilable*)note.object dictionaryKey]];
+    } else {
+        [self.collections removeObjectForKey:[(Compilable*)note.object dictionaryKey]];
+    }
     
-    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:self.collection.count];
-    [temp addObjectsFromArray:[self.collection.set allObjects]];
+    NSMutableArray *temp = [NSMutableArray new];
+    
+    for (MessageCollection *collection in self.collections.allValues) {
+        [temp addObjectsFromArray:[collection.set allObjects]];
+        
+    }
     [temp sortUsingSelector:@selector(compare:)];
     self.messages = temp;
     [messageLock unlock];
@@ -170,6 +188,7 @@
     self.tableView.dataSource = nil;
     
     self.tableView.delegate = nil;
+    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

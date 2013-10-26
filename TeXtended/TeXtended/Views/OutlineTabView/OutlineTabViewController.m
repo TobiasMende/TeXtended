@@ -8,6 +8,7 @@
 
 #import "OutlineTabViewController.h"
 #import "MessageOutlineViewController.h"
+#import "MainWindowController.h"
 #import "TMTLog.h"
 
 @interface OutlineTabViewController ()
@@ -36,7 +37,7 @@
 - (void)loadView {
     [super loadView];
     self.tabView = (NSTabView*)self.view;
-    self.messageOutlineViewController = [MessageOutlineViewController new];
+    self.messageOutlineViewController = [[MessageOutlineViewController alloc] initWithModel:self.mainWindowController.mainCompilable];
     [[self.tabView tabViewItemAtIndex:0] setView:self.messageOutlineViewController.view];
 }
 

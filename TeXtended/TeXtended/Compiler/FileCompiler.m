@@ -11,6 +11,7 @@
 #import "CompileFlowHandler.h"
 #import "CompileSetting.h"
 #import "Constants.h"
+#import "TMTNotificationCenter.h"
 
 @implementation FileCompiler
 
@@ -42,11 +43,11 @@
         [task setLaunchPath:path];
         [task setArguments:[NSArray arrayWithObjects:[[self model] texPath], [[self model] pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
                             [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:[self model]];
+        [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerDidStartCompiling object:[self model]];
         
         [task setTerminationHandler:^(NSTask *task) {
-            if ([NSNotificationCenter defaultCenter]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:[self model]];
+            if ([NSNotificationCenter defaultCenter] && !self.model.isFault) {
+                [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerDidEndCompiling object:[self model]];
             }
         }];
         

@@ -14,6 +14,7 @@
 #import "TMTLog.h"
 #import "DocumentCreationController.h"
 #import "EncodingController.h"
+#import "TMTNotificationCenter.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -93,22 +94,24 @@ static NSArray *TMTEncodingsToCheck;
         }
     }
     if (content) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidLoadDocumentModelContent object:self];
+        [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];
     }
     
     return content;
 }
 
-- (DocumentModel *)modelForTexPath:(NSString *)path {
+
+- (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
     if ([self.texPath isEqualToString:path]) {
         return self;
     } else if(self.project) {
         return [self.project modelForTexPath:path];
-    } else {
+    } else if(shouldCreate){
         DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
         model.texPath = path;
         return model;
     }
+    return nil;
 }
 
 
@@ -132,7 +135,7 @@ static NSArray *TMTEncodingsToCheck;
         }
     }
     if (success) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
+        [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidSaveDocumentModelContent object:self];
     }
     return success;
 }
@@ -230,14 +233,14 @@ static NSArray *TMTEncodingsToCheck;
     if (!self.project) {
         return;
     }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
+        [[TMTNotificationCenter centerForCompilable:self] addObserver:self selector:@selector(postChangeNotification) name:TMTDocumentModelDidChangeNotification object:self.project];
 }
 
 - (void)unregisterProjectObserver {
     if (!self.project) {
         return;
     }
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
+        [[TMTNotificationCenter centerForCompilable:self] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.project];
 }
 
 
@@ -466,7 +469,8 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)willTurnIntoFault {
     DDLogInfo(@"will turn into fault");
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
     [self unregisterProjectObserver];

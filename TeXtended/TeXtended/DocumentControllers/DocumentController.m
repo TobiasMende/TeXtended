@@ -17,6 +17,7 @@
 #import "DDLog.h"
 #import "TMTLog.h"
 #import "ExtendedPDFViewController.h"
+#import "TMTNotificationCenter.h"
 
 static const NSSet *SELECTORS_HANDLED_BY_PDF;
 static NSUInteger calls = 0;
@@ -73,13 +74,13 @@ static NSUInteger calls = 0;
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if (self.model) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
+            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
         }
         _model = model;
         
         [self updateViewsAfterModelChange];
         if (self.model) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
+            [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
         }
     }
 }
@@ -140,6 +141,7 @@ static NSUInteger calls = 0;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

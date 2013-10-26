@@ -15,6 +15,7 @@
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSSet *KEYS_TO_UNBIND;
@@ -135,7 +136,7 @@ static const NSSet *KEYS_TO_UNBIND;
     path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
     
     if ([path isEqualToString:compiledModel.texPath]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+        [[TMTNotificationCenter centerForCompilable:compiledModel] postNotificationName:TMTShowLineInTextViewNotification object:documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
     } else if(documentsModel.project){
         //TODO: Hanlde external path in project mode
         NSBeep();
@@ -148,9 +149,9 @@ static const NSSet *KEYS_TO_UNBIND;
             } else {
                 if ([document isKindOfClass:[SimpleDocument class]]) {
                     DocumentModel *m = [(SimpleDocument*) document model];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+                    [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
                     if (self.controller.consoleMessages) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
                     }
                 }
             }

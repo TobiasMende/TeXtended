@@ -9,11 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 
-@class TrackingMessage,DocumentModel;
-@interface MessageInfoViewController : NSViewController
+@class TrackingMessage,Compilable;
+@interface MessageInfoViewController : NSViewController {
+    NSNumber *isExternalCache;
+}
 
 @property TrackingMessage *message;
-@property DocumentModel *model;
+@property (nonatomic) Compilable *model;
 
 - (BOOL)isExternal;
 - (NSImage *)image;

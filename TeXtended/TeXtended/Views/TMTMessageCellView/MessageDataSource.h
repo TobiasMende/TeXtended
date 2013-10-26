@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class DocumentModel, MessageCollection, TrackingMessage, TMTTableView, MessageInfoViewController;
+@class Compilable, MessageCollection, TrackingMessage, TMTTableView, MessageInfoViewController;
 @interface MessageDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
     MessageInfoViewController *infoController;
     NSPopover *popover;
     NSLock *messageLock;
 }
 @property (strong) IBOutlet TMTTableView *tableView;
-@property (strong) MessageCollection *collection;
+@property (strong) NSMutableDictionary *collections;
 @property NSArray *messages;
-@property (strong,nonatomic) DocumentModel *model;
+@property (strong,nonatomic) Compilable *model;
 @end

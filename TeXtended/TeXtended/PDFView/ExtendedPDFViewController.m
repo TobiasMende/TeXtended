@@ -16,6 +16,7 @@
 #import "DocumentController.h"
 #import "MainDocument.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
@@ -58,7 +59,7 @@
         BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
         if (beginTex && endTex) {
             DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
         }
         // TODO: add support for not opened documents!
     } else {
@@ -70,12 +71,12 @@
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if(_model) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
         }
         _model = model;
         [self updateTabViewItem];
         if (_model) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
             
         }
     }
@@ -145,7 +146,7 @@
 #ifdef DEBUG
     DDLogError(@"ExtendedPDFViewController dealloc");
 #endif
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
 }
 
 @end

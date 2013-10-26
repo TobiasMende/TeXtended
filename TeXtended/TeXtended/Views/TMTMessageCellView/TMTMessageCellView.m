@@ -43,13 +43,13 @@
     } else if ([key isEqualToString:@"message"]){
         keys = [keys setByAddingObject:@"objectValue"];
     } else if ([key isEqualToString:@"isExternal"]) {
-        keys = [keys setByAddingObjectsFromArray:[NSArray arrayWithObjects:@"self.model.texPath", @"self.message.document", nil]];
+        keys = [keys setByAddingObjectsFromArray:[NSArray arrayWithObjects:@"self.model", @"self.message.document", nil]];
     }
     return keys;
 }
 
 
 - (BOOL)isExternal {
-    return ![self.model.texPath isEqualToString:self.message.document] && (self.message.document != nil && self.model.texPath != nil);
+    return !self.model;
 }
 @end

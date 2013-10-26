@@ -7,6 +7,9 @@
 //
 
 #import "MessageOutlineViewController.h"
+#import "Compilable.h"
+#import "MessageDataSource.h"
+#import "TMTLog.h"
 
 @interface MessageOutlineViewController ()
 
@@ -24,10 +27,18 @@
 }
 
 
-- (id)init {
+- (id)initWithModel:(Compilable*)model {
     self = [self initWithNibName:@"MessageOutlineView" bundle:nil];
-    NSLog(@"%@",self);
+    if (self) {
+        self.model = model;
+        
+    }
     return self;
+}
+
+-(void)loadView {
+    [super loadView];
+    [self.messageDataSource setModel:self.model];
 }
 
 @end

@@ -65,16 +65,21 @@
 }
 
 
-- (DocumentModel *)modelForTexPath:(NSString *)path {
+
+- (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
     for (DocumentModel *model in self.documents) {
         if ([model.texPath isEqualToString:path]) {
             return model;
         }
     }
-    DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
-    [self addDocumentsObject:model];
-    model.texPath = path;
-    return model;
+    if (shouldCreate) {
+        DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
+        [self addDocumentsObject:model];
+        model.texPath = path;
+        return model;
+    } else {
+        return nil;
+    }
 }
 
 - (NSString *)type {

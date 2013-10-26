@@ -61,12 +61,16 @@
  */
 - (DocumentModel *) modelForTexPath:(NSString *)path;
 
+- (DocumentModel *) modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate;
+
 /**
  Method for posting a notification to the notificatio center if this object might have any changes.
  
  */
 - (void)postChangeNotification;
 - (void) internalSetValue:(id)value forKey:(NSString *)key;
+
+- (NSString*) dictionaryKey;
 @end
 
 @interface Compilable (CoreDataGeneratedAccessors)
