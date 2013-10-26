@@ -7,7 +7,7 @@
 //
 
 #import "EditorService.h"
-@class Completion;
+@class Completion, EnvironmentCompletion;
 @interface CompletionHandler : EditorService
 
 /** if `YES` the environment content is automatically indended on the next line */
@@ -80,4 +80,15 @@
  @return `YES` if the insertion should be completed, `NO` otherwise.
  */
 - (BOOL) shouldCompleteForInsertion:(NSString*) insertion;
+
+/**
+ Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \begin{...} and \end{...} completions.
+ 
+ @param word the completion word
+ @param charRange the prefix range
+ @param movement the text movement
+ @param flag useless flag
+ */
+- (void)insertEnvironmentCompletion:(EnvironmentCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
 @end

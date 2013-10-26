@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class EnvironmentCompletion;
 @interface MatrixViewController : NSWindowController
 
 @property NSInteger rows;
@@ -20,8 +21,6 @@
 
 @property (readonly) NSInteger minimumTableSize;
 
-@property (nonatomic) NSString* matrixTemplate;
-
 /** Method for aborting the sheet
  @param sender the sender
  */
@@ -31,5 +30,7 @@
  @param sender the sender
  */
 - (IBAction)OKSheet:(id)sender;
+
+- (EnvironmentCompletion *)matrixCompletion;
 
 @end

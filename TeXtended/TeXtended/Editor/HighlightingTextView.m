@@ -14,6 +14,7 @@
 #import "PlaceholderServices.h"
 #import "EditorPlaceholder.h"
 #import "Completion.h"
+#import "EnvironmentCompletion.h"
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
@@ -361,7 +362,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
     if (returnCode == NSRunStoppedResponse) {
-        [self insertText:matrixView.matrixTemplate];
+        EnvironmentCompletion *completion = [matrixView matrixCompletion];
+        DDLogVerbose(@"%@",completion);
+        [completionHandler insertEnvironmentCompletion:completion forPartialWordRange:self.selectedRange movement:NSReturnTextMovement isFinal:YES];
+        DDLogInfo(@"Completion finished");
     }
 }
 

@@ -64,15 +64,7 @@ typedef enum {
 - (void)insertCommandCompletion:(CommandCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 
-/**
- Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \begin{...} and \end{...} completions.
- 
- @param word the completion word
- @param charRange the prefix range
- @param movement the text movement
- @param flag useless flag
- */
-- (void)insertEnvironmentCompletion:(EnvironmentCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
 
 /**
  Method for detecting the completion type by the prefix range.
@@ -264,7 +256,7 @@ typedef enum {
     //Attention: Word isn't a string. its an EnvironmentCompletion ;)
     
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
-    if (type != TMTBeginCompletion) {
+    if (type != TMTBeginCompletion && type != TMTNoCompletion) {
         return;
     }
     if (!flag || ![self isFinalInsertion:movement]) {
@@ -272,7 +264,14 @@ typedef enum {
         return;
     }
     completion.counter++;
-    [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+    NSString *start;
+    if (type == TMTNoCompletion) {
+        start = [NSString stringWithFormat:@"\\begin{%@}", completion.insertion];
+        [view insertText:start replacementRange:charRange];
+    } else {
+        [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+    }
+    
     [self skipClosingBracket];
     NSUInteger position = [view selectedRange].location;
     // NSRange visible = [view visibleRange];

@@ -8,8 +8,10 @@
 
 #import "MatrixViewController.h"
 #import "TMTLog.h"
+#import "EnvironmentCompletion.h"
 
 @interface MatrixViewController ()
+- (NSString*) placeholderForPosition:(NSUInteger)row andCol:(NSUInteger)col;
 
 @end
 
@@ -43,42 +45,41 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
--(NSString*)matrixTemplate
+-(EnvironmentCompletion *)matrixCompletion
 {
-    NSString* retTemplate;
-    retTemplate = @"\\begin{";
-    retTemplate = [retTemplate stringByAppendingString:self.type];
-    retTemplate = [retTemplate stringByAppendingString:@"}"];
+    EnvironmentCompletion *completion = [[EnvironmentCompletion alloc] initWithInsertion:self.type];
+    completion.hasPlaceholders = YES;
     
     if (self.alignment) {
-        retTemplate = [retTemplate stringByAppendingString:@"{"];
-        for (NSInteger i = 0; i < self.columns; i++) {
-            retTemplate = [retTemplate stringByAppendingString:@"c"];
+        NSMutableString *firstLine = [NSMutableString new];
+        [firstLine appendString:@"{"];
+        for (NSUInteger i = 0; i < self.columns; i++) {
+            [firstLine appendString:@"c"];
         }
-        retTemplate = [retTemplate stringByAppendingString:@"}"];
+        [firstLine appendString:@"}"];
+        completion.firstLineExtension = firstLine;
     }
+    NSMutableString *extension = [NSMutableString new];
     
-    retTemplate = [retTemplate stringByAppendingString:@"\n"];
-    
-    for (NSInteger i = 0; i < self.rows-1; i++) {
-        for (NSInteger j = 0; j < self.columns-1; j++) {
-            retTemplate = [retTemplate stringByAppendingString:@"@@entry@@ & "];
+    for (NSUInteger i = 0; i < self.rows-1; i++) {
+        for (NSUInteger j = 0; j < self.columns-1; j++) {
+            [extension appendFormat:@"%@ & ", [self placeholderForPosition:i andCol:j]];
         }
-        retTemplate = [retTemplate stringByAppendingString:@"@@entry@@\\\\\n"];
+        [extension appendFormat:@"%@\\\\\\n\\t", [self placeholderForPosition:i andCol:self.columns]];
     }
     
-    for (NSInteger j = 0; j < self.columns-1; j++) {
-        retTemplate = [retTemplate stringByAppendingString:@"@@entry@@ & "];
+    for (NSUInteger j = 0; j < self.columns-1; j++) {
+        [extension appendFormat:@"%@ & ", [self placeholderForPosition:self.rows andCol:j]];
     }
-    retTemplate = [retTemplate stringByAppendingString:@"@@entry@@\n"];
+    [extension appendString:[self placeholderForPosition:self.rows andCol:self.columns]];
     
-    retTemplate = [retTemplate stringByAppendingString:@"\\end{"];
-    retTemplate = [retTemplate stringByAppendingString:self.type];
-    retTemplate = [retTemplate stringByAppendingString:@"}\n"];
+    completion.extension = extension;
+    return completion;
     
-    _matrixTemplate = retTemplate;
-    
-    return _matrixTemplate;
+}
+
+- (NSString *)placeholderForPosition:(NSUInteger)row andCol:(NSUInteger)col {
+    return [NSString stringWithFormat:@"@@a-%ld,%ld@@", row, col];
 }
 
 - (IBAction)cancelSheet:(id)sender {
