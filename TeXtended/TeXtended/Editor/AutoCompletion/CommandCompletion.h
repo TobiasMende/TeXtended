@@ -13,7 +13,7 @@
  
  @author Tobias Mende
  */
-@interface CommandCompletion : Completion <NSCoding>
+@interface CommandCompletion : Completion
 
 /** The type of this completion (e.g. normal, cite, label or ref) */
 @property (strong, nonatomic) NSString *completionType;

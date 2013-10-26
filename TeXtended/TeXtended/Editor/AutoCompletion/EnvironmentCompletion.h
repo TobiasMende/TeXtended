@@ -14,7 +14,7 @@
  
  @author Tobias Mende
  */
-@interface EnvironmentCompletion : Completion <NSCoding>
+@interface EnvironmentCompletion : Completion
 
 /** The extension which should be inserted directly after the `\begin{...}` tag. */
 @property (strong) NSString *firstLineExtension;

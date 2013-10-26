@@ -12,7 +12,7 @@
  
  @author Tobias Mende
  */
-@interface Completion : NSObject
+@interface Completion : NSObject <NSCoding>
 /** The basic insertion (e.g. a \command or an environment name) */
 @property (strong,nonatomic) NSString *insertion;
 /** Counter for the number of insertions */

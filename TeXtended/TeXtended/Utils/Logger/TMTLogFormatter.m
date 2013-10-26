@@ -73,7 +73,7 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 25;
 }
 
 + (NSString *)extendClassPart:(NSString *)classPart {
-    NSUInteger diff = MAX_CLASS_NAME_LENGTH - classPart.length;
+    //NSUInteger diff = MAX_CLASS_NAME_LENGTH - classPart.length;
     if (MAX_CLASS_NAME_LENGTH > classPart.length) {
         return [classPart stringByPaddingToLength:MAX_CLASS_NAME_LENGTH withString:@" " startingAtIndex:0];
     }

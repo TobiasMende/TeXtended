@@ -450,11 +450,11 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string></string>
+		<string>[@@label@@]</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
-		<string>\item[@@label@@]</string>
+		<string>\item</string>
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
