@@ -49,9 +49,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 
 
-- (void)printDocument:(id)sender {
-    [self.mainWindowController.activeDocumentController performSelector:@selector(printDocument:)];
-}
 
 
 

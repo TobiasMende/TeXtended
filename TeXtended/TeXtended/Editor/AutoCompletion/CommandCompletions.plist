@@ -164,7 +164,7 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>{\@@counter@@}</string>
+		<string>{@@counter@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
@@ -172,7 +172,7 @@
 	</dict>
 	<dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>{\@@counter@@}{@@value@@}</string>
+		<string>{@@counter@@}{@@value@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
@@ -570,7 +570,7 @@
 	</dict>
     <dict>
 		<key>TMTCompletionExtensionKey</key>
-		<string>{\@@counter@@}{@@value@@}</string>
+		<string>{@@counter@@}{@@value@@}</string>
 		<key>TMTCompletionHasPlaceholdersKey</key>
 		<true/>
 		<key>TMTCompletionInsertionKey</key>
