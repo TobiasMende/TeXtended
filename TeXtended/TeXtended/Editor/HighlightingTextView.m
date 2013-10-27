@@ -363,9 +363,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
     if (returnCode == NSRunStoppedResponse) {
         EnvironmentCompletion *completion = [matrixView matrixCompletion];
-        DDLogVerbose(@"%@",completion);
         [completionHandler insertEnvironmentCompletion:completion forPartialWordRange:self.selectedRange movement:NSReturnTextMovement isFinal:YES];
-        DDLogInfo(@"Completion finished");
     }
 }
 

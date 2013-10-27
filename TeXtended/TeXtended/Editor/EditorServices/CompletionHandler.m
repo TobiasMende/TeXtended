@@ -253,7 +253,7 @@ typedef enum {
 }
 
 - (void)insertEnvironmentCompletion:(EnvironmentCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    //Attention: Word isn't a string. its an EnvironmentCompletion ;)
+    
     
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     if (type != TMTBeginCompletion && type != TMTNoCompletion) {
@@ -285,7 +285,7 @@ typedef enum {
     
    
     NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
-    if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
+    if (!(view.currentModifierFlags&NSAlternateKeyMask) || type == TMTNoCompletion) {
         [view.undoManager beginUndoGrouping];
         [view setSelectedRange:NSMakeRange(position, 0)];
         NSMutableAttributedString *string = [NSMutableAttributedString new];
