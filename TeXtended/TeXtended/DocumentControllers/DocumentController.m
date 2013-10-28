@@ -19,9 +19,6 @@
 #import "ExtendedPDFViewController.h"
 #import "TMTNotificationCenter.h"
 
-static const NSSet *SELECTORS_HANDLED_BY_PDF;
-static NSUInteger calls = 0;
-
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
 @end
@@ -32,10 +29,7 @@ static NSUInteger calls = 0;
         
         /* put initialization code here */
         
-        calls++;
-        SELECTORS_HANDLED_BY_PDF = [NSSet setWithObjects:NSStringFromSelector(@selector(printDocument:)), nil];
     }
-    assert(calls < 2);
 }
 
 - (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc {
@@ -44,11 +38,9 @@ static NSUInteger calls = 0;
         DDLogVerbose(@"DocumentController: Init");
         self.model = model;
         _windowController = wc;
-        // FIXME: Set main document
         
         _consoleViewControllers = [NSMutableSet new];
         
-        // TODO: init my view controllers by asking the MainWindowController
         _compiler = [[Compiler alloc] initWithDocumentController:self];
         [self.textViewController addObserver:self.compiler];
     }
