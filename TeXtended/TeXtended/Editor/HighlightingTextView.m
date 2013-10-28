@@ -269,12 +269,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
 }
 
-- (void)setNeedsDisplay:(BOOL)flag {
-    [super setNeedsDisplay:flag];
-    if (flag) {
-        [self.codeNavigationAssistant highlight];
-    }
-}
 
 
 - (NSRange) extendedVisibleRange {

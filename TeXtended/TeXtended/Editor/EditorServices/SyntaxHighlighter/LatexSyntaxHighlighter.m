@@ -161,7 +161,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
  
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
-    [view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
+    //[view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];

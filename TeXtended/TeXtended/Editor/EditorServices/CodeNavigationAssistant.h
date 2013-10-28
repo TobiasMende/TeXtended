@@ -38,7 +38,7 @@
  @param range the selected range in the view
  
  */
-- (void) highlightCurrentLineForegroundWithRange:(NSRange)range;
+//- (void) highlightCurrentLineForegroundWithRange:(NSRange)range;
 
 /**
  Method for highlighting the carret's position.
