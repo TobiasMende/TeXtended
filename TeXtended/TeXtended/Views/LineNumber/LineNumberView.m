@@ -161,6 +161,8 @@
         [self initVariables];
         [self observeScrolling:scrollView];
         [self setClientView:[scrollView documentView]];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMT_EDITOR_FONT_NAME options:NSKeyValueObservingOptionNew context:NULL];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMT_EDITOR_FONT_SIZE options:NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
@@ -173,7 +175,7 @@
     _textColor          = [NSColor darkGrayColor];
     
     lines = [[NSMutableArray alloc] init];
-    numberFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:10.0];
+    numberFont = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] valueForKey:TMT_EDITOR_FONT_NAME] size:[[[NSUserDefaults standardUserDefaults] valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
     numberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [numberStyle setAlignment:NSRightTextAlignment];
     
@@ -255,6 +257,9 @@
  */
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
+    if ([keyPath isEqualToString:TMT_EDITOR_FONT_NAME] || [keyPath isEqualToString:TMT_EDITOR_FONT_SIZE]) {
+        numberFont = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] valueForKey:TMT_EDITOR_FONT_NAME] size:[[[NSUserDefaults standardUserDefaults] valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
+    }
     [self setNeedsDisplay:YES];
 }
 
@@ -708,6 +713,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"messageCollection"];
     [self unbind:@"messageCollection"];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMT_EDITOR_FONT_NAME];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMT_EDITOR_FONT_SIZE];
 }
 
 @end

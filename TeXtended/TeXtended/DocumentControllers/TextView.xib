@@ -2,19 +2,20 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
-		<string key="IBDocument.InterfaceBuilderVersion">4510</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.SystemVersion">13A603</string>
+		<string key="IBDocument.InterfaceBuilderVersion">4514</string>
+		<string key="IBDocument.AppKitVersion">1265</string>
+		<string key="IBDocument.HIToolboxVersion">695.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">4510</string>
+			<string key="NS.object.0">4514</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSCustomObject</string>
 			<string>NSScrollView</string>
 			<string>NSScroller</string>
 			<string>NSTextView</string>
+			<string>NSUserDefaultsController</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -34,7 +35,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSScrollView" id="830351946">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSClipView" id="438429443">
@@ -44,9 +45,29 @@
 							<object class="NSTextView" id="584217018">
 								<reference key="NSNextResponder" ref="438429443"/>
 								<int key="NSvFlags">2322</int>
+								<set class="NSMutableSet" key="NSDragTypes">
+									<string>Apple HTML pasteboard type</string>
+									<string>Apple PDF pasteboard type</string>
+									<string>Apple PICT pasteboard type</string>
+									<string>Apple PNG pasteboard type</string>
+									<string>Apple URL pasteboard type</string>
+									<string>CorePasteboardFlavorType 0x6D6F6F76</string>
+									<string>NSColor pasteboard type</string>
+									<string>NSFilenamesPboardType</string>
+									<string>NSStringPboardType</string>
+									<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+									<string>NeXT RTFD pasteboard type</string>
+									<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+									<string>NeXT TIFF v4.0 pasteboard type</string>
+									<string>NeXT font pasteboard type</string>
+									<string>NeXT ruler pasteboard type</string>
+									<string>WebURLsWithTitlesPboardType</string>
+									<string>public.url</string>
+								</set>
 								<string key="NSFrameSize">{440, 397}</string>
 								<reference key="NSSuperview" ref="438429443"/>
-								<reference key="NSNextKeyView" ref="705059121"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="783237092"/>
 								<string key="NSReuseIdentifierKey">_NS:13</string>
 								<object class="NSTextContainer" key="NSTextContainer" id="549277320">
 									<object class="NSLayoutManager" key="NSLayoutManager">
@@ -112,12 +133,12 @@
 								</object>
 								<int key="NSTVFlags">6</int>
 								<string key="NSMaxSize">{694, 10000000}</string>
-								<string key="NSMinize">{455, 397}</string>
 								<nil key="NSDelegate"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{1, 1}, {455, 397}}</string>
 						<reference key="NSSuperview" ref="830351946"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="584217018"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="NSDocView" ref="584217018"/>
@@ -148,6 +169,8 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{440, 1}, {16, 397}}</string>
 						<reference key="NSSuperview" ref="830351946"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:83</string>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						<reference key="NSTarget" ref="830351946"/>
@@ -159,6 +182,7 @@
 						<int key="NSvFlags">-2147483392</int>
 						<string key="NSFrame">{{-100, -100}, {87, 18}}</string>
 						<reference key="NSSuperview" ref="830351946"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="438429443"/>
 						<string key="NSReuseIdentifierKey">_NS:33</string>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -170,7 +194,9 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{457, 399}</string>
-				<reference key="NSNextKeyView" ref="438429443"/>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="705059121"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSAntiCompressionPriority">{1, 1}</string>
 				<int key="NSsFlags">198674</int>
@@ -180,6 +206,9 @@
 				<double key="NSMinMagnification">0.25</double>
 				<double key="NSMaxMagnification">4</double>
 				<double key="NSMagnification">1</double>
+			</object>
+			<object class="NSUserDefaultsController" id="658631443">
+				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -215,6 +244,73 @@
 						<reference key="destination" ref="1001"/>
 					</object>
 					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">fontBold: values.TMT_EDITOR_FONT_BOLD</string>
+						<reference key="source" ref="584217018"/>
+						<reference key="destination" ref="658631443"/>
+						<object class="NSNibBindingConnector" key="connector" id="503925441">
+							<reference key="NSSource" ref="584217018"/>
+							<reference key="NSDestination" ref="658631443"/>
+							<string key="NSLabel">fontBold: values.TMT_EDITOR_FONT_BOLD</string>
+							<string key="NSBinding">fontBold</string>
+							<string key="NSKeyPath">values.TMT_EDITOR_FONT_BOLD</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">fontFamilyName: values.TMT_EDITOR_FONT_NAME</string>
+						<reference key="source" ref="584217018"/>
+						<reference key="destination" ref="658631443"/>
+						<object class="NSNibBindingConnector" key="connector" id="600634787">
+							<reference key="NSSource" ref="584217018"/>
+							<reference key="NSDestination" ref="658631443"/>
+							<string key="NSLabel">fontFamilyName: values.TMT_EDITOR_FONT_NAME</string>
+							<string key="NSBinding">fontFamilyName</string>
+							<string key="NSKeyPath">values.TMT_EDITOR_FONT_NAME</string>
+							<reference key="NSPreviousConnector" ref="503925441"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">63</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">fontItalic: values.TMT_EDITOR_FONT_ITALIC</string>
+						<reference key="source" ref="584217018"/>
+						<reference key="destination" ref="658631443"/>
+						<object class="NSNibBindingConnector" key="connector" id="367386804">
+							<reference key="NSSource" ref="584217018"/>
+							<reference key="NSDestination" ref="658631443"/>
+							<string key="NSLabel">fontItalic: values.TMT_EDITOR_FONT_ITALIC</string>
+							<string key="NSBinding">fontItalic</string>
+							<string key="NSKeyPath">values.TMT_EDITOR_FONT_ITALIC</string>
+							<reference key="NSPreviousConnector" ref="600634787"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">fontSize: values.TMT_EDITOR_FONT_SIZE</string>
+						<reference key="source" ref="584217018"/>
+						<reference key="destination" ref="658631443"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="584217018"/>
+							<reference key="NSDestination" ref="658631443"/>
+							<string key="NSLabel">fontSize: values.TMT_EDITOR_FONT_SIZE</string>
+							<string key="NSBinding">fontSize</string>
+							<string key="NSKeyPath">values.TMT_EDITOR_FONT_SIZE</string>
+							<reference key="NSPreviousConnector" ref="367386804"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">69</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -268,6 +364,11 @@
 						<reference key="object" ref="783237092"/>
 						<reference key="parent" ref="830351946"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">50</int>
+						<reference key="object" ref="658631443"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -277,6 +378,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.CustomClassName">HighlightingTextView</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
@@ -284,9 +386,122 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">49</int>
+			<int key="maxID">69</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">HighlightingTextView</string>
+					<string key="superclassName">NSTextView</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="commentSelection:">id</string>
+						<string key="deleteLines:">id</string>
+						<string key="goToLine:">id</string>
+						<string key="hardWrapText:">id</string>
+						<string key="jumpNextAnchor:">id</string>
+						<string key="jumpPreviousAnchor:">id</string>
+						<string key="matrixView:">id</string>
+						<string key="moveLinesDown:">id</string>
+						<string key="moveLinesUp:">id</string>
+						<string key="toggleComment:">id</string>
+						<string key="uncommentSelection:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="commentSelection:">
+							<string key="name">commentSelection:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="deleteLines:">
+							<string key="name">deleteLines:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goToLine:">
+							<string key="name">goToLine:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="hardWrapText:">
+							<string key="name">hardWrapText:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpNextAnchor:">
+							<string key="name">jumpNextAnchor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="jumpPreviousAnchor:">
+							<string key="name">jumpPreviousAnchor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="matrixView:">
+							<string key="name">matrixView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="moveLinesDown:">
+							<string key="name">moveLinesDown:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="moveLinesUp:">
+							<string key="name">moveLinesUp:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleComment:">
+							<string key="name">toggleComment:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="uncommentSelection:">
+							<string key="name">uncommentSelection:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HighlightingTextView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTextView</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="orderFrontSharingServicePicker:">id</string>
+						<string key="toggleQuickLookPreviewPanel:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="orderFrontSharingServicePicker:">
+							<string key="name">orderFrontSharingServicePicker:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleQuickLookPreviewPanel:">
+							<string key="name">toggleQuickLookPreviewPanel:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSTextView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">TextViewController</string>
+					<string key="superclassName">NSViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="scrollView">NSScrollView</string>
+						<string key="textView">HighlightingTextView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">NSScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="textView">
+							<string key="name">textView</string>
+							<string key="candidateClassName">HighlightingTextView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/TextViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">YES</bool>

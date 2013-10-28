@@ -146,7 +146,10 @@ ApplicationController *sharedInstance;
                               @"",TMTLiveCompileArgs,
                               @"",TMTDraftCompileArgs,
                               @"",TMTFinalCompileArgs,
-                              [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"SourceCodePro-Regular" size:12.0]], TMT_EDITOR_FONT,
+                              @"Source Code Pro", TMT_EDITOR_FONT_NAME,
+                              [NSNumber numberWithFloat:12.0], TMT_EDITOR_FONT_SIZE,
+                              [NSNumber numberWithBool:NO], TMT_EDITOR_FONT_ITALIC,
+                              [NSNumber numberWithBool:NO], TMT_EDITOR_FONT_BOLD,
                               nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];

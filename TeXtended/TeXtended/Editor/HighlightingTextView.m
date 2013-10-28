@@ -95,7 +95,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     
     
-    [self bind:@"font" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT] options:option];
+//    [self bind:@"font" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT] options:option];
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
     bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
     _codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
@@ -115,6 +115,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
     [self setAutomaticTextReplacementEnabled:NO];
+    [self setUsesFontPanel:NO];
     self.servicesOn = YES;
     
     
@@ -786,7 +787,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER]]) {
         self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
-    }
+    } 
 }
 
 

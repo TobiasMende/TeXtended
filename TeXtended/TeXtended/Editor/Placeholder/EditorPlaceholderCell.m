@@ -17,7 +17,8 @@
     if (self) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSFont *textFont = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:TMT_EDITOR_FONT]];
+        
+        NSFont *textFont = [NSFont fontWithName:[defaults valueForKey:TMT_EDITOR_FONT_NAME] size:[[defaults valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
         [dict setValue:textFont forKey:NSFontAttributeName];
         NSAttributedString *str = [[NSAttributedString alloc] initWithString:aString attributes:dict];
         [self setAttributedStringValue:str];
@@ -48,7 +49,7 @@
     NSAttributedString *string = [self attributedStringValue];
     NSMutableAttributedString *smallerString = [[NSMutableAttributedString alloc] initWithAttributedString:string];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSFont *textFont = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:TMT_EDITOR_FONT]];
+    NSFont *textFont = [NSFont fontWithName:[defaults valueForKey:TMT_EDITOR_FONT_NAME] size:[[defaults valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
     [smallerString addAttribute:NSFontAttributeName
                           value:[NSFont fontWithName:[textFont fontName] size:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]
                           range:NSMakeRange(0, [string length])];

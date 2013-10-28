@@ -41,8 +41,10 @@
 /*
  KVC keys for fonts
  */
-#define TMT_EDITOR_FONT @"TMTEditorFont"
-
+#define TMT_EDITOR_FONT_NAME @"TMT_EDITOR_FONT_NAME"
+#define TMT_EDITOR_FONT_SIZE @"TMT_EDITOR_FONT_SIZE"
+#define TMT_EDITOR_FONT_BOLD @"TMT_EDITOR_FONT_BOLD"
+#define TMT_EDITOR_FONT_ITALIC @"TMT_EDITOR_FONT_ITALIC"
 
 /*
  KVC keys for numbers
