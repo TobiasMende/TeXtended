@@ -83,6 +83,10 @@
     }
 }
 
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate {
+    self.pdfView.firstResponderDelegate = delegate;
+}
+
 - (void)updateTabViewItem {
     if (!self.model) {
         return;

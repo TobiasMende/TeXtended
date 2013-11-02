@@ -49,6 +49,7 @@
 }
 
 - (void)dealloc {
+    [tabBar setDelegate:nil];
     DDLogVerbose(@"dealloc");
 }
 

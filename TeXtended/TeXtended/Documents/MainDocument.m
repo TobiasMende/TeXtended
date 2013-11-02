@@ -11,6 +11,7 @@
 #import "DocumentModel.h"
 #import "DocumentController.h"
 #import "MainWindowController.h"
+#import "ExportCompileWindowController.h"
 #import "TMTLog.h"
 
 @implementation MainDocument
@@ -73,6 +74,14 @@
     MainWindowController *mc = [[MainWindowController alloc] initForDocument:self];
     [self addWindowController:mc];
     self.mainWindowController = mc;
+}
+
+- (void)finalCompileForDocumentController:(DocumentController *)dc {
+    if (!exportWindowController) {
+        exportWindowController = [[ExportCompileWindowController alloc] initWithMainDocument:self];
+    }
+    exportWindowController.documentController = dc;
+    [exportWindowController showWindow:nil];
 }
 
 @end

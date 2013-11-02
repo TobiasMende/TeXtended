@@ -83,7 +83,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     
     BOOL success = YES;
     for (DocumentController *dc in self.documentControllers) {
-        success &= [dc saveDocument:outError];
+        success &= [dc saveDocumentModel:outError];
     }
     
     return success;

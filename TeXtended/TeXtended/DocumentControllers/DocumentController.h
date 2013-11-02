@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ViewControllerProtocol.h"
+#import "FirstResponderDelegate.h"
 
 @class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler, MainDocument;
 /**
@@ -16,7 +17,7 @@
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentController : NSObject<ViewControllerProtocol> {
+@interface DocumentController : NSObject<ViewControllerProtocol,FirstResponderDelegate> {
 }
 
 /** The model handeld by this controller. */
@@ -48,28 +49,13 @@
  * @param outError a pointer to NSError in which the error log is written
  * @return ´YES´ if the save was succsesfull
  */
-- (BOOL) saveDocument:(NSError**) outError;
+- (BOOL) saveDocumentModel:(NSError**) outError;
 
 
 /**
  * Called if the document model has changed.
  */
 - (void) documentModelDidChange;
-
-/**
- * Called if the live view is refreshed.
- */
-- (void)refreshLiveView;
-
-/**
- * Draft compiles this document.
- */
-- (void) draftCompile;
-
-/**
- * Final compiles this document.
- */
-- (void) finalCompile;
 
 
 /**

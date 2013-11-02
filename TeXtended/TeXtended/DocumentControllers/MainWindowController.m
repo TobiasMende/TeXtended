@@ -10,20 +10,15 @@
 #import "DocumentController.h"
 #import "FileViewController.h"
 #import "InfoWindowController.h"
-#import "ExportCompileWindowController.h"
-#import "ApplicationController.h"
-#import "TemplateController.h"
 #import "DMSplitView.h"
 #import "Compilable.h"
 #import "MainDocument.h"
 #import "TextViewController.h"
 #import "TMTLog.h"
-#import "StatsPanelController.h"
 #import "TMTTabViewController.h"
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"
 #import "OutlineTabViewController.h"
-#import "ExtendedPDFViewController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()

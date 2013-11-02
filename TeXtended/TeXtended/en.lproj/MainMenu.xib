@@ -123,7 +123,7 @@
                             </menuItem>
                             <menuItem title="Export ..." keyEquivalent="e" id="571">
                                 <connections>
-                                    <action selector="export:" target="-1" id="572"/>
+                                    <action selector="finalCompile:" target="-1" id="LCt-tR-Prb"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">

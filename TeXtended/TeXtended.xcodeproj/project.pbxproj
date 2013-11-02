@@ -488,6 +488,7 @@
 		D2CF6197177247E200ACC3D5 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogfileParser.h; sourceTree = "<group>"; };
 		D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogfileParser.m; sourceTree = "<group>"; };
+		D2DFD21F182572FE0022E8E2 /* FirstResponderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstResponderDelegate.h; sourceTree = "<group>"; };
 		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
@@ -946,6 +947,7 @@
 				D2A5507D1752003A00BC05DD /* OutlineView.xib */,
 				D2A550801752081E00BC05DD /* WindowControllerProtocol.h */,
 				D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */,
+				D2DFD21F182572FE0022E8E2 /* FirstResponderDelegate.h */,
 			);
 			path = DocumentControllers;
 			sourceTree = "<group>";

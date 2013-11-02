@@ -36,7 +36,7 @@
     
     /* save all documents */
     for (DocumentController* dc in self.documentControllers) {
-        [dc saveDocument:error];
+        [dc saveDocumentModel:error];
         if (*error) {
             DDLogError(@"%@", (*error).userInfo);
         }

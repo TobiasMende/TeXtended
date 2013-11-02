@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController;
 
-@interface MainDocument : NSDocument
+@interface MainDocument : NSDocument {
+    ExportCompileWindowController *exportWindowController;
+}
 
 /** The context in which the associated DocumentModel and subobjects live in */
 @property (strong) NSManagedObjectContext *context;
@@ -23,4 +25,5 @@
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
 - (Compilable *) model;
 - (void)initializeDocumentControllers;
+- (void)finalCompileForDocumentController:(DocumentController *)dc;
 @end

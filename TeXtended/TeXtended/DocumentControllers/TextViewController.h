@@ -10,6 +10,7 @@
 #import "TextViewObserver.h"
 #import "Constants.h"
 #import "ViewControllerProtocol.h"
+#import "FirstResponderDelegate.h"
 @class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem, LacheckParser, ChktexParser;
 
 /**
@@ -84,5 +85,7 @@
  @param observer the observer to remove
  */
 - (void) removeDelegateObserver:(id<TextViewObserver>) observer;
+
+- (void) setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate;
 
 @end

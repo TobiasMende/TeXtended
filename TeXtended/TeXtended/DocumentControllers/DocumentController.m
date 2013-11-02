@@ -18,6 +18,7 @@
 #import "ExtendedPDFViewController.h"
 #import "TMTNotificationCenter.h"
 #import "MainDocument.h"
+#import "FirstResponderDelegate.h"
 
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
@@ -51,8 +52,7 @@
 }
 
 
-
-- (BOOL) saveDocument:(NSError *__autoreleasing *)outError {
+- (BOOL) saveDocumentModel:(NSError *__autoreleasing *)outError {
     return [self.model saveContent:[self.textViewController content] error:outError];
 }
 
@@ -78,10 +78,12 @@
 
 - (void)updateViewsAfterModelChange {
     _textViewController = [[TextViewController alloc] initWithDocumentController:self];
+    [self.textViewController setFirstResponderDelegate:self];
     self.pdfViewControllers = [NSMutableSet new];
     for(DocumentModel *model in self.model.mainDocuments) {
         ExtendedPDFViewController *cont = [[ExtendedPDFViewController alloc] initWithDocumentController:self];
         cont.model = model;
+        [cont setFirstResponderDelegate:self];
         [self.pdfViewControllers addObject:cont];
     }
 }
@@ -125,6 +127,24 @@
 
 - (void)documentModelHasChangedAction:(DocumentController *)dc {
     // TODO: call on all children
+}
+
+#pragma mark - First Responder Delegate
+
+- (void)saveDocument:(id)sender {
+    [self.mainDocument saveDocument:self];
+}
+
+- (void)liveCompile:(id)sender {
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+}
+
+- (void)draftCompile:(id)sender {
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(draftCompile:didSave:contextInfo:)];
+}
+
+- (void)finalCompile:(id)sender {
+    [self.mainDocument finalCompileForDocumentController:self];
 }
 
 #pragma mark -

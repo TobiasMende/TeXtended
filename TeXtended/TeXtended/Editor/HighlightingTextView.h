@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Constants.h"
 #import "SyntaxHighlighter.h"
+#import "FirstResponderDelegate.h"
 
 @class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController;
 
@@ -43,6 +44,8 @@ GoToLineSheetController *goToLineSheet;
 
 }
 
+
+@property (weak) id<FirstResponderDelegate> firstResponderDelegate;
 @property NSUInteger currentModifierFlags;
 
 /** The code navigation assistant */

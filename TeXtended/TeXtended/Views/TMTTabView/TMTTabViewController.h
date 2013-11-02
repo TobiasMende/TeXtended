@@ -11,7 +11,7 @@
 
 @class TMTTabViewItem;
 @interface TMTTabViewController : NSViewController <MMTabBarViewDelegate> {
-    IBOutlet MMTabBarView *tabBar;
+    __weak IBOutlet MMTabBarView *tabBar;
     IBOutlet NSTabView *tabView;
 }
 

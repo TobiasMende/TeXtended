@@ -28,7 +28,7 @@
 /** Tableview displaying the Maindocuments */
 @property (assign) IBOutlet NSTableView *table;
 /** Documentmodel which is displayed */
-@property (weak) DocumentModel* doc;
+@property (strong) DocumentModel* doc;
 /** Label for the Document- or Projectname */
 @property (assign) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */

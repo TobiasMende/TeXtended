@@ -323,6 +323,10 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Delegate Methods
 
 
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate {
+    self.textView.firstResponderDelegate = delegate;
+}
+
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
     
     if (self.textView.servicesOn) {
@@ -365,6 +369,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
         }
     }
 }
+
 
 #pragma mark -
 #pragma mark Dealloc
