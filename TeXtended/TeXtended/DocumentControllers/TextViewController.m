@@ -193,10 +193,14 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             return;
         }
         countRunningParsers = 2;
-        ChktexParser *chktex = [ChktexParser new];
-        [chktex parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
+        if(!chktex) {
+            chktex = [ChktexParser new];
+        }
+        if (!lacheck) {
+            lacheck = [LacheckParser new];
+        }
         
-        LacheckParser *lacheck = [LacheckParser new];
+        [chktex parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
         [lacheck parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
     }
     

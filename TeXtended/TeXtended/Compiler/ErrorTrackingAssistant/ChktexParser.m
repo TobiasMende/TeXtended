@@ -51,7 +51,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     // TODO: customize arguments
     [task setArguments:[NSArray arrayWithObjects:@"-qv0", path, nil]];
     
-    NSPipe *outPipe = [NSPipe pipe];
+    __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [outPipe fileHandleForReading];
@@ -62,6 +62,7 @@ static const NSDictionary *DEBUG_NUMBERS;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [obj performSelector:action withObject:messages];
 #pragma clang diagnostic pop
+        outPipe = nil;
     }];
     [task launch];
     

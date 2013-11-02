@@ -508,7 +508,7 @@
     NSTextContainer	*container      = [view textContainer];
     NSRect visibleRect              = [view visibleRect];
     NSRange nullRange               = NSMakeRange(NSNotFound, 0);
-    NSRectArray rects;
+    NSRectArray rects = 0;
     
     float height = 0;
     NSUInteger index = 0, rectCount;

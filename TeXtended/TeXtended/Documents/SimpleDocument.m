@@ -43,7 +43,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (void)makeWindowControllers {
-    _mainWindowController = [[MainWindowController alloc] initWithMainDocument:self];
+    self.mainWindowController = [[MainWindowController alloc] initWithMainDocument:self];
     
     [self addWindowController:self.mainWindowController];
 }

@@ -45,7 +45,8 @@
     
     [task setArguments:[NSArray arrayWithObjects:path, nil]];
     
-    NSPipe *outPipe = [NSPipe pipe];
+    
+    __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
     
     [task setTerminationHandler:^(NSTask *task) {
@@ -57,7 +58,10 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [obj performSelector:action withObject:messages];
 #pragma clang diagnostic pop
+        outPipe = nil;
     }];
+    
+    
     [task launch];
     
 }

@@ -8,7 +8,6 @@
 
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabStyle.h>
-#import "MainWindowController.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabViewController.h"
@@ -116,6 +115,8 @@
     NSImage *image = [[NSImage alloc] initWithCGImage:cgimg size:[aView bounds].size];
     NSSize imageSize = [image size];
     [image setScalesWhenResized:YES];
+    CGImageRelease(cgimg);
+    
     
     if (imageSize.width > imageSize.height) {
         [image setSize:NSMakeSize(125, 125 * (imageSize.height / imageSize.width))];
@@ -156,6 +157,9 @@
     NSWindow *w = aTabView.window;
     if ([w isKindOfClass:[TMTTabViewWindow class]]) {
         [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+    }
+    if(self.closeWindowForLastTabDrag) {
+        [w close];
     }
     
 }

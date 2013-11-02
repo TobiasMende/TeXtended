@@ -11,6 +11,7 @@
 #import "TMTTabViewController.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
+#import "TMTLog.h"
 
 @interface TMTTabViewWindow (PRIVATE)
 - (void)configureTabBarInitially;

@@ -8,6 +8,7 @@
 
 #import "MainWindow.h"
 #import "MainWindowController.h"
+#import "TMTLog.h"
 
 @implementation MainWindow
 
@@ -22,5 +23,9 @@
 
 - (void)export:(id)sender {
     [self.controller finalCompile:sender];
+}
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
 }
 @end
