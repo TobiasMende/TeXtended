@@ -10,7 +10,7 @@
 #import "TextViewObserver.h"
 #import "Constants.h"
 #import "ViewControllerProtocol.h"
-@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController;
+@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem;
 
 /**
  This view controller handles the HighlightingTextView and other important objects connected to it.
@@ -34,7 +34,7 @@
     NSInteger countRunningParsers;
 }
 
-@property (strong) NSTabViewItem* tabViewItem;
+@property (strong) TMTTabViewItem* tabViewItem;
 
 @property(nonatomic) TMTLatexLogLevel logLevel;
 /** The view showing the latex source code to the user */

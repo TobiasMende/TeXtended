@@ -8,7 +8,7 @@
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabStyle.h>
 
-#import "TMTTabView.h"
+#import "TMTTabViewController.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 
@@ -30,7 +30,7 @@
 }
 
 - (void)awakeFromNib {
-    [self setTabView:[[TMTTabView alloc] init]];
+    [self setTabView:[[TMTTabViewController alloc] init]];
     [self.tabView addDefaultTabs];
     [self.cview addSubview:[self.tabView view]];
     [[self.tabView view] setFrame:[self.cview bounds]];

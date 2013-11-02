@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <MMTabBarView/MMTabBarView.h>
 
-@class TMTTabViewItem, TMTTabView;
+@class TMTTabViewItem, TMTTabViewController;
 @interface TMTTabViewWindow : NSWindowController
 
 @property (strong) IBOutlet NSView *cview;
-@property (strong) TMTTabView* tabView;
+@property (strong) TMTTabViewController* tabView;
 
 @end

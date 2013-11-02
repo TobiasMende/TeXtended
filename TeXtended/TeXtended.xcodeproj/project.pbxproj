@@ -55,6 +55,13 @@
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
+		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
+		D22E169D1824ED10005B5B91 /* TMTTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E16961824ED10005B5B91 /* TMTTabViewController.xib */; };
+		D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16981824ED10005B5B91 /* TMTTabViewItem.m */; };
+		D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */; };
+		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
+		D22E16A21824ED60005B5B91 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
+		D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
@@ -74,8 +81,6 @@
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
 		D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */; };
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
-		D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */; };
-		D28AAFE717EF34BE0033BDD4 /* TMTTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -209,6 +214,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */,
 				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +344,15 @@
 		D22A6BEC181C148700364DD6 /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
 		D22A6BED181C148700364DD6 /* TMTCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTCustomView.m; sourceTree = "<group>"; };
 		D22CEE0017EE0989003C6844 /* DMSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSplitView.m; sourceTree = "<group>"; };
+		D22E16941824ED10005B5B91 /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewController.h; path = TMTTabView/TMTTabViewController.h; sourceTree = "<group>"; };
+		D22E16951824ED10005B5B91 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewController.m; path = TMTTabView/TMTTabViewController.m; sourceTree = "<group>"; };
+		D22E16961824ED10005B5B91 /* TMTTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewController.xib; path = TMTTabView/TMTTabViewController.xib; sourceTree = "<group>"; };
+		D22E16971824ED10005B5B91 /* TMTTabViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewItem.h; path = TMTTabView/TMTTabViewItem.h; sourceTree = "<group>"; };
+		D22E16981824ED10005B5B91 /* TMTTabViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewItem.m; path = TMTTabView/TMTTabViewItem.m; sourceTree = "<group>"; };
+		D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewWindow.h; path = TMTTabView/TMTTabViewWindow.h; sourceTree = "<group>"; };
+		D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewWindow.m; path = TMTTabView/TMTTabViewWindow.m; sourceTree = "<group>"; };
+		D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewWindow.xib; path = TMTTabView/TMTTabViewWindow.xib; sourceTree = "<group>"; };
+		D22E16A11824ED60005B5B91 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MMTabBarView.framework; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
@@ -399,9 +414,6 @@
 		D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOutlineViewController.m; sourceTree = "<group>"; };
 		D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageOutlineView.xib; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
-		D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabView.xib; path = TMTTabView/TMTTabView.xib; sourceTree = "<group>"; };
-		D28AAFE517EF34BE0033BDD4 /* TMTTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabView.h; sourceTree = "<group>"; };
-		D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabView.m; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
 		D28DC0D9177AEBC900E4C711 /* xelatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xelatex.rb; sourceTree = "<group>"; };
@@ -533,6 +545,7 @@
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 				D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */,
+				D22E16A21824ED60005B5B91 /* MMTabBarView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,9 +1007,14 @@
 		D28AAFDF17EF34500033BDD4 /* TMTTabView */ = {
 			isa = PBXGroup;
 			children = (
-				D28AAFE217EF347B0033BDD4 /* TMTTabView.xib */,
-				D28AAFE517EF34BE0033BDD4 /* TMTTabView.h */,
-				D28AAFE617EF34BE0033BDD4 /* TMTTabView.m */,
+				D22E16941824ED10005B5B91 /* TMTTabViewController.h */,
+				D22E16951824ED10005B5B91 /* TMTTabViewController.m */,
+				D22E16961824ED10005B5B91 /* TMTTabViewController.xib */,
+				D22E16971824ED10005B5B91 /* TMTTabViewItem.h */,
+				D22E16981824ED10005B5B91 /* TMTTabViewItem.m */,
+				D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */,
+				D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */,
+				D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */,
 			);
 			name = TMTTabView;
 			sourceTree = "<group>";
@@ -1087,6 +1105,7 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D22E16A11824ED60005B5B91 /* MMTabBarView.framework */,
 				D21ACB5F17267A1700E2F8EC /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
@@ -1296,9 +1315,11 @@
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
+				D22E169D1824ED10005B5B91 /* TMTTabViewController.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
+				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
@@ -1342,7 +1363,6 @@
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
-				D28AAFE417EF347B0033BDD4 /* TMTTabView.xib in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
 				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
@@ -1403,6 +1423,7 @@
 				F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */,
 				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
 				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
+				D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */,
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
@@ -1426,11 +1447,11 @@
 				D2F3DE2C17F6BEDA00A99066 /* ContextFilterLogFormatter.m in Sources */,
 				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
-				D28AAFE717EF34BE0033BDD4 /* TMTTabView.m in Sources */,
 				D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
+				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
@@ -1439,6 +1460,7 @@
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
+				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
@@ -1601,11 +1623,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1621,11 +1644,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

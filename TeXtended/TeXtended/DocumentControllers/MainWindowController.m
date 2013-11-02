@@ -19,7 +19,7 @@
 #import "TextViewController.h"
 #import "TMTLog.h"
 #import "StatsPanelController.h"
-#import "TMTTabView.h"
+#import "TMTTabViewController.h"
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"
 #import "OutlineTabViewController.h"
@@ -47,8 +47,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             
             [self.documentControllers addObject:dc];
         }
-        firsTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
-        secondTabViewController = [[NSViewController alloc] initWithNibName:@"TMTTabView" bundle:nil];
+        firsTabViewController = [TMTTabViewController new];
+        secondTabViewController = [TMTTabViewController new];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
     return self;
@@ -80,11 +80,12 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self setTemplateController:[[TemplateController alloc] init]];
     
-    [((TMTTabView *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
+    //[((TMTTabViewController *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
+    [firsTabViewController addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
     
-    TMTTabView *secondTabView = ((TMTTabView *)[[self.contentView subviews] objectAtIndex:1]);
+    //TMTTabViewController *secondTabView = ((TMTTabViewController *)[[self.contentView subviews] objectAtIndex:1]);
     for (ExtendedPDFViewController *vc in self.activeDocumentController.pdfViewControllers) {
-        [secondTabView addTabViewItem:vc.tabViewItem];
+        [secondTabViewController addTabViewItem:vc.tabViewItem];
     }
     
     if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TMTTabView">
+        <customObject id="-2" userLabel="File's Owner" customClass="TMTTabViewController">
             <connections>
                 <outlet property="tabBar" destination="8Rk-gE-nLj" id="U1L-hk-fjO"/>
                 <outlet property="tabView" destination="vF5-3j-gZe" id="Rft-XY-rqr"/>

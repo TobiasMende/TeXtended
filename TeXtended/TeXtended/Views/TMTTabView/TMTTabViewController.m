@@ -11,16 +11,16 @@
 #import "MainWindowController.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
-#import "TMTTabView.h"
+#import "TMTTabViewController.h"
 
-@interface TMTTabView ()
+@interface TMTTabViewController ()
 
 @end
 
-@implementation TMTTabView
+@implementation TMTTabViewController
 
 - (id)init {
-    self = [super initWithNibName:@"TMTTabView" bundle:nil];
+    self = [super initWithNibName:@"TMTTabViewController" bundle:nil];
     if (self) {
     }
     return self;
@@ -49,7 +49,7 @@
     }
 }
 
-- (void) addTMTTabViewItem:(TMTTabViewItem*) item {
+- (void) addTabViewItem:(TMTTabViewItem*) item {
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
 	[tabView addTabViewItem:newItem];
@@ -102,7 +102,6 @@
     
 	//create a new window controller with no tab items
 	TMTTabViewWindow *tabWindow = [[TMTTabViewWindow alloc] init];
-    [MainWindowController addTabViewWindow:tabWindow];
     
     MMTabBarView *tabBarView = (MMTabBarView *)[aTabView delegate];
     
@@ -120,7 +119,6 @@
 
 - (void)tabView:(NSTabView *)aTabView closeWindowForLastTabViewItem:(NSTabViewItem *)tabViewItem {
 	NSLog(@"closeWindowForLastTabViewItem: %@", [tabViewItem label]);
-	[MainWindowController removeTabViewWindow:(TMTTabViewWindow*)[[self view] window]];
 }
 
 - (NSString *)tabView:(NSTabView *)aTabView toolTipForTabViewItem:(NSTabViewItem *)tabViewItem {

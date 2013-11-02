@@ -24,6 +24,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "BackwardSynctex.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
+#import "TMTTabViewItem.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
@@ -83,9 +84,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
         
-        id identifier = self.model.texPath ? self.model.texPath : @"UnknownTex";
-        self.tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:identifier];
-        [self.tabViewItem bind:@"label" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        //id identifier = self.model.texPath ? self.model.texPath : @"UnknownTex";
+        self.tabViewItem = [TMTTabViewItem new];
+        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
         self.tabViewItem.view = self.view;
         
     }

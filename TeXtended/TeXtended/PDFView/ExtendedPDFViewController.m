@@ -17,6 +17,7 @@
 #import "MainDocument.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
+#import "TMTTabViewItem.h"
 
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
@@ -86,11 +87,11 @@
     if (!self.model) {
         return;
     }
-    id identifier = self.model.texPath ? self.model.texPath : @"UntitledPDF";
+    //id identifier = self.model.texPath ? self.model.texPath : @"UntitledPDF";
     if (!self.tabViewItem) {
-        self.tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:identifier];
+        self.tabViewItem = [TMTTabViewItem new];
         self.tabViewItem.view = self.view;
-        [self.tabViewItem bind:@"label" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
     }
 }
 

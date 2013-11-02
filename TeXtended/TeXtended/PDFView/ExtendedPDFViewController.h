@@ -14,7 +14,7 @@
  *
  * @author Max Bannach
  */
-@class ExtendedPdf, DocumentModel,PDFView, DocumentController;
+@class ExtendedPdf, DocumentModel,PDFView, DocumentController, TMTTabViewItem;
 
 @interface ExtendedPDFViewController : NSViewController<ViewControllerProtocol>
 
@@ -26,7 +26,7 @@
 @property (strong) IBOutlet PDFView *pdfView;
 
 @property (assign) DocumentController *documentController;
-@property (strong) NSTabViewItem* tabViewItem;
+@property (strong) TMTTabViewItem* tabViewItem;
 
 /** 
  * Setup synctex from the pdf back to tex.

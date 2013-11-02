@@ -10,12 +10,12 @@
 #import <MMTabBarView/MMTabBarView.h>
 
 @class TMTTabViewItem;
-@interface TMTTabView : NSViewController <MMTabBarViewDelegate> {
+@interface TMTTabViewController : NSViewController <MMTabBarViewDelegate> {
     IBOutlet MMTabBarView *tabBar;
     IBOutlet NSTabView *tabView;
 }
 
-- (void) addTMTTabViewItem:(TMTTabViewItem*) item;
+- (void)addTabViewItem:(TMTTabViewItem*) item;
 - (void)addDefaultTabs;
 - (void)addNewTabWithTitle:(NSString *)aTitle;
 - (MMTabBarView *)tabBar;
