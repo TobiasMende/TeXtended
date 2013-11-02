@@ -15,6 +15,8 @@
     IBOutlet NSTabView *tabView;
 }
 
+@property BOOL closeWindowForLastTabDrag;
+
 - (void)addTabViewItem:(TMTTabViewItem*) item;
 - (void)addNewTabWithTitle:(NSString *)aTitle;
 - (MMTabBarView *)tabBar;

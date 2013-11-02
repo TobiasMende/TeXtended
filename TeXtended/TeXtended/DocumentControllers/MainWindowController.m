@@ -48,7 +48,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
             [self.documentControllers addObject:dc];
         }
         firsTabViewController = [TMTTabViewController new];
+        firsTabViewController.closeWindowForLastTabDrag = NO;
         secondTabViewController = [TMTTabViewController new];
+        secondTabViewController.closeWindowForLastTabDrag = NO;
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
     return self;

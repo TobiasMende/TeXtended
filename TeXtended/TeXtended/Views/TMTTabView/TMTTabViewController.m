@@ -25,6 +25,7 @@
 - (id)init {
     self = [super initWithNibName:@"TMTTabViewController" bundle:nil];
     if (self) {
+        self.closeWindowForLastTabDrag = YES;
     }
     return self;
 }
@@ -70,6 +71,7 @@
 }
 
 
+
 - (MMTabBarView *)tabBar {
 	return tabBar;
 }
@@ -83,6 +85,10 @@
 
 - (BOOL)tabView:(NSTabView*)aTabView shouldDragTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
 	return YES;
+}
+
+- (BOOL)shouldCloseWindowForLastTabDrag {
+    return self.closeWindowForLastTabDrag;
 }
 
 - (NSDragOperation)tabView:(NSTabView*)aTabView validateDrop:(id<NSDraggingInfo>)sender proposedItem:(NSTabViewItem *)tabViewItem proposedIndex:(NSUInteger)proposedIndex inTabBarView:(MMTabBarView *)tabBarView {
@@ -120,10 +126,7 @@
 }
 
 - (MMTabBarView *)tabView:(NSTabView *)aTabView newTabBarViewForDraggedTabViewItem:(NSTabViewItem *)tabViewItem atPoint:(NSPoint)point {
-	NSLog(@"newTabBarViewForDraggedTabViewItem: %@ atPoint: %@", [tabViewItem label], NSStringFromPoint(point));
 
-    
-    
 	//create a new window controller with no tab items
 	TMTTabViewWindow *tabWindow = [[TMTTabViewWindow alloc] init];
     [[TMTTabViewWindowManager sharedTabViewWindowManager]addTabViewWindow:tabWindow];
@@ -150,7 +153,6 @@
 }
 
 - (void)tabView:(NSTabView *)aTabView closeWindowForLastTabViewItem:(NSTabViewItem *)tabViewItem {
-    DDLogInfo(@"closeWindowForLastTabViewItem");
     NSWindow *w = aTabView.window;
     if ([w isKindOfClass:[TMTTabViewWindow class]]) {
         [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:(TMTTabViewWindow*)w];

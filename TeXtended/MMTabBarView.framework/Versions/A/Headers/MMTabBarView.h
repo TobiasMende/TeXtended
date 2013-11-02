@@ -360,6 +360,7 @@ typedef enum MMAttachedButtonsEnumerationOptions : NSUInteger {
 - (NSDragOperation)tabView:(NSTabView *)aTabView validateSlideOfProposedItem:(NSTabViewItem *)tabViewItem proposedIndex:(NSUInteger)proposedIndex inTabBarView:(MMTabBarView *)tabBarView;
 - (BOOL)tabView:(NSTabView *)aTabView shouldAllowTabViewItem:(NSTabViewItem *)tabViewItem toLeaveTabBarView:(MMTabBarView *)tabBarView;
 - (void)tabView:(NSTabView*)aTabView didDropTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView;
+- (BOOL)shouldCloseWindowForLastTabDrag;
 
     // "Spring-loaded" tabs methods
 - (NSArray *)allowedDraggedTypesForTabView:(NSTabView *)aTabView;
