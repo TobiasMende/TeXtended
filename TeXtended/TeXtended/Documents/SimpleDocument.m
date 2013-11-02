@@ -33,24 +33,13 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
-        _context = [[NSManagedObjectContext alloc] init];
+        self.context = [[NSManagedObjectContext alloc] init];
         self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         _model = [[DocumentModel alloc] initWithContext:self.context];
         self.encController = [[EncodingController alloc] init];
     }
     return self;
 }
-
-
-- (void)makeWindowControllers {
-    self.mainWindowController = [[MainWindowController alloc] initWithMainDocument:self];
-    
-    [self addWindowController:self.mainWindowController];
-}
-
-
-
-
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
@@ -70,9 +59,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 //    return success;
 //}
 
-+ (BOOL)autosavesInPlace {
-    return YES;
-}
 - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
     [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
     if (!self.model.texPath) {
@@ -82,7 +68,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-        [self.mainWindowController breakUndoCoalescing];
+        [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
     }
     if (![standardDocumentTypes containsObject:typeName]) {
         if(outError) {
@@ -94,7 +80,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if ([[self fileURL] path]) {
         self.model.texPath = [[self fileURL] path];
     }
-    BOOL success = [self.mainWindowController.activeDocumentController saveDocument:outError];
+    
+    BOOL success = YES;
+    for (DocumentController *dc in self.documentControllers) {
+        success &= [dc saveDocument:outError];
+    }
     
     return success;
     
@@ -115,6 +105,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
+    [self initializeDocumentControllers];
     return YES;
 }
 

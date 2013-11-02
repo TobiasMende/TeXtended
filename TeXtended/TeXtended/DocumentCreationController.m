@@ -67,10 +67,9 @@
             doc.fileType = @"TeXtendedProjectFile";
             doc.fileURL = [NSURL fileURLWithPath:path];
             NSError *error;
-            [doc configurePersistentStoreCoordinatorForURL:doc.fileURL ofType:doc.fileType modelConfiguration:nil storeOptions:nil error:&error];
-            ProjectModel *model = [[ProjectModel alloc] initWithContext:doc.managedObjectContext];
+            ProjectModel *model = [[ProjectModel alloc] initWithContext:doc.context];
             model.path = [doc.fileURL path];
-            doc.projectModel = model;
+            doc.model = model;
             if (error) {
                 DDLogError(@"%@", error.userInfo);
             }
@@ -93,8 +92,8 @@
     [configurationPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             for (NSURL *url in configurationPanel.URLs) {
-                DocumentModel *model = [project.projectModel modelForTexPath:url.path];
-                [project.projectModel addMainDocumentsObject:model];
+                DocumentModel *model = [project.model modelForTexPath:url.path];
+                [project.model addMainDocumentsObject:model];
             }
             
             [project makeWindowControllers];

@@ -56,7 +56,7 @@
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
 		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
-		D22E169D1824ED10005B5B91 /* TMTTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E16961824ED10005B5B91 /* TMTTabViewController.xib */; };
+		D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E16961824ED10005B5B91 /* TMTTabView.xib */; };
 		D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16981824ED10005B5B91 /* TMTTabViewItem.m */; };
 		D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */; };
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
@@ -77,6 +77,7 @@
 		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
 		D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D268FB1917F6C30900C9E59E /* TMTLogFormatter.m */; };
+		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
 		D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B3181BBAE100EEF55C /* OutlineTabViewController.m */; };
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
 		D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */; };
@@ -132,7 +133,6 @@
 		D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */; };
 		D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
-		D2E7A4EB1768E8F400B2BA3C /* OutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A5507C1752003A00BC05DD /* OutlineViewController.m */; };
 		D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
 		D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
 		D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF5173143E2003AF83D /* ProjectModel.m */; };
@@ -347,7 +347,7 @@
 		D22CEE0017EE0989003C6844 /* DMSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSplitView.m; sourceTree = "<group>"; };
 		D22E16941824ED10005B5B91 /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewController.h; path = TMTTabView/TMTTabViewController.h; sourceTree = "<group>"; };
 		D22E16951824ED10005B5B91 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewController.m; path = TMTTabView/TMTTabViewController.m; sourceTree = "<group>"; };
-		D22E16961824ED10005B5B91 /* TMTTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewController.xib; path = TMTTabView/TMTTabViewController.xib; sourceTree = "<group>"; };
+		D22E16961824ED10005B5B91 /* TMTTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabView.xib; path = TMTTabView/TMTTabView.xib; sourceTree = "<group>"; };
 		D22E16971824ED10005B5B91 /* TMTTabViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewItem.h; path = TMTTabView/TMTTabViewItem.h; sourceTree = "<group>"; };
 		D22E16981824ED10005B5B91 /* TMTTabViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewItem.m; path = TMTTabView/TMTTabViewItem.m; sourceTree = "<group>"; };
 		D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewWindow.h; path = TMTTabView/TMTTabViewWindow.h; sourceTree = "<group>"; };
@@ -405,9 +405,10 @@
 		D27198371743884B00342CB0 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
 		D27198381743889400342CB0 /* SyntaxHighlighterStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighterStub.h; sourceTree = "<group>"; };
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
-		D271984317451CD600342CB0 /* MainDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D27F805118253A3E00BCD72A /* MainDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
+		D27F805218253A3E00BCD72A /* MainDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocument.m; sourceTree = "<group>"; };
 		D28089B2181BBAE100EEF55C /* OutlineTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineTabViewController.h; sourceTree = "<group>"; };
 		D28089B3181BBAE100EEF55C /* OutlineTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineTabViewController.m; sourceTree = "<group>"; };
 		D28089B4181BBAE100EEF55C /* OutlineTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineTabView.xib; sourceTree = "<group>"; };
@@ -437,8 +438,6 @@
 		D2A5506C1751FF4B00BC05DD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewController.h; path = ../DocumentControllers/TextViewController.h; sourceTree = "<group>"; };
 		D2A5506D1751FF4B00BC05DD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewController.m; path = ../DocumentControllers/TextViewController.m; sourceTree = "<group>"; };
 		D2A5506E1751FF4B00BC05DD /* TextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextView.xib; path = ../DocumentControllers/TextView.xib; sourceTree = "<group>"; };
-		D2A5507B1752003A00BC05DD /* OutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewController.h; sourceTree = "<group>"; };
-		D2A5507C1752003A00BC05DD /* OutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewController.m; sourceTree = "<group>"; };
 		D2A5507D1752003A00BC05DD /* OutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutlineView.xib; sourceTree = "<group>"; };
 		D2A550801752081E00BC05DD /* WindowControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowControllerProtocol.h; sourceTree = "<group>"; };
 		D2A550811752085600BC05DD /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = ../DocumentControllers/MainWindowController.h; sourceTree = "<group>"; };
@@ -776,9 +775,10 @@
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
 				D21ACBD21726889700E2F8EC /* SimpleDocument.h */,
 				D21ACBD31726889700E2F8EC /* SimpleDocument.m */,
-				D271984317451CD600342CB0 /* MainDocument.h */,
 				D252288A1764B83400C203AD /* MainWindow.h */,
 				D252288B1764B83400C203AD /* MainWindow.m */,
+				D27F805118253A3E00BCD72A /* MainDocument.h */,
+				D27F805218253A3E00BCD72A /* MainDocument.m */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -956,8 +956,6 @@
 				D271984A1745241500342CB0 /* DocumentController.h */,
 				D271984B1745241500342CB0 /* DocumentController.m */,
 				F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */,
-				D2A5507B1752003A00BC05DD /* OutlineViewController.h */,
-				D2A5507C1752003A00BC05DD /* OutlineViewController.m */,
 				D2A5507D1752003A00BC05DD /* OutlineView.xib */,
 				D2A550801752081E00BC05DD /* WindowControllerProtocol.h */,
 				D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */,
@@ -1012,7 +1010,7 @@
 			children = (
 				D22E16941824ED10005B5B91 /* TMTTabViewController.h */,
 				D22E16951824ED10005B5B91 /* TMTTabViewController.m */,
-				D22E16961824ED10005B5B91 /* TMTTabViewController.xib */,
+				D22E16961824ED10005B5B91 /* TMTTabView.xib */,
 				D22E16971824ED10005B5B91 /* TMTTabViewItem.h */,
 				D22E16981824ED10005B5B91 /* TMTTabViewItem.m */,
 				D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */,
@@ -1320,7 +1318,7 @@
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
-				D22E169D1824ED10005B5B91 /* TMTTabViewController.xib in Resources */,
+				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
@@ -1417,7 +1415,6 @@
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
 				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
 				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
-				D2E7A4EB1768E8F400B2BA3C /* OutlineViewController.m in Sources */,
 				D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */,
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
@@ -1457,6 +1454,7 @@
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
+				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,

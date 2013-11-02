@@ -9,7 +9,6 @@
 #import "DocumentController.h"
 #import "DocumentModel.h"
 #import "TextViewController.h"
-#import "OutlineViewController.h"
 #import "Constants.h"
 #import "Compiler.h"
 #import "ViewControllerProtocol.h"
@@ -18,6 +17,7 @@
 #import "TMTLog.h"
 #import "ExtendedPDFViewController.h"
 #import "TMTNotificationCenter.h"
+#import "MainDocument.h"
 
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
@@ -32,16 +32,15 @@
     }
 }
 
-- (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc {
+- (id)initWithDocument:(DocumentModel *)model andMainDocument:(MainDocument *)mainDocument {
     self = [super init];
     if (self) {
-        DDLogVerbose(@"DocumentController: Init");
+        DDLogVerbose(@"Init");
         self.model = model;
-        _windowController = wc;
+        self.mainDocument = mainDocument;
+        self.consoleViewControllers = [NSMutableSet new];
         
-        _consoleViewControllers = [NSMutableSet new];
-        
-        _compiler = [[Compiler alloc] initWithDocumentController:self];
+        self.compiler = [[Compiler alloc] initWithDocumentController:self];
         [self.textViewController addObserver:self.compiler];
     }
     return self;

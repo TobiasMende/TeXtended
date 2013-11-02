@@ -370,7 +370,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 #pragma mark Dealloc
 
 - (void)dealloc {
-    DDLogVerbose(@"TextViewController dealloc");
+    DDLogVerbose(@"dealloc");
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];

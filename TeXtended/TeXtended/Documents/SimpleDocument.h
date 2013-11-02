@@ -20,18 +20,13 @@
  **Author:** Tobias Mende
  
  */
-@interface SimpleDocument : NSDocument <MainDocument> {
+@interface SimpleDocument : MainDocument {
     
 }
 
-/** The context in which the associated DocumentModel and subobjects live in */
-@property (strong) NSManagedObjectContext *context;
 
 /** The model represented in this document holding all information about the current document */
 @property (strong) DocumentModel *model;
-
-/** The controller of the documents main window */
-@property (strong) MainWindowController *mainWindowController;
 
 
 @property EncodingController *encController;

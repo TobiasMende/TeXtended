@@ -22,7 +22,7 @@
 
 #pragma mark - Initialize and dealloc
 - (id)init {
-    self = [super initWithNibName:@"TMTTabViewController" bundle:nil];
+    self = [super initWithNibName:@"TMTTabView" bundle:nil];
     if (self) {
         self.closeWindowForLastTabDrag = YES;
     }
@@ -54,6 +54,7 @@
 
 
 - (void) addTabViewItem:(TMTTabViewItem*) item {
+    DDLogVerbose(@"addTabViewItem: %@", item);
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
 	[tabView addTabViewItem:newItem];

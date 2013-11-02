@@ -7,6 +7,7 @@
 //
 
 #import "TMTTabViewItem.h"
+#import "TMTLog.h"
 
 @implementation TMTTabViewItem
 
@@ -28,5 +29,9 @@
 	return self;
 }
 
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
+}
 
 @end

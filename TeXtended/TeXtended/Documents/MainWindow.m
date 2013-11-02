@@ -12,19 +12,6 @@
 
 @implementation MainWindow
 
-
-- (void)genericAction:(id)sender {
-    [self.controller genericAction:sender];
-}
-
-- (void)draftCompile:(id)sender {
-    [self.controller draftCompile:sender];
-}
-
-- (void)export:(id)sender {
-    [self.controller finalCompile:sender];
-}
-
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
 }

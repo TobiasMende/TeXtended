@@ -23,6 +23,7 @@
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"
 #import "OutlineTabViewController.h"
+#import "ExtendedPDFViewController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -35,22 +36,13 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     return @"MainWindow";
 }
 
-- (id)initWithMainDocument:(id<MainDocument>) document {
+- (id)initForDocument:(MainDocument*)document {
+    self.mainDocument = document;
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
         DDLogVerbose(@"Init");
-        self.mainDocument = document;
-        self.mainCompilable = self.mainDocument.model;
-        self.documentControllers = [NSMutableSet new];
-        for (DocumentModel *m in self.mainCompilable.mainDocuments) {
-            DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainWindowController:self];
-            
-            [self.documentControllers addObject:dc];
-        }
-        firsTabViewController = [TMTTabViewController new];
-        firsTabViewController.closeWindowForLastTabDrag = NO;
-        secondTabViewController = [TMTTabViewController new];
-        secondTabViewController.closeWindowForLastTabDrag = NO;
+        self.firsTabViewController = [TMTTabViewController new];
+        self.secondTabViewController = [TMTTabViewController new];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
     return self;
@@ -58,37 +50,27 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)windowDidLoad
 {
-
+    DDLogVerbose(@"windowDidLoad");
     [super windowDidLoad];
     BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
+    self.firsTabViewController.closeWindowForLastTabDrag = NO;
+    self.secondTabViewController.closeWindowForLastTabDrag = NO;
     [self.contentView setVertical:flag];
-    [self.contentView setSubviews:[NSArray arrayWithObjects:firsTabViewController.view, secondTabViewController.view, nil]];
+    [self.contentView setSubviews:[NSArray arrayWithObjects:self.firsTabViewController.view, self.secondTabViewController.view, nil]];
     self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
     self.outlineViewArea.contentView = self.outlineController.view;
     
     self.fileViewController = [[FileViewController alloc] init];
     
     [self.fileViewArea setContentView:self.fileViewController.view];
-    [self.fileViewController setDocument:self.activeDocumentController.model];
     
-    self.statsPanel = [[StatsPanelController alloc] init];
     
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
     
-    //[self.contentView setSubviewsResizeMode:DMSplitViewResizeModeUniform];
+    [self.contentView setSubviewsResizeMode:DMSplitViewResizeModeUniform];
     [self.contentView setEventsDelegate:self];
     [self.contentView setCanCollapse:YES subviewAtIndex:1];
-    
-    [self setTemplateController:[[TemplateController alloc] init]];
-    
-    //[((TMTTabViewController *)[[self.contentView subviews] objectAtIndex:0]) addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
-    [firsTabViewController addTabViewItem:self.activeDocumentController.textViewController.tabViewItem];
-    
-    //TMTTabViewController *secondTabView = ((TMTTabViewController *)[[self.contentView subviews] objectAtIndex:1]);
-    for (ExtendedPDFViewController *vc in self.activeDocumentController.pdfViewControllers) {
-        [secondTabViewController addTabViewItem:vc.tabViewItem];
-    }
     
     if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {
         [self toggleSidebarView:self];
@@ -100,19 +82,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED] options:0 context:NULL];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED] options:0 context:NULL];
+    [self.mainDocument windowControllerDidLoadNib:self];
 }
-
-- (void)windowDidBecomeMain:(NSNotification *)notification {
-    [[ApplicationController sharedApplicationController] setDelegate:self];
-}
-
 
 - (void)windowWillClose:(NSNotification *)notification {
-    if ([[ApplicationController sharedApplicationController] delegate] == self) {
-        [[ApplicationController sharedApplicationController] setDelegate:nil];
-    }
     [self.fileViewController.infoWindowController close];
-    [self.exportWindow close];
 }
 
 
@@ -121,44 +95,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (IBAction) openTemplateSheet:(id)sender {
-    [self.templateController openSheetIn:[self window]];
-}
-
-- (IBAction)liveCompile:(id)sender {
-    [self.activeDocumentController refreshLiveView];
-    // TODO: Get DC for active view and do live compile
-}
-
-- (IBAction)draftCompile:(id)sender {
-    [self.activeDocumentController draftCompile];
-}
-
-- (ExportCompileWindowController *)exportWindow {
-    DocumentController *current = self.activeDocumentController;
-    if (current && (!_exportWindow || ![_exportWindow.controller isEqualTo:current])) {
-        self.exportWindow = [[ExportCompileWindowController alloc] initWithDocumentController:current];
-    }
-    return _exportWindow;
-}
-
-- (IBAction)finalCompile:(id)sender {
-    [self.exportWindow setModel:self.activeDocumentController.model];
-    self.exportWindow.window.isVisible = YES;
-}
-
-- (DocumentController *)activeDocumentController {
-    // FIXME: get the active DC
-    DocumentController *dc = [[self.documentControllers allObjects] objectAtIndex:0];
-    return dc;
-}
-
-- (void)genericAction:(id)sender {
-    if ([sender tag] == REFRESH_LIVE_VIEW_TAG) {
-        
-        [self.activeDocumentController refreshLiveView];
-    }
-}
 
 - (IBAction)toggleSidebarView:(id)sender {
     [self.mainView collapseOrExpandSubviewAtIndex:0 animated:YES];
@@ -167,15 +103,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (IBAction)toggleSecondView:(id)sender {
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
-}
-
-- (IBAction)showStatistics:(id)sender {
-    [self.statsPanel showStatistics:self.mainCompilable.path];
-}
-
-- (void)makeFirstResponder:(NSView *)view {
-    DDLogInfo(@"%@", view);
-    [[view window] setInitialFirstResponder:view];
 }
 
 
@@ -212,13 +139,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
 }
 
-#pragma mark - ViewControllerProtocol
-
-- (void)breakUndoCoalescing {
-    for (DocumentController *dc in self.documentControllers) {
-        [dc breakUndoCoalescing];
-    }
-}
 
 
 #pragma mark - DMSplitViewDelegate
@@ -252,6 +172,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 #pragma mark - Terminate
 
+- (void)showDocument:(DocumentController *)dc {
+    DDLogVerbose(@"showDocument");
+    [self.firsTabViewController addTabViewItem:dc.textViewController.tabViewItem];
+    for (ExtendedPDFViewController *c in dc.pdfViewControllers) {
+        [self.secondTabViewController addTabViewItem:c.tabViewItem];
+    }
+}
+
 
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
@@ -260,6 +188,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 
 }
+
+
 
 
 @end

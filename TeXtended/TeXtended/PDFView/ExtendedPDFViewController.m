@@ -145,7 +145,7 @@
 
 - (void)dealloc {
 #ifdef DEBUG
-    DDLogError(@"ExtendedPDFViewController dealloc");
+    DDLogVerbose(@"dealloc");
 #endif
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
 }
