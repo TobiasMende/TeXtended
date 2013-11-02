@@ -36,8 +36,8 @@
                                 <size key="maxSize" width="641" height="10000000"/>
                                 <connections>
                                     <binding destination="34" name="fontBold" keyPath="values.TMT_EDITOR_FONT_BOLD" id="0Hv-1B-zVu"/>
-                                    <binding destination="34" name="fontFamilyName" keyPath="values.TMT_EDITOR_FONT_NAME" previousBinding="0Hv-1B-zVu" id="MZ9-ak-JJ9"/>
                                     <binding destination="34" name="fontItalic" keyPath="values.TMT_EDITOR_FONT_ITALIC" previousBinding="MZ9-ak-JJ9" id="IXy-GP-sJo"/>
+                                    <binding destination="34" name="fontFamilyName" keyPath="values.TMT_EDITOR_FONT_NAME" previousBinding="0Hv-1B-zVu" id="MZ9-ak-JJ9"/>
                                     <binding destination="34" name="fontSize" keyPath="values.TMT_EDITOR_FONT_SIZE" previousBinding="IXy-GP-sJo" id="GmA-zv-d1C"/>
                                 </connections>
                             </textView>
@@ -62,10 +62,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="34" name="fontBold" keyPath="values.TMT_EDITOR_FONT_BOLD" id="yxQ-PZ-AZU"/>
-                        <binding destination="34" name="fontFamilyName" keyPath="values.TMT_EDITOR_FONT_NAME" previousBinding="yxQ-PZ-AZU" id="7t9-My-4fj"/>
-                        <binding destination="34" name="fontItalic" keyPath="values.TMT_EDITOR_FONT_ITALIC" previousBinding="7t9-My-4fj" id="OzN-aR-1bY"/>
-                        <binding destination="34" name="fontSize" keyPath="values.TMT_EDITOR_FONT_SIZE" previousBinding="OzN-aR-1bY" id="tlC-AK-1fs"/>
                         <binding destination="-2" name="editable" keyPath="self.consoleActive" id="30"/>
                         <binding destination="-2" name="enabled" keyPath="self.consoleActive" previousBinding="30" id="31"/>
                         <binding destination="34" name="textColor" keyPath="values.TMTEditorForegroundColor" id="44">
@@ -73,6 +69,10 @@
                                 <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                             </dictionary>
                         </binding>
+                        <binding destination="34" name="fontBold" keyPath="values.TMT_EDITOR_FONT_BOLD" id="yxQ-PZ-AZU"/>
+                        <binding destination="34" name="fontItalic" keyPath="values.TMT_EDITOR_FONT_ITALIC" previousBinding="7t9-My-4fj" id="OzN-aR-1bY"/>
+                        <binding destination="34" name="fontFamilyName" keyPath="values.TMT_EDITOR_FONT_NAME" previousBinding="yxQ-PZ-AZU" id="7t9-My-4fj"/>
+                        <binding destination="34" name="fontSize" keyPath="values.TMT_EDITOR_FONT_SIZE" previousBinding="OzN-aR-1bY" id="tlC-AK-1fs"/>
                         <outlet property="delegate" destination="-2" id="22"/>
                     </connections>
                 </textField>

@@ -1011,18 +1011,18 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Font" borderType="line" id="0dj-Dl-t3I">
-                    <rect key="frame" x="266" y="16" width="278" height="113"/>
+                    <rect key="frame" x="266" y="10" width="278" height="119"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="276" height="97"/>
+                        <rect key="frame" x="1" y="1" width="276" height="103"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" id="PQh-8i-a93">
-                                <rect key="frame" x="16" y="63" width="245" height="26"/>
+                                <rect key="frame" x="16" y="69" width="245" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CEN-SK-Rdw" id="ZcZ-1u-C6h">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="0Ki-4F-Kb3">
                                         <items>
                                             <menuItem title="Item 1" state="on" id="CEN-SK-Rdw"/>
@@ -1037,7 +1037,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" id="wmN-1q-yq2">
-                                <rect key="frame" x="56" y="36" width="44" height="22"/>
+                                <rect key="frame" x="56" y="38" width="44" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Re3-xf-lpv">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#" negativeFormat="#" generatesDecimalNumbers="YES" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" minimumFractionDigits="0" maximumFractionDigits="0" groupingSeparator="" id="DnT-eB-3bY">
@@ -1056,7 +1056,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MY0-1x-Ngm">
-                                <rect key="frame" x="16" y="39" width="34" height="17"/>
+                                <rect key="frame" x="16" y="41" width="34" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size:" id="pLq-xO-4DJ">
                                     <font key="font" metaFont="system"/>
@@ -1065,7 +1065,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" id="rC3-pZ-eKh">
-                                <rect key="frame" x="106" y="37" width="154" height="21"/>
+                                <rect key="frame" x="106" y="39" width="154" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="10" maxValue="50" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="bbf-Kp-At1">
                                     <connections>
