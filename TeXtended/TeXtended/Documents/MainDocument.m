@@ -12,6 +12,7 @@
 #import "DocumentController.h"
 #import "MainWindowController.h"
 #import "ExportCompileWindowController.h"
+#import "StatsPanelController.h"
 #import "TMTLog.h"
 
 @implementation MainDocument
@@ -82,6 +83,13 @@
     }
     exportWindowController.documentController = dc;
     [exportWindowController showWindow:nil];
+}
+
+- (void)showStatisticsForModel:(DocumentController *)dc {
+    if (!statisticPanelController) {
+        statisticPanelController = [StatsPanelController new];
+    }
+    [statisticPanelController showStatistics:dc.model.texPath];
 }
 
 @end

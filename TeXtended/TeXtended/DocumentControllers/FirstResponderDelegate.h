@@ -27,4 +27,6 @@
 /* Save Document */
 - (void) saveDocument:(id)sender;
 
+- (void) showStatistics:(id)sender;
+
 @end

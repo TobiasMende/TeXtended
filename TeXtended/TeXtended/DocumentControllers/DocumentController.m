@@ -147,6 +147,10 @@
     [self.mainDocument finalCompileForDocumentController:self];
 }
 
+- (void)showStatistics:(id)sender {
+    [self.mainDocument showStatisticsForModel:self];
+}
+
 #pragma mark -
 #pragma mark Dealloc
 

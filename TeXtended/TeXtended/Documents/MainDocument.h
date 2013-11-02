@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, StatsPanelController;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
+    StatsPanelController *statisticPanelController;
 }
 
 /** The context in which the associated DocumentModel and subobjects live in */
@@ -26,4 +27,5 @@
 - (Compilable *) model;
 - (void)initializeDocumentControllers;
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
+- (void)showStatisticsForModel:(DocumentController *)dc;
 @end
