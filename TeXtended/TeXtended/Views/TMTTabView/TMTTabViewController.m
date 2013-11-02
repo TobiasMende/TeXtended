@@ -12,6 +12,8 @@
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabViewController.h"
+#import "TMTLog.h"
+#import "TMTTabViewWindowManager.h"
 
 @interface TMTTabViewController ()
 
@@ -19,6 +21,7 @@
 
 @implementation TMTTabViewController
 
+#pragma mark - Initialize and dealloc
 - (id)init {
     self = [super initWithNibName:@"TMTTabViewController" bundle:nil];
     if (self) {
@@ -27,6 +30,7 @@
 }
 
 - (void)awakeFromNib {
+    //[tabBar setDelegate:self];
     [tabBar setStyleNamed:@"Safari"];
     [tabBar setOnlyShowCloseOnHover:YES];
     [tabBar setCanCloseOnlyTab:NO];
@@ -35,19 +39,19 @@
     [tabBar setHideForSingleTab:NO];
     [tabBar setShowAddTabButton:NO];
     [tabBar setButtonMinWidth:100];
-    [tabBar setButtonMaxWidth:100];
+    [tabBar setButtonMaxWidth:200];
     [tabBar setButtonOptimumWidth:100];
-    [tabBar setSizeButtonsToFit:NO];
+    [tabBar setSizeButtonsToFit:YES];
     [tabBar setUseOverflowMenu:YES];
     [tabBar setAutomaticallyAnimates:YES];
     [tabBar setAllowsScrubbing:YES];
-    [tabBar setTearOffStyle:MMTabBarTearOffMiniwindow];
- 
-    // remove any tabs present in the nib
-    for (NSTabViewItem *item in [tabView tabViewItems]) {
-       [tabView removeTabViewItem:item];
-    }
+    [tabBar setTearOffStyle:MMTabBarTearOffAlphaWindow];
 }
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
+}
+
 
 - (void) addTabViewItem:(TMTTabViewItem*) item {
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
@@ -65,18 +69,13 @@
     [tabView selectTabViewItem:newItem];
 }
 
-- (void)addDefaultTabs {
-    [self addNewTabWithTitle:@"Tab"];
-    [self addNewTabWithTitle:@"Bar"];
-    [self addNewTabWithTitle:@"View"];
-}
 
 - (MMTabBarView *)tabBar {
 	return tabBar;
 }
 
 #pragma mark -
-#pragma mark ---- delegate ----
+#pragma mark Delegate Methods
 
 - (BOOL)tabView:(NSTabView *)aTabView shouldAllowTabViewItem:(NSTabViewItem *)tabViewItem toLeaveTabBarView:(MMTabBarView *)tabBarView {
     return YES;
@@ -94,14 +93,40 @@
     return NSDragOperationMove;
 }
 
+- (NSImage *)tabView:(NSTabView *)aTabView imageForTabViewItem:(NSTabViewItem *)tabViewItem offset:(NSSize *)offset styleMask:(NSUInteger *)styleMask {
+    NSView *aView = aTabView;
+    NSRect originRect = [aView convertRect:[aView bounds] toView:[[aView window] contentView]];
+    
+    NSRect rect = originRect;
+    rect.origin.y = 0;
+    rect.origin.x += [aView window].frame.origin.x;
+    rect.origin.y += [[aView window] screen].frame.size.height - [aView window].frame.origin.y - [aView window].frame.size.height;
+    rect.origin.y += [aView window].frame.size.height - originRect.origin.y - originRect.size.height;
+    
+    CGImageRef cgimg = CGWindowListCreateImage(rect,
+                                               kCGWindowListOptionIncludingWindow,
+                                               (CGWindowID)[[aView window] windowNumber],
+                                               kCGWindowImageDefault);
+    NSImage *image = [[NSImage alloc] initWithCGImage:cgimg size:[aView bounds].size];
+    NSSize imageSize = [image size];
+    [image setScalesWhenResized:YES];
+    
+    if (imageSize.width > imageSize.height) {
+        [image setSize:NSMakeSize(125, 125 * (imageSize.height / imageSize.width))];
+    } else {
+        [image setSize:NSMakeSize(125 * (imageSize.width / imageSize.height), 125)];
+    }
+    return image;
+}
+
 - (MMTabBarView *)tabView:(NSTabView *)aTabView newTabBarViewForDraggedTabViewItem:(NSTabViewItem *)tabViewItem atPoint:(NSPoint)point {
 	NSLog(@"newTabBarViewForDraggedTabViewItem: %@ atPoint: %@", [tabViewItem label], NSStringFromPoint(point));
 
     
-    //FIXME what to do?
     
 	//create a new window controller with no tab items
 	TMTTabViewWindow *tabWindow = [[TMTTabViewWindow alloc] init];
+    [[TMTTabViewWindowManager sharedTabViewWindowManager]addTabViewWindow:tabWindow];
     
     MMTabBarView *tabBarView = (MMTabBarView *)[aTabView delegate];
     
@@ -111,14 +136,9 @@
     point.y += windowFrame.size.height - [[[tabWindow window] contentView] frame].size.height;
 	point.x -= [style leftMarginForTabBarView:tabBarView];
     
-	[[tabWindow window] setFrameTopLeftPoint:point];
+    [[tabWindow window] setFrameTopLeftPoint:point];
 	[[[tabWindow tabView] tabBar] setStyle:style];
-    
 	return [[tabWindow tabView] tabBar];
-}
-
-- (void)tabView:(NSTabView *)aTabView closeWindowForLastTabViewItem:(NSTabViewItem *)tabViewItem {
-	NSLog(@"closeWindowForLastTabViewItem: %@", [tabViewItem label]);
 }
 
 - (NSString *)tabView:(NSTabView *)aTabView toolTipForTabViewItem:(NSTabViewItem *)tabViewItem {
@@ -127,6 +147,15 @@
 
 - (NSString *)accessibilityStringForTabView:(NSTabView *)aTabView objectCount:(NSInteger)objectCount {
 	return (objectCount == 1) ? @"item" : @"items";
+}
+
+- (void)tabView:(NSTabView *)aTabView closeWindowForLastTabViewItem:(NSTabViewItem *)tabViewItem {
+    DDLogInfo(@"closeWindowForLastTabViewItem");
+    NSWindow *w = aTabView.window;
+    if ([w isKindOfClass:[TMTTabViewWindow class]]) {
+        [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+    }
+    
 }
 
 @end

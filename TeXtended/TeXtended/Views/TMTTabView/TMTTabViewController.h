@@ -16,7 +16,6 @@
 }
 
 - (void)addTabViewItem:(TMTTabViewItem*) item;
-- (void)addDefaultTabs;
 - (void)addNewTabWithTitle:(NSString *)aTitle;
 - (MMTabBarView *)tabBar;
 

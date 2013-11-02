@@ -31,7 +31,6 @@
 
 - (void)awakeFromNib {
     [self setTabView:[[TMTTabViewController alloc] init]];
-    [self.tabView addDefaultTabs];
     [self.cview addSubview:[self.tabView view]];
     [[self.tabView view] setFrame:[self.cview bounds]];
     [[self.tabView view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];

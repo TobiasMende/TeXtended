@@ -11,16 +11,6 @@
 #import <MMTabBarView/MMTabBarItem.h>
 
 @interface TMTTabViewItem : NSObject <MMTabBarItem> {
-    NSString    *_title;
-	BOOL         _isProcessing;
-	NSImage     *_icon;
-	NSString    *_iconName;
-	NSInteger    _objectCount;
-    NSColor     *_objectCountColor;
-    BOOL         _showObjectCount;
-	BOOL         _isEdited;
-    BOOL         _hasCloseButton;
-    NSView      *_view;
 }
 
 @property (copy)   NSString  *title;
