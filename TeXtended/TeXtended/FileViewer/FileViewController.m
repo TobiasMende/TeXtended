@@ -572,7 +572,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
     [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
-    DDLogVerbose(@"FileViewController dealloc");
+    DDLogVerbose(@"dealloc");
 }
 
 @end

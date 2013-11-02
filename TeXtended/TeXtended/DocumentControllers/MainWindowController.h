@@ -23,8 +23,8 @@
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
 
-@property IBOutlet TMTTabViewController *firsTabViewController;
-@property IBOutlet TMTTabViewController *secondTabViewController;
+@property TMTTabViewController *firsTabViewController;
+@property TMTTabViewController *secondTabViewController;
 
 @property (assign) MainDocument *mainDocument;
 

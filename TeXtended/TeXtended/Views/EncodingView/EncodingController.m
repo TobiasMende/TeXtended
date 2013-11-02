@@ -59,14 +59,14 @@
     NSError *error;
     NSString *content = [[NSString alloc] initWithContentsOfFile:[[openPanel URL] path] usedEncoding:&encoding error:&error];
 #pragma unused(content)
-    [self.popUp selectItemAtIndex:[self.encodings indexOfObject:[NSNumber numberWithUnsignedInteger:encoding]]];
+    [self.popUp selectItemAtIndex:[self.encodings indexOfObject:[NSNumber numberWithUnsignedLong:encoding]]];
     self.selectionDidChange = YES;
 }
 
 -(NSStringEncoding)selection
 {
     self.selectionDidChange = NO;
-    return [[self.encodings objectAtIndex:self.popUp.indexOfSelectedItem] unsignedIntegerValue];
+    return [[self.encodings objectAtIndex:self.popUp.indexOfSelectedItem] unsignedLongValue];
 }
 
 @end

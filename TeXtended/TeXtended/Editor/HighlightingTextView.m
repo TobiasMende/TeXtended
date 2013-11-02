@@ -787,7 +787,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 -(void)dealloc {
-    DDLogVerbose(@"HighlightingTextView dealloc");
+    DDLogVerbose(@"dealloc");
     [self unregisterUserDefaultsObserver];
   
 }

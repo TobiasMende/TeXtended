@@ -43,6 +43,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         DDLogVerbose(@"Init");
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
+        self.fileViewController = [FileViewController new];
+        self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
     return self;
@@ -57,13 +59,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     self.secondTabViewController.closeWindowForLastTabDrag = NO;
     [self.contentView setVertical:flag];
     [self.contentView setSubviews:[NSArray arrayWithObjects:self.firsTabViewController.view, self.secondTabViewController.view, nil]];
-    self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
-    self.outlineViewArea.contentView = self.outlineController.view;
     
-    self.fileViewController = [[FileViewController alloc] init];
+     self.outlineViewArea.contentView = self.outlineController.view;
     
     [self.fileViewArea setContentView:self.fileViewController.view];
-    
+    [self.fileViewController setDocument:[self.mainDocument.model.mainDocuments anyObject]];
     
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
@@ -88,7 +88,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (void)windowWillClose:(NSNotification *)notification {
     [self.fileViewController.infoWindowController close];
 }
-
 
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"http://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
@@ -170,8 +169,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
 }
 
-#pragma mark - Terminate
-
 - (void)showDocument:(DocumentController *)dc {
     DDLogVerbose(@"showDocument");
     [self.firsTabViewController addTabViewItem:dc.textViewController.tabViewItem];
@@ -179,13 +176,17 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [self.secondTabViewController addTabViewItem:c.tabViewItem];
     }
 }
+#pragma mark - Terminate
+
 
 
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
+    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
+    
 
 }
 

@@ -56,7 +56,7 @@
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [obj performSelector:action withObject:messages];
+         [obj performSelector:action withObject:messages];
 #pragma clang diagnostic pop
         outPipe = nil;
     }];

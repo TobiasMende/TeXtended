@@ -9,6 +9,7 @@
 #import <MMTabBarView/MMTabStyle.h>
 
 #import "TMTTabViewController.h"
+#import "TMTTabViewWindowManager.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 #import "TMTLog.h"
@@ -31,12 +32,17 @@
 }
 
 - (void)awakeFromNib {
+    self.window.delegate = self;
     [self setTabView:[[TMTTabViewController alloc] init]];
     [self.cview addSubview:[self.tabView view]];
     [[self.tabView view] setFrame:[self.cview bounds]];
     [[self.tabView view] setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:self];
+}
 
 
 @end

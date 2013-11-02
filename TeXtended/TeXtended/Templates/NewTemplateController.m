@@ -8,10 +8,12 @@
 
 #import "NewTemplateController.h"
 #import "TemplateController.h"
+#import "TMTLog.h"
 
 @implementation NewTemplateController
 
 - (id) initWithTemplateController:(TemplateController*) tempalteController {
+    DDLogVerbose(@"initWithTemplateController");
     self.tempalteController = tempalteController;
     return self;
 }
@@ -40,6 +42,10 @@
     if ([templateName length] == 0) return;
     [self.tempalteController addTemplateWithName:templateName andContent:[self.createWithContent state]];
     [self closeSheet:nil];
+}
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
 }
 
 @end

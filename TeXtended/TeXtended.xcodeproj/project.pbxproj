@@ -74,7 +74,6 @@
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
-		D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668623176F5B39001699A8 /* TMTSplitView.m */; };
 		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
 		D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D268FB1917F6C30900C9E59E /* TMTLogFormatter.m */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
@@ -386,8 +385,6 @@
 		D266861E176F5B39001699A8 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
 		D266861F176F5B39001699A8 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2668620176F5B39001699A8 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
-		D2668622176F5B39001699A8 /* TMTSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTSplitView.h; sourceTree = "<group>"; };
-		D2668623176F5B39001699A8 /* TMTSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTSplitView.m; sourceTree = "<group>"; };
 		D2668625176F5B39001699A8 /* TMTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableView.h; sourceTree = "<group>"; };
 		D2668626176F5B39001699A8 /* TMTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableView.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
@@ -870,7 +867,6 @@
 				D2668616176F5B39001699A8 /* GoToLine */,
 				D266861A176F5B39001699A8 /* LineNumber */,
 				D266861D176F5B39001699A8 /* Texdoc */,
-				D2668621176F5B39001699A8 /* TMTSplitView */,
 				D2668624176F5B39001699A8 /* TMTTableView */,
 			);
 			path = Views;
@@ -906,15 +902,6 @@
 				D2668620176F5B39001699A8 /* TexdocViewController.m */,
 			);
 			path = Texdoc;
-			sourceTree = "<group>";
-		};
-		D2668621176F5B39001699A8 /* TMTSplitView */ = {
-			isa = PBXGroup;
-			children = (
-				D2668622176F5B39001699A8 /* TMTSplitView.h */,
-				D2668623176F5B39001699A8 /* TMTSplitView.m */,
-			);
-			path = TMTSplitView;
 			sourceTree = "<group>";
 		};
 		D2668624176F5B39001699A8 /* TMTTableView */ = {
@@ -1484,7 +1471,6 @@
 				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
-				D266862C176F5B39001699A8 /* TMTSplitView.m in Sources */,
 				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,

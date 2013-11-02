@@ -29,7 +29,6 @@
     if (!self.documentControllers || self.documentControllers.count == 0) {
         [self initializeDocumentControllers];
     }
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
     
     if ([windowController isKindOfClass:[MainWindowController class]]) {
         for(DocumentController *dc in self.documentControllers) {
