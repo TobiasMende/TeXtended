@@ -161,7 +161,7 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <binding destination="OMC-Gw-sjv" name="value" keyPath="self.currentFirstResponderDelegate.liveCompileEnabled" id="teb-qP-J1W"/>
+                                <binding destination="-2" name="value" keyPath="self.myCurrentFirstResponderDelegate.liveCompileEnabled" id="XVp-Sl-YDI"/>
                             </connections>
                         </button>
                     </toolbarItem>

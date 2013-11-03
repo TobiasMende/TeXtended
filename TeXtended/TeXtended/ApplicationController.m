@@ -60,7 +60,7 @@ ApplicationController *sharedInstance;
 
 + (ApplicationController *)sharedApplicationController {
     if (!sharedInstance) {
-        sharedInstance = [[ApplicationController alloc] init];
+        sharedInstance = [ApplicationController new];
     }
     return sharedInstance;
 }

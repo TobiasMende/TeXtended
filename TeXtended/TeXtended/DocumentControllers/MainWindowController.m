@@ -19,10 +19,11 @@
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"
 #import "OutlineTabViewController.h"
+#import "ApplicationController.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
-
+- (void)updateFirstResponderDelegate:(NSResponder*)firstResponder;
 @end
 
 @implementation MainWindowController
@@ -171,7 +172,31 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     for (ExtendedPDFViewController *c in dc.pdfViewControllers) {
         [self.secondTabViewController addTabViewItem:c.tabViewItem];
     }
+    self.myCurrentFirstResponderDelegate = dc;
 }
+
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self updateFirstResponderDelegate:self.window.firstResponder];
+    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = self.myCurrentFirstResponderDelegate;
+}
+
+
+- (void)windowDidUpdate:(NSNotification *)notification {
+    if (self.window.isKeyWindow) {
+        [self updateFirstResponderDelegate:self.window.firstResponder];
+    }
+}
+
+- (void)updateFirstResponderDelegate:(NSResponder *)firstResponder {
+    if ([firstResponder respondsToSelector:@selector(firstResponderDelegate)]) {
+        id<FirstResponderDelegate> del = [firstResponder performSelector:@selector(firstResponderDelegate)];
+        if (![del isEqual:self.myCurrentFirstResponderDelegate]) {
+            self.myCurrentFirstResponderDelegate = del;
+        }
+    }
+}
+
 #pragma mark - Terminate
 
 
