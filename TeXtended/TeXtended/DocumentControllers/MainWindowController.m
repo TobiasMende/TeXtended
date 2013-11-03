@@ -191,7 +191,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         NSInteger oldState = self.sidebarViewToggle.state;
         self.sidebarViewToggle.state = newState;
         
-        if (oldState != newState) {
+        if (oldState == newState) {
             [self toggleSidebarView:self];
         }
     }
@@ -199,7 +199,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]]) {
         DDLogCInfo(@"Right collapsed state is %li",[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue]);
         NSInteger state = [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue];
-        if (self.secondViewToggle.state != state) {
+        if (self.secondViewToggle.state == state) {
             self.secondViewToggle.state = state;
             [self toggleSecondView:self];
         }
