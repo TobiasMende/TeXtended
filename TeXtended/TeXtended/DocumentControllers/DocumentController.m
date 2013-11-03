@@ -151,6 +151,16 @@
     [self.mainDocument showStatisticsForModel:self];
 }
 
+- (BOOL)isLiveCompileEnabled {
+    return self.model.liveCompile.boolValue;
+}
+
+- (void)setLiveCompileEnabled:(BOOL)enable {
+    [self willChangeValueForKey:@"liveCompileEnabled"];
+    self.model.liveCompile = [NSNumber numberWithBool:enable];
+    [self didChangeValueForKey:@"liveCompileEnabled"];
+}
+
 #pragma mark -
 #pragma mark Dealloc
 

@@ -164,6 +164,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
 }
 
+
 - (void)showDocument:(DocumentController *)dc {
     DDLogVerbose(@"showDocument");
     [self.firsTabViewController addTabViewItem:dc.textViewController.tabViewItem];

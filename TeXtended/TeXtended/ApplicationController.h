@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FirstResponderDelegate.h"
 @class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController;
 
 /**
@@ -26,6 +27,8 @@
     /** reference to the texdoc panel controller handling the app wide texdoc support */
     TexdocPanelController *texdocPanelController;
 }
+
+@property (weak) id<FirstResponderDelegate> currentFirstResponderDelegate;
 
 /** Method for showing the texdoc panel to the user 
  

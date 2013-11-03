@@ -29,4 +29,8 @@
 
 - (void) showStatistics:(id)sender;
 
+
+- (BOOL)isLiveCompileEnabled;
+- (void)setLiveCompileEnabled:(BOOL)enable;
+
 @end

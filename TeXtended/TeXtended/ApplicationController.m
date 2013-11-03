@@ -14,6 +14,7 @@
 #import "CompileFlowHandler.h"
 #import "TexdocPanelController.h"
 #import "PathFactory.h"
+#import "FirstResponderDelegate.h"
 #import "TMTLog.h"
 ApplicationController *sharedInstance;
 
@@ -31,6 +32,29 @@ ApplicationController *sharedInstance;
     [self registerDefaults];
     // Merging compile flows
     [self mergeCompileFlows];
+}
+
+- (id)init {
+    if (sharedInstance) {
+        return sharedInstance;
+    }
+    self = [super init];
+    DDLogError(@"Init");
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(somethingDidChange:) name:NSApplicationDidUpdateNotification object:nil];
+    }
+    return self;
+}
+
+- (void)somethingDidChange:(NSNotification *)note {
+    // ATTENTION: This method is called after every fucking message passed through the notification center. So it need's to be very fast!
+    NSResponder *firstResponder = [[[NSApplication sharedApplication] keyWindow] firstResponder];
+    if ([firstResponder respondsToSelector:@selector(firstResponderDelegate)]) {
+        id<FirstResponderDelegate> del = [firstResponder performSelector:@selector(firstResponderDelegate)];
+        if (![del isEqual:self.currentFirstResponderDelegate] && [del conformsToProtocol:@protocol(FirstResponderDelegate)]) {
+            self.currentFirstResponderDelegate = del;
+        }
+    }
 }
 
 

@@ -401,6 +401,9 @@
                             <menuItem isSeparatorItem="YES" id="583"/>
                             <menuItem title="Live Compile" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <binding destination="534" name="value" keyPath="self.currentFirstResponderDelegate.liveCompileEnabled" id="lzr-9Y-LZe"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Live Scrolling" alternate="YES" keyEquivalent="L" id="584">
                                 <connections>
