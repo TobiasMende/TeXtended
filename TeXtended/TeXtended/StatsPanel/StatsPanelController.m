@@ -39,7 +39,7 @@
     NSTask *task = [[NSTask alloc]init];
     NSPipe *outPipe = [NSPipe pipe];
     task.standardOutput = outPipe;
-    task.launchPath = [[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_PATH_TO_TEXBIN]] stringValue] stringByAppendingString:@"/textcount"];
+    task.launchPath = [[[NSUserDefaults standardUserDefaults] valueForKey:TMT_PATH_TO_TEXBIN] stringByAppendingPathComponent:@"texcount"];
     task.arguments = [NSArray arrayWithObjects:@"-inc",@"-brief", @"-q", @"-total", [NSString stringWithFormat:@"\"%@\"",filename], nil];
     task.currentDirectoryPath = [filename stringByDeletingLastPathComponent];
     [task launch];
