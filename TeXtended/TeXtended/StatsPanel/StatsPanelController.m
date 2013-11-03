@@ -8,6 +8,7 @@
 
 #import "StatsPanelController.h"
 #import "TMTLog.h"
+#import "Constants.h"
 
 @interface StatsPanelController ()
 
@@ -34,11 +35,11 @@
 
 - (void)showStatistics:(NSString*)filename
 {
-    self.panelTitle = [NSString stringWithFormat:@"Statistics - %@",[filename lastPathComponent]];
+    self.panelTitle = [NSLocalizedString(@"Statistics", @"Statistics") stringByAppendingString:[NSString stringWithFormat:@" - %@",[filename lastPathComponent]]];
     NSTask *task = [[NSTask alloc]init];
     NSPipe *outPipe = [NSPipe pipe];
     task.standardOutput = outPipe;
-    task.launchPath = @"/usr/texbin/texcount";
+    task.launchPath = [[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_PATH_TO_TEXBIN]] stringValue] stringByAppendingString:@"/textcount"];
     task.arguments = [NSArray arrayWithObjects:@"-inc",@"-brief", @"-q", @"-total", [NSString stringWithFormat:@"\"%@\"",filename], nil];
     task.currentDirectoryPath = [filename stringByDeletingLastPathComponent];
     [task launch];
