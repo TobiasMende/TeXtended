@@ -83,6 +83,10 @@
     }
 }
 
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate {
+    self.pdfView.firstResponderDelegate = delegate;
+}
+
 - (void)updateTabViewItem {
     if (!self.model) {
         return;
@@ -145,7 +149,7 @@
 
 - (void)dealloc {
 #ifdef DEBUG
-    DDLogError(@"ExtendedPDFViewController dealloc");
+    DDLogVerbose(@"dealloc");
 #endif
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
 }

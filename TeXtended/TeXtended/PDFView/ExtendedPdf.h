@@ -7,6 +7,7 @@
 //
 
 #import <Quartz/Quartz.h>
+#import "FirstResponderDelegate.h"
 
 @class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController;
 
@@ -62,6 +63,8 @@
 
 /** Timer which defines how long the page numbers are shown after a scroll event */
 @property (strong) NSTimer *displayPageNumbersTimer;
+
+@property (weak) id<FirstResponderDelegate> firstResponderDelegate;
 
 /**
   * Draws a grid of the given size on the current page.

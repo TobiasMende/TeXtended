@@ -144,6 +144,7 @@
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
 
+
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
                                     NoWrap = 2} TMTLineWrappingMode;

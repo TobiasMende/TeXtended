@@ -221,7 +221,7 @@ static const NSSet *KEYS_TO_UNBIND;
     [controllsView.theBox setCornerRadius:10];
 }
 #pragma mark -
-#pragma mark Responder Chain
+#pragma mark First Responder Chain
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
 #pragma clang diagnostic push
@@ -229,9 +229,22 @@ static const NSSet *KEYS_TO_UNBIND;
     if (aSelector == @selector(print:)) {
         return self.document != nil;
     }
-    return [super respondsToSelector:aSelector];
+    return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
     #pragma clang diagnostic pop
 }
+- (id)performSelector:(SEL)aSelector withObject:(id)object {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if ([super respondsToSelector:aSelector]) {
+        [super performSelector:aSelector withObject:object];
+    } else if(self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]) {
+        [self.firstResponderDelegate performSelector:aSelector withObject:object];
+    }
+#pragma clang diagnostic pop
+    return nil;
+}
+
+
 
 #pragma mark -
 #pragma mark Dealloc

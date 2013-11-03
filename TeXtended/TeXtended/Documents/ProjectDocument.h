@@ -17,15 +17,10 @@
  **Author:** Tobias Mende
  
  */
-@interface ProjectDocument : NSPersistentDocument<MainDocument>
+@interface ProjectDocument : MainDocument
 
-/** The controller of the documents main window */
-@property (strong) MainWindowController *mainWindowController;
-
-/** A set of all document controllers of the project */
-@property (strong) NSMutableSet *documentControllers;
 
 /** The model of the project. */
-@property (strong) ProjectModel *projectModel;
+@property (strong) ProjectModel *model;
 
 @end

@@ -8,7 +8,6 @@
 
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabStyle.h>
-#import "MainWindowController.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabViewController.h"
@@ -23,7 +22,7 @@
 
 #pragma mark - Initialize and dealloc
 - (id)init {
-    self = [super initWithNibName:@"TMTTabViewController" bundle:nil];
+    self = [super initWithNibName:@"TMTTabView" bundle:nil];
     if (self) {
         self.closeWindowForLastTabDrag = YES;
     }
@@ -50,11 +49,13 @@
 }
 
 - (void)dealloc {
+    [tabBar setDelegate:nil];
     DDLogVerbose(@"dealloc");
 }
 
 
 - (void) addTabViewItem:(TMTTabViewItem*) item {
+    DDLogVerbose(@"addTabViewItem: %@", item);
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
 	[tabView addTabViewItem:newItem];
@@ -116,6 +117,8 @@
     NSImage *image = [[NSImage alloc] initWithCGImage:cgimg size:[aView bounds].size];
     NSSize imageSize = [image size];
     [image setScalesWhenResized:YES];
+    CGImageRelease(cgimg);
+    
     
     if (imageSize.width > imageSize.height) {
         [image setSize:NSMakeSize(125, 125 * (imageSize.height / imageSize.width))];
@@ -156,6 +159,9 @@
     NSWindow *w = aTabView.window;
     if ([w isKindOfClass:[TMTTabViewWindow class]]) {
         [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+    }
+    if(self.closeWindowForLastTabDrag) {
+        [w close];
     }
     
 }

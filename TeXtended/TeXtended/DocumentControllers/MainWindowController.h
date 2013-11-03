@@ -8,9 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DMSplitView.h"
-#import "MainDocument.h"
 #import "ViewControllerProtocol.h"
-@class DocumentController, FileViewController, ExportCompileWindowController, TMTSplitView, TemplateWindowController, TemplateController, DMSplitView, Compilable, StatsPanelController, OutlineTabViewController, TMTTabViewController;
+@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -21,11 +20,13 @@
  
  */
 
-@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate, ViewControllerProtocol> {
-    TMTTabViewController *firsTabViewController;
-    TMTTabViewController *secondTabViewController;
+@interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
 
+@property TMTTabViewController *firsTabViewController;
+@property TMTTabViewController *secondTabViewController;
+
+@property (assign) MainDocument *mainDocument;
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;
@@ -45,27 +46,9 @@
 
 @property IBOutlet OutlineTabViewController* outlineController;
 
-@property (assign) id<MainDocument> mainDocument;
-
-/** the DocumentController controlling the current DocumentModel */
-@property (strong) NSMutableSet *documentControllers;
-
-@property (strong) Compilable *mainCompilable;
-
 /** the FileViewController containing the file outline view */
 @property  FileViewController *fileViewController;
 
-/** The controller controlling the export window */
-@property  (strong,nonatomic) ExportCompileWindowController* exportWindow;
-
-
-/** Controller to a shett to choose templates */
-@property (strong) TemplateController* templateController;
-
-@property (strong) StatsPanelController* statsPanel;
-
-
-- (id)initWithMainDocument:(id<MainDocument>) document;
 
 /** Action for opening the redmine ticket system in the default web browser 
  
@@ -73,42 +56,11 @@
  */
 - (IBAction)reportBug:(id)sender;
 
-/** New file from template, opens the template selection */
-- (IBAction) openTemplateSheet:(id)sender;
-
-/** Action initiating the draft compile on the DocumentController 
- 
- @param sender the sender
- */
-- (IBAction)draftCompile:(id)sender;
-
-/** Action initiating the final compile on the DocumentController 
- 
- @param sender the sender
- */
-- (IBAction)finalCompile:(id)sender;
-
-/** Action initiating the live compile on the DocumentController 
- 
- @param sender the sender
- */
-- (IBAction)liveCompile:(id)sender;
-
-/**
- A method for performing a general action which is determined by the sender in any instance. This method calls the method  with the same arguments.
- 
- @warning This method is used to reduce the number of methods in the first responder. Use it only, if the action to perform is really clean and generate other action methods otherwise.
- 
- @param sender the sender
- 
- */
-- (IBAction)genericAction:(id)sender;
-
 - (IBAction)toggleSidebarView:(id)sender;
 - (IBAction)toggleSecondView:(id)sender;
 
-- (IBAction)showStatistics:(id)sender;
+- (id)initForDocument:(MainDocument*)document;
 
-- (DocumentController *)activeDocumentController;
+- (void) showDocument:(DocumentController *)dc;
 
 @end

@@ -10,10 +10,10 @@
 #import "DocumentController.h"
 #import "DocumentModel.h"
 #import "ProjectModel.h"
+#import "MainDocument.h"
 #import "TMTTableView.h"
 
 @interface ExportCompileWindowController ()
-- (void) internalSetActive:(BOOL)active;
 @end
 
 @implementation ExportCompileWindowController
@@ -22,10 +22,10 @@
     [self exposeBinding:@"canRemoveEntry"];
 }
 
--(id)initWithDocumentController:(DocumentController*) controller {
+-(id)initWithMainDocument:(MainDocument *)mainDocument {
     self = [super initWithWindowNibName:@"ExportCompileWindow"];
     if (self) {
-        _controller = controller;
+        self.mainDocument = mainDocument;
     }
     return self;
 }
@@ -51,12 +51,6 @@
     }
 }
 
-- (IBAction)export:(id)sender {
-    if (self.controller) {
-        [self.controller finalCompile];
-        [self.window orderOut:nil];
-    }
-}
 
 - (IBAction)exportPathDialog:(id)sender {
     pdfPathPanel = [NSSavePanel savePanel];
@@ -115,31 +109,20 @@
     }];
 }
 
+- (void)setDocumentController:(DocumentController *)documentController {
+    _documentController = documentController;
+    self.model = documentController.model;
+}
 
-- (void)setActive:(BOOL)active {
-    if (active) {
-        [self showWindow:self];
-    } else {
-        [self close];
+
+- (void)export:(id)sender {
+    [self.window orderOut:nil];
+    if (self.documentController && self.mainDocument) {
+        [self.mainDocument saveEntireDocumentWithDelegate:self.documentController andSelector:@selector(finalCompile:didSave:contextInfo:)];
     }
-    _active = active;
 }
 
-- (void)internalSetActive:(BOOL)active {
-    [self willChangeValueForKey:@"active"];
-    _active = active;
-    [self didChangeValueForKey:@"active"];
-}
 #pragma mark -
 #pragma mark Delegate Methods
-
-- (void)windowWillClose:(NSNotification *)notification {    
-    [self internalSetActive:NO];
-}
-
-
-- (void)windowDidBecomeMain:(NSNotification *)notification {
-    [self internalSetActive:YES];
-}
 
 @end

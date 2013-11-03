@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DocumentController,DocumentModel, TMTTableView;
+@class DocumentController,DocumentModel, TMTTableView, MainDocument;
 
 /*
  * Controller for the export window.
@@ -37,22 +37,14 @@
 /** The DocomentModel for which the export is called. */
 @property (strong) DocumentModel *model;
 
-/** The DocumentController for which the export is called. */
-@property (assign) DocumentController* controller;
+@property (weak, nonatomic) DocumentController* documentController;
 
 /** Controller for the MainDocuments of the given DocumentController. */
 @property (assign) IBOutlet NSArrayController *mainDocumentsController;
 
-@property (nonatomic) BOOL active;
+@property (weak) MainDocument *mainDocument;
 
-/** Init with a DocumentController which should be exported. */
--(id)initWithDocumentController:(DocumentController*) controller;
-
-/**
- * Start the exporting.
- * @param sender
- */
-- (IBAction)export:(id)sender;
+- (id)initWithMainDocument:(MainDocument*)mainDocument;
 
 /** 
  * Open a dialog to change the export path.
@@ -77,4 +69,6 @@
  * @yes ´YES´ is a maindocument can be removed.
  */
 - (BOOL) canRemoveEntry;
+
+- (void) export:(id)sender;
 @end

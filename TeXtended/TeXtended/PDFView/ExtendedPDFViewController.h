@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ViewControllerProtocol.h"
+#import "FirstResponderDelegate.h"
 
 /**
  * A Controller for a view handeling a ExtendedPdf.
@@ -23,7 +24,7 @@
 @property (strong,nonatomic) DocumentModel *model;
 
 /** The coresponding PdfView. */
-@property (strong) IBOutlet PDFView *pdfView;
+@property (strong) IBOutlet ExtendedPdf *pdfView;
 
 @property (assign) DocumentController *documentController;
 @property (strong) TMTTabViewItem* tabViewItem;
@@ -33,4 +34,6 @@
  * @param sender
  */
 - (void) startBackwardSynctex:(id)sender;
+
+- (void) setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate;
 @end

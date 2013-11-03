@@ -97,7 +97,7 @@
 
 -(void) liveCompile {
     if (self.documentController.model.texPath) {
-        [self.documentController refreshLiveView];
+        [self.documentController liveCompile:nil];
     }
     
 }

@@ -22,8 +22,8 @@
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
-#import "TMTLog.h"
 #import "MatrixViewController.h"
+#import "TMTLog.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -634,7 +634,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             return NO;
         }
     }else {
-        return [super respondsToSelector:aSelector];
+        return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
     }
 }
 
@@ -787,9 +787,24 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 -(void)dealloc {
-    DDLogVerbose(@"HighlightingTextView dealloc");
+    DDLogVerbose(@"dealloc");
     [self unregisterUserDefaultsObserver];
   
 }
+
+# pragma mark - First Responder Chain
+
+- (id)performSelector:(SEL)aSelector withObject:(id)object {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if ([super respondsToSelector:aSelector]) {
+        [super performSelector:aSelector withObject:object];
+    } else if(self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]) {
+        [self.firstResponderDelegate performSelector:aSelector withObject:object];
+    }
+#pragma clang diagnostic pop
+    return nil;
+}
+
 
 @end

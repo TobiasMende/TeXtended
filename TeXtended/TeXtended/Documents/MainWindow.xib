@@ -129,10 +129,10 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="draftCompile:" target="-1" id="SjA-LX-cts"/>
+                            </connections>
                         </button>
-                        <connections>
-                            <action selector="draftCompile:" target="-2" id="100397"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="3251A253-2B52-4A88-B9BC-2EC75CE26634" label="Final" paletteLabel="Final" image="Export" id="100393">
                         <nil key="toolTip"/>
@@ -141,20 +141,14 @@
                         <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="100394">
                             <rect key="frame" x="2" y="14" width="30" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Export" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="100395">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Export" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="100395">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
-                                <connections>
-                                    <binding destination="-2" name="value" keyPath="self.exportWindow.active" id="100564"/>
-                                </connections>
                             </buttonCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="self.exportWindow.window.isVisible" id="100560"/>
+                                <action selector="finalCompile:" target="-1" id="2g5-Ag-fhS"/>
                             </connections>
                         </button>
-                        <connections>
-                            <action selector="finalCompile:" target="-2" id="100398"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="1D1D4388-FA61-4A1E-AC58-73E81AACC6B8" label="Live" paletteLabel="Live" toolTip="Enable/ Disable Livecompile" image="Livepreview" id="100399">
                         <size key="minSize" width="30" height="28"/>
@@ -165,13 +159,7 @@
                             <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Livepreview" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="100401">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
-                                <connections>
-                                    <binding destination="-2" name="value" keyPath="self.activeDocumentController.model.liveCompile" id="sbk-8g-Atu"/>
-                                </connections>
                             </buttonCell>
-                            <connections>
-                                <binding destination="-2" name="value" keyPath="self.activeDocumentController.model.liveCompile" id="IQA-po-8PN"/>
-                            </connections>
                         </button>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="FA7DCFFE-A714-4233-90AA-9C37788CABD7" label="" paletteLabel="Outline Toggle" toolTip="Toggle Outline View" image="SplitviewLeft" id="fGm-Vj-2Vx">

@@ -10,7 +10,8 @@
 #import "TextViewObserver.h"
 #import "Constants.h"
 #import "ViewControllerProtocol.h"
-@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem;
+#import "FirstResponderDelegate.h"
+@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem, LacheckParser, ChktexParser;
 
 /**
  This view controller handles the HighlightingTextView and other important objects connected to it.
@@ -32,6 +33,8 @@
     MessageCollection *internalMessages;
     MessageCollection *consoleMessages;
     NSInteger countRunningParsers;
+    ChktexParser *chktex;
+    LacheckParser *lacheck;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;
@@ -82,5 +85,7 @@
  @param observer the observer to remove
  */
 - (void) removeDelegateObserver:(id<TextViewObserver>) observer;
+
+- (void) setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate;
 
 @end

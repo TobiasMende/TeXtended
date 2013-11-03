@@ -10,7 +10,7 @@
 #import <MMTabBarView/MMTabBarView.h>
 
 @class TMTTabViewItem, TMTTabViewController;
-@interface TMTTabViewWindow : NSWindowController
+@interface TMTTabViewWindow : NSWindowController<NSWindowDelegate>
 
 @property (strong) IBOutlet NSView *cview;
 @property (strong) TMTTabViewController* tabView;

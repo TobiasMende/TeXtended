@@ -9,7 +9,6 @@
 #import "DocumentController.h"
 #import "DocumentModel.h"
 #import "TextViewController.h"
-#import "OutlineViewController.h"
 #import "Constants.h"
 #import "Compiler.h"
 #import "ViewControllerProtocol.h"
@@ -18,6 +17,8 @@
 #import "TMTLog.h"
 #import "ExtendedPDFViewController.h"
 #import "TMTNotificationCenter.h"
+#import "MainDocument.h"
+#import "FirstResponderDelegate.h"
 
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
@@ -32,16 +33,15 @@
     }
 }
 
-- (id)initWithDocument:(DocumentModel *)model andMainWindowController:(MainWindowController *) wc {
+- (id)initWithDocument:(DocumentModel *)model andMainDocument:(MainDocument *)mainDocument {
     self = [super init];
     if (self) {
-        DDLogVerbose(@"DocumentController: Init");
+        DDLogVerbose(@"Init");
         self.model = model;
-        _windowController = wc;
+        self.mainDocument = mainDocument;
+        self.consoleViewControllers = [NSMutableSet new];
         
-        _consoleViewControllers = [NSMutableSet new];
-        
-        _compiler = [[Compiler alloc] initWithDocumentController:self];
+        self.compiler = [[Compiler alloc] initWithDocumentController:self];
         [self.textViewController addObserver:self.compiler];
     }
     return self;
@@ -52,8 +52,7 @@
 }
 
 
-
-- (BOOL) saveDocument:(NSError *__autoreleasing *)outError {
+- (BOOL) saveDocumentModel:(NSError *__autoreleasing *)outError {
     return [self.model saveContent:[self.textViewController content] error:outError];
 }
 
@@ -79,10 +78,12 @@
 
 - (void)updateViewsAfterModelChange {
     _textViewController = [[TextViewController alloc] initWithDocumentController:self];
+    [self.textViewController setFirstResponderDelegate:self];
     self.pdfViewControllers = [NSMutableSet new];
     for(DocumentModel *model in self.model.mainDocuments) {
         ExtendedPDFViewController *cont = [[ExtendedPDFViewController alloc] initWithDocumentController:self];
         cont.model = model;
+        [cont setFirstResponderDelegate:self];
         [self.pdfViewControllers addObject:cont];
     }
 }
@@ -126,6 +127,28 @@
 
 - (void)documentModelHasChangedAction:(DocumentController *)dc {
     // TODO: call on all children
+}
+
+#pragma mark - First Responder Delegate
+
+- (void)saveDocument:(id)sender {
+    [self.mainDocument saveDocument:self];
+}
+
+- (void)liveCompile:(id)sender {
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+}
+
+- (void)draftCompile:(id)sender {
+    [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(draftCompile:didSave:contextInfo:)];
+}
+
+- (void)finalCompile:(id)sender {
+    [self.mainDocument finalCompileForDocumentController:self];
+}
+
+- (void)showStatistics:(id)sender {
+    [self.mainDocument showStatisticsForModel:self];
 }
 
 #pragma mark -

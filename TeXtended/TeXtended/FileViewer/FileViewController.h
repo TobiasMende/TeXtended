@@ -36,7 +36,7 @@
 }
 
 /** Documentmodel which is displayed */
-@property (strong,nonatomic) DocumentModel* document;
+@property (assign,nonatomic) DocumentModel* document;
 
 
 /** Controller for inforview */

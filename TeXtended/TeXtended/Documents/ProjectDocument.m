@@ -27,30 +27,6 @@
     return self;
 }
 
-- (void)makeWindowControllers {
-    _mainWindowController = [[MainWindowController alloc] init];
-    
-    [self addWindowController:self.mainWindowController];
-    if (!self.documentControllers || self.documentControllers.count == 0) {
-        if (self.projectModel.mainDocuments.count > 0) {
-            // DocumentController *dc = [[DocumentController alloc] initWithDocument:[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] andMainDocument:self];
-            
-            //self.documentControllers = [NSMutableSet setWithObject:dc];
-        } else {
-            DDLogError(@"ProjectModel seems corrupted: \n%@", self.projectModel);
-        }
-    }
-    for (DocumentController* dc in self.documentControllers) {
-        if ([[[self.projectModel.mainDocuments allObjects] objectAtIndex:0] isEqual:dc.model]) {
-            [dc setWindowController:self.mainWindowController];
-            // [self.mainWindowController setDocumentController:dc];
-        }
-    }
-}
-
-- (Compilable *)model {
-    return self.projectModel;
-}
 
 - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     //FIXME: implement this!
@@ -60,7 +36,7 @@
     
     /* save all documents */
     for (DocumentController* dc in self.documentControllers) {
-        [dc saveDocument:error];
+        [dc saveDocumentModel:error];
         if (*error) {
             DDLogError(@"%@", (*error).userInfo);
         }
@@ -98,11 +74,11 @@
     }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Project"
-                                              inManagedObjectContext:self.managedObjectContext];
+                                              inManagedObjectContext:self.context];
     [fetchRequest setEntity:entity];
     
     NSError *fetchError;
-    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&fetchError];
     if (fetchedObjects.count != 1) {
         DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
     }
@@ -110,9 +86,9 @@
         DDLogError(@"%@", fetchError.userInfo);
         success = NO;
     } else {
-        self.projectModel = [fetchedObjects objectAtIndex:0];
-        if (![self.projectModel.path isEqualToString:finalURL.path]) {
-            self.projectModel.path = finalURL.path;
+        self.model = [fetchedObjects objectAtIndex:0];
+        if (![self.model.path isEqualToString:finalURL.path]) {
+            self.model.path = finalURL.path;
         }
     }
     return success;
@@ -145,11 +121,6 @@
     
 }
 
-+ (BOOL)autosavesInPlace
-{
-    return YES;
-    
-}
 
 - (void)dealloc {
     DDLogVerbose(@"ProjectDocument dealloc");

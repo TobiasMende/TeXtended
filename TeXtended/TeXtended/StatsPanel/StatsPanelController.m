@@ -15,15 +15,6 @@
 
 @implementation StatsPanelController
 
-- (id)initWithWindow:(NSWindow *)window
-{
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
-
 - (id)init {
     self = [super initWithWindowNibName:@"StatsPanel"];
     

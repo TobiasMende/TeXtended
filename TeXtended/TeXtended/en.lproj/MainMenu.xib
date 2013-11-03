@@ -123,7 +123,7 @@
                             </menuItem>
                             <menuItem title="Export ..." keyEquivalent="e" id="571">
                                 <connections>
-                                    <action selector="export:" target="-1" id="572"/>
+                                    <action selector="finalCompile:" target="-1" id="LCt-tR-Prb"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">
@@ -401,9 +401,6 @@
                             <menuItem isSeparatorItem="YES" id="583"/>
                             <menuItem title="Live Compile" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <binding destination="534" name="value" keyPath="self.delegate.activeDocumentController.model.liveCompile" id="cdI-aj-66A"/>
-                                </connections>
                             </menuItem>
                             <menuItem title="Live Scrolling" alternate="YES" keyEquivalent="L" id="584">
                                 <connections>
