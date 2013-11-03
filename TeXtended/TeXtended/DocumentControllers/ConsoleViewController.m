@@ -15,6 +15,7 @@
 #import "ConsoleOutputView.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
+#import "ConsoleData.h"
 
 
 static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
@@ -34,20 +35,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
     if (self) {
     }
     return self;
-}
-
-- (void)setModel:(DocumentModel *)model {
-    if (model != _model) {
-        if(_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
-        }
-        _model = model;
-        if(_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
-        }
-    }
 }
 
 - (void)loadView {
@@ -76,38 +63,57 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
     }
     if (data.length > 0) {
         [readHandle readInBackgroundAndNotify];
-        self.consoleActive = YES;
+        self.console.consoleActive = YES;
     } else {
-        self.consoleActive = NO;
+        self.console.consoleActive = NO;
+    }
+}
+
+
+- (void)setConsole:(ConsoleData *)console {
+    if (console != _console) {
+        if (_console) {
+            [_console removeObserver:self forKeyPath:@"self.model"];
+        }
+        _console = console;
+        if (_console) {
+            [_console addObserver:self forKeyPath:@"self.model" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+        }
+    }
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.console]) {
+        id old = [change objectForKey:NSKeyValueChangeOldKey];
+        if (old && [old isKindOfClass:[DocumentModel class]]) {
+            [[TMTNotificationCenter centerForCompilable:old] removeObserver:self name:TMTCompilerDidStartCompiling object:old];
+            [[TMTNotificationCenter centerForCompilable:old] removeObserver:self name:TMTCompilerDidEndCompiling object:old];
+        }
+        if (self.console.model) {
+            [[TMTNotificationCenter centerForCompilable:self.console.model] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:self.console.model];
+            [[TMTNotificationCenter centerForCompilable:self.console.model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:self.console.model];
+        }
     }
 }
 
 - (void)updateLogMessages {
     LogfileParser *parser = [LogfileParser new];
-    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.model.texPath];
-    self.consoleMessages = [self.consoleMessages merge:collection];
+    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.console.model.texPath];
+    self.console.consoleMessages = [self.console.consoleMessages merge:collection];
 }
 
-- (void)setConsoleMessages:(MessageCollection *)consoleMessages {
-    if (consoleMessages != _consoleMessages) {
-        _consoleMessages = consoleMessages;
-        DocumentModel *model = [self.documentController model];
-        if (model && consoleMessages) {
-            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
-        }
-    }
-}
 
 - (void)configureReadHandle {
     
-    if (readHandle && readHandle != [self.model.consoleOutputPipe fileHandleForReading]) {
+    if (readHandle && readHandle != [self.console.model.consoleOutputPipe fileHandleForReading]) {
         [[NSNotificationCenter defaultCenter]removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
         [self.outputView setString:@""];
     }
-    readHandle = [self.model.consoleOutputPipe fileHandleForReading];
+    readHandle = [self.console.model.consoleOutputPipe fileHandleForReading];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
     [readHandle readInBackgroundAndNotify] ;
-    self.consoleActive = YES;
+    self.console.consoleActive = YES;
 
     
 }
@@ -117,12 +123,12 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 
 - (void)compilerDidStartCompiling:(NSNotification *)notification {
     [self configureReadHandle];
-    self.consoleMessages = [MessageCollection new];
+    self.console.consoleMessages = [MessageCollection new];
 }
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
     [self.inputView setStringValue:@""];
-    self.consoleActive = NO;
+    self.console.consoleActive = NO;
 }
 
 #pragma mark -
@@ -131,7 +137,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 -(void)controlTextDidEndEditing:(NSNotification *)notification {
     if ( [[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement )
     {
-        NSFileHandle *handle = self.model.consoleInputPipe.fileHandleForWriting;
+        NSFileHandle *handle = self.console.model.consoleInputPipe.fileHandleForWriting;
         NSString *command = [[self.inputView stringValue] stringByAppendingString:@"\n"];
         [handle writeData:[command dataUsingEncoding:NSUTF8StringEncoding]];
         [self.inputView setStringValue:@""];
@@ -142,8 +148,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 #pragma mark Dealloc etc.
 
 - (void)dealloc {
-    DDLogVerbose(@"ConsoleViewController dealloc");
-    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
+    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 

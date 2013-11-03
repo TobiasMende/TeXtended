@@ -16,7 +16,8 @@
 #import "TextViewController.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
-
+#import "ConsoleData.h"
+#import "ConsoleManager.h"
 @interface Compiler ()
 - (void) updateDocumentController;
 @end
@@ -47,6 +48,12 @@
         if (!model.texPath) {
             continue;
         }
+        
+        ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model];
+        console.documentController = self.documentController;
+        console.compileMode = mode;
+        console.compileRunning = YES;
+        
         CompileSetting *settings;
         NSTask *task   = [[NSTask alloc] init];
         NSPipe *outPipe = [NSPipe pipe];
@@ -86,6 +93,8 @@
         [task setTerminationHandler:^(NSTask *task) {
                 [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
             model.lastCompile = [NSDate new];
+            ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model];
+            console.compileRunning = NO;
             if (mode == final && [model.openOnExport boolValue]) {
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
             }

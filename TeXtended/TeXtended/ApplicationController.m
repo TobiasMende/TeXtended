@@ -15,6 +15,7 @@
 #import "TexdocPanelController.h"
 #import "PathFactory.h"
 #import "FirstResponderDelegate.h"
+#import "ConsoleWindowController.h"
 #import "TMTLog.h"
 ApplicationController *sharedInstance;
 
@@ -95,6 +96,13 @@ ApplicationController *sharedInstance;
         preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
     [preferencesController showWindow:self];
+}
+
+- (void)showConsoles:(id)sender {
+    if (!consoleWindowController) {
+        consoleWindowController = [ConsoleWindowController new];
+    }
+    [consoleWindowController showWindow:self];
 }
 
 

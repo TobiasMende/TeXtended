@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TextViewObserver.h"
+#import "Constants.h"
 @class DocumentController,CompileSetting;
 
 /**
@@ -20,13 +21,6 @@
  */
 @interface Compiler : NSObject <TextViewObserver> {
 }
-
-/** Defines the different compilemodes that are possible */
-typedef enum {
-    live = 0,
-    draft = 1,
-    final = 2
-} CompileMode;
 
 
 

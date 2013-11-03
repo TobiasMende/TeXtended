@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+            <connections>
+                <outlet property="view" destination="xCg-YR-Qd0" id="HeQ-VR-V1a"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <tableCellView id="xCg-YR-Qd0" customClass="ConsoleCellView">
+            <rect key="frame" x="0.0" y="0.0" width="151" height="35"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="F1A-S3-DDN">
+                    <rect key="frame" x="1" y="18" width="100" height="14"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="pQ4-hO-LhG">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <connections>
+                            <binding destination="xCg-YR-Qd0" name="value" keyPath="objectValue" id="2Zf-0l-cla"/>
+                        </connections>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="xCg-YR-Qd0" name="value" keyPath="self.console.model.texName" id="nTs-8Y-SsU"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="CGU-aH-sl4">
+                    <rect key="frame" x="1" y="2" width="100" height="14"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="NHt-O8-1pc">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="xCg-YR-Qd0" name="value" keyPath="self.compilerInfo" id="ccD-QW-lb8"/>
+                    </connections>
+                </textField>
+                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="iEp-tp-R4i">
+                    <rect key="frame" x="107" y="9" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <binding destination="xCg-YR-Qd0" name="animate" keyPath="self.console.consoleActive" id="CS3-bC-Mxx"/>
+                        <binding destination="xCg-YR-Qd0" name="hidden" keyPath="self.console.consoleActive" id="mpV-n0-ovU">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </progressIndicator>
+                <button id="kEb-cc-9BN">
+                    <rect key="frame" x="133" y="8" width="15" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="e0J-It-X4s">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+        </tableCellView>
+    </objects>
+    <resources>
+        <image name="NSStopProgressFreestandingTemplate" width="83" height="83"/>
+    </resources>
+</document>

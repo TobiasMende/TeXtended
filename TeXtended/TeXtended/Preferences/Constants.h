@@ -143,7 +143,7 @@
 #define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
-
+#define TMT_CONSOLE_MANAGER_CHANGED @"TMT_CONSOLE_MANAGER_CHANGED"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
@@ -167,6 +167,13 @@ typedef enum SplitViewOrderType {
     TMTHorizontal = 0,
     TMTVertical = 1} TMTSplitViewOrderType;
 
+
+/** Defines the different compilemodes that are possible */
+typedef enum {
+    live = 0,
+    draft = 1,
+    final = 2
+} CompileMode;
 
 #define TMTTabKeyCode 48
 #define TMTArrowDownKeyCode 125

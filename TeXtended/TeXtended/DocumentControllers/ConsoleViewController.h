@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ViewControllerProtocol.h"
 
-@class DocumentModel, MessageCollection, ConsoleOutputView, DocumentController;
+@class DocumentModel, MessageCollection, ConsoleOutputView, DocumentController, ConsoleData;
 
 /**
  Viewcontroller for handling interaction with a single console view
@@ -23,22 +23,14 @@
     NSTimer *logMessageUpdateTimer;
 }
 
+@property (weak, nonatomic) ConsoleData *console;
+
 /** The input view for sending messages to the compiler */
 @property (strong) IBOutlet NSTextField *inputView;
 
-@property (assign) DocumentController *documentController;
-
-/** The document model to deal with in this view */
-@property (strong,nonatomic) DocumentModel *model;
 
 /** The output view for showing the compilers output to the user */
 @property (strong) IBOutlet ConsoleOutputView *outputView;
-
-/** Flag for showing whether the console is active or not */
-@property BOOL consoleActive;
-
-/** The messages extracted from the latex log */
-@property (nonatomic) MessageCollection *consoleMessages;
 
 /** Method for handling the compilers output when new data arrives on the models output pipe
  

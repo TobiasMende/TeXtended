@@ -448,6 +448,12 @@
                                     <action selector="performZoom:" target="-1" id="240"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Console Window" id="Ssa-in-bCf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showConsoles:" target="534" id="dBm-G7-9T5"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="92">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
