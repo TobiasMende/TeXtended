@@ -15,6 +15,7 @@
 #import "ConsoleData.h"
 #import "ConsoleViewController.h"
 
+
 @interface ConsoleWindowController ()
 - (void)updateData:(NSNotification *)note;
 @end
@@ -34,13 +35,9 @@
 
 - (void)updateData:(NSNotification *)note {
     self.consoleDatas = [[NSMutableArray alloc] initWithCapacity:self.manager.consoles.count];
-    self.consoleViews = [[NSMutableArray alloc] initWithCapacity:self.manager.consoles.count];
     for (ConsoleData *data in self.manager.consoles.objectEnumerator) {
         if (data.showConsole) {
             [self.consoleDatas addObject:data];
-            ConsoleViewController *controller = [ConsoleViewController new];
-            controller.console = data;
-            [self.consoleViews addObject:controller];
         }
     }
     [self.tableView reloadData];
@@ -49,6 +46,8 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    self.viewController = [ConsoleViewController new];
+    self.contentView.contentView = self.viewController.view;
     [self updateData:nil];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -86,8 +85,9 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger row = [self.tableView selectedRow];
-    if (row >= 0 && row < self.consoleViews.count) {
-        self.contentView.contentView = [[self.consoleViews objectAtIndex:row] view];
+    if (row >= 0 && row < self.consoleDatas.count) {
+        self.viewController.console = [self.consoleDatas objectAtIndex:row];
+        [self.viewController scrollToCurrentPosition];
     }
 }
 

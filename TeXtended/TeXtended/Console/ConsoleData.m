@@ -30,7 +30,10 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     self = [super init];
     if (self) {
         self.output = @"";
+        self.input = @"";
         self.showConsole = YES;
+        [self addObserver:self forKeyPath:@"self.consoleActive" options:0 context:NULL];
+        self.selectedRange = NSMakeRange(NSNotFound, 0);
     }
     return self;
 }
@@ -85,6 +88,14 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     
 }
 
+- (void)commitInput {
+    NSFileHandle *handle = self.model.consoleInputPipe.fileHandleForWriting;
+    NSString *command = [self.input stringByAppendingString:@"\n"];
+    [handle writeData:[command dataUsingEncoding:NSUTF8StringEncoding]];
+    self.input = @"";
+}
+
+
 
 #pragma mark -
 #pragma mark Notification Observer
@@ -96,6 +107,14 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
     self.consoleActive = NO;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self]) {
+       if([keyPath isEqualToString:@"self.consoleActive"] && !self.consoleActive) {
+            self.input = @"";
+        }
+    }
 }
 
 
@@ -126,6 +145,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [self removeObserver:self forKeyPath:@"self.consoleActive"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }

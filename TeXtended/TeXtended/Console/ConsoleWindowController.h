@@ -7,12 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class ConsoleManager;
+@class ConsoleManager, ConsoleViewController;
 @interface ConsoleWindowController : NSWindowController<NSTableViewDataSource, NSTableViewDelegate>
 @property (strong) IBOutlet NSTableView *tableView;
 @property (strong) IBOutlet NSBox *contentView;
+@property IBOutlet ConsoleViewController *viewController;
 @property NSMutableArray *consoleDatas;
-@property NSMutableArray *consoleViews;
 
 @property (weak) ConsoleManager *manager;
 - (IBAction)unhideConsoles:(id)sender;

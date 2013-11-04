@@ -65,6 +65,7 @@
                     <connections>
                         <binding destination="-2" name="editable" keyPath="self.console.consoleActive" id="peS-zy-z2O"/>
                         <binding destination="-2" name="enabled" keyPath="self.console.consoleActive" previousBinding="peS-zy-z2O" id="MMr-Fd-ZcS"/>
+                        <binding destination="-2" name="value" keyPath="self.console.input" id="vwg-Zs-7sU"/>
                         <binding destination="34" name="textColor" keyPath="values.TMTEditorForegroundColor" id="44">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSUnarchiveFromData</string>

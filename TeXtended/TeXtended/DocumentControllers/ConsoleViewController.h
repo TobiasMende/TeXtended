@@ -29,4 +29,5 @@
 /** The output view for showing the compilers output to the user */
 @property (strong) IBOutlet ConsoleOutputView *outputView;
 
+- (void)scrollToCurrentPosition;
 @end

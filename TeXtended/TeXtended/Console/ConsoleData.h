@@ -24,7 +24,10 @@
 
 @property (nonatomic) BOOL showConsole;
 
+@property NSRange selectedRange;
+
 @property NSString *output;
+@property NSString *input;
 
 /** The messages extracted from the latex log */
 @property (nonatomic) MessageCollection *consoleMessages;
@@ -32,6 +35,6 @@
 @property CompileMode compileMode;
 
 - (void)updateLogMessages;
-
+- (void)commitInput;
 - (void)remove;
 @end

@@ -39,16 +39,16 @@
 
 
 
+
 - (void)setConsole:(ConsoleData *)console {
     if (console != _console) {
         if (_console) {
             [_console removeObserver:self forKeyPath:@"self.output"];
-            [_console removeObserver:self forKeyPath:@"self.consoleActive"];
+            _console.selectedRange = [self.outputView selectedRange];
         }
         _console = console;
         if (_console) {
             [_console addObserver:self forKeyPath:@"self.output" options:0 context:NULL];
-            [_console addObserver:self forKeyPath:@"self.consoleActive" options:0 context:NULL];
         }
     }
 }
@@ -57,11 +57,20 @@
     if ([object isEqualTo:self.console]) {
         if ([keyPath isEqualToString:@"self.output"]) {
             [self.outputView scrollToEndOfDocument:nil];
-        } else if([keyPath isEqualToString:@"self.consoleActive"] && !self.console.consoleActive) {
-            [self.inputView setStringValue:@""];
         }
     }
 }
+
+- (void)scrollToCurrentPosition {
+    if(self.console.selectedRange.location != NSNotFound && NSMaxRange(self.console.selectedRange) < self.outputView.string.length) {
+        [self.outputView setSelectedRange:self.console.selectedRange];
+        [self.outputView scrollRangeToVisible:self.console.selectedRange];
+    } else {
+        [self.outputView scrollToEndOfDocument:nil];
+    }
+    
+}
+
 
 
 
@@ -72,10 +81,7 @@
 -(void)controlTextDidEndEditing:(NSNotification *)notification {
     if ( [[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement )
     {
-        NSFileHandle *handle = self.console.model.consoleInputPipe.fileHandleForWriting;
-        NSString *command = [[self.inputView stringValue] stringByAppendingString:@"\n"];
-        [handle writeData:[command dataUsingEncoding:NSUTF8StringEncoding]];
-        [self.inputView setStringValue:@""];
+        [self.console commitInput];
     }
 }
 
@@ -84,8 +90,7 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    [self.console removeObserver:self forKeyPath:@"self.output"];
-    [self.console removeObserver:self forKeyPath:@"self.consoleActive"];
+    self.console = nil;
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
