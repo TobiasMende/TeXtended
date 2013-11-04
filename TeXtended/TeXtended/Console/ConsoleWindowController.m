@@ -55,6 +55,10 @@
     if (found) {
         [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
     }
+    NSInteger row = [self.tableView selectedRow];
+    if (row == -1) {
+        self.viewController.console = nil;
+    }
 }
 
 - (void)windowDidLoad

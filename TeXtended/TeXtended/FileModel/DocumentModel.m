@@ -15,6 +15,7 @@
 #import "DocumentCreationController.h"
 #import "EncodingController.h"
 #import "TMTNotificationCenter.h"
+#import "ConsoleManager.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -469,8 +470,9 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)willTurnIntoFault {
     DDLogInfo(@"will turn into fault");
-    
+    [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self];
     [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
+    
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
     [self unregisterProjectObserver];

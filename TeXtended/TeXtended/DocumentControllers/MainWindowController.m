@@ -203,6 +203,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
+    self.myCurrentFirstResponderDelegate = nil;
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];

@@ -10,8 +10,8 @@
 @class ConsoleData;
 @interface ConsoleCellView : NSTableCellView
 @property (strong) IBOutlet NSProgressIndicator *progress;
+@property (strong, nonatomic) ConsoleData *console;
 
 - (IBAction)remove:(id)sender;
 - (NSString *)compilerInfo;
-@property (weak, nonatomic) ConsoleData *console;
 @end
