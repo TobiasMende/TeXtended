@@ -18,9 +18,6 @@
  
  */
 @interface ConsoleViewController : NSViewController <NSTextFieldDelegate, ViewControllerProtocol> {
-    /** A file handle for reading the console output */
-    NSFileHandle *readHandle;
-    NSTimer *logMessageUpdateTimer;
 }
 
 @property (weak, nonatomic) ConsoleData *console;
@@ -32,9 +29,4 @@
 /** The output view for showing the compilers output to the user */
 @property (strong) IBOutlet ConsoleOutputView *outputView;
 
-/** Method for handling the compilers output when new data arrives on the models output pipe
- 
- @param notification the notification which was send.
- */
-- (void) handleOutput: (NSNotification*)notification;
 @end

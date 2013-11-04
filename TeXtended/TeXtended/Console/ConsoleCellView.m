@@ -55,4 +55,8 @@
     return set;
 }
 
+
+- (void)remove:(id)sender {
+    self.console.showConsole = NO;
+}
 @end

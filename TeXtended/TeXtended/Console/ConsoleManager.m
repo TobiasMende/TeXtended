@@ -40,8 +40,12 @@ static ConsoleManager *sharedInstance;
 }
 
 - (ConsoleData *)consoleForModel:(DocumentModel *)model {
+    return [self consoleForModel:model byCreating:YES];
+}
+
+- (ConsoleData *)consoleForModel:(DocumentModel *)model byCreating:(BOOL)create {
     ConsoleData *data = [self.consoles objectForKey:model.dictionaryKey];
-    if (!data) {
+    if (create && !data) {
         data = [ConsoleData new];
         data.model = model;
         [self.consoles setObject:data forKey:model.dictionaryKey];

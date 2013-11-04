@@ -11,7 +11,10 @@
 @interface ConsoleWindowController : NSWindowController<NSTableViewDataSource, NSTableViewDelegate>
 @property (strong) IBOutlet NSTableView *tableView;
 @property (strong) IBOutlet NSBox *contentView;
+@property NSMutableArray *consoleDatas;
+@property NSMutableArray *consoleViews;
 
 @property (weak) ConsoleManager *manager;
+- (IBAction)unhideConsoles:(id)sender;
 
 @end

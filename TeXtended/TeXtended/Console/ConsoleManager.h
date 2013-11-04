@@ -15,5 +15,6 @@
 + (ConsoleManager *)sharedConsoleManager;
 
 - (ConsoleData *)consoleForModel:(DocumentModel *)model;
+- (ConsoleData *)consoleForModel:(DocumentModel *)model byCreating:(BOOL)create;
 - (void)removeConsoleForModel:(DocumentModel *)model;
 @end

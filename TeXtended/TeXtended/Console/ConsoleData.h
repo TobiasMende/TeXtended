@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
-@class DocumentModel, MessageCollection, DocumentController, ConsoleViewController;
+@class DocumentModel, MessageCollection, DocumentController;
 @interface ConsoleData : NSObject {
+    /** A file handle for reading the console output */
+    NSFileHandle *readHandle;
+    NSTimer *logMessageUpdateTimer;
 }
-@property (weak) DocumentModel *model;
+@property (weak, nonatomic) DocumentModel *model;
 @property (weak) DocumentController *documentController;
 
 /** Flag for showing whether the console is active or not */
@@ -19,10 +22,16 @@
 
 @property BOOL compileRunning;
 
-@property ConsoleViewController *viewController;
+@property (nonatomic) BOOL showConsole;
+
+@property NSString *output;
 
 /** The messages extracted from the latex log */
 @property (nonatomic) MessageCollection *consoleMessages;
 
 @property CompileMode compileMode;
+
+- (void)updateLogMessages;
+
+- (void)remove;
 @end

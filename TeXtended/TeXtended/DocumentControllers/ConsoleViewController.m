@@ -10,7 +10,6 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "DocumentController.h"
-#import "LogfileParser.h"
 #import "MessageCollection.h"
 #import "ConsoleOutputView.h"
 #import "TMTLog.h"
@@ -18,13 +17,8 @@
 #import "ConsoleData.h"
 
 
-static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 
 @interface ConsoleViewController ()
-- (void)configureReadHandle;
-- (void)compilerDidStartCompiling:(NSNotification*)notification;
-- (void)compilerDidEndCompiling:(NSNotification*)notification;
-- (void)updateLogMessages;
 @end
 
 @implementation ConsoleViewController
@@ -43,93 +37,34 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 }
 
 
-- (void)handleOutput: (NSNotification*)notification {
-    //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
-    NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
-    NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
-    if (str && data.length > 0) {
-        self.outputView.string = [self.outputView.string stringByAppendingString:str];
-        [self.outputView scrollToEndOfDocument:self];
-        if ([logMessageUpdateTimer isValid]) {
-            [logMessageUpdateTimer invalidate];
-        }
-        logMessageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval: LOG_MESSAGE_UPDATE_INTERVAL
-                                                            target: self
-                                                          selector:@selector(updateLogMessages)
-                                                          userInfo: nil
-                                                           repeats: NO];
-        
-        // Do whatever you want with str
-    }
-    if (data.length > 0) {
-        [readHandle readInBackgroundAndNotify];
-        self.console.consoleActive = YES;
-    } else {
-        self.console.consoleActive = NO;
-    }
-}
 
 
 - (void)setConsole:(ConsoleData *)console {
     if (console != _console) {
         if (_console) {
-            [_console removeObserver:self forKeyPath:@"self.model"];
+            [_console removeObserver:self forKeyPath:@"self.output"];
+            [_console removeObserver:self forKeyPath:@"self.consoleActive"];
         }
         _console = console;
         if (_console) {
-            [_console addObserver:self forKeyPath:@"self.model" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+            [_console addObserver:self forKeyPath:@"self.output" options:0 context:NULL];
+            [_console addObserver:self forKeyPath:@"self.consoleActive" options:0 context:NULL];
         }
     }
 }
-
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self.console]) {
-        id old = [change objectForKey:NSKeyValueChangeOldKey];
-        if (old && [old isKindOfClass:[DocumentModel class]]) {
-            [[TMTNotificationCenter centerForCompilable:old] removeObserver:self name:TMTCompilerDidStartCompiling object:old];
-            [[TMTNotificationCenter centerForCompilable:old] removeObserver:self name:TMTCompilerDidEndCompiling object:old];
-        }
-        if (self.console.model) {
-            [[TMTNotificationCenter centerForCompilable:self.console.model] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:self.console.model];
-            [[TMTNotificationCenter centerForCompilable:self.console.model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:self.console.model];
+        if ([keyPath isEqualToString:@"self.output"]) {
+            [self.outputView scrollToEndOfDocument:nil];
+        } else if([keyPath isEqualToString:@"self.consoleActive"] && !self.console.consoleActive) {
+            [self.inputView setStringValue:@""];
         }
     }
 }
 
-- (void)updateLogMessages {
-    LogfileParser *parser = [LogfileParser new];
-    MessageCollection *collection = [parser parseContent:self.outputView.string forDocument:self.console.model.texPath];
-    self.console.consoleMessages = [self.console.consoleMessages merge:collection];
-}
 
 
-- (void)configureReadHandle {
-    
-    if (readHandle && readHandle != [self.console.model.consoleOutputPipe fileHandleForReading]) {
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
-        [self.outputView setString:@""];
-    }
-    readHandle = [self.console.model.consoleOutputPipe fileHandleForReading];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOutput:) name: NSFileHandleReadCompletionNotification object: readHandle] ;
-    [readHandle readInBackgroundAndNotify] ;
-    self.console.consoleActive = YES;
-
-    
-}
-
-#pragma mark -
-#pragma mark Notification Observer
-
-- (void)compilerDidStartCompiling:(NSNotification *)notification {
-    [self configureReadHandle];
-    self.console.consoleMessages = [MessageCollection new];
-}
-
-- (void)compilerDidEndCompiling:(NSNotification *)notification {
-    [self.inputView setStringValue:@""];
-    self.console.consoleActive = NO;
-}
 
 #pragma mark -
 #pragma mark NSTextFieldDelegate Methods
@@ -149,6 +84,8 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.2;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [self.console removeObserver:self forKeyPath:@"self.output"];
+    [self.console removeObserver:self forKeyPath:@"self.consoleActive"];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 

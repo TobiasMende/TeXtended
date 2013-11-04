@@ -93,7 +93,7 @@
         [task setTerminationHandler:^(NSTask *task) {
                 [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
             model.lastCompile = [NSDate new];
-            ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model];
+            ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model byCreating:NO];
             console.compileRunning = NO;
             if (mode == final && [model.openOnExport boolValue]) {
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];

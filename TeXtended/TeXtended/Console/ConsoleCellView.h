@@ -10,6 +10,7 @@
 @class ConsoleData;
 @interface ConsoleCellView : NSTableCellView
 
+- (IBAction)remove:(id)sender;
 - (NSString *)compilerInfo;
 @property (weak) ConsoleData *console;
 @end

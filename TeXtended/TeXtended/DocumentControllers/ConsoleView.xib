@@ -35,6 +35,7 @@
                                 <size key="minSize" width="478" height="242"/>
                                 <size key="maxSize" width="641" height="10000000"/>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="self.console.output" id="1Ec-62-9zy"/>
                                     <binding destination="34" name="fontBold" keyPath="values.TMT_EDITOR_FONT_BOLD" id="0Hv-1B-zVu"/>
                                     <binding destination="34" name="fontItalic" keyPath="values.TMT_EDITOR_FONT_ITALIC" previousBinding="MZ9-ak-JJ9" id="IXy-GP-sJo"/>
                                     <binding destination="34" name="fontFamilyName" keyPath="values.TMT_EDITOR_FONT_NAME" previousBinding="0Hv-1B-zVu" id="MZ9-ak-JJ9"/>
