@@ -37,4 +37,6 @@
 - (void)updateLogMessages;
 - (void)commitInput;
 - (void)remove;
+
+- (NSComparisonResult) compareConsoleData:(ConsoleData *)other;
 @end

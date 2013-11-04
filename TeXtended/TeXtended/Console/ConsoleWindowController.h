@@ -11,7 +11,7 @@
 @interface ConsoleWindowController : NSWindowController<NSTableViewDataSource, NSTableViewDelegate>
 @property (strong) IBOutlet NSTableView *tableView;
 @property (strong) IBOutlet NSBox *contentView;
-@property IBOutlet ConsoleViewController *viewController;
+@property ConsoleViewController *viewController;
 @property NSMutableArray *consoleDatas;
 
 @property (weak) ConsoleManager *manager;

@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 @class ConsoleData;
 @interface ConsoleCellView : NSTableCellView
+@property (strong) IBOutlet NSProgressIndicator *progress;
 
 - (IBAction)remove:(id)sender;
 - (NSString *)compilerInfo;
-@property (weak) ConsoleData *console;
+@property (weak, nonatomic) ConsoleData *console;
 @end

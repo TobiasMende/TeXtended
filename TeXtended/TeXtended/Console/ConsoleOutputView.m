@@ -59,6 +59,8 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self] && [keyPath isEqualToString:@"string"]) {
         [self stringDidChange];
+        // [self scrollToEndOfDocument:self];
+        [self.controller scrollToCurrentPosition];
     }
 }
 

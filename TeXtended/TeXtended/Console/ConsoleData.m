@@ -114,6 +114,8 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
        if([keyPath isEqualToString:@"self.consoleActive"] && !self.consoleActive) {
             self.input = @"";
         }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -137,6 +139,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     }
     if (data.length > 0) {
         [readHandle readInBackgroundAndNotify];
+        self.selectedRange = NSMakeRange(NSNotFound, 0);
         self.consoleActive = YES;
     } else {
         self.consoleActive = NO;
@@ -152,6 +155,12 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 - (void)remove {
     [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self.model];
+}
+
+
+- (NSComparisonResult)compareConsoleData:(ConsoleData *)other {
+    return [self.model.texName compare:other.model.texName];
+    
 }
 
 

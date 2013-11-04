@@ -35,12 +35,26 @@
 
 - (void)updateData:(NSNotification *)note {
     self.consoleDatas = [[NSMutableArray alloc] initWithCapacity:self.manager.consoles.count];
+    
     for (ConsoleData *data in self.manager.consoles.objectEnumerator) {
         if (data.showConsole) {
             [self.consoleDatas addObject:data];
         }
     }
+    [self.consoleDatas sortUsingSelector:@selector(compareConsoleData:)];
+    BOOL found = NO;
+    NSUInteger currentRow;
+    for (currentRow =0; currentRow < self.consoleDatas.count; currentRow++) {
+        if ([[self.consoleDatas objectAtIndex:currentRow] isEqual:self.viewController.console]) {
+            found = YES;
+            break;
+        }
+    }
     [self.tableView reloadData];
+    
+    if (found) {
+        [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:currentRow] byExtendingSelection:NO];
+    }
 }
 
 - (void)windowDidLoad
@@ -48,6 +62,7 @@
     [super windowDidLoad];
     self.viewController = [ConsoleViewController new];
     self.contentView.contentView = self.viewController.view;
+    [self.contentView setNeedsDisplay:YES];
     [self updateData:nil];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -80,7 +95,7 @@
 
 #pragma mark - Table View Delegate
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    return 35.0;
+    return 36.0;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {

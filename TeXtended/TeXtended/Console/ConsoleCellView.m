@@ -12,15 +12,35 @@
 #import "CompileSetting.h"
 #import "DocumentModel.h"
 
+@interface ConsoleCellView ()
+@end
+
 @implementation ConsoleCellView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
+
+
+- (void)setConsole:(ConsoleData *)console {
+    if (console != _console) {
+        if (_console) {
+            [_console removeObserver:self forKeyPath:@"self.consoleActive"];
+        }
+        _console = console;
+        if (_console) {
+            [_console addObserver:self forKeyPath:@"self.consoleActive" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        }
     }
-    return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.console]) {
+        if (self.console.consoleActive) {
+            [self.progress performSelectorOnMainThread:@selector(startAnimation:) withObject:nil waitUntilDone:NO];
+        } else {
+            [self.progress performSelectorOnMainThread:@selector(stopAnimation:) withObject:nil waitUntilDone:NO];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 
@@ -58,5 +78,9 @@
 
 - (void)remove:(id)sender {
     self.console.showConsole = NO;
+}
+
+- (void)dealloc {
+    self.console = nil;
 }
 @end

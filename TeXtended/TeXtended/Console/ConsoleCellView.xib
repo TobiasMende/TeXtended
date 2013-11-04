@@ -43,17 +43,9 @@
                         <binding destination="xCg-YR-Qd0" name="value" keyPath="self.compilerInfo" id="ccD-QW-lb8"/>
                     </connections>
                 </textField>
-                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="iEp-tp-R4i">
+                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="iEp-tp-R4i">
                     <rect key="frame" x="138" y="16" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                    <connections>
-                        <binding destination="xCg-YR-Qd0" name="animate" keyPath="self.console.consoleActive" id="CS3-bC-Mxx"/>
-                        <binding destination="xCg-YR-Qd0" name="hidden" keyPath="self.console.consoleActive" id="mpV-n0-ovU">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
                 </progressIndicator>
                 <button id="kEb-cc-9BN">
                     <rect key="frame" x="162" y="15" width="15" height="18"/>
@@ -67,9 +59,12 @@
                     </connections>
                 </button>
             </subviews>
+            <connections>
+                <outlet property="progress" destination="iEp-tp-R4i" id="ugo-6n-RQ2"/>
+            </connections>
         </tableCellView>
     </objects>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="83" height="83"/>
+        <image name="NSStopProgressFreestandingTemplate" width="12" height="12"/>
     </resources>
 </document>

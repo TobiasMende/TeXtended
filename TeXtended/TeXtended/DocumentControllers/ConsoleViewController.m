@@ -38,26 +38,12 @@
 
 
 
-
-
 - (void)setConsole:(ConsoleData *)console {
     if (console != _console) {
         if (_console) {
-            [_console removeObserver:self forKeyPath:@"self.output"];
             _console.selectedRange = [self.outputView selectedRange];
         }
         _console = console;
-        if (_console) {
-            [_console addObserver:self forKeyPath:@"self.output" options:0 context:NULL];
-        }
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.console]) {
-        if ([keyPath isEqualToString:@"self.output"]) {
-            [self.outputView scrollToEndOfDocument:nil];
-        }
     }
 }
 
@@ -70,9 +56,6 @@
     }
     
 }
-
-
-
 
 
 #pragma mark -
