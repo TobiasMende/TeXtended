@@ -94,9 +94,7 @@
 }
 
 #pragma mark - Table View Delegate
-- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    return 36.0;
-}
+
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger row = [self.tableView selectedRow];
