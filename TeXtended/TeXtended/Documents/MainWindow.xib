@@ -160,6 +160,9 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.myCurrentFirstResponderDelegate.liveCompileEnabled" id="XVp-Sl-YDI"/>
+                            </connections>
                         </button>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="FA7DCFFE-A714-4233-90AA-9C37788CABD7" label="" paletteLabel="Outline Toggle" toolTip="Toggle Outline View" image="SplitviewLeft" id="fGm-Vj-2Vx">
@@ -211,6 +214,7 @@
         </window>
         <customObject id="-3" userLabel="Application"/>
         <userDefaultsController representsSharedInstance="YES" id="100407"/>
+        <customObject id="OMC-Gw-sjv" customClass="ApplicationController"/>
     </objects>
     <resources>
         <image name="Export" width="19" height="19"/>

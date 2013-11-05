@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController;
+#import "FirstResponderDelegate.h"
+@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController, ConsoleWindowController;
 
 /**
  The application controller is a singleton which represents the central instance of the TeXtended application.
@@ -25,7 +26,11 @@
     
     /** reference to the texdoc panel controller handling the app wide texdoc support */
     TexdocPanelController *texdocPanelController;
+    
+    ConsoleWindowController *consoleWindowController;
 }
+
+@property (strong) id<FirstResponderDelegate> currentFirstResponderDelegate;
 
 /** Method for showing the texdoc panel to the user 
  
@@ -38,6 +43,8 @@
  @param sender the sender
  */
 - (IBAction)showPreferences:(id)sender;
+
+- (IBAction)showConsoles:(id)sender;
 
 /** Getter for the completion controller handling code autocompletions 
  

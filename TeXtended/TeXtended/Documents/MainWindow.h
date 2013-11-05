@@ -17,5 +17,4 @@
 @interface MainWindow : NSWindow
 /** Reference to the controller of this window */
 @property (weak) IBOutlet MainWindowController *controller;
-
 @end

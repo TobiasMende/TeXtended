@@ -14,6 +14,7 @@
 #import "DocumentModel.h"
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
+#import "ConsoleData.h"
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 
@@ -58,6 +59,8 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self] && [keyPath isEqualToString:@"string"]) {
         [self stringDidChange];
+        // [self scrollToEndOfDocument:self];
+        [self.controller scrollToCurrentPosition];
     }
 }
 
@@ -130,8 +133,8 @@ static const NSSet *KEYS_TO_UNBIND;
     NSArray *values = [attribute componentsSeparatedByString:@":"];
     NSString *path = [values objectAtIndex:0];
     NSUInteger line = [[values objectAtIndex:1] integerValue];
-    DocumentModel *compiledModel = self.controller.model;
-    DocumentModel *documentsModel = self.controller.documentController.model;
+    DocumentModel *compiledModel = self.controller.console.model;
+    DocumentModel *documentsModel = self.controller.console.documentController.model;
     path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
     
     if ([path isEqualToString:compiledModel.texPath]) {
@@ -149,8 +152,8 @@ static const NSSet *KEYS_TO_UNBIND;
                 if ([document isKindOfClass:[SimpleDocument class]]) {
                     DocumentModel *m = [(SimpleDocument*) document model];
                     [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-                    if (self.controller.consoleMessages) {
-                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.consoleMessages forKey:TMTMessageCollectionKey]];
+                    if (self.controller.console.consoleMessages) {
+                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.console.consoleMessages forKey:TMTMessageCollectionKey]];
                     }
                 }
             }

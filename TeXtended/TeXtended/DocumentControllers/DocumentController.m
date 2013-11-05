@@ -19,7 +19,7 @@
 #import "TMTNotificationCenter.h"
 #import "MainDocument.h"
 #import "FirstResponderDelegate.h"
-
+#import "ApplicationController.h"
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
 @end
@@ -45,10 +45,6 @@
         [self.textViewController addObserver:self.compiler];
     }
     return self;
-}
-
-- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
-    [super addObserver:observer forKeyPath:keyPath options:options context:context];
 }
 
 
@@ -149,6 +145,16 @@
 
 - (void)showStatistics:(id)sender {
     [self.mainDocument showStatisticsForModel:self];
+}
+
+- (BOOL)isLiveCompileEnabled {
+    return self.model.liveCompile.boolValue;
+}
+
+- (void)setLiveCompileEnabled:(BOOL)enable {
+    [self willChangeValueForKey:@"liveCompileEnabled"];
+    self.model.liveCompile = [NSNumber numberWithBool:enable];
+    [self didChangeValueForKey:@"liveCompileEnabled"];
 }
 
 #pragma mark -

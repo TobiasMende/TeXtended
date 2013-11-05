@@ -363,6 +363,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)showLine:(NSUInteger)line {
+    [self.window makeKeyAndOrderFront:self];
     NSArray *ranges = [self lineRanges];
     if (line <= ranges.count && line > 0) {
         NSTextCheckingResult *r = [ranges objectAtIndex:line-1];

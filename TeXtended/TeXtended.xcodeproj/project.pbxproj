@@ -34,6 +34,12 @@
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
 		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
+		D20C97411826F88700E23911 /* ConsoleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97401826F88700E23911 /* ConsoleManager.m */; };
+		D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97431826FA0F00E23911 /* ConsoleWindowController.m */; };
+		D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C97441826FA0F00E23911 /* ConsoleWindow.xib */; };
+		D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97481826FCE800E23911 /* ConsoleCellView.m */; };
+		D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C974A1826FCF500E23911 /* ConsoleCellView.xib */; };
+		D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C974D1826FD8A00E23911 /* ConsoleData.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
 		D213171817782A3C002966FC /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
@@ -272,6 +278,16 @@
 		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
+		D20C973F1826F88700E23911 /* ConsoleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleManager.h; sourceTree = "<group>"; };
+		D20C97401826F88700E23911 /* ConsoleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleManager.m; sourceTree = "<group>"; };
+		D20C97421826FA0F00E23911 /* ConsoleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleWindowController.h; sourceTree = "<group>"; };
+		D20C97431826FA0F00E23911 /* ConsoleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleWindowController.m; sourceTree = "<group>"; };
+		D20C97441826FA0F00E23911 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
+		D20C97471826FCE800E23911 /* ConsoleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleCellView.h; sourceTree = "<group>"; };
+		D20C97481826FCE800E23911 /* ConsoleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleCellView.m; sourceTree = "<group>"; };
+		D20C974A1826FCF500E23911 /* ConsoleCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleCellView.xib; sourceTree = "<group>"; };
+		D20C974C1826FD8A00E23911 /* ConsoleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleData.h; sourceTree = "<group>"; };
+		D20C974D1826FD8A00E23911 /* ConsoleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleData.m; sourceTree = "<group>"; };
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
 		D213171617782A3C002966FC /* TMTTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableRowView.h; sourceTree = "<group>"; };
 		D213171717782A3C002966FC /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
@@ -804,6 +820,16 @@
 				D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */,
 				D2FDF4D81762239A002B6F33 /* ConsoleInputField.h */,
 				D2FDF4D91762239A002B6F33 /* ConsoleInputField.m */,
+				D20C973F1826F88700E23911 /* ConsoleManager.h */,
+				D20C97401826F88700E23911 /* ConsoleManager.m */,
+				D20C97421826FA0F00E23911 /* ConsoleWindowController.h */,
+				D20C97431826FA0F00E23911 /* ConsoleWindowController.m */,
+				D20C97441826FA0F00E23911 /* ConsoleWindow.xib */,
+				D20C97471826FCE800E23911 /* ConsoleCellView.h */,
+				D20C97481826FCE800E23911 /* ConsoleCellView.m */,
+				D20C974A1826FCF500E23911 /* ConsoleCellView.xib */,
+				D20C974C1826FD8A00E23911 /* ConsoleData.h */,
+				D20C974D1826FD8A00E23911 /* ConsoleData.m */,
 			);
 			path = Console;
 			sourceTree = "<group>";
@@ -1349,11 +1375,13 @@
 				D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */,
 				D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */,
 				D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */,
+				D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */,
 				D2F3DE2E17F6BEDA00A99066 /* README.txt in Resources */,
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
+				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
@@ -1419,6 +1447,7 @@
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
 				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,
+				D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */,
 				D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */,
 				D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */,
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
@@ -1471,8 +1500,10 @@
 				D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */,
 				D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */,
 				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
+				D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */,
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
+				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
@@ -1495,6 +1526,7 @@
 				D2F3DE2D17F6BEDA00A99066 /* DispatchQueueLogFormatter.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
+				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
 				768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */,
 				7651063217E723750011ADEF /* NewTemplateController.m in Sources */,
 			);

@@ -528,21 +528,12 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
 
 
 
-
-- (void) updateViewDrawing {
-  
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self] && [KEYS_TO_OBSERVE containsObject:keyPath]) {
         if ([keyPath isEqualToString:@"carretColor"]) {
             [view setInsertionPointColor:self.carretColor];
-            [self highlightCarret];
-        } else if([keyPath isEqualToString:@"shouldHighlightCarret"]) {
-            [self highlightCarret];
-        } else {
-            [self highlightCurrentLine];
         }
+        [view setNeedsDisplay:YES];
     }
 }
 

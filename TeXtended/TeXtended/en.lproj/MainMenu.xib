@@ -401,6 +401,9 @@
                             <menuItem isSeparatorItem="YES" id="583"/>
                             <menuItem title="Live Compile" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <binding destination="534" name="value" keyPath="self.currentFirstResponderDelegate.liveCompileEnabled" id="lzr-9Y-LZe"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Live Scrolling" alternate="YES" keyEquivalent="L" id="584">
                                 <connections>
@@ -451,6 +454,12 @@
                             <menuItem title="Bring All to Front" id="5">
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="39"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Nm5-2s-UsG"/>
+                            <menuItem title="Console Window" keyEquivalent="." id="Ssa-in-bCf">
+                                <connections>
+                                    <action selector="showConsoles:" target="534" id="dBm-G7-9T5"/>
                                 </connections>
                             </menuItem>
                         </items>
