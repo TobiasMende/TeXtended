@@ -168,13 +168,12 @@
                         <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="rJY-Cm-FxO">
                             <rect key="frame" x="28" y="14" width="30" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewLeft" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ava-Fo-koC">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewLeft" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ava-Fo-koC">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <action selector="toggleSidebarView:" target="-2" id="pgp-lT-vZM"/>
-                                <binding destination="100407" name="value" keyPath="values.TMTLeftTabviewCollapsed" id="8Nf-wy-OqO"/>
                             </connections>
                         </button>
                     </toolbarItem>
@@ -184,13 +183,12 @@
                         <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="BQT-eF-usa">
                             <rect key="frame" x="29" y="14" width="30" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewRight" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EYC-hs-kdu">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SplitviewRight" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EYC-hs-kdu">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <action selector="toggleSecondView:" target="-2" id="vDg-CP-mLp"/>
-                                <binding destination="100407" name="value" keyPath="values.TMTRightTabviewCollapsed" id="3r3-nN-PGf"/>
                             </connections>
                         </button>
                     </toolbarItem>
