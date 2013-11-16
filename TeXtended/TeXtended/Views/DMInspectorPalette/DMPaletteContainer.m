@@ -48,6 +48,7 @@
         [self setDocumentView:contentView];
         [self setHasVerticalScroller:YES];
         [self setHasHorizontalScroller:YES];
+        [self setBackgroundColor:[NSColor windowBackgroundColor]];
         
         self.sectionHeaderDashColor = [NSColor colorWithCalibratedRed:0.502 green:0.502 blue:0.502 alpha:0.5];
         self.sectionHeaderGradientStartColor = [NSColor colorWithCalibratedRed:0.922 green:0.925 blue:0.976 alpha:1.0];
