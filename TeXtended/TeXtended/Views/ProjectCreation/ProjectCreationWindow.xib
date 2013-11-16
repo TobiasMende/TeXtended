@@ -16,14 +16,14 @@
         <window title="Create new Project" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="896" height="514"/>
+            <rect key="contentRect" x="196" y="240" width="600" height="514"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" wantsLayer="YES" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="896" height="514"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="514"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView wantsLayer="YES" id="Wh9-SU-Su2" customClass="DMPaletteContainer">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="514"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="514"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                 </subviews>

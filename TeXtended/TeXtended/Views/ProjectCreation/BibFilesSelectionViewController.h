@@ -1,5 +1,5 @@
 //
-//  MainAndBibFileSelectionViewController.h
+//  BibFilesSelectionViewController.h
 //  TeXtended
 //
 //  Created by Tobias Mende on 16.11.13.
@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
 @class FolderSelectionViewController;
-@interface MainAndBibFileSelectionViewController : NSViewController
+@interface BibFilesSelectionViewController : NSViewController
+
+
 @property FolderSelectionViewController *folderSelection;
 - (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
 @end
