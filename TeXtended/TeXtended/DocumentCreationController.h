@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class EncodingController;
+@class EncodingController, ProjectCreationWindowController;
 
 @interface DocumentCreationController : NSDocumentController {
-    NSOpenPanel *createProjectPanel, *configurationPanel;
+    ProjectCreationWindowController *projectCreationWindowConmtroller;
+    
 }
 
 @property EncodingController *encController;
