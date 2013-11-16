@@ -194,6 +194,7 @@
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
+		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
 		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
@@ -539,6 +540,8 @@
 		D2FF0D7717F70017003423F7 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
+		F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
+		F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6B77905180DB83E0079EFF6 /* MatrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixViewController.h; sourceTree = "<group>"; };
 		F6B77906180DB83E0079EFF6 /* MatrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixViewController.m; sourceTree = "<group>"; };
@@ -662,6 +665,8 @@
 				D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */,
 				D21ACB9B1726868A00E2F8EC /* Placeholder */,
 				D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */,
+				F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */,
+				F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -1469,6 +1474,7 @@
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabViewWindowManager.m in Sources */,
+				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,

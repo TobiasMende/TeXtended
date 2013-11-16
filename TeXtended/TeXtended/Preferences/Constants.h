@@ -77,6 +77,7 @@
 #define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
 #define TMT_SHOULD_UNDERLINE_TEXDOC_LINKS @"TMTShouldUnderlineTexdocLinks"
 #define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
+#define TMT_REPLACE_INVISIBLE_SPACES @"TMTReplaceInvisibleSpaces"
 #define TMTLiveCompileBib @"TMTLiveCompileBib"
 #define TMTDraftCompileBib @"TMTDraftCompileBib"
 #define TMTFinalCompileBib @"TMTFinalCompileBib"
