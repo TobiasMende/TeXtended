@@ -18,4 +18,8 @@
     self = [super initWithNibName:@"PropertyFileSelectionView" bundle:nil];
     return self;
 }
+
+- (IBAction)select:(id)sender {
+}
+
 @end

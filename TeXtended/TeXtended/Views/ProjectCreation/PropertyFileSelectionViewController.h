@@ -10,4 +10,7 @@
 
 @interface PropertyFileSelectionViewController : NSViewController
 
+@property (strong) IBOutlet NSString* filePath;
+- (IBAction)select:(id)sender;
+
 @end
