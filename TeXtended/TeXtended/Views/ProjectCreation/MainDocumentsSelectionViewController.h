@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @class FolderSelectionViewController;
-@interface MainDocumentsSelectionViewController : NSViewController
+@interface MainDocumentsSelectionViewController : NSViewController {
+    NSSavePanel *createPanel;
+}
 @property (strong) IBOutlet NSTableView *possibleDocumentsTable;
 @property (strong) IBOutlet NSTableView *selectedDocumentsTable;
 @property (strong) IBOutlet NSArrayController *possibleDocuments;

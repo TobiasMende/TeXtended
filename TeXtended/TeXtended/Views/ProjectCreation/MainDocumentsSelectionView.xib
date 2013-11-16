@@ -21,14 +21,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CM2-PC-5Jy">
-                    <rect key="frame" x="20" y="49" width="255" height="178"/>
+                    <rect key="frame" x="20" y="49" width="255" height="183"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="6Ng-mk-T5h">
-                        <rect key="frame" x="1" y="1" width="253" height="176"/>
+                        <rect key="frame" x="1" y="1" width="253" height="181"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" id="wRM-4E-MLP">
-                                <rect key="frame" x="0.0" y="0.0" width="253" height="176"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="14" id="wRM-4E-MLP">
+                                <rect key="frame" x="0.0" y="0.0" width="253" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,12 +47,13 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="rm0-x4-K1K" name="value" keyPath="arrangedObjects.self" id="Of4-DF-eHl"/>
+                                            <binding destination="rm0-x4-K1K" name="value" keyPath="arrangedObjects.self.lastPathComponent" id="9WA-2Q-UrP"/>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
                                     <binding destination="rm0-x4-K1K" name="content" keyPath="arrangedObjects" id="hUQ-sd-fbM"/>
+                                    <binding destination="rm0-x4-K1K" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="hUQ-sd-fbM" id="kSk-El-vec"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -77,14 +78,14 @@
                     </textFieldCell>
                 </textField>
                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiW-bn-fP6">
-                    <rect key="frame" x="316" y="49" width="264" height="178"/>
+                    <rect key="frame" x="316" y="49" width="264" height="183"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="e31-Ih-1CM">
-                        <rect key="frame" x="1" y="1" width="262" height="176"/>
+                        <rect key="frame" x="1" y="1" width="262" height="181"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" id="ov7-eO-bnK">
-                                <rect key="frame" x="0.0" y="0.0" width="262" height="176"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="14" id="ov7-eO-bnK">
+                                <rect key="frame" x="0.0" y="0.0" width="262" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,12 +104,13 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="pHz-zW-aXv" name="value" keyPath="arrangedObjects.self" id="h08-tb-ddD"/>
+                                            <binding destination="pHz-zW-aXv" name="value" keyPath="arrangedObjects.self.lastPathComponent" id="8ne-VN-yjK"/>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
                                     <binding destination="pHz-zW-aXv" name="content" keyPath="arrangedObjects" id="o8v-L6-uXC"/>
+                                    <binding destination="pHz-zW-aXv" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="o8v-L6-uXC" id="3Vo-aB-aNk"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -124,7 +126,7 @@
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0gm-GP-vz4">
-                    <rect key="frame" x="338" y="235" width="166" height="17"/>
+                    <rect key="frame" x="314" y="235" width="166" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Possible Main Documents:" id="oiu-20-32T">
                         <font key="font" metaFont="smallSystem"/>
@@ -141,6 +143,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="addDocument:" target="-2" id="F6i-lH-QN1"/>
+                        <binding destination="pHz-zW-aXv" name="enabled" keyPath="selectionIndexes.count" id="VIU-UH-vJQ">
+                            <dictionary key="options">
+                                <integer key="NSNullPlaceholder" value="0"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3R-6w-rHY">
@@ -152,6 +159,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="removeDocument:" target="-2" id="dgk-DV-4Qw"/>
+                        <binding destination="rm0-x4-K1K" name="enabled" keyPath="selectionIndexes.count" id="d5B-sM-UMs">
+                            <dictionary key="options">
+                                <integer key="NSNullPlaceholder" value="1"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-aQ-3CX">
@@ -172,8 +184,8 @@
                 </button>
             </subviews>
         </customView>
-        <arrayController automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="rm0-x4-K1K" userLabel="Selected Documents"/>
-        <arrayController automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="pHz-zW-aXv" userLabel="Possible Documents"/>
+        <arrayController avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="rm0-x4-K1K" userLabel="Selected Documents"/>
+        <arrayController avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="pHz-zW-aXv" userLabel="Possible Documents"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
