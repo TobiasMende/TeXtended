@@ -7,8 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainDocumentsSelectionViewController">
             <connections>
-                <outlet property="possibleDocuments" destination="ov7-eO-bnK" id="F5k-1b-0xm"/>
-                <outlet property="selectedDocuments" destination="Qiv-uy-iic" id="IGK-wG-Fgs"/>
+                <outlet property="possibleDocuments" destination="pHz-zW-aXv" id="rIx-CF-6f9"/>
+                <outlet property="possibleDocumentsTable" destination="ov7-eO-bnK" id="zW7-na-1lp"/>
+                <outlet property="selectedDocuments" destination="rm0-x4-K1K" id="T4s-hS-Fqf"/>
+                <outlet property="selectedDocumentsTable" destination="wRM-4E-MLP" id="6Wk-ag-DX8"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -44,8 +46,14 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <connections>
+                                            <binding destination="rm0-x4-K1K" name="value" keyPath="arrangedObjects.self" id="Of4-DF-eHl"/>
+                                        </connections>
                                     </tableColumn>
                                 </tableColumns>
+                                <connections>
+                                    <binding destination="rm0-x4-K1K" name="content" keyPath="arrangedObjects" id="hUQ-sd-fbM"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -94,8 +102,14 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <connections>
+                                            <binding destination="pHz-zW-aXv" name="value" keyPath="arrangedObjects.self" id="h08-tb-ddD"/>
+                                        </connections>
                                     </tableColumn>
                                 </tableColumns>
+                                <connections>
+                                    <binding destination="pHz-zW-aXv" name="content" keyPath="arrangedObjects" id="o8v-L6-uXC"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -149,10 +163,17 @@
                     </buttonCell>
                     <connections>
                         <action selector="createDocument:" target="-2" id="ZNw-BR-ucE"/>
+                        <binding destination="-2" name="enabled" keyPath="self.folderSelection.path" id="Ddc-S9-jjz">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
             </subviews>
         </customView>
+        <arrayController automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="rm0-x4-K1K" userLabel="Selected Documents"/>
+        <arrayController automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="pHz-zW-aXv" userLabel="Possible Documents"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>

@@ -10,8 +10,10 @@
 
 @class FolderSelectionViewController;
 @interface MainDocumentsSelectionViewController : NSViewController
-@property (strong) IBOutlet NSTableColumn *selectedDocuments;
-@property (strong) IBOutlet NSTableView *possibleDocuments;
+@property (strong) IBOutlet NSTableView *possibleDocumentsTable;
+@property (strong) IBOutlet NSTableView *selectedDocumentsTable;
+@property (strong) IBOutlet NSArrayController *possibleDocuments;
+@property (strong) IBOutlet NSArrayController *selectedDocuments;
 @property FolderSelectionViewController *folderSelection;
 - (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
 
