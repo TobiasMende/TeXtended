@@ -24,6 +24,7 @@
 #import "AutoCompletionWindowController.h"
 #import "MatrixViewController.h"
 #import "TMTLog.h"
+#import "TextViewLayoutManager.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -62,7 +63,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 + (void)initialize {
     if (self == [HighlightingTextView class]) {
-        DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER, nil];
+        DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER,TMT_REPLACE_INVISIBLE_SPACES, nil];
     }
 }
 
@@ -119,7 +120,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     self.servicesOn = YES;
     
     
-    
+    [self.textContainer replaceLayoutManager:[[TextViewLayoutManager alloc] init]];
 }
 
 
@@ -787,7 +788,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER]]) {
         self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
-    } 
+    } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_SPACES]]) {
+        [self setNeedsDisplay:YES];
+    }
 }
 
 
