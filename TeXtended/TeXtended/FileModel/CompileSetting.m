@@ -11,34 +11,27 @@
 #import "TMTLog.h"
 
 @interface CompileSetting ()
-+ (CompileSetting*) createCompileSettingFor:(NSString*) path bibKey:(NSString*)bib iterationKey:(NSString*)iteration argsKey:(NSString*)args andContext:(NSManagedObjectContext*) context;
++ (CompileSetting*) createCompileSettingFor:(NSString*) path bibKey:(NSString*)bib iterationKey:(NSString*)iteration argsKey:(NSString*)args;
 @end
 
 @implementation CompileSetting
 
-@dynamic compilerPath;
-@dynamic compileBib;
-@dynamic numberOfCompiles;
-@dynamic customArgument;
-
-+ (CompileSetting *)defaultDraftCompileSettingIn:(NSManagedObjectContext*)context {
-        return [self createCompileSettingFor:TMTDraftCompileFlow bibKey:TMTDraftCompileBib iterationKey:TMTDraftCompileIterations argsKey:TMTDraftCompileArgs andContext:context];
++ (CompileSetting *)defaultDraftCompileSetting {
+        return [self createCompileSettingFor:TMTDraftCompileFlow bibKey:TMTDraftCompileBib iterationKey:TMTDraftCompileIterations argsKey:TMTDraftCompileArgs];
 }
 
-+ (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context {
-        return [self createCompileSettingFor:TMTLiveCompileFlow bibKey:TMTLiveCompileBib iterationKey:TMTLiveCompileIterations argsKey:TMTLiveCompileArgs andContext:context];
++ (CompileSetting *)defaultLiveCompileSetting {
+        return [self createCompileSettingFor:TMTLiveCompileFlow bibKey:TMTLiveCompileBib iterationKey:TMTLiveCompileIterations argsKey:TMTLiveCompileArgs];
 }
 
-+ (CompileSetting *)defaultFinalCompileSettingIn:(NSManagedObjectContext*)context {
++ (CompileSetting *)defaultFinalCompileSetting {
         
-        return [self createCompileSettingFor:TMTFinalCompileFlow bibKey:TMTFinalCompileBib iterationKey:TMTFinalCompileIterations argsKey:TMTFinalCompileArgs andContext:context];
+        return [self createCompileSettingFor:TMTFinalCompileFlow bibKey:TMTFinalCompileBib iterationKey:TMTFinalCompileIterations argsKey:TMTFinalCompileArgs];
 }
 
-+ (CompileSetting *)createCompileSettingFor:(NSString *)path bibKey:(NSString *)bib iterationKey:(NSString *)iteration argsKey:(NSString *)args andContext:(NSManagedObjectContext*) context{
++ (CompileSetting *)createCompileSettingFor:(NSString *)path bibKey:(NSString *)bib iterationKey:(NSString *)iteration argsKey:(NSString *)args{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CompileSetting *setting = [NSEntityDescription
-                               insertNewObjectForEntityForName:@"CompileSetting"
-                               inManagedObjectContext:context];
+    CompileSetting *setting = [CompileSetting new];
     setting.compilerPath = [defaults stringForKey:path];
     setting.compileBib = [defaults objectForKey:bib];
     setting.numberOfCompiles = [defaults objectForKey:iteration];
@@ -57,21 +50,19 @@
     [self unbind:@"customArgument"];
 }
 
-- (void)willTurnIntoFault {
+- (void)dealloc {
     [self unbindAll];
-    [super willTurnIntoFault];
 }
 
-- (CompileSetting *)copy:(NSManagedObjectContext *)context {
-    CompileSetting *setting = [NSEntityDescription
-                               insertNewObjectForEntityForName:@"CompileSetting"
-                               inManagedObjectContext:context];
+- (id)copy {
+    CompileSetting *setting = [CompileSetting new];
     setting.compilerPath = self.compilerPath;
     setting.compileBib = self.compileBib;
     setting.numberOfCompiles = self.numberOfCompiles;
     setting.customArgument = self.customArgument;
     return setting;
 }
+
 
 - (void)binAllTo:(CompileSetting *)setting {
     [self bind:@"compilerPath" toObject:setting withKeyPath:@"compilerPath" options:nil];

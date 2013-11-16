@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSString * pdfPath;
 
 /** The path to the tex file */
-@property (nonatomic, strong) NSString * texPath;
+@property (strong) NSString * texPath;
 
 /** The system path to the tex file version storage.
  
@@ -46,7 +46,7 @@
 @property (nonatomic, strong) NSString * systemPath;
 
 /** The NSTextEncoding of the file */
-@property (nonatomic, strong) NSNumber *encoding;
+@property (strong) NSNumber *encoding;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, strong) ProjectModel *project;
@@ -121,7 +121,7 @@
 
 @end
 
-@interface DocumentModel (CoreDataGeneratedAccessors)
+@interface DocumentModel (Accessors)
 
 - (void)addOutlineElementsObject:(OutlineElement *)value;
 - (void)removeOutlineElementsObject:(OutlineElement *)value;

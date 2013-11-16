@@ -58,7 +58,6 @@
     __weak DocumentCreationController *weakSelf = self;
     self.projectCreationWindowController.terminationHandler = ^(ProjectDocument *document, BOOL success) {
         if (success) {
-            [document setupPeristentStore];
             [document saveToURL:document.fileURL ofType:@"TeXtendedProjectFile" forSaveOperation:NSSaveOperation completionHandler:^(NSError *errorOrNil) {
                 if (errorOrNil) {
                     DDLogWarn(@"Error while saving: %@", errorOrNil.userInfo);

@@ -19,47 +19,28 @@
  @param context the context.
  
  */
-- (void)initDefaults:(NSManagedObjectContext*)context;
+- (void)initDefaults;
 @end
 
 @implementation ProjectModel
 
-@dynamic name;
-@dynamic path;
-@dynamic bibFiles;
-@dynamic documents;
-@dynamic properties;
-
 - (id)init {
-    return nil;
-}
-
-- (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"Project" inManagedObjectContext:context];
-    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
+    self = [super init];
     if (self) {
-        [self initDefaults:context];
+        [self initDefaults];
     }
     return self;
 }
 
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    if (self) {
-        [self initDefaults:context];
-    }
-    return self;
-}
-
-- (void)initDefaults:(NSManagedObjectContext *)context {
+- (void)initDefaults {
     if (!self.liveCompiler) {
-        self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:context];
+        self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
     }
     if (!self.draftCompiler) {
-        self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:context];
+        self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
     }
     if (!self.finalCompiler) {
-        self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:context];
+        self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
     }
     //FIME: Complete implementation
 }
@@ -73,7 +54,7 @@
         }
     }
     if (shouldCreate) {
-        DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
+        DocumentModel *model = [DocumentModel new];
         [self addDocumentsObject:model];
         model.project = self;
         model.texPath = path;
@@ -84,8 +65,7 @@
 }
 
 - (void)addBibFileWithPath:(NSString *)path {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"BibFile" inManagedObjectContext:self.managedObjectContext];
-    BibFile *file = [[BibFile alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+    BibFile *file = [BibFile new];
     file.path = path;
     file.project = self;
     [self addBibFilesObject:file];
@@ -100,9 +80,8 @@
 }
 
 - (void)setPath:(NSString *)path {
-    NSString *old = [self primitiveValueForKey:@"path"];
-    if (![old isEqualToString:path]) {
-        [self internalSetValue:path forKey:@"path"];
+    if (![_path isEqualToString:path]) {
+        _path = path;
     }
 }
 

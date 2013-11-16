@@ -16,7 +16,7 @@
  
  */
 
-@interface CompileSetting : NSManagedObject
+@interface CompileSetting : NSObject
 
 /** The path to the compile flow */
 @property (nonatomic, strong) NSString * compilerPath;
@@ -37,7 +37,7 @@
  
  return a new compile setting object
  */
-+ (CompileSetting *)defaultLiveCompileSettingIn:(NSManagedObjectContext*)context;
++ (CompileSetting *)defaultLiveCompileSetting;
 
 /** Getter for a default draft compile setting generated using the user defaults
  
@@ -45,7 +45,7 @@
  
  return a new compile setting object
  */
-+ (CompileSetting *)defaultDraftCompileSettingIn:(NSManagedObjectContext*)context;
++ (CompileSetting *)defaultDraftCompileSetting;
 
 /** Getter for a default final compile setting generated using the user defaults
  
@@ -53,19 +53,11 @@
  
  return a new compile setting object
  */
-+ (CompileSetting *)defaultFinalCompileSettingIn:(NSManagedObjectContext*)context;
++ (CompileSetting *)defaultFinalCompileSetting;
 
 /** Method for unbinding all properties of this object */
 - (void) unbindAll;
 
-/**
- Method for getting a copy of the current CompileSetting object in another or the same context
- 
- @param context The context for the copy
- 
- @return an identical setting object in the given context
- */
-- (CompileSetting *)copy:(NSManagedObjectContext*)context;
 
 /**
  Method for binding all properties to another setting object.

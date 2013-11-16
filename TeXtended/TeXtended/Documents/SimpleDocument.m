@@ -34,7 +34,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
-        self.model = [[DocumentModel alloc] initWithContext:self.context];
+        self.model = [DocumentModel new];
         self.encController = [EncodingController new];
     }
     return self;

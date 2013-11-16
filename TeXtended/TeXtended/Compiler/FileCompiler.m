@@ -46,7 +46,7 @@
         [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerDidStartCompiling object:[self model]];
         
         [task setTerminationHandler:^(NSTask *task) {
-            if ([NSNotificationCenter defaultCenter] && !self.model.isFault) {
+            if ([NSNotificationCenter defaultCenter] && self.model) {
                 [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerDidEndCompiling object:[self model]];
             }
         }];

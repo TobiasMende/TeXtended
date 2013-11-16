@@ -358,7 +358,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
+    if ([object isEqualTo:self.model]) {
         [self unregisterModelObserver];
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self registerModelObserver];

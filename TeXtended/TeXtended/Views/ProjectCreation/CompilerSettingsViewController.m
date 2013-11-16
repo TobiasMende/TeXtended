@@ -27,21 +27,21 @@
 
 - (void)loadView {
     [super loadView];
-    self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:context];
-    self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:context];
-    self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:context];
+    self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
+    self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
+    self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
 }
 
 
 - (void)configureProjectModel:(ProjectModel *)project {
-    if (![self.liveCompiler isEqualTo:[CompileSetting defaultLiveCompileSettingIn:context]]) {
-        project.liveCompiler = [self.liveCompiler copy:project.managedObjectContext];
+    if (![self.liveCompiler isEqualTo:[CompileSetting defaultLiveCompileSetting]]) {
+        project.liveCompiler = [self.liveCompiler copy];
     }
-    if (![self.draftCompiler isEqualTo:[CompileSetting defaultDraftCompileSettingIn:context]]) {
-        project.draftCompiler = [self.draftCompiler copy:project.managedObjectContext];
+    if (![self.draftCompiler isEqualTo:[CompileSetting defaultDraftCompileSetting]]) {
+        project.draftCompiler = [self.draftCompiler copy];
     }
-    if (![self.finalCompiler isEqualTo:[CompileSetting defaultFinalCompileSettingIn:context]]) {
-        project.finalCompiler = [self.finalCompiler copy:project.managedObjectContext];
+    if (![self.finalCompiler isEqualTo:[CompileSetting defaultFinalCompileSetting]]) {
+        project.finalCompiler = [self.finalCompiler copy];
     }
 }
 @end

@@ -20,19 +20,13 @@ static const NSSet *COMPILER_NAMES;
 
 @implementation Compilable
 
-@dynamic draftCompiler;
-@dynamic finalCompiler;
-@dynamic liveCompiler;
-@dynamic headerDocument;
-@dynamic mainDocuments;
 
 + (void)initialize {
     COMPILER_NAMES = [NSSet setWithObjects:@"draftCompiler", @"finalCompiler", @"liveCompiler", nil];
 }
 
-- (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"Compilable" inManagedObjectContext:context];
-    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
+- (id)init {
+    self = [super init];
     if (self) {
         [self initDefaults];
     }
@@ -40,15 +34,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (NSString *)dictionaryKey {
-    return [[[self objectID] URIRepresentation] absoluteString];
-}
-
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-        if (self) {
-            [self initDefaults];
-        }
-    return self;
+    return [NSString stringWithFormat:@"%ld", self.hash];
 }
 
 - (void)initDefaults {
@@ -70,11 +56,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
-- (void) internalSetValue:(id)value forKey:(NSString *)key {
-    [self willChangeValueForKey:key];
-    [self setPrimitiveValue:value forKey:key];
-    [self didChangeValueForKey:key];
-}
+
 
 #pragma mark -
 #pragma mark Getter & Setter
@@ -84,7 +66,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path {
-    [self modelForTexPath:path byCreating:YES];
+    return [self modelForTexPath:path byCreating:YES];
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
@@ -116,14 +98,7 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
-//- (void)willTurnIntoFault {
-//    [self unregisterCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
-//    [self unregisterCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
-//    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
-//}
-
-
-- (void)willTurnIntoFault {
+- (void)dealloc {
     if (self == self.mainCompilable) {
         [TMTNotificationCenter removeCenterForCompilable:self];
     }

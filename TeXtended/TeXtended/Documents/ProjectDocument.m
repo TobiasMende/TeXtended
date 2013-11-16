@@ -23,7 +23,7 @@
     self = [super init];
     if (self) {
             // Add your subclass-specific initialization here.
-            self.model = [[ProjectModel alloc] initWithContext:self.context];
+            self.model = [ProjectModel new];
     }
     return self;
 }
@@ -35,34 +35,26 @@
 
 
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
-    NSError *error;
-    [self.context save:&error];
-    for (DocumentController *dc in self.documentControllers) {
-        [dc saveDocumentModel:&error];
-    }
-    if (error) {
-        DDLogError(@"Saving failed: %@", error.userInfo);
-    }
+    // FIXME: Save
     
 }
 
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
-    NSURL *finalURL;
-    if ([typeName isEqualToString:@"TeXtendedProjectFolder"]) {
-        finalURL = [self projectFileUrlFromDirectory:absoluteURL];
-    } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
-        finalURL = absoluteURL;
-    }
-    DDLogInfo(@"Project(%@): %@", typeName, absoluteURL);
-    
-    if (!finalURL) {
-        // Abort reading if no matching project was found
-        return NO;
-    }
-    BOOL success = YES;
-    self.fileURL = finalURL;
-    [self setupPeristentStore];
+//    NSURL *finalURL;
+//    if ([typeName isEqualToString:@"TeXtendedProjectFolder"]) {
+//        finalURL = [self projectFileUrlFromDirectory:absoluteURL];
+//    } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
+//        finalURL = absoluteURL;
+//    }
+//    DDLogInfo(@"Project(%@): %@", typeName, absoluteURL);
+//    
+//    if (!finalURL) {
+//        // Abort reading if no matching project was found
+//        return NO;
+//    }
+//    BOOL success = YES;
+//    self.fileURL = finalURL;
 
 //    NSError *fetchError;
 //    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&fetchError];
@@ -78,7 +70,9 @@
 //            self.model.path = finalURL.path;
 //        }
 //    }
-    return success;
+    
+    // FIXME: implement load
+    return NO;
 }
 
 - (NSURL *)projectFileUrlFromDirectory:(NSURL *)directory {

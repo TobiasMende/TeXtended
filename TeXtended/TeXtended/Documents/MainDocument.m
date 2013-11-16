@@ -22,20 +22,10 @@
     self = [super init];
     if (self) {
             // Add your subclass-specific initialization here.
-            self.context = [NSManagedObjectContext new];
-            self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
     }
     return self;
 }
 
-- (void)setupPeristentStore {
-    NSError *error;
-    [self.context.persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:self.fileURL options:nil error:&error];
-
-    if (error) {
-        DDLogError(@"Can't create persistant store: %@", error.userInfo);
-    }
-}
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
 {

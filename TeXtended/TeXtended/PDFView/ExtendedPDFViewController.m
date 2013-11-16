@@ -113,7 +113,7 @@
 }
 
 - (void)loadPDF {
-    if (self.model.faultingState == 0 && self.model.pdfPath) {
+    if (self.model && self.model.pdfPath) {
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
