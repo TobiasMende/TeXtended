@@ -68,16 +68,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView setEventsDelegate:self];
     [self.contentView setCanCollapse:YES subviewAtIndex:1];
     
-    /*if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {
-        [self toggleSidebarView:self];
-    }
-    
-    if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue] == NSOffState) {
-        [self toggleSecondView:self];
-    }
-    
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED] options:0 context:NULL];
-    [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED] options:0 context:NULL];*/
     [self.mainDocument windowControllerDidLoadNib:self];
 }
 
@@ -107,25 +97,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    /*if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]]) {
-        //DDLogCInfo(@"Left collapsed state is %li",[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue]);
-        NSInteger state = [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue];
-        
-        if (self.sidebarViewToggle.state == state) {
-            self.sidebarViewToggle.state = state;
-            [self toggleSidebarView:self];
-        }
-    }
-    
-    if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]]) {
-        //DDLogCInfo(@"Right collapsed state is %li",[[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue]);
-        NSInteger state = [[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue];
-        if (self.secondViewToggle.state == state) {
-            self.secondViewToggle.state = state;
-            [self toggleSecondView:self];
-        }
-    }*/
-    
     if ([keyPath isEqualToString:TMTViewOrderAppearance] && [object isEqualTo:[NSUserDefaults standardUserDefaults]]) {
         BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
         [self.contentView setVertical:flag];
