@@ -83,6 +83,8 @@
 		D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */; };
 		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
 		D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254798318379F080097C97D /* PropertyFileSelectionView.xib */; };
+		D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25479871837A0D30097C97D /* CompilerSettingsViewController.m */; };
+		D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25479881837A0D30097C97D /* CompilerSettingsView.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
@@ -410,6 +412,9 @@
 		D254798118379F080097C97D /* PropertyFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyFileSelectionViewController.h; sourceTree = "<group>"; };
 		D254798218379F080097C97D /* PropertyFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyFileSelectionViewController.m; sourceTree = "<group>"; };
 		D254798318379F080097C97D /* PropertyFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyFileSelectionView.xib; sourceTree = "<group>"; };
+		D25479861837A0D30097C97D /* CompilerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilerSettingsViewController.h; sourceTree = "<group>"; };
+		D25479871837A0D30097C97D /* CompilerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilerSettingsViewController.m; sourceTree = "<group>"; };
+		D25479881837A0D30097C97D /* CompilerSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompilerSettingsView.xib; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
@@ -652,6 +657,9 @@
 				D254798118379F080097C97D /* PropertyFileSelectionViewController.h */,
 				D254798218379F080097C97D /* PropertyFileSelectionViewController.m */,
 				D254798318379F080097C97D /* PropertyFileSelectionView.xib */,
+				D25479861837A0D30097C97D /* CompilerSettingsViewController.h */,
+				D25479871837A0D30097C97D /* CompilerSettingsViewController.m */,
+				D25479881837A0D30097C97D /* CompilerSettingsView.xib */,
 			);
 			path = ProjectCreation;
 			sourceTree = "<group>";
@@ -1407,6 +1415,7 @@
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */,
+				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
@@ -1584,6 +1593,7 @@
 				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 				D2F3DE2717F6BEDA00A99066 /* DDAbstractDatabaseLogger.m in Sources */,
+				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
