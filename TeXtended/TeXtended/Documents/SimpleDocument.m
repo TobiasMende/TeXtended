@@ -12,6 +12,7 @@
 #import "DocumentController.h"
 #import "EncodingController.h"
 #import "TMTLog.h"
+#import "DocumentCreationController.h"
 
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
@@ -105,6 +106,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     
     self.model.systemPath = [url path];
     self.model.texPath = [[self fileURL] path];
+    DocumentCreationController* contr = [DocumentCreationController sharedDocumentController];
+    if (contr.encController.selectionDidChange) {
+        self.model.encoding = [NSNumber numberWithUnsignedLong:[contr.encController selection]];
+    }
     [self initializeDocumentControllers];
     return YES;
 }

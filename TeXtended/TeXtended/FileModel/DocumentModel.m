@@ -12,7 +12,6 @@
 #import "CompileSetting.h"
 #import "NSString+PathExtension.h"
 #import "TMTLog.h"
-#import "DocumentCreationController.h"
 #import "EncodingController.h"
 #import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
@@ -64,10 +63,13 @@ static NSArray *TMTEncodingsToCheck;
         self.systemPath = self.texPath;
     }
     NSStringEncoding encoding;
+    NSString *content;
     if (self.encoding && [self.encoding unsignedLongValue] > 0) {
-        encoding = [self.encoding unsignedLongValue];
+        content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:&error];
+    } else {
+        content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+        
     }
-    NSString *content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
     /*if (error) {
         // Fallback to encoding search:
         for (NSNumber *number in TMTEncodingsToCheck) {
@@ -85,14 +87,6 @@ static NSArray *TMTEncodingsToCheck;
     
     if (error) {
         DDLogError(@"Error while loading content: %@", [error userInfo]);
-    } else {
-        DocumentCreationController* contr = [DocumentCreationController sharedDocumentController];
-        if (contr.encController.selectionDidChange) {
-            self.encoding = [NSNumber numberWithUnsignedLong:[contr.encController selection]];
-        }
-        else {
-            self.encoding = [NSNumber numberWithUnsignedLong:encoding];
-        }
     }
     if (content) {
         [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];
