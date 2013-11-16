@@ -1,0 +1,27 @@
+//
+//  ProjectCreationWindowController.h
+//  TeXtended
+//
+//  Created by Max Bannach on 16.11.13.
+//  Copyright (c) 2013 Tobias Mende. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+<<<<<<< HEAD
+@class DMPaletteContainer, FolderSelectionViewController, CompilerSettingsViewController;
+@interface ProjectCreationWindowController : NSWindowController {
+    IBOutlet DMPaletteContainer* container;
+    FolderSelectionViewController* folderSelection;
+    CompilerSettingsViewController *compilerSettings;
+=======
+@class DMPaletteContainer, FolderSelectionViewController, MainDocumentSelectionViewController;
+@interface ProjectCreationWindowController : NSWindowController {
+    IBOutlet DMPaletteContainer* container;
+    FolderSelectionViewController* folderSelection;
+    MainDocumentSelectionViewController* mainOcumentSelection;
+>>>>>>> 61896726397799acb0ab642c4e8562273b4625da
+}
+
+
+@end

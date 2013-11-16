@@ -8,8 +8,11 @@
 
 #import "ProjectCreationWindowController.h"
 #import "FolderSelectionViewController.h"
+<<<<<<< HEAD
 #import "CompilerSettingsViewController.h"
+=======
 #import "MainDocumentSelectionViewController.h"
+>>>>>>> 61896726397799acb0ab642c4e8562273b4625da
 #import "DMPaletteContainer.h"
 
 @interface ProjectCreationWindowController ()
@@ -30,12 +33,19 @@
 {
     [super windowDidLoad];
     folderSelection = [[FolderSelectionViewController alloc] init];
+<<<<<<< HEAD
     compilerSettings = [CompilerSettingsViewController new];
-    mainOcumentSelection = [[MainDocumentSelectionViewController alloc] init];
     container.sectionViews = [NSArray arrayWithObjects:
-                            [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"],[[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"Compiler Settings"],
+                              [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"],[[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"Compiler Settings"]
+                              ,nil];
+=======
+    mainOcumentSelection = [[MainDocumentSelectionViewController alloc] init];
+    
+    container.sectionViews = [NSArray arrayWithObjects:
+                              [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"],
                               [[DMPaletteSectionView alloc] initWithContentView:mainOcumentSelection.view andTitle:@"Maindocuments and Bibfiles"],
                               nil];
+>>>>>>> 61896726397799acb0ab642c4e8562273b4625da
 }
 
 @end
