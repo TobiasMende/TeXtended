@@ -104,11 +104,8 @@ static const NSSet *KEYS_TO_OBSERVE;
     if (lineRect.size.width == 0) {
         return;
     }
-    if ([[NSGraphicsContext currentContext] CIContext] && [view lockFocusIfCanDraw]) {
         [self.currentLineColor set];
         [NSBezierPath fillRect:lineRect];
-        [view unlockFocus];
-    }
     }
 }
 
@@ -139,15 +136,35 @@ static const NSSet *KEYS_TO_OBSERVE;
 #pragma mark -
 #pragma mark Line Getter
 
-- (NSRect)lineRectforRange:(NSRange) range {
-    NSRange totalLineRange = NSMakeRange(view.selectedRange.location, 0);
-    NSLayoutManager *lm = view.layoutManager;
-    NSRange glyphRange = [lm glyphRangeForCharacterRange:totalLineRange actualCharacterRange:NULL];
-    NSRect boundingRect = [lm boundingRectForGlyphRange:glyphRange inTextContainer:view.textContainer];
-    NSRect totalRect = NSMakeRect(0, boundingRect.origin.y, view.bounds.size.width, boundingRect.size.height);
-    NSRect lineRect = NSOffsetRect(totalRect, view.textContainerOrigin.x, view.textContainerOrigin.y);
-    return lineRect;
+- (NSRect)lineRectforRange:(NSRange) aRange {
+    NSRange r = aRange;
+    NSRange startLineRange = [[view string] lineRangeForRange:NSMakeRange(r.location, 0)];
+    NSInteger er = NSMaxRange(r)-1;
+    NSString *text = [view string];
+    
+    if (er >= [text length]) {
+        return NSZeroRect;
+    }
+    if (er < r.location) {
+        er = r.location;
+    }
+    
+    NSRange endLineRange = [[view string] lineRangeForRange:NSMakeRange(er, 0)];
+    
+    NSRange gr = [[view layoutManager] glyphRangeForCharacterRange:NSMakeRange(startLineRange.location, NSMaxRange(endLineRange)-startLineRange.location-1)
+                                              actualCharacterRange:NULL];
+    NSRect br = [[view layoutManager] boundingRectForGlyphRange:gr inTextContainer:[view textContainer]];
+    NSRect b = [view bounds];
+    CGFloat h = br.size.height;
+    CGFloat w = b.size.width;
+    CGFloat y = br.origin.y;
+    NSPoint containerOrigin = [view textContainerOrigin];
+    NSRect aRect = NSMakeRect(0, y, w, h);
+    // Convert from view coordinates to container coordinates
+    aRect = NSOffsetRect(aRect, containerOrigin.x, containerOrigin.y);
+    return aRect;
 }
+
 
 
 - (NSRange) lineTextRangeWithRange:(NSRange) range {

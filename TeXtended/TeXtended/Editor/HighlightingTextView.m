@@ -478,7 +478,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 
-
 - (NSUInteger)currentCol {
     return [self colForRange:self.selectedRange];
 }
@@ -761,16 +760,22 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 #pragma mark Drawing Actions
 
 
+//- (void) drawViewBackgroundInRect:(NSRect)rect
+//{
+//        [[NSColor clearColor] set];
+//        NSRectFill(rect);
+//        [super drawViewBackgroundInRect:rect];
+//}
+
+
 - (void) drawViewBackgroundInRect:(NSRect)rect
 {
-        [[NSColor clearColor] set];
-        NSRectFill(rect);
-        [super drawViewBackgroundInRect:rect];
-        if (self.servicesOn) {
-            [self.codeNavigationAssistant highlight];
-        }
-}
+    [super drawViewBackgroundInRect:rect];
+    if (self.servicesOn) {
+        [self.codeNavigationAssistant highlightCurrentLine];
+    }
 
+}
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR]] || [keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR]]) {

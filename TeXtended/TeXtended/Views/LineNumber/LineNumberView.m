@@ -532,14 +532,14 @@
     return heights;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    /* clear background */
-    [[self backgroundColor] set];
-    NSRectFill(dirtyRect);
-    [super drawRect:dirtyRect];
-    
-}
+//- (void)drawRect:(NSRect)dirtyRect
+//{
+//    /* clear background */
+//    [[self backgroundColor] set];
+//    NSRectFill(dirtyRect);
+//    [super drawRect:dirtyRect];
+//    
+//}
 
 - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect {
     NSRect visibleRect = [[[self scrollView] documentView] visibleRect];

@@ -55,7 +55,7 @@
         console.compileRunning = YES;
         
         CompileSetting *settings;
-        NSTask *task   = [[NSTask alloc] init];
+        currentTask   = [[NSTask alloc] init];
         NSPipe *outPipe = [NSPipe pipe];
         NSPipe *inPipe = [NSPipe pipe];
         if (!outPipe || !inPipe) {
@@ -64,8 +64,8 @@
         }
         model.consoleOutputPipe = outPipe;
         model.consoleInputPipe = inPipe;
-        [task setStandardOutput:model.consoleOutputPipe];
-        [task setStandardInput:model.consoleInputPipe];
+        [currentTask setStandardOutput:model.consoleOutputPipe];
+        [currentTask setStandardInput:model.consoleInputPipe];
         NSString *path;
         
         if (mode == draft) {
@@ -80,17 +80,17 @@
         [environment setObject:@"1000" forKey:@"max_print_line"];
         [environment setObject:@"254" forKey:@"error_line"];
         [environment setObject:@"238" forKey:@"half_error_line"];
-        [task setEnvironment:environment];
-        [task setLaunchPath:path];
+        [currentTask setEnvironment:environment];
+        [currentTask setLaunchPath:path];
         NSNumber *compileMode = [NSNumber numberWithInt:mode];
         NSMutableArray *arguments = [NSMutableArray arrayWithObjects:model.texPath, model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
         if (settings.customArgument && settings.customArgument.length > 0) {
             [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
         }
-        [task setArguments:arguments];
+        [currentTask setArguments:arguments];
         [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
-        [task setTerminationHandler:^(NSTask *task) {
+        [currentTask setTerminationHandler:^(NSTask *task) {
                 [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
             model.lastCompile = [NSDate new];
             ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model byCreating:NO];
@@ -100,7 +100,7 @@
             }
         }];
         
-        [task launch];
+        [currentTask launch];
     }
 }
 
@@ -139,7 +139,7 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-
+    [currentTask terminate];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.documentController.textViewController removeDelegateObserver:self];
 }

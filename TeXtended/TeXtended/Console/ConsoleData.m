@@ -129,11 +129,11 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
         if ([logMessageUpdateTimer isValid]) {
             [logMessageUpdateTimer invalidate];
         }
-        logMessageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval: LOG_MESSAGE_UPDATE_INTERVAL
-                                                                 target: self
-                                                               selector:@selector(updateLogMessages)
-                                                               userInfo: nil
-                                                                repeats: NO];
+            logMessageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval: LOG_MESSAGE_UPDATE_INTERVAL
+                                                                     target: self
+                                                                   selector:@selector(updateLogMessages)
+                                                                   userInfo: nil
+                                                                    repeats: NO];
         
         // Do whatever you want with str
     }
@@ -150,7 +150,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     DDLogVerbose(@"dealloc");
     [self removeObserver:self forKeyPath:@"self.consoleActive"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)remove {
