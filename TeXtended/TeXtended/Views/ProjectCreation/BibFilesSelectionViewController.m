@@ -8,6 +8,7 @@
 
 #import "BibFilesSelectionViewController.h"
 #import "FolderSelectionViewController.h"
+#import "ProjectModel.h"
 
 @interface BibFilesSelectionViewController ()
 
@@ -50,7 +51,7 @@
         createPanel = [NSSavePanel new];
         createPanel.directoryURL = [NSURL URLWithString:self.folderSelection.path];
         createPanel.title = NSLocalizedString(@"Create a bib file", @"Create a bib file");
-        createPanel.nameFieldLabel = NSLocalizedString(@"File Name", @"File Name");
+        createPanel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
         createPanel.allowedFileTypes = [NSArray arrayWithObject:@"bib"];
     }
     [createPanel beginWithCompletionHandler:^(NSInteger result) {
@@ -64,5 +65,11 @@
                 }
         }
     }];
+}
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    for (NSString *path in self.bibFiles.arrangedObjects) {
+        [project addBibFileWithPath:path];
+    }
 }
 @end

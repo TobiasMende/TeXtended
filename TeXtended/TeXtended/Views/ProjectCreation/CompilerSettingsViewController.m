@@ -8,6 +8,7 @@
 
 #import "CompilerSettingsViewController.h"
 #import "CompileSetting.h"
+#import "ProjectModel.h"
 
 @interface CompilerSettingsViewController ()
 
@@ -31,4 +32,16 @@
     self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:context];
 }
 
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    if (![self.liveCompiler isEqualTo:[CompileSetting defaultLiveCompileSettingIn:context]]) {
+        project.liveCompiler = [self.liveCompiler copy:project.managedObjectContext];
+    }
+    if (![self.draftCompiler isEqualTo:[CompileSetting defaultDraftCompileSettingIn:context]]) {
+        project.draftCompiler = [self.draftCompiler copy:project.managedObjectContext];
+    }
+    if (![self.finalCompiler isEqualTo:[CompileSetting defaultFinalCompileSettingIn:context]]) {
+        project.finalCompiler = [self.finalCompiler copy:project.managedObjectContext];
+    }
+}
 @end

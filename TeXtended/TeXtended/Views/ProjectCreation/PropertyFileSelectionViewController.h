@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ProjectCreationAssistantViewController.h"
 @class FolderSelectionViewController;
-@interface PropertyFileSelectionViewController : NSViewController
+@interface PropertyFileSelectionViewController : NSViewController<ProjectCreationAssistantViewController>
 
 @property (strong) IBOutlet NSString* filePath;
 

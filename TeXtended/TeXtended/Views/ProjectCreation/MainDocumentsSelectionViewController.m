@@ -9,6 +9,7 @@
 #import "MainDocumentsSelectionViewController.h"
 #import "FolderSelectionViewController.h"
 #import "TMTLog.h"
+#import "ProjectModel.h"
 
 @interface MainDocumentsSelectionViewController ()
 - (void) initializeContent;
@@ -48,7 +49,7 @@
         createPanel.directoryURL = [NSURL URLWithString:self.folderSelection.path];
         createPanel.canCreateDirectories = NO;
         createPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
-        createPanel.nameFieldLabel = NSLocalizedString(@"File Name", @"File Name");
+        createPanel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
         createPanel.title = NSLocalizedString(@"Add a Main File", @"Add a Main File");
     }
     [createPanel beginWithCompletionHandler:^(NSInteger result) {
@@ -92,6 +93,14 @@
         if (self.folderSelection.path != nil) {
             [self initializeContent];
         }
+    }
+}
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    NSArray *paths = self.selectedDocuments.arrangedObjects;
+    for (NSString *path in paths) {
+        DocumentModel *model = [project modelForTexPath:path byCreating:YES];
+        [project addMainDocumentsObject:model];
     }
 }
 

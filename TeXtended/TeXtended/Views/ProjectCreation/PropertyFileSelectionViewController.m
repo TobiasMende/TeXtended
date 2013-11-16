@@ -8,6 +8,7 @@
 
 #import "PropertyFileSelectionViewController.h"
 #import "FolderSelectionViewController.h"
+#import "ProjectModel.h"
 @interface PropertyFileSelectionViewController ()
 
 @end
@@ -38,6 +39,10 @@
         }
     }];
     
+}
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    project.properties = [project modelForTexPath:self.filePath byCreating:YES];
 }
 
 @end

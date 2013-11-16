@@ -14,9 +14,10 @@
 #import "PropertyFileSelectionViewController.h"
 #import "DMPaletteContainer.h"
 #import "DMPaletteSectionView.h"
+#import "ProjectDocument.h"
+#import "ProjectModel.h"
 
 @interface ProjectCreationWindowController ()
-
 @end
 
 @implementation ProjectCreationWindowController
@@ -55,6 +56,26 @@
     [container collapseSectionView:compilerSettingContainer];
     container.sectionHeaderGradientEndColor = [NSColor colorWithCalibratedRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
     container.sectionHeaderGradientStartColor = [NSColor colorWithCalibratedRed:0.82f green:0.82f blue:0.82f alpha:1.00f];
+    container.hasHorizontalScroller = NO;
 }
 
+- (IBAction)cancelProjectCreation:(id)sender {
+    [self.window orderOut:nil];
+    if (self.terminationHandler) {
+        self.terminationHandler(nil, NO);
+    }
+}
+
+- (IBAction)createProject:(id)sender {
+    [self.window orderOut:nil];
+    ProjectDocument *doc = [ProjectDocument new];
+    [folderSelection configureProjectModel:doc.model];
+    [mainDocumentSelection configureProjectModel:doc.model];
+    [bibFilesSelection configureProjectModel:doc.model];
+    [compilerSettings configureProjectModel:doc.model];
+    [propertySelection configureProjectModel:doc.model];
+    if (self.terminationHandler) {
+        self.terminationHandler(doc, YES);
+    }
+}
 @end

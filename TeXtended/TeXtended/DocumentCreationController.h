@@ -7,14 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
 @class EncodingController, ProjectCreationWindowController;
 
-@interface DocumentCreationController : NSDocumentController {
-    ProjectCreationWindowController *projectCreationWindowConmtroller;
+@interface DocumentCreationController : NSDocumentController{
     
 }
 
+@property ProjectCreationWindowController *projectCreationWindowController;
 @property EncodingController *encController;
 - (void) newProject:(id)sender;
 

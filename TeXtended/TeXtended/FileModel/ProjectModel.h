@@ -55,5 +55,6 @@
 
 @interface ProjectModel (ProjectModelExtension)
 - (NSString*) folderPath;
+- (void) addBibFileWithPath:(NSString *)path;
 
 @end

@@ -51,10 +51,18 @@
 }
 
 - (void)showProjectCreationPanel {
-    if(!projectCreationWindowConmtroller) {
-        projectCreationWindowConmtroller = [ProjectCreationWindowController new];
+    if(!self.projectCreationWindowController) {
+        self.projectCreationWindowController = [ProjectCreationWindowController new];
     }
-    [projectCreationWindowConmtroller showWindow:self];
+    
+    __weak DocumentCreationController *weakSelf = self;
+    self.projectCreationWindowController.terminationHandler = ^(ProjectDocument *document, BOOL success) {
+        if (success) {
+            [weakSelf addDocument:document];
+            weakSelf.projectCreationWindowController = nil;
+        }
+    };
+    [self.projectCreationWindowController showWindow:self];
     // TODO: initialize the project creation controller. 
 }
 

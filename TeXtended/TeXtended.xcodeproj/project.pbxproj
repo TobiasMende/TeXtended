@@ -539,6 +539,7 @@
 		D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentSetupController.m; sourceTree = "<group>"; };
 		D2CF6196177247E200ACC3D5 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		D2CF6197177247E200ACC3D5 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
+		D2D712321837E7FF0072BA22 /* ProjectCreationAssistantViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectCreationAssistantViewController.h; sourceTree = "<group>"; };
 		D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogfileParser.h; sourceTree = "<group>"; };
 		D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogfileParser.m; sourceTree = "<group>"; };
 		D2DFD21F182572FE0022E8E2 /* FirstResponderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstResponderDelegate.h; sourceTree = "<group>"; };
@@ -671,6 +672,7 @@
 				D2078D511837B620001C4A56 /* BibFilesSelectionViewController.h */,
 				D2078D521837B620001C4A56 /* BibFilesSelectionViewController.m */,
 				D2078D531837B620001C4A56 /* BibFilesSelectionView.xib */,
+				D2D712321837E7FF0072BA22 /* ProjectCreationAssistantViewController.h */,
 			);
 			path = ProjectCreation;
 			sourceTree = "<group>";

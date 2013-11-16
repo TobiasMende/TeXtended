@@ -82,6 +82,14 @@
     }
 }
 
+- (void)addBibFileWithPath:(NSString *)path {
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"BibFile" inManagedObjectContext:self.managedObjectContext];
+    BibFile *file = [[BibFile alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+    file.path = path;
+    file.project = self;
+    [self addBibFilesObject:file];
+}
+
 - (NSString *)type {
     return NSLocalizedString(@"Project", @"Project");
 }

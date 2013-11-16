@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ProjectCreationAssistantViewController.h"
 @class FolderSelectionViewController;
-@interface BibFilesSelectionViewController : NSViewController {
+@interface BibFilesSelectionViewController : NSViewController <ProjectCreationAssistantViewController> {
     NSOpenPanel *addPanel;
     NSSavePanel *createPanel;
 }

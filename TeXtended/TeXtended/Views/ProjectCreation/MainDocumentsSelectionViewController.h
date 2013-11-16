@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ProjectCreationAssistantViewController.h"
 
 @class FolderSelectionViewController;
-@interface MainDocumentsSelectionViewController : NSViewController {
+@interface MainDocumentsSelectionViewController : NSViewController <ProjectCreationAssistantViewController>{
     NSSavePanel *createPanel;
 }
 @property (strong) IBOutlet NSTableView *possibleDocumentsTable;

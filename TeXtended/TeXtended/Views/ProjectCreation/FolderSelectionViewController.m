@@ -7,7 +7,7 @@
 //
 
 #import "FolderSelectionViewController.h"
-
+#import "ProjectModel.h"
 @interface FolderSelectionViewController ()
 
 @end
@@ -36,6 +36,11 @@
             self.path = [directory path];
         }
     }];
+}
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    NSString *projectName = self.path.lastPathComponent;
+    project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"textendedproj"]];
 }
 
 @end
