@@ -9,7 +9,7 @@
 #import "ProjectCreationWindowController.h"
 #import "FolderSelectionViewController.h"
 #import "CompilerSettingsViewController.h"
-#import "MainDocumentSelectionViewController.h"
+#import "MainAndBibFileSelectionViewController.h"
 #import "PropertyFileSelectionViewController.h"
 #import "DMPaletteContainer.h"
 #import "DMPaletteSectionView.h"
@@ -33,11 +33,11 @@
     [super windowDidLoad];
     folderSelection = [[FolderSelectionViewController alloc] init];
     compilerSettings = [CompilerSettingsViewController new];
-    propertySelection = [PropertyFileSelectionViewController new];
-    mainOcumentSelection = [[MainDocumentSelectionViewController alloc] init];
+    propertySelection = [[PropertyFileSelectionViewController alloc] initWithFolderSelectionController:folderSelection];
+    mainDocumentSelection = [[MainAndBibFileSelectionViewController alloc] initWithFolderSelectionController:folderSelection];
     
     DMPaletteSectionView *projectPathContainer =   [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"];
-    DMPaletteSectionView *mainAndBibcontainer = [[DMPaletteSectionView alloc] initWithContentView:mainOcumentSelection.view andTitle:@"Maindocuments and Bibfiles"];
+    DMPaletteSectionView *mainAndBibcontainer = [[DMPaletteSectionView alloc] initWithContentView:mainDocumentSelection.view andTitle:@"Maindocuments and Bibfiles"];
     DMPaletteSectionView *propertyFileContainer = [[DMPaletteSectionView alloc] initWithContentView:propertySelection.view andTitle:@"Select a property file"];
     DMPaletteSectionView *compilerSettingContainer = [[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"Compiler Settings"];
     container.sectionViews = [NSArray arrayWithObjects:

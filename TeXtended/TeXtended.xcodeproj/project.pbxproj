@@ -32,8 +32,7 @@
 		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
 		7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503A18379D770013CC4D /* FolderSelectionViewController.m */; };
 		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
-		765450411837A4450013CC4D /* MainDocumentSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */; };
-		765450421837A4450013CC4D /* MainDocumentSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765450401837A4450013CC4D /* MainDocumentSelectionView.xib */; };
+		765450421837A4450013CC4D /* MainAndBibFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765450401837A4450013CC4D /* MainAndBibFileSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
@@ -82,7 +81,6 @@
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
 		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
 		D254797F18379ECB0097C97D /* MainAndBibFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */; };
-		D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */; };
 		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
 		D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254798318379F080097C97D /* PropertyFileSelectionView.xib */; };
 		D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25479871837A0D30097C97D /* CompilerSettingsViewController.m */; };
@@ -288,9 +286,7 @@
 		7654503918379D770013CC4D /* FolderSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderSelectionViewController.h; sourceTree = "<group>"; };
 		7654503A18379D770013CC4D /* FolderSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderSelectionViewController.m; sourceTree = "<group>"; };
 		7654503B18379D770013CC4D /* FolderSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderSelectionView.xib; sourceTree = "<group>"; };
-		7654503E1837A4450013CC4D /* MainDocumentSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocumentSelectionViewController.h; sourceTree = "<group>"; };
-		7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocumentSelectionViewController.m; sourceTree = "<group>"; };
-		765450401837A4450013CC4D /* MainDocumentSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainDocumentSelectionView.xib; sourceTree = "<group>"; };
+		765450401837A4450013CC4D /* MainAndBibFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAndBibFileSelectionView.xib; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
@@ -414,7 +410,6 @@
 		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAndBibFileSelectionViewController.h; sourceTree = "<group>"; };
 		D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAndBibFileSelectionViewController.m; sourceTree = "<group>"; };
-		D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAndBibFileSelectionView.xib; sourceTree = "<group>"; };
 		D254798118379F080097C97D /* PropertyFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyFileSelectionViewController.h; sourceTree = "<group>"; };
 		D254798218379F080097C97D /* PropertyFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyFileSelectionViewController.m; sourceTree = "<group>"; };
 		D254798318379F080097C97D /* PropertyFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyFileSelectionView.xib; sourceTree = "<group>"; };
@@ -661,16 +656,13 @@
 				7654503B18379D770013CC4D /* FolderSelectionView.xib */,
 				D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */,
 				D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */,
-				D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */,
 				D254798118379F080097C97D /* PropertyFileSelectionViewController.h */,
 				D254798218379F080097C97D /* PropertyFileSelectionViewController.m */,
 				D254798318379F080097C97D /* PropertyFileSelectionView.xib */,
 				D25479861837A0D30097C97D /* CompilerSettingsViewController.h */,
 				D25479871837A0D30097C97D /* CompilerSettingsViewController.m */,
 				D25479881837A0D30097C97D /* CompilerSettingsView.xib */,
-				7654503E1837A4450013CC4D /* MainDocumentSelectionViewController.h */,
-				7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */,
-				765450401837A4450013CC4D /* MainDocumentSelectionView.xib */,
+				765450401837A4450013CC4D /* MainAndBibFileSelectionView.xib */,
 			);
 			path = ProjectCreation;
 			sourceTree = "<group>";
@@ -1407,7 +1399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */,
-				765450421837A4450013CC4D /* MainDocumentSelectionView.xib in Resources */,
+				765450421837A4450013CC4D /* MainAndBibFileSelectionView.xib in Resources */,
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
@@ -1422,7 +1414,6 @@
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
-				D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
@@ -1543,7 +1534,6 @@
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
-				765450411837A4450013CC4D /* MainDocumentSelectionViewController.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
 				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,

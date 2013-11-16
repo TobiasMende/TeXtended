@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class FolderSelectionViewController;
 @interface MainAndBibFileSelectionViewController : NSViewController
-
+@property FolderSelectionViewController *folderSelection;
+- (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
 @end

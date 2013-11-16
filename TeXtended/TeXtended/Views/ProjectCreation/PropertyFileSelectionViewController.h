@@ -7,10 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class FolderSelectionViewController;
 @interface PropertyFileSelectionViewController : NSViewController
 
 @property (strong) IBOutlet NSString* filePath;
+
+@property FolderSelectionViewController *folderSelection;
+- (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
+
 - (IBAction)select:(id)sender;
 
 @end

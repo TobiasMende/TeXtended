@@ -7,15 +7,18 @@
 //
 
 #import "PropertyFileSelectionViewController.h"
-
+#import "FolderSelectionViewController.h"
 @interface PropertyFileSelectionViewController ()
 
 @end
 
 @implementation PropertyFileSelectionViewController
 
-- (id)init {
+- (id)initWithFolderSelectionController:(FolderSelectionViewController *)folderSelection {
     self = [super initWithNibName:@"PropertyFileSelectionView" bundle:nil];
+    if(self) {
+        self.folderSelection = folderSelection;
+    }
     return self;
 }
 

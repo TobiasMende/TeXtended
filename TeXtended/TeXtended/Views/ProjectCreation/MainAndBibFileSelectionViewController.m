@@ -7,6 +7,7 @@
 //
 
 #import "MainAndBibFileSelectionViewController.h"
+#import "FolderSelectionViewController.h"
 
 @interface MainAndBibFileSelectionViewController ()
 
@@ -14,8 +15,11 @@
 
 @implementation MainAndBibFileSelectionViewController
 
-- (id)init {
+- (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection {
     self = [super initWithNibName:@"MainAndBibFileSelectionView" bundle:nil];
+    if (self) {
+        self.folderSelection = folderSelection;
+    }
     return self;
 }
 
