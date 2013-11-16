@@ -21,7 +21,9 @@
 {
     self = [super init];
     if (self) {
-        // Add your subclass-specific initialization here.
+            // Add your subclass-specific initialization here.
+            self.context = [NSManagedObjectContext new];
+            self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
     }
     return self;
 }

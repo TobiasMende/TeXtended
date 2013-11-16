@@ -56,7 +56,7 @@
     }
     createProjectPanel.canChooseFiles = NO;
     createProjectPanel.canChooseDirectories = YES;
-    createProjectPanel.title = NSLocalizedString(@"Choose Project Folder", @"chooseProjectFolder");
+    createProjectPanel.title = NSLocalizedString(@"Choose Project Folder", @"Choose Project Folder");
     createProjectPanel.canCreateDirectories = YES;
     [createProjectPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
@@ -86,7 +86,7 @@
     configurationPanel.directoryURL = [project.fileURL URLByDeletingLastPathComponent];
     configurationPanel.canChooseFiles = YES;
     configurationPanel.canChooseDirectories = NO;
-    configurationPanel.title = NSLocalizedString(@"Choose main files", @"chooseMainFiles");
+    configurationPanel.title = NSLocalizedString(@"Choose Main Files", @"Choose Main Files");
     configurationPanel.allowsMultipleSelection = YES;
     configurationPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
     [configurationPanel beginWithCompletionHandler:^(NSInteger result) {
