@@ -65,7 +65,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (!self.model.texPath) {
         self.model.texPath = [absoluteURL path];
     }
-    self.model.encoding = [[self.encController.popUp selectedItem] representedObject];
+    
+    NSNumber* encoding = [[self.encController.popUp selectedItem] representedObject];
+    // In case of compiling the .tex file, [[self.encController.popUp selectedItem] representedObject] is (null).
+    if (encoding) {
+        self.model.encoding = encoding;
+    }
 }
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
@@ -109,7 +114,9 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     DocumentCreationController* contr = [DocumentCreationController sharedDocumentController];
     if (contr.encController.selectionDidChange) {
         self.model.encoding = [NSNumber numberWithUnsignedLong:[contr.encController selection]];
+        
     }
+    
     [self initializeDocumentControllers];
     return YES;
 }
@@ -117,7 +124,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 -(BOOL) prepareSavePanel:(NSSavePanel *)savePanel
 {
     [savePanel setAccessoryView:[self.encController view]];
-    if ([self.model.encoding integerValue]) {
+    if (!self.model.encoding || [self.model.encoding unsignedLongValue] == 0) {
         [self.encController.popUp selectItemAtIndex:[self.encController.encodings indexOfObject:self.model.encoding]];
     }
     else {
