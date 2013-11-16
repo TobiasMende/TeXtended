@@ -25,6 +25,11 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.folderSelection.path" id="1Rj-ke-l90">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="value" keyPath="self.filePath" id="9WI-YA-eUF"/>
                     </connections>
                 </textField>
@@ -37,6 +42,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="select:" target="-2" id="I3l-7g-u2w"/>
+                        <binding destination="-2" name="enabled" keyPath="self.folderSelection.path" id="gl8-yt-0d0">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
             </subviews>
