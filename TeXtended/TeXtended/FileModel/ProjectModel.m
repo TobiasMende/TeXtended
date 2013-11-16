@@ -33,6 +33,8 @@
 }
 
 - (void)initDefaults {
+    self.documents = [NSMutableSet new];
+    self.bibFiles = [NSMutableSet new];
     if (!self.liveCompiler) {
         self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
     }
@@ -55,7 +57,7 @@
     }
     if (shouldCreate) {
         DocumentModel *model = [DocumentModel new];
-        [self addDocumentsObject:model];
+        [self.documents addObject:model];
         model.project = self;
         model.texPath = path;
         return model;
@@ -68,8 +70,12 @@
     BibFile *file = [BibFile new];
     file.path = path;
     file.project = self;
-    [self addBibFilesObject:file];
+    [self.bibFiles addObject:file];
 }
+
+
+# pragma mark - Getter & Setter
+
 
 - (NSString *)type {
     return NSLocalizedString(@"Project", @"Project");

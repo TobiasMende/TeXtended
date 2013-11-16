@@ -15,12 +15,6 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 @implementation OutlineElement
 
-@dynamic type;
-@dynamic line;
-@dynamic info;
-@dynamic document;
-
-
 + (void)initialize {
     if (self == [OutlineElement class]) {
         ELEMENT_EXTRACTOR_REGEX_LOOKUP = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OutlineElementTypeLookupTable" ofType:@"plist"]];

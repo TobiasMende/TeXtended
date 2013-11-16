@@ -61,6 +61,34 @@ static const NSSet *COMPILER_NAMES;
 #pragma mark -
 #pragma mark Getter & Setter
 
+- (void)addMainDocuments:(NSSet *)values {
+    if (!self.mainDocuments) {
+        self.mainDocuments = [NSSet new];
+    }
+    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
+}
+
+- (void)removeMainDocuments:(NSSet *)values {
+    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+    for(NSObject *obj in values) {
+        [tmp removeObject:obj];
+    }
+    self.mainDocuments = tmp;
+}
+
+- (void)removeMainDocumentsObject:(DocumentModel *)value {
+    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+    [tmp removeObject:value];
+    self.mainDocuments = tmp;
+}
+
+- (void)addMainDocumentsObject:(DocumentModel *)value {
+    if (!self.mainDocuments) {
+         self.mainDocuments = [NSSet new];
+    }
+    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
+}
+
 - (Compilable *)mainCompilable {
     return self;
 }

@@ -55,6 +55,7 @@ static NSArray *TMTEncodingsToCheck;
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:&error];
     } else {
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
         
     }
     /*if (error) {
@@ -268,8 +269,8 @@ static NSArray *TMTEncodingsToCheck;
     return [super mainCompilable];
 }
 
-- (NSMutableSet *)mainDocuments {
-    NSMutableSet* md;
+- (NSSet *)mainDocuments {
+    NSSet* md;
     if([super mainDocuments]) {
         md = [super mainDocuments];
         if ([md count] ==  0) {
@@ -286,17 +287,24 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)addMainDocumentsObject:(DocumentModel *)value {
-    if(!self.mainDocuments) {
-        self.mainDocuments = [NSMutableSet new];
+    
+    if(![super mainDocuments]) {
+        self.mainDocuments = [NSSet new];
+        if (self.project) {
+            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+        }
     }
-    [self.mainDocuments addObject:value];
+    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
 }
 
 - (void)addMainDocuments:(NSSet *)values {
-    if(!self.mainDocuments) {
-        self.mainDocuments = [NSMutableSet new];
+    if(![super mainDocuments]) {
+        self.mainDocuments = [NSSet new];
+        if (self.project) {
+            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+        }
     }
-    [self.mainDocuments addObjectsFromArray:[values allObjects]];
+    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
 }
 
 

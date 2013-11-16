@@ -12,8 +12,4 @@
 
 @implementation BibFile
 
-@dynamic lastRead;
-@dynamic path;
-@dynamic project;
-
 @end

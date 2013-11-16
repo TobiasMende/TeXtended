@@ -34,7 +34,7 @@
 @property (strong) DocumentModel *headerDocument;
 
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
-@property (nonatomic, strong) NSMutableSet *mainDocuments;
+@property (nonatomic, strong) NSSet *mainDocuments;
 
 /**
  Getter for the top most compilabel model. In case of a DocumentModel, this method returns the project if the model is part of a project or the DocumentModel itself otherwise.
@@ -61,16 +61,13 @@
 - (void)postChangeNotification;
 
 - (NSString*) dictionaryKey;
-@end
-
-@interface Compilable (CoreDataGeneratedAccessors)
 
 - (void)addMainDocumentsObject:(DocumentModel *)value;
 - (void)removeMainDocumentsObject:(DocumentModel *)value;
 - (void)addMainDocuments:(NSSet *)values;
 - (void)removeMainDocuments:(NSSet *)values;
-
 @end
+
 
 
 @interface Compilable (Getter)

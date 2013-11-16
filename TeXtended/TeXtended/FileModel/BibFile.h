@@ -18,7 +18,7 @@
  
  */
 
-@interface BibFile : NSManagedObject
+@interface BibFile : NSObject
 
 /** the date of the last application internal read access to this file */
 @property (nonatomic, strong) NSDate * lastRead;
