@@ -30,6 +30,8 @@
 		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
 		7651063217E723750011ADEF /* NewTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7651063117E723750011ADEF /* NewTemplateController.m */; };
 		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
+		7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503A18379D770013CC4D /* FolderSelectionViewController.m */; };
+		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
@@ -274,6 +276,9 @@
 		7651063017E723750011ADEF /* NewTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTemplateController.h; sourceTree = "<group>"; };
 		7651063117E723750011ADEF /* NewTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTemplateController.m; sourceTree = "<group>"; };
 		7651063317E723860011ADEF /* NewTemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTemplateSheet.xib; sourceTree = "<group>"; };
+		7654503918379D770013CC4D /* FolderSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderSelectionViewController.h; sourceTree = "<group>"; };
+		7654503A18379D770013CC4D /* FolderSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderSelectionViewController.m; sourceTree = "<group>"; };
+		7654503B18379D770013CC4D /* FolderSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderSelectionView.xib; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
@@ -628,6 +633,9 @@
 				76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */,
 				76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */,
 				76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */,
+				7654503918379D770013CC4D /* FolderSelectionViewController.h */,
+				7654503A18379D770013CC4D /* FolderSelectionViewController.m */,
+				7654503B18379D770013CC4D /* FolderSelectionView.xib */,
 			);
 			path = ProjectCreation;
 			sourceTree = "<group>";
@@ -1399,6 +1407,7 @@
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
 				76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */,
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
+				7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
@@ -1565,6 +1574,7 @@
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
+				7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */,
 				768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */,
 				7651063217E723750011ADEF /* NewTemplateController.m in Sources */,
 			);
