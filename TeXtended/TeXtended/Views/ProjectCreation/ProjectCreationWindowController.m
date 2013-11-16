@@ -8,6 +8,7 @@
 
 #import "ProjectCreationWindowController.h"
 #import "FolderSelectionViewController.h"
+#import "CompilerSettingsViewController.h"
 #import "DMPaletteContainer.h"
 
 @interface ProjectCreationWindowController ()
@@ -28,9 +29,9 @@
 {
     [super windowDidLoad];
     folderSelection = [[FolderSelectionViewController alloc] init];
-    
+    compilerSettings = [CompilerSettingsViewController new];
     container.sectionViews = [NSArray arrayWithObjects:
-                              [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"]
+                              [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"],[[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"Compiler Settings"]
                               ,nil];
 }
 

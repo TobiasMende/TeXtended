@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class DMPaletteContainer, FolderSelectionViewController;
+@class DMPaletteContainer, FolderSelectionViewController, CompilerSettingsViewController;
 @interface ProjectCreationWindowController : NSWindowController {
     IBOutlet DMPaletteContainer* container;
     FolderSelectionViewController* folderSelection;
+    CompilerSettingsViewController *compilerSettings;
 }
 
 
