@@ -14,13 +14,28 @@
 
 @implementation FolderSelectionViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+    self = [super initWithNibName:@"FolderSelectionView" bundle:nil];
     if (self) {
-        // Initialization code here.
+        
     }
     return self;
+}
+
+- (IBAction)select:(id)sender {
+    NSOpenPanel *panel = [[NSOpenPanel alloc] init];
+    
+    panel.canChooseFiles = NO;
+    panel.canChooseDirectories = YES;
+    panel.title = NSLocalizedString(@"Choose Project Folder", @"Choose Project Folder");
+    panel.canCreateDirectories = YES;
+    
+    [panel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *directory = [panel URL];
+            self.path = [directory path];
+        }
+    }];
 }
 
 @end

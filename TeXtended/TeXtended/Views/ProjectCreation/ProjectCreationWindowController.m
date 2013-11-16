@@ -7,6 +7,8 @@
 //
 
 #import "ProjectCreationWindowController.h"
+#import "FolderSelectionViewController.h"
+#import "DMPaletteContainer.h"
 
 @interface ProjectCreationWindowController ()
 
@@ -25,8 +27,11 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    folderSelection = [[FolderSelectionViewController alloc] init];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    container.sectionViews = [NSArray arrayWithObjects:
+                              [[DMPaletteSectionView alloc] initWithContentView:folderSelection.view andTitle:@"Project Path"]
+                              ,nil];
 }
 
 @end
