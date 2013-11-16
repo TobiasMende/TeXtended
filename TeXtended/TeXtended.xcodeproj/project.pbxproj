@@ -79,6 +79,10 @@
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
 		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
+		D254797F18379ECB0097C97D /* MainAndBibFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */; };
+		D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */; };
+		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
+		D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254798318379F080097C97D /* PropertyFileSelectionView.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
@@ -400,6 +404,12 @@
 		D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionWindow.xib; sourceTree = "<group>"; };
 		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
+		D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAndBibFileSelectionViewController.h; sourceTree = "<group>"; };
+		D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAndBibFileSelectionViewController.m; sourceTree = "<group>"; };
+		D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAndBibFileSelectionView.xib; sourceTree = "<group>"; };
+		D254798118379F080097C97D /* PropertyFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyFileSelectionViewController.h; sourceTree = "<group>"; };
+		D254798218379F080097C97D /* PropertyFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyFileSelectionViewController.m; sourceTree = "<group>"; };
+		D254798318379F080097C97D /* PropertyFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyFileSelectionView.xib; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
@@ -636,6 +646,12 @@
 				7654503918379D770013CC4D /* FolderSelectionViewController.h */,
 				7654503A18379D770013CC4D /* FolderSelectionViewController.m */,
 				7654503B18379D770013CC4D /* FolderSelectionView.xib */,
+				D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */,
+				D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */,
+				D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */,
+				D254798118379F080097C97D /* PropertyFileSelectionViewController.h */,
+				D254798218379F080097C97D /* PropertyFileSelectionViewController.m */,
+				D254798318379F080097C97D /* PropertyFileSelectionView.xib */,
 			);
 			path = ProjectCreation;
 			sourceTree = "<group>";
@@ -1378,11 +1394,13 @@
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
+				D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
+				D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
@@ -1498,6 +1516,7 @@
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
+				D254797F18379ECB0097C97D /* MainAndBibFileSelectionViewController.m in Sources */,
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
@@ -1549,6 +1568,7 @@
 				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
 				D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */,
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
+				D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
