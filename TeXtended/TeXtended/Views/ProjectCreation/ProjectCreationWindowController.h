@@ -11,12 +11,12 @@
 @class DMPaletteContainer, PropertyFileSelectionViewController, FolderSelectionViewController, CompilerSettingsViewController ,MainDocumentsSelectionViewController, BibFilesSelectionViewController, ProjectDocument;
 @interface ProjectCreationWindowController : NSWindowController {
     IBOutlet DMPaletteContainer* container;
-    FolderSelectionViewController* folderSelection;
-    MainDocumentsSelectionViewController* mainDocumentSelection;
     BibFilesSelectionViewController *bibFilesSelection;
     CompilerSettingsViewController *compilerSettings;
     PropertyFileSelectionViewController *propertySelection;
 }
+@property FolderSelectionViewController* folderSelection;
+@property MainDocumentsSelectionViewController* mainDocumentSelection;
 
 @property (copy) void (^terminationHandler)(ProjectDocument  *project, BOOL success);
 - (IBAction)cancelProjectCreation:(id)sender;

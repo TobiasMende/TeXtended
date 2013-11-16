@@ -28,6 +28,15 @@
     return self;
 }
 
+- (void)setupPeristentStore {
+    NSError *error;
+    [self.context.persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:self.fileURL options:nil error:&error];
+
+    if (error) {
+        DDLogError(@"Can't create persistant store: %@", error.userInfo);
+    }
+}
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
 {
     if (!self.documentControllers || self.documentControllers.count == 0) {

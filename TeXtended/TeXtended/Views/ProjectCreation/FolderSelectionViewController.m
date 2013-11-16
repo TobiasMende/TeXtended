@@ -34,13 +34,18 @@
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *directory = [panel URL];
             self.path = [directory path];
+            [self.view.window orderFront:nil];
         }
     }];
 }
 
 - (void)configureProjectModel:(ProjectModel *)project {
-    NSString *projectName = self.path.lastPathComponent;
-    project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"textendedproj"]];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir;
+    if (self.path && [fm fileExistsAtPath:self.path isDirectory:&isDir] && isDir) {
+        NSString *projectName = self.path.lastPathComponent;
+        project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"textendedproj"]];
+    }
 }
 
 @end

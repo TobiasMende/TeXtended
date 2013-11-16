@@ -28,4 +28,5 @@
 - (void)initializeDocumentControllers;
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
 - (void)showStatisticsForModel:(DocumentController *)dc;
+- (void)setupPeristentStore;
 @end

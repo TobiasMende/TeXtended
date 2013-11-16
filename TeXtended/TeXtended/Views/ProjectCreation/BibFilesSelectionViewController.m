@@ -42,6 +42,7 @@
                 }
             }
         }
+        [self.view.window orderFront:nil];
     }];
     
 }
@@ -64,6 +65,7 @@
                     }
                 }
         }
+        [self.view.window orderFront:nil];
     }];
 }
 

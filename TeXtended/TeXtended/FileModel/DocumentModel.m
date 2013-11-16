@@ -338,6 +338,9 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)setProject:(ProjectModel *)project {
+    if (self == self.mainCompilable) {
+        [TMTNotificationCenter removeCenterForCompilable:self];
+    }
     [self clearInheretedCompilers];
     [self unregisterProjectObserver];
     [self internalSetValue:project forKey:@"project"];

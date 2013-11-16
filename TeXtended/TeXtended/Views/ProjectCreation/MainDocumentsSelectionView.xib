@@ -159,9 +159,9 @@
                     </buttonCell>
                     <connections>
                         <action selector="removeDocument:" target="-2" id="dgk-DV-4Qw"/>
-                        <binding destination="rm0-x4-K1K" name="enabled" keyPath="selectionIndexes.count" id="d5B-sM-UMs">
+                        <binding destination="rm0-x4-K1K" name="enabled" keyPath="selectionIndexes.count" id="AkL-cf-dcK">
                             <dictionary key="options">
-                                <integer key="NSNullPlaceholder" value="1"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
                             </dictionary>
                         </binding>
                     </connections>

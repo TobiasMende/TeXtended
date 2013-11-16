@@ -75,6 +75,7 @@
     if (shouldCreate) {
         DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
         [self addDocumentsObject:model];
+        model.project = self;
         model.texPath = path;
         return model;
     } else {

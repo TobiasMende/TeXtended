@@ -63,6 +63,7 @@
                 }
             }
         }
+        [self.view.window orderFront:nil];
     }];
 }
 

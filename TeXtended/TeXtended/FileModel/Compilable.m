@@ -123,4 +123,10 @@ static const NSSet *COMPILER_NAMES;
 //}
 
 
+- (void)willTurnIntoFault {
+    if (self == self.mainCompilable) {
+        [TMTNotificationCenter removeCenterForCompilable:self];
+    }
+}
+
 @end

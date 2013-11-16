@@ -33,18 +33,19 @@
     //FIXME: implement this!
 }
 
-- (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)error {
-    
-    /* save all documents */
-    for (DocumentController* dc in self.documentControllers) {
-        [dc saveDocumentModel:error];
-        if (*error) {
-            DDLogError(@"%@", (*error).userInfo);
-        }
+
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
+    NSError *error;
+    [self.context save:&error];
+    for (DocumentController *dc in self.documentControllers) {
+        [dc saveDocumentModel:&error];
+    }
+    if (error) {
+        DDLogError(@"Saving failed: %@", error.userInfo);
     }
     
-    return [super writeToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:error];
 }
+
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
     NSURL *finalURL;
@@ -53,45 +54,30 @@
     } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
         finalURL = absoluteURL;
     }
-    DDLogError(@"Project(%@): %@", typeName, absoluteURL);
+    DDLogInfo(@"Project(%@): %@", typeName, absoluteURL);
     
     if (!finalURL) {
         // Abort reading if no matching project was found
         return NO;
     }
-//    if (!self.projectModel) {
-//        _projectModel = [[ProjectModel alloc] init];
-//        if (self.documentControllers) {
-//            for (DocumentController* dc in self.documentControllers) {
-//                if ([[[self.projectModel.documents allObjects] objectAtIndex:0] isEqual:dc.model]) {
-//                    [dc setWindowController:self.mainWindowController];
-//                }
-//            }
+    BOOL success = YES;
+    self.fileURL = finalURL;
+    [self setupPeristentStore];
+
+//    NSError *fetchError;
+//    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&fetchError];
+//    if (fetchedObjects.count != 1) {
+//        DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
+//    }
+//    if (fetchedObjects == nil) {
+//        DDLogError(@"%@", fetchError.userInfo);
+//        success = NO;
+//    } else {
+//        self.model = [fetchedObjects objectAtIndex:0];
+//        if (![self.model.path isEqualToString:finalURL.path]) {
+//            self.model.path = finalURL.path;
 //        }
 //    }
-    BOOL success = [super readFromURL:finalURL ofType:@"TeXtendedProjectFile" error:error];
-    if (!success) {
-        return NO;
-    }
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Project"
-                                              inManagedObjectContext:self.context];
-    [fetchRequest setEntity:entity];
-    
-    NSError *fetchError;
-    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&fetchError];
-    if (fetchedObjects.count != 1) {
-        DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
-    }
-    if (fetchedObjects == nil) {
-        DDLogError(@"%@", fetchError.userInfo);
-        success = NO;
-    } else {
-        self.model = [fetchedObjects objectAtIndex:0];
-        if (![self.model.path isEqualToString:finalURL.path]) {
-            self.model.path = finalURL.path;
-        }
-    }
     return success;
 }
 

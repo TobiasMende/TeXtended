@@ -36,13 +36,17 @@
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *directory = [panel URL];
             self.filePath = [directory path];
+            [self.view.window orderFront:nil];
         }
     }];
     
 }
 
 - (void)configureProjectModel:(ProjectModel *)project {
-    project.properties = [project modelForTexPath:self.filePath byCreating:YES];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (self.filePath && [fm fileExistsAtPath:self.filePath]) {
+        project.properties = [project modelForTexPath:self.filePath byCreating:YES];
+    }
 }
 
 @end
