@@ -10,4 +10,7 @@
 
 @interface FolderSelectionViewController : NSViewController
 
+@property (strong) NSString *path;
+- (IBAction)select:(id)sender;
+
 @end
