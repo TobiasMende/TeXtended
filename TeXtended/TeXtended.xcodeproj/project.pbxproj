@@ -30,10 +30,18 @@
 		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
 		7651063217E723750011ADEF /* NewTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7651063117E723750011ADEF /* NewTemplateController.m */; };
 		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
+		7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503A18379D770013CC4D /* FolderSelectionViewController.m */; };
+		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
+		765450411837A4450013CC4D /* MainDocumentSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */; };
+		765450421837A4450013CC4D /* MainDocumentSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765450401837A4450013CC4D /* MainDocumentSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
 		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
+		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
+		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
+		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
+		76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */; };
 		D20C97411826F88700E23911 /* ConsoleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97401826F88700E23911 /* ConsoleManager.m */; };
 		D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97431826FA0F00E23911 /* ConsoleWindowController.m */; };
 		D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C97441826FA0F00E23911 /* ConsoleWindow.xib */; };
@@ -73,6 +81,12 @@
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
 		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
+		D254797F18379ECB0097C97D /* MainAndBibFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */; };
+		D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */; };
+		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
+		D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254798318379F080097C97D /* PropertyFileSelectionView.xib */; };
+		D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25479871837A0D30097C97D /* CompilerSettingsViewController.m */; };
+		D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25479881837A0D30097C97D /* CompilerSettingsView.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
@@ -271,12 +285,25 @@
 		7651063017E723750011ADEF /* NewTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTemplateController.h; sourceTree = "<group>"; };
 		7651063117E723750011ADEF /* NewTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTemplateController.m; sourceTree = "<group>"; };
 		7651063317E723860011ADEF /* NewTemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTemplateSheet.xib; sourceTree = "<group>"; };
+		7654503918379D770013CC4D /* FolderSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderSelectionViewController.h; sourceTree = "<group>"; };
+		7654503A18379D770013CC4D /* FolderSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderSelectionViewController.m; sourceTree = "<group>"; };
+		7654503B18379D770013CC4D /* FolderSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderSelectionView.xib; sourceTree = "<group>"; };
+		7654503E1837A4450013CC4D /* MainDocumentSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocumentSelectionViewController.h; sourceTree = "<group>"; };
+		7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocumentSelectionViewController.m; sourceTree = "<group>"; };
+		765450401837A4450013CC4D /* MainDocumentSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainDocumentSelectionView.xib; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
 		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
 		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
 		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
+		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
+		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
+		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
+		76B88F9118378A94006B0E9F /* DMPaletteContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteContainer.h; sourceTree = "<group>"; };
+		76B88F9218378A94006B0E9F /* DMPaletteContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteContainer.m; sourceTree = "<group>"; };
+		76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteSectionView.h; sourceTree = "<group>"; };
+		76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteSectionView.m; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
 		D20C973F1826F88700E23911 /* ConsoleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleManager.h; sourceTree = "<group>"; };
@@ -385,6 +412,15 @@
 		D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionWindow.xib; sourceTree = "<group>"; };
 		D252288A1764B83400C203AD /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		D252288B1764B83400C203AD /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
+		D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAndBibFileSelectionViewController.h; sourceTree = "<group>"; };
+		D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainAndBibFileSelectionViewController.m; sourceTree = "<group>"; };
+		D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAndBibFileSelectionView.xib; sourceTree = "<group>"; };
+		D254798118379F080097C97D /* PropertyFileSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyFileSelectionViewController.h; sourceTree = "<group>"; };
+		D254798218379F080097C97D /* PropertyFileSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyFileSelectionViewController.m; sourceTree = "<group>"; };
+		D254798318379F080097C97D /* PropertyFileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyFileSelectionView.xib; sourceTree = "<group>"; };
+		D25479861837A0D30097C97D /* CompilerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilerSettingsViewController.h; sourceTree = "<group>"; };
+		D25479871837A0D30097C97D /* CompilerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilerSettingsViewController.m; sourceTree = "<group>"; };
+		D25479881837A0D30097C97D /* CompilerSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompilerSettingsView.xib; sourceTree = "<group>"; };
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
@@ -612,6 +648,42 @@
 				7651063317E723860011ADEF /* NewTemplateSheet.xib */,
 			);
 			path = Templates;
+			sourceTree = "<group>";
+		};
+		76B88F8A18378799006B0E9F /* ProjectCreation */ = {
+			isa = PBXGroup;
+			children = (
+				76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */,
+				76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */,
+				76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */,
+				7654503918379D770013CC4D /* FolderSelectionViewController.h */,
+				7654503A18379D770013CC4D /* FolderSelectionViewController.m */,
+				7654503B18379D770013CC4D /* FolderSelectionView.xib */,
+				D254797C18379ECB0097C97D /* MainAndBibFileSelectionViewController.h */,
+				D254797D18379ECB0097C97D /* MainAndBibFileSelectionViewController.m */,
+				D254797E18379ECB0097C97D /* MainAndBibFileSelectionView.xib */,
+				D254798118379F080097C97D /* PropertyFileSelectionViewController.h */,
+				D254798218379F080097C97D /* PropertyFileSelectionViewController.m */,
+				D254798318379F080097C97D /* PropertyFileSelectionView.xib */,
+				D25479861837A0D30097C97D /* CompilerSettingsViewController.h */,
+				D25479871837A0D30097C97D /* CompilerSettingsViewController.m */,
+				D25479881837A0D30097C97D /* CompilerSettingsView.xib */,
+				7654503E1837A4450013CC4D /* MainDocumentSelectionViewController.h */,
+				7654503F1837A4450013CC4D /* MainDocumentSelectionViewController.m */,
+				765450401837A4450013CC4D /* MainDocumentSelectionView.xib */,
+			);
+			path = ProjectCreation;
+			sourceTree = "<group>";
+		};
+		76B88F9018378A94006B0E9F /* DMInspectorPalette */ = {
+			isa = PBXGroup;
+			children = (
+				76B88F9118378A94006B0E9F /* DMPaletteContainer.h */,
+				76B88F9218378A94006B0E9F /* DMPaletteContainer.m */,
+				76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */,
+				76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */,
+			);
+			path = DMInspectorPalette;
 			sourceTree = "<group>";
 		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
@@ -888,6 +960,8 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76B88F9018378A94006B0E9F /* DMInspectorPalette */,
+				76B88F8A18378799006B0E9F /* ProjectCreation */,
 				D22A6BEB181C148700364DD6 /* TMTCustomView */,
 				D28089B7181BBE3D00EEF55C /* MessageOutlineView */,
 				D28089B1181BBAD000EEF55C /* OutlineTabView */,
@@ -1333,6 +1407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */,
+				765450421837A4450013CC4D /* MainDocumentSelectionView.xib in Resources */,
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
@@ -1341,17 +1416,20 @@
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
+				D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */,
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
+				D254798018379ECB0097C97D /* MainAndBibFileSelectionView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */,
+				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
@@ -1368,7 +1446,9 @@
 				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
+				76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */,
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
+				7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
@@ -1431,6 +1511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */,
 				D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */,
 				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
@@ -1458,9 +1539,11 @@
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
+				D254797F18379ECB0097C97D /* MainAndBibFileSelectionViewController.m in Sources */,
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
+				765450411837A4450013CC4D /* MainDocumentSelectionViewController.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
 				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,
@@ -1478,12 +1561,14 @@
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
+				76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
+				76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */,
 				D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
@@ -1508,6 +1593,7 @@
 				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
 				D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */,
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
+				D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
@@ -1523,6 +1609,7 @@
 				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 				D2F3DE2717F6BEDA00A99066 /* DDAbstractDatabaseLogger.m in Sources */,
+				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
@@ -1533,6 +1620,7 @@
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
+				7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */,
 				768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */,
 				7651063217E723750011ADEF /* NewTemplateController.m in Sources */,
 			);

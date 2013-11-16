@@ -14,11 +14,11 @@
 #import "EncodingController.h"
 #import "SimpleDocument.h"
 #import "TMTLog.h"
+#import "ProjectCreationWindowController.h"
 
 @interface DocumentCreationController ()
 
 - (void) showProjectCreationPanel;
-- (void) initializeProject:(ProjectDocument*)project;
 @end
 
 
@@ -51,55 +51,11 @@
 }
 
 - (void)showProjectCreationPanel {
-    if (!createProjectPanel) {
-        createProjectPanel = [NSOpenPanel openPanel];
+    if(!projectCreationWindowConmtroller) {
+        projectCreationWindowConmtroller = [ProjectCreationWindowController new];
     }
-    createProjectPanel.canChooseFiles = NO;
-    createProjectPanel.canChooseDirectories = YES;
-    createProjectPanel.title = NSLocalizedString(@"Choose Project Folder", @"Choose Project Folder");
-    createProjectPanel.canCreateDirectories = YES;
-    [createProjectPanel beginWithCompletionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            NSURL *directory = [createProjectPanel URL];
-            NSString *name = [directory lastPathComponent];
-            NSString *path = [directory.path stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"textendedproj"]];
-            ProjectDocument *doc = [[ProjectDocument alloc] init];
-            doc.fileType = @"TeXtendedProjectFile";
-            doc.fileURL = [NSURL fileURLWithPath:path];
-            NSError *error;
-            ProjectModel *model = [[ProjectModel alloc] initWithContext:doc.context];
-            model.path = [doc.fileURL path];
-            doc.model = model;
-            if (error) {
-                DDLogError(@"%@", error.userInfo);
-            }
-            [self addDocument:doc];
-            [self initializeProject:doc];
-        }
-    }];
-}
-
-- (void)initializeProject:(ProjectDocument *)project {
-    if (!configurationPanel) {
-        configurationPanel = [NSOpenPanel openPanel];
-    }
-    configurationPanel.directoryURL = [project.fileURL URLByDeletingLastPathComponent];
-    configurationPanel.canChooseFiles = YES;
-    configurationPanel.canChooseDirectories = NO;
-    configurationPanel.title = NSLocalizedString(@"Choose Main Files", @"Choose Main Files");
-    configurationPanel.allowsMultipleSelection = YES;
-    configurationPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
-    [configurationPanel beginWithCompletionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            for (NSURL *url in configurationPanel.URLs) {
-                DocumentModel *model = [project.model modelForTexPath:url.path];
-                [project.model addMainDocumentsObject:model];
-            }
-            
-            [project makeWindowControllers];
-            [project showWindows];
-        }
-    }];
+    [projectCreationWindowConmtroller showWindow:self];
+    // TODO: initialize the project creation controller. 
 }
 
 @end
