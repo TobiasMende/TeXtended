@@ -7,6 +7,7 @@
 //
 
 #import "CompilerSettingsViewController.h"
+#import "CompileSetting.h"
 
 @interface CompilerSettingsViewController ()
 
@@ -14,13 +15,20 @@
 
 @implementation CompilerSettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+    self = [super initWithNibName:@"CompilerSettingsView" bundle:nil];
     if (self) {
-        // Initialization code here.
+        context = [NSManagedObjectContext new];
+        context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
     }
     return self;
+}
+
+- (void)loadView {
+    [super loadView];
+    self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:context];
+    self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:context];
+    self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:context];
 }
 
 @end

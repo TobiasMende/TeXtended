@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 @class CompileSetting;
 
-@interface CompilerSettingsViewController : NSViewController
+@interface CompilerSettingsViewController : NSViewController {
+    NSManagedObjectContext *context;
+}
 
 @property CompileSetting *liveCompiler;
 @property CompileSetting *draftCompiler;
