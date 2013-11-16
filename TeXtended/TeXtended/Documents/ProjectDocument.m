@@ -22,7 +22,8 @@
 {
     self = [super init];
     if (self) {
-        // Add your subclass-specific initialization here.
+            // Add your subclass-specific initialization here.
+            self.model = [[ProjectModel alloc] initWithContext:self.context];
     }
     return self;
 }

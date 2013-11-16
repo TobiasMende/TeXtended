@@ -34,8 +34,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
-        self.context = [NSManagedObjectContext new];
-        self.context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
         self.model = [[DocumentModel alloc] initWithContext:self.context];
         self.encController = [EncodingController new];
     }
