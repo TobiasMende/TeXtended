@@ -8,12 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class DMPaletteContainer, FolderSelectionViewController, CompilerSettingsViewController ,MainDocumentSelectionViewController;
+@class DMPaletteContainer, PropertyFileSelectionViewController, FolderSelectionViewController, CompilerSettingsViewController ,MainDocumentSelectionViewController;
 @interface ProjectCreationWindowController : NSWindowController {
     IBOutlet DMPaletteContainer* container;
     FolderSelectionViewController* folderSelection;
     MainDocumentSelectionViewController* mainOcumentSelection;
     CompilerSettingsViewController *compilerSettings;
+    PropertyFileSelectionViewController *propertySelection;
 }
 
 
