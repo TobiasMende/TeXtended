@@ -34,6 +34,10 @@
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
 		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
+		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
+		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
+		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
+		76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */; };
 		D20C97411826F88700E23911 /* ConsoleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97401826F88700E23911 /* ConsoleManager.m */; };
 		D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97431826FA0F00E23911 /* ConsoleWindowController.m */; };
 		D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C97441826FA0F00E23911 /* ConsoleWindow.xib */; };
@@ -276,6 +280,13 @@
 		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
 		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
 		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
+		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
+		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
+		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
+		76B88F9118378A94006B0E9F /* DMPaletteContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteContainer.h; sourceTree = "<group>"; };
+		76B88F9218378A94006B0E9F /* DMPaletteContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteContainer.m; sourceTree = "<group>"; };
+		76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteSectionView.h; sourceTree = "<group>"; };
+		76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteSectionView.m; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
 		D20C973F1826F88700E23911 /* ConsoleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleManager.h; sourceTree = "<group>"; };
@@ -611,6 +622,27 @@
 			path = Templates;
 			sourceTree = "<group>";
 		};
+		76B88F8A18378799006B0E9F /* ProjectCreation */ = {
+			isa = PBXGroup;
+			children = (
+				76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */,
+				76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */,
+				76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */,
+			);
+			path = ProjectCreation;
+			sourceTree = "<group>";
+		};
+		76B88F9018378A94006B0E9F /* DMInspectorPalette */ = {
+			isa = PBXGroup;
+			children = (
+				76B88F9118378A94006B0E9F /* DMPaletteContainer.h */,
+				76B88F9218378A94006B0E9F /* DMPaletteContainer.m */,
+				76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */,
+				76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */,
+			);
+			path = DMInspectorPalette;
+			sourceTree = "<group>";
+		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -883,6 +915,8 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76B88F9018378A94006B0E9F /* DMInspectorPalette */,
+				76B88F8A18378799006B0E9F /* ProjectCreation */,
 				D22A6BEB181C148700364DD6 /* TMTCustomView */,
 				D28089B7181BBE3D00EEF55C /* MessageOutlineView */,
 				D28089B1181BBAD000EEF55C /* OutlineTabView */,
@@ -1363,6 +1397,7 @@
 				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
+				76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */,
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
@@ -1426,6 +1461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */,
 				D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */,
 				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
@@ -1472,12 +1508,14 @@
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
+				76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
+				76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */,
 				D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */,
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
