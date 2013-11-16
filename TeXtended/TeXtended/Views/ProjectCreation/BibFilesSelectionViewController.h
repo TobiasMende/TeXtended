@@ -8,9 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 @class FolderSelectionViewController;
-@interface BibFilesSelectionViewController : NSViewController
+@interface BibFilesSelectionViewController : NSViewController {
+    NSOpenPanel *addPanel;
+    NSSavePanel *createPanel;
+}
 
 
 @property FolderSelectionViewController *folderSelection;
+@property (strong) IBOutlet NSArrayController *bibFiles;
 - (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
+- (IBAction)addBibFile:(id)sender;
+- (IBAction)createBibFile:(id)sender;
 @end
