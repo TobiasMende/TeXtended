@@ -44,7 +44,7 @@
     BOOL isDir;
     if (self.path && [fm fileExistsAtPath:self.path isDirectory:&isDir] && isDir) {
         NSString *projectName = self.path.lastPathComponent;
-        project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"textendedproj"]];
+        project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"teXpf"]];
     }
 }
 

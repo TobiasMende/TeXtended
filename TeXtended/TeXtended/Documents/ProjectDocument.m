@@ -71,12 +71,12 @@
       includingPropertiesForKeys:@[]
                          options:NSDirectoryEnumerationSkipsHiddenFiles
                            error:nil];
-    NSPredicate * fltr = [NSPredicate predicateWithFormat:@"pathExtension='textendedproj'"];
+    NSPredicate * fltr = [NSPredicate predicateWithFormat:@"pathExtension='teXpf'"];
     NSArray * projectFiles = [dirContents filteredArrayUsingPredicate:fltr];
     if (projectFiles.count == 1) {
         return [projectFiles objectAtIndex:0];
     }else if(projectFiles.count > 1) {
-        NSURL *defaultFileURL = [directory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.textendedproj",lastComponent]];
+        NSURL *defaultFileURL = [directory URLByAppendingPathComponent:[lastComponent stringByAppendingPathExtension:@"teXpf"]];
         for (NSURL *url in projectFiles) {
             if ([url.path isEqualToString:defaultFileURL.path]) {
                 return url;
