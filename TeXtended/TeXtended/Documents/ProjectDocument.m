@@ -39,6 +39,13 @@
     @try {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
         [data writeToURL:url atomically:YES];
+        for( DocumentController *dc in self.documentControllers) {
+            NSError *error;
+            [dc saveDocumentModel:&error];
+            if (error) {
+                DDLogError(@"Can't save texfile %@. Error: %@", dc.model.texPath, error.userInfo);
+            }
+        }
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't write content: %@", exception.userInfo);
