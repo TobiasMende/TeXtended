@@ -17,7 +17,7 @@
  **Author:** Tobias Mende
  
  */
-@interface Compilable : NSObject  {
+@interface Compilable : NSObject <NSCoding> {
     
 }
 
@@ -29,9 +29,6 @@
 
 /** The live compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * liveCompiler;
-
-/** The header document for this compilabel */
-@property (strong) DocumentModel *headerDocument;
 
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
 @property (nonatomic, strong) NSSet *mainDocuments;

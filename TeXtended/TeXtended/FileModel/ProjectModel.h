@@ -21,8 +21,6 @@
  */
 @interface ProjectModel : Compilable
 
-/** The name of the project */
-@property (nonatomic, strong) NSString * name;
 
 /** The absolute path to the project file */
 @property (nonatomic, strong) NSString * path;

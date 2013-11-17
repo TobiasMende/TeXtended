@@ -15,7 +15,6 @@
 static const NSSet *COMPILER_NAMES;
 
 @interface Compilable ()
-- (void) initDefaults;
 @end
 
 @implementation Compilable
@@ -28,18 +27,32 @@ static const NSSet *COMPILER_NAMES;
 - (id)init {
     self = [super init];
     if (self) {
-        [self initDefaults];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
+        self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
+        self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
+        self.mainDocuments = [aDecoder decodeObjectForKey:@"mainDocuments"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
+    [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
+    [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
+    [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
 }
 
 - (NSString *)dictionaryKey {
     return [NSString stringWithFormat:@"%ld", self.hash];
 }
 
-- (void)initDefaults {
-    
-}
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
     NSArray *components = [keyPath componentsSeparatedByString:@"."];

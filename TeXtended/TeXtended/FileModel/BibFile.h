@@ -18,15 +18,15 @@
  
  */
 
-@interface BibFile : NSObject
+@interface BibFile : NSObject <NSCoding>
 
 /** the date of the last application internal read access to this file */
-@property (nonatomic, strong) NSDate * lastRead;
+@property (strong) NSDate * lastRead;
 
 /** The absolute path to the bib file */
-@property (nonatomic, strong) NSString * path;
+@property (strong) NSString * path;
 
 /** The project to which this entry belongs */
-@property (nonatomic, strong) ProjectModel *project;
+@property (weak) ProjectModel *project;
 
 @end

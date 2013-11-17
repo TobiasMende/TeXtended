@@ -16,6 +16,26 @@
 
 @implementation CompileSetting
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.compilerPath = [aDecoder decodeObjectForKey:@"compilerPath"];
+        self.compileBib = [aDecoder decodeObjectForKey:@"compileBib"];
+        self.numberOfCompiles = [aDecoder decodeObjectForKey:@"numberOfCompiles"];
+        self.customArgument = [aDecoder decodeObjectForKey:@"customArgument"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.compilerPath forKey:@"compilerPath"];
+    [aCoder encodeObject:self.compileBib forKey:@"compileBib"];
+    [aCoder encodeObject:self.numberOfCompiles forKey:@"numberOfCompiles"];
+    [aCoder encodeObject:self.customArgument forKey:@"customArgument"];
+}
+
+
+
 + (CompileSetting *)defaultDraftCompileSetting {
         return [self createCompileSettingFor:TMTDraftCompileFlow bibKey:TMTDraftCompileBib iterationKey:TMTDraftCompileIterations argsKey:TMTDraftCompileArgs];
 }

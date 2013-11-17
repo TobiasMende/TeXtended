@@ -16,7 +16,7 @@
  
  */
 
-@interface CompileSetting : NSObject
+@interface CompileSetting : NSObject <NSCoding>
 
 /** The path to the compile flow */
 @property (nonatomic, strong) NSString * compilerPath;

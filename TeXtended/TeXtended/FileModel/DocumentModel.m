@@ -134,6 +134,38 @@ static NSArray *TMTEncodingsToCheck;
     return self;
 }
 
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.lastChanged = [aDecoder decodeObjectForKey:@"lastChanged"];
+        self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
+        self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
+        self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
+        self.systemPath = [aDecoder decodeObjectForKey:@"systemPath"];
+        self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
+        self.project = [aDecoder decodeObjectForKey:@"project"];
+        self.outlineElements = [aDecoder decodeObjectForKey:@"outlineElements"];
+        self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
+        self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
+    [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
+    [aCoder encodeObject:self.pdfPath forKey:@"pdfPath"];
+    [aCoder encodeObject:self.texPath forKey:@"texPath"];
+    [aCoder encodeObject:self.systemPath forKey:@"systemPath"];
+    [aCoder encodeObject:self.encoding forKey:@"encoding"];
+    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
+    [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
+    [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
+}
+
 - (void)initDefaults {
     __weak typeof(self) weakSelf = self;
     [self setupInheritedCompilers];
@@ -270,18 +302,15 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (NSSet *)mainDocuments {
-    NSSet* md;
-    if([super mainDocuments]) {
-        md = [super mainDocuments];
-        if ([md count] ==  0) {
-            md = nil;
-        }
+    NSSet* md = nil;
+    if([super mainDocuments] && [[super mainDocuments]count] >0) {
+            md = [super mainDocuments];
     }
     if(!md && self.project) {
         md = [self.project mainDocuments];
     }
     if(!md) {
-        md = [NSMutableSet setWithObject:self];
+        md = [NSSet setWithObject:self];
     }
     return md;
 }

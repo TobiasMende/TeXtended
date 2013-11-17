@@ -11,6 +11,7 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "CompileSetting.h"
+#import "TMTLog.h"
 
 @interface ProjectModel ()
 
@@ -31,6 +32,27 @@
     }
     return self;
 }
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.documents = [aDecoder decodeObjectForKey:@"documents"];
+        self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
+        self.properties = [aDecoder decodeObjectForKey:@"properties"];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.documents forKey:@"documents"];
+    [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
+    [aCoder encodeObject:self.properties forKey:@"properties"];
+    [aCoder encodeObject:self.path forKey:@"path"];
+}
+
+
 
 - (void)initDefaults {
     self.documents = [NSMutableSet new];
@@ -76,6 +98,9 @@
 
 # pragma mark - Getter & Setter
 
+- (NSString *)name {
+    return [self.path lastPathComponent];
+}
 
 - (NSString *)type {
     return NSLocalizedString(@"Project", @"Project");

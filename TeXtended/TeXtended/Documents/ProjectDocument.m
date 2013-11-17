@@ -34,45 +34,33 @@
 }
 
 
+
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
-    // FIXME: Save
+    @try {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
+        [data writeToURL:url atomically:YES];
+    }
+    @catch (NSException *exception) {
+        DDLogError(@"Can't write content: %@", exception.userInfo);
+    }
+
     
 }
 
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
-//    NSURL *finalURL;
-//    if ([typeName isEqualToString:@"TeXtendedProjectFolder"]) {
-//        finalURL = [self projectFileUrlFromDirectory:absoluteURL];
-//    } else if([typeName isEqualToString:@"TeXtendedProjectFile"]) {
-//        finalURL = absoluteURL;
-//    }
-//    DDLogInfo(@"Project(%@): %@", typeName, absoluteURL);
-//    
-//    if (!finalURL) {
-//        // Abort reading if no matching project was found
-//        return NO;
-//    }
-//    BOOL success = YES;
-//    self.fileURL = finalURL;
-
-//    NSError *fetchError;
-//    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&fetchError];
-//    if (fetchedObjects.count != 1) {
-//        DDLogWarn(@"Number of ProjectModels is %li", fetchedObjects.count);
-//    }
-//    if (fetchedObjects == nil) {
-//        DDLogError(@"%@", fetchError.userInfo);
-//        success = NO;
-//    } else {
-//        self.model = [fetchedObjects objectAtIndex:0];
-//        if (![self.model.path isEqualToString:finalURL.path]) {
-//            self.model.path = finalURL.path;
-//        }
-//    }
-    
-    // FIXME: implement load
-    return NO;
+    NSData *data = [NSData dataWithContentsOfURL:absoluteURL];
+    @try {
+        NSObject *obj = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (obj) {
+            self.model = (ProjectModel*)obj;
+        }
+    }
+    @catch (NSException *exception) {
+        DDLogError(@"Can't read content: %@", exception.userInfo);
+        return NO;
+    }
+    return YES;
 }
 
 - (NSURL *)projectFileUrlFromDirectory:(NSURL *)directory {
