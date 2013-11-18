@@ -28,30 +28,30 @@
 }
 
 /** The date of the last application internal change of the represented file */
-@property (nonatomic, strong) NSDate * lastChanged;
+@property (strong) NSDate * lastChanged;
 
 /** The date of the last compilation of the represented file */
-@property (nonatomic, strong) NSDate * lastCompile;
+@property (strong) NSDate * lastCompile;
 
 /** The path to the output file (might be empty) */
 @property (nonatomic, strong) NSString * pdfPath;
 
 /** The path to the tex file */
-@property (nonatomic, strong) NSString * texPath;
+@property (strong) NSString * texPath;
 
 /** The system path to the tex file version storage.
  
  @warning Don't uses this if you are not exactly knowing about the purpose of this property.
  */
-@property (nonatomic, strong) NSString * systemPath;
+@property (strong) NSString * systemPath;
 
 /** The NSTextEncoding of the file */
-@property (nonatomic, strong) NSNumber *encoding;
+@property (strong) NSNumber *encoding;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, strong) ProjectModel *project;
 
-@property (nonatomic, strong) NSSet *outlineElements;
+@property (strong) NSMutableSet *outlineElements;
 
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;
@@ -119,17 +119,6 @@
  */
 - (void)setConsoleInputPipe:(NSPipe*)pipe;
 
-@end
-
-@interface DocumentModel (CoreDataGeneratedAccessors)
-
-- (void)addOutlineElementsObject:(OutlineElement *)value;
-- (void)removeOutlineElementsObject:(OutlineElement *)value;
-- (void)addOutlineElements:(NSSet *)values;
-- (void)removeOutlineElements:(NSSet *)values;
-@end
-
-
-@interface DocumentModel (DocumentModelExtension)
 - (void) initOutlineElements;
 @end
+

@@ -7,15 +7,46 @@
 //
 
 #import "PropertyFileSelectionViewController.h"
-
+#import "FolderSelectionViewController.h"
+#import "ProjectModel.h"
 @interface PropertyFileSelectionViewController ()
 
 @end
 
 @implementation PropertyFileSelectionViewController
 
-- (id)init {
+- (id)initWithFolderSelectionController:(FolderSelectionViewController *)folderSelection {
     self = [super initWithNibName:@"PropertyFileSelectionView" bundle:nil];
+    if(self) {
+        self.folderSelection = folderSelection;
+    }
     return self;
 }
+
+- (IBAction)select:(id)sender {
+    NSOpenPanel *panel = [[NSOpenPanel alloc] init];
+    
+    panel.canChooseFiles = YES;
+    panel.canChooseDirectories = NO;
+    panel.title = NSLocalizedString(@"Choose Properties File", @"Choose Properties File");
+    panel.canCreateDirectories = NO;
+    panel.allowedFileTypes = [NSArray arrayWithObjects:@"tex", nil];
+    
+    [panel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *directory = [panel URL];
+            self.filePath = [directory path];
+            [self.view.window orderFront:nil];
+        }
+    }];
+    
+}
+
+- (void)configureProjectModel:(ProjectModel *)project {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (self.filePath && [fm fileExistsAtPath:self.filePath]) {
+        project.properties = [project modelForTexPath:self.filePath byCreating:YES];
+    }
+}
+
 @end

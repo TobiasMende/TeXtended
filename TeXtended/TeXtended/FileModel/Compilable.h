@@ -17,7 +17,7 @@
  **Author:** Tobias Mende
  
  */
-@interface Compilable : NSManagedObject {
+@interface Compilable : NSObject <NSCoding> {
     
 }
 
@@ -30,20 +30,8 @@
 /** The live compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * liveCompiler;
 
-/** The header document for this compilabel */
-@property (nonatomic, strong) DocumentModel *headerDocument;
-
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
 @property (nonatomic, strong) NSSet *mainDocuments;
-
-/**
- Initialites a new compilabel whithin a given context
- 
- @param context the context
- 
- @return a new instance
- */
-- (id) initWithContext:(NSManagedObjectContext*)context;
 
 /**
  Getter for the top most compilabel model. In case of a DocumentModel, this method returns the project if the model is part of a project or the DocumentModel itself otherwise.
@@ -68,19 +56,15 @@
  
  */
 - (void)postChangeNotification;
-- (void) internalSetValue:(id)value forKey:(NSString *)key;
 
 - (NSString*) dictionaryKey;
-@end
-
-@interface Compilable (CoreDataGeneratedAccessors)
 
 - (void)addMainDocumentsObject:(DocumentModel *)value;
 - (void)removeMainDocumentsObject:(DocumentModel *)value;
 - (void)addMainDocuments:(NSSet *)values;
 - (void)removeMainDocuments:(NSSet *)values;
-
 @end
+
 
 
 @interface Compilable (Getter)

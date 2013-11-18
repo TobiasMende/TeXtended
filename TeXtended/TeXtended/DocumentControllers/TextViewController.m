@@ -189,7 +189,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
     if (countRunningParsers <= 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
-        if (![self.textView.string writeToFile:tempPath atomically:NO encoding:[self.model.encoding intValue]  error:NULL]) {
+        NSError *error;
+        if (![self.textView.string writeToFile:tempPath atomically:NO encoding:[self.model.encoding unsignedLongValue]  error:&error]) {
+            if (error) {
+                DDLogWarn(@"%@", error.userInfo);
+            }
             return;
         }
         countRunningParsers = 2;
@@ -358,7 +362,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model] && self.model.faultingState >0) {
+    if ([object isEqualTo:self.model]) {
         [self unregisterModelObserver];
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self registerModelObserver];

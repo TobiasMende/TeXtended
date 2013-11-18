@@ -11,6 +11,7 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "CompileSetting.h"
+#import "TMTLog.h"
 
 @interface ProjectModel ()
 
@@ -19,47 +20,51 @@
  @param context the context.
  
  */
-- (void)initDefaults:(NSManagedObjectContext*)context;
+- (void)initDefaults;
 @end
 
 @implementation ProjectModel
 
-@dynamic name;
-@dynamic path;
-@dynamic bibFiles;
-@dynamic documents;
-@dynamic properties;
-
 - (id)init {
-    return nil;
-}
-
-- (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"Project" inManagedObjectContext:context];
-    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
+    self = [super init];
     if (self) {
-        [self initDefaults:context];
+        [self initDefaults];
     }
     return self;
 }
 
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initDefaults:context];
+        self.documents = [aDecoder decodeObjectForKey:@"documents"];
+        self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
+        self.properties = [aDecoder decodeObjectForKey:@"properties"];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
     }
     return self;
 }
 
-- (void)initDefaults:(NSManagedObjectContext *)context {
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.documents forKey:@"documents"];
+    [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
+    [aCoder encodeObject:self.properties forKey:@"properties"];
+    [aCoder encodeObject:self.path forKey:@"path"];
+}
+
+
+
+- (void)initDefaults {
+    self.documents = [NSMutableSet new];
+    self.bibFiles = [NSMutableSet new];
     if (!self.liveCompiler) {
-        self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:context];
+        self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
     }
     if (!self.draftCompiler) {
-        self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:context];
+        self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
     }
     if (!self.finalCompiler) {
-        self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:context];
+        self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
     }
     //FIME: Complete implementation
 }
@@ -73,13 +78,28 @@
         }
     }
     if (shouldCreate) {
-        DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
-        [self addDocumentsObject:model];
+        DocumentModel *model = [DocumentModel new];
+        [self.documents addObject:model];
+        model.project = self;
         model.texPath = path;
         return model;
     } else {
         return nil;
     }
+}
+
+- (void)addBibFileWithPath:(NSString *)path {
+    BibFile *file = [BibFile new];
+    file.path = path;
+    file.project = self;
+    [self.bibFiles addObject:file];
+}
+
+
+# pragma mark - Getter & Setter
+
+- (NSString *)name {
+    return [self.path lastPathComponent];
 }
 
 - (NSString *)type {
@@ -91,9 +111,8 @@
 }
 
 - (void)setPath:(NSString *)path {
-    NSString *old = [self primitiveValueForKey:@"path"];
-    if (![old isEqualToString:path]) {
-        [self internalSetValue:path forKey:@"path"];
+    if (![_path isEqualToString:path]) {
+        _path = path;
     }
 }
 

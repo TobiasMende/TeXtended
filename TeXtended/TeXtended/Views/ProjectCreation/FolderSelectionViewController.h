@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ProjectCreationAssistantViewController.h"
 
-@interface FolderSelectionViewController : NSViewController
+@interface FolderSelectionViewController : NSViewController<ProjectCreationAssistantViewController>
 
 @property (strong) NSString *path;
 - (IBAction)select:(id)sender;

@@ -1,5 +1,5 @@
 //
-//  PropertyFileSelectionViewController.h
+//  BibFilesSelectionViewController.h
 //  TeXtended
 //
 //  Created by Tobias Mende on 16.11.13.
@@ -9,13 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "ProjectCreationAssistantViewController.h"
 @class FolderSelectionViewController;
-@interface PropertyFileSelectionViewController : NSViewController<ProjectCreationAssistantViewController>
+@interface BibFilesSelectionViewController : NSViewController <ProjectCreationAssistantViewController> {
+    NSOpenPanel *addPanel;
+    NSSavePanel *createPanel;
+}
 
-@property (strong) IBOutlet NSString* filePath;
 
 @property FolderSelectionViewController *folderSelection;
+@property (strong) IBOutlet NSArrayController *bibFiles;
 - (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
-
-- (IBAction)select:(id)sender;
-
+- (IBAction)addBibFile:(id)sender;
+- (IBAction)createBibFile:(id)sender;
 @end

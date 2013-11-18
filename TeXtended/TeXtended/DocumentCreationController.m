@@ -51,10 +51,23 @@
 }
 
 - (void)showProjectCreationPanel {
-    if(!projectCreationWindowConmtroller) {
-        projectCreationWindowConmtroller = [ProjectCreationWindowController new];
+    if(!self.projectCreationWindowController) {
+        self.projectCreationWindowController = [ProjectCreationWindowController new];
     }
-    [projectCreationWindowConmtroller showWindow:self];
+    
+    __weak DocumentCreationController *weakSelf = self;
+    self.projectCreationWindowController.terminationHandler = ^(ProjectDocument *document, BOOL success) {
+        if (success) {
+            [document saveToURL:document.fileURL ofType:@"TeXtendedProjectFile" forSaveOperation:NSSaveOperation completionHandler:^(NSError *errorOrNil) {
+                if (errorOrNil) {
+                    DDLogWarn(@"Error while saving: %@", errorOrNil.userInfo);
+                }
+            }];
+            [weakSelf addDocument:document];
+            [document makeWindowControllers];
+        }
+    };
+    [self.projectCreationWindowController showWindow:self];
     // TODO: initialize the project creation controller. 
 }
 

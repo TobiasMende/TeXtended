@@ -15,45 +15,44 @@
 static const NSSet *COMPILER_NAMES;
 
 @interface Compilable ()
-- (void) initDefaults;
 @end
 
 @implementation Compilable
 
-@dynamic draftCompiler;
-@dynamic finalCompiler;
-@dynamic liveCompiler;
-@dynamic headerDocument;
-@dynamic mainDocuments;
 
 + (void)initialize {
     COMPILER_NAMES = [NSSet setWithObjects:@"draftCompiler", @"finalCompiler", @"liveCompiler", nil];
 }
 
-- (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"Compilable" inManagedObjectContext:context];
-    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
+- (id)init {
+    self = [super init];
     if (self) {
-        [self initDefaults];
     }
     return self;
 }
 
-- (NSString *)dictionaryKey {
-    return [[[self objectID] URIRepresentation] absoluteString];
-}
-
-- (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-        if (self) {
-            [self initDefaults];
-        }
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
+        self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
+        self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
+        self.mainDocuments = [aDecoder decodeObjectForKey:@"mainDocuments"];
+    }
     return self;
 }
 
-- (void)initDefaults {
-    
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
+    [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
+    [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
+    [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
 }
+
+- (NSString *)dictionaryKey {
+    return [NSString stringWithFormat:@"%ld", self.hash];
+}
+
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
     NSArray *components = [keyPath componentsSeparatedByString:@"."];
@@ -70,21 +69,45 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
-- (void) internalSetValue:(id)value forKey:(NSString *)key {
-    [self willChangeValueForKey:key];
-    [self setPrimitiveValue:value forKey:key];
-    [self didChangeValueForKey:key];
-}
+
 
 #pragma mark -
 #pragma mark Getter & Setter
+
+- (void)addMainDocuments:(NSSet *)values {
+    if (!self.mainDocuments) {
+        self.mainDocuments = [NSSet new];
+    }
+    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
+}
+
+- (void)removeMainDocuments:(NSSet *)values {
+    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+    for(NSObject *obj in values) {
+        [tmp removeObject:obj];
+    }
+    self.mainDocuments = tmp;
+}
+
+- (void)removeMainDocumentsObject:(DocumentModel *)value {
+    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+    [tmp removeObject:value];
+    self.mainDocuments = tmp;
+}
+
+- (void)addMainDocumentsObject:(DocumentModel *)value {
+    if (!self.mainDocuments) {
+         self.mainDocuments = [NSSet new];
+    }
+    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
+}
 
 - (Compilable *)mainCompilable {
     return self;
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path {
-    [self modelForTexPath:path byCreating:YES];
+    return [self modelForTexPath:path byCreating:YES];
 }
 
 - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
@@ -116,11 +139,10 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
-//- (void)willTurnIntoFault {
-//    [self unregisterCompilerDefaultsObserver:TMTLiveCompileSettingKeys check:self.liveCompiler];
-//    [self unregisterCompilerDefaultsObserver:TMTDraftCompileSettingKeys check:self.draftCompiler];
-//    [self unregisterCompilerDefaultsObserver:TMTFinalCompileSettingKeys check:self.finalCompiler];
-//}
-
+- (void)dealloc {
+    if (self == self.mainCompilable) {
+        [TMTNotificationCenter removeCenterForCompilable:self];
+    }
+}
 
 @end

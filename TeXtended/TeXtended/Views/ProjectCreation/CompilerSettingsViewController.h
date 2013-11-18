@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ProjectCreationAssistantViewController.h"
 @class CompileSetting;
 
-@interface CompilerSettingsViewController : NSViewController {
+@interface CompilerSettingsViewController : NSViewController <ProjectCreationAssistantViewController>{
     NSManagedObjectContext *context;
 }
 

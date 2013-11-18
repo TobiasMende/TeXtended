@@ -25,22 +25,9 @@ static NSArray *TMTEncodingsToCheck;
 - (void) initDefaults;
 - (void) clearInheretedCompilers;
 - (void) setupInheritedCompilers;
-- (void)internalSetPath:(NSString*)path forKey:(NSString*)key;
-- (NSString *)internalPathForKey:(NSString*)key;
 @end
 
 @implementation DocumentModel
-
-@dynamic lastChanged;
-@dynamic lastCompile;
-@dynamic pdfPath;
-@dynamic texPath;
-@dynamic systemPath;
-@dynamic project;
-@dynamic encoding;
-@dynamic liveCompile;
-@dynamic openOnExport;
-@dynamic outlineElements;
 
 + (void)initialize {
     
@@ -68,6 +55,7 @@ static NSArray *TMTEncodingsToCheck;
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:&error];
     } else {
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
         
     }
     /*if (error) {
@@ -102,7 +90,7 @@ static NSArray *TMTEncodingsToCheck;
     } else if(self.project) {
         return [self.project modelForTexPath:path];
     } else if(shouldCreate){
-        DocumentModel *model = [[DocumentModel alloc] initWithContext:self.managedObjectContext];
+        DocumentModel *model = [DocumentModel new];
         model.texPath = path;
         return model;
     }
@@ -136,16 +124,46 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
-- (id)initWithContext:(NSManagedObjectContext *)context {
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"Document" inManagedObjectContext:context];
-    self = [super initWithEntity:description insertIntoManagedObjectContext:context];
+- (id)init {
+    
+    self = [super init];
     if (self) {
         [self initDefaults];
         [self registerProjectObserver];
-        
-    
     }
     return self;
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.lastChanged = [aDecoder decodeObjectForKey:@"lastChanged"];
+        self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
+        self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
+        self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
+        self.systemPath = [aDecoder decodeObjectForKey:@"systemPath"];
+        self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
+        self.project = [aDecoder decodeObjectForKey:@"project"];
+        self.outlineElements = [aDecoder decodeObjectForKey:@"outlineElements"];
+        self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
+        self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
+    [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
+    [aCoder encodeObject:self.pdfPath forKey:@"pdfPath"];
+    [aCoder encodeObject:self.texPath forKey:@"texPath"];
+    [aCoder encodeObject:self.systemPath forKey:@"systemPath"];
+    [aCoder encodeObject:self.encoding forKey:@"encoding"];
+    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
+    [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
+    [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
 }
 
 - (void)initDefaults {
@@ -168,26 +186,26 @@ static NSArray *TMTEncodingsToCheck;
 - (void)setupInheritedCompilers {
     if (self.project) {
         if (!self.liveCompiler) {
-            self.liveCompiler = [self.project.liveCompiler copy:self.managedObjectContext];
+            self.liveCompiler = [self.project.liveCompiler copy];
             [self.liveCompiler binAllTo:self.project.liveCompiler];
         }
         if (!self.draftCompiler) {
-            self.draftCompiler = [self.project.draftCompiler copy:self.managedObjectContext];
+            self.draftCompiler = [self.project.draftCompiler copy];
             [self.draftCompiler binAllTo:self.project.draftCompiler];
         }
         if (!self.finalCompiler) {
-            self.finalCompiler = [self.project.finalCompiler copy:self.managedObjectContext];
+            self.finalCompiler = [self.project.finalCompiler copy];
             [self.finalCompiler binAllTo:self.project.finalCompiler];
         }
     } else {
         if (!self.liveCompiler) {
-            self.liveCompiler = [CompileSetting defaultLiveCompileSettingIn:self.managedObjectContext];
+            self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
         }
         if (!self.draftCompiler) {
-            self.draftCompiler = [CompileSetting defaultDraftCompileSettingIn:self.managedObjectContext];
+            self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
         }
         if (!self.finalCompiler) {
-            self.finalCompiler = [CompileSetting defaultFinalCompileSettingIn:self.managedObjectContext];
+            self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
         }
     }
 }
@@ -211,7 +229,7 @@ static NSArray *TMTEncodingsToCheck;
         removeLiveCompileObserver();
         removeLiveCompileObserver = nil;
     }
-    [self internalSetValue:liveCompile forKey:@"liveCompile"];
+    _liveCompile = liveCompile;
     
 }
 
@@ -220,7 +238,7 @@ static NSArray *TMTEncodingsToCheck;
         removeOpenOnExportObserver();
         removeOpenOnExportObserver = nil;
     }
-    [self internalSetValue:openOnExport forKey:@"openOnExport"];
+    _openOnExport = openOnExport;
 }
 
 
@@ -284,14 +302,9 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (NSSet *)mainDocuments {
-    NSSet* md;
-    if([self primitiveValueForKey:@"mainDocuments"]) {
-        [self willAccessValueForKey:@"mainDocuments"];
-        md = (NSSet*) [self primitiveValueForKey:@"mainDocuments"];
-        if ([md count] ==  0) {
-            md = nil;
-        }
-        [self didAccessValueForKey:@"mainDocuments"];
+    NSSet* md = nil;
+    if([super mainDocuments] && [[super mainDocuments]count] >0) {
+            md = [super mainDocuments];
     }
     if(!md && self.project) {
         md = [self.project mainDocuments];
@@ -303,66 +316,43 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)addMainDocumentsObject:(DocumentModel *)value {
-    if(![self primitiveValueForKey:@"mainDocuments"]) {
-        [self setMainDocuments:self.mainDocuments];
+    
+    if(![super mainDocuments]) {
+        self.mainDocuments = [NSSet new];
+        if (self.project) {
+            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+        }
     }
-    NSSet * set = [NSSet setWithObject:value];
-    [self willChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:set];
-    [self setPrimitiveValue:[self.mainDocuments setByAddingObjectsFromSet:set] forKey:@"mainDocuments"];
-    [self didChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:set];
+    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
 }
 
 - (void)addMainDocuments:(NSSet *)values {
-    if(![self primitiveValueForKey:@"mainDocuments"]) {
-        [self setMainDocuments:self.mainDocuments];
+    if(![super mainDocuments]) {
+        self.mainDocuments = [NSSet new];
+        if (self.project) {
+            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+        }
     }
-    [self willChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
-    [self setPrimitiveValue:[self.mainDocuments setByAddingObjectsFromSet:values] forKey:@"mainDocuments"];
-    [self didChangeValueForKey:@"mainDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
 }
 
-- (DocumentModel *)headerDocument {
-    DocumentModel* m;
-    if ([self primitiveValueForKey:@"headerDocument"]) {
-        [self willAccessValueForKey:@"headerDocument"];
-        m = [self primitiveValueForKey:@"headerDocument"];
-        [self didAccessValueForKey:@"headerDocument"];
-    }
-    else if (self.project) {
-        m = [self.project headerDocument];
-    }
-    if (!m) {
-        m = self;
-    }
-    return m;
-}
 
 - (void)setProject:(ProjectModel *)project {
+    if (self == self.mainCompilable) {
+        [TMTNotificationCenter removeCenterForCompilable:self];
+    }
     [self clearInheretedCompilers];
     [self unregisterProjectObserver];
-    [self internalSetValue:project forKey:@"project"];
+    _project = project;
     [self registerProjectObserver];
     [self setupInheritedCompilers];
 }
 
--(void)setEncoding:(NSNumber *)encoding
-{
-    [self willChangeValueForKey:@"encoding"];
-    [self setPrimitiveValue:encoding forKey:@"encoding"];
-    [self didChangeValueForKey:@"encoding"];
-}
-
-- (NSNumber *)encoding {
-    [self willAccessValueForKey:@"encoding"];
-    NSNumber *enc = [self primitiveValueForKey:@"encoding"];
-    [self didAccessValueForKey:@"encoding"];
-    return enc;
-}
 
 
 
 - (NSString *)pdfPath {
-    NSString *path = [self internalPathForKey:@"pdfPath"];
+    NSString *path = _pdfPath;
     if (path && path.length > 0) {
         return path;
     }
@@ -376,17 +366,17 @@ static NSArray *TMTEncodingsToCheck;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     // Pass notifications if change affects this model:
     if ([object isEqualTo:self.project]) {
-        if (![self primitiveValueForKey:keyPath]) {
+        if (![self valueForKeyPath:keyPath]) {
             [self didChangeValueForKey:keyPath];
         }
     }
     if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
         if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]]) {
-            [self internalSetValue:[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]] forKey:@"liveCompile"];
+            self.liveCompile =[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
             return;
         }
         if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
-            [self internalSetValue:[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]] forKey:@"openOnExport"];
+            self.openOnExport = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
             return;
         }
     }
@@ -424,45 +414,12 @@ static NSArray *TMTEncodingsToCheck;
     return [super automaticallyNotifiesObserversForKey:key];
 }
 
-- (void)setTexPath:(NSString *)texPath {
-    NSString *old = self.texPath;
-    if (![old isEqualToString:texPath]) {
-        [self internalSetPath:texPath forKey:@"texPath"];
-    }
-}
-
-- (NSString *)texPath {
-    return [self internalPathForKey:@"texPath"];
-}
 
 
 
 
-- (NSString *)internalPathForKey:(NSString *)key {
-    [self willAccessValueForKey:key];
-    NSString *path = [self primitiveValueForKey:key];
-    [self didAccessValueForKey:key];
-    if (path && ![path isAbsolutePath] && self.project) {
-        path = [path absolutePathWithBase:self.project.folderPath];
-    }
-    return path;
-}
 
-- (void)internalSetPath:(NSString *)path forKey:(NSString *)key {
-    if (path && [path isAbsolutePath] && self.project) {
-        path = [path relativePathWithBase:self.project.folderPath];
-    }
-    [self internalSetValue:path forKey:key];
-}
-
-- (void)setPdfPath:(NSString *)pdfPath {
-    NSString *old = [self internalPathForKey:@"pdfPath"];
-    if (![old isEqualToString:pdfPath]) {
-        [self internalSetPath:pdfPath forKey:@"pdfPath"];
-    }
-}
-
-- (void)willTurnIntoFault {
+- (void)dealloc {
     DDLogInfo(@"will turn into fault");
     [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self];
     [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
@@ -470,8 +427,6 @@ static NSArray *TMTEncodingsToCheck;
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
     [self unregisterProjectObserver];
-    [super willTurnIntoFault];
-    
 }
 
 #pragma mark -

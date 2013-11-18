@@ -22,12 +22,12 @@ typedef enum OutlineElementType {
     TODO = 4208
 } OutlineElementType;
 
-@interface OutlineElement : NSManagedObject
+@interface OutlineElement : NSObject <NSCoding>
 
-@property (nonatomic, retain) NSNumber * type;
-@property (nonatomic, retain) NSNumber * line;
-@property (nonatomic, retain) NSString * info;
-@property (nonatomic, retain) DocumentModel *document;
+@property (strong) NSNumber * type;
+@property (strong) NSNumber * line;
+@property (strong) NSString * info;
+@property (weak) DocumentModel *document;
 
 + (NSSet*)extractIn:(NSString *)content for:(DocumentModel*)model;
 

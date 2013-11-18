@@ -29,7 +29,7 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>textendedproj</string>
+				<string>teXpf</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>TeXtendedProjectFile</string>
@@ -96,11 +96,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4.67</string>
+	<string>0.4.85</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>97f8f9ba0</string>
+	<string>a6295c9a1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>

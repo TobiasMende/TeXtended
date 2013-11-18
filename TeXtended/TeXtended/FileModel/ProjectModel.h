@@ -21,39 +21,19 @@
  */
 @interface ProjectModel : Compilable
 
-/** The name of the project */
-@property (nonatomic, strong) NSString * name;
 
 /** The absolute path to the project file */
 @property (nonatomic, strong) NSString * path;
 
 /** A set of all bibFiles connected to this project */
-@property (nonatomic, strong) NSSet *bibFiles;
+@property (strong) NSMutableSet *bibFiles;
 
 /** A set of all documents belonging to this project */
-@property (nonatomic, strong) NSSet *documents;
+@property (strong) NSMutableSet *documents;
 
 /** The main properties of this project */
-@property (nonatomic, strong) DocumentModel *properties;
+@property (strong) DocumentModel *properties;
 
-@end
-
-@interface ProjectModel (CoreDataGeneratedAccessors)
-
-- (void)addBibFilesObject:(BibFile *)value;
-- (void)removeBibFilesObject:(BibFile *)value;
-- (void)addBibFiles:(NSSet *)values;
-- (void)removeBibFiles:(NSSet *)values;
-
-- (void)addDocumentsObject:(DocumentModel *)value;
-- (void)removeDocumentsObject:(DocumentModel *)value;
-- (void)addDocuments:(NSSet *)values;
-- (void)removeDocuments:(NSSet *)values;
-
-@end
-
-
-@interface ProjectModel (ProjectModelExtension)
 - (NSString*) folderPath;
-
+- (void) addBibFileWithPath:(NSString *)path;
 @end

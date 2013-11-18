@@ -14,9 +14,6 @@
     ExportCompileWindowController *exportWindowController;
     StatsPanelController *statisticPanelController;
 }
-
-/** The context in which the associated DocumentModel and subobjects live in */
-@property (strong) NSManagedObjectContext *context;
 /** The controller of the documents main window */
 @property (weak) MainWindowController *mainWindowController;
 

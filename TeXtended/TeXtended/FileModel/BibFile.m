@@ -12,8 +12,20 @@
 
 @implementation BibFile
 
-@dynamic lastRead;
-@dynamic path;
-@dynamic project;
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.lastRead = [aDecoder decodeObjectForKey:@"lastRead"];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
+        self.project = [aDecoder decodeObjectForKey:@"project"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.lastRead forKey:@"lastRead"];
+    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeObject:self.path forKey:@"path"];
+}
 
 @end
