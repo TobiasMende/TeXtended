@@ -38,12 +38,19 @@
         {
             if ([[[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey:TMT_REPLACE_INVISIBLE_SPACES] boolValue]) {
                 [self replaceGlyphAtIndex:charIndex withGlyph:bulletspace];
+                //NSColor color = [[NSColor alloc] init];
+                NSRange range = NSMakeRange(i, 1);
+                [self addTemporaryAttribute:NSForegroundColorAttributeName value:[NSColor brownColor] forCharacterRange:range];
             }
             else
             {
                 [self replaceGlyphAtIndex:charIndex withGlyph:space];
             }
         }
+        
+        /*if (c == '\n') {
+            [self insertGlyph:[font glyphWithName:@"A"] atGlyphIndex:0 characterIndex:charIndex];
+        }*/
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
