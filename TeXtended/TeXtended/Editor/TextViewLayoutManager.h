@@ -10,4 +10,6 @@
 
 @interface TextViewLayoutManager : NSLayoutManager
 
+@property NSColor *symbolColor;
+
 @end
