@@ -116,6 +116,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
     [self setAutomaticTextReplacementEnabled:NO];
+    [self setAutomaticDashSubstitutionEnabled:NO];
+    [self setAutomaticQuoteSubstitutionEnabled:NO];
     [self setUsesFontPanel:NO];
     self.servicesOn = YES;
     
