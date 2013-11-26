@@ -154,6 +154,7 @@ ApplicationController *sharedInstance;
                               [NSNumber numberWithBool:YES], TMT_SHOULD_LINK_TEXDOC,
                               [NSNumber numberWithBool:YES], TMT_SHOULD_UNDERLINE_TEXDOC_LINKS,
                               [NSNumber numberWithBool:NO], TMT_REPLACE_INVISIBLE_SPACES,
+                              [NSNumber numberWithBool:NO], TMT_REPLACE_INVISIBLE_LINEBREAKS,
                               [NSNumber numberWithBool:NO], TMTLiveCompileBib,
                               [NSNumber numberWithBool:NO], TMTDraftCompileBib,
                               [NSNumber numberWithBool:YES], TMTFinalCompileBib,

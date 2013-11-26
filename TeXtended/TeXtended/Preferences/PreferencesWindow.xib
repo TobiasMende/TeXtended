@@ -1771,6 +1771,17 @@
                                     <binding destination="10" name="value" keyPath="values.TMTReplaceInvisibleSpaces" id="tHn-Ix-vgl"/>
                                 </connections>
                             </button>
+                            <button id="VqW-IK-wL4">
+                                <rect key="frame" x="16" y="30" width="124" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show linebreaks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="twW-jw-DYa">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTReplaceInvisibleLinebreaks" id="M95-sa-p7d"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
