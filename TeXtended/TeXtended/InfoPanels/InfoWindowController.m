@@ -11,6 +11,8 @@
 #import "ProjectModel.h"
 #import "CompileFlowHandler.h"
 #import "Compilable.h"
+#import "EncodingController.h"
+#import "TMTLog.h"
 
 @interface InfoWindowController ()
 
@@ -30,13 +32,36 @@
     self = [super initWithWindowNibName:@"InfoWindow"];
     
     if (self) {
-        // Initialization code here.
     }
     
     return self;
 }
 
 - (void)windowDidLoad {
+    const NSStringEncoding *encoding = [NSString availableStringEncodings];
+    NSMutableArray *allEncodings = [[NSMutableArray alloc] init];
+    while (*encoding != 0) {
+        [allEncodings addObject:[NSNumber numberWithUnsignedLong:*encoding]];
+        encoding++;
+    }
+    [allEncodings sortUsingComparator:^NSComparisonResult(id first, id second) {
+        NSString *firstName = [NSString localizedNameOfStringEncoding:[first intValue]];
+        NSString *secondName = [NSString localizedNameOfStringEncoding:[second intValue]];
+        return [firstName compare:secondName];
+    }];
+    
+    [self.encodingPopUp removeAllItems];
+    // Fill with encodings
+    for (NSInteger cnt = 0; cnt < [allEncodings count]; cnt++) {
+        NSNumber *encodingNumber = [allEncodings objectAtIndex:cnt];
+        NSStringEncoding encoding = [encodingNumber unsignedLongValue];
+        [self.encodingPopUp addItemWithTitle:[NSString localizedNameOfStringEncoding:encoding]];
+        [[self.encodingPopUp lastItem] setRepresentedObject:encodingNumber];
+        [[self.encodingPopUp lastItem] setEnabled:YES];
+    }
+    
+    encodings = allEncodings;
+    
     self.window.isVisible = NO;
     if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
         [self.mainDocumentsController setSelectionIndex:0];
@@ -68,6 +93,10 @@
     [self.table reloadData];
 }
 
+- (IBAction)encodingSelectionChange:(id)sender {
+    //self.compilable
+}
+
 - (BOOL)canRemoveEntry {
     return [self.mainDocumentsController.arrangedObjects count] > 1;
 }
@@ -82,6 +111,12 @@
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
     self.window.isVisible = YES;
+    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
+        [self.encodingPopUp setHidden:NO];
+    }
+    else {
+        [self.encodingPopUp setHidden:YES];
+    }
 }
 
 
