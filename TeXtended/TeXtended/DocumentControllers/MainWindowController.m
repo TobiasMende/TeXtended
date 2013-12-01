@@ -39,7 +39,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         DDLogVerbose(@"Init");
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
-        self.fileViewController = [FileViewController new];
+        //self.fileViewController = [FileViewController new];
         self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
