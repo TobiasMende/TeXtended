@@ -74,6 +74,10 @@ static const NSSet *COMPILER_NAMES;
 #pragma mark -
 #pragma mark Getter & Setter
 
+- (ProjectModel *)project {
+    return nil;
+}
+
 - (void)addMainDocuments:(NSSet *)values {
     if (!self.mainDocuments) {
         self.mainDocuments = [NSSet new];

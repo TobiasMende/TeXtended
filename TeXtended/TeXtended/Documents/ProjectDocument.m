@@ -60,11 +60,9 @@
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
     NSData *data = [NSData dataWithContentsOfURL:absoluteURL];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     @try {
-        NSObject *obj = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        if (obj) {
-            self.model = (ProjectModel*)obj;
-        }
+        self.model = [[ProjectModel alloc] initWithCoder:unarchiver];
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't read content: %@", exception.userInfo);
