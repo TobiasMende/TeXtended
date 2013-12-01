@@ -361,6 +361,9 @@ static NSArray *TMTEncodingsToCheck;
         default:
         break;
     }
+    if (!self.project) {
+        [super updateCompileSettingBindings:mode];
+    }
 }
 
 # pragma mark - KVO

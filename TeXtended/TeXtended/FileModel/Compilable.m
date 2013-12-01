@@ -23,6 +23,9 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.hasFinalCompiler = NO;
+        self.hasDraftCompiler = NO;
+        self.hasLiveCompiler = NO;
     }
     return self;
 }
