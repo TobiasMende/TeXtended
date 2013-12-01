@@ -62,7 +62,7 @@
     NSData *data = [NSData dataWithContentsOfURL:absoluteURL];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     @try {
-        self.model = [[ProjectModel alloc] initWithCoder:unarchiver];
+        self.model = [[ProjectModel alloc] initWithCoder:unarchiver andPath:[absoluteURL path]];
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't read content: %@", exception.userInfo);

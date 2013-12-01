@@ -16,8 +16,8 @@
     self = [super init];
     if (self) {
         self.lastRead = [aDecoder decodeObjectForKey:@"lastRead"];
-        self.path = [aDecoder decodeObjectForKey:@"path"];
         self.project = [aDecoder decodeObjectForKey:@"project"];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
     }
     return self;
 }
