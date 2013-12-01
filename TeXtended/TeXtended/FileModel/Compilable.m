@@ -23,6 +23,9 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.hasFinalCompiler = NO;
+        self.hasDraftCompiler = NO;
+        self.hasLiveCompiler = NO;
     }
     return self;
 }
@@ -55,13 +58,13 @@
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    if (self.draftCompiler) {
+    if (self.hasDraftCompiler) {
         [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
     }
-    if (self.liveCompiler) {
+    if (self.hasLiveCompiler) {
         [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
     }
-    if (self.finalCompiler) {
+    if (self.hasFinalCompiler) {
         [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
     }
     [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];

@@ -31,6 +31,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasLiveCompiler" id="xOn-We-nmk"/>
                                     <binding destination="-2" name="value" keyPath="self.liveCompiler.compileBib" id="pVg-Eb-URR"/>
                                 </connections>
                             </button>
@@ -51,6 +52,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasLiveCompiler" id="jbS-p8-NjY"/>
                                     <binding destination="-2" name="value" keyPath="self.liveCompiler.numberOfCompiles" id="B3L-ZC-hQ3"/>
                                 </connections>
                             </textField>
@@ -59,6 +61,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="nnr-YM-Tw2"/>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasLiveCompiler" id="kOY-rk-4eb"/>
                                     <binding destination="-2" name="value" keyPath="self.liveCompiler.numberOfCompiles" id="AXS-Bu-AGv"/>
                                 </connections>
                             </stepper>
@@ -87,6 +90,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="self.hasLiveCompiler" id="Rgq-ia-6DZ"/>
                                                 <binding destination="-2" name="value" keyPath="self.liveCompiler.customArgument" id="PMK-tQ-kIU"/>
                                             </connections>
                                         </textField>
@@ -96,7 +100,7 @@
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <popUpButton verticalHuggingPriority="750" id="7Xx-EX-uRj">
-                                <rect key="frame" x="16" y="225" width="152" height="26"/>
+                                <rect key="frame" x="38" y="225" width="130" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="TjH-DD-rNN">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -114,9 +118,21 @@
                                 </popUpButtonCell>
                                 <connections>
                                     <binding destination="8hq-aZ-Z6w" name="contentValues" keyPath="arrangedObjects" id="foc-LE-1gc"/>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasLiveCompiler" id="YO4-48-dom"/>
                                     <binding destination="-2" name="selectedValue" keyPath="self.liveCompiler.compilerPath" previousBinding="foc-LE-1gc" id="Oqr-II-3vy"/>
                                 </connections>
                             </popUpButton>
+                            <button id="gNd-6h-nzx">
+                                <rect key="frame" x="16" y="229" width="22" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pvb-sS-RXI">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.hasLiveCompiler" id="aGq-1X-8qD"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -137,6 +153,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasDraftCompiler" id="1u1-de-FEu"/>
                                     <binding destination="-2" name="value" keyPath="self.draftCompiler.compileBib" id="PTU-M5-61g"/>
                                 </connections>
                             </button>
@@ -157,6 +174,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasDraftCompiler" id="UKZ-dP-WwN"/>
                                     <binding destination="-2" name="value" keyPath="self.draftCompiler.numberOfCompiles" id="nBB-WF-pX8"/>
                                 </connections>
                             </textField>
@@ -165,6 +183,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="g92-ON-uE6"/>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasDraftCompiler" id="uBe-vv-h38"/>
                                     <binding destination="-2" name="value" keyPath="self.draftCompiler.numberOfCompiles" id="5JJ-Zb-eIR"/>
                                 </connections>
                             </stepper>
@@ -193,6 +212,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="self.hasDraftCompiler" id="C0V-Xh-v5g"/>
                                                 <binding destination="-2" name="value" keyPath="self.draftCompiler.customArgument" id="6Lo-y1-f3k"/>
                                             </connections>
                                         </textField>
@@ -202,7 +222,7 @@
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <popUpButton verticalHuggingPriority="750" id="MgO-nq-uJK">
-                                <rect key="frame" x="16" y="225" width="152" height="26"/>
+                                <rect key="frame" x="37" y="225" width="131" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ZBI-od-uuR" id="QIs-ok-nS0">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -217,9 +237,21 @@
                                 </popUpButtonCell>
                                 <connections>
                                     <binding destination="8hq-aZ-Z6w" name="contentValues" keyPath="arrangedObjects" id="qer-6v-Uqz"/>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasDraftCompiler" id="NrM-Zd-eQt"/>
                                     <binding destination="-2" name="selectedValue" keyPath="self.draftCompiler.compilerPath" previousBinding="qer-6v-Uqz" id="5qB-yy-vRh"/>
                                 </connections>
                             </popUpButton>
+                            <button id="CNy-Ob-ubM">
+                                <rect key="frame" x="16" y="229" width="22" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="EVe-Ho-eP5">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.hasDraftCompiler" id="0Wd-dd-nOA"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -240,6 +272,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasFinalCompiler" id="0hF-1i-Cbz"/>
                                     <binding destination="-2" name="value" keyPath="self.finalCompiler.compileBib" id="3gv-Qj-2GR"/>
                                 </connections>
                             </button>
@@ -260,6 +293,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasFinalCompiler" id="f76-El-MN0"/>
                                     <binding destination="-2" name="value" keyPath="self.finalCompiler.numberOfCompiles" id="rZb-A3-DpY"/>
                                 </connections>
                             </textField>
@@ -268,6 +302,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="gnk-n4-fBr"/>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasFinalCompiler" id="Ylr-y4-ZVo"/>
                                     <binding destination="-2" name="value" keyPath="self.finalCompiler.numberOfCompiles" id="BZp-gH-yuU"/>
                                 </connections>
                             </stepper>
@@ -296,6 +331,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="self.hasFinalCompiler" id="JJl-xE-7Sl"/>
                                                 <binding destination="-2" name="value" keyPath="self.finalCompiler.customArgument" id="Q4k-AT-cGn"/>
                                             </connections>
                                         </textField>
@@ -305,7 +341,7 @@
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <popUpButton verticalHuggingPriority="750" id="NbN-h9-ChI">
-                                <rect key="frame" x="16" y="225" width="152" height="26"/>
+                                <rect key="frame" x="38" y="225" width="130" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="eex-1m-0pb" id="Mhj-9e-83r">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -320,9 +356,21 @@
                                 </popUpButtonCell>
                                 <connections>
                                     <binding destination="8hq-aZ-Z6w" name="contentValues" keyPath="arrangedObjects" id="WPh-iH-s5G"/>
+                                    <binding destination="-2" name="enabled" keyPath="self.hasFinalCompiler" id="luJ-05-IZF"/>
                                     <binding destination="-2" name="selectedValue" keyPath="self.finalCompiler.compilerPath" previousBinding="WPh-iH-s5G" id="1Dk-i2-L0M"/>
                                 </connections>
                             </popUpButton>
+                            <button id="IOb-nO-Hx2">
+                                <rect key="frame" x="16" y="229" width="22" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3R8-vz-zQJ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.hasFinalCompiler" id="kCQ-cg-dX5"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

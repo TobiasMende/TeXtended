@@ -37,7 +37,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1499" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="196" y="132" width="640" height="526"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
             <view key="contentView" id="1500">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="526"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -266,12 +266,10 @@
                                                 <buttonCell key="cell" type="check" title="Bibliography" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="119">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
-                                                    <connections>
-                                                        <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="548"/>
-                                                    </connections>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="ZZA-cN-jFp"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="QsM-ok-wni"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="fh9-Gr-aKN"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="135">
@@ -286,6 +284,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="5zg-Hk-Pgw"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.numberOfCompiles" id="NFI-dC-G9U"/>
                                                 </connections>
                                             </textField>
@@ -294,6 +293,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="144"/>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="Kvx-Jh-7bS"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.numberOfCompiles" previousBinding="1447" id="Ysb-es-iWu"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1445"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1445" id="1447"/>
@@ -312,6 +312,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="mNF-0Z-ts9"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.customArgument" id="pVS-e1-2Zb"/>
                                                 </connections>
                                             </textField>
@@ -328,7 +329,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="356">
-                                                <rect key="frame" x="99" y="229" width="69" height="26"/>
+                                                <rect key="frame" x="44" y="229" width="124" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="357">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -346,6 +347,7 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="508"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="ULZ-x1-yjS"/>
                                                     <binding destination="-2" name="selectedValue" keyPath="self.compilable.liveCompiler.compilerPath" previousBinding="508" id="1qq-Jo-Eo4"/>
                                                 </connections>
                                             </popUpButton>
@@ -359,6 +361,9 @@
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.hasLiveCompiler" id="JHh-EA-p7A"/>
+                                                </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YwZ-KI-rSK">
                                                 <rect key="frame" x="16" y="151" width="151" height="14"/>
@@ -372,24 +377,25 @@
                                         </subviews>
                                     </view>
                                     <constraints>
-                                        <constraint firstItem="356" firstAttribute="top" secondItem="93" secondAttribute="top" constant="25" id="363"/>
                                         <constraint firstItem="135" firstAttribute="top" secondItem="118" secondAttribute="bottom" constant="8" symbolic="YES" id="372"/>
                                         <constraint firstItem="143" firstAttribute="top" secondItem="118" secondAttribute="bottom" constant="8" symbolic="YES" id="377"/>
                                         <constraint firstItem="147" firstAttribute="centerY" secondItem="143" secondAttribute="centerY" id="380"/>
-                                        <constraint firstAttribute="trailing" secondItem="356" secondAttribute="trailing" constant="16" id="932"/>
                                         <constraint firstItem="147" firstAttribute="trailing" secondItem="118" secondAttribute="trailing" constant="1" id="1184"/>
                                         <constraint firstItem="135" firstAttribute="leading" secondItem="93" secondAttribute="leading" constant="16" id="1353"/>
                                         <constraint firstItem="118" firstAttribute="top" secondItem="93" secondAttribute="top" constant="51" id="1354"/>
                                         <constraint firstItem="118" firstAttribute="leading" secondItem="93" secondAttribute="leading" constant="16" id="1355"/>
                                         <constraint firstItem="147" firstAttribute="leading" secondItem="143" secondAttribute="trailing" constant="7" id="1753"/>
                                         <constraint firstItem="143" firstAttribute="leading" secondItem="135" secondAttribute="trailing" constant="8" symbolic="YES" id="1754"/>
-                                        <constraint firstItem="YwZ-KI-rSK" firstAttribute="trailing" secondItem="356" secondAttribute="trailing" id="PKI-6m-Q6I"/>
+                                        <constraint firstItem="356" firstAttribute="trailing" secondItem="YwZ-KI-rSK" secondAttribute="trailing" id="3nU-yf-1rR"/>
+                                        <constraint firstItem="356" firstAttribute="leading" secondItem="IpS-DV-Sn0" secondAttribute="trailing" constant="8" symbolic="YES" id="8U8-Fa-z2k"/>
+                                        <constraint firstItem="356" firstAttribute="trailing" secondItem="268" secondAttribute="trailing" id="Kla-2O-OWk"/>
                                         <constraint firstItem="268" firstAttribute="leading" secondItem="135" secondAttribute="leading" id="UPB-NY-Lv6"/>
                                         <constraint firstItem="YwZ-KI-rSK" firstAttribute="leading" secondItem="135" secondAttribute="leading" id="dRa-LU-4KV"/>
                                         <constraint firstItem="268" firstAttribute="top" secondItem="YwZ-KI-rSK" secondAttribute="bottom" constant="2" id="hvp-SE-nbM"/>
-                                        <constraint firstItem="IpS-DV-Sn0" firstAttribute="centerY" secondItem="356" secondAttribute="centerY" id="leF-QZ-Ptt"/>
+                                        <constraint firstItem="356" firstAttribute="centerY" secondItem="IpS-DV-Sn0" secondAttribute="centerY" id="n5e-cl-NPM"/>
                                         <constraint firstAttribute="bottom" secondItem="268" secondAttribute="bottom" constant="11" id="rId-ce-9pV"/>
                                         <constraint firstItem="268" firstAttribute="leading" secondItem="IpS-DV-Sn0" secondAttribute="leading" id="uvf-8z-sG5"/>
+                                        <constraint firstItem="356" firstAttribute="top" secondItem="93" secondAttribute="top" constant="25" id="uzw-eQ-er3"/>
                                     </constraints>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -412,6 +418,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="ZOO-0B-9Yf"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.compileBib" id="CNW-Is-CMT"/>
                                                 </connections>
                                             </button>
@@ -427,6 +434,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="mHr-Tw-CUi"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" id="oZC-Go-CZg"/>
                                                 </connections>
                                             </textField>
@@ -435,6 +443,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="471"/>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="iMc-o7-J8F"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" previousBinding="1455" id="Y72-KB-QRa"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1453"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1453" id="1455"/>
@@ -453,6 +462,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="YLi-fV-RxS"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.customArgument" id="C2E-ID-kxz"/>
                                                 </connections>
                                             </textField>
@@ -466,7 +476,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="445">
-                                                <rect key="frame" x="99" y="229" width="69" height="26"/>
+                                                <rect key="frame" x="43" y="229" width="125" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="461">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -478,13 +488,11 @@
                                                             <menuItem title="Item 3" id="463"/>
                                                         </items>
                                                     </menu>
-                                                    <connections>
-                                                        <binding destination="-2" name="selectedValue" keyPath="self.compilable.finalCompiler.compilerPath" id="503"/>
-                                                    </connections>
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="744"/>
-                                                    <binding destination="-2" name="selectedObject" keyPath="self.compilable.finalCompiler.compilerPath" previousBinding="744" id="IbQ-nJ-ICn"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="SAC-j3-n7U"/>
+                                                    <binding destination="-2" name="selectedValue" keyPath="self.compilable.finalCompiler.compilerPath" previousBinding="744" id="NHJ-q4-wxR"/>
                                                 </connections>
                                             </popUpButton>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="eje-1T-Kr3">
@@ -497,6 +505,9 @@
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.hasFinalCompiler" id="sgP-x8-2B6"/>
+                                                </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Oqz-Cl-I5X">
                                                 <rect key="frame" x="16" y="148" width="151" height="17"/>
@@ -513,23 +524,24 @@
                                         </subviews>
                                     </view>
                                     <constraints>
-                                        <constraint firstItem="445" firstAttribute="top" secondItem="439" secondAttribute="top" constant="25" id="446"/>
                                         <constraint firstItem="443" firstAttribute="leading" secondItem="439" secondAttribute="leading" constant="16" id="451"/>
                                         <constraint firstItem="442" firstAttribute="leading" secondItem="443" secondAttribute="trailing" constant="8" symbolic="YES" id="453"/>
                                         <constraint firstItem="441" firstAttribute="leading" secondItem="442" secondAttribute="trailing" constant="7" id="459"/>
-                                        <constraint firstAttribute="trailing" secondItem="445" secondAttribute="trailing" constant="16" id="943"/>
                                         <constraint firstAttribute="trailing" secondItem="441" secondAttribute="trailing" constant="15" id="947"/>
                                         <constraint firstItem="444" firstAttribute="leading" secondItem="439" secondAttribute="leading" constant="16" id="1235"/>
                                         <constraint firstItem="442" firstAttribute="centerY" secondItem="441" secondAttribute="centerY" id="1303"/>
                                         <constraint firstItem="443" firstAttribute="top" secondItem="439" secondAttribute="top" constant="73" id="1360"/>
                                         <constraint firstItem="441" firstAttribute="top" secondItem="444" secondAttribute="bottom" constant="8" symbolic="YES" id="1877"/>
-                                        <constraint firstItem="Oqz-Cl-I5X" firstAttribute="trailing" secondItem="445" secondAttribute="trailing" id="7vg-9s-loG"/>
+                                        <constraint firstItem="445" firstAttribute="leading" secondItem="eje-1T-Kr3" secondAttribute="trailing" constant="8" symbolic="YES" id="FI0-Rn-LXo"/>
+                                        <constraint firstAttribute="trailing" secondItem="445" secondAttribute="trailing" constant="16" id="GJ2-Br-pJR"/>
+                                        <constraint firstItem="445" firstAttribute="trailing" secondItem="Oqz-Cl-I5X" secondAttribute="trailing" id="MmW-wN-xAK"/>
+                                        <constraint firstItem="445" firstAttribute="top" secondItem="439" secondAttribute="top" constant="25" id="R1s-HM-AQT"/>
+                                        <constraint firstItem="445" firstAttribute="centerY" secondItem="eje-1T-Kr3" secondAttribute="centerY" id="Rbc-QL-CsN"/>
                                         <constraint firstItem="444" firstAttribute="top" secondItem="eje-1T-Kr3" secondAttribute="bottom" constant="9" id="S73-YR-qPL"/>
                                         <constraint firstAttribute="bottom" secondItem="474" secondAttribute="bottom" constant="11" id="SAM-84-dNd"/>
                                         <constraint firstItem="474" firstAttribute="leading" secondItem="eje-1T-Kr3" secondAttribute="leading" id="YZJ-y6-2J3"/>
                                         <constraint firstItem="474" firstAttribute="leading" secondItem="443" secondAttribute="leading" id="dE9-2S-iT8"/>
                                         <constraint firstItem="Oqz-Cl-I5X" firstAttribute="leading" secondItem="443" secondAttribute="leading" id="fj9-aa-kwH"/>
-                                        <constraint firstItem="eje-1T-Kr3" firstAttribute="centerY" secondItem="445" secondAttribute="centerY" id="gUU-lK-FzK"/>
                                         <constraint firstItem="474" firstAttribute="top" secondItem="Oqz-Cl-I5X" secondAttribute="bottom" id="ktO-TQ-JqW"/>
                                     </constraints>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -553,6 +565,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="2nN-76-zLD"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.compileBib" id="QzQ-NC-0n8"/>
                                                 </connections>
                                             </button>
@@ -568,6 +581,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="L4L-qx-kW7"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" id="LEq-YS-Wrb"/>
                                                 </connections>
                                             </textField>
@@ -576,6 +590,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="426"/>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="F9m-jY-dZ6"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" previousBinding="1451" id="Q6v-0k-Jed"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1449"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1449" id="1451"/>
@@ -591,14 +606,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="400">
-                                                <rect key="frame" x="99" y="229" width="69" height="26"/>
+                                                <rect key="frame" x="43" y="229" width="125" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="420" id="416">
+                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="416">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <menu key="menu" title="OtherViews" id="417">
                                                         <items>
-                                                            <menuItem title="Item 1" state="on" id="420"/>
+                                                            <menuItem title="Item 1" id="420"/>
                                                             <menuItem title="Item 2" id="419"/>
                                                             <menuItem title="Item 3" id="418"/>
                                                         </items>
@@ -606,6 +621,7 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="741"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="SaH-02-M1N"/>
                                                     <binding destination="-2" name="selectedValue" keyPath="self.compilable.draftCompiler.compilerPath" previousBinding="741" id="Snk-af-vf1"/>
                                                 </connections>
                                             </popUpButton>
@@ -619,6 +635,9 @@
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.hasDraftCompiler" id="Pco-N5-zXr"/>
+                                                </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="429">
                                                 <rect key="frame" x="18" y="14" width="147" height="134"/>
@@ -633,6 +652,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="p2X-jF-H5d"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.customArgument" id="bJX-WR-9hK"/>
                                                 </connections>
                                             </textField>
@@ -651,11 +671,9 @@
                                         </subviews>
                                     </view>
                                     <constraints>
-                                        <constraint firstItem="400" firstAttribute="top" secondItem="394" secondAttribute="top" constant="25" id="401"/>
                                         <constraint firstItem="398" firstAttribute="leading" secondItem="394" secondAttribute="leading" constant="16" id="406"/>
                                         <constraint firstItem="397" firstAttribute="leading" secondItem="398" secondAttribute="trailing" constant="8" symbolic="YES" id="408"/>
                                         <constraint firstItem="396" firstAttribute="leading" secondItem="397" secondAttribute="trailing" constant="7" id="414"/>
-                                        <constraint firstAttribute="trailing" secondItem="400" secondAttribute="trailing" constant="16" id="924"/>
                                         <constraint firstAttribute="trailing" secondItem="396" secondAttribute="trailing" constant="15" id="927"/>
                                         <constraint firstItem="399" firstAttribute="leading" secondItem="394" secondAttribute="leading" constant="16" id="1230"/>
                                         <constraint firstAttribute="trailing" secondItem="399" secondAttribute="trailing" constant="16" id="1236"/>
@@ -666,10 +684,13 @@
                                         <constraint firstItem="TEw-Hb-NlQ" firstAttribute="trailing" secondItem="399" secondAttribute="trailing" id="2F1-ME-ax7"/>
                                         <constraint firstItem="429" firstAttribute="leading" secondItem="5WN-Wc-QaQ" secondAttribute="leading" id="Ake-xU-HNr"/>
                                         <constraint firstItem="429" firstAttribute="leading" secondItem="398" secondAttribute="leading" id="Kfr-Cg-O1n"/>
-                                        <constraint firstItem="5WN-Wc-QaQ" firstAttribute="centerY" secondItem="400" secondAttribute="centerY" id="L95-0m-cFf"/>
                                         <constraint firstItem="TEw-Hb-NlQ" firstAttribute="leading" secondItem="398" secondAttribute="leading" id="LAA-9A-7AU"/>
                                         <constraint firstItem="429" firstAttribute="top" secondItem="TEw-Hb-NlQ" secondAttribute="bottom" id="MTZ-hZ-z1g"/>
+                                        <constraint firstItem="400" firstAttribute="trailing" secondItem="399" secondAttribute="trailing" id="OEw-uL-ON7"/>
+                                        <constraint firstItem="400" firstAttribute="centerY" secondItem="5WN-Wc-QaQ" secondAttribute="centerY" id="acz-zn-pAd"/>
+                                        <constraint firstItem="400" firstAttribute="leading" secondItem="5WN-Wc-QaQ" secondAttribute="trailing" constant="3" id="jKI-LP-G47"/>
                                         <constraint firstAttribute="bottom" secondItem="429" secondAttribute="bottom" constant="11" id="jNW-Kp-IQg"/>
+                                        <constraint firstItem="400" firstAttribute="top" secondItem="394" secondAttribute="top" constant="25" id="u6k-nH-Z82"/>
                                     </constraints>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
