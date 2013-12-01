@@ -27,7 +27,7 @@
         <customObject id="-3" userLabel="Application"/>
         <arrayController objectClassName="NSMutableArray" avoidsEmptySelection="NO" id="1797">
             <connections>
-                <binding destination="-2" name="contentSet" keyPath="self.doc.mainDocuments" id="1805"/>
+                <binding destination="-2" name="contentSet" keyPath="self.compilable.mainDocuments" id="2fr-tI-no6"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="492"/>
@@ -36,7 +36,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1499" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="196" y="132" width="640" height="509"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="1500">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="509"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -118,8 +118,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.name" id="1815"/>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.name" id="1818"/>
+                                        <binding destination="-2" name="value" keyPath="self.compilable.name" id="VrN-jJ-vQ4"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.compilable.name" id="dmI-PJ-41h"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="685">
@@ -131,8 +131,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.type" id="1816"/>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.type" id="1819"/>
+                                        <binding destination="-2" name="value" keyPath="self.compilable.type" id="EbM-Uq-jk0"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.compilable.type" id="Rzl-nT-TZP"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="689">
@@ -145,7 +145,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.doc.lastCompile" id="1778"/>
+                                        <binding destination="-2" name="value" keyPath="self.compilable.lastCompile" id="sny-op-nMa"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="693">
@@ -158,7 +158,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.doc.lastChanged" id="1786"/>
+                                        <binding destination="-2" name="value" keyPath="self.compilable.lastChanged" id="SNt-0c-zGK"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="697">
@@ -170,8 +170,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.doc.mainCompilable.path" id="1817"/>
-                                        <binding destination="-2" name="toolTip" keyPath="self.doc.mainCompilable.path" id="1820"/>
+                                        <binding destination="-2" name="value" keyPath="self.compilable.path" id="CdL-Pi-kDB"/>
+                                        <binding destination="-2" name="toolTip" keyPath="self.compilable.path" id="uju-B1-P1k"/>
                                     </connections>
                                 </textField>
                             </subviews>
@@ -239,11 +239,11 @@
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.compileBib" id="548"/>
+                                                        <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="548"/>
                                                     </connections>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.compileBib" id="719"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="ZZA-cN-jFp"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="135">
@@ -258,7 +258,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.numberOfCompiles" id="1461"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.numberOfCompiles" id="NFI-dC-G9U"/>
                                                 </connections>
                                             </textField>
                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="143">
@@ -266,7 +266,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="144"/>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.numberOfCompiles" previousBinding="1447" id="1448"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.numberOfCompiles" previousBinding="1447" id="Ysb-es-iWu"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1445"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1445" id="1447"/>
                                                 </connections>
@@ -303,7 +303,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="self.doc.liveCompiler.customArgument" id="533"/>
+                                                                <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.customArgument" id="pVS-e1-2Zb"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -334,7 +334,7 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="508"/>
-                                                    <binding destination="-2" name="selectedValue" keyPath="self.doc.liveCompiler.compilerPath" previousBinding="508" id="509"/>
+                                                    <binding destination="-2" name="selectedValue" keyPath="self.compilable.liveCompiler.compilerPath" previousBinding="508" id="1qq-Jo-Eo4"/>
                                                 </connections>
                                             </popUpButton>
                                         </subviews>
@@ -378,7 +378,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.compileBib" id="558"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.compileBib" id="CNW-Is-CMT"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="443">
@@ -393,7 +393,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.numberOfCompiles" id="725"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" id="oZC-Go-CZg"/>
                                                 </connections>
                                             </textField>
                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="442">
@@ -401,7 +401,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="471"/>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.numberOfCompiles" previousBinding="1455" id="1456"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" previousBinding="1455" id="Y72-KB-QRa"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1453"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1453" id="1455"/>
                                                 </connections>
@@ -435,7 +435,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="self.doc.finalCompiler.customArgument" id="543"/>
+                                                                <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.customArgument" id="C2E-ID-kxz"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -461,12 +461,12 @@
                                                         </items>
                                                     </menu>
                                                     <connections>
-                                                        <binding destination="-2" name="selectedValue" keyPath="self.doc.finalCompiler.compilerPath" id="503"/>
+                                                        <binding destination="-2" name="selectedValue" keyPath="self.compilable.finalCompiler.compilerPath" id="503"/>
                                                     </connections>
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="744"/>
-                                                    <binding destination="-2" name="selectedObject" keyPath="self.doc.finalCompiler.compilerPath" previousBinding="744" id="746"/>
+                                                    <binding destination="-2" name="selectedObject" keyPath="self.compilable.finalCompiler.compilerPath" previousBinding="744" id="IbQ-nJ-ICn"/>
                                                 </connections>
                                             </popUpButton>
                                         </subviews>
@@ -510,7 +510,7 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.compileBib" id="553"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.compileBib" id="QzQ-NC-0n8"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="398">
@@ -525,7 +525,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.numberOfCompiles" id="723"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" id="LEq-YS-Wrb"/>
                                                 </connections>
                                             </textField>
                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="397">
@@ -533,7 +533,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="426"/>
                                                 <connections>
-                                                    <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.numberOfCompiles" previousBinding="1451" id="1452"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" previousBinding="1451" id="Q6v-0k-Jed"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1449"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1449" id="1451"/>
                                                 </connections>
@@ -567,7 +567,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="self.doc.draftCompiler.customArgument" id="538"/>
+                                                                <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.customArgument" id="bJX-WR-9hK"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -595,7 +595,7 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="741"/>
-                                                    <binding destination="-2" name="selectedValue" keyPath="self.doc.draftCompiler.compilerPath" id="742"/>
+                                                    <binding destination="-2" name="selectedValue" keyPath="self.compilable.draftCompiler.compilerPath" previousBinding="741" id="Snk-af-vf1"/>
                                                 </connections>
                                             </popUpButton>
                                         </subviews>
@@ -796,8 +796,8 @@
                 </constraints>
             </view>
             <connections>
-                <binding destination="-2" name="representedFilename" keyPath="self.doc.mainCompilable.name" id="vL1-zt-Mg6"/>
-                <binding destination="-2" name="title" keyPath="self.doc.mainCompilable.name" previousBinding="vL1-zt-Mg6" id="VxJ-iw-g2k"/>
+                <binding destination="-2" name="title" keyPath="self.compilable.name" previousBinding="w1M-eO-HEj" id="laj-RC-Y8G"/>
+                <binding destination="-2" name="representedFilename" keyPath="self.compilable.name" id="w1M-eO-HEj"/>
                 <outlet property="delegate" destination="-2" id="1566"/>
             </connections>
         </window>

@@ -41,24 +41,9 @@
     }
 }
 
-- (void)setDocument:(DocumentModel *)document {
-    if (document != _document) {
-        if (_document) {
-            [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
-        }
-        _document = document;
-        self.infoWindowController.doc = document;
-        if (_document) {
-            [self.document addObserver:self forKeyPath:@"self.mainCompilable.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
-        }
-    }
-}
-
-
 -(void)loadView {
     [super loadView];
     self.infoWindowController = [[InfoWindowController alloc] init];
-    self.infoWindowController.doc = self.document;
     self.infoWindowController.compilable = self.compilable;
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
@@ -460,7 +445,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         return;
-    self.infoWindowController.doc = [self.document.project modelForTexPath:model.filePath];
+    self.infoWindowController.compilable = [self.compilable modelForTexPath:model.filePath];
     self.infoWindowController.window.isVisible = YES;
 }
 
@@ -527,9 +512,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)openFileInDefApp: (NSString*)path {
     NSArray *allowedFileTypes = [NSArray arrayWithObjects:@"tex", nil];
-    DDLogInfo(@"%@ - %@", path, self.document.mainCompilable.path);
+    DDLogInfo(@"%@ - %@", path, self.compilable.path);
     if ([allowedFileTypes containsObject:[path pathExtension]]) {
-        if(![path isEqualToString:self.document.mainCompilable.path]) {
+        if(![path isEqualToString:self.compilable.path]) {
             [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
         }
         return;

@@ -35,9 +35,7 @@
     __weak IBOutlet NSButton *infoLoadButton;
 }
 
-/** Documentmodel which is displayed */
-@property (assign,nonatomic) DocumentModel* document;
-
+/** Model which is displayed */
 @property (assign,nonatomic) Compilable* compilable;
 
 

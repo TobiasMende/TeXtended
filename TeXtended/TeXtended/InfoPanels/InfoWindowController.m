@@ -50,21 +50,21 @@
     [texPathPanel setCanCreateDirectories:YES];
     [texPathPanel setCanSelectHiddenExtension:YES];
     [texPathPanel setAllowedFileTypes:[NSArray arrayWithObjects:@"tex", nil]];
-    NSURL *url= [NSURL fileURLWithPath:[self.doc.mainCompilable.path stringByDeletingLastPathComponent]];
+    NSURL *url= [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
     [texPathPanel setDirectoryURL:url];
     [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [texPathPanel URL];
-            DocumentModel *m = [self.doc modelForTexPath:file.path];
-            [self.doc addMainDocumentsObject:m];
+            DocumentModel *m = [self.compilable modelForTexPath:file.path];
+            [self.compilable addMainDocumentsObject:m];
         }
     }];
 }
 
 - (IBAction)removeMainDocument:(id)sender {
-    NSMutableArray* mainDocs = [[self.doc.mainDocuments allObjects] mutableCopy];
+    NSMutableArray* mainDocs = [[self.compilable.mainDocuments allObjects] mutableCopy];
     [mainDocs removeObjectAtIndex:[self.table selectedRow]];
-    self.doc.mainDocuments = [NSSet setWithArray:mainDocs];
+    self.compilable.mainDocuments = [NSSet setWithArray:mainDocs];
     [self.table reloadData];
 }
 
