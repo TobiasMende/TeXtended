@@ -18,4 +18,8 @@
 @property CompileSetting *draftCompiler;
 @property CompileSetting *finalCompiler;
 
+@property BOOL hasLiveCompiler;
+@property BOOL hasDraftCompiler;
+@property BOOL hasFinalCompiler;
+
 @end

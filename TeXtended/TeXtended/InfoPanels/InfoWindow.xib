@@ -266,13 +266,10 @@
                                                 <buttonCell key="cell" type="check" title="Bibliography" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="119">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
-                                                    <connections>
-                                                        <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="548"/>
-                                                    </connections>
                                                 </buttonCell>
                                                 <connections>
                                                     <binding destination="-2" name="enabled" keyPath="self.compilable.hasLiveCompiler" id="QsM-ok-wni"/>
-                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="ZZA-cN-jFp"/>
+                                                    <binding destination="-2" name="value" keyPath="self.compilable.liveCompiler.compileBib" id="fh9-Gr-aKN"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="135">
@@ -491,9 +488,6 @@
                                                             <menuItem title="Item 3" id="463"/>
                                                         </items>
                                                     </menu>
-                                                    <connections>
-                                                        <binding destination="-2" name="selectedValue" keyPath="self.compilable.finalCompiler.compilerPath" id="503"/>
-                                                    </connections>
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="744"/>

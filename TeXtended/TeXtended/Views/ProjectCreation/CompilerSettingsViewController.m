@@ -34,14 +34,14 @@
 
 
 - (void)configureProjectModel:(ProjectModel *)project {
-    if (![self.liveCompiler isEqualTo:[CompileSetting defaultLiveCompileSetting]]) {
+    if (self.hasLiveCompiler) {
         project.liveCompiler = [self.liveCompiler copy];
     }
-    if (![self.draftCompiler isEqualTo:[CompileSetting defaultDraftCompileSetting]]) {
-        project.draftCompiler = [self.draftCompiler copy];
-    }
-    if (![self.finalCompiler isEqualTo:[CompileSetting defaultFinalCompileSetting]]) {
+    if (self.hasFinalCompiler) {
         project.finalCompiler = [self.finalCompiler copy];
+    }
+    if (self.hasDraftCompiler) {
+        project.draftCompiler = [self.draftCompiler copy];
     }
 }
 @end
