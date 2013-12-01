@@ -40,6 +40,7 @@
         self.documents = [aDecoder decodeObjectForKey:@"documents"];
         self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
         self.properties = [aDecoder decodeObjectForKey:@"properties"];
+        [self initDefaults];
     }
     return self;
 }
@@ -64,18 +65,15 @@
 
 
 - (void)initDefaults {
-    self.documents = [NSMutableSet new];
-    self.bibFiles = [NSMutableSet new];
-    if (!self.liveCompiler) {
-        self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
+    if (!self.documents) {
+        self.documents = [NSMutableSet new];
     }
-    if (!self.draftCompiler) {
-        self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
+    if (!self.bibFiles) {
+        self.bibFiles = [NSMutableSet new];
     }
-    if (!self.finalCompiler) {
-        self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
-    }
-    //FIME: Complete implementation
+    [self updateCompileSettingBindings:live];
+    [self updateCompileSettingBindings:draft];
+    [self updateCompileSettingBindings:final];
 }
 
 
@@ -141,6 +139,7 @@
     return self;
 }
 
+# pragma mark - KVO
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];

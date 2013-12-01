@@ -84,28 +84,13 @@
 }
 
 
-- (void)binAllTo:(CompileSetting *)setting {
+- (void)bindAllTo:(CompileSetting *)setting {
     [self bind:@"compilerPath" toObject:setting withKeyPath:@"compilerPath" options:nil];
     [self bind:@"compileBib" toObject:setting withKeyPath:@"compileBib" options:nil];
     [self bind:@"numberOfCompiles" toObject:setting withKeyPath:@"numberOfCompiles" options:nil];
     [self bind:@"customArgument" toObject:setting withKeyPath:@"customArgument" options:nil];
 }
 
-- (BOOL)containsSameValuesAs:(CompileSetting *)other {
-    if (![self.compilerPath isEqualToString:other.compilerPath]) {
-        return NO;
-    }
-    if (![self.compileBib isEqualToNumber:other.compileBib]) {
-        return NO;
-    }
-    if (![self.numberOfCompiles isEqualToNumber:other.numberOfCompiles]) {
-        return NO;
-    }
-    if (![self.customArgument isEqualToString:other.customArgument]) {
-        return NO;
-    }
-    return YES;
-}
 
 - (void) initDefaults {
     DDLogError(@"NOOOOO");
