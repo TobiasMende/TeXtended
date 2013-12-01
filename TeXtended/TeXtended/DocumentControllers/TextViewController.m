@@ -371,7 +371,7 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
         if (self.liveScrolling) {
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
         }
-    }
+    } 
 }
 
 

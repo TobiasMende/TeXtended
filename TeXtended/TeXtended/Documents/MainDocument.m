@@ -93,7 +93,7 @@
     [statisticPanelController showStatistics:dc.model.texPath];
 }
 
-- (void)openNewTabForCompilable:(Compilable*)model {
+- (void)openNewTabForCompilable:(DocumentModel*)model {
     for (DocumentController *dc in self.documentControllers) {
         if (dc.model == model) {
             return;

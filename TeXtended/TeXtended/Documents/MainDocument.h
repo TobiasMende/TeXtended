@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, StatsPanelController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, StatsPanelController, DocumentModel;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
@@ -25,5 +25,5 @@
 - (void)initializeDocumentControllers;
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
 - (void)showStatisticsForModel:(DocumentController *)dc;
-- (void)openNewTabForCompilable:(Compilable*)model;
+- (void)openNewTabForCompilable:(DocumentModel*)model;
 @end
