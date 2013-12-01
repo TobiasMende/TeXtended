@@ -441,6 +441,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     DDLogError(@"openInfoViewForFile not implemented yet...");
 }
 
+- (IBAction)showInformationForFile:(id)sender {
+    FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
+    if(!model)
+        return;
+    [self.document.project modelForTexPath:model.filePath];
+}
+
 - (FileViewModel*) createFile:(NSString*)atPath {
     NSString* newPath = [atPath stringByAppendingPathComponent:@"New File.tex"];
     
