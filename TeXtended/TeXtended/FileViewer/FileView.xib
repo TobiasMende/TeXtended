@@ -117,7 +117,7 @@
                 <menuItem title="Information" id="219">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="showInformationForFile:" target="-2" id="CD3-Yn-OUH"/>
+                        <action selector="openInfoViewForFile:" target="-2" id="Mlq-Lw-Y4W"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Open Folder" id="220">
@@ -174,7 +174,7 @@
                 <menuItem title="Information" id="4mG-gJ-5J9">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openInfoViewForFile:" target="-2" id="til-og-8ME"/>
+                        <action selector="showInformationForFile:" target="-2" id="8wv-Re-hsX"/>
                         <binding destination="-2" name="enabled" keyPath="self.document.project" id="1SF-6m-HcG"/>
                     </connections>
                 </menuItem>

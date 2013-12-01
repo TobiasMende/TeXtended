@@ -438,14 +438,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (IBAction)openInfoViewForFile:(id)sender {
-    DDLogError(@"openInfoViewForFile not implemented yet...");
+    self.infoWindowController.window.isVisible = YES;
 }
 
 - (IBAction)showInformationForFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
         return;
-    [self.document.project modelForTexPath:model.filePath];
+    self.infoWindowController.doc = [self.document.project modelForTexPath:model.filePath];
+    self.infoWindowController.window.isVisible = YES;
 }
 
 - (FileViewModel*) createFile:(NSString*)atPath {
