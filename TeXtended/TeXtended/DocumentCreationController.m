@@ -65,6 +65,7 @@
             }];
             [weakSelf addDocument:document];
             [document makeWindowControllers];
+            [document showWindows];
         }
     };
     [self.projectCreationWindowController showWindow:self];
