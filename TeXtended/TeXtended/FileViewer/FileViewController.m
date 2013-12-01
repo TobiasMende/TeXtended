@@ -9,6 +9,7 @@
 
 #import "FileViewController.h"
 #import "DocumentModel.h"
+#import "Compilable.h"
 #import "ProjectModel.h"
 #import "InfoWindowController.h"
 #import "FileViewModel.h"
@@ -25,6 +26,19 @@
     if (self) {
     }
     return self;
+}
+
+- (void)setCompilable:(Compilable *)compilable {
+    if (compilable != _compilable) {
+        if (_compilable) {
+            [_compilable removeObserver:self forKeyPath:@"self.path"];
+        }
+        _compilable = compilable;
+        self.infoWindowController.compilable = compilable;
+        if (_compilable) {
+            [self.compilable addObserver:self forKeyPath:@"self.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        }
+    }
 }
 
 - (void)setDocument:(DocumentModel *)document {
@@ -45,6 +59,7 @@
     [super loadView];
     self.infoWindowController = [[InfoWindowController alloc] init];
     self.infoWindowController.doc = self.document;
+    self.infoWindowController.compilable = self.compilable;
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
@@ -546,15 +561,15 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                        change:(NSDictionary *)change context:(void*)context {
-    if ([keyPath isEqualToString:@"self.mainCompilable.path"]) {
-        if (!self.document.mainCompilable.path) {
+    if ([keyPath isEqualToString:@"self.path"]) {
+        if (!self.compilable.path) {
             return;
         }
         
         if (observer) {
             [PathObserverFactory removeObserver:self];
         }
-        NSString *path = [self.document.mainCompilable.path stringByDeletingLastPathComponent];
+        NSString *path = [self.compilable.path stringByDeletingLastPathComponent];
         observer = [PathObserverFactory pathObserverForPath:path];
         [self loadPath:[NSURL fileURLWithPath:path]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel)];
@@ -563,7 +578,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (void)updateFileViewModel {
-    if (!self.document.mainCompilable.path) {
+    if (!self.compilable.path) {
         return;
     }
     
@@ -571,7 +586,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     
-    NSURL *url  = [NSURL fileURLWithPath:[self.document.mainCompilable.path stringByDeletingLastPathComponent]];
+    NSURL *url  = [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
     [self recursiveFileUpdater:url];
     [outline reloadData];
 }
@@ -579,7 +594,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
-    [self.document removeObserver:self forKeyPath:@"self.mainCompilable.path"];
+    [self.compilable removeObserver:self forKeyPath:@"self.path"];
     DDLogVerbose(@"dealloc");
 }
 

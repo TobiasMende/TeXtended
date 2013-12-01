@@ -38,6 +38,8 @@
 /** Documentmodel which is displayed */
 @property (assign,nonatomic) DocumentModel* document;
 
+@property (assign,nonatomic) Compilable* compilable;
+
 
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;
