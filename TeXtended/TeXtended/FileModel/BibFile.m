@@ -24,7 +24,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.lastRead forKey:@"lastRead"];
-    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeConditionalObject:self.project forKey:@"project"];
     [aCoder encodeObject:self.path forKey:@"path"];
 }
 

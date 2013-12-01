@@ -37,10 +37,7 @@
 
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
     @try {
-        NSMutableData *data = [NSMutableData new];
-        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-        [self.model encodeWithCoder:archiver];
-        [archiver finishEncoding];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
         [data writeToURL:url atomically:YES];
         for( DocumentController *dc in self.documentControllers) {
             NSError *error;
@@ -59,10 +56,12 @@
 
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
-    NSData *data = [NSData dataWithContentsOfURL:absoluteURL];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     @try {
-        self.model = [[ProjectModel alloc] initWithCoder:unarchiver andPath:[absoluteURL path]];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:absoluteURL]];
+        if (obj) {
+            self.model = (ProjectModel *)obj;
+            [self.model finishInitWithPath:[absoluteURL path]];
+        }
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't read content: %@", exception.userInfo);

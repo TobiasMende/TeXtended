@@ -37,26 +37,28 @@ static const NSSet *COMPILER_NAMES;
         self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
         self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
         self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
-        NSSet *mainDocuments =[aDecoder decodeObjectForKey:@"mainDocuments"];
-        if (mainDocuments) {
             @try {
-                if (mainDocuments.count > 0) {
+                NSSet *mainDocuments =[aDecoder decodeObjectForKey:@"mainDocuments"];
+                if (mainDocuments && mainDocuments.count > 0) {
                     self.mainDocuments = mainDocuments;
                 }
             }
             @catch (NSException *exception) {
                 DDLogVerbose(@"Invalid mainDocuments set. Exception: %@", exception);
             }
-        }
     }
     return self;
+}
+
+- (void)finishInitWithPath:(NSString *)absolutePath {
+    
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
     [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
     [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
-    [aCoder encodeObject:self.mainDocuments forKey:@"mainDocuments"];
+    [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
 }
 
 - (NSString *)dictionaryKey {

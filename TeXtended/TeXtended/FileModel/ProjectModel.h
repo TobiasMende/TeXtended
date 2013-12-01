@@ -36,5 +36,4 @@
 
 - (NSString*) folderPath;
 - (void) addBibFileWithPath:(NSString *)path;
-- (id)initWithCoder:(NSCoder *)aDecoder andPath:(NSString *)path;
 @end

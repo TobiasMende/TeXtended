@@ -142,10 +142,8 @@ static NSArray *TMTEncodingsToCheck;
         self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
         self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
         self.project = [aDecoder decodeObjectForKey:@"project"];
-        NSString *relativePdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
-        NSString *relativeTexPath = [aDecoder decodeObjectForKey:@"texPath"];
-        self.pdfPath = [relativePdfPath absolutePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
-        self.texPath = [relativeTexPath absolutePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
+        self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
+        self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
         self.outlineElements = [aDecoder decodeObjectForKey:@"outlineElements"];
         self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
         self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
@@ -153,11 +151,17 @@ static NSArray *TMTEncodingsToCheck;
     return self;
 }
 
+- (void)finishInitWithPath:(NSString *)absolutePath {
+    self.pdfPath = [self.pdfPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+    self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
     [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
     [aCoder encodeObject:self.encoding forKey:@"encoding"];
-    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeConditionalObject:self.project forKey:@"project"];
     NSString *relativePdfPath = [self.pdfPath relativePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
     NSString *relativeTexPath = [self.texPath relativePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
     [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
@@ -165,7 +169,6 @@ static NSArray *TMTEncodingsToCheck;
     [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
     [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
     [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
-    [super encodeWithCoder:aCoder];
 }
 
 - (void)initDefaults {
