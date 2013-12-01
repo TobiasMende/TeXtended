@@ -66,14 +66,6 @@
  
  @param setting the settings to bind to
  */
-- (void) binAllTo:(CompileSetting *)setting;
+- (void) bindAllTo:(CompileSetting *)setting;
 
-/**
- Method for checking equality of the properties
- 
- @param other the other setting object to check against
- 
- @return `YES` if all properties are equal, `NO` otherwise.
- */
-- (BOOL) containsSameValuesAs:(CompileSetting *)other;
 @end

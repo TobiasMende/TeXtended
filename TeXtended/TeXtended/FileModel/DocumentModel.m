@@ -23,8 +23,6 @@ static NSArray *TMTEncodingsToCheck;
 - (void) registerProjectObserver;
 - (void) unregisterProjectObserver;
 - (void) initDefaults;
-- (void) clearInheretedCompilers;
-- (void) setupInheritedCompilers;
 @end
 
 @implementation DocumentModel
@@ -147,6 +145,7 @@ static NSArray *TMTEncodingsToCheck;
         self.outlineElements = [aDecoder decodeObjectForKey:@"outlineElements"];
         self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
         self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
+        [self initDefaults];
     }
     return self;
 }
@@ -173,7 +172,6 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)initDefaults {
     __weak typeof(self) weakSelf = self;
-    [self setupInheritedCompilers];
     if (!self.liveCompile) {
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
         removeLiveCompileObserver = ^(void) {
@@ -186,49 +184,11 @@ static NSArray *TMTEncodingsToCheck;
             [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
         };
     }
-}
-
-- (void)setupInheritedCompilers {
-    if (self.project) {
-        if (!self.liveCompiler) {
-            self.liveCompiler = [self.project.liveCompiler copy];
-            [self.liveCompiler binAllTo:self.project.liveCompiler];
-        }
-        if (!self.draftCompiler) {
-            self.draftCompiler = [self.project.draftCompiler copy];
-            [self.draftCompiler binAllTo:self.project.draftCompiler];
-        }
-        if (!self.finalCompiler) {
-            self.finalCompiler = [self.project.finalCompiler copy];
-            [self.finalCompiler binAllTo:self.project.finalCompiler];
-        }
-    } else {
-        if (!self.liveCompiler) {
-            self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
-        }
-        if (!self.draftCompiler) {
-            self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
-        }
-        if (!self.finalCompiler) {
-            self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
-        }
-    }
-}
-
-- (void)clearInheretedCompilers {
-    if ([self.liveCompiler containsSameValuesAs:self.project.liveCompiler]) {
-        self.liveCompiler = nil;
-    }
-    if ([self.draftCompiler containsSameValuesAs:self.project.draftCompiler]) {
-        self.draftCompiler = nil;
-    }
-    if ([self.finalCompiler containsSameValuesAs:self.project.finalCompiler]) {
-        self.finalCompiler = nil;
-    }
     
-    
+    [self updateCompileSettingBindings:live];
+    [self updateCompileSettingBindings:draft];
+    [self updateCompileSettingBindings:final];
 }
-
 - (void)setLiveCompile:(NSNumber *)liveCompile {
     if (removeLiveCompileObserver) {
         removeLiveCompileObserver();
@@ -346,11 +306,9 @@ static NSArray *TMTEncodingsToCheck;
     if (self == self.mainCompilable) {
         [TMTNotificationCenter removeCenterForCompilable:self];
     }
-    [self clearInheretedCompilers];
     [self unregisterProjectObserver];
     _project = project;
     [self registerProjectObserver];
-    [self setupInheritedCompilers];
 }
 
 
@@ -367,6 +325,45 @@ static NSArray *TMTEncodingsToCheck;
     }
     return path;
 }
+
+- (void)updateCompileSettingBindings:(CompileMode)mode {
+    switch (mode) {
+        case live:
+        if (!self.hasLiveCompiler) {
+            if (self.project) {
+                self.liveCompiler = [self.project.liveCompiler copy];
+                [self.liveCompiler bindAllTo:self.project.liveCompiler];
+            } else {
+                [super updateCompileSettingBindings:mode];
+            }
+        }
+        break;
+        case draft:
+        if (!self.hasDraftCompiler) {
+            if (self.project) {
+                self.draftCompiler = [self.project.draftCompiler copy];
+                [self.draftCompiler bindAllTo:self.project.draftCompiler];
+            } else {
+                [super updateCompileSettingBindings:mode];
+            }
+        }
+        break;
+        case final:
+        if (!self.hasFinalCompiler) {
+            if (self.project) {
+                self.finalCompiler = [self.project.finalCompiler copy];
+                [self.finalCompiler bindAllTo:self.project.finalCompiler];
+            } else {
+                [super updateCompileSettingBindings:mode];
+            }
+        }
+        break;
+        default:
+        break;
+    }
+}
+
+# pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     // Pass notifications if change affects this model:
@@ -451,6 +448,10 @@ static NSArray *TMTEncodingsToCheck;
 - (NSString *)path {
     return self.texPath;
 }
+
+
+# pragma mark - Compile Setting Handling
+
 
 
 #pragma mark -
