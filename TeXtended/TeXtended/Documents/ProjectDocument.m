@@ -28,30 +28,33 @@
     return self;
 }
 
-
-- (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
-    //FIXME: implement this!
+- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
+    NSLog(@"1");
+   //[self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+    [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation completionHandler:nil];
+    NSLog(@"3");
 }
 
-
+- (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
+    [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+}
 
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
-    @try {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
-        [data writeToURL:url atomically:YES];
-        for( DocumentController *dc in self.documentControllers) {
-            NSError *error;
-            [dc saveDocumentModel:&error];
-            if (error) {
-                DDLogError(@"Can't save texfile %@. Error: %@", dc.model.texPath, error.userInfo);
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        DDLogError(@"Can't write content: %@", exception.userInfo);
-    }
-
-    
+    NSLog(@"2");
+//    @try {
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
+//        [data writeToURL:url atomically:YES];
+//        for( DocumentController *dc in self.documentControllers) {
+//            NSError *error;
+//            [dc saveDocumentModel:&error];
+//            if (error) {
+//                DDLogError(@"Can't save texfile %@. Error: %@", dc.model.texPath, error.userInfo);
+//            }
+//        }
+//    }
+//    @catch (NSException *exception) {
+//        DDLogError(@"Can't write content: %@", exception.userInfo);
+//    }    
 }
 
 
@@ -92,9 +95,6 @@
         return [projectFiles objectAtIndex:0];
     }
     return nil;
-    
-    
-    
 }
 
 

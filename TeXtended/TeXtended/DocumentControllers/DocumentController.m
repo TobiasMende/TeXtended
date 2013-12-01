@@ -128,7 +128,9 @@
 #pragma mark - First Responder Delegate
 
 - (void)saveDocument:(id)sender {
+    
     [self.mainDocument saveDocument:self];
+    
 }
 
 - (void)liveCompile:(id)sender {
