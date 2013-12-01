@@ -60,6 +60,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     [self.fileViewArea setContentView:self.fileViewController.view];
     [self.fileViewController setCompilable:self.mainDocument.model];
+    self.fileViewController.mainDocument = self.mainDocument;
     
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];

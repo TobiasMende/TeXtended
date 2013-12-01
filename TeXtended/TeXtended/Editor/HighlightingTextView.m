@@ -63,7 +63,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 + (void)initialize {
     if (self == [HighlightingTextView class]) {
-        DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER,TMT_REPLACE_INVISIBLE_SPACES, TMT_REPLACE_INVISIBLE_LINEBREAKS, nil];
+        DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR,TMT_EDITOR_SELECTION_FOREGROUND_COLOR,TMT_EDITOR_LINE_WRAP_MODE,TMT_EDITOR_HARD_WRAP_AFTER,TMT_REPLACE_INVISIBLE_SPACES, TMT_REPLACE_INVISIBLE_LINEBREAKS, TMTLineSpacing, nil];
     }
 }
 
@@ -794,6 +794,15 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [self setNeedsDisplay:YES];
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_LINEBREAKS]]) {
         [self setNeedsDisplay:YES];
+    } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTLineSpacing]]) {
+        NSMutableParagraphStyle *ps = [[self defaultParagraphStyle] mutableCopy];
+        CGFloat spacing = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMTLineSpacing] floatValue];
+        ps.lineSpacing = spacing;
+        ps.minimumLineHeight = spacing;
+        ps.maximumLineHeight = spacing;
+        [super setDefaultParagraphStyle:(NSParagraphStyle*)ps];
+        [self setNeedsDisplay:YES];
+        DDLogCInfo(@"%@ - %f", TMTLineSpacing, spacing);
     }
 }
 

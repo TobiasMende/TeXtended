@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver, Compilable;
+@class DocumentModel, FileViewModel, InfoWindowController, DocumentController, PathObserver, Compilable, MainDocument;
 
 /**
  This view controller handles the FileView and other important objects connected to it.
@@ -38,6 +38,7 @@
 /** Model which is displayed */
 @property (assign,nonatomic) Compilable* compilable;
 
+@property MainDocument* mainDocument;
 
 /** Controller for inforview */
 @property InfoWindowController *infoWindowController;
