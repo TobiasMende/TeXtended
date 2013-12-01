@@ -27,8 +27,8 @@
 
 /** Tableview displaying the Maindocuments */
 @property (assign) IBOutlet NSTableView *table;
-/** Documentmodel which is displayed */
-@property (strong) DocumentModel* doc;
+/** Model which is displayed */
+@property (strong) Compilable* compilable;
 /** Label for the Document- or Projectname */
 @property (assign) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
