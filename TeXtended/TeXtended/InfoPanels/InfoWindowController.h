@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DocumentModel,CompileFlowHandler,Compilable;
+@class DocumentModel,CompileFlowHandler,Compilable,EncodingController;
 
 /**
  This view controller handles the InfoWindow and other important objects connected to it.
@@ -22,6 +22,8 @@
     NSMutableArray *texDocs;
     
     NSOpenPanel *texPathPanel;
+    
+    NSArray *encodings;
 }
 
 
@@ -60,6 +62,8 @@
 /** Path of the Document */
 @property (assign) NSString* documentPath;
 
+@property IBOutlet NSPopUpButton* encodingPopUp;
+
 /** Method for catching clicks on the addButton
  @param sender is the sender
  */
@@ -69,6 +73,8 @@
  @param sender is the sender
  */
 - (IBAction)removeMainDocument:(id)sender;
+
+- (IBAction)encodingSelectionChange:(id)sender;
 
 /**
  
