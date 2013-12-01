@@ -1797,7 +1797,7 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="J8S-At-frZ">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" id="yBh-GE-9gf">
                                         <real key="roundingIncrement" value="0.0"/>
-                                        <real key="minimum" value="1"/>
+                                        <real key="minimum" value="0.0"/>
                                         <metadata>
                                             <bool key="localizesFormat" value="YES"/>
                                         </metadata>
