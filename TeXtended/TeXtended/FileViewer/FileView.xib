@@ -80,13 +80,13 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="title" keyPath="self.document.mainCompilable.infoTitle" id="342"/>
-                        <binding destination="-2" name="enabled" keyPath="self.document.mainCompilable.path" id="314">
+                        <binding destination="-2" name="enabled" keyPath="self.compilable.path" id="KF3-ly-Seh">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
                         </binding>
                         <binding destination="-2" name="value" keyPath="self.infoWindowController.window.isVisible" id="395"/>
+                        <binding destination="-2" name="title" keyPath="self.compilable.infoTitle" id="chI-7D-2p0"/>
                     </connections>
                 </button>
             </subviews>
@@ -131,7 +131,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="renameProject:" target="-2" id="352"/>
-                        <binding destination="-2" name="enabled" keyPath="self.document.project" id="422">
+                        <binding destination="-2" name="enabled" keyPath="self.compilable.project" id="2PW-lW-j5J">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
@@ -142,7 +142,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="closeProject:" target="-2" id="353"/>
-                        <binding destination="-2" name="enabled" keyPath="self.document.project" id="424">
+                        <binding destination="-2" name="enabled" keyPath="self.compilable.project" id="iBl-hx-UpP">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
@@ -175,7 +175,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showInformationForFile:" target="-2" id="8wv-Re-hsX"/>
-                        <binding destination="-2" name="enabled" keyPath="self.document.project" id="1SF-6m-HcG"/>
+                        <binding destination="-2" name="enabled" keyPath="self.compilable.project" id="okU-th-ufS"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Rename..." id="230">
