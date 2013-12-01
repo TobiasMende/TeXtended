@@ -28,12 +28,19 @@
     return self;
 }
 
-
-- (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
-    //FIXME: implement this!
+- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
+   [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
 }
 
+- (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
+    [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+}
 
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
+    [self saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *errorOrNil) {
+        [delegate performSelector:didSaveSelector withObject:self];
+    }];
+}
 
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
     @try {
@@ -49,7 +56,7 @@
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't write content: %@", exception.userInfo);
-    }
+    }    
 
     
 }

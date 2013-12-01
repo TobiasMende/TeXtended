@@ -44,20 +44,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
 }
 
-
-
-//- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError *__autoreleasing *)outError {
-//    DDLogInfo(@"%@",[url path]);
-//    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
-//        [self.documentController breakUndoCoalescing];
-//    } else {
-//
-//    }
-//    BOOL success = [super saveToURL:url ofType:typeName forSaveOperation:saveOperation error:outError];
-//    DDLogInfo(@"Success: %@", [NSNumber numberWithBool:success]);
-//    return success;
-//}
-
 - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
     [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
     if (!self.model.texPath) {

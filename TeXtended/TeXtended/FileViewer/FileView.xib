@@ -175,7 +175,11 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showInformationForFile:" target="-2" id="8wv-Re-hsX"/>
-                        <binding destination="-2" name="enabled" keyPath="self.compilable.project" id="okU-th-ufS"/>
+                        <binding destination="-2" name="enabled" keyPath="self.compilable.project" id="JfP-Oo-6Fv">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </menuItem>
                 <menuItem title="Rename..." id="230">
