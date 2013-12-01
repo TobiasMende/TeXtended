@@ -29,26 +29,20 @@
 }
 
 - (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
-    NSLog(@"1");
-    NSLog(@"%@", [self fileURL]);
-    NSLog(@"%@", [self fileType]);
    [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
-    //[self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation completionHandler:nil];
-    NSLog(@"3");
 }
 
 - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
 }
 
-//- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
-//    [self saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *errorOrNil) {
-//        [delegate performSelector:didSaveSelector withObject:self];
-//    }];
-//}
+- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
+    [self saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *errorOrNil) {
+        [delegate performSelector:didSaveSelector withObject:self];
+    }];
+}
 
 - (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
-    NSLog(@"2");
     @try {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
         [data writeToURL:url atomically:YES];
