@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Constants.h"
 
 @class CompileSetting,DocumentModel,ProjectModel;
 
@@ -29,6 +30,10 @@
 
 /** The live compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * liveCompiler;
+
+@property (nonatomic) BOOL hasLiveCompiler;
+@property (nonatomic) BOOL hasDraftCompiler;
+@property (nonatomic) BOOL hasFinalCompiler;
 
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
 @property (nonatomic, strong) NSSet *mainDocuments;
@@ -67,6 +72,9 @@
 - (void)removeMainDocuments:(NSSet *)values;
 
 - (void) finishInitWithPath:(NSString* )absolutePath;
+
+- (void) updateCompileSettingBindings:(CompileMode) mode;
+
 @end
 
 

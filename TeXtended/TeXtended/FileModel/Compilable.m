@@ -12,7 +12,6 @@
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 
-static const NSSet *COMPILER_NAMES;
 
 @interface Compilable ()
 @end
@@ -20,10 +19,7 @@ static const NSSet *COMPILER_NAMES;
 @implementation Compilable
 
 
-+ (void)initialize {
-    COMPILER_NAMES = [NSSet setWithObjects:@"draftCompiler", @"finalCompiler", @"liveCompiler", nil];
-}
-
+#pragma mark - Initialization
 - (id)init {
     self = [super init];
     if (self) {
@@ -37,6 +33,11 @@ static const NSSet *COMPILER_NAMES;
         self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
         self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
         self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
+        
+        self.hasFinalCompiler = self.finalCompiler != nil;
+        self.hasDraftCompiler = self.draftCompiler != nil;
+        self.hasLiveCompiler = self.liveCompiler != nil;
+        
             @try {
                 NSSet *mainDocuments =[aDecoder decodeObjectForKey:@"mainDocuments"];
                 if (mainDocuments && mainDocuments.count > 0) {
@@ -50,36 +51,25 @@ static const NSSet *COMPILER_NAMES;
     return self;
 }
 
-- (void)finishInitWithPath:(NSString *)absolutePath {
-    
-}
+- (void)finishInitWithPath:(NSString *)absolutePath {}
+
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
-    [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
-    [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
+    if (self.draftCompiler) {
+        [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
+    }
+    if (self.liveCompiler) {
+        [aCoder encodeObject:self.liveCompiler forKey:@"liveCompiler"];
+    }
+    if (self.finalCompiler) {
+        [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
+    }
     [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
 }
 
 - (NSString *)dictionaryKey {
     return [NSString stringWithFormat:@"%ld", self.hash];
 }
-
-
-- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-    NSArray *components = [keyPath componentsSeparatedByString:@"."];
-    NSString *dest = [components objectAtIndex:0];
-    if ([components count] > 1 && [COMPILER_NAMES containsObject:dest]) {
-        CompileSetting *setting = (CompileSetting*)[self valueForKey:dest];
-        [setting unbindAll];
-        NSMutableArray *mutable = [NSMutableArray arrayWithArray:components];
-        [mutable removeObjectAtIndex:0];
-         [setting setValue:value forKeyPath:[mutable componentsJoinedByString:@"."]];
-    } else {
-        [super setValue:value forKeyPath:keyPath];
-    }
-}
-
 
 
 
@@ -132,6 +122,57 @@ static const NSSet *COMPILER_NAMES;
 }
 
 
+#pragma mark Compile Setting Handling
+
+- (void)updateCompileSettingBindings:(CompileMode)mode {
+    switch (mode) {
+        case live:
+        if (self.hasLiveCompiler) {
+            [self.liveCompiler unbindAll];
+        } else {
+            self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
+        }
+        break;
+        case draft:
+        if (self.hasDraftCompiler) {
+            [self.draftCompiler unbindAll];
+        } else {
+            self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
+        }
+        break;
+        case final:
+        if (self.hasFinalCompiler) {
+            [self.finalCompiler unbindAll];
+        } else {
+            self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
+        }
+        break;
+        default:
+        break;
+    }
+}
+
+- (void)setHasLiveCompiler:(BOOL)hasLiveCompiler {
+    if (hasLiveCompiler != _hasLiveCompiler) {
+        _hasLiveCompiler = hasLiveCompiler;
+        [self updateCompileSettingBindings:live];
+    }
+}
+
+- (void)setHasDraftCompiler:(BOOL)hasDraftCompiler {
+    if (hasDraftCompiler != _hasDraftCompiler) {
+        _hasDraftCompiler = hasDraftCompiler;
+        [self updateCompileSettingBindings:draft];
+    }
+}
+
+- (void)setHasFinalCompiler:(BOOL)hasFinalCompiler {
+    if (hasFinalCompiler != _hasFinalCompiler) {
+        _hasFinalCompiler = hasFinalCompiler;
+        [self updateCompileSettingBindings:final];
+    }
+}
+
 #pragma mark -
 #pragma mark KVO & Notifications
 - (void)didChangeValueForKey:(NSString *)key {
@@ -143,17 +184,6 @@ static const NSSet *COMPILER_NAMES;
 - (void)postChangeNotification {
     [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
 }
-
-- (void)registerCompilerDefaultsObserver:(NSArray *)keys check:(CompileSetting *)setting {
-    if (setting) {
-        return;
-    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (NSString *key in keys) {
-        [defaults addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    }
-}
-
 
 - (void)dealloc {
     if (self == self.mainCompilable) {
