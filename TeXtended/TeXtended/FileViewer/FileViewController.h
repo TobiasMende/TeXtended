@@ -98,8 +98,13 @@
  */
 - (IBAction)openFile:(id)sender;
 
-/** Method for catching clicks on information in contextmenu
+/** Method for catching clicks on information in contextmenu of fileview
  @param sender is the sender
  */
 - (IBAction)openInfoViewForFile:(id)sender;
+
+/** Method for catching clicks on information in contextmenu of item in fileview
+ @param sender is the sender
+ */
+- (IBAction)showInformationForFile:(id)sender;
 @end
