@@ -18,6 +18,8 @@
 #import "Constants.h"
 #import "PathObserverFactory.h"
 #import "TMTLog.h"
+#import "ProjectDocument.h"
+#import "SimpleDocument.h"
 
 @implementation FileViewController
 
@@ -515,7 +517,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     DDLogInfo(@"%@ - %@", path, self.compilable.path);
     if ([allowedFileTypes containsObject:[path pathExtension]]) {
         if(![path isEqualToString:self.compilable.path]) {
-            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
+            if ([self.mainDocument isKindOfClass:[ProjectDocument class]]) {
+                [self.mainDocument openNewTabForCompilable:[self.compilable modelForTexPath:path]];
+            }
+            else if ([self.mainDocument isKindOfClass:[SimpleDocument class]]) {
+                [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
+            }
         }
         return;
     }

@@ -56,6 +56,7 @@
 #define TMTDraftCompileIterations @"TMTDraftCompileIterations"
 #define TMTFinalCompileIterations @"TMTFinalCompileIterations"
 #define TMTLatexLogLevelKey @"TMTLatexLogLevelKey" 
+#define TMTLineSpacing @"TMTLineSpacing"
 
 /*
  KVC keys for boolean flags (used for user defaults) 

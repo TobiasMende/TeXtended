@@ -25,4 +25,5 @@
 - (void)initializeDocumentControllers;
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
 - (void)showStatisticsForModel:(DocumentController *)dc;
+- (void)openNewTabForCompilable:(Compilable*)model;
 @end

@@ -93,4 +93,16 @@
     [statisticPanelController showStatistics:dc.model.texPath];
 }
 
+- (void)openNewTabForCompilable:(Compilable*)model {
+    for (DocumentController *dc in self.documentControllers) {
+        if (dc.model == model) {
+            return;
+        }
+    }
+    
+    DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
+    [self.documentControllers addObject:dc];
+    [self.mainWindowController showDocument:dc];
+}
+
 @end
