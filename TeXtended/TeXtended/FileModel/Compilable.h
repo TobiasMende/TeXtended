@@ -74,5 +74,7 @@
 - (NSString *) path;
 - (NSString *) type;
 - (NSString *) infoTitle;
+- (NSDate*) lastCompile;
+- (NSDate*) lastChanged;
 
 @end

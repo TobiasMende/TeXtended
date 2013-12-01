@@ -109,6 +109,14 @@
     return NSLocalizedString(@"Project Information", @"Projectinformation");
 }
 
+- (NSDate *)lastChanged {
+    return nil;
+}
+
+- (NSDate *)lastCompile {
+    return nil;
+}
+
 - (void)setPath:(NSString *)path {
     if (![_path isEqualToString:path]) {
         _path = path;
