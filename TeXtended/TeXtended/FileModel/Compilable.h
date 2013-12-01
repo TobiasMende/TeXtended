@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CompileSetting,DocumentModel;
+@class CompileSetting,DocumentModel,ProjectModel;
 
 /**
  Abstract parent class for ProjectModel and DocumentModel which combines similar properties of both subclasses.
@@ -39,6 +39,8 @@
  @return the main model of this Document
  */
 - (Compilable*) mainCompilable;
+
+- (ProjectModel *)project;
 
 /**
  In project mode, this method searches a appropriate DocumentModel for the given path and creates a new DocumentModel if no match was found. The new model is added to the projects documents set.

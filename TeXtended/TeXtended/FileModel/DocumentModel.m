@@ -154,7 +154,6 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
     [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
     [aCoder encodeObject:self.encoding forKey:@"encoding"];
@@ -166,6 +165,7 @@ static NSArray *TMTEncodingsToCheck;
     [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
     [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
     [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
+    [super encodeWithCoder:aCoder];
 }
 
 - (void)initDefaults {

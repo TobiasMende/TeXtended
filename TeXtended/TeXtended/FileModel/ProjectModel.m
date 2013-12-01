@@ -45,13 +45,12 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.documents forKey:@"documents"];
     [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
     [aCoder encodeObject:self.properties forKey:@"properties"];
     [aCoder encodeObject:self.path forKey:@"path"];
+    [super encodeWithCoder:aCoder];
 }
-
 
 
 - (void)initDefaults {
@@ -118,6 +117,10 @@
 
 - (NSString *)folderPath {
     return [self.path stringByDeletingLastPathComponent];
+}
+
+- (ProjectModel *)project {
+    return self;
 }
 
 
