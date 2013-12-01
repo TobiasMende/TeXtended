@@ -12,7 +12,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "TMTLog.h"
-
+#import "NSString+PathExtension.h"
 @interface ProjectModel ()
 
 /** Method for configuring the default settings of a project
@@ -33,22 +33,24 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (id)initWithCoder:(NSCoder *)aDecoder andPath:(NSString *)path{
     self = [super initWithCoder:aDecoder];
     if (self) {
+        NSString *relativePath = [aDecoder decodeObjectForKey:@"path"];
+        self.path = [relativePath absolutePathWithBase:[path stringByDeletingLastPathComponent]];
         self.documents = [aDecoder decodeObjectForKey:@"documents"];
         self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
         self.properties = [aDecoder decodeObjectForKey:@"properties"];
-        self.path = [aDecoder decodeObjectForKey:@"path"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+    NSString *relativePath = [self.path relativePathWithBase:[self.path stringByDeletingLastPathComponent]];
+    [aCoder encodeObject:relativePath forKey:@"path"];
     [aCoder encodeObject:self.documents forKey:@"documents"];
     [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
     [aCoder encodeObject:self.properties forKey:@"properties"];
-    [aCoder encodeObject:self.path forKey:@"path"];
     [super encodeWithCoder:aCoder];
 }
 
