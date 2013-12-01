@@ -33,11 +33,10 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder andPath:(NSString *)path{
+- (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSString *relativePath = [aDecoder decodeObjectForKey:@"path"];
-        self.path = [relativePath absolutePathWithBase:[path stringByDeletingLastPathComponent]];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
         self.documents = [aDecoder decodeObjectForKey:@"documents"];
         self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
         self.properties = [aDecoder decodeObjectForKey:@"properties"];
@@ -45,13 +44,22 @@
     return self;
 }
 
+- (void)finishInitWithPath:(NSString *)absolutePath {
+    self.path = absolutePath;
+    for (DocumentModel * doc in self.documents) {
+        [doc finishInitWithPath:absolutePath];
+    }
+}
+
+
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
     NSString *relativePath = [self.path relativePathWithBase:[self.path stringByDeletingLastPathComponent]];
     [aCoder encodeObject:relativePath forKey:@"path"];
     [aCoder encodeObject:self.documents forKey:@"documents"];
     [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
     [aCoder encodeObject:self.properties forKey:@"properties"];
-    [super encodeWithCoder:aCoder];
 }
 
 

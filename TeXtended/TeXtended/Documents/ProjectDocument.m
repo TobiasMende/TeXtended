@@ -28,21 +28,14 @@
     return self;
 }
 
-- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
-   [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
-}
-
 - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
 }
 
-- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
-    [self saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *errorOrNil) {
-        [delegate performSelector:didSaveSelector withObject:self];
-    }];
-}
-
-- (void)saveToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation completionHandler:(void (^)(NSError *))completionHandler {
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
+    if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
+        [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
+    }
     @try {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
         [data writeToURL:url atomically:YES];
@@ -56,16 +49,20 @@
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't write content: %@", exception.userInfo);
-    }    
+        return NO;
+    }
+    return YES;
 }
 
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error {
-    DDLogInfo(@"%@", absoluteURL);
-    NSData *data = [NSData dataWithContentsOfURL:absoluteURL];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     @try {
-        self.model = [[ProjectModel alloc] initWithCoder:unarchiver andPath:[absoluteURL path]];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:absoluteURL]];
+        if (obj) {
+            self.model = (ProjectModel *)obj;
+            DDLogVerbose(@"READ: %@", absoluteURL);
+            [self.model finishInitWithPath:[absoluteURL path]];
+        }
     }
     @catch (NSException *exception) {
         DDLogError(@"Can't read content: %@", exception.userInfo);
@@ -96,6 +93,9 @@
         return [projectFiles objectAtIndex:0];
     }
     return nil;
+    
+    
+    
 }
 
 

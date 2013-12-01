@@ -65,6 +65,8 @@
 - (void)removeMainDocumentsObject:(DocumentModel *)value;
 - (void)addMainDocuments:(NSSet *)values;
 - (void)removeMainDocuments:(NSSet *)values;
+
+- (void) finishInitWithPath:(NSString* )absolutePath;
 @end
 
 
