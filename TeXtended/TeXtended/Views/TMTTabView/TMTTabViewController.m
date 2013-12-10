@@ -166,4 +166,8 @@
     
 }
 
+- (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem {
+    DDLogWarn(@"Closing %@", tabViewItem);
+}
+
 @end

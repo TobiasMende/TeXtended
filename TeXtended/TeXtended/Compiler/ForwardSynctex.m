@@ -44,17 +44,19 @@
         
         NSPipe *outPipe = [NSPipe pipe];
         [task setStandardOutput:outPipe];
+        [task setTerminationHandler:^(NSTask *task) {
+            
+            NSFileHandle * read = [outPipe fileHandleForReading];
+            NSData * dataRead = [read readDataToEndOfFile];
+            NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+            NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
+            for (NSString *arg in task.arguments) {
+                [command appendFormat:@" %@", arg];
+            }
+            [self parseOutput:stringRead];
+        }];
         [task launch];
         
-        [task waitUntilExit];
-        NSFileHandle * read = [outPipe fileHandleForReading];
-        NSData * dataRead = [read readDataToEndOfFile];
-        NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-        NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
-        for (NSString *arg in task.arguments) {
-            [command appendFormat:@" %@", arg];
-        }
-        [self parseOutput:stringRead];
     }
     return self;
 }

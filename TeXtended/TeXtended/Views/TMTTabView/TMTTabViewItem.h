@@ -24,6 +24,7 @@
 @property (assign) BOOL       isEdited;
 @property (assign) BOOL       hasCloseButton;
 @property (assign) NSView    *view;
+@property (strong) id identifier;
 
 // designated initializer
 - (id)init;

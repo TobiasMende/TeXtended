@@ -243,11 +243,7 @@ typedef enum {
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     } else {
-        if ([completion respondsToSelector:@selector(insertion)]) {
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
-        } else {
-            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
-        }
     }
     
 }

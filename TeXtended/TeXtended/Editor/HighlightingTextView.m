@@ -58,6 +58,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void) extendedComplete:(id)sender;
 
 - (void) finalyUpdateTrackingAreas:(id)userInfo;
+
+- (void) dismissCompletionWindow;
 @end
 @implementation HighlightingTextView
 
@@ -153,17 +155,22 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)complete:(id)sender {
-    //TODO: implement extendedComplete and replace cocoa defaults.
     [self extendedComplete:sender];
     //[super complete:sender];
+}
+
+- (void)dismissCompletionWindow {
+    [autoCompletionController.window orderOut:self];
+    autoCompletionController = nil;
 }
 
 
 - (void)extendedComplete:(id)sender {
     if (!sender) {
-        [autoCompletionController.window orderOut:self];
-        autoCompletionController = nil;
-        [self deleteBackward:self];
+        [self dismissCompletionWindow];
+        if (self.selectedRange.length > 0) {
+            [self deleteBackward:self];
+        }
         return;
     }
     NSRange wordRange = [self rangeForUserCompletion];
@@ -179,8 +186,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [autoCompletionController positionWindowWithContent:completions];
         [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
     } else {
-        [autoCompletionController.window orderOut:self];
-        autoCompletionController = nil;
+        [self dismissCompletionWindow];
     }
 }
 
@@ -213,8 +219,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     if (flag || movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
-        [autoCompletionController.window orderOut:self];
-        autoCompletionController = nil;
+        [self dismissCompletionWindow];
     }
     [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     
@@ -228,6 +233,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void)insertFinalCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self delete:nil];
+        [self dismissCompletionWindow];
         return;
     }
     [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
@@ -432,12 +438,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertNewline:sender];
         return;
     }
-    if (autoCompletionController) {
-        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
-    } else {
         [self.codeNavigationAssistant handleNewLineInsertion];
-    }
 }
 
 - (void)paste:(id)sender {
@@ -506,6 +507,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)moveLeft:(id)sender {
     [super moveLeft:sender];
+    [self dismissCompletionWindow];
     if (!self.servicesOn) {
         return;
     }
@@ -516,6 +518,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)moveRight:(id)sender {
     [super moveRight:sender];
+    [self dismissCompletionWindow];
     if (!self.servicesOn) {
         return;
     }
@@ -533,10 +536,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 [autoCompletionController arrowUp];
                 return;
             case TMTBackKeyCode:
-                // [self complete:self];
-                [autoCompletionController.window orderOut:self];
-                autoCompletionController = nil;
+                [self dismissCompletionWindow];
                 break;
+            case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
+                NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+                [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                return;
+            }
             default:
                 break;
         }
@@ -803,6 +809,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super setDefaultParagraphStyle:(NSParagraphStyle*)ps];
         [self setNeedsDisplay:YES];
     }
+}
+
+- (BOOL)resignFirstResponder {
+    BOOL result = [super resignFirstResponder];
+    if (result && autoCompletionController) {
+        if (self.selectedRange.length>0) {
+            [self delete:self];
+        }
+        [self dismissCompletionWindow];
+    }
+    return result;
 }
 
 

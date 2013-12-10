@@ -26,7 +26,6 @@
 /** The coresponding PdfView. */
 @property (strong) IBOutlet ExtendedPdf *pdfView;
 
-@property (assign) DocumentController *documentController;
 @property (strong) TMTTabViewItem* tabViewItem;
 
 /** 

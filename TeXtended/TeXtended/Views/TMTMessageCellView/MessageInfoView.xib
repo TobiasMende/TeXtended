@@ -25,7 +25,7 @@
                     </connections>
                 </imageView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="51">
-                    <rect key="frame" x="56" y="266" width="92" height="14"/>
+                    <rect key="frame" x="56" y="266" width="159" height="14"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Table View Cell" id="56">
                         <font key="font" metaFont="smallSystemBold"/>
@@ -34,6 +34,7 @@
                     </textFieldCell>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.message.title" id="208"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.message.title" id="NxA-il-hI0"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="52">
