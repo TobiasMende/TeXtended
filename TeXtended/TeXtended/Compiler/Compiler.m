@@ -18,6 +18,7 @@
 #import "TMTNotificationCenter.h"
 #import "ConsoleData.h"
 #import "ConsoleManager.h"
+#import "MainDocument.h"
 @interface Compiler ()
 - (void) updateDocumentController;
 @end
@@ -54,6 +55,7 @@
         console.compileMode = mode;
         console.compileRunning = YES;
         console.consoleActive = YES;
+        model.isCompiling = YES;
         
         CompileSetting *settings;
         currentTask   = [[NSTask alloc] init];
@@ -92,6 +94,8 @@
         [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidStartCompiling object:model];
         
         [currentTask setTerminationHandler:^(NSTask *task) {
+            console.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+            model.isCompiling = NO;
                 [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
             model.lastCompile = [NSDate new];
             ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model byCreating:NO];
@@ -100,7 +104,7 @@
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
             }
         }];
-        
+        self.documentController.mainDocument.numberOfCompilingDocuments += 1;
         [currentTask launch];
     }
 }

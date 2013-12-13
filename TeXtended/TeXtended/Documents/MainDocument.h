@@ -20,6 +20,8 @@
 /** A set of all document controllers of the project */
 @property (strong) NSMutableSet *documentControllers;
 
+@property NSUInteger numberOfCompilingDocuments;
+
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
 - (Compilable *) model;
 - (void)initializeDocumentControllers;

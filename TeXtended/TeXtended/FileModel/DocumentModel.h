@@ -59,6 +59,8 @@
 /** If on, the pdf is opened in the default pdf viewer after export */
 @property (nonatomic, strong) NSNumber* openOnExport;
 
+@property BOOL isCompiling;
+
 /**
  Method for loading the content of the represented file
  

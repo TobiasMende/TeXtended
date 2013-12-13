@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
             // Add your subclass-specific initialization here.
+        
     }
     return self;
 }
@@ -32,7 +33,6 @@
     if (!self.documentControllers || self.documentControllers.count == 0) {
         [self initializeDocumentControllers];
     }
-    
     if ([windowController isKindOfClass:[MainWindowController class]]) {
         for(DocumentController *dc in self.documentControllers) {
             [self.mainWindowController showDocument:dc];

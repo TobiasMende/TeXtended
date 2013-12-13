@@ -95,6 +95,7 @@
         self.tabViewItem = [TMTTabViewItem new];
         self.tabViewItem.view = self.view;
         [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"isProcessing" toObject:self withKeyPath:@"model.isCompiling" options:NULL];
         [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texPath" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Unknown", @"Unknown") forKey:NSNullPlaceholderBindingOption]];
     }
 }

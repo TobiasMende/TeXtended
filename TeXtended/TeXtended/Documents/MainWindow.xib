@@ -195,8 +195,26 @@
                             </connections>
                         </button>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="747165ED-9921-41BA-86D3-A1304DDE6836" label="" paletteLabel="Compile State" tag="-1" id="qQT-eE-0AC">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="16" height="16"/>
+                        <size key="maxSize" width="16" height="16"/>
+                        <progressIndicator key="view" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="fnv-iQ-lfh">
+                            <rect key="frame" x="33" y="14" width="16" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <connections>
+                                <binding destination="-2" name="animate" keyPath="self.mainDocument.numberOfCompilingDocuments" id="ZWJ-f7-n6l"/>
+                                <binding destination="-2" name="hidden" keyPath="self.mainDocument.numberOfCompilingDocuments" id="ABf-KY-XAm">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </progressIndicator>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
+                    <toolbarItem reference="qQT-eE-0AC"/>
                     <toolbarItem reference="100390"/>
                     <toolbarItem reference="100393"/>
                     <toolbarItem reference="100380"/>
