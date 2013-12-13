@@ -101,7 +101,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 }
 
 
-
 #pragma mark -
 #pragma mark Notification Observer
 

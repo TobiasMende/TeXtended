@@ -30,7 +30,7 @@
     ConsoleWindowController *consoleWindowController;
 }
 
-@property (strong) id<FirstResponderDelegate> currentFirstResponderDelegate;
+@property (weak) id<FirstResponderDelegate> currentFirstResponderDelegate;
 
 /** Method for showing the texdoc panel to the user 
  

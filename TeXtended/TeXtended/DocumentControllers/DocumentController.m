@@ -180,6 +180,9 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    if ([[[ApplicationController sharedApplicationController] currentFirstResponderDelegate] isEqual:self]) {
+        [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
+    }
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

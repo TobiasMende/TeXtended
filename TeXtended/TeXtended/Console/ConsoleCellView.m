@@ -78,6 +78,9 @@
 
 - (void)remove:(id)sender {
     self.console.showConsole = NO;
+    if (!self.console.documentController) {
+        [self.console remove];
+    }
 }
 
 - (void)dealloc {
