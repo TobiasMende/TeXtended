@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ViewControllerProtocol.h"
 #import "FirstResponderDelegate.h"
+#import "Constants.h"
 
 @class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler, MainDocument;
 /**
@@ -84,5 +85,7 @@
  * @param context not used by this method (framework stuff)
  */
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
+
+- (void)compile:(CompileMode)mode;
 
 @end

@@ -14,7 +14,7 @@
 #import "Constants.h"
 #import "ConsoleData.h"
 #import "ConsoleViewController.h"
-
+#import "ConsoleWindow.h"
 
 @interface ConsoleWindowController ()
 - (void)updateData:(NSNotification *)note;
@@ -64,6 +64,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    ((ConsoleWindow*)self.window).controller = self;
     self.viewController = [ConsoleViewController new];
     self.contentView.contentView = self.viewController.view;
     [self.contentView setNeedsDisplay:YES];
@@ -117,6 +118,10 @@
             data.showConsole = YES;
         }
     }
+}
+
+- (void)refreshCompile {
+    [self.viewController.console refreshCompile];
 }
 
 - (void)dealloc {

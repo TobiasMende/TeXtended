@@ -16,5 +16,5 @@
 
 @property (weak) ConsoleManager *manager;
 - (IBAction)unhideConsoles:(id)sender;
-
+- (void)refreshCompile;
 @end

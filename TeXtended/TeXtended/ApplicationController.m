@@ -102,7 +102,14 @@ ApplicationController *sharedInstance;
     if (!consoleWindowController) {
         consoleWindowController = [ConsoleWindowController new];
     }
-    [consoleWindowController showWindow:self];
+    if ([consoleWindowController.window isKeyWindow]) {
+        NSArray *windows = [[NSApplication sharedApplication] orderedWindows];
+        if (windows.count > 1) {
+            [[windows objectAtIndex:1] makeKeyAndOrderFront:self];
+        }
+    } else {
+        [consoleWindowController showWindow:self];
+    }
 }
 
 

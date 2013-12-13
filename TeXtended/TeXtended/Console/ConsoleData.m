@@ -15,6 +15,7 @@
 #import "ConsoleViewController.h"
 #import "LogfileParser.h"
 #import "ConsoleManager.h"
+#import "DocumentController.h"
 static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 @interface ConsoleData ()
@@ -86,6 +87,10 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     self.consoleActive = YES;
     
     
+}
+
+- (void)refreshCompile {
+    [self.documentController compile:self.compileMode];
 }
 
 - (void)commitInput {

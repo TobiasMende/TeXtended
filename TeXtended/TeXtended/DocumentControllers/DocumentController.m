@@ -84,6 +84,22 @@
     }
 }
 
+- (void)compile:(CompileMode)mode {
+    switch (mode) {
+        case live:
+            [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+            break;
+        case draft:
+            [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(liveCompile:didSave:contextInfo:)];
+            break;
+        case final:
+            [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(finalCompile:didSave:contextInfo:)];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void) draftCompile {
     [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(draftCompile:didSave:contextInfo:)];
     

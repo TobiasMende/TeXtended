@@ -53,6 +53,7 @@
         console.documentController = self.documentController;
         console.compileMode = mode;
         console.compileRunning = YES;
+        console.consoleActive = YES;
         
         CompileSetting *settings;
         currentTask   = [[NSTask alloc] init];
