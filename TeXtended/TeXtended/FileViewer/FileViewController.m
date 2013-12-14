@@ -575,7 +575,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     else if ([keyPath isEqualToString:@"self.window.isVisible"]) {
         if (!self.infoWindowController.window.isVisible) {
-            DDLogCInfo(@"Hide Infowindow");
             self.infoWindowController.compilable = self.compilable;
         }
     }
