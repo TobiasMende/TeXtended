@@ -810,7 +810,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         ps.minimumLineHeight = spacing;
         ps.maximumLineHeight = spacing;
         [super setDefaultParagraphStyle:(NSParagraphStyle*)ps];
-        [self setNeedsDisplay:YES];
     }
 }
 
