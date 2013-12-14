@@ -25,6 +25,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
+#import "TMTTabManager.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
@@ -380,6 +381,11 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
+    if (item) {
+        [item.tabView removeTabViewItem:item];
+    }
+    
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];

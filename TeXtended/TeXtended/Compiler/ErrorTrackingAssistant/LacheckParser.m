@@ -48,7 +48,7 @@
     
     __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
-    
+    __weak id weakObj = obj;
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
@@ -56,7 +56,7 @@
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-         [obj performSelector:action withObject:messages];
+         [weakObj performSelector:action withObject:messages];
 #pragma clang diagnostic pop
         outPipe = nil;
     }];
