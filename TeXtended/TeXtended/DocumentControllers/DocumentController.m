@@ -20,9 +20,11 @@
 #import "MainDocument.h"
 #import "FirstResponderDelegate.h"
 #import "ApplicationController.h"
+#import "TMTTabManager.h"
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
 - (ExtendedPDFViewController*)findExistingPDFViewControllerFor:(DocumentModel *)model;
+- (void)findOrCreatePDFViewControllerFor:(DocumentModel*)model;
 @end
 @implementation DocumentController
 
@@ -103,14 +105,7 @@
     [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
     self.pdfViewControllers = [NSMutableSet new];
     for(DocumentModel *model in self.model.mainDocuments) {
-        ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
-        if (!cont) {
-            cont = [[ExtendedPDFViewController alloc] init];
-            cont.model = model;
-            [cont setFirstResponderDelegate:self];
-            [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
-        }
-        [self.pdfViewControllers addObject:cont];
+        [self findOrCreatePDFViewControllerFor:model];
     }
 }
 
@@ -126,15 +121,22 @@
         if (containsController) {
             continue;
         }
-        ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
-        if (!cont) {
-            cont = [[ExtendedPDFViewController alloc] init];
-            cont.model = model;
-            [cont setFirstResponderDelegate:self];
-            [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
-        }
-        [self.pdfViewControllers addObject:cont];
+        [self findOrCreatePDFViewControllerFor:model];
     }
+}
+
+- (void)findOrCreatePDFViewControllerFor:(DocumentModel *)model {
+    ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
+    if (!cont) {
+        cont = [[ExtendedPDFViewController alloc] init];
+        cont.model = model;
+        [cont setFirstResponderDelegate:self];
+        [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
+    }
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.pdfIdentifier];
+    [item.tabView selectTabViewItem:item];
+    [self.pdfViewControllers addObject:cont];
+    
 }
 
 - (ExtendedPDFViewController *)findExistingPDFViewControllerFor:(DocumentModel *)model {

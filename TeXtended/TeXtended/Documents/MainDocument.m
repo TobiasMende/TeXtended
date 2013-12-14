@@ -99,15 +99,18 @@
         if (dc.model == model) {
             NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
             if (item) {
+                [item.tabView.window makeKeyAndOrderFront:self];
                 [item.tabView selectTabViewItem:item];
-                [dc showPDFViews];
             }
+            [dc showPDFViews];
+            [self.mainWindowController showDocument:dc];
             return;
         }
     }
     
     DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
     [self.documentControllers addObject:dc];
+    [self.mainWindowController showDocument:dc];
 }
 
 @end
