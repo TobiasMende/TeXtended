@@ -86,5 +86,9 @@
 - (NSString *) infoTitle;
 - (NSDate*) lastCompile;
 - (NSDate*) lastChanged;
+- (NSNumber*) encoding;
+@end
 
+@interface Compilable (Setter)
+- (void) setEncoding:(NSNumber*)encoding;
 @end

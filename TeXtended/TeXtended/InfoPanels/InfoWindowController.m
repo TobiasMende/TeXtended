@@ -94,11 +94,23 @@
 }
 
 - (IBAction)encodingSelectionChange:(id)sender {
-    //self.compilable
+    if (self.compilable.encoding) {
+        self.compilable.encoding = [encodings objectAtIndex:self.encodingPopUp.indexOfSelectedItem];
+    }
 }
 
 - (BOOL)canRemoveEntry {
     return [self.mainDocumentsController.arrangedObjects count] > 1;
+}
+
+- (void) setCompilable:(Compilable *)compilable {
+    _compilable = compilable;
+    if (compilable.encoding) {
+        [self.encodingPopUp selectItemAtIndex:[encodings indexOfObject:compilable.encoding]];
+    }
+    else {
+        self.encodingPopUp.title = NSLocalizedString(@"Not available in projectmode", @"EncodingPopupInProjectMode");
+    }
 }
 
 #pragma mark -

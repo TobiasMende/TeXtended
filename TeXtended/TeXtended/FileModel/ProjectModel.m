@@ -139,6 +139,10 @@
     return self;
 }
 
+- (NSNumber*) encoding {
+    return nil;
+}
+
 # pragma mark - KVO
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
