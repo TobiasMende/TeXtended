@@ -40,6 +40,8 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return self;
 }
 
+
+
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
 }
@@ -101,7 +103,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         
     }
     
-    [self initializeDocumentControllers];
     return YES;
 }
 
