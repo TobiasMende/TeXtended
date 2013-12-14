@@ -848,8 +848,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (BOOL)becomeFirstResponder {
     BOOL result = [super becomeFirstResponder];
-    if (result) {
-        DDLogWarn(@"becomeFirstResponder");
+    if (result && self.firstResponderDelegate) {
         [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
     }
