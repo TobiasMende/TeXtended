@@ -44,6 +44,7 @@
         
         NSPipe *outPipe = [NSPipe pipe];
         [task setStandardOutput:outPipe];
+        __weak id weakSelf = self;
         [task setTerminationHandler:^(NSTask *task) {
             
             NSFileHandle * read = [outPipe fileHandleForReading];
@@ -53,7 +54,7 @@
             for (NSString *arg in task.arguments) {
                 [command appendFormat:@" %@", arg];
             }
-            [self parseOutput:stringRead];
+            [weakSelf parseOutput:stringRead];
         }];
         [task launch];
         
