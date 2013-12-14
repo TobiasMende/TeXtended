@@ -28,4 +28,6 @@
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
 - (void)showStatisticsForModel:(DocumentController *)dc;
 - (void)openNewTabForCompilable:(DocumentModel*)model;
+- (void)removeDocumentController:(DocumentController *)dc;
+- (void)firstResponderDidChangeNotification:(NSNotification *)note;
 @end

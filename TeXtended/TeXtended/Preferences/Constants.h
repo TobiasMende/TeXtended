@@ -129,6 +129,7 @@
 #define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
 #define TMTIntegerKey @"TMTIntegerKey"
+#define TMTFirstResponderKey @"TMTFirstResponderKey"
 
 /*
  Notification Names
@@ -148,6 +149,7 @@
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
 #define TMT_CONSOLE_MANAGER_CHANGED @"TMT_CONSOLE_MANAGER_CHANGED"
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
+#define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

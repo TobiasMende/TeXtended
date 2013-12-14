@@ -26,7 +26,7 @@
 
 
 /** The model represented in this document holding all information about the current document */
-@property (strong) DocumentModel *model;
+@property (strong, nonatomic) DocumentModel *model;
 
 
 @property EncodingController *encController;

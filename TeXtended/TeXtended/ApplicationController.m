@@ -42,20 +42,13 @@ ApplicationController *sharedInstance;
     self = [super init];
     DDLogError(@"Init");
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(somethingDidChange:) name:NSApplicationDidUpdateNotification object:nil];
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
     }
     return self;
 }
 
-- (void)somethingDidChange:(NSNotification *)note {
-    // ATTENTION: This method is called after every fucking message passed through the notification center. So it need's to be very fast!
-    NSResponder *firstResponder = [[[NSApplication sharedApplication] keyWindow] firstResponder];
-    if ([firstResponder respondsToSelector:@selector(firstResponderDelegate)]) {
-        id<FirstResponderDelegate> del = [firstResponder performSelector:@selector(firstResponderDelegate)];
-        if (![del isEqual:self.currentFirstResponderDelegate] && [del conformsToProtocol:@protocol(FirstResponderDelegate)]) {
-            self.currentFirstResponderDelegate = del;
-        }
-    }
+- (void)firstResponderDidChangeNotification:(NSNotification *)note {
+    self.currentFirstResponderDelegate = [note.userInfo objectForKey:TMTFirstResponderKey];
 }
 
 

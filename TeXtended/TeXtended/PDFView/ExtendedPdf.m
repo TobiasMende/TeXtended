@@ -11,6 +11,8 @@
 #import "ExtendedPDFViewController.h"
 #import "PageNumberViewController.h"
 #import "TMTLog.h"
+#import "ApplicationController.h"
+#import "TMTNotificationCenter.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -224,6 +226,17 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 #pragma mark -
 #pragma mark First Responder Chain
+
+- (BOOL)becomeFirstResponder {
+    BOOL result = [super becomeFirstResponder];
+    if (result) {
+        DDLogWarn(@"becomeFirstResponder");
+        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+    }
+    return result;
+}
+
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
 #pragma clang diagnostic push

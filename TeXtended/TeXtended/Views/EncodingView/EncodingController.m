@@ -66,7 +66,11 @@
 -(NSStringEncoding)selection
 {
     self.selectionDidChange = NO;
-    return [[self.encodings objectAtIndex:self.popUp.indexOfSelectedItem] unsignedLongValue];
+    if (self.popUp.indexOfSelectedItem < self.encodings.count) {
+        return [[self.encodings objectAtIndex:self.popUp.indexOfSelectedItem] unsignedLongValue];
+    } else {
+        return [NSString defaultCStringEncoding];
+    }
 }
 
 @end

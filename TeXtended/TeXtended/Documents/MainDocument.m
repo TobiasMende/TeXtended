@@ -15,6 +15,7 @@
 #import "StatsPanelController.h"
 #import "TMTLog.h"
 #import "TMTTabManager.h"
+#import "ApplicationController.h"
 
 @implementation MainDocument
 
@@ -40,6 +41,10 @@
         }
     }
     
+}
+
+- (void)firstResponderDidChangeNotification:(NSNotification *)note {
+    self.mainWindowController.myCurrentFirstResponderDelegate = [note.userInfo objectForKey:TMTFirstResponderKey];
 }
 
 
@@ -69,6 +74,12 @@
         DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainDocument:self];
         [self.documentControllers addObject:dc];
     }
+}
+
+- (void)removeDocumentController:(DocumentController *)dc {
+    self.mainWindowController.myCurrentFirstResponderDelegate = nil;
+    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
+    [self.documentControllers removeObject:dc];
 }
 
 

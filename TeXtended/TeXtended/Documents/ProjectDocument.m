@@ -11,6 +11,7 @@
 #import "DocumentController.h"
 #import "ProjectModel.h"
 #import "TMTLog.h"
+#import "TMTNotificationCenter.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -30,6 +31,18 @@
 
 - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+}
+
+- (void)setModel:(ProjectModel *)model {
+    if (model != _model) {
+        if (self.model) {
+            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
+        }
+        _model = model;
+        if (self.model) {
+            [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
+        }
+    }
 }
 
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
