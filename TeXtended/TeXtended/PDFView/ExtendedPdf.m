@@ -56,7 +56,7 @@ static const NSSet *KEYS_TO_UNBIND;
     [self setGridVerticalSpacing:1];
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
-    [self setGridColor:[NSColor lightGrayColor]];
+    [self setGridColor:[NSColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:0.25f]];
     
     // link propertys to application shared
     [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
@@ -157,6 +157,9 @@ static const NSSet *KEYS_TO_UNBIND;
         firstDraw = false;
         [self initSubViews];
     }
+
+    /* draw pdf content */
+    [page drawWithBox:[self displayBox]];
     
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
@@ -178,8 +181,7 @@ static const NSSet *KEYS_TO_UNBIND;
         [self drawGrid:size];
     }
 
-    /* draw pdf content */
-    [page drawWithBox:[self displayBox]];
+
 }
 
 - (void) drawGrid:(NSSize) size {
@@ -243,8 +245,6 @@ static const NSSet *KEYS_TO_UNBIND;
 #pragma clang diagnostic pop
     return nil;
 }
-
-
 
 #pragma mark -
 #pragma mark Dealloc
