@@ -38,7 +38,7 @@
         _compilable = compilable;
         self.infoWindowController.compilable = compilable;
         if (_compilable) {
-            [self.compilable addObserver:self forKeyPath:@"self.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+            [self.compilable addObserver:self forKeyPath:@"self.path" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
         }
     }
 }
@@ -50,6 +50,8 @@
     [outline registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"FileViewModel" , nil]];
     [outline setTarget:self];
     [outline setDoubleAction:@selector(doubleClick:)];
+    
+    [self.infoWindowController addObserver:self forKeyPath:@"self.window.isVisible" options:0 context:nil];
 }
 
 - (IBAction)doubleClick:(id)sender {
@@ -558,6 +560,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             return;
         }
         
+        if ([[change valueForKey:NSKeyValueChangeOldKey] isEqualToString:[change valueForKey:NSKeyValueChangeNewKey]]) {
+            // If the path did not change, there is no need to remove pathobserver
+            return;
+        }
+        
         if (observer) {
             [PathObserverFactory removeObserver:self];
         }
@@ -565,6 +572,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         observer = [PathObserverFactory pathObserverForPath:path];
         [self loadPath:[NSURL fileURLWithPath:path]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel)];
+    }
+    else if ([keyPath isEqualToString:@"self.window.isVisible"]) {
+        if (!self.infoWindowController.window.isVisible) {
+            DDLogCInfo(@"Hide Infowindow");
+            self.infoWindowController.compilable = self.compilable;
+        }
     }
     
 }
@@ -587,6 +600,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
     [self.compilable removeObserver:self forKeyPath:@"self.path"];
+    [self.infoWindowController removeObserver:self forKeyPath:@"self.window.isVisible"];
     DDLogVerbose(@"dealloc");
 }
 

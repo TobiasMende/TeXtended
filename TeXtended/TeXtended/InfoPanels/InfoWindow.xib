@@ -183,6 +183,13 @@
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="hidden" keyPath="self.compilable.encoding" id="oLd-MH-1G8">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNil</string>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3g3-9s-R2C">
                                     <rect key="frame" x="118" y="25" width="180" height="22"/>
@@ -200,9 +207,9 @@
                                     </popUpButtonCell>
                                     <connections>
                                         <action selector="encodingSelectionChange:" target="-2" id="D0t-Gd-loR"/>
-                                        <binding destination="-2" name="enabled" keyPath="self.compilable.encoding" id="Y0z-RJ-0l5">
+                                        <binding destination="-2" name="hidden" keyPath="self.compilable.encoding" id="qZ0-36-8XU">
                                             <dictionary key="options">
-                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                <string key="NSValueTransformerName">NSIsNil</string>
                                             </dictionary>
                                         </binding>
                                     </connections>
