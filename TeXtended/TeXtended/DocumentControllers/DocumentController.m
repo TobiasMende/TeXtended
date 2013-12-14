@@ -86,6 +86,7 @@
 }
 
 - (void)texViewDidClose:(NSNotification *)note {
+    self.textViewController = nil;
     [self.mainDocument removeDocumentController:self];
 }
 
