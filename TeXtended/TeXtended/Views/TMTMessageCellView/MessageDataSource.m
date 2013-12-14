@@ -161,9 +161,9 @@
         return;
     }
     if (collection) {
-            [self.collections setObject:[note.userInfo objectForKey:TMTMessageCollectionKey] forKey:[(Compilable*)note.object dictionaryKey]];
+            [self.collections setObject:[note.userInfo objectForKey:TMTMessageCollectionKey] forKey:[(Compilable*)note.object identifier]];
     } else {
-        [self.collections removeObjectForKey:[(Compilable*)note.object dictionaryKey]];
+        [self.collections removeObjectForKey:[(Compilable*)note.object identifier]];
     }
     
     NSMutableArray *temp = [NSMutableArray new];

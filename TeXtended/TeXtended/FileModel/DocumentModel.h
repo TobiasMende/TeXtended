@@ -92,6 +92,9 @@
  */
 - (NSString *)pdfName;
 
+@property (readonly) NSString* texIdentifier;
+@property (readonly) NSString* pdfIdentifier;
+
 
 /**
  Getter for the output pipe

@@ -9,7 +9,7 @@
 #import <MMTabBarView/MMTabStyle.h>
 
 #import "TMTTabViewController.h"
-#import "TMTTabViewWindowManager.h"
+#import "TMTTabManager.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
 #import "TMTLog.h"
@@ -41,7 +41,7 @@
 
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:self];
+    [[TMTTabManager sharedTabManager] removeTabViewWindow:self];
 }
 
 

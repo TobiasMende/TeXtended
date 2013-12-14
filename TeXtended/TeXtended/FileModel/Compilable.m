@@ -12,7 +12,7 @@
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 
-
+static NSUInteger LAST_IDENTIFIER = 0;
 @interface Compilable ()
 @end
 
@@ -23,6 +23,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        _identifier = [NSString stringWithFormat:@"id%ld", LAST_IDENTIFIER++];
         self.hasFinalCompiler = NO;
         self.hasDraftCompiler = NO;
         self.hasLiveCompiler = NO;
@@ -33,6 +34,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
+        _identifier = [NSString stringWithFormat:@"id%ld", LAST_IDENTIFIER++];
         self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
         self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
         self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
@@ -70,9 +72,6 @@
     [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
 }
 
-- (NSString *)dictionaryKey {
-    return [NSString stringWithFormat:@"%ld", self.hash];
-}
 
 
 

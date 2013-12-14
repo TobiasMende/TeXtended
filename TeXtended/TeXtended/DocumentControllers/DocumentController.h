@@ -88,4 +88,6 @@
 
 - (void)compile:(CompileMode)mode;
 
+- (void) texViewDidClose:(NSNotification *)note;
+
 @end

@@ -87,7 +87,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         //id identifier = self.model.texPath ? self.model.texPath : @"UnknownTex";
         self.tabViewItem = [TMTTabViewItem new];
         [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
-        [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texPath" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Unknown", @"Unknown") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
         self.tabViewItem.view = self.view;
         
     }

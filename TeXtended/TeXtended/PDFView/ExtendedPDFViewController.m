@@ -18,6 +18,7 @@
 #import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
+#import "TMTTabManager.h"
 
 @interface ExtendedPDFViewController ()
 - (void)compilerDidEndCompiling:(NSNotification *)notification;
@@ -28,7 +29,7 @@
 
 @implementation ExtendedPDFViewController
 
-- (id)initWithDocumentController:(DocumentController *)dc {
+- (id)init {
     self = [super initWithNibName:@"ExtendedPDFView" bundle:nil];
     if (self) {
     }
@@ -96,7 +97,7 @@
         self.tabViewItem.view = self.view;
         [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
         [self.tabViewItem bind:@"isProcessing" toObject:self withKeyPath:@"model.isCompiling" options:NULL];
-        [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texPath" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Unknown", @"Unknown") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.pdfIdentifier" options:NULL];
     }
 }
 
@@ -152,6 +153,10 @@
 #ifdef DEBUG
     DDLogVerbose(@"dealloc");
 #endif
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.pdfIdentifier];
+    if (item) {
+        [item.tabView removeTabViewItem:item];
+    }
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
 }
 

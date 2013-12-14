@@ -147,6 +147,7 @@
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
 #define TMT_CONSOLE_MANAGER_CHANGED @"TMT_CONSOLE_MANAGER_CHANGED"
+#define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,

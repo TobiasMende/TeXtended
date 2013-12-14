@@ -35,7 +35,7 @@ static ConsoleManager *sharedInstance;
 
 
 - (void)removeConsoleForModel:(DocumentModel *)model {
-    [self.consoles removeObjectForKey:model.dictionaryKey];
+    [self.consoles removeObjectForKey:model.identifier];
     [[NSNotificationCenter defaultCenter] postNotificationName:TMT_CONSOLE_MANAGER_CHANGED object:self];
 }
 
@@ -44,11 +44,11 @@ static ConsoleManager *sharedInstance;
 }
 
 - (ConsoleData *)consoleForModel:(DocumentModel *)model byCreating:(BOOL)create {
-    ConsoleData *data = [self.consoles objectForKey:model.dictionaryKey];
+    ConsoleData *data = [self.consoles objectForKey:model.identifier];
     if (create && !data) {
         data = [ConsoleData new];
         data.model = model;
-        [self.consoles setObject:data forKey:model.dictionaryKey];
+        [self.consoles setObject:data forKey:model.identifier];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMT_CONSOLE_MANAGER_CHANGED object:self];
     }
     return data;

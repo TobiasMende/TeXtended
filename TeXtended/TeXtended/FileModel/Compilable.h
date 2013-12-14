@@ -21,7 +21,7 @@
 @interface Compilable : NSObject <NSCoding> {
     
 }
-
+@property (readonly) NSString *identifier;
 /** The draft compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * draftCompiler;
 
@@ -64,7 +64,6 @@
  */
 - (void)postChangeNotification;
 
-- (NSString*) dictionaryKey;
 
 - (void)addMainDocumentsObject:(DocumentModel *)value;
 - (void)removeMainDocumentsObject:(DocumentModel *)value;
