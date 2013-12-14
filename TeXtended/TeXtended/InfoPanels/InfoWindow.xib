@@ -37,7 +37,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1499" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="196" y="132" width="640" height="526"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="1500">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="526"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -200,6 +200,11 @@
                                     </popUpButtonCell>
                                     <connections>
                                         <action selector="encodingSelectionChange:" target="-2" id="D0t-Gd-loR"/>
+                                        <binding destination="-2" name="enabled" keyPath="self.compilable.encoding" id="Y0z-RJ-0l5">
+                                            <dictionary key="options">
+                                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </popUpButton>
                             </subviews>
@@ -418,8 +423,8 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="ZOO-0B-9Yf"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.compileBib" id="CNW-Is-CMT"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="ZOO-0B-9Yf"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="443">
@@ -434,8 +439,8 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="mHr-Tw-CUi"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" id="oZC-Go-CZg"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="mHr-Tw-CUi"/>
                                                 </connections>
                                             </textField>
                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="442">
@@ -443,8 +448,8 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="471"/>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="iMc-o7-J8F"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.numberOfCompiles" previousBinding="1455" id="Y72-KB-QRa"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="iMc-o7-J8F"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1453"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1453" id="1455"/>
                                                 </connections>
@@ -462,8 +467,8 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="YLi-fV-RxS"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.finalCompiler.customArgument" id="C2E-ID-kxz"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="YLi-fV-RxS"/>
                                                 </connections>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="441">
@@ -491,8 +496,8 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="744"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="SAC-j3-n7U"/>
                                                     <binding destination="-2" name="selectedValue" keyPath="self.compilable.finalCompiler.compilerPath" previousBinding="744" id="NHJ-q4-wxR"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasFinalCompiler" id="SAC-j3-n7U"/>
                                                 </connections>
                                             </popUpButton>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="eje-1T-Kr3">
@@ -565,8 +570,8 @@
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="2nN-76-zLD"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.compileBib" id="QzQ-NC-0n8"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="2nN-76-zLD"/>
                                                 </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="398">
@@ -581,8 +586,8 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="L4L-qx-kW7"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" id="LEq-YS-Wrb"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="L4L-qx-kW7"/>
                                                 </connections>
                                             </textField>
                                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="397">
@@ -590,8 +595,8 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="426"/>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="F9m-jY-dZ6"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.numberOfCompiles" previousBinding="1451" id="Q6v-0k-Jed"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="F9m-jY-dZ6"/>
                                                     <binding destination="1440" name="maxValue" keyPath="self.maxIterations" id="1449"/>
                                                     <binding destination="1440" name="minValue" keyPath="self.minIterations" previousBinding="1449" id="1451"/>
                                                 </connections>
@@ -621,8 +626,8 @@
                                                 </popUpButtonCell>
                                                 <connections>
                                                     <binding destination="494" name="contentValues" keyPath="arrangedObjects" id="741"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="SaH-02-M1N"/>
                                                     <binding destination="-2" name="selectedValue" keyPath="self.compilable.draftCompiler.compilerPath" previousBinding="741" id="Snk-af-vf1"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="SaH-02-M1N"/>
                                                 </connections>
                                             </popUpButton>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="5WN-Wc-QaQ">
@@ -652,8 +657,8 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                                 <connections>
-                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="p2X-jF-H5d"/>
                                                     <binding destination="-2" name="value" keyPath="self.compilable.draftCompiler.customArgument" id="bJX-WR-9hK"/>
+                                                    <binding destination="-2" name="enabled" keyPath="self.compilable.hasDraftCompiler" id="p2X-jF-H5d"/>
                                                 </connections>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TEw-Hb-NlQ">
