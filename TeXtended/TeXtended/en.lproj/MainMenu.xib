@@ -123,7 +123,11 @@
                             </menuItem>
                             <menuItem title="Export ..." keyEquivalent="e" id="571">
                                 <connections>
-                                    <action selector="finalCompile:" target="-1" id="LCt-tR-Prb"/>
+                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="sB0-RZ-aaV">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">finalCompile:</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">
@@ -389,13 +393,21 @@
                             <menuItem title="Refresh Live View" tag="1001" keyEquivalent="r" id="562">
                                 <accessibility description="TMTRefreshLiveView"/>
                                 <connections>
-                                    <action selector="liveCompile:" target="-1" id="582"/>
+                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="0VK-RN-dGn">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">liveCompile:</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem title="Draft Compile" keyEquivalent="r" id="567">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="draftCompile:" target="-1" id="569"/>
+                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="dFC-Kc-F4J">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">draftCompile:</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="583"/>

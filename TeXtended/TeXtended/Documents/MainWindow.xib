@@ -130,7 +130,11 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <action selector="draftCompile:" target="-1" id="SjA-LX-cts"/>
+                                <binding destination="-2" name="target" keyPath="self.myCurrentFirstResponderDelegate" id="1Cy-wr-suT">
+                                    <dictionary key="options">
+                                        <string key="NSSelectorName">draftCompile:</string>
+                                    </dictionary>
+                                </binding>
                             </connections>
                         </button>
                     </toolbarItem>
@@ -147,6 +151,11 @@
                             </buttonCell>
                             <connections>
                                 <action selector="finalCompile:" target="-1" id="2g5-Ag-fhS"/>
+                                <binding destination="-2" name="target" keyPath="self.myCurrentFirstResponderDelegate" id="HBj-IY-Cop">
+                                    <dictionary key="options">
+                                        <string key="NSSelectorName">finalCompile:</string>
+                                    </dictionary>
+                                </binding>
                             </connections>
                         </button>
                     </toolbarItem>
@@ -203,12 +212,12 @@
                             <rect key="frame" x="33" y="14" width="16" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <connections>
-                                <binding destination="-2" name="animate" keyPath="self.mainDocument.numberOfCompilingDocuments" id="ZWJ-f7-n6l"/>
                                 <binding destination="-2" name="hidden" keyPath="self.mainDocument.numberOfCompilingDocuments" id="ABf-KY-XAm">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
+                                <binding destination="-2" name="animate" keyPath="self.mainDocument.numberOfCompilingDocuments" id="ZWJ-f7-n6l"/>
                             </connections>
                         </progressIndicator>
                     </toolbarItem>
