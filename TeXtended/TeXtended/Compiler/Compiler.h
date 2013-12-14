@@ -20,7 +20,7 @@
  * @author Max Bannach
  */
 @interface Compiler : NSObject <TextViewObserver> {
-    NSTask *currentTask;
+    NSMutableSet *currentTasks;
 }
 
 

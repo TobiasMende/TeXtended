@@ -31,6 +31,7 @@
     if (self) {
         [self setAutoCompile:NO];
         self.documentController = controller;
+        currentTasks = [NSMutableSet new];
         
         // get the settings and observe them
         _draftSettings = [[controller model] draftCompiler];
@@ -58,7 +59,7 @@
         model.isCompiling = YES;
         
         CompileSetting *settings;
-        currentTask   = [[NSTask alloc] init];
+        NSTask *currentTask   = [[NSTask alloc] init];
         NSPipe *outPipe = [NSPipe pipe];
         NSPipe *inPipe = [NSPipe pipe];
         if (!outPipe || !inPipe) {
@@ -103,8 +104,10 @@
             if (mode == final && [model.openOnExport boolValue]) {
                 [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
             }
+            [currentTasks removeObject:task];
         }];
         self.documentController.mainDocument.numberOfCompilingDocuments += 1;
+        [currentTasks addObject:currentTask];
         [currentTask launch];
     }
 }
@@ -144,7 +147,9 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    [currentTask terminate];
+    for(NSTask *task in currentTasks) {
+        [task terminate];
+    }
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.documentController.textViewController removeDelegateObserver:self];
 }
