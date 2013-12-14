@@ -64,6 +64,9 @@
         if (self.model) {
             [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
+            for (DocumentModel *m in self.model.mainDocuments) {
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
+            }
         }
         _model = model;
         
@@ -71,12 +74,27 @@
         if (self.model) {
             [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texViewDidClose:) name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
+            for (DocumentModel *m in self.model.mainDocuments) {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pdfViewDidClose:) name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
+            }
         }
     }
 }
 
 - (void)texViewDidClose:(NSNotification *)note {
     [self.mainDocument.documentControllers removeObject:self];
+}
+
+- (void)pdfViewDidClose:(NSNotification *)note {
+    NSString *identifier = note.object;
+    ExtendedPDFViewController *controller;
+    for( ExtendedPDFViewController *c in self.pdfViewControllers) {
+        if ([c.model.pdfIdentifier isEqualToString:identifier]) {
+            controller = c;
+            break;
+        }
+    }
+    [self.pdfViewControllers removeObject:controller];
 }
 
 - (void)updateViewsAfterModelChange {

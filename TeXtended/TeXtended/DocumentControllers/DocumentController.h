@@ -89,5 +89,6 @@
 - (void)compile:(CompileMode)mode;
 
 - (void) texViewDidClose:(NSNotification *)note;
+- (void) pdfViewDidClose:(NSNotification *)note;
 
 @end
