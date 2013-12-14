@@ -25,6 +25,9 @@
 #import "MatrixViewController.h"
 #import "TMTLog.h"
 #import "TextViewLayoutManager.h"
+#import "ApplicationController.h"
+#import "TMTNotificationCenter.h"
+#import "FirstResponderDelegate.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -842,6 +845,16 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 #pragma clang diagnostic pop
     return nil;
+}
+
+- (BOOL)becomeFirstResponder {
+    BOOL result = [super becomeFirstResponder];
+    if (result) {
+        DDLogWarn(@"becomeFirstResponder");
+        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+    }
+    return result;
 }
 
 

@@ -21,6 +21,6 @@
 
 
 /** The model of the project. */
-@property (strong) ProjectModel *model;
+@property (strong,nonatomic) ProjectModel *model;
 
 @end

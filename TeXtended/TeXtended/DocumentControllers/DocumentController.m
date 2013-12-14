@@ -21,6 +21,8 @@
 #import "FirstResponderDelegate.h"
 #import "ApplicationController.h"
 #import "TMTTabManager.h"
+#import "HighlightingTextView.h"
+#import "ExtendedPdf.h"
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
 - (ExtendedPDFViewController*)findExistingPDFViewControllerFor:(DocumentModel *)model;
@@ -84,7 +86,7 @@
 }
 
 - (void)texViewDidClose:(NSNotification *)note {
-    [self.mainDocument.documentControllers removeObject:self];
+    [self.mainDocument removeDocumentController:self];
 }
 
 - (void)pdfViewDidClose:(NSNotification *)note {
@@ -249,8 +251,11 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    if ([[[ApplicationController sharedApplicationController] currentFirstResponderDelegate] isEqual:self]) {
-        [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
+    self.textViewController.textView.firstResponderDelegate = nil;
+    for(ExtendedPDFViewController *c in self.pdfViewControllers) {
+        if ([c.pdfView.firstResponderDelegate isEqual:self]) {
+            c.pdfView.firstResponderDelegate = nil;
+        }
     }
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

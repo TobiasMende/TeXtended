@@ -390,4 +390,5 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
 @end
