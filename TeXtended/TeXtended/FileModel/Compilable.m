@@ -157,22 +157,22 @@ static NSUInteger LAST_IDENTIFIER = 0;
 - (void)setHasLiveCompiler:(BOOL)hasLiveCompiler {
     if (hasLiveCompiler != _hasLiveCompiler) {
         _hasLiveCompiler = hasLiveCompiler;
-        [self updateCompileSettingBindings:live];
     }
+    [self updateCompileSettingBindings:live];
 }
 
 - (void)setHasDraftCompiler:(BOOL)hasDraftCompiler {
     if (hasDraftCompiler != _hasDraftCompiler) {
         _hasDraftCompiler = hasDraftCompiler;
-        [self updateCompileSettingBindings:draft];
     }
+    [self updateCompileSettingBindings:draft];
 }
 
 - (void)setHasFinalCompiler:(BOOL)hasFinalCompiler {
     if (hasFinalCompiler != _hasFinalCompiler) {
         _hasFinalCompiler = hasFinalCompiler;
-        [self updateCompileSettingBindings:final];
     }
+    [self updateCompileSettingBindings:final];
 }
 
 #pragma mark -
