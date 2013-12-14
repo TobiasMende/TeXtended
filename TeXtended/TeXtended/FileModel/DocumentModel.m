@@ -171,6 +171,8 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)initDefaults {
+    _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
+    _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
     __weak typeof(self) weakSelf = self;
     if (!self.liveCompile) {
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];

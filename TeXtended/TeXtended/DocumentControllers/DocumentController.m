@@ -22,6 +22,7 @@
 #import "ApplicationController.h"
 @interface DocumentController ()
 - (void) updateViewsAfterModelChange;
+- (ExtendedPDFViewController*)findExistingPDFViewControllerFor:(DocumentModel *)model;
 @end
 @implementation DocumentController
 
@@ -62,14 +63,38 @@
     if (model != _model) {
         if (self.model) {
             [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
+            for (DocumentModel *m in self.model.mainDocuments) {
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
+            }
         }
         _model = model;
         
         [self updateViewsAfterModelChange];
         if (self.model) {
             [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texViewDidClose:) name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
+            for (DocumentModel *m in self.model.mainDocuments) {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pdfViewDidClose:) name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
+            }
         }
     }
+}
+
+- (void)texViewDidClose:(NSNotification *)note {
+    [self.mainDocument.documentControllers removeObject:self];
+}
+
+- (void)pdfViewDidClose:(NSNotification *)note {
+    NSString *identifier = note.object;
+    ExtendedPDFViewController *controller;
+    for( ExtendedPDFViewController *c in self.pdfViewControllers) {
+        if ([c.model.pdfIdentifier isEqualToString:identifier]) {
+            controller = c;
+            break;
+        }
+    }
+    [self.pdfViewControllers removeObject:controller];
 }
 
 - (void)updateViewsAfterModelChange {
@@ -77,11 +102,28 @@
     [self.textViewController setFirstResponderDelegate:self];
     self.pdfViewControllers = [NSMutableSet new];
     for(DocumentModel *model in self.model.mainDocuments) {
-        ExtendedPDFViewController *cont = [[ExtendedPDFViewController alloc] initWithDocumentController:self];
-        cont.model = model;
-        [cont setFirstResponderDelegate:self];
+        ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
+        if (!cont) {
+            cont = [[ExtendedPDFViewController alloc] init];
+            cont.model = model;
+            [cont setFirstResponderDelegate:self];
+        }
         [self.pdfViewControllers addObject:cont];
     }
+}
+
+- (ExtendedPDFViewController *)findExistingPDFViewControllerFor:(DocumentModel *)model {
+    for (DocumentController *dc in self.mainDocument.documentControllers) {
+        if ([dc isEqualTo:self]) {
+            continue;
+        }
+        for (ExtendedPDFViewController *c in dc.pdfViewControllers) {
+            if ([c.model isEqualTo:model]) {
+                return c;
+            }
+        }
+    }
+    return nil;
 }
 
 - (void)compile:(CompileMode)mode {

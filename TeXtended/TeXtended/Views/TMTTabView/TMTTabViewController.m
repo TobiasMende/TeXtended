@@ -12,10 +12,11 @@
 #import "TMTTabViewItem.h"
 #import "TMTTabViewController.h"
 #import "TMTLog.h"
-#import "TMTTabViewWindowManager.h"
+#import "TMTTabManager.h"
+#import "Constants.h"
 
 @interface TMTTabViewController ()
-
+- (void)handleTabClose:(NSTabViewItem *)item;
 @end
 
 @implementation TMTTabViewController
@@ -30,6 +31,7 @@
 }
 
 - (void)awakeFromNib {
+    [[TMTTabManager sharedTabManager] addTabViewController:self];
     //[tabBar setDelegate:self];
     [tabBar setStyleNamed:@"Safari"];
     [tabBar setOnlyShowCloseOnHover:YES];
@@ -49,8 +51,17 @@
 }
 
 - (void)dealloc {
+    for(NSTabViewItem *item in self.tabView.tabViewItems) {
+        [self handleTabClose:item];
+    }
+    
     [tabBar setDelegate:nil];
+    [[TMTTabManager sharedTabManager] removeTabViewController:self];
     DDLogVerbose(@"dealloc");
+}
+
+- (void)handleTabClose:(NSTabViewItem *)item {
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTTabViewDidCloseNotification object:[item.identifier identifier]];
 }
 
 
@@ -58,8 +69,8 @@
     DDLogVerbose(@"addTabViewItem: %@", item);
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
-	[tabView addTabViewItem:newItem];
-    [tabView selectTabViewItem:newItem];
+	[self.tabView addTabViewItem:newItem];
+    [self.tabView selectTabViewItem:newItem];
 }
 
 - (void)addNewTabWithTitle:(NSString *)aTitle {
@@ -67,8 +78,8 @@
     [newModel setTitle:aTitle];
 	NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:newModel];
     [newItem setView:[newModel view]];
-	[tabView addTabViewItem:newItem];
-    [tabView selectTabViewItem:newItem];
+	[self.tabView addTabViewItem:newItem];
+    [self.tabView selectTabViewItem:newItem];
 }
 
 
@@ -132,7 +143,7 @@
 
 	//create a new window controller with no tab items
 	TMTTabViewWindow *tabWindow = [[TMTTabViewWindow alloc] init];
-    [[TMTTabViewWindowManager sharedTabViewWindowManager]addTabViewWindow:tabWindow];
+    [[TMTTabManager sharedTabManager]addTabViewWindow:tabWindow];
     
     MMTabBarView *tabBarView = (MMTabBarView *)[aTabView delegate];
     
@@ -158,15 +169,16 @@
 - (void)tabView:(NSTabView *)aTabView closeWindowForLastTabViewItem:(NSTabViewItem *)tabViewItem {
     NSWindow *w = aTabView.window;
     if ([w isKindOfClass:[TMTTabViewWindow class]]) {
-        [[TMTTabViewWindowManager sharedTabViewWindowManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+        [[TMTTabManager sharedTabManager] removeTabViewWindow:(TMTTabViewWindow*)w];
     }
     if(self.closeWindowForLastTabDrag) {
         [w close];
     }
-    
+
 }
 
 - (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem {
+    [self handleTabClose:tabViewItem];
     DDLogWarn(@"Closing %@", tabViewItem);
 }
 

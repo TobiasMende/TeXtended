@@ -49,7 +49,7 @@ static const NSUInteger MAX_QUEUE_SIZE = 50;
 }
 
 + (NSString *)keyForCompilable:(Compilable *)compilable {
-    return [compilable.mainCompilable dictionaryKey];
+    return [compilable.mainCompilable identifier];
 }
 
 

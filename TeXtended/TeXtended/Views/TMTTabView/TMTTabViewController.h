@@ -12,11 +12,10 @@
 @class TMTTabViewItem;
 @interface TMTTabViewController : NSViewController <MMTabBarViewDelegate> {
     __weak IBOutlet MMTabBarView *tabBar;
-    IBOutlet NSTabView *tabView;
 }
 
 @property BOOL closeWindowForLastTabDrag;
-
+@property IBOutlet NSTabView *tabView;
 - (void)addTabViewItem:(TMTTabViewItem*) item;
 - (void)addNewTabWithTitle:(NSString *)aTitle;
 - (MMTabBarView *)tabBar;
