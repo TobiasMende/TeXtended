@@ -10,7 +10,7 @@
 #import "DMSplitView.h"
 #import "ViewControllerProtocol.h"
 #import "FirstResponderDelegate.h"
-@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument;
+@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -63,5 +63,7 @@
 - (id)initForDocument:(MainDocument*)document;
 
 - (void) showDocument:(DocumentController *)dc;
+- (void) addTabViewItemToFirst:(TMTTabViewItem *)item;
+- (void) addTabViewItemToSecond:(TMTTabViewItem *)item;
 
 @end

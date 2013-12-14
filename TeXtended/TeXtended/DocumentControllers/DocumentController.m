@@ -38,8 +38,8 @@
     self = [super init];
     if (self) {
         DDLogVerbose(@"Init");
-        self.model = model;
         self.mainDocument = mainDocument;
+        self.model = model;
         self.consoleViewControllers = [NSMutableSet new];
         
         self.compiler = [[Compiler alloc] initWithDocumentController:self];
@@ -100,6 +100,7 @@
 - (void)updateViewsAfterModelChange {
     _textViewController = [[TextViewController alloc] initWithDocumentController:self];
     [self.textViewController setFirstResponderDelegate:self];
+    [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
     self.pdfViewControllers = [NSMutableSet new];
     for(DocumentModel *model in self.model.mainDocuments) {
         ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
@@ -107,6 +108,30 @@
             cont = [[ExtendedPDFViewController alloc] init];
             cont.model = model;
             [cont setFirstResponderDelegate:self];
+            [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
+        }
+        [self.pdfViewControllers addObject:cont];
+    }
+}
+
+- (void)showPDFViews {
+    for(DocumentModel *model in self.model.mainDocuments) {
+        BOOL containsController = NO;
+        for(ExtendedPDFViewController *controller in self.pdfViewControllers) {
+            if ([controller.model isEqualTo:model]) {
+                containsController = YES;
+                break;
+            }
+        }
+        if (containsController) {
+            continue;
+        }
+        ExtendedPDFViewController *cont = [self findExistingPDFViewControllerFor:model];
+        if (!cont) {
+            cont = [[ExtendedPDFViewController alloc] init];
+            cont.model = model;
+            [cont setFirstResponderDelegate:self];
+            [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
         }
         [self.pdfViewControllers addObject:cont];
     }
