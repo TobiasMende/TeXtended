@@ -14,6 +14,7 @@
 #import "ExportCompileWindowController.h"
 #import "StatsPanelController.h"
 #import "TMTLog.h"
+#import "TMTTabManager.h"
 
 @implementation MainDocument
 
@@ -96,6 +97,13 @@
 - (void)openNewTabForCompilable:(DocumentModel*)model {
     for (DocumentController *dc in self.documentControllers) {
         if (dc.model == model) {
+            NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
+            if (item) {
+                [item.tabView.window makeKeyAndOrderFront:self];
+                [item.tabView selectTabViewItem:item];
+            }
+            [dc showPDFViews];
+            [self.mainWindowController showDocument:dc];
             return;
         }
     }

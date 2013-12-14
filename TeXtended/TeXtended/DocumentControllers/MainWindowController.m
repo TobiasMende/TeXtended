@@ -139,11 +139,15 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 - (void)showDocument:(DocumentController *)dc {
     DDLogVerbose(@"showDocument");
-    [self.firsTabViewController addTabViewItem:dc.textViewController.tabViewItem];
-    for (ExtendedPDFViewController *c in dc.pdfViewControllers) {
-        [self.secondTabViewController addTabViewItem:c.tabViewItem];
-    }
     self.myCurrentFirstResponderDelegate = dc;
+}
+
+- (void)addTabViewItemToFirst:(TMTTabViewItem *)item {
+    [self.firsTabViewController addTabViewItem:item];
+}
+
+- (void)addTabViewItemToSecond:(TMTTabViewItem *)item {
+    [self.secondTabViewController addTabViewItem:item];
 }
 
 

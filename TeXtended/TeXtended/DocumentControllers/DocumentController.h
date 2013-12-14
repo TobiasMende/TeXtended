@@ -90,5 +90,6 @@
 
 - (void) texViewDidClose:(NSNotification *)note;
 - (void) pdfViewDidClose:(NSNotification *)note;
+- (void) showPDFViews;
 
 @end
