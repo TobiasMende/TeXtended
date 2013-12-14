@@ -80,13 +80,14 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
+                        <action selector="showInformationForMain:" target="-2" id="eQ9-Hn-6Ao"/>
+                        <binding destination="-2" name="title" keyPath="self.compilable.infoTitle" id="chI-7D-2p0"/>
                         <binding destination="-2" name="enabled" keyPath="self.compilable.path" id="KF3-ly-Seh">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
                         </binding>
                         <binding destination="-2" name="value" keyPath="self.infoWindowController.window.isVisible" id="395"/>
-                        <binding destination="-2" name="title" keyPath="self.compilable.infoTitle" id="chI-7D-2p0"/>
                     </connections>
                 </button>
             </subviews>
