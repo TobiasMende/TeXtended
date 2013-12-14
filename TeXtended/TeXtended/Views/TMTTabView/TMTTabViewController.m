@@ -163,7 +163,7 @@
     if(self.closeWindowForLastTabDrag) {
         [w close];
     }
-    
+
 }
 
 - (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem {

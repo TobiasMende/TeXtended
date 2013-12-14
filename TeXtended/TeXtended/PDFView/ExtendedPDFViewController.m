@@ -115,10 +115,18 @@
 
 - (void)loadPDF {
     if (self.model && self.model.pdfPath) {
+        
+        // what is visible before the update?
+        PDFDestination *visibleArea = [self.pdfView currentDestination];
+        
+        // update
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
         [self.pdfView setDocument:pdfDoc];
+        
+        // restore visible region
+        [self.pdfView goToDestination:visibleArea];
     }
 }
 
