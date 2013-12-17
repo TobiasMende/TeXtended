@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
 @interface AutoCompletionWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 @property (strong) IBOutlet NSTableView *tableView;
 

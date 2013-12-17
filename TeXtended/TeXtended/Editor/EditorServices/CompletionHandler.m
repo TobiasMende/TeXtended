@@ -225,11 +225,11 @@ typedef enum {
         if ([completion hasPlaceholders]) {
         
         
+            [view.undoManager beginUndoGrouping];
         NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
             if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
                 [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
             }
-            [view.undoManager beginUndoGrouping];
             [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
             [view delete:nil];
             [view  insertText:final];

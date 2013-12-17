@@ -9,6 +9,7 @@
 #import "AutoCompletionWindowController.h"
 #import "TMTLog.h"
 #import "Completion.h"
+#import "HighlightingTextView.h"
 
 @interface AutoCompletionWindowController ()
 
@@ -136,12 +137,7 @@
         DDLogWarn(@"Got invalid prefix for user completion");
         return;
     }
-    [self.parent.undoManager beginUndoGrouping];
-    NSString *replacement = [completion.autoCompletionWord substringFromIndex:prefixRange.length];
-    NSUInteger location = self.parent.selectedRange.location;
-    [self.parent replaceCharactersInRange:self.parent.selectedRange withString:replacement];
-    [self.parent setSelectedRange:NSMakeRange(location, replacement.length)];
-    [self.parent.undoManager endUndoGrouping];
+    [(HighlightingTextView*)self.parent insertCompletion:completion forPartialWordRange:[self.parent rangeForUserCompletion] movement:NSOtherTextMovement isFinal:NO];
 }
 
 #pragma mark - Key Events
