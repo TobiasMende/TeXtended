@@ -310,6 +310,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertText:str];
         return;
     }
+    if (![completionHandler shouldCompleteForInsertion:str]) {
+        [self dismissCompletionWindow];
+    }
     if (![bracketHighlighter shouldInsert:str]) {
         return;
     }
