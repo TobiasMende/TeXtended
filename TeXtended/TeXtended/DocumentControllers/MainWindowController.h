@@ -27,7 +27,7 @@
 @property TMTTabViewController *firsTabViewController;
 @property TMTTabViewController *secondTabViewController;
 
-@property (assign) MainDocument *mainDocument;
+@property (weak) MainDocument *mainDocument;
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;

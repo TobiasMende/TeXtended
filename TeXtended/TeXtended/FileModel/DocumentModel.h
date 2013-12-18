@@ -49,7 +49,7 @@
 @property (strong) NSNumber *encoding;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
-@property (nonatomic, strong) ProjectModel *project;
+@property (nonatomic, weak) ProjectModel *project;
 
 @property (strong) NSMutableSet *outlineElements;
 

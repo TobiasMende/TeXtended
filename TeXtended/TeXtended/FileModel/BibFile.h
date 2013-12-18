@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "FileObserver.h"
 
-@class ProjectModel;
+@class ProjectModel, GenericFilePresenter;
 
 /**
  Objects of this class are representations of the core data object representing a bib file.
@@ -18,8 +19,8 @@
  
  */
 
-@interface BibFile : NSObject <NSCoding, NSFilePresenter> {
-    NSFileCoordinator *coordinator;
+@interface BibFile : NSObject <NSCoding,FileObserver> {
+    GenericFilePresenter *filePresenter;
 }
 
 /** the date of the last application internal read access to this file */
@@ -33,9 +34,5 @@
 
 @property NSMutableArray *entries;
 
-@property (readonly) NSURL *presentedItemURL;
-
-@property (readonly) NSOperationQueue *presentedItemOperationQueue;
-
-
+- (void)finishInitWithPath:(NSString *)absolutePath;
 @end

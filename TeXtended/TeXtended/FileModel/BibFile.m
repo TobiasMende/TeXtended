@@ -11,10 +11,14 @@
 #import "TMTLog.h"
 #import "TMTBibTexParser.h"
 #import "TMTBibTexEntry.h"
+#import "NSString+PathExtension.h"
+#import "GenericFilePresenter.h"
 
 @interface BibFile ()
 - (void)readFile;
 - (void)initDefaults;
+- (NSString *)pathForEncoding;
+- (void) setPathAfterDecoding:(NSString *)path;
 @end
 
 @implementation BibFile
@@ -25,7 +29,7 @@
     if (self) {
         self.lastRead = [aDecoder decodeObjectForKey:@"lastRead"];
         self.project = [aDecoder decodeObjectForKey:@"project"];
-        self.path = [aDecoder decodeObjectForKey:@"path"];
+        _path = [aDecoder decodeObjectForKey:@"path"];
     }
     return self;
 }
@@ -38,35 +42,54 @@
     return self;
 }
 
+- (void)finishInitWithPath:(NSString *)absolutePath {
+    [self setPathAfterDecoding:self.path];
+}
+
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.lastRead forKey:@"lastRead"];
     [aCoder encodeConditionalObject:self.project forKey:@"project"];
-    [aCoder encodeObject:self.path forKey:@"path"];
+    [aCoder encodeObject:self.pathForEncoding forKey:@"path"];
 }
 
 - (void)initDefaults {
-    _presentedItemOperationQueue = [NSOperationQueue mainQueue];
-    [NSFileCoordinator addFilePresenter:self];
+    filePresenter = [[GenericFilePresenter alloc] initWithOperationQueue:[NSOperationQueue mainQueue]];
+    filePresenter.observer = self;
 }
 
 - (void)dealloc {
-    [NSFileCoordinator removeFilePresenter:self];
+    DDLogVerbose(@"dealloc");
+    [filePresenter terminate];
+}
+
+#pragma mark - Path Corrections
+
+- (NSString *)pathForEncoding {
+    NSString *projectFolder = [self.project.path stringByDeletingLastPathComponent];
+    if ([self.path hasPrefix:projectFolder]) {
+        return [self.path relativePathWithBase:projectFolder];
+    } else {
+        return self.path;
+    }
+}
+
+- (void)setPathAfterDecoding:(NSString *)path {
+    if (![path isAbsolutePath]) {
+        self.path = [path absolutePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
+    } else {
+        self.path = path;
+    }
 }
 
 #pragma mark - Content Management
 
 - (void)setPath:(NSString *)path {
     if (![_path isEqualToString:path]) {
-        if (_path) {
-            
-        }
         _path = path;
         if (_path) {
-            _presentedItemURL = [NSURL fileURLWithPath:_path];
+            [filePresenter setPath:_path];
             [self readFile];
-            
-            
         }
     }
 }

@@ -83,11 +83,11 @@
 		D22E16A21824ED60005B5B91 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
-		D23BC5251861EA6100E9A507 /* DBLPToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */; };
+		D23BC5251861EA6100E9A507 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* BibTexToolsFramework.framework */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
-		D24E140C1861EF1900A94A6E /* DBLPToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */; };
+		D24E140C1861EF1900A94A6E /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* BibTexToolsFramework.framework */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
 		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
 		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
@@ -95,6 +95,7 @@
 		D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25479871837A0D30097C97D /* CompilerSettingsViewController.m */; };
 		D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25479881837A0D30097C97D /* CompilerSettingsView.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
+		D2574983186262AA0025A536 /* GenericFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574982186262AA0025A536 /* GenericFilePresenter.m */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -273,7 +274,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D24E140C1861EF1900A94A6E /* DBLPToolsFramework.framework in CopyFiles */,
+				D24E140C1861EF1900A94A6E /* BibTexToolsFramework.framework in CopyFiles */,
 				D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */,
 				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
 			);
@@ -474,6 +475,9 @@
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
+		D2574981186262AA0025A536 /* GenericFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFilePresenter.h; sourceTree = "<group>"; };
+		D2574982186262AA0025A536 /* GenericFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFilePresenter.m; sourceTree = "<group>"; };
+		D2574986186263E90025A536 /* FileObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileObserver.h; sourceTree = "<group>"; };
 		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
@@ -649,7 +653,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC5251861EA6100E9A507 /* DBLPToolsFramework.framework in Frameworks */,
+				D23BC5251861EA6100E9A507 /* BibTexToolsFramework.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 				D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */,
@@ -1005,7 +1009,7 @@
 		D23BC5141861E98300E9A507 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */,
+				D23BC51A1861E98300E9A507 /* BibTexToolsFramework.framework */,
 				D23BC51C1861E98300E9A507 /* DBLP Tool.app */,
 				D23BC51E1861E98300E9A507 /* DBLPToolsFrameworkTests.xctest */,
 			);
@@ -1036,6 +1040,9 @@
 				D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
+				D2574981186262AA0025A536 /* GenericFilePresenter.h */,
+				D2574982186262AA0025A536 /* GenericFilePresenter.m */,
+				D2574986186263E90025A536 /* FileObserver.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1493,10 +1500,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */ = {
+		D23BC51A1861E98300E9A507 /* BibTexToolsFramework.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DBLPToolsFramework.framework;
+			path = BibTexToolsFramework.framework;
 			remoteRef = D23BC5191861E98300E9A507 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1673,6 +1680,7 @@
 				D2F3DE2C17F6BEDA00A99066 /* ContextFilterLogFormatter.m in Sources */,
 				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
+				D2574983186262AA0025A536 /* GenericFilePresenter.m in Sources */,
 				D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
 				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,

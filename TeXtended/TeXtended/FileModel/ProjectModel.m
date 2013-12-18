@@ -50,6 +50,9 @@
     for (DocumentModel * doc in self.documents) {
         [doc finishInitWithPath:absolutePath];
     }
+    for (BibFile *f in self.bibFiles) {
+        [f finishInitWithPath:absolutePath];
+    }
 }
 
 
@@ -97,8 +100,8 @@
 
 - (void)addBibFileWithPath:(NSString *)path {
     BibFile *file = [BibFile new];
-    file.path = path;
     file.project = self;
+    file.path = path;
     [self.bibFiles addObject:file];
 }
 
@@ -141,6 +144,10 @@
 
 - (NSNumber*) encoding {
     return nil;
+}
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
 }
 
 # pragma mark - KVO
