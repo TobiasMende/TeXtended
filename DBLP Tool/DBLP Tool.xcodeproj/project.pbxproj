@@ -318,7 +318,7 @@
 				ORGANIZATIONNAME = "Tobias Mende";
 				TargetAttributes = {
 					D23BC4F01861E79700E9A507 = {
-						TestTargetID = D217A421176B442C002DB084;
+						TestTargetID = D23BC4E01861E79700E9A507;
 					};
 				};
 			};
@@ -598,7 +598,6 @@
 		D23BC5021861E79700E9A507 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DBLP Tool.app/Contents/MacOS/DBLP Tool";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -619,7 +618,6 @@
 				INFOPLIST_FILE = "DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -627,7 +625,6 @@
 		D23BC5031861E79700E9A507 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DBLP Tool.app/Contents/MacOS/DBLP Tool";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -645,7 +642,6 @@
 				INFOPLIST_FILE = "DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

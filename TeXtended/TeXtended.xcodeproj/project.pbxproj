@@ -83,6 +83,7 @@
 		D22E16A21824ED60005B5B91 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
+		D23BC5251861EA6100E9A507 /* DBLPToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -220,6 +221,37 @@
 		F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3776F18000AB900B42BF6 /* StatsPanel.xib */; };
 		F6F6117017EDB7DC0047DBEC /* ConsoleViewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F6116F17EDB7DC0047DBEC /* ConsoleViewsView.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D23BC5191861E98300E9A507 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D23BC4E11861E79700E9A507;
+			remoteInfo = DBLPToolsFramework;
+		};
+		D23BC51B1861E98300E9A507 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D217A422176B442C002DB084;
+			remoteInfo = "DBLP Tool";
+		};
+		D23BC51D1861E98300E9A507 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D23BC4F11861E79700E9A507;
+			remoteInfo = DBLPToolsFrameworkTests;
+		};
+		D23BC5231861EA5B00E9A507 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D23BC4E01861E79700E9A507;
+			remoteInfo = DBLPToolsFramework;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		762DA21A17CA4B780013D864 /* CopyFiles */ = {
@@ -415,6 +447,7 @@
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
 		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
+		D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "DBLP Tool.xcodeproj"; path = "../DBLP Tool/DBLP Tool.xcodeproj"; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
@@ -610,6 +643,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23BC5251861EA6100E9A507 /* DBLPToolsFramework.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 				D21ACB6017267A1700E2F8EC /* Sparkle.framework in Frameworks */,
@@ -959,6 +993,16 @@
 			path = TMTNotificationCenter;
 			sourceTree = "<group>";
 		};
+		D23BC5141861E98300E9A507 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */,
+				D23BC51C1861E98300E9A507 /* DBLP Tool.app */,
+				D23BC51E1861E98300E9A507 /* DBLPToolsFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D248E4D9177763C7008DDE80 /* TMTMessageCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,6 +1257,7 @@
 		D2CC54E7171EAFAB00D81CF1 = {
 			isa = PBXGroup;
 			children = (
+				D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
 				D26685F6176F56DA001699A8 /* texicon.icns */,
@@ -1398,6 +1443,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D23BC5241861EA5B00E9A507 /* PBXTargetDependency */,
 			);
 			name = TeXtended;
 			productName = TeXtended;
@@ -1423,6 +1469,12 @@
 			mainGroup = D2CC54E7171EAFAB00D81CF1;
 			productRefGroup = D2CC54F1171EAFAB00D81CF1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D23BC5141861E98300E9A507 /* Products */;
+					ProjectRef = D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D2CC54EF171EAFAB00D81CF1 /* TeXtended */,
@@ -1430,6 +1482,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DBLPToolsFramework.framework;
+			remoteRef = D23BC5191861E98300E9A507 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D23BC51C1861E98300E9A507 /* DBLP Tool.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DBLP Tool.app";
+			remoteRef = D23BC51B1861E98300E9A507 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D23BC51E1861E98300E9A507 /* DBLPToolsFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DBLPToolsFrameworkTests.xctest;
+			remoteRef = D23BC51D1861E98300E9A507 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D2CC54EE171EAFAB00D81CF1 /* Resources */ = {
@@ -1661,6 +1737,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D23BC5241861EA5B00E9A507 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DBLPToolsFramework;
+			targetProxy = D23BC5231861EA5B00E9A507 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */ = {
