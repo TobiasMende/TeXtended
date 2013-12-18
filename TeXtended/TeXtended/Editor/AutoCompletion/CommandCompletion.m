@@ -59,4 +59,8 @@ return self;
     return [self.insertion substringFromIndex:1];
 }
 
+- (void)dealloc {
+    [[CompletionManager sharedInstance] removeFromTypeIndex:self];
+}
+
 @end

@@ -182,7 +182,7 @@ static CompletionManager *instance;
         completions = [NSMutableSet new];
         [commandCompletionTypeIndex setObject:completions forKey:completion.completionType];
     }
-    [completions addObject:completion];
+    [completions addObject:[NSValue valueWithNonretainedObject:completion]];
     DDLogInfo(@"Adding %@", completion);
     
 }
@@ -190,7 +190,7 @@ static CompletionManager *instance;
 - (void)removeFromTypeIndex:(CommandCompletion *)completion {
     NSMutableSet *completions = [self commandCompletionsByType:completion.completionType];
     if (completions) {
-        [completions removeObject:completion];
+        [completions removeObject:[NSValue valueWithNonretainedObject:completion]];
         DDLogInfo(@"Removing %@", completion);
         if (completions.count == 0) {
             [commandCompletionTypeIndex removeObjectForKey:completion.completionType];

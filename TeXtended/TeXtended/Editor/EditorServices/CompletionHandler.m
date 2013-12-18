@@ -417,8 +417,8 @@ typedef enum {
     // TODO: extend the charRange to match the real word (containing _: ...)
     for(NSString *type in COMPLETION_BY_PREFIX_TYPE.allKeys) {
         NSSet *commands = [[CompletionManager sharedInstance] commandCompletionsByType:type];
-        for (CommandCompletion *c in commands) {
-            NSString *key = c.prefix;
+        for (NSValue *value in commands) {
+            NSString *key = ((CommandCompletion*)value.nonretainedObjectValue).prefix;
             if (charRange.location >= [key length]) {
                 NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
                 NSString *prefixString = [view.string substringWithRange:prefixRange] ;
