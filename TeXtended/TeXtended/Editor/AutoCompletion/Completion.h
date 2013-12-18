@@ -101,4 +101,6 @@
 
 /** Method returns the word which is used during auto completion */
 - (NSString*)autoCompletionWord;
+/** Part of the autoCompletion until before the first placeholder **/
+- (NSString*)prefix;
 @end

@@ -10,7 +10,7 @@
 #import "HighlightingTextView.h"
 #import "LatexSyntaxHighlighter.h"
 #import "ApplicationController.h"
-#import "CompletionsController.h"
+#import "CompletionManager.h"
 #import "Completion.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
@@ -25,7 +25,10 @@ typedef enum {
     TMTNoCompletion,
     TMTCommandCompletion,
     TMTBeginCompletion,
-    TMTEndCompletion
+    TMTEndCompletion,
+    TMTCiteCompletion,
+    TMTLabelCompletion,
+    TMTRefCompletion
     } TMTCompletionType;
 
 @interface CompletionHandler()
@@ -155,7 +158,7 @@ typedef enum {
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
    
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
-    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] commandCompletions] ;
+    NSDictionary *completions = [[CompletionManager sharedInstance] commandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
@@ -168,7 +171,7 @@ typedef enum {
 
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type{
     NSString *prefix = [view.string substringWithRange:charRange];
-    NSDictionary *completions = [[[ApplicationController sharedApplicationController] completionsController] environmentCompletions] ;
+    NSDictionary *completions = [[CompletionManager sharedInstance] environmentCompletions] ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
@@ -409,6 +412,7 @@ typedef enum {
             }
         }
     }
+    
     return TMTNoCompletion;
 }
 

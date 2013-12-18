@@ -114,6 +114,15 @@ return self;
     return [self substitutePlaceholdersInString:self.extension];
 }
 
+- (NSString *)prefix {
+    NSTextCheckingResult *match = [PLACEHOLDER_REGEX firstMatchInString:self.key options:0 range:NSMakeRange(0, self.key.length)];
+    if (!match || match.range.location == NSNotFound) {
+        return self.key;
+    } else {
+        return [self.key substringToIndex:match.range.location];
+    }
+}
+
 - (NSComparisonResult)compare:(Completion *)other {
         if (self.counter > other.counter) {
             return NSOrderedAscending;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class CompletionManager;
 /**
  The CompletionsController handles loading and saving of auto completions and the displaying and editing of them in the preferences window.
 
@@ -19,34 +19,21 @@
  @warning *Important:* Due to the fact that this class deals with files in the application support folder. There can't be more than one instance of the CompletionsController. To ensure this fact, it's designed as singleton. Therefor calling [CompletionsController init] doesn't create a new instance if one exists.
  */
 @interface CompletionsController : NSObject <NSTableViewDataSource> {
-    /** The keys for command completions */
-    NSMutableArray *commandKeys;
-    
-    /** The keys for environment completions */
-    NSMutableArray *environmentKeys;
+
 }
+@property (weak) CompletionManager *manager;
+/** Indexes of the selected rows in the command view */
+@property  (strong) NSIndexSet *selectedCommandIndexes;
+
+/** Indexes of selected rows in the environment view */
+@property  (strong) NSIndexSet *selectedEnvironmentIndexes;
+
 
 /** The environment completion view */
 @property (assign) IBOutlet NSTableView *environmentView;
 
 /** The command completion view */
 @property (assign) IBOutlet NSTableView *commandsView;
-
-/** The command completions
- @see CommandCompletion
- */
-@property (strong) NSMutableDictionary *commandCompletions;
-
-/** The environment completions 
- @see EnironmentCompletion
- */
-@property (strong) NSMutableDictionary *environmentCompletions;
-
-/** Indexes of the selected rows in the command view */
-@property  (strong) NSIndexSet *selectedCommandIndexes;
-
-/** Indexes of selected rows in the environment view */
-@property  (strong) NSIndexSet *selectedEnvironmentIndexes;
 
 /** Removes the selected item of the appropriate table view 
  @param sender the button identified by tag
@@ -79,6 +66,6 @@
  */
 - (IBAction)resetEnvironmentCompletionRanking:(id)sender;
 
-/** Stores completions to the disk using the applications support folder if possible */
-- (void) saveCompletions;
+
++ (CompletionsController *)sharedInstance;
 @end

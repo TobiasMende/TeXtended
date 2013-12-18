@@ -72,6 +72,7 @@
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BFF7217F6D56C006473E0 /* TMTLog.m */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
+		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
 		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
@@ -394,6 +395,8 @@
 		D21BFF7117F6D56C006473E0 /* TMTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLog.h; sourceTree = "<group>"; };
 		D21BFF7217F6D56C006473E0 /* TMTLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLog.m; sourceTree = "<group>"; };
 		D220755917687A310041890F /* TeXtended.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TeXtended.icns; sourceTree = "<group>"; };
+		D22354C718617E7A0056A472 /* CompletionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionManager.h; sourceTree = "<group>"; };
+		D22354C818617E7A0056A472 /* CompletionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionManager.m; sourceTree = "<group>"; };
 		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22A6BEC181C148700364DD6 /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
@@ -780,6 +783,8 @@
 				D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */,
 				D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */,
 				D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */,
+				D22354C718617E7A0056A472 /* CompletionManager.h */,
+				D22354C818617E7A0056A472 /* CompletionManager.m */,
 			);
 			path = AutoCompletion;
 			sourceTree = "<group>";
@@ -1548,6 +1553,7 @@
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
 				D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */,
+				D22354C918617E7A0056A472 /* CompletionManager.m in Sources */,
 				D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */,
 				D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */,
 				D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */,

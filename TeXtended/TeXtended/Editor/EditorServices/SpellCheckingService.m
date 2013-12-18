@@ -8,7 +8,7 @@
 
 #import "SpellCheckingService.h"
 #import "HighlightingTextView.h"
-#import "CompletionsController.h"
+#import "CompletionManager.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
@@ -45,7 +45,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 
 
 - (void)setupEnvironmentsToIgnore {
-    CompletionsController *cc = [[CompletionsController alloc] init];
+    CompletionManager *cc = [CompletionManager sharedInstance];
     NSArray *completions = [[cc environmentCompletions] allValues];
     for (EnvironmentCompletion *c in completions) {
         [environmentsToIgnore addObject:c.insertion];
@@ -53,7 +53,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 }
 
 - (void)setupCommandsToIgnore {
-    CompletionsController *cc = [[CompletionsController alloc] init];
+    CompletionManager *cc = [CompletionManager sharedInstance];
     NSArray *completions = [[cc commandCompletions] allValues];
     for (CommandCompletion *c in completions) {
         if ([[c.insertion substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"\\"]) {

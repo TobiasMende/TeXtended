@@ -8,6 +8,7 @@
 
 #import "PreferencesController.h"
 #import "CompletionsController.h"
+#import "CompletionManager.h"
 #import "CompileFlowHandler.h"
 @interface PreferencesController ()
 
@@ -49,7 +50,7 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     [[NSColorPanel sharedColorPanel] close];
-    [completionsController saveCompletions];
+    [[CompletionManager sharedInstance] saveCompletions];
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification {
@@ -115,7 +116,7 @@
 
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
-    [completionsController saveCompletions];
+    [[CompletionManager sharedInstance] saveCompletions];
 }
 
 - (IBAction)openCompileFlowFolder:(id)sender {
