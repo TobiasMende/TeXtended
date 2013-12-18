@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CompletionProtocol.h"
 /**
  This class represents a posible completion for the auto completion feature.
  
  @author Tobias Mende
  */
-@interface Completion : NSObject <NSCoding>
+@interface Completion : NSObject <NSCoding,CompletionProtocol>
 /** The basic insertion (e.g. a \command or an environment name) */
 @property (strong,nonatomic) NSString *insertion;
 /** Counter for the number of insertions */
@@ -93,14 +94,7 @@
 
 
 
-/**
- Method for retreiving a key which represents the completion and can be shown to the user to identify this completion.
- @return a key string
- */
-- (NSString*)key;
 
-/** Method returns the word which is used during auto completion */
-- (NSString*)autoCompletionWord;
 /** Part of the autoCompletion until before the first placeholder **/
 - (NSString*)prefix;
 @end

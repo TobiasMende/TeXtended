@@ -8,7 +8,7 @@
 
 #import "AutoCompletionWindowController.h"
 #import "TMTLog.h"
-#import "Completion.h"
+#import "CompletionProtocol.h"
 #import "HighlightingTextView.h"
 
 @interface AutoCompletionWindowController ()
@@ -124,14 +124,14 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     if (row >= 0 && row < self.content.count) {
-        return ((Completion*)[self.content objectAtIndex:row]).key;
+        return ((id<CompletionProtocol>)[self.content objectAtIndex:row]).key;
     }
     return nil;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger currentIndex = self.tableView.selectedRow;
-    Completion *completion = [self.content objectAtIndex:currentIndex];
+    id<CompletionProtocol> completion = [self.content objectAtIndex:currentIndex];
     NSRange prefixRange = [self.parent rangeForUserCompletion];
     if (prefixRange.location == NSNotFound) {
         DDLogWarn(@"Got invalid prefix for user completion");

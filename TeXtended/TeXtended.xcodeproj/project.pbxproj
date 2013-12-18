@@ -84,8 +84,10 @@
 		D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D23BC5251861EA6100E9A507 /* DBLPToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */; };
+		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
+		D24E140C1861EF1900A94A6E /* DBLPToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23BC51A1861E98300E9A507 /* DBLPToolsFramework.framework */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
 		D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */; };
 		D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D254798218379F080097C97D /* PropertyFileSelectionViewController.m */; };
@@ -271,6 +273,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D24E140C1861EF1900A94A6E /* DBLPToolsFramework.framework in CopyFiles */,
 				D22E16A31824EF2A005B5B91 /* MMTabBarView.framework in CopyFiles */,
 				D21ACB6817267A7C00E2F8EC /* Sparkle.framework in CopyFiles */,
 			);
@@ -448,6 +451,9 @@
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
 		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
 		D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "DBLP Tool.xcodeproj"; path = "../DBLP Tool/DBLP Tool.xcodeproj"; sourceTree = "<group>"; };
+		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
+		D23BC52D1861ED2400E9A507 /* CiteCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletion.h; sourceTree = "<group>"; };
+		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
@@ -819,6 +825,9 @@
 				D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */,
 				D22354C718617E7A0056A472 /* CompletionManager.h */,
 				D22354C818617E7A0056A472 /* CompletionManager.m */,
+				D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */,
+				D23BC52D1861ED2400E9A507 /* CiteCompletion.h */,
+				D23BC52E1861ED2400E9A507 /* CiteCompletion.m */,
 			);
 			path = AutoCompletion;
 			sourceTree = "<group>";
@@ -1728,6 +1737,7 @@
 				D2F3DE2817F6BEDA00A99066 /* DDASLLogger.m in Sources */,
 				D2F3DE2D17F6BEDA00A99066 /* DispatchQueueLogFormatter.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
+				D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
 				7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */,
@@ -1870,6 +1880,7 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1892,6 +1903,7 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

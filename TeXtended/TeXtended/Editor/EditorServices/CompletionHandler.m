@@ -18,6 +18,7 @@
 #import "CodeNavigationAssistant.h"
 #import "TMTLog.h"
 #import "NSString+LatexExtension.h"
+#import "CompletionProtocol.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
@@ -192,7 +193,7 @@ typedef enum {
 
 
 
-- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+- (void)insertCompletion:(id<CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (movement == NSRightTextMovement) {
         return;
     }

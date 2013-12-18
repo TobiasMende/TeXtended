@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "SyntaxHighlighter.h"
 #import "FirstResponderDelegate.h"
+#import "CompletionProtocol.h"
 
 @class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController;
 
@@ -126,9 +127,9 @@ GoToLineSheetController *goToLineSheet;
  @param movement the movement constant
  @param flag is this insertion realy final?
  */
-- (void)insertFinalCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertFinalCompletion:(id<CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
-- (void)insertCompletion:(Completion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+- (void)insertCompletion:(id<CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 /**
  Method for jumping to the next visible placeholders (supporting round wrap jumping when at the end of the visible area)

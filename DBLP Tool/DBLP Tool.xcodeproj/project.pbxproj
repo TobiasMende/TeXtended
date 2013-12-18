@@ -25,8 +25,8 @@
 		D23BC5061861E7BF00E9A507 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
 		D23BC5071861E7CD00E9A507 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
 		D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D217A442176B463C002DB084 /* DBLPInterface.h */; };
-		D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D217A445176B471A002DB084 /* DBLPCallbackHandler.h */; };
-		D23BC50A1861E7EE00E9A507 /* DBLPPublication.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AB7DE3176B700900D1AB7B /* DBLPPublication.h */; };
+		D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D217A445176B471A002DB084 /* DBLPCallbackHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D23BC50A1861E7EE00E9A507 /* DBLPPublication.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AB7DE3176B700900D1AB7B /* DBLPPublication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D23BC50B1861E7EE00E9A507 /* DBLPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */; };
 		D23BC50C1861E7EE00E9A507 /* DBLPToolsFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D23BC4EA1861E79700E9A507 /* DBLPToolsFramework.h */; };
 		D23BC50D1861E7FB00E9A507 /* DBLPInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A443176B463C002DB084 /* DBLPInterface.m */; };
@@ -243,9 +243,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */,
-				D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */,
 				D23BC50A1861E7EE00E9A507 /* DBLPPublication.h in Headers */,
+				D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */,
+				D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */,
 				D23BC50B1861E7EE00E9A507 /* DBLPConfiguration.h in Headers */,
 				D23BC50C1861E7EE00E9A507 /* DBLPToolsFramework.h in Headers */,
 			);
@@ -674,6 +674,7 @@
 				D23BC5011861E79700E9A507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D23BC5051861E79700E9A507 /* Build configuration list for PBXNativeTarget "DBLPToolsFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -682,6 +683,7 @@
 				D23BC5031861E79700E9A507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
