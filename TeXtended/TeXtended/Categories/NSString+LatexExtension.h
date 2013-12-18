@@ -11,5 +11,6 @@
 @interface NSString (LatexExtension)
 - (BOOL) latexLineBreakPreceedingPosition:(NSUInteger) position;
 - (BOOL) numberOfBackslashesBeforePositionIsEven:(NSUInteger)position ;
-- (NSUInteger) numberOfBackslashesBeforePosition:(NSUInteger) position; 
+- (NSUInteger) numberOfBackslashesBeforePosition:(NSUInteger) position;
+- (NSRange)latexCommandPrefixRangeBeforePosition:(NSUInteger)position;
 @end

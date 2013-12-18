@@ -64,4 +64,6 @@
 - (void)removeFromTypeIndex:(CommandCompletion *)completion;
 - (NSMutableSet *)commandCompletionsByType:(NSString *)type;
 
++ (NSSet*)specialSymbols;
+
 @end

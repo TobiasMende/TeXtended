@@ -13,10 +13,16 @@
 #import "EnvironmentCompletion.h"
 #import "TMTLog.h"
 static CompletionManager *instance;
-
+static NSSet* SPECIAL_SYMBOLS;
 @implementation CompletionManager
 
 #pragma mark - Initializing & Deallocation
+
++(void)initialize {
+    if ([self class] == [CompletionManager class]) {
+        SPECIAL_SYMBOLS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
+    }
+}
 
 - (id)init {
     self = [super init];
@@ -202,5 +208,8 @@ static CompletionManager *instance;
     return [commandCompletionTypeIndex objectForKey:type];
 }
 
++ (NSSet *)specialSymbols {
+    return SPECIAL_SYMBOLS;
+}
 
 @end

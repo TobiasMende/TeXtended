@@ -17,6 +17,7 @@
 #import "UndoSupport.h"
 #import "CodeNavigationAssistant.h"
 #import "TMTLog.h"
+#import "NSString+LatexExtension.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
@@ -44,6 +45,8 @@ typedef enum {
  */
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+
+- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
 
 
 /**
@@ -405,6 +408,7 @@ typedef enum {
 
 
 - (TMTCompletionType) completionTypeForPartialWordRange:(NSRange) charRange {
+    
     for(NSString *key in COMPLETION_TYPE_BY_PREFIX) {
         if (charRange.location >= [key length]) {
             NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
@@ -415,12 +419,16 @@ typedef enum {
         }
     }
     // TODO: extend the charRange to match the real word (containing _: ...)
+    NSRange prefixRange = [view.string latexCommandPrefixRangeBeforePosition:charRange.location];
+    if (prefixRange.location == NSNotFound) {
+        return TMTNoCompletion;
+    }
     for(NSString *type in COMPLETION_BY_PREFIX_TYPE.allKeys) {
         NSSet *commands = [[CompletionManager sharedInstance] commandCompletionsByType:type];
         for (NSValue *value in commands) {
             NSString *key = ((CommandCompletion*)value.nonretainedObjectValue).prefix;
             if (charRange.location >= [key length]) {
-                NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
+                // NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
                 NSString *prefixString = [view.string substringWithRange:prefixRange] ;
                 if ([prefixString isEqualToString:key]) {
                     return [[COMPLETION_BY_PREFIX_TYPE objectForKey:type] intValue];

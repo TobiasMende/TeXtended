@@ -9,6 +9,7 @@
 #import "Completion.h"
 #import "Constants.h"
 #import "EditorPlaceholder.h"
+#import "CompletionManager.h"
 #import "TMTLog.h"
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation Completion
@@ -119,7 +120,11 @@ return self;
     if (!match || match.range.location == NSNotFound) {
         return self.key;
     } else {
-        return [self.key substringToIndex:match.range.location];
+        NSUInteger location = match.range.location;
+        if (location > 0 && [[CompletionManager specialSymbols] containsObject:[self.key substringWithRange:NSMakeRange(location-1, 1)]]) {
+            location--;
+        }
+        return [self.key substringToIndex:location];
     }
 }
 

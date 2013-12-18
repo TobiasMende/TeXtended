@@ -8,8 +8,13 @@
 
 #import "NSString+LatexExtension.h"
 
+static NSSet *COMPLETION_ESCAPE_INSERTIONS;
+#define COMMAND_PREFIX_SIZE 100
 @implementation NSString (LatexExtension)
 
++ (void)initialize {
+    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
+}
 
 - (BOOL) latexLineBreakPreceedingPosition:(NSUInteger) position {
     if (position < 2) {
@@ -42,5 +47,46 @@
         backslashCounter ++;
     }
     return backslashCounter;
+}
+
+- (NSRange)latexCommandPrefixRangeBeforePosition:(NSUInteger)position {
+    NSUInteger startPosition = position < COMMAND_PREFIX_SIZE ? 0 : position - COMMAND_PREFIX_SIZE;
+    NSUInteger endPosition = position < COMMAND_PREFIX_SIZE ? position : COMMAND_PREFIX_SIZE;
+    NSRange lineRange = NSMakeRange(startPosition, endPosition);
+    __block NSRange result = NSMakeRange(NSNotFound, 0);
+    __block BOOL resultEnd = NO;
+    __block BOOL resultStart = NO;
+    __weak id weakSelf = self;
+    [self enumerateSubstringsInRange:lineRange options:NSStringEnumerationReverse|NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if ([substring isEqualToString:@"}"]) {
+            result = NSMakeRange(NSNotFound, 0);
+            *stop = YES;
+        } else if ([substring isEqualToString:@"{"] && !resultEnd) {
+            result = substringRange;
+            resultEnd = YES;
+        } else if ([substring isEqualToString:@"\\"] && resultEnd) {
+            resultStart = YES;
+            result.location--;
+            result.length++;
+            __block NSRange tmp = NSMakeRange(result.location, 0);
+            [weakSelf enumerateSubstringsInRange:result options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                if ([COMPLETION_ESCAPE_INSERTIONS containsObject:substring]) {
+                    *stop = YES;
+                } else {
+                    tmp.length++;
+                }
+            }];
+            result = tmp;
+            *stop = YES;
+        } else if(resultEnd) {
+            result.location--;
+            result.length++;
+        }
+    }];
+    if (resultStart && resultEnd) {
+        return result;
+    } else {
+        return NSMakeRange(NSNotFound, 0);
+    }
 }
 @end
