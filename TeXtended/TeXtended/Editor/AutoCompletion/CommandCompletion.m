@@ -8,19 +8,23 @@
 
 #import "CommandCompletion.h"
 #import "Constants.h"
-
+#import "CompletionManager.h"
 
 static const NSArray *COMPLETION_TYPES;
+
+
 @implementation CommandCompletion
 
 + (void)initialize {
-    COMPLETION_TYPES = [[NSArray alloc] initWithObjects:@"normal", @"cite", @"label", @"ref", nil];
+    COMPLETION_TYPES = [[NSArray alloc] initWithObjects:CommandTypeNormal, CommandTypeCite, CommandTypeLabel, CommandTypeRef, nil];
 }
+
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super initWithDictionary:dict];
     if (self) {
-        _completionType = [dict valueForKey:TMTCompletionTypeKey];
+        NSString *type = [dict valueForKey:TMTCompletionTypeKey];
+        self.completionType = type ? type : CommandTypeNormal;
     }
 return self;
 }
@@ -33,16 +37,19 @@ return self;
     }
 }
 
-- (NSString *)completionType {
-    if(_completionType) {
-        return _completionType;
+
+- (void)setCompletionType:(NSString *)completionType {
+    if (![_completionType isEqualToString:completionType]) {
+        CompletionManager *m = [CompletionManager sharedInstance];
+        [m removeFromTypeIndex:self];
+        _completionType = completionType;
+        [m addToTypeIndex:self];
     }
-    return [[COMPLETION_TYPES objectAtIndex:0] copy];
 }
 
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [super dictionaryRepresentation];
-    if(_completionType) {
+    if(self.completionType && ![self.completionType isEqualToString:CommandTypeNormal]) {
         [dict setObject:self.completionType forKey:TMTCompletionTypeKey];
     }
     return dict;

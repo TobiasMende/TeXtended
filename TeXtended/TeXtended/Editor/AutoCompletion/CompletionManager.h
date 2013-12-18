@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 @class CommandCompletion, EnvironmentCompletion;
-@interface CompletionManager : NSObject
+@interface CompletionManager : NSObject {
+    NSMutableDictionary *commandCompletionTypeIndex;
+}
 /** The command completions
  @see CommandCompletion
  */
@@ -24,6 +26,8 @@
 
 /** The keys for environment completions */
 @property (strong) NSMutableArray *environmentKeys;
+
+
 
 + (CompletionManager *)sharedInstance;
 
@@ -50,6 +54,14 @@
 - (void) removeEnvironmentsForKeys:(NSArray *)keys;
 - (void) addCommandCompletion:(CommandCompletion *)completion forKey:(id)key;
 - (void) addEnvironmentCompletion:(EnvironmentCompletion *)completion forKey:(id)key;
+- (void) addCommandCompletion:(CommandCompletion *)completion;
+- (void) addEnvironmentCompletion:(EnvironmentCompletion *)completion;
 - (void) setCommandCompletion:(CommandCompletion *)completion forIndex:(NSInteger)idx;
 - (void) setEnvironmentCompletion:(EnvironmentCompletion *)completion forIndex:(NSInteger)idx;
+
+
+- (void)addToTypeIndex:(CommandCompletion *)completion;
+- (void)removeFromTypeIndex:(CommandCompletion *)completion;
+- (NSMutableSet *)commandCompletionsByType:(NSString *)type;
+
 @end

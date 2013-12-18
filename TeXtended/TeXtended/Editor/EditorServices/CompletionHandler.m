@@ -18,6 +18,7 @@
 #import "CodeNavigationAssistant.h"
 #import "TMTLog.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
+static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 static const NSSet *KEYS_TO_UNBIND;
 static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
@@ -98,6 +99,8 @@ typedef enum {
     TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\t|\\\\t)" options:0 error:&error];
     NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
     
+    COMPLETION_BY_PREFIX_TYPE = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCiteCompletion], CommandTypeCite, [NSNumber numberWithInt:TMTLabelCompletion], CommandTypeLabel, [NSNumber numberWithInt:TMTRefCompletion], CommandTypeRef, nil];
+    
     if (error) {
         DDLogError(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
     }
@@ -134,23 +137,22 @@ typedef enum {
                 return nil;
             }
             return [self commandCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
-            break;
         case TMTBeginCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
-            break;
         case TMTEndCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
+        case TMTCiteCompletion:
+            DDLogInfo(@"Cite Completion");
             break;
+            
         default:
             DDLogInfo(@"NoCompletion");
-            return [view completionsForPartialWordRange:charRange indexOfSelectedItem:index];
-            break;
     }
     return nil;
 }
@@ -412,7 +414,20 @@ typedef enum {
             }
         }
     }
-    
+    // TODO: extend the charRange to match the real word (containing _: ...)
+    for(NSString *type in COMPLETION_BY_PREFIX_TYPE.allKeys) {
+        NSSet *commands = [[CompletionManager sharedInstance] commandCompletionsByType:type];
+        for (CommandCompletion *c in commands) {
+            NSString *key = c.prefix;
+            if (charRange.location >= [key length]) {
+                NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
+                NSString *prefixString = [view.string substringWithRange:prefixRange] ;
+                if ([prefixString isEqualToString:key]) {
+                    return [[COMPLETION_BY_PREFIX_TYPE objectForKey:type] intValue];
+                }
+            }
+        }
+    }
     return TMTNoCompletion;
 }
 

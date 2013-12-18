@@ -13,6 +13,7 @@
 #import "EnvironmentCompletion.h"
 #import "TMTLog.h"
 static CompletionManager *instance;
+
 @implementation CompletionManager
 
 #pragma mark - Initializing & Deallocation
@@ -20,6 +21,8 @@ static CompletionManager *instance;
 - (id)init {
     self = [super init];
     if (self) {
+        instance = self;
+        commandCompletionTypeIndex = [NSMutableDictionary new];
         [self loadCompletions];
     }
     return self;
@@ -69,9 +72,8 @@ static CompletionManager *instance;
     self.commandKeys = [[NSMutableArray alloc] initWithCapacity:commandDicts.count];
     
     for(NSDictionary *d in commandDicts) {
-        Completion *c = [[CommandCompletion alloc] initWithDictionary:d];
-        [self.commandCompletions setObject:c forKey:[c key]];
-        [self.commandKeys addObject:[c key]];
+        CommandCompletion *c = [[CommandCompletion alloc] initWithDictionary:d];
+        [self addCommandCompletion:c];
     }
     [self.commandKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
 }
@@ -83,9 +85,8 @@ static CompletionManager *instance;
     self.environmentKeys = [[NSMutableArray alloc] initWithCapacity:envDicts.count];
     
     for(NSDictionary *d in envDicts) {
-        Completion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
-        [self.environmentCompletions setObject:c forKey:[c key]];
-        [self.environmentKeys addObject:[c key]];
+        EnvironmentCompletion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
+        [self addEnvironmentCompletion:c];
     }
     [self.environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
 }
@@ -130,9 +131,18 @@ static CompletionManager *instance;
     [self.commandCompletions setObject:completion forKey:key];
 }
 
+- (void)addCommandCompletion:(CommandCompletion *)completion {
+    [self addCommandCompletion:completion forKey:completion.key];
+}
+
+
 - (void)addEnvironmentCompletion:(EnvironmentCompletion *)completion forKey:(id)key {
     [self.environmentKeys addObject:key];
     [self.environmentCompletions setObject:completion forKey:key];
+}
+
+- (void)addEnvironmentCompletion:(EnvironmentCompletion *)completion {
+    [self addEnvironmentCompletion:completion forKey:completion.key];
 }
 
 - (void)removeCommandsForKeys:(NSArray *)keys {
@@ -161,6 +171,35 @@ static CompletionManager *instance;
     if (completion.insertion && [completion.insertion length] != 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
     }
+}
+
+
+#pragma mark - Maintaining the Command Completion Type Index
+
+- (void)addToTypeIndex:(CommandCompletion *)completion {
+    NSMutableSet *completions = [self commandCompletionsByType:completion.completionType];
+    if (!completions) {
+        completions = [NSMutableSet new];
+        [commandCompletionTypeIndex setObject:completions forKey:completion.completionType];
+    }
+    [completions addObject:completion];
+    DDLogInfo(@"Adding %@", completion);
+    
+}
+
+- (void)removeFromTypeIndex:(CommandCompletion *)completion {
+    NSMutableSet *completions = [self commandCompletionsByType:completion.completionType];
+    if (completions) {
+        [completions removeObject:completion];
+        DDLogInfo(@"Removing %@", completion);
+        if (completions.count == 0) {
+            [commandCompletionTypeIndex removeObjectForKey:completion.completionType];
+        }
+    }
+}
+
+- (NSMutableSet *)commandCompletionsByType:(NSString *)type {
+    return [commandCompletionTypeIndex objectForKey:type];
 }
 
 
