@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "DBLPPublication.h"
+#import "TMTBibTexEntry.h"
 #import "DBLPConfiguration.h"
 
-@interface DBLPPublication ()
+@interface TMTBibTexEntry ()
 /** Method for starting asynchronous DBLP information fetching 
  
  @param url the DBLP URL
@@ -56,11 +56,21 @@
  */
 - (NSString*)modifyValue:(NSString*) value forKey:(NSString*) key;
 @end
-@implementation DBLPPublication
+@implementation TMTBibTexEntry
+
+#pragma mark - Initialization
 - (id)initWithXMLUrl:(NSURL *)url {
-    self = [super init];
+    self = [self init];
     if (self) {
         [self parseDocument:url];
+    }
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.dictionary = [NSMutableDictionary new];
     }
     return self;
 }
@@ -77,6 +87,8 @@
         receivedData = [NSMutableData data];
     }
 }
+
+#pragma mark - Networking
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
         [receivedData setLength:0];
@@ -98,6 +110,8 @@
     }
 
 }
+
+# pragma mark Information Extraction
 
 - (void)fetchGeneralInfos:(NSXMLDocument *)doc {
     NSError *error;
@@ -124,12 +138,14 @@
                 NSMutableSet *authors = [self.dictionary objectForKey:e.name];
                 if (authors) {
                     [authors addObject:e.stringValue];
+                    self.author = [self.author stringByAppendingFormat:@" and %@", e.stringValue];
                 } else {
                     authors = [NSMutableSet setWithObject:e.stringValue];
                     [self.dictionary setObject:authors forKey:e.name];
+                    self.author = e.stringValue;
                 }
             } else {
-                [self.dictionary setObject:[self modifyValue:e.stringValue forKey:e.name] forKey:e.name];
+                [self setValue:[self modifyValue:e.stringValue forKey:e.name] forKey:e.name];
             }
             [self didChangeValueForKey:e.name];
         }
@@ -162,6 +178,7 @@
     return nil;
 }
 
+
 - (NSString *)modifyValue:(NSString *)value forKey:(NSString *)key {
     NSString *result;
     if ([key isEqualToString:@"url"] || [key isEqualToString:@"crossref"]) {
@@ -192,4 +209,19 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     [self.dictionary setObject:value forKey:key];
 }
+
+
+# pragma mark - Sorting
+
+- (NSComparisonResult)compare:(TMTBibTexEntry *)other {
+    NSComparisonResult result = [self.author caseInsensitiveCompare:other.author];
+    if (result == NSOrderedSame) {
+        result = [self.title caseInsensitiveCompare:other.title];
+    }
+    if (result == NSOrderedSame) {
+        result = [self.key caseInsensitiveCompare:other.key];
+    }
+    return result;
+}
+
 @end

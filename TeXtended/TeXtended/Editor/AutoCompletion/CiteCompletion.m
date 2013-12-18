@@ -8,7 +8,7 @@
 
 #import "CiteCompletion.h"
 #import "CompletionProtocol.h"
-#import "DBLPPublication.h"
+#import "TMTBibTexEntry.h"
 @implementation CiteCompletion
 - (NSString *)key {
     return self.entry.key;

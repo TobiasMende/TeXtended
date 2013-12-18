@@ -14,7 +14,7 @@
 
 @implementation BibtexWindowController
 
-- (id)initWithPublication:(DBLPPublication *)publication {
+- (id)initWithPublication:(TMTBibTexEntry *)publication {
     self = [super initWithWindowNibName:@"BibtexWindow"];
     
     if (self) {
@@ -27,7 +27,7 @@
     [self.bibtexView setTextColor:[NSColor controlLightHighlightColor]];
 }
 
-- (void)showPublication:(DBLPPublication *)publication {
+- (void)showPublication:(TMTBibTexEntry *)publication {
     self.publication = publication;
     [self showWindow:self];
 }

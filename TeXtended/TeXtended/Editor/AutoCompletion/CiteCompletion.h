@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CompletionProtocol.h"
-@class DBLPPublication;
+@class TMTBibTexEntry;
 @interface CiteCompletion : NSObject <CompletionProtocol>
-@property DBLPPublication *entry;
+@property TMTBibTexEntry *entry;
 @end

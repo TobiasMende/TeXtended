@@ -18,15 +18,24 @@
  
  */
 
-@interface BibFile : NSObject <NSCoding>
+@interface BibFile : NSObject <NSCoding, NSFilePresenter> {
+    NSFileCoordinator *coordinator;
+}
 
 /** the date of the last application internal read access to this file */
 @property (strong) NSDate * lastRead;
 
 /** The absolute path to the bib file */
-@property (strong) NSString * path;
+@property (strong, nonatomic) NSString * path;
 
 /** The project to which this entry belongs */
 @property (weak) ProjectModel *project;
+
+@property NSMutableArray *entries;
+
+@property (readonly) NSURL *presentedItemURL;
+
+@property (readonly) NSOperationQueue *presentedItemOperationQueue;
+
 
 @end

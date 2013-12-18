@@ -26,7 +26,7 @@
  **Author:** Tobias Mende
  
  */
-@interface DBLPPublication : NSObject<NSURLConnectionDataDelegate> {
+@interface TMTBibTexEntry : NSObject<NSURLConnectionDataDelegate> {
     /** The data received from the url provided on initialization */
     NSMutableData *receivedData;
 }
@@ -52,8 +52,13 @@
 /** The publication type */
 @property NSString *type;
 
+@property NSString *author;
+@property NSString *title;
+
 /** The generated bibtex entry */
 - (NSString*) bibtex;
+
+- (NSComparisonResult)compare:(TMTBibTexEntry *)other;
 
 /** The dictionary representation */
 @property NSMutableDictionary *dictionary;

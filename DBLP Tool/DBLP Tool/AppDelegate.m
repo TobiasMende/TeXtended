@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "DBLPInterface.h"
 #import "BibtexWindowController.h"
-#import "DBLPPublication.h"
+#import "TMTBibTexEntry.h"
 
 @implementation AppDelegate
 
@@ -55,7 +55,7 @@
     if ([notification.object isEqualTo:self.publicationTable]) {
         NSUInteger index = [self.publicationTable selectedRow];
         if (index < [self.publicationsController.arrangedObjects count]) {
-            DBLPPublication *pub = [self.publicationsController.arrangedObjects objectAtIndex:index];
+            TMTBibTexEntry *pub = [self.publicationsController.arrangedObjects objectAtIndex:index];
             if (pub.dictionary) {
                 if (!bc) {
                     bc = [[BibtexWindowController alloc] initWithPublication:pub];

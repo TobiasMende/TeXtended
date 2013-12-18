@@ -7,7 +7,7 @@
 //
 
 #import "DBLPInterface.h"
-#import "DBLPPublication.h"
+#import "TMTBibTexEntry.h"
 #import "DBLPConfiguration.h"
 
 @interface DBLPInterface ()
@@ -116,7 +116,7 @@
             if (!personRecord) {
                 NSString *appendix = [node stringValue];
                 NSString *bibUrl = [config.server stringByAppendingFormat:@"%@%@.xml", config.bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                DBLPPublication *pub = [[DBLPPublication alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
+                TMTBibTexEntry *pub = [[TMTBibTexEntry alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
                 [results addObject:pub];
             } 
         }
