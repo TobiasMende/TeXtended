@@ -168,7 +168,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
     NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    NSSet *bibFiles =[view.firstResponderDelegate model].project.bibFiles;
+    NSArray *bibFiles =[view.firstResponderDelegate model].bibFiles;
     NSMutableArray *allEntries = [NSMutableArray new];
     for(BibFile *model in bibFiles) {
         [allEntries addObjectsFromArray:model.entries];

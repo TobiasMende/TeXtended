@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSString * path;
 
 /** A set of all bibFiles connected to this project */
-@property (strong) NSMutableSet *bibFiles;
+@property (strong) NSMutableArray *bibFiles;
 
 /** A set of all documents belonging to this project */
 @property (strong) NSMutableSet *documents;

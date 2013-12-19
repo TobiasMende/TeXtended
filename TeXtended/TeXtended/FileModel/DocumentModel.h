@@ -22,6 +22,7 @@
 @interface DocumentModel : Compilable {
     /** The pipes used for communication with the latex compiler */
     NSPipe *consoleOutputPipe, *consoleInputPipe;
+    NSArray *bibFiles;
     
     void (^removeLiveCompileObserver)(void);
     void (^removeOpenOnExportObserver)(void);

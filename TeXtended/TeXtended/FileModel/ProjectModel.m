@@ -72,7 +72,7 @@
         self.documents = [NSMutableSet new];
     }
     if (!self.bibFiles) {
-        self.bibFiles = [NSMutableSet new];
+        self.bibFiles = [NSMutableArray new];
     }
     [self updateCompileSettingBindings:live];
     [self updateCompileSettingBindings:draft];

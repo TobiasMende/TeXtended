@@ -15,6 +15,7 @@
 #import "EncodingController.h"
 #import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
+#import "BibFile.h"
 
 static NSArray *TMTEncodingsToCheck;
 
@@ -457,10 +458,29 @@ static NSArray *TMTEncodingsToCheck;
 - (NSArray *)bibFiles {
     if (self.project) {
         return self.project.bibFiles;
-    } else {
-        // TODO: search local bibfiles ??
-        return nil;
+    } else if(!bibFiles && self.texPath){
+        NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
+        NSMutableArray *matches = [NSMutableArray new];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        NSError *error;
+        NSArray *contents = [manager contentsOfDirectoryAtPath:dirPath error:&error];
+        if (error) {
+            DDLogError(@"Error while searching bib files: %@", error.userInfo);
+            return nil;
+        }
+        for(NSString *item in contents) {
+            if ([item.pathExtension.lowercaseString isEqualToString:@"bib"]) {
+                BibFile *f = [BibFile new];
+                f.path = item;
+                [matches addObject:f];
+            }
+        }
+        if (matches.count > 0) {
+            bibFiles = matches;
+        }
+        // TODO: search for bibfiles
     }
+    return bibFiles;
 }
 
 # pragma mark - Compile Setting Handling

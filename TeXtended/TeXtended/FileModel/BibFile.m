@@ -68,6 +68,9 @@
 #pragma mark - Path Corrections
 
 - (NSString *)pathForEncoding {
+    if (!self.project) {
+        return self.path;
+    }
     NSString *projectFolder = [self.project.path stringByDeletingLastPathComponent];
     if ([self.path hasPrefix:projectFolder]) {
         return [self.path relativePathWithBase:projectFolder];
@@ -77,7 +80,7 @@
 }
 
 - (void)setPathAfterDecoding:(NSString *)path {
-    if (![path isAbsolutePath]) {
+    if (![path isAbsolutePath] && self.project) {
         self.path = [path absolutePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
     } else {
         self.path = path;
