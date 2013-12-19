@@ -143,15 +143,19 @@
 }
 
 - (BOOL)insertEntry:(TMTBibTexEntry *)entry {
+    filePresenter.observer = nil;
+    BOOL success = NO;
     NSString *content = [self loadFileContent];
     if (content) {
         NSString *bibtex = entry.bibtex;
         if (bibtex) {
             content = [content stringByAppendingFormat:@"\n\n%@", bibtex];
-            return [self writeFileContent:content];
+            success = [self writeFileContent:content];
         }
     }
-    return NO;
+    filePresenter.observer = self;
+    [self.entries addObject:[[CiteCompletion alloc] initWithBibEntry:entry]];
+    return success;
 }
 
 

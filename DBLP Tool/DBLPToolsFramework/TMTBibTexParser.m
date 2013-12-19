@@ -8,6 +8,7 @@
 
 #import "TMTBibTexParser.h"
 #import "TMTBibTexEntry.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static NSCharacterSet *IGNORED_CHARACTERS_IN_ENTRY_ATTRIBUTES;
 static NSCharacterSet *LINE_END_CHARACTERS;
@@ -40,12 +41,18 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     NSMutableArray *entries = [NSMutableArray new];
     strings = [NSMutableDictionary new];
     scanner = [[NSScanner alloc] initWithString:content];
+    lastScanLocation = scanner.scanLocation;
     while(![scanner isAtEnd]) {
         if (![self parseNextEntry:entries]) {
             break;
         }
+        if (lastScanLocation == scanner.scanLocation) {
+            [self traceError];
+            break;
+        }
+        lastScanLocation = scanner.scanLocation;
     }
-    
+    DDLogVerbose(@"Found %ld entries", entries.count);
     return entries;
 }
 
@@ -84,6 +91,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     
     if ([scanner scanUpToString:@"=" intoString:&key] && [scanner scanString:@"=" intoString:NULL]) {
         NSString *value = [self parseAttributeValue];
+        key = [key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if (value) {
             [strings setObject:value forKey:key];
         }
@@ -105,14 +113,19 @@ static NSCharacterSet *LINE_END_CHARACTERS;
 }
 
 - (void)parseAttributes:(TMTBibTexEntry *)entry {
+    // Loops through every line of kind 'key = value'
     while (![scanner scanString:@"}" intoString:NULL]) {
         NSString *key;
+        scanner.charactersToBeSkipped = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         if ([scanner scanUpToString:@"=" intoString:&key] && [scanner scanString:@"=" intoString:NULL]) {
             key = [key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             NSString *content = [self parseAttributeValue];
             if (content) {
                 [entry setValue:content forKey:key.lowercaseString];
             }
+            scanner.charactersToBeSkipped = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+            
+            // Consume the following ',' if available:
             [scanner scanString:@"," intoString:NULL];
         } else {
             break;
@@ -141,6 +154,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
 - (NSString *)parseNestedValue {
     NSString *content = @"";
     NSInteger depth = 1;
+    lastScanLocation = scanner.scanLocation;
     while (depth > 0) {
         NSString *tmp;
         if ([scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"{}"] intoString:&tmp]) {
@@ -153,6 +167,12 @@ static NSCharacterSet *LINE_END_CHARACTERS;
                 [self traceError];
                 return nil;
             }
+        }
+        if (lastScanLocation == scanner.scanLocation) {
+            [self traceError];
+            break;
+        } else {
+            lastScanLocation = scanner.scanLocation;
         }
     }
     if (content && content.length > 0) {
@@ -170,6 +190,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
         return content;
     }
     content = @"";
+    lastScanLocation = scanner.scanLocation;
     while (true) {
         NSString *tmp;
         if ([scanner scanString:@"\"" intoString:NULL] && [scanner scanUpToString:@"\"" intoString:&tmp] && [scanner scanString:@"\"" intoString:NULL]) {
@@ -184,6 +205,12 @@ static NSCharacterSet *LINE_END_CHARACTERS;
             if ([scanner scanCharactersFromSet:LINE_END_CHARACTERS intoString:NULL]) {
                 return (content && content.length > 0) ? content : nil;
             }
+        }
+        if (lastScanLocation == scanner.scanLocation) {
+            [self traceError];
+            break;
+        } else {
+            lastScanLocation = scanner.scanLocation;
         }
     }
     
@@ -203,12 +230,13 @@ static NSCharacterSet *LINE_END_CHARACTERS;
 }
 
 - (void)traceError {
-    NSLog(@"BibTex Parser TRACE:");
+    DDLogError(@"BibTex Parser TRACE:");
     [self traceScannerState];
+    DDLogVerbose(@"%@", [NSThread callStackSymbols]);
 }
 
 - (void)traceScannerState {
-    NSLog(@"%@", [scanner.string substringWithRange:NSMakeRange(scanner.scanLocation, scanner.string.length - scanner.scanLocation > 20 ? 19 : scanner.string.length-scanner.scanLocation)]);
+    DDLogInfo(@"%@", [scanner.string substringWithRange:NSMakeRange(scanner.scanLocation, scanner.string.length - scanner.scanLocation > 20 ? 19 : scanner.string.length-scanner.scanLocation)]);
 }
 
 @end

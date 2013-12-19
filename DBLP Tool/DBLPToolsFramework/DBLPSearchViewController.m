@@ -9,7 +9,7 @@
 #import "DBLPSearchViewController.h"
 #import "DBLPInterface.h"
 #import "TMTBibTexEntry.h"
-
+#import <TMTHelperCollection/TMTTableView.h>
 
 @interface DBLPSearchViewController ()
 - (void)abortDBLPSearch;
@@ -27,6 +27,11 @@
 - (void)finishInitialization {
     [self.view.window makeFirstResponder:self.authorField];
     
+}
+
+- (void)loadView {
+    [super loadView];
+    self.publicationTable.enterAction = @selector(executeCitation:);
 }
 
 

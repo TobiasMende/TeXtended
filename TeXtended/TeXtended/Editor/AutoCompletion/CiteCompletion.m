@@ -38,6 +38,10 @@
         NSRange nameRange = [self.entry.author.lowercaseString rangeOfString:prefix.lowercaseString];
         result |= nameRange.location != NSNotFound;
     }
+    if([self.entry valueForKey:@"keywords"]) {
+         NSRange range = [[self.entry valueForKey:@"keywords"] rangeOfString:prefix.lowercaseString];
+        result |= range.location != NSNotFound;
+    }
     return result;
 }
 @end

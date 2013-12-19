@@ -32,7 +32,7 @@
 		D22DC29118637ACA00997ADB /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24B18637A4F00997ADB /* DDAbstractDatabaseLogger.h */; };
 		D22DC29218637ACA00997ADB /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24D18637A4F00997ADB /* DDASLLogger.h */; };
 		D22DC29318637ACA00997ADB /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24F18637A4F00997ADB /* DDFileLogger.h */; };
-		D22DC29418637ACA00997ADB /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25118637A4F00997ADB /* DDLog.h */; };
+		D22DC29418637ACA00997ADB /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25118637A4F00997ADB /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22DC29518637ACA00997ADB /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25318637A4F00997ADB /* DDTTYLogger.h */; };
 		D22DC29618637ACA00997ADB /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25618637A4F00997ADB /* ContextFilterLogFormatter.h */; };
 		D22DC29718637ACA00997ADB /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25818637A4F00997ADB /* DispatchQueueLogFormatter.h */; };
@@ -281,16 +281,16 @@
 				D22DC29818637ACA00997ADB /* TMTLog.h in Headers */,
 				D22DC29918637ACA00997ADB /* TMTLogFormatter.h in Headers */,
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
+				D22DC29418637ACA00997ADB /* DDLog.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
+				D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */,
 				D22DC29118637ACA00997ADB /* DDAbstractDatabaseLogger.h in Headers */,
 				D22DC29218637ACA00997ADB /* DDASLLogger.h in Headers */,
 				D22DC29318637ACA00997ADB /* DDFileLogger.h in Headers */,
-				D22DC29418637ACA00997ADB /* DDLog.h in Headers */,
 				D22DC29518637ACA00997ADB /* DDTTYLogger.h in Headers */,
 				D22DC29618637ACA00997ADB /* ContextFilterLogFormatter.h in Headers */,
 				D22DC29718637ACA00997ADB /* DispatchQueueLogFormatter.h in Headers */,
-				D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

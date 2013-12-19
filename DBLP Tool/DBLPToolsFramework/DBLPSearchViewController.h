@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DBLPCallbackHandler.h"
 #import "DBLPSearchCompletionHandler.h"
-@class DBLPInterface;
+@class DBLPInterface,TMTTableView;
 @interface DBLPSearchViewController : NSViewController<DBLPCallbackHandler, NSTableViewDelegate, NSTextFieldDelegate> {
     DBLPInterface *interface;
 }
@@ -20,9 +20,9 @@
 @property BOOL searchinAuthor;
 @property NSString *executeCitationLabel;
 @property (weak) IBOutlet NSDictionaryController *authorsController;
-@property (weak) IBOutlet NSTableView *authorTable;
+@property (weak) IBOutlet TMTTableView *authorTable;
 @property (weak) IBOutlet NSArrayController *publicationsController;
-@property (weak) IBOutlet NSTableView *publicationTable;
+@property (weak) IBOutlet TMTTableView *publicationTable;
 
 @property (weak) IBOutlet NSTextField *authorField;
 

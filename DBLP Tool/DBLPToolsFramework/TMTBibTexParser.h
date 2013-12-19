@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface TMTBibTexParser : NSObject {
     NSScanner *scanner;
     NSMutableDictionary *strings;
+    NSUInteger lastScanLocation;
 }
 
 - (NSMutableArray *)parseBibTexIn:(NSString *)content;
