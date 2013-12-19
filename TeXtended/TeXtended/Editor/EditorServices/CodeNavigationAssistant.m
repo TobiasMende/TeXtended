@@ -306,8 +306,11 @@ static const NSSet *KEYS_TO_OBSERVE;
     if(view.selectedRanges.count > 1 || view.selectedRange.length >0 || !self.carretColor) {
         return;
     }
-    
-    NSUInteger currentPosition = view.selectedRange.location;
+    NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
+    NSUInteger currentPosition = view.selectedRange.location > 0? view.selectedRange.location -1 : 0;
+    if (currentPosition < lineRange.location) {
+        return;
+    }
     NSRange carretRange = NSMakeRange(currentPosition, 1);
     [lm addTemporaryAttribute:NSBackgroundColorAttributeName value:self.carretColor forCharacterRange:carretRange];
     lastCarretRange = carretRange;
