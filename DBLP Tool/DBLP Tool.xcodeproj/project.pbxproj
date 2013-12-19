@@ -14,6 +14,7 @@
 		D217A436176B442C002DB084 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D217A434176B442C002DB084 /* Credits.rtf */; };
 		D217A439176B442C002DB084 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A438176B442C002DB084 /* AppDelegate.m */; };
 		D217A43C176B442C002DB084 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D217A43A176B442C002DB084 /* MainMenu.xib */; };
+		D22DC245186378F500997ADB /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1ED1863784900997ADB /* TMTHelperCollection.framework */; };
 		D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
 		D23BC4E81861E79700E9A507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D23BC4E61861E79700E9A507 /* InfoPlist.strings */; };
 		D23BC4EC1861E79700E9A507 /* DBLPToolsFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC4EB1861E79700E9A507 /* DBLPToolsFramework.m */; };
@@ -44,6 +45,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D22DC1EC1863784900997ADB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D22DC1B91863784800997ADB;
+			remoteInfo = TMTHelperCollection;
+		};
+		D22DC1EE1863784900997ADB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D22DC1D01863784800997ADB;
+			remoteInfo = TMTHelperCollectionTests;
+		};
+		D22DC243186378EC00997ADB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D22DC1B81863784800997ADB;
+			remoteInfo = TMTHelperCollection;
+		};
 		D23BC4F51861E79700E9A507 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D217A41A176B442C002DB084 /* Project object */;
@@ -80,6 +102,7 @@
 		D217A442176B463C002DB084 /* DBLPInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBLPInterface.h; path = "../DBLP Tool/DBLPInterface.h"; sourceTree = "<group>"; };
 		D217A443176B463C002DB084 /* DBLPInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBLPInterface.m; path = "../DBLP Tool/DBLPInterface.m"; sourceTree = "<group>"; };
 		D217A445176B471A002DB084 /* DBLPCallbackHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DBLPCallbackHandler.h; path = "../DBLP Tool/DBLPCallbackHandler.h"; sourceTree = "<group>"; };
+		D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TMTHelperCollection.xcodeproj; path = TMTHelperCollection/TMTHelperCollection.xcodeproj; sourceTree = "<group>"; };
 		D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BibTexToolsFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23BC4E51861E79700E9A507 /* DBLPToolsFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLPToolsFramework-Info.plist"; sourceTree = "<group>"; };
 		D23BC4E71861E79700E9A507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -118,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22DC245186378F500997ADB /* TMTHelperCollection.framework in Frameworks */,
 				D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +162,7 @@
 		D217A419176B442C002DB084 = {
 			isa = PBXGroup;
 			children = (
+				D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */,
 				D217A42B176B442C002DB084 /* DBLP Tool */,
 				D23BC4E31861E79700E9A507 /* BibTexToolsFramework */,
 				D23BC4F81861E79700E9A507 /* DBLPToolsFrameworkTests */,
@@ -200,6 +225,15 @@
 				D217A434176B442C002DB084 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D22DC1E81863784800997ADB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D22DC1ED1863784900997ADB /* TMTHelperCollection.framework */,
+				D22DC1EF1863784900997ADB /* TMTHelperCollectionTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D23BC4E31861E79700E9A507 /* BibTexToolsFramework */ = {
@@ -306,6 +340,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D22DC244186378EC00997ADB /* PBXTargetDependency */,
 			);
 			name = BibTexToolsFramework;
 			productName = DBLPToolsFramework;
@@ -354,6 +389,12 @@
 			mainGroup = D217A419176B442C002DB084;
 			productRefGroup = D217A423176B442C002DB084 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D22DC1E81863784800997ADB /* Products */;
+					ProjectRef = D22DC1E71863784800997ADB /* TMTHelperCollection.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D23BC4E01861E79700E9A507 /* BibTexToolsFramework */,
@@ -362,6 +403,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D22DC1ED1863784900997ADB /* TMTHelperCollection.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TMTHelperCollection.framework;
+			remoteRef = D22DC1EC1863784900997ADB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D22DC1EF1863784900997ADB /* TMTHelperCollectionTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TMTHelperCollectionTests.xctest;
+			remoteRef = D22DC1EE1863784900997ADB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D217A420176B442C002DB084 /* Resources */ = {
@@ -432,6 +490,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D22DC244186378EC00997ADB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TMTHelperCollection;
+			targetProxy = D22DC243186378EC00997ADB /* PBXContainerItemProxy */;
+		};
 		D23BC4F61861E79700E9A507 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D23BC4E01861E79700E9A507 /* BibTexToolsFramework */;
