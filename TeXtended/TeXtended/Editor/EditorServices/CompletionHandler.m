@@ -13,6 +13,7 @@
 #import "CompletionManager.h"
 #import "Completion.h"
 #import "CommandCompletion.h"
+#import "CiteCompletion.h"
 #import "EnvironmentCompletion.h"
 #import "UndoSupport.h"
 #import "CodeNavigationAssistant.h"
@@ -93,6 +94,8 @@ typedef enum {
 
 - (void) unbindAll;
 
+- (NSRange) extendedCiteEntryPrefixRangeFor:(NSRange)range;
+
 @end
 
 @implementation CompletionHandler
@@ -170,10 +173,7 @@ typedef enum {
     if (![view.firstResponderDelegate model].project) {
         return nil;
     }
-    while (charRange.location > 0 && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@"{"] && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@","]) {
-        charRange.location--;
-        charRange.length++;
-    }
+    charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
     NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     NSSet *bibFiles =[view.firstResponderDelegate model].project.bibFiles;
@@ -190,6 +190,16 @@ typedef enum {
     [matches sortUsingSelector:@selector(compare:)];
     return matches;
 }
+
+
+- (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)charRange {
+    while (charRange.location > 0 && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@"{"] && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@","]) {
+        charRange.location--;
+        charRange.length++;
+    }
+    return charRange;
+}
+
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
    
@@ -260,8 +270,17 @@ typedef enum {
     }
 }
 
-- (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-    
+- (void)insertCiteCompletion:(CiteCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    if (flag && [self isFinalInsertion:movement]) {
+            [view.undoManager beginUndoGrouping];
+        charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+            [view setSelectedRange:charRange];
+            [view delete:nil];
+            [view  insertText:completion.key];
+            [view.undoManager endUndoGrouping];
+    } else {
+        //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+    }
 }
 
 - (void)insertCommandCompletion:(CommandCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
@@ -450,6 +469,9 @@ typedef enum {
     for(NSString *key in COMPLETION_TYPE_BY_PREFIX) {
         if (charRange.location >= [key length]) {
             NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
+            if(prefixRange.location == NSNotFound) {
+                return TMTNoCompletion;
+            }
             NSString *prefixString = [view.string substringWithRange:prefixRange] ;
             if ([prefixString isEqualToString:key]) {
                 return [[COMPLETION_TYPE_BY_PREFIX objectForKey:key] intValue];

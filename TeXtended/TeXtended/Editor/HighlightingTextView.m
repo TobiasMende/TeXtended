@@ -222,10 +222,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (!self.servicesOn) {
         return;
     }
+    [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
     if (flag || movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
         [self dismissCompletionWindow];
     }
-    [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    
     
 }
 

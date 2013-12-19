@@ -131,6 +131,9 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger currentIndex = self.tableView.selectedRow;
+    if (currentIndex >= self.content.count || currentIndex < 0) {
+        return;
+    }
     id<CompletionProtocol> completion = [self.content objectAtIndex:currentIndex];
     NSRange prefixRange = [self.parent rangeForUserCompletion];
     if (prefixRange.location == NSNotFound) {

@@ -32,10 +32,10 @@
 
 - (BOOL)completionMatchesPrefix:(NSString *)prefix {
     BOOL result = NO;
-    result |= [self.entry.title hasPrefix:prefix];
-    result |= [self.key hasPrefix:prefix];
+    result |= [self.entry.title.lowercaseString hasPrefix:prefix.lowercaseString];
+    result |= [self.key.lowercaseString hasPrefix:prefix.lowercaseString];
     if (self.entry.author) {
-        NSRange nameRange = [self.entry.author rangeOfString:prefix];
+        NSRange nameRange = [self.entry.author.lowercaseString rangeOfString:prefix.lowercaseString];
         result |= nameRange.location != NSNotFound;
     }
     return result;
