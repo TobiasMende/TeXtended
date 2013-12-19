@@ -161,10 +161,10 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 }
 
 - (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info {
-    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],TMTShouldShowDBLPKey, [NSNumber numberWithInt:TMTCiteCompletion], TMTCompletionTypeKey, nil];
     if (![view.firstResponderDelegate model].project) {
         return nil;
     }
+    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],TMTShouldShowDBLPKey, [NSNumber numberWithInt:TMTCiteCompletion], TMTCompletionTypeKey, nil];
     charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
     NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
