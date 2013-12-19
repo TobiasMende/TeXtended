@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "FileObserver.h"
 
-@class ProjectModel, GenericFilePresenter;
+@class ProjectModel, GenericFilePresenter, TMTBibTexEntry;
 
 /**
  Objects of this class are representations of the core data object representing a bib file.
@@ -26,6 +26,8 @@
 /** the date of the last application internal read access to this file */
 @property (strong) NSDate * lastRead;
 
+@property NSNumber *fileEncoding;
+
 /** The absolute path to the bib file */
 @property (strong, nonatomic) NSString * path;
 
@@ -35,4 +37,9 @@
 @property NSMutableArray *entries;
 
 - (void)finishInitWithPath:(NSString *)absolutePath;
+
+- (BOOL)insertEntry:(TMTBibTexEntry *)entry;
+
+- (NSString *) loadFileContent;
+- (BOOL) writeFileContent:(NSString *)content;
 @end

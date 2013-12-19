@@ -20,11 +20,14 @@ static const NSString *BIBTEX_SEARCH_APPENDIX_KEY = @"bibtexSearchAppendix";
 - (id)init {
     self = [super init];
     if (self) {
-        NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"DBLPConfiguration" ofType:@"plist"]];
+        NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle bundleForClass:[self class]]pathForResource:@"DBLPConfiguration" ofType:@"plist"]];
         self.server = [config objectForKey:SERVER_KEY];
         self.authorSearchAppendix = [config objectForKey:AUTHOR_SEARCH_APPENDIX_KEY];
         self.keySearchAppendix = [config objectForKey:KEY_SEARCH_APPENDIX_KEY];
         self.bibtexSearchAppendix = [config objectForKey:BIBTEX_SEARCH_APPENDIX_KEY];
+        if (![self configIsValid]) {
+            NSLog(@"Loading of config failed!");
+        }
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self
                selector:@selector(appWillTerminate:)
@@ -44,6 +47,10 @@ static const NSString *BIBTEX_SEARCH_APPENDIX_KEY = @"bibtexSearchAppendix";
     return shared;
 }
 
+
+- (BOOL)configIsValid {
+    return self.server && self.authorSearchAppendix && self.keySearchAppendix && self.bibtexSearchAppendix;
+}
 
 - (void)appWillTerminate:(NSNotification *)note {
     if (self == DBLPConfiguration.sharedInstance) {

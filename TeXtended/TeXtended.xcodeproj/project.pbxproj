@@ -102,6 +102,7 @@
 		D257499218631E5B0025A536 /* DefaultCompletionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D257499118631E5B0025A536 /* DefaultCompletionView.m */; };
 		D2574995186324730025A536 /* DBLPButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574994186324730025A536 /* DBLPButtonView.m */; };
 		D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25749961863247F0025A536 /* DBLPButtonView.xib */; };
+		D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749A11863515C0025A536 /* DBLPIntegrator.m */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -494,6 +495,8 @@
 		D2574993186324730025A536 /* DBLPButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPButtonView.h; sourceTree = "<group>"; };
 		D2574994186324730025A536 /* DBLPButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPButtonView.m; sourceTree = "<group>"; };
 		D25749961863247F0025A536 /* DBLPButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPButtonView.xib; sourceTree = "<group>"; };
+		D25749A01863515C0025A536 /* DBLPIntegrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPIntegrator.h; sourceTree = "<group>"; };
+		D25749A11863515C0025A536 /* DBLPIntegrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPIntegrator.m; sourceTree = "<group>"; };
 		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
@@ -872,6 +875,8 @@
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
 				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
 				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
+				D25749A01863515C0025A536 /* DBLPIntegrator.h */,
+				D25749A11863515C0025A536 /* DBLPIntegrator.m */,
 			);
 			path = EditorServices;
 			sourceTree = "<group>";
@@ -1682,6 +1687,7 @@
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
 				D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */,
+				D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */,
 				D22354C918617E7A0056A472 /* CompletionManager.m in Sources */,
 				D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */,
 				D257499218631E5B0025A536 /* DefaultCompletionView.m in Sources */,

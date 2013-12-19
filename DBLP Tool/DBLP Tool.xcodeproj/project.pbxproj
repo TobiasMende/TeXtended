@@ -35,6 +35,10 @@
 		D23BC5121861E80B00E9A507 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */; };
 		D2574977186220A20025A536 /* TMTBibTexParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D2574975186220A20025A536 /* TMTBibTexParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2574978186220A20025A536 /* TMTBibTexParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574976186220A20025A536 /* TMTBibTexParser.m */; };
+		D257499B18633AB20025A536 /* DBLPSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D257499818633AB20025A536 /* DBLPSearchViewController.h */; };
+		D257499C18633AB20025A536 /* DBLPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D257499918633AB20025A536 /* DBLPSearchViewController.m */; };
+		D257499D18633AB20025A536 /* DBLPSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D257499A18633AB20025A536 /* DBLPSearchView.xib */; };
+		D257499F18634F310025A536 /* DBLPSearchCompletionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */; };
 		D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */; };
 /* End PBXBuildFile section */
@@ -89,6 +93,10 @@
 		D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLPToolsFrameworkTests.m; sourceTree = "<group>"; };
 		D2574975186220A20025A536 /* TMTBibTexParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTBibTexParser.h; sourceTree = "<group>"; };
 		D2574976186220A20025A536 /* TMTBibTexParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTBibTexParser.m; sourceTree = "<group>"; };
+		D257499818633AB20025A536 /* DBLPSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchViewController.h; sourceTree = "<group>"; };
+		D257499918633AB20025A536 /* DBLPSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPSearchViewController.m; sourceTree = "<group>"; };
+		D257499A18633AB20025A536 /* DBLPSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPSearchView.xib; sourceTree = "<group>"; };
+		D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLPSearchCompletionHandler.h; sourceTree = "<group>"; };
 		D2AB7DE3176B700900D1AB7B /* TMTBibTexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexEntry.h; path = "../DBLP Tool/TMTBibTexEntry.h"; sourceTree = "<group>"; };
 		D2AB7DE4176B700900D1AB7B /* TMTBibTexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexEntry.m; path = "../DBLP Tool/TMTBibTexEntry.m"; sourceTree = "<group>"; };
 		D2AB7DEE176B8FAB00D1AB7B /* BibtexWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexWindowController.h; sourceTree = "<group>"; };
@@ -210,6 +218,10 @@
 				D23BC4E41861E79700E9A507 /* Supporting Files */,
 				D2574975186220A20025A536 /* TMTBibTexParser.h */,
 				D2574976186220A20025A536 /* TMTBibTexParser.m */,
+				D257499818633AB20025A536 /* DBLPSearchViewController.h */,
+				D257499918633AB20025A536 /* DBLPSearchViewController.m */,
+				D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */,
+				D257499A18633AB20025A536 /* DBLPSearchView.xib */,
 			);
 			name = BibTexToolsFramework;
 			path = DBLPToolsFramework;
@@ -250,8 +262,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D257499B18633AB20025A536 /* DBLPSearchViewController.h in Headers */,
 				D23BC50A1861E7EE00E9A507 /* TMTBibTexEntry.h in Headers */,
 				D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */,
+				D257499F18634F310025A536 /* DBLPSearchCompletionHandler.h in Headers */,
 				D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */,
 				D2574977186220A20025A536 /* TMTBibTexParser.h in Headers */,
 				D23BC50B1861E7EE00E9A507 /* DBLPConfiguration.h in Headers */,
@@ -368,6 +382,7 @@
 			files = (
 				D23BC5071861E7CD00E9A507 /* DBLPConfiguration.plist in Resources */,
 				D23BC4E81861E79700E9A507 /* InfoPlist.strings in Resources */,
+				D257499D18633AB20025A536 /* DBLPSearchView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +414,7 @@
 			files = (
 				D2574978186220A20025A536 /* TMTBibTexParser.m in Sources */,
 				D23BC50D1861E7FB00E9A507 /* DBLPInterface.m in Sources */,
+				D257499C18633AB20025A536 /* DBLPSearchViewController.m in Sources */,
 				D23BC50E1861E7FB00E9A507 /* TMTBibTexEntry.m in Sources */,
 				D23BC50F1861E7FB00E9A507 /* DBLPConfiguration.m in Sources */,
 				D23BC4EC1861E79700E9A507 /* DBLPToolsFramework.m in Sources */,

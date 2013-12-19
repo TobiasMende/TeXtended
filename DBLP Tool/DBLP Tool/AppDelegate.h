@@ -7,22 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "DBLPCallbackHandler.h"
 
-@class DBLPInterface, BibtexWindowController;
-@interface AppDelegate : NSObject <NSApplicationDelegate, DBLPCallbackHandler, NSTextFieldDelegate, NSTableViewDelegate> {
-    DBLPInterface *dblp;
-    BibtexWindowController *bc;
-}
-@property (weak) IBOutlet NSTextField *resultLabel;
-@property BOOL searchinAuthor;
-@property (weak) IBOutlet NSDictionaryController *authorsController;
-@property (weak) IBOutlet NSTableView *authorTable;
-@property (weak) IBOutlet NSArrayController *publicationsController;
-@property (weak) IBOutlet NSTableView *publicationTable;
+@class DBLPInterface, DBLPSearchViewController;
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+@property (unsafe_unretained) IBOutlet NSWindow *window;
 
-@property (assign) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSTextField *authorField;
-- (IBAction)clickedAuthorTable:(id)sender;
-
+@property DBLPSearchViewController *controller;
 @end

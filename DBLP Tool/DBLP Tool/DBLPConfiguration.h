@@ -37,4 +37,6 @@
 
 /** The extension for the server url when fetching bibliography informations */
 @property NSString *bibtexSearchAppendix;
+
+- (BOOL)configIsValid;
 @end

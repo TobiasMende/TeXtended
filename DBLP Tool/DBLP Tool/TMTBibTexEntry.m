@@ -158,15 +158,12 @@
     } else {
         NSMutableString *entry = [[NSMutableString alloc] init];
         [entry appendFormat:@"@%@{%@,\n", self.type, self.key];
-        NSMutableSet *authorSet = [self.dictionary objectForKey:@"author"];
-            if (authorSet && authorSet.count > 0) {
-                NSMutableString *authors = [[NSMutableString alloc] init];
-                for (NSString *author in authorSet) {
-                    [authors appendFormat:@"%@ and ", author];
-                }
-                [authors deleteCharactersInRange:NSMakeRange(authors.length-5, 5)];
-                [entry appendString:[self bibtexLineFor:@"author" andValue:authors]];
-            }
+        if(self.author) {
+            [entry appendString:[self bibtexLineFor:@"author" andValue:self.author]];
+        }
+        if (self.title) {
+            [entry appendString:[self bibtexLineFor:@"title" andValue:self.title]];
+        }
             for(NSString *key in self.dictionary.keyEnumerator) {
                 if (![key isEqualToString:@"author"]) {
                     [entry appendString:[self bibtexLineFor:key andValue:[self.dictionary objectForKey:key]]];

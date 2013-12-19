@@ -12,7 +12,7 @@
 #import "FirstResponderDelegate.h"
 #import "CompletionProtocol.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController;
+@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport,SpellCheckingService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController,DBLPIntegrator;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -42,6 +42,8 @@ GoToLineSheetController *goToLineSheet;
     
     AutoCompletionWindowController *autoCompletionController;
     NSTimer *scrollTimer;
+    
+    DBLPIntegrator *dblpIntegrator;
 
 }
 

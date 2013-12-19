@@ -29,6 +29,8 @@
 #import "TMTNotificationCenter.h"
 #import "FirstResponderDelegate.h"
 #import "CompletionProtocol.h"
+#import "DBLPIntegrator.h"
+#import "BibFile.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -588,6 +590,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)showDBLPSearchView {
     [self dismissCompletionWindow];
+    if (!dblpIntegrator) {
+        dblpIntegrator = [[DBLPIntegrator alloc] initWithTextView:self];
+    }
+    [dblpIntegrator initializeDBLPView];
     DDLogInfo(@"TODO: Show DBLP View");
 }
 

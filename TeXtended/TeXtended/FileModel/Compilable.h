@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Constants.h"
 
-@class CompileSetting,DocumentModel,ProjectModel;
+@class CompileSetting,DocumentModel,ProjectModel, BibFile;
 
 /**
  Abstract parent class for ProjectModel and DocumentModel which combines similar properties of both subclasses.
@@ -86,6 +86,7 @@
 - (NSDate*) lastCompile;
 - (NSDate*) lastChanged;
 - (NSNumber*) encoding;
+- (NSArray *)bibFiles;
 @end
 
 @interface Compilable (Setter)

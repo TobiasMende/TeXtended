@@ -454,6 +454,14 @@ static NSArray *TMTEncodingsToCheck;
     return self.texPath;
 }
 
+- (NSArray *)bibFiles {
+    if (self.project) {
+        return self.project.bibFiles;
+    } else {
+        // TODO: search local bibfiles ??
+        return nil;
+    }
+}
 
 # pragma mark - Compile Setting Handling
 

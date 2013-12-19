@@ -113,7 +113,7 @@
 }
 
 -(void) liveCompile {
-    if (self.documentController.model.texPath) {
+    if (self.documentController.model != nil && self.documentController.model.texPath) {
         [self.documentController liveCompile:nil];
     }
     
