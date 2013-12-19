@@ -82,10 +82,10 @@
 		D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
 		D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */; };
 		D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
-		D23FD40118639E07006BFD33 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40018639E07006BFD33 /* Sparkle.framework */; };
-		D23FD40218639E0E006BFD33 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40018639E07006BFD33 /* Sparkle.framework */; };
 		D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
 		D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
+		D23FD40E1863A4D7006BFD33 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
+		D23FD40F1863A52D006BFD33 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -234,12 +234,12 @@
 		};
 		D21ACB6717267A6B00E2F8EC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D23FD40F1863A52D006BFD33 /* Sparkle.framework in CopyFiles */,
 				D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */,
-				D23FD40218639E0E006BFD33 /* Sparkle.framework in CopyFiles */,
 				D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */,
 				D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */,
 			);
@@ -415,8 +415,8 @@
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
 		D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
 		D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
-		D23FD40018639E07006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/MMTabBarView.framework"; sourceTree = "<group>"; };
+		D23FD40D1863A4D7006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
@@ -605,7 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */,
-				D23FD40118639E07006BFD33 /* Sparkle.framework in Frameworks */,
+				D23FD40E1863A4D7006BFD33 /* Sparkle.framework in Frameworks */,
 				D23FD3F718639957006BFD33 /* BibTexToolsFramework.framework in Frameworks */,
 				D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
@@ -1214,8 +1214,8 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D23FD40D1863A4D7006BFD33 /* Sparkle.framework */,
 				D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */,
-				D23FD40018639E07006BFD33 /* Sparkle.framework */,
 				D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */,
 				D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
@@ -1696,7 +1696,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1715,7 +1717,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1724,11 +1728,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
-					/Users/Tobi/Uni/tmtproject/TeXtended,
-				);
+				FRAMEWORK_SEARCH_PATHS = "../**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
@@ -1743,11 +1743,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
-					/Users/Tobi/Uni/tmtproject/TeXtended,
-				);
+				FRAMEWORK_SEARCH_PATHS = "../**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
