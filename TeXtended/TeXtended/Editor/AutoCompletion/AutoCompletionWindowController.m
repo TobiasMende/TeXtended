@@ -77,7 +77,7 @@
     
     [self.window setFrame:[self calculateFinalFrame:globalCharBound] display:YES animate:NO];
     [self.window orderFront:self];
-    if (content.count > 0) {
+    if (self.tableView.numberOfRows > 0) {
         [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     }
 

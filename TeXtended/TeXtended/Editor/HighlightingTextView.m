@@ -187,13 +187,15 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     NSDictionary *additionalInformation;
     NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0 additionalInformation:&additionalInformation];
-    if (completions.count > 0) {
+    if (completions.count > 0 || [[additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
         if (!autoCompletionController) {
             autoCompletionController = [AutoCompletionWindowController new];
             autoCompletionController.parent = self;
         }
         [autoCompletionController positionWindowWithContent:completions andInformation:additionalInformation];
-        [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
+        if (completions.count > 0) {
+            [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
+        }
     } else {
         [self dismissCompletionWindow];
     }
