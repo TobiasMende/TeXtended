@@ -11,6 +11,6 @@
 
 @implementation CiteCompletionView
 + (NSInteger)defaultViewHeight {
-    return 30;
+    return 35;
 }
 @end
