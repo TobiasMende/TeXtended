@@ -10,7 +10,10 @@
 #import "TMTLog.h"
 #import "CompletionProtocol.h"
 #import "HighlightingTextView.h"
-
+#import "CustomTableCellView.h"
+#import "CiteCompletionView.h"
+#import "DefaultCompletionView.h"
+#import "DBLPButtonView.h"
 @interface AutoCompletionWindowController ()
 
 - (NSRect) toGlobalCharBounds:(NSRect) localCharBound;
@@ -25,6 +28,9 @@
 
 
 - (void) textViewDidEndEditing:(NSNotification *)note;
+
+- (NSTableCellView *)customTableCellViewFor:(NSTableView *)view andRow:(NSInteger)row;
+- (NSInteger) totalWindowHeight;
 
 @end
 
@@ -61,8 +67,9 @@
     DDLogWarn(@"TV did end editing");
 }
 
-- (void)positionWindowWithContent:(NSArray *)content {
+- (void)positionWindowWithContent:(NSArray *)content andInformation:(NSDictionary *)additionalInformation {
     self.content = content;
+    self.additionalInformation = additionalInformation;
     NSRange range = NSMakeRange(self.parent.selectedRange.location-1, 1);
     NSRange theTextRange = [self.parent.layoutManager glyphRangeForCharacterRange:range actualCharacterRange:NULL];
     NSRect layoutRect = [self.parent.layoutManager boundingRectForGlyphRange:theTextRange inTextContainer:self.parent.textContainer];
@@ -78,7 +85,7 @@
 
 
 - (NSRect)calculateFinalFrame:(NSRect)globalCharBounds {
-    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, self.content.count * 16);
+    NSSize estimatedWindowSize = NSMakeSize(self.window.frame.size.width, [self totalWindowHeight]);
     NSPoint origin;
     
     CGFloat screenEnd = NSMaxX([[NSScreen mainScreen] visibleFrame]);
@@ -92,6 +99,43 @@
     return finalRect;
 }
 
+- (NSInteger)totalWindowHeight {
+    NSInteger rowHeight;
+    switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+        case TMTCiteCompletion:
+            rowHeight = [CiteCompletionView defaultViewHeight];
+            break;
+            
+        default:
+            rowHeight = [DefaultCompletionView defaultViewHeight];
+            break;
+    }
+    NSInteger total = self.content.count * (rowHeight+2);
+    if ([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+        total += [DBLPButtonView defaultViewHeight] +2;
+    }
+    return total;
+}
+
+
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    CGFloat height;
+    if(row >= 0 && row < self.content.count) {
+        switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+            case TMTCiteCompletion:
+                height = [CiteCompletionView defaultViewHeight];
+                break;
+                
+            default:
+                height = [DefaultCompletionView defaultViewHeight];
+                break;
+        }
+    } else {
+        height = [DBLPButtonView defaultViewHeight];
+    }
+    return height;
+}
 - (NSRect)toGlobalCharBounds:(NSRect)localCharBound {
     NSPoint pos = localCharBound.origin;
     NSPoint localPosition = [self.parent convertPoint:pos toView:self.window.contentView];
@@ -119,14 +163,53 @@
 #pragma mark - Table View Delegate Methods
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.content.count;
+    NSInteger result = self.content.count;
+    if ([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+        result ++;
+    }
+    return result;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    
     if (row >= 0 && row < self.content.count) {
-        return ((id<CompletionProtocol>)[self.content objectAtIndex:row]).key;
+        NSTableCellView *result = [self customTableCellViewFor:tableView andRow:row];
+        tableView.rowHeight = [self tableView:tableView heightOfRow:row];
+        id<CompletionProtocol> item = [self.content objectAtIndex:row];
+        result.objectValue = item;
+        return result;
+    } else if([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+        NSView *result = [tableView makeViewWithIdentifier:@"DBLPButtonView" owner:self];
+        if(!result) {
+            NSViewController *c = [[NSViewController alloc] initWithNibName:@"DBLPButtonView" bundle:nil];
+            result = c.view;
+        }
+        return result;
+    } else {
+        return nil;
     }
-    return nil;
+}
+
+- (NSTableCellView *)customTableCellViewFor:(NSTableView *)view andRow:(NSInteger)row {
+    NSView *result;
+    switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+        case TMTCiteCompletion:
+            result = [view makeViewWithIdentifier:@"CiteCompletionView" owner:self];
+            if(!result) {
+                NSViewController *c = [[NSViewController alloc] initWithNibName:@"CiteCompletionView" bundle:nil];
+                result = c.view;
+            }
+            break;
+            
+        default:
+            result = [view makeViewWithIdentifier:@"DefaultCompletionView" owner:self];
+            if(!result) {
+                NSViewController *c = [[NSViewController alloc] initWithNibName:@"DefaultCompletionView" bundle:nil];
+                result = c.view;
+            }
+            break;
+    }
+    return (NSTableCellView*)result;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
@@ -153,6 +236,7 @@
     }
     current = (current + 1)% count;
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+    [self.tableView scrollRowToVisible:current];
 }
 
 - (void)arrowUp {
@@ -163,6 +247,7 @@
     }
     current = (current > 0 ? current-1 : count-1);
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:current] byExtendingSelection:NO];
+    [self.tableView scrollRowToVisible:current];
 }
 
 - (void)enter {

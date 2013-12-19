@@ -11,9 +11,8 @@
 
 
 
-/*
- Constants for Document Type
-*/
+// --------------------------------------------------------------------------------
+#pragma mark - Constants for Document Type
 
 #define TMT_FOLDER_DOCUMENT_TYPE @"TeXtendedProjectFolder"
 #define TMT_PROJECT_DOCUMENT_TYPE @"TeXtededProjectFile"
@@ -21,9 +20,10 @@
 #define TMT_LATEX_STYLE_DOCUMENT @"Latex Style Document"
 #define TMT_LATEX_CLASS_DOCUMENT @"Latex Class Document"
 
-/*
- KVC keys for NSColor objects (used for user defaults)
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for NSColor objects (used for user defaults)
+
 #define TMT_INLINE_MATH_COLOR @"TMTInlineMathColor"
 #define TMT_COMMAND_COLOR @"TMTCommandColor"
 #define TMT_COMMENT_COLOR @"TMTCommentColor"
@@ -38,17 +38,19 @@
 #define TMT_EDITOR_SELECTION_FOREGROUND_COLOR @"TMTEditorSelectionForegroundColor"
 #define TMT_TEXDOC_LINK_COLOR @"TMTTexdocLinkColor"
 
-/*
- KVC keys for fonts
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for fonts
+
 #define TMT_EDITOR_FONT_NAME @"TMT_EDITOR_FONT_NAME"
 #define TMT_EDITOR_FONT_SIZE @"TMT_EDITOR_FONT_SIZE"
 #define TMT_EDITOR_FONT_BOLD @"TMT_EDITOR_FONT_BOLD"
 #define TMT_EDITOR_FONT_ITALIC @"TMT_EDITOR_FONT_ITALIC"
 
-/*
- KVC keys for numbers
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for numbers
+
 #define TMT_EDITOR_NUM_TAB_SPACES @"TMTEditorNumTabSpaces"
 #define TMT_EDITOR_HARD_WRAP_AFTER @"TMTEditorHardWrapAfter"
 #define TMT_EDITOR_LINE_WRAP_MODE @"TMTEditorLineWrapMode"
@@ -58,9 +60,10 @@
 #define TMTLatexLogLevelKey @"TMTLatexLogLevelKey" 
 #define TMTLineSpacing @"TMTLineSpacing"
 
-/*
- KVC keys for boolean flags (used for user defaults) 
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for boolean flags (used for user defaults)
+
 #define TMT_SHOULD_HIGHLIGHT_INLINE_MATH @ "TNTShouldHighlightInlineMath"
 #define TMT_SHOULD_HIGHLIGHT_COMMANDS @ "TMTShouldHighlightCommand"
 #define TMT_SHOULD_HIGHLIGHT_COMMENTS @ "TMTShouldHighlightComment"
@@ -89,9 +92,9 @@
 /* No for Horizontal order, Yes for Vertical order */
 #define TMTViewOrderAppearance @"TMTViewOrderAppearance"
 
-/*
- KVC keys for strings (used for user defaults)
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for strings (used for user defaults)
 
 #define TMT_ENVIRONMENT_PATH @"TMTEnvironmentPath"
 #define TMT_PATH_TO_TEXBIN @"TMTPathToTexbin"
@@ -102,15 +105,17 @@
 #define TMTDraftCompileArgs @"TMTDraftCompileArgs"
 #define TMTFinalCompileArgs @"TMTFinalCompileArgs"
 
-/*
- KVC keys for tabview collapsed states
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - KVC keys for tabview collapsed states
+
 #define TMT_LEFT_TABVIEW_COLLAPSED @"TMTLeftTabviewCollapsed"
 #define TMT_RIGHT_TABVIEW_COLLAPSED @"TMTRightTabviewCollapsed"
 
-/*
- Keys for NSCoding
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - Keys for NSCoding
+
 #define TMTCompletionInsertionKey @"TMTCompletionInsertionKey"
 #define TMTCompletionExtensionKey @"TMTCompletionExtensionKey"
 #define TMTCompletionHasPlaceholdersKey @"TMTCompletionHasPlaceholdersKey"
@@ -118,9 +123,9 @@
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 #define TMTCompletionCounterKey @"TMTCompletionCounterKey"
 
-/*
- Keys for user infos in NSNotification
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - Keys for NSNotification Info Dictionaries
 
 #define TMTForwardSynctexKey @"TMTForwardSynctexKey"
 #define TMTBackwardSynctexBeginKey @"TMTBackwardSynctexBeginKey"
@@ -131,9 +136,17 @@
 #define TMTIntegerKey @"TMTIntegerKey"
 #define TMTFirstResponderKey @"TMTFirstResponderKey"
 
-/*
- Notification Names
- */
+
+// --------------------------------------------------------------------------------
+#pragma mark - Keys for Dictionaries
+
+#define TMTCompletionTypeKey @"TMTCompletionTypeKey"
+#define TMTShouldShowDBLPKey @"TMTShouldShowDBLPKey"
+
+
+// --------------------------------------------------------------------------------
+#pragma mark - Notification Names
+
 #define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
 #define TMTEnvironmentCompletionsDidChangeNotification @"TMTEnvironmentCompletionsDidChangeNotification"
 #define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
@@ -150,6 +163,10 @@
 #define TMT_CONSOLE_MANAGER_CHANGED @"TMT_CONSOLE_MANAGER_CHANGED"
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
+
+
+// --------------------------------------------------------------------------------
+# pragma mark - Global Enumerations
 
 typedef enum LineWrappingMode {HardWrap = 0,
                                 SoftWrap = 1,
@@ -173,6 +190,16 @@ typedef enum SplitViewOrderType {
     TMTHorizontal = 0,
     TMTVertical = 1} TMTSplitViewOrderType;
 
+typedef enum TMTCompletionType {
+    TMTNoCompletion,
+    TMTCommandCompletion,
+    TMTBeginCompletion,
+    TMTEndCompletion,
+    TMTCiteCompletion,
+    TMTLabelCompletion,
+    TMTRefCompletion
+} TMTCompletionType;
+
 
 /** Defines the different compilemodes that are possible */
 typedef enum {
@@ -181,11 +208,17 @@ typedef enum {
     final = 2
 } CompileMode;
 
+
+// --------------------------------------------------------------------------------
+#pragma mark - Key Codes
+
 #define TMTTabKeyCode 48
 #define TMTArrowDownKeyCode 125
 #define TMTArrowUpKeyCode 126
 #define TMTBackKeyCode 51
 #define TMTReturnKeyCode 36
+
+
 /**
     This class is our common place for constants and other global definitions.
     E.g. keys used in the user defaults are defined here as global macros.

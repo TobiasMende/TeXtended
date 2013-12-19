@@ -64,6 +64,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (void) finalyUpdateTrackingAreas:(id)userInfo;
 
 - (void) dismissCompletionWindow;
+
+- (void) showDBLPSearchView;
+
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 @end
 @implementation HighlightingTextView
 
@@ -144,13 +148,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 
-- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info{
     if (!self.servicesOn) {
         return nil;
     }
     if ([completionHandler willHandleCompletionForPartialWordRange:charRange]) {
         [self.undoManager beginUndoGrouping];
-        NSArray *completions =[completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index];
+        NSArray *completions =[completionHandler completionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
         [self.undoManager endUndoGrouping];
         return completions;
     }
@@ -181,13 +185,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (wordRange.location == NSNotFound) {
         return;
     }
-    NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0];
+    NSDictionary *additionalInformation;
+    NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0 additionalInformation:&additionalInformation];
     if (completions.count > 0) {
         if (!autoCompletionController) {
             autoCompletionController = [AutoCompletionWindowController new];
             autoCompletionController.parent = self;
         }
-        [autoCompletionController positionWindowWithContent:completions];
+        [autoCompletionController positionWindowWithContent:completions andInformation:additionalInformation];
         [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
     } else {
         [self dismissCompletionWindow];
@@ -547,8 +552,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 [self dismissCompletionWindow];
                 break;
             case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
-                NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-                [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                if (autoCompletionController.tableView.selectedRow >= autoCompletionController.content.count) {
+                    if ([[autoCompletionController.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+                        [self showDBLPSearchView];
+                    }
+                } else {
+                    NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+                    [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                }
                 return;
             }
             default:
@@ -572,6 +583,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self.codeNavigationAssistant highlightCarret];
 }
 
+
+- (void)showDBLPSearchView {
+    [self dismissCompletionWindow];
+    DDLogInfo(@"TODO: Show DBLP View");
+}
 
 
 - (void)mouseDown:(NSEvent *)theEvent {

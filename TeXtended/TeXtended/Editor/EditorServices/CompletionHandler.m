@@ -28,15 +28,7 @@ static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 static const NSSet *KEYS_TO_UNBIND;
 static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
-typedef enum {
-    TMTNoCompletion,
-    TMTCommandCompletion,
-    TMTBeginCompletion,
-    TMTEndCompletion,
-    TMTCiteCompletion,
-    TMTLabelCompletion,
-    TMTRefCompletion
-    } TMTCompletionType;
+
 
 @interface CompletionHandler()
 
@@ -49,9 +41,9 @@ typedef enum {
  @return an array of CommandCompletion objects
  */
 
-- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 
-- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 
 
 /**
@@ -63,7 +55,7 @@ typedef enum {
  
  @return an array of EnvironmentCompletion objects
  */
-- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type;
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type additionalInformation:(NSDictionary **) info;
 
 /**
  Used by [CompletionHandler insertCommandCompletion:forPartialWordRange:movement:isFinal:] for handling \command completions.
@@ -139,27 +131,27 @@ typedef enum {
 
 
 
-- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info {
     TMTCompletionType type = [self completionTypeForPartialWordRange:charRange];
     switch (type) {
         case TMTCommandCompletion:
             if (!self.shouldCompleteCommands) {
                 return nil;
             }
-            return [self commandCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
+            return [self commandCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
         case TMTBeginCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
-            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type additionalInformation:info];
         case TMTEndCompletion:
             if (!self.shouldCompleteEnvironments) {
                 return nil;
             }
-            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
+            return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type additionalInformation:info];
         case TMTCiteCompletion:
             DDLogInfo(@"Cite Completion");
-            return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
+            return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
             break;
             
         default:
@@ -168,8 +160,8 @@ typedef enum {
     return nil;
 }
 
-- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-    
+- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info {
+    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],TMTShouldShowDBLPKey, [NSNumber numberWithInt:TMTCiteCompletion], TMTCompletionTypeKey, nil];
     if (![view.firstResponderDelegate model].project) {
         return nil;
     }
@@ -201,8 +193,8 @@ typedef enum {
 }
 
 
-- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
-   
+- (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary *__autoreleasing *)info{
+   *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], TMTCompletionTypeKey, nil];
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[CompletionManager sharedInstance] commandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
@@ -215,7 +207,8 @@ typedef enum {
     return matchingKeys;
 }
 
-- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type{
+- (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type additionalInformation:(NSDictionary *__autoreleasing *)info{
+    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:type], TMTCompletionTypeKey, nil];
     NSString *prefix = [view.string substringWithRange:charRange];
     NSDictionary *completions = [[CompletionManager sharedInstance] environmentCompletions] ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];

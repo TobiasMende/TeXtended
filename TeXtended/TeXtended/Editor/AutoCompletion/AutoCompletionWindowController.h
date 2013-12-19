@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 @interface AutoCompletionWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 @property (strong) IBOutlet NSTableView *tableView;
-
+@property (strong) NSDictionary *additionalInformation;
 @property (nonatomic) NSArray *content;
 @property (nonatomic) NSTextView *parent;
 
-- (void)  positionWindowWithContent:(NSArray *) content;
+- (void)  positionWindowWithContent:(NSArray *) content andInformation:(NSDictionary *)additionalInformation;
 
 #pragma mark - Key Events
 - (void) arrowDown;

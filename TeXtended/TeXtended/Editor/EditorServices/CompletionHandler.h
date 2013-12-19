@@ -42,7 +42,7 @@
  @return an array of matching completions (in this case: strings that can be used as keys in the completion dictionaries)
  
  */
-- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index;
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 
 
 /**
