@@ -13,6 +13,7 @@
 #import "TMTBibTexEntry.h"
 #import "NSString+PathExtension.h"
 #import "GenericFilePresenter.h"
+#import "CiteCompletion.h"
 
 @interface BibFile ()
 - (void)readFile;
@@ -111,8 +112,11 @@
         DDLogError(@"Can't load bib content: %@", error.userInfo);
     } else {
         TMTBibTexParser *parser = [TMTBibTexParser new];
-        self.entries = [parser parseBibTexIn:content];
-        [self.entries sortUsingSelector:@selector(compare:)];
+        NSMutableArray *entries = [parser parseBibTexIn:content];
+        self.entries = [[NSMutableArray alloc] initWithCapacity:entries.count];
+        for (TMTBibTexEntry *entry in entries) {
+            [self.entries addObject:[[CiteCompletion alloc] initWithBibEntry:entry]];
+        }
     }
 }
 

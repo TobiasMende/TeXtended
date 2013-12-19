@@ -19,6 +19,9 @@
 #import "TMTLog.h"
 #import "NSString+LatexExtension.h"
 #import "CompletionProtocol.h"
+#import "FirstResponderDelegate.h"
+#import "BibFile.h"
+#import "ProjectModel.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
@@ -153,12 +156,38 @@ typedef enum {
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type];
         case TMTCiteCompletion:
             DDLogInfo(@"Cite Completion");
+            return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index];
             break;
             
         default:
             DDLogInfo(@"NoCompletion");
     }
     return nil;
+}
+
+- (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+    
+    if (![view.firstResponderDelegate model].project) {
+        return nil;
+    }
+    while (charRange.location > 0 && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@"{"] && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@","]) {
+        charRange.location--;
+        charRange.length++;
+    }
+    NSString *prefix = [view.string substringWithRange:charRange];
+    NSSet *bibFiles =[view.firstResponderDelegate model].project.bibFiles;
+    NSMutableArray *allEntries = [NSMutableArray new];
+    for(BibFile *model in bibFiles) {
+        [allEntries addObjectsFromArray:model.entries];
+    }
+    NSMutableArray *matches = [NSMutableArray new];
+    for(id<CompletionProtocol> c in allEntries) {
+        if ([c respondsToSelector:@selector(completionMatchesPrefix:)] && [c completionMatchesPrefix:prefix]) {
+            [matches addObject:c];
+        }
+    }
+    [matches sortUsingSelector:@selector(compare:)];
+    return matches;
 }
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
@@ -221,10 +250,17 @@ typedef enum {
                 [self skipClosingBracket];
             }
             break;
+        case TMTCiteCompletion:
+            [self insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:charRange movement:movement isFinal:flag];
+            break;
         default:
             DDLogInfo(@"NoCompletion");
             break;
     }
+}
+
+- (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    
 }
 
 - (void)insertCommandCompletion:(CommandCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {

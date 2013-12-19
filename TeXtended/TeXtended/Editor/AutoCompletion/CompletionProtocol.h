@@ -17,4 +17,7 @@
  @return a key string
  */
 - (NSString*)key;
+
+@optional
+- (BOOL)completionMatchesPrefix:(NSString *)prefix;
 @end

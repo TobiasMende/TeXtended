@@ -8,7 +8,7 @@
 
 #import "EditorService.h"
 #import "CompletionProtocol.h"
-@class Completion, EnvironmentCompletion;
+@class Completion, EnvironmentCompletion, CiteCompletion;
 @interface CompletionHandler : EditorService
 
 /** if `YES` the environment content is automatically indended on the next line */
@@ -91,5 +91,7 @@
  @param flag useless flag
  */
 - (void)insertEnvironmentCompletion:(EnvironmentCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+- (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 @end
