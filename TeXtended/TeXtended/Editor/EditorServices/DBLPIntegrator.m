@@ -52,6 +52,7 @@
     NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(view.selectedRange.location, 1) inTextContainer:view.textContainer];
     popover = [NSPopover new];
     popover.contentViewController = self.vc;
+    popover.behavior = NSPopoverBehaviorSemitransient;
     [self.vc finishInitialization];
     [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxXEdge];
 }

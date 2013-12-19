@@ -594,7 +594,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         dblpIntegrator = [[DBLPIntegrator alloc] initWithTextView:self];
     }
     [dblpIntegrator initializeDBLPView];
-    DDLogInfo(@"TODO: Show DBLP View");
 }
 
 

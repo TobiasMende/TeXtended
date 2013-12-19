@@ -51,7 +51,6 @@
 		D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C974A1826FCF500E23911 /* ConsoleCellView.xib */; };
 		D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C974D1826FD8A00E23911 /* ConsoleData.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
-		D213171817782A3C002966FC /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
 		D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */; };
 		D21A89B0185CB63E00682624 /* DocumentSelectionAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A89AC185CB63E00682624 /* DocumentSelectionAccessoryController.m */; };
@@ -70,11 +69,11 @@
 		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
-		D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BFF7217F6D56C006473E0 /* TMTLog.m */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
+		D22DC1AE186371F100997ADB /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25749A9186370440025A536 /* TMTHelperCollection.framework */; };
 		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
 		D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E16961824ED10005B5B91 /* TMTTabView.xib */; };
 		D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16981824ED10005B5B91 /* TMTTabViewItem.m */; };
@@ -95,7 +94,6 @@
 		D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25479871837A0D30097C97D /* CompilerSettingsViewController.m */; };
 		D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25479881837A0D30097C97D /* CompilerSettingsView.xib */; };
 		D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25721F6175F56CB00A08F1D /* ConsoleView.xib */; };
-		D2574983186262AA0025A536 /* GenericFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574982186262AA0025A536 /* GenericFilePresenter.m */; };
 		D257498918631AFA0025A536 /* CiteCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D257498818631AFA0025A536 /* CiteCompletionView.xib */; };
 		D257498C18631B2E0025A536 /* CiteCompletionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D257498B18631B2E0025A536 /* CiteCompletionView.m */; };
 		D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D257498D18631C5C0025A536 /* DefaultCompletionView.xib */; };
@@ -103,14 +101,48 @@
 		D2574995186324730025A536 /* DBLPButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574994186324730025A536 /* DBLPButtonView.m */; };
 		D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25749961863247F0025A536 /* DBLPButtonView.xib */; };
 		D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749A11863515C0025A536 /* DBLPIntegrator.m */; };
+		D25749AA186370440025A536 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
+		D25749B0186370450025A536 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D25749AE186370450025A536 /* InfoPlist.strings */; };
+		D25749B4186370450025A536 /* TMTHelperCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749B3186370450025A536 /* TMTHelperCollection.m */; };
+		D25749BB186370450025A536 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25749BA186370450025A536 /* XCTest.framework */; };
+		D25749BC186370450025A536 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
+		D25749BF186370450025A536 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25749A9186370440025A536 /* TMTHelperCollection.framework */; };
+		D25749C5186370450025A536 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D25749C3186370450025A536 /* InfoPlist.strings */; };
+		D25749C7186370450025A536 /* TMTHelperCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749C6186370450025A536 /* TMTHelperCollectionTests.m */; };
+		D25749D1186370FA0025A536 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
+		D25749D2186370FA0025A536 /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213171717782A3C002966FC /* TMTTableRowView.m */; };
+		D25749D3186370FA0025A536 /* PathObserverFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */; };
+		D25749D4186370FA0025A536 /* GenericFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574982186262AA0025A536 /* GenericFilePresenter.m */; };
+		D25749D5186370FA0025A536 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1817F6BEDA00A99066 /* DDAbstractDatabaseLogger.m */; };
+		D25749D6186370FA0025A536 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1A17F6BEDA00A99066 /* DDASLLogger.m */; };
+		D25749D7186370FA0025A536 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1C17F6BEDA00A99066 /* DDFileLogger.m */; };
+		D25749D8186370FA0025A536 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1E17F6BEDA00A99066 /* DDLog.m */; };
+		D25749D9186370FA0025A536 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2017F6BEDA00A99066 /* DDTTYLogger.m */; };
+		D25749DA186370FA0025A536 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2317F6BEDA00A99066 /* ContextFilterLogFormatter.m */; };
+		D25749DB186370FA0025A536 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2517F6BEDA00A99066 /* DispatchQueueLogFormatter.m */; };
+		D25749DC186370FA0025A536 /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D268FB1917F6C30900C9E59E /* TMTLogFormatter.m */; };
+		D25749DD186370FA0025A536 /* TMTLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D21BFF7217F6D56C006473E0 /* TMTLog.m */; };
+		D25749DE186371210025A536 /* TMTTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2668625176F5B39001699A8 /* TMTTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749DF186371210025A536 /* TMTTableRowView.h in Headers */ = {isa = PBXBuildFile; fileRef = D213171617782A3C002966FC /* TMTTableRowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749E0186371210025A536 /* FileObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = D2574986186263E90025A536 /* FileObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749E1186371210025A536 /* PathObserverFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749E2186371210025A536 /* GenericFilePresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2574981186262AA0025A536 /* GenericFilePresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749E3186371210025A536 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE1717F6BEDA00A99066 /* DDAbstractDatabaseLogger.h */; };
+		D25749E4186371210025A536 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE1917F6BEDA00A99066 /* DDASLLogger.h */; };
+		D25749E5186371210025A536 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE1B17F6BEDA00A99066 /* DDFileLogger.h */; };
+		D25749E6186371210025A536 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE1D17F6BEDA00A99066 /* DDLog.h */; };
+		D25749E7186371210025A536 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE1F17F6BEDA00A99066 /* DDTTYLogger.h */; };
+		D25749E8186371210025A536 /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE2217F6BEDA00A99066 /* ContextFilterLogFormatter.h */; };
+		D25749E9186371210025A536 /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3DE2417F6BEDA00A99066 /* DispatchQueueLogFormatter.h */; };
+		D25749EA186371210025A536 /* TMTLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D268FB1817F6C30900C9E59E /* TMTLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749EB186371210025A536 /* TMTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D21BFF7117F6D56C006473E0 /* TMTLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D25749EC186371210025A536 /* TMTHelperCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = D25749B2186370450025A536 /* TMTHelperCollection.h */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
-		D266862D176F5B39001699A8 /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668626176F5B39001699A8 /* TMTTableView.m */; };
-		D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D268FB1917F6C30900C9E59E /* TMTLogFormatter.m */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
 		D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B3181BBAE100EEF55C /* OutlineTabViewController.m */; };
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
@@ -165,7 +197,6 @@
 		D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
 		D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
 		D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
-		D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */; };
 		D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
 		D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D2681FF8173143EC003AF83D /* BibFile.m */; };
@@ -212,13 +243,6 @@
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
-		D2F3DE2717F6BEDA00A99066 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1817F6BEDA00A99066 /* DDAbstractDatabaseLogger.m */; };
-		D2F3DE2817F6BEDA00A99066 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1A17F6BEDA00A99066 /* DDASLLogger.m */; };
-		D2F3DE2917F6BEDA00A99066 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1C17F6BEDA00A99066 /* DDFileLogger.m */; };
-		D2F3DE2A17F6BEDA00A99066 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE1E17F6BEDA00A99066 /* DDLog.m */; };
-		D2F3DE2B17F6BEDA00A99066 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2017F6BEDA00A99066 /* DDTTYLogger.m */; };
-		D2F3DE2C17F6BEDA00A99066 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2317F6BEDA00A99066 /* ContextFilterLogFormatter.m */; };
-		D2F3DE2D17F6BEDA00A99066 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3DE2517F6BEDA00A99066 /* DispatchQueueLogFormatter.m */; };
 		D2F3DE2E17F6BEDA00A99066 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2F3DE2617F6BEDA00A99066 /* README.txt */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
@@ -260,6 +284,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = D23BC4E01861E79700E9A507;
 			remoteInfo = DBLPToolsFramework;
+		};
+		D25749BD186370450025A536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2CC54E8171EAFAB00D81CF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D25749A8186370440025A536;
+			remoteInfo = TMTHelperCollection;
+		};
+		D25749ED1863714A0025A536 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2CC54E8171EAFAB00D81CF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D25749A8186370440025A536;
+			remoteInfo = TMTHelperCollection;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -466,8 +504,8 @@
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
 		D248E4DE1777647E008DDE80 /* MessageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataSource.m; sourceTree = "<group>"; };
-		D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathObserverFactory.h; sourceTree = "<group>"; };
-		D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathObserverFactory.m; sourceTree = "<group>"; };
+		D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathObserverFactory.h; path = ../TeXtended/Utils/PathObserverFactory.h; sourceTree = "<group>"; };
+		D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathObserverFactory.m; path = ../TeXtended/Utils/PathObserverFactory.m; sourceTree = "<group>"; };
 		D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletionWindowController.h; sourceTree = "<group>"; };
 		D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletionWindowController.m; sourceTree = "<group>"; };
 		D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompletionWindow.xib; sourceTree = "<group>"; };
@@ -482,9 +520,9 @@
 		D25721F4175F56CB00A08F1D /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleViewController.h; path = ../DocumentControllers/ConsoleViewController.h; sourceTree = "<group>"; };
 		D25721F5175F56CB00A08F1D /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleViewController.m; path = ../DocumentControllers/ConsoleViewController.m; sourceTree = "<group>"; };
 		D25721F6175F56CB00A08F1D /* ConsoleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConsoleView.xib; path = ../DocumentControllers/ConsoleView.xib; sourceTree = "<group>"; };
-		D2574981186262AA0025A536 /* GenericFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFilePresenter.h; sourceTree = "<group>"; };
-		D2574982186262AA0025A536 /* GenericFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFilePresenter.m; sourceTree = "<group>"; };
-		D2574986186263E90025A536 /* FileObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileObserver.h; sourceTree = "<group>"; };
+		D2574981186262AA0025A536 /* GenericFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericFilePresenter.h; path = ../TeXtended/Utils/GenericFilePresenter.h; sourceTree = "<group>"; };
+		D2574982186262AA0025A536 /* GenericFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericFilePresenter.m; path = ../TeXtended/Utils/GenericFilePresenter.m; sourceTree = "<group>"; };
+		D2574986186263E90025A536 /* FileObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FileObserver.h; path = ../TeXtended/Utils/FileObserver.h; sourceTree = "<group>"; };
 		D257498818631AFA0025A536 /* CiteCompletionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CiteCompletionView.xib; sourceTree = "<group>"; };
 		D257498A18631B2E0025A536 /* CiteCompletionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletionView.h; sourceTree = "<group>"; };
 		D257498B18631B2E0025A536 /* CiteCompletionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletionView.m; sourceTree = "<group>"; };
@@ -497,6 +535,17 @@
 		D25749961863247F0025A536 /* DBLPButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPButtonView.xib; sourceTree = "<group>"; };
 		D25749A01863515C0025A536 /* DBLPIntegrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPIntegrator.h; sourceTree = "<group>"; };
 		D25749A11863515C0025A536 /* DBLPIntegrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPIntegrator.m; sourceTree = "<group>"; };
+		D25749A9186370440025A536 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTHelperCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D25749AD186370450025A536 /* TMTHelperCollection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTHelperCollection-Info.plist"; sourceTree = "<group>"; };
+		D25749AF186370450025A536 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D25749B1186370450025A536 /* TMTHelperCollection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTHelperCollection-Prefix.pch"; sourceTree = "<group>"; };
+		D25749B2186370450025A536 /* TMTHelperCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTHelperCollection.h; sourceTree = "<group>"; };
+		D25749B3186370450025A536 /* TMTHelperCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTHelperCollection.m; sourceTree = "<group>"; };
+		D25749B9186370450025A536 /* TMTHelperCollectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTHelperCollectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D25749BA186370450025A536 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D25749C2186370450025A536 /* TMTHelperCollectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTHelperCollectionTests-Info.plist"; sourceTree = "<group>"; };
+		D25749C4186370450025A536 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D25749C6186370450025A536 /* TMTHelperCollectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTHelperCollectionTests.m; sourceTree = "<group>"; };
 		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
@@ -668,10 +717,29 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D25749A5186370440025A536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749AA186370440025A536 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D25749B6186370450025A536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749BC186370450025A536 /* Cocoa.framework in Frameworks */,
+				D25749BB186370450025A536 /* XCTest.framework in Frameworks */,
+				D25749BF186370450025A536 /* TMTHelperCollection.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54ED171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22DC1AE186371F100997ADB /* TMTHelperCollection.framework in Frameworks */,
 				D23BC5251861EA6100E9A507 /* BibTexToolsFramework.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
@@ -1056,14 +1124,8 @@
 			isa = PBXGroup;
 			children = (
 				D2314898181BCE6F00A3385B /* TMTNotificationCenter */,
-				D2C6A09617F6BD8600A9AEA2 /* Logger */,
-				D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */,
-				D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
-				D2574981186262AA0025A536 /* GenericFilePresenter.h */,
-				D2574982186262AA0025A536 /* GenericFilePresenter.m */,
-				D2574986186263E90025A536 /* FileObserver.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1085,6 +1147,59 @@
 			path = CustomTableCellViews;
 			sourceTree = "<group>";
 		};
+		D25749AB186370450025A536 /* TMTHelperCollection */ = {
+			isa = PBXGroup;
+			children = (
+				D25749D0186370D80025A536 /* Views */,
+				D2574986186263E90025A536 /* FileObserver.h */,
+				D24EA2AB176064BC00CE56B2 /* PathObserverFactory.h */,
+				D24EA2AC176064BC00CE56B2 /* PathObserverFactory.m */,
+				D2574981186262AA0025A536 /* GenericFilePresenter.h */,
+				D2574982186262AA0025A536 /* GenericFilePresenter.m */,
+				D2C6A09617F6BD8600A9AEA2 /* Logger */,
+				D25749B2186370450025A536 /* TMTHelperCollection.h */,
+				D25749B3186370450025A536 /* TMTHelperCollection.m */,
+				D25749AC186370450025A536 /* Supporting Files */,
+			);
+			path = TMTHelperCollection;
+			sourceTree = "<group>";
+		};
+		D25749AC186370450025A536 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D25749AD186370450025A536 /* TMTHelperCollection-Info.plist */,
+				D25749AE186370450025A536 /* InfoPlist.strings */,
+				D25749B1186370450025A536 /* TMTHelperCollection-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D25749C0186370450025A536 /* TMTHelperCollectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				D25749C6186370450025A536 /* TMTHelperCollectionTests.m */,
+				D25749C1186370450025A536 /* Supporting Files */,
+			);
+			path = TMTHelperCollectionTests;
+			sourceTree = "<group>";
+		};
+		D25749C1186370450025A536 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D25749C2186370450025A536 /* TMTHelperCollectionTests-Info.plist */,
+				D25749C3186370450025A536 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D25749D0186370D80025A536 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2668624176F5B39001699A8 /* TMTTableView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,7 +1218,6 @@
 				D2668616176F5B39001699A8 /* GoToLine */,
 				D266861A176F5B39001699A8 /* LineNumber */,
 				D266861D176F5B39001699A8 /* Texdoc */,
-				D2668624176F5B39001699A8 /* TMTTableView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1148,7 +1262,8 @@
 				D213171617782A3C002966FC /* TMTTableRowView.h */,
 				D213171717782A3C002966FC /* TMTTableRowView.m */,
 			);
-			path = TMTTableView;
+			name = TMTTableView;
+			path = ../../TeXtended/Views/TMTTableView;
 			sourceTree = "<group>";
 		};
 		D27198341743880E00342CB0 /* SyntaxHighlighter */ = {
@@ -1291,7 +1406,8 @@
 				D21BFF7117F6D56C006473E0 /* TMTLog.h */,
 				D21BFF7217F6D56C006473E0 /* TMTLog.m */,
 			);
-			path = Logger;
+			name = Logger;
+			path = ../TeXtended/Utils/Logger;
 			sourceTree = "<group>";
 		};
 		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
@@ -1313,6 +1429,8 @@
 			isa = PBXGroup;
 			children = (
 				D23BC5131861E98300E9A507 /* DBLP Tool.xcodeproj */,
+				D25749AB186370450025A536 /* TMTHelperCollection */,
+				D25749C0186370450025A536 /* TMTHelperCollectionTests */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
 				D26685F6176F56DA001699A8 /* texicon.icns */,
@@ -1325,6 +1443,8 @@
 			isa = PBXGroup;
 			children = (
 				D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */,
+				D25749A9186370440025A536 /* TMTHelperCollection.framework */,
+				D25749B9186370450025A536 /* TMTHelperCollectionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1336,6 +1456,7 @@
 				D21ACB5F17267A1700E2F8EC /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
+				D25749BA186370450025A536 /* XCTest.framework */,
 				D2CC54F5171EAFAB00D81CF1 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -1481,7 +1602,68 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D25749A6186370440025A536 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749DE186371210025A536 /* TMTTableView.h in Headers */,
+				D25749DF186371210025A536 /* TMTTableRowView.h in Headers */,
+				D25749E0186371210025A536 /* FileObserver.h in Headers */,
+				D25749E1186371210025A536 /* PathObserverFactory.h in Headers */,
+				D25749E2186371210025A536 /* GenericFilePresenter.h in Headers */,
+				D25749EA186371210025A536 /* TMTLogFormatter.h in Headers */,
+				D25749EB186371210025A536 /* TMTLog.h in Headers */,
+				D25749E3186371210025A536 /* DDAbstractDatabaseLogger.h in Headers */,
+				D25749E4186371210025A536 /* DDASLLogger.h in Headers */,
+				D25749E5186371210025A536 /* DDFileLogger.h in Headers */,
+				D25749E6186371210025A536 /* DDLog.h in Headers */,
+				D25749E7186371210025A536 /* DDTTYLogger.h in Headers */,
+				D25749E8186371210025A536 /* ContextFilterLogFormatter.h in Headers */,
+				D25749E9186371210025A536 /* DispatchQueueLogFormatter.h in Headers */,
+				D25749EC186371210025A536 /* TMTHelperCollection.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D25749A8186370440025A536 /* TMTHelperCollection */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D25749CE186370450025A536 /* Build configuration list for PBXNativeTarget "TMTHelperCollection" */;
+			buildPhases = (
+				D25749A4186370440025A536 /* Sources */,
+				D25749A5186370440025A536 /* Frameworks */,
+				D25749A6186370440025A536 /* Headers */,
+				D25749A7186370440025A536 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TMTHelperCollection;
+			productName = TMTHelperCollection;
+			productReference = D25749A9186370440025A536 /* TMTHelperCollection.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D25749B8186370450025A536 /* TMTHelperCollectionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D25749CF186370450025A536 /* Build configuration list for PBXNativeTarget "TMTHelperCollectionTests" */;
+			buildPhases = (
+				D25749B5186370450025A536 /* Sources */,
+				D25749B6186370450025A536 /* Frameworks */,
+				D25749B7186370450025A536 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D25749BE186370450025A536 /* PBXTargetDependency */,
+			);
+			name = TMTHelperCollectionTests;
+			productName = TMTHelperCollectionTests;
+			productReference = D25749B9186370450025A536 /* TMTHelperCollectionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D2CC54EF171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2CC5510171EAFAB00D81CF1 /* Build configuration list for PBXNativeTarget "TeXtended" */;
@@ -1498,6 +1680,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D25749EE1863714A0025A536 /* PBXTargetDependency */,
 				D23BC5241861EA5B00E9A507 /* PBXTargetDependency */,
 			);
 			name = TeXtended;
@@ -1513,6 +1696,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Tobias Mende";
+				TargetAttributes = {
+					D25749B8186370450025A536 = {
+						TestTargetID = D2CC54EF171EAFAB00D81CF1;
+					};
+				};
 			};
 			buildConfigurationList = D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1534,6 +1722,8 @@
 			targets = (
 				D2CC54EF171EAFAB00D81CF1 /* TeXtended */,
 				D21F376E171EC03700F961D6 /* Documentation */,
+				D25749A8186370440025A536 /* TMTHelperCollection */,
+				D25749B8186370450025A536 /* TMTHelperCollectionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1563,6 +1753,22 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D25749A7186370440025A536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749B0186370450025A536 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D25749B7186370450025A536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749C5186370450025A536 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54EE171EAFAB00D81CF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1672,6 +1878,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D25749A4186370440025A536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749D1186370FA0025A536 /* TMTTableView.m in Sources */,
+				D25749D2186370FA0025A536 /* TMTTableRowView.m in Sources */,
+				D25749D3186370FA0025A536 /* PathObserverFactory.m in Sources */,
+				D25749D4186370FA0025A536 /* GenericFilePresenter.m in Sources */,
+				D25749D5186370FA0025A536 /* DDAbstractDatabaseLogger.m in Sources */,
+				D25749D6186370FA0025A536 /* DDASLLogger.m in Sources */,
+				D25749D7186370FA0025A536 /* DDFileLogger.m in Sources */,
+				D25749D8186370FA0025A536 /* DDLog.m in Sources */,
+				D25749D9186370FA0025A536 /* DDTTYLogger.m in Sources */,
+				D25749DA186370FA0025A536 /* ContextFilterLogFormatter.m in Sources */,
+				D25749DB186370FA0025A536 /* DispatchQueueLogFormatter.m in Sources */,
+				D25749DC186370FA0025A536 /* TMTLogFormatter.m in Sources */,
+				D25749DD186370FA0025A536 /* TMTLog.m in Sources */,
+				D25749B4186370450025A536 /* TMTHelperCollection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D25749B5186370450025A536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D25749C7186370450025A536 /* TMTHelperCollectionTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54EC171EAFAB00D81CF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1683,7 +1918,6 @@
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
 				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
 				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
-				D2E7A4E71768E8F400B2BA3C /* PathObserverFactory.m in Sources */,
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
 				D2E7A4EE1768E8F400B2BA3C /* ProjectModel.m in Sources */,
@@ -1719,13 +1953,9 @@
 				D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */,
 				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
-				D2F3DE2917F6BEDA00A99066 /* DDFileLogger.m in Sources */,
 				D21A89B0185CB63E00682624 /* DocumentSelectionAccessoryController.m in Sources */,
-				D2F3DE2C17F6BEDA00A99066 /* ContextFilterLogFormatter.m in Sources */,
 				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
-				D2574983186262AA0025A536 /* GenericFilePresenter.m in Sources */,
-				D21BFF7317F6D56C006473E0 /* TMTLog.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
 				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
@@ -1748,7 +1978,6 @@
 				D2574995186324730025A536 /* DBLPButtonView.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
-				D2F3DE2A17F6BEDA00A99066 /* DDLog.m in Sources */,
 				D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */,
 				D2078D541837B620001C4A56 /* BibFilesSelectionViewController.m in Sources */,
 				D2E7A5161768E8F400B2BA3C /* ExtendedPdfControlls.m in Sources */,
@@ -1760,7 +1989,6 @@
 				F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */,
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
-				D268FB1A17F6C30900C9E59E /* TMTLogFormatter.m in Sources */,
 				D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */,
 				D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */,
 				D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */,
@@ -1768,7 +1996,6 @@
 				D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
-				D266862D176F5B39001699A8 /* TMTTableView.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
@@ -1779,17 +2006,12 @@
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
-				D213171817782A3C002966FC /* TMTTableRowView.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
-				D2F3DE2717F6BEDA00A99066 /* DDAbstractDatabaseLogger.m in Sources */,
 				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
-				D2F3DE2B17F6BEDA00A99066 /* DDTTYLogger.m in Sources */,
-				D2F3DE2817F6BEDA00A99066 /* DDASLLogger.m in Sources */,
-				D2F3DE2D17F6BEDA00A99066 /* DispatchQueueLogFormatter.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
@@ -1808,9 +2030,35 @@
 			name = DBLPToolsFramework;
 			targetProxy = D23BC5231861EA5B00E9A507 /* PBXContainerItemProxy */;
 		};
+		D25749BE186370450025A536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D25749A8186370440025A536 /* TMTHelperCollection */;
+			targetProxy = D25749BD186370450025A536 /* PBXContainerItemProxy */;
+		};
+		D25749EE1863714A0025A536 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D25749A8186370440025A536 /* TMTHelperCollection */;
+			targetProxy = D25749ED1863714A0025A536 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D25749AE186370450025A536 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D25749AF186370450025A536 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D25749C3186370450025A536 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D25749C4186370450025A536 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1852,6 +2100,110 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D25749C8186370450025A536 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TMTHelperCollection/TMTHelperCollection-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		D25749C9186370450025A536 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TMTHelperCollection/TMTHelperCollection-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		D25749CA186370450025A536 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TMTHelperCollectionTests/TMTHelperCollectionTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D25749CB186370450025A536 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TMTHelperCollectionTests/TMTHelperCollectionTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1970,6 +2322,24 @@
 			buildConfigurations = (
 				D21F3770171EC03700F961D6 /* Debug */,
 				D21F3771171EC03700F961D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D25749CE186370450025A536 /* Build configuration list for PBXNativeTarget "TMTHelperCollection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D25749C8186370450025A536 /* Debug */,
+				D25749C9186370450025A536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D25749CF186370450025A536 /* Build configuration list for PBXNativeTarget "TMTHelperCollectionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D25749CA186370450025A536 /* Debug */,
+				D25749CB186370450025A536 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

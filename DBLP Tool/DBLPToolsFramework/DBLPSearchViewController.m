@@ -30,10 +30,19 @@
 }
 
 
+- (void)performDoubleClick {
+    NSLog(@"Double Click");
+    if ([self.publicationTable clickedRow] < 0) {
+        return;
+    }
+    [self executeCitation:self];
+}
+
 
 - (void)finishedFetchingAuthors:(NSMutableDictionary *)authors {
     [self.authorsController setContent:authors];
     [self clickedAuthorTable:self];
+    
     self.searchinAuthor = NO;
 }
 
@@ -55,10 +64,25 @@
     }
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    if ([notification.object isEqualTo:self.publicationTable]) {
+        // Nothing to do ATM
+    } else if([notification.object isEqualTo:self.authorTable]) {
+        [self clickedAuthorTable:self];
+    }
+}
+
+
 - (IBAction)clickedAuthorTable:(id)sender {
-    NSUInteger row = [self.authorTable selectedRow];
+    NSUInteger row = [self.authorsController selectionIndex];
+    NSString *urlpt;
     if (row < [self.authorsController.arrangedObjects count]) {
-        NSString *urlpt = [[self.authorsController.arrangedObjects objectAtIndex:row] key];
+        urlpt = [[self.authorsController.arrangedObjects objectAtIndex:row] key];
+    } else if ([self.authorsController.arrangedObjects count] > 0) {
+        self.authorsController.selectionIndex = 0;
+        urlpt = [[self.authorsController.arrangedObjects objectAtIndex:0] key];
+    }
+    if (urlpt) {
         [interface publicationsForAuthor:urlpt];
     }
 }
@@ -83,22 +107,6 @@
         [self.handler dblpSearchAborted];
     }
 }
-
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-    if ([notification.object isEqualTo:self.publicationTable]) {
-        NSUInteger index = [self.publicationTable selectedRow];
-        if (index < [self.publicationsController.arrangedObjects count]) {
-            TMTBibTexEntry *pub = [self.publicationsController.arrangedObjects objectAtIndex:index];
-            if (pub.dictionary) {
-                
-            }
-        }
-    } else if([notification.object isEqualTo:self.authorTable]) {
-        [self clickedAuthorTable:self];
-    }
-}
-
 
 - (void)finishedFetchingKeys:(NSMutableArray *)authors {
     [self.publicationsController setContent:authors];

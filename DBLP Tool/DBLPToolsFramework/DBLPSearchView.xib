@@ -47,10 +47,13 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="value"/>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="o6F-JA-hp2" name="value" keyPath="arrangedObjects.value" id="sz1-zn-XCe"/>
+                                            <binding destination="o6F-JA-hp2" name="value" keyPath="arrangedObjects.value" id="Ugc-6S-J0u">
+                                                <dictionary key="options">
+                                                    <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </tableColumn>
                                     <tableColumn editable="NO" width="116" minWidth="40" maxWidth="1000" id="LmZ-Mo-kVC">
@@ -66,13 +69,19 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="o6F-JA-hp2" name="value" keyPath="arrangedObjects.key" id="aVF-Oo-lco"/>
+                                            <binding destination="o6F-JA-hp2" name="value" keyPath="arrangedObjects.key" id="h9Q-Vn-wQm">
+                                                <dictionary key="options">
+                                                    <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                    <bool key="NSCreatesSortDescriptor" value="NO"/>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
                                     <action selector="clickedAuthorTable:" target="-2" id="Hks-lS-FrH"/>
                                     <binding destination="o6F-JA-hp2" name="content" keyPath="arrangedObjects" id="566-y0-FlC"/>
+                                    <binding destination="o6F-JA-hp2" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="566-y0-FlC" id="I6j-PD-IZv"/>
                                     <outlet property="dataSource" destination="o6F-JA-hp2" id="T8R-Gh-4Fz"/>
                                     <outlet property="delegate" destination="-2" id="4xV-yG-0sG"/>
                                     <outlet property="nextKeyView" destination="sXZ-Sg-33v" id="FBr-Zj-6aM"/>
@@ -88,7 +97,7 @@
                         <rect key="frame" x="1" y="119" width="223" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="0CR-t3-7Kc">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="0CR-t3-7Kc">
                         <rect key="frame" x="611" y="17" width="16" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -118,8 +127,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="130.19140625" minWidth="40" maxWidth="1000" id="4vq-KO-N8a">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Cite Key">
+                                    <tableColumn editable="NO" width="53.54296875" minWidth="40" maxWidth="1000" id="4vq-KO-N8a">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Year">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,10 +138,14 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="key"/>
+                                        <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="year"/>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="sX2-MF-vSy" name="value" keyPath="arrangedObjects.key" id="Hjf-Dt-nKl"/>
+                                            <binding destination="sX2-MF-vSy" name="value" keyPath="arrangedObjects.year" id="n3A-NN-3nY">
+                                                <dictionary key="options">
+                                                    <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </tableColumn>
                                     <tableColumn editable="NO" width="331.83984375" minWidth="10" maxWidth="3.4028234663852886e+38" id="eQM-up-Zgc">
@@ -152,7 +165,7 @@
                                             <binding destination="sX2-MF-vSy" name="value" keyPath="arrangedObjects.title" id="gHy-al-cWk"/>
                                         </connections>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="155.125" minWidth="40" maxWidth="1000" id="Wdu-JL-0Kn">
+                                    <tableColumn editable="NO" width="231.125" minWidth="40" maxWidth="1000" id="Wdu-JL-0Kn">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Authors">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -171,6 +184,13 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <binding destination="sX2-MF-vSy" name="content" keyPath="arrangedObjects" id="Np3-B6-UrY"/>
+                                    <binding destination="sX2-MF-vSy" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Np3-B6-UrY" id="tel-A8-NW6"/>
+                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" id="Q9z-Ib-eJ7">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">performDoubleClick</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="dataSource" destination="sX2-MF-vSy" id="KyE-fh-uIh"/>
                                     <outlet property="delegate" destination="-2" id="7j8-9v-Psp"/>
                                     <outlet property="nextKeyView" destination="QfR-m5-g6T" id="Zzs-JT-6eb"/>
@@ -192,15 +212,22 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-Pr-TQd">
-                    <rect key="frame" x="18" y="319" width="404" height="17"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-Pr-TQd">
+                    <rect key="frame" x="18" y="320" width="404" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="gKf-lR-VBP">
-                        <font key="font" metaFont="system"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" continuous="YES" sendsActionOnEndEditing="YES" title="Author Name" id="gKf-lR-VBP">
+                        <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="o6F-JA-hp2" name="hidden" keyPath="selection.key" id="s4L-kC-56T">
+                            <dictionary key="options">
+                                <integer key="NSNotApplicablePlaceholder" value="1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="o6F-JA-hp2" name="displayPatternValue1" keyPath="selection.value" id="gLi-K2-tRn">
                             <dictionary key="options">
                                 <string key="NSNoSelectionPlaceholder" base64-UTF8="YES">
@@ -209,20 +236,13 @@ IA
                                 <string key="NSDisplayPattern">Publications of %{value1}@</string>
                             </dictionary>
                         </binding>
-                        <binding destination="o6F-JA-hp2" name="hidden" keyPath="selection.key" id="s4L-kC-56T">
-                            <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                <string key="NSValueTransformerName">NSIsNil</string>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </textField>
                 <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sXZ-Sg-33v">
                     <rect key="frame" x="428" y="316" width="220" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="220" id="O80-4M-2n8"/>
+                        <constraint firstAttribute="width" constant="220" id="DFr-Gd-JGV"/>
                     </constraints>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Title ..." usesSingleLineMode="YES" bezelStyle="round" id="71R-Fg-0g0">
                         <font key="font" metaFont="system"/>
@@ -230,17 +250,17 @@ IA
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </searchFieldCell>
                     <connections>
+                        <binding destination="sX2-MF-vSy" name="predicate" keyPath="filterPredicate" id="yNP-0v-ee9">
+                            <dictionary key="options">
+                                <string key="NSDisplayName">Title</string>
+                                <string key="NSPredicateFormat">title contains[c] $value</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="o6F-JA-hp2" name="enabled" keyPath="selection.key" id="XwH-3M-Bgh">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNoSelectionPlaceholder" value="0"/>
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="sX2-MF-vSy" name="predicate" keyPath="filterPredicate" id="yNP-0v-ee9">
-                            <dictionary key="options">
-                                <string key="NSDisplayName">Title</string>
-                                <string key="NSPredicateFormat">title contains[c] $value</string>
                             </dictionary>
                         </binding>
                         <outlet property="nextKeyView" destination="kr7-In-skA" id="TiQ-4m-Kkl"/>
@@ -263,11 +283,11 @@ IA
                     <rect key="frame" x="18" y="17" width="257" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="252" id="Qh8-DT-RPw"/>
+                        <constraint firstAttribute="width" constant="252" id="QPm-zn-dkb"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GTU-uf-uEL" id="CGI-9i-6iH">
+                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingHead" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GTU-uf-uEL" id="CGI-9i-6iH">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="Ktr-py-YXi">
                             <items>
                                 <menuItem title="Item 1" state="on" id="GTU-uf-uEL"/>
@@ -277,7 +297,6 @@ IA
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="content" keyPath="self.bibFilePaths" id="MB9-Wj-fx1"/>
                         <binding destination="sX2-MF-vSy" name="enabled" keyPath="selection.key" id="uUK-yb-mgI">
                             <dictionary key="options">
                                 <integer key="NSNotApplicablePlaceholder" value="0"/>
@@ -291,6 +310,7 @@ IA
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>
                         </binding>
+                        <binding destination="-2" name="content" keyPath="self.bibFilePaths" id="MB9-Wj-fx1"/>
                         <outlet property="nextKeyView" destination="wva-dh-7Q4" id="6BN-je-sfX"/>
                     </connections>
                 </popUpButton>
@@ -322,29 +342,29 @@ IA
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="leading" secondItem="0gd-DU-jdk" secondAttribute="leading" id="1Of-zR-5Nr"/>
-                <constraint firstItem="0gd-DU-jdk" firstAttribute="top" secondItem="Ple-09-h0k" secondAttribute="top" constant="18" id="2zZ-0d-NNO"/>
-                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="top" secondItem="0gd-DU-jdk" secondAttribute="bottom" constant="8" symbolic="YES" id="4cm-Ro-7UW"/>
-                <constraint firstAttribute="bottom" secondItem="QfR-m5-g6T" secondAttribute="bottom" constant="20" symbolic="YES" id="FYy-2Y-gyw"/>
-                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="trailing" secondItem="sXZ-Sg-33v" secondAttribute="trailing" id="FZ6-wU-1EH"/>
-                <constraint firstItem="ATU-cg-NLX" firstAttribute="top" secondItem="T0K-Pr-TQd" secondAttribute="bottom" constant="1" id="Kv2-3Y-VIs"/>
-                <constraint firstItem="QfR-m5-g6T" firstAttribute="top" secondItem="ATU-cg-NLX" secondAttribute="bottom" constant="8" id="OTK-Jk-gIK"/>
-                <constraint firstItem="ATU-cg-NLX" firstAttribute="leading" secondItem="QfR-m5-g6T" secondAttribute="leading" id="Qvn-uA-dHF"/>
-                <constraint firstItem="iEK-VC-cnY" firstAttribute="leading" secondItem="0gd-DU-jdk" secondAttribute="trailing" constant="8" symbolic="YES" id="T0a-Qb-9HH"/>
-                <constraint firstAttribute="trailing" secondItem="iEK-VC-cnY" secondAttribute="trailing" constant="20" symbolic="YES" id="TQJ-i9-qfL"/>
-                <constraint firstItem="ATU-cg-NLX" firstAttribute="trailing" secondItem="sXZ-Sg-33v" secondAttribute="trailing" id="U4X-nW-bxY"/>
-                <constraint firstItem="T0K-Pr-TQd" firstAttribute="leading" secondItem="Zrm-RR-Fsz" secondAttribute="leading" id="ZEc-uF-Ls4"/>
-                <constraint firstItem="wva-dh-7Q4" firstAttribute="baseline" secondItem="QfR-m5-g6T" secondAttribute="baseline" id="fAZ-c9-xbx"/>
-                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="trailing" secondItem="iEK-VC-cnY" secondAttribute="trailing" id="hQQ-bL-KAZ"/>
-                <constraint firstItem="sXZ-Sg-33v" firstAttribute="leading" secondItem="T0K-Pr-TQd" secondAttribute="trailing" constant="8" symbolic="YES" id="lPr-4I-nra"/>
-                <constraint firstItem="0gd-DU-jdk" firstAttribute="centerY" secondItem="iEK-VC-cnY" secondAttribute="centerY" id="lZd-hB-QZM"/>
-                <constraint firstItem="0gd-DU-jdk" firstAttribute="leading" secondItem="Ple-09-h0k" secondAttribute="leading" constant="20" symbolic="YES" id="nLk-mg-sM6"/>
-                <constraint firstItem="ATU-cg-NLX" firstAttribute="leading" secondItem="T0K-Pr-TQd" secondAttribute="leading" id="p3t-OJ-lmb"/>
-                <constraint firstItem="wva-dh-7Q4" firstAttribute="leading" secondItem="QfR-m5-g6T" secondAttribute="trailing" constant="27" id="pRt-k8-oLs"/>
-                <constraint firstItem="ATU-cg-NLX" firstAttribute="top" secondItem="sXZ-Sg-33v" secondAttribute="bottom" constant="8" symbolic="YES" id="qCO-RO-6JP"/>
-                <constraint firstItem="wva-dh-7Q4" firstAttribute="trailing" secondItem="ATU-cg-NLX" secondAttribute="trailing" id="taL-uY-bH1"/>
-                <constraint firstItem="sXZ-Sg-33v" firstAttribute="top" secondItem="Zrm-RR-Fsz" secondAttribute="bottom" constant="12" id="tzS-ik-Kdy"/>
-                <constraint firstItem="sXZ-Sg-33v" firstAttribute="top" secondItem="Ple-09-h0k" secondAttribute="top" constant="230" id="zsZ-Mu-ROO"/>
+                <constraint firstItem="wva-dh-7Q4" firstAttribute="trailing" secondItem="ATU-cg-NLX" secondAttribute="trailing" id="09x-53-GEO"/>
+                <constraint firstItem="iEK-VC-cnY" firstAttribute="leading" secondItem="0gd-DU-jdk" secondAttribute="trailing" constant="8" symbolic="YES" id="2kk-jq-3VP"/>
+                <constraint firstItem="sXZ-Sg-33v" firstAttribute="top" secondItem="Zrm-RR-Fsz" secondAttribute="bottom" constant="12" id="4hP-Pb-KDS"/>
+                <constraint firstItem="wva-dh-7Q4" firstAttribute="leading" secondItem="QfR-m5-g6T" secondAttribute="trailing" constant="27" id="8ta-do-oek"/>
+                <constraint firstItem="0gd-DU-jdk" firstAttribute="top" secondItem="Ple-09-h0k" secondAttribute="top" constant="18" id="A2i-XQ-Gcu"/>
+                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="leading" secondItem="0gd-DU-jdk" secondAttribute="leading" id="CJv-ak-IGH"/>
+                <constraint firstItem="T0K-Pr-TQd" firstAttribute="leading" secondItem="ATU-cg-NLX" secondAttribute="leading" id="DIP-yo-FGa"/>
+                <constraint firstItem="sXZ-Sg-33v" firstAttribute="trailing" secondItem="Zrm-RR-Fsz" secondAttribute="trailing" id="Di3-78-FHu"/>
+                <constraint firstItem="iEK-VC-cnY" firstAttribute="centerY" secondItem="0gd-DU-jdk" secondAttribute="centerY" id="G0V-9O-s3M"/>
+                <constraint firstItem="0gd-DU-jdk" firstAttribute="leading" secondItem="Ple-09-h0k" secondAttribute="leading" constant="20" symbolic="YES" id="O6f-lj-PMY"/>
+                <constraint firstItem="iEK-VC-cnY" firstAttribute="trailing" secondItem="Zrm-RR-Fsz" secondAttribute="trailing" id="P7R-TC-wB8"/>
+                <constraint firstAttribute="trailing" secondItem="iEK-VC-cnY" secondAttribute="trailing" constant="20" symbolic="YES" id="Plz-wG-ORf"/>
+                <constraint firstItem="T0K-Pr-TQd" firstAttribute="centerY" secondItem="sXZ-Sg-33v" secondAttribute="centerY" id="TWi-jb-BH2"/>
+                <constraint firstItem="QfR-m5-g6T" firstAttribute="top" secondItem="ATU-cg-NLX" secondAttribute="bottom" constant="8" id="Wdq-LM-cwF"/>
+                <constraint firstItem="ATU-cg-NLX" firstAttribute="leading" secondItem="QfR-m5-g6T" secondAttribute="leading" id="gov-iD-i3e"/>
+                <constraint firstItem="QfR-m5-g6T" firstAttribute="baseline" secondItem="wva-dh-7Q4" secondAttribute="baseline" id="hF4-bX-EdB"/>
+                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="top" secondItem="0gd-DU-jdk" secondAttribute="bottom" constant="8" symbolic="YES" id="i15-K0-rTV"/>
+                <constraint firstItem="ATU-cg-NLX" firstAttribute="top" secondItem="sXZ-Sg-33v" secondAttribute="bottom" constant="8" symbolic="YES" id="iqU-rB-ftF"/>
+                <constraint firstItem="ATU-cg-NLX" firstAttribute="trailing" secondItem="sXZ-Sg-33v" secondAttribute="trailing" id="jg6-0g-In7"/>
+                <constraint firstItem="sXZ-Sg-33v" firstAttribute="leading" secondItem="T0K-Pr-TQd" secondAttribute="trailing" constant="8" symbolic="YES" id="pAX-O6-EaV"/>
+                <constraint firstAttribute="bottom" secondItem="QfR-m5-g6T" secondAttribute="bottom" constant="20" symbolic="YES" id="vRW-m1-uNI"/>
+                <constraint firstItem="Zrm-RR-Fsz" firstAttribute="leading" secondItem="T0K-Pr-TQd" secondAttribute="leading" id="vTG-LN-LX2"/>
+                <constraint firstItem="sXZ-Sg-33v" firstAttribute="top" secondItem="Ple-09-h0k" secondAttribute="top" constant="230" id="wwO-cx-5H0"/>
             </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="0gd-DU-jdk" id="Kd5-Hm-tSt"/>

@@ -27,7 +27,7 @@
 @property (weak) IBOutlet NSTextField *authorField;
 
 - (IBAction)clickedAuthorTable:(id)sender;
-
+- (IBAction)performDoubleClick;
 - (IBAction)executeCitation:(id)sender;
 - (void) finishInitialization;
 @end
