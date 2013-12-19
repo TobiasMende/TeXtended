@@ -11,7 +11,7 @@
 #import "DocumentModel.h"
 #import "ProjectModel.h"
 #import "MainDocument.h"
-#import "TMTTableView.h"
+#import <TMTHelperCollection/TMTTableView.h>
 
 @interface ExportCompileWindowController ()
 @end

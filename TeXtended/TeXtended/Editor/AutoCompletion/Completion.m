@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "EditorPlaceholder.h"
 #import "CompletionManager.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation Completion
 

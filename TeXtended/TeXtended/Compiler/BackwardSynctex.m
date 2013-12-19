@@ -9,7 +9,7 @@
 #import "BackwardSynctex.h"
 #import "Constants.h"
 #import "PathFactory.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSRegularExpression *SYNCTEX_REGEX;
 

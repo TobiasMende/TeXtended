@@ -8,9 +8,9 @@
 
 #import "ConsoleWindowController.h"
 #import "ConsoleManager.h"
-#import "TMTTableRowView.h"
+#import <TMTHelperCollection/TMTTableRowView.h>
+#import <TMTHelperCollection/TMTLog.h>
 #import "ConsoleCellView.h"
-#import "TMTLog.h"
 #import "Constants.h"
 #import "ConsoleData.h"
 #import "ConsoleViewController.h"

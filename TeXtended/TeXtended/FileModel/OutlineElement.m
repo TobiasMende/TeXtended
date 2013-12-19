@@ -8,7 +8,7 @@
 
 #import "OutlineElement.h"
 #import "DocumentModel.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSDictionary *ELEMENT_EXTRACTOR_REGEX_LOOKUP;
 static const NSDictionary *TYPE_STRING_LOOKUP;

@@ -8,7 +8,7 @@
 
 #import "NewTemplateController.h"
 #import "TemplateController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation NewTemplateController
 

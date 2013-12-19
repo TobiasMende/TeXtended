@@ -14,7 +14,7 @@
 #import "Compilable.h"
 #import "MainDocument.h"
 #import "TextViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabViewController.h"
 #import "DocumentModel.h"
 #import "ExtendedPDFViewController.h"

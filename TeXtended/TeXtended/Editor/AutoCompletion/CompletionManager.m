@@ -11,7 +11,7 @@
 #import "CommandCompletion.h"
 #import "Completion.h"
 #import "EnvironmentCompletion.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 static CompletionManager *instance;
 static NSSet* SPECIAL_SYMBOLS;
 @implementation CompletionManager

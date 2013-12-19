@@ -9,7 +9,7 @@
 #import "TexdocPanelController.h"
 #import "TexdocController.m"
 #import "TexdocViewController.h"
-#import "TMTTableView.h"
+#import <TMTHelperCollection/TMTTableView.h>
 
 @interface TexdocPanelController ()
 

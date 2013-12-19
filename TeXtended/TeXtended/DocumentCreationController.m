@@ -13,7 +13,7 @@
 #import "DocumentModel.h"
 #import "EncodingController.h"
 #import "SimpleDocument.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "ProjectCreationWindowController.h"
 
 @interface DocumentCreationController ()

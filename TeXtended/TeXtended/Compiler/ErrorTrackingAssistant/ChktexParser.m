@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "PathFactory.h"
 #import "MessageCollection.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSDictionary *WARNING_NUMBERS;
 static const NSDictionary *INFO_NUMBERS;

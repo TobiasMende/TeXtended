@@ -10,7 +10,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "ProjectModel.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 
 @interface ProjectDocument ()

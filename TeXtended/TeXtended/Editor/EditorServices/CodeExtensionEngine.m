@@ -13,7 +13,7 @@
 #import "TexdocEntry.h"
 #import "SpellCheckingService.h"
 #import "TexdocController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 #define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 static const NSRegularExpression *TEXDOC_LINKS;

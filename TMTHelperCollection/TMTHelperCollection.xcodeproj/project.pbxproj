@@ -602,6 +602,7 @@
 				D22DC1E31863784800997ADB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D22DC1E41863784800997ADB /* Build configuration list for PBXNativeTarget "TMTHelperCollectionTests" */ = {
 			isa = XCConfigurationList;
@@ -610,6 +611,7 @@
 				D22DC1E61863784800997ADB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

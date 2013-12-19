@@ -9,7 +9,7 @@
 #import "PlaceholderServices.h"
 #import "HighlightingTextView.h"
 #import "EditorPlaceholder.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation PlaceholderServices
 

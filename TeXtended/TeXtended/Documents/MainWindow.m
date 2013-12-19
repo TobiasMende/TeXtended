@@ -8,7 +8,7 @@
 
 #import "MainWindow.h"
 #import "MainWindowController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation MainWindow
 

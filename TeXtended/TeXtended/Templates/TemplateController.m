@@ -9,8 +9,8 @@
 #import "TemplateController.h"
 #import "PathFactory.h"
 #import "ApplicationController.h"
-#import "newTemplateController.h"
-#import "TMTLog.h"
+#import "NewTemplateController.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation TemplateController
 

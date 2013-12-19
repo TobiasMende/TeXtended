@@ -11,7 +11,7 @@
 #import "EnvironmentCompletion.h"
 #import "ApplicationController.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "CompletionManager.h"
 
 

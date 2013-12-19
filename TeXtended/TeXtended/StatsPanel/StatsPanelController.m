@@ -7,7 +7,7 @@
 //
 
 #import "StatsPanelController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "Constants.h"
 
 @interface StatsPanelController ()

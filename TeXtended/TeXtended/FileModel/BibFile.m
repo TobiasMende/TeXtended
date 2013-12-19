@@ -8,11 +8,11 @@
 
 #import "BibFile.h"
 #import "ProjectModel.h"
-#import "TMTLog.h"
-#import "TMTBibTexParser.h"
-#import "TMTBibTexEntry.h"
+#import <TMTHelperCollection/TMTLog.h>
+#import <BibTexToolsFramework/TMTBibTexParser.h>
+#import <BibTexToolsFramework/TMTBibTexEntry.h>
 #import "NSString+PathExtension.h"
-#import "GenericFilePresenter.h"
+#import <TMTHelperCollection/GenericFilePresenter.h>
 #import "CiteCompletion.h"
 
 @interface BibFile ()

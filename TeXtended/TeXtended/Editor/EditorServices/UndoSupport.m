@@ -8,7 +8,7 @@
 
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation UndoSupport
 - (void)insertText:(NSAttributedString *)insertion

@@ -12,7 +12,7 @@
 #import "CompileFlowHandler.h"
 #import "Compilable.h"
 #import "EncodingController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface InfoWindowController ()
 

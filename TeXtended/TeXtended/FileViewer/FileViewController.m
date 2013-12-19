@@ -16,8 +16,8 @@
 #import "DocumentController.h"
 #import "DocumentCreationController.h"
 #import "Constants.h"
-#import "PathObserverFactory.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/PathObserverFactory.h>
+#import <TMTHelperCollection/TMTLog.h>
 #import "ProjectDocument.h"
 #import "SimpleDocument.h"
 

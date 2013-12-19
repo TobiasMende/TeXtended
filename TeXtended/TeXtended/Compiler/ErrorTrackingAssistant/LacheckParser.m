@@ -12,7 +12,7 @@
 #import "PathFactory.h"
 #import "TrackingMessage.h"
 #import "MessageCollection.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 
 @implementation LacheckParser

@@ -12,7 +12,7 @@
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
 

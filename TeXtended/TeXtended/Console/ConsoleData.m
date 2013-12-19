@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "DocumentModel.h"
 #import "TMTNotificationCenter.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "MessageCollection.h"
 #import "ConsoleViewController.h"
 #import "LogfileParser.h"

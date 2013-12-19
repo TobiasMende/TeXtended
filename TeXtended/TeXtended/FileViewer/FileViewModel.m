@@ -8,7 +8,7 @@
 
 #import "FileViewModel.h"
 #import "DocumentModel.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation FileViewModel
 

@@ -11,7 +11,7 @@
 #import "HighlightingTextView.h"
 #import "Constants.h"
 #import "UndoSupport.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
 static const NSArray *VALID_PRE_CHARS;
 static const NSSet *KEYS_TO_UNBIND;

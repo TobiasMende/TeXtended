@@ -17,7 +17,7 @@
 #import "EnvironmentCompletion.h"
 #import "UndoSupport.h"
 #import "CodeNavigationAssistant.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "NSString+LatexExtension.h"
 #import "CompletionProtocol.h"
 #import "FirstResponderDelegate.h"

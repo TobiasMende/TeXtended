@@ -15,7 +15,7 @@
 #import "DocumentCreationController.h"
 #import "DocumentController.h"
 #import "MainDocument.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"

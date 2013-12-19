@@ -13,8 +13,7 @@
 #import "Compiler.h"
 #import "ViewControllerProtocol.h"
 #import "MainWindowController.h"
-#import "DDLog.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "ExtendedPDFViewController.h"
 #import "TMTNotificationCenter.h"
 #import "MainDocument.h"

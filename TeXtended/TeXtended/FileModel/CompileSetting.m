@@ -8,7 +8,7 @@
 
 #import "CompileSetting.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface CompileSetting ()
 + (CompileSetting*) createCompileSettingFor:(NSString*) path bibKey:(NSString*)bib iterationKey:(NSString*)iteration argsKey:(NSString*)args;

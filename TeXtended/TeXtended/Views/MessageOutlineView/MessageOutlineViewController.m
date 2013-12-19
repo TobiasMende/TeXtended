@@ -9,7 +9,7 @@
 #import "MessageOutlineViewController.h"
 #import "Compilable.h"
 #import "MessageDataSource.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface MessageOutlineViewController ()
 

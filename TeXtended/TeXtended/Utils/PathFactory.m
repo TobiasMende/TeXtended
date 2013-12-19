@@ -8,7 +8,7 @@
 
 #import "PathFactory.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
 @implementation PathFactory

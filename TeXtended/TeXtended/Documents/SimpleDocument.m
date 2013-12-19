@@ -11,7 +11,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "EncodingController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "DocumentCreationController.h"
 #import "TMTNotificationCenter.h"
 static const NSSet *standardDocumentTypes;

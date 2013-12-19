@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import "CompileSetting.h"
 #import "NSString+PathExtension.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "EncodingController.h"
 #import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"

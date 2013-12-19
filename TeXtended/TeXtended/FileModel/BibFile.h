@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "FileObserver.h"
+#import <TMTHelperCollection/FileObserver.h>
 
 @class ProjectModel, GenericFilePresenter, TMTBibTexEntry;
 

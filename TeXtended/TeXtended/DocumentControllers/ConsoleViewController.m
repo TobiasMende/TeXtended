@@ -12,7 +12,7 @@
 #import "DocumentController.h"
 #import "MessageCollection.h"
 #import "ConsoleOutputView.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 #import "ConsoleData.h"
 

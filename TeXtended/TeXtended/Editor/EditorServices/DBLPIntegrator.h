@@ -7,7 +7,7 @@
 //
 
 #import "EditorService.h"
-#import "DBLPSearchCompletionHandler.h"
+#import <BibTexToolsFramework/DBLPSearchCompletionHandler.h>
 @class DBLPSearchViewController;
 @interface DBLPIntegrator : EditorService<DBLPSearchCompletionHandler> {
     NSWindow *window;

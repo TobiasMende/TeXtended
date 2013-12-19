@@ -9,7 +9,7 @@
 #import "Compilable.h"
 #import "CompileSetting.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 
 static NSUInteger LAST_IDENTIFIER = 0;

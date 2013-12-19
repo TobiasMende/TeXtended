@@ -16,7 +16,8 @@
 #import "PathFactory.h"
 #import "FirstResponderDelegate.h"
 #import "ConsoleWindowController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
+
 ApplicationController *sharedInstance;
 
 

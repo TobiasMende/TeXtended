@@ -8,7 +8,7 @@
 
 #import "SyntaxHighlighterStub.h"
 #import "EditorService.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation SyntaxHighlighterStub
 - (id)initWithTextView:(HighlightingTextView *)tv {

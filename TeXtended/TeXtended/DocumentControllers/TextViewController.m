@@ -22,7 +22,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "ChktexParser.h"
 #import "PathFactory.h"
 #import "BackwardSynctex.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"

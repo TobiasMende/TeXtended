@@ -23,7 +23,7 @@
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
 #import "MatrixViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TextViewLayoutManager.h"
 #import "ApplicationController.h"
 #import "TMTNotificationCenter.h"

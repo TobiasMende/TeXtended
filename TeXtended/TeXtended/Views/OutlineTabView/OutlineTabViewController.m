@@ -10,7 +10,7 @@
 #import "MessageOutlineViewController.h"
 #import "MainWindowController.h"
 #import "MainDocument.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface OutlineTabViewController ()
 

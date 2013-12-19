@@ -9,7 +9,7 @@
 #import "LogfileParser.h"
 #import "TrackingMessage.h"
 #import "MessageCollection.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 static const NSDictionary *LATEX_ERROR_EXTENSIONS;

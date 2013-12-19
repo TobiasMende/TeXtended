@@ -15,7 +15,7 @@
 #import "ConsoleViewController.h"
 #import "DocumentController.h"
 #import "ConsoleData.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;

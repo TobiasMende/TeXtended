@@ -11,7 +11,7 @@
 #import "MessageCollection.h"
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 /* Size of the small line borders */
 #define BORDER_SIZE 4.0

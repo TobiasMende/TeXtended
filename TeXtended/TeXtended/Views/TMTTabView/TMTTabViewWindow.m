@@ -7,12 +7,12 @@
 
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabStyle.h>
+#import <TMTHelperCollection/TMTLog.h>
 
 #import "TMTTabViewController.h"
 #import "TMTTabManager.h"
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"
-#import "TMTLog.h"
 
 @interface TMTTabViewWindow (PRIVATE)
 - (void)configureTabBarInitially;

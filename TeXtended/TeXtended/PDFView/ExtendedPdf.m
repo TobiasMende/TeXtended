@@ -10,7 +10,7 @@
 #import "ExtendedPdfControlls.h"
 #import "ExtendedPDFViewController.h"
 #import "PageNumberViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "ApplicationController.h"
 #import "TMTNotificationCenter.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "TMTTabViewItem.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @implementation TMTTabViewItem
 

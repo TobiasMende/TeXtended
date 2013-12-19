@@ -11,7 +11,7 @@
 #import "DocumentModel.h"
 #import "Constants.h"
 #import "CompileSetting.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "NSString+PathExtension.h"
 @interface ProjectModel ()
 

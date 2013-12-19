@@ -13,7 +13,7 @@
 #import "MainWindowController.h"
 #import "ExportCompileWindowController.h"
 #import "StatsPanelController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabManager.h"
 #import "ApplicationController.h"
 

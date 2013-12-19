@@ -7,7 +7,7 @@
 //
 
 #import "AutoCompletionWindowController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "CompletionProtocol.h"
 #import "HighlightingTextView.h"
 #import "CustomTableCellView.h"

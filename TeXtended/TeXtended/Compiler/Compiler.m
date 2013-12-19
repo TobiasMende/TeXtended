@@ -14,7 +14,7 @@
 #import "DocumentController.h"
 #import "ForwardSynctex.h"
 #import "TextViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 #import "ConsoleData.h"
 #import "ConsoleManager.h"

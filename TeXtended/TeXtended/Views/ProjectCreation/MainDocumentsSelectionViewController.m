@@ -8,7 +8,7 @@
 
 #import "MainDocumentsSelectionViewController.h"
 #import "FolderSelectionViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "ProjectModel.h"
 
 @interface MainDocumentsSelectionViewController ()

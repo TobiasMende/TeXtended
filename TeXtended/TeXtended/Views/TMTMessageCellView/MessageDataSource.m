@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
+#import <TMTHelperCollection/TMTTableView.h>
+#import <TMTHelperCollection/TMTTableRowView.h>
+#import <TMTHelperCollection/TMTLog.h>
 #import "MessageDataSource.h"
 #import "TrackingMessage.h"
 #import "TMTMessageCellView.h"
 #import "Constants.h"
 #import "MessageCollection.h"
 #import "DocumentModel.h"
-#import "TMTTableView.h"
-#import "TMTTableRowView.h"
 #import "DocumentCreationController.h"
 #import "SimpleDocument.h"
 #import "MessageInfoViewController.h"
-#import "TMTLog.h"
 #import "TMTNotificationCenter.h"
 #import "Compilable.h"
 #import "TMTCustomView.h"

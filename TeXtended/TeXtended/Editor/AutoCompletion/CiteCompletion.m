@@ -8,7 +8,7 @@
 
 #import "CiteCompletion.h"
 #import "CompletionProtocol.h"
-#import "TMTBibTexEntry.h"
+#import <BibTexToolsFramework/TMTBibTexEntry.h>
 @implementation CiteCompletion
 - (id)initWithBibEntry:(TMTBibTexEntry *)entry {
     self = [super init];

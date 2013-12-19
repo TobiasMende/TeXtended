@@ -7,7 +7,7 @@
 //
 
 #import "MatrixViewController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 #import "EnvironmentCompletion.h"
 
 @interface MatrixViewController ()

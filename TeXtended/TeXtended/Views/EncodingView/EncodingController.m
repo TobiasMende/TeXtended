@@ -7,7 +7,7 @@
 //
 
 #import "EncodingController.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface EncodingController ()
 

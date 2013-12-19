@@ -8,7 +8,7 @@
 
 #import "TMTNotificationCenter.h"
 #import "Compilable.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static NSMutableDictionary *mainCompilableCenters;
 static NSMutableArray *prohibitedKeys;

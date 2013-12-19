@@ -10,7 +10,7 @@
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import "Constants.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
 static const NSSet *WHITESPACES;
 static const NSRegularExpression *SPACE_REGEX;
 static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;

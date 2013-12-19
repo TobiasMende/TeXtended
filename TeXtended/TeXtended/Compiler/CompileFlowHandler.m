@@ -8,8 +8,8 @@
 
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
-#import "PathObserverFactory.h"
-#import "TMTLog.h"
+#import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/PathObserverFactory.h>
 static CompileFlowHandler *sharedInstance;
 @interface CompileFlowHandler ()
 
