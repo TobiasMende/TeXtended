@@ -82,10 +82,10 @@
 		D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
 		D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */; };
 		D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
-		D23FD3FE18639BE6006BFD33 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3FD18639BE6006BFD33 /* MMTabBarView.framework */; };
-		D23FD3FF18639BEA006BFD33 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22E16A11824ED60005B5B91 /* MMTabBarView.framework */; };
 		D23FD40118639E07006BFD33 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40018639E07006BFD33 /* Sparkle.framework */; };
 		D23FD40218639E0E006BFD33 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40018639E07006BFD33 /* Sparkle.framework */; };
+		D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
+		D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -238,8 +238,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */,
 				D23FD40218639E0E006BFD33 /* Sparkle.framework in CopyFiles */,
-				D23FD3FF18639BEA006BFD33 /* MMTabBarView.framework in CopyFiles */,
 				D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */,
 				D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */,
 			);
@@ -406,7 +406,6 @@
 		D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewWindow.h; path = TMTTabView/TMTTabViewWindow.h; sourceTree = "<group>"; };
 		D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewWindow.m; path = TMTTabView/TMTTabViewWindow.m; sourceTree = "<group>"; };
 		D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewWindow.xib; path = TMTTabView/TMTTabViewWindow.xib; sourceTree = "<group>"; };
-		D22E16A11824ED60005B5B91 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MMTabBarView.framework; sourceTree = "<group>"; };
 		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
 		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
@@ -416,8 +415,8 @@
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
 		D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
 		D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
-		D23FD3FD18639BE6006BFD33 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = MMTabBarView.framework; path = ../MMTabBarView/MMTabBarView/build/Debug/MMTabBarView.framework; sourceTree = "<group>"; };
 		D23FD40018639E07006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/MMTabBarView.framework"; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
@@ -605,7 +604,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23FD3FE18639BE6006BFD33 /* MMTabBarView.framework in Frameworks */,
+				D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */,
 				D23FD40118639E07006BFD33 /* Sparkle.framework in Frameworks */,
 				D23FD3F718639957006BFD33 /* BibTexToolsFramework.framework in Frameworks */,
 				D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */,
@@ -1215,11 +1214,10 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */,
 				D23FD40018639E07006BFD33 /* Sparkle.framework */,
-				D23FD3FD18639BE6006BFD33 /* MMTabBarView.framework */,
 				D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */,
 				D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */,
-				D22E16A11824ED60005B5B91 /* MMTabBarView.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
 				D25749BA186370450025A536 /* XCTest.framework */,
