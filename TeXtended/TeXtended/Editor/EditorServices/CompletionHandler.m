@@ -101,7 +101,7 @@ typedef enum {
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", nil];
     
     COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
-    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
+    COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", nil];
     NSError *error;
     TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\t|\\\\t)" options:0 error:&error];
     NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
@@ -174,7 +174,8 @@ typedef enum {
         charRange.location--;
         charRange.length++;
     }
-    NSString *prefix = [view.string substringWithRange:charRange];
+    NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     NSSet *bibFiles =[view.firstResponderDelegate model].project.bibFiles;
     NSMutableArray *allEntries = [NSMutableArray new];
     for(BibFile *model in bibFiles) {
