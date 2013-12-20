@@ -129,6 +129,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)handleLineUpdateNotification:(NSNotification *)note {
+    NSTabViewItem *view = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
+    [view.tabView.window makeKeyAndOrderFront:self];
+    [view.tabView selectTabViewItem:view];
     NSInteger row = [[note.userInfo objectForKey:TMTIntegerKey] integerValue];
     [self.textView showLine:row];
 }

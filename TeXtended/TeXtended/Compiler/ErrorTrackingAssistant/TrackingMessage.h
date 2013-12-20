@@ -21,7 +21,7 @@
 @interface TrackingMessage : NSObject
 
 /** The path to the latex document for which this message was generated */
-@property NSString* document;
+@property (nonatomic) NSString* document;
 
 /** The line of the issue */
 @property NSUInteger line;

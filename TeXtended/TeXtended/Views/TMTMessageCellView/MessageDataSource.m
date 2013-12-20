@@ -78,7 +78,7 @@
         TrackingMessage *message = [self.messages objectAtIndex:row];
         DocumentModel *doc = [self.model modelForTexPath:message.document byCreating:NO];
         if (doc) {
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTShowLineInTextViewNotification object:self.model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTShowLineInTextViewNotification object:doc userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
         } else {
             // Open new single document:
             NSURL *url = [NSURL fileURLWithPath:message.document];

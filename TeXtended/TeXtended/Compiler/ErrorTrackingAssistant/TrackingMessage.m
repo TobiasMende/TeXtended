@@ -30,7 +30,7 @@
     self = [super init];
     if (self) {
         _type = type;
-        _document = document;
+        self.document = document;
         _line = line;
         _title = title;
         _info = info;
@@ -76,6 +76,12 @@
     result = prime * result + self.info.hash;
     result = prime * result + self.furtherInfo.hash;
     return result;
+}
+
+- (void)setDocument:(NSString *)document {
+    if (![document isEqualToString:_document]) {
+        _document = [document stringByStandardizingPath];
+    }
 }
 
 - (BOOL)isEqual:(id)obj {
