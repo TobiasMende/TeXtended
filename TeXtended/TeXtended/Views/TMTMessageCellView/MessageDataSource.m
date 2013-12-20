@@ -76,25 +76,14 @@
     NSInteger row = [self.tableView clickedRow];
     if (row < self.messages.count) {
         TrackingMessage *message = [self.messages objectAtIndex:row];
-        DocumentModel *doc = [self.model modelForTexPath:message.document byCreating:NO];
-        if (doc) {
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTShowLineInTextViewNotification object:doc userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
-        } else {
-            // Open new single document:
-            NSURL *url = [NSURL fileURLWithPath:message.document];
-            [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-                if (error) {
-                    [[NSWorkspace sharedWorkspace] openURL:url];
-                } else {
-                    if ([document isKindOfClass:[SimpleDocument class]]) {
-                        DocumentModel *m = [(SimpleDocument*) document model];
-                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
-                        
-//                         [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.collection forKey:TMTMessageCollectionKey]];
-                    }
-                }
-            }];
-        }
+        
+        [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
+            if (newModel) {
+                [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+            } else {
+                [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
+            }
+        }];
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class EncodingController, ProjectCreationWindowController;
+@class EncodingController, ProjectCreationWindowController, Compilable, DocumentModel;
 
 @interface DocumentCreationController : NSDocumentController{
     
@@ -16,5 +16,6 @@
 @property ProjectCreationWindowController *projectCreationWindowController;
 @property EncodingController *encController;
 - (void) newProject:(id)sender;
-
+- (void) showTexDocumentForPath:(NSString *)path andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
+- (void) showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable*)model andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
 @end
