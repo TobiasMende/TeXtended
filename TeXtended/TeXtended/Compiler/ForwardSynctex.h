@@ -19,16 +19,7 @@
 @interface ForwardSynctex : NSObject {
 }
 
-/**
- * Initializes the algorithm.
- *
- * @param inPath the path to the latex file
- * @param outPath the path of the pdf file
- * @param row the line in the latex file
- * @param col the column in the latex file
- * @return an instance which automatically starts a synctex task and blocks until it returns.
- */
-- initWithInputPath:(NSString*)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col;
+- (id)initWithOutput:(NSString *)output;
 
 /** The page in the output file */
 @property NSUInteger page;
@@ -50,4 +41,25 @@
 
 /** The H output of the synctex task */
 @property CGFloat height;
+@end
+
+
+@interface ForwardSynctexController : NSObject {
+    __unsafe_unretained id weakSelf;
+    NSMutableArray *tasks;
+}
+
+/**
+ * Initializes the algorithm.
+ *
+ * @param inPath the path to the latex file
+ * @param outPath the path of the pdf file
+ * @param row the line in the latex file
+ * @param col the column in the latex file
+ * @return an instance which automatically starts a synctex task and blocks until it returns.
+ */
+- (void)startWithInputPath:(NSString*)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col andHandler:(void (^)(ForwardSynctex *result)) completionHandler;
+
+
+
 @end

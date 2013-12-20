@@ -96,7 +96,8 @@
 
 
 - (void) initializeSplitView {
-    self.delegate = self;
+    __unsafe_unretained id weakSelf = self;
+    self.delegate = weakSelf;
     self.subviewsResizeMode = DMSplitViewResizeModeProportional;
     
     dividerThicknessOverriden = NO;
@@ -118,6 +119,7 @@
 
 - (void)dealloc {
     free(lastValuesBeforeCollapse);
+    free(subviewsStates);
 }
 
 #pragma mark - Appearance Properties

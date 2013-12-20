@@ -47,15 +47,14 @@
     [task setArguments:@[path]];
     
     
-    __block NSPipe *outPipe = [NSPipe pipe];
-    [task setStandardOutput:outPipe];
+    [task setStandardOutput:[NSPipe pipe]];
     [task setTerminationHandler:^(NSTask *task) {
-        NSFileHandle * read = [outPipe fileHandleForReading];
+        NSFileHandle * read = [task.standardOutput fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
         completionHandler(messages);
-        outPipe = nil;
+        task.terminationHandler = nil;
     }];
     
     @try {
