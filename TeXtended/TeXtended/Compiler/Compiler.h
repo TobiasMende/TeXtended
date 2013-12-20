@@ -71,6 +71,8 @@
  */
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
 
+- (void)terminateAndKill;
+
 /**
  * `YES`, if autocompile is activated.
  */

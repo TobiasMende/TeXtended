@@ -113,7 +113,7 @@
 }
 
 -(void) liveCompile {
-    if (self.documentController.model != nil && self.documentController.model.texPath != nil) {
+    if (self.documentController.model.texPath) {
         [self.documentController liveCompile:nil];
     }
     
@@ -145,13 +145,19 @@
     [self.documentController documentHasChangedAction];
 }
 
-- (void)dealloc {
-    DDLogVerbose(@"dealloc");
+- (void)terminateAndKill {
     for(NSTask *task in currentTasks) {
         [task terminate];
     }
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.documentController.textViewController removeDelegateObserver:self];
+    self.documentController = nil;
+}
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
+    [self terminateAndKill];
+    
 }
 
 @end

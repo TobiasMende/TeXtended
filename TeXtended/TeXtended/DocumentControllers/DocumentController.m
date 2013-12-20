@@ -252,6 +252,7 @@
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
     self.textViewController.textView.firstResponderDelegate = nil;
+    [self.compiler terminateAndKill];
     for(ExtendedPDFViewController *c in self.pdfViewControllers) {
         if ([c.pdfView.firstResponderDelegate isEqual:self]) {
             c.pdfView.firstResponderDelegate = nil;
