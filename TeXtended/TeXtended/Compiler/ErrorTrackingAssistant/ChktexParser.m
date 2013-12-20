@@ -40,6 +40,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     if (!path) {
         return;
     }
+    DDLogInfo(@"Parsing %@", path);
     NSTask *task = [[NSTask alloc] init];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];

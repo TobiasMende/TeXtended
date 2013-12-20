@@ -58,8 +58,12 @@
             NSFileManager *fm = [NSFileManager defaultManager];
             if (![fm fileExistsAtPath:path]) {
                 NSString *content = @"% Start your awesome tex project here!";
-                if ([fm createFileAtPath:path contents:[content dataUsingEncoding:NSUTF8StringEncoding] attributes:nil]) {
+                NSError *error;
+                [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                if (!error) {
                     [self.possibleDocuments addObject:path];
+                } else {
+                    DDLogError(@"Can't create document at %@: %@",path, error.userInfo);
                 }
             }
         }

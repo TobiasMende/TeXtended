@@ -102,12 +102,15 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
         [allWords unionSet:environmentsToIgnore];
         [allWords unionSet:commandsToIgnore];
         [[NSSpellChecker sharedSpellChecker] setIgnoredWords:[allWords allObjects] inSpellDocumentWithTag:view.spellCheckerDocumentTag];
-        [view setSpellingState:NSSpellingStateSpellingFlag range:NSMakeRange(0, view.string.length)];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [view setSpellingState:NSSpellingStateSpellingFlag range:NSMakeRange(0, view.string.length)];
+        }];
+        
     }];
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"SpellCheckingService dealloc");
+    DDLogVerbose(@"dealloc");
     [backgroundQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
