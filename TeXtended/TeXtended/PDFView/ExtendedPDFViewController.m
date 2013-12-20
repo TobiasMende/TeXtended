@@ -59,8 +59,11 @@
         BackwardSynctex *beginTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:beginPos];
         BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
         if (beginTex && endTex) {
-            DocumentModel *m = [self.model modelForTexPath:beginTex.inputPath];
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTViewSynctexChanged object:m userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+            [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:beginTex.inputPath withReferenceModel:self.model andCompletionHandler:^(DocumentModel *model) {
+                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTViewSynctexChanged object:model userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+            }];
+            
+            
         }
         // TODO: add support for not opened documents!
     } else {

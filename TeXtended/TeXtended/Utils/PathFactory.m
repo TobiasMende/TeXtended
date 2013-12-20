@@ -73,9 +73,9 @@ static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
 
 +(NSString *)absolutPathFor:(NSString *)path withBasedir:(NSString *)dir {
     if ([path isAbsolutePath]) {
-        return path;
+        return [path stringByStandardizingPath];
     }
-    return [dir stringByAppendingPathComponent:path];
+    return [[dir stringByAppendingPathComponent:path] stringByStandardizingPath];
 }
 
 @end
