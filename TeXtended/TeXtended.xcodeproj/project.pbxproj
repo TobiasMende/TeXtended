@@ -51,6 +51,12 @@
 		D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C974A1826FCF500E23911 /* ConsoleCellView.xib */; };
 		D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C974D1826FD8A00E23911 /* ConsoleData.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
+		D2141B3B186484E1008137E1 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2141B38186484E1008137E1 /* BibTexToolsFramework.framework */; };
+		D2141B3C186484E1008137E1 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2141B39186484E1008137E1 /* MMTabBarView.framework */; };
+		D2141B3D186484E1008137E1 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2141B3A186484E1008137E1 /* TMTHelperCollection.framework */; };
+		D2141B4118648505008137E1 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2141B38186484E1008137E1 /* BibTexToolsFramework.framework */; };
+		D2141B4218648505008137E1 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2141B39186484E1008137E1 /* MMTabBarView.framework */; };
+		D2141B4318648505008137E1 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2141B3A186484E1008137E1 /* TMTHelperCollection.framework */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
 		D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */; };
 		D21A89B0185CB63E00682624 /* DocumentSelectionAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A89AC185CB63E00682624 /* DocumentSelectionAccessoryController.m */; };
@@ -78,14 +84,6 @@
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
-		D23FD3F718639957006BFD33 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */; };
-		D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
-		D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */; };
-		D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */; };
-		D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
-		D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */; };
-		D23FD40E1863A4D7006BFD33 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
-		D23FD40F1863A52D006BFD33 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -108,6 +106,8 @@
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
+		D2721F7E1864810400EC0477 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
+		D2721F7F1864814E00EC0477 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
 		D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B3181BBAE100EEF55C /* OutlineTabViewController.m */; };
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
@@ -238,10 +238,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D23FD40F1863A52D006BFD33 /* Sparkle.framework in CopyFiles */,
-				D23FD40B1863A0B4006BFD33 /* MMTabBarView.framework in CopyFiles */,
-				D23FD3FB18639971006BFD33 /* BibTexToolsFramework.framework in CopyFiles */,
-				D23FD3FC18639971006BFD33 /* TMTHelperCollection.framework in CopyFiles */,
+				D2141B4118648505008137E1 /* BibTexToolsFramework.framework in CopyFiles */,
+				D2141B4218648505008137E1 /* MMTabBarView.framework in CopyFiles */,
+				D2141B4318648505008137E1 /* TMTHelperCollection.framework in CopyFiles */,
+				D2721F7F1864814E00EC0477 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +325,9 @@
 		D20C974C1826FD8A00E23911 /* ConsoleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleData.h; sourceTree = "<group>"; };
 		D20C974D1826FD8A00E23911 /* ConsoleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleData.m; sourceTree = "<group>"; };
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
+		D2141B38186484E1008137E1 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
+		D2141B39186484E1008137E1 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release/MMTabBarView.framework"; sourceTree = "<group>"; };
+		D2141B3A186484E1008137E1 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release/TMTHelperCollection.framework"; sourceTree = "<group>"; };
 		D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoViewController.h; sourceTree = "<group>"; };
 		D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoViewController.m; sourceTree = "<group>"; };
 		D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInfoView.xib; sourceTree = "<group>"; };
@@ -413,9 +416,6 @@
 		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
 		D23BC52D1861ED2400E9A507 /* CiteCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletion.h; sourceTree = "<group>"; };
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
-		D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
-		D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
-		D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/MMTabBarView.framework"; sourceTree = "<group>"; };
 		D23FD40D1863A4D7006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
@@ -604,10 +604,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23FD40A1863A0AF006BFD33 /* MMTabBarView.framework in Frameworks */,
-				D23FD40E1863A4D7006BFD33 /* Sparkle.framework in Frameworks */,
-				D23FD3F718639957006BFD33 /* BibTexToolsFramework.framework in Frameworks */,
-				D23FD3F818639957006BFD33 /* TMTHelperCollection.framework in Frameworks */,
+				D2141B3B186484E1008137E1 /* BibTexToolsFramework.framework in Frameworks */,
+				D2141B3C186484E1008137E1 /* MMTabBarView.framework in Frameworks */,
+				D2141B3D186484E1008137E1 /* TMTHelperCollection.framework in Frameworks */,
+				D2721F7E1864810400EC0477 /* Sparkle.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 			);
@@ -1214,10 +1214,10 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2141B38186484E1008137E1 /* BibTexToolsFramework.framework */,
+				D2141B39186484E1008137E1 /* MMTabBarView.framework */,
+				D2141B3A186484E1008137E1 /* TMTHelperCollection.framework */,
 				D23FD40D1863A4D7006BFD33 /* Sparkle.framework */,
-				D23FD4091863A0AF006BFD33 /* MMTabBarView.framework */,
-				D23FD3F518639957006BFD33 /* BibTexToolsFramework.framework */,
-				D23FD3F618639957006BFD33 /* TMTHelperCollection.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
 				D25749BA186370450025A536 /* XCTest.framework */,
@@ -1696,6 +1696,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				SDKROOT = macosx;
@@ -1717,6 +1718,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				SDKROOT = macosx;
@@ -1728,10 +1730,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"../**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1743,10 +1750,15 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"../**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

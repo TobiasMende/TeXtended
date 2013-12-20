@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D20ABB3717B7B1B600F88324 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
+		D2141B37186484C3008137E1 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2141B36186484C3008137E1 /* TMTHelperCollection.framework */; };
 		D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
 		D217A430176B442C002DB084 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D217A42E176B442C002DB084 /* InfoPlist.strings */; };
 		D217A432176B442C002DB084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A431176B442C002DB084 /* main.m */; };
@@ -33,7 +34,6 @@
 		D23BC50E1861E7FB00E9A507 /* TMTBibTexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DE4176B700900D1AB7B /* TMTBibTexEntry.m */; };
 		D23BC50F1861E7FB00E9A507 /* DBLPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */; };
 		D23BC5121861E80B00E9A507 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */; };
-		D23FD3FA18639963006BFD33 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD3F918639963006BFD33 /* TMTHelperCollection.framework */; };
 		D2574977186220A20025A536 /* TMTBibTexParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D2574975186220A20025A536 /* TMTBibTexParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2574978186220A20025A536 /* TMTBibTexParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574976186220A20025A536 /* TMTBibTexParser.m */; };
 		D257499B18633AB20025A536 /* DBLPSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D257499818633AB20025A536 /* DBLPSearchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,6 +65,7 @@
 		D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBLPConfiguration.h; path = "../DBLP Tool/DBLPConfiguration.h"; sourceTree = "<group>"; };
 		D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBLPConfiguration.m; path = "../DBLP Tool/DBLPConfiguration.m"; sourceTree = "<group>"; };
 		D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DBLPConfiguration.plist; path = "../DBLP Tool/DBLPConfiguration.plist"; sourceTree = "<group>"; };
+		D2141B36186484C3008137E1 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release/TMTHelperCollection.framework"; sourceTree = "<group>"; };
 		D217A422176B442C002DB084 /* DBLP Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DBLP Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D217A425176B442C002DB084 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D217A428176B442C002DB084 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -92,7 +93,6 @@
 		D23BC4FA1861E79700E9A507 /* DBLPToolsFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLPToolsFrameworkTests-Info.plist"; sourceTree = "<group>"; };
 		D23BC4FC1861E79700E9A507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLPToolsFrameworkTests.m; sourceTree = "<group>"; };
-		D23FD3F918639963006BFD33 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../Library/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
 		D2574975186220A20025A536 /* TMTBibTexParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTBibTexParser.h; sourceTree = "<group>"; };
 		D2574976186220A20025A536 /* TMTBibTexParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTBibTexParser.m; sourceTree = "<group>"; };
 		D257499818633AB20025A536 /* DBLPSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchViewController.h; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23FD3FA18639963006BFD33 /* TMTHelperCollection.framework in Frameworks */,
+				D2141B37186484C3008137E1 /* TMTHelperCollection.framework in Frameworks */,
 				D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +162,7 @@
 		D217A424176B442C002DB084 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D23FD3F918639963006BFD33 /* TMTHelperCollection.framework */,
+				D2141B36186484C3008137E1 /* TMTHelperCollection.framework */,
 				D217A425176B442C002DB084 /* Cocoa.framework */,
 				D23BC4F21861E79700E9A507 /* XCTest.framework */,
 				D217A427176B442C002DB084 /* Other Frameworks */,
@@ -519,6 +519,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -546,6 +547,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
@@ -587,6 +589,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -599,6 +602,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "DBLPToolsFramework/DBLPToolsFramework-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -617,6 +621,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProjects-dombkunaeqgrrscxkukuvkfbpctc/Build/Products/Release",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -625,6 +630,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "DBLPToolsFramework/DBLPToolsFramework-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
