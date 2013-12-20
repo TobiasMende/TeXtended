@@ -134,31 +134,19 @@ static const NSSet *KEYS_TO_UNBIND;
     NSString *path = [values objectAtIndex:0];
     NSUInteger line = [[values objectAtIndex:1] integerValue];
     DocumentModel *compiledModel = self.controller.console.model;
-    DocumentModel *documentsModel = self.controller.console.documentController.model;
+    //DocumentModel *documentsModel = self.controller.console.documentController.model;
     path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
     
-    if ([path isEqualToString:compiledModel.texPath]) {
-        [[TMTNotificationCenter centerForCompilable:compiledModel] postNotificationName:TMTShowLineInTextViewNotification object:documentsModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-    } else if(documentsModel.project){
-        //TODO: Hanlde external path in project mode
-        NSBeep();
-    } else {
-        // Open new single document:
-        NSURL *url = [NSURL fileURLWithPath:path];
-        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
-            if (error) {
-                [[NSWorkspace sharedWorkspace] openURL:url];
-            } else {
-                if ([document isKindOfClass:[SimpleDocument class]]) {
-                    DocumentModel *m = [(SimpleDocument*) document model];
-                    [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTShowLineInTextViewNotification object:m userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
-                    if (self.controller.console.consoleMessages) {
-                        [[TMTNotificationCenter centerForCompilable:m] postNotificationName:TMTLogMessageCollectionChanged object:m userInfo:[NSDictionary dictionaryWithObject:self.controller.console.consoleMessages forKey:TMTMessageCollectionKey]];
-                    }
-                }
+    [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:compiledModel andCompletionHandler:^(DocumentModel *model) {
+        if (model) {
+            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+            if (![model.mainCompilable isEqualTo:compiledModel.mainCompilable]) {
+                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.controller.console.consoleMessages forKey:TMTMessageCollectionKey]];
             }
-        }];
-    }
+        } else {
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];
+        }
+    }];
 }
 
 

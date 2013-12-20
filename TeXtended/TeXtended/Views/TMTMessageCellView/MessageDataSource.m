@@ -57,7 +57,6 @@
     }
     if (row < self.messages.count) {
         TrackingMessage *item = [self.messages objectAtIndex:row];
-        //FIXME: TrackingMessage should have model
         result.model = [self.model modelForTexPath:item.document byCreating:NO];
         result.objectValue = item;
     }
@@ -80,6 +79,9 @@
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
             if (newModel) {
                 [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+                if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable] && self.collections.count > 0) {
+                    [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:[NSDictionary dictionaryWithObject:[self.collections.allValues objectAtIndex:0] forKey:TMTMessageCollectionKey]];
+                }
             } else {
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
             }
