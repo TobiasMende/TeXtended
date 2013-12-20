@@ -10,7 +10,7 @@
 
 @implementation NSString (PathExtension)
 - (NSString*)relativePathWithBase:(NSString*)basePath {
-    basePath = [[NSURL fileURLWithPath:basePath] path];
+    basePath = [[[NSURL fileURLWithPath:basePath] path] stringByStandardizingPath];
     NSArray* absoluteComps = [self pathComponents];
     NSArray* baseComps = [basePath pathComponents];
     NSUInteger ai = 0;
@@ -37,7 +37,7 @@
         for (; ai < absoluteComps.count; ai++) {
             finalPath = [finalPath stringByAppendingPathComponent:absoluteComps[ai]];
         }
-        return finalPath;
+        return [finalPath stringByStandardizingPath];
     }
 }
 
@@ -63,6 +63,6 @@
     for (NSUInteger i = bi; i < relativeComps.count; i++) {
         finalPath = [finalPath stringByAppendingPathComponent:relativeComps[i]];
     }
-    return finalPath;
+    return [finalPath stringByStandardizingPath];
 }
 @end

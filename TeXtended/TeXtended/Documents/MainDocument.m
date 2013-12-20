@@ -68,7 +68,7 @@
 
 
 - (void)initializeDocumentControllers {
-    DDLogVerbose(@"initializeDocumentControllers");
+    DDLogVerbose(@"initializeDocumentControllers (Count: %li)", self.model.mainDocuments.count);
     self.documentControllers = [NSMutableSet new];
     for (DocumentModel *m in self.model.mainDocuments) {
         [self.documentControllers addObject:[[DocumentController alloc] initWithDocument:m andMainDocument:self]];
@@ -85,8 +85,8 @@
 - (void)makeWindowControllers {
     DDLogVerbose(@"makeWindowControllers");
     MainWindowController *mc = [[MainWindowController alloc] initForDocument:self];
-    [self addWindowController:mc];
     self.mainWindowController = mc;
+    [self addWindowController:mc];
 }
 
 - (void)finalCompileForDocumentController:(DocumentController *)dc {

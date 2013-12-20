@@ -164,7 +164,12 @@ static const NSSet *KEYS_TO_UNBIND;
    [texdocView setPackage:package];
    popover.contentViewController = texdocView;
     NSRect rect = NSRectFromString(info[BOUNDING_RECT_KEY]);
-   [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
+    @try {
+        [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"Can't show texdoc popover due to %@ (%@)", exception.reason, exception.name);
+    }
 }
 
 #pragma mark -

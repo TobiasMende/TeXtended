@@ -143,6 +143,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (void)addTabViewItemToFirst:(TMTTabViewItem *)item {
+    DDLogVerbose(@"addTabViewItemToFirst: first = %@, item = %@", self.firsTabViewController, item);
     [self.firsTabViewController addTabViewItem:item];
 }
 

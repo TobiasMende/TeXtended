@@ -81,9 +81,8 @@
     [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
 
     [task setStandardOutput:outputPipe];
-    __unsafe_unretained id weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [weakSelf texdocReadComplete:note withPackageName:name info:info andHandler:handler];
+        [self texdocReadComplete:note withPackageName:name info:info andHandler:handler];
     }];
     [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     [task setArguments: args];

@@ -63,6 +63,7 @@
 
 
 - (void)setModel:(DocumentModel *)model {
+    DDLogVerbose(@"setModel: %@ (%@)", model, model.texPath);
     if (model != _model) {
         if (self.model) {
             [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
@@ -103,6 +104,7 @@
 }
 
 - (void)updateViewsAfterModelChange {
+    DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
     _textViewController = [[TextViewController alloc] initWithDocumentController:self];
     [self.textViewController setFirstResponderDelegate:self];
     [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
@@ -113,6 +115,8 @@
 }
 
 - (void)showPDFViews {
+    DDLogWarn(@"PDFViews: %li", self.pdfViewControllers.count);
+    DDLogWarn(@"MainDocuments: %li", self.model.mainDocuments.count);
     for(DocumentModel *model in self.model.mainDocuments) {
         BOOL containsController = NO;
         for(ExtendedPDFViewController *controller in self.pdfViewControllers) {
@@ -137,6 +141,7 @@
         [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
     }
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.pdfIdentifier];
+    [item.tabView.window makeKeyAndOrderFront:self];
     [item.tabView selectTabViewItem:item];
     [self.pdfViewControllers addObject:cont];
     
