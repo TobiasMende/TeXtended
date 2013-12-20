@@ -9,6 +9,7 @@
 #import "ForwardSynctex.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface ForwardSynctex ()
 
@@ -56,7 +57,15 @@
             }
             [weakSelf parseOutput:stringRead];
         }];
-        [task launch];
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            DDLogError(@"Cant'start forward synctex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
+            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+        }
+       
+        
         
     }
     return self;

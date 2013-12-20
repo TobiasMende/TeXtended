@@ -62,9 +62,15 @@ static const NSRegularExpression *SYNCTEX_REGEX;
             }
             [weakSelf parseOutput:stringRead];
         }];
-        [task launch];
+        @try {
+            [task launch];
+            [task waitUntilExit];
+        }
+        @catch (NSException *exception) {
+            DDLogError(@"Cant'start backward synctex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
+            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+        }
         
-        [task waitUntilExit];
     }
     return self;
 }

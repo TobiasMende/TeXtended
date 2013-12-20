@@ -66,7 +66,13 @@ static const NSDictionary *DEBUG_NUMBERS;
 #pragma clang diagnostic pop
         outPipe = nil;
     }];
-    [task launch];
+    @try {
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        DDLogError(@"Cant'start chktex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
+        DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+    }
     
 }
 

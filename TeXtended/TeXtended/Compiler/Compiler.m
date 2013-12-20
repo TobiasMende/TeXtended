@@ -108,7 +108,14 @@
         }];
         self.documentController.mainDocument.numberOfCompilingDocuments += 1;
         [currentTasks addObject:currentTask];
-        [currentTask launch];
+        @try {
+            [currentTask launch];
+        }
+        @catch (NSException *exception) {
+            DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
+            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+            [currentTasks removeObject:currentTask];
+        }
     }
 }
 

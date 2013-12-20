@@ -10,6 +10,7 @@
 #import "TexdocEntry.h"
 #import "Constants.h"
 #import "PathFactory.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface TexdocController ()
 /**
@@ -82,7 +83,13 @@
     }];
     [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     [task setArguments: args];
-    [task launch];
+    @try {
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        DDLogError(@"Cant'start texdoc task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
+        DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+    }
 }
 
 - (void)dealloc {
