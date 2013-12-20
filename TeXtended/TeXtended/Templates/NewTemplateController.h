@@ -14,13 +14,13 @@
 @property (strong) NSWindow* IBOutlet sheet;
 
 /** the calling template controller */
-@property (weak) TemplateController* tempalteController;
+@property (assign) TemplateController* tempalteController;
 
 /** textfield with the templatename */
-@property (weak) IBOutlet NSTextField *templateName;
+@property (assign) IBOutlet NSTextField *templateName;
 
 /** create with content or empty? */
-@property (weak) IBOutlet NSButtonCell *createWithContent;
+@property (assign) IBOutlet NSButtonCell *createWithContent;
 
 - (id)initWithTemplateController:(TemplateController*) tempalteController;
 

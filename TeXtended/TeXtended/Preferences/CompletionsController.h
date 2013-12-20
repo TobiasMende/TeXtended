@@ -21,7 +21,7 @@
 @interface CompletionsController : NSObject <NSTableViewDataSource> {
 
 }
-@property (weak) CompletionManager *manager;
+@property (assign) CompletionManager *manager;
 /** Indexes of the selected rows in the command view */
 @property  (strong) NSIndexSet *selectedCommandIndexes;
 

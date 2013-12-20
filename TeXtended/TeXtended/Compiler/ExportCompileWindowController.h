@@ -37,12 +37,12 @@
 /** The DocomentModel for which the export is called. */
 @property (strong) DocumentModel *model;
 
-@property (weak, nonatomic) DocumentController* documentController;
+@property (assign, nonatomic) DocumentController* documentController;
 
 /** Controller for the MainDocuments of the given DocumentController. */
 @property (assign) IBOutlet NSArrayController *mainDocumentsController;
 
-@property (weak) MainDocument *mainDocument;
+@property (assign) MainDocument *mainDocument;
 
 - (id)initWithMainDocument:(MainDocument*)mainDocument;
 

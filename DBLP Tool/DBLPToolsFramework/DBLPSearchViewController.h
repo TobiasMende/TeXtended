@@ -14,17 +14,17 @@
     DBLPInterface *interface;
 }
 
-@property (weak) id<DBLPSearchCompletionHandler> handler;
+@property (assign) id<DBLPSearchCompletionHandler> handler;
 @property (strong) IBOutlet NSPopUpButton *bibFileSelector;
 @property NSArray *bibFilePaths;
 @property BOOL searchinAuthor;
 @property NSString *executeCitationLabel;
-@property (weak) IBOutlet NSDictionaryController *authorsController;
-@property (weak) IBOutlet TMTTableView *authorTable;
-@property (weak) IBOutlet NSArrayController *publicationsController;
-@property (weak) IBOutlet TMTTableView *publicationTable;
+@property (assign) IBOutlet NSDictionaryController *authorsController;
+@property (assign) IBOutlet TMTTableView *authorTable;
+@property (assign) IBOutlet NSArrayController *publicationsController;
+@property (assign) IBOutlet TMTTableView *publicationTable;
 
-@property (weak) IBOutlet NSTextField *authorField;
+@property (assign) IBOutlet NSTextField *authorField;
 
 - (IBAction)clickedAuthorTable:(id)sender;
 - (IBAction)performDoubleClick;

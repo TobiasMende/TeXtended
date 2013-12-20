@@ -47,7 +47,7 @@ GoToLineSheetController *goToLineSheet;
 
 }
 
-@property (weak) id<FirstResponderDelegate> firstResponderDelegate;
+@property (assign) id<FirstResponderDelegate> firstResponderDelegate;
 @property NSUInteger currentModifierFlags;
 
 /** The code navigation assistant */

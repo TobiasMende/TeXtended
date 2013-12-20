@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 @class MainWindowController, MessageOutlineViewController;
 @interface OutlineTabViewController : NSViewController
-@property (weak) MainWindowController* mainWindowController;
+@property (assign) MainWindowController* mainWindowController;
 
 @property MessageOutlineViewController* messageOutlineViewController;
-@property (weak) IBOutlet NSTabView *tabView;
+@property (assign) IBOutlet NSTabView *tabView;
 
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
 

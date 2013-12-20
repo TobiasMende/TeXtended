@@ -83,7 +83,7 @@ enum {
 @property (assign)              DMSplitViewResizeMode       subviewsResizeMode;
 
 /* the new delegate of DMSplitView. *Do not set splitview's standard delegate* */
-@property (weak)				id <DMSplitViewDelegate>	eventsDelegate;
+@property (assign)				id <DMSplitViewDelegate>	eventsDelegate;
 
 #pragma mark - NSSplitView appearance
 

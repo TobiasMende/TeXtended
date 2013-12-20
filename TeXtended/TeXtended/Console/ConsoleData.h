@@ -14,8 +14,8 @@
     NSFileHandle *readHandle;
     NSTimer *logMessageUpdateTimer;
 }
-@property (weak, nonatomic) DocumentModel *model;
-@property (weak) DocumentController *documentController;
+@property (assign, nonatomic) DocumentModel *model;
+@property (assign) DocumentController *documentController;
 
 /** Flag for showing whether the console is active or not */
 @property BOOL consoleActive;

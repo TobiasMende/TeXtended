@@ -58,7 +58,7 @@ static const NSSet *KEYS_TO_UNBIND;
     [self setGridVerticalSpacing:1];
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
-    [self setGridColor:[NSColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:0.25f]];
+    [self setGridColor:[NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.25f]];
     
     // link propertys to application shared
     [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];

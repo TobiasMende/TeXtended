@@ -20,7 +20,7 @@
 @interface ConsoleViewController : NSViewController <NSTextFieldDelegate, ViewControllerProtocol> {
 }
 
-@property (weak, nonatomic) ConsoleData *console;
+@property (assign, nonatomic) ConsoleData *console;
 
 /** The input view for sending messages to the compiler */
 @property (strong) IBOutlet NSTextField *inputView;

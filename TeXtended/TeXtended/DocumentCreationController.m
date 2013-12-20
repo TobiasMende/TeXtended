@@ -58,7 +58,7 @@
         self.projectCreationWindowController = [ProjectCreationWindowController new];
     }
     
-    __weak DocumentCreationController *weakSelf = self;
+    __unsafe_unretained DocumentCreationController *weakSelf = self;
     self.projectCreationWindowController.terminationHandler = ^(ProjectDocument *document, BOOL success) {
         if (success) {
             [document saveToURL:document.fileURL ofType:@"TeXtendedProjectFile" forSaveOperation:NSSaveOperation completionHandler:^(NSError *errorOrNil) {

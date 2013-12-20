@@ -18,5 +18,5 @@
 @property (readonly) NSURL *presentedItemURL;
 
 @property (readonly) NSOperationQueue *presentedItemOperationQueue;
-@property (weak) id<FileObserver> observer;
+@property (assign) id<FileObserver> observer;
 @end

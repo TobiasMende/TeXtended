@@ -11,5 +11,5 @@
 @interface ConsoleWindow : NSWindow
 - (void)liveCompile:(id)sender;
 
-@property (weak) ConsoleWindowController* controller;
+@property (assign) ConsoleWindowController* controller;
 @end

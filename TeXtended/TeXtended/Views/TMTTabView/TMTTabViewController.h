@@ -11,7 +11,7 @@
 
 @class TMTTabViewItem;
 @interface TMTTabViewController : NSViewController <MMTabBarViewDelegate> {
-    __weak IBOutlet MMTabBarView *tabBar;
+    __unsafe_unretained IBOutlet MMTabBarView *tabBar;
 }
 
 @property BOOL closeWindowForLastTabDrag;

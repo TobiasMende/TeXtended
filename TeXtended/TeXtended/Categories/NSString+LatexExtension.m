@@ -56,7 +56,7 @@ static NSSet *COMPLETION_ESCAPE_INSERTIONS;
     __block NSRange result = NSMakeRange(NSNotFound, 0);
     __block BOOL resultEnd = NO;
     __block BOOL resultStart = NO;
-    __weak id weakSelf = self;
+    __unsafe_unretained id weakSelf = self;
     [self enumerateSubstringsInRange:lineRange options:NSStringEnumerationReverse|NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
         if ([substring isEqualToString:@"}"]) {
             result = NSMakeRange(NSNotFound, 0);

@@ -27,12 +27,12 @@
     NSArray* draggedItems;
     
     /** Observer to catch changes in folder */
-    __weak PathObserver *observer;
+    __unsafe_unretained PathObserver *observer;
     
     /** Outlioneview to display the fileviewmodel */
-    __weak IBOutlet NSOutlineView *outline;
+    __unsafe_unretained IBOutlet NSOutlineView *outline;
     
-    __weak IBOutlet NSButton *infoLoadButton;
+    __unsafe_unretained IBOutlet NSButton *infoLoadButton;
 }
 
 /** Model which is displayed */

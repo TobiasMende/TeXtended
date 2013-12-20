@@ -54,7 +54,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     
     __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
-    __weak id weakObj = obj;
+    __unsafe_unretained id weakObj = obj;
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];

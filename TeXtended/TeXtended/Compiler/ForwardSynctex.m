@@ -45,7 +45,7 @@
         
         NSPipe *outPipe = [NSPipe pipe];
         [task setStandardOutput:outPipe];
-        __weak id weakSelf = self;
+        __unsafe_unretained id weakSelf = self;
         [task setTerminationHandler:^(NSTask *task) {
             
             NSFileHandle * read = [outPipe fileHandleForReading];

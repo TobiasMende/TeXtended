@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class PDFDocument, PDFView;
 @interface PageNumberViewController : NSViewController {
-    __weak PDFView* pdfView;
+    __unsafe_unretained PDFView* pdfView;
 }
 @property (assign) IBOutlet NSBox *theBox;
 @property (assign) IBOutlet NSTextField *theLabel;

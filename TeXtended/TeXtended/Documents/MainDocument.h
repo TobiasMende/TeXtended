@@ -15,7 +15,7 @@
     StatsPanelController *statisticPanelController;
 }
 /** The controller of the documents main window */
-@property (weak) MainWindowController *mainWindowController;
+@property (assign) MainWindowController *mainWindowController;
 
 /** A set of all document controllers of the project */
 @property (strong) NSMutableSet *documentControllers;

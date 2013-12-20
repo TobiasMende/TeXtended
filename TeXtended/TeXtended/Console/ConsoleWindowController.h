@@ -14,7 +14,7 @@
 @property ConsoleViewController *viewController;
 @property NSMutableArray *consoleDatas;
 
-@property (weak) ConsoleManager *manager;
+@property (assign) ConsoleManager *manager;
 - (IBAction)unhideConsoles:(id)sender;
 - (void)refreshCompile;
 @end

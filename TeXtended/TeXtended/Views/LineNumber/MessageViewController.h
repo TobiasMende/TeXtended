@@ -29,7 +29,7 @@
     NSRectEdge prefEdge;
     MessageInfoViewController *infoController;
     /** View where the popover should be shown in  */
-    __weak NSView* displayView;
+    __unsafe_unretained NSView* displayView;
 }
 @property (strong) IBOutlet NSTableView *messageTable;
 - (IBAction)handleClick:(id)sender;

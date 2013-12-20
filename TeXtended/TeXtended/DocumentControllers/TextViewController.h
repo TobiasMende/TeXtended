@@ -50,7 +50,7 @@
 @property (strong) DocumentModel *model;
 
 
-@property (weak) DocumentController *documentController;
+@property (assign) DocumentController *documentController;
 
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;

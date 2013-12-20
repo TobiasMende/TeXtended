@@ -27,7 +27,7 @@ typedef enum OutlineElementType {
 @property (strong) NSNumber * type;
 @property (strong) NSNumber * line;
 @property (strong) NSString * info;
-@property (weak) DocumentModel *document;
+@property (assign) DocumentModel *document;
 
 + (NSSet*)extractIn:(NSString *)content for:(DocumentModel*)model;
 

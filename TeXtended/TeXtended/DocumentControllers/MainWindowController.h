@@ -23,11 +23,11 @@
 
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
-@property (weak) id<FirstResponderDelegate> myCurrentFirstResponderDelegate;
+@property (assign) id<FirstResponderDelegate> myCurrentFirstResponderDelegate;
 @property TMTTabViewController *firsTabViewController;
 @property TMTTabViewController *secondTabViewController;
 
-@property (weak) MainDocument *mainDocument;
+@property (assign) MainDocument *mainDocument;
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;

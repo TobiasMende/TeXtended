@@ -17,19 +17,19 @@
  */
 @interface PreferencesController : NSWindowController <NSWindowDelegate, NSToolbarDelegate> {
     /** A reference to the view showing general preferences */
-    __weak IBOutlet NSView *generalPreferencesView;
+    __unsafe_unretained IBOutlet NSView *generalPreferencesView;
     
     /** Reference to the view showing the color preferences */
-    __weak IBOutlet NSView *colorPreferencesView;
+    __unsafe_unretained IBOutlet NSView *colorPreferencesView;
     
     /** Reference to the code assistant preferences */
-    __weak IBOutlet NSView *codeAssistantPreferencesView;
+    __unsafe_unretained IBOutlet NSView *codeAssistantPreferencesView;
     
     /** Reference to the preview settings */
-    __weak IBOutlet NSView *previewPreferencesView;
+    __unsafe_unretained IBOutlet NSView *previewPreferencesView;
     
     /** The toolbar of the preferences window */
-    __weak IBOutlet NSToolbar *toolbar;
+    __unsafe_unretained IBOutlet NSToolbar *toolbar;
     
     /** Storage for the currents view tag */
     NSUInteger currentViewTag;

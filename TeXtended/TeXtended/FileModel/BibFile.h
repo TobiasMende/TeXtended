@@ -32,7 +32,7 @@
 @property (strong, nonatomic) NSString * path;
 
 /** The project to which this entry belongs */
-@property (weak) ProjectModel *project;
+@property (assign) ProjectModel *project;
 
 @property NSMutableArray *entries;
 
