@@ -18,7 +18,7 @@
 #import "ConsoleWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
-ApplicationController *sharedInstance;
+static ApplicationController *sharedInstance;
 
 
 @interface ApplicationController ()
@@ -37,25 +37,21 @@ ApplicationController *sharedInstance;
 }
 
 - (id)init {
-    if (sharedInstance) {
-        return sharedInstance;
-    }
     self = [super init];
-    DDLogError(@"Init");
     if (self) {
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
     }
     return self;
 }
 
 - (void)firstResponderDidChangeNotification:(NSNotification *)note {
-    self.currentFirstResponderDelegate = [note.userInfo objectForKey:TMTFirstResponderKey];
+    self.currentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
 }
 
 
 + (ApplicationController *)sharedApplicationController {
     if (!sharedInstance) {
-        sharedInstance = [ApplicationController new];
+        sharedInstance = [[ApplicationController alloc] init];
     }
     return sharedInstance;
 }
@@ -99,7 +95,7 @@ ApplicationController *sharedInstance;
     if ([consoleWindowController.window isKeyWindow]) {
         NSArray *windows = [[NSApplication sharedApplication] orderedWindows];
         if (windows.count > 1) {
-            [[windows objectAtIndex:1] makeKeyAndOrderFront:self];
+            [windows[1] makeKeyAndOrderFront:self];
         }
     } else {
         [consoleWindowController showWindow:self];
@@ -122,71 +118,69 @@ ApplicationController *sharedInstance;
 
 + (void)registerDefaults {
     [NSColor colorWithCalibratedRed:36.0/255.0 green:80.0/255 blue:123.0 alpha:1];
-    NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],TMT_COMMAND_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:158.0/255.0 green:30.0/255 blue:44.0/255.0 alpha:1.0]],TMT_INLINE_MATH_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:85.0/255.0 green:169.0/255.0 blue:219.0/255.0 alpha:1.0]],TMT_COMMENT_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:171.0/255.0 green:198.0/255 blue:50.0/255.0 alpha:1.0]],TMT_BRACKET_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:171.0/255.0 green:198.0/255 blue:50.0/255.0 alpha:1.0]],TMT_ARGUMENT_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:236.0/255.0 green:218.0/255 blue:136.0/255.0 alpha:0.9]],TMT_CURRENT_LINE_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:250.0/255.0 green:187.0/255 blue:0.0/255.0 alpha:0.8]],TMT_CARRET_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor whiteColor]],TMT_EDITOR_BACKGROUND_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor blackColor]],TMT_EDITOR_FOREGROUND_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],TMT_EDITOR_SELECTION_BACKGROUND_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_EDITOR_SELECTION_FOREGROUND_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],TMT_CURRENT_LINE_TEXT_COLOR,
-                              [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], TMT_TEXDOC_LINK_COLOR,
+    NSDictionary *defaults = @{TMT_COMMAND_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.106 green:0.322 blue:0.482 alpha:1.0]],
+                              TMT_INLINE_MATH_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:158.0/255.0 green:30.0/255 blue:44.0/255.0 alpha:1.0]],
+                              TMT_COMMENT_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:85.0/255.0 green:169.0/255.0 blue:219.0/255.0 alpha:1.0]],
+                              TMT_BRACKET_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:171.0/255.0 green:198.0/255 blue:50.0/255.0 alpha:1.0]],
+                              TMT_ARGUMENT_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:171.0/255.0 green:198.0/255 blue:50.0/255.0 alpha:1.0]],
+                              TMT_CURRENT_LINE_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:236.0/255.0 green:218.0/255 blue:136.0/255.0 alpha:0.9]],
+                              TMT_CARRET_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:250.0/255.0 green:187.0/255 blue:0.0/255.0 alpha:0.8]],
+                              TMT_EDITOR_BACKGROUND_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor whiteColor]],
+                              TMT_EDITOR_FOREGROUND_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor blackColor]],
+                              TMT_EDITOR_SELECTION_BACKGROUND_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
+                              TMT_EDITOR_SELECTION_FOREGROUND_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],
+                              TMT_CURRENT_LINE_TEXT_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextColor]],
+                              TMT_TEXDOC_LINK_COLOR: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
                               
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_INLINE_MATH,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_COMMANDS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_COMMENTS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_BRACKETS,
-                              [NSNumber numberWithBool:NO], TMT_SHOULD_HIGHLIGHT_ARGUMENTS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CURRENT_LINE,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_MATCHING_BRACKETS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INSERT_CLOSING_BRACKETS,
-                              [NSNumber numberWithBool:NO], TMT_SHOULD_HIGHLIGHT_CARRET,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_LINES,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_USE_SPACES_AS_TABS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_COMMANDS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_COMPLETE_ENVIRONMENTS,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_LINK_TEXDOC,
-                              [NSNumber numberWithBool:YES], TMT_SHOULD_UNDERLINE_TEXDOC_LINKS,
-                              [NSNumber numberWithBool:NO], TMT_REPLACE_INVISIBLE_SPACES,
-                              [NSNumber numberWithBool:NO], TMT_REPLACE_INVISIBLE_LINEBREAKS,
-                              [NSNumber numberWithBool:NO], TMTLiveCompileBib,
-                              [NSNumber numberWithBool:NO], TMTDraftCompileBib,
-                              [NSNumber numberWithBool:YES], TMTFinalCompileBib,
-                              [NSNumber numberWithBool:YES], TMTDocumentEnableLiveCompile,
-                              [NSNumber numberWithBool:YES], TMTDocumentEnableLiveScrolling,
-                              [NSNumber numberWithBool:YES], TMTDocumentAutoOpenOnExport,
-                              [NSNumber numberWithInt:NSOnState], TMT_LEFT_TABVIEW_COLLAPSED,
-                              [NSNumber numberWithInt:NSOnState], TMT_RIGHT_TABVIEW_COLLAPSED,
-                              [NSNumber numberWithInt:TMTVertical], TMTViewOrderAppearance,
-                              [NSNumber numberWithInt:1], TMTLiveCompileIterations,
-                              [NSNumber numberWithInt:2], TMTDraftCompileIterations,
-                              [NSNumber numberWithInt:3], TMTFinalCompileIterations,
-                              [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
-                              [NSNumber numberWithInt:4], TMT_EDITOR_NUM_TAB_SPACES,
-                              [NSNumber numberWithInt:80], TMT_EDITOR_HARD_WRAP_AFTER,
-                              [NSNumber numberWithInt:WARNING], TMTLatexLogLevelKey,
-                              [NSNumber numberWithFloat:0.0], TMTLineSpacing,
-                              [NSNumber numberWithInt:SoftWrap], TMT_EDITOR_LINE_WRAP_MODE,
-                              @"/usr/local/bin:/usr/bin:/usr/texbin", TMT_ENVIRONMENT_PATH,
-                              @"/usr/texbin", TMT_PATH_TO_TEXBIN,
-                              @"pdflatex.rb", TMTLiveCompileFlow,
-                              @"pdflatex.rb", TMTDraftCompileFlow,
-                              @"pdflatex.rb", TMTFinalCompileFlow,
-                              @"",TMTLiveCompileArgs,
-                              @"",TMTDraftCompileArgs,
-                              @"",TMTFinalCompileArgs,
-                              @"Source Code Pro", TMT_EDITOR_FONT_NAME,
-                              [NSNumber numberWithFloat:12.0], TMT_EDITOR_FONT_SIZE,
-                              [NSNumber numberWithBool:NO], TMT_EDITOR_FONT_ITALIC,
-                              [NSNumber numberWithBool:NO], TMT_EDITOR_FONT_BOLD,
-                              nil];
+                              TMT_SHOULD_HIGHLIGHT_INLINE_MATH: @YES,
+                              TMT_SHOULD_HIGHLIGHT_COMMANDS: @YES,
+                              TMT_SHOULD_HIGHLIGHT_COMMENTS: @YES,
+                              TMT_SHOULD_HIGHLIGHT_BRACKETS: @YES,
+                              TMT_SHOULD_HIGHLIGHT_ARGUMENTS: @NO,
+                              TMT_SHOULD_HIGHLIGHT_CURRENT_LINE: @YES,
+                              TMT_SHOULD_HIGHLIGHT_MATCHING_BRACKETS: @YES,
+                              TMT_SHOULD_AUTO_INSERT_CLOSING_BRACKETS: @YES,
+                              TMT_SHOULD_HIGHLIGHT_CARRET: @NO,
+                              TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT: @YES,
+                              TMT_SHOULD_AUTO_INDENT_LINES: @YES,
+                              TMT_SHOULD_USE_SPACES_AS_TABS: @YES,
+                              TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS: @YES,
+                              TMT_SHOULD_COMPLETE_COMMANDS: @YES,
+                              TMT_SHOULD_COMPLETE_ENVIRONMENTS: @YES,
+                              TMT_SHOULD_LINK_TEXDOC: @YES,
+                              TMT_SHOULD_UNDERLINE_TEXDOC_LINKS: @YES,
+                              TMT_REPLACE_INVISIBLE_SPACES: @NO,
+                              TMT_REPLACE_INVISIBLE_LINEBREAKS: @NO,
+                              TMTLiveCompileBib: @NO,
+                              TMTDraftCompileBib: @NO,
+                              TMTFinalCompileBib: @YES,
+                              TMTDocumentEnableLiveCompile: @YES,
+                              TMTDocumentEnableLiveScrolling: @YES,
+                              TMTDocumentAutoOpenOnExport: @YES,
+                              TMT_LEFT_TABVIEW_COLLAPSED: @(NSOnState),
+                              TMT_RIGHT_TABVIEW_COLLAPSED: @(NSOnState),
+                              TMTViewOrderAppearance: @(TMTVertical),
+                              TMTLiveCompileIterations: @1,
+                              TMTDraftCompileIterations: @2,
+                              TMTFinalCompileIterations: @3,
+                              TMT_EDITOR_NUM_TAB_SPACES: @4,
+                              TMT_EDITOR_NUM_TAB_SPACES: @4,
+                              TMT_EDITOR_HARD_WRAP_AFTER: @80,
+                              TMTLatexLogLevelKey: @(WARNING),
+                              TMTLineSpacing: @0.0f,
+                              TMT_EDITOR_LINE_WRAP_MODE: @(SoftWrap),
+                              TMT_ENVIRONMENT_PATH: @"/usr/local/bin:/usr/bin:/usr/texbin",
+                              TMT_PATH_TO_TEXBIN: @"/usr/texbin",
+                              TMTLiveCompileFlow: @"pdflatex.rb",
+                              TMTDraftCompileFlow: @"pdflatex.rb",
+                              TMTFinalCompileFlow: @"pdflatex.rb",
+                              TMTLiveCompileArgs: @"",
+                              TMTDraftCompileArgs: @"",
+                              TMTFinalCompileArgs: @"",
+                              TMT_EDITOR_FONT_NAME: @"Source Code Pro",
+                              TMT_EDITOR_FONT_SIZE: @12.0f,
+                              TMT_EDITOR_FONT_ITALIC: @NO,
+                              TMT_EDITOR_FONT_BOLD: @NO};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
 }
@@ -202,7 +196,7 @@ ApplicationController *sharedInstance;
         if (error) {
             DDLogError(@"Can't read compile flows from %@. Error: %@", bundlePath, [error userInfo]);
         } else {
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; dict[NSFilePosixPermissions] = @511;
             for(NSString *path in files) {
                 NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
                 NSString* destPath = [flowPath stringByAppendingPathComponent:path];
@@ -229,7 +223,8 @@ ApplicationController *sharedInstance;
 
 
 - (void)dealloc {
-    DDLogVerbose(@"ApplicationController dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    DDLogVerbose(@"dealloc");
 }
 
 @end

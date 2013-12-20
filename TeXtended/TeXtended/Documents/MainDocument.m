@@ -44,7 +44,7 @@
 }
 
 - (void)firstResponderDidChangeNotification:(NSNotification *)note {
-    self.mainWindowController.myCurrentFirstResponderDelegate = [note.userInfo objectForKey:TMTFirstResponderKey];
+    self.mainWindowController.myCurrentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
 }
 
 
@@ -71,8 +71,7 @@
     DDLogVerbose(@"initializeDocumentControllers");
     self.documentControllers = [NSMutableSet new];
     for (DocumentModel *m in self.model.mainDocuments) {
-        DocumentController *dc = [[DocumentController alloc] initWithDocument:m andMainDocument:self];
-        [self.documentControllers addObject:dc];
+        [self.documentControllers addObject:[[DocumentController alloc] initWithDocument:m andMainDocument:self]];
     }
 }
 
@@ -122,6 +121,12 @@
     DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
     [self.documentControllers addObject:dc];
     [self.mainWindowController showDocument:dc];
+}
+
+- (void)dealloc {
+    for (DocumentController *dc in self.documentControllers) {
+        dc.mainDocument = nil;
+    }
 }
 
 @end

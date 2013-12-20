@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BackwardSynctex : NSObject
+@interface BackwardSynctex : NSObject {
+}
 - initWithOutputPath:(NSString *)outPath page:(NSUInteger)page andPosition:(NSPoint) position;
 
 /** The line in the input document */

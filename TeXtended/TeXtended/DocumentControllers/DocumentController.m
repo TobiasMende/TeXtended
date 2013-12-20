@@ -85,6 +85,7 @@
 }
 
 - (void)texViewDidClose:(NSNotification *)note {
+    self.textViewController.textView.firstResponderDelegate = nil;
     self.textViewController = nil;
     [self.mainDocument removeDocumentController:self];
 }
@@ -242,7 +243,7 @@
 
 - (void)setLiveCompileEnabled:(BOOL)enable {
     [self willChangeValueForKey:@"liveCompileEnabled"];
-    self.model.liveCompile = [NSNumber numberWithBool:enable];
+    self.model.liveCompile = @(enable);
     [self didChangeValueForKey:@"liveCompileEnabled"];
 }
 
@@ -251,11 +252,11 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    self.textViewController.textView.firstResponderDelegate = nil;
+    self.textViewController.textView.firstResponderDelegate = NULL;
     [self.compiler terminateAndKill];
     for(ExtendedPDFViewController *c in self.pdfViewControllers) {
         if ([c.pdfView.firstResponderDelegate isEqual:self]) {
-            c.pdfView.firstResponderDelegate = nil;
+            c.pdfView.firstResponderDelegate = NULL;
         }
     }
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];

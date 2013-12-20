@@ -15,7 +15,9 @@
  **Author:** Tobias Mende
  
  */
-@interface TexdocController : NSObject
+@interface TexdocController : NSObject {
+    NSTask *task;
+}
 
 /**
  Method for starting a texdoc terminal task for getting a list of entries for the given package name

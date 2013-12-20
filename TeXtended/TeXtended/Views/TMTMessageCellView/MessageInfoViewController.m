@@ -31,7 +31,7 @@
     if ([key isEqualToString:@"image"]) {
         keys = [keys setByAddingObject:@"message"];
     } else if ([key isEqualToString:@"isExternal"]) {
-        keys = [keys setByAddingObjectsFromArray:[NSArray arrayWithObjects:@"self.model", @"self.message.document", nil]];
+        keys = [keys setByAddingObjectsFromArray:@[@"self.model", @"self.message.document"]];
     }
     return keys;
 }

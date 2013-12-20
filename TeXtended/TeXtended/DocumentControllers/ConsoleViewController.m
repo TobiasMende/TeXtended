@@ -62,7 +62,7 @@
 #pragma mark NSTextFieldDelegate Methods
 
 -(void)controlTextDidEndEditing:(NSNotification *)notification {
-    if ( [[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement )
+    if ( [[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement )
     {
         [self.console commitInput];
     }

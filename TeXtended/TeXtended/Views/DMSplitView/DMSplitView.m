@@ -208,7 +208,7 @@
 #pragma mark - Behavior Properties Set
 
 - (void) setPriority:(NSInteger)priorityIndex ofSubviewAtIndex:(NSInteger)subviewIndex {
-    [priorityIndexes setObject:@(subviewIndex) forKey:@(priorityIndex)];
+    priorityIndexes[@(priorityIndex)] = @(subviewIndex);
 }
 
 - (void) setMaxSize:(CGFloat) maxSize ofSubviewAtIndex:(NSUInteger) subviewIndex {
@@ -236,7 +236,7 @@
 }
 
 - (void)setCollapseSubviewAtIndex:(NSUInteger)viewIndex forDoubleClickOnDividerAtIndex:(NSUInteger)dividerIndex {
-    [viewsToCollapseByDivider setObject:@(viewIndex) forKey:@(dividerIndex)];
+    viewsToCollapseByDivider[@(dividerIndex)] = @(viewIndex);
 }
 
 - (NSUInteger) subviewIndexToCollapseForDoubleClickOnDividerAtIndex:(NSUInteger) dividerIndex {
@@ -461,7 +461,7 @@
                                                      (self.bounds.size.height-splitViewOldSize.height));
 
     for (NSNumber *priorityIndex in [[priorityIndexes allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
-        NSNumber *subviewIndex = [priorityIndexes objectForKey:priorityIndex];
+        NSNumber *subviewIndex = priorityIndexes[priorityIndex];
         if (subviewIndex.integerValue >= self.subviews.count)
 			continue;
     
@@ -574,23 +574,23 @@
 - (CGFloat)positionOfDividerAtIndex:(NSInteger)dividerIndex {
     // It looks like NSSplitView relies on its subviews being ordered left->right or top->bottom so we can too.
     // It also raises w/ array bounds exception if you use its API with dividerIndex > count of subviews.
-    while (dividerIndex >= 0 && [self isSubviewCollapsed:[[self subviews] objectAtIndex:dividerIndex]])
+    while (dividerIndex >= 0 && [self isSubviewCollapsed:[self subviews][dividerIndex]])
         dividerIndex--;
     if (dividerIndex < 0)
         return 0.0f;
     
-    NSRect priorViewFrame = [[[self subviews] objectAtIndex:dividerIndex] frame];
+    NSRect priorViewFrame = [[self subviews][dividerIndex] frame];
     return [self isVertical] ? NSMaxX(priorViewFrame) : NSMaxY(priorViewFrame);
 }
 
 - (void) getNewSubviewsRects:(NSRect *) newRect withIndexes:(NSArray *) indexes andPositions:(NSArray *) newPositions {
     CGFloat dividerTkn = self.dividerThickness;
     for (NSUInteger i = 0; i < self.subviews.count; i++)
-        newRect[i] = [[self.subviews objectAtIndex:i] frame];
+        newRect[i] = [(self.subviews)[i] frame];
     
     for (NSNumber *indexObject in indexes) {
         NSInteger index = [indexObject integerValue];
-        CGFloat  newPosition = [[newPositions objectAtIndex:[indexes indexOfObject:indexObject]] doubleValue];
+        CGFloat  newPosition = [newPositions[[indexes indexOfObject:indexObject]] doubleValue];
         
         // save divider state where necessary
         [self saveCurrentDivididerState];

@@ -41,7 +41,7 @@
         [self.handler startedFetchingAuthors:query];
         receivedAuthorData = [NSMutableData data];
     } else {
-        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:[NSDictionary dictionaryWithObject:@"DBLP Connection failed" forKey:@"description"]];
+        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:@{@"description": @"DBLP Connection failed"}];
         [self.handler failedFetchingAuthors:error];
         // Inform the user that the connection failed.
     }
@@ -86,7 +86,7 @@
         results = [NSMutableDictionary dictionaryWithCapacity:a.count];
         for (NSXMLElement *node in a) {
             NSString *urlpt = [[node attributeForName:@"urlpt"] stringValue];
-            [results setObject:[node stringValue] forKey:urlpt];
+            results[urlpt] = [node stringValue];
             [self.handler finishedFetchingAuthors:results];
         }
         if (a.count == 0) {
@@ -141,7 +141,7 @@
         [self.handler startedFetchingKeys:urlpt];
         receivedKeyData = [NSMutableData data];
     } else {
-        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:[NSDictionary dictionaryWithObject:@"DBLP Connection failed" forKey:@"description"]];
+        NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:@{@"description": @"DBLP Connection failed"}];
         [self.handler failedFetchingKeys:error];
         // Inform the user that the connection failed.
     }

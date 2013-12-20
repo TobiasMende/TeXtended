@@ -17,7 +17,9 @@
 #import "ConsoleWindow.h"
 
 @interface ConsoleWindowController ()
-- (void)updateData:(NSNotification *)note;
+
+- (void)consoleAdded:(NSNotification *)note;
+- (void)consoleRemoved:(NSNotification *)note;
 @end
 
 @implementation ConsoleWindowController
@@ -26,11 +28,18 @@
     self = [super initWithWindowNibName:@"ConsoleWindow"];
     if (self) {
         self.manager = [ConsoleManager sharedConsoleManager];
-        [[NSNotificationCenter defaultCenter] addObserverForName:TMT_CONSOLE_MANAGER_CHANGED object:self.manager queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note) {
-            [self updateData:note];
-        }];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(consoleAdded:) name:TMT_CONSOLE_ADDED_MANAGER_CHANGED object:self.manager];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(consoleRemoved:) name:TMT_CONSOLE_REMOVED_MANAGER_CHANGED object:self.manager];
     }
     return self;
+}
+
+- (void)consoleAdded:(NSNotification *)note {
+    [self updateData:note];
+}
+
+- (void)consoleRemoved:(NSNotification *)note {
+    [self updateData:note];
 }
 
 - (void)updateData:(NSNotification *)note {
@@ -45,7 +54,7 @@
     BOOL found = NO;
     NSUInteger currentRow;
     for (currentRow =0; currentRow < self.consoleDatas.count; currentRow++) {
-        if ([[self.consoleDatas objectAtIndex:currentRow] isEqual:self.viewController.console]) {
+        if ([(self.consoleDatas)[currentRow] isEqual:self.viewController.console]) {
             found = YES;
             break;
         }
@@ -92,8 +101,10 @@
         NSViewController *c = [[NSViewController alloc] initWithNibName:@"ConsoleCellView" bundle:nil];
         result = (ConsoleCellView*)c.view;
     }
+    result.identifier = nil;
     if (row < self.consoleDatas.count) {
-        result.console = [self.consoleDatas objectAtIndex:row];
+        result.console = (self.consoleDatas)[row];
+        result.controller = self;
     }
     return result;
 }
@@ -104,7 +115,7 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger row = [self.tableView selectedRow];
     if (row >= 0 && row < self.consoleDatas.count) {
-        self.viewController.console = [self.consoleDatas objectAtIndex:row];
+        self.viewController.console = (self.consoleDatas)[row];
         [self.viewController scrollToCurrentPosition];
     }
 }
@@ -118,6 +129,7 @@
             data.showConsole = YES;
         }
     }
+    [self updateData:nil];
 }
 
 - (void)refreshCompile {
@@ -125,6 +137,7 @@
 }
 
 - (void)dealloc {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

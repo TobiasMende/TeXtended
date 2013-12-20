@@ -40,7 +40,7 @@
     NSPipe *outPipe = [NSPipe pipe];
     task.standardOutput = outPipe;
     task.launchPath = [[[NSUserDefaults standardUserDefaults] valueForKey:TMT_PATH_TO_TEXBIN] stringByAppendingPathComponent:@"texcount"];
-    task.arguments = [NSArray arrayWithObjects:@"-inc",@"-brief", @"-q", @"-total", [NSString stringWithFormat:@"\"%@\"",filename], nil];
+    task.arguments = @[@"-inc",@"-brief", @"-q", @"-total", [NSString stringWithFormat:@"\"%@\"",filename]];
     task.currentDirectoryPath = [filename stringByDeletingLastPathComponent];
     [task launch];
     [task waitUntilExit];
@@ -53,9 +53,9 @@
 {
     // String has Format "TEXTWORDS+HEADERWORDS+CAPTIONWORDS (HEADERNUMBER/FLOATNUMBER/MATHINLINENUMBER/DISPLAYEDMATHNUMBER) TOTAL COUNT"
     NSArray *stringComponents = [output componentsSeparatedByString:@"+"];
-    self.wordsInText = [stringComponents objectAtIndex:0];
-    self.wordsInHeader = [stringComponents objectAtIndex:1];
-    self.wordsInCaption = [[[stringComponents objectAtIndex:2] componentsSeparatedByString:@" "] objectAtIndex:0];
+    self.wordsInText = stringComponents[0];
+    self.wordsInHeader = stringComponents[1];
+    self.wordsInCaption = [stringComponents[2] componentsSeparatedByString:@" "][0];
 }
 
 @end

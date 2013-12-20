@@ -46,8 +46,8 @@ static CompileFlowHandler *sharedInstance;
 - (id)initActual {
     self = [super init];
     if (self) {
-        _maxIterations = [NSNumber numberWithInt:3];
-        _minIterations = [NSNumber numberWithInt:1];
+        _maxIterations = @3;
+        _minIterations = @1;
          [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
     }
     return self;
@@ -67,8 +67,8 @@ static CompileFlowHandler *sharedInstance;
     
     NSString* flowPath = [CompileFlowHandler path];
     
-    NSArray* flowPaths = [fm contentsOfDirectoryAtURL:[NSURL fileURLWithPath:flowPath] includingPropertiesForKeys:[NSArray arrayWithObjects:NSURLNameKey, nil] options:NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants|NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
+    NSArray* flowPaths = [fm contentsOfDirectoryAtURL:[NSURL fileURLWithPath:flowPath] includingPropertiesForKeys:@[NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants|NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; dict[NSFilePosixPermissions] = @511;
     
     NSMutableArray *final = [[NSMutableArray alloc] initWithCapacity:[flowPaths count]];
     for(NSURL *p in flowPaths) {

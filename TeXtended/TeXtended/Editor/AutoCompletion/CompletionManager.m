@@ -134,7 +134,7 @@ static NSSet* SPECIAL_SYMBOLS;
 #pragma mark - Modifying the Collections
 - (void)addCommandCompletion:(CommandCompletion *)completion forKey:(id)key {
     [self.commandKeys addObject:key];
-    [self.commandCompletions setObject:completion forKey:key];
+    (self.commandCompletions)[key] = completion;
 }
 
 - (void)addCommandCompletion:(CommandCompletion *)completion {
@@ -144,7 +144,7 @@ static NSSet* SPECIAL_SYMBOLS;
 
 - (void)addEnvironmentCompletion:(EnvironmentCompletion *)completion forKey:(id)key {
     [self.environmentKeys addObject:key];
-    [self.environmentCompletions setObject:completion forKey:key];
+    (self.environmentCompletions)[key] = completion;
 }
 
 - (void)addEnvironmentCompletion:(EnvironmentCompletion *)completion {
@@ -162,8 +162,8 @@ static NSSet* SPECIAL_SYMBOLS;
 }
 
 - (void)setCommandCompletion:(CommandCompletion *)completion forIndex:(NSInteger)idx {
-    [self.commandCompletions setObject:completion forKey:[completion key]];
-    [self.commandKeys replaceObjectAtIndex:idx withObject:[completion key]];
+    (self.commandCompletions)[[completion key]] = completion;
+    (self.commandKeys)[idx] = [completion key];
     [self.commandKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     if (completion.insertion && [completion.insertion length] != 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCommandCompletionsDidChangeNotification object:self];
@@ -171,8 +171,8 @@ static NSSet* SPECIAL_SYMBOLS;
 }
 
 - (void)setEnvironmentCompletion:(EnvironmentCompletion *)completion forIndex:(NSInteger)idx {
-    [self.environmentCompletions setObject:completion forKey:[completion key]];
-    [self.environmentKeys replaceObjectAtIndex:idx withObject:[completion key]];
+    (self.environmentCompletions)[[completion key]] = completion;
+    (self.environmentKeys)[idx] = [completion key];
     [self.environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     if (completion.insertion && [completion.insertion length] != 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
@@ -186,7 +186,7 @@ static NSSet* SPECIAL_SYMBOLS;
     NSMutableSet *completions = [self commandCompletionsByType:completion.completionType];
     if (!completions) {
         completions = [NSMutableSet new];
-        [commandCompletionTypeIndex setObject:completions forKey:completion.completionType];
+        commandCompletionTypeIndex[completion.completionType] = completions;
     }
     [completions addObject:[NSValue valueWithNonretainedObject:completion]];
     DDLogInfo(@"Adding %@", completion);
@@ -205,7 +205,7 @@ static NSSet* SPECIAL_SYMBOLS;
 }
 
 - (NSMutableSet *)commandCompletionsByType:(NSString *)type {
-    return [commandCompletionTypeIndex objectForKey:type];
+    return commandCompletionTypeIndex[type];
 }
 
 + (NSSet *)specialSymbols {

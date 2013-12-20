@@ -13,17 +13,17 @@
     self = [super init];
     if (self) {
         if (texdoc.count >= 4) {
-            NSString *path = [texdoc objectAtIndex:2];
+            NSString *path = texdoc[2];
             if ([path isAbsolutePath]) {
                 self.path = path;
             } else {
                 self.path = [[@"~/" stringByAppendingString:path] stringByExpandingTildeInPath];
             }
-            _description = [texdoc objectAtIndex:4];
+            _description = texdoc[4];
             if (_description.length == 0) {
                 _description = [[_path lastPathComponent] stringByDeletingPathExtension];
             }
-            _score = [NSNumber numberWithDouble:[[texdoc objectAtIndex:1] doubleValue]];
+            _score = @([texdoc[1] doubleValue]);
         }
     }
     

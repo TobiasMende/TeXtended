@@ -14,8 +14,8 @@
     NSPopover *popover;
     NSLock *messageLock;
 }
-@property (assign) IBOutlet TMTTableView *tableView;
+@property (strong) IBOutlet TMTTableView *tableView;
 @property (strong) NSMutableDictionary *collections;
 @property NSArray *messages;
-@property (assign,nonatomic) Compilable *model;
+@property (strong,nonatomic) Compilable *model;
 @end

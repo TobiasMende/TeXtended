@@ -31,21 +31,20 @@ static const NSUInteger MAX_QUEUE_SIZE = 50;
 
 + (NSNotificationCenter*)centerForCompilable:(Compilable *)compilable {
     NSString *key = [self keyForCompilable:compilable];
-    NSNotificationCenter *center = [mainCompilableCenters objectForKey:key];
+    NSNotificationCenter *center = mainCompilableCenters[key];
     if (!center && ![prohibitedKeys containsObject:key]) {
         center = [NSNotificationCenter new];
-        [mainCompilableCenters setObject:center forKey:key];
-        DDLogWarn(@"Creating new center for %@", key);
+        mainCompilableCenters[key] = center;
+        DDLogVerbose(@"Creating new center for %@", key);
     }
     return center;
 }
 
 + (void)removeCenterForCompilable:(Compilable *)compilable {
-    NSString *key = [self keyForCompilable:compilable];
-    [mainCompilableCenters removeObjectForKey:key];
-    [prohibitedKeys setObject:key atIndexedSubscript:pkIdx];
+    [mainCompilableCenters removeObjectForKey:compilable.identifier];
+    [prohibitedKeys setObject:compilable.identifier atIndexedSubscript:pkIdx];
     pkIdx = (pkIdx + 1) % MAX_QUEUE_SIZE;
-    DDLogWarn(@"Deleting center for %@", key);
+    DDLogVerbose(@"Deleting center for %@", compilable.identifier);
 }
 
 + (NSString *)keyForCompilable:(Compilable *)compilable {

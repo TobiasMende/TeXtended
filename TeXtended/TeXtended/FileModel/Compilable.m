@@ -188,9 +188,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
 }
 
 - (void)dealloc {
-    if (self == self.mainCompilable) {
         [TMTNotificationCenter removeCenterForCompilable:self];
-    }
 }
 
 @end

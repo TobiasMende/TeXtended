@@ -135,6 +135,7 @@
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
 #define TMTIntegerKey @"TMTIntegerKey"
 #define TMTFirstResponderKey @"TMTFirstResponderKey"
+#define TMTConsoleDataKey @"TMTConsoleDataKey"
 
 
 // --------------------------------------------------------------------------------
@@ -160,7 +161,8 @@
 #define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
 #define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
-#define TMT_CONSOLE_MANAGER_CHANGED @"TMT_CONSOLE_MANAGER_CHANGED"
+#define TMT_CONSOLE_ADDED_MANAGER_CHANGED @"TMT_CONSOLE_ADDED_MANAGER_CHANGED"
+#define TMT_CONSOLE_REMOVED_MANAGER_CHANGED @"TMT_CONSOLE_REMOVED_MANAGER_CHANGED"
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 

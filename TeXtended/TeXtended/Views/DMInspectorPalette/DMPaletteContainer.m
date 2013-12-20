@@ -167,7 +167,7 @@
 	}
 	
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
-    contentSectionViews = [contentSectionViews sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    contentSectionViews = [contentSectionViews sortedArrayUsingDescriptors:@[sortDescriptor]];
 
     
     [contentSectionViews enumerateObjectsUsingBlock:^(DMPaletteSectionView* paletteSection, NSUInteger idx, BOOL *stop) {

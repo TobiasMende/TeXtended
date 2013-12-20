@@ -44,13 +44,11 @@
     DMPaletteSectionView *propertyFileContainer = [[DMPaletteSectionView alloc] initWithContentView:propertySelection.view andTitle:@"3. Select a property file"];
      DMPaletteSectionView *bibFileContainer = [[DMPaletteSectionView alloc] initWithContentView:bibFilesSelection.view andTitle:@"4. Select the bib files"];
     DMPaletteSectionView *compilerSettingContainer = [[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"5. Configure the compiler settings"];
-    container.sectionViews = [NSArray arrayWithObjects:
-                          projectPathContainer,
+    container.sectionViews = @[projectPathContainer,
                             mainAndBibcontainer,
                               propertyFileContainer,
                               bibFileContainer,
-                            compilerSettingContainer,
-                              nil];
+                            compilerSettingContainer];
     [container collapseSectionView:propertyFileContainer];
     [container collapseSectionView:bibFileContainer];
     [container collapseSectionView:compilerSettingContainer];

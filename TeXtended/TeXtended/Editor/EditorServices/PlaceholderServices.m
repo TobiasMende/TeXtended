@@ -109,7 +109,7 @@
     if (range.length != 1) {
         return NO;
     }
-    id attachment = [dict objectForKey:NSAttachmentAttributeName];
+    id attachment = dict[NSAttachmentAttributeName];
     return [attachment isKindOfClass:[EditorPlaceholder class]];
 }
 

@@ -34,18 +34,17 @@
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
         NSString *path = [outPath stringByDeletingLastPathComponent];
         if (pathVariables) {
-            [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+            [task setEnvironment:@{@"PATH": pathVariables}];
         }
         [task setLaunchPath:[PathFactory synctex]];
         NSString *inArg = [NSString stringWithFormat:@"%li:%li:%@", row, col, inPath];
         NSString *outArg = [NSString stringWithFormat:@"%@",outPath];
         [task setCurrentDirectoryPath:path];
         
-        [task setArguments:[NSArray arrayWithObjects:@"view",@"-i",inArg,@"-o",outArg, nil]];
+        [task setArguments:@[@"view",@"-i",inArg,@"-o",outArg]];
         
         NSPipe *outPipe = [NSPipe pipe];
         [task setStandardOutput:outPipe];
-        __unsafe_unretained id weakSelf = self;
         [task setTerminationHandler:^(NSTask *task) {
             
             NSFileHandle * read = [outPipe fileHandleForReading];
@@ -55,7 +54,7 @@
             for (NSString *arg in task.arguments) {
                 [command appendFormat:@" %@", arg];
             }
-            [weakSelf parseOutput:stringRead];
+            [self parseOutput:stringRead];
         }];
         @try {
             [task launch];
@@ -78,8 +77,8 @@
         if (comps.count < 2) {
             continue;
         }
-    NSString *key = [comps objectAtIndex:0];
-    NSString *value = [comps objectAtIndex:1];
+    NSString *key = comps[0];
+    NSString *value = comps[1];
     if ([key isEqualToString:@"Page"]) {
         self.page = [value floatValue];
     } else if([key isEqualToString:@"x"]) {

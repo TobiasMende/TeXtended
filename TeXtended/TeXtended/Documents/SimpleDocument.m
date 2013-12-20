@@ -14,6 +14,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "DocumentCreationController.h"
 #import "TMTNotificationCenter.h"
+#import "ConsoleManager.h"
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
 static const NSSet *SELECTORS_HANDLED_BY_DC;
@@ -114,7 +115,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     self.model.texPath = [[self fileURL] path];
     DocumentCreationController* contr = [DocumentCreationController sharedDocumentController];
     if (contr.encController.selectionDidChange) {
-        self.model.encoding = [NSNumber numberWithUnsignedLong:[contr.encController selection]];
+        self.model.encoding = @([contr.encController selection]);
         
     }
     
@@ -136,6 +137,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self.model];
 }
 
 @end

@@ -60,13 +60,13 @@
         NSViewController *c = [[NSViewController alloc] initWithNibName:@"TMTMessageCellView" bundle:nil];
         result = (TMTMessageCellView*)c.view;
     }
-    TrackingMessage *item = [elements objectAtIndex:row];
+    TrackingMessage *item = elements[row];
     result.objectValue = item;
     return result;
 }
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-    TrackingMessage *m = [elements objectAtIndex:row];
+    TrackingMessage *m = elements[row];
     [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
 }
 
@@ -86,7 +86,7 @@
         popover = nil;
     }
     NSInteger row = self.messageTable.selectedRow;
-    TrackingMessage *message = [elements objectAtIndex:row];
+    TrackingMessage *message = elements[row];
     if (row < 0) {
         return;
     }

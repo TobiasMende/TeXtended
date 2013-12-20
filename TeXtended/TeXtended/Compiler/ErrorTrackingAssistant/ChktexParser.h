@@ -20,7 +20,8 @@
  * **Author:** Tobias Mende
  *
  */
-@interface ChktexParser : Parser
+@interface ChktexParser : Parser {
+}
 
 /**
  * Getter which identifies a message type by a given chktex warning number. (see *texdoc chktex* for further information)

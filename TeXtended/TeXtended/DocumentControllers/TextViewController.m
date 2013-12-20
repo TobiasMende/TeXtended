@@ -86,7 +86,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self registerModelObserver];
         
         self.tabViewItem = [TMTTabViewItem new];
-        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"Untitled", @"Untitled")}];
         [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
         self.tabViewItem.view = self.view;
         
@@ -104,7 +104,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     internalMessages = [MessageCollection new];
     [self updateMessageCollection:nil];
     self.messages = [internalMessages merge:consoleMessages];
-    [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+    [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
 }
 
 - (void)registerModelObserver {
@@ -128,17 +128,19 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
 
+
+
 - (void)handleLineUpdateNotification:(NSNotification *)note {
     NSTabViewItem *view = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
     [view.tabView.window makeKeyAndOrderFront:self];
     [view.tabView selectTabViewItem:view];
-    NSInteger row = [[note.userInfo objectForKey:TMTIntegerKey] integerValue];
+    NSInteger row = [(note.userInfo)[TMTIntegerKey] integerValue];
     [self.textView showLine:row];
 }
 
 - (void)handleBackwardSynctex:(NSNotification *)note {
-    BackwardSynctex *first = [note.userInfo objectForKey:TMTBackwardSynctexBeginKey];
-    BackwardSynctex *second = [note.userInfo objectForKey:TMTBackwardSynctexEndKey];
+    BackwardSynctex *first = (note.userInfo)[TMTBackwardSynctexBeginKey];
+    BackwardSynctex *second = (note.userInfo)[TMTBackwardSynctexEndKey];
     
     NSRange firstLine = [self.textView rangeForLine:first.line];
     NSRange secondLine = [self.textView rangeForLine:second.line];
@@ -169,20 +171,20 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (countRunningParsers <= 0) {
         self.messages = [consoleMessages merge:internalMessages];
         lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
-        [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+        [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
     }
 }
 
 
 
 - (void)logMessagesChanged:(NSNotification *)note {
-    MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (collection) {
         consoleMessages = [consoleMessages merge:collection];
         if (countRunningParsers <= 0 && self.messages) {
             self.messages = [consoleMessages merge:internalMessages];
             lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
-            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
         }
     }
 }
@@ -207,9 +209,13 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         if (!lacheck) {
             lacheck = [LacheckParser new];
         }
-        
-        [chktex parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
-        [lacheck parseDocument:tempPath forObject:self selector:@selector(mergeMessageCollection:)];
+        __unsafe_unretained id weakSelf = self;
+        [chktex parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+            [weakSelf mergeMessageCollection:messages];
+        }];
+        [lacheck parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+            [weakSelf mergeMessageCollection:messages];
+        }];
     }
     
     
@@ -229,7 +235,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
         lineNumberView.messageCollection = subset;
         if (self.messages) {
-            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.messages forKey:TMTMessageCollectionKey]];
+            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
         }
     }
     [messageLock unlock];
@@ -243,7 +249,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
     if (synctex) {
-        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+        NSDictionary *info = @{TMTForwardSynctexKey: synctex};
         [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
     }
 }
@@ -294,14 +300,14 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     if (model) {
         ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:model.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
         if (synctex) {
-            NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+            NSDictionary *info = @{TMTForwardSynctexKey: synctex};
             [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
         }
     } else {
         for (DocumentModel *m in self.model.mainDocuments) {
             ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol];
             if (synctex) {
-                NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:synctex,TMTForwardSynctexKey, nil];
+                NSDictionary *info = @{TMTForwardSynctexKey: synctex};
                 [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
             }
         }
@@ -388,7 +394,8 @@ ForwardSynctex *synctex = [[ForwardSynctex alloc] initWithInputPath:self.model.t
     if (item) {
         [item.tabView removeTabViewItem:item];
     }
-    
+    [lacheck terminate];
+    [chktex terminate];
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];

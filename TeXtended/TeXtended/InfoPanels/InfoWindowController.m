@@ -41,7 +41,7 @@
     const NSStringEncoding *encoding = [NSString availableStringEncodings];
     NSMutableArray *allEncodings = [[NSMutableArray alloc] init];
     while (*encoding != 0) {
-        [allEncodings addObject:[NSNumber numberWithUnsignedLong:*encoding]];
+        [allEncodings addObject:@(*encoding)];
         encoding++;
     }
     [allEncodings sortUsingComparator:^NSComparisonResult(id first, id second) {
@@ -53,7 +53,7 @@
     [self.encodingPopUp removeAllItems];
     // Fill with encodings
     for (NSInteger cnt = 0; cnt < [allEncodings count]; cnt++) {
-        NSNumber *encodingNumber = [allEncodings objectAtIndex:cnt];
+        NSNumber *encodingNumber = allEncodings[cnt];
         NSStringEncoding encoding = [encodingNumber unsignedLongValue];
         [self.encodingPopUp addItemWithTitle:[NSString localizedNameOfStringEncoding:encoding]];
         [[self.encodingPopUp lastItem] setRepresentedObject:encodingNumber];
@@ -74,7 +74,7 @@
     [texPathPanel setTitle:NSLocalizedString(@"Choose a tex document", @"chooseTexPath")];
     [texPathPanel setCanCreateDirectories:YES];
     [texPathPanel setCanSelectHiddenExtension:YES];
-    [texPathPanel setAllowedFileTypes:[NSArray arrayWithObjects:@"tex", nil]];
+    [texPathPanel setAllowedFileTypes:@[@"tex"]];
     NSURL *url= [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
     [texPathPanel setDirectoryURL:url];
     [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
@@ -95,7 +95,7 @@
 
 - (IBAction)encodingSelectionChange:(id)sender {
     if (self.compilable.encoding) {
-        self.compilable.encoding = [encodings objectAtIndex:self.encodingPopUp.indexOfSelectedItem];
+        self.compilable.encoding = encodings[self.encodingPopUp.indexOfSelectedItem];
     }
 }
 

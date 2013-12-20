@@ -12,6 +12,7 @@
 #import "ProjectModel.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
+#import "ConsoleManager.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -95,7 +96,7 @@
     NSPredicate * fltr = [NSPredicate predicateWithFormat:@"pathExtension='teXpf'"];
     NSArray * projectFiles = [dirContents filteredArrayUsingPredicate:fltr];
     if (projectFiles.count == 1) {
-        return [projectFiles objectAtIndex:0];
+        return projectFiles[0];
     }else if(projectFiles.count > 1) {
         NSURL *defaultFileURL = [directory URLByAppendingPathComponent:[lastComponent stringByAppendingPathExtension:@"teXpf"]];
         for (NSURL *url in projectFiles) {
@@ -103,7 +104,7 @@
                 return url;
             }
         }
-        return [projectFiles objectAtIndex:0];
+        return projectFiles[0];
     }
     return nil;
     
@@ -114,6 +115,9 @@
 
 - (void)dealloc {
     DDLogVerbose(@"ProjectDocument dealloc");
+    for(DocumentModel *m in self.model.documents) {
+        [[ConsoleManager sharedConsoleManager] removeConsoleForModel:m];
+    }
 }
 
 @end

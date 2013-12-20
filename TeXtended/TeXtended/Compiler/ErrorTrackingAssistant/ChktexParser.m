@@ -36,34 +36,31 @@ static const NSDictionary *DEBUG_NUMBERS;
  * @param obj
  * @param action
  */
-- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action {
+- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *))handler {
+    completionHandler = handler;
     if (!path) {
         return;
     }
     DDLogInfo(@"Parsing %@", path);
-    NSTask *task = [[NSTask alloc] init];
+   NSTask *task = [NSTask new];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
     NSString *dirPath = [path stringByDeletingLastPathComponent];
     
-    [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+    [task setEnvironment:@{@"PATH": pathVariables}];
     [task setLaunchPath:[PathFactory chktex]];
     [task setCurrentDirectoryPath:dirPath];
     // TODO: customize arguments
-    [task setArguments:[NSArray arrayWithObjects:@"-qv0", path, nil]];
+    [task setArguments:@[@"-qv0", path]];
     
     __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
-    __unsafe_unretained id weakObj = obj;
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [weakObj performSelector:action withObject:messages];
-#pragma clang diagnostic pop
+        completionHandler(messages);
         outPipe = nil;
     }];
     @try {
@@ -72,6 +69,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     @catch (NSException *exception) {
         DDLogError(@"Cant'start chktex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
         DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+        completionHandler(nil);
     }
     
 }
@@ -94,11 +92,11 @@ static const NSDictionary *DEBUG_NUMBERS;
         if (components.count < 5) {
             continue;
         }
-        NSString *path = [self absolutPath:[components objectAtIndex:0] withBaseDir:base];
-        NSUInteger line = [[components objectAtIndex:1] integerValue];
-        NSUInteger column = [[components objectAtIndex:2] integerValue];
-        NSInteger warning = [[components objectAtIndex:3] integerValue];
-        NSString *info = [components objectAtIndex:4];
+        NSString *path = [self absolutPath:components[0] withBaseDir:base];
+        NSUInteger line = [components[1] integerValue];
+        NSUInteger column = [components[2] integerValue];
+        NSInteger warning = [components[3] integerValue];
+        NSString *info = components[4];
         TMTTrackingMessageType type = [self typeForChktexNumber:warning];
         
         if (type <= thresh) {
@@ -121,13 +119,13 @@ static const NSDictionary *DEBUG_NUMBERS;
  */
 - (TMTTrackingMessageType)typeForChktexNumber:(NSInteger)number {
     NSString *key = [NSString stringWithFormat:@"%li", number];
-    if ([WARNING_NUMBERS objectForKey:key]) {
+    if (WARNING_NUMBERS[key]) {
         return TMTWarningMessage;
     }
-    if ([INFO_NUMBERS objectForKey:key]) {
+    if (INFO_NUMBERS[key]) {
         return TMTInfoMessage;
     }
-    if ([DEBUG_NUMBERS objectForKey:key]) {
+    if (DEBUG_NUMBERS[key]) {
         return TMTDebugMessage;
     }
     DDLogWarn(@"Unknown message type for %li", number);
@@ -146,13 +144,13 @@ static const NSDictionary *DEBUG_NUMBERS;
     NSString *key = [NSString stringWithFormat:@"%li", number];
     switch (type) {
         case TMTWarningMessage:
-            return [WARNING_NUMBERS objectForKey:key];
+            return WARNING_NUMBERS[key];
             break;
         case TMTInfoMessage:
-            return [INFO_NUMBERS objectForKey:key];
+            return INFO_NUMBERS[key];
             break;
         case TMTDebugMessage:
-            return [DEBUG_NUMBERS objectForKey:key];
+            return DEBUG_NUMBERS[key];
             break;
             
         default:

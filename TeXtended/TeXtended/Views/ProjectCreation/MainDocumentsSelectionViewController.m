@@ -48,7 +48,7 @@
         createPanel = [NSSavePanel new];
         createPanel.directoryURL = [NSURL URLWithString:self.folderSelection.path];
         createPanel.canCreateDirectories = NO;
-        createPanel.allowedFileTypes = [NSArray arrayWithObject:@"tex"];
+        createPanel.allowedFileTypes = @[@"tex"];
         createPanel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
         createPanel.title = NSLocalizedString(@"Add a Main File", @"Add a Main File");
     }

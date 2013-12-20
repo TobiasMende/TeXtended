@@ -58,10 +58,10 @@ static FlagMap USED_FLAGS[] = {
 
 
 + (PathObserver *)pathObserverForPath:(NSString *)path {
-    PathObserver *observer = [PATH_OBSERVER_DICTIONARY objectForKey:path];
+    PathObserver *observer = PATH_OBSERVER_DICTIONARY[path];
     if (!observer) {
         observer = [[PathObserver alloc] initWithPath:path];
-        [PATH_OBSERVER_DICTIONARY setObject:observer forKey:path];
+        PATH_OBSERVER_DICTIONARY[path] = observer;
         DDLogInfo(@"Creating pathObserver: %@ (%@)", observer, path);
     }
 return observer;
@@ -75,7 +75,7 @@ return observer;
 + (void)removeObserver:(id)observer {
     NSMutableArray *keysToDelete = [NSMutableArray new];
     for (NSString *key in PATH_OBSERVER_DICTIONARY) {
-        PathObserver *po = [PATH_OBSERVER_DICTIONARY objectForKey:key];
+        PathObserver *po = PATH_OBSERVER_DICTIONARY[key];
         [po removeObserver:observer];
         if ([po numberOfObservers] == 0) {
             [keysToDelete addObject:key];
@@ -110,7 +110,7 @@ return observer;
 }
 
 - (void)initializeEventStream {
-    NSArray *pathsToWatch = [NSArray arrayWithObject:filePath];
+    NSArray *pathsToWatch = @[filePath];
     void *appPointer = (__bridge void *)self;
     FSEventStreamContext context = {0, appPointer, NULL, NULL, NULL};
     NSTimeInterval latency = 3.0;
@@ -154,8 +154,8 @@ return observer;
 -(void)pathWasModified {
     [observersLock lock];
     for (NSUInteger i = 0; i < observers.count; i++) {
-        SEL action = NSSelectorFromString([actions objectAtIndex:i]);
-        [[[observers objectAtIndex:i] nonretainedObjectValue] performSelector:action];
+        SEL action = NSSelectorFromString(actions[i]);
+        [[observers[i] nonretainedObjectValue] performSelector:action];
     }
     [observersLock unlock];
 }

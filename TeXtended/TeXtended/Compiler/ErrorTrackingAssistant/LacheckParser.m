@@ -24,7 +24,8 @@
  * @param obj
  * @param action
  */
-- (void)parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action{
+- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *))handler{
+    completionHandler = handler;
     if (!path) {
         return;
     }
@@ -34,30 +35,26 @@
         // ATM this object only creates warning objects. so nothing to do for ERROR or less.
         return;
     }
-    NSTask *task = [[NSTask alloc] init];
+    NSTask *task = [NSTask new];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
     NSString *dirPath = [path stringByDeletingLastPathComponent];
     
-    [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+    [task setEnvironment:@{@"PATH": pathVariables}];
     [task setLaunchPath:[PathFactory lacheck]];
     [task setCurrentDirectoryPath:dirPath];
     
-    [task setArguments:[NSArray arrayWithObjects:path, nil]];
+    [task setArguments:@[path]];
     
     
     __block NSPipe *outPipe = [NSPipe pipe];
     [task setStandardOutput:outPipe];
-    __unsafe_unretained id weakObj = obj;
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [outPipe fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-         [weakObj performSelector:action withObject:messages];
-#pragma clang diagnostic pop
+        completionHandler(messages);
         outPipe = nil;
     }];
     
@@ -67,7 +64,9 @@
     @catch (NSException *exception) {
         DDLogError(@"Cant'start lacheck task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
         DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+        completionHandler(nil);
     }
+#pragma clang diagnostic pop
     
 }
 
@@ -92,7 +91,7 @@
     for (NSString *line in lines) {
         NSArray *results = [regex matchesInString:line options:0 range:NSMakeRange(0, line.length)];
         if (results.count > 0) {
-            NSTextCheckingResult *result = [results objectAtIndex:0];
+            NSTextCheckingResult *result = results[0];
             NSString *path = [line substringWithRange:[result rangeAtIndex:1]];
             
             NSUInteger lineNumber = [[line substringWithRange:[result rangeAtIndex:2]] integerValue];

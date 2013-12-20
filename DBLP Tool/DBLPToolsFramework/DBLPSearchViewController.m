@@ -82,10 +82,10 @@
     NSUInteger row = [self.authorsController selectionIndex];
     NSString *urlpt;
     if (row < [self.authorsController.arrangedObjects count]) {
-        urlpt = [[self.authorsController.arrangedObjects objectAtIndex:row] key];
+        urlpt = [(self.authorsController.arrangedObjects)[row] key];
     } else if ([self.authorsController.arrangedObjects count] > 0) {
         self.authorsController.selectionIndex = 0;
-        urlpt = [[self.authorsController.arrangedObjects objectAtIndex:0] key];
+        urlpt = [(self.authorsController.arrangedObjects)[0] key];
     }
     if (urlpt) {
         [interface publicationsForAuthor:urlpt];
@@ -101,9 +101,9 @@
         NSInteger index = self.bibFileSelector.indexOfSelectedItem;
         NSString *path = nil;
         if (index >= 0 && index < self.bibFilePaths.count) {
-            path = [self.bibFilePaths objectAtIndex:index];
+            path = (self.bibFilePaths)[index];
         }
-        [self.handler executeCitation:[selection objectAtIndex:0] forBibFile:path];
+        [self.handler executeCitation:selection[0] forBibFile:path];
     }
 }
 

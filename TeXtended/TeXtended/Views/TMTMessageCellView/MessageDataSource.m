@@ -56,7 +56,7 @@
         result = (TMTMessageCellView*)c.view;
     }
     if (row < self.messages.count) {
-        TrackingMessage *item = [self.messages objectAtIndex:row];
+        TrackingMessage *item = (self.messages)[row];
         result.model = [self.model modelForTexPath:item.document byCreating:NO];
         result.objectValue = item;
     }
@@ -74,13 +74,13 @@
 - (void)handleDoubleClick:(id)sender {
     NSInteger row = [self.tableView clickedRow];
     if (row < self.messages.count) {
-        TrackingMessage *message = [self.messages objectAtIndex:row];
+        TrackingMessage *message = (self.messages)[row];
         
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
             if (newModel) {
-                [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:message.line] forKey:TMTIntegerKey]];
+                [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:message.line]}];
                 if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable] && self.collections.count > 0) {
-                    [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:[NSDictionary dictionaryWithObject:[self.collections.allValues objectAtIndex:0] forKey:TMTMessageCollectionKey]];
+                    [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:@{TMTMessageCollectionKey: (self.collections.allValues)[0]}];
                 }
             } else {
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
@@ -101,7 +101,7 @@
     }
     NSView *view = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
     if (row < self.messages.count) {
-        TrackingMessage *message = [self.messages objectAtIndex:row];
+        TrackingMessage *message = (self.messages)[row];
         if (!infoController) {
             infoController = [[MessageInfoViewController alloc] init];
         }
@@ -124,7 +124,7 @@
     //[rowView setBackgroundColor:[NSColor greenColor]];
     [messageLock lock];
     if (row < self.messages.count) {
-        TrackingMessage *m = [self.messages objectAtIndex:row];
+        TrackingMessage *m = (self.messages)[row];
         [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
     }
     [messageLock unlock];
@@ -146,13 +146,13 @@
 
 - (void)handleMessageUpdate:(NSNotification *)note {
     [messageLock lock];
-    MessageCollection *collection = [note.userInfo objectForKey:TMTMessageCollectionKey];
+    MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (![note.object isKindOfClass:[Compilable class]]) {
         DDLogError(@"Unexpected sender!");
         return;
     }
     if (collection) {
-            [self.collections setObject:[note.userInfo objectForKey:TMTMessageCollectionKey] forKey:[(Compilable*)note.object identifier]];
+            (self.collections)[[(Compilable*)note.object identifier]] = (note.userInfo)[TMTMessageCollectionKey];
     } else {
         [self.collections removeObjectForKey:[(Compilable*)note.object identifier]];
     }

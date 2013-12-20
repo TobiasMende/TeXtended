@@ -16,7 +16,8 @@
  * **Author:** Tobias Mende
  *
  */
-@interface ForwardSynctex : NSObject
+@interface ForwardSynctex : NSObject {
+}
 
 /**
  * Initializes the algorithm.

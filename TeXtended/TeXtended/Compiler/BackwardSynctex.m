@@ -41,17 +41,16 @@ static const NSRegularExpression *SYNCTEX_REGEX;
         NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
         NSString *path = [outPath stringByDeletingLastPathComponent];
         if (pathVariables) {
-            [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+            [task setEnvironment:@{@"PATH": pathVariables}];
         }
         [task setLaunchPath:[PathFactory synctex]];
         NSString *outArg = [NSString stringWithFormat:@"%li:%lf:%lf:%@", page,position.x, position.y, outPath];
         [task setCurrentDirectoryPath:path];
         
-        [task setArguments:[NSArray arrayWithObjects:@"edit",@"-o",outArg, nil]];
+        [task setArguments:@[@"edit",@"-o",outArg]];
         
         NSPipe *outPipe = [NSPipe pipe];
         [task setStandardOutput:outPipe];
-        __unsafe_unretained id weakSelf = self;
         [task setTerminationHandler:^(NSTask *task) {
             NSFileHandle * read = [outPipe fileHandleForReading];
             NSData * dataRead = [read readDataToEndOfFile];
@@ -60,7 +59,7 @@ static const NSRegularExpression *SYNCTEX_REGEX;
             for (NSString *arg in task.arguments) {
                 [command appendFormat:@" %@", arg];
             }
-            [weakSelf parseOutput:stringRead];
+            [self parseOutput:stringRead];
         }];
         @try {
             [task launch];
@@ -78,7 +77,7 @@ static const NSRegularExpression *SYNCTEX_REGEX;
 - (void)parseOutput:(NSString *)output {
     NSArray *results = [SYNCTEX_REGEX matchesInString:output options:0 range:NSMakeRange(0, output.length)];
     if (results.count > 0) {
-        NSTextCheckingResult *result = [results objectAtIndex:0];
+        NSTextCheckingResult *result = results[0];
         if (result.numberOfRanges > 4) {
             self.inputPath = [output substringWithRange:[result rangeAtIndex:1]];
             NSInteger line = [[output substringWithRange:[result rangeAtIndex:2]] integerValue];

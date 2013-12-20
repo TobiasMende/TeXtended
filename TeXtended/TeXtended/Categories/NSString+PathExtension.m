@@ -16,7 +16,7 @@
     NSUInteger ai = 0;
     NSUInteger bi = 0;
     while (ai < absoluteComps.count && bi < baseComps.count) {
-        if ([[absoluteComps objectAtIndex:ai] isEqualToString:[baseComps objectAtIndex:bi]]) {
+        if ([absoluteComps[ai] isEqualToString:baseComps[bi]]) {
             ai++;
             bi++;
         } else {
@@ -35,7 +35,7 @@
         return @".";
     } else {
         for (; ai < absoluteComps.count; ai++) {
-            finalPath = [finalPath stringByAppendingPathComponent:[absoluteComps objectAtIndex:ai]];
+            finalPath = [finalPath stringByAppendingPathComponent:absoluteComps[ai]];
         }
         return finalPath;
     }
@@ -55,13 +55,13 @@
         }
     }
     NSUInteger maxBaseCount = baseComps.count-bi;
-    bi = (bi==0 ? 1 : bi);
+    // bi = (bi==0 ? 1 : bi);
     NSString *finalPath = @"/";
     for (NSUInteger i = 0; i<maxBaseCount; i++) {
-        finalPath = [finalPath stringByAppendingPathComponent:[baseComps objectAtIndex:i]];
+        finalPath = [finalPath stringByAppendingPathComponent:baseComps[i]];
     }
     for (NSUInteger i = bi; i < relativeComps.count; i++) {
-        finalPath = [finalPath stringByAppendingPathComponent:[relativeComps objectAtIndex:i]];
+        finalPath = [finalPath stringByAppendingPathComponent:relativeComps[i]];
     }
     return finalPath;
 }

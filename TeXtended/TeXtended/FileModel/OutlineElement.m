@@ -47,7 +47,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 + (NSRegularExpression *)regexForElementType:(OutlineElementType)type {
     NSString *key = [NSString stringWithFormat:@"%i", type];
-    NSString *regexStr = [ELEMENT_EXTRACTOR_REGEX_LOOKUP objectForKey:key];
+    NSString *regexStr = ELEMENT_EXTRACTOR_REGEX_LOOKUP[key];
     NSError *error;
     if (!regexStr) {
         return nil;
@@ -61,7 +61,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 }
 
 + (NSString *)stringForType:(OutlineElementType)type {
-    return [TYPE_STRING_LOOKUP objectForKey:[NSString stringWithFormat:@"%i", type]];
+    return TYPE_STRING_LOOKUP[[NSString stringWithFormat:@"%i", type]];
 }
 
 @end

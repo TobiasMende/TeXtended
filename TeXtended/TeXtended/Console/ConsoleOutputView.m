@@ -47,7 +47,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 
 - (void)awakeFromNib {
-    NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:NSUnarchiveFromDataTransformerName,NSValueTransformerNameBindingOption, nil];
+    NSDictionary *option = @{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName};
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     [self bind:@"linkColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:option];
@@ -79,13 +79,13 @@ static const NSSet *KEYS_TO_UNBIND;
         NSRange descriptionRange = [match rangeAtIndex:3];
         NSRange infoRange = [match rangeAtIndex:4];
         [self makeLinkFor:pathRange andLine:lineRange];
-        [self.layoutManager addTemporaryAttribute:NSObliquenessAttributeName value:[NSNumber numberWithFloat:0.25] forCharacterRange:descriptionRange];
+        [self.layoutManager addTemporaryAttribute:NSObliquenessAttributeName value:@0.25f forCharacterRange:descriptionRange];
         NSShadow* shadw = [[NSShadow alloc] init];
         [shadw setShadowColor:[NSColor grayColor]];
         [shadw setShadowOffset:NSMakeSize( 0, -1 )];
         [shadw setShadowBlurRadius:2.0];
         
-        NSDictionary *highlightingAttributes = [NSDictionary dictionaryWithObjectsAndKeys:shadw, NSShadowAttributeName,[NSNumber numberWithFloat:0.25], NSObliquenessAttributeName, nil];
+        NSDictionary *highlightingAttributes = @{NSShadowAttributeName: shadw,NSObliquenessAttributeName: @0.25f};
         
         [self.layoutManager addTemporaryAttributes:highlightingAttributes forCharacterRange:descriptionRange];
         [self.layoutManager addTemporaryAttributes:highlightingAttributes forCharacterRange:infoRange];
@@ -97,10 +97,10 @@ static const NSSet *KEYS_TO_UNBIND;
     NSRange combined = NSMakeRange(pathRange.location, pathRange.length+lineRange.length+1);
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
     NSString *link = [self.string substringWithRange:combined];
-    [attributes setObject:link forKey:NSLinkAttributeName];
-    [attributes setObject:self.linkColor forKey:NSForegroundColorAttributeName];
+    attributes[NSLinkAttributeName] = link;
+    attributes[NSForegroundColorAttributeName] = self.linkColor;
     if (self.shouldUnderlineLinks) {
-        [attributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
+        attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
     }
     [self.layoutManager addTemporaryAttributes:attributes forCharacterRange:combined];
 
@@ -126,22 +126,22 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void)handleLinkAt:(NSUInteger)position {
     NSRange effective;
     NSDictionary *attributes = [self.layoutManager temporaryAttributesAtCharacterIndex:position effectiveRange:&effective];
-    NSString *attribute = [attributes objectForKey:NSLinkAttributeName];
+    NSString *attribute = attributes[NSLinkAttributeName];
     if (!attribute) {
         return;
     }
     NSArray *values = [attribute componentsSeparatedByString:@":"];
-    NSString *path = [values objectAtIndex:0];
-    NSUInteger line = [[values objectAtIndex:1] integerValue];
+    NSString *path = values[0];
+    NSUInteger line = [values[1] integerValue];
     DocumentModel *compiledModel = self.controller.console.model;
     //DocumentModel *documentsModel = self.controller.console.documentController.model;
     path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
     
     [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:compiledModel andCompletionHandler:^(DocumentModel *model) {
         if (model) {
-            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:line] forKey:TMTIntegerKey]];
+            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:line]}];
             if (![model.mainCompilable isEqualTo:compiledModel.mainCompilable]) {
-                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:[NSDictionary dictionaryWithObject:self.controller.console.consoleMessages forKey:TMTMessageCollectionKey]];
+                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:@{TMTMessageCollectionKey: self.controller.console.consoleMessages}];
             }
         } else {
             [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];

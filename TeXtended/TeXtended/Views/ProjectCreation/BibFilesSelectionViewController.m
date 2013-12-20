@@ -29,7 +29,7 @@
         addPanel = [NSOpenPanel new];
         addPanel.directoryURL = [NSURL URLWithString:self.folderSelection.path];
         addPanel.title = NSLocalizedString(@"Select bib files", @"Select bib files");
-        addPanel.allowedFileTypes = [NSArray arrayWithObject:@"bib"];
+        addPanel.allowedFileTypes = @[@"bib"];
         addPanel.allowsMultipleSelection = YES;
     }
     [addPanel beginWithCompletionHandler:^(NSInteger result) {
@@ -53,7 +53,7 @@
         createPanel.directoryURL = [NSURL URLWithString:self.folderSelection.path];
         createPanel.title = NSLocalizedString(@"Create a bib file", @"Create a bib file");
         createPanel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
-        createPanel.allowedFileTypes = [NSArray arrayWithObject:@"bib"];
+        createPanel.allowedFileTypes = @[@"bib"];
     }
     [createPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {

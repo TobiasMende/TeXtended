@@ -74,19 +74,19 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
      */
     
     self.inlineMathColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_INLINE_MATH_COLOR]];
-    [self bind:@"inlineMathColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_INLINE_MATH_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self bind:@"inlineMathColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_INLINE_MATH_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
     self.commandColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_COMMAND_COLOR]];
-    [self bind:@"commandColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_COMMAND_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self bind:@"commandColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_COMMAND_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
     self.bracketColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_BRACKET_COLOR]];
-    [self bind:@"bracketColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_BRACKET_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self bind:@"bracketColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_BRACKET_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
     self.curlyBracketColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_ARGUMENT_COLOR]];
-    [self bind:@"curlyBracketColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_ARGUMENT_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self bind:@"curlyBracketColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_ARGUMENT_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
     self.commentColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_COMMENT_COLOR]];
-    [self bind:@"commentColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_COMMENT_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self bind:@"commentColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_COMMENT_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
     /*
         Initial setup of the highlighting flags

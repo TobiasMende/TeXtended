@@ -36,7 +36,7 @@
 @implementation TexdocController
 
 - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package info:(NSDictionary *)info andHandler:(id<TexdocHandlerProtocol>) handler {
-    NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+    NSData *data = [notification userInfo][NSFileHandleNotificationDataItem];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSMutableArray *texdocArray = [self parseTexdocList:string];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
@@ -64,22 +64,26 @@
 }
 
 - (void)executeTexdocForPackage:(NSString *)name withInfo:(NSDictionary *)info andHandler:(id<TexdocHandlerProtocol>)handler{
-    NSTask *task = [[NSTask alloc] init];
+    if (task) {
+        if (task.isRunning) {
+            [task interrupt];
+        }
+    }
+   task = [NSTask new];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     
     NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
     NSString *command = [PathFactory texdoc];
-    [task setEnvironment:[NSDictionary dictionaryWithObjectsAndKeys:pathVariables, @"PATH",  nil]];
+    [task setEnvironment:@{@"PATH": pathVariables}];
     [task setLaunchPath:command];
-    NSArray	*args = [NSArray arrayWithObjects:@"-l", @"-M", name,
-                     nil];
+    NSArray	*args = @[@"-l", @"-M", name];
     NSPipe *outputPipe = [NSPipe pipe];
     [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
 
     [task setStandardOutput:outputPipe];
-    
+    __unsafe_unretained id weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [self texdocReadComplete:note withPackageName:name info:info andHandler:handler];
+        [weakSelf texdocReadComplete:note withPackageName:name info:info andHandler:handler];
     }];
     [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
     [task setArguments: args];
@@ -93,6 +97,9 @@
 }
 
 - (void)dealloc {
+    if (task && task.isRunning) {
+        [task interrupt];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

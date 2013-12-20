@@ -68,7 +68,6 @@ static const NSSet *KEYS_TO_UNBIND;
     [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawVGrid"] options:nil];
     [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
-    
     // to init things at the first draw
     firstDraw = true;
 }
@@ -230,8 +229,8 @@ static const NSSet *KEYS_TO_UNBIND;
 - (BOOL)becomeFirstResponder {
     BOOL result = [super becomeFirstResponder];
     if (result && self.firstResponderDelegate) {
-        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
     }
     return result;
 }

@@ -16,7 +16,7 @@
  
  */
 @interface Parser : NSObject {
-    
+    void (^completionHandler)(MessageCollection *);
 }
 
 @property MessageCollection *messages;
@@ -25,10 +25,8 @@
  * Parses the file for a given document and returns a set of TrackingMessages
  *
  * @param path the document to check
- * @param obj the object that starts the parser
- * @param action the callback action which accepts a single parameter of type MessageCollection
  */
-- (void )parseDocument:(NSString *)path forObject:(id)obj selector:(SEL)action;
+- (void )parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *messages))completionHandler;
 
 /**
  * Parses the given document content for the document specified by path
@@ -68,4 +66,6 @@
  * @return the absolut path to the document
  */
 - (NSString*)absolutPath:(NSString*)path withBaseDir:(NSString*)base;
+
+- (void) terminate;
 @end

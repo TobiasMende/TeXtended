@@ -93,7 +93,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
         NSString *value = [self parseAttributeValue];
         key = [key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if (value) {
-            [strings setObject:value forKey:key];
+            strings[key] = value;
         }
         [scanner scanUpToString:@"}" intoString:NULL];
         [scanner scanString:@"}" intoString:NULL];

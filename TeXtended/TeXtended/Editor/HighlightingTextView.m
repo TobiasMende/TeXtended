@@ -103,7 +103,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)awakeFromNib {
     
-     NSDictionary *option = [NSDictionary dictionaryWithObjectsAndKeys:NSUnarchiveFromDataTransformerName,NSValueTransformerNameBindingOption, nil];
+     NSDictionary *option = @{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName};
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     
@@ -189,14 +189,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     NSDictionary *additionalInformation;
     NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0 additionalInformation:&additionalInformation];
-    if (completions.count > 0 || [[additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+    if (completions.count > 0 || [additionalInformation[TMTShouldShowDBLPKey] boolValue]) {
         if (!autoCompletionController) {
             autoCompletionController = [AutoCompletionWindowController new];
             autoCompletionController.parent = self;
         }
         [autoCompletionController positionWindowWithContent:completions andInformation:additionalInformation];
         if (completions.count > 0) {
-            [self insertCompletion:[completions objectAtIndex:0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
+            [self insertCompletion:completions[0] forPartialWordRange:wordRange movement:NSOtherTextMovement isFinal:NO];
         }
     } else {
         [self dismissCompletionWindow];
@@ -392,7 +392,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self.window makeKeyAndOrderFront:self];
     NSArray *ranges = [self lineRanges];
     if (line <= ranges.count && line > 0) {
-        NSTextCheckingResult *r = [ranges objectAtIndex:line-1];
+        NSTextCheckingResult *r = ranges[line-1];
         [self scrollRangeToVisible:r.range];
         [self setSelectedRange:NSMakeRange(r.range.location, 0)];
     } else {
@@ -418,7 +418,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (NSRange)rangeForLine:(NSUInteger)index {
     NSArray *ranges = [self lineRanges];
     if (index <= ranges.count && index > 0) {
-        return [[ranges objectAtIndex:index-1] range];
+        return [ranges[index-1] range];
     } else {
         return NSMakeRange(NSNotFound, 0);
     }
@@ -432,7 +432,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     if (autoCompletionController) {
         NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-        [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
+        [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
     }else if ( ![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
         [super insertTab:sender];
     } 
@@ -557,12 +557,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 break;
             case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
                 if (autoCompletionController.tableView.selectedRow >= autoCompletionController.content.count) {
-                    if ([[autoCompletionController.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+                    if ([(autoCompletionController.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
                         [self showDBLPSearchView];
                     }
                 } else {
                     NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-                    [self insertCompletion:[autoCompletionController.content objectAtIndex:index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                    [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
                 }
                 return;
             }
@@ -821,7 +821,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_FOREGROUND_COLOR]] || [keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_SELECTION_BACKGROUND_COLOR]]) {
         NSColor *textColor = [NSUnarchiver unarchiveObjectWithData:[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_SELECTION_FOREGROUND_COLOR]];
         NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_SELECTION_BACKGROUND_COLOR]];
-        NSDictionary *selectionAttributes = [NSDictionary dictionaryWithObjectsAndKeys:textColor,NSForegroundColorAttributeName,backgroundColor,NSBackgroundColorAttributeName, nil];
+        NSDictionary *selectionAttributes = @{NSForegroundColorAttributeName: textColor,NSBackgroundColorAttributeName: backgroundColor};
         [self setSelectedTextAttributes:selectionAttributes];
     } else if([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE]]) {
         self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
@@ -877,8 +877,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 - (BOOL)becomeFirstResponder {
     BOOL result = [super becomeFirstResponder];
     if (result && self.firstResponderDelegate) {
-        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self.firstResponderDelegate forKey:TMTFirstResponderKey]];
+        [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
     }
     return result;
 }

@@ -25,14 +25,14 @@
 
 
 - (NSArray *)localizedSummaryItems {
-    return [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:self.documentSelector.selectedItem.value, NSPrintPanelAccessorySummaryItemNameKey, @"The document name", NSPrintPanelAccessorySummaryItemDescriptionKey, nil], nil];
+    return @[@{NSPrintPanelAccessorySummaryItemNameKey: self.documentSelector.selectedItem.value, NSPrintPanelAccessorySummaryItemDescriptionKey: @"The document name"}];
 }
 
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
     if ([key isEqualToString:@"localizedSummaryItems"]) {
-        NSArray *array = [NSArray arrayWithObjects:@"self.documentSelector.selectedItem", nil];
+        NSArray *array = @[@"self.documentSelector.selectedItem"];
         keyPaths = [keyPaths setByAddingObjectsFromArray:array];
     }
     return keyPaths;

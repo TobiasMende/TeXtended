@@ -11,7 +11,7 @@
 #import "FirstResponderDelegate.h"
 #import "Constants.h"
 
-@class DocumentModel, OutlineViewController, ConsoleViewsController, PDFViewsController, TextViewController, Compiler, MainDocument;
+@class DocumentModel, OutlineViewController, PDFViewsController, TextViewController, Compiler, MainDocument;
 /**
  * The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
  *

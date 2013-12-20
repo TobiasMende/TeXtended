@@ -54,7 +54,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     self.firsTabViewController.closeWindowForLastTabDrag = NO;
     self.secondTabViewController.closeWindowForLastTabDrag = NO;
     [self.contentView setVertical:flag];
-    [self.contentView setSubviews:[NSArray arrayWithObjects:self.firsTabViewController.view, self.secondTabViewController.view, nil]];
+    [self.contentView setSubviews:@[self.firsTabViewController.view, self.secondTabViewController.view]];
     
     self.outlineViewArea.contentView = self.outlineController.view;
     
@@ -114,10 +114,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (splitView == self.mainView) {
         if (dividerIndex == 0) {
             if (newPosition < 1.1f) {
-                [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOffState] forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
+                [[NSUserDefaultsController sharedUserDefaultsController] setValue:@(NSOffState) forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
             } else if(self.sidebarViewToggle.state != NSOnState) {
                 if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]] integerValue] == NSOnState) {
-                    [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOnState] forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
+                    [[NSUserDefaultsController sharedUserDefaultsController] setValue:@(NSOnState) forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
                 }
             }
         }
@@ -126,10 +126,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     if (splitView == self.contentView) {
         CGFloat hiddenPosition = (self.contentView.isVertical ? NSWidth(self.contentView.bounds) : NSHeight(self.contentView.bounds));
         if (fabs(newPosition - hiddenPosition) < 1.1f) {
-            [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOffState] forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
+            [[NSUserDefaultsController sharedUserDefaultsController] setValue:@(NSOffState) forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
         } else if(self.secondViewToggle.state != NSOnState) {
             if ([[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]] integerValue] == NSOnState) {
-                [[NSUserDefaultsController sharedUserDefaultsController] setValue:[NSNumber numberWithInt:NSOnState] forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
+                [[NSUserDefaultsController sharedUserDefaultsController] setValue:@(NSOnState) forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
             }
         }
     }

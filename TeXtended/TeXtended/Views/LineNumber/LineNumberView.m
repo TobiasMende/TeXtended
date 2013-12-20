@@ -177,11 +177,9 @@
     numberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [numberStyle setAlignment:NSRightTextAlignment];
     
-    attributesForNumbers = [NSDictionary dictionaryWithObjectsAndKeys:
-                            numberFont, NSFontAttributeName,
-                            numberStyle, NSParagraphStyleAttributeName,
-                            [self textColor], NSForegroundColorAttributeName,
-                            nil];
+    attributesForNumbers = @{NSFontAttributeName: numberFont,
+                            NSParagraphStyleAttributeName: numberStyle,
+                            NSForegroundColorAttributeName: [self textColor]};
     
     lineAnchors   = [[NSMutableDictionary alloc] init];
     
@@ -301,7 +299,7 @@
     /* calculate the clicked line */
     NSUInteger current = 0;
     for (int i = 0; i <[lineHights count]; i++) {
-        if (location.y > [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y) {
+        if (location.y > [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y) {
             current = lineLabel + i + 1;
         }
     }
@@ -313,7 +311,7 @@
             messageWindow = nil;
         }
         NSRect rec = NSMakeRect(4,
-                                [[lineHights objectAtIndex:current-lineLabel-1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
+                                [lineHights[current-lineLabel-1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
                                 1,
                                 1);
         
@@ -329,7 +327,7 @@
 }
 
 - (void) addAnchorToLine:(NSUInteger)line {
-    [lineAnchors setObject:[NSNumber numberWithInteger:1] forKey:[NSNumber numberWithInteger:line]];
+    lineAnchors[[NSNumber numberWithInteger:line]] = @1;
 }
 
 - (void) removeAnchorFromLine:(NSUInteger)line {
@@ -337,7 +335,7 @@
 }
 
 - (BOOL) hasAnchor:(NSUInteger)line {
-    return [[lineAnchors objectForKey:[NSNumber numberWithInteger:line]] integerValue];
+    return [lineAnchors[[NSNumber numberWithInteger:line]] integerValue];
 }
 
 - (NSMutableSet*) messagesForLine:(NSUInteger)line {
@@ -419,7 +417,7 @@
     while ((right - left) > 1)
     {
         mid = (right + left) / 2;
-        lineStart = [[linesToTest objectAtIndex:mid] unsignedIntValue];
+        lineStart = [linesToTest[mid] unsignedIntValue];
         
         if (index < lineStart)
         {
@@ -515,14 +513,14 @@
     
     for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
         
-        index = [[currentLines objectAtIndex:line] unsignedIntValue];
+        index = [currentLines[line] unsignedIntValue];
         rects = [[view layoutManager] rectArrayForCharacterRange:NSMakeRange(index, 0)
                       withinSelectedCharacterRange:nullRange
                                    inTextContainer:container
                                          rectCount:&rectCount];
         
         height = rects->origin.y;
-        [heights addObject:[NSNumber numberWithFloat:height]];
+        [heights addObject:@(height)];
     }
     
     // to draw the last line
@@ -587,9 +585,9 @@
     for (int i = 0; i < [lineHights count] - 1; i++) {
         /* draw rect for current line */
         NSRect rect = {dirtyRect.size.width - BORDER_SIZE ,
-            [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y,
+            [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y,
             BORDER_SIZE,
-            [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
+            [lineHights[i+1] unsignedIntegerValue] - [lineHights[i] unsignedIntegerValue]
         };
         
         if ((lineLabel+i) % 2 == 0) {
@@ -600,24 +598,24 @@
         NSRectFill(rect);
         
         if ([self hasAnchor:lineLabel+i+1]) {
-            [self drawAnchorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+            [self drawAnchorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
         }
         
         if ([self hasError:lineLabel+i+1]) {
-            [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+            [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
         } else if ([self hasWarning:lineLabel+i+1]) {
-            [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+            [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
         } else if ([self hasInfo:lineLabel+i+1]) {
-            [self drawInfoIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+            [self drawInfoIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
         } else if ([self hasDebug:lineLabel+i+1]) {
-            [self drawDebugIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[[lineHights objectAtIndex:i] integerValue]];
+            [self drawDebugIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
         }
         
         NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel+i+1];
         NSRect rectFront = {0,
-            [[lineHights objectAtIndex:i] unsignedIntegerValue] - visibleRect.origin.y - NUMBER_DISTANCE_TO_NEXTLINE,
+            [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y - NUMBER_DISTANCE_TO_NEXTLINE,
             dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE - NUMBER_DISTANCE_TO_LINE,
-            [[lineHights objectAtIndex:i+1] unsignedIntegerValue] - [[lineHights objectAtIndex:i] unsignedIntegerValue]
+            [lineHights[i+1] unsignedIntegerValue] - [lineHights[i] unsignedIntegerValue]
         };
         
         [lineNumer drawInRect:rectFront withAttributes:attributesForNumbers];

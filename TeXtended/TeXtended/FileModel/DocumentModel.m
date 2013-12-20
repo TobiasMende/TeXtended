@@ -30,12 +30,11 @@ static NSArray *TMTEncodingsToCheck;
 
 + (void)initialize {
     
-    TMTEncodingsToCheck = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
+    TMTEncodingsToCheck = @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
                                                     [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
                                                     [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
                                                     [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
-                           [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding],
-                           nil];
+                           [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding]];
 }
 
 
@@ -54,7 +53,7 @@ static NSArray *TMTEncodingsToCheck;
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:&error];
     } else {
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
-        self.encoding = [NSNumber numberWithUnsignedLong:encoding];
+        self.encoding = @(encoding);
         
     }
     /*if (error) {
@@ -113,7 +112,7 @@ static NSArray *TMTEncodingsToCheck;
         if (error2) {
             DDLogError(@"Error while saving: %@", [error2 userInfo]);
         } else {
-            self.encoding = [NSNumber numberWithUnsignedLong:alternate];
+            self.encoding = @(alternate);
         }
     }
     if (success) {
@@ -429,11 +428,12 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)dealloc {
     DDLogInfo(@"dealloc");
-    [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self];
-    [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
     [self unregisterProjectObserver];
+    if (!self.project) {
+        [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
+    }
 }
 
 #pragma mark -
@@ -471,14 +471,13 @@ static NSArray *TMTEncodingsToCheck;
         for(NSString *item in contents) {
             if ([item.pathExtension.lowercaseString isEqualToString:@"bib"]) {
                 BibFile *f = [BibFile new];
-                f.path = item;
+                f.path = [item absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
                 [matches addObject:f];
             }
         }
         if (matches.count > 0) {
             bibFiles = matches;
         }
-        // TODO: search for bibfiles
     }
     return bibFiles;
 }
@@ -491,7 +490,7 @@ static NSArray *TMTEncodingsToCheck;
 #pragma mark DocumentModelExtension
 
 - (void)initOutlineElements {
-    NSString *content = [self loadContent];
+    //NSString *content = [self loadContent];
 }
 
 @end

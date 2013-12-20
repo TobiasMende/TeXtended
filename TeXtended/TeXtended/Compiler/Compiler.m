@@ -21,6 +21,7 @@
 #import "MainDocument.h"
 @interface Compiler ()
 - (void) updateDocumentController;
+- (void) finishedCompilationTask:(NSTask*)task forData:(ConsoleData*)data;
 @end
 
 @implementation Compiler
@@ -32,7 +33,7 @@
         [self setAutoCompile:NO];
         self.documentController = controller;
         currentTasks = [NSMutableSet new];
-        
+        weakSelf = self;
         // get the settings and observe them
         _draftSettings = [[controller model] draftCompiler];
         _liveSettings = [[controller model] liveCompiler];
@@ -81,30 +82,21 @@
         }
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
         NSMutableDictionary *environment = [NSMutableDictionary dictionaryWithDictionary:[[NSProcessInfo processInfo] environment]];
-        [environment setObject:@"1000" forKey:@"max_print_line"];
-        [environment setObject:@"254" forKey:@"error_line"];
-        [environment setObject:@"238" forKey:@"half_error_line"];
+        environment[@"max_print_line"] = @"1000";
+        environment[@"error_line"] = @"254";
+        environment[@"half_error_line"] = @"238";
         [currentTask setEnvironment:environment];
         [currentTask setLaunchPath:path];
         NSNumber *compileMode = [NSNumber numberWithInt:mode];
-        NSMutableArray *arguments = [NSMutableArray arrayWithObjects:model.texPath, model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
+        NSMutableArray *arguments = [NSMutableArray arrayWithObjects:[model.texPath stringByDeletingPathExtension], model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
         if (settings.customArgument && settings.customArgument.length > 0) {
             [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
         }
         [currentTask setArguments:arguments];
         [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidStartCompiling object:model];
-        
         [currentTask setTerminationHandler:^(NSTask *task) {
-            console.documentController.mainDocument.numberOfCompilingDocuments -= 1;
-            model.isCompiling = NO;
-                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidEndCompiling object:model];
-            model.lastCompile = [NSDate new];
-            ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model byCreating:NO];
-            console.compileRunning = NO;
-            if (mode == final && [model.openOnExport boolValue]) {
-                [[NSWorkspace sharedWorkspace] openFile:model.pdfPath];
-            }
-            [currentTasks removeObject:task];
+            [weakSelf finishedCompilationTask:task forData:console];
+            task.terminationHandler = nil;
         }];
         self.documentController.mainDocument.numberOfCompilingDocuments += 1;
         [currentTasks addObject:currentTask];
@@ -115,8 +107,21 @@
             DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
             DDLogVerbose(@"%@", [NSThread callStackSymbols]);
             [currentTasks removeObject:currentTask];
+            self.documentController.mainDocument.numberOfCompilingDocuments -= 1;
         }
     }
+}
+
+- (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData*)data{
+    data.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+    data.model.isCompiling = NO;
+    [[TMTNotificationCenter centerForCompilable:data.model] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
+    data.model.lastCompile = [NSDate new];
+    data.compileRunning = NO;
+    if (data.compileMode == final && [data.model.openOnExport boolValue]) {
+        [[NSWorkspace sharedWorkspace] openFile:data.model.pdfPath];
+    }
+    [currentTasks removeObject:task];
 }
 
 -(void) liveCompile {
@@ -153,12 +158,20 @@
 }
 
 - (void)terminateAndKill {
+    weakSelf = nil;
     for(NSTask *task in currentTasks) {
-        [task terminate];
+        task.terminationHandler = nil;
+        if (task.isRunning) {
+            [task terminate];
+            if (task.isRunning) {
+                [task interrupt];
+            }
+            self.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+        }
     }
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.documentController.textViewController removeDelegateObserver:self];
-    self.documentController = nil;
+    self.documentController = NULL;
 }
 
 - (void)dealloc {

@@ -30,7 +30,7 @@
     panel.canChooseDirectories = NO;
     panel.title = NSLocalizedString(@"Choose Properties File", @"Choose Properties File");
     panel.canCreateDirectories = NO;
-    panel.allowedFileTypes = [NSArray arrayWithObjects:@"tex", nil];
+    panel.allowedFileTypes = @[@"tex"];
     
     [panel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {

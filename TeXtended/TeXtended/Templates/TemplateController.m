@@ -27,7 +27,7 @@
 - (void) loadTemplate:(id)sender {
     if ([table selectedRow] == -1) return;
     
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], [[templates objectAtIndex:[table selectedRow]] objectForKey:@"template"]];
+    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
     NSData*   data = [NSData dataWithContentsOfFile:file];
    
     NSPasteboard* board = [NSPasteboard generalPasteboard];
@@ -40,7 +40,7 @@
 - (void) saveTemplate:(id)sender {
     if ([table selectedRow] == -1) return;
     
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], [[templates objectAtIndex:[table selectedRow]] objectForKey:@"template"]];
+    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
     [self addContentFromPasteboardToFile:file];
     
     [self closeSheet:nil];
@@ -67,17 +67,17 @@
 /** Add the content from the pasteboard to the given file */
 - (void) addContentFromPasteboardToFile:(NSString*) file {
     NSPasteboard* board = [NSPasteboard generalPasteboard];
-    NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
-    NSDictionary *options = [NSDictionary dictionary];
+    NSArray *classes = @[[NSString class]];
+    NSDictionary *options = @{};
     NSArray *copiedItems = [board readObjectsForClasses:classes options:options];
     if (copiedItems != nil) {
-        [[copiedItems objectAtIndex:0] writeToFile:file atomically:YES];
+        [copiedItems[0] writeToFile:file atomically:YES];
     }
 }
 
 - (void) removeTemplate:(id)sender {
     if ([table selectedRow] == -1) return;
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], [[templates objectAtIndex:[table selectedRow]] objectForKey:@"template"]];
+    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
     [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
     [templates removeObjectAtIndex:[table selectedRow]];
     [table reloadData];
@@ -134,7 +134,7 @@
         if (error) {
             DDLogError(@"Can't read template from %@. Error: %@", bundlePath, [error userInfo]);
         } else {
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; [dict setObject:[NSNumber numberWithInt:511] forKey:NSFilePosixPermissions];
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; dict[NSFilePosixPermissions] = @511;
             for(NSString *path in files) {
                 NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
                 NSString* destPath = [templatePath stringByAppendingPathComponent:path];
@@ -162,7 +162,7 @@
 }
 
 - (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    return [[templates objectAtIndex:row] objectForKey:tableColumn.identifier];
+    return templates[row][tableColumn.identifier];
 }
 
 @end

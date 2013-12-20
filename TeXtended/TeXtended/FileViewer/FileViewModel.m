@@ -48,7 +48,7 @@
         return self;
     }
     NSMutableArray* components = [[path pathComponents] mutableCopy];
-    NSString* name = [components objectAtIndex:pathIndex+1];
+    NSString* name = components[pathIndex+1];
     FileViewModel *child = [self getChildrenByName:name];
     if(child == nil)
     {
@@ -68,7 +68,7 @@
         self.docModel = newModel;
         return;
     }
-    NSString* childrenName = [[path pathComponents] objectAtIndex:pathIndex+1];
+    NSString* childrenName = [path pathComponents][pathIndex+1];
     [[self getChildrenByName:childrenName] addDocumentModel:newModel atPath:path];
 }
 
@@ -151,7 +151,7 @@
         for (NSInteger i = 0; i < [children count]; i++) {
             FileViewModel* actChildren = [self getChildrenByIndex:i];
             NSArray* childrenComponents = [actChildren pathComponents];
-            if([[childrenComponents objectAtIndex:index] isEqualToString:[components objectAtIndex:index]])
+            if([childrenComponents[index] isEqualToString:components[index]])
             {
                 [actChildren setFileName:oldPath toName:newName];
             }
@@ -170,7 +170,7 @@
         }
         else
         {
-            [newPath stringByAppendingPathComponent:[self.pathComponents objectAtIndex:i]];
+            [newPath stringByAppendingPathComponent:(self.pathComponents)[i]];
         }
     }
     [self willChangeValueForKey:@"filePath"];
@@ -193,8 +193,8 @@
         return nil;
     }
     for (NSInteger i = 0; i < [children count]; i++) {
-        if ([[[children objectAtIndex:i] fileName] isEqualToString:name]) {
-            return [children objectAtIndex:i];
+        if ([[children[i] fileName] isEqualToString:name]) {
+            return children[i];
         }
     }
     return nil;
@@ -209,7 +209,7 @@
     if ([children count] < index) {
         return nil;
     }
-    return [children objectAtIndex:index];
+    return children[index];
 }
 
 -(NSInteger)numberOfChildren
@@ -232,7 +232,7 @@
     else
     {
         NSArray* components = [path pathComponents];
-        NSString* childrenName = [components objectAtIndex:pathIndex+1];
+        NSString* childrenName = components[pathIndex+1];
         return [[self getChildrenByName:childrenName] expandableAtPath:path];
     }
 }
@@ -247,7 +247,7 @@
     {
         for(NSInteger i = 0; i < [children count]; i++)
         {
-            [[children objectAtIndex:i] updateFilePath:self.filePath];
+            [children[i] updateFilePath:self.filePath];
         }
     }
 }

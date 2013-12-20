@@ -25,6 +25,7 @@
 - (void)loadPDF;
 - (void)updatePDFPosition:(NSDictionary*)info;
 - (void)updateTabViewItem;
+- (void)viewDidClose:(NSNotification *)note;
 @end
 
 @implementation ExtendedPDFViewController
@@ -46,7 +47,7 @@
 - (void) startBackwardSynctex:(id)sender {
     PDFSelection *currentSelection = [self.pdfView currentSelection];
     if (currentSelection) {
-        PDFPage *p = [currentSelection.pages objectAtIndex:0];
+        PDFPage *p = (currentSelection.pages)[0];
         NSRect selectionBounds = [currentSelection boundsForPage:p];
         NSRect pageBounds = [p boundsForBox:kPDFDisplayBoxMediaBox];
         NSPoint beginPos, endPos;
@@ -60,7 +61,7 @@
         BackwardSynctex *endTex = [[BackwardSynctex alloc] initWithOutputPath:self.model.pdfPath page:index+1 andPosition:endPos];
         if (beginTex && endTex) {
             [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:beginTex.inputPath withReferenceModel:self.model andCompletionHandler:^(DocumentModel *model) {
-                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTViewSynctexChanged object:model userInfo:[NSDictionary dictionaryWithObjectsAndKeys:beginTex,TMTBackwardSynctexBeginKey,endTex,TMTBackwardSynctexEndKey, nil]];
+                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTViewSynctexChanged object:model userInfo:@{TMTBackwardSynctexBeginKey: beginTex,TMTBackwardSynctexEndKey: endTex}];
             }];
             
             
@@ -71,16 +72,22 @@
     }
 }
 
+- (void)viewDidClose:(NSNotification *)note {
+    self.pdfView.firstResponderDelegate = nil;
+}
+
 
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if(_model) {
             [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
         }
         _model = model;
         [self updateTabViewItem];
         if (_model) {
             [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+               [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidClose:) name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
             
         }
     }
@@ -98,7 +105,7 @@
     if (!self.tabViewItem) {
         self.tabViewItem = [TMTTabViewItem new];
         self.tabViewItem.view = self.view;
-        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.pdfName" options:[NSDictionary dictionaryWithObject:NSLocalizedString(@"Untitled", @"Untitled") forKey:NSNullPlaceholderBindingOption]];
+        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.pdfName" options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"Untitled", @"Untitled")}];
         [self.tabViewItem bind:@"isProcessing" toObject:self withKeyPath:@"model.isCompiling" options:NULL];
         [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.pdfIdentifier" options:NULL];
     }
@@ -148,7 +155,7 @@
     PDFDocument *doc = self.pdfView.document;
     [self loadPDF];
     if (doc) {
-        ForwardSynctex *synctex = [info objectForKey:TMTForwardSynctexKey];
+        ForwardSynctex *synctex = info[TMTForwardSynctexKey];
         if (synctex.page > 0 && doc.pageCount > synctex.page-1) {
             PDFPage *p = [doc pageAtIndex:synctex.page-1];
             CGFloat y = NSMaxY([p boundsForBox:kPDFDisplayBoxMediaBox]) - synctex.v;
@@ -169,6 +176,7 @@
         [item.tabView removeTabViewItem:item];
     }
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -41,8 +41,8 @@
         path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
         
         [task setLaunchPath:path];
-        [task setArguments:[NSArray arrayWithObjects:[[self model] texPath], [[self model] pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
-                            [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]], nil]];
+        [task setArguments:@[[[self model] texPath], [[self model] pdfPath], [NSString stringWithFormat:@"%@", [settings numberOfCompiles]],
+                            [NSString stringWithFormat:@"%@", [settings compileBib]], [NSString stringWithFormat:@"%@", [settings customArgument]]]];
         [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerDidStartCompiling object:[self model]];
         
         [task setTerminationHandler:^(NSTask *task) {

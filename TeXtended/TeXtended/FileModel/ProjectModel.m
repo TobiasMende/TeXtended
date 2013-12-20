@@ -148,6 +148,13 @@
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    for (DocumentModel *d in self.documents) {
+        d.project = nil;
+    }
+    self.properties.project = nil;
+    for (BibFile *d in self.bibFiles) {
+        d.project = nil;
+    }
 }
 
 # pragma mark - KVO

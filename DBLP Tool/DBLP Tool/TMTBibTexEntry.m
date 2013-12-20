@@ -116,7 +116,7 @@
 - (void)fetchGeneralInfos:(NSXMLDocument *)doc {
     NSError *error;
     NSArray *array = [doc nodesForXPath:@"/dblp/*" error:&error];
-    NSXMLElement *e = [array objectAtIndex:0];
+    NSXMLElement *e = array[0];
     [self generateDictionary:doc];
     self.xml = e;
     self.type = e.name;
@@ -135,13 +135,13 @@
         for(NSXMLElement *e in array) {
             [self willChangeValueForKey:e.name];
             if ([e.name isEqualToString:@"author"]) {
-                NSMutableSet *authors = [self.dictionary objectForKey:e.name];
+                NSMutableSet *authors = (self.dictionary)[e.name];
                 if (authors) {
                     [authors addObject:e.stringValue];
                     self.author = [self.author stringByAppendingFormat:@" and %@", e.stringValue];
                 } else {
                     authors = [NSMutableSet setWithObject:e.stringValue];
-                    [self.dictionary setObject:authors forKey:e.name];
+                    (self.dictionary)[e.name] = authors;
                     self.author = e.stringValue;
                 }
             } else {
@@ -166,7 +166,7 @@
         }
             for(NSString *key in self.dictionary.keyEnumerator) {
                 if (![key isEqualToString:@"author"]) {
-                    [entry appendString:[self bibtexLineFor:key andValue:[self.dictionary objectForKey:key]]];
+                    [entry appendString:[self bibtexLineFor:key andValue:(self.dictionary)[key]]];
                 }
             }
         [entry appendString:@"}"];
@@ -200,11 +200,11 @@
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
-    return [self.dictionary objectForKey:key];
+    return (self.dictionary)[key];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    [self.dictionary setObject:value forKey:key];
+    (self.dictionary)[key] = value;
 }
 
 

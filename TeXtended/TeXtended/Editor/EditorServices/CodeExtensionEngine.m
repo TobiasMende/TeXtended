@@ -68,7 +68,7 @@ static const NSSet *KEYS_TO_UNBIND;
         popover.behavior = NSPopoverBehaviorTransient;
         
         self.texdocColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_TEXDOC_LINK_COLOR]];
-        [self bind:@"texdocColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+        [self bind:@"texdocColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
         
         self.shouldLinkTexdoc = [[[defaults values] valueForKey:TMT_SHOULD_LINK_TEXDOC] boolValue];
         [self bind:@"shouldLinkTexdoc" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_LINK_TEXDOC] options:NULL];
@@ -111,11 +111,11 @@ static const NSSet *KEYS_TO_UNBIND;
                 if (self.shouldLinkTexdoc) {
                     
                     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
-                    [attributes setObject:link forKey:NSLinkAttributeName];
-                    [attributes setObject:[@"Open documentation for " stringByAppendingString:package] forKey:NSToolTipAttributeName];
-                    [attributes setObject:self.texdocColor forKey:NSForegroundColorAttributeName];
+                    attributes[NSLinkAttributeName] = link;
+                    attributes[NSToolTipAttributeName] = [@"Open documentation for " stringByAppendingString:package];
+                    attributes[NSForegroundColorAttributeName] = self.texdocColor;
                     if (self.shouldUnderlineTexdoc) {
-                        [attributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
+                        attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
                     }
                     [lm addTemporaryAttributes:attributes forCharacterRange:finalRange];
                 }
@@ -138,7 +138,7 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void)handleLinkAt:(NSUInteger)position {
     NSRange effective;
     NSDictionary *attributes = [view.layoutManager temporaryAttributesAtCharacterIndex:position effectiveRange:&effective];
-    NSString *attribute = [attributes objectForKey:NSLinkAttributeName];
+    NSString *attribute = attributes[NSLinkAttributeName];
     if (attribute) {
         [self clickedOnLink:attribute atIndex:position];
     }
@@ -151,7 +151,7 @@ static const NSSet *KEYS_TO_UNBIND;
         NSString *packageName = [url substringFromIndex:TEXDOC_PREFIX.length];
         NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(charIndex, 1) inTextContainer:view.textContainer];
         TexdocController *tc = [[TexdocController alloc] init];
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:NSStringFromRect(boundingRect),BOUNDING_RECT_KEY, nil];
+        NSDictionary *dict = @{BOUNDING_RECT_KEY: NSStringFromRect(boundingRect)};
         [tc executeTexdocForPackage:packageName withInfo:dict andHandler:self];
         return YES;
     }
@@ -163,7 +163,7 @@ static const NSSet *KEYS_TO_UNBIND;
    [texdocView setContent:texdocArray];
    [texdocView setPackage:package];
    popover.contentViewController = texdocView;
-    NSRect rect = NSRectFromString([info objectForKey:BOUNDING_RECT_KEY]);
+    NSRect rect = NSRectFromString(info[BOUNDING_RECT_KEY]);
    [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
 }
 

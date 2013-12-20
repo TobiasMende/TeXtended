@@ -33,16 +33,12 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
         self.output = @"";
         self.input = @"";
         self.showConsole = YES;
-        [self addObserver:self forKeyPath:@"self.consoleActive" options:0 context:NULL];
         self.selectedRange = NSMakeRange(NSNotFound, 0);
     }
     return self;
 }
 
-- (void)setShowConsole:(BOOL)showConsole {
-    _showConsole = showConsole;
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMT_CONSOLE_MANAGER_CHANGED object:[ConsoleManager sharedConsoleManager]];
-}
+
 
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
@@ -64,7 +60,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     if (consoleMessages != _consoleMessages) {
         _consoleMessages = consoleMessages;
         if (self.model && consoleMessages) {
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTLogMessageCollectionChanged object:self.model userInfo:[NSDictionary dictionaryWithObject:self.consoleMessages forKey:TMTMessageCollectionKey]];
+            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTLogMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.consoleMessages}];
         }
     }
 }
@@ -113,20 +109,18 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     self.consoleActive = NO;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self]) {
-       if([keyPath isEqualToString:@"self.consoleActive"] && !self.consoleActive) {
-            self.input = @"";
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+
+- (void)setConsoleActive:(BOOL)consoleActive {
+    _consoleActive = consoleActive;
+    if (!_consoleActive) {
+        self.input = @"";
     }
 }
 
 
 - (void)handleOutput: (NSNotification*)notification {
     //[self.model.outputPipe.fileHandleForReading readInBackgroundAndNotify] ;
-    NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
+    NSData *data = [notification userInfo][NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] ;
     if (str && data.length > 0) {
         self.output = [self.output stringByAppendingString:str];
@@ -152,7 +146,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    [self removeObserver:self forKeyPath:@"self.consoleActive"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

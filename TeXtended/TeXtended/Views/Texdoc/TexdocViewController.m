@@ -73,7 +73,7 @@
 }
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
-    TexdocEntry *entry = [entries objectAtIndex:row];
+    TexdocEntry *entry = entries[row];
     return [entry valueForKey:identifier];
 }
 
@@ -83,7 +83,7 @@
 - (void)openSelectedDoc {
     NSInteger row = [self.listView selectedRow];
     if (row < entries.count && row >= 0) {
-        TexdocEntry *entry = [entries objectAtIndex:row];
+        TexdocEntry *entry = entries[row];
         NSURL *url = [NSURL fileURLWithPath:entry.path];
         [[NSWorkspace sharedWorkspace] openURL: url];
     }

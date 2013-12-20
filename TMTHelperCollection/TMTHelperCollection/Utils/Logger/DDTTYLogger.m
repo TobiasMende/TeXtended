@@ -957,7 +957,7 @@ static DDTTYLogger *sharedInstance;
 		}
 		
 		if (i < [colorProfilesArray count])
-			[colorProfilesArray replaceObjectAtIndex:i withObject:newColorProfile];
+			colorProfilesArray[i] = newColorProfile;
 		else
 			[colorProfilesArray addObject:newColorProfile];
 	}};
@@ -994,7 +994,7 @@ static DDTTYLogger *sharedInstance;
 		
 		NSLogInfo(@"DDTTYLogger: newColorProfile: %@", newColorProfile);
 		
-		[colorProfilesDict setObject:newColorProfile forKey:tag];
+		colorProfilesDict[tag] = newColorProfile;
 	}};
 	
 	// The design of the setter logic below is taken from the DDAbstractLogger implementation.
@@ -1183,7 +1183,7 @@ static DDTTYLogger *sharedInstance;
 		{
 			if (logMessage->tag)
 			{
-				colorProfile = [colorProfilesDict objectForKey:logMessage->tag];
+				colorProfile = colorProfilesDict[logMessage->tag];
 			}
 			if (colorProfile == nil)
 			{
@@ -1402,7 +1402,7 @@ static DDTTYLogger *sharedInstance;
 			// Map foreground color to closest available shell color
 			
 			fgCodeIndex = [DDTTYLogger codeIndexForColor:fgColor];
-			fgCodeRaw   = [codes_fg objectAtIndex:fgCodeIndex];
+			fgCodeRaw   = codes_fg[fgCodeIndex];
 			
 			NSString *escapeSeq = @"\033[";
 			
@@ -1437,7 +1437,7 @@ static DDTTYLogger *sharedInstance;
 			// Map background color to closest available shell color
 			
 			bgCodeIndex = [DDTTYLogger codeIndexForColor:bgColor];
-			bgCodeRaw   = [codes_bg objectAtIndex:bgCodeIndex];
+			bgCodeRaw   = codes_bg[bgCodeIndex];
 			
 			NSString *escapeSeq = @"\033[";
 			

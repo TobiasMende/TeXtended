@@ -101,21 +101,21 @@ CompletionsController *instance;
 }
 
 - (id)commandObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *key = [self.manager.commandKeys objectAtIndex:row];
-    CommandCompletion *c = [self.manager.commandCompletions objectForKey:key];
+    NSString *key = (self.manager.commandKeys)[row];
+    CommandCompletion *c = (self.manager.commandCompletions)[key];
     return [c valueForKey:tableColumn.identifier];
     
 }
 
 - (id)environmentObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *key = [self.manager.environmentKeys objectAtIndex:row];
-    EnvironmentCompletion *c = [self.manager.environmentCompletions objectForKey:key];
+    NSString *key = (self.manager.environmentKeys)[row];
+    EnvironmentCompletion *c = (self.manager.environmentCompletions)[key];
     return [c valueForKey:tableColumn.identifier];
 }
 
 - (void)commandSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-   NSString *key = [self.manager.commandKeys objectAtIndex:row];
-   CommandCompletion *c = [self.manager.commandCompletions objectForKey:key];
+   NSString *key = (self.manager.commandKeys)[row];
+   CommandCompletion *c = (self.manager.commandCompletions)[key];
     if ((!c.insertion && [object isEqualToString:@""])|| [c.insertion isEqualTo:object]) {
         return;
     }
@@ -128,8 +128,8 @@ CompletionsController *instance;
 }
 
 - (void)environmentSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *key = [self.manager.environmentKeys objectAtIndex:row];
-    EnvironmentCompletion *c = [self.manager.environmentCompletions objectForKey:key];
+    NSString *key = (self.manager.environmentKeys)[row];
+    EnvironmentCompletion *c = (self.manager.environmentCompletions)[key];
     if ((!c.insertion && [object isEqualToString:@""])|| [c.insertion isEqualTo:object]) {
         return;
     }
@@ -226,13 +226,13 @@ CompletionsController *instance;
 
 - (void)resetCommandCompletionRanking:(id)sender {
     for (NSString *key in self.manager.commandCompletions) {
-        [[self.manager.commandCompletions objectForKey:key] setCounter:0];
+        [(self.manager.commandCompletions)[key] setCounter:0];
     }
 }
 
 - (void)resetEnvironmentCompletionRanking:(id)sender {
     for (NSString *key in self.manager.environmentCompletions) {
-        [[self.manager.environmentCompletions objectForKey:key] setCounter:0];
+        [(self.manager.environmentCompletions)[key] setCounter:0];
     }
 }
 

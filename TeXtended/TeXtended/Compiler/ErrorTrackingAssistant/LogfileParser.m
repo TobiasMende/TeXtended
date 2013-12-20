@@ -83,8 +83,8 @@ static const NSDictionary *LATEX_ERROR_EXTENSIONS;
         }
         NSArray *matches = [regex matchesInString:title options:0 range:NSMakeRange(0, title.length)];
         if (matches.count >0) {
-            NSTextCheckingResult *r = [matches objectAtIndex:0];
-            furtherInformation = [LATEX_ERROR_EXTENSIONS objectForKey:key];
+            NSTextCheckingResult *r = matches[0];
+            furtherInformation = LATEX_ERROR_EXTENSIONS[key];
             if (r.numberOfRanges >1) {
                 NSRange plRange = [furtherInformation rangeOfString:@"@@placeholder@@"];
                 if (plRange.location != NSNotFound) {

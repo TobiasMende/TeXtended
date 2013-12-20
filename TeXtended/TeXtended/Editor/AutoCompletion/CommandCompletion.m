@@ -16,7 +16,7 @@ static const NSArray *COMPLETION_TYPES;
 @implementation CommandCompletion
 
 + (void)initialize {
-    COMPLETION_TYPES = [[NSArray alloc] initWithObjects:CommandTypeNormal, CommandTypeCite, CommandTypeLabel, CommandTypeRef, nil];
+    COMPLETION_TYPES = @[CommandTypeNormal, CommandTypeCite, CommandTypeLabel, CommandTypeRef];
 }
 
 
@@ -50,7 +50,7 @@ return self;
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [super dictionaryRepresentation];
     if(self.completionType && ![self.completionType isEqualToString:CommandTypeNormal]) {
-        [dict setObject:self.completionType forKey:TMTCompletionTypeKey];
+        dict[TMTCompletionTypeKey] = self.completionType;
     }
     return dict;
 }

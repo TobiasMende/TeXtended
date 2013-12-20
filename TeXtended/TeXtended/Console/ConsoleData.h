@@ -14,15 +14,15 @@
     NSFileHandle *readHandle;
     NSTimer *logMessageUpdateTimer;
 }
-@property (assign, nonatomic) DocumentModel *model;
+@property (strong, nonatomic) DocumentModel *model;
 @property (assign) DocumentController *documentController;
 
 /** Flag for showing whether the console is active or not */
-@property BOOL consoleActive;
+@property (nonatomic)BOOL consoleActive;
 
 @property BOOL compileRunning;
 
-@property (nonatomic) BOOL showConsole;
+@property BOOL showConsole;
 
 @property NSRange selectedRange;
 

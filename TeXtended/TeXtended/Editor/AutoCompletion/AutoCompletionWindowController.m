@@ -101,7 +101,7 @@
 
 - (NSInteger)totalWindowHeight {
     NSInteger rowHeight;
-    switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+    switch ([(self.additionalInformation)[TMTCompletionTypeKey] intValue]) {
         case TMTCiteCompletion:
             rowHeight = [CiteCompletionView defaultViewHeight];
             break;
@@ -111,7 +111,7 @@
             break;
     }
     NSInteger total = self.content.count * (rowHeight+2);
-    if ([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+    if ([(self.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
         total += [DBLPButtonView defaultViewHeight] +2;
     }
     return total;
@@ -122,7 +122,7 @@
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     CGFloat height;
     if(row >= 0 && row < self.content.count) {
-        switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+        switch ([(self.additionalInformation)[TMTCompletionTypeKey] intValue]) {
             case TMTCiteCompletion:
                 height = [CiteCompletionView defaultViewHeight];
                 break;
@@ -164,7 +164,7 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     NSInteger result = self.content.count;
-    if ([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+    if ([(self.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
         result ++;
     }
     return result;
@@ -175,10 +175,10 @@
     if (row >= 0 && row < self.content.count) {
         NSTableCellView *result = [self customTableCellViewFor:tableView andRow:row];
         tableView.rowHeight = [self tableView:tableView heightOfRow:row];
-        id<CompletionProtocol> item = [self.content objectAtIndex:row];
+        id<CompletionProtocol> item = (self.content)[row];
         result.objectValue = item;
         return result;
-    } else if([[self.additionalInformation objectForKey:TMTShouldShowDBLPKey] boolValue]) {
+    } else if([(self.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
         NSView *result = [tableView makeViewWithIdentifier:@"DBLPButtonView" owner:self];
         if(!result) {
             NSViewController *c = [[NSViewController alloc] initWithNibName:@"DBLPButtonView" bundle:nil];
@@ -192,7 +192,7 @@
 
 - (NSTableCellView *)customTableCellViewFor:(NSTableView *)view andRow:(NSInteger)row {
     NSView *result;
-    switch ([[self.additionalInformation objectForKey:TMTCompletionTypeKey] intValue]) {
+    switch ([(self.additionalInformation)[TMTCompletionTypeKey] intValue]) {
         case TMTCiteCompletion:
             result = [view makeViewWithIdentifier:@"CiteCompletionView" owner:self];
             if(!result) {
@@ -217,7 +217,7 @@
     if (currentIndex >= self.content.count || currentIndex < 0) {
         return;
     }
-    id<CompletionProtocol> completion = [self.content objectAtIndex:currentIndex];
+    id<CompletionProtocol> completion = (self.content)[currentIndex];
     NSRange prefixRange = [self.parent rangeForUserCompletion];
     if (prefixRange.location == NSNotFound) {
         DDLogWarn(@"Got invalid prefix for user completion");

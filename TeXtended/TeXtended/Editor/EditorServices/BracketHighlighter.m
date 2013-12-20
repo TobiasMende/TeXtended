@@ -43,12 +43,10 @@ typedef enum {
 
 
 + (void)initialize {
-    BRACKETS_TO_HIGHLIGHT = [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"}",@"{",
-                             @")",@"(",
-                             @"]",@"[",
-                             nil];
-    VALID_PRE_CHARS = [NSArray arrayWithObject:@"\\"];
+    BRACKETS_TO_HIGHLIGHT = @{@"{": @"}",
+                             @"(": @")",
+                             @"[": @"]"};
+    VALID_PRE_CHARS = @[@"\\"];
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldHighlightMatchingBrackets", @"shouldAutoInsertClosingBrackets" , nil];
     
 }
@@ -247,7 +245,7 @@ typedef enum {
         } else if(firstCounter == 0 && [compareString isEqualToString:second]) {
             // Matching bracket found and no unclosed brackets of given type: MATCH
            
-            return [NSArray arrayWithObjects:[NSValue valueWithRange:firstRange], [NSValue valueWithRange:compareWindow], nil];
+            return @[[NSValue valueWithRange:firstRange], [NSValue valueWithRange:compareWindow]];
         }
         // Move position pointer:
         if(type == TMTClosingBracketType) {
@@ -274,8 +272,7 @@ typedef enum {
             return [BRACKETS_TO_HIGHLIGHT valueForKey:str];
             break;
         case TMTClosingBracketType:
-            return [[BRACKETS_TO_HIGHLIGHT allKeys]
-                    objectAtIndex:[[BRACKETS_TO_HIGHLIGHT allValues]
+            return [BRACKETS_TO_HIGHLIGHT allKeys][[[BRACKETS_TO_HIGHLIGHT allValues]
                                    indexOfObject:str]];
             break;
         default:

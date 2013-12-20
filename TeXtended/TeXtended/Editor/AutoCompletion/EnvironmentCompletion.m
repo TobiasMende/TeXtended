@@ -14,7 +14,7 @@
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super initWithDictionary:dict];
     if (self) {
-        NSString *firstLine = [dict objectForKey:TMTCompletionsFirstLineExtensionKey];
+        NSString *firstLine = dict[TMTCompletionsFirstLineExtensionKey];
         if (firstLine) {
             _firstLineExtension = firstLine;
         } else {
@@ -34,7 +34,7 @@
 
 - (NSMutableDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [super dictionaryRepresentation];
-    [dict setObject:self.firstLineExtension forKey:TMTCompletionsFirstLineExtensionKey];
+    dict[TMTCompletionsFirstLineExtensionKey] = self.firstLineExtension;
     return dict;
 }
 

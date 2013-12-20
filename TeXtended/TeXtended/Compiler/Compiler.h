@@ -21,6 +21,7 @@
  */
 @interface Compiler : NSObject <TextViewObserver> {
     NSMutableSet *currentTasks;
+    __unsafe_unretained id weakSelf;
 }
 
 

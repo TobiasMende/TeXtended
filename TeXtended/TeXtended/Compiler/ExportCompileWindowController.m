@@ -57,8 +57,8 @@
     [pdfPathPanel setTitle:NSLocalizedString(@"Choose a pdf path", @"choosePDFPath")];
     [pdfPathPanel setCanCreateDirectories:YES];
     [pdfPathPanel setCanSelectHiddenExtension:YES];
-    [pdfPathPanel setAllowedFileTypes:[NSArray arrayWithObjects:@"pdf", nil]];
-    DocumentModel *m = [self.mainDocumentsController.selectedObjects objectAtIndex:0];
+    [pdfPathPanel setAllowedFileTypes:@[@"pdf"]];
+    DocumentModel *m = (self.mainDocumentsController.selectedObjects)[0];
     if (m) {
         NSURL *url;
         if (m.pdfPath) {
@@ -71,7 +71,7 @@
     [pdfPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [pdfPathPanel URL];
-            DocumentModel *m = [self.mainDocumentsController.selectedObjects objectAtIndex:0];
+            DocumentModel *m = (self.mainDocumentsController.selectedObjects)[0];
             m.pdfPath = [file path];
         }
     }];
@@ -83,7 +83,7 @@
 }
 
 - (IBAction)removeMainDocument:(id)sender {
-    DocumentModel *m = [self.mainDocumentsController.selectedObjects objectAtIndex:0];
+    DocumentModel *m = (self.mainDocumentsController.selectedObjects)[0];
     [self.model removeMainDocumentsObject:m];
 }
 
@@ -92,7 +92,7 @@
     [texPathPanel setTitle:NSLocalizedString(@"Choose a tex document", @"chooseTexPath")];
     [texPathPanel setCanCreateDirectories:YES];
     [texPathPanel setCanSelectHiddenExtension:YES];
-    [texPathPanel setAllowedFileTypes:[NSArray arrayWithObjects:@"tex", nil]];
+    [texPathPanel setAllowedFileTypes:@[@"tex"]];
     NSURL *url;
     if (self.model.texPath) {
         url = [NSURL fileURLWithPath:[self.model.texPath stringByDeletingLastPathComponent]];

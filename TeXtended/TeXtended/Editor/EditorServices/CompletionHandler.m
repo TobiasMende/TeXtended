@@ -95,13 +95,13 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 + (void)initialize {
     KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", nil];
     
-    COMPLETION_TYPE_BY_PREFIX = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], @"\\", [NSNumber numberWithInt:TMTBeginCompletion],@"\\begin{", [NSNumber numberWithInt:TMTEndCompletion],@"\\end{", nil];
+    COMPLETION_TYPE_BY_PREFIX = @{@"\\": @(TMTCommandCompletion), @"\\begin{": @(TMTBeginCompletion), @"\\end{": @(TMTEndCompletion)};
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", nil];
     NSError *error;
     TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\t|\\\\t)" options:0 error:&error];
     NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
     
-    COMPLETION_BY_PREFIX_TYPE = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCiteCompletion], CommandTypeCite, [NSNumber numberWithInt:TMTLabelCompletion], CommandTypeLabel, [NSNumber numberWithInt:TMTRefCompletion], CommandTypeRef, nil];
+    COMPLETION_BY_PREFIX_TYPE = @{CommandTypeCite: @(TMTCiteCompletion), CommandTypeLabel: @(TMTLabelCompletion), CommandTypeRef: @(TMTRefCompletion)};
     
     if (error) {
         DDLogError(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
@@ -161,10 +161,10 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 }
 
 - (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info {
-    if (![view.firstResponderDelegate model].project) {
+    if (![view.firstResponderDelegate model].bibFiles) {
         return nil;
     }
-    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],TMTShouldShowDBLPKey, [NSNumber numberWithInt:TMTCiteCompletion], TMTCompletionTypeKey, nil];
+    *info = @{TMTShouldShowDBLPKey: @YES, TMTCompletionTypeKey: @(TMTCiteCompletion)};
     charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
     NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
@@ -194,13 +194,13 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary *__autoreleasing *)info{
-   *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:TMTCommandCompletion], TMTCompletionTypeKey, nil];
+   *info = @{TMTCompletionTypeKey: @(TMTCommandCompletion)};
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSDictionary *completions = [[CompletionManager sharedInstance] commandCompletions] ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-            [matchingKeys addObject:[completions objectForKey:key]];
+            [matchingKeys addObject:completions[key]];
         }
     }
     [matchingKeys sortUsingSelector:@selector(compare:)];
@@ -208,13 +208,13 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 }
 
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type additionalInformation:(NSDictionary *__autoreleasing *)info{
-    *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:type], TMTCompletionTypeKey, nil];
+    *info = @{TMTCompletionTypeKey: [NSNumber numberWithInt:type]};
     NSString *prefix = [view.string substringWithRange:charRange];
     NSDictionary *completions = [[CompletionManager sharedInstance] environmentCompletions] ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (NSString *key in completions) {
         if ([key hasPrefix:prefix]) {
-                [matchingCompletions addObject:[completions objectForKey:key]];
+                [matchingCompletions addObject:completions[key]];
         }
     }
     [matchingCompletions sortUsingSelector:@selector(compare:)];
@@ -467,7 +467,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             }
             NSString *prefixString = [view.string substringWithRange:prefixRange] ;
             if ([prefixString isEqualToString:key]) {
-                return [[COMPLETION_TYPE_BY_PREFIX objectForKey:key] intValue];
+                return [COMPLETION_TYPE_BY_PREFIX[key] intValue];
             }
         }
     }
@@ -484,7 +484,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                 // NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
                 NSString *prefixString = [view.string substringWithRange:prefixRange] ;
                 if ([prefixString isEqualToString:key]) {
-                    return [[COMPLETION_BY_PREFIX_TYPE objectForKey:type] intValue];
+                    return [COMPLETION_BY_PREFIX_TYPE[type] intValue];
                 }
             }
         }

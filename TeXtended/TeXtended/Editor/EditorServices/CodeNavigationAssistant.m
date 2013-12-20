@@ -52,18 +52,18 @@ static const NSSet *KEYS_TO_OBSERVE;
     if (self) {
         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         self.currentLineColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_CURRENT_LINE_COLOR]];
-        [self bind:@"currentLineColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CURRENT_LINE_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+        [self bind:@"currentLineColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CURRENT_LINE_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
         self.shouldHighlightCurrentLine = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_CURRENT_LINE] boolValue];
         [self bind:@"shouldHighlightCurrentLine" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_CURRENT_LINE] options:NULL];
         
         self.currentLineTextColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_CURRENT_LINE_TEXT_COLOR]];
-        [self bind:@"currentLineTextColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CURRENT_LINE_TEXT_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+        [self bind:@"currentLineTextColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CURRENT_LINE_TEXT_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
         self.shouldHighlightCurrentLineText = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT] boolValue];
         [self bind:@"shouldHighlightCurrentLineText" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_CURRENT_LINE_TEXT] options:NULL];
         
         
         self.carretColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_CARRET_COLOR]];
-        [self bind:@"carretColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CARRET_COLOR] options:[NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+        [self bind:@"carretColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_CARRET_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
         self.shouldHighlightCarret = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_CARRET] boolValue];
         [self bind:@"shouldHighlightCarret" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_CARRET] options:NULL];
         
@@ -118,7 +118,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         NSRange lineRange = [self lineTextRangeWithRange:range];
         
         // [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
-        [lm addTemporaryAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.currentLineTextColor, NSForegroundColorAttributeName, nil] forCharacterRange:lineRange];
+        [lm addTemporaryAttributes:@{NSForegroundColorAttributeName: self.currentLineTextColor} forCharacterRange:lineRange];
         lastLineRange = lineRange;
     } else {
         if (lastLineRange.location != NSNotFound) {

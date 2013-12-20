@@ -47,10 +47,10 @@ return self;
 
 
 - (id)initWithDictionary:(NSDictionary *)dict {
-    NSString *insertion = [dict objectForKey:TMTCompletionInsertionKey];
-    BOOL hasPlaceholders = [[dict objectForKey:TMTCompletionHasPlaceholdersKey] boolValue];
-    NSString *extension = [dict objectForKey:TMTCompletionExtensionKey];
-    NSString *counter = [dict objectForKey:TMTCompletionCounterKey];
+    NSString *insertion = dict[TMTCompletionInsertionKey];
+    BOOL hasPlaceholders = [dict[TMTCompletionHasPlaceholdersKey] boolValue];
+    NSString *extension = dict[TMTCompletionExtensionKey];
+    NSString *counter = dict[TMTCompletionCounterKey];
     if (extension) {
         self = [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders andExtension:extension];
     } else {
@@ -65,7 +65,7 @@ return self;
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Completion: %@ hasPlaceholders: %@", self.insertion, [NSNumber numberWithBool:self.hasPlaceholders]];
+    return [NSString stringWithFormat:@"Completion: %@ hasPlaceholders: %@", self.insertion, @(self.hasPlaceholders)];
 }
 
 
@@ -162,7 +162,7 @@ return self;
 
 
 - (NSMutableDictionary *)dictionaryRepresentation {
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,[NSNumber numberWithBool:self.hasPlaceholders],TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter],TMTCompletionCounterKey, nil];
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,@(self.hasPlaceholders),TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter],TMTCompletionCounterKey, nil];
 
 }
 
