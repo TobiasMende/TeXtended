@@ -63,10 +63,6 @@
     }
 }
 
-- (void)textViewDidEndEditing:(NSNotification *)note {
-    DDLogWarn(@"TV did end editing");
-}
-
 - (void)positionWindowWithContent:(NSArray *)content andInformation:(NSDictionary *)additionalInformation {
     self.content = content;
     self.additionalInformation = additionalInformation;

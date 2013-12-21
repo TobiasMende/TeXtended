@@ -71,23 +71,24 @@ for iteration in 1..iterations do
     puts "-----------------------------------------------------------"
     case mode
         when Mode::LIVE
-            system("#{TYPESETTER} -synctex=1 -file-line-error -interaction nonstopmode -jobname=\"#{pdfName}\" \"#{texPath}\"")
+        system("#{TYPESETTER} -synctex=1 -file-line-error -interaction nonstopmode -output-directory=\"#{outputDir}\" -jobname=\"#{pdfName}\" \"#{texPath}\"")
         
         when Mode::DRAFT
-            system("#{TYPESETTER} -synctex=1 -file-line-error -draftmode -jobname=\"#{pdfName}\" \"#{texPath}\"")
+        system("#{TYPESETTER} -synctex=1 -file-line-error -output-directory=\"#{outputDir}\" -jobname=\"#{pdfName}\" \"#{texPath}\"")
         
         when Mode::FINAL
-            system("#{TYPESETTER} -synctex=1 -file-line-error -jobname=\"#{pdfName}\" \"#{texPath}\"")
+        system({"TMPDIR" => outputDir}, "#{TYPESETTER} -synctex=1 -file-line-error -output-directory=\"#{outputDir}\" -jobname=\"#{pdfName}\" \"#{texPath}\"")
         
         else
-            puts "ERROR: Unknown compile mode!!"
+        puts "ERROR: Unknown compile mode!!"
     end
     
     # Compile the bibliography:
     if iteration == 1 && compileBib > 0
-        system("#{BIBTEX} \"#{texPath}\"")
+        puts "-------------------------------------------------------"
+        system("export TMPDIR=\"outputDir\" && #{BIBTEX} \"#{pdfName}\"")
     end
-puts "\n"
+    puts "\n"
 end
 puts "==========================================================="
 puts "==== pdflatex has completed the typesetting procedure! ===="

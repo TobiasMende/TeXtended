@@ -471,7 +471,6 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             }
         }
     }
-    // TODO: extend the charRange to match the real word (containing _: ...)
     NSRange prefixRange = [view.string latexCommandPrefixRangeBeforePosition:charRange.location];
     if (prefixRange.location == NSNotFound) {
         return TMTNoCompletion;
