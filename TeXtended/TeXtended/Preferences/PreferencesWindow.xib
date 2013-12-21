@@ -148,7 +148,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Default Compiler" borderType="line" id="2762">
-                    <rect key="frame" x="17" y="16" width="577" height="336"/>
+                    <rect key="frame" x="17" y="102" width="577" height="336"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="575" height="320"/>
@@ -485,7 +485,7 @@
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                             <button verticalHuggingPriority="750" id="3230">
-                                <rect key="frame" x="202" y="13" width="171" height="23"/>
+                                <rect key="frame" x="18" y="13" width="171" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Open Compileflow Folder" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3231">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -495,16 +495,27 @@
                                     <action selector="openCompileFlowFolder:" target="-2" id="3250"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" id="XDz-QA-G1D">
+                                <rect key="frame" x="386" y="13" width="171" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" title="Reset Default Flows" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9E6-rT-XAO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetCompilers:" target="-2" id="UPU-wr-bZd"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="View Order Appearance" borderType="line" id="1Vx-SB-CUl">
-                    <rect key="frame" x="17" y="356" width="150" height="82"/>
+                    <rect key="frame" x="17" y="16" width="577" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="148" height="66"/>
+                        <rect key="frame" x="1" y="1" width="575" height="66"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="avP-ZK-nZd">
@@ -857,14 +868,14 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Editor Settings" borderType="line" id="1072">
-                    <rect key="frame" x="17" y="10" width="247" height="205"/>
+                    <rect key="frame" x="17" y="49" width="247" height="166"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="245" height="189"/>
+                        <rect key="frame" x="1" y="1" width="245" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <colorWell id="1231">
-                                <rect key="frame" x="18" y="158" width="44" height="23"/>
+                                <rect key="frame" x="18" y="119" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -876,7 +887,7 @@
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" id="1232">
-                                <rect key="frame" x="67" y="162" width="117" height="17"/>
+                                <rect key="frame" x="67" y="123" width="117" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background Color" id="1252">
                                     <font key="font" metaFont="system"/>
@@ -885,7 +896,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell id="1230">
-                                <rect key="frame" x="18" y="127" width="44" height="23"/>
+                                <rect key="frame" x="18" y="88" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -897,7 +908,7 @@
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" id="1229">
-                                <rect key="frame" x="67" y="131" width="71" height="17"/>
+                                <rect key="frame" x="67" y="92" width="71" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Text Color" id="1256">
                                     <font key="font" metaFont="system"/>
@@ -906,7 +917,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell id="1228">
-                                <rect key="frame" x="18" y="96" width="44" height="23"/>
+                                <rect key="frame" x="18" y="57" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -918,7 +929,7 @@
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" id="1227">
-                                <rect key="frame" x="67" y="100" width="132" height="17"/>
+                                <rect key="frame" x="67" y="61" width="132" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Selection Text Color" id="1258">
                                     <font key="font" metaFont="system"/>
@@ -927,7 +938,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell id="1226">
-                                <rect key="frame" x="18" y="65" width="44" height="23"/>
+                                <rect key="frame" x="18" y="26" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -939,7 +950,7 @@
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" id="1225">
-                                <rect key="frame" x="67" y="63" width="140" height="17"/>
+                                <rect key="frame" x="67" y="29" width="140" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Selection Background" id="1260">
                                     <font key="font" metaFont="system"/>
@@ -1100,6 +1111,17 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+                <button verticalHuggingPriority="750" id="cAa-Ka-rtG">
+                    <rect key="frame" x="20" y="13" width="241" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" title="Reset TeXtended Defaults" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ERG-Vu-2fv">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="revertToInitialValues:" target="10" id="Aqd-YF-K3J"/>
+                    </connections>
+                </button>
             </subviews>
         </view>
         <view horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="2300" userLabel="Preview Preferences">
@@ -1595,6 +1617,17 @@
                                 </buttonCell>
                                 <connections>
                                     <binding destination="10" name="value" keyPath="values.TMTShouldCompleteEnvironments" id="1710"/>
+                                </connections>
+                            </button>
+                            <button id="dOv-PC-MBs">
+                                <rect key="frame" x="215" y="12" width="124" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Cite Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ie6-rB-GDn">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCites" id="pb9-gB-pjw"/>
                                 </connections>
                             </button>
                             <button id="1662">

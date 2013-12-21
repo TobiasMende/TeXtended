@@ -62,5 +62,5 @@
  @return the absolute path
  */
 + (NSString*) userApplicationSupportDirectoryPath;
-
++ (void)mergeCompileFlows:(BOOL)force;
 @end

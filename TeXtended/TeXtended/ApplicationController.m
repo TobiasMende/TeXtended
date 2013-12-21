@@ -24,7 +24,7 @@ static ApplicationController *sharedInstance;
 @interface ApplicationController ()
 
 + (void)registerDefaults;
-+ (void)mergeCompileFlows;
+
 
 @end
 
@@ -33,7 +33,7 @@ static ApplicationController *sharedInstance;
     //Register default user defaults
     [self registerDefaults];
     // Merging compile flows
-    [self mergeCompileFlows];
+    [self mergeCompileFlows:NO];
 }
 
 - (id)init {
@@ -147,6 +147,7 @@ static ApplicationController *sharedInstance;
                               TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS: @YES,
                               TMT_SHOULD_COMPLETE_COMMANDS: @YES,
                               TMT_SHOULD_COMPLETE_ENVIRONMENTS: @YES,
+                               TMTShouldCompleteCites: @YES,
                               TMT_SHOULD_LINK_TEXDOC: @YES,
                               TMT_SHOULD_UNDERLINE_TEXDOC_LINKS: @YES,
                               TMT_REPLACE_INVISIBLE_SPACES: @NO,
@@ -181,11 +182,12 @@ static ApplicationController *sharedInstance;
                               TMT_EDITOR_FONT_SIZE: @12.0f,
                               TMT_EDITOR_FONT_ITALIC: @NO,
                               TMT_EDITOR_FONT_BOLD: @NO};
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaults];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
 }
 
-+ (void)mergeCompileFlows {
++ (void)mergeCompileFlows:(BOOL)force {
     NSString* flowPath = [CompileFlowHandler path];
     BOOL exists = [PathFactory checkForAndCreateFolder:flowPath];
     if (exists) {
@@ -201,6 +203,13 @@ static ApplicationController *sharedInstance;
                 NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
                 NSString* destPath = [flowPath stringByAppendingPathComponent:path];
                 NSError *copyError;
+                if(force && [fm fileExistsAtPath:destPath]) {
+                    NSError *replaceError;
+                    [fm removeItemAtPath:destPath error:&replaceError];
+                    if (replaceError) {
+                        DDLogError(@"Can't remove file %@: %@ (%li)", destPath, error.userInfo, error.code);
+                    }
+                }
                 [fm copyItemAtPath:srcPath toPath:destPath error:&copyError];
                 if (copyError) {
                     NSError* underlying = [[copyError userInfo] valueForKey:NSUnderlyingErrorKey];

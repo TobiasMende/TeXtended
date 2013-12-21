@@ -17,9 +17,11 @@
 /** if `YES` commands where automatically completed */
 @property BOOL shouldCompleteCommands;
 
-/** if `YES` environments where automatically compelted */
+/** if `YES` environments where automatically completed */
 @property BOOL shouldCompleteEnvironments;
 
+/** if `YES` cites where automatically completed */
+@property BOOL shouldCompleteCites;
 
 /**
  Method for retreiving matching completions for a given word.

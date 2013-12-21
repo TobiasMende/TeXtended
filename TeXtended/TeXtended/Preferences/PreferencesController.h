@@ -67,5 +67,6 @@
  @param sender the sender
  */
 - (IBAction)openCompileFlowFolder:(id)sender;
+- (IBAction)resetCompilers:(id)sender;
 
 @end

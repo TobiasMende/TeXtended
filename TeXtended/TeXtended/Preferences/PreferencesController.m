@@ -10,6 +10,7 @@
 #import "CompletionsController.h"
 #import "CompletionManager.h"
 #import "CompileFlowHandler.h"
+#import "ApplicationController.h"
 @interface PreferencesController ()
 
 /** Method for calculating a new matching frame for a given view.
@@ -122,6 +123,11 @@
 - (IBAction)openCompileFlowFolder:(id)sender {
     [[NSWorkspace sharedWorkspace] openFile:[CompileFlowHandler path]];
 }
+
+- (IBAction)resetCompilers:(id)sender {
+    [ApplicationController mergeCompileFlows:YES];
+}
+
 
 
 @end

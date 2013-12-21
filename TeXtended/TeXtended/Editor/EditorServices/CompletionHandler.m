@@ -93,7 +93,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 @implementation CompletionHandler
 
 + (void)initialize {
-    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", nil];
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", @"shouldCompleteCites", nil];
     
     COMPLETION_TYPE_BY_PREFIX = @{@"\\": @(TMTCommandCompletion), @"\\begin{": @(TMTBeginCompletion), @"\\end{": @(TMTEndCompletion)};
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", nil];
@@ -117,7 +117,8 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
         self.shouldCompleteEnvironments = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_ENVIRONMENTS] boolValue];
         [self bind:@"shouldCompleteEnvironments" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_ENVIRONMENTS] options:NULL];
     
-    
+        self.shouldCompleteCites = [[[defaults values] valueForKey:TMTShouldCompleteCites] boolValue];
+        [self bind:@"shouldCompleteCites" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMTShouldCompleteCites] options:NULL];
     
         self.shouldCompleteCommands = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_COMMANDS] boolValue];
         [self bind:@"shouldCompleteCommands" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_COMMANDS] options:NULL];
@@ -150,7 +151,6 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             }
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type additionalInformation:info];
         case TMTCiteCompletion:
-            DDLogInfo(@"Cite Completion");
             return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
             break;
             
@@ -161,7 +161,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 }
 
 - (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info {
-    if (![view.firstResponderDelegate model].bibFiles) {
+    if (!self.shouldCompleteCites || ![view.firstResponderDelegate model].bibFiles) {
         return nil;
     }
     *info = @{TMTShouldShowDBLPKey: @YES, TMTCompletionTypeKey: @(TMTCiteCompletion)};
