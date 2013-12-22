@@ -361,7 +361,7 @@
 
 - (void)_drawBoxBezelInRect:(NSRect)aRect withCapMask:(MMBezierShapeCapMask)capMask usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button ofTabBarView:(MMTabBarView *)tabBarView {
 
-    capMask &= ~MMBezierShapeFillPath;
+    //capMask &= ~MMBezierShapeFillPath;
     
         // fill
     if ([button state] == NSOnState) {

@@ -465,8 +465,8 @@
 		frame.size.height -= 1.0;
 	}
 
-	NSColor * lineColor = nil;
-	lineColor = [NSColor colorWithCalibratedWhite:0.576 alpha:1.0];
+	//NSColor * lineColor = nil;
+	//lineColor = [NSColor colorWithCalibratedWhite:0.576 alpha:1.0];
 
 	BOOL drawSelected = [lastAttachedButtonCell state] == NSOnState;
     
