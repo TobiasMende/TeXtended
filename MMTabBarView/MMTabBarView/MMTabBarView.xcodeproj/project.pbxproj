@@ -170,6 +170,7 @@
 		D2CB8E9F1866F88400C9CC14 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D2CB8E961866F88400C9CC14 /* Release.xcconfig */; };
 		D2CB8EA21866F8B600C9CC14 /* MMTabBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CB8EA01866F8B600C9CC14 /* MMTabBarView.h */; };
 		D2CB8EA31866F8B600C9CC14 /* MMTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CB8EA11866F8B600C9CC14 /* MMTabBarView.m */; };
+		D2CB8EA51866F95700C9CC14 /* MMTabStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CB8EA41866F95700C9CC14 /* MMTabStyle.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -342,6 +343,7 @@
 		D2CB8E961866F88400C9CC14 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = ../Configurations/Release.xcconfig; sourceTree = "<group>"; };
 		D2CB8EA01866F8B600C9CC14 /* MMTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTabBarView.h; sourceTree = "<group>"; };
 		D2CB8EA11866F8B600C9CC14 /* MMTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTabBarView.m; sourceTree = "<group>"; };
+		D2CB8EA41866F95700C9CC14 /* MMTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTabStyle.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -645,6 +647,7 @@
 		06DB23AF1609F5830071BDA0 /* MMTabBarView */ = {
 			isa = PBXGroup;
 			children = (
+				D2CB8EA41866F95700C9CC14 /* MMTabStyle.h */,
 				D2CB8EA01866F8B600C9CC14 /* MMTabBarView.h */,
 				D2CB8EA11866F8B600C9CC14 /* MMTabBarView.m */,
 				0634F0261609FD4400A6C86A /* Animations */,
@@ -697,6 +700,7 @@
 				D2CB8EA21866F8B600C9CC14 /* MMTabBarView.h in Headers */,
 				0634F0371609FD9000A6C86A /* MMAquaTabStyle.h in Headers */,
 				0634F0391609FD9000A6C86A /* MMCardTabStyle.h in Headers */,
+				D2CB8EA51866F95700C9CC14 /* MMTabStyle.h in Headers */,
 				0634F03B1609FD9000A6C86A /* MMLiveChatTabStyle.h in Headers */,
 				0634F03D1609FD9000A6C86A /* MMMetalTabStyle.h in Headers */,
 				0634F03F1609FD9000A6C86A /* MMUnifiedTabStyle.h in Headers */,
