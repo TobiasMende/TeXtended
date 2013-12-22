@@ -26,9 +26,6 @@
  */
 - (NSRect) calculateFinalFrame:(NSRect) globalCharBounds;
 
-
-- (void) textViewDidEndEditing:(NSNotification *)note;
-
 - (NSTableCellView *)customTableCellViewFor:(NSTableView *)view andRow:(NSInteger)row;
 - (NSInteger) totalWindowHeight;
 
