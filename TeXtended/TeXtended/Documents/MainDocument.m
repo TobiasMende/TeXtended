@@ -79,6 +79,9 @@
     self.mainWindowController.myCurrentFirstResponderDelegate = nil;
     [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
     [self.documentControllers removeObject:dc];
+    if (self.documentControllers.count == 0) {
+        [self close];
+    }
 }
 
 

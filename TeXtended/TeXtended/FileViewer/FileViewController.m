@@ -515,18 +515,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (void)openFileInDefApp: (NSString*)path {
-    NSArray *allowedFileTypes = @[@"tex"];
+    NSArray *allowedFileTypes = @[@"tex", @"sty", @"cls"];
     DDLogInfo(@"%@ - %@", path, self.compilable.path);
     if ([allowedFileTypes containsObject:[path pathExtension]]) {
-        if(![path isEqualToString:self.compilable.path]) {
-            if ([self.mainDocument isKindOfClass:[ProjectDocument class]]) {
-                [self.mainDocument openNewTabForCompilable:[self.compilable modelForTexPath:path]];
-            }
-            else if ([self.mainDocument isKindOfClass:[SimpleDocument class]]) {
-                [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:path] display:YES error:nil];
-            }
-        }
-        return;
+        [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:self.compilable andCompletionHandler:nil];
     }
     else {
         NSWorkspace *workspace = [NSWorkspace sharedWorkspace];

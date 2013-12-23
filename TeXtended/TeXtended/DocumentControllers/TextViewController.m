@@ -257,13 +257,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)loadView {
-    [super loadView];
-    [self initializeAttributes];
-    [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
-    NSString *content = [self.model loadContent];
-    if (content) {
-        [self setContent:content];
-    }
+        [super loadView];
+        [self initializeAttributes];
+        [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
     
 }
 
@@ -281,7 +277,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)setContent:(NSString *)content {
-    [self.textView setString:content];
+    if (content) {
+        [self.textView setString:content];
+    }
     [self updateMessageCollection:nil];
 }
 

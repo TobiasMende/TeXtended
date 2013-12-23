@@ -38,11 +38,12 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
-- (NSString *)loadContent {
+- (NSString *)loadContent:(BOOL*)success {
     self.lastChanged = [[NSDate alloc] init];
     NSError *error;
     if (!self.systemPath) {
         if (!self.texPath) {
+            *success = YES;
             return nil;
         }
         self.systemPath = self.texPath;
@@ -73,11 +74,13 @@ static NSArray *TMTEncodingsToCheck;
     
     if (error) {
         DDLogError(@"Error while loading content: %@", [error userInfo]);
+        NSAlert *alert = [NSAlert alertWithError:error];
+        [alert runModal];
     }
     if (content) {
         [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];
     }
-    
+    *success = (content != nil && error == nil);
     return content;
 }
 

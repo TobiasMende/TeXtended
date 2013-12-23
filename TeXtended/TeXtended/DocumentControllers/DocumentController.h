@@ -58,6 +58,8 @@
  */
 - (void) documentModelDidChange;
 
+- (void)closeDocument;
+
 
 /**
  * Calls draft compile on the compiler if the file was saved before (didSave is ´YES´).

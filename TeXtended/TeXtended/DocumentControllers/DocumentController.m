@@ -91,6 +91,14 @@
     [self.mainDocument removeDocumentController:self];
 }
 
+- (void)closeDocument {
+    self.textViewController.textView.firstResponderDelegate = nil;
+    self.textViewController = nil;
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
+    [item.tabView removeTabViewItem:item];
+    [self.mainDocument removeDocumentController:self];
+}
+
 - (void)pdfViewDidClose:(NSNotification *)note {
     NSString *identifier = note.object;
     ExtendedPDFViewController *controller;
@@ -108,10 +116,18 @@
     _textViewController = [[TextViewController alloc] initWithDocumentController:self];
     [self.textViewController setFirstResponderDelegate:self];
     [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
-    self.pdfViewControllers = [NSMutableSet new];
-    for(DocumentModel *model in self.model.mainDocuments) {
-        [self findOrCreatePDFViewControllerFor:model];
+    BOOL success;
+    NSString *content = [self.model loadContent:&success];
+    if (success) {
+        self.textViewController.content = content;
+        self.pdfViewControllers = [NSMutableSet new];
+        for(DocumentModel *model in self.model.mainDocuments) {
+            [self findOrCreatePDFViewControllerFor:model];
+        }
+    } else {
+        [self closeDocument];
     }
+    
 }
 
 - (void)showPDFViews {

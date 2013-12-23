@@ -88,7 +88,9 @@
         MainDocument *doc = [self documentForURL:searchURL];
         if (doc && [doc.model isKindOfClass:[DocumentModel class]]) {
             [doc openNewTabForCompilable:(DocumentModel*)doc.model];
-            completionHandler((DocumentModel*)doc.model);
+            if (completionHandler) {
+                completionHandler((DocumentModel*)doc.model);
+            }
         } else {
             [self showSingleDocumentFor:searchURL withCompletionHandler:completionHandler];
         }
@@ -107,12 +109,16 @@
             
         }
         [doc openNewTabForCompilable:searchModel];
-        completionHandler(searchModel);
+        if (completionHandler) {
+            completionHandler(searchModel);
+        }
     } else if([model.path isEqualToString:searchPath]) {
         // Same single document
         MainDocument *doc = [self documentForURL:searchURL];
         [doc openNewTabForCompilable:(DocumentModel*)model];
-        completionHandler((DocumentModel*)model);
+        if (completionHandler) {
+            completionHandler((DocumentModel*)model);
+        }
     } else {
         // Different single document
         [self showSingleDocumentFor:searchURL withCompletionHandler:completionHandler];
@@ -121,6 +127,9 @@
 
 - (void)showSingleDocumentFor:(NSURL *)url withCompletionHandler:(void (^)(DocumentModel *))completionHandler {
     [self openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error) {
+        if (!completionHandler) {
+            return;
+        }
         if (!error && [document isKindOfClass:[SimpleDocument class]]) {
             completionHandler((DocumentModel*)((MainDocument*)document).model);
         } else {
