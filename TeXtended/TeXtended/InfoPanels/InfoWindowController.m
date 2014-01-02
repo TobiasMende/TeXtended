@@ -104,12 +104,23 @@
 }
 
 - (void) setCompilable:(Compilable *)compilable {
-    _compilable = compilable;
-    if (compilable.encoding) {
-        [self.encodingPopUp selectItemAtIndex:[encodings indexOfObject:compilable.encoding]];
+    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
+        [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
     }
-    else {
-        self.encodingPopUp.title = NSLocalizedString(@"Not available in projectmode", @"EncodingPopupInProjectMode");
+    _compilable = compilable;
+    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
+        [self.compilable addObserver:self forKeyPath:@"self.encoding" options:NSKeyValueObservingOptionInitial context:NULL];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"self.encoding"]) {
+        if (self.compilable.encoding) {
+            [self.encodingPopUp selectItemAtIndex:[encodings indexOfObject:self.compilable.encoding]];
+        }
+        //else {
+        //    self.encodingPopUp.title = NSLocalizedString(@"Not available in projectmode", @"EncodingPopupInProjectMode");
+        //}
     }
 }
 
@@ -131,5 +142,12 @@
     }
 }
 
+
+- (void)dealloc {
+    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
+        [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
+    }
+    DDLogVerbose(@"dealloc");
+}
 
 @end
