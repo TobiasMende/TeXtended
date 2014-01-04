@@ -14,14 +14,14 @@ static CompileFlowHandler *sharedInstance;
 @interface CompileFlowHandler ()
 
 /** Notification of changes in the compile flow directory */
-- (void) compileFlowsChanged;
+- (void) compileFlowsChanged:(NSArray *)affectedPaths;
 
 @end
 
 @implementation CompileFlowHandler
 
 /** Inform that a compile flow has changed. */
-- (void)compileFlowsChanged {
+- (void)compileFlowsChanged:(NSArray *)affectedPaths {
     [self willChangeValueForKey:@"arrangedObjects"];
     [self didChangeValueForKey:@"arrangedObjects"];
 }
@@ -48,7 +48,7 @@ static CompileFlowHandler *sharedInstance;
     if (self) {
         _maxIterations = @3;
         _minIterations = @1;
-         [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged)];
+        [[PathObserverFactory pathObserverForPath:[CompileFlowHandler path]] addObserver:self withSelector:@selector(compileFlowsChanged:)];
     }
     return self;
 }

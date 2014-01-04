@@ -567,7 +567,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         NSString *path = [self.compilable.path stringByDeletingLastPathComponent];
         observer = [PathObserverFactory pathObserverForPath:path];
         [self loadPath:[NSURL fileURLWithPath:path]];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel)];
+        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
     }
     else if ([keyPath isEqualToString:@"self.window.isVisible"]) {
         if (!self.infoWindowController.window.isVisible) {
@@ -577,7 +577,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
-- (void)updateFileViewModel {
+- (void)updateFileViewModel:(NSArray *)affectedPaths {
     if (!self.compilable.path) {
         return;
     }

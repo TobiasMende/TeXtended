@@ -51,7 +51,7 @@
 
 /** Method to work with the notification handler after compiling
  */
-- (void)updateFileViewModel;
+- (void)updateFileViewModel:(NSArray *)affectedPaths;
 
 
 /** Method for catching clicks on open folder in contextmenu

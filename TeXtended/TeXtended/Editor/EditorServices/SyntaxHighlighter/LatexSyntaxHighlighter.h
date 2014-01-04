@@ -19,6 +19,7 @@
  */
 @interface LatexSyntaxHighlighter : EditorService <SyntaxHighlighter> {
     NSDate *time;
+    NSOperationQueue *backgroundQueue;
 }
 /** The color in which to highlight math (text between $ and $ or \[ and \] */
 @property (strong,nonatomic) NSColor *inlineMathColor;
