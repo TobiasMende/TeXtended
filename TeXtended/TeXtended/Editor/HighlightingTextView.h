@@ -169,6 +169,8 @@ GoToLineSheetController *goToLineSheet;
  */
 - (NSRange) extendedVisibleRange;
 
+- (NSRange) extendRange:(NSRange)range byLines:(NSUInteger)numLines;
+
 
 /** Getter for the currently selected column
  

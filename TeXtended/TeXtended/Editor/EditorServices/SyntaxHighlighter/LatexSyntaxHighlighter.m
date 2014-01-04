@@ -129,7 +129,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if (!view.servicesOn) {
         return;
     }
-    [self highlightVisibleArea];
+    [self highlightNarrowArea];
     
 }
 
@@ -140,7 +140,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 - (void)highlightNarrowArea {
     //TODO: online highlight +- 5 lines;
-    [self highlightVisibleArea];
+    [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
 }
 
 - (void)highlightVisibleArea {
@@ -165,8 +165,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if(textRange.length == 0) {
         return;
     }
-    DDLogWarn(@"Highlighting: %@", NSStringFromRange(textRange));
-
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
