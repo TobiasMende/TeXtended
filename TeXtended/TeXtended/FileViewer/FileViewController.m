@@ -347,6 +347,36 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [self->nodes clean];
 }
 
+- (void) fileUpdater: (NSURL*)url {
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSURL *directoryURL = url; // URL pointing to the directory you want to browse
+    NSArray *keys = @[NSURLIsDirectoryKey];
+    NSArray *ignoredFileTypes = @[@"TMTTemporaryStorage"];
+    
+    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
+    NSUInteger count = [children count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        NSURL *fileUrl = children[i];
+        NSString *path = [fileUrl path];
+        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+        }
+        else if (! [isDirectory boolValue]) {
+            if (![ignoredFileTypes containsObject:[path pathExtension]]) {
+                [self->nodes addPath:path];
+            }
+        }
+        else
+        {
+            [self->nodes addPath:path];
+        }
+    }
+    [self->nodes clean:[url path]];
+}
+
 - (IBAction)newFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     FileViewModel* newModel;
@@ -586,8 +616,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     
-    NSURL *url  = [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
-    [self recursiveFileUpdater:url];
+    for (NSString* path in affectedPaths) {
+        NSURL *url  = [NSURL fileURLWithPath:path];
+        [self fileUpdater:url];
+    }
     [outline reloadData];
 }
 

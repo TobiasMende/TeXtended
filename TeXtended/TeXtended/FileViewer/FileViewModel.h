@@ -93,4 +93,6 @@
 -(void)removeChildren:(FileViewModel*) childrenModel;
 /** Removes all fileviewmodels whose files does not exists anymore */
 -(void)clean;
+/** Removes all fileviewmodels whose files at the specified directory does not exists anymore */
+-(void)clean:(NSString*)path;
 @end

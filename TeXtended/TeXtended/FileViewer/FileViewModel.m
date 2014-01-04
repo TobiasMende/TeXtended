@@ -279,6 +279,30 @@
     }
 }
 
+-(void)clean:(NSString*)path
+{
+    if ([self.filePath isEqualToString:path]) {
+        NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[children count]];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        for (FileViewModel* model in children) {
+            if(![manager fileExistsAtPath: model.filePath])
+            {
+                [temp addObject:model];
+            }
+        }
+        
+        for (FileViewModel* model in temp) {
+            [children removeObject:model];
+        }
+    }
+    else
+    {
+        NSArray* components = [path pathComponents];
+        NSString* childrenName = components[pathIndex+1];
+        [[self getChildrenByName:childrenName] clean:path];
+    }
+}
+
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
 }
