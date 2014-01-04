@@ -161,6 +161,11 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
     //[view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
+    
+    if(textRange.length == 0) {
+        return;
+    }
+    DDLogWarn(@"Highlighting: %@", NSStringFromRange(textRange));
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
