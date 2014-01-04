@@ -86,6 +86,8 @@
  */
 - (NSAttributedString*) substitutePlaceholdersInString:(NSString *) string;
 
++ (NSString*) substitutePlaceholdersInString:(NSString *) string withString:(NSString*)substitution;
+
 /**
  Method for checking whether [Completion extension] is neither nil nor empty.
  @return `YES` if there is a meaningfull extension

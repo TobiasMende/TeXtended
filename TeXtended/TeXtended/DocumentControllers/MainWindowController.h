@@ -60,6 +60,8 @@
 - (IBAction)toggleSidebarView:(id)sender;
 - (IBAction)toggleSecondView:(id)sender;
 
+- (IBAction)deleteTemporaryFiles:(id)sender;
+
 - (id)initForDocument:(MainDocument*)document;
 
 - (void) showDocument:(DocumentController *)dc;

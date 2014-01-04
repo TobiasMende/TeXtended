@@ -35,9 +35,18 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    [self.documentType addItemWithTitle:@"PDF"];
-    [self.documentType addItemWithTitle:@"TEX"];
+}
+
+- (IBAction)cancelDialog:(id)sender {
+    [NSApp stopModal];
+    [NSApp endSheet: self.window returnCode:NSRunAbortedResponse];
+    [self.window orderOut: self];
+}
+
+- (IBAction)OKDialog:(id)sender {
+    [NSApp stopModal];
+    [NSApp endSheet: self.window];
+    [self.window orderOut: self];
 }
 
 @end

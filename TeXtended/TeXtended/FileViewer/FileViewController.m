@@ -298,44 +298,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         else
         {
             [self->nodes addPath:path];
-            // For recursiveFileFinder:
-            //[self recursiveFileFinder:fileUrl];
         }
     }
 }
-
-/*- (void) recursiveFileUpdater: (NSURL*)url {
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSURL *directoryURL = url; // URL pointing to the directory you want to browse
-    NSArray *keys = @[NSURLIsDirectoryKey];
-    NSArray *ignoredFileTypes = @[@"TMTTemporaryStorage"];
-    
-    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
-    NSUInteger count = [children count];
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        NSError *error;
-        NSNumber *isDirectory = nil;
-        NSURL *fileUrl = children[i];
-        NSString *path = [fileUrl path];
-        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
-            // handle error
-        }
-        else if (! [isDirectory boolValue]) {
-            if (![ignoredFileTypes containsObject:[path pathExtension]]) {
-                [self->nodes addPath:path];
-            }
-        }
-        else
-        {
-            [self->nodes addPath:path];
-            if ([self->nodes expandableAtPath:path]) {
-                [self recursiveFileUpdater:fileUrl];
-            }
-        }
-    }
-    [self->nodes clean];
-}*/
 
 - (void) fileUpdater: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -615,6 +580,34 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
+- (void)deleteTemporaryFilesAtPath:(NSString*)path
+{
+    NSArray *temporaryFileTypes = [[NSArray alloc] initWithObjects:@"aux", @"synctex", @"gz",@"gz(busy)",@"log", nil];
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSURL *directoryURL = [[NSURL alloc] initFileURLWithPath:path]; // URL pointing to the directory you want to browse
+    NSArray *keys = @[NSURLIsDirectoryKey];
+    
+    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
+    NSUInteger count = [children count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        NSURL *fileUrl = children[i];
+        NSString *filePath = [fileUrl path];
+        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+        }
+        else if (! [isDirectory boolValue]) {
+            if ([temporaryFileTypes containsObject:[filePath pathExtension]]) {
+                [self deleteFileatPath:filePath];
+            }
+        }
+    }
+    
+    [nodes clean:path];
+}
 
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];

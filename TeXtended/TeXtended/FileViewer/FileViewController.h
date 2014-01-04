@@ -108,4 +108,7 @@
  @param sender is the sender
  */
 - (IBAction)showInformationForFile:(id)sender;
+
+/** Method for deleting temporary files at the specified path */
+- (void)deleteTemporaryFilesAtPath:(NSString*)path;
 @end

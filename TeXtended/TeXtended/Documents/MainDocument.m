@@ -16,6 +16,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabManager.h"
 #import "ApplicationController.h"
+#import "PrintDialogController.h"
+#import "HighlightingTextView.h"
 
 @implementation MainDocument
 
@@ -24,7 +26,6 @@
     self = [super init];
     if (self) {
             // Add your subclass-specific initialization here.
-        
     }
     return self;
 }
@@ -105,6 +106,71 @@
         statisticPanelController = [StatsPanelController new];
     }
     [statisticPanelController showStatistics:dc.model.texPath];
+}
+
+- (void)printDocument:(id)sender
+{
+    [self showPrintDialog];
+}
+
+- (void)showPrintDialog
+{
+    if (!printDialogController) {
+        printDialogController = [PrintDialogController new];
+    }
+    
+    NSMutableArray *documentNames = [[NSMutableArray alloc] init];
+    NSMutableArray *documentIdentifier = [[NSMutableArray alloc] init];
+    for (DocumentController* dc in self.documentControllers) {
+        if (dc.model.pdfName) {
+            [documentNames addObject:dc.model.pdfName];
+            [documentIdentifier addObject:dc.model.pdfIdentifier];
+        }
+        if (dc.model.texName) {
+            [documentNames addObject:dc.model.texName];
+            [documentIdentifier addObject:dc.model.texIdentifier];
+        }
+    }
+    printDialogController.popUpElements = [NSArray arrayWithArray:documentNames];
+    printDialogController.popUpIdentifier = [NSArray arrayWithArray:documentIdentifier];
+    
+    [NSApp beginSheet:[printDialogController window]
+       modalForWindow: [self.mainWindowController window]
+        modalDelegate: self
+       didEndSelector: @selector(printDialogDidEnd:returnCode:contextInfo:)
+          contextInfo: nil];
+    [NSApp runModalForWindow:[self.mainWindowController window]];
+}
+
+- (void)printDialogDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
+{
+    if (returnCode != NSRunAbortedResponse) {
+        NSString* identifier = [printDialogController.popUpIdentifier objectAtIndex:printDialogController.documentName.indexOfSelectedItem];
+        BOOL isPDF = [[identifier substringFromIndex:identifier.length-4] isEqualToString:@"-pdf"];
+        
+        if (isPDF) {
+            [[[[TMTTabManager sharedTabManager] tabViewItemForIdentifier:identifier] view] printDocument:self];
+        }
+        else {
+            for (DocumentController* dc in self.documentControllers) {
+                if (dc.model.texIdentifier == identifier) {
+                    NSTextView *textView = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, 468, 648)];
+                    
+                    
+                    NSString *text = [NSString stringWithContentsOfFile:dc.model.texPath encoding:[dc.model.encoding unsignedLongValue] error:nil];
+                    
+                    [textView setEditable:true];
+                    [textView insertText:text];
+
+                    NSPrintOperation *printOperation;
+                    
+                    printOperation = [NSPrintOperation printOperationWithView:textView];
+                    
+                    [printOperation runOperation];
+                }
+            }
+        }
+    }
 }
 
 - (void)openNewTabForCompilable:(DocumentModel*)model {

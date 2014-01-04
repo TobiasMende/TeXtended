@@ -42,4 +42,5 @@
 
 - (NSString *) loadFileContent;
 - (BOOL) writeFileContent:(NSString *)content;
+- (TMTBibTexEntry *)entryForCiteKey:(NSString *)key;
 @end
