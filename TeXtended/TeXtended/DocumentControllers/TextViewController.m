@@ -344,12 +344,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
-    
-    if (self.textView.servicesOn) {
-        // [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
-        [self.textView.syntaxHighlighter highlightVisibleArea];
-        
-    }
     return newSelectedCharRange;
 }
 

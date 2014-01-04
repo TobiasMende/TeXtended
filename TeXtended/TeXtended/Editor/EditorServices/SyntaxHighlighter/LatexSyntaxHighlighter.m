@@ -67,6 +67,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 
 - (void) registerDefaults {
+    backgroundQueue = [NSOperationQueue new];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     
     /*
@@ -128,7 +129,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if (!view.servicesOn) {
         return;
     }
-
     [self highlightVisibleArea];
     
 }
@@ -144,9 +144,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 }
 
 - (void)highlightVisibleArea {
-    NSRange visibleTextRange = [view extendedVisibleRange];
-    
-    [self highlightRange:visibleTextRange];
+    [self highlightRange:[view extendedVisibleRange]];
 }
 
 - (void) highlightRange:(NSRange)range {

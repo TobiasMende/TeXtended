@@ -151,11 +151,11 @@ return observer;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
--(void)pathWasModified {
+-(void)pathWasModified:(NSArray *)affectedPaths {
     [observersLock lock];
     for (NSUInteger i = 0; i < observers.count; i++) {
         SEL action = NSSelectorFromString(actions[i]);
-        [[observers[i] nonretainedObjectValue] performSelector:action];
+        [[observers[i] nonretainedObjectValue] performSelector:action withObject:affectedPaths];
     }
     [observersLock unlock];
 }
@@ -173,7 +173,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
                        const FSEventStreamEventId eventIds[])
 {
     BOOL shouldHandleEvent = NO;
-    
     for(int i=0; i < numEvents; i++){
         FSEventStreamEventFlags flags = eventFlags[i];
         // Display all of the set flags.
@@ -190,8 +189,9 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     }
 after_loop:
     if (shouldHandleEvent) {
+        NSArray *paths = (__bridge NSArray *)((CFArrayRef)eventPaths);
         PathObserver *po = (__bridge PathObserver *)userData;
-        [po pathWasModified];
+        [po pathWasModified:paths];
     }
     //fsevents_debug(eventFlags, numEvents);
     

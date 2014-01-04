@@ -260,8 +260,9 @@
 -(void)clean
 {
     NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[children count]];
+    NSFileManager *manager = [NSFileManager defaultManager];
     for (FileViewModel* model in children) {
-        if([[NSFileManager defaultManager]fileExistsAtPath: model.filePath])
+        if([manager fileExistsAtPath: model.filePath])
         {
             if (model.isDir) {
                 [model clean];

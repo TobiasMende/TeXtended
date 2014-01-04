@@ -18,7 +18,10 @@
     if (self) {
         NSDictionary *option = @{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName};
         [self bind:@"symbolColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
+        [self bind:@"shouldReplaceInvisibleSpaces" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_SPACES] options:NULL];
+        [self bind:@"shouldReplaceInvisibleLineBreaks" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_LINEBREAKS] options:NULL];
     }
+    
     
     return self;
 }
@@ -39,7 +42,7 @@
         
         if (c == ' ')
         {
-            if ([[[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey:TMT_REPLACE_INVISIBLE_SPACES] boolValue]) {
+            if (self.shouldReplaceInvisibleSpaces) {
                 [self replaceGlyphAtIndex:charIndex withGlyph:bulletspace];
                 //NSColor color = [[NSColor alloc] init];
                 NSRange range = NSMakeRange(i, 1);
@@ -52,7 +55,7 @@
         }
         
         if (c == '\n') {
-            if ([[[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey:TMT_REPLACE_INVISIBLE_LINEBREAKS] boolValue]) {
+            if (self.shouldReplaceInvisibleLineBreaks) {
                 [self replaceGlyphAtIndex:charIndex withGlyph:arrowlb];
                 //NSColor color = [[NSColor alloc] init];
                 NSRange range = NSMakeRange(i, 1);
