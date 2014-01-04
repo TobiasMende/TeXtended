@@ -67,21 +67,16 @@
            ofItem:(id)item {
     if(item == nil) {
         FileViewModel* children = [nodes getChildrenByIndex:index];
-        /*if (children.isDir) {
-            if (!children.expandable) {
-                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
-            }
-        }*/
         return children;
     }
     else {
         FileViewModel *model = (FileViewModel*)item;
-        FileViewModel* children = [model getChildrenByIndex:index];
-        /*if (children.isDir) {
-            if (!children.expandable) {
-                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
+        if ([model isDir]) {
+            if (!model.expandable) {
+                [self simpleFileFinder:[NSURL fileURLWithPath:model.filePath]];
             }
-        }*/
+        }
+        FileViewModel* children = [model getChildrenByIndex:index];
         return children;
     }
     return nil;
@@ -90,13 +85,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)item {
     FileViewModel *model = (FileViewModel*)item;
-    if (model.isDir) {
-        if (!model.expandable) {
-            [self simpleFileFinder:[NSURL fileURLWithPath:model.filePath]];
-        }
-        return YES;
-    }
-    return NO;
+    return [model isDir];
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
@@ -315,7 +304,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (void) recursiveFileUpdater: (NSURL*)url {
+/*- (void) recursiveFileUpdater: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = @[NSURLIsDirectoryKey];
@@ -346,7 +335,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
     }
     [self->nodes clean];
-}
+}*/
 
 - (void) fileUpdater: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
