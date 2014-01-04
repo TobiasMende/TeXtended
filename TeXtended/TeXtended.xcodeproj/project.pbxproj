@@ -58,9 +58,6 @@
 		D21840DD1864934C00B73EB5 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
 		D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */; };
-		D21A89B0185CB63E00682624 /* DocumentSelectionAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A89AC185CB63E00682624 /* DocumentSelectionAccessoryController.m */; };
-		D21A89B1185CB63E00682624 /* DocumentSelectionAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A89AD185CB63E00682624 /* DocumentSelectionAccessoryView.xib */; };
-		D21A89B2185CB63E00682624 /* PrintPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A89AF185CB63E00682624 /* PrintPanel.m */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
 		D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB841726868A00E2F8EC /* CommandCompletions.plist */; };
 		D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */; };
@@ -209,6 +206,8 @@
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
 		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
+		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
+		F68687F418781D5F00898026 /* PrintDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68687F318781D5F00898026 /* PrintDialogController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
 		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
 		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
@@ -324,11 +323,6 @@
 		D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoViewController.h; sourceTree = "<group>"; };
 		D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoViewController.m; sourceTree = "<group>"; };
 		D21A1C2E17806F4B0087E10D /* MessageInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInfoView.xib; sourceTree = "<group>"; };
-		D21A89AB185CB63E00682624 /* DocumentSelectionAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentSelectionAccessoryController.h; sourceTree = "<group>"; };
-		D21A89AC185CB63E00682624 /* DocumentSelectionAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentSelectionAccessoryController.m; sourceTree = "<group>"; };
-		D21A89AD185CB63E00682624 /* DocumentSelectionAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentSelectionAccessoryView.xib; sourceTree = "<group>"; };
-		D21A89AE185CB63E00682624 /* PrintPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintPanel.h; sourceTree = "<group>"; };
-		D21A89AF185CB63E00682624 /* PrintPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintPanel.m; sourceTree = "<group>"; };
 		D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_textended.pem; sourceTree = "<group>"; };
 		D21ACB731726855000E2F8EC /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
 		D21ACB751726855000E2F8EC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -578,6 +572,9 @@
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
 		F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
 		F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
+		F68687F018781D2E00898026 /* PrintDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrintDialog.xib; sourceTree = "<group>"; };
+		F68687F218781D5F00898026 /* PrintDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintDialogController.h; sourceTree = "<group>"; };
+		F68687F318781D5F00898026 /* PrintDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintDialogController.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		F6B77905180DB83E0079EFF6 /* MatrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixViewController.h; sourceTree = "<group>"; };
 		F6B77906180DB83E0079EFF6 /* MatrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixViewController.m; sourceTree = "<group>"; };
@@ -686,18 +683,6 @@
 				76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */,
 			);
 			path = DMInspectorPalette;
-			sourceTree = "<group>";
-		};
-		D21A89AA185CB63E00682624 /* PrintPanel */ = {
-			isa = PBXGroup;
-			children = (
-				D21A89AB185CB63E00682624 /* DocumentSelectionAccessoryController.h */,
-				D21A89AC185CB63E00682624 /* DocumentSelectionAccessoryController.m */,
-				D21A89AD185CB63E00682624 /* DocumentSelectionAccessoryView.xib */,
-				D21A89AE185CB63E00682624 /* PrintPanel.h */,
-				D21A89AF185CB63E00682624 /* PrintPanel.m */,
-			);
-			path = PrintPanel;
 			sourceTree = "<group>";
 		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
@@ -997,8 +982,8 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F68687EF18781CA200898026 /* PrintDialog */,
 				D257498718631AE70025A536 /* CustomTableCellViews */,
-				D21A89AA185CB63E00682624 /* PrintPanel */,
 				76B88F9018378A94006B0E9F /* DMInspectorPalette */,
 				76B88F8A18378799006B0E9F /* ProjectCreation */,
 				D22A6BEB181C148700364DD6 /* TMTCustomView */,
@@ -1323,6 +1308,17 @@
 			path = EncodingView;
 			sourceTree = "<group>";
 		};
+		F68687EF18781CA200898026 /* PrintDialog */ = {
+			isa = PBXGroup;
+			children = (
+				F68687F018781D2E00898026 /* PrintDialog.xib */,
+				F68687F218781D5F00898026 /* PrintDialogController.h */,
+				F68687F318781D5F00898026 /* PrintDialogController.m */,
+			);
+			name = PrintDialog;
+			path = TeXtended/Views/PrintDialog;
+			sourceTree = SOURCE_ROOT;
+		};
 		F6B77904180DB8080079EFF6 /* MatrixView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,7 +1442,6 @@
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
-				D21A89B1185CB63E00682624 /* DocumentSelectionAccessoryView.xib in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
 				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
@@ -1460,6 +1455,7 @@
 				D2078D551837B620001C4A56 /* BibFilesSelectionView.xib in Resources */,
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
+				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
@@ -1529,7 +1525,6 @@
 				D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */,
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
-				D21A89B2185CB63E00682624 /* PrintPanel.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
 				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,
 				D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */,
@@ -1549,7 +1544,6 @@
 				D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */,
 				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
-				D21A89B0185CB63E00682624 /* DocumentSelectionAccessoryController.m in Sources */,
 				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
@@ -1594,6 +1588,7 @@
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
+				F68687F418781D5F00898026 /* PrintDialogController.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
 				D2CF61841770B31200ACC3D5 /* Parser.m in Sources */,

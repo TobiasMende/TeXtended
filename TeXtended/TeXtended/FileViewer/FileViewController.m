@@ -67,22 +67,17 @@
            ofItem:(id)item {
     if(item == nil) {
         FileViewModel* children = [nodes getChildrenByIndex:index];
-        if (children.isDir) {
-            if (!children.expandable) {
-                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
-            }
-        }
         return children;
     }
     else {
         FileViewModel *model = (FileViewModel*)item;
-        FileViewModel* children = [model getChildrenByIndex:index];
-        if (children.isDir) {
-            if (!children.expandable) {
-                [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
+        if ([model isDir]) {
+            if (!model.expandable) {
+                [self simpleFileFinder:[NSURL fileURLWithPath:model.filePath]];
             }
         }
-        return [model getChildrenByIndex:index];
+        FileViewModel* children = [model getChildrenByIndex:index];
+        return children;
     }
     return nil;
 }
@@ -90,12 +85,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)item {
     FileViewModel *model = (FileViewModel*)item;
-    if([model numberOfChildren] > 0)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return [model isDir];
 }
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView
@@ -314,7 +304,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
 }
 
-- (void) recursiveFileUpdater: (NSURL*)url {
+/*- (void) recursiveFileUpdater: (NSURL*)url {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = url; // URL pointing to the directory you want to browse
     NSArray *keys = @[NSURLIsDirectoryKey];
@@ -345,6 +335,36 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         }
     }
     [self->nodes clean];
+}*/
+
+- (void) fileUpdater: (NSURL*)url {
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSURL *directoryURL = url; // URL pointing to the directory you want to browse
+    NSArray *keys = @[NSURLIsDirectoryKey];
+    NSArray *ignoredFileTypes = @[@"TMTTemporaryStorage"];
+    
+    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
+    NSUInteger count = [children count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        NSURL *fileUrl = children[i];
+        NSString *path = [fileUrl path];
+        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+        }
+        else if (! [isDirectory boolValue]) {
+            if (![ignoredFileTypes containsObject:[path pathExtension]]) {
+                [self->nodes addPath:path];
+            }
+        }
+        else
+        {
+            [self->nodes addPath:path];
+        }
+    }
+    [self->nodes clean:[url path]];
 }
 
 - (IBAction)newFile:(id)sender {
@@ -567,7 +587,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         NSString *path = [self.compilable.path stringByDeletingLastPathComponent];
         observer = [PathObserverFactory pathObserverForPath:path];
         [self loadPath:[NSURL fileURLWithPath:path]];
-        [observer addObserver:self withSelector:@selector(updateFileViewModel)];
+        [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
     }
     else if ([keyPath isEqualToString:@"self.window.isVisible"]) {
         if (!self.infoWindowController.window.isVisible) {
@@ -577,7 +597,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     
 }
 
-- (void)updateFileViewModel {
+- (void)updateFileViewModel:(NSArray *)affectedPaths {
     if (!self.compilable.path) {
         return;
     }
@@ -586,8 +606,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return;
     }
     
-    NSURL *url  = [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
-    [self recursiveFileUpdater:url];
+    for (NSString* path in affectedPaths) {
+        if([path hasPrefix:[self.compilable.path stringByDeletingLastPathComponent]]) {
+            NSURL *url  = [NSURL fileURLWithPath:path];
+            [self fileUpdater:url];
+        }
+    }
     [outline reloadData];
 }
 

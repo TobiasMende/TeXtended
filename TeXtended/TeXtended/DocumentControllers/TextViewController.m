@@ -248,12 +248,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:m];
         return;
     }
-    [synctex  startWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol andHandler:^(ForwardSynctex *result) {
-        if (result) {
-            NSDictionary *info = @{TMTForwardSynctexKey: result};
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
-        }
-    }];
+//    [synctex  startWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol andHandler:^(ForwardSynctex *result) {
+//        if (result) {
+//            NSDictionary *info = @{TMTForwardSynctexKey: result};
+//            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+//        }
+//    }];
 }
 
 - (void)loadView {
@@ -344,12 +344,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
-    
-    if (self.textView.servicesOn) {
-        // [self.textView.codeNavigationAssistant highlightCurrentLineForegroundWithRange:newSelectedCharRange];
-        [self.textView.syntaxHighlighter highlightVisibleArea];
-        
-    }
     return newSelectedCharRange;
 }
 

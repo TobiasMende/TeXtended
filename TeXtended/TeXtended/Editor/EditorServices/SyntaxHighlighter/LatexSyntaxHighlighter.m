@@ -67,6 +67,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 
 - (void) registerDefaults {
+    backgroundQueue = [NSOperationQueue new];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     
     /*
@@ -128,8 +129,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     if (!view.servicesOn) {
         return;
     }
-
-    [self highlightVisibleArea];
+    [self highlightNarrowArea];
     
 }
 
@@ -140,13 +140,11 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 - (void)highlightNarrowArea {
     //TODO: online highlight +- 5 lines;
-    [self highlightVisibleArea];
+    [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
 }
 
 - (void)highlightVisibleArea {
-    NSRange visibleTextRange = [view extendedVisibleRange];
-    
-    [self highlightRange:visibleTextRange];
+    [self highlightRange:[view extendedVisibleRange]];
 }
 
 - (void) highlightRange:(NSRange)range {
@@ -163,6 +161,10 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
  */
 - (void) performHighlightingInRange:(NSRange) textRange {
     //[view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
+    
+    if(textRange.length == 0) {
+        return;
+    }
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];

@@ -38,9 +38,6 @@
     
     /** The current stream */
     FSEventStreamRef stream;
-    
-    /** The identifier of the last file event */
-    NSNumber* lastEventId;
 }
 - (NSUInteger) numberOfObservers;
 /**
@@ -53,7 +50,7 @@
 - (id)initWithPath:(NSString *)path;
 
 /** Notifies the observer about changes in the directory */
-- (void) pathWasModified;
+- (void) pathWasModified:(NSArray *)affectedPaths;
 
 /**
  Method for adding an observer on which the given selector is performed on events

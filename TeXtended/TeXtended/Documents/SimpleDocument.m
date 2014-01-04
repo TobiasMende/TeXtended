@@ -15,6 +15,8 @@
 #import "DocumentCreationController.h"
 #import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
+#import "HighlightingTextView.h"
+
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
 static const NSSet *SELECTORS_HANDLED_BY_DC;
@@ -134,6 +136,22 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     
     return YES;
 }
+
+
+
+/*-(void)printDocument:(id)sender {
+    HighlightingTextView *textView = [[HighlightingTextView alloc] initWithFrame:NSMakeRect(0, 0, 468, 648)];
+    
+    NSString *text = [NSString stringWithContentsOfFile:self.model.texPath encoding:[self.model.encoding unsignedLongValue] error:nil];
+    
+    [textView setEditable:true];
+    [textView insertText:text];
+    NSPrintOperation *printOperation;
+    
+    printOperation = [NSPrintOperation printOperationWithView:textView];    
+    
+    [printOperation runOperation];
+}*/
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");

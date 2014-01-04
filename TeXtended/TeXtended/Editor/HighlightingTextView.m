@@ -277,11 +277,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)finalyUpdateTrackingAreas:(id)userInfo {
     [super updateTrackingAreas];
-    if (!self.servicesOn) {
-        return;
-    }
-    
-    [self updateSyntaxHighlighting];
+
 }
 
 
@@ -294,9 +290,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 
-- (NSRange) extendedVisibleRange {
-    NSRange range = [self.codeNavigationAssistant lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
-    for (NSUInteger iteration = 0; iteration < 5; iteration++) {
+- (NSRange) extendRange:(NSRange)range byLines:(NSUInteger)numLines {
+    for (NSUInteger iteration = 0; iteration < numLines; iteration++) {
         BOOL update = NO;
         if (range.location >0) {
             range.location -= 1;
@@ -308,12 +303,19 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             update = YES;
         }
         if (update) {
-            range = [self.codeNavigationAssistant lineTextRangeWithRange:range];
+            range = [self.codeNavigationAssistant lineTextRangeWithRange:range withLineTerminator:YES];
         } else {
             break;
         }
     }
     return range;
+}
+
+- (NSRange) extendedVisibleRange {
+    NSRange range = [self.codeNavigationAssistant lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
+    
+    return [self extendRange:range byLines:5];
+    
 }
 
 - (void)insertText:(id)str {
