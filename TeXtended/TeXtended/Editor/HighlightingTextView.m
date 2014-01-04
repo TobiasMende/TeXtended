@@ -277,11 +277,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)finalyUpdateTrackingAreas:(id)userInfo {
     [super updateTrackingAreas];
-    if (!self.servicesOn) {
-        return;
-    }
-    
-    [self updateSyntaxHighlighting];
+
 }
 
 

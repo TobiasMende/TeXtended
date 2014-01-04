@@ -166,6 +166,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
         return;
     }
     DDLogWarn(@"Highlighting: %@", NSStringFromRange(textRange));
+
     [self highlightMathBracketsInRange:textRange];
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
