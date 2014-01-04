@@ -162,4 +162,14 @@
 }
 
 
+- (TMTBibTexEntry *)entryForCiteKey:(NSString *)key {
+    for(CiteCompletion *entry in self.entries) {
+        if ([entry.key.lowercaseString isEqualToString:key.lowercaseString]) {
+            return entry.entry;
+        }
+    }
+    return nil;
+}
+
+
 @end
