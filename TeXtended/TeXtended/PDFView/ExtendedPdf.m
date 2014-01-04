@@ -53,6 +53,7 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 
 - (void) initVariables {
+    
     // init variables
     [self setGridHorizontalSpacing:1];
     [self setGridVerticalSpacing:1];
@@ -167,6 +168,29 @@ static const NSSet *KEYS_TO_UNBIND;
     [[pageNumbers view] setFrameOrigin:NSMakePoint(0, 0)];
 }
 
+- (NSImage *)flipImage:(NSImage *)image
+{
+    NSImage *existingImage = image;
+    NSSize existingSize = [existingImage size];
+    NSSize newSize = NSMakeSize(existingSize.width, existingSize.height);
+    NSImage *flipedImage = [[NSImage alloc] initWithSize:newSize];
+    
+    [flipedImage lockFocus];
+    [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+    
+    NSAffineTransform *t = [NSAffineTransform transform];
+    [t translateXBy:existingSize.width yBy:0];
+    [t scaleXBy:-1 yBy:1];
+    [t concat];
+    
+    [existingImage drawAtPoint:NSZeroPoint fromRect:NSMakeRect(0, 0, newSize.width, newSize.height) operation:NSCompositeSourceOver fraction:1.0];
+    
+    [flipedImage unlockFocus];
+    
+    return flipedImage;
+}
+
+
 - (void) drawPage:(PDFPage *) page
 {
     [super drawPage:page];
@@ -175,17 +199,39 @@ static const NSSet *KEYS_TO_UNBIND;
         firstDraw = false;
         [self initSubViews];
     }
-
+    
+    // draw the next or prev page
+    NSInteger i = [self.document indexForPage:page];
+    if (YES) { // can show next page
+        PDFPage* nextPage = nil;
+        if (i % 2 != 0) {
+            if( i > 0) {
+                nextPage = [self.document pageAtIndex:i-1];
+            }
+        } else if (i < [self.document pageCount]-1) {
+            nextPage = [self.document pageAtIndex:i+1];
+        }
+        if (nextPage) {
+            NSData* data = [nextPage dataRepresentation];
+            NSImage* img = [[NSImage alloc] initWithData:data];
+            img = [self flipImage:img];
+            
+            [img drawInRect:[page boundsForBox:kPDFDisplayBoxMediaBox]
+                   fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.2f];
+        }
+    }
+    
+    
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
                  (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
-                )];
+                 )];
     [controllsView update:self];
     
     [[pageNumbers view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
                  (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
-                )];
+                 )];
     [pageNumbers update];
     
     /* get the size of the current page */
@@ -195,6 +241,7 @@ static const NSSet *KEYS_TO_UNBIND;
     if (self.drawHorizotalLines || self.drawVerticalLines) {
         [self drawGrid:size];
     }
+
 }
 
 - (void) drawGrid:(NSSize) size {

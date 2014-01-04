@@ -24,7 +24,6 @@
 }
 
 - (IBAction)update:(id)sender {
-    
     /* set the size of the sliders so that they cover the current page */
     NSSize size = [[self.pdfView currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
     if (self.gridHOffsetSlider.maxValue != size.height) {

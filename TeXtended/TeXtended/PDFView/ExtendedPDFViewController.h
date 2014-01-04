@@ -19,7 +19,6 @@
 
 @interface ExtendedPDFViewController : NSViewController<ViewControllerProtocol>
 
-
 /** Current model from which the pdf is handeld by this class. */
 @property (strong,nonatomic) DocumentModel *model;
 
