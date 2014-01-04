@@ -67,22 +67,22 @@
            ofItem:(id)item {
     if(item == nil) {
         FileViewModel* children = [nodes getChildrenByIndex:index];
-        if (children.isDir) {
+        /*if (children.isDir) {
             if (!children.expandable) {
                 [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
             }
-        }
+        }*/
         return children;
     }
     else {
         FileViewModel *model = (FileViewModel*)item;
         FileViewModel* children = [model getChildrenByIndex:index];
-        if (children.isDir) {
+        /*if (children.isDir) {
             if (!children.expandable) {
                 [self simpleFileFinder:[NSURL fileURLWithPath:children.filePath]];
             }
-        }
-        return [model getChildrenByIndex:index];
+        }*/
+        return children;
     }
     return nil;
 }
@@ -90,11 +90,12 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    isItemExpandable:(id)item {
     FileViewModel *model = (FileViewModel*)item;
-    if([model numberOfChildren] > 0)
-    {
+    if (model.isDir) {
+        if (!model.expandable) {
+            [self simpleFileFinder:[NSURL fileURLWithPath:model.filePath]];
+        }
         return YES;
     }
-    
     return NO;
 }
 
