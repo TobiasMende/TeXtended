@@ -618,8 +618,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     
     for (NSString* path in affectedPaths) {
-        NSURL *url  = [NSURL fileURLWithPath:path];
-        [self fileUpdater:url];
+        if([path hasPrefix:[self.compilable.path stringByDeletingLastPathComponent]]) {
+            NSURL *url  = [NSURL fileURLWithPath:path];
+            [self fileUpdater:url];
+        }
     }
     [outline reloadData];
 }

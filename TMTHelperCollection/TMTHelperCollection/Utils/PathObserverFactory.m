@@ -152,12 +152,13 @@ return observer;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(void)pathWasModified:(NSArray *)affectedPaths {
-    [observersLock lock];
-    for (NSUInteger i = 0; i < observers.count; i++) {
-        SEL action = NSSelectorFromString(actions[i]);
-        [[observers[i] nonretainedObjectValue] performSelector:action withObject:affectedPaths];
+    if([observersLock tryLock]) {
+        for (NSUInteger i = 0; i < observers.count; i++) {
+            SEL action = NSSelectorFromString(actions[i]);
+            [[observers[i] nonretainedObjectValue] performSelector:action withObject:affectedPaths];
+        }
+        [observersLock unlock];
     }
-    [observersLock unlock];
 }
 #pragma clang diagnostic pop
 
