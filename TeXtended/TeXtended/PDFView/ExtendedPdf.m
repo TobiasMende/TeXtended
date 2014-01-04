@@ -159,9 +159,6 @@ static const NSSet *KEYS_TO_UNBIND;
         [self initSubViews];
     }
 
-    /* draw pdf content */
-    [page drawWithBox:[self displayBox]];
-    
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
                  (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2

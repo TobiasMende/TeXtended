@@ -248,12 +248,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:m];
         return;
     }
-    [synctex  startWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol andHandler:^(ForwardSynctex *result) {
-        if (result) {
-            NSDictionary *info = @{TMTForwardSynctexKey: result};
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
-        }
-    }];
+//    [synctex  startWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol andHandler:^(ForwardSynctex *result) {
+//        if (result) {
+//            NSDictionary *info = @{TMTForwardSynctexKey: result};
+//            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+//        }
+//    }];
 }
 
 - (void)loadView {
