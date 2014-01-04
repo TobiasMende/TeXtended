@@ -36,6 +36,9 @@
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
 		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
+		76AA38EC1878078B00B965FA /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */; };
+		76AA38ED1878078B00B965FA /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38EA1878078B00B965FA /* MMTabBarView.framework */; };
+		76AA38EE1878078B00B965FA /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
@@ -130,12 +133,6 @@
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
 		D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE8D517ABCE5400298D11 /* OutlineElement.m */; };
 		D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */; };
-		D2CB8E761866F71400C9CC14 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CB8E731866F71400C9CC14 /* BibTexToolsFramework.framework */; };
-		D2CB8E771866F71400C9CC14 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CB8E741866F71400C9CC14 /* MMTabBarView.framework */; };
-		D2CB8E781866F71400C9CC14 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CB8E751866F71400C9CC14 /* TMTHelperCollection.framework */; };
-		D2CB8E791866F71C00C9CC14 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CB8E731866F71400C9CC14 /* BibTexToolsFramework.framework */; };
-		D2CB8E7A1866F71C00C9CC14 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CB8E741866F71400C9CC14 /* MMTabBarView.framework */; };
-		D2CB8E7B1866F71C00C9CC14 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2CB8E751866F71400C9CC14 /* TMTHelperCollection.framework */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
 		D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2CC5502171EAFAB00D81CF1 /* Credits.rtf */; };
@@ -237,9 +234,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D2CB8E791866F71C00C9CC14 /* BibTexToolsFramework.framework in CopyFiles */,
-				D2CB8E7A1866F71C00C9CC14 /* MMTabBarView.framework in CopyFiles */,
-				D2CB8E7B1866F71C00C9CC14 /* TMTHelperCollection.framework in CopyFiles */,
 				D21840DD1864934C00B73EB5 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +292,9 @@
 		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
 		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
 		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
+		76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
+		76AA38EA1878078B00B965FA /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/MMTabBarView.framework"; sourceTree = "<group>"; };
+		76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
@@ -524,9 +521,6 @@
 		D2CAE8D517ABCE5400298D11 /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
 		D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathExtension.h"; sourceTree = "<group>"; };
 		D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PathExtension.m"; sourceTree = "<group>"; };
-		D2CB8E731866F71400C9CC14 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/BibTexToolsFramework.framework; sourceTree = "<group>"; };
-		D2CB8E741866F71400C9CC14 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/MMTabBarView.framework; sourceTree = "<group>"; };
-		D2CB8E751866F71400C9CC14 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2CC54F6171EAFAB00D81CF1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -602,9 +596,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2CB8E761866F71400C9CC14 /* BibTexToolsFramework.framework in Frameworks */,
-				D2CB8E771866F71400C9CC14 /* MMTabBarView.framework in Frameworks */,
-				D2CB8E781866F71400C9CC14 /* TMTHelperCollection.framework in Frameworks */,
+				76AA38EC1878078B00B965FA /* BibTexToolsFramework.framework in Frameworks */,
+				76AA38ED1878078B00B965FA /* MMTabBarView.framework in Frameworks */,
+				76AA38EE1878078B00B965FA /* TMTHelperCollection.framework in Frameworks */,
 				D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
@@ -1211,9 +1205,9 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D2CB8E731866F71400C9CC14 /* BibTexToolsFramework.framework */,
-				D2CB8E741866F71400C9CC14 /* MMTabBarView.framework */,
-				D2CB8E751866F71400C9CC14 /* TMTHelperCollection.framework */,
+				76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */,
+				76AA38EA1878078B00B965FA /* MMTabBarView.framework */,
+				76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */,
 				D23FD40D1863A4D7006BFD33 /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
@@ -1727,7 +1721,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"../**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
@@ -1744,7 +1741,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"../**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";

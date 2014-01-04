@@ -23,7 +23,7 @@ static const NSSet *KEYS_TO_UNBIND;
 @implementation ExtendedPdf
 
 +(void)initialize {
-    KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines",@"gridHorizontalSpacing",@"gridHorizontalOffset",@"drawVerticalLines",@"gridVerticalSpacing",@"gridVerticalOffset", nil];
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines",@"gridHorizontalSpacing",@"gridHorizontalOffset",@"drawVerticalLines",@"gridVerticalSpacing",@"gridVerticalOffset", @"gridColor", @"drawPageNumbers", @"gridUnit", nil];
 }
 
 - (id)init {
@@ -59,17 +59,37 @@ static const NSSet *KEYS_TO_UNBIND;
     [self setGridHorizontalOffset:0];
     [self setGridVerticalOffset:0];
     [self setGridColor:[NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.25f]];
+    [self setDrawPageNumbers:NO];
     
-    // link propertys to application shared
+    // link horizontal line propertys to application shared
     [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
     [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridSpacing"] options:nil];
     [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridOffset"] options:nil];
     
+    // link line color propertys to application shared
+    [self bind:@"gridColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTGridColor"] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
+    
+    // link vertical line propertys to application shared
     [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawVGrid"] options:nil];
     [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
     [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
+    
+    // link page number propertys to application shared
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTGridColor" options:0 context:NULL];
+    [self bind:@"drawPageNumbers" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTPageNumbers"] options:nil];
+    
+    // link grid unit to application shared
+    [self bind:@"gridUnit" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTGridUnit"] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTGridUnit" options:0 context:NULL];
+    
     // to init things at the first draw
     firstDraw = true;
+}
+
+/** Needed to redraw page if grid color changes or units */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self setNeedsDisplay:YES];
 }
 
 - (void) startBackwardSynctex:(id)sender {
@@ -97,25 +117,21 @@ static const NSSet *KEYS_TO_UNBIND;
         
         if ([[[controllsView view] animator] alphaValue] == 0) {
             [[[controllsView view] animator] setAlphaValue:0.9f];
-            [self setNeedsDisplay:YES];
         }
-        
     } else {
         [[[controllsView view] animator] setAlphaValue:0.0f];
-        [self setNeedsDisplay:YES];
-
     }
 }
 
 - (void) beginGestureWithEvent:(NSEvent *)event {
     [super beginGestureWithEvent:event];
+    if (!self.drawPageNumbers) return;
     
     if ([self.displayPageNumbersTimer isValid]) {
         [self.displayPageNumbersTimer invalidate];
     } else {
         [[[pageNumbers view] animator] setAlphaValue:0.9f];
     }
-    
 }
 
 - (void) deactivatePageNumbers {
@@ -124,6 +140,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void) endGestureWithEvent:(NSEvent *)event {
     [super endGestureWithEvent:event];
+    if (!self.drawPageNumbers) return;
     
     if ([self.displayPageNumbersTimer isValid]) {
         [self.displayPageNumbersTimer invalidate];
@@ -153,14 +170,11 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void) drawPage:(PDFPage *) page
 {
     [super drawPage:page];
-    
+
     if (firstDraw) {
         firstDraw = false;
         [self initSubViews];
     }
-
-    /* draw pdf content */
-    [page drawWithBox:[self displayBox]];
     
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
@@ -181,14 +195,14 @@ static const NSSet *KEYS_TO_UNBIND;
     if (self.drawHorizotalLines || self.drawVerticalLines) {
         [self drawGrid:size];
     }
-
-
 }
 
 - (void) drawGrid:(NSSize) size {
     int width = size.width;
     int height = size.height;
     int i = 0 ;
+    float scaling = [self getScalingFactor];
+    if (scaling < 1 && [self gridVerticalSpacing] == 1) scaling = 1;
     
     /* use the given color */
     [[self gridColor] setStroke];
@@ -197,16 +211,19 @@ static const NSSet *KEYS_TO_UNBIND;
     NSBezierPath* drawingPath = [NSBezierPath bezierPath];
         
     /* first the vertical lines */
+    if (scaling < 1 && [self gridVerticalSpacing] == 1) scaling = 1;
     if (self.drawVerticalLines && [self gridVerticalSpacing] > 0) {
-        for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]) {
+        for( i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing]*scaling) {
             [drawingPath moveToPoint:NSMakePoint(i, 0)];
             [drawingPath lineToPoint:NSMakePoint(i, height)];
         }
     }
     
     /* then the horizontal lines */
+    scaling = [self getScalingFactor];
+    if (scaling < 1 && [self gridHorizontalSpacing] == 1) scaling = 1;
     if (self.drawHorizotalLines && [self gridHorizontalSpacing] > 0) {
-        for( i = height - [self gridHorizontalOffset]; i > 0 ; i= i - [self gridHorizontalSpacing]) {
+        for( i = height - [self gridHorizontalOffset]; i > 0 ; i = i - [self gridHorizontalSpacing]*scaling) {
             [drawingPath moveToPoint:NSMakePoint(0,i)];
             [drawingPath lineToPoint:NSMakePoint(width, i)];
         }
@@ -214,6 +231,25 @@ static const NSSet *KEYS_TO_UNBIND;
     
     /* actual draw it */
     [drawingPath stroke];
+}
+
+/** which unit should be used? */
+- (float) getScalingFactor {
+    
+    if ([self.gridUnit isEqualToString:@"pt"]) {
+        return 1;
+    }
+    if ([self.gridUnit isEqualToString:@"q"]) {
+        return 0.709;
+    }
+    if ([self.gridUnit isEqualToString:@"mm"]) {
+        return 2.835;
+    }
+    if ([self.gridUnit isEqualToString:@"cm"]) {
+        return 28.35;
+    }
+
+    return 1;
 }
 
 - (void) addControlls {
@@ -234,7 +270,6 @@ static const NSSet *KEYS_TO_UNBIND;
     }
     return result;
 }
-
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
 #pragma clang diagnostic push
@@ -262,6 +297,8 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridColor"];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridUnit"];
     [self unbindAll];
     
 }
