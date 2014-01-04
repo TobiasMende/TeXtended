@@ -113,19 +113,13 @@
 
 
 - (void) documentModelHasChangedAction : (DocumentController*) controller {
-    [self documentHasChangedAction];
 }
 
 - (void) documentHasChangedAction {
-    if (!self.pdfView.document) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self loadPDF];
-        }];
-    }
 }
 
 - (void)loadPDF {
-    if (self.model && self.model.pdfPath) {
+    if (self.model.pdfPath) {
         
         // what is visible before the update?
         PDFDestination *visibleArea = [self.pdfView currentDestination];
