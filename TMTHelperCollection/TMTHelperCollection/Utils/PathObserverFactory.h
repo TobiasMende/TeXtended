@@ -38,9 +38,6 @@
     
     /** The current stream */
     FSEventStreamRef stream;
-    
-    /** The identifier of the last file event */
-    NSNumber* lastEventId;
 }
 - (NSUInteger) numberOfObservers;
 /**

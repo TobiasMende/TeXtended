@@ -118,7 +118,7 @@ return observer;
                                  &fsevents_callback,
                                  &context,
                                  (__bridge CFArrayRef) pathsToWatch,
-                                 [lastEventId unsignedLongLongValue],
+                                 kFSEventStreamEventIdSinceNow,
                                  (CFAbsoluteTime) latency,
                                  kFSEventStreamCreateFlagUseCFTypes
                                  );
