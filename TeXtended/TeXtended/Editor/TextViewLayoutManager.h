@@ -8,7 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TextViewLayoutManager : NSLayoutManager
+@interface TextViewLayoutManager : NSLayoutManager {
+    NSGlyph space;
+    NSGlyph bulletspace;
+    NSGlyph lb;
+    NSGlyph arrowlb;
+}
 
 @property NSColor *symbolColor;
 @property BOOL shouldReplaceInvisibleSpaces;
