@@ -91,6 +91,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
+- (IBAction)deleteTemporaryFiles:(id)sender {
+    NSSet *dms = self.mainDocument.model.mainDocuments;
+    
+    for (DocumentModel *dm in dms) {
+        [self.fileViewController deleteTemporaryFilesAtPath:[dm.texPath stringByDeletingLastPathComponent]];
+    }
+}
+
 
 - (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
