@@ -175,7 +175,7 @@ static const NSSet *KEYS_TO_UNBIND;
         firstDraw = false;
         [self initSubViews];
     }
-    
+
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
                  (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
