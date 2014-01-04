@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, StatsPanelController, DocumentModel;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, StatsPanelController, DocumentModel, PrintDialogController;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
     StatsPanelController *statisticPanelController;
+    PrintDialogController *printDialogController;
 }
 /** The controller of the documents main window */
 @property (assign) MainWindowController *mainWindowController;
@@ -27,6 +28,8 @@
 - (void)initializeDocumentControllers;
 - (void)finalCompileForDocumentController:(DocumentController *)dc;
 - (void)showStatisticsForModel:(DocumentController *)dc;
+- (void)showPrintDialog;
+- (void)printDialogDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 - (void)openNewTabForCompilable:(DocumentModel*)model;
 - (void)removeDocumentController:(DocumentController *)dc;
 - (void)firstResponderDidChangeNotification:(NSNotification *)note;

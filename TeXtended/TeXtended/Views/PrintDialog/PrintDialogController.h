@@ -10,7 +10,8 @@
 
 @interface PrintDialogController : NSWindowController
 
-@property (assign) IBOutlet NSPopUpButton *documentType;
 @property (assign) IBOutlet NSPopUpButton *documentName;
+@property NSArray* popUpElements;
+@property NSArray* popUpIdentifier;
 
 @end
