@@ -54,6 +54,11 @@
 @property int gridVerticalOffset;
 
 /**
+ * True if page numbers should be drawn.
+ */
+@property BOOL drawPageNumbers;
+
+/**
  * Color of the grid, default is gray.
  */
 @property (strong) NSColor *gridColor;
@@ -63,6 +68,9 @@
 
 /** Timer which defines how long the page numbers are shown after a scroll event */
 @property (strong) NSTimer *displayPageNumbersTimer;
+
+/** Unit used to scale the grid */
+@property (strong) NSString* gridUnit;
 
 @property (assign) id<FirstResponderDelegate> firstResponderDelegate;
 

@@ -20,19 +20,25 @@
         [self bind:@"symbolColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
         [self bind:@"shouldReplaceInvisibleSpaces" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_SPACES] options:NULL];
         [self bind:@"shouldReplaceInvisibleLineBreaks" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_LINEBREAKS] options:NULL];
+        
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT_NAME] options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
     
     
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"!!! Font changed");
+    NSFont* font = [NSFont fontWithName:[[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey:TMT_EDITOR_FONT_NAME] size:[[[[NSUserDefaultsController sharedUserDefaultsController]defaults] valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
+    space = [font glyphWithName:@"space"];
+    bulletspace = [font glyphWithName:@"bullet"];
+    lb = [font glyphWithName:@"space"];
+    arrowlb = [font glyphWithName:@"bullet"];
+}
+
 - (void) drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 {
-    NSFont* font = [NSFont fontWithName:[[[NSUserDefaultsController sharedUserDefaultsController] defaults] valueForKey:TMT_EDITOR_FONT_NAME] size:[[[[NSUserDefaultsController sharedUserDefaultsController]defaults] valueForKey:TMT_EDITOR_FONT_SIZE] floatValue]];
-    NSGlyph space = [font glyphWithName:@"space"];
-    NSGlyph bulletspace = [font glyphWithName:@"bullet"];
-    NSGlyph lb = [font glyphWithName:@"space"];
-    NSGlyph arrowlb = [font glyphWithName:@"bullet"];
     
     for (NSUInteger i = glyphsToShow.location; i != glyphsToShow.location + glyphsToShow.length; i++)
     {
@@ -71,8 +77,8 @@
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
 }
 
--(void)dealloc
-{
+- (void)dealloc {
+    [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 }
 
 @end

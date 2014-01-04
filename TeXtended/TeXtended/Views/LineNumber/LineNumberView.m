@@ -511,7 +511,7 @@
     float height = 0;
     NSUInteger index = 0, rectCount;
     
-    for (NSUInteger line = startLine; height < (visibleRect.origin.y + visibleRect.size.height) && line < [lines count]; line++) {
+    for (NSUInteger line = startLine; height < NSMaxY(visibleRect) && line < [lines count]; line++) {
         
         index = [currentLines[line] unsignedIntValue];
         rects = [[view layoutManager] rectArrayForCharacterRange:NSMakeRange(index, 0)

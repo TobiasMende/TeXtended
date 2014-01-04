@@ -81,12 +81,14 @@
     if (model != _model) {
         if(_model) {
             [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
         }
         _model = model;
         [self updateTabViewItem];
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerSynctexChanged object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerSynctexDidChange:) name:TMTCompilerSynctexChanged object:_model];
                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidClose:) name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
             
         }
@@ -120,9 +122,14 @@
 
 - (void)loadPDF {
     if (self.model.pdfPath) {
-        
         // what is visible before the update?
         PDFDestination *visibleArea = [self.pdfView currentDestination];
+        NSInteger index = -1;
+        NSPoint point = NSMakePoint(0, 0);
+        if (visibleArea) {
+            index = [self.pdfView.document indexForPage:visibleArea.page];
+            point = visibleArea.point;
+        }
         
         // update
         NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
@@ -131,7 +138,12 @@
         [self.pdfView setDocument:pdfDoc];
         
         // restore visible region
-        [self.pdfView goToDestination:visibleArea];
+        if (index >= 0) {
+            PDFPage *page = [pdfDoc pageAtIndex:index];
+            if (page) {
+                [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];
+            }
+        }
     }
 }
 
@@ -141,13 +153,20 @@
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self loadPDF];
+        [self updatePDFPosition:[notification userInfo]];
+    }];
+}
+
+- (void)compilerSynctexDidChange:(NSNotification *)notification {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self updatePDFPosition:[notification userInfo]];
     }];
 }
 
 - (void)updatePDFPosition:(NSDictionary *)info {
     PDFDocument *doc = self.pdfView.document;
-    [self loadPDF];
+    //
     if (doc) {
         ForwardSynctex *synctex = info[TMTForwardSynctexKey];
         if (synctex.page > 0 && doc.pageCount > synctex.page-1) {
