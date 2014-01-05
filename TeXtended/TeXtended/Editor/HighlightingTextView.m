@@ -845,6 +845,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:filename]];
         }
         [self jumpToNextPlaceholder];
+        
+        // After drop operation the first responder remains the drag source
         [[self window]makeFirstResponder:self];
     }
     
