@@ -30,6 +30,7 @@
 - (void)showStatisticsForModel:(DocumentController *)dc;
 - (void)showPrintDialog;
 - (void)printDialogDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation  success:(BOOL)success  contextInfo:(void *)contextInfo;
 - (void)openNewTabForCompilable:(DocumentModel*)model;
 - (void)removeDocumentController:(DocumentController *)dc;
 - (void)firstResponderDidChangeNotification:(NSNotification *)note;

@@ -39,6 +39,7 @@
 #import "ProjectDocument.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
+#import "MainDocumentCompletionWindow.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -182,6 +183,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     autoCompletionController = nil;
 }
 
+- (void)dismissMainDocumentsWindow {
+    [mainDocumentsController.window orderOut:self];
+    mainDocumentsController = nil;
+}
+
 
 - (void)extendedComplete:(id)sender {
     if (!sender) {
@@ -245,6 +251,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     
     
+}
+
+- (void)insertDropCompletion:(NSString*)path inExtension:(NSString*)extension {
+    [self dismissMainDocumentsWindow];
 }
 
 - (void)flagsChanged:(NSEvent *)theEvent {
@@ -485,6 +495,15 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self.syntaxHighlighter highlightEntireDocument];
 }
 
+-(void)showMainDocumentsWindow:(NSArray*)mainDocuments {
+    if (!mainDocumentsController) {
+        mainDocumentsController = [MainDocumentCompletionWindow new];
+        mainDocumentsController.parent = self;
+    }
+    
+    [[self window] makeFirstResponder:self];
+    [mainDocumentsController positionWindowWithContent:mainDocuments];
+}
 
 
 #pragma mark -
@@ -581,6 +600,31 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         
     }
+    
+    if (mainDocumentsController) {
+        switch (theEvent.keyCode) {
+            case TMTArrowDownKeyCode:
+                [mainDocumentsController arrowDown];
+                return;
+            case TMTArrowUpKeyCode:
+                [mainDocumentsController arrowUp];
+                return;
+            case TMTBackKeyCode:
+                [self dismissMainDocumentsWindow];
+                break;
+            case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
+                NSUInteger index = (mainDocumentsController.tableView.selectedRow >= 0 ? mainDocumentsController.tableView.selectedRow : 0);
+                NSTableColumn *column = [[mainDocumentsController.tableView tableColumns] objectAtIndex:0];
+                NSCell *cell = [column dataCellForRow:index];
+                DDLogCInfo(@"%@",[cell stringValue]);
+                return;
+            }
+            default:
+                break;
+        }
+        
+    }
+    
     if (theEvent.keyCode == TMTTabKeyCode && theEvent.modifierFlags&NSAlternateKeyMask) {
         if (theEvent.modifierFlags & NSShiftKeyMask) {
             [self.codeNavigationAssistant handleBacktabInsertion];
@@ -855,6 +899,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if ([dc.mainDocument isKindOfClass:[SimpleDocument class]]) {
             SimpleDocument* doc = (SimpleDocument*)dc.mainDocument;
             for (NSString *filename in filenames) {
+                //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
                 [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[doc.model.texPath stringByDeletingLastPathComponent]]]];
             }
         }

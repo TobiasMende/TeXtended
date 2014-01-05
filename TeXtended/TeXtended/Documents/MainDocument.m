@@ -149,7 +149,9 @@
         BOOL isPDF = [[identifier substringFromIndex:identifier.length-4] isEqualToString:@"-pdf"];
         
         if (isPDF) {
-            [[[[TMTTabManager sharedTabManager] tabViewItemForIdentifier:identifier] view] printDocument:self];
+            NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:identifier];
+            [item.tabView selectTabViewItem:item];
+            [[item view] printDocument:nil];
         }
         else {
             for (DocumentController* dc in self.documentControllers) {
@@ -167,6 +169,7 @@
                     printOperation = [NSPrintOperation printOperationWithView:textView];
                     
                     [printOperation runOperation];
+                    
                 }
             }
         }
