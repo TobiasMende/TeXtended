@@ -38,6 +38,7 @@
 #import "SimpleDocument.h"
 #import "ProjectDocument.h"
 #import "NSString+PathExtension.h"
+#import "ProjectModel.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -859,6 +860,16 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         else {
             ProjectDocument* doc = (ProjectDocument*)dc.mainDocument;
+            if (doc.model.mainDocuments.count > 1) {
+                //Not implemented yet.
+            }
+            else
+            {
+                DocumentModel *model = (DocumentModel*)[[doc.model.mainDocuments allObjects] objectAtIndex:0];
+                for (NSString *filename in filenames) {
+                    [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[model.texPath stringByDeletingLastPathComponent]]]];
+                }
+            }
         }
         
         [self jumpToNextPlaceholder];
