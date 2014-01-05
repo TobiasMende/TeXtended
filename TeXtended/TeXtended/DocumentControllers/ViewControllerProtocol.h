@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DocumentController;
-
+#import "FirstResponderDelegate.h"
 @protocol ViewControllerProtocol <NSObject>
 
 
 @optional
-- (id) initWithDocumentController:(DocumentController*) dc;
+- (id) initWithFirstResponder:(id<FirstResponderDelegate>) dc;
 - (void)documentModelDidChange;
-- (void)documentModelHasChangedAction:(DocumentController*)dc;
+- (void)documentModelHasChangedAction:(id<FirstResponderDelegate>)dc;
 - (void)documentHasChangedAction;
 - (void)breakUndoCoalescing;
 - (NSTabViewItem *)tabViewItem;

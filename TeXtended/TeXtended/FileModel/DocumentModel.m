@@ -85,6 +85,20 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
+- (NSString *)header {
+    NSError *error;
+    NSString *content = [NSString stringWithContentsOfFile:self.texPath encoding:self.encoding.unsignedLongValue error:&error];
+    if (!error) {
+        NSScanner *scanner = [NSScanner scannerWithString:content];
+        NSString *result;
+        BOOL success = [scanner scanUpToString:@"\\begin{document}" intoString:&result];
+        if (success && result) {
+            return result;
+        }
+    }
+    return nil;
+}
+
 - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
     if ([self.texPath isEqualToString:path]) {
         return self;

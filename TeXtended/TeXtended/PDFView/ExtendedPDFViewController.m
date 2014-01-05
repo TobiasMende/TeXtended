@@ -114,7 +114,7 @@
 }
 
 
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
+- (void) documentModelHasChangedAction : (id<FirstResponderDelegate>) controller {
 }
 
 - (void) documentHasChangedAction {

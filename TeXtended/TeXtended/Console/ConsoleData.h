@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "CompileProcessHandler.h"
 @class DocumentModel, MessageCollection, DocumentController;
 @interface ConsoleData : NSObject {
     /** A file handle for reading the console output */
@@ -15,7 +16,7 @@
     NSTimer *logMessageUpdateTimer;
 }
 @property (strong, nonatomic) DocumentModel *model;
-@property (assign) DocumentController *documentController;
+@property (assign) id<CompileProcessHandler> firstResponderDelegate;
 
 /** Flag for showing whether the console is active or not */
 @property (nonatomic)BOOL consoleActive;
