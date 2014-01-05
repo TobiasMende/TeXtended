@@ -13,13 +13,15 @@
 #import "Compiler.h"
 #import "TextViewController.h"
 #import "ExtendedPDFViewController.h"
+#import "TMTNotificationCenter.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 @interface QuickPreviewManager ()
 - (void) buildTempModelFor:(DocumentModel *)model;
 - (void) cleanTempFiles;
-
+- (void) compilerStart:(NSNotification *)note;
+- (void) compilerEnd:(NSNotification *)note;
 @end
 @implementation QuickPreviewManager
 
@@ -44,6 +46,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     [self.splitView addSubview:self.pvc.view];
     [self.splitView adjustSubviews];
     [self.window setInitialFirstResponder:self.textViewController.textView];
+    [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
     
 }
 
@@ -51,19 +54,43 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     [super showWindow:sender];
     [self.window makeKeyAndOrderFront:sender];
     [self.window makeFirstResponder:self.textViewController.textView];
-    [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
     [self updateMainCompilable];
     [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
+    [self.textViewController.textView makeKeyView];
 }
 
 
 - (void)buildTempModelFor:(DocumentModel *)model {
+    if (self.parentModel) {
+        [self.parentModel removeObserver:self forKeyPath:@"self.mainDocuments"];
+    }
+    if (self.model) {
+        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:self.model];
+        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidStartCompiling object:self.model];
+    }
+    self.parentModel = model;
     self.model = [DocumentModel new];
     self.model.liveCompile = @YES;
-    self.model.liveCompiler = model.liveCompiler;
-    self.model.encoding = model.encoding;
-    self.mainDocuments = [model.mainDocuments allObjects];
+    
+    [self.model bind:@"liveCompiler" toObject:model withKeyPath:@"liveCompiler" options:nil];
+    [self.model bind:@"encoding" toObject:model withKeyPath:@"encoding" options:nil];
+    [self.parentModel addObserver:self forKeyPath:@"self.mainDocuments" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+    
     [self.pvc setModel:self.model];
+    [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(compilerStart:) name:TMTCompilerDidStartCompiling object:self.model];
+    [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(compilerEnd:) name:TMTCompilerDidEndCompiling object:self.model];
+}
+
+- (void)compilerStart:(NSNotification *)note {
+    self.isCompiling = YES;
+}
+
+- (void)compilerEnd:(NSNotification *)note {
+    self.isCompiling = NO;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    self.mainDocuments = [self.parentModel.mainDocuments allObjects];
 }
 
 - (void)liveCompile:(id)sender {
@@ -150,12 +177,18 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 
 - (IBAction)cancel:(id)sender {
     [self.window close];
+    [self.parentView.window makeFirstResponder:self.parentView];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [self.compiler terminateAndKill];
+    [self.compiler abort];
     [self cleanTempFiles];
-    [self.parentView.window makeFirstResponder:self.parentView];
+    [self.parentView makeKeyView];
+    
+}
+
+- (void)dealloc {
+    [self.compiler terminateAndKill];
 }
 
 @end
