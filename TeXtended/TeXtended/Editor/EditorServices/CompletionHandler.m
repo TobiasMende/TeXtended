@@ -82,7 +82,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 /** Method for detecting and skipping the closing bracket of a \begin{...} statement */
 - (void) skipClosingBracket;
 
-- (NSAttributedString*)expandWhiteSpacesInAttrString:(NSAttributedString *) string;
+
 
 - (void) unbindAll;
 

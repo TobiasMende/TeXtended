@@ -96,4 +96,6 @@
 
 - (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
+    
+    - (NSAttributedString*)expandWhiteSpacesInAttrString:(NSAttributedString *) string;
 @end

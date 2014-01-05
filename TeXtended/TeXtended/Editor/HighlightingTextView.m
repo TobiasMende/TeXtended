@@ -913,7 +913,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         for (NSString *filename in filenames) {
             //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
-            [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]]];
+            
+            NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]];
+            
+            [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
         }
         
         [self jumpToNextPlaceholder];
@@ -1006,7 +1009,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (BOOL)resignFirstResponder {
     BOOL result = [super resignFirstResponder];
-    DDLogInfo(@"Resign");
     if (result && autoCompletionController) {
         if (self.selectedRange.length>0) {
             [self delete:self];
