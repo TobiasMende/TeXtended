@@ -600,9 +600,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)showQuickPreviewAssistant:(id)sender {
-    quickPreview = [[QuickPreviewManager alloc] initWithParentView:self];
-    [quickPreview loadWindow];
-    [quickPreview.window makeKeyAndOrderFront:self];
+    if (!quickPreview) {
+        quickPreview = [[QuickPreviewManager alloc] initWithParentView:self];
+    }
+    [quickPreview showWindow:self];
 }
 
 
@@ -682,7 +683,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         } else {
             return NO;
         }
-    }else {
+    }else if(aSelector == @selector(showQuickPreviewAssistant:)) {
+        return self.firstResponderDelegate.model.texPath && self.firstResponderDelegate.model.texPath.length > 0;
+    } else {
         return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
     }
 }

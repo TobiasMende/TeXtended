@@ -378,6 +378,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     } 
 }
 
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)firstResponderDelegate {
+    _firstResponderDelegate = firstResponderDelegate;
+    self.textView.firstResponderDelegate = firstResponderDelegate;
+}
+
 
 #pragma mark -
 #pragma mark Dealloc
