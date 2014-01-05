@@ -1208,7 +1208,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="B8I-oI-K9c">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="OYz-n7-zQ3">
                                         <items>
                                             <menuItem title="pt" id="7za-vH-Rbe"/>
@@ -1998,6 +1998,7 @@
         <customObject id="2266" customClass="CompletionsController">
             <connections>
                 <outlet property="commandsView" destination="1715" id="2277"/>
+                <outlet property="dropView" destination="L8Y-7f-aRU" id="R6o-ys-Ue5"/>
                 <outlet property="environmentView" destination="1731" id="2278"/>
             </connections>
         </customObject>
@@ -2019,7 +2020,7 @@
         </box>
         <customView id="hcA-km-LO9" userLabel="Drop Assistant">
             <rect key="frame" x="0.0" y="0.0" width="725" height="485"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField verticalHuggingPriority="750" id="TA1-GT-hpd">
                     <rect key="frame" x="-73" y="41" width="870" height="17"/>
@@ -2031,8 +2032,8 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Drop Completion" borderType="line" id="FTn-jb-qDN">
-                    <rect key="frame" x="17" y="62" width="691" height="403"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="17" y="62.000000376450288" width="691" height="403"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="689" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2044,14 +2045,14 @@
                                     <rect key="frame" x="1" y="17" width="651" height="323"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="dKr-l5-hml" id="L8Y-7f-aRU">
+                                        <tableView verticalHuggingPriority="750" tag="3" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="dKr-l5-hml" id="L8Y-7f-aRU">
                                             <rect key="frame" x="0.0" y="0.0" width="651" height="323"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="lhh-n4-nhb">
+                                                <tableColumn identifier="insertion" width="116" minWidth="40" maxWidth="1000" id="lhh-n4-nhb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extension">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2064,7 +2065,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn width="529" minWidth="40" maxWidth="1000" id="q26-Rm-EsA">
+                                                <tableColumn identifier="extension" width="529" minWidth="40" maxWidth="1000" id="q26-Rm-EsA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Template">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2078,6 +2079,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="2266" name="selectionIndexes" keyPath="self.selectedDropIndexes" id="DHx-gt-3bV"/>
+                                                <outlet property="dataSource" destination="2266" id="0UM-8e-B7Q"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2117,7 +2122,7 @@
                                     <action selector="resetDropCompletionRanking:" target="2266" id="3ud-To-OiW"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="2" id="CbS-ry-d8F">
+                            <button verticalHuggingPriority="750" tag="3" id="CbS-ry-d8F">
                                 <rect key="frame" x="18" y="13" width="34" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ADt-q3-yS7">
@@ -2128,7 +2133,7 @@
                                     <action selector="addItem:" target="2266" id="CMW-YC-2F7"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="2" id="1Ey-ZT-cJN">
+                            <button verticalHuggingPriority="750" tag="3" id="1Ey-ZT-cJN">
                                 <rect key="frame" x="51" y="13" width="34" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u5g-GH-UeA">
