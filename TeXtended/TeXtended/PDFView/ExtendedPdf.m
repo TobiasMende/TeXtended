@@ -71,7 +71,6 @@ static const NSSet *KEYS_TO_UNBIND;
     [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridOffset] options:nil];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridOffset options:0 context:NULL];
     
-    
     // link vertical line propertys to application shared
     [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawVGrid] options:nil];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawVGrid options:0 context:NULL];
@@ -107,7 +106,7 @@ static const NSSet *KEYS_TO_UNBIND;
 /** Needed to redraw page if grid color changes or units */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self setNeedsDisplay:YES];
+    [self layoutDocumentView];
 }
 
 - (void) startBackwardSynctex:(id)sender {
