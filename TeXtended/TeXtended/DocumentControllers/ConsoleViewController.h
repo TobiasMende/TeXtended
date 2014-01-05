@@ -30,4 +30,5 @@
 @property (strong) IBOutlet ConsoleOutputView *outputView;
 
 - (void)scrollToCurrentPosition;
+- (IBAction)cancelCompiling:(id)sender;
 @end
