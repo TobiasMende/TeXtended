@@ -89,6 +89,8 @@ static const NSSet *KEYS_TO_UNBIND;
     
     // to init things at the first draw
     firstDraw = true;
+    
+    [self initSubViews];
 }
 
 /** Needed to redraw page if grid color changes or units */
@@ -197,12 +199,14 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void) drawPage:(PDFPage *) page
 {
-    [super drawPage:page];
+    
 
-    if (firstDraw) {
-        firstDraw = false;
-        [self initSubViews];
-    }
+//    if (firstDraw) {
+//        firstDraw = false;
+//        [self initSubViews];
+//    }
+    
+    [super drawPage:page];
     
     // draw the next or prev page
     if (self.pageAlpha) {
@@ -226,16 +230,16 @@ static const NSSet *KEYS_TO_UNBIND;
     }
     
     
-    [[controllsView view] setFrameOrigin:
-     NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
-                 (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
-                 )];
+//    [[controllsView view] setFrameOrigin:
+//     NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
+//                 (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
+//                 )];
     [controllsView update:self];
     
-    [[pageNumbers view] setFrameOrigin:
-     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
-                 (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
-                 )];
+//    [[pageNumbers view] setFrameOrigin:
+//     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
+//                 (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
+//                 )];
     [pageNumbers update];
     
     /* get the size of the current page */

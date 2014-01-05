@@ -32,6 +32,8 @@
 #import "DBLPIntegrator.h"
 #import "BibFile.h"
 #import "TemplateController.h"
+#import "QuickPreviewManager.h"
+#import "CompletionManager.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
