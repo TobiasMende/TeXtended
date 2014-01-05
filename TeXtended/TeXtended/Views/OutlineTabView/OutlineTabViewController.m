@@ -37,9 +37,8 @@
 
 - (void)loadView {
     [super loadView];
-    self.tabView = (NSTabView*)self.view;
     self.messageOutlineViewController = [[MessageOutlineViewController alloc] initWithModel:self.mainWindowController.mainDocument.model];
-    [[self.tabView tabViewItemAtIndex:0] setView:self.messageOutlineViewController.view];
+    [self.boxView setContentView:self.messageOutlineViewController.view];
 }
 
 @end

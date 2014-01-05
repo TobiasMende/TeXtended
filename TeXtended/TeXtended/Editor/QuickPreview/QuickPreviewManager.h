@@ -22,6 +22,7 @@
 
 @property (strong) Compiler* compiler;
 @property (strong) NSArray *mainDocuments;
+@property DocumentModel *mainCompilable;
 @property (strong) NSString *currentHeader;
 @property BOOL isCompiling;
 @property (strong) IBOutlet NSSplitView *splitView;

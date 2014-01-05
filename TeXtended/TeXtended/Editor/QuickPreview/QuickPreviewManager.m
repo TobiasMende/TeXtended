@@ -118,15 +118,19 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 }
 
 - (void) updateMainCompilable {
-    [self cleanTempFiles];
-    DocumentModel *mainDocument = [self.mainDocuments objectAtIndex:[self.mainCompilableSelection indexOfSelectedItem]];
-    
-    NSString *name = [mainDocument.texPath lastPathComponent];
-    NSString *folder = [mainDocument.texPath stringByDeletingLastPathComponent];
-    name = [TEMP_PREFIX stringByAppendingString:name];
-    self.model.texPath = [folder stringByAppendingPathComponent:name];
-    self.model.pdfPath = [self.model.texPath stringByAppendingPathExtension:@"pdf"];
-    self.currentHeader = mainDocument.header;
+    DocumentModel *tmp = [self.mainDocuments objectAtIndex:[self.mainCompilableSelection indexOfSelectedItem]];
+    if (![tmp isEqualTo:self.mainCompilable]) {
+        [self cleanTempFiles];
+        self.mainCompilable = tmp;
+        NSString *name = [self.mainCompilable.texPath lastPathComponent];
+        NSString *folder = [self.mainCompilable.texPath stringByDeletingLastPathComponent];
+        name = [TEMP_PREFIX stringByAppendingString:name];
+        self.model.texPath = [folder stringByAppendingPathComponent:name];
+        self.model.pdfPath = [self.model.texPath stringByAppendingPathExtension:@"pdf"];
+        [self.model unbind:@"liveCompiler"];
+        [self.model bind:@"liveCompiler" toObject:self.mainCompilable withKeyPath:@"liveCompiler" options:nil];
+        self.currentHeader = self.mainCompilable.header;
+    }
 }
 
 - (BOOL)isLiveCompileEnabled {

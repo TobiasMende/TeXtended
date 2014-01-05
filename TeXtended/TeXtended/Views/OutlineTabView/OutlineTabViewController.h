@@ -12,7 +12,7 @@
 @property (assign) MainWindowController* mainWindowController;
 
 @property MessageOutlineViewController* messageOutlineViewController;
-@property (assign) IBOutlet NSTabView *tabView;
+@property (strong) IBOutlet NSBox *boxView;
 
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
 
