@@ -1184,7 +1184,7 @@
                             <button id="Z1b-uu-7Ih">
                                 <rect key="frame" x="16" y="70" width="233" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Transparent PDF Pages" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MHL-lv-u2G">
+                                <buttonCell key="cell" type="check" title="Back Page Shine Through" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MHL-lv-u2G">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
