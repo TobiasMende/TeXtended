@@ -111,9 +111,9 @@ static const NSSet *KEYS_TO_UNBIND;
     return menu;
 }
 
-- (void)mouseMoved:(NSEvent *)theEvent
-{
+- (void)mouseMoved:(NSEvent *)theEvent {
     [super mouseMoved:theEvent];
+    if (firstDraw) return;
     NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     NSPoint p2 = NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2);
     
@@ -132,7 +132,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void) beginGestureWithEvent:(NSEvent *)event {
     [super beginGestureWithEvent:event];
-    if (!self.drawPageNumbers) return;
+    if (firstDraw || !self.drawPageNumbers) return;
     
     if ([self.displayPageNumbersTimer isValid]) {
         [self.displayPageNumbersTimer invalidate];
@@ -201,11 +201,11 @@ static const NSSet *KEYS_TO_UNBIND;
 {
     
 
-//    if (firstDraw) {
-//        firstDraw = false;
+    if (firstDraw) {
+        firstDraw = false;
 //        [self initSubViews];
-//    }
-    
+    }
+
     [super drawPage:page];
     
     // draw the next or prev page
@@ -229,19 +229,6 @@ static const NSSet *KEYS_TO_UNBIND;
         }
     }
     
-    
-//    [[controllsView view] setFrameOrigin:
-//     NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
-//                 (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
-//                 )];
-    [controllsView update:self];
-    
-//    [[pageNumbers view] setFrameOrigin:
-//     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
-//                 (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
-//                 )];
-    [pageNumbers update];
-    
     /* get the size of the current page */
     NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
@@ -249,7 +236,22 @@ static const NSSet *KEYS_TO_UNBIND;
     if (self.drawHorizotalLines || self.drawVerticalLines) {
         [self drawGrid:size];
     }
+}
 
+- (void) drawPagePost:(PDFPage *)page {
+    [super drawPagePost:page];
+    
+    [[controllsView view] setFrameOrigin:
+         NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
+                     (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
+                     )];
+    [controllsView update:self];
+    
+    [[pageNumbers view] setFrameOrigin:
+         NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
+                     (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
+                     )];
+    [pageNumbers update];
 }
 
 - (void) drawGrid:(NSSize) size {
