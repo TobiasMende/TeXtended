@@ -79,6 +79,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         observers = [NSMutableSet new];
         synctex = [ForwardSynctexController new];
         backgroundQueue = [NSOperationQueue new];
+        backgroundQueue.name = @"TextViewController-BackgroundQueue";
         consoleMessages = [MessageCollection new];
         internalMessages = [MessageCollection new];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];

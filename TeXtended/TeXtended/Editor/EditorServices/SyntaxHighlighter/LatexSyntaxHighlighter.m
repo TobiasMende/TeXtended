@@ -68,6 +68,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 - (void) registerDefaults {
     backgroundQueue = [NSOperationQueue new];
+    [backgroundQueue setName:@"LatexSyntaxHighlighter-BackgroundQueue"];
     NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
     
     /*

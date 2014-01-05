@@ -39,6 +39,7 @@ static const NSUInteger SECONDS_BETWEEEN_UPDATES = 5;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCommandsToIgnore) name:TMTCommandCompletionsDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEnvironmentsToIgnore) name:TMTEnvironmentCompletionsDidChangeNotification object:nil];
         backgroundQueue = [NSOperationQueue new];
+        backgroundQueue.name = @"SpellCheckingService-BackgroundQueue";
     }
     return self;
 }
