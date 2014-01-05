@@ -34,7 +34,6 @@
     [self.gridVOffsetSlider  setMaxValue:size.width];
 
     [self.view setNeedsDisplay:YES];
-    [[self pdfView] setNeedsDisplay:YES];
 }
 
 @end
