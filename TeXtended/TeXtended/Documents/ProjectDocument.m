@@ -46,6 +46,15 @@
     }
 }
 
+
+-(BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(duplicateDocument:)) {
+        return NO;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
+
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError {
     if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
         [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
