@@ -81,7 +81,7 @@
 - (void)removeFromTypeIndex:(CommandCompletion *)completion;
 - (NSMutableSet *)commandCompletionsByType:(NSString *)type;
 
--(NSString*)getDropCompletionForPath:(NSString*)path;
+- (NSAttributedString*)getDropCompletionForPath:(NSString*)path;
 
 + (NSSet*)specialSymbols;
 

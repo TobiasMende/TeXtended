@@ -14,8 +14,9 @@
     return [self initWithInsertion:@"ext" containingPlaceholders:YES andExtension:@"@@destination@@"];
 }
 
--(NSString*)getCompletion:(NSString*)path {
-    return [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+-(NSAttributedString*)getCompletion:(NSString*)path {
+    NSString* retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+    return [self substitutePlaceholdersInString:retValue];
 }
 
 @end
