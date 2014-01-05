@@ -45,7 +45,6 @@ static ApplicationController *sharedInstance;
 }
 
 - (void)firstResponderDidChangeNotification:(NSNotification *)note {
-    DDLogInfo(@"First Responder: %@", note.userInfo);
     self.currentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
 }
 
