@@ -33,6 +33,11 @@
 #import "BibFile.h"
 #import "QuickPreviewManager.h"
 #import "CompletionManager.h"
+#import "DocumentController.h"
+#import "MainDocument.h"
+#import "SimpleDocument.h"
+#import "ProjectDocument.h"
+#import "NSString+PathExtension.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -844,9 +849,18 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         
         NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
         
-        for (NSString *filename in filenames) {
-            [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:filename]];
+        DocumentController* dc = (DocumentController*)[self firstResponderDelegate];
+        
+        if ([dc.mainDocument isKindOfClass:[SimpleDocument class]]) {
+            SimpleDocument* doc = (SimpleDocument*)dc.mainDocument;
+            for (NSString *filename in filenames) {
+                [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[doc.model.texPath stringByDeletingLastPathComponent]]]];
+            }
         }
+        else {
+            ProjectDocument* doc = (ProjectDocument*)dc.mainDocument;
+        }
+        
         [self jumpToNextPlaceholder];
         
         // After drop operation the first responder remains the drag source

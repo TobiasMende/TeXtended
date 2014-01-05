@@ -2065,7 +2065,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="extension" width="529" minWidth="40" maxWidth="1000" id="q26-Rm-EsA">
+                                                <tableColumn identifier="extension" width="421" minWidth="40" maxWidth="1000" id="q26-Rm-EsA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Template">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2078,6 +2078,18 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
+                                                <tableColumn identifier="hasPlaceholders" width="105" minWidth="10" maxWidth="3.4028234663852886e+38" id="Sff-1d-pME">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remove Extension">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CaN-zE-k6L">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="2266" name="selectionIndexes" keyPath="self.selectedDropIndexes" id="DHx-gt-3bV"/>
@@ -2088,7 +2100,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="iN9-0J-6N4">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="324" width="651" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="HHB-n4-Eg4">
@@ -2209,6 +2221,10 @@
                 <autoresizingMask key="autoresizingMask"/>
             </tableHeaderView>
         </scrollView>
+        <buttonCell type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="Adf-dF-mg6">
+            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+            <font key="font" metaFont="smallSystem"/>
+        </buttonCell>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
