@@ -241,6 +241,7 @@ static const NSSet *KEYS_TO_UNBIND;
 - (void) drawPagePost:(PDFPage *)page {
     [super drawPagePost:page];
     
+    
     [[controllsView view] setFrameOrigin:
          NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
                      (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2

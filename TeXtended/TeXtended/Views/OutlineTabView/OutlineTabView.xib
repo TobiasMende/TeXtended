@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -7,30 +7,21 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OutlineTabViewController">
             <connections>
-                <outlet property="tabView" destination="MJt-Dq-0kF" id="taa-LL-aqE"/>
-                <outlet property="view" destination="MJt-Dq-0kF" id="rKZ-kj-4Sa"/>
+                <outlet property="boxView" destination="ogJ-Ix-fTV" id="35j-mi-Rmy"/>
+                <outlet property="view" destination="ogJ-Ix-fTV" id="rNq-mg-5QJ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <tabView id="MJt-Dq-0kF">
-            <rect key="frame" x="0.0" y="0.0" width="229" height="205"/>
+        <box autoresizesSubviews="NO" title="Compiler Messages" borderType="line" id="ogJ-Ix-fTV">
+            <rect key="frame" x="0.0" y="0.0" width="239" height="230"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <font key="font" size="11" name="LucidaGrande"/>
-            <tabViewItems>
-                <tabViewItem label="Messages" identifier="1" id="YtZ-kt-Acd">
-                    <view key="view" id="pde-Mj-XYW">
-                        <rect key="frame" x="10" y="33" width="209" height="159"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </tabViewItem>
-                <tabViewItem label="Outline" identifier="2" id="bO4-1i-MFL">
-                    <view key="view" id="8Gp-Wi-Ure">
-                        <rect key="frame" x="10" y="33" width="209" height="159"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </tabViewItem>
-            </tabViewItems>
-        </tabView>
+            <view key="contentView">
+                <rect key="frame" x="1" y="1" width="237" height="214"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            </view>
+            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+        </box>
     </objects>
 </document>
