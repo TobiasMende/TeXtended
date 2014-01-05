@@ -797,6 +797,84 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self showLine:nextLine];
 }
 
+#pragma mark -
+#pragma mark Drag & Drop
+
+-(NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
+    
+    NSPasteboard *pb = [sender draggingPasteboard];
+    NSDragOperation dragOperation = [sender draggingSourceOperationMask];
+    
+    if ([[pb types] containsObject:NSFilenamesPboardType]) {
+        if (dragOperation & NSDragOperationCopy) {
+            return NSDragOperationCopy;
+        }
+    }
+    if ([[pb types] containsObject:NSPasteboardTypeString]) {
+        if (dragOperation & NSDragOperationCopy) {
+            return NSDragOperationCopy;
+        }
+    }
+    
+    return NSDragOperationNone;
+    
+}
+
+-(BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    
+    NSPasteboard *pb = [sender draggingPasteboard];
+    
+    if ( [[pb types] containsObject:NSFilenamesPboardType] ) {
+        
+        NSPoint draggingLocation = [sender draggingLocation];
+        draggingLocation = [self convertPoint:draggingLocation fromView:nil];
+        NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
+        [self setSelectedRange:NSMakeRange(characterIndex, 0)];
+        
+        NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
+        
+        for (NSString *filename in filenames) {
+            [self insertText:filename];
+        }
+        
+    }
+    
+    else if ( [[pb types] containsObject:NSPasteboardTypeString] ) {
+        
+        NSPoint draggingLocation = [sender draggingLocation];
+        draggingLocation = [self convertPoint:draggingLocation fromView:nil];
+        NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
+        [self setSelectedRange:NSMakeRange(characterIndex, 0)];
+        
+        NSString *draggedString = [pb stringForType:NSPasteboardTypeString];
+        [self insertText:draggedString];
+    }
+    
+    return YES;
+    
+}
+
+- (NSUInteger)characterIndexOfPoint:(NSPoint)aPoint
+{
+    NSUInteger glyphIndex;
+    NSLayoutManager *layoutManager = [self layoutManager];
+    CGFloat fraction;
+    NSRange range;
+    
+    range = [layoutManager glyphRangeForTextContainer:[self textContainer]];
+    aPoint.x -= [self textContainerOrigin].x;
+    aPoint.y -= [self textContainerOrigin].y;
+    glyphIndex = [layoutManager glyphIndexForPoint:aPoint
+                                   inTextContainer:[self textContainer]
+                    fractionOfDistanceThroughGlyph:&fraction];
+    //if( fraction > 0.4 ) glyphIndex++;
+    
+    if( glyphIndex == NSMaxRange(range) ) return  [[self textStorage]
+                                                   length];
+    else return [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+    
+}
+
 
 #pragma mark -
 #pragma mark Drawing Actions
