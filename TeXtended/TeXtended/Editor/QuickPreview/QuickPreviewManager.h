@@ -17,12 +17,13 @@
 @property ExtendedPDFViewController *pvc;
 
 @property DocumentModel *model;
+@property DocumentModel *parentModel;
 @property (strong) IBOutlet NSPopUpButton *mainCompilableSelection;
 
 @property (strong) Compiler* compiler;
 @property (strong) NSArray *mainDocuments;
 @property (strong) NSString *currentHeader;
-
+@property BOOL isCompiling;
 @property (strong) IBOutlet NSSplitView *splitView;
 - (IBAction)commandEnter:(id)sender;
 - (IBAction)cancel:(id)sender;

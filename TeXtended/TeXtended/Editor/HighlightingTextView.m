@@ -855,6 +855,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:filename]];
         }
         [self jumpToNextPlaceholder];
+        
+        // After drop operation the first responder remains the drag source
         [[self window]makeFirstResponder:self];
     }
     
@@ -942,6 +944,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (BOOL)resignFirstResponder {
     BOOL result = [super resignFirstResponder];
+    DDLogInfo(@"Resign");
     if (result && autoCompletionController) {
         if (self.selectedRange.length>0) {
             [self delete:self];
@@ -973,13 +976,22 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     return nil;
 }
 
+
+- (BOOL)canBecomeKeyView {
+    DDLogInfo(@"Become KeyView: %@", self.firstResponderDelegate);
+    return [super canBecomeKeyView];
+}
+
 - (BOOL)becomeFirstResponder {
-    BOOL result = [super becomeFirstResponder];
-    if (result && self.firstResponderDelegate) {
+    [self makeKeyView];
+    return [super becomeFirstResponder];
+}
+
+- (void)makeKeyView {
+    if (self.firstResponderDelegate) {
         [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self.firstResponderDelegate}];
     }
-    return result;
 }
 
 
