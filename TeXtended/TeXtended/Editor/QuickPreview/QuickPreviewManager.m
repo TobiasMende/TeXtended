@@ -15,7 +15,7 @@
 #import "ExtendedPDFViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
-static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
+static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 @interface QuickPreviewManager ()
 - (void) buildTempModelFor:(DocumentModel *)model;
 - (void) cleanTempFiles;
@@ -29,9 +29,9 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     if (self) {
         self.parentView = parent;
         self.pvc = [[ExtendedPDFViewController alloc] init];
-        [self buildTempModelFor:parent.firstResponderDelegate.model];
         self.textViewController = [[TextViewController alloc] initWithFirstResponder:self];
         self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
+        self.compiler.idleTimeForLiveCompile = 1;
         [self.textViewController addObserver:self.compiler];
     }
     return self;
@@ -39,14 +39,23 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 
 - (void)loadWindow {
     [super loadWindow];
-   
+    [self.window setLevel:NSNormalWindowLevel];
     [self.splitView addSubview:self.textViewController.view];
     [self.splitView addSubview:self.pvc.view];
     [self.splitView adjustSubviews];
-    [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
     [self.window setInitialFirstResponder:self.textViewController.textView];
-    [self updateMainCompilable];
+    
 }
+
+- (void)showWindow:(id)sender {
+    [super showWindow:sender];
+    [self.window makeKeyAndOrderFront:sender];
+    [self.window makeFirstResponder:self.textViewController.textView];
+    [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
+    [self updateMainCompilable];
+    [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
+}
+
 
 - (void)buildTempModelFor:(DocumentModel *)model {
     self.model = [DocumentModel new];
@@ -58,7 +67,6 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 }
 
 - (void)liveCompile:(id)sender {
-    // TODO: clean files
     [self updateMainCompilable];
     if (self.currentHeader) {
         NSString *body = self.textViewController.content;
@@ -66,7 +74,6 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         [content appendString:@"\n\\begin{document}\n"];
         [content appendString:body];
         [content appendString:@"\n\\end{document}"];
-        DDLogInfo(@"%@",content);
         NSError *error;
         [content writeToFile:self.model.texPath atomically:YES encoding:self.model.encoding.unsignedLongValue error:&error];
         if (error) {
@@ -80,6 +87,7 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 }
 
 - (void) updateMainCompilable {
+    [self cleanTempFiles];
     DocumentModel *mainDocument = [self.mainDocuments objectAtIndex:[self.mainCompilableSelection indexOfSelectedItem]];
     
     NSString *name = [mainDocument.texPath lastPathComponent];
@@ -109,7 +117,22 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 - (void)cleanTempFiles {
     if (self.model.texPath) {
         [[NSFileManager defaultManager] removeItemAtPath:self.model.texPath error:nil];
-        // TODO: extend for other endings (pdf, gz, synctex, log)
+        NSError *error;
+        NSString *directory =[self.model.texPath stringByDeletingLastPathComponent];
+        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
+        if (error) {
+            DDLogError(@"Can't delete temp file: %@", error.userInfo);
+        } else {
+            for(NSString *path in contents) {
+                if ([path hasPrefix:TEMP_PREFIX]) {
+                    [[NSFileManager defaultManager]removeItemAtPath:[directory stringByAppendingPathComponent:path] error:&error];
+                    if (error) {
+                        DDLogWarn(@"Can't delete file at %@", path);
+                        error = nil;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -117,19 +140,22 @@ static const NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 
 
 #pragma mark - Actions
-- (IBAction)insertCode:(id)sender {
+
+- (void)commandEnter:(id)sender {
     // TODO: handle range
     [self.window close];
     [self.parentView replaceCharactersInRange:self.parentView.selectedRange withString:self.textViewController.content];
+    [self.textViewController setContent:@""];
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.textViewController setContent:@""];
-    
     [self.window close];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self.compiler terminateAndKill];
+    [self cleanTempFiles];
+    [self.parentView.window makeFirstResponder:self.parentView];
 }
+
 @end

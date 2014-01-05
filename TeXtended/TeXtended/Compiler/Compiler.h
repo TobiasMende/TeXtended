@@ -39,14 +39,6 @@
 /** The DocumentController from which this class handels the MainDocuments. */
 @property (assign) id<CompileProcessHandler> compileProcessHandler;
 
-/** CompileSettings for compiling in draft mode. */
-@property (assign) CompileSetting* draftSettings;
-
-/** CompileSettings for compiling in live mode. */
-@property (assign) CompileSetting* liveSettings;
-
-/** CompileSettings for compiling in final mode. */
-@property (assign) CompileSetting* finalSettings;
 
 /**
  * Constructor initializing a new compiler for a given DocumentController.

@@ -47,11 +47,9 @@
 /** The scroll view containing the LineNumberView and the HighlightingTextView */
 @property (strong) IBOutlet NSScrollView *scrollView;
 
-/** The DocumentModel which's content is displayed by the view of this controller */
-@property (strong) DocumentModel *model;
 
 
-@property (assign) id<FirstResponderDelegate> firstResponderDelegate;
+@property (assign,readonly) id<FirstResponderDelegate> firstResponderDelegate;
 
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;
@@ -64,6 +62,8 @@
  return the source code
  */
 - (NSString *)content;
+
+- (DocumentModel *)model;
 
 /**
  Setter for the content of the TextViewController's view.

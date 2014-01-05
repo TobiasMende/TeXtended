@@ -24,7 +24,7 @@
 @property (strong) NSString *currentHeader;
 
 @property (strong) IBOutlet NSSplitView *splitView;
-- (IBAction)insertCode:(id)sender;
+- (IBAction)commandEnter:(id)sender;
 - (IBAction)cancel:(id)sender;
 
 - (id) initWithParentView:(HighlightingTextView *)parent;

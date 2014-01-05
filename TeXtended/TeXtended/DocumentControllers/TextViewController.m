@@ -75,13 +75,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (self) {
         messageLock = [NSLock new];
         
-        self.firstResponderDelegate = dc;
+        _firstResponderDelegate = dc;
         observers = [NSMutableSet new];
         synctex = [ForwardSynctexController new];
         backgroundQueue = [NSOperationQueue new];
         consoleMessages = [MessageCollection new];
         internalMessages = [MessageCollection new];
-        self.model = [self.firstResponderDelegate model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -95,6 +94,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     return self;
 }
 
+
+- (DocumentModel *)model {
+    return self.firstResponderDelegate.model;
+}
 
 - (void)setLogLevel:(TMTLatexLogLevel)logLevel {
     _logLevel = logLevel;
@@ -261,7 +264,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [super loadView];
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
-    self.textView.firstResponderDelegate = self.firstResponderDelegate;
+        self.textView.firstResponderDelegate = self.firstResponderDelegate;
     
 }
 
@@ -277,6 +280,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (NSString *)content {
     return [self.textView string];
 }
+
 
 - (void)setContent:(NSString *)content {
     if (content) {
@@ -377,6 +381,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         }
     } 
 }
+
 
 
 #pragma mark -
