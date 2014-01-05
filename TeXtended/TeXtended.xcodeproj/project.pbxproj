@@ -1396,7 +1396,7 @@
 		D2CC54E8171EAFAB00D81CF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tobias Mende";
 			};
 			buildConfigurationList = D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */;
@@ -1714,6 +1714,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = "";
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
