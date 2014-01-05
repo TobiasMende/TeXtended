@@ -23,7 +23,6 @@
     BOOL firstDraw;
 }
 
-
 /**
  * Describes the distances between to vertical lines in the grid.
  */
