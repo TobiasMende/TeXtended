@@ -7,6 +7,7 @@
 //
 
 #import "ExtendedPdfControlls.h"
+#import "ExtendedPdf.h"
 
 @interface ExtendedPdfControlls ()
 
@@ -14,11 +15,11 @@
 
 @implementation ExtendedPdfControlls
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithExtendedPdf:(ExtendedPdf*) extedendPdf
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"ExtendedPdfControlls" bundle:nil];
     if (self) {
-        
+        [self setExtendedPdf:extedendPdf];
     }
     return self;
 }
@@ -26,12 +27,11 @@
 - (IBAction)update:(id)sender {
     /* set the size of the sliders so that they cover the current page */
     NSSize size = [[self.pdfView currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
-    if (self.gridHOffsetSlider.maxValue != size.height) {
-        [self.gridHSpacingSlider setMaxValue:size.height];
-        [self.gridHOffsetSlider  setMaxValue:size.height];
-        [self.gridVSpacingSlider setMaxValue:size.width];
-        [self.gridVOffsetSlider  setMaxValue:size.width];
-    }
+    double scalingFactor = [self.extendedPdf getScalingFactor];
+    [self.gridHSpacingSlider setMaxValue:size.height / scalingFactor + 1];
+    [self.gridHOffsetSlider  setMaxValue:size.height];
+    [self.gridVSpacingSlider setMaxValue:size.width / scalingFactor + 1];
+    [self.gridVOffsetSlider  setMaxValue:size.width];
 
     [self.view setNeedsDisplay:YES];
     [[self pdfView] setNeedsDisplay:YES];

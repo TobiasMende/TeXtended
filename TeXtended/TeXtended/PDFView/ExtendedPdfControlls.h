@@ -14,7 +14,11 @@
  *
  * @author Max Bannach
  */
+@class ExtendedPdf;
 @interface ExtendedPdfControlls : NSViewController
+
+/** The ExtendedPdf we belong to. */
+@property (assign) ExtendedPdf* extendedPdf;
 
 /** The PdfView were this controlls depend on */
 @property (assign) PDFView *pdfView;
@@ -22,6 +26,9 @@
 @property (assign) IBOutlet NSSlider *gridHOffsetSlider;
 @property (assign) IBOutlet NSSlider *gridVSpacingSlider;
 @property (assign) IBOutlet NSSlider *gridVOffsetSlider;
+
+/** Constructor */
+- (id)initWithExtendedPdf:(ExtendedPdf*) extedendPdf;
 
 /** 
  * Called if the controlls have changed.
