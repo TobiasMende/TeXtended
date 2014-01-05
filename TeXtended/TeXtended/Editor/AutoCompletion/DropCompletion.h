@@ -10,6 +10,6 @@
 
 @interface DropCompletion : Completion
 
--(NSString*)getCompletion:(NSString*)path;
+-(NSAttributedString*)getCompletion:(NSString*)path;
 
 @end
