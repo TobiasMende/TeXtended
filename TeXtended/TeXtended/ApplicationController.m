@@ -181,7 +181,17 @@ static ApplicationController *sharedInstance;
                               TMT_EDITOR_FONT_NAME: @"Source Code Pro",
                               TMT_EDITOR_FONT_SIZE: @12.0f,
                               TMT_EDITOR_FONT_ITALIC: @NO,
-                              TMT_EDITOR_FONT_BOLD: @NO};
+                              TMT_EDITOR_FONT_BOLD: @NO,
+                              TMTGridColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
+                              TMTGridUnit: @"pt",
+                              TMTdrawHGrid: @NO,
+                              TMTdrawVGrid: @NO,
+                              TMTHGridSpacing: @1,
+                              TMTVGridSpacing: @1,
+                              TMTHGridOffset: @0,
+                              TMTVGridOffset: @0,
+                              TMTPageNumbers: @YES,
+                              TMTPdfPageAlpha: @NO};
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaults];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
