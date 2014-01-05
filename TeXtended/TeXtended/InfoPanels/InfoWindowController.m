@@ -104,11 +104,13 @@
 }
 
 - (void) setCompilable:(Compilable *)compilable {
-    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
-        [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
+    
+    if ([self.compilable.type isEqualToString:@"Document"]) {
+            [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
     }
+    
     _compilable = compilable;
-    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
+    if ([self.compilable.type isEqualToString:@"Document"]) {
         [self.compilable addObserver:self forKeyPath:@"self.encoding" options:NSKeyValueObservingOptionInitial context:NULL];
     }
 }
@@ -118,9 +120,6 @@
         if (self.compilable.encoding) {
             [self.encodingPopUp selectItemAtIndex:[encodings indexOfObject:self.compilable.encoding]];
         }
-        //else {
-        //    self.encodingPopUp.title = NSLocalizedString(@"Not available in projectmode", @"EncodingPopupInProjectMode");
-        //}
     }
 }
 
@@ -144,8 +143,8 @@
 
 
 - (void)dealloc {
-    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
-        [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
+    if ([self.compilable.type isEqualToString:@"Document"]) {
+            [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
     }
     DDLogVerbose(@"dealloc");
 }
