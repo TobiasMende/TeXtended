@@ -23,6 +23,7 @@
     BOOL firstDraw;
 }
 
+
 /**
  * Describes the distances between to vertical lines in the grid.
  */
@@ -76,6 +77,9 @@
 @property bool pageAlpha;
 
 @property (assign) id<FirstResponderDelegate> firstResponderDelegate;
+
+/** The current scaling factor of the grid. */
+- (float) getScalingFactor;
 
 /**
   * Draws a grid of the given size on the current page.
