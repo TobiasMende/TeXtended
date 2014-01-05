@@ -30,14 +30,10 @@
     self = [super init];
     DDLogVerbose(@"init");
     if (self) {
-        [self setAutoCompile:NO];
         self.compileProcessHandler = controller;
         currentTasks = [NSMutableSet new];
         weakSelf = self;
         // get the settings and observe them
-        _draftSettings = [[controller model] draftCompiler];
-        _liveSettings = [[controller model] liveCompiler];
-        _finalSettings = [[controller model] finalCompiler];
         _idleTimeForLiveCompile = 2;
     }
     return self;

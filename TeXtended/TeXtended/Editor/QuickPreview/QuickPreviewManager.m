@@ -31,6 +31,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         self.pvc = [[ExtendedPDFViewController alloc] init];
         self.textViewController = [[TextViewController alloc] initWithFirstResponder:self];
         self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
+        self.compiler.idleTimeForLiveCompile = 1;
         [self.textViewController addObserver:self.compiler];
     }
     return self;
@@ -53,11 +54,6 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
     [self updateMainCompilable];
     [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
-}
-
-- (void)windowDidBecomeKey:(NSNotification *)notification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey: self}];
-    
 }
 
 
@@ -159,6 +155,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 - (void)windowWillClose:(NSNotification *)notification {
     [self.compiler terminateAndKill];
     [self cleanTempFiles];
+    [self.parentView.window makeFirstResponder:self.parentView];
 }
 
 @end
