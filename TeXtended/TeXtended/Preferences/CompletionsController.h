@@ -28,12 +28,18 @@
 /** Indexes of selected rows in the environment view */
 @property  (strong) NSIndexSet *selectedEnvironmentIndexes;
 
+/** Indexes of selected rows in the drop view */
+@property  (strong) NSIndexSet *selectedDropIndexes;
+
 
 /** The environment completion view */
 @property (assign) IBOutlet NSTableView *environmentView;
 
 /** The command completion view */
 @property (assign) IBOutlet NSTableView *commandsView;
+
+/** The drop completion view */
+@property (assign) IBOutlet NSTableView *dropView;
 
 /** Removes the selected item of the appropriate table view 
  @param sender the button identified by tag
@@ -55,6 +61,11 @@
  */
 - (IBAction)resetCommandCompletions:(id)sender;
 
+/** Resets the command completions to the set of completions provided with the application bundle
+ @param sender the button identified by tag
+ */
+- (IBAction)resetDropCompletions:(id)sender;
+
 /**
  Resets the internal completion counter for all command completions so that they are ordered alphabetically.
  @param sender the sender
@@ -65,6 +76,12 @@
  @param sender the sender
  */
 - (IBAction)resetEnvironmentCompletionRanking:(id)sender;
+
+/**
+ Resets the internal completion counter for all drop completions so that they are ordered alphabetically.
+ @param sender the sender
+ */
+- (IBAction)resetDropCompletionRanking:(id)sender;
 
 
 + (CompletionsController *)sharedInstance;
