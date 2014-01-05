@@ -250,19 +250,18 @@ static const NSSet *KEYS_TO_UNBIND;
     }
 }
 
-- (void) drawPagePost:(PDFPage *)page {
-    [super drawPagePost:page];
-  
+- (void) layoutDocumentView {
+    [super layoutDocumentView];
     [[controllsView view] setFrameOrigin:
-         NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
-                     (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
-                     )];
+     NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
+                 (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
+                 )];
     [controllsView update:self];
     
     [[pageNumbers view] setFrameOrigin:
-         NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
-                     (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
-                     )];
+     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
+                 (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
+                 )];
 }
 
 - (void) drawGrid:(NSSize) size {
