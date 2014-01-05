@@ -126,5 +126,7 @@
 - (void)setConsoleInputPipe:(NSPipe*)pipe;
 
 - (void) initOutlineElements;
+
+- (NSString *)header;
 @end
 

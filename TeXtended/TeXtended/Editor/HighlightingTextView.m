@@ -31,6 +31,7 @@
 #import "CompletionProtocol.h"
 #import "DBLPIntegrator.h"
 #import "BibFile.h"
+#import "QuickPreviewManager.h"
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -596,6 +597,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         dblpIntegrator = [[DBLPIntegrator alloc] initWithTextView:self];
     }
     [dblpIntegrator initializeDBLPView];
+}
+
+- (void)showQuickPreviewAssistant:(id)sender {
+    quickPreview = [[QuickPreviewManager alloc] initWithParentView:self];
+    [quickPreview loadWindow];
+    [quickPreview.window makeKeyAndOrderFront:self];
 }
 
 

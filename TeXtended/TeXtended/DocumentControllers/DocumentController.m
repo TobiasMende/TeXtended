@@ -45,7 +45,7 @@
         self.model = model;
         self.consoleViewControllers = [NSMutableSet new];
         
-        self.compiler = [[Compiler alloc] initWithDocumentController:self];
+        self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
         [self.textViewController addObserver:self.compiler];
     }
     return self;
@@ -111,10 +111,14 @@
     [self.pdfViewControllers removeObject:controller];
 }
 
+
+- (void)documentHasChangedAction {
+    
+}
+
 - (void)updateViewsAfterModelChange {
     DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
-    _textViewController = [[TextViewController alloc] initWithDocumentController:self];
-    [self.textViewController setFirstResponderDelegate:self];
+    _textViewController = [[TextViewController alloc] initWithFirstResponder:self];
     [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
     BOOL success;
     NSString *content = [self.model loadContent:&success];

@@ -31,6 +31,9 @@ static const NSUInteger MAX_QUEUE_SIZE = 50;
 
 + (NSNotificationCenter*)centerForCompilable:(Compilable *)compilable {
     NSString *key = [self keyForCompilable:compilable];
+    if (!key) {
+        return nil;
+    }
     NSNotificationCenter *center = mainCompilableCenters[key];
     if (!center && ![prohibitedKeys containsObject:key]) {
         center = [NSNotificationCenter new];

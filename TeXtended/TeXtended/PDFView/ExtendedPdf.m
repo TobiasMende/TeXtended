@@ -286,7 +286,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 /** which unit should be used? */
 - (float) getScalingFactor {
-    
+
     if ([self.gridUnit isEqualToString:@"pt"]) {
         return 1;
     }

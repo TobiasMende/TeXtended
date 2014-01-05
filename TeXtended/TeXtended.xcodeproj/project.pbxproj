@@ -80,6 +80,8 @@
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
+		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
+		D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -405,6 +407,10 @@
 		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
 		D23BC52D1861ED2400E9A507 /* CiteCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletion.h; sourceTree = "<group>"; };
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
+		D23DD42818794D2600C0EF97 /* QuickPreviewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPreviewManager.h; sourceTree = "<group>"; };
+		D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPreviewManager.m; sourceTree = "<group>"; };
+		D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompileProcessHandler.h; sourceTree = "<group>"; };
+		D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickPreviewWindow.xib; sourceTree = "<group>"; };
 		D23FD40D1863A4D7006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
@@ -627,6 +633,7 @@
 				D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */,
 				D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */,
 				D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */,
+				D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -731,6 +738,7 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D23DD42718794B5100C0EF97 /* QuickPreview */,
 				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
 				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
 				D2A5506E1751FF4B00BC05DD /* TextView.xib */,
@@ -943,6 +951,16 @@
 				D231489A181BCE8300A3385B /* TMTNotificationCenter.m */,
 			);
 			path = TMTNotificationCenter;
+			sourceTree = "<group>";
+		};
+		D23DD42718794B5100C0EF97 /* QuickPreview */ = {
+			isa = PBXGroup;
+			children = (
+				D23DD42818794D2600C0EF97 /* QuickPreviewManager.h */,
+				D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */,
+				D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */,
+			);
+			path = QuickPreview;
 			sourceTree = "<group>";
 		};
 		D248E4D9177763C7008DDE80 /* TMTMessageCellView */ = {
@@ -1466,6 +1484,7 @@
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
+				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
@@ -1575,6 +1594,7 @@
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
 				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
+				D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */,
 				D2574995186324730025A536 /* DBLPButtonView.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
