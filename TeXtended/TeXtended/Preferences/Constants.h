@@ -37,7 +37,7 @@
 #define TMT_EDITOR_SELECTION_BACKGROUND_COLOR @"TMTEditorSelectionBackgroundColor"
 #define TMT_EDITOR_SELECTION_FOREGROUND_COLOR @"TMTEditorSelectionForegroundColor"
 #define TMT_TEXDOC_LINK_COLOR @"TMTTexdocLinkColor"
-
+#define TMTGridColor @"TMTGridColor"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for fonts
@@ -59,7 +59,10 @@
 #define TMTFinalCompileIterations @"TMTFinalCompileIterations"
 #define TMTLatexLogLevelKey @"TMTLatexLogLevelKey" 
 #define TMTLineSpacing @"TMTLineSpacing"
-
+#define TMTHGridSpacing @"TMTHGridSpacing"
+#define TMTVGridSpacing @"TMTVGridSpacing"
+#define TMTHGridOffset @"TMTHGridOffset"
+#define TMTVGridOffset @"TMTVGridOffset"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for boolean flags (used for user defaults)
@@ -92,7 +95,10 @@
 #define TMTDocumentAutoOpenOnExport @"TMTDocumentAutoOpenOnExport"
 /* No for Horizontal order, Yes for Vertical order */
 #define TMTViewOrderAppearance @"TMTViewOrderAppearance"
-
+#define TMTdrawHGrid @"TMTdrawHGrid"
+#define TMTdrawVGrid @"TMTdrawVGrid"
+#define TMTPageNumbers @"TMTPageNumbers"
+#define TMTPdfPageAlpha @"TMTPdfPageAlpha"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for strings (used for user defaults)
@@ -105,7 +111,7 @@
 #define TMTLiveCompileArgs @"TMTLiveCompileArgs"
 #define TMTDraftCompileArgs @"TMTDraftCompileArgs"
 #define TMTFinalCompileArgs @"TMTFinalCompileArgs"
-
+#define TMTGridUnit @"TMTGridUnit"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for tabview collapsed states

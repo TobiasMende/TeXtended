@@ -1174,7 +1174,7 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" title="Pdfview" borderType="line" id="9hR-ks-HRp">
+                <box autoresizesSubviews="NO" title="PDF View" borderType="line" id="9hR-ks-HRp">
                     <rect key="frame" x="17" y="175" width="267" height="132"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
@@ -1225,9 +1225,9 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Iw6-6R-OxV">
-                                <rect key="frame" x="84" y="45" width="141" height="17"/>
+                                <rect key="frame" x="84" y="45" width="101" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unit used for the Grid" id="vds-YE-jiF">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Grid Space Unit" id="vds-YE-jiF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2003,21 +2003,6 @@
             </connections>
         </customObject>
         <customObject id="3526" customClass="EnvironmentSetupController"/>
-        <view horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="2318">
-            <rect key="frame" x="0.0" y="0.0" width="561" height="425"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <accessibility description="Colors"/>
-        </view>
-        <box autoresizesSubviews="NO" title="Live Compiler" borderType="line" id="2786">
-            <rect key="frame" x="0.0" y="0.0" width="177" height="263"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <view key="contentView">
-                <rect key="frame" x="1" y="1" width="175" height="247"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            </view>
-            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-        </box>
         <customView id="hcA-km-LO9" userLabel="Drop Assistant">
             <rect key="frame" x="0.0" y="0.0" width="725" height="485"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -2035,7 +2020,7 @@
                     <rect key="frame" x="17" y="62.000000376450288" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="689" height="387"/>
+                        <rect key="frame" x="1" y="0.99999962354971217" width="689" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="VCi-wT-rDh">

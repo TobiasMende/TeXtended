@@ -18,6 +18,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 @interface ExtendedPdf ()
 - (void)unbindAll;
+-(void)updatePageNumber:(NSNotification*)note;
 @end
 
 @implementation ExtendedPdf
@@ -63,38 +64,49 @@ static const NSSet *KEYS_TO_UNBIND;
     [self setDrawPageNumbers:NO];
     
     // link horizontal line propertys to application shared
-    [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawHGrid"] options:nil];
-    [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridSpacing"] options:nil];
-    [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTHGridOffset"] options:nil];
-    
-    // link line color propertys to application shared
-    [self bind:@"gridColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTGridColor"] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
+    [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawHGrid] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawHGrid options:0 context:NULL];
+    [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridSpacing] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridSpacing options:0 context:NULL];
+    [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridOffset] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridOffset options:0 context:NULL];
     
     // link vertical line propertys to application shared
-    [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTdrawVGrid"] options:nil];
-    [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridSpacing"] options:nil];
-    [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTVGridOffset"] options:nil];
+    [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawVGrid] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawVGrid options:0 context:NULL];
+    [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTVGridSpacing] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTVGridSpacing options:0 context:NULL];
+    [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTVGridOffset] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTVGridOffset options:0 context:NULL];
+    
+    // link line color propertys to application shared
+    [self bind:@"gridColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTGridColor] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTGridColor options:0 context:NULL];
     
     // link page number propertys to application shared
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTGridColor" options:0 context:NULL];
-    [self bind:@"drawPageNumbers" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTPageNumbers"] options:nil];
+    [self bind:@"drawPageNumbers" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTPageNumbers] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTPageNumbers options:0 context:NULL];
     
     // link grid unit to application shared
-    [self bind:@"gridUnit" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTGridUnit"] options:nil];
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTGridUnit" options:0 context:NULL];
+    [self bind:@"gridUnit" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTGridUnit] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTGridUnit options:0 context:NULL];
     
     // link preference of transparent pdf pages
-    [self bind:@"pageAlpha" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTPdfPageAlpha"] options:nil];
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTPdfPageAlpha" options:0 context:NULL];
+    [self bind:@"pageAlpha" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTPdfPageAlpha] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTPdfPageAlpha options:0 context:NULL];
+
+    // notifcation if pdf page didchange
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePageNumber:) name:PDFViewPageChangedNotification object:self];
     
     // to init things at the first draw
     firstDraw = true;
+    [self initSubViews];
 }
 
 /** Needed to redraw page if grid color changes or units */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self setNeedsDisplay:YES];
+    [self layoutDocumentView];
 }
 
 - (void) startBackwardSynctex:(id)sender {
@@ -109,9 +121,13 @@ static const NSSet *KEYS_TO_UNBIND;
     return menu;
 }
 
-- (void)mouseMoved:(NSEvent *)theEvent
-{
+-(void)updatePageNumber:(NSNotification*)note {
+    [pageNumbers update];
+}
+
+- (void)mouseMoved:(NSEvent *)theEvent {
     [super mouseMoved:theEvent];
+    if (firstDraw) return;
     NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     NSPoint p2 = NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2);
     
@@ -130,7 +146,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void) beginGestureWithEvent:(NSEvent *)event {
     [super beginGestureWithEvent:event];
-    if (!self.drawPageNumbers) return;
+    if (firstDraw || !self.drawPageNumbers) return;
     
     if ([self.displayPageNumbersTimer isValid]) {
         [self.displayPageNumbersTimer invalidate];
@@ -201,9 +217,9 @@ static const NSSet *KEYS_TO_UNBIND;
 
     if (firstDraw) {
         firstDraw = false;
-        [self initSubViews];
+        [pageNumbers update];
     }
-    
+
     // draw the next or prev page
     if (self.pageAlpha) {
         NSInteger i = [self.document indexForPage:page];
@@ -225,7 +241,17 @@ static const NSSet *KEYS_TO_UNBIND;
         }
     }
     
+    /* get the size of the current page */
+    NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
     
+    /* eventualy draw a grid */
+    if (self.drawHorizotalLines || self.drawVerticalLines) {
+        [self drawGrid:size];
+    }
+}
+
+- (void) layoutDocumentView {
+    [super layoutDocumentView];
     [[controllsView view] setFrameOrigin:
      NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
                  (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
@@ -236,16 +262,6 @@ static const NSSet *KEYS_TO_UNBIND;
      NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
                  (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
                  )];
-    [pageNumbers update];
-    
-    /* get the size of the current page */
-    NSSize size = [page boundsForBox:kPDFDisplayBoxMediaBox].size;
-    
-    /* eventualy draw a grid */
-    if (self.drawHorizotalLines || self.drawVerticalLines) {
-        [self drawGrid:size];
-    }
-
 }
 
 - (void) drawGrid:(NSSize) size {
@@ -348,9 +364,17 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridColor"];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridUnit"];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTPdfPageAlpha"];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridColor];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridUnit];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTPdfPageAlpha];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTdrawHGrid];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTHGridOffset];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTHGridSpacing];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTdrawVGrid];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTVGridOffset];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTVGridSpacing];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTPageNumbers];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self unbindAll];
     
 }

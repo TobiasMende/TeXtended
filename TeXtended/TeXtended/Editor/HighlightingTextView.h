@@ -45,6 +45,9 @@ GoToLineSheetController *goToLineSheet;
     
     DBLPIntegrator *dblpIntegrator;
     
+    /** Controlls the template sheet */
+    TemplateController* templateController;
+    
     QuickPreviewManager *quickPreview;
 
     MainDocumentCompletionWindow *mainDocumentsController;
@@ -79,6 +82,7 @@ GoToLineSheetController *goToLineSheet;
 
 /** if `YES` all services are on, if `NO` this object behaves in general like a normal NSTextView. */
 @property BOOL servicesOn;
+@property BOOL enableQuickPreviewAssistant;
 /** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
 
@@ -117,6 +121,8 @@ GoToLineSheetController *goToLineSheet;
  */
 - (void) updateSyntaxHighlighting;
 
+/** Activate Template Sheet */
+- (IBAction)openTemplateSheet:(id)sender;
 
 /**
  Getter for the visible range

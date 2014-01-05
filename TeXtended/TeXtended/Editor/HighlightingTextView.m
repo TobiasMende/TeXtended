@@ -31,6 +31,7 @@
 #import "CompletionProtocol.h"
 #import "DBLPIntegrator.h"
 #import "BibFile.h"
+#import "TemplateController.h"
 #import "QuickPreviewManager.h"
 #import "CompletionManager.h"
 #import "DocumentController.h"
@@ -141,9 +142,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self setAutomaticQuoteSubstitutionEnabled:NO];
     [self setUsesFontPanel:NO];
     self.servicesOn = YES;
+    self.enableQuickPreviewAssistant = YES;
     
     
     [self.textContainer replaceLayoutManager:[[TextViewLayoutManager alloc] init]];
+    
+    templateController = [[TemplateController alloc] init];
 }
 
 
@@ -419,6 +423,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSBeep();
     }
     
+}
+
+- (IBAction)openTemplateSheet:(id)sender {
+    [templateController openSheetIn:self.window];
 }
 
 - (NSArray *)lineRanges {
@@ -735,7 +743,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             return NO;
         }
     }else if(aSelector == @selector(showQuickPreviewAssistant:)) {
-        return self.firstResponderDelegate.model.texPath && self.firstResponderDelegate.model.texPath.length > 0;
+        return  self.enableQuickPreviewAssistant && self.firstResponderDelegate.model.texPath && self.firstResponderDelegate.model.texPath.length > 0;
     } else {
         return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
     }
