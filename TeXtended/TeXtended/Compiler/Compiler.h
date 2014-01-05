@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TextViewObserver.h"
 #import "Constants.h"
+#import "CompileProcessHandler.h"
 @class DocumentController,CompileSetting;
 
 /**
@@ -36,7 +37,7 @@
 @property int idleTimeForLiveCompile;
 
 /** The DocumentController from which this class handels the MainDocuments. */
-@property (assign) DocumentController *documentController;
+@property (assign) id<CompileProcessHandler> compileProcessHandler;
 
 /** CompileSettings for compiling in draft mode. */
 @property (assign) CompileSetting* draftSettings;
@@ -51,7 +52,7 @@
  * Constructor initializing a new compiler for a given DocumentController.
  * @param controller the document controller
  */
-- (id)initWithDocumentController:(DocumentController*) controller;
+- (id)initWithCompileProcessHandler:(id<CompileProcessHandler>) controller;
 
 /**
  * Calls the compile method on the document.

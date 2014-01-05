@@ -605,6 +605,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [dblpIntegrator initializeDBLPView];
 }
 
+- (void)showQuickPreviewAssistant:(id)sender {
+    if (!quickPreview) {
+        quickPreview = [[QuickPreviewManager alloc] initWithParentView:self];
+    }
+    [quickPreview showWindow:self];
+}
+
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
@@ -682,7 +689,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         } else {
             return NO;
         }
-    }else {
+    }else if(aSelector == @selector(showQuickPreviewAssistant:)) {
+        return self.firstResponderDelegate.model.texPath && self.firstResponderDelegate.model.texPath.length > 0;
+    } else {
         return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
     }
 }
@@ -841,9 +850,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
         
         for (NSString *filename in filenames) {
-            [self insertText:filename];
+            [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:filename]];
         }
-        
+        [self jumpToNextPlaceholder];
+        [[self window]makeFirstResponder:self];
     }
     
     else if ( [[pb types] containsObject:NSPasteboardTypeString] ) {
@@ -874,9 +884,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     glyphIndex = [layoutManager glyphIndexForPoint:aPoint
                                    inTextContainer:[self textContainer]
                     fractionOfDistanceThroughGlyph:&fraction];
-    //if( fraction > 0.4 ) glyphIndex++;
+    //if( fraction > 0.5 ) glyphIndex++;
     
-    if( glyphIndex == NSMaxRange(range) ) return  [[self textStorage]
+    if( glyphIndex == NSMaxRange(range)-1 ) return  [[self textStorage]
                                                    length];
     else return [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
     

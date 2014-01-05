@@ -51,7 +51,7 @@
 @property (strong) DocumentModel *model;
 
 
-@property (assign) DocumentController *documentController;
+@property (assign,nonatomic) id<FirstResponderDelegate> firstResponderDelegate;
 
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;
@@ -87,6 +87,5 @@
  */
 - (void) removeDelegateObserver:(id<TextViewObserver>) observer;
 
-- (void) setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate;
 
 @end

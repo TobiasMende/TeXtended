@@ -70,18 +70,18 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 @implementation TextViewController
 
 
-- (id)initWithDocumentController:(DocumentController *)dc {
+- (id)initWithFirstResponder:(id<FirstResponderDelegate>)dc {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
         messageLock = [NSLock new];
         
-        self.documentController = dc;
+        self.firstResponderDelegate = dc;
         observers = [NSMutableSet new];
         synctex = [ForwardSynctexController new];
         backgroundQueue = [NSOperationQueue new];
         consoleMessages = [MessageCollection new];
         internalMessages = [MessageCollection new];
-        self.model = [self.documentController model];
+        self.model = [self.firstResponderDelegate model];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -94,6 +94,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
     return self;
 }
+
 
 - (void)setLogLevel:(TMTLatexLogLevel)logLevel {
     _logLevel = logLevel;
@@ -260,6 +261,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [super loadView];
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
+    self.textView.firstResponderDelegate = self.firstResponderDelegate;
     
 }
 
@@ -287,7 +289,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     return [NSSet setWithObject:nil];
 }
 
-- (void) documentModelHasChangedAction : (DocumentController*) controller {
+- (void) documentModelHasChangedAction : (id<FirstResponderDelegate>) controller {
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
     for (DocumentModel *m in self.model.mainDocuments) {
         [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
@@ -339,10 +341,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark Delegate Methods
 
 
-- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate {
-    self.textView.firstResponderDelegate = delegate;
-}
-
 - (NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange{
     return newSelectedCharRange;
 }
@@ -378,6 +376,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
         }
     } 
+}
+
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)firstResponderDelegate {
+    _firstResponderDelegate = firstResponderDelegate;
+    self.textView.firstResponderDelegate = firstResponderDelegate;
 }
 
 

@@ -260,4 +260,6 @@ GoToLineSheetController *goToLineSheet;
  
  */
 - (IBAction)jumpPreviousAnchor:(id)sender;
+
+- (IBAction)showQuickPreviewAssistant:(id)sender;
 @end

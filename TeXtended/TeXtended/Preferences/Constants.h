@@ -151,6 +151,7 @@
 
 #define TMTCommandCompletionsDidChangeNotification @"TMTCommandCompletionsDidChangeNotification"
 #define TMTEnvironmentCompletionsDidChangeNotification @"TMTEnvironmentCompletionsDidChangeNotification"
+#define TMTDropCompletionsDidChangeNotification @"TMTDropCompletionsDidChangeNotification"
 #define TMTDocumentModelDidChangeNotification @"TMTDocumentModelDidChangeNotification"
 #define TMTDocumentModelOutputPipeChangeNotification @"TMTDocumentModelOutputPipeChangeNotification"
 #define TMTDocumentModelInputPipeChangeNotification @"TMTDocumentModelInputPipeChangeNotification"
@@ -200,7 +201,8 @@ typedef enum TMTCompletionType {
     TMTEndCompletion,
     TMTCiteCompletion,
     TMTLabelCompletion,
-    TMTRefCompletion
+    TMTRefCompletion,
+    TMTDropCompletion
 } TMTCompletionType;
 
 

@@ -365,6 +365,12 @@
                                     <action selector="matrixView:" target="-1" id="FAx-M7-0Sk"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Quick Preview Assistant" keyEquivalent="l" id="Ggi-Zl-Avj">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showQuickPreviewAssistant:" target="-1" id="Gxz-Va-AIW"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="575"/>
                             <menuItem title="Delete Temporary Files" id="TTQ-MC-xOW">
                                 <modifierMask key="keyEquivalentModifierMask"/>

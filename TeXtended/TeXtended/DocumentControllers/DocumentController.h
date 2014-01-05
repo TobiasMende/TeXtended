@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ViewControllerProtocol.h"
 #import "FirstResponderDelegate.h"
+#import "CompileProcessHandler.h"
 #import "Constants.h"
 
 @class DocumentModel, OutlineViewController, PDFViewsController, TextViewController, Compiler, MainDocument;
@@ -18,7 +19,7 @@
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentController : NSObject<ViewControllerProtocol,FirstResponderDelegate> {
+@interface DocumentController : NSObject<ViewControllerProtocol,FirstResponderDelegate, CompileProcessHandler> {
 }
 
 /** The model handeld by this controller. */

@@ -26,12 +26,12 @@
 
 @implementation Compiler
 
-- (id)initWithDocumentController:(DocumentController*) controller {
+- (id)initWithCompileProcessHandler:(id<CompileProcessHandler>) controller {
     self = [super init];
     DDLogVerbose(@"init");
     if (self) {
         [self setAutoCompile:NO];
-        self.documentController = controller;
+        self.compileProcessHandler = controller;
         currentTasks = [NSMutableSet new];
         weakSelf = self;
         // get the settings and observe them
@@ -45,15 +45,15 @@
 
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
-    NSSet *mainDocuments = [self.documentController.model mainDocuments];
-    [[TMTNotificationCenter centerForCompilable:self.documentController.model] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.documentController.model];
+    NSSet *mainDocuments = [self.compileProcessHandler.model mainDocuments];
+    [[TMTNotificationCenter centerForCompilable:self.compileProcessHandler.model] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
     for (DocumentModel *model in mainDocuments) {
         if (!model.texPath) {
             continue;
         }
         
         ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model];
-        console.documentController = self.documentController;
+        console.firstResponderDelegate = self.compileProcessHandler;
         console.compileMode = mode;
         console.compileRunning = YES;
         console.consoleActive = YES;
@@ -98,7 +98,7 @@
             [weakSelf finishedCompilationTask:task forData:console];
             task.terminationHandler = nil;
         }];
-        self.documentController.mainDocument.numberOfCompilingDocuments += 1;
+        self.compileProcessHandler.mainDocument.numberOfCompilingDocuments += 1;
         [currentTasks addObject:currentTask];
         @try {
             [currentTask launch];
@@ -107,13 +107,14 @@
             DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
             DDLogVerbose(@"%@", [NSThread callStackSymbols]);
             [currentTasks removeObject:currentTask];
-            self.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+            self.compileProcessHandler.mainDocument.numberOfCompilingDocuments -= 1;
         }
     }
 }
 
 - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData*)data{
-    data.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+    DDLogInfo(@"Test");
+    data.firstResponderDelegate.mainDocument.numberOfCompilingDocuments -= 1;
     data.model.isCompiling = NO;
     [[TMTNotificationCenter centerForCompilable:data.model] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
     data.model.lastCompile = [NSDate new];
@@ -125,20 +126,20 @@
 }
 
 -(void) liveCompile {
-    if (self.documentController.model.texPath) {
-        [self.documentController liveCompile:nil];
+    if (self.compileProcessHandler.model.texPath) {
+        [self.compileProcessHandler liveCompile:nil];
     }
     
 }
 
 - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
-    if (self.documentController.model.texPath) {
+    if (self.compileProcessHandler.model.texPath) {
         [self compile:live];
     }
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-    if (![[self.documentController.model liveCompile] boolValue]) {
+    if (![[self.compileProcessHandler.model liveCompile] boolValue]) {
         return; // live compile deactivated
     }
         
@@ -154,7 +155,7 @@
 }
 
 - (void) updateDocumentController {
-    [self.documentController documentHasChangedAction];
+    [self.compileProcessHandler documentHasChangedAction];
 }
 
 - (void)terminateAndKill {
@@ -166,12 +167,12 @@
             if (task.isRunning) {
                 [task interrupt];
             }
-            self.documentController.mainDocument.numberOfCompilingDocuments -= 1;
+            self.compileProcessHandler.mainDocument.numberOfCompilingDocuments -= 1;
         }
     }
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self.documentController.textViewController removeDelegateObserver:self];
-    self.documentController = NULL;
+    [self.compileProcessHandler.textViewController removeDelegateObserver:self];
+    self.compileProcessHandler = NULL;
 }
 
 - (void)dealloc {

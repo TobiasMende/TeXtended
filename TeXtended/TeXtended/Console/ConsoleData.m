@@ -86,7 +86,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 }
 
 - (void)refreshCompile {
-    [self.documentController compile:self.compileMode];
+    [self.firstResponderDelegate compile:self.compileMode];
 }
 
 - (void)commitInput {
