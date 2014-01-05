@@ -266,7 +266,12 @@ static NSSet* SPECIAL_SYMBOLS;
 #pragma mark - Maintaining the Drops
 
 -(NSString*)getDropCompletionForPath:(NSString*)path {
-    
+    NSString* pathExtension = [path pathExtension];
+    for (DropCompletion *dropCompletion in [self.dropCompletions allValues]) {
+        if ([dropCompletion.insertion isEqualToString:pathExtension]) {
+            return [dropCompletion getCompletion:path];
+        }
+    }
     // return the path by default.
     return path;
 }

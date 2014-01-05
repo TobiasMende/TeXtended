@@ -13,4 +13,9 @@
 -(id)init {
     return [self initWithInsertion:@"ext" containingPlaceholders:YES andExtension:@"@@destination@@"];
 }
+
+-(NSString*)getCompletion:(NSString*)path {
+    return [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+}
+
 @end
