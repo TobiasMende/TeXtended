@@ -36,9 +36,6 @@
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
 		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
-		76AA38EC1878078B00B965FA /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */; };
-		76AA38ED1878078B00B965FA /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38EA1878078B00B965FA /* MMTabBarView.framework */; };
-		76AA38EE1878078B00B965FA /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
@@ -63,12 +60,12 @@
 		D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */; };
 		D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */; };
 		D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* MainWindow.xib */; };
-		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
-		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
-		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
-		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
-		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
-		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
+		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
+		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
+		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
+		D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDD172688B400E2F8EC /* SourceCodePro-Light.ttf */; };
+		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
+		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
@@ -110,11 +107,11 @@
 		D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */; };
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
-		D28DC0D8177AD36100E4C711 /* pdflatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
+		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
-		D28DC0DD177AEDF400E4C711 /* lualatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
-		D28DC0DE177AEDF700E4C711 /* xelatex.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
+		D28DC0DD177AEDF400E4C711 /* lualatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
+		D28DC0DE177AEDF700E4C711 /* xelatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
 		D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2906E751824F5EC003213AA /* TMTTabManager.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -122,6 +119,12 @@
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
+		D2A13E9F1879D6440028E033 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9C1879D6440028E033 /* BibTexToolsFramework.framework */; };
+		D2A13EA01879D6440028E033 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9D1879D6440028E033 /* MMTabBarView.framework */; };
+		D2A13EA11879D6440028E033 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
+		D2A13EA21879D6550028E033 /* BibTexToolsFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9C1879D6440028E033 /* BibTexToolsFramework.framework */; };
+		D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9D1879D6440028E033 /* MMTabBarView.framework */; };
+		D2A13EA41879D6550028E033 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
@@ -239,35 +242,40 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D2A13EA21879D6550028E033 /* BibTexToolsFramework.framework in CopyFiles */,
+				D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */,
+				D2A13EA41879D6550028E033 /* TMTHelperCollection.framework in CopyFiles */,
 				D21840DD1864934C00B73EB5 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D271983E174399FD00342CB0 /* CopyFiles */ = {
+		D271983E174399FD00342CB0 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = CompileFlows;
 			dstSubfolderSpec = 7;
 			files = (
-				D28DC0D8177AD36100E4C711 /* pdflatex.rb in CopyFiles */,
-				D28DC0DE177AEDF700E4C711 /* xelatex.rb in CopyFiles */,
-				D28DC0DD177AEDF400E4C711 /* lualatex.rb in CopyFiles */,
+				D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */,
+				D28DC0DE177AEDF700E4C711 /* xelatex.rb in Copy Files */,
+				D28DC0DD177AEDF400E4C711 /* lualatex.rb in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2CC5547171EB15500D81CF1 /* CopyFiles */ = {
+		D2CC5547171EB15500D81CF1 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in CopyFiles */,
-				D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in CopyFiles */,
-				D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in CopyFiles */,
-				D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in CopyFiles */,
-				D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in CopyFiles */,
-				D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in CopyFiles */,
+				D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in Copy Files */,
+				D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in Copy Files */,
+				D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in Copy Files */,
+				D21ACBE91726892A00E2F8EC /* SourceCodePro-Light.ttf in Copy Files */,
+				D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in Copy Files */,
+				D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -297,9 +305,6 @@
 		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
 		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
 		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
-		76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/BibTexToolsFramework.framework"; sourceTree = "<group>"; };
-		76AA38EA1878078B00B965FA /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/MMTabBarView.framework"; sourceTree = "<group>"; };
-		76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug/TMTHelperCollection.framework"; sourceTree = "<group>"; };
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
@@ -499,6 +504,9 @@
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
 		D2A0E631176DCAA700EDAB5B /* PathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathFactory.m; sourceTree = "<group>"; };
+		D2A13E9C1879D6440028E033 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BibTexToolsFramework.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/BibTexToolsFramework.framework; sourceTree = "<group>"; };
+		D2A13E9D1879D6440028E033 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/MMTabBarView.framework; sourceTree = "<group>"; };
+		D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
@@ -609,9 +617,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76AA38EC1878078B00B965FA /* BibTexToolsFramework.framework in Frameworks */,
-				76AA38ED1878078B00B965FA /* MMTabBarView.framework in Frameworks */,
-				76AA38EE1878078B00B965FA /* TMTHelperCollection.framework in Frameworks */,
+				D2A13E9F1879D6440028E033 /* BibTexToolsFramework.framework in Frameworks */,
+				D2A13EA01879D6440028E033 /* MMTabBarView.framework in Frameworks */,
+				D2A13EA11879D6440028E033 /* TMTHelperCollection.framework in Frameworks */,
 				D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
@@ -1224,9 +1232,9 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				76AA38E91878078B00B965FA /* BibTexToolsFramework.framework */,
-				76AA38EA1878078B00B965FA /* MMTabBarView.framework */,
-				76AA38EB1878078B00B965FA /* TMTHelperCollection.framework */,
+				D2A13E9C1879D6440028E033 /* BibTexToolsFramework.framework */,
+				D2A13E9D1879D6440028E033 /* MMTabBarView.framework */,
+				D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */,
 				D23FD40D1863A4D7006BFD33 /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
@@ -1384,9 +1392,9 @@
 				D2CC54EC171EAFAB00D81CF1 /* Sources */,
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
-				D2CC5547171EB15500D81CF1 /* CopyFiles */,
+				D2CC5547171EB15500D81CF1 /* Copy Files */,
 				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
-				D271983E174399FD00342CB0 /* CopyFiles */,
+				D271983E174399FD00342CB0 /* Copy Files */,
 				762DA21A17CA4B780013D864 /* CopyFiles */,
 			);
 			buildRules = (
@@ -1531,7 +1539,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" != \"Release\" ]; then\nbuildPlist=\"$SRCROOT/$INFOPLIST_FILE\"\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nCFBundleVersion=\"$(cd $SRCROOT;/usr/bin/git rev-parse --short=9 HEAD)\"\nif [[ \"$buildNumber\" != \"$CFBundleVersion\" ]]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi\nfi";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1759,7 +1767,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"../**",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug",
+					/Users/Tobi/Uni/tmtproject/DerivedData/TMTProject/Build/Products/Debug,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
@@ -1779,7 +1787,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"../**",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TMTProject-bhglxovspqbuxncrhswjbaixqlhk/Build/Products/Debug",
+					/Users/Tobi/Uni/tmtproject/DerivedData/TMTProject/Build/Products/Debug,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";

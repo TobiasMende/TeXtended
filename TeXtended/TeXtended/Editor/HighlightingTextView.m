@@ -902,27 +902,18 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         
         NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
         
-        DocumentController* dc = (DocumentController*)[self firstResponderDelegate];
-        
-        if ([dc.mainDocument isKindOfClass:[SimpleDocument class]]) {
-            SimpleDocument* doc = (SimpleDocument*)dc.mainDocument;
-            for (NSString *filename in filenames) {
-                //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
-                [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[doc.model.texPath stringByDeletingLastPathComponent]]]];
-            }
+        DocumentModel *model = self.firstResponderDelegate.model;
+        DocumentModel *mainModel;
+        if (model.mainDocuments.count > 1) {
+            DDLogWarn(@"Not implemented yet!");
+            // TODO: ask for correct main document
+            mainModel = [model.mainDocuments anyObject];
+        } else {
+            mainModel = [model.mainDocuments anyObject];
         }
-        else {
-            ProjectDocument* doc = (ProjectDocument*)dc.mainDocument;
-            if (doc.model.mainDocuments.count > 1) {
-                //Not implemented yet.
-            }
-            else
-            {
-                DocumentModel *model = (DocumentModel*)[[doc.model.mainDocuments allObjects] objectAtIndex:0];
-                for (NSString *filename in filenames) {
-                    [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[model.texPath stringByDeletingLastPathComponent]]]];
-                }
-            }
+        for (NSString *filename in filenames) {
+            //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
+            [self insertText:[[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]]];
         }
         
         [self jumpToNextPlaceholder];

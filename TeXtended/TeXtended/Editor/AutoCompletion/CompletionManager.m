@@ -268,7 +268,7 @@ static NSSet* SPECIAL_SYMBOLS;
 -(NSAttributedString*)getDropCompletionForPath:(NSString*)path {
     NSString* pathExtension = [path pathExtension];
     for (DropCompletion *dropCompletion in [self.dropCompletions allValues]) {
-        if ([dropCompletion.insertion isEqualToString:pathExtension]) {
+        if ([dropCompletion.insertion.lowercaseString isEqualToString:pathExtension.lowercaseString]) {
             return [dropCompletion getCompletion:path];
         }
     }
