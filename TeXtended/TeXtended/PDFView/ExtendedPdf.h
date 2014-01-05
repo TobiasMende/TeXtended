@@ -72,6 +72,9 @@
 /** Unit used to scale the grid */
 @property (strong) NSString* gridUnit;
 
+/** Are the pages of the pdf transparent? */
+@property bool pageAlpha;
+
 @property (assign) id<FirstResponderDelegate> firstResponderDelegate;
 
 /**

@@ -23,7 +23,7 @@ static const NSSet *KEYS_TO_UNBIND;
 @implementation ExtendedPdf
 
 +(void)initialize {
-    KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines",@"gridHorizontalSpacing",@"gridHorizontalOffset",@"drawVerticalLines",@"gridVerticalSpacing",@"gridVerticalOffset", @"gridColor", @"drawPageNumbers", @"gridUnit", nil];
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines",@"gridHorizontalSpacing",@"gridHorizontalOffset",@"drawVerticalLines",@"gridVerticalSpacing",@"gridVerticalOffset", @"gridColor", @"drawPageNumbers", @"gridUnit", @"pageAlpha", nil];
 }
 
 - (id)init {
@@ -82,6 +82,10 @@ static const NSSet *KEYS_TO_UNBIND;
     // link grid unit to application shared
     [self bind:@"gridUnit" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTGridUnit"] options:nil];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTGridUnit" options:0 context:NULL];
+    
+    // link preference of transparent pdf pages
+    [self bind:@"pageAlpha" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:@"TMTPdfPageAlpha"] options:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"TMTPdfPageAlpha" options:0 context:NULL];
     
     // to init things at the first draw
     firstDraw = true;
@@ -201,8 +205,8 @@ static const NSSet *KEYS_TO_UNBIND;
     }
     
     // draw the next or prev page
-    NSInteger i = [self.document indexForPage:page];
-    if (YES) { // can show next page
+    if (self.pageAlpha) {
+        NSInteger i = [self.document indexForPage:page];
         PDFPage* nextPage = nil;
         if (i % 2 != 0) {
             if( i > 0) {
@@ -346,6 +350,7 @@ static const NSSet *KEYS_TO_UNBIND;
     DDLogVerbose(@"dealloc");
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridColor"];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTGridUnit"];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"TMTPdfPageAlpha"];
     [self unbindAll];
     
 }
