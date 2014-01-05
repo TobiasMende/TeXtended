@@ -28,6 +28,9 @@
     /** Reference to the preview settings */
     __unsafe_unretained IBOutlet NSView *previewPreferencesView;
     
+    /** Reference to the drop assistant settings */
+    __unsafe_unretained IBOutlet NSView *dropAssistantPreferenceView;
+    
     /** The toolbar of the preferences window */
     __unsafe_unretained IBOutlet NSToolbar *toolbar;
     

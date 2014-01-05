@@ -30,8 +30,10 @@
 
 - (void) removeItemFromCommands;
 - (void) removeItemFromEnvironments;
+- (void) removeItemFromDrops;
 - (void) addItemToEnvironments;
 - (void) addItemToCommands;
+- (void) addItemToDrops;
 
 // To here: IBAction handling for specific buttons
 
@@ -39,13 +41,16 @@
 
 - (id) commandObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (id) environmentObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
+- (id) dropObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (void) commandSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (void) environmentSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
+- (void) dropSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 
 // To here: NSTableViewDataSource method handling
 @end
 NSInteger commandTag = 1;
 NSInteger environmentTag = 2;
+NSInteger dropTag = 3;
 CompletionsController *instance;
 @implementation CompletionsController
 
@@ -87,6 +92,8 @@ CompletionsController *instance;
         return [self commandObjectValueForTableColumn:tableColumn row:row];
     } else if(tableView.tag == environmentTag) {
         return [self environmentObjectValueForTableColumn:tableColumn row:row];
+    } else if (tableView.tag == dropTag) {
+        return [self dropObjectValueForTableColumn:tableColumn row:row];
     }
     return nil;
 }
@@ -96,6 +103,8 @@ CompletionsController *instance;
         [self commandSetObjectValue:object forTableColumn:tableColumn row:row];
     } else if(tableView.tag == environmentTag) {
         [self environmentSetObjectValue:object forTableColumn:tableColumn row:row];
+    } else if (tableView.tag == dropTag) {
+        [self dropSetObjectValue:object forTableColumn:tableColumn row:row];
     }
     [tableView reloadData];
 }
@@ -111,6 +120,11 @@ CompletionsController *instance;
     NSString *key = (self.manager.environmentKeys)[row];
     EnvironmentCompletion *c = (self.manager.environmentCompletions)[key];
     return [c valueForKey:tableColumn.identifier];
+}
+
+- (id)dropObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    // Not implemented yet.
+    return nil;
 }
 
 - (void)commandSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -141,6 +155,9 @@ CompletionsController *instance;
     [self scrollRowToVisible:index inTableView:self.environmentView];
 }
 
+-(void)dropSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    //Not implemented yet.
+}
 
 
 -(void)scrollRowToVisible:(NSUInteger)rowIndex inTableView:(NSTableView *)view {
@@ -206,6 +223,10 @@ CompletionsController *instance;
     [self.commandsView reloadData];
 }
 
+-(IBAction)resetDropCompletions:(id)sender {
+    // Not implemented yet.
+}
+
 - (void)addItemToCommands {
     NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970];
     NSString *temporaryKey = [NSString stringWithFormat:@"%lf", timeStamp];
@@ -224,16 +245,24 @@ CompletionsController *instance;
     [self.environmentView editColumn:0 row:self.manager.environmentCompletions.count-1 withEvent:nil select:YES];
 }
 
-- (void)resetCommandCompletionRanking:(id)sender {
+- (void)addItemToDrops {
+    // Not implemented yet.
+}
+
+- (IBAction)resetCommandCompletionRanking:(id)sender {
     for (NSString *key in self.manager.commandCompletions) {
         [(self.manager.commandCompletions)[key] setCounter:0];
     }
 }
 
-- (void)resetEnvironmentCompletionRanking:(id)sender {
+- (IBAction)resetEnvironmentCompletionRanking:(id)sender {
     for (NSString *key in self.manager.environmentCompletions) {
         [(self.manager.environmentCompletions)[key] setCounter:0];
     }
+}
+
+- (IBAction)resetDropCompletionRanking:(id)sender {
+    // Not impllemented yet.
 }
 
 @end
