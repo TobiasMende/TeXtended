@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CommandCompletion, EnvironmentCompletion;
+@class CommandCompletion, EnvironmentCompletion, DropCompletion;
 @interface CompletionManager : NSObject {
     NSMutableDictionary *commandCompletionTypeIndex;
 }
@@ -21,11 +21,19 @@
  */
 @property (strong) NSMutableDictionary *environmentCompletions;
 
+/** The drop completions
+ @see DropCompletion
+ */
+@property (strong) NSMutableDictionary *dropCompletions;
+
 /** The keys for command completions */
 @property (strong) NSMutableArray *commandKeys;
 
 /** The keys for environment completions */
 @property (strong) NSMutableArray *environmentKeys;
+
+/** The keys for drop completions */
+@property (strong) NSMutableArray *dropKeys;
 
 
 
@@ -48,16 +56,25 @@
  */
 - (void) loadEnvironmentCompletionsFromPath:(NSString* )path;
 
+/** Loads drop completions from a specific path
+ @param path the path to load from
+ */
+- (void) loadDropCompletionsFromPath:(NSString* )path;
+
 - (void) saveCompletions;
 
 - (void) removeCommandsForKeys:(NSArray *)keys;
 - (void) removeEnvironmentsForKeys:(NSArray *)keys;
+- (void) removeDropsForKeys:(NSArray *)keys;
 - (void) addCommandCompletion:(CommandCompletion *)completion forKey:(id)key;
 - (void) addEnvironmentCompletion:(EnvironmentCompletion *)completion forKey:(id)key;
+- (void) addDropCompletion:(DropCompletion *)completion forKey:(id)key;
 - (void) addCommandCompletion:(CommandCompletion *)completion;
 - (void) addEnvironmentCompletion:(EnvironmentCompletion *)completion;
+- (void) addDropCompletion:(DropCompletion *)completion;
 - (void) setCommandCompletion:(CommandCompletion *)completion forIndex:(NSInteger)idx;
 - (void) setEnvironmentCompletion:(EnvironmentCompletion *)completion forIndex:(NSInteger)idx;
+- (void) setDropCompletion:(DropCompletion *)completion forIndex:(NSInteger)idx;
 
 
 - (void)addToTypeIndex:(CommandCompletion *)completion;

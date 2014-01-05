@@ -206,6 +206,8 @@
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
 		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
+		F64675471879579A006EAD63 /* DropCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = F64675461879579A006EAD63 /* DropCompletion.m */; };
+		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
 		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
 		F68687F418781D5F00898026 /* PrintDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68687F318781D5F00898026 /* PrintDialogController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
@@ -572,6 +574,9 @@
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
 		F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
 		F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
+		F64675451879579A006EAD63 /* DropCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropCompletion.h; sourceTree = "<group>"; };
+		F64675461879579A006EAD63 /* DropCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropCompletion.m; sourceTree = "<group>"; };
+		F646754818795859006EAD63 /* DropCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DropCompletions.plist; sourceTree = "<group>"; };
 		F68687F018781D2E00898026 /* PrintDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrintDialog.xib; sourceTree = "<group>"; };
 		F68687F218781D5F00898026 /* PrintDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintDialogController.h; sourceTree = "<group>"; };
 		F68687F318781D5F00898026 /* PrintDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintDialogController.m; sourceTree = "<group>"; };
@@ -756,6 +761,9 @@
 				D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */,
 				D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */,
 				D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */,
+				F64675451879579A006EAD63 /* DropCompletion.h */,
+				F64675461879579A006EAD63 /* DropCompletion.m */,
+				F646754818795859006EAD63 /* DropCompletions.plist */,
 				D22354C718617E7A0056A472 /* CompletionManager.h */,
 				D22354C818617E7A0056A472 /* CompletionManager.m */,
 				D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */,
@@ -1461,6 +1469,7 @@
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
+				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
 				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
 				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
 			);
@@ -1517,6 +1526,7 @@
 				D22354C918617E7A0056A472 /* CompletionManager.m in Sources */,
 				D2E7A4EF1768E8F400B2BA3C /* DocumentModel.m in Sources */,
 				D257499218631E5B0025A536 /* DefaultCompletionView.m in Sources */,
+				F64675471879579A006EAD63 /* DropCompletion.m in Sources */,
 				D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */,
 				D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */,
 				F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */,

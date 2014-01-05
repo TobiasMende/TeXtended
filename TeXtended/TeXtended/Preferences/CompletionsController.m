@@ -9,6 +9,7 @@
 #import "CompletionsController.h"
 #import "CommandCompletion.h"
 #import "EnvironmentCompletion.h"
+#import "DropCompletion.h"
 #import "ApplicationController.h"
 #import "Constants.h"
 #import <TMTHelperCollection/TMTLog.h>
@@ -83,6 +84,8 @@ CompletionsController *instance;
         return self.manager.commandCompletions.count;
     } else if(tableView.tag == environmentTag) {
         return self.manager.environmentCompletions.count;
+    } else if (tableView.tag == dropTag) {
+        return self.manager.dropCompletions.count;
     }
     return 0;
 }
@@ -123,8 +126,9 @@ CompletionsController *instance;
 }
 
 - (id)dropObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    // Not implemented yet.
-    return nil;
+    NSString *key = (self.manager.dropKeys)[row];
+    DropCompletion *c = (self.manager.dropCompletions)[key];
+    return [c valueForKey:tableColumn.identifier];
 }
 
 - (void)commandSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -156,7 +160,17 @@ CompletionsController *instance;
 }
 
 -(void)dropSetObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    //Not implemented yet.
+    NSString *key = (self.manager.dropKeys)[row];
+    DropCompletion *c = (self.manager.dropCompletions)[key];
+    if ((!c.insertion && [object isEqualToString:@""])|| [c.insertion isEqualTo:object]) {
+        return;
+    }
+    [self.manager.dropCompletions removeObjectForKey:key];
+    [c setValue:object forKey:tableColumn.identifier];
+    [self.manager setDropCompletion:c forIndex:row];
+    NSUInteger index = [self.manager.dropKeys indexOfObject:[c key]];
+    self.selectedDropIndexes = [NSIndexSet indexSetWithIndex:index];
+    [self scrollRowToVisible:index inTableView:self.dropView];
 }
 
 
@@ -183,6 +197,9 @@ CompletionsController *instance;
     } else if(c.tag == environmentTag) {
         [self removeItemFromEnvironments];
         [self.environmentView reloadData];
+    } else if (c.tag == dropTag) {
+        [self removeItemFromDrops];
+        [self.dropView reloadData];
     }
     
 }
@@ -199,6 +216,12 @@ CompletionsController *instance;
     [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
 }
 
+- (void)removeItemFromDrops {
+    NSArray *keys = [self.manager.dropKeys objectsAtIndexes:self.selectedDropIndexes];
+    [self.manager removeDropsForKeys:keys];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTDropCompletionsDidChangeNotification object:self];
+}
+
 - (IBAction)addItem:(id)sender {
     if (![sender isKindOfClass:[NSControl class]]) {
         return;
@@ -208,6 +231,8 @@ CompletionsController *instance;
         [self addItemToCommands];
     } else if(c.tag == environmentTag) {
         [self addItemToEnvironments];
+    } else if (c.tag) {
+        [self addItemToDrops];
     }
 }
 
@@ -224,7 +249,9 @@ CompletionsController *instance;
 }
 
 -(IBAction)resetDropCompletions:(id)sender {
-    // Not implemented yet.
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"DropCompletions" ofType:@"plist"];
+    [self.manager loadDropCompletionsFromPath:path];
+    [self.dropView reloadData];
 }
 
 - (void)addItemToCommands {
@@ -246,7 +273,12 @@ CompletionsController *instance;
 }
 
 - (void)addItemToDrops {
-    // Not implemented yet.
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970];
+    NSString *temporaryKey = [NSString stringWithFormat:@"%lf", timeStamp];
+    [self.manager addDropCompletion:[DropCompletion new] forKey:temporaryKey];
+    [self.dropView reloadData];
+    [self scrollRowToVisible:self.manager.dropCompletions.count-1 inTableView:self.dropView];
+    [self.dropView editColumn:0 row:self.manager.dropCompletions.count-1 withEvent:nil select:YES];
 }
 
 - (IBAction)resetCommandCompletionRanking:(id)sender {
@@ -262,7 +294,9 @@ CompletionsController *instance;
 }
 
 - (IBAction)resetDropCompletionRanking:(id)sender {
-    // Not impllemented yet.
+    for (NSString *key in self.manager.dropCompletions) {
+        [(self.manager.dropCompletions)[key] setCounter:0];
+    }
 }
 
 @end

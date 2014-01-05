@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict/>
+        <key>TMTCompletionExtensionKey</key>
+        <string>\item[@@label@@] @@destination@@ blabla</string>
+        <key>TMTCompletionInsertionKey</key>
+        <string>jpg</string>
+	<dict/>
+    <dict/>
+        <key>TMTCompletionExtensionKey</key>
+        <string>\input{@@destination@@}</string>
+        <key>TMTCompletionInsertionKey</key>
+        <string>tex</string>
+	<dict/>
+</array>
+</plist>

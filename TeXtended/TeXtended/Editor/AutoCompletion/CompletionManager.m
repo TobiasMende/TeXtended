@@ -11,6 +11,7 @@
 #import "CommandCompletion.h"
 #import "Completion.h"
 #import "EnvironmentCompletion.h"
+#import "DropCompletion.h"
 #import <TMTHelperCollection/TMTLog.h>
 static CompletionManager *instance;
 static NSSet* SPECIAL_SYMBOLS;
@@ -48,15 +49,19 @@ static NSSet* SPECIAL_SYMBOLS;
 - (void) loadCompletions {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
-    NSString *commandPath, *envPath;
+    NSString *commandPath, *envPath, *dropPath;
     if (applicationSupport) {
         commandPath = [applicationSupport stringByAppendingPathComponent:@"CommandCompletions.plist"];
         envPath = [applicationSupport stringByAppendingPathComponent:@"EnvironmentCompletions.plist"];
+        dropPath = [applicationSupport stringByAppendingPathComponent:@"DropCompletions.plist"];
         if (![fm fileExistsAtPath:commandPath]) {
             commandPath = nil;
         }
         if (![fm fileExistsAtPath:envPath]) {
             envPath = nil;
+        }
+        if (![fm fileExistsAtPath:dropPath]) {
+            dropPath = nil;
         }
     }
     
@@ -66,9 +71,13 @@ static NSSet* SPECIAL_SYMBOLS;
     if(!envPath) {
         envPath = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
     }
+    if(!dropPath) {
+        dropPath = [[NSBundle mainBundle] pathForResource:@"DropCompletions" ofType:@"plist"];
+    }
     
     [self loadCommandCompletionsFromPath:commandPath];
     [self loadEnvironmentCompletionsFromPath:envPath];
+    [self loadDropCompletionsFromPath:dropPath];
 }
 
 
@@ -97,20 +106,37 @@ static NSSet* SPECIAL_SYMBOLS;
     [self.environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
+- (void)loadDropCompletionsFromPath:(NSString *)path {
+    NSArray *dropDicts = [NSArray arrayWithContentsOfFile:path];
+    self.dropCompletions = [[NSMutableDictionary alloc] initWithCapacity:dropDicts.count];
+    self.dropKeys = [[NSMutableArray alloc] initWithCapacity:dropDicts.count];
+    
+    for(NSDictionary *d in dropDicts) {
+        EnvironmentCompletion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
+        [self addDropCompletion:c];
+    }
+    [self.dropKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
+}
+
 
 - (void) saveCompletions {
     NSString *commandPath;// = [[NSBundle mainBundle] pathForResource:@"CommandCompletions" ofType:@"plist"];
     NSString *envPath;// = [[NSBundle mainBundle] pathForResource:@"EnvironmentCompletions" ofType:@"plist"];
+    NSString *dropPath; // = [[NSBundle mainBundle] pathForResource:@"DropCompletions" ofType:@"plist"];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
     if (applicationSupport) {
         commandPath = [applicationSupport stringByAppendingPathComponent:@"CommandCompletions.plist"];
         envPath = [applicationSupport stringByAppendingPathComponent:@"EnvironmentCompletions.plist"];
+        dropPath = [applicationSupport stringByAppendingPathComponent:@"DropCompletions.plist"];
         if (![fm fileExistsAtPath:commandPath]) {
             [fm createFileAtPath:commandPath contents:nil attributes:nil];
         }
         if (![fm fileExistsAtPath:envPath]) {
             [fm createFileAtPath:envPath contents:nil attributes:nil];
+        }
+        if (![fm fileExistsAtPath:dropPath]) {
+            [fm createFileAtPath:dropPath contents:nil attributes:nil];
         }
         // Storing Command Completions:
         NSMutableArray *commandSaving = [[NSMutableArray alloc] initWithCapacity:self.commandCompletions.count];
@@ -119,11 +145,17 @@ static NSSet* SPECIAL_SYMBOLS;
         }
         [commandSaving writeToFile:commandPath atomically:YES];
         // Storing Environment Completions:
-        NSMutableArray *envSaving = [[NSMutableArray alloc] initWithCapacity:self.commandCompletions.count];
+        NSMutableArray *envSaving = [[NSMutableArray alloc] initWithCapacity:self.environmentCompletions.count];
         for(EnvironmentCompletion *c in [self.environmentCompletions allValues]) {
             [envSaving addObject:[c dictionaryRepresentation]];
         }
         [envSaving writeToFile:envPath atomically:YES];
+        // Storing Drop Completions:
+        NSMutableArray *dropSaving = [[NSMutableArray alloc] initWithCapacity:self.dropCompletions.count];
+        for(DropCompletion *c in [self.dropCompletions allValues]) {
+            [dropSaving addObject:[c dictionaryRepresentation]];
+        }
+        [dropSaving writeToFile:dropPath atomically:YES];
     } else {
         DDLogWarn(@"Can't store user completions");
     }
@@ -151,6 +183,15 @@ static NSSet* SPECIAL_SYMBOLS;
     [self addEnvironmentCompletion:completion forKey:completion.key];
 }
 
+- (void)addDropCompletion:(DropCompletion *)completion forKey:(id)key {
+    [self.dropKeys addObject:key];
+    (self.dropCompletions)[key] = completion;
+}
+
+- (void)addDropCompletion:(DropCompletion *)completion {
+    [self addDropCompletion:completion forKey:completion.key];
+}
+
 - (void)removeCommandsForKeys:(NSArray *)keys {
     [self.commandCompletions removeObjectsForKeys:keys];
     [self.commandKeys removeObjectsInArray:keys];
@@ -159,6 +200,11 @@ static NSSet* SPECIAL_SYMBOLS;
 - (void)removeEnvironmentsForKeys:(NSArray *)keys {
     [self.environmentCompletions removeObjectsForKeys:keys];
     [self.environmentKeys removeObjectsInArray:keys];
+}
+
+- (void)removeDropsForKeys:(NSArray *)keys {
+    [self.dropCompletions removeObjectsForKeys:keys];
+    [self.dropKeys removeObjectsInArray:keys];
 }
 
 - (void)setCommandCompletion:(CommandCompletion *)completion forIndex:(NSInteger)idx {
@@ -176,6 +222,15 @@ static NSSet* SPECIAL_SYMBOLS;
     [self.environmentKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
     if (completion.insertion && [completion.insertion length] != 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTEnvironmentCompletionsDidChangeNotification object:self];
+    }
+}
+
+- (void)setDropCompletion:(DropCompletion *)completion forIndex:(NSInteger)idx {
+    (self.dropCompletions)[[completion key]] = completion;
+    (self.dropKeys)[idx] = [completion key];
+    [self.dropKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    if (completion.insertion && [completion.insertion length] != 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDropCompletionsDidChangeNotification object:self];
     }
 }
 
