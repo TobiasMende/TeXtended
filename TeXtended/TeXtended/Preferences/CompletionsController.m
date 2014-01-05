@@ -231,7 +231,7 @@ CompletionsController *instance;
         [self addItemToCommands];
     } else if(c.tag == environmentTag) {
         [self addItemToEnvironments];
-    } else if (c.tag) {
+    } else if (c.tag == dropTag) {
         [self addItemToDrops];
     }
 }

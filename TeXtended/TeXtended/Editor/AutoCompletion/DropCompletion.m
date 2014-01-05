@@ -13,5 +13,4 @@
 -(id)init {
     return [self initWithInsertion:@"ext" containingPlaceholders:YES andExtension:@"@@destination@@"];
 }
-
 @end

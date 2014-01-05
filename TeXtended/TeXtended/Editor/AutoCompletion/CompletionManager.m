@@ -112,7 +112,7 @@ static NSSet* SPECIAL_SYMBOLS;
     self.dropKeys = [[NSMutableArray alloc] initWithCapacity:dropDicts.count];
     
     for(NSDictionary *d in dropDicts) {
-        EnvironmentCompletion *c = [[EnvironmentCompletion alloc] initWithDictionary:d];
+        DropCompletion *c = [[DropCompletion alloc] initWithDictionary:d];
         [self addDropCompletion:c];
     }
     [self.dropKeys sortUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -261,6 +261,14 @@ static NSSet* SPECIAL_SYMBOLS;
 
 - (NSMutableSet *)commandCompletionsByType:(NSString *)type {
     return commandCompletionTypeIndex[type];
+}
+
+#pragma mark - Maintaining the Drops
+
+-(NSString*)getDropCompletionForPath:(NSString*)path {
+    
+    // return the path by default.
+    return path;
 }
 
 + (NSSet *)specialSymbols {

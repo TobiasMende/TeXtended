@@ -2,17 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<dict/>
+    <dict>
         <key>TMTCompletionExtensionKey</key>
         <string>\item[@@label@@] @@destination@@ blabla</string>
+        <key>TMTCompletionHasPlaceholdersKey</key>
+        <true/>
         <key>TMTCompletionInsertionKey</key>
         <string>jpg</string>
-	<dict/>
-    <dict/>
+	</dict>
+	<dict>
         <key>TMTCompletionExtensionKey</key>
         <string>\input{@@destination@@}</string>
+        <key>TMTCompletionHasPlaceholdersKey</key>
+        <true/>
         <key>TMTCompletionInsertionKey</key>
         <string>tex</string>
-	<dict/>
+	</dict>
 </array>
 </plist>
