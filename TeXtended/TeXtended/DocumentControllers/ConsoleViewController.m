@@ -57,6 +57,10 @@
     
 }
 
+- (IBAction)cancelCompiling:(id)sender {
+    
+}
+
 
 #pragma mark -
 #pragma mark NSTextFieldDelegate Methods
