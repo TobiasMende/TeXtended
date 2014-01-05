@@ -47,7 +47,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     [self.splitView adjustSubviews];
     [self.window setInitialFirstResponder:self.textViewController.textView];
     [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
-    
+    self.textViewController.textView.enableQuickPreviewAssistant = NO;
 }
 
 - (void)showWindow:(id)sender {
@@ -91,7 +91,11 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     self.mainDocuments = [self.parentModel.mainDocuments allObjects];
+    if (self.mainDocuments.count) {
+        [self.mainCompilableSelection selectItemAtIndex:0];
+    }
 }
+
 
 - (void)liveCompile:(id)sender {
     [self updateMainCompilable];

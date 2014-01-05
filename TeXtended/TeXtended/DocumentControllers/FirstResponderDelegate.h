@@ -13,7 +13,9 @@
 
 - (DocumentModel *) model;
 
+
 @optional
+- (BOOL) canShowQuickPreviewWindow;
 
 /* Do a draft compile */
 - (void) draftCompile:(id)sender;

@@ -78,6 +78,7 @@ GoToLineSheetController *goToLineSheet;
 
 /** if `YES` all services are on, if `NO` this object behaves in general like a normal NSTextView. */
 @property BOOL servicesOn;
+@property BOOL enableQuickPreviewAssistant;
 /** The active line wrap mode */
 @property (nonatomic) TMTLineWrappingMode lineWrapMode;
 

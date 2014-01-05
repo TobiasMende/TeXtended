@@ -109,7 +109,6 @@
 }
 
 - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData*)data{
-    DDLogInfo(@"Test");
     data.firstResponderDelegate.mainDocument.numberOfCompilingDocuments -= 1;
     data.model.isCompiling = NO;
     [[TMTNotificationCenter centerForCompilable:data.model] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
