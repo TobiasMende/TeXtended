@@ -154,8 +154,8 @@
     [self.compileProcessHandler documentHasChangedAction];
 }
 
-- (void)terminateAndKill {
-    weakSelf = nil;
+
+- (void)abort {
     for(NSTask *task in currentTasks) {
         task.terminationHandler = nil;
         if (task.isRunning) {
@@ -166,6 +166,11 @@
             self.compileProcessHandler.mainDocument.numberOfCompilingDocuments -= 1;
         }
     }
+}
+
+- (void)terminateAndKill {
+    weakSelf = nil;
+    [self abort];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.compileProcessHandler.textViewController removeDelegateObserver:self];
     self.compileProcessHandler = NULL;

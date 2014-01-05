@@ -75,7 +75,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (self) {
         messageLock = [NSLock new];
         
-        _firstResponderDelegate = dc;
+        self.firstResponderDelegate = dc;
         observers = [NSMutableSet new];
         synctex = [ForwardSynctexController new];
         backgroundQueue = [NSOperationQueue new];
@@ -94,9 +94,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     return self;
 }
 
-
-- (DocumentModel *)model {
-    return self.firstResponderDelegate.model;
+- (void)setFirstResponderDelegate:(id<FirstResponderDelegate>)firstResponderDelegate {
+    _firstResponderDelegate = firstResponderDelegate;
+    self.textView.firstResponderDelegate = firstResponderDelegate;
+    self.model = firstResponderDelegate.model;
 }
 
 - (void)setLogLevel:(TMTLatexLogLevel)logLevel {
