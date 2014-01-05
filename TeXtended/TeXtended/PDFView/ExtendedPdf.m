@@ -71,7 +71,6 @@ static const NSSet *KEYS_TO_UNBIND;
     [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridOffset] options:nil];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridOffset options:0 context:NULL];
     
-    
     // link vertical line propertys to application shared
     [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawVGrid] options:nil];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawVGrid options:0 context:NULL];
@@ -107,7 +106,7 @@ static const NSSet *KEYS_TO_UNBIND;
 /** Needed to redraw page if grid color changes or units */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self setNeedsDisplay:YES];
+    [self layoutDocumentView];
 }
 
 - (void) startBackwardSynctex:(id)sender {
@@ -251,19 +250,18 @@ static const NSSet *KEYS_TO_UNBIND;
     }
 }
 
-- (void) drawPagePost:(PDFPage *)page {
-    [super drawPagePost:page];
-  
+- (void) layoutDocumentView {
+    [super layoutDocumentView];
     [[controllsView view] setFrameOrigin:
-         NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
-                     (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
-                     )];
+     NSMakePoint((int)self.frame.size.width/2  - controllsView.view.frame.size.width/2,
+                 (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2
+                 )];
     [controllsView update:self];
     
     [[pageNumbers view] setFrameOrigin:
-         NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
-                     (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
-                     )];
+     NSMakePoint((int)self.frame.size.width  - 1.25 * pageNumbers.view.frame.size.width,
+                 (int)self.frame.size.height - 1.25 * pageNumbers.view.frame.size.height
+                 )];
 }
 
 - (void) drawGrid:(NSSize) size {
