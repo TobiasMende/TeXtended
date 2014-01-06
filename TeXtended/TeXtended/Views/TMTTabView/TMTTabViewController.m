@@ -177,6 +177,10 @@
 
 }
 
+- (BOOL)shouldHideWindowWhenDraggingFrom:(MMTabBarView *)tabBarController {
+    return self.closeWindowForLastTabDrag;
+}
+
 
 - (void)tabView:(NSTabView *)aTabView didDropTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
     if (!self.closeWindowForLastTabDrag) {

@@ -1016,7 +1016,9 @@ static MMTabDragAssistant *sharedDragAssistant = nil;
 		//set the window's alpha mask to zero if the last tab is being dragged
 		//don't fade out the old window if the delegate doesn't respond to the new tab bar method, just to be safe
 		if (isSourceWindow && sourceTabBarViewDelegate && [sourceTabBarViewDelegate respondsToSelector:@selector(tabView:newTabBarViewForDraggedTabViewItem:atPoint:)]) {
-            [[_sourceTabBar window] orderOut:nil];
+            if (![sourceTabBarViewDelegate respondsToSelector:@selector(shouldHideWindowWhenDraggingFrom:)] ||  [sourceTabBarViewDelegate shouldHideWindowWhenDraggingFrom:_sourceTabBar]) {
+                [[_sourceTabBar window] orderOut:nil];
+            }
 
 			if ([_sourceTabBar tearOffStyle] == MMTabBarTearOffAlphaWindow) {
 				[[_draggedView window] setAlphaValue:kMMTabDragWindowAlpha];
