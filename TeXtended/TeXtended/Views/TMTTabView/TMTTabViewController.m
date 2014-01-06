@@ -177,6 +177,13 @@
 
 }
 
+
+- (void)tabView:(NSTabView *)aTabView didDropTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
+    if (!self.closeWindowForLastTabDrag) {
+        [self.tabView.window orderWindow:NSWindowBelow relativeTo:tabBarView.window.windowNumber];
+    }
+}
+
 - (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem {
     [self handleTabClose:tabViewItem];
     DDLogWarn(@"Closing %@", tabViewItem);
