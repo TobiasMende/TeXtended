@@ -582,7 +582,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 
 - (void)deleteTemporaryFilesAtPath:(NSString*)path
 {
-    NSArray *temporaryFileTypes = [[NSArray alloc] initWithObjects:@"aux", @"synctex", @"gz",@"gz(busy)",@"log", nil];
+    NSArray *temporaryFileTypes = [[NSArray alloc] initWithObjects:@"aux", @"synctex", @"gz",@"gz(busy)",@"log", @"bbl", nil];
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *directoryURL = [[NSURL alloc] initFileURLWithPath:path]; // URL pointing to the directory you want to browse
