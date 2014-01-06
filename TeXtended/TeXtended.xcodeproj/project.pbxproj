@@ -1388,7 +1388,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2CC5510171EAFAB00D81CF1 /* Build configuration list for PBXNativeTarget "TeXtended" */;
 			buildPhases = (
-				D28DC0EC177C065B00E4C711 /* Auto Increment Minor Version, Revision and Bundle Version */,
 				D2CC54EC171EAFAB00D81CF1 /* Sources */,
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
@@ -1526,20 +1525,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\n# Add documentation to Xcode\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/Development/ReloadDocset.scpt\"";
-		};
-		D28DC0EC177C065B00E4C711 /* Auto Increment Minor Version, Revision and Bundle Version */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Auto Increment Minor Version, Revision and Bundle Version";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
