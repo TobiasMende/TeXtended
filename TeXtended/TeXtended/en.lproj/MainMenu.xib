@@ -150,6 +150,12 @@
                                     <action selector="printDocument:" target="-1" id="373"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="575"/>
+                            <menuItem title="Delete Temporary Files" keyEquivalent="K" id="TTQ-MC-xOW">
+                                <connections>
+                                    <action selector="deleteTemporaryFiles:" target="-1" id="9gq-eH-ZV9"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -371,13 +377,6 @@
                                     <action selector="showQuickPreviewAssistant:" target="-1" id="Gxz-Va-AIW"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="575"/>
-                            <menuItem title="Delete Temporary Files" keyEquivalent="K" id="TTQ-MC-xOW">
-                                <connections>
-                                    <action selector="deleteTemporaryFiles:" target="-1" id="9gq-eH-ZV9"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="LJc-iG-AbH"/>
                             <menuItem title="Toggle Comment" keyEquivalent="7" id="578">
                                 <connections>
                                     <action selector="toggleComment:" target="-1" id="581"/>
