@@ -94,6 +94,11 @@
         return [nodes numberOfChildren];
     }
     FileViewModel *model = (FileViewModel*)item;
+    if ([model isDir]) {
+        if (!model.expandable) {
+            [self simpleFileFinder:[NSURL fileURLWithPath:model.filePath]];
+        }
+    }
     return [model numberOfChildren];
 }
 
