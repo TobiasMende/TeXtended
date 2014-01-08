@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-@class DBLPInterface, DBLPSearchViewController;
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+#import "DBLPSearchCompletionHandler.h"
+@class DBLPInterface, DBLPSearchViewController, BibtexWindowController;
+@interface AppDelegate : NSObject <NSApplicationDelegate, DBLPSearchCompletionHandler>
 @property (unsafe_unretained) IBOutlet NSWindow *window;
+@property BibtexWindowController *bibtexWindowController;
 
 @property DBLPSearchViewController *controller;
 @end

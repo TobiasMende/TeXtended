@@ -36,7 +36,6 @@
 
 
 - (void)performDoubleClick {
-    NSLog(@"Double Click");
     if ([self.publicationTable clickedRow] < 0) {
         return;
     }

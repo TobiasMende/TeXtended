@@ -18,7 +18,6 @@
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
 #import "UndoSupport.h"
-#import "SpellCheckingService.h"
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
@@ -126,7 +125,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     completionHandler = [[CompletionHandler alloc] initWithTextView:self];
     _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
     _undoSupport = [[UndoSupport alloc] initWithTextView:self];
-    _spellCheckingService = [[SpellCheckingService alloc] initWithTextView:self];
     if(self.string.length > 0) {
         [self.syntaxHighlighter highlightEntireDocument];
     }

@@ -11,7 +11,6 @@
 #import "Constants.h"
 #import "TexdocViewController.h"
 #import "TexdocEntry.h"
-#import "SpellCheckingService.h"
 #import "TexdocController.h"
 #import "CompletionManager.h"
 #import "CommandCompletion.h"

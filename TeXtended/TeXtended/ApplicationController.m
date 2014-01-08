@@ -17,6 +17,7 @@
 #import "FirstResponderDelegate.h"
 #import "ConsoleWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "LatexSpellChecker.h"
 
 static ApplicationController *sharedInstance;
 
@@ -32,6 +33,7 @@ static ApplicationController *sharedInstance;
 + (void)initialize {
     //Register default user defaults
     [self registerDefaults];
+    [LatexSpellChecker sharedSpellChecker];
     // Merging compile flows
     [self mergeCompileFlows:NO];
 }

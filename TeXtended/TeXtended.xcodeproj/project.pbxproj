@@ -106,6 +106,7 @@
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
 		D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */; };
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
+		D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2809C34187DC6D700C59909 /* LatexSpellChecker.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -187,7 +188,6 @@
 		D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
 		D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
 		D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
-		D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */; };
 		D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
 		D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
 		D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
@@ -407,8 +407,6 @@
 		D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewWindow.h; path = TMTTabView/TMTTabViewWindow.h; sourceTree = "<group>"; };
 		D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewWindow.m; path = TMTTabView/TMTTabViewWindow.m; sourceTree = "<group>"; };
 		D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewWindow.xib; path = TMTTabView/TMTTabViewWindow.xib; sourceTree = "<group>"; };
-		D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheckingService.h; sourceTree = "<group>"; };
-		D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheckingService.m; sourceTree = "<group>"; };
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
 		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
 		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
@@ -487,6 +485,8 @@
 		D28089B8181BBE7B00EEF55C /* MessageOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOutlineViewController.h; sourceTree = "<group>"; };
 		D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOutlineViewController.m; sourceTree = "<group>"; };
 		D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageOutlineView.xib; sourceTree = "<group>"; };
+		D2809C33187DC6D700C59909 /* LatexSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSpellChecker.h; sourceTree = "<group>"; };
+		D2809C34187DC6D700C59909 /* LatexSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSpellChecker.m; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -751,6 +751,7 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D2809C32187DC6C000C59909 /* LatexSpellChecker */,
 				D23DD42718794B5100C0EF97 /* QuickPreview */,
 				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
 				D2A5506D1751FF4B00BC05DD /* TextViewController.m */,
@@ -815,8 +816,6 @@
 				D21ACB961726868A00E2F8EC /* PlaceholderServices.m */,
 				D2AAF90F17293D8200FC09C1 /* UndoSupport.h */,
 				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
-				D22EDBE7172A9D9600E703FE /* SpellCheckingService.h */,
-				D22EDBE8172A9D9600E703FE /* SpellCheckingService.m */,
 				D25749A01863515C0025A536 /* DBLPIntegrator.h */,
 				D25749A11863515C0025A536 /* DBLPIntegrator.m */,
 			);
@@ -1128,6 +1127,15 @@
 				D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */,
 			);
 			path = MessageOutlineView;
+			sourceTree = "<group>";
+		};
+		D2809C32187DC6C000C59909 /* LatexSpellChecker */ = {
+			isa = PBXGroup;
+			children = (
+				D2809C33187DC6D700C59909 /* LatexSpellChecker.h */,
+				D2809C34187DC6D700C59909 /* LatexSpellChecker.m */,
+			);
+			path = LatexSpellChecker;
 			sourceTree = "<group>";
 		};
 		D283038A1731346200E1FC1D /* FileModel */ = {
@@ -1576,7 +1584,7 @@
 				D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */,
 				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
-				D2E7A5081768E8F400B2BA3C /* SpellCheckingService.m in Sources */,
+				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
 				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
