@@ -61,9 +61,17 @@ static NSSet *COMPLETION_ESCAPE_INSERTIONS;
         if ([substring isEqualToString:@"}"]) {
             result = NSMakeRange(NSNotFound, 0);
             *stop = YES;
-        } else if ([substring isEqualToString:@"{"] && !resultEnd) {
+        } else if (([substring isEqualToString:@"{"] || [substring isEqualToString:@"["])
+                   && !resultEnd) {
             result = substringRange;
             resultEnd = YES;
+        } else if([substring isEqualToString:@"]"]) {
+            if (resultEnd) {
+                resultEnd = NO;
+            } else {
+                result = NSMakeRange(NSNotFound, 0);
+                *stop = YES;
+            }
         } else if ([substring isEqualToString:@"\\"] && resultEnd) {
             resultStart = YES;
             result.location--;

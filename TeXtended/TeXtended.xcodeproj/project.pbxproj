@@ -107,6 +107,7 @@
 		D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */; };
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
 		D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2809C34187DC6D700C59909 /* LatexSpellChecker.m */; };
+		D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */ = {isa = PBXBuildFile; fileRef = D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -487,6 +488,7 @@
 		D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageOutlineView.xib; sourceTree = "<group>"; };
 		D2809C33187DC6D700C59909 /* LatexSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSpellChecker.h; sourceTree = "<group>"; };
 		D2809C34187DC6D700C59909 /* LatexSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSpellChecker.m; sourceTree = "<group>"; };
+		D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpellCheckerPrefixesToIgnore.list; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -1134,6 +1136,7 @@
 			children = (
 				D2809C33187DC6D700C59909 /* LatexSpellChecker.h */,
 				D2809C34187DC6D700C59909 /* LatexSpellChecker.m */,
+				D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */,
 			);
 			path = LatexSpellChecker;
 			sourceTree = "<group>";
@@ -1513,6 +1516,7 @@
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
+				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
 				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
 				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
 			);
