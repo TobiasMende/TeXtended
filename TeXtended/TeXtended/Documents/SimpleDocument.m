@@ -120,6 +120,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         self.model.encoding = @([contr.encController selection]);
         
     }
+    [self.model loadContent:outError];
+    if (*outError) {
+        return NO;
+    }
     
     return YES;
 }

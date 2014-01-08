@@ -120,9 +120,9 @@
     DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
     _textViewController = [[TextViewController alloc] initWithFirstResponder:self];
     [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
-    BOOL success;
-    NSString *content = [self.model loadContent:&success];
-    if (success) {
+    NSError *error;
+    NSString *content = [self.model loadContent:&error];
+    if (!error) {
         self.textViewController.content = content;
         self.pdfViewControllers = [NSMutableSet new];
         for(DocumentModel *model in self.model.mainDocuments) {

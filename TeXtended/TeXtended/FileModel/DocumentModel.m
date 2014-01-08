@@ -38,12 +38,10 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
-- (NSString *)loadContent:(BOOL*)success {
+- (NSString *)loadContent:(NSError**)error {
     self.lastChanged = [[NSDate alloc] init];
-    NSError *error;
     if (!self.systemPath) {
         if (!self.texPath) {
-            *success = YES;
             return nil;
         }
         self.systemPath = self.texPath;
@@ -51,9 +49,9 @@ static NSArray *TMTEncodingsToCheck;
     NSStringEncoding encoding;
     NSString *content;
     if (self.encoding && [self.encoding unsignedLongValue] > 0) {
-        content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:&error];
+        content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:error];
     } else {
-        content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:&error];
+        content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:error];
         self.encoding = @(encoding);
         
     }
@@ -72,15 +70,15 @@ static NSArray *TMTEncodingsToCheck;
         
     }*/
     
-    if (error) {
-        DDLogError(@"Error while loading content: %@", [error userInfo]);
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert runModal];
+    if (*error) {
+        DDLogError(@"Error while loading content: %@", (*error).userInfo);
     }
     if (content) {
         [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];
     }
-    *success = (content != nil && error == nil);
+    if (error == NULL && content == nil) {
+        *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message": @"Can't read file"}];
+    }
     return content;
 }
 

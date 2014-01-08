@@ -67,7 +67,7 @@
  
  @return the files content
  */
-- (NSString*) loadContent:(BOOL*)success;
+- (NSString*) loadContent:(NSError**)error;
 
 /**
  Method for saving new content to the represented file
