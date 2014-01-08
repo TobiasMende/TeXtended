@@ -33,7 +33,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         self.pvc = [[ExtendedPDFViewController alloc] init];
         self.textViewController = [[TextViewController alloc] initWithFirstResponder:self];
         self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
-        self.compiler.idleTimeForLiveCompile = 1;
+        self.compiler.idleTimeForLiveCompile = 0.75;
         [self.textViewController addObserver:self.compiler];
     }
     return self;

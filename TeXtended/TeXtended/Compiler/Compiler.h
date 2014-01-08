@@ -34,7 +34,7 @@
  * Time that has to pass to a action on the textView until this class will
  * compile the documents when in live mode.
  */
-@property int idleTimeForLiveCompile;
+@property float idleTimeForLiveCompile;
 
 /** The DocumentController from which this class handels the MainDocuments. */
 @property (assign) id<CompileProcessHandler> compileProcessHandler;

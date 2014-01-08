@@ -34,7 +34,7 @@
         currentTasks = [NSMutableSet new];
         weakSelf = self;
         // get the settings and observe them
-        _idleTimeForLiveCompile = 2;
+        self.idleTimeForLiveCompile = 1.5;
     }
     return self;
 }

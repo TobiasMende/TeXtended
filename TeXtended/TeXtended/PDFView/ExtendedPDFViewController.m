@@ -138,11 +138,13 @@
         [self.pdfView setDocument:pdfDoc];
         
         // restore visible region
-        if (index >= 0) {
+        if (index >= 0 && index < pdfDoc.pageCount) {
             PDFPage *page = [pdfDoc pageAtIndex:index];
             if (page) {
                 [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];
             }
+        } else {
+            DDLogError(@"Invalid Index: %li", index);
         }
     }
 }
