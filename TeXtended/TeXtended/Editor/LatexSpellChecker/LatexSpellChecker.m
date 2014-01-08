@@ -11,7 +11,7 @@
 #import "NSString+LatexExtension.h"
 
 @interface LatexSpellChecker ()
-- (NSArray *)removeCommandResultsFrom:(NSArray *)results inContext:(NSString *)content;
+- (NSArray *)removeLatexResultsFrom:(NSArray *)results inContext:(NSString *)content;
 - (NSString *)descriptionForResultType:(NSTextCheckingType)type;
 @end
 
@@ -46,7 +46,7 @@
         
         // TODO: implement spell checking here
         
-        NSArray *results = [weakSelf removeCommandResultsFrom:tmpResults inContext:stringToCheck];
+        NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         
         
         callersHandler(sequenceNumber, results, orthography, wordCount);
@@ -55,7 +55,11 @@
     return [super requestCheckingOfString:stringToCheck range:range types:checkingTypes options:options inSpellDocumentWithTag:tag completionHandler:completionHandler];
 }
 
-- (NSArray *)removeCommandResultsFrom:(NSArray *)results inContext:(NSString *)content {
+
+
+# pragma mark - Private Methods
+
+- (NSArray *)removeLatexResultsFrom:(NSArray *)results inContext:(NSString *)content {
     NSMutableArray *finalResults = [NSMutableArray arrayWithCapacity:results.count];
     if (!prefixesToIgnore) {
         NSString *strings = [NSString stringWithContentsOfFile:[[NSBundle mainBundle]
@@ -69,9 +73,9 @@
     }
     
     for(NSTextCheckingResult *result in results) {
-        //DDLogWarn(@"%li, %@ : %@", result.numberOfRanges, [self descriptionForResultType:result.resultType], [content substringWithRange:result.range]);
         NSRange range = result.range;
         if (result.resultType != NSTextCheckingTypeSpelling) {
+            //DDLogWarn(@"%li, %@ : %@", result.numberOfRanges, [self descriptionForResultType:result.resultType], [content substringWithRange:result.range]);
             [finalResults addObject:result];
             continue;
         }
@@ -86,9 +90,9 @@
         }
         if (prefix.location != NSNotFound) {
             
-            DDLogInfo(@"Not handled command: %@ - %@", [content substringWithRange:prefix],[content substringWithRange:range]);
+            DDLogInfo(@"Unskipped Command Prefix: %@ for word %@", [content substringWithRange:prefix],[content substringWithRange:range]);
         }
-        DDLogWarn(@"NH: %@", [content substringWithRange:range]);
+        //DDLogWarn(@"NH: %@", [content substringWithRange:range]);
         // Unknown element. Add to result
         [finalResults addObject:result];
     }
