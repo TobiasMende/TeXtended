@@ -26,18 +26,6 @@
 }
 
 
-- (NSArray *)checkString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary *)options inSpellDocumentWithTag:(NSInteger)tag orthography:(NSOrthography *__autoreleasing *)orthography wordCount:(NSInteger *)wordCount {
-    return nil;
-}
-
-- (NSRange)checkSpellingOfString:(NSString *)stringToCheck startingAt:(NSInteger)startingOffset {
-    return NSMakeRange(NSNotFound, 0);
-}
-
-- (NSRange)checkSpellingOfString:(NSString *)stringToCheck startingAt:(NSInteger)startingOffset language:(NSString *)language wrap:(BOOL)wrapFlag inSpellDocumentWithTag:(NSInteger)tag wordCount:(NSInteger *)wordCount {
-    return NSMakeRange(NSNotFound, 0);
-}
-
 - (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray *, NSOrthography *, NSInteger))callersHandler {
     
     void (^completionHandler)(NSInteger, NSArray *, NSOrthography *, NSInteger);
