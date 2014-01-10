@@ -262,6 +262,14 @@
     [self.mainDocument showStatisticsForModel:self];
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(showStatistics:)) {
+        return self.model.texPath !=  nil;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
+
 - (BOOL)isLiveCompileEnabled {
     return self.model.liveCompile.boolValue;
 }
