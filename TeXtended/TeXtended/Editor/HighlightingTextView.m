@@ -923,15 +923,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [[self window]makeFirstResponder:self];
     }
     
-    else if ( [[pb types] containsObject:NSPasteboardTypeString] ) {
-        
-        NSPoint draggingLocation = [sender draggingLocation];
-        draggingLocation = [self convertPoint:draggingLocation fromView:nil];
-        NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
-        [self setSelectedRange:NSMakeRange(characterIndex, 0)];
-        
-        NSString *draggedString = [pb stringForType:NSPasteboardTypeString];
-        [self insertText:draggedString];
+    else {
+        return [super performDragOperation:sender];
     }
     
     return YES;
