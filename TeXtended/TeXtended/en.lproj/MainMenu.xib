@@ -214,7 +214,6 @@
                                                 <action selector="jumpPreviousAnchor:" target="-1" id="600"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="596"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -527,8 +526,5 @@
         <customObject id="534" customClass="ApplicationController"/>
         <customObject id="537" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="585"/>
-        <menuItem title="Item" id="CQW-Tm-hRh">
-            <modifierMask key="keyEquivalentModifierMask"/>
-        </menuItem>
     </objects>
 </document>

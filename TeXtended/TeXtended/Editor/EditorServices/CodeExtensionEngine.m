@@ -21,6 +21,7 @@
 #define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 static const NSRegularExpression *TEXDOC_LINKS;
 static NSString *TEXDOC_PREFIX = @"texdoc://";
+static NSString *CITE_PREFIX = @"cite://";
 static const NSSet *KEYS_TO_UNBIND;
 @interface CodeExtensionEngine()
 /**
@@ -143,7 +144,9 @@ static const NSSet *KEYS_TO_UNBIND;
                         }
                     }
                     if (citeEntry) {
-                        attributes[NSToolTipAttributeName] = [NSString stringWithFormat:@"%@\n%@", citeEntry.author, citeEntry.title];
+                        NSString *description = [NSString stringWithFormat:@"%@\n%@", citeEntry.author, citeEntry.title];
+                        attributes[NSToolTipAttributeName] = description;
+                        attributes[NSLinkAttributeName] = [NSString stringWithFormat:@"%@%@", CITE_PREFIX, description];
                         if (self.shouldUnderlineTexdoc) {
                             attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
                         }
@@ -216,12 +219,23 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (BOOL)clickedOnLink:(id)link atIndex:(NSUInteger)charIndex {
     NSString *url = (NSString*) link;
-    if ([[url substringToIndex:TEXDOC_PREFIX.length] isEqualToString:TEXDOC_PREFIX]) {
+    NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(charIndex, 1) inTextContainer:view.textContainer];
+    if ([url hasPrefix:TEXDOC_PREFIX]) {
         NSString *packageName = [url substringFromIndex:TEXDOC_PREFIX.length];
-        NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(charIndex, 1) inTextContainer:view.textContainer];
         TexdocController *tc = [[TexdocController alloc] init];
         NSDictionary *dict = @{BOUNDING_RECT_KEY: NSStringFromRect(boundingRect)};
         [tc executeTexdocForPackage:packageName withInfo:dict andHandler:self];
+        return YES;
+    } else if([url hasPrefix:CITE_PREFIX]) {
+        NSString *content = [url substringFromIndex:CITE_PREFIX.length];
+        NSArray *split = [content componentsSeparatedByString:@"\n"];
+        TMTBibTexEntry *entry = [TMTBibTexEntry new];
+        entry.title = [split objectAtIndex:1];
+        entry.author = [split objectAtIndex:0];
+        NSViewController *vc = [[NSViewController alloc] initWithNibName:@"CiteInfoView" bundle:[NSBundle mainBundle]];
+        vc.representedObject = entry;
+        popover.contentViewController = vc;
+        [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxYEdge];
         return YES;
     }
     return NO;

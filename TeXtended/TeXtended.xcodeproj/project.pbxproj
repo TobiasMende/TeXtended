@@ -116,6 +116,7 @@
 		D28DC0DE177AEDF700E4C711 /* xelatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
 		D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2906E751824F5EC003213AA /* TMTTabManager.m */; };
+		D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D291E684188055F700CDC8C8 /* CiteInfoView.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
@@ -498,6 +499,7 @@
 		D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackwardSynctex.m; sourceTree = "<group>"; };
 		D2906E741824F5EC003213AA /* TMTTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabManager.h; sourceTree = "<group>"; };
 		D2906E751824F5EC003213AA /* TMTTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabManager.m; sourceTree = "<group>"; };
+		D291E684188055F700CDC8C8 /* CiteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CiteInfoView.xib; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
 		D296059D178091F7007C599B /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
@@ -1018,6 +1020,7 @@
 				D2574993186324730025A536 /* DBLPButtonView.h */,
 				D2574994186324730025A536 /* DBLPButtonView.m */,
 				D25749961863247F0025A536 /* DBLPButtonView.xib */,
+				D291E684188055F700CDC8C8 /* CiteInfoView.xib */,
 			);
 			path = CustomTableCellViews;
 			sourceTree = "<group>";
@@ -1469,6 +1472,7 @@
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
+				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
