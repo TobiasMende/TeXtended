@@ -23,7 +23,7 @@
     NSDate *lastUpdate;
 }
 /** The color for texdoc links */
-@property (strong,nonatomic) NSColor *texdocColor;
+@property (strong,nonatomic) NSColor *linkColor;
 /** If `YES` package links are highlighted as texdoc link */
 @property (nonatomic)BOOL shouldLinkTexdoc;
 /** If `YES` texdoc links are underlined */

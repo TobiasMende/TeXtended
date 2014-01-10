@@ -72,8 +72,8 @@ static const NSSet *KEYS_TO_UNBIND;
         popover.animates = YES;
         popover.behavior = NSPopoverBehaviorTransient;
         
-        self.texdocColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_TEXDOC_LINK_COLOR]];
-        [self bind:@"texdocColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
+        self.linkColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_TEXDOC_LINK_COLOR]];
+        [self bind:@"linkColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
         
         self.shouldLinkTexdoc = [[[defaults values] valueForKey:TMT_SHOULD_LINK_TEXDOC] boolValue];
         [self bind:@"shouldLinkTexdoc" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_LINK_TEXDOC] options:NULL];
@@ -147,6 +147,7 @@ static const NSSet *KEYS_TO_UNBIND;
                         NSString *description = [NSString stringWithFormat:@"%@\n%@", citeEntry.author, citeEntry.title];
                         attributes[NSToolTipAttributeName] = description;
                         attributes[NSLinkAttributeName] = [NSString stringWithFormat:@"%@%@", CITE_PREFIX, description];
+                        attributes[NSForegroundColorAttributeName] = self.linkColor;
                         if (self.shouldUnderlineTexdoc) {
                             attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
                         }
@@ -185,7 +186,7 @@ static const NSSet *KEYS_TO_UNBIND;
                     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
                     attributes[NSLinkAttributeName] = link;
                     attributes[NSToolTipAttributeName] = [@"Open documentation for " stringByAppendingString:package];
-                    attributes[NSForegroundColorAttributeName] = self.texdocColor;
+                    attributes[NSForegroundColorAttributeName] = self.linkColor;
                     if (self.shouldUnderlineTexdoc) {
                         attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
                     }
@@ -235,7 +236,13 @@ static const NSSet *KEYS_TO_UNBIND;
         NSViewController *vc = [[NSViewController alloc] initWithNibName:@"CiteInfoView" bundle:[NSBundle mainBundle]];
         vc.representedObject = entry;
         popover.contentViewController = vc;
-        [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxYEdge];
+        @try {
+            popover.contentSize = vc.view.bounds.size;
+            [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxYEdge];
+        }
+        @catch (NSException *exception) {
+            DDLogWarn(@"Can't show texdoc popover due to %@ (%@)", exception.reason, exception.name);
+        }
         return YES;
     }
     return NO;
@@ -248,7 +255,8 @@ static const NSSet *KEYS_TO_UNBIND;
    popover.contentViewController = texdocView;
     NSRect rect = NSRectFromString(info[BOUNDING_RECT_KEY]);
     @try {
-        [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxXEdge];
+        popover.contentSize = texdocView.view.bounds.size;
+        [popover showRelativeToRect:rect ofView:view preferredEdge:NSMaxYEdge];
     }
     @catch (NSException *exception) {
         DDLogWarn(@"Can't show texdoc popover due to %@ (%@)", exception.reason, exception.name);
@@ -268,8 +276,8 @@ static const NSSet *KEYS_TO_UNBIND;
     [self invalidateTexdocLinks];
 }
 
-- (void)setTexdocColor:(NSColor *)texdocColor {
-    _texdocColor = texdocColor;
+- (void)setLinkColor:(NSColor *)texdocColor {
+    _linkColor = texdocColor;
     [self invalidateTexdocLinks];
 }
 
