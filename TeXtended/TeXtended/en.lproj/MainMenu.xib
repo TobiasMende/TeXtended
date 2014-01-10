@@ -176,6 +176,55 @@
                             <menuItem isSeparatorItem="YES" id="206">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Toggle Comment" keyEquivalent="7" id="578">
+                                <connections>
+                                    <action selector="toggleComment:" target="-1" id="581"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Comment Selection" keyEquivalent="7" id="576">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                <connections>
+                                    <action selector="commentSelection:" target="-1" id="579"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Uncomment Selection" keyEquivalent="7" id="577">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="uncommentSelection:" target="-1" id="580"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="rHd-oe-z3I"/>
+                            <menuItem title="Code Bookmarks" id="550">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Code Bookmarks" id="551">
+                                    <items>
+                                        <menuItem title="Go To Line" keyEquivalent="l" id="592">
+                                            <connections>
+                                                <action selector="goToLine:" target="-1" id="593"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Next Anchor" keyEquivalent="&lt;" id="597">
+                                            <connections>
+                                                <action selector="jumpNextAnchor:" target="-1" id="599"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Previous Anchor" keyEquivalent="&lt;" id="598">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="jumpPreviousAnchor:" target="-1" id="600"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="596"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Hard Wrap Text" id="540">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="hardWrapText:" target="-1" id="542"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="541"/>
                             <menuItem title="Cut" keyEquivalent="x" id="199">
                                 <connections>
                                     <action selector="cut:" target="-1" id="228"/>
@@ -199,6 +248,24 @@
                             <menuItem title="Select All" keyEquivalent="a" id="198">
                                 <connections>
                                     <action selector="selectAll:" target="-1" id="232"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="SVi-xr-eu3"/>
+                            <menuItem title="Delete Lines" keyEquivalent="d" id="546">
+                                <connections>
+                                    <action selector="deleteLines:" target="-1" id="547"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Move Lines Up" keyEquivalent="" id="548">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="moveLinesUp:" target="-1" id="553"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Move Lines Down" keyEquivalent="" id="549">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="moveLinesDown:" target="-1" id="554"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="214">
@@ -316,84 +383,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="541"/>
-                            <menuItem title="Hard Wrap Text" id="540">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="hardWrapText:" target="-1" id="542"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Code Navigation" id="550">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Code Navigation" id="551">
-                                    <items>
-                                        <menuItem title="Go To Line" keyEquivalent="l" id="592">
-                                            <connections>
-                                                <action selector="goToLine:" target="-1" id="593"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Next Anchor" keyEquivalent="&lt;" id="597">
-                                            <connections>
-                                                <action selector="jumpNextAnchor:" target="-1" id="599"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Previous Anchor" keyEquivalent="&lt;" id="598">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="jumpPreviousAnchor:" target="-1" id="600"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="596"/>
-                                        <menuItem title="Delete Lines" keyEquivalent="d" id="546">
-                                            <connections>
-                                                <action selector="deleteLines:" target="-1" id="547"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move Lines Up" keyEquivalent="" id="548">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="moveLinesUp:" target="-1" id="553"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Move Lines Down" keyEquivalent="" id="549">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="moveLinesDown:" target="-1" id="554"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="rHd-oe-z3I"/>
-                            <menuItem title="Matrix Template" keyEquivalent="m" id="IVu-h9-Msz">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="matrixView:" target="-1" id="FAx-M7-0Sk"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Quick Preview Assistant" keyEquivalent="l" id="Ggi-Zl-Avj">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="showQuickPreviewAssistant:" target="-1" id="Gxz-Va-AIW"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Toggle Comment" keyEquivalent="7" id="578">
-                                <connections>
-                                    <action selector="toggleComment:" target="-1" id="581"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Comment Selection" keyEquivalent="7" id="576">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="commentSelection:" target="-1" id="579"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Uncomment Selection" keyEquivalent="7" id="577">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="uncommentSelection:" target="-1" id="580"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -439,15 +428,16 @@
                 <menuItem title="View" id="295">
                     <menu key="submenu" title="View" id="296">
                         <items>
+                            <menuItem title="Show Selection in Text" keyEquivalent="J" id="594">
+                                <connections>
+                                    <action selector="startBackwardSynctex:" target="-1" id="595"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="OP6-Ny-1DB"/>
                             <menuItem title="Show Toolbar" keyEquivalent="t" id="297">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="toggleToolbarShown:" target="-1" id="366"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Show Selection in Text" keyEquivalent="J" id="594">
-                                <connections>
-                                    <action selector="startBackwardSynctex:" target="-1" id="595"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Customize Toolbar…" id="298">
@@ -488,6 +478,37 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Tools" id="cNR-QY-qCQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Tools" id="cHx-pZ-IFN">
+                        <items>
+                            <menuItem title="Quick Preview Assistant" keyEquivalent="l" id="Ggi-Zl-Avj">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showQuickPreviewAssistant:" target="-1" id="Gxz-Va-AIW"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Matrix Builder" keyEquivalent="m" id="IVu-h9-Msz">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="matrixView:" target="-1" id="FAx-M7-0Sk"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Text Statistics" id="4Om-hC-ygK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showStatistics:" target="-1" id="n4b-Is-OBg"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="hG1-i3-OBU"/>
+                            <menuItem title="Package Documentation" keyEquivalent="T" id="573">
+                                <connections>
+                                    <action selector="showTexdocPanel:" target="534" id="574"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Help" id="491">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="492">
@@ -495,17 +516,6 @@
                             <menuItem title="TeXtended Help" keyEquivalent="?" id="493">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="494"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Package Documentation" keyEquivalent="T" id="573">
-                                <connections>
-                                    <action selector="showTexdocPanel:" target="534" id="574"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Statistics" id="4Om-hC-ygK">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showStatistics:" target="-1" id="n4b-Is-OBg"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -517,5 +527,8 @@
         <customObject id="534" customClass="ApplicationController"/>
         <customObject id="537" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="585"/>
+        <menuItem title="Item" id="CQW-Tm-hRh">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
     </objects>
 </document>
