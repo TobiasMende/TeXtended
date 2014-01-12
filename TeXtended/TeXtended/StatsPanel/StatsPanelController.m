@@ -33,9 +33,9 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
-- (void)showStatistics:(NSString*)filename
+- (void)showStatistics:(NSString*)content
 {
-    self.panelTitle = [NSLocalizedString(@"Statistics", @"Statistics") stringByAppendingString:[NSString stringWithFormat:@" - %@",[filename lastPathComponent]]];
+    /*self.panelTitle = [NSLocalizedString(@"Statistics", @"Statistics") stringByAppendingString:[NSString stringWithFormat:@" - %@",[filename lastPathComponent]]];
     NSTask *task = [[NSTask alloc]init];
     NSPipe *outPipe = [NSPipe pipe];
     task.standardOutput = outPipe;
@@ -46,16 +46,16 @@
     [task waitUntilExit];
     NSString *output = [[NSString alloc] initWithData:[[outPipe fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
     [self parseOutputString:output];
-    [self showWindow:self];
+    [self showWindow:self];*/
 }
 
--(void)parseOutputString:(NSString*)output
+/*-(void)parseOutputString:(NSString*)output
 {
     // String has Format "TEXTWORDS+HEADERWORDS+CAPTIONWORDS (HEADERNUMBER/FLOATNUMBER/MATHINLINENUMBER/DISPLAYEDMATHNUMBER) TOTAL COUNT"
     NSArray *stringComponents = [output componentsSeparatedByString:@"+"];
     self.wordsInText = stringComponents[0];
     self.wordsInHeader = stringComponents[1];
     self.wordsInCaption = [stringComponents[2] componentsSeparatedByString:@" "][0];
-}
+}*/
 
 @end

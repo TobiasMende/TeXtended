@@ -14,6 +14,6 @@
 @property IBOutlet NSString* wordsInText;
 @property IBOutlet NSString* wordsInHeader;
 @property IBOutlet NSString* wordsInCaption;
-- (void)showStatistics:(NSString*)filename;
+- (void)showStatistics:(NSString*)content;
 
 @end
