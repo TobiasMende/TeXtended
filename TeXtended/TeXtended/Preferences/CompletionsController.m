@@ -33,23 +33,23 @@ CompletionsController *instance;
     }
     self = [super init];
     if (self) {
+        DDLogVerbose(@"init");
         self.manager = [CompletionManager sharedInstance];
         instance = self;
     }
     return self;
 }
 
-+ (CompletionsController *)sharedInstance {
++ (CompletionsController *)sharedCompletionsController {
     if (!instance) {
         instance = [CompletionsController new];
     }
     return instance;
 }
 
-- (void)addEntryIn:(NSTableView *)tableView withArrayController :(NSArrayController *)controller {
-    [controller add:self];
-    [tableView scrollRowToVisible:tableView.selectedRow];
-    [tableView editColumn:0 row:tableView.selectedRow withEvent:nil select:YES];
-}
 
+
+- (void)dealloc {
+    DDLogVerbose(@"dealloc");
+}
 @end

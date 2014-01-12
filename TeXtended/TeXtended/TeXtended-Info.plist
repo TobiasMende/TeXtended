@@ -31,6 +31,8 @@
 			<array>
 				<string>teXpf</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>projecticon</string>
 			<key>CFBundleTypeName</key>
 			<string>TeXtendedProjectFile</string>
 			<key>CFBundleTypeRole</key>
@@ -39,6 +41,8 @@
 			<string>ProjectDocument</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>projecticon</string>
 			<key>CFBundleTypeName</key>
 			<string>TeXtendedProjectFolder</string>
 			<key>CFBundleTypeRole</key>

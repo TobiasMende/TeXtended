@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "FileObserver.h"
 
-@interface GenericFilePresenter : NSObject<NSFilePresenter>
+@interface GenericFilePresenter : NSObject<NSFilePresenter> {
+    NSObject *lock;
+}
 
 - (void)setPath:(NSString*)path;
-- (id)initWithOperationQueue:(NSOperationQueue *)queue;
 - (void)terminate;
-
+- (id)initWithOperationQueue:(NSOperationQueue *)queue;
 @property (readonly) NSURL *presentedItemURL;
 
 @property (readonly) NSOperationQueue *presentedItemOperationQueue;

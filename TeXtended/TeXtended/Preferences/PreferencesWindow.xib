@@ -1385,7 +1385,7 @@
                                     <rect key="frame" x="1" y="17" width="830" height="126"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="1717" id="1715">
+                                        <tableView identifier="CommandCompletionsTableView" verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="1717" id="1715">
                                             <rect key="frame" x="0.0" y="0.0" width="830" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1403,7 +1403,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="insertion"/>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="insertion"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
                                                         <binding destination="4AV-It-cBF" name="value" keyPath="arrangedObjects.insertion" id="X8H-is-fX6"/>
@@ -1468,7 +1468,9 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="4AV-It-cBF" name="content" keyPath="arrangedObjects" id="Dgg-CO-f7S"/>
-                                                <binding destination="4AV-It-cBF" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="Dgg-CO-f7S" id="qpR-AS-VTa"/>
+                                                <binding destination="4AV-It-cBF" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Dgg-CO-f7S" id="u9G-au-BHx"/>
+                                                <binding destination="4AV-It-cBF" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="u9G-au-BHx" id="Abm-Ak-njl"/>
+                                                <outlet property="delegate" destination="2266" id="YlU-Uy-eRb"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -1494,6 +1496,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="add:" target="4AV-It-cBF" id="tmi-zz-uem"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="1" id="2224">
                                 <rect key="frame" x="51" y="13" width="34" height="23"/>
@@ -1507,7 +1512,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="2468">
-                                <rect key="frame" x="753" y="13" width="97" height="23"/>
+                                <rect key="frame" x="725" y="13" width="125" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Reset Defaults" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2469">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1522,7 +1527,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Resets the usage counter for all command completions. " verticalHuggingPriority="750" id="3399">
-                                <rect key="frame" x="649" y="13" width="96" height="23"/>
+                                <rect key="frame" x="592" y="13" width="125" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Reset Ranking" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3400">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1536,6 +1541,23 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <searchField verticalHuggingPriority="750" id="fX7-0u-EWq">
+                                <rect key="frame" x="304" y="13" width="280" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="J4X-VS-jdw">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <binding destination="4AV-It-cBF" name="predicate" keyPath="filterPredicate" id="827-1X-7Mo">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">insertion contains $value</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </searchField>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1555,7 +1577,7 @@
                                     <rect key="frame" x="1" y="17" width="835" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1733" id="1731">
+                                        <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="1733" id="1731">
                                             <rect key="frame" x="0.0" y="0.0" width="835" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1573,7 +1595,11 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="insertion"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.insertion" id="Ftm-Al-7g0"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn identifier="firstLineExtension" width="236.7421875" minWidth="40" maxWidth="1000" id="1736">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="First Line Extension">
@@ -1587,6 +1613,9 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.firstLineExtension" id="MvE-mr-9Ca"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn identifier="extension" width="227.3046875" minWidth="10" maxWidth="3.4028234663852886e+38" id="1750">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Environment Extension">
@@ -1600,6 +1629,9 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.extension" id="uIL-tg-KyR"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn identifier="hasPlaceholders" width="179.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="1752">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions contain placeholders">
@@ -1612,8 +1644,17 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.hasPlaceholders" id="9cM-gh-Whf"/>
+                                                    </connections>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="L8E-vY-W1W" name="content" keyPath="arrangedObjects" id="dti-Fa-hCS"/>
+                                                <binding destination="L8E-vY-W1W" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="dti-Fa-hCS" id="9hk-IM-YmU"/>
+                                                <binding destination="L8E-vY-W1W" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="9hk-IM-YmU" id="2Xw-6w-y2a"/>
+                                                <outlet property="delegate" destination="2266" id="4gJ-w8-OEd"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1638,6 +1679,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="add:" target="L8E-vY-W1W" id="RnQ-SF-7gB"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="2" id="2155">
                                 <rect key="frame" x="51" y="13" width="34" height="23"/>
@@ -1646,23 +1690,57 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="remove:" target="L8E-vY-W1W" id="Vah-7q-y1e"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="2472">
-                                <rect key="frame" x="758" y="13" width="97" height="23"/>
+                                <rect key="frame" x="730" y="13" width="125" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Reset Defaults" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2473">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="2266" name="target" keyPath="self.manager.environmentCompletions" id="erU-gd-o2B">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetDefaults</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </button>
                             <button toolTip="Resets the usage counter for all environment completions. " verticalHuggingPriority="750" id="3407">
-                                <rect key="frame" x="654" y="13" width="96" height="23"/>
+                                <rect key="frame" x="597" y="13" width="125" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Reset Ranking" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3408">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="2266" name="target" keyPath="self.manager.environmentCompletions" id="kfu-y1-B5m">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetRanking</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </button>
+                            <searchField verticalHuggingPriority="750" id="lvx-p3-rph">
+                                <rect key="frame" x="309" y="13" width="280" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="1c9-wU-PNb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <binding destination="L8E-vY-W1W" name="predicate" keyPath="filterPredicate" id="LGN-Ck-PtO">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">insertion contains $value</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </searchField>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1987,7 +2065,7 @@
         </window>
         <userDefaultsController representsSharedInstance="YES" id="10"/>
         <arrayController id="2685" userLabel="Availabel Compilers" customClass="CompileFlowHandler"/>
-        <arrayController objectClassName="CommandCompletion" automaticallyRearrangesObjects="YES" id="4AV-It-cBF" userLabel="Command Completions">
+        <arrayController objectClassName="CommandCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="4AV-It-cBF" userLabel="Command Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.commandCompletions.completions" id="g6d-ve-mxT">
                     <dictionary key="options">
@@ -1995,6 +2073,27 @@
                         <bool key="NSDeletesObjectsOnRemove" value="YES"/>
                     </dictionary>
                 </binding>
+                <binding destination="2266" name="sortDescriptors" keyPath="self.manager.commandCompletions.sortDescriptors" id="vEA-gW-4mc"/>
+                <outlet property="tableView" destination="1715" id="Nk2-5X-zjM"/>
+            </connections>
+        </arrayController>
+        <arrayController objectClassName="EnvironmentCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" automaticallyRearrangesObjects="YES" id="L8E-vY-W1W" userLabel="Environment Completions" customClass="TMTArrayController">
+            <connections>
+                <binding destination="2266" name="contentArray" keyPath="self.manager.environmentCompletions.completions" id="NqO-6o-QoE">
+                    <dictionary key="options">
+                        <bool key="NSValidatesImmediately" value="YES"/>
+                        <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                    </dictionary>
+                </binding>
+                <binding destination="2266" name="sortDescriptors" keyPath="self.manager.environmentCompletions.sortDescriptors" id="buw-eO-MAR"/>
+                <outlet property="tableView" destination="1731" id="3ek-Yc-HxI"/>
+            </connections>
+        </arrayController>
+        <arrayController objectClassName="DropCompletion" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="jPa-uV-lsi" userLabel="Drop Completions" customClass="TMTArrayController">
+            <connections>
+                <binding destination="2266" name="contentArray" keyPath="self.manager.dropCompletions.completions" id="G19-FY-hh1"/>
+                <binding destination="2266" name="sortDescriptors" keyPath="self.manager.dropCompletions.sortDescriptors" id="REy-OT-Aqj"/>
+                <outlet property="tableView" destination="L8Y-7f-aRU" id="dE2-0E-ct5"/>
             </connections>
         </arrayController>
         <customObject id="3339" customClass="CompileFlowHandler"/>
@@ -2022,7 +2121,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Drop Completion" borderType="line" id="FTn-jb-qDN">
-                    <rect key="frame" x="17" y="62.000001178621659" width="691" height="403"/>
+                    <rect key="frame" x="17" y="62.000001605765434" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="689" height="387"/>
@@ -2035,7 +2134,7 @@
                                     <rect key="frame" x="1" y="17" width="651" height="323"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" tag="3" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="dKr-l5-hml" id="L8Y-7f-aRU">
+                                        <tableView verticalHuggingPriority="750" tag="3" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="dKr-l5-hml" id="L8Y-7f-aRU">
                                             <rect key="frame" x="0.0" y="0.0" width="651" height="323"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2053,7 +2152,11 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="insertion"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="jPa-uV-lsi" name="value" keyPath="arrangedObjects.insertion" id="jKm-Ul-nT7"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn identifier="extension" width="421" minWidth="40" maxWidth="1000" id="q26-Rm-EsA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Template">
@@ -2066,7 +2169,11 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="extension"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="jPa-uV-lsi" name="value" keyPath="arrangedObjects.extension" id="75W-F0-akM"/>
+                                                    </connections>
                                                 </tableColumn>
                                                 <tableColumn identifier="hasPlaceholders" width="105" minWidth="10" maxWidth="3.4028234663852886e+38" id="Sff-1d-pME">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remove Extension">
@@ -2079,8 +2186,17 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <connections>
+                                                        <binding destination="jPa-uV-lsi" name="value" keyPath="arrangedObjects.usePathExtentsion" id="6N1-iG-IgY"/>
+                                                    </connections>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="jPa-uV-lsi" name="content" keyPath="arrangedObjects" id="WTs-Az-Yaa"/>
+                                                <binding destination="jPa-uV-lsi" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="WTs-Az-Yaa" id="2aw-Zu-g2A"/>
+                                                <binding destination="jPa-uV-lsi" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="2aw-Zu-g2A" id="QhA-ud-5bb"/>
+                                                <outlet property="delegate" destination="2266" id="ZRo-JI-th5"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2099,37 +2215,59 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" id="EER-uy-TTd">
-                                <rect key="frame" x="574" y="13" width="97" height="23"/>
+                                <rect key="frame" x="574" y="12" width="97" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" title="Reset Defaults" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uec-9B-CkR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                            </button>
-                            <button toolTip="Resets the usage counter for all environment completions. " verticalHuggingPriority="750" id="OF7-ep-i29">
-                                <rect key="frame" x="470" y="13" width="96" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" title="Reset Ranking" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MMo-Fl-jvr">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
+                                <connections>
+                                    <binding destination="2266" name="target" keyPath="self.manager.dropCompletions" id="KP4-Ls-Ti4">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetDefaults</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="3" id="CbS-ry-d8F">
-                                <rect key="frame" x="18" y="13" width="34" height="23"/>
+                                <rect key="frame" x="18" y="12" width="34" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ADt-q3-yS7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="add:" target="jPa-uV-lsi" id="6D1-js-FQr"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="3" id="1Ey-ZT-cJN">
-                                <rect key="frame" x="51" y="13" width="34" height="23"/>
+                                <rect key="frame" x="51" y="12" width="34" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u5g-GH-UeA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="remove:" target="jPa-uV-lsi" id="o1l-vg-c32"/>
+                                </connections>
                             </button>
+                            <searchField verticalHuggingPriority="750" id="cq7-ey-snl">
+                                <rect key="frame" x="286" y="12" width="280" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="aFR-R4-7hA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <binding destination="jPa-uV-lsi" name="predicate" keyPath="filterPredicate" id="S74-Ng-q5P">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">(insertion contains $value) OR (extension contains $value)</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </searchField>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

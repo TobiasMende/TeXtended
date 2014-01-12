@@ -22,12 +22,11 @@
 @interface DocumentModel : Compilable {
     /** The pipes used for communication with the latex compiler */
     NSPipe *consoleOutputPipe, *consoleInputPipe;
-    NSArray *bibFiles;
     
     void (^removeLiveCompileObserver)(void);
     void (^removeOpenOnExportObserver)(void);
 }
-
+@property (nonatomic) NSArray *bibFiles;
 /** The date of the last application internal change of the represented file */
 @property (strong) NSDate * lastChanged;
 

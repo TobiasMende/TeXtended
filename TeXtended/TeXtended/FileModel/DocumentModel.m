@@ -459,7 +459,7 @@ static NSArray *TMTEncodingsToCheck;
 - (NSArray *)bibFiles {
     if (self.project) {
         return self.project.bibFiles;
-    } else if(!bibFiles && self.texPath){
+    } else if(!_bibFiles && self.texPath){
         NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
         NSMutableArray *matches = [NSMutableArray new];
         NSFileManager *manager = [NSFileManager defaultManager];
@@ -477,10 +477,10 @@ static NSArray *TMTEncodingsToCheck;
             }
         }
         if (matches.count > 0) {
-            bibFiles = matches;
+            _bibFiles = matches;
         }
     }
-    return bibFiles;
+    return _bibFiles;
 }
 
 # pragma mark - Compile Setting Handling
