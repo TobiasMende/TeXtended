@@ -151,6 +151,7 @@
 
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 #define TMTShouldShowDBLPKey @"TMTShouldShowDBLPKey"
+#define TMTDropCompletionKey @"TMTDropCompletionKey"
 
 
 // --------------------------------------------------------------------------------

@@ -185,11 +185,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     autoCompletionController = nil;
 }
 
-- (void)dismissMainDocumentsWindow {
-    [mainDocumentsController.window orderOut:self];
-    mainDocumentsController = nil;
-}
-
 
 - (void)extendedComplete:(id)sender {
     if (!sender) {
@@ -541,13 +536,21 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 -(void)showMainDocumentsWindow:(NSArray*)mainDocuments {
-    if (!mainDocumentsController) {
-        mainDocumentsController = [MainDocumentCompletionWindow new];
-        mainDocumentsController.parent = self;
+    if (!autoCompletionController) {
+        autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:^(id completion) {
+            
+        }];
+        autoCompletionController.parent = self;
+    }
+    
+    NSMutableArray *dictionaryArray = [NSMutableArray new];
+    
+    for (NSString* path in mainDocuments) {
+        [dictionaryArray addObject:[NSDictionary dictionaryWithObject:path forKey:@"key"]];
     }
     
     [[self window] makeFirstResponder:self];
-    [mainDocumentsController positionWindowWithContent:mainDocuments];
+    [autoCompletionController positionWindowWithContent:dictionaryArray andInformation:@{TMTDropCompletionKey: @YES}];
 }
 
 
@@ -636,34 +639,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                     }
                 } else {
                     NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-                    [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                    
+                    if ([(autoCompletionController.additionalInformation)[TMTDropCompletionKey] boolValue]) {
+                        NSDictionary* pathDioctionary = (autoCompletionController.content)[index];
+                        NSString* path = [[self.firstResponderDelegate.model.project.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[pathDioctionary objectForKey:@"key"]];
+                        [self insertDropCompletionForPath:path];
+                        [self dismissCompletionWindow];
+                    }
+                    else {
+                        [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                    }
                 }
-                return;
-            }
-            default:
-                break;
-        }
-        
-    }
-    
-    if (mainDocumentsController) {
-        switch (theEvent.keyCode) {
-            case TMTArrowDownKeyCode:
-                [mainDocumentsController arrowDown];
-                return;
-            case TMTArrowUpKeyCode:
-                [mainDocumentsController arrowUp];
-                return;
-            case TMTBackKeyCode:
-                [self dismissMainDocumentsWindow];
-                break;
-            case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
-                NSUInteger index = (mainDocumentsController.tableView.selectedRow >= 0 ? mainDocumentsController.tableView.selectedRow : 0);
-                NSTableColumn *column = [[mainDocumentsController.tableView tableColumns] objectAtIndex:0];
-                NSCell *cell = [column dataCellForRow:index];
-                NSString* path = [[self.firstResponderDelegate.model.project.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[cell stringValue]];
-                [self insertDropCompletionForPath:path];
-                [self dismissMainDocumentsWindow];
                 return;
             }
             default:
@@ -944,7 +930,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         DocumentModel *model = self.firstResponderDelegate.model;
 
         if (model.mainDocuments.count > 1) {
-            DDLogWarn(@"Not implemented yet!");
             NSMutableArray* mainDocumentNames = [[NSMutableArray alloc] init];
             for (DocumentModel *temp in model.mainDocuments) {
                 [mainDocumentNames addObject:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];

@@ -49,8 +49,6 @@ GoToLineSheetController *goToLineSheet;
     TemplateController* templateController;
     
     QuickPreviewManager *quickPreview;
-
-    MainDocumentCompletionWindow *mainDocumentsController;
     
     NSArray *droppedFileNames;
 }
