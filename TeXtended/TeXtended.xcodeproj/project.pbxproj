@@ -117,6 +117,9 @@
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
 		D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2906E751824F5EC003213AA /* TMTTabManager.m */; };
 		D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D291E684188055F700CDC8C8 /* CiteInfoView.xib */; };
+		D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */; };
+		D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */; };
+		D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
@@ -500,6 +503,12 @@
 		D2906E741824F5EC003213AA /* TMTTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabManager.h; sourceTree = "<group>"; };
 		D2906E751824F5EC003213AA /* TMTTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabManager.m; sourceTree = "<group>"; };
 		D291E684188055F700CDC8C8 /* CiteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CiteInfoView.xib; sourceTree = "<group>"; };
+		D291E6861882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+SimpleRegex.h"; sourceTree = "<group>"; };
+		D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+SimpleRegex.m"; sourceTree = "<group>"; };
+		D291E6881882853B00CDC8C8 /* NSString+RegexReplace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexReplace.h"; sourceTree = "<group>"; };
+		D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegexReplace.m"; sourceTree = "<group>"; };
+		D291E68A1882853B00CDC8C8 /* NSString+RNTextStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RNTextStatistics.h"; sourceTree = "<group>"; };
+		D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RNTextStatistics.m"; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
 		D296059D178091F7007C599B /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
@@ -872,6 +881,12 @@
 		D21ACBB71726876900E2F8EC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D291E6861882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.h */,
+				D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */,
+				D291E6881882853B00CDC8C8 /* NSString+RegexReplace.h */,
+				D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */,
+				D291E68A1882853B00CDC8C8 /* NSString+RNTextStatistics.h */,
+				D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */,
 				D21ACBB81726876900E2F8EC /* NSString+LatexExtension.h */,
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 				D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */,
@@ -1593,6 +1608,7 @@
 				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
 				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,
+				D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
 				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
@@ -1637,6 +1653,7 @@
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
+				D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */,
 				F68687F418781D5F00898026 /* PrintDialogController.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
@@ -1646,6 +1663,7 @@
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
+				D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
