@@ -12,7 +12,6 @@
 #import "DocumentController.h"
 #import "MainWindowController.h"
 #import "ExportCompileWindowController.h"
-#import "StatsPanelController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabManager.h"
 #import "ApplicationController.h"
@@ -99,13 +98,6 @@
     }
     exportWindowController.documentController = dc;
     [exportWindowController showWindow:nil];
-}
-
-- (void)showStatisticsForModel:(DocumentController *)dc {
-    if (!statisticPanelController) {
-        statisticPanelController = [StatsPanelController new];
-    }
-    [statisticPanelController showStatistics:dc.model.texPath];
 }
 
 - (void)printDocument:(id)sender
