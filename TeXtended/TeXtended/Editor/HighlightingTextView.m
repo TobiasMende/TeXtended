@@ -909,14 +909,16 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         } else {
             mainModel = [model.mainDocuments anyObject];
         }
-        for (NSString *filename in filenames) {
+        for (NSUInteger i = 0; i < [filenames count]; i++) {
             //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
+            
+            NSString *filename = [filenames objectAtIndex:i];
             
             NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]];
             
             [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
             
-            if ([filenames count]>1) {
+            if ([filenames count] > i+1) {
                 [self insertNewline:self];
             }
         }
