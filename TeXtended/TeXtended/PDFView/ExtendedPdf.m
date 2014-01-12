@@ -53,6 +53,17 @@ static const NSSet *KEYS_TO_UNBIND;
     return self;
 }
 
+- (void)showStatistics:(id)sender {
+    NSMutableString *content = [NSMutableString new];
+    for (NSUInteger i = 0; i < self.document.pageCount; i++) {
+        PDFPage *page = [self.document pageAtIndex:i];
+        [content appendString:page.string];
+    }
+    if (content.length > 0) {
+        // TODO: statistics;
+    }
+}
+
 - (void) initVariables {
     
     // init variables

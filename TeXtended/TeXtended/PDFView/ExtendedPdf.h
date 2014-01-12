@@ -91,4 +91,6 @@
   * Init required variables. Called from all init methods.
   */
 - (void) initVariables;
+
+- (IBAction)showStatistics:(id)sender;
 @end

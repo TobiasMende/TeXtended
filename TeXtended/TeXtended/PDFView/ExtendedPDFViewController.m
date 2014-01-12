@@ -136,7 +136,6 @@
         PDFDocument *pdfDoc;
         pdfDoc = [[PDFDocument alloc] initWithURL:url];
         [self.pdfView setDocument:pdfDoc];
-        
         // restore visible region
         if (index >= 0 && index < pdfDoc.pageCount) {
             PDFPage *page = [pdfDoc pageAtIndex:index];
