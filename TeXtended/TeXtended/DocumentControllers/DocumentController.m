@@ -268,6 +268,10 @@
     [self didChangeValueForKey:@"liveCompileEnabled"];
 }
 
+- (void)abort {
+    [self.compiler abort];
+}
+
 #pragma mark -
 #pragma mark Dealloc
 

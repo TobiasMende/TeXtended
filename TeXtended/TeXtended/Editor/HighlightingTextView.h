@@ -49,8 +49,8 @@ GoToLineSheetController *goToLineSheet;
     TemplateController* templateController;
     
     QuickPreviewManager *quickPreview;
-
-    MainDocumentCompletionWindow *mainDocumentsController;
+    
+    NSArray *droppedFileNames;
 }
 
 @property (assign) id<FirstResponderDelegate> firstResponderDelegate;

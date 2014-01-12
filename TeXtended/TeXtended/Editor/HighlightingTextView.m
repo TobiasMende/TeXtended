@@ -39,7 +39,7 @@
 #import "ProjectDocument.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
-#import "MainDocumentCompletionWindow.h"
+
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()
@@ -185,11 +185,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     autoCompletionController = nil;
 }
 
-- (void)dismissMainDocumentsWindow {
-    [mainDocumentsController.window orderOut:self];
-    mainDocumentsController = nil;
-}
-
 
 - (void)extendedComplete:(id)sender {
     if (!sender) {
@@ -258,8 +253,44 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
-- (void)insertDropCompletion:(NSString*)path inExtension:(NSString*)extension {
-    [self dismissMainDocumentsWindow];
+-(void)insertDropCompletionForModel:(DocumentModel*)model {
+    for (NSUInteger i = 0; i < [droppedFileNames count]; i++) {
+        
+        NSString *filename = [droppedFileNames objectAtIndex:i];
+        
+        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[model.texPath stringByDeletingLastPathComponent]]];
+        
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
+        
+        if ([droppedFileNames count] > i+1) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window]makeFirstResponder:self];
+}
+
+-(void)insertDropCompletionForPath:(NSString*)path {
+    for (NSUInteger i = 0; i < [droppedFileNames count]; i++) {
+        
+        NSString *filename = [droppedFileNames objectAtIndex:i];
+        
+        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[path stringByDeletingLastPathComponent]]];
+        
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
+        
+        if ([droppedFileNames count] > i+1) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window]makeFirstResponder:self];
 }
 
 - (void)flagsChanged:(NSEvent *)theEvent {
@@ -505,13 +536,21 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 -(void)showMainDocumentsWindow:(NSArray*)mainDocuments {
-    if (!mainDocumentsController) {
-        mainDocumentsController = [MainDocumentCompletionWindow new];
-        mainDocumentsController.parent = self;
+    if (!autoCompletionController) {
+        autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:^(id completion) {
+            
+        }];
+        autoCompletionController.parent = self;
+    }
+    
+    NSMutableArray *dictionaryArray = [NSMutableArray new];
+    
+    for (NSString* path in mainDocuments) {
+        [dictionaryArray addObject:[NSDictionary dictionaryWithObject:path forKey:@"key"]];
     }
     
     [[self window] makeFirstResponder:self];
-    [mainDocumentsController positionWindowWithContent:mainDocuments];
+    [autoCompletionController positionWindowWithContent:dictionaryArray andInformation:@{TMTDropCompletionKey: @YES}];
 }
 
 
@@ -600,32 +639,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                     }
                 } else {
                     NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-                    [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                    
+                    if ([(autoCompletionController.additionalInformation)[TMTDropCompletionKey] boolValue]) {
+                        NSDictionary* pathDioctionary = (autoCompletionController.content)[index];
+                        NSString* path = [[self.firstResponderDelegate.model.project.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[pathDioctionary objectForKey:@"key"]];
+                        [self insertDropCompletionForPath:path];
+                        [self dismissCompletionWindow];
+                    }
+                    else {
+                        [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
+                    }
                 }
-                return;
-            }
-            default:
-                break;
-        }
-        
-    }
-    
-    if (mainDocumentsController) {
-        switch (theEvent.keyCode) {
-            case TMTArrowDownKeyCode:
-                [mainDocumentsController arrowDown];
-                return;
-            case TMTArrowUpKeyCode:
-                [mainDocumentsController arrowUp];
-                return;
-            case TMTBackKeyCode:
-                [self dismissMainDocumentsWindow];
-                break;
-            case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
-                NSUInteger index = (mainDocumentsController.tableView.selectedRow >= 0 ? mainDocumentsController.tableView.selectedRow : 0);
-                NSTableColumn *column = [[mainDocumentsController.tableView tableColumns] objectAtIndex:0];
-                NSCell *cell = [column dataCellForRow:index];
-                DDLogCInfo(@"%@",[cell stringValue]);
                 return;
             }
             default:
@@ -901,33 +925,20 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
         [self setSelectedRange:NSMakeRange(characterIndex, 0)];
         
-        NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
+        droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
         
         DocumentModel *model = self.firstResponderDelegate.model;
-        DocumentModel *mainModel;
+
         if (model.mainDocuments.count > 1) {
-            DDLogWarn(@"Not implemented yet!");
-            // TODO: ask for correct main document
-            mainModel = [model.mainDocuments anyObject];
-        } else {
-            mainModel = [model.mainDocuments anyObject];
-        }
-        for (NSString *filename in filenames) {
-            //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
-            
-            NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]];
-            
-            [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
-            
-            if ([filenames count]>1) {
-                [self insertNewline:self];
+            NSMutableArray* mainDocumentNames = [[NSMutableArray alloc] init];
+            for (DocumentModel *temp in model.mainDocuments) {
+                [mainDocumentNames addObject:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
             }
+            [self showMainDocumentsWindow:mainDocumentNames];
+        } else if (model.mainDocuments.count == 1) {
+            [self insertDropCompletionForModel:[model.mainDocuments anyObject]];
         }
         
-        [self jumpToNextPlaceholder];
-        
-        // After drop operation the first responder remains the drag source
-        [[self window]makeFirstResponder:self];
     }
     
     else {
@@ -958,7 +969,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     else return [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
     
 }
-
 
 #pragma mark -
 #pragma mark Drawing Actions

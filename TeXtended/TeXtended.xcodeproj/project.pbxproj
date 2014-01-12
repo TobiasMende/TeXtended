@@ -220,8 +220,6 @@
 		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
 		F64675471879579A006EAD63 /* DropCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = F64675461879579A006EAD63 /* DropCompletion.m */; };
 		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
-		F64675501879A308006EAD63 /* MainDocumentCompletionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F646754E1879A308006EAD63 /* MainDocumentCompletionWindow.m */; };
-		F64675511879A308006EAD63 /* MainDocumentCompletionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F646754F1879A308006EAD63 /* MainDocumentCompletionWindow.xib */; };
 		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
 		F68687F418781D5F00898026 /* PrintDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68687F318781D5F00898026 /* PrintDialogController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
@@ -612,9 +610,6 @@
 		F64675451879579A006EAD63 /* DropCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropCompletion.h; sourceTree = "<group>"; };
 		F64675461879579A006EAD63 /* DropCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropCompletion.m; sourceTree = "<group>"; };
 		F646754818795859006EAD63 /* DropCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DropCompletions.plist; sourceTree = "<group>"; };
-		F646754D1879A308006EAD63 /* MainDocumentCompletionWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocumentCompletionWindow.h; sourceTree = "<group>"; };
-		F646754E1879A308006EAD63 /* MainDocumentCompletionWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocumentCompletionWindow.m; sourceTree = "<group>"; };
-		F646754F1879A308006EAD63 /* MainDocumentCompletionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainDocumentCompletionWindow.xib; sourceTree = "<group>"; };
 		F68687F018781D2E00898026 /* PrintDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrintDialog.xib; sourceTree = "<group>"; };
 		F68687F218781D5F00898026 /* PrintDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintDialogController.h; sourceTree = "<group>"; };
 		F68687F318781D5F00898026 /* PrintDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintDialogController.m; sourceTree = "<group>"; };
@@ -799,9 +794,6 @@
 				D21ACB871726868A00E2F8EC /* EnvironmentCompletion.h */,
 				D21ACB881726868A00E2F8EC /* EnvironmentCompletion.m */,
 				D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */,
-				F646754D1879A308006EAD63 /* MainDocumentCompletionWindow.h */,
-				F646754E1879A308006EAD63 /* MainDocumentCompletionWindow.m */,
-				F646754F1879A308006EAD63 /* MainDocumentCompletionWindow.xib */,
 				D24EE30417F71D1400793643 /* AutoCompletionWindowController.h */,
 				D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */,
 				D24EE30617F71D1400793643 /* AutoCompletionWindow.xib */,
@@ -1537,7 +1529,6 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
-				F64675511879A308006EAD63 /* MainDocumentCompletionWindow.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
@@ -1577,7 +1568,6 @@
 				76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */,
 				D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */,
 				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
-				F64675501879A308006EAD63 /* MainDocumentCompletionWindow.m in Sources */,
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
 				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,

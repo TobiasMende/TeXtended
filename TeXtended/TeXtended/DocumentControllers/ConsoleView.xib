@@ -55,7 +55,7 @@
                     </scroller>
                 </scrollView>
                 <textField autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1" id="15" customClass="ConsoleInputField">
-                    <rect key="frame" x="0.0" y="1" width="542" height="25"/>
+                    <rect key="frame" x="0.0" y="1" width="518" height="25"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Insert Console Input" drawsBackground="YES" usesSingleLineMode="YES" id="16">
                         <font key="font" metaFont="system"/>
@@ -78,10 +78,10 @@
                         <outlet property="delegate" destination="-2" id="22"/>
                     </connections>
                 </textField>
-                <button id="dZl-ru-sPG">
-                    <rect key="frame" x="550" y="1" width="28" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="left" alignment="left" borderStyle="border" inset="2" id="lEx-J1-ruv">
+                <button verticalHuggingPriority="750" id="dZl-ru-sPG">
+                    <rect key="frame" x="526" y="1" width="52" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" title="Cancel" bezelStyle="smallSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="lEx-J1-ruv">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

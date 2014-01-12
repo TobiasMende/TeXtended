@@ -171,7 +171,9 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     }
 }
 
-
+- (void)abort {
+    // Nothing should happen...
+}
 
 
 #pragma mark - Actions

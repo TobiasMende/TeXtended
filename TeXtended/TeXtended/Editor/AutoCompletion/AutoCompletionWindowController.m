@@ -209,12 +209,16 @@
     if (currentIndex >= self.content.count || currentIndex < 0) {
         return;
     }
-    id completion = (self.content)[currentIndex];
-    NSRange prefixRange = [self.parent rangeForUserCompletion];
-    if (prefixRange.location == NSNotFound) {
-        DDLogWarn(@"Got invalid prefix for user completion");
-        return;
+    
+    if (![(self.additionalInformation)[TMTDropCompletionKey] boolValue]) {
+        NSRange prefixRange = [self.parent rangeForUserCompletion];
+        if (prefixRange.location == NSNotFound) {
+            DDLogWarn(@"Got invalid prefix for user completion");
+            return;
+        }
     }
+    
+    id completion = (self.content)[currentIndex];
     self.selectionDidChangeCallback(completion);
 }
 
