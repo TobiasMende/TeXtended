@@ -176,6 +176,7 @@
     numberFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:9.5];
     numberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [numberStyle setAlignment:NSRightTextAlignment];
+    numberStyle.lineSpacing = 10;
     
     attributesForNumbers = @{NSFontAttributeName: numberFont,
                             NSParagraphStyleAttributeName: numberStyle,

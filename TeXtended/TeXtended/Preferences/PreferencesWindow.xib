@@ -1296,7 +1296,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="1358">
-                                <rect key="frame" x="73" y="14" width="48" height="22"/>
+                                <rect key="frame" x="67" y="14" width="43" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" usesSingleLineMode="YES" id="1361">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#0.###" negativeFormat="#0.###" numberStyle="decimal" allowsFloats="NO" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" id="1363">
@@ -1315,7 +1315,7 @@
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="1153">
-                                <rect key="frame" x="105" y="11" width="19" height="27"/>
+                                <rect key="frame" x="109" y="11" width="19" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="4" id="1223"/>
                                 <connections>
@@ -1324,7 +1324,7 @@
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="750" id="1359">
-                                <rect key="frame" x="126" y="17" width="89" height="17"/>
+                                <rect key="frame" x="129" y="17" width="89" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="spaces as tab" id="1360">
                                     <font key="font" metaFont="system"/>
@@ -1975,7 +1975,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="diT-Xy-Quk">
-                                <rect key="frame" x="16" y="14" width="101" height="17"/>
+                                <rect key="frame" x="16" y="12" width="101" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line Spacing:" id="elm-f9-hIA">
                                     <font key="font" metaFont="system"/>
@@ -1984,12 +1984,11 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="8uU-zw-F0e">
-                                <rect key="frame" x="104" y="9" width="34" height="22"/>
+                                <rect key="frame" x="108" y="9" width="45" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="J8S-At-frZ">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" id="yBh-GE-9gf">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" decimalSeparator="," groupingSeparator="." currencyDecimalSeparator="," id="Fec-W4-XLY">
                                         <real key="roundingIncrement" value="0.0"/>
-                                        <real key="minimum" value="0.0"/>
                                         <metadata>
                                             <bool key="localizesFormat" value="YES"/>
                                         </metadata>
@@ -1999,9 +1998,25 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="10" name="value" keyPath="values.TMTLineSpacing" id="xOH-0C-gSB"/>
+                                    <binding destination="10" name="value" keyPath="values.TMTLineSpacing" id="Jnd-cC-uoF">
+                                        <dictionary key="options">
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="pY8-hL-Lyq">
+                                <rect key="frame" x="152" y="6" width="19" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="RtA-Eh-F9C"/>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTLineSpacing" id="lcQ-tS-1JA">
+                                        <dictionary key="options">
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </stepper>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -2121,7 +2136,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Drop Completion" borderType="line" id="FTn-jb-qDN">
-                    <rect key="frame" x="17" y="62.000001605765434" width="691" height="403"/>
+                    <rect key="frame" x="17" y="62" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="689" height="387"/>

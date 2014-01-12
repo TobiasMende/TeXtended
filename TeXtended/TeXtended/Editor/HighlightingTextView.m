@@ -131,7 +131,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self registerUserDefaultsObserver];
     [self setRichText:NO];
     [self setDisplaysLinkToolTips:YES];
-    [self setAutomaticSpellingCorrectionEnabled:YES];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
     [self setSmartInsertDeleteEnabled:NO];
@@ -1006,14 +1005,16 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_LINEBREAKS]]) {
         [self setNeedsDisplay:YES];
     } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTLineSpacing]]) {
-        NSMutableParagraphStyle *ps = [[NSMutableParagraphStyle alloc] init];
+        NSMutableParagraphStyle *ps = self.typingAttributes[NSParagraphStyleAttributeName];
+        if (!ps) {
+            ps = [NSMutableParagraphStyle new];
+        }
         CGFloat spacing = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMTLineSpacing] floatValue];
-        ps.lineSpacing = spacing;
-        //ps.minimumLineHeight = spacing;
-        //ps.maximumLineHeight = spacing;
-        [super setDefaultParagraphStyle:(NSParagraphStyle*)ps];
-        //[self.textStorage invalidateAttributesInRange:NSMakeRange(0, self.string.length)];
-        [self setNeedsDisplayInRect:self.bounds];
+         ps.paragraphSpacing = spacing;
+        [self.textStorage addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, self.string.length)];
+        NSMutableDictionary *typingAttributes = [self.typingAttributes mutableCopy];
+        typingAttributes[NSParagraphStyleAttributeName] = ps;
+        self.typingAttributes = typingAttributes;
     }
 }
 
@@ -1027,7 +1028,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     return result;
 }
-
 
 
 -(void)dealloc {
