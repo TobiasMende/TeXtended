@@ -20,6 +20,10 @@
 
 @implementation ProjectDocument
 
++ (BOOL)preservesVersions {
+    return NO;
+}
+
 - (id)init
 {
     self = [super init];
