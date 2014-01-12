@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
     PrintDialogController *printDialogController;
+    MergeWindowController *mergeWindowController;
 }
 /** The controller of the documents main window */
 @property (assign) MainWindowController *mainWindowController;
@@ -32,4 +33,5 @@
 - (void)openNewTabForCompilable:(DocumentModel*)model;
 - (void)removeDocumentController:(DocumentController *)dc;
 - (void)firstResponderDidChangeNotification:(NSNotification *)note;
+- (IBAction)exportSingleDocument:(id)sender;
 @end
