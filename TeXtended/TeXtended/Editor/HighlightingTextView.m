@@ -255,8 +255,44 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
-- (void)insertDropCompletion:(NSString*)path inExtension:(NSString*)extension {
-    [self dismissMainDocumentsWindow];
+-(void)insertDropCompletionForModel:(DocumentModel*)model {
+    for (NSUInteger i = 0; i < [droppedFileNames count]; i++) {
+        
+        NSString *filename = [droppedFileNames objectAtIndex:i];
+        
+        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[model.texPath stringByDeletingLastPathComponent]]];
+        
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
+        
+        if ([droppedFileNames count] > i+1) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window]makeFirstResponder:self];
+}
+
+-(void)insertDropCompletionForPath:(NSString*)path {
+    for (NSUInteger i = 0; i < [droppedFileNames count]; i++) {
+        
+        NSString *filename = [droppedFileNames objectAtIndex:i];
+        
+        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[path stringByDeletingLastPathComponent]]];
+        
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
+        
+        if ([droppedFileNames count] > i+1) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window]makeFirstResponder:self];
 }
 
 - (void)flagsChanged:(NSEvent *)theEvent {
@@ -622,7 +658,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 NSUInteger index = (mainDocumentsController.tableView.selectedRow >= 0 ? mainDocumentsController.tableView.selectedRow : 0);
                 NSTableColumn *column = [[mainDocumentsController.tableView tableColumns] objectAtIndex:0];
                 NSCell *cell = [column dataCellForRow:index];
-                DDLogCInfo(@"%@",[cell stringValue]);
+                NSString* path = [[self.firstResponderDelegate.model.project.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[cell stringValue]];
+                [self insertDropCompletionForPath:path];
+                [self dismissMainDocumentsWindow];
                 return;
             }
             default:
@@ -898,35 +936,21 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
         [self setSelectedRange:NSMakeRange(characterIndex, 0)];
         
-        NSArray *filenames = [pb propertyListForType:NSFilenamesPboardType];
+        droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
         
         DocumentModel *model = self.firstResponderDelegate.model;
-        DocumentModel *mainModel;
+
         if (model.mainDocuments.count > 1) {
             DDLogWarn(@"Not implemented yet!");
-            // TODO: ask for correct main document
-            mainModel = [model.mainDocuments anyObject];
-        } else {
-            mainModel = [model.mainDocuments anyObject];
-        }
-        for (NSUInteger i = 0; i < [filenames count]; i++) {
-            //[self showMainDocumentsWindow:[[NSArray alloc] initWithObjects:@"AA",@"BB",@"CC",@"DD",@"EE", nil]];
-            
-            NSString *filename = [filenames objectAtIndex:i];
-            
-            NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]];
-            
-            [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
-            
-            if ([filenames count] > i+1) {
-                [self insertNewline:self];
+            NSMutableArray* mainDocumentNames = [[NSMutableArray alloc] init];
+            for (DocumentModel *temp in model.mainDocuments) {
+                [mainDocumentNames addObject:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
             }
+            [self showMainDocumentsWindow:mainDocumentNames];
+        } else if (model.mainDocuments.count == 1) {
+            [self insertDropCompletionForModel:[model.mainDocuments anyObject]];
         }
         
-        [self jumpToNextPlaceholder];
-        
-        // After drop operation the first responder remains the drag source
-        [[self window]makeFirstResponder:self];
     }
     
     else {
@@ -957,7 +981,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     else return [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
     
 }
-
 
 #pragma mark -
 #pragma mark Drawing Actions

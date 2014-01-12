@@ -11,8 +11,8 @@
 @interface MainDocumentCompletionWindow : NSWindowController <NSTableViewDataSource>
 
 @property (nonatomic) NSArray* content;
-@property NSTextView *parent;
 @property IBOutlet NSTableView* tableView;
+@property (nonatomic) NSTextView *parent;
 
 - (void)positionWindowWithContent:(NSArray *)content;
 

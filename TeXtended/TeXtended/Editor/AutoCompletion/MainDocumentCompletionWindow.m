@@ -40,6 +40,17 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
+- (void)setParent:(NSTextView *)parent {
+    if (_parent) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextDidEndEditingNotification object:_parent];
+    }
+    _parent = parent;
+    if (_parent) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewDidEndEditing:) name:NSTextDidEndEditingNotification object:_parent
+         ];
+    }
+}
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.content.count;
 }
