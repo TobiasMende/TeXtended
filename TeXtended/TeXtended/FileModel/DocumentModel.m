@@ -39,7 +39,7 @@ static NSArray *TMTEncodingsToCheck;
 
 
 - (NSString *)loadContent:(NSError**)error {
-    self.lastChanged = [[NSDate alloc] init];
+    self.lastChanged = [NSDate new];
     if (!self.systemPath) {
         if (!self.texPath) {
             return nil;
@@ -55,20 +55,6 @@ static NSArray *TMTEncodingsToCheck;
         self.encoding = @(encoding);
         
     }
-    /*if (error) {
-        // Fallback to encoding search:
-        for (NSNumber *number in TMTEncodingsToCheck) {
-            encoding = [number unsignedLongValue];
-            error = nil;
-            content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:encoding error:&error];
-            
-            if (!error) {
-                break;
-            }
-            
-        }
-        
-    }*/
     
     if (*error) {
         DDLogError(@"Error while loading content: %@", (*error).userInfo);
