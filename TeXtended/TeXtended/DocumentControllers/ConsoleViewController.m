@@ -58,7 +58,7 @@
 }
 
 - (IBAction)cancelCompiling:(id)sender {
-    
+    [self.console.firstResponderDelegate abort];
 }
 
 

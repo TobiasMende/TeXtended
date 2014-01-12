@@ -39,7 +39,7 @@
 #import "ProjectDocument.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
-#import "MainDocumentCompletionWindow.h"
+
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 @interface HighlightingTextView()

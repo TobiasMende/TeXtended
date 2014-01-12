@@ -16,4 +16,5 @@
 - (void) liveCompile:(id)sender;
 - (void)documentHasChangedAction;
 - (TextViewController *)textViewController;
+- (void)abort;
 @end
