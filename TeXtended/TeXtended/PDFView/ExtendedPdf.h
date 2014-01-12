@@ -9,7 +9,7 @@
 #import <Quartz/Quartz.h>
 #import "FirstResponderDelegate.h"
 
-@class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController;
+@class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController, StatsPanelController;
 
 /**
  * This class extends the PDFView from cocoas PDFKit by functionalitys
@@ -20,6 +20,7 @@
 @interface ExtendedPdf : PDFView {
     ExtendedPdfControlls *controllsView;
     PageNumberViewController *pageNumbers;
+    StatsPanelController *statsPanel;
     BOOL firstDraw;
 }
 
@@ -93,4 +94,14 @@
 - (void) initVariables;
 
 - (IBAction)showStatistics:(id)sender;
+
+/**
+ Notification about the end of the StatsPanelController's sheet.
+ 
+ 
+ @param sheet the sheet which ends.
+ @param returnCode the termination state of the sheet.
+ @param context `NULL` in most cases.
+ */
+- (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 @end

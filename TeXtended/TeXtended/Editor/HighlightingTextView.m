@@ -484,7 +484,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertNewline:sender];
         return;
     }
-        [self.codeNavigationAssistant handleNewLineInsertion];
+    [self.codeNavigationAssistant handleNewLineInsertion];
 }
 
 - (void)paste:(id)sender {
@@ -918,6 +918,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[mainModel.texPath stringByDeletingLastPathComponent]]];
             
             [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
+            
+            if ([filenames count]>1) {
+                [self insertNewline:self];
+            }
         }
         
         [self jumpToNextPlaceholder];
@@ -995,9 +999,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSMutableParagraphStyle *ps = [[NSMutableParagraphStyle alloc] init];
         CGFloat spacing = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMTLineSpacing] floatValue];
         ps.lineSpacing = spacing;
-        ps.minimumLineHeight = spacing;
-        ps.maximumLineHeight = spacing;
+        //ps.minimumLineHeight = spacing;
+        //ps.maximumLineHeight = spacing;
         [super setDefaultParagraphStyle:(NSParagraphStyle*)ps];
+        //[self.textStorage invalidateAttributesInRange:NSMakeRange(0, self.string.length)];
+        [self setNeedsDisplayInRect:self.bounds];
     }
 }
 

@@ -129,6 +129,7 @@
 #define TMTCompletionsFirstLineExtensionKey @"TMTCompletionFirstLineExtensionKey"
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 #define TMTCompletionCounterKey @"TMTCompletionCounterKey"
+#define TMTCompletionUseExtensionKey @"TMTCompletionUseExtensionKey"
 
 
 // --------------------------------------------------------------------------------

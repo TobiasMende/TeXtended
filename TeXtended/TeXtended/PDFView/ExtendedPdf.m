@@ -13,6 +13,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "ApplicationController.h"
 #import "TMTNotificationCenter.h"
+#import "StatsPanelController.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -60,8 +61,22 @@ static const NSSet *KEYS_TO_UNBIND;
         [content appendString:page.string];
     }
     if (content.length > 0) {
-        // TODO: statistics;
+        if (!statsPanel) {
+            statsPanel = [StatsPanelController new];
+        }
+        [statsPanel showStatistics:content];
+        
+        [NSApp beginSheet:[statsPanel window]
+           modalForWindow: [self window]
+            modalDelegate: self
+           didEndSelector: @selector(statsPanelDidEnd:returnCode:contextInfo:)
+              contextInfo: nil];
+        [NSApp runModalForWindow:[self window]];
     }
+}
+
+- (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
+    
 }
 
 - (void) initVariables {
