@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MergeWindowController">
             <connections>
+                <outlet property="documentName" destination="Hko-MF-h6k" id="nvc-Lu-DAV"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -35,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="JzD-GO-cfH" id="8VP-1l-D9O">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="j4p-Tq-tux">
                                 <items>
                                     <menuItem state="on" id="JzD-GO-cfH"/>

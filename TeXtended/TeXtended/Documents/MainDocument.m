@@ -17,6 +17,7 @@
 #import "ApplicationController.h"
 #import "PrintDialogController.h"
 #import "HighlightingTextView.h"
+#import "EncodingController.h"
 
 @implementation MainDocument
 
@@ -24,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-            // Add your subclass-specific initialization here.
+            self.encController = [EncodingController new];
     }
     return self;
 }
