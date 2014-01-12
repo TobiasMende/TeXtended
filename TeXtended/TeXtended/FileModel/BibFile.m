@@ -26,9 +26,9 @@
 
 # pragma mark - Initialization, Deallocation, NSCoding
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [self init];
+    self = [super init];
     if (self) {
-        self.lastRead = [aDecoder decodeObjectForKey:@"lastRead"];
+        [self initDefaults];
         self.project = [aDecoder decodeObjectForKey:@"project"];
         _path = [aDecoder decodeObjectForKey:@"path"];
     }
@@ -49,7 +49,6 @@
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.lastRead forKey:@"lastRead"];
     [aCoder encodeConditionalObject:self.project forKey:@"project"];
     [aCoder encodeObject:self.pathForEncoding forKey:@"path"];
 }
@@ -118,6 +117,7 @@
         for (TMTBibTexEntry *entry in entries) {
             [self.entries addObject:[[CiteCompletion alloc] initWithBibEntry:entry]];
         }
+        self.lastRead = [NSDate new];
     }
 }
 
