@@ -168,6 +168,16 @@
     }
 }
 
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo
+{
+    // Nothing to do here...
+}
+
+- (IBAction)exportSingleDocument:(id)sender
+{
+    [NSException raise:@"exportSingleDocument not implemented." format:@"Yout have to implement exportSingleDocument in subclasses of MainDocument."];
+}
+
 - (void)openNewTabForCompilable:(DocumentModel*)model {
     for (DocumentController *dc in self.documentControllers) {
         if (dc.model == model) {

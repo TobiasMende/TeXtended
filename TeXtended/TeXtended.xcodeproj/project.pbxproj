@@ -224,6 +224,8 @@
 		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
 		F68687F418781D5F00898026 /* PrintDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68687F318781D5F00898026 /* PrintDialogController.m */; };
 		F692F4D2173A62710032EF32 /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F692F4D1173A62710032EF32 /* FileView.xib */; };
+		F6980D451882DDE10023DE4D /* MergeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980D431882DDE10023DE4D /* MergeWindowController.m */; };
+		F6980D461882DDE10023DE4D /* MergeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980D441882DDE10023DE4D /* MergeWindow.xib */; };
 		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
 		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
 		F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3776E18000AB900B42BF6 /* StatsPanelController.m */; };
@@ -616,6 +618,9 @@
 		F68687F218781D5F00898026 /* PrintDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintDialogController.h; sourceTree = "<group>"; };
 		F68687F318781D5F00898026 /* PrintDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintDialogController.m; sourceTree = "<group>"; };
 		F692F4D1173A62710032EF32 /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
+		F6980D421882DDE10023DE4D /* MergeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeWindowController.h; sourceTree = "<group>"; };
+		F6980D431882DDE10023DE4D /* MergeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeWindowController.m; sourceTree = "<group>"; };
+		F6980D441882DDE10023DE4D /* MergeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MergeWindow.xib; sourceTree = "<group>"; };
 		F6B77905180DB83E0079EFF6 /* MatrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixViewController.h; sourceTree = "<group>"; };
 		F6B77906180DB83E0079EFF6 /* MatrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixViewController.m; sourceTree = "<group>"; };
 		F6B77907180DB83E0079EFF6 /* MatrixView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatrixView.xib; sourceTree = "<group>"; };
@@ -1047,6 +1052,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F6980D411882DDB80023DE4D /* MergeView */,
 				F68687EF18781CA200898026 /* PrintDialog */,
 				D257498718631AE70025A536 /* CustomTableCellViews */,
 				76B88F9018378A94006B0E9F /* DMInspectorPalette */,
@@ -1395,6 +1401,16 @@
 			path = TeXtended/Views/PrintDialog;
 			sourceTree = SOURCE_ROOT;
 		};
+		F6980D411882DDB80023DE4D /* MergeView */ = {
+			isa = PBXGroup;
+			children = (
+				F6980D421882DDE10023DE4D /* MergeWindowController.h */,
+				F6980D431882DDE10023DE4D /* MergeWindowController.m */,
+				F6980D441882DDE10023DE4D /* MergeWindow.xib */,
+			);
+			path = MergeView;
+			sourceTree = "<group>";
+		};
 		F6B77904180DB8080079EFF6 /* MatrixView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1534,6 +1550,7 @@
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
+				F6980D461882DDE10023DE4D /* MergeWindow.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
@@ -1605,6 +1622,7 @@
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
+				F6980D451882DDE10023DE4D /* MergeWindowController.m in Sources */,
 				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,
 				D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */,
 				D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */,

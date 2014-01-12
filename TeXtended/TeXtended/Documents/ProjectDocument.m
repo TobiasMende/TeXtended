@@ -120,11 +120,11 @@
         return projectFiles[0];
     }
     return nil;
-    
-    
-    
 }
 
+- (IBAction)exportSingleDocument:(id)sender {
+    DDLogCInfo(@"Project Document exportSingleDocument not implemented yet.");
+}
 
 - (void)dealloc {
     DDLogVerbose(@"ProjectDocument dealloc");

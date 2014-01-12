@@ -499,6 +499,12 @@
                                     <action selector="showStatistics:" target="-1" id="71L-pB-8ab"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Export as single document" id="SCr-VS-C5R">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="exportSingleDocument:" target="-1" id="cXn-vN-65S"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="hG1-i3-OBU"/>
                             <menuItem title="Package Documentation" keyEquivalent="T" id="573">
                                 <connections>
