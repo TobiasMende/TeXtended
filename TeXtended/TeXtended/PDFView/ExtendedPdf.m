@@ -13,6 +13,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "ApplicationController.h"
 #import "TMTNotificationCenter.h"
+#import "StatsPanelController.h"
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -60,7 +61,10 @@ static const NSSet *KEYS_TO_UNBIND;
         [content appendString:page.string];
     }
     if (content.length > 0) {
-        // TODO: statistics;
+        if (!statsPanel) {
+            statsPanel = [StatsPanelController new];
+        }
+        [statsPanel showStatistics:content];
     }
 }
 

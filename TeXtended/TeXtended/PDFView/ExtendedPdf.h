@@ -9,7 +9,7 @@
 #import <Quartz/Quartz.h>
 #import "FirstResponderDelegate.h"
 
-@class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController;
+@class ExtendedPdfControlls, ExtendedPDFViewController, PageNumberViewController, StatsPanelController;
 
 /**
  * This class extends the PDFView from cocoas PDFKit by functionalitys
@@ -20,6 +20,7 @@
 @interface ExtendedPdf : PDFView {
     ExtendedPdfControlls *controllsView;
     PageNumberViewController *pageNumbers;
+    StatsPanelController *statsPanel;
     BOOL firstDraw;
 }
 

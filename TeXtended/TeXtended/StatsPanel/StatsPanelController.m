@@ -47,6 +47,8 @@
     NSString *output = [[NSString alloc] initWithData:[[outPipe fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
     [self parseOutputString:output];
     [self showWindow:self];*/
+    
+    DDLogCInfo(@"%@", content);
 }
 
 /*-(void)parseOutputString:(NSString*)output
