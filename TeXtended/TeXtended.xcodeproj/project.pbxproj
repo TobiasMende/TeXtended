@@ -120,6 +120,7 @@
 		D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */; };
 		D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */; };
 		D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */; };
+		D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E690188290F600CDC8C8 /* CompletionTableController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
@@ -509,6 +510,8 @@
 		D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegexReplace.m"; sourceTree = "<group>"; };
 		D291E68A1882853B00CDC8C8 /* NSString+RNTextStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RNTextStatistics.h"; sourceTree = "<group>"; };
 		D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RNTextStatistics.m"; sourceTree = "<group>"; };
+		D291E68F188290F600CDC8C8 /* CompletionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionTableController.h; sourceTree = "<group>"; };
+		D291E690188290F600CDC8C8 /* CompletionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionTableController.m; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
 		D296059D178091F7007C599B /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
@@ -807,6 +810,8 @@
 				D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */,
 				D23BC52D1861ED2400E9A507 /* CiteCompletion.h */,
 				D23BC52E1861ED2400E9A507 /* CiteCompletion.m */,
+				D291E68F188290F600CDC8C8 /* CompletionTableController.h */,
+				D291E690188290F600CDC8C8 /* CompletionTableController.m */,
 			);
 			path = AutoCompletion;
 			sourceTree = "<group>";
@@ -1670,6 +1675,7 @@
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
+				D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,

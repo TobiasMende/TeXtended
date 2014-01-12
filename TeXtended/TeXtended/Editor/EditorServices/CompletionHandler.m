@@ -22,6 +22,7 @@
 #import "CompletionProtocol.h"
 #import "FirstResponderDelegate.h"
 #import "BibFile.h"
+#import "CompletionTableController.h"
 #import "ProjectModel.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
@@ -196,11 +197,11 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary *__autoreleasing *)info{
    *info = @{TMTCompletionTypeKey: @(TMTCommandCompletion)};
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
-    NSDictionary *completions = [[CompletionManager sharedInstance] commandCompletions] ;
+    NSArray *completions = [CompletionManager sharedInstance].commandCompletions.completions  ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
-    for (NSString *key in completions) {
-        if ([key hasPrefix:prefix]) {
-            [matchingKeys addObject:completions[key]];
+    for (CommandCompletion *c in completions) {
+        if ([c.key hasPrefix:prefix]) {
+            [matchingKeys addObject:c];
         }
     }
     [matchingKeys sortUsingSelector:@selector(compare:)];
@@ -210,11 +211,11 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type additionalInformation:(NSDictionary *__autoreleasing *)info{
     *info = @{TMTCompletionTypeKey: [NSNumber numberWithInt:type]};
     NSString *prefix = [view.string substringWithRange:charRange];
-    NSDictionary *completions = [[CompletionManager sharedInstance] environmentCompletions] ;
+    NSArray *completions = [CompletionManager sharedInstance].environmentCompletions.completions ;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
-    for (NSString *key in completions) {
-        if ([key hasPrefix:prefix]) {
-                [matchingCompletions addObject:completions[key]];
+    for (EnvironmentCompletion *c in completions) {
+        if ([c.key hasPrefix:prefix]) {
+                [matchingCompletions addObject:c];
         }
     }
     [matchingCompletions sortUsingSelector:@selector(compare:)];
