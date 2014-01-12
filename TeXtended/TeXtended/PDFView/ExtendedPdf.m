@@ -65,7 +65,18 @@ static const NSSet *KEYS_TO_UNBIND;
             statsPanel = [StatsPanelController new];
         }
         [statsPanel showStatistics:content];
+        
+        [NSApp beginSheet:[statsPanel window]
+           modalForWindow: [self window]
+            modalDelegate: self
+           didEndSelector: @selector(statsPanelDidEnd:returnCode:contextInfo:)
+              contextInfo: nil];
+        [NSApp runModalForWindow:[self window]];
     }
+}
+
+- (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
+    
 }
 
 - (void) initVariables {

@@ -94,4 +94,14 @@
 - (void) initVariables;
 
 - (IBAction)showStatistics:(id)sender;
+
+/**
+ Notification about the end of the StatsPanelController's sheet.
+ 
+ 
+ @param sheet the sheet which ends.
+ @param returnCode the termination state of the sheet.
+ @param context `NULL` in most cases.
+ */
+- (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 @end

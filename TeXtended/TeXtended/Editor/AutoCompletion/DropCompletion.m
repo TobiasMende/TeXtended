@@ -16,7 +16,7 @@
 
 -(NSAttributedString*)getCompletion:(NSString*)path {
     NSString* retValue;
-    if (self.hasPlaceholders) {
+    if (self.usePathExtentsion) {
         retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:[path stringByDeletingPathExtension]];
     }
     else {

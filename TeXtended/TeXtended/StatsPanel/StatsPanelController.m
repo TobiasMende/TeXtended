@@ -9,6 +9,7 @@
 #import "StatsPanelController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "Constants.h"
+#import "NSString+RNTextStatistics.h"
 
 @interface StatsPanelController ()
 
@@ -35,29 +36,24 @@
 
 - (void)showStatistics:(NSString*)content
 {
-    /*self.panelTitle = [NSLocalizedString(@"Statistics", @"Statistics") stringByAppendingString:[NSString stringWithFormat:@" - %@",[filename lastPathComponent]]];
-    NSTask *task = [[NSTask alloc]init];
-    NSPipe *outPipe = [NSPipe pipe];
-    task.standardOutput = outPipe;
-    task.launchPath = [[[NSUserDefaults standardUserDefaults] valueForKey:TMT_PATH_TO_TEXBIN] stringByAppendingPathComponent:@"texcount"];
-    task.arguments = @[@"-inc",@"-brief", @"-q", @"-total", [NSString stringWithFormat:@"\"%@\"",filename]];
-    task.currentDirectoryPath = [filename stringByDeletingLastPathComponent];
-    [task launch];
-    [task waitUntilExit];
-    NSString *output = [[NSString alloc] initWithData:[[outPipe fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-    [self parseOutputString:output];
-    [self showWindow:self];*/
-    
-    DDLogCInfo(@"%@", content);
+    NSInteger words = [content wordCount];
+    NSInteger sentences = [content sentenceCount];
+    NSInteger letters = [content letterCount];
+    NSInteger symbols = [content length];
+    self.words = [NSString stringWithFormat:@"%ld",(long)words];
+    self.sentences = [NSString stringWithFormat:@"%ld",(long)sentences];
+    self.letters = [NSString stringWithFormat:@"%ld",(long)letters];
+    self.symbols = [NSString stringWithFormat:@"%ld",(long)symbols];
+    self.wordsPerSentence = [NSString stringWithFormat:@"%f",(float)words/(float)sentences];
+    self.lettersPerSentence = [NSString stringWithFormat:@"%f",(float)letters/(float)sentences];
+    self.symbolsPerSentence = [NSString stringWithFormat:@"%f",(float)symbols/(float)sentences];
 }
 
-/*-(void)parseOutputString:(NSString*)output
-{
-    // String has Format "TEXTWORDS+HEADERWORDS+CAPTIONWORDS (HEADERNUMBER/FLOATNUMBER/MATHINLINENUMBER/DISPLAYEDMATHNUMBER) TOTAL COUNT"
-    NSArray *stringComponents = [output componentsSeparatedByString:@"+"];
-    self.wordsInText = stringComponents[0];
-    self.wordsInHeader = stringComponents[1];
-    self.wordsInCaption = [stringComponents[2] componentsSeparatedByString:@" "][0];
-}*/
+- (IBAction)OKSheet:(id)sender {
+    [NSApp stopModal];
+    [NSApp endSheet: self.window];
+    [self.window orderOut: self];
+}
+
 
 @end
