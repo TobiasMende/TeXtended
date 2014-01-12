@@ -22,6 +22,7 @@ static NSString *FILE_EXTENSION = @"plist";
     self = [super init];
     if (self) {
         self.completions = [NSMutableArray new];
+        self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"insertion" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
         fileName = name;
         type = class;
     }
@@ -96,6 +97,8 @@ static NSString *FILE_EXTENSION = @"plist";
     [self.completions removeAllObjects];
     [self loadCompletionsWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:FILE_EXTENSION]];
 }
+
+
 
 #pragma mark - Private Methods
 

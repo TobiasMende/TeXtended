@@ -18,7 +18,7 @@
  
  @warning *Important:* Due to the fact that this class deals with files in the application support folder. There can't be more than one instance of the CompletionsController. To ensure this fact, it's designed as singleton. Therefor calling [CompletionsController init] doesn't create a new instance if one exists.
  */
-@interface CompletionsController : NSObject {
+@interface CompletionsController : NSObject<NSTableViewDelegate> {
 
 }
 @property (assign) CompletionManager *manager;
@@ -34,7 +34,9 @@
 /** The drop completion view */
 @property (assign) IBOutlet NSTableView *dropView;
 
+@property (assign) IBOutlet NSArrayController *commandsController;
 
-- (void) addEntryIn:(NSTableView *)tableView withArrayController:(NSArrayController *)controller;
-+ (CompletionsController *)sharedInstance;
+
++ (CompletionsController *)sharedCompletionsController;
+
 @end

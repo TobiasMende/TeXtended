@@ -13,6 +13,7 @@
     Class type;
 }
 @property (strong) NSMutableArray *completions;
+@property (strong) NSArray *sortDescriptors;
 - (id) initWithFileName:(NSString *)name andContentType:(Class)class;
 - (void) loadCompletions;
 - (void) loadCompletionsWithPath:(NSString *)path;

@@ -115,6 +115,7 @@
 		D28DC0DD177AEDF400E4C711 /* lualatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0DB177AED2900E4C711 /* lualatex.rb */; };
 		D28DC0DE177AEDF700E4C711 /* xelatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
 		D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */; };
+		D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F1EEE1882CF0A006BFDE5 /* TMTArrayController.m */; };
 		D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2906E751824F5EC003213AA /* TMTTabManager.m */; };
 		D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D291E684188055F700CDC8C8 /* CiteInfoView.xib */; };
 		D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */; };
@@ -501,6 +502,8 @@
 		D28DC0DB177AED2900E4C711 /* lualatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lualatex.rb; sourceTree = "<group>"; };
 		D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackwardSynctex.h; sourceTree = "<group>"; };
 		D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackwardSynctex.m; sourceTree = "<group>"; };
+		D28F1EED1882CF0A006BFDE5 /* TMTArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTArrayController.h; sourceTree = "<group>"; };
+		D28F1EEE1882CF0A006BFDE5 /* TMTArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTArrayController.m; sourceTree = "<group>"; };
 		D2906E741824F5EC003213AA /* TMTTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabManager.h; sourceTree = "<group>"; };
 		D2906E751824F5EC003213AA /* TMTTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabManager.m; sourceTree = "<group>"; };
 		D291E684188055F700CDC8C8 /* CiteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CiteInfoView.xib; sourceTree = "<group>"; };
@@ -912,6 +915,8 @@
 				D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */,
 				D2CF61931770FD6100ACC3D5 /* EnvironmentSetupController.h */,
 				D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */,
+				D28F1EED1882CF0A006BFDE5 /* TMTArrayController.h */,
+				D28F1EEE1882CF0A006BFDE5 /* TMTArrayController.m */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -1622,6 +1627,7 @@
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
 				76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
+				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
