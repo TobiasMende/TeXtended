@@ -207,7 +207,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSArray *completions = [self completionsForPartialWordRange:[self rangeForUserCompletion] indexOfSelectedItem:0 additionalInformation:&additionalInformation];
     if (completions.count > 0 || [additionalInformation[TMTShouldShowDBLPKey] boolValue]) {
         if (!autoCompletionController) {
-            autoCompletionController = [AutoCompletionWindowController new];
+            __unsafe_unretained id weakSelf = self;
+            autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:^(id completion) {
+                    [weakSelf insertCompletion:completion forPartialWordRange:[weakSelf rangeForUserCompletion] movement:NSOtherTextMovement isFinal:NO];
+            }];
             autoCompletionController.parent = self;
         }
         [autoCompletionController positionWindowWithContent:completions andInformation:additionalInformation];

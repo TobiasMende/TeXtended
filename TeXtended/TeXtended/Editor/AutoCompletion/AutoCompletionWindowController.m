@@ -8,7 +8,6 @@
 
 #import "AutoCompletionWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "CompletionProtocol.h"
 #import "HighlightingTextView.h"
 #import "CustomTableCellView.h"
 #import "CiteCompletionView.h"
@@ -138,10 +137,10 @@
     return NSMakeRect(globalPosition.x, globalPosition.y-localCharBound.size.height, localCharBound.size.width, localCharBound.size.height);
 }
 
-- (id)init {
+- (id)initWithSelectionDidChangeCallback:(void (^)(id completion)) callback {
     self = [super initWithWindowNibName:@"AutoCompletionWindow"];
     if (self) {
-        
+        self.selectionDidChangeCallback = callback;
     }
     return self;
 }
@@ -168,7 +167,7 @@
     if (row >= 0 && row < self.content.count) {
         NSTableCellView *result = [self customTableCellViewFor:tableView andRow:row];
         tableView.rowHeight = [self tableView:tableView heightOfRow:row];
-        id<CompletionProtocol> item = (self.content)[row];
+        id item = (self.content)[row];
         result.objectValue = item;
         return result;
     } else if([(self.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
@@ -210,13 +209,13 @@
     if (currentIndex >= self.content.count || currentIndex < 0) {
         return;
     }
-    id<CompletionProtocol> completion = (self.content)[currentIndex];
+    id completion = (self.content)[currentIndex];
     NSRange prefixRange = [self.parent rangeForUserCompletion];
     if (prefixRange.location == NSNotFound) {
         DDLogWarn(@"Got invalid prefix for user completion");
         return;
     }
-    [(HighlightingTextView*)self.parent insertCompletion:completion forPartialWordRange:[self.parent rangeForUserCompletion] movement:NSOtherTextMovement isFinal:NO];
+    self.selectionDidChangeCallback(completion);
 }
 
 #pragma mark - Key Events

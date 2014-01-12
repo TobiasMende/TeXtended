@@ -13,6 +13,10 @@
 @property (nonatomic) NSArray *content;
 @property (nonatomic) NSTextView *parent;
 
+@property (readwrite, copy) void (^selectionDidChangeCallback)(id completion);
+
+- (id)initWithSelectionDidChangeCallback:(void (^)(id completion)) callback;
+
 - (void)  positionWindowWithContent:(NSArray *) content andInformation:(NSDictionary *)additionalInformation;
 
 #pragma mark - Key Events
