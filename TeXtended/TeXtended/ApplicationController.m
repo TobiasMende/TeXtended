@@ -170,7 +170,7 @@ static ApplicationController *sharedInstance;
                               TMT_EDITOR_NUM_TAB_SPACES: @4,
                               TMT_EDITOR_HARD_WRAP_AFTER: @80,
                               TMTLatexLogLevelKey: @(WARNING),
-                              TMTLineSpacing: @7.5f,
+                              TMTLineSpacing: @0.0f,
                               TMT_EDITOR_LINE_WRAP_MODE: @(SoftWrap),
                               TMT_ENVIRONMENT_PATH: @"/usr/local/bin:/usr/bin:/usr/texbin",
                               TMT_PATH_TO_TEXBIN: @"/usr/texbin",

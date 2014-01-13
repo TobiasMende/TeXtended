@@ -2080,7 +2080,7 @@
         </window>
         <userDefaultsController representsSharedInstance="YES" id="10"/>
         <arrayController id="2685" userLabel="Availabel Compilers" customClass="CompileFlowHandler"/>
-        <arrayController objectClassName="CommandCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="4AV-It-cBF" userLabel="Command Completions" customClass="TMTArrayController">
+        <arrayController objectClassName="CommandCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" id="4AV-It-cBF" userLabel="Command Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.commandCompletions.completions" id="g6d-ve-mxT">
                     <dictionary key="options">
@@ -2092,7 +2092,7 @@
                 <outlet property="tableView" destination="1715" id="Nk2-5X-zjM"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="EnvironmentCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" automaticallyRearrangesObjects="YES" id="L8E-vY-W1W" userLabel="Environment Completions" customClass="TMTArrayController">
+        <arrayController objectClassName="EnvironmentCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" id="L8E-vY-W1W" userLabel="Environment Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.environmentCompletions.completions" id="NqO-6o-QoE">
                     <dictionary key="options">
@@ -2104,7 +2104,7 @@
                 <outlet property="tableView" destination="1731" id="3ek-Yc-HxI"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="DropCompletion" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="jPa-uV-lsi" userLabel="Drop Completions" customClass="TMTArrayController">
+        <arrayController objectClassName="DropCompletion" automaticallyPreparesContent="YES" id="jPa-uV-lsi" userLabel="Drop Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.dropCompletions.completions" id="G19-FY-hh1"/>
                 <binding destination="2266" name="sortDescriptors" keyPath="self.manager.dropCompletions.sortDescriptors" id="REy-OT-Aqj"/>
