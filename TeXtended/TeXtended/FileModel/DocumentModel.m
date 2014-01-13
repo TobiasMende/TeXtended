@@ -38,7 +38,7 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
-- (NSString *)loadContent:(NSError**)error {
+- (NSString *)loadContent:(NSError*__autoreleasing*)error {
     self.lastChanged = [NSDate new];
     if (!self.systemPath) {
         if (!self.texPath) {
@@ -56,8 +56,8 @@ static NSArray *TMTEncodingsToCheck;
         
     }
     
-    if (*error) {
-        DDLogError(@"Error while loading content: %@", (*error).userInfo);
+    if (error) {
+        DDLogError(@"Error while loading content: %@", *error);
     }
     if (content) {
         [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];

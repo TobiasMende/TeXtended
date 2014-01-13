@@ -120,8 +120,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         self.model.encoding = @([contr.encController selection]);
         
     }
-    [self.model loadContent:outError];
-    if (*outError) {
+    NSError *loadError;
+    [self.model loadContent:&loadError];
+    if (loadError) {
+        *outError = loadError;
         return NO;
     }
     
