@@ -38,6 +38,10 @@
     return dict;
 }
 
+- (BOOL)hasPlaceholders {
+    return [super hasPlaceholders] || ([self hasFirstLineExtension] && [super stringContainsPlaceholders:self.firstLineExtension]);
+}
+
 
 -(NSString *)key {
     return [NSString stringWithFormat:@"%@ | %@%@", self.insertion, self.firstLineExtension, self.extension];

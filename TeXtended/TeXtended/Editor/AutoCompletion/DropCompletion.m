@@ -11,7 +11,7 @@
 @implementation DropCompletion
 
 -(id)init {
-    return [self initWithInsertion:@"" containingPlaceholders:YES andExtension:@"@@destination@@"];
+    return [self initWithInsertion:@"" andExtension:@"@@destination@@"];
 }
 
 - (id)initWithDictionary:(NSDictionary *)dict {
@@ -30,7 +30,7 @@
 
 -(NSAttributedString*)getCompletion:(NSString*)path {
     NSString* retValue;
-    if (self.usePathExtentsion) {
+    if (!self.usePathExtentsion) {
         retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:[path stringByDeletingPathExtension]];
     }
     else {

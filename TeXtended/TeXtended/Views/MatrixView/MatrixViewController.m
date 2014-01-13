@@ -48,7 +48,6 @@
 -(EnvironmentCompletion *)matrixCompletion
 {
     EnvironmentCompletion *completion = [[EnvironmentCompletion alloc] initWithInsertion:self.type];
-    completion.hasPlaceholders = YES;
     
     if (self.alignment) {
         NSMutableString *firstLine = [NSMutableString new];

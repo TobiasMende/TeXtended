@@ -23,38 +23,33 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
     
 }
 
+
 - (id)initWithInsertion:(NSString *)insertion {
-    return [self initWithInsertion:insertion containingPlaceholders:NO];
+    return [self initWithInsertion:insertion andExtension:@""];
 }
 
-- (id)initWithInsertion:(NSString *)insertion containingPlaceholders:(BOOL)flag {
-    return [self initWithInsertion:insertion containingPlaceholders:flag andExtension:@""];
-}
-
-- (id)initWithInsertion:(NSString *) insertion containingPlaceholders :(BOOL)flag andExtension:(NSString *)extension {
+- (id)initWithInsertion:(NSString *) insertion andExtension:(NSString *)extension {
     self = [super init];
     if (self) {
         _insertion = insertion;
-        _hasPlaceholders = flag;
         _extension = extension;
     }
 return self;
 }
 
 - (id)init {
-    return [self initWithInsertion:@"" containingPlaceholders:YES andExtension:@""];
+    return [self initWithInsertion:@"" andExtension:@""];
 }
 
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     NSString *insertion = dict[TMTCompletionInsertionKey];
-    BOOL hasPlaceholders = [dict[TMTCompletionHasPlaceholdersKey] boolValue];
     NSString *extension = dict[TMTCompletionExtensionKey];
     NSString *counter = dict[TMTCompletionCounterKey];
     if (extension) {
-        self = [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders andExtension:extension];
+        self = [self initWithInsertion:insertion andExtension:extension];
     } else {
-        self = [self initWithInsertion:insertion containingPlaceholders:hasPlaceholders];
+        self = [self initWithInsertion:insertion];
     }
     if (self && counter) {
         self.counter = [counter integerValue];
@@ -74,6 +69,15 @@ return self;
 
 - (BOOL)hasExtension {
     return self.extension && self.extension.length > 0;
+}
+
+- (BOOL)hasPlaceholders {
+    return [self stringContainsPlaceholders:self.extension];
+}
+
+- (BOOL)stringContainsPlaceholders:(NSString *)string {
+    NSArray *matches = [PLACEHOLDER_REGEX matchesInString:string options:0 range:NSMakeRange(0, string.length)];
+    return matches.count > 0;
 }
 
 
@@ -165,7 +169,6 @@ return self;
     if (self) {
         _insertion = [aDecoder decodeObjectForKey:TMTCompletionInsertionKey];
         _extension = [aDecoder decodeObjectForKey:TMTCompletionExtensionKey];
-        _hasPlaceholders = [aDecoder decodeBoolForKey:TMTCompletionHasPlaceholdersKey];
         _counter = [aDecoder decodeIntegerForKey:TMTCompletionCounterKey];
     }
     return self;
@@ -175,14 +178,13 @@ return self;
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.insertion forKey:TMTCompletionInsertionKey];
     [aCoder encodeObject:self.extension forKey:TMTCompletionExtensionKey];
-    [aCoder encodeBool:self.hasPlaceholders forKey:TMTCompletionHasPlaceholdersKey];
     [aCoder encodeInteger:self.counter forKey:TMTCompletionCounterKey];
 }
 
 
 
 - (NSMutableDictionary *)dictionaryRepresentation {
-    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey,@(self.hasPlaceholders),TMTCompletionHasPlaceholdersKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter],TMTCompletionCounterKey, nil];
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion,TMTCompletionInsertionKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter],TMTCompletionCounterKey, nil];
 
 }
 

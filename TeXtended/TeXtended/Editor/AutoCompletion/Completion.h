@@ -22,7 +22,8 @@
 @property (strong) NSString* extension;
 
 /** If `YES` [Completion substitutedExtension] will substitute all placeholders in the [Completion extension] */
-@property BOOL hasPlaceholders;
+- (BOOL) hasPlaceholders;
+- (BOOL) stringContainsPlaceholders:(NSString *)string;
 
 /**
  Method for initializing a new completion with a simple insertion
@@ -33,26 +34,16 @@
  */
 - (id)initWithInsertion:(NSString*) insertion;
 
-/**
- An intializer for a new completion with placeholders
- 
- @param insertion the insertions name
- @param flag if `YES` placeholders in the insertion where automatically substituted
- 
- @return a new completion
- */
-- (id)initWithInsertion:(NSString*) insertion containingPlaceholders:(BOOL)flag;
 
 /**
  Initializer for an insertion with an extension.
  
  @param insertion the insertions name
- @param flag if `YES` placeholders where substituted automatically
  @param extension the extension of the completion
  
  @return a new completion object
  */
-- (id)initWithInsertion:(NSString*) insertion containingPlaceholders:(BOOL)flag andExtension:(NSString*) extension;
+- (id)initWithInsertion:(NSString*) insertion andExtension:(NSString*) extension;
 
 /**
  Methods inserts all attributes of an instance in a dictionary and returns it (good for saving with a human readable format)

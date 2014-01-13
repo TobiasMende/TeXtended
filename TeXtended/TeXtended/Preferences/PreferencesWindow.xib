@@ -1425,21 +1425,6 @@
                                                         <binding destination="4AV-It-cBF" name="value" keyPath="arrangedObjects.extension" id="aaX-m0-qaN"/>
                                                     </connections>
                                                 </tableColumn>
-                                                <tableColumn identifier="hasPlaceholders" width="187" minWidth="10" maxWidth="3.4028234663852886e+38" id="1745">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Argument contains placeholder">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="center" state="on" inset="2" id="1749">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <connections>
-                                                        <binding destination="4AV-It-cBF" name="value" keyPath="arrangedObjects.hasPlaceholders" id="arI-cH-d4t"/>
-                                                    </connections>
-                                                </tableColumn>
                                                 <tableColumn identifier="completionType" editable="NO" width="90.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="2588">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Type">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -1636,21 +1621,6 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
                                                         <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.extension" id="uIL-tg-KyR"/>
-                                                    </connections>
-                                                </tableColumn>
-                                                <tableColumn identifier="hasPlaceholders" width="179.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="1752">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions contain placeholders">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1754">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <connections>
-                                                        <binding destination="L8E-vY-W1W" name="value" keyPath="arrangedObjects.hasPlaceholders" id="9cM-gh-Whf"/>
                                                     </connections>
                                                 </tableColumn>
                                             </tableColumns>
@@ -2149,7 +2119,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Drop Completion" borderType="line" id="FTn-jb-qDN">
-                    <rect key="frame" x="17" y="62" width="691" height="403"/>
+                    <rect key="frame" x="17" y="62.000000376450288" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="689" height="387"/>
