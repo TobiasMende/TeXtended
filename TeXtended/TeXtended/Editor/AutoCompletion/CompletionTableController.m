@@ -10,6 +10,7 @@
 #import "ApplicationController.h"
 #import "Completion.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "TMTArrayController.h"
 static NSString *FILE_EXTENSION = @"plist";
 
 @interface CompletionTableController ()
@@ -65,7 +66,14 @@ static NSString *FILE_EXTENSION = @"plist";
             [fm createFileAtPath:path contents:nil attributes:nil];
         }
         // Storing Completions:
-        [self.completions writeToFile:path atomically:YES];
+        NSMutableArray *storage = [NSMutableArray arrayWithCapacity:self.completions.count];
+        for(id completion in self.completions) {
+            [storage addObject:[completion dictionaryRepresentation]];
+        }
+        BOOL success = [storage writeToFile:path atomically:YES];
+        if (!success) {
+            DDLogError(@"Can't write completions to %@", path);
+        }
       
     } else {
         DDLogWarn(@"Can't store user completions");
@@ -93,9 +101,10 @@ static NSString *FILE_EXTENSION = @"plist";
 }
 
 
-- (void)resetDefaults {
+- (void)resetDefaultsFor:(TMTArrayController *)ac {
     [self.completions removeAllObjects];
     [self loadCompletionsWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:FILE_EXTENSION]];
+    [ac rearrangeObjects];
 }
 
 

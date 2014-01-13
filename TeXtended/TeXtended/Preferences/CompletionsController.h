@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CompletionManager;
+@class CompletionManager,TMTArrayController;
 /**
  The CompletionsController handles loading and saving of auto completions and the displaying and editing of them in the preferences window.
 
@@ -24,7 +24,9 @@
 @property (assign) CompletionManager *manager;
 
 
-
+@property (assign) IBOutlet TMTArrayController *commandsController;
+@property (assign) IBOutlet TMTArrayController *environmentsController;
+@property (assign) IBOutlet TMTArrayController *dropsController;
 /** The environment completion view */
 @property (assign) IBOutlet NSTableView *environmentView;
 
@@ -34,7 +36,6 @@
 /** The drop completion view */
 @property (assign) IBOutlet NSTableView *dropView;
 
-@property (assign) IBOutlet NSArrayController *commandsController;
 
 
 + (CompletionsController *)sharedCompletionsController;

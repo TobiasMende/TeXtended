@@ -17,7 +17,7 @@
         [self.tableView reloadData];
         // [self.tableView scrollToEndOfDocument:self];
         self.selectionIndex = self.tableView.numberOfRows-1;
-        [self.tableView editColumn:0 row:self.tableView.selectedRow withEvent:nil select:NO];
+        [self.tableView editColumn:0 row:self.tableView.selectedRow withEvent:nil select:YES];
     }
 }
 @end

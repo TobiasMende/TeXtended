@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class TMTArrayController;
 @interface CompletionTableController : NSObject {
     NSString *fileName;
     Class type;
@@ -19,5 +19,5 @@
 - (void) loadCompletionsWithPath:(NSString *)path;
 - (void) saveCompletions;
 - (void) resetRanking;
-- (void) resetDefaults;
+- (void) resetDefaultsFor:(TMTArrayController *)ac;
 @end

@@ -1519,9 +1519,14 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="2266" name="target" keyPath="self.manager.commandCompletions" id="M4t-rI-mT2">
+                                    <binding destination="2266" name="argument" keyPath="self.commandsController" id="T4x-ER-JPh">
                                         <dictionary key="options">
-                                            <string key="NSSelectorName">resetDefaults</string>
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="2266" name="target" keyPath="self.manager.commandCompletions" previousBinding="T4x-ER-JPh" id="xL0-Cy-rti">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -1702,9 +1707,14 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="2266" name="target" keyPath="self.manager.environmentCompletions" id="erU-gd-o2B">
+                                    <binding destination="2266" name="argument" keyPath="self.environmentsController" id="SGx-qX-NGi">
                                         <dictionary key="options">
-                                            <string key="NSSelectorName">resetDefaults</string>
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="2266" name="target" keyPath="self.manager.environmentCompletions" previousBinding="SGx-qX-NGi" id="nu3-W9-iNp">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -2079,7 +2089,7 @@
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="10"/>
-        <arrayController id="2685" userLabel="Availabel Compilers" customClass="CompileFlowHandler"/>
+        <arrayController preservesSelection="NO" id="2685" userLabel="Availabel Compilers" customClass="CompileFlowHandler"/>
         <arrayController objectClassName="CommandCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" id="4AV-It-cBF" userLabel="Command Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.commandCompletions.completions" id="g6d-ve-mxT">
@@ -2092,7 +2102,7 @@
                 <outlet property="tableView" destination="1715" id="Nk2-5X-zjM"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="EnvironmentCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" id="L8E-vY-W1W" userLabel="Environment Completions" customClass="TMTArrayController">
+        <arrayController objectClassName="EnvironmentCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" id="L8E-vY-W1W" userLabel="Environment Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.environmentCompletions.completions" id="NqO-6o-QoE">
                     <dictionary key="options">
@@ -2104,7 +2114,7 @@
                 <outlet property="tableView" destination="1731" id="3ek-Yc-HxI"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="DropCompletion" automaticallyPreparesContent="YES" id="jPa-uV-lsi" userLabel="Drop Completions" customClass="TMTArrayController">
+        <arrayController objectClassName="DropCompletion" automaticallyPreparesContent="YES" preservesSelection="NO" avoidsEmptySelection="NO" id="jPa-uV-lsi" userLabel="Drop Completions" customClass="TMTArrayController">
             <connections>
                 <binding destination="2266" name="contentArray" keyPath="self.manager.dropCompletions.completions" id="G19-FY-hh1"/>
                 <binding destination="2266" name="sortDescriptors" keyPath="self.manager.dropCompletions.sortDescriptors" id="REy-OT-Aqj"/>
@@ -2116,9 +2126,12 @@
         <customObject id="2264" customClass="ApplicationController"/>
         <customObject id="2266" customClass="CompletionsController">
             <connections>
+                <outlet property="commandsController" destination="4AV-It-cBF" id="vYh-qO-THa"/>
                 <outlet property="commandsView" destination="1715" id="ODf-sY-YM8"/>
                 <outlet property="dropView" destination="L8Y-7f-aRU" id="R6o-ys-Ue5"/>
+                <outlet property="dropsController" destination="jPa-uV-lsi" id="8YF-uT-hv9"/>
                 <outlet property="environmentView" destination="1731" id="2278"/>
+                <outlet property="environmentsController" destination="L8E-vY-W1W" id="cJu-Ai-36M"/>
             </connections>
         </customObject>
         <customObject id="3526" customClass="EnvironmentSetupController"/>
@@ -2202,7 +2215,11 @@
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="jPa-uV-lsi" name="value" keyPath="arrangedObjects.usePathExtentsion" id="6N1-iG-IgY"/>
+                                                        <binding destination="jPa-uV-lsi" name="value" keyPath="arrangedObjects.usePathExtentsion" id="caw-mG-6YZ">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </tableColumn>
                                             </tableColumns>
@@ -2237,9 +2254,14 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="2266" name="target" keyPath="self.manager.dropCompletions" id="KP4-Ls-Ti4">
+                                    <binding destination="2266" name="argument" keyPath="self.dropsController" id="xXU-8p-x4v">
                                         <dictionary key="options">
-                                            <string key="NSSelectorName">resetDefaults</string>
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="2266" name="target" keyPath="self.manager.dropCompletions" previousBinding="xXU-8p-x4v" id="SK9-Br-D4T">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">resetDefaultsFor:</string>
                                         </dictionary>
                                     </binding>
                                 </connections>

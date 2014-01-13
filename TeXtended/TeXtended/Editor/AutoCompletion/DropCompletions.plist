@@ -6,7 +6,7 @@
         <key>TMTCompletionExtensionKey</key>
         <string>\includegraphics{@@destination@@}</string>
         <key>TMTCompletionUseExtensionKey</key>
-        <true/>
+        <false/>
         <key>TMTCompletionInsertionKey</key>
         <string>jpg</string>
 	</dict>
@@ -14,7 +14,7 @@
         <key>TMTCompletionExtensionKey</key>
         <string>\includegraphics{@@destination@@}</string>
         <key>TMTCompletionUseExtensionKey</key>
-        <true/>
+        <false/>
         <key>TMTCompletionInsertionKey</key>
         <string>pdf</string>
 	</dict>
@@ -22,7 +22,7 @@
         <key>TMTCompletionExtensionKey</key>
         <string>\includegraphics{@@destination@@}</string>
         <key>TMTCompletionUseExtensionKey</key>
-        <true/>
+        <false/>
         <key>TMTCompletionInsertionKey</key>
         <string>png</string>
 	</dict>
@@ -30,7 +30,7 @@
         <key>TMTCompletionExtensionKey</key>
         <string>\includegraphics{@@destination@@}</string>
         <key>TMTCompletionUseExtensionKey</key>
-        <true/>
+        <false/>
         <key>TMTCompletionInsertionKey</key>
         <string>eps</string>
 	</dict>
@@ -38,7 +38,7 @@
         <key>TMTCompletionExtensionKey</key>
         <string>\input{@@destination@@}</string>
         <key>TMTCompletionUseExtensionKey</key>
-        <true/>
+        <false/>
         <key>TMTCompletionInsertionKey</key>
         <string>tex</string>
 	</dict>

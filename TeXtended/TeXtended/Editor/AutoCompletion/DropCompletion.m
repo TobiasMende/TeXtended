@@ -7,11 +7,25 @@
 //
 
 #import "DropCompletion.h"
-
+#import "Constants.h"
 @implementation DropCompletion
 
 -(id)init {
-    return [self initWithInsertion:@"ext" containingPlaceholders:YES andExtension:@"@@destination@@"];
+    return [self initWithInsertion:@"" containingPlaceholders:YES andExtension:@"@@destination@@"];
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict {
+    self = [super initWithDictionary:dict];
+    if (self) {
+        self.usePathExtentsion = [dict[TMTCompletionUseExtensionKey] boolValue];
+    }
+    return self;
+}
+
+- (NSMutableDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *result = [super dictionaryRepresentation];
+    result[TMTCompletionUseExtensionKey] = @(self.usePathExtentsion);
+    return result;
 }
 
 -(NSAttributedString*)getCompletion:(NSString*)path {
