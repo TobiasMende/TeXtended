@@ -26,6 +26,7 @@
     self = [super init];
     if (self) {
             self.encController = [EncodingController new];
+        numberLock = [NSRecursiveLock new];
     }
     return self;
 }
@@ -42,6 +43,25 @@
         }
     }
     
+}
+
+- (void)setNumberOfCompilingDocuments:(NSUInteger)numberOfCompilingDocuments {
+    [numberLock lock];
+    _numberOfCompilingDocuments = numberOfCompilingDocuments;
+    [numberLock unlock];
+}
+
+
+- (void)decrementNumberOfCompilingDocuments {
+    [numberLock lock];
+    self.numberOfCompilingDocuments--;
+    [numberLock unlock];
+}
+
+- (void)incrementNumberOfCompilingDocuments {
+    [numberLock lock];
+        self.numberOfCompilingDocuments++;
+    [numberLock unlock];
 }
 
 - (void)firstResponderDidChangeNotification:(NSNotification *)note {

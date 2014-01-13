@@ -29,7 +29,7 @@
     NSMutableSet *observers;
     NSOperationQueue *backgroundQueue;
     NSTimer *messageUpdateTimer;
-    NSLock *messageLock;
+    NSObject *messageLock;
     MessageCollection *internalMessages;
     MessageCollection *consoleMessages;
     NSInteger countRunningParsers;

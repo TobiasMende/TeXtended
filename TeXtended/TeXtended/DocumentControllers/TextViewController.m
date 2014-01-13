@@ -73,7 +73,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (id)initWithFirstResponder:(id<FirstResponderDelegate>)dc {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
-        messageLock = [NSLock new];
+        messageLock = [NSObject new];
         
         self.firstResponderDelegate = dc;
         observers = [NSMutableSet new];
@@ -108,9 +108,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)adapteMessageToLevel {
     [consoleMessages adaptToLevel:self.logLevel];
-    internalMessages = [MessageCollection new];
-    [self updateMessageCollection:nil];
-    self.messages = [internalMessages merge:consoleMessages];
+    @synchronized(messageLock) {
+        internalMessages = [MessageCollection new];
+        [self updateMessageCollection:nil];
+        self.messages = [internalMessages merge:consoleMessages];
+    }
     [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
 }
 
@@ -175,10 +177,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)clearConsoleMessages:(NSNotification *)note {
     consoleMessages = [MessageCollection new];
-    if (countRunningParsers <= 0) {
-        self.messages = [consoleMessages merge:internalMessages];
-        lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
-        [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+    @synchronized(messageLock) {
+        if (countRunningParsers <= 0) {
+            self.messages = [consoleMessages merge:internalMessages];
+            lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
+            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+        }
     }
 }
 
@@ -200,6 +204,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (self.logLevel < WARNING) {
         return;
     }
+    
     if (countRunningParsers <= 0 && self.model.texPath && self.content) {
         NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
         NSError *error;
@@ -209,43 +214,45 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             }
             return;
         }
-        countRunningParsers = 2;
-        if(!chktex) {
-            chktex = [ChktexParser new];
+        @synchronized(messageLock) {
+            countRunningParsers = 2;
+            if(!chktex) {
+                chktex = [ChktexParser new];
+            }
+            if (!lacheck) {
+                lacheck = [LacheckParser new];
+            }
+            __unsafe_unretained id weakSelf = self;
+            [chktex parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+                [weakSelf mergeMessageCollection:messages];
+            }];
+            [lacheck parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+                [weakSelf mergeMessageCollection:messages];
+            }];
         }
-        if (!lacheck) {
-            lacheck = [LacheckParser new];
-        }
-        __unsafe_unretained id weakSelf = self;
-        [chktex parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
-            [weakSelf mergeMessageCollection:messages];
-        }];
-        [lacheck parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
-            [weakSelf mergeMessageCollection:messages];
-        }];
     }
     
     
 }
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
-    [messageLock lock];
-    if (countRunningParsers == 2) {
-        internalMessages = [MessageCollection new];
-    }
-    countRunningParsers--;
-    
-    internalMessages = [internalMessages merge:messages];
-    if (countRunningParsers <= 0) {
-        [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
-        self.messages = [internalMessages merge:consoleMessages];
-        MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
-        lineNumberView.messageCollection = subset;
-        if (self.messages) {
-            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+    @synchronized(messageLock) {
+        if (countRunningParsers == 2) {
+            internalMessages = [MessageCollection new];
+        }
+        countRunningParsers--;
+        
+        internalMessages = [internalMessages merge:messages];
+        if (countRunningParsers <= 0) {
+            [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
+            self.messages = [internalMessages merge:consoleMessages];
+            MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
+            lineNumberView.messageCollection = subset;
+            if (self.messages) {
+                [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+            }
         }
     }
-    [messageLock unlock];
 }
 
 - (void)handleCompilerEnd:(NSNotification *)note {

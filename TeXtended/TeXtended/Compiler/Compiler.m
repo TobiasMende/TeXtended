@@ -94,7 +94,7 @@
             [weakSelf finishedCompilationTask:task forData:console];
             task.terminationHandler = nil;
         }];
-        self.compileProcessHandler.mainDocument.numberOfCompilingDocuments += 1;
+        [self.compileProcessHandler.mainDocument incrementNumberOfCompilingDocuments];
         [currentTasks addObject:currentTask];
         @try {
             [currentTask launch];
@@ -103,13 +103,13 @@
             DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
             DDLogVerbose(@"%@", [NSThread callStackSymbols]);
             [currentTasks removeObject:currentTask];
-            self.compileProcessHandler.mainDocument.numberOfCompilingDocuments -= 1;
+            [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
         }
     }
 }
 
 - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData*)data{
-    data.firstResponderDelegate.mainDocument.numberOfCompilingDocuments -= 1;
+    [data.firstResponderDelegate.mainDocument decrementNumberOfCompilingDocuments];
     data.model.isCompiling = NO;
     [[TMTNotificationCenter centerForCompilable:data.model] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
     data.model.lastCompile = [NSDate new];
@@ -162,7 +162,7 @@
             if (task.isRunning) {
                 [task interrupt];
             }
-            self.compileProcessHandler.mainDocument.numberOfCompilingDocuments -= 1;
+            [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
         }
     }
 }

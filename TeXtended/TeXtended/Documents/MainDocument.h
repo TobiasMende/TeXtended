@@ -14,6 +14,7 @@
     ExportCompileWindowController *exportWindowController;
     PrintDialogController *printDialogController;
     MergeWindowController *mergeWindowController;
+    NSRecursiveLock *numberLock;
 }
 /** The controller of the documents main window */
 @property (assign) MainWindowController *mainWindowController;
@@ -21,7 +22,7 @@
 /** A set of all document controllers of the project */
 @property (strong) NSMutableSet *documentControllers;
 
-@property NSUInteger numberOfCompilingDocuments;
+@property (nonatomic) NSUInteger numberOfCompilingDocuments;
 
 @property EncodingController *encController;
 
@@ -36,4 +37,7 @@
 - (void)removeDocumentController:(DocumentController *)dc;
 - (void)firstResponderDidChangeNotification:(NSNotification *)note;
 - (IBAction)exportSingleDocument:(id)sender;
+
+- (void)decrementNumberOfCompilingDocuments;
+- (void)incrementNumberOfCompilingDocuments;
 @end
