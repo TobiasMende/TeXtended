@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
@@ -22,6 +22,8 @@
 @property (strong) NSMutableSet *documentControllers;
 
 @property NSUInteger numberOfCompilingDocuments;
+
+@property EncodingController *encController;
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
 - (Compilable *) model;

@@ -13,6 +13,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
+#import "MergeWindowController.h"
+#import "EncodingController.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -123,7 +125,51 @@
 }
 
 - (IBAction)exportSingleDocument:(id)sender {
-    DDLogCInfo(@"Project Document exportSingleDocument not implemented yet.");
+    if (!mergeWindowController) {
+        mergeWindowController = [[MergeWindowController alloc] init];
+    }
+    
+    NSMutableArray *documentNames = [[NSMutableArray alloc] init];
+    NSMutableArray *documentPaths = [[NSMutableArray alloc] init];
+    for (DocumentController* dc in self.documentControllers) {
+        if (dc.model.texName) {
+            [documentNames addObject:dc.model.texName];
+            [documentPaths addObject:dc.model.texPath];
+        }
+    }
+    mergeWindowController.popUpElements = [NSArray arrayWithArray:documentNames];
+    mergeWindowController.popUpPaths = [NSArray arrayWithArray:documentPaths];
+    
+    [NSApp beginSheet:[mergeWindowController window]
+       modalForWindow: [self.mainWindowController window]
+        modalDelegate: self
+       didEndSelector: @selector(mergeSheetDidEnd:returnCode:contextInfo:)
+          contextInfo: nil];
+    [NSApp runModalForWindow:[self.mainWindowController window]];
+}
+
+- (void)mergeSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    NSString* path = [mergeWindowController.popUpPaths objectAtIndex:mergeWindowController.documentName.indexOfSelectedItem];
+    NSString* content = [mergeWindowController getMergedContentOfFile:path withBase:[path stringByDeletingLastPathComponent]];
+    
+    NSSavePanel* panel = [NSSavePanel new];
+    [self prepareSavePanel:panel];
+    panel.directoryURL = [NSURL URLWithString:[self.model.path stringByDeletingLastPathComponent]];
+    panel.canCreateDirectories = NO;
+    panel.allowedFileTypes = @[@"tex"];
+    panel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
+    panel.title = NSLocalizedString(@"Export as single document", @"Export as single document");
+    
+    [panel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSString *path = panel.URL.path;
+            NSError *error;
+            [content writeToFile:path atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
+            if (error) {
+                DDLogError(@"Can't create document at %@: %@",path, error.userInfo);
+            }
+        }
+    }];
 }
 
 - (void)dealloc {

@@ -39,7 +39,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (self) {
         // Add your subclass-specific initialization here.
         self.model = [DocumentModel new];
-        self.encController = [EncodingController new];
     }
     return self;
 }
@@ -148,8 +147,28 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     }
     
     NSString* content = [mergeWindowController getMergedContentOfFile:self.model.texPath withBase:[self.model.texPath stringByDeletingLastPathComponent]];
-    DDLogCInfo(@"%@", content);
-    //DDLogInfo(@"");
+    
+    NSSavePanel* panel = [NSSavePanel new];
+    [self prepareSavePanel:panel];
+    panel.directoryURL = [NSURL URLWithString:[self.model.texPath stringByDeletingLastPathComponent]];
+    panel.canCreateDirectories = NO;
+    panel.allowedFileTypes = @[@"tex"];
+    panel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
+    panel.title = NSLocalizedString(@"Export as single document", @"Export as single document");
+    
+    [panel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSString *path = panel.URL.path;
+            NSFileManager *fm = [NSFileManager defaultManager];
+            if (![fm fileExistsAtPath:path]) {
+                NSError *error;
+                [content writeToFile:path atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
+                if (error) {
+                    DDLogError(@"Can't create document at %@: %@",path, error.userInfo);
+                }
+            }
+        }
+    }];
 }
 
 - (void)dealloc {

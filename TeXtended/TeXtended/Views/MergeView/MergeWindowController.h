@@ -11,7 +11,8 @@
 @interface MergeWindowController : NSWindowController
 
 @property NSArray* popUpElements;
-@property NSArray* popUpIdentifier;
+@property NSArray* popUpPaths;
+@property (assign) IBOutlet NSPopUpButton *documentName;
 
 - (NSString*)getMergedContentOfFile:(NSString*)path withBase:(NSString*)base;
 
