@@ -253,11 +253,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 -(void)insertDropCompletionForModel:(DocumentModel*)model {
+    NSString *base = model.texPath ? [model.texPath stringByDeletingLastPathComponent] : nil;
     for (NSUInteger i = 0; i < [droppedFileNames count]; i++) {
         
         NSString *filename = [droppedFileNames objectAtIndex:i];
-        
-        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[model.texPath stringByDeletingLastPathComponent]]];
+        NSString *path = base ? [filename relativePathWithBase:base] : filename;
+        NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:path];
         
         [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
         
@@ -916,7 +917,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 -(BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
     NSPasteboard *pb = [sender draggingPasteboard];
-    
+    BOOL handled = NO;
     if ( [[pb types] containsObject:NSFilenamesPboardType] ) {
         
         NSPoint draggingLocation = [sender draggingLocation];
