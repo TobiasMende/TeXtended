@@ -99,8 +99,8 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     COMPLETION_TYPE_BY_PREFIX = @{@"\\": @(TMTCommandCompletion), @"\\begin{": @(TMTBeginCompletion), @"\\end{": @(TMTEndCompletion)};
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", nil];
     NSError *error;
-    TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\t|\\\\t)" options:0 error:&error];
-    NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\n|\\\\n" options:0 error:&error];
+    TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\\\t)\\b" options:0 error:&error];
+    NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\\\n\\b" options:0 error:&error];
     
     COMPLETION_BY_PREFIX_TYPE = @{CommandTypeCite: @(TMTCiteCompletion), CommandTypeLabel: @(TMTLabelCompletion), CommandTypeRef: @(TMTRefCompletion)};
     
