@@ -70,6 +70,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView setCanCollapse:YES subviewAtIndex:1];
     
     [self.mainDocument windowControllerDidLoadNib:self];
+    
+    [self.shareButton sendActionOn:NSLeftMouseDownMask];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
@@ -99,6 +101,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
 }
 
+- (BOOL)shouldHideShareButton {
+    return (NSAppKitVersionNumber < NSAppKitVersionNumber10_8);
+}
+
 
 - (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
     return proposedOptions|NSApplicationPresentationAutoHideToolbar;
@@ -112,7 +118,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [self.contentView adjustSubviews];
     }
 }
-
 
 
 #pragma mark - DMSplitViewDelegate
@@ -194,7 +199,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     //[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
     //[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
     
-
 }
 
 

@@ -10,11 +10,12 @@
 
 @class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController;
 
-@interface MainDocument : NSDocument {
+@interface MainDocument : NSDocument <NSSharingServicePickerDelegate,NSSharingServiceDelegate> {
     ExportCompileWindowController *exportWindowController;
     PrintDialogController *printDialogController;
     MergeWindowController *mergeWindowController;
     NSRecursiveLock *numberLock;
+    NSArray* sharingItems;
 }
 /** The controller of the documents main window */
 @property (assign) MainWindowController *mainWindowController;
@@ -41,4 +42,5 @@
 - (void)decrementNumberOfCompilingDocuments;
 - (void)incrementNumberOfCompilingDocuments;
 - (IBAction)saveAsTemplate:(id)sender;
+- (IBAction)shareFile:(id)sender;
 @end
