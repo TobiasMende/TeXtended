@@ -31,6 +31,8 @@
 /** The absolute path to the bib file */
 @property (strong, nonatomic) NSString * path;
 
+@property (strong, readonly) NSString * name;
+
 /** The project to which this entry belongs */
 @property (assign) ProjectModel *project;
 

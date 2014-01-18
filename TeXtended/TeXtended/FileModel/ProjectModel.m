@@ -102,9 +102,16 @@
     BibFile *file = [BibFile new];
     file.project = self;
     file.path = path;
+    [self willChangeValueForKey:@"bibFiles"];
     [self.bibFiles addObject:file];
+    [self didChangeValueForKey:@"bibFiles"];
 }
 
+- (void) removeBibFileWithIndex:(NSUInteger)index {
+    [self willChangeValueForKey:@"bibFiles"];
+    [self.bibFiles removeObjectAtIndex:index];
+    [self didChangeValueForKey:@"bibFiles"];
+}
 
 # pragma mark - Getter & Setter
 
