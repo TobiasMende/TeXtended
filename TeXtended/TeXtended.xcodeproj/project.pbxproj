@@ -76,6 +76,9 @@
 		D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */; };
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
+		D2326AD9188A7961008DEE51 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AD8188A7961008DEE51 /* Template.m */; };
+		D2326ADC188A816D008DEE51 /* NSFileManager+DirectoryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */; };
+		D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
 		D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */; };
@@ -420,6 +423,12 @@
 		D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewWindow.xib; path = TMTTabView/TMTTabViewWindow.xib; sourceTree = "<group>"; };
 		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
 		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
+		D2326AD7188A7961008DEE51 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
+		D2326AD8188A7961008DEE51 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
+		D2326ADA188A816D008DEE51 /* NSFileManager+DirectoryExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryExtension.h"; sourceTree = "<group>"; };
+		D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryExtension.m"; sourceTree = "<group>"; };
+		D2326ADD188A98E7008DEE51 /* NSAttributedString+Replace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Replace.h"; sourceTree = "<group>"; };
+		D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Replace.m"; sourceTree = "<group>"; };
 		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
 		D23BC52D1861ED2400E9A507 /* CiteCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletion.h; sourceTree = "<group>"; };
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
@@ -699,6 +708,8 @@
 				7651063017E723750011ADEF /* NewTemplateController.h */,
 				7651063117E723750011ADEF /* NewTemplateController.m */,
 				7651063317E723860011ADEF /* NewTemplateSheet.xib */,
+				D2326AD7188A7961008DEE51 /* Template.h */,
+				D2326AD8188A7961008DEE51 /* Template.m */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -907,6 +918,10 @@
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 				D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */,
 				D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */,
+				D2326ADA188A816D008DEE51 /* NSFileManager+DirectoryExtension.h */,
+				D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */,
+				D2326ADD188A98E7008DEE51 /* NSAttributedString+Replace.h */,
+				D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1631,6 +1646,7 @@
 				D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */,
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
+				D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
@@ -1660,6 +1676,7 @@
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
+				D2326ADC188A816D008DEE51 /* NSFileManager+DirectoryExtension.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
 				76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */,
 				D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */,
@@ -1708,6 +1725,7 @@
 				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
+				D2326AD9188A7961008DEE51 /* Template.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
 				D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */,

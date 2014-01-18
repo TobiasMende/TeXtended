@@ -40,4 +40,5 @@
 
 - (void)decrementNumberOfCompilingDocuments;
 - (void)incrementNumberOfCompilingDocuments;
+- (IBAction)saveAsTemplate:(id)sender;
 @end

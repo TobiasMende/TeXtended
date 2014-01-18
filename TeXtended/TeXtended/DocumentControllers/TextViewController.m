@@ -26,6 +26,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
+#import "NSString+RegexReplace.h"
+#import "NSAttributedString+Replace.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
@@ -287,13 +289,15 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 
 - (NSString *)content {
-    return [self.textView string];
+    // TODO: convert placeholders
+    return [[self.textView attributedString] stringByReplacingPlaceholders];
 }
 
 
 - (void)setContent:(NSString *)content {
     if (content) {
-        [self.textView setString:content];
+        [self.textView.textStorage setAttributedString:[content attributedStringBySubstitutingPlaceholders]];
+        [self.textView.syntaxHighlighter highlightEntireDocument];
     }
     [self updateMessageCollection:nil];
 }
