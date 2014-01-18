@@ -9,6 +9,7 @@
 #import "MergeWindowController.h"
 #import "NSString+PathExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "GraphController.h"
 
 @interface MergeWindowController ()
 
@@ -20,7 +21,7 @@
 {
     self = [super initWithWindowNibName:@"MergeWindow"];
     if (self) {
-        // Initialization code here.
+        graphController = [GraphController new];
     }
     return self;
 }
@@ -29,7 +30,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
+        graphController = [GraphController new];
     }
     return self;
 }
@@ -42,6 +43,12 @@
 }
 
 - (NSString*)getMergedContentOfFile:(NSString *)path withBase:(NSString *)base {
+    [graphController addNodeForNodeKey:path];
+    
+    if ([graphController hasCycleFromNode:path]) {
+        [NSException raise:@"Infinite loop found." format:@"An infinity loop is found from file %@. Maybe the LaTeX \\input command produces a cycle. Export cancelled.", path];
+    }
+    
     NSArray *commandsToReplace = [NSArray arrayWithObjects:@"\\\\include\\{", @"\\\\input\\{", nil];
  
     NSError *error;
@@ -62,6 +69,8 @@
             if (![[newFilename pathExtension] isEqualToString:@"tex"]) {
                 newFilename = [newFilename stringByAppendingPathExtension:@"tex"];
             }
+            [graphController addNodeForNodeKey:newFilename];
+            [graphController addEdgeForHead:path toTail:newFilename];
             NSString *newContent = [self getMergedContentOfFile:newFilename withBase:base];
             [retContent replaceCharactersInRange:[match rangeAtIndex:0] withString:newContent];
         }

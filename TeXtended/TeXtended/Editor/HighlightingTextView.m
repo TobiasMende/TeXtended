@@ -925,7 +925,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
         [self setSelectedRange:NSMakeRange(characterIndex, 0)];
         
-        // droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
+        droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
         
         DocumentModel *model = self.firstResponderDelegate.model;
 
