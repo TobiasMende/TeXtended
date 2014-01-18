@@ -16,4 +16,5 @@
 -(void)addNodeForNodeKey:(NSString*)nodeKey;
 -(void)addEdgeForHead:(NSString*)head toTail:(NSString*)tail;
 -(BOOL)hasCycleFromNode:(NSString*)nodeKey;
+-(void)reset;
 @end

@@ -128,6 +128,9 @@
     if (!mergeWindowController) {
         mergeWindowController = [[MergeWindowController alloc] init];
     }
+    else {
+        [mergeWindowController reset];
+    }
     
     NSMutableArray *documentNames = [[NSMutableArray alloc] init];
     NSMutableArray *documentPaths = [[NSMutableArray alloc] init];

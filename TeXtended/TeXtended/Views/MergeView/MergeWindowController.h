@@ -18,5 +18,6 @@
 @property (assign) IBOutlet NSPopUpButton *documentName;
 
 - (NSString*)getMergedContentOfFile:(NSString*)path withBase:(NSString*)base;
+- (void)reset;
 
 @end

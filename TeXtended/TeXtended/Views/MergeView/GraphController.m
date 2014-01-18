@@ -73,4 +73,9 @@
     return NO;
 }
 
+-(void)reset {
+    [nodes removeAllObjects];
+    [edges removeAllObjects];
+}
+
 @end

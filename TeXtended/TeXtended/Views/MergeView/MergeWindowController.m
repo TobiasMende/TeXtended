@@ -58,7 +58,8 @@
         return [NSString stringWithFormat:@"Error while loading file: %@",path];
     }
     
-    NSMutableString *retContent = [NSMutableString stringWithString:content];
+    NSMutableString *retContent = [NSMutableString stringWithString:[content stringByReplacingOccurrencesOfString:@"\\include\{" withString:@"\\clearpage\n\\input\{"]];
+    
     
     for (NSString *command in commandsToReplace) {
         NSString* regExString =  [command stringByAppendingString:@"(.*)\\}"];
@@ -90,6 +91,10 @@
     [NSApp stopModal];
     [NSApp endSheet: self.window];
     [self.window orderOut: self];
+}
+
+- (void)reset {
+    [graphController reset];
 }
 
 @end

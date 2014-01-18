@@ -147,6 +147,9 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (!mergeWindowController) {
         mergeWindowController = [[MergeWindowController alloc] init];
     }
+    else {
+        [mergeWindowController reset];
+    }
     
     NSString* content;
     
