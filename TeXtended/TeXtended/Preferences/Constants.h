@@ -20,7 +20,8 @@
 #define TMT_LATEX_STYLE_DOCUMENT @"Latex Style Document"
 #define TMT_LATEX_CLASS_DOCUMENT @"Latex Class Document"
 #define TMTProjectFileExtension @"teXpf"
-
+#define TMTTemplateExtension @"tmtTmpl"
+#define TMTTemplateDirectoryName @"templates"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for NSColor objects (used for user defaults)

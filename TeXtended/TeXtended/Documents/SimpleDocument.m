@@ -17,6 +17,9 @@
 #import "ConsoleManager.h"
 #import "HighlightingTextView.h"
 #import "MergeWindowController.h"
+#import "Template.h"
+#import "TemplateController.h"
+#import "TextViewController.h"
 
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
@@ -86,6 +89,34 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     
 }
 
+- (void)saveAsTemplate:(id)sender {
+    [super saveAsTemplate:sender];
+    __unsafe_unretained SimpleDocument *weakSelf = self;
+    self.templateController.saveHandler = ^(Template *template, BOOL success) {
+        if (success) {
+            template.compilable = weakSelf.model;
+            NSError *error;
+            [template save:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+            
+            DocumentController *dc = weakSelf.documentControllers.anyObject;
+            [template setDocumentWithContent:dc.textViewController.content model:weakSelf.model andError:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+        }
+    };
+    [self.templateController openSavePanelForWindow:self.mainWindowController.window];
+}
+
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if (self.model) {
@@ -147,8 +178,27 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     if (!mergeWindowController) {
         mergeWindowController = [[MergeWindowController alloc] init];
     }
+    else {
+        [mergeWindowController reset];
+    }
     
-    NSString* content = [mergeWindowController getMergedContentOfFile:self.model.texPath withBase:[self.model.texPath stringByDeletingLastPathComponent]];
+    NSString* content;
+    
+    @try {
+        content = [mergeWindowController getMergedContentOfFile:self.model.texPath withBase:[self.model.texPath stringByDeletingLastPathComponent]];
+    }
+    @catch (NSException *exception) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:[exception name]];
+        [alert setInformativeText:[exception reason]];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+        return;
+    }
+    @finally {
+        
+    }
     
     NSSavePanel* panel = [NSSavePanel new];
     [self prepareSavePanel:panel];

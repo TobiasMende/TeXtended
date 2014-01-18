@@ -2,167 +2,150 @@
 //  TemplateController.m
 //  TeXtended
 //
-//  Created by Max Bannach on 14.09.13.
-//  Copyright (c) 2013 Tobias Mende. All rights reserved.
+//  Created by Tobias Mende on 18.01.14.
+//  Copyright (c) 2014 Tobias Mende. All rights reserved.
 //
 
 #import "TemplateController.h"
-#import "PathFactory.h"
+#import "Constants.h"
 #import "ApplicationController.h"
-#import "NewTemplateController.h"
+#import "Template.h"
+#import "NSFileManager+TMTExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "TemplatePlaceholderController.h"
+
+@interface TemplateController ()
+- (void)loadCategories;
+- (void)loadTemplatesFromCategory:(NSString *)category;
+- (NSString*)templateDirectory;
+@end
 
 @implementation TemplateController
 
 - (id)init {
-    self = [super init];
+    self = [super initWithWindowNibName:@"TemplatesWindow"];
     if (self) {
-        newTemplateController = [[NewTemplateController alloc] initWithTemplateController:self];
-        templates = [[NSMutableArray alloc] init];
-        [self mergeTemplates];
+        self.categories = [NSMutableArray new];
+        self.currentTemplates = [NSMutableArray new];
+        [self loadCategories];
     }
     return self;
 }
 
-- (void) loadTemplate:(id)sender {
-    if ([table selectedRow] == -1) return;
-    
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
-    NSData*   data = [NSData dataWithContentsOfFile:file];
-   
-    NSPasteboard* board = [NSPasteboard generalPasteboard];
-    [board clearContents];
-    [board setData:data forType:NSPasteboardTypeString];
-    
-    [self closeSheet:nil];
+- (void)loadWindow {
+    [super loadWindow];
 }
 
-- (void) saveTemplate:(id)sender {
-    if ([table selectedRow] == -1) return;
-    
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
-    [self addContentFromPasteboardToFile:file];
-    
-    [self closeSheet:nil];
-}
 
-- (void) addTemplate:(id)sender {
-    [newTemplateController openSheetIn:self.sheet];
-}
 
-- (void) addTemplateWithName:(NSString*) fileName andContent:(BOOL) addContent {
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], fileName];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:file]) {
-        [[NSFileManager defaultManager] createFileAtPath:file contents:nil attributes:nil];
-        [templates addObject:@{@"template" : fileName}];
-        [table reloadData];
-        
-        if (addContent) {
-            [self addContentFromPasteboardToFile:file];
+- (void)loadCategories {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [self.categories removeAllObjects];
+    for (NSString *path in [fm contentsOfDirectoryAtPath:self.templateDirectory error:nil]) {
+        if ([fm directoryExistsAtPath:[self.templateDirectory stringByAppendingPathComponent:path]]) {
+            [self.categories addObject:path];
         }
- 
     }
 }
 
-/** Add the content from the pasteboard to the given file */
-- (void) addContentFromPasteboardToFile:(NSString*) file {
-    NSPasteboard* board = [NSPasteboard generalPasteboard];
-    NSArray *classes = @[[NSString class]];
-    NSDictionary *options = @{};
-    NSArray *copiedItems = [board readObjectsForClasses:classes options:options];
-    if (copiedItems != nil) {
-        [copiedItems[0] writeToFile:file atomically:YES];
-    }
+- (NSString *)templateDirectory {
+    NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
+    return [applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName];
 }
 
-- (void) removeTemplate:(id)sender {
-    if ([table selectedRow] == -1) return;
-    NSString* file = [NSString stringWithFormat:@"%@/%@", [self path], templates[[table selectedRow]][@"template"]];
-    [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
-    [templates removeObjectAtIndex:[table selectedRow]];
-    [table reloadData];
+- (void)openSavePanelForWindow:(NSWindow *)window {
+    self.isSaving = YES;
+    [NSApp beginSheet:self.window modalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
 }
 
-- (void)openSheetIn:(NSWindow*)window {
-    if (!_sheet) {
-        [NSBundle loadNibNamed:@"TemplateSheet" owner:self];
-    }
-    
-    [templates removeAllObjects];
-    for (NSString* tmp in [self getTemplates]) {
-        [templates addObject:@{@"template" : tmp}];
-    }
-    
-    [NSApp beginSheet:self.sheet
-       modalForWindow:window
-       modalDelegate:self
-       didEndSelector:nil
-       contextInfo:nil
-     ];
+- (IBAction)cancel:(id)sender {
+    [NSApp endSheet:self.window];
+    [self close];
+    self.saveHandler(nil, NO);
 }
 
-- (IBAction)closeSheet:(id)sender {
+- (void)cancelSave:(id)sender {
     [NSApp endSheet:self.sheet];
     [self.sheet close];
     self.sheet = nil;
 }
 
-/** Calculate the path */
-- (NSString*) path {
-    NSString *dir =[[ApplicationController userApplicationSupportDirectoryPath] stringByAppendingPathComponent:@"/templates/"];
-    return dir;
+- (IBAction)load:(id)sender {
 }
 
-/** Returns a list of all available templates */
-- (NSArray*) getTemplates {
-    NSString* templatePath = [self path];
-    NSFileManager* fm = [NSFileManager defaultManager];
-    NSError* error;
-    NSArray *files = [fm contentsOfDirectoryAtPath:templatePath error:&error];
-    return files;
-}
-
-/** Megres default templates to users templates */
-- (void) mergeTemplates {
-    NSString* templatePath = [self path];
-    BOOL exists = [PathFactory checkForAndCreateFolder:templatePath];
-    if (exists) {
-        NSString* bundlePath = [[NSBundle mainBundle] pathForResource:@"TemplateFiles" ofType:nil];
-        NSFileManager* fm = [NSFileManager defaultManager];
-        NSError* error;
-        NSArray *files = [fm contentsOfDirectoryAtPath:bundlePath error:&error];
-        if (error) {
-            DDLogError(@"Can't read template from %@. Error: %@", bundlePath, [error userInfo]);
-        } else {
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init]; dict[NSFilePosixPermissions] = @511;
-            for(NSString *path in files) {
-                NSString* srcPath = [bundlePath stringByAppendingPathComponent:path];
-                NSString* destPath = [templatePath stringByAppendingPathComponent:path];
-                NSError *copyError;
-                [fm copyItemAtPath:srcPath toPath:destPath error:&copyError];
-                if (copyError) {
-                    NSError* underlying = [[copyError userInfo] valueForKey:NSUnderlyingErrorKey];
-                    if (underlying && [underlying code] != 17) {
-                        DDLogError(@"Can't merge template %@:\t %@", path, [copyError userInfo]);
-                        
-                    }
-                } else {
-                    [fm setAttributes:dict ofItemAtPath:destPath error:&error];
-                    if (error) {
-                        DDLogError(@"Error while setting permission: %@", [error userInfo]);
-                    }
-                }
-            }
+- (IBAction)save:(id)sender {
+    NSIndexSet *selection = [self.currentTemplatesView selectionIndexes];
+    NSCollectionViewItem *item = [self.currentTemplates objectAtIndex:selection.firstIndex];
+    if ([item isKindOfClass:[TemplatePlaceholderController class]]) {
+        // TODO: Normal template!
+    } else {
+        if (!self.sheet) {
+            [NSBundle loadNibNamed:@"AddNewTemplateWindow" owner:self];
         }
+        [NSApp beginSheet:self.sheet modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:NULL];
     }
 }
 
-- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
-    return [templates count];
+- (void)finallySave:(id)sender {
+    Template *template = [Template new];
+    template.category = [self.categories objectAtIndex:self.categoriesController.selectionIndex];
+    template.info = self.templateDescription ? self.templateDescription : @"";
+    template.name = self.templateName;
+    
+    [NSApp endSheet:self.sheet];
+    self.sheet = nil;
+    [NSApp endSheet:self.window returnCode:NSModalResponseContinue];
+    self.saveHandler(template, YES);
+    
 }
 
-- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    return templates[row][tableColumn.identifier];
+- (NSString *)currentCategoryPath {
+    NSString *category = [self.categories objectAtIndex:self.categoriesController.selectionIndex];
+    return [self.templateDirectory stringByAppendingPathComponent:category];
+}
+
+- (BOOL)canSaveWithName {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *totalName = [self.templateName stringByAppendingPathExtension:TMTTemplateExtension];
+    return ![fm fileExistsAtPath:[self.currentCategoryPath stringByAppendingPathComponent:totalName]];
+}
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"canSaveWithName"]) {
+        keys = [keys setByAddingObject:@"templateName"];
+    }
+    return keys;
+}
+
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
+    [self tableViewSelectionDidChange:nil];
+    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+
+#pragma mark - Table View Delegate
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    
+    NSString *category = [self.categories objectAtIndex:self.categoriesController.selectionIndex];
+    [self loadTemplatesFromCategory:category];
+}
+
+- (void)loadTemplatesFromCategory:(NSString *)category {
+    [self.currentTemplates removeAllObjects];
+    [self.currentTemplates addObject:@"NewPlaceholder"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *dir = [self.templateDirectory stringByAppendingPathComponent:category];
+    for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
+        if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
+            Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
+            [self.currentTemplates addObject:template];
+        }
+    }
+    [self.currentTemplatesView setContent:self.currentTemplates];
 }
 
 @end

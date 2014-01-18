@@ -18,7 +18,9 @@
 #import "PrintDialogController.h"
 #import "HighlightingTextView.h"
 #import "EncodingController.h"
-
+#import "TemplateController.h"
+#import "Template.h"
+#import "SimpleDocument.h"
 @implementation MainDocument
 
 - (id)init
@@ -76,7 +78,8 @@
 }
 
 - (void)saveAsTemplate:(id)sender {
-    DDLogInfo(@"Save");
+    self.templateController = [TemplateController new];
+    
 }
 
 - (Compilable *)model {

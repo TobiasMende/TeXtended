@@ -18,7 +18,7 @@
  **Author:** Tobias Mende
  
  */
-@interface Compilable : NSObject <NSCoding> {
+@interface Compilable : NSObject <NSCoding,NSCopying> {
     
 }
 @property (readonly) NSString *identifier;

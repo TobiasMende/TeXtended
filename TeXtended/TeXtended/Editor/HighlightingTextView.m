@@ -30,7 +30,6 @@
 #import "CompletionProtocol.h"
 #import "DBLPIntegrator.h"
 #import "BibFile.h"
-#import "TemplateController.h"
 #import "QuickPreviewManager.h"
 #import "CompletionManager.h"
 #import "DocumentController.h"
@@ -144,7 +143,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
     [self.textContainer replaceLayoutManager:[[TextViewLayoutManager alloc] init]];
     
-    templateController = [[TemplateController alloc] init];
 }
 
 
@@ -455,10 +453,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSBeep();
     }
     
-}
-
-- (IBAction)openTemplateSheet:(id)sender {
-    [templateController openSheetIn:self.window];
 }
 
 - (NSArray *)lineRanges {
@@ -917,7 +911,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 -(BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
     NSPasteboard *pb = [sender draggingPasteboard];
-    BOOL handled = NO;
+
     if ( [[pb types] containsObject:NSFilenamesPboardType] ) {
         
         NSPoint draggingLocation = [sender draggingLocation];

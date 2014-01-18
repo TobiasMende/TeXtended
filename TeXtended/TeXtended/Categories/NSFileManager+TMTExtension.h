@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSFileManager (DirectoryExtension)
+@interface NSFileManager (TMTExtension)
 - (BOOL) directoryExistsAtPath:(NSString *)path;
+- (BOOL)removeTemporaryFilesAtPath:(NSString*)path;
++ (const NSArray *)temporaryFileExtensions;
 @end

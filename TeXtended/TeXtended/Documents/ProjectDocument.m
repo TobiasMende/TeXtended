@@ -128,6 +128,9 @@
     if (!mergeWindowController) {
         mergeWindowController = [[MergeWindowController alloc] init];
     }
+    else {
+        [mergeWindowController reset];
+    }
     
     NSMutableArray *documentNames = [[NSMutableArray alloc] init];
     NSMutableArray *documentPaths = [[NSMutableArray alloc] init];
@@ -150,7 +153,23 @@
 
 - (void)mergeSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
     NSString* path = [mergeWindowController.popUpPaths objectAtIndex:mergeWindowController.documentName.indexOfSelectedItem];
-    NSString* content = [mergeWindowController getMergedContentOfFile:path withBase:[path stringByDeletingLastPathComponent]];
+    NSString* content;
+    
+    @try {
+        content = [mergeWindowController getMergedContentOfFile:path withBase:[path stringByDeletingLastPathComponent]];
+    }
+    @catch (NSException *exception) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:[exception name]];
+        [alert setInformativeText:[exception reason]];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+        return;
+    }
+    @finally {
+        
+    }
     
     NSSavePanel* panel = [NSSavePanel new];
     [self prepareSavePanel:panel];

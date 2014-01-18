@@ -20,6 +20,7 @@
 #import "ExtendedPDFViewController.h"
 #import "OutlineTabViewController.h"
 #import "ApplicationController.h"
+#import "NSFileManager+TMTExtension.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
@@ -95,7 +96,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     NSSet *dms = self.mainDocument.model.mainDocuments;
     
     for (DocumentModel *dm in dms) {
-        [self.fileViewController deleteTemporaryFilesAtPath:[dm.texPath stringByDeletingLastPathComponent]];
+        [[NSFileManager defaultManager] removeTemporaryFilesAtPath:[dm.texPath stringByDeletingLastPathComponent]];
     }
 }
 

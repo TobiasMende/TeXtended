@@ -494,4 +494,11 @@ static NSArray *TMTEncodingsToCheck;
     //NSString *content = [self loadContent];
 }
 
+
+- (id)copyWithZone:(NSZone *)zone {
+    Compilable *copied = [[Compilable allocWithZone:zone] init];
+    copied.draftCompiler = [self.draftCompiler copy];
+    copied.finalCompiler = [self.finalCompiler copy];
+}
+
 @end

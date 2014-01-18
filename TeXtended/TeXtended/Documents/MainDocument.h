@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, TemplateController;
 
 @interface MainDocument : NSDocument {
     ExportCompileWindowController *exportWindowController;
@@ -18,6 +18,8 @@
 }
 /** The controller of the documents main window */
 @property (assign) MainWindowController *mainWindowController;
+
+@property (strong) TemplateController *templateController;
 
 /** A set of all document controllers of the project */
 @property (strong) NSMutableSet *documentControllers;

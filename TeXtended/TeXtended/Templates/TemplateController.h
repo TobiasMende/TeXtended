@@ -2,42 +2,32 @@
 //  TemplateController.h
 //  TeXtended
 //
-//  Created by Max Bannach on 14.09.13.
-//  Copyright (c) 2013 Tobias Mende. All rights reserved.
+//  Created by Tobias Mende on 18.01.14.
+//  Copyright (c) 2014 Tobias Mende. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-@class NewTemplateController;
-@interface TemplateController : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
- 
-    IBOutlet NSTableView* table;
-    NSMutableArray* templates;
-    NewTemplateController* newTemplateController;
-    
-}
+#import <Cocoa/Cocoa.h>
+@class Template;
+@interface TemplateController : NSWindowController<NSTableViewDelegate>
 
-/** the sheet that displays possible templates */
-@property (assign) IBOutlet NSWindow* sheet;
+@property NSMutableArray *categories;
+@property NSMutableArray *currentTemplates;
+@property BOOL isSaving;
+@property (strong) IBOutlet NSArrayController *categoriesController;
+@property (strong) IBOutlet NSCollectionView *currentTemplatesView;
+@property (strong) IBOutlet NSWindow *sheet;
+@property (strong) NSString *templateName;
+@property (strong) NSString *templateDescription;
+@property (strong) void (^saveHandler)(Template *template, BOOL success);
 
-/** Open a sheet with a template overview in the given window */
-- (void)openSheetIn:(NSWindow*)window;
 
-/** Close the sheet */
-- (IBAction)closeSheet:(id)sender;
-
-/** Load the selected template to the pasteboard */
-- (IBAction)loadTemplate:(id)sender;
-
-/** Save the tempalte from the pasteboard to the selected file */
-- (IBAction)saveTemplate:(id)sender;
-
-/** open the new template sheet */
-- (IBAction)addTemplate:(id)sender;
-
-/** Add a new template with the given name */
-- (void) addTemplateWithName:(NSString*) fileName andContent:(BOOL) addContent;
-
-/** Remove the selected template from the template folder */
-- (IBAction)removeTemplate:(id)sender;
+- (void)openSavePanelForWindow:(NSWindow *)window;
+- (IBAction)cancel:(id)sender;
+- (IBAction)load:(id)sender;
+- (IBAction)save:(id)sender;
+- (IBAction)finallySave:(id)sender;
+- (IBAction)cancelSave:(id)sender;
+- (NSString *)currentCategoryPath;
+- (BOOL)canSaveWithName;
 
 @end
