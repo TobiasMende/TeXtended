@@ -917,7 +917,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 -(BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
     NSPasteboard *pb = [sender draggingPasteboard];
-    BOOL handled = NO;
+
     if ( [[pb types] containsObject:NSFilenamesPboardType] ) {
         
         NSPoint draggingLocation = [sender draggingLocation];
@@ -925,7 +925,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
         [self setSelectedRange:NSMakeRange(characterIndex, 0)];
         
-        droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
+        // droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
         
         DocumentModel *model = self.firstResponderDelegate.model;
 

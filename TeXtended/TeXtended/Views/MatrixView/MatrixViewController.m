@@ -64,13 +64,13 @@
         for (NSUInteger j = 0; j < self.columns-1; j++) {
             [extension appendFormat:@"%@ & ", [self placeholderForPosition:i andCol:j]];
         }
-        [extension appendFormat:@"%@\\\\\\n\\t", [self placeholderForPosition:i andCol:self.columns]];
+        [extension appendFormat:@"%@\\\\\\n\\t", [self placeholderForPosition:i andCol:self.columns-1]];
     }
     
     for (NSUInteger j = 0; j < self.columns-1; j++) {
-        [extension appendFormat:@"%@ & ", [self placeholderForPosition:self.rows andCol:j]];
+        [extension appendFormat:@"%@ & ", [self placeholderForPosition:self.rows-1 andCol:j]];
     }
-    [extension appendString:[self placeholderForPosition:self.rows andCol:self.columns]];
+    [extension appendString:[self placeholderForPosition:self.rows-1 andCol:self.columns-1]];
     
     completion.extension = extension;
     return completion;
