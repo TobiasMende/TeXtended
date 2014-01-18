@@ -121,6 +121,12 @@
                                     <action selector="saveDocument:" target="-1" id="362"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Save as Template" id="nLY-7C-AfU">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveAsTemplate:" target="-1" id="TRm-3w-gcn"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Export ..." keyEquivalent="e" id="571">
                                 <connections>
                                     <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="sB0-RZ-aaV">

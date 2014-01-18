@@ -19,6 +19,7 @@
 #define TMT_LATEX_DOCUMENT_TYPE @"Latex Document"
 #define TMT_LATEX_STYLE_DOCUMENT @"Latex Style Document"
 #define TMT_LATEX_CLASS_DOCUMENT @"Latex Class Document"
+#define TMTProjectFileExtension @"teXpf"
 
 
 // --------------------------------------------------------------------------------
@@ -177,6 +178,8 @@
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 
 
+
+
 // --------------------------------------------------------------------------------
 # pragma mark - Global Enumerations
 
@@ -220,6 +223,12 @@ typedef enum {
     draft = 1,
     final = 2
 } CompileMode;
+
+
+typedef enum {
+    TMTDocumentTemplate,
+    TMTProjectTemplate
+} TMTTemplateType;
 
 
 // --------------------------------------------------------------------------------

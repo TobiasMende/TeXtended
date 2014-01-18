@@ -75,6 +75,10 @@
                                  userInfo:nil];
 }
 
+- (void)saveAsTemplate:(id)sender {
+    DDLogInfo(@"Save");
+}
+
 - (Compilable *)model {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
@@ -121,6 +125,8 @@
     [exportWindowController showWindow:nil];
 }
 
+
+#pragma mark - Printing
 - (void)printDocument:(id)sender
 {
     [self showPrintDialog];
