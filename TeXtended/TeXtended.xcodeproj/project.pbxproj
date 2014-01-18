@@ -114,6 +114,8 @@
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
 		D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2809C34187DC6D700C59909 /* LatexSpellChecker.m */; };
 		D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */ = {isa = PBXBuildFile; fileRef = D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */; };
+		D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848709188B00E300CC91A0 /* ShareDialog.xib */; };
+		D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = D284870B188B00E300CC91A0 /* ShareDialogController.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -515,6 +517,9 @@
 		D2809C33187DC6D700C59909 /* LatexSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSpellChecker.h; sourceTree = "<group>"; };
 		D2809C34187DC6D700C59909 /* LatexSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSpellChecker.m; sourceTree = "<group>"; };
 		D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpellCheckerPrefixesToIgnore.list; sourceTree = "<group>"; };
+		D2848709188B00E300CC91A0 /* ShareDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDialog.xib; sourceTree = "<group>"; };
+		D284870A188B00E300CC91A0 /* ShareDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDialogController.h; sourceTree = "<group>"; };
+		D284870B188B00E300CC91A0 /* ShareDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDialogController.m; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -1087,6 +1092,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2848708188B00E300CC91A0 /* ShareDialog */,
 				F6980D411882DDB80023DE4D /* MergeView */,
 				F68687EF18781CA200898026 /* PrintDialog */,
 				D257498718631AE70025A536 /* CustomTableCellViews */,
@@ -1223,6 +1229,16 @@
 				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
+			sourceTree = "<group>";
+		};
+		D2848708188B00E300CC91A0 /* ShareDialog */ = {
+			isa = PBXGroup;
+			children = (
+				D2848709188B00E300CC91A0 /* ShareDialog.xib */,
+				D284870A188B00E300CC91A0 /* ShareDialogController.h */,
+				D284870B188B00E300CC91A0 /* ShareDialogController.m */,
+			);
+			path = ShareDialog;
 			sourceTree = "<group>";
 		};
 		D28AAFDF17EF34500033BDD4 /* TMTTabView */ = {
@@ -1547,6 +1563,7 @@
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
+				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
@@ -1733,6 +1750,7 @@
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
+				D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */,
 				D2326AE3188AC085008DEE51 /* TemplateController.m in Sources */,
 				D2326AF3188AE28A008DEE51 /* TemplatePlaceholderController.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
