@@ -1810,7 +1810,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"../**",
-					/Users/Tobi/Uni/tmtproject/DerivedData/TMTProject/Build/Products/Debug,
+					../DerivedData/TMTProject/Build/Products/Debug,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
@@ -1830,7 +1830,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"../**",
-					/Users/Tobi/Uni/tmtproject/DerivedData/TMTProject/Build/Products/Debug,
+					../DerivedData/TMTProject/Build/Products/Debug,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
