@@ -26,6 +26,10 @@
 @property (assign) IBOutlet NSSlider *gridHOffsetSlider;
 @property (assign) IBOutlet NSSlider *gridVSpacingSlider;
 @property (assign) IBOutlet NSSlider *gridVOffsetSlider;
+@property (strong) IBOutlet NSButton *shineThrough;
+
+- (IBAction)checkShineThrough:(id)sender;
+
 
 /** Constructor */
 - (id)initWithExtendedPdf:(ExtendedPdf*) extedendPdf;

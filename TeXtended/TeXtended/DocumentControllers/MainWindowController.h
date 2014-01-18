@@ -31,6 +31,7 @@
 
 @property (strong) IBOutlet NSButton *sidebarViewToggle;
 @property (strong) IBOutlet NSButton *secondViewToggle;
+@property (strong) IBOutlet NSButton *shareButton;
 
 @property (strong) IBOutlet NSBox *fileViewArea;
 @property (strong) IBOutlet NSBox *outlineViewArea;
@@ -67,5 +68,7 @@
 - (void) showDocument:(DocumentController *)dc;
 - (void) addTabViewItemToFirst:(TMTTabViewItem *)item;
 - (void) addTabViewItemToSecond:(TMTTabViewItem *)item;
+
+- (BOOL)shouldHideShareButton;
 
 @end

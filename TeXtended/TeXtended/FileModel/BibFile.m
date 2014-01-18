@@ -95,6 +95,9 @@
             [filePresenter setPath:_path];
             [self readFile];
         }
+        [self willChangeValueForKey:@"name"];
+        _name = [path lastPathComponent];
+        [self didChangeValueForKey:@"name"];
     }
 }
 

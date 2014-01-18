@@ -36,4 +36,5 @@
 
 - (NSString*) folderPath;
 - (void) addBibFileWithPath:(NSString *)path;
+- (void) removeBibFileWithIndex:(NSUInteger)index;
 @end

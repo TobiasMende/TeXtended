@@ -63,9 +63,12 @@
     encodings = allEncodings;
     
     self.window.isVisible = NO;
-    if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
+    /*if (self.mainDocumentsController.selectedObjects.count == 0 && [self.mainDocumentsController.arrangedObjects count] > 0) {
         [self.mainDocumentsController setSelectionIndex:0];
     }
+    if (self.bibFilesController.selectedObjects.count == 0 && [self.bibFilesController.arrangedObjects count] > 0) {
+        [self.bibFilesController setSelectionIndex:0];
+    }*/
     [super windowDidLoad];
 }
 
@@ -93,6 +96,29 @@
     [self.table reloadData];
 }
 
+- (IBAction)addBibFile:(id)sender {
+    texPathPanel = [NSOpenPanel openPanel];
+    [texPathPanel setTitle:NSLocalizedString(@"Choose a bib document", @"chooseBibPath")];
+    [texPathPanel setCanCreateDirectories:YES];
+    [texPathPanel setCanSelectHiddenExtension:YES];
+    [texPathPanel setAllowedFileTypes:@[@"bib"]];
+    NSURL *url= [NSURL fileURLWithPath:[self.compilable.path stringByDeletingLastPathComponent]];
+    [texPathPanel setDirectoryURL:url];
+    [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *file = [texPathPanel URL];
+            ProjectModel *m = (ProjectModel*)self.compilable;
+            [m addBibFileWithPath:[file path]];
+        }
+    }];
+}
+
+- (IBAction)removeBibFile:(id)sender {
+    ProjectModel *m = (ProjectModel*)self.compilable;
+    [m removeBibFileWithIndex:[self.bibTable selectedRow]];
+    [self.bibTable reloadData];
+}
+
 - (IBAction)encodingSelectionChange:(id)sender {
     if (self.compilable.encoding) {
         self.compilable.encoding = encodings[self.encodingPopUp.indexOfSelectedItem];
@@ -101,6 +127,10 @@
 
 - (BOOL)canRemoveEntry {
     return [self.mainDocumentsController.arrangedObjects count] > 1;
+}
+
+- (BOOL)canRemoveBibEntry {
+    return [self.bibFilesController.arrangedObjects count] > 0;
 }
 
 - (void) setCompilable:(Compilable *)compilable {

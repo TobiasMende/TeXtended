@@ -128,6 +128,64 @@
     [exportWindowController showWindow:nil];
 }
 
+- (IBAction)shareFile:(id)sender {
+    
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:[[NSArray alloc] initWithObjects:[[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/hauptdatei.pdf"], nil]];
+    sharingServicePicker.delegate = self;
+    
+    [sharingServicePicker showRelativeToRect:self.mainWindowController.shareButton.bounds
+                                      ofView:self.mainWindowController.shareButton
+                               preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)exportSingleDocument:(id)sender
+{
+    [NSException raise:@"exportSingleDocument not implemented." format:@"Yout have to implement exportSingleDocument in subclasses of MainDocument."];
+}
+
+- (void)openNewTabForCompilable:(DocumentModel*)model {
+    for (DocumentController *dc in self.documentControllers) {
+        if (dc.model == model) {
+            NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
+            if (item) {
+                [item.tabView.window makeKeyAndOrderFront:self];
+                [item.tabView selectTabViewItem:item];
+            }
+            [dc showPDFViews];
+            [self.mainWindowController showDocument:dc];
+            return;
+        }
+    }
+    
+    DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
+    [self.documentControllers addObject:dc];
+    [self.mainWindowController showDocument:dc];
+}
+
+#pragma mark - NSSharingDelegate & NSSharingPickerDelegate
+
+- (NSArray *)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker sharingServicesForItems:(NSArray *)items proposedSharingServices:(NSArray *)proposedServices
+{
+    
+    NSArray *services = proposedServices;
+    sharingItems = items;
+    
+    NSSharingService *customService = [[NSSharingService alloc] initWithTitle:@"Open in Finder" image:[NSImage imageNamed:@"NSFolder"] alternateImage:nil handler:^{
+    }];
+    
+    services = [services arrayByAddingObject:customService];
+    
+    return services;
+}
+
+- (void)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker didChooseSharingService:(NSSharingService *)service
+{
+    if ([service.title isEqualToString:@"Open in Finder"]) {
+        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+        [workspace openFile:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/"];
+    }
+}
+
 
 #pragma mark - Printing
 - (void)printDocument:(id)sender
@@ -203,29 +261,7 @@
     // Nothing to do here...
 }
 
-- (IBAction)exportSingleDocument:(id)sender
-{
-    [NSException raise:@"exportSingleDocument not implemented." format:@"Yout have to implement exportSingleDocument in subclasses of MainDocument."];
-}
-
-- (void)openNewTabForCompilable:(DocumentModel*)model {
-    for (DocumentController *dc in self.documentControllers) {
-        if (dc.model == model) {
-            NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
-            if (item) {
-                [item.tabView.window makeKeyAndOrderFront:self];
-                [item.tabView selectTabViewItem:item];
-            }
-            [dc showPDFViews];
-            [self.mainWindowController showDocument:dc];
-            return;
-        }
-    }
-    
-    DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
-    [self.documentControllers addObject:dc];
-    [self.mainWindowController showDocument:dc];
-}
+#pragma mark -
 
 - (void)dealloc {
     for (DocumentController *dc in self.documentControllers) {

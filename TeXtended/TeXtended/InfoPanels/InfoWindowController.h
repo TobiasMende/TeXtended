@@ -29,6 +29,8 @@
 
 /** Tableview displaying the Maindocuments */
 @property (assign) IBOutlet NSTableView *table;
+/** Tableview displaying the Bibfiles */
+@property (assign) IBOutlet NSTableView *bibTable;
 /** Model which is displayed */
 @property (strong, nonatomic) Compilable* compilable;
 /** Label for the Document- or Projectname */
@@ -53,8 +55,14 @@
 @property (assign) IBOutlet NSButton *addButton;
 /** Button to remove maindocuments */
 @property (assign) IBOutlet NSButton *removeButton;
+/** Button to add bibdocuments */
+@property (assign) IBOutlet NSButton *addBibButton;
+/** Button to remove bibdocuments */
+@property (assign) IBOutlet NSButton *removeBibButton;
 /** */
 @property (assign) IBOutlet NSArrayController *mainDocumentsController;
+/** */
+@property (assign) IBOutlet NSArrayController *bibFilesController;
 /** Name of the Document */
 @property (assign) NSString* documentName;
 /** Type of the Document */
@@ -74,6 +82,16 @@
  */
 - (IBAction)removeMainDocument:(id)sender;
 
+/** Method for catching clicks on the addBibButton
+ @param sender is the sender
+ */
+- (IBAction)addBibFile:(id)sender;
+
+/** Method for catching clicks on the removeBibButton
+ @param sender is the sender
+ */
+- (IBAction)removeBibFile:(id)sender;
+
 - (IBAction)encodingSelectionChange:(id)sender;
 
 /**
@@ -81,4 +99,6 @@
  return
  */
 - (BOOL) canRemoveEntry;
+
+- (BOOL) canRemoveBibEntry;
 @end

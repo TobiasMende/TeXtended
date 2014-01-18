@@ -57,6 +57,8 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     [self updateMainCompilable];
     [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
     [self.textViewController.textView makeKeyView];
+    
+    [self liveCompile:self];
 }
 
 

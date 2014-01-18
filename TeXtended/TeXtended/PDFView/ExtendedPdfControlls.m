@@ -24,6 +24,16 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    [self.extendedPdf setPageAlpha:NO];
+    [self.shineThrough setState:NSOffState];
+}
+
+- (void)checkShineThrough:(id)sender {
+    [self.extendedPdf setPageAlpha:!self.extendedPdf.pageAlpha];
+    [self.extendedPdf layoutDocumentView];
+}
+
 - (IBAction)update:(id)sender {
     /* set the size of the sliders so that they cover the current page */
     NSSize size = [[self.pdfView currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -12,6 +12,7 @@
                 <outlet property="mainView" destination="yMa-FR-WCa" id="p1k-2f-R5O"/>
                 <outlet property="outlineViewArea" destination="s7Z-NP-bat" id="Q5t-tb-lxs"/>
                 <outlet property="secondViewToggle" destination="BQT-eF-usa" id="flF-yX-a3D"/>
+                <outlet property="shareButton" destination="hBi-Nv-jSA" id="sU3-rG-W6c"/>
                 <outlet property="sidebar" destination="uqN-3K-M8J" id="GuX-si-k0A"/>
                 <outlet property="sidebarViewToggle" destination="rJY-Cm-FxO" id="8y1-vF-Jta"/>
                 <outlet property="window" destination="5" id="18"/>
@@ -102,6 +103,23 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368">
                 <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="31ED8C2B-FDAF-495E-89C6-9D4309F6B4B4" label="Share" paletteLabel="Share" image="NSShareTemplate" id="7h0-7I-Mh2" userLabel="Toolbar Item - Share">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="30" height="25"/>
+                        <size key="maxSize" width="30" height="40"/>
+                        <button key="view" autoresizesSubviews="NO" verticalHuggingPriority="750" id="hBi-Nv-jSA">
+                            <rect key="frame" x="4" y="14" width="30" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xds-GN-HpX">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="shareFile:" target="-1" id="cMG-2N-LD5"/>
+                                <binding destination="-2" name="hidden" keyPath="self.shouldHideShareButton" id="rbZ-EJ-KM8"/>
+                            </connections>
+                        </button>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="D213838D-D6E0-4038-9133-7BCBC8F8383E" label="Report" paletteLabel="Report" toolTip="Report a Bug" image="ReportBug" id="100376">
                         <size key="minSize" width="30" height="28"/>
                         <size key="maxSize" width="30" height="40"/>
@@ -230,6 +248,7 @@
                     <toolbarItem reference="fGm-Vj-2Vx"/>
                     <toolbarItem reference="KhF-ac-Z4O"/>
                     <toolbarItem reference="100380"/>
+                    <toolbarItem reference="7h0-7I-Mh2"/>
                     <toolbarItem reference="100399"/>
                     <toolbarItem reference="100376"/>
                 </defaultToolbarItems>
@@ -246,6 +265,7 @@
     <resources>
         <image name="Export" width="19" height="19"/>
         <image name="Livepreview" width="19" height="19"/>
+        <image name="NSShareTemplate" width="18" height="16"/>
         <image name="Play" width="19" height="19"/>
         <image name="ReportBug" width="19" height="19"/>
         <image name="SplitviewLeft" width="19" height="19"/>
