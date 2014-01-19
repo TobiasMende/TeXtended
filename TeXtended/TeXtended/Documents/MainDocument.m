@@ -19,6 +19,9 @@
 #import "HighlightingTextView.h"
 #import "EncodingController.h"
 #import "ShareDialogController.h"
+#import "TemplateController.h"
+#import "Template.h"
+#import "SimpleDocument.h"
 
 @implementation MainDocument
 

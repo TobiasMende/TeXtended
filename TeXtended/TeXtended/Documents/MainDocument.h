@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, ShareDialogController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, ShareDialogController, TemplateController;
 
 @interface MainDocument : NSDocument <NSSharingServicePickerDelegate,NSSharingServiceDelegate> {
     ExportCompileWindowController *exportWindowController;
