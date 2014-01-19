@@ -26,7 +26,6 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
 + (void)initialize {
     if ([self class] == [TemplateController class]) {
-        
         [self mergeDefaultTemplates];
     }
 }
