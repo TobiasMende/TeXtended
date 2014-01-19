@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ASR-4h-f6z">
-                        <rect key="frame" x="13" y="53" width="123" height="136"/>
+                        <rect key="frame" x="28" y="81" width="92" height="102"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSAddTemplate" id="4yn-iC-coi"/>
                     </imageView>

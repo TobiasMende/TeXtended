@@ -31,12 +31,15 @@ static NSString *CONTENT_DIR_NAME = @"content";
 
 @implementation Template
 
-- (id)initWithDictionary:(NSDictionary *)config andCategory:(NSString *)category {
+- (id)initWithDictionary:(NSDictionary *)config name:(NSString *)name andCategory:(NSString *)category {
     self = [super init];
     if (self) {
         self.category = category;
+        self.name = name;
         self.info = config[TMTTemplateInfoKey];
-        self.compilable = config[TMTTemplateCompilableKey];
+        if (config[TMTTemplateCompilableKey]) {
+            self.compilable = [NSKeyedUnarchiver unarchiveObjectWithData:config[TMTTemplateCompilableKey]];
+        }
         self.type = [config[TMTTemplateTypeKey] longValue];
     }
     return self;
@@ -132,6 +135,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
 
 
 - (BOOL)setDocumentWithContent:(NSString *)content model:(DocumentModel *)model andError:(NSError *__autoreleasing *)error {
+    *error = nil;
     self.compilable = [model copy];
     self.mainFileName = @"main.tex";
     self.type = TMTDocumentTemplate;
@@ -139,13 +143,14 @@ static NSString *CONTENT_DIR_NAME = @"content";
     if (!success) {
         return success;
     }
-    success = [content writeToFile:[content stringByAppendingString:self.mainFileName] atomically:YES encoding:model.encoding.unsignedLongValue error:error];
+    success = [content writeToFile:[self.contentPath stringByAppendingPathComponent:self.mainFileName] atomically:YES encoding:model.encoding.unsignedLongValue error:error];
     NSString *pdfPath = nil;
     if (model.pdfPath) {
         pdfPath= [self findPreviewPDFFor:model atPath:[model.pdfPath stringByDeletingLastPathComponent]];
     }
     NSFileManager *fm = [NSFileManager defaultManager];
     if (success && pdfPath) {
+        [fm removeItemAtPath:self.previewPath error:nil];
         success = [fm copyItemAtPath:pdfPath toPath:self.previewPath error:error];
     }
     if (success) {
@@ -177,7 +182,8 @@ static NSString *CONTENT_DIR_NAME = @"content";
         }
     }
     if (success) {
-        success = [fm copyItemAtPath:pdfPath toPath:[self.templatePath stringByAppendingPathComponent:PREVIEW_FILE_NAME] error:error];
+        [fm removeItemAtPath:self.previewPath error:nil];
+        success = [fm copyItemAtPath:pdfPath toPath:self.previewPath error:error ];
     }
     if (success) {
         success = [self save:error];
@@ -199,7 +205,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
 }
 
 - (NSDictionary *)configDictionary {
-    return @{TMTTemplateInfoKey: self.info, TMTTemplateTypeKey: @(self.type), TMTTemplateCompilableKey: self.compilable};
+    return @{TMTTemplateInfoKey: self.info, TMTTemplateTypeKey: @(self.type), TMTTemplateCompilableKey: [NSKeyedArchiver archivedDataWithRootObject:self.compilable]};
 }
 
 
@@ -234,6 +240,28 @@ static NSString *CONTENT_DIR_NAME = @"content";
     return [[NSFileManager defaultManager] fileExistsAtPath:self.previewPath ];
 }
 
+- (BOOL)remove:(NSError *__autoreleasing *)error {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    return [fm removeItemAtPath:self.templatePath error:error];
+}
+
+- (BOOL)rename:(NSString *)newName withError:(NSError **)error; {
+    if ([self.name isEqualToString:newName]) {
+        return YES;
+    }
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
+    
+    
+    NSString *destPath = [[[applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName] stringByAppendingPathComponent:self.category ] stringByAppendingPathComponent:[newName stringByAppendingPathExtension:TMTTemplateExtension]];
+    BOOL success = [fm moveItemAtPath:self.templatePath toPath:destPath error:error];
+    if (success) {
+        self.name = newName;
+    }
+    
+    return success;
+}
+
 
 #pragma mark - Static Methods
 
@@ -241,7 +269,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
     NSString *configPath = [templatePath stringByAppendingPathComponent:CONFIG_FILE_NAME];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:configPath];
     NSString *category = [templatePath.pathComponents objectAtIndex:templatePath.pathComponents.count-2];
-    return [[Template alloc] initWithDictionary:dict andCategory:category];
+    return [[Template alloc] initWithDictionary:dict name:templatePath.lastPathComponent.stringByDeletingPathExtension andCategory:category];
 }
 
 @end

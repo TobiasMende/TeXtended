@@ -7,8 +7,8 @@
 //
 
 #import "TemplatePlaceholderController.h"
-#import <Quartz/Quartz.h>
 #import "Template.h"
+#import "TMTQuickLookView.h"
 @interface TemplatePlaceholderController ()
 
 @end
@@ -26,7 +26,11 @@
 - (void)loadView {
     [super loadView];
     if ([self.representedObject hasPreviewPDF]) {
-        [self.pdfView setDocument:[self.representedObject previewPDF]];
+        [self.quickLook setPreviewItem:[NSURL fileURLWithPath:[self.representedObject previewPath]]];
+        __unsafe_unretained TemplatePlaceholderController *weakSelf = self;
+        self.quickLook.mouseDownHandler = ^(NSEvent *theEvent) {
+            weakSelf.selected = YES;
+        };
     }
 }
 

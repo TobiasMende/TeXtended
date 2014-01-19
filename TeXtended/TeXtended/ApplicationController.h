@@ -46,6 +46,8 @@
 
 - (IBAction)showConsoles:(id)sender;
 
+- (IBAction)showNewFromTemplate:(id)sender;
+
 /** Getter for the completion controller handling code autocompletions 
  
  @return the completion controller

@@ -152,8 +152,13 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)finishInitWithPath:(NSString *)absolutePath {
-    self.pdfPath = [self.pdfPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
-    self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+    if (self.pdfPath) {
+        self.pdfPath = [self.pdfPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+    }
+    
+    if (self.texPath) {
+        self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+    }
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -162,10 +167,13 @@ static NSArray *TMTEncodingsToCheck;
     [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
     [aCoder encodeObject:self.encoding forKey:@"encoding"];
     [aCoder encodeConditionalObject:self.project forKey:@"project"];
-    NSString *relativePdfPath = [self.pdfPath relativePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
-    NSString *relativeTexPath = [self.texPath relativePathWithBase:[self.project.path stringByDeletingLastPathComponent]];
-    [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
-    [aCoder encodeObject:relativeTexPath forKey:@"texPath"];
+    NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
+    if (basePath) {
+        NSString *relativePdfPath = [self.pdfPath relativePathWithBase:basePath];
+        NSString *relativeTexPath = [self.texPath relativePathWithBase:basePath];
+        [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
+        [aCoder encodeObject:relativeTexPath forKey:@"texPath"];
+    }
     [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
     [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
     [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
@@ -490,15 +498,6 @@ static NSArray *TMTEncodingsToCheck;
 #pragma mark -
 #pragma mark DocumentModelExtension
 
-- (void)initOutlineElements {
-    //NSString *content = [self loadContent];
-}
 
-
-- (id)copyWithZone:(NSZone *)zone {
-    Compilable *copied = [[Compilable allocWithZone:zone] init];
-    copied.draftCompiler = [self.draftCompiler copy];
-    copied.finalCompiler = [self.finalCompiler copy];
-}
 
 @end

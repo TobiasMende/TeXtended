@@ -191,4 +191,12 @@ static NSUInteger LAST_IDENTIFIER = 0;
         [TMTNotificationCenter removeCenterForCompilable:self];
 }
 
+- (id)copy {
+    DDLogWarn(@"Start Copy");
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@[self]];
+    id copied = [NSKeyedUnarchiver unarchiveObjectWithData:data][0];
+    DDLogWarn(@"Copied %@", copied);
+    return copied;
+}
+
 @end

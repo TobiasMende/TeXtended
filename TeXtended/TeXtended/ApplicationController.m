@@ -104,6 +104,10 @@ static ApplicationController *sharedInstance;
     }
 }
 
+- (void)showNewFromTemplate:(id)sender {
+    DDLogWarn(@"Not implemented");
+}
+
 
 + (NSString *)userApplicationSupportDirectoryPath {
     NSFileManager *fm = [NSFileManager defaultManager];

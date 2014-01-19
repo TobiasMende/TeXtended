@@ -35,6 +35,8 @@
 
 + (Template *)templateFromFile:(NSString *)templatePath;
 
-- (id)initWithDictionary:(NSDictionary *)config andCategory:(NSString *)category;
+- (id)initWithDictionary:(NSDictionary *)config name:(NSString *)name andCategory:(NSString *)category;
 
+- (BOOL)remove:(NSError **)error;
+- (BOOL)rename:(NSString *)newName  withError:(NSError **)error;
 @end

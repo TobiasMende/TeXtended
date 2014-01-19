@@ -3,30 +3,33 @@
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="3338"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TemplatePlaceholderController">
             <connections>
-                <outlet property="pdfView" destination="Cub-t5-c0f" id="sKc-Sy-DNu"/>
+                <outlet property="quickLook" destination="4LJ-UE-kOx" id="olZ-Np-4Ti"/>
                 <outlet property="view" destination="RJK-Cd-WCr" id="fHe-cF-GMO"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
         <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" id="RJK-Cd-WCr">
-            <rect key="frame" x="0.0" y="0.0" width="153" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView">
-                <rect key="frame" x="1" y="1" width="151" height="208"/>
+                <rect key="frame" x="1" y="1" width="148" height="198"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <pdfView autoresizesSubviews="NO" wantsLayer="YES" fixedFrame="YES" scaleFactor="0.21774193548387097" autoScales="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cub-t5-c0f">
-                        <rect key="frame" x="0.0" y="35" width="150" height="174"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </pdfView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04Y-BU-2EN">
+                        <rect key="frame" x="28" y="81" width="92" height="102"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSIconViewTemplate" id="26u-8l-9uh"/>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="HWT-wt-sba"/>
+                        </connections>
+                    </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P96-xQ-FmY">
-                        <rect key="frame" x="-2" y="10" width="154" height="17"/>
+                        <rect key="frame" x="2" y="8" width="144" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="jqm-EV-zSE">
                             <font key="font" metaFont="system"/>
@@ -34,16 +37,36 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="-2" name="fontBold" keyPath="self.selected" id="uhC-Xm-TF4"/>
                             <binding destination="-2" name="value" keyPath="self.representedObject.name" id="HZc-l4-Pyb"/>
                         </connections>
                     </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4LJ-UE-kOx" customClass="TMTQuickLookView">
+                        <rect key="frame" x="15" y="33" width="118" height="150"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="Yh8-23-nSy">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </customView>
                 </subviews>
             </view>
             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
             <color key="fillColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
             <connections>
-                <binding destination="-2" name="transparent" keyPath="self.selected" id="DjL-eG-Eha"/>
+                <binding destination="-2" name="toolTip" keyPath="self.representedObject.info" id="pva-Bi-lOM"/>
+                <binding destination="-2" name="transparent" keyPath="self.selected" previousBinding="pva-Bi-lOM" id="96u-SY-2Lb">
+                    <dictionary key="options">
+                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                    </dictionary>
+                </binding>
             </connections>
         </box>
     </objects>
+    <resources>
+        <image name="NSIconViewTemplate" width="11" height="10"/>
+    </resources>
 </document>

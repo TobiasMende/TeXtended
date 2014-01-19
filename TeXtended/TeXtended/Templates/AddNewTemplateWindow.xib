@@ -102,10 +102,14 @@ IA
                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cpy-4B-Lpb">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="finallySave:" target="-2" id="SHm-1M-PhZ"/>
-                            <binding destination="-2" name="enabled" keyPath="self.canSaveWithName" id="tYj-1A-QLe"/>
+                            <binding destination="-2" name="enabled" keyPath="self.canSaveWithName" id="S6p-nH-fGZ"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxu-SJ-KaV">
@@ -131,7 +135,11 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canSaveWithName" id="t99-kf-yOf"/>
+                            <binding destination="-2" name="hidden" keyPath="self.templateExists" id="mor-Pg-pqv">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </textField>
                 </subviews>

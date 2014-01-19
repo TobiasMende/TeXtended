@@ -8,11 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 @class Template;
-@interface TemplateController : NSWindowController<NSTableViewDelegate>
+@interface TemplateController : NSWindowController<NSTableViewDelegate> {
+    NSPopover *editPopover;
+}
 
 @property NSMutableArray *categories;
 @property NSMutableArray *currentTemplates;
 @property BOOL isSaving;
+@property BOOL overrideAllowed;
 @property (strong) IBOutlet NSArrayController *categoriesController;
 @property (strong) IBOutlet NSCollectionView *currentTemplatesView;
 @property (strong) IBOutlet NSWindow *sheet;
@@ -28,6 +31,11 @@
 - (IBAction)finallySave:(id)sender;
 - (IBAction)cancelSave:(id)sender;
 - (NSString *)currentCategoryPath;
+- (IBAction)removeTemplate:(id)sender;
+- (IBAction)editTemplate:(id)sender;
+- (IBAction)saveEditTemplate:(id)sender;
 - (BOOL)canSaveWithName;
-
+- (BOOL)templateExists;
+- (BOOL)canRemoveTemplate;
+- (BOOL)canSaveEdit;
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class PDFView;
+@class TMTQuickLookView;
 @interface TemplatePlaceholderController : NSCollectionViewItem
-@property (strong) IBOutlet PDFView *pdfView;
+@property (strong) IBOutlet TMTQuickLookView *quickLook;
 
 @end
