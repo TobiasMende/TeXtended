@@ -332,6 +332,9 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     if ((self.isSaving && proposedDropIndex == 0)) {
         return NSDragOperationNone;
     }
+    if ([collectionView isEqualTo:[info draggingSource]]) {
+        return NSDragOperationNone;
+    }
     NSPasteboard* pb = info.draggingPasteboard;
     NSArray* urls = [pb readObjectsForClasses:@[[NSURL class]]
                                       options:nil];
@@ -343,6 +346,8 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             } else {
                 return NSDragOperationNone;
             }
+        } else if(*proposedDropIndex < 0) {
+            *proposedDropIndex = self.currentTemplates.count;
         }
         return NSDragOperationCopy;
     }
@@ -418,12 +423,11 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     return success && content.count > 0;
 }
 
-
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
     if (dropOperation == NSTableViewDropAbove) {
         return NO;
     }
-    if (self.categoriesController.selectionIndex == row) {
+    if ((self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
         return NO;
     }
     
@@ -440,7 +444,11 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         if (![fm directoryExistsAtPath:destPath.stringByDeletingLastPathComponent]) {
             [fm createDirectoryAtPath:destPath.stringByDeletingLastPathComponent withIntermediateDirectories:YES attributes:nil error:NULL];
         }
-        success &= [fm moveItemAtPath:sourcePath toPath:destPath error:&error];
+        if ([info draggingSourceOperationMask] == NSDragOperationCopy) {
+            success &= [fm copyItemAtPath:sourcePath toPath:destPath error:&error];
+        } else {
+            success &= [fm moveItemAtPath:sourcePath toPath:destPath error:&error];
+        }
         if (error) {
             DDLogError(@"%@", error);
         }
@@ -464,15 +472,28 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             [final addObject:url];
         }
     }
-    if (final.count == 0 || self.categoriesController.selectionIndex == row) {
+    if (final.count == 0 || (self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
         return NSDragOperationNone;
     }
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *category = [self.categories objectAtIndex:row][@"value"];
+    if(category) {
+        for (NSURL *url in final) {
+            if([fm fileExistsAtPath:[[[TemplateController templateDirectory] stringByAppendingPathComponent:category] stringByAppendingPathComponent:url.lastPathComponent]]) {
+                return NSDragOperationNone;
+            }
+        }
+    }
+    [info setNumberOfValidItemsForDrop:final.count];
     
     if ([[info draggingSource] isKindOfClass:[TemplatesCollectionView class]]) {
         return NSDragOperationMove;
     }
-    return NSDragOperationNone;
+    return NSDragOperationCopy;
 }
+
+
 
 
 @end

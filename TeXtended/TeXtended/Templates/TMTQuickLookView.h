@@ -10,4 +10,5 @@
 
 @interface TMTQuickLookView : QLPreviewView
 @property (strong) void (^mouseDownHandler)(NSEvent *theEvent);
+
 @end
