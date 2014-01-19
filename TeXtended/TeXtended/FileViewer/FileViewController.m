@@ -585,35 +585,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [outline reloadData];
 }
 
-- (void)deleteTemporaryFilesAtPath:(NSString*)path
-{
-    NSArray *temporaryFileTypes = [[NSArray alloc] initWithObjects:@"aux", @"synctex", @"gz",@"gz(busy)",@"log", @"bbl", nil];
-    
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSURL *directoryURL = [[NSURL alloc] initFileURLWithPath:path]; // URL pointing to the directory you want to browse
-    NSArray *keys = @[NSURLIsDirectoryKey];
-    
-    NSArray *children = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtURL:directoryURL includingPropertiesForKeys:keys options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL]];
-    NSUInteger count = [children count];
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        NSError *error;
-        NSNumber *isDirectory = nil;
-        NSURL *fileUrl = children[i];
-        NSString *filePath = [fileUrl path];
-        if (! [fileUrl getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
-            // handle error
-        }
-        else if (! [isDirectory boolValue]) {
-            if ([temporaryFileTypes containsObject:[filePath pathExtension]]) {
-                [self deleteFileatPath:filePath];
-            }
-        }
-    }
-    
-    [nodes clean:path];
-}
-
 - (void)dealloc {
     [PathObserverFactory removeObserver:self];
     [self.compilable removeObserver:self forKeyPath:@"self.path"];

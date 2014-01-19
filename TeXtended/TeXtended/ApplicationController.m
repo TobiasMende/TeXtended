@@ -18,6 +18,8 @@
 #import "ConsoleWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "LatexSpellChecker.h"
+#import "TemplateController.h"
+#import "Template.h"
 
 static ApplicationController *sharedInstance;
 
@@ -102,6 +104,39 @@ static ApplicationController *sharedInstance;
     } else {
         [consoleWindowController showWindow:self];
     }
+}
+
+- (void)showNewFromTemplate:(id)sender {
+    templateController = [TemplateController new];
+    templateController.loadHandler = ^(Template *template, BOOL success) {
+        if (success) {
+            NSSavePanel *panel = [NSSavePanel savePanel];
+            panel.canCreateDirectories = YES;
+            panel.title = NSLocalizedString(@"Choose Destination Folder", @"Choose Destination Folder");
+            panel.prompt = NSLocalizedString(@"Choose", @"Choose");
+            panel.message = NSLocalizedString(@"Please choose a folder to copy the template to.", "Choose a folder to copy the template to.");
+            [panel beginWithCompletionHandler:^(NSInteger result) {
+                if (result == NSFileHandlingPanelOKButton) {
+                    NSString *path = panel.URL.path;
+                    NSString *name = path.lastPathComponent.stringByDeletingPathExtension;
+                    NSString *dir = path.stringByDeletingLastPathComponent;
+                    NSError *error = nil;
+                    NSFileManager *fm = [NSFileManager defaultManager];
+                    Compilable *compilable = [template createInstanceWithName:name inDirectory:dir withError:&error];
+                    if (error) {
+                        [[NSAlert alertWithError:error] runModal];
+                    } else {
+                        error = nil;
+                        [[DocumentCreationController sharedDocumentController] openDocumentForCompilable:compilable display:YES andError:&error];
+                        if (error) {
+                            [[NSAlert alertWithError:error] runModal];
+                        }
+                    }
+                }
+            }];
+        }
+    };
+    [templateController openLoadWindow];
 }
 
 

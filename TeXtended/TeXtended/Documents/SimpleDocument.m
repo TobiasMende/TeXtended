@@ -17,6 +17,9 @@
 #import "ConsoleManager.h"
 #import "HighlightingTextView.h"
 #import "MergeWindowController.h"
+#import "Template.h"
+#import "TemplateController.h"
+#import "TextViewController.h"
 
 static const NSSet *standardDocumentTypes;
 static BOOL autosave;
@@ -84,6 +87,34 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     return success;
     
     
+}
+
+- (void)saveAsTemplate:(id)sender {
+    [super saveAsTemplate:sender];
+    __unsafe_unretained SimpleDocument *weakSelf = self;
+    self.templateController.saveHandler = ^(Template *template, BOOL success) {
+        if (success) {
+            template.compilable = weakSelf.model;
+            NSError *error;
+            [template save:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+            
+            DocumentController *dc = weakSelf.documentControllers.anyObject;
+            [template setDocumentWithContent:dc.textViewController.content model:weakSelf.model andError:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+        }
+    };
+    [self.templateController openSavePanelForWindow:self.mainWindowController.window];
 }
 
 - (void)setModel:(DocumentModel *)model {

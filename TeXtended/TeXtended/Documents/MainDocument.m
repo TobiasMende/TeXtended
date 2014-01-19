@@ -77,7 +77,8 @@
 }
 
 - (void)saveAsTemplate:(id)sender {
-    DDLogInfo(@"Save");
+    self.templateController = [TemplateController new];
+    
 }
 
 - (Compilable *)model {

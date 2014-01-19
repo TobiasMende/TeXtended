@@ -28,14 +28,10 @@
 		762DA21917CA4B210013D864 /* formal_letter.tex in Resources */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
 		762DA21B17CA4B870013D864 /* article.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21617CA4B210013D864 /* article.tex */; };
 		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
-		7651063217E723750011ADEF /* NewTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7651063117E723750011ADEF /* NewTemplateController.m */; };
-		7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7651063317E723860011ADEF /* NewTemplateSheet.xib */; };
 		7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503A18379D770013CC4D /* FolderSelectionViewController.m */; };
 		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
-		768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768BA48317E4B31C00B9DAF3 /* TemplateController.m */; };
-		768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
@@ -77,8 +73,15 @@
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
 		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D2326AD9188A7961008DEE51 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AD8188A7961008DEE51 /* Template.m */; };
-		D2326ADC188A816D008DEE51 /* NSFileManager+DirectoryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */; };
+		D2326ADC188A816D008DEE51 /* NSFileManager+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */; };
 		D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */; };
+		D2326AE3188AC085008DEE51 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AE1188AC085008DEE51 /* TemplateController.m */; };
+		D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */; };
+		D2326AEB188ADB06008DEE51 /* AddTemplatePlaceholder.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */; };
+		D2326AEE188ADC50008DEE51 /* TemplatesCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */; };
+		D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AEF188AE0F0008DEE51 /* TemplatePlaceholder.xib */; };
+		D2326AF3188AE28A008DEE51 /* TemplatePlaceholderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AF2188AE28A008DEE51 /* TemplatePlaceholderController.m */; };
+		D2326AF5188AE455008DEE51 /* AddNewTemplateWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AF4188AE455008DEE51 /* AddNewTemplateWindow.xib */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
 		D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */; };
@@ -111,6 +114,11 @@
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
 		D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2809C34187DC6D700C59909 /* LatexSpellChecker.m */; };
 		D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */ = {isa = PBXBuildFile; fileRef = D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */; };
+		D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848709188B00E300CC91A0 /* ShareDialog.xib */; };
+		D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = D284870B188B00E300CC91A0 /* ShareDialogController.m */; };
+		D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */; };
+		D2848715188B516E00CC91A0 /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848714188B516E00CC91A0 /* EditTemplateView.xib */; };
+		D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -221,8 +229,6 @@
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
-		F605360E188AF2D500FEDEDE /* ShareDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F605360C188AF2D500FEDEDE /* ShareDialogController.m */; };
-		F605360F188AF2D500FEDEDE /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F605360D188AF2D500FEDEDE /* ShareDialog.xib */; };
 		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
 		F64675471879579A006EAD63 /* DropCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = F64675461879579A006EAD63 /* DropCompletion.m */; };
 		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
@@ -309,18 +315,12 @@
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
 		762DA21617CA4B210013D864 /* article.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.tex; sourceTree = "<group>"; };
 		762DA21717CA4B210013D864 /* formal_letter.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = formal_letter.tex; sourceTree = "<group>"; };
-		7651063017E723750011ADEF /* NewTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTemplateController.h; sourceTree = "<group>"; };
-		7651063117E723750011ADEF /* NewTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTemplateController.m; sourceTree = "<group>"; };
-		7651063317E723860011ADEF /* NewTemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTemplateSheet.xib; sourceTree = "<group>"; };
 		7654503918379D770013CC4D /* FolderSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderSelectionViewController.h; sourceTree = "<group>"; };
 		7654503A18379D770013CC4D /* FolderSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderSelectionViewController.m; sourceTree = "<group>"; };
 		7654503B18379D770013CC4D /* FolderSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderSelectionView.xib; sourceTree = "<group>"; };
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
-		768BA48217E4B31C00B9DAF3 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
-		768BA48317E4B31C00B9DAF3 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
-		768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateSheet.xib; sourceTree = "<group>"; };
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
@@ -427,10 +427,20 @@
 		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
 		D2326AD7188A7961008DEE51 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
 		D2326AD8188A7961008DEE51 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
-		D2326ADA188A816D008DEE51 /* NSFileManager+DirectoryExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryExtension.h"; sourceTree = "<group>"; };
-		D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryExtension.m"; sourceTree = "<group>"; };
+		D2326ADA188A816D008DEE51 /* NSFileManager+TMTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+TMTExtension.h"; sourceTree = "<group>"; };
+		D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+TMTExtension.m"; sourceTree = "<group>"; };
 		D2326ADD188A98E7008DEE51 /* NSAttributedString+Replace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Replace.h"; sourceTree = "<group>"; };
 		D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Replace.m"; sourceTree = "<group>"; };
+		D2326AE0188AC085008DEE51 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
+		D2326AE1188AC085008DEE51 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
+		D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplatesWindow.xib; sourceTree = "<group>"; };
+		D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTemplatePlaceholder.xib; sourceTree = "<group>"; };
+		D2326AEC188ADC50008DEE51 /* TemplatesCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplatesCollectionView.h; sourceTree = "<group>"; };
+		D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesCollectionView.m; sourceTree = "<group>"; };
+		D2326AEF188AE0F0008DEE51 /* TemplatePlaceholder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplatePlaceholder.xib; sourceTree = "<group>"; };
+		D2326AF1188AE28A008DEE51 /* TemplatePlaceholderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplatePlaceholderController.h; sourceTree = "<group>"; };
+		D2326AF2188AE28A008DEE51 /* TemplatePlaceholderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatePlaceholderController.m; sourceTree = "<group>"; };
+		D2326AF4188AE455008DEE51 /* AddNewTemplateWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewTemplateWindow.xib; sourceTree = "<group>"; };
 		D23BC5291861EB6B00E9A507 /* CompletionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionProtocol.h; sourceTree = "<group>"; };
 		D23BC52D1861ED2400E9A507 /* CiteCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteCompletion.h; sourceTree = "<group>"; };
 		D23BC52E1861ED2400E9A507 /* CiteCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteCompletion.m; sourceTree = "<group>"; };
@@ -510,6 +520,13 @@
 		D2809C33187DC6D700C59909 /* LatexSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSpellChecker.h; sourceTree = "<group>"; };
 		D2809C34187DC6D700C59909 /* LatexSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSpellChecker.m; sourceTree = "<group>"; };
 		D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpellCheckerPrefixesToIgnore.list; sourceTree = "<group>"; };
+		D2848709188B00E300CC91A0 /* ShareDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDialog.xib; sourceTree = "<group>"; };
+		D284870A188B00E300CC91A0 /* ShareDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDialogController.h; sourceTree = "<group>"; };
+		D284870B188B00E300CC91A0 /* ShareDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDialogController.m; sourceTree = "<group>"; };
+		D2848711188B3AE300CC91A0 /* TMTQuickLookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTQuickLookView.h; sourceTree = "<group>"; };
+		D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTQuickLookView.m; sourceTree = "<group>"; };
+		D2848714188B516E00CC91A0 /* EditTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTemplateView.xib; sourceTree = "<group>"; };
+		D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DefaultTemplates.bundle; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -623,9 +640,6 @@
 		D2FF0D7717F70017003423F7 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
-		F605360B188AF2D500FEDEDE /* ShareDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDialogController.h; sourceTree = "<group>"; };
-		F605360C188AF2D500FEDEDE /* ShareDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDialogController.m; sourceTree = "<group>"; };
-		F605360D188AF2D500FEDEDE /* ShareDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDialog.xib; sourceTree = "<group>"; };
 		F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
 		F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
 		F64675451879579A006EAD63 /* DropCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropCompletion.h; sourceTree = "<group>"; };
@@ -707,14 +721,22 @@
 		768BA48117E4B31000B9DAF3 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				768BA48217E4B31C00B9DAF3 /* TemplateController.h */,
-				768BA48317E4B31C00B9DAF3 /* TemplateController.m */,
-				768BA48517E4B38E00B9DAF3 /* TemplateSheet.xib */,
-				7651063017E723750011ADEF /* NewTemplateController.h */,
-				7651063117E723750011ADEF /* NewTemplateController.m */,
-				7651063317E723860011ADEF /* NewTemplateSheet.xib */,
+				D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */,
 				D2326AD7188A7961008DEE51 /* Template.h */,
 				D2326AD8188A7961008DEE51 /* Template.m */,
+				D2326AE0188AC085008DEE51 /* TemplateController.h */,
+				D2326AE1188AC085008DEE51 /* TemplateController.m */,
+				D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */,
+				D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */,
+				D2326AEC188ADC50008DEE51 /* TemplatesCollectionView.h */,
+				D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */,
+				D2326AEF188AE0F0008DEE51 /* TemplatePlaceholder.xib */,
+				D2326AF1188AE28A008DEE51 /* TemplatePlaceholderController.h */,
+				D2326AF2188AE28A008DEE51 /* TemplatePlaceholderController.m */,
+				D2326AF4188AE455008DEE51 /* AddNewTemplateWindow.xib */,
+				D2848711188B3AE300CC91A0 /* TMTQuickLookView.h */,
+				D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */,
+				D2848714188B516E00CC91A0 /* EditTemplateView.xib */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -923,8 +945,8 @@
 				D21ACBB91726876900E2F8EC /* NSString+LatexExtension.m */,
 				D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */,
 				D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */,
-				D2326ADA188A816D008DEE51 /* NSFileManager+DirectoryExtension.h */,
-				D2326ADB188A816D008DEE51 /* NSFileManager+DirectoryExtension.m */,
+				D2326ADA188A816D008DEE51 /* NSFileManager+TMTExtension.h */,
+				D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */,
 				D2326ADD188A98E7008DEE51 /* NSAttributedString+Replace.h */,
 				D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */,
 			);
@@ -1081,7 +1103,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F605360A188AF2B500FEDEDE /* ShareDialog */,
+				D2848708188B00E300CC91A0 /* ShareDialog */,
 				F6980D411882DDB80023DE4D /* MergeView */,
 				F68687EF18781CA200898026 /* PrintDialog */,
 				D257498718631AE70025A536 /* CustomTableCellViews */,
@@ -1218,6 +1240,16 @@
 				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
+			sourceTree = "<group>";
+		};
+		D2848708188B00E300CC91A0 /* ShareDialog */ = {
+			isa = PBXGroup;
+			children = (
+				D2848709188B00E300CC91A0 /* ShareDialog.xib */,
+				D284870A188B00E300CC91A0 /* ShareDialogController.h */,
+				D284870B188B00E300CC91A0 /* ShareDialogController.m */,
+			);
+			path = ShareDialog;
 			sourceTree = "<group>";
 		};
 		D28AAFDF17EF34500033BDD4 /* TMTTabView */ = {
@@ -1420,16 +1452,6 @@
 			path = EncodingView;
 			sourceTree = "<group>";
 		};
-		F605360A188AF2B500FEDEDE /* ShareDialog */ = {
-			isa = PBXGroup;
-			children = (
-				F605360B188AF2D500FEDEDE /* ShareDialogController.h */,
-				F605360C188AF2D500FEDEDE /* ShareDialogController.m */,
-				F605360D188AF2D500FEDEDE /* ShareDialog.xib */,
-			);
-			path = ShareDialog;
-			sourceTree = "<group>";
-		};
 		F68687EF18781CA200898026 /* PrintDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -1540,6 +1562,7 @@
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
+				D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */,
@@ -1551,6 +1574,7 @@
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
+				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
@@ -1574,6 +1598,7 @@
 				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
+				D2326AEB188ADB06008DEE51 /* AddTemplatePlaceholder.xib in Resources */,
 				76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */,
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
 				7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */,
@@ -1582,7 +1607,7 @@
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
-				F605360F188AF2D500FEDEDE /* ShareDialog.xib in Resources */,
+				D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */,
 				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
 				D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */,
@@ -1597,16 +1622,17 @@
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
+				D2326AF5188AE455008DEE51 /* AddNewTemplateWindow.xib in Resources */,
 				F6980D461882DDE10023DE4D /* MergeWindow.xib in Resources */,
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
+				D2848715188B516E00CC91A0 /* EditTemplateView.xib in Resources */,
+				D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
-				768BA48617E4B38E00B9DAF3 /* TemplateSheet.xib in Resources */,
-				7651063417E723860011ADEF /* NewTemplateSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,12 +1698,13 @@
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
 				F6980D451882DDE10023DE4D /* MergeWindowController.m in Sources */,
 				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,
-				F605360E188AF2D500FEDEDE /* ShareDialogController.m in Sources */,
+				D2326AEE188ADC50008DEE51 /* TemplatesCollectionView.m in Sources */,
 				D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */,
 				D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */,
 				D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */,
 				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
 				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
+				D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */,
 				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,
 				D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */,
 				F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */,
@@ -1694,7 +1721,7 @@
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
-				D2326ADC188A816D008DEE51 /* NSFileManager+DirectoryExtension.m in Sources */,
+				D2326ADC188A816D008DEE51 /* NSFileManager+TMTExtension.m in Sources */,
 				D2E7A50E1768E8F400B2BA3C /* SimpleDocument.m in Sources */,
 				76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */,
 				D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */,
@@ -1737,6 +1764,9 @@
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
+				D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */,
+				D2326AE3188AC085008DEE51 /* TemplateController.m in Sources */,
+				D2326AF3188AE28A008DEE51 /* TemplatePlaceholderController.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
 				D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
@@ -1753,8 +1783,6 @@
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
 				7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */,
-				768BA48417E4B31C00B9DAF3 /* TemplateController.m in Sources */,
-				7651063217E723750011ADEF /* NewTemplateController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

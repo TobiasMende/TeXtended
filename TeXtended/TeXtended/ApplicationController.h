@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FirstResponderDelegate.h"
-@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController, ConsoleWindowController;
+@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController, ConsoleWindowController, TemplateController;
 
 /**
  The application controller is a singleton which represents the central instance of the TeXtended application.
@@ -28,6 +28,8 @@
     TexdocPanelController *texdocPanelController;
     
     ConsoleWindowController *consoleWindowController;
+    
+    TemplateController *templateController;
 }
 
 @property (assign) id<FirstResponderDelegate> currentFirstResponderDelegate;
@@ -45,6 +47,8 @@
 - (IBAction)showPreferences:(id)sender;
 
 - (IBAction)showConsoles:(id)sender;
+
+- (IBAction)showNewFromTemplate:(id)sender;
 
 /** Getter for the completion controller handling code autocompletions 
  

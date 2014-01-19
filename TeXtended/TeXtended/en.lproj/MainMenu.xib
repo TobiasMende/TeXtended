@@ -87,9 +87,10 @@
                                     <action selector="newProject:" target="-1" id="602"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Templates" keyEquivalent="t" id="603">
+                            <menuItem title="New from Template ..." keyEquivalent="n" id="Dvw-RG-Izb">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="openTemplateSheet:" target="-1" id="605"/>
+                                    <action selector="showNewFromTemplate:" target="534" id="7Vp-wz-f9n"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
@@ -121,8 +122,8 @@
                                     <action selector="saveDocument:" target="-1" id="362"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save as Template" id="nLY-7C-AfU">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Save as Template ..." keyEquivalent="s" id="nLY-7C-AfU">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="saveAsTemplate:" target="-1" id="TRm-3w-gcn"/>
                                 </connections>

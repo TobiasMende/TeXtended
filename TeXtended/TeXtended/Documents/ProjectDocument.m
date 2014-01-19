@@ -15,6 +15,8 @@
 #import "ConsoleManager.h"
 #import "MergeWindowController.h"
 #import "EncodingController.h"
+#import "Template.h"
+#import "TemplateController.h"
 
 @interface ProjectDocument ()
 - (NSURL*)projectFileUrlFromDirectory:(NSURL*)directory;
@@ -81,6 +83,33 @@
         return NO;
     }
     return YES;
+}
+
+- (void)saveAsTemplate:(id)sender {
+    [super saveAsTemplate:sender];
+    __unsafe_unretained ProjectDocument *weakSelf = self;
+    self.templateController.saveHandler = ^(Template *template, BOOL success) {
+        if (success) {
+            template.compilable = weakSelf.model;
+            NSError *error;
+            [template save:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+            
+            [template setProjectWithPath:weakSelf.model.path model:weakSelf.model andError:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+                NSAlert *alert = [NSAlert alertWithError:error];
+                [alert runModal];
+                return;
+            }
+        }
+    };
+    [self.templateController openSavePanelForWindow:self.mainWindowController.window];
 }
 
 
