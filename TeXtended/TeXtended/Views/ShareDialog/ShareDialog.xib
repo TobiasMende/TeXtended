@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ShareDialogController">
             <connections>
+                <outlet property="okButton" destination="eDS-9t-PkQ" id="g8W-PZ-ySU"/>
                 <outlet property="table" destination="juf-OP-3SX" id="LaV-uh-ul2"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -45,7 +46,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="208" minWidth="40" maxWidth="1000" id="hQj-8h-CjG">
+                                        <tableColumn width="18" minWidth="18" maxWidth="18" id="hQj-8h-CjG">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -59,25 +60,64 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <button id="fNx-75-JpZ">
-                                                    <rect key="frame" x="1" y="1" width="208" height="18"/>
+                                                    <rect key="frame" x="1" y="1" width="18" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iXb-rJ-YvL">
+                                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iXb-rJ-YvL">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                 </button>
                                             </prototypeCellViews>
                                         </tableColumn>
+                                        <tableColumn width="187" minWidth="187" maxWidth="3.4028234663852886e+38" id="8qz-kO-9RG">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Llo-pf-gs1">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="AYN-eM-Wb3">
+                                                    <rect key="frame" x="22" y="1" width="187" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="9Qh-bA-3Xd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="187" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="rrA-gg-x2u">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="AYN-eM-Wb3" name="value" keyPath="objectValue" id="4GN-km-luo"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="9Qh-bA-3Xd" id="Vij-Y4-FLy"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                            <connections>
+                                                <binding destination="pPE-Fi-Vxr" name="value" keyPath="arrangedObjects" id="uVY-vA-Jey"/>
+                                            </connections>
+                                        </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <binding destination="-2" name="content" keyPath="self.content" id="bor-uC-XmT"/>
+                                        <binding destination="pPE-Fi-Vxr" name="content" keyPath="arrangedObjects" id="Cd0-l8-84x"/>
                                     </connections>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="dlW-sI-Zbn">
-                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                            <rect key="frame" x="1" y="118" width="211" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="uAF-a3-hqR">
@@ -120,5 +160,10 @@ DQ
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="D4d-DH-RhL"/>
+        <arrayController id="pPE-Fi-Vxr">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.fileNames" id="TYp-d8-Ur7"/>
+            </connections>
+        </arrayController>
     </objects>
 </document>

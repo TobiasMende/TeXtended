@@ -18,6 +18,7 @@
 #import "PrintDialogController.h"
 #import "HighlightingTextView.h"
 #import "EncodingController.h"
+#import "ShareDialogController.h"
 
 @implementation MainDocument
 
@@ -126,13 +127,63 @@
 }
 
 - (IBAction)shareFile:(id)sender {
+    NSMutableArray *documentPaths = [[NSMutableArray alloc] init];
+
+    for (DocumentController* dc in self.documentControllers) {
+        if (dc.model.pdfName) {
+            [documentPaths addObject:dc.model.pdfPath];
+        }
+    }
     
-    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:[[NSArray alloc] initWithObjects:[[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/hauptdatei.pdf"], nil]];
+    if ([documentPaths count] == 0) {
+        return;
+    }
+    
+    if ([documentPaths count] == 1) {
+        NSArray* fileURLs = [NSArray arrayWithObject:[[NSURL alloc] initFileURLWithPath:[documentPaths objectAtIndex:0]]];
+        
+        [self shareItems:fileURLs];
+    }
+    else if ([documentPaths count] > 1) {
+        if (!shareDialogController) {
+            shareDialogController = [[ShareDialogController alloc] init];
+        }
+        shareDialogController.content = documentPaths;
+        [NSApp beginSheet:[shareDialogController window]
+           modalForWindow: [self.mainWindowController window]
+            modalDelegate: self
+           didEndSelector: @selector(shareDialogDidEnd:returnCode:contextInfo:)
+              contextInfo: nil];
+        [NSApp runModalForWindow:[self.mainWindowController window]];
+    }
+}
+
+-(void)shareDialogDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
+    NSArray* items = shareDialogController.choice;
+    if ([items count] > 0) {
+        [self shareItems:items];
+    }
+}
+
+-(void)shareItems:(NSArray *)items {
+    //NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:[[NSArray alloc] initWithObjects:[[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/hauptdatei.pdf"], nil]];
+    
+    if (items.count == 0) {
+        return;
+    }
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:items];
     sharingServicePicker.delegate = self;
     
-    [sharingServicePicker showRelativeToRect:self.mainWindowController.shareButton.bounds
-                                      ofView:self.mainWindowController.shareButton
-                               preferredEdge:NSMinYEdge];
+    if (items.count > 1) {
+        [sharingServicePicker showRelativeToRect:shareDialogController.okButton.bounds
+                                          ofView:shareDialogController.okButton
+                                   preferredEdge:NSMinYEdge];
+    }
+    else if (items.count == 1) {
+        [sharingServicePicker showRelativeToRect:self.mainWindowController.shareButton.bounds
+                                          ofView:self.mainWindowController.shareButton
+                                   preferredEdge:NSMinYEdge];
+    }
 }
 
 - (IBAction)exportSingleDocument:(id)sender
@@ -161,11 +212,10 @@
 
 #pragma mark - NSSharingDelegate & NSSharingPickerDelegate
 
-- (NSArray *)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker sharingServicesForItems:(NSArray *)items proposedSharingServices:(NSArray *)proposedServices
+/*- (NSArray *)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker sharingServicesForItems:(NSArray *)items proposedSharingServices:(NSArray *)proposedServices
 {
     
     NSArray *services = proposedServices;
-    sharingItems = items;
     
     NSSharingService *customService = [[NSSharingService alloc] initWithTitle:@"Open in Finder" image:[NSImage imageNamed:@"NSFolder"] alternateImage:nil handler:^{
     }];
@@ -173,15 +223,15 @@
     services = [services arrayByAddingObject:customService];
     
     return services;
-}
+}*/
 
-- (void)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker didChooseSharingService:(NSSharingService *)service
+/*- (void)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker didChooseSharingService:(NSSharingService *)service
 {
     if ([service.title isEqualToString:@"Open in Finder"]) {
         NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
         [workspace openFile:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/"];
     }
-}
+}*/
 
 
 #pragma mark - Printing

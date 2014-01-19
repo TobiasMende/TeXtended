@@ -37,7 +37,7 @@
         </arrayController>
         <arrayController avoidsEmptySelection="NO" id="MKC-wh-mat" userLabel="Bib Array Controller">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.compilable.bibFiles" id="ZiH-04-vNK"/>
+                <binding destination="-2" name="contentArray" keyPath="self.compilable.bibFiles" id="IlA-HH-qse"/>
             </connections>
         </arrayController>
         <userDefaultsController representsSharedInstance="YES" id="492"/>
