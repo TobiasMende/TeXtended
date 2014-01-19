@@ -35,7 +35,33 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self.okButton sendActionOn:NSLeftMouseDownMask];
+}
+
+-(void)setContent:(NSArray *)content {
+    _content = content;
+    NSMutableArray* temp = [NSMutableArray arrayWithCapacity:[content count]];
+    
+    for (NSInteger i = 0; i < [content count]; i++) {
+        [temp setObject:[[content objectAtIndex:i] lastPathComponent] atIndexedSubscript:i];
+    }
+    
+    [self willChangeValueForKey:@"fileNames"];
+    _fileNames = temp;
+    [self didChangeValueForKey:@"fileNames"];
+}
+
+-(NSArray*)choice {
+    NSMutableArray *temp = [NSMutableArray new];
+    
+    for (NSInteger i = 0; i < self.table.numberOfRows; i++) {
+        NSButton* checkBox = [self.table viewAtColumn:0 row:i makeIfNecessary:YES];
+        if (checkBox.state == NSOnState) {
+            [temp addObject:[[NSURL alloc] initFileURLWithPath:[self.content objectAtIndex:i]]];
+        }
+    }
+    
+    return temp;
 }
 
 - (IBAction)cancelSheet:(id)sender {
