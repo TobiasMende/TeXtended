@@ -175,6 +175,11 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="deleteCategory:" target="-2" id="tgc-P9-yvl"/>
+                            <binding destination="-2" name="hidden" keyPath="self.isSaving" id="rsK-OD-UTA">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yp-BB-m7W">

@@ -29,7 +29,6 @@
 - (NSDictionary *)configDictionary;
 - (Compilable *)createInstanceWithName:(NSString *)name inDirectory:(NSString *)directory withError:(NSError **)error;
 
-- (PDFDocument *)previewPDF;
 - (NSString *)previewPath;
 - (BOOL) hasPreviewPDF;
 
@@ -39,4 +38,5 @@
 
 - (BOOL)remove:(NSError **)error;
 - (BOOL)rename:(NSString *)newName  withError:(NSError **)error;
+- (BOOL) replacePreviewPdf:(NSString *)pdfPath;
 @end

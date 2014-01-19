@@ -265,6 +265,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     [self.currentTemplatesView setMinItemSize:NSMakeSize(150, 200)];
     [self.currentTemplatesView setAllowsMultipleSelection:NO];
     [self.categoriesView registerForDraggedTypes:@[NSURLPboardType]];
+    [self.currentTemplatesView registerForDraggedTypes:@[NSURLPboardType]];
     [self tableViewSelectionDidChange:nil];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -324,6 +325,83 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     } else {
         return YES;
     }
+}
+
+
+- (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)info proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+    if ((self.isSaving && proposedDropIndex == 0)) {
+        return NSDragOperationNone;
+    }
+    NSPasteboard* pb = info.draggingPasteboard;
+    NSArray* urls = [pb readObjectsForClasses:@[[NSURL class]]
+                                      options:nil];
+    if (urls.count > 0) {
+        *proposedDropOperation = NSCollectionViewDropOn;
+        if (*proposedDropIndex >= self.currentTemplates.count) {
+            if (*proposedDropIndex < 0) {
+                *proposedDropIndex = *proposedDropIndex-1;
+            } else {
+                return NSDragOperationNone;
+            }
+        }
+        return NSDragOperationCopy;
+    }
+    
+    return NSDragOperationNone;
+    
+}
+
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)info index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+    if (dropOperation != NSCollectionViewDropOn || (self.isSaving && index == 0)) {
+        return NO;
+    }
+    
+    NSPasteboard* pb = info.draggingPasteboard;
+    NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
+                                      options:nil];
+    Template *tmpl = [self.currentTemplates objectAtIndex:index];
+    if (!tmpl) {
+        return NO;
+    }
+    if (urls.count == 1 && [[urls.firstObject pathExtension].lowercaseString isEqualToString:@"pdf"]) {
+            if ([tmpl replacePreviewPdf:[urls.firstObject path]]) {
+                [self tableViewSelectionDidChange:nil];
+                return YES;
+            }
+        return NO;
+    }
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL hasCopied = NO;
+    for (NSURL *url in urls) {
+        NSString *name = url.lastPathComponent;
+        BOOL shouldWrite = YES;
+        NSString *destPath = [tmpl.contentPath stringByAppendingPathComponent:name];
+        if ([fm fileExistsAtPath:destPath]) {
+            NSAlert *override = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"File %@ exists. Do you wan't to overwrite it?", @"File [file name] exists. Do you wan't to overwrite it?"), name] defaultButton:NSLocalizedString(@"Override", @"Override") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:nil informativeTextWithFormat:@""];
+            override.alertStyle = NSWarningAlertStyle;
+            if ([override runModal] == NSModalResponseOK) {
+                [fm removeItemAtPath:destPath error:NULL];
+            } else {
+                shouldWrite = NO;
+            }
+        }
+        
+        if (shouldWrite) {
+            NSError *error = nil;
+            [fm copyItemAtPath:url.path toPath:destPath error:&error];
+            if (error) {
+                [NSAlert alertWithError:error];
+            } else {
+                hasCopied = YES;
+            }
+        }
+        
+        
+    }
+
+
+    return hasCopied;
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {

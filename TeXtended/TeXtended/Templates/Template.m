@@ -87,6 +87,12 @@ static NSString *CONTENT_DIR_NAME = @"content";
         [fm removeItemAtPath:model.texPath error:NULL];
     }
     BOOL success = [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:self.mainFileName] toPath:model.texPath error:error];
+    NSArray *content = [fm contentsOfDirectoryAtPath:self.contentPath error:NULL];
+    for (NSString *name in content) {
+        if (![name isEqualToString:self.mainFileName]) {
+            [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:name] toPath:[directory stringByAppendingPathComponent:name] error:NULL];
+        }
+    }
     if (success && self.hasPreviewPDF) {
         if ([fm fileExistsAtPath:model.pdfPath]) {
             [fm removeItemAtPath:model.pdfPath error:NULL];
@@ -237,17 +243,18 @@ static NSString *CONTENT_DIR_NAME = @"content";
     return [[[applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName] stringByAppendingPathComponent:self.category ] stringByAppendingPathComponent:[self.name stringByAppendingPathExtension:TMTTemplateExtension]];
 }
 
-- (PDFDocument *)previewPDF {
-    if (self.hasPreviewPDF) {
-        NSURL *pdfUrl = [NSURL fileURLWithPath:self.previewPath];
-        PDFDocument *doc = [[PDFDocument alloc] initWithURL:pdfUrl];
-        return doc;
-    }
-    return nil;
-}
 
 - (NSString *)previewPath {
     return [self.templatePath stringByAppendingPathComponent:PREVIEW_FILE_NAME];
+}
+
+- (BOOL) replacePreviewPdf:(NSString *)pdfPath {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (self.hasPreviewPDF) {
+        [fm removeItemAtPath:self.previewPath error:NULL];
+    }
+    
+    return [fm copyItemAtPath:pdfPath toPath:self.previewPath error:NULL];
 }
 
 
