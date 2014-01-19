@@ -8,6 +8,10 @@
 
 #import "TMTQuickLookView.h"
 
+
+@interface TMTQuickLookView ()
+- (BOOL)shouldDelegateEvent:(NSEvent *)event;
+@end
 @implementation TMTQuickLookView
 
 - (id)initWithFrame:(NSRect)frame
@@ -19,16 +23,18 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-	[super drawRect:dirtyRect];
-	
-    // Drawing code here.
-}
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
-    self.mouseDownHandler(theEvent);
+    if ([self shouldDelegateEvent:theEvent]) {
+        self.mouseDownHandler(theEvent);
+    }
+}
+
+- (BOOL)shouldDelegateEvent:(NSEvent *)event {
+    NSPoint localLocation = [self convertPoint:event.locationInWindow fromView:nil];
+    NSRect forbidden = NSMakeRect(25.5, 11.5, 69.5, 30);
+    return !NSPointInRect(localLocation, forbidden);
 }
 
 

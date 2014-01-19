@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -20,7 +20,7 @@
                 <rect key="frame" x="1" y="1" width="154" height="204"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P96-xQ-FmY">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="P96-xQ-FmY">
                         <rect key="frame" x="2" y="14" width="144" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="jqm-EV-zSE">
@@ -29,12 +29,12 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="fontBold" keyPath="self.selected" id="uhC-Xm-TF4"/>
                             <binding destination="-2" name="value" keyPath="self.representedObject.name" id="HZc-l4-Pyb"/>
+                            <binding destination="-2" name="fontBold" keyPath="self.selected" id="uhC-Xm-TF4"/>
                         </connections>
                     </textField>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4LJ-UE-kOx" customClass="TMTQuickLookView">
-                        <rect key="frame" x="15" y="39" width="118" height="150"/>
+                    <customView id="4LJ-UE-kOx" customClass="TMTQuickLookView">
+                        <rect key="frame" x="18" y="39" width="118" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="Yh8-23-nSy">
@@ -44,8 +44,8 @@
                             </binding>
                         </connections>
                     </customView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4S-jH-TGB">
-                        <rect key="frame" x="8" y="39" width="132" height="150"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="T4S-jH-TGB">
+                        <rect key="frame" x="16" y="39" width="122" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="bAK-IE-tHW">
                             <font key="font" metaFont="smallSystem"/>

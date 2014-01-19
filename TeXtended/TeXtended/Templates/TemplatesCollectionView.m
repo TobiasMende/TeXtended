@@ -14,7 +14,6 @@
 - (NSCollectionViewItem *)newItemForRepresentedObject:(id)object {
     if (![object isKindOfClass:[Template class]]) {
         NSCollectionViewItem *other = [[NSCollectionViewItem alloc] initWithNibName:@"AddTemplatePlaceholder" bundle:nil];
-        other.representedObject = @"Add New";
         return other;
     } else {
         NSCollectionViewItem *item = [TemplatePlaceholderController new];

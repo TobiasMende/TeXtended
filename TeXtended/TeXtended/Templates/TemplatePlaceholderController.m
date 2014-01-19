@@ -25,14 +25,19 @@
 
 - (void)loadView {
     [super loadView];
+    __unsafe_unretained TemplatePlaceholderController *weakSelf = self;
     if ([self.representedObject hasPreviewPDF]) {
         [self.quickLook setPreviewItem:[NSURL fileURLWithPath:[self.representedObject previewPath]]];
-        __unsafe_unretained TemplatePlaceholderController *weakSelf = self;
         self.quickLook.mouseDownHandler = ^(NSEvent *theEvent) {
             weakSelf.selected = YES;
+            [weakSelf.collectionView mouseDown:theEvent];
         };
     }
+    
+    
 }
+
+
 
 
 @end
