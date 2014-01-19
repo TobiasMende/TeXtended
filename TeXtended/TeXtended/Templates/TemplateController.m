@@ -17,10 +17,46 @@
 @interface TemplateController ()
 - (void)loadCategories;
 - (void)loadTemplatesFromCategory:(NSString *)category;
-- (NSString*)templateDirectory;
++ (NSString*)templateDirectory;
++ (void)mergeDefaultTemplates;
 @end
 
 @implementation TemplateController
+
++ (void)initialize {
+    if ([self class] == [TemplateController class]) {
+        [self mergeDefaultTemplates];
+    }
+}
+
++ (void)mergeDefaultTemplates {
+    NSString *templateDest = [TemplateController templateDirectory];
+    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"DefaultTemplates" ofType:@"bundle"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *categories = [fm  contentsOfDirectoryAtURL:[NSURL fileURLWithPath:sourcePath] includingPropertiesForKeys:@[NSURLIsDirectoryKey]  options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL];
+    
+    for(NSURL *url in categories) {
+        id value = nil;
+        [url getResourceValue:&value forKey:NSURLIsDirectoryKey error:NULL];
+        if ([value boolValue]) {
+            NSString *category = [[url path] lastPathComponent];
+            NSString *destCategory = [templateDest stringByAppendingPathComponent:category];
+            if (![fm fileExistsAtPath:destCategory]) {
+                [fm createDirectoryAtPath:destCategory withIntermediateDirectories:YES attributes:nil error:NULL];
+            }
+            NSArray *templates = [fm  contentsOfDirectoryAtURL:url includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLIsPackageKey]  options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL];
+            for(NSURL *tmplUrl in templates) {
+                NSDictionary *dict = [tmplUrl resourceValuesForKeys:@[NSURLIsPackageKey, NSURLIsDirectoryKey] error:NULL];
+                if (([dict[NSURLIsDirectoryKey] boolValue] || [dict[NSURLIsPackageKey] boolValue]) && [tmplUrl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
+                    NSString *templateAtDest = [destCategory stringByAppendingPathComponent:tmplUrl.lastPathComponent];
+                    if (![fm fileExistsAtPath:templateAtDest]) {
+                        [fm copyItemAtPath:tmplUrl.path toPath:templateAtDest error:NULL];
+                    }
+                }
+            }
+        }
+    }
+}
 
 - (id)init {
     self = [super initWithWindowNibName:@"TemplatesWindow"];
@@ -44,14 +80,14 @@
 - (void)loadCategories {
     NSFileManager *fm = [NSFileManager defaultManager];
     [self.categories removeAllObjects];
-    for (NSString *path in [fm contentsOfDirectoryAtPath:self.templateDirectory error:nil]) {
-        if ([fm directoryExistsAtPath:[self.templateDirectory stringByAppendingPathComponent:path]]) {
+    for (NSString *path in [fm contentsOfDirectoryAtPath:[TemplateController templateDirectory] error:nil]) {
+        if ([fm directoryExistsAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:path]]) {
             [self.categories addObject:@{@"value":path}.mutableCopy];
         }
     }
 }
 
-- (NSString *)templateDirectory {
++ (NSString *)templateDirectory {
     NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
     return [applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName];
 }
@@ -61,11 +97,21 @@
     [NSApp beginSheet:self.window modalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
 }
 
+- (void)openLoadWindow {
+    self.isSaving = NO;
+    [self.window makeKeyAndOrderFront:self];
+}
+
 - (IBAction)cancel:(id)sender {
     [NSApp endSheet:self.window];
     [self close];
     self.sheet = nil;
-    self.saveHandler(nil, NO);
+    if (self.saveHandler) {
+        self.saveHandler(nil, NO);
+    }
+    if (self.loadHandler) {
+        self.loadHandler(nil, NO);
+    }
 }
 
 - (void)cancelSave:(id)sender {
@@ -75,6 +121,8 @@
 }
 
 - (IBAction)load:(id)sender {
+    Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
+    self.loadHandler(template, YES);
 }
 
 - (IBAction)save:(id)sender {
@@ -112,7 +160,7 @@
 
 - (NSString *)currentCategoryPath {
     NSString *category = [self.categories objectAtIndex:self.categoriesController.selectionIndex][@"value"];
-    return [self.templateDirectory stringByAppendingPathComponent:category];
+    return [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
 }
 
 - (IBAction)removeTemplate:(id)sender {
@@ -170,6 +218,10 @@
     return !self.templateExists || (self.overrideAllowed && self.templateName.length > 0);
 }
 
+- (BOOL)canLoad {
+    return self.currentTemplatesView.selectionIndexes.firstIndex != NSNotFound;
+}
+
 - (BOOL)templateExists {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *totalName = [self.templateName stringByAppendingPathExtension:TMTTemplateExtension];
@@ -187,7 +239,7 @@
     } else if([key isEqualToString:@"templateExists"]) {
         keys = [keys setByAddingObjectsFromArray:@[@"templateName", @"currentCategoryPath"]];
         
-    } else if([key isEqualToString:@"canRemoveTemplate"]) {
+    } else if([key isEqualToString:@"canRemoveTemplate"] || [key isEqualToString:@"canLoad"]) {
         keys = [keys setByAddingObjectsFromArray:@[@"currentTemplatesView.selectionIndexes.firstIndex"]];
     } else if([key isEqualToString:@"canSaveEdit"]) {
         keys = [keys setByAddingObjectsFromArray:@[@"templateName", @"currentCategoryPath", @"templateExists"]];
@@ -222,16 +274,18 @@
         return YES;
     }
     NSFileManager *fm = [NSFileManager defaultManager];
-    BOOL success = [fm moveItemAtPath:[self.templateDirectory stringByAppendingPathComponent:oldName] toPath:[self.templateDirectory stringByAppendingPathComponent:newName] error:nil];
+    BOOL success = [fm moveItemAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:oldName] toPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:newName] error:nil];
     return success;
 }
 
 
 - (void)loadTemplatesFromCategory:(NSString *)category {
     [self.currentTemplates removeAllObjects];
-    [self.currentTemplates addObject:@"NewPlaceholder"];
+    if (self.isSaving) {
+        [self.currentTemplates addObject:@"NewPlaceholder"];
+    }
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dir = [self.templateDirectory stringByAppendingPathComponent:category];
+    NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
     for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
         if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
             Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];

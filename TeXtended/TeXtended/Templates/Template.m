@@ -76,11 +76,21 @@ static NSString *CONTENT_DIR_NAME = @"content";
 }
 
 - (Compilable *)createDocumentInstanceWithName:(NSString *)name inDirectory:(NSString *)directory withError:(NSError *__autoreleasing *)error {
+    self.mainFileName = @"main.tex";
     NSFileManager *fm = [NSFileManager defaultManager];
+    
     DocumentModel *model = (DocumentModel *)[self.compilable copy];
-    model.texPath = [directory stringByAppendingPathComponent:[name stringByAppendingPathExtension:@"tex"]];
+    model.texPath = [name stringByAppendingPathExtension:@"tex"];
+    model.pdfPath = [name stringByAppendingPathComponent:@"pdf"];
+    [model finishInitWithPath:[directory stringByAppendingPathComponent:model.texPath]];
+    if ([fm fileExistsAtPath:model.texPath]) {
+        [fm removeItemAtPath:model.texPath error:NULL];
+    }
     BOOL success = [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:self.mainFileName] toPath:model.texPath error:error];
     if (success && self.hasPreviewPDF) {
+        if ([fm fileExistsAtPath:model.pdfPath]) {
+            [fm removeItemAtPath:model.pdfPath error:NULL];
+        }
         success = [fm copyItemAtPath:self.previewPath toPath:model.pdfPath error:error];
     }
     
@@ -137,13 +147,18 @@ static NSString *CONTENT_DIR_NAME = @"content";
 - (BOOL)setDocumentWithContent:(NSString *)content model:(DocumentModel *)model andError:(NSError *__autoreleasing *)error {
     *error = nil;
     self.compilable = [model copy];
+    NSStringEncoding encoding = model.encoding.unsignedLongValue;
+    if (encoding == 0) {
+        encoding = NSUTF8StringEncoding;
+        [(DocumentModel *)self.compilable setEncoding:@(encoding)];
+    }
     self.mainFileName = @"main.tex";
     self.type = TMTDocumentTemplate;
     BOOL success = [self createContentDirectory:error];
     if (!success) {
         return success;
     }
-    success = [content writeToFile:[self.contentPath stringByAppendingPathComponent:self.mainFileName] atomically:YES encoding:model.encoding.unsignedLongValue error:error];
+    success = [content writeToFile:[self.contentPath stringByAppendingPathComponent:self.mainFileName] atomically:YES encoding:encoding error:error];
     NSString *pdfPath = nil;
     if (model.pdfPath) {
         pdfPath= [self findPreviewPDFFor:model atPath:[model.pdfPath stringByDeletingLastPathComponent]];

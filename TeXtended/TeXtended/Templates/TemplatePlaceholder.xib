@@ -13,23 +13,15 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" id="RJK-Cd-WCr">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+        <box autoresizesSubviews="NO" title="Box" borderType="line" titlePosition="noTitle" id="RJK-Cd-WCr">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="206"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView">
-                <rect key="frame" x="1" y="1" width="148" height="198"/>
+                <rect key="frame" x="1" y="1" width="154" height="204"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04Y-BU-2EN">
-                        <rect key="frame" x="28" y="81" width="92" height="102"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSIconViewTemplate" id="26u-8l-9uh"/>
-                        <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="HWT-wt-sba"/>
-                        </connections>
-                    </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P96-xQ-FmY">
-                        <rect key="frame" x="2" y="8" width="144" height="17"/>
+                        <rect key="frame" x="2" y="14" width="144" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="jqm-EV-zSE">
                             <font key="font" metaFont="system"/>
@@ -42,7 +34,7 @@
                         </connections>
                     </textField>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4LJ-UE-kOx" customClass="TMTQuickLookView">
-                        <rect key="frame" x="15" y="33" width="118" height="150"/>
+                        <rect key="frame" x="15" y="39" width="118" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="Yh8-23-nSy">
@@ -52,6 +44,23 @@
                             </binding>
                         </connections>
                     </customView>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4S-jH-TGB">
+                        <rect key="frame" x="8" y="39" width="132" height="150"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="bAK-IE-tHW">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="kEr-zo-RKw"/>
+                            <binding destination="-2" name="value" keyPath="self.representedObject.info" id="T7N-zM-cZC">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">No description available</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
                 </subviews>
             </view>
             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -66,7 +75,4 @@
             </connections>
         </box>
     </objects>
-    <resources>
-        <image name="NSIconViewTemplate" width="11" height="10"/>
-    </resources>
 </document>

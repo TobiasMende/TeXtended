@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 @class Template;
-@interface TemplateController : NSWindowController<NSTableViewDelegate> {
+@interface TemplateController : NSWindowController<NSTableViewDelegate,NSCollectionViewDelegate> {
     NSPopover *editPopover;
 }
 
@@ -22,9 +22,10 @@
 @property (strong) NSString *templateName;
 @property (strong) NSString *templateDescription;
 @property (strong) void (^saveHandler)(Template *template, BOOL success);
-
+@property (strong) void (^loadHandler)(Template *template, BOOL success);
 
 - (void)openSavePanelForWindow:(NSWindow *)window;
+- (void)openLoadWindow;
 - (IBAction)cancel:(id)sender;
 - (IBAction)load:(id)sender;
 - (IBAction)save:(id)sender;
@@ -38,4 +39,5 @@
 - (BOOL)templateExists;
 - (BOOL)canRemoveTemplate;
 - (BOOL)canSaveEdit;
+- (BOOL)canLoad;
 @end

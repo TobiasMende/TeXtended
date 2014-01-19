@@ -81,6 +81,26 @@
     [self showTexDocumentForPath:path withReferenceModel:nil andCompletionHandler:completionHandler];
 }
 
+- (void)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error {
+    if (!compilable.path) {
+        NSBeep();
+        return;
+    }
+    
+    NSDocument *doc = [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:compilable.path] display:NO error:error];
+    if (*error) {
+        return;
+    }
+    if ([doc isKindOfClass:[SimpleDocument class]]) {
+        [(SimpleDocument*)doc setModel:(DocumentModel*)compilable];
+    } else if ([doc isKindOfClass:[ProjectDocument class]]) {
+        [(ProjectDocument*)doc setModel:(ProjectModel*)compilable];
+    }
+    [doc makeWindowControllers];
+    
+    [doc showWindows];
+}
+
 - (void)showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable *)model andCompletionHandler:(void (^)(DocumentModel *))completionHandler {
     NSString *searchPath = [path stringByStandardizingPath];
     NSURL *searchURL = [NSURL fileURLWithPath:searchPath];

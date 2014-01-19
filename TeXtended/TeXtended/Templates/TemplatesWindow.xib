@@ -24,17 +24,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="779" height="442"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView focusRingType="none" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="39" horizontalPageScroll="10" verticalLineScroll="39" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-do-Z0m">
+                    <scrollView focusRingType="none" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="47" horizontalPageScroll="10" verticalLineScroll="47" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-do-Z0m">
                         <rect key="frame" x="9" y="49" width="236" height="373"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" focusRingType="none" ambiguous="YES" misplaced="YES" id="1jY-oy-5rD">
                             <rect key="frame" x="1" y="1" width="234" height="371"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="37" id="fot-nG-c5A">
+                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="fot-nG-c5A">
                                     <rect key="frame" x="0.0" y="0.0" width="234" height="371"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <size key="intercellSpacing" width="3" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
@@ -110,11 +110,12 @@
                         </buttonCell>
                         <connections>
                             <action selector="load:" target="-2" id="XjD-m9-u4p"/>
-                            <binding destination="-2" name="hidden" keyPath="self.isSaving" id="Xz3-6Q-HuD"/>
+                            <binding destination="-2" name="enabled" keyPath="self.canLoad" id="sEi-A2-ilN"/>
+                            <binding destination="-2" name="hidden" keyPath="self.isSaving" previousBinding="sEi-A2-ilN" id="nyt-oy-uui"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2b-7x-d0u">
-                        <rect key="frame" x="454" y="13" width="80" height="32"/>
+                        <rect key="frame" x="616" y="13" width="80" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qjt-0v-13A">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -133,6 +134,10 @@ Gw
                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GsA-Ne-19W">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="save:" target="-2" id="uXF-vs-rZj"/>
@@ -152,10 +157,15 @@ Gw
                         </buttonCell>
                         <connections>
                             <action selector="add:" target="Oxz-E2-b6H" id="gwe-Rr-U3T"/>
+                            <binding destination="-2" name="hidden" keyPath="self.isSaving" id="cRB-SQ-pN6">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yp-BB-m7W">
-                        <rect key="frame" x="616" y="13" width="80" height="32"/>
+                        <rect key="frame" x="327" y="13" width="80" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YL3-CX-yGr">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -164,10 +174,15 @@ Gw
                         <connections>
                             <action selector="removeTemplate:" target="-2" id="xJx-z9-6Oy"/>
                             <binding destination="-2" name="enabled" keyPath="self.canRemoveTemplate" id="k8c-Br-3v1"/>
+                            <binding destination="-2" name="hidden" keyPath="self.isSaving" previousBinding="k8c-Br-3v1" id="0C7-DG-cVu">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TvF-Tu-91U">
-                        <rect key="frame" x="534" y="13" width="80" height="32"/>
+                        <rect key="frame" x="247" y="13" width="80" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yVb-4g-2sp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -176,6 +191,11 @@ Gw
                         <connections>
                             <action selector="editTemplate:" target="-2" id="Vrr-hm-zb6"/>
                             <binding destination="-2" name="enabled" keyPath="self.canRemoveTemplate" id="Pp9-Pv-74R"/>
+                            <binding destination="-2" name="hidden" keyPath="self.isSaving" previousBinding="Pp9-Pv-74R" id="ic9-Ue-ZcD">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
                 </subviews>
