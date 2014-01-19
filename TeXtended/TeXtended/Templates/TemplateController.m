@@ -13,7 +13,8 @@
 #import "NSFileManager+TMTExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TemplatePlaceholderController.h"
-
+#import "TemplatesCollectionView.h"
+static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 @interface TemplateController ()
 - (void)loadCategories;
 - (void)loadTemplatesFromCategory:(NSString *)category;
@@ -25,6 +26,7 @@
 
 + (void)initialize {
     if ([self class] == [TemplateController class]) {
+        
         [self mergeDefaultTemplates];
     }
 }
@@ -68,12 +70,6 @@
     return self;
 }
 
-- (void)loadWindow {
-    [super loadWindow];
-    [self.currentTemplatesView setMaxItemSize:NSMakeSize(150, 200)];
-    [self.currentTemplatesView setMinItemSize:NSMakeSize(150, 200)];
-    [self.currentTemplatesView setAllowsMultipleSelection:NO];
-}
 
 
 
@@ -85,11 +81,24 @@
             [self.categories addObject:@{@"value":path}.mutableCopy];
         }
     }
+    [self.categoriesController rearrangeObjects];
 }
 
 + (NSString *)templateDirectory {
     NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
     return [applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName];
+}
+
+- (IBAction)deleteCategory:(id)sender {
+    NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Are you sure to delete the category? All contained templates will be deleted.", @"Are you sure to delete the category? All contained templates will be deleted.") defaultButton:NSLocalizedString(@"Remove", @"Remove Button") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:nil informativeTextWithFormat:@""];
+    NSModalResponse response = [alert runModal];
+    if (response == NSAlertDefaultReturn) {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if([fm removeItemAtPath:self.currentCategoryPath error:NULL]) {
+            [self loadCategories];
+        }
+        
+    }
 }
 
 - (void)openSavePanelForWindow:(NSWindow *)window {
@@ -222,6 +231,7 @@
     return self.currentTemplatesView.selectionIndexes.firstIndex != NSNotFound;
 }
 
+
 - (BOOL)templateExists {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *totalName = [self.templateName stringByAppendingPathExtension:TMTTemplateExtension];
@@ -243,6 +253,8 @@
         keys = [keys setByAddingObjectsFromArray:@[@"currentTemplatesView.selectionIndexes.firstIndex"]];
     } else if([key isEqualToString:@"canSaveEdit"]) {
         keys = [keys setByAddingObjectsFromArray:@[@"templateName", @"currentCategoryPath", @"templateExists"]];
+    } else if([key isEqualToString:@"canDeleteCategory"]) {
+        keys = [keys setByAddingObjectsFromArray:@[@"currentTemplates", @"isSaving"]];
     }
     return keys;
 }
@@ -250,6 +262,10 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    [self.currentTemplatesView setMaxItemSize:NSMakeSize(150, 200)];
+    [self.currentTemplatesView setMinItemSize:NSMakeSize(150, 200)];
+    [self.currentTemplatesView setAllowsMultipleSelection:NO];
+    [self.categoriesView registerForDraggedTypes:@[NSURLPboardType]];
     [self tableViewSelectionDidChange:nil];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -270,10 +286,14 @@
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
     NSString *newName = fieldEditor.string;
     NSString *oldName = [self.categories objectAtIndex:self.categoriesController.selectionIndex][@"value"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm directoryExistsAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:newName]]) {
+        return NO;
+    }
     if (!oldName || oldName.length == 0) {
+        [fm createDirectoryAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:newName] withIntermediateDirectories:YES attributes:nil error:NULL];
         return YES;
     }
-    NSFileManager *fm = [NSFileManager defaultManager];
     BOOL success = [fm moveItemAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:oldName] toPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:newName] error:nil];
     return success;
 }
@@ -295,5 +315,87 @@
     [self.currentTemplatesView setContent:self.currentTemplates];
     [self.currentTemplatesView setSelectionIndexes:[NSIndexSet indexSetWithIndex:0]];
 }
+
+
+#pragma mark - Drag and Drop
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+    if (self.isSaving) {
+        return ![indexes containsIndex:0];
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+    [pasteboard declareTypes:@[NSURLPboardType] owner:self];
+    NSArray *templates =  [self.currentTemplates objectsAtIndexes:indexes];
+    NSMutableArray *content = [NSMutableArray arrayWithCapacity:templates.count];
+    for(id obj in templates) {
+        if ([obj isKindOfClass:[Template class]]) {
+            NSURL *url = [NSURL fileURLWithPath:[(Template*)obj templatePath]];
+            [content addObject:url];
+        }
+    }
+    BOOL success = [pasteboard writeObjects:content];
+    return success && content.count > 0;
+}
+
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
+    if (dropOperation == NSTableViewDropAbove) {
+        return NO;
+    }
+    if (self.categoriesController.selectionIndex == row) {
+        return NO;
+    }
+    
+    NSString *category = [self.categories objectAtIndex:row][@"value"];
+    NSPasteboard *pb = [info draggingPasteboard];
+    NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
+                                     options:nil];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL success = YES;
+    for(NSURL *url in urls) {
+        NSString *sourcePath = url.path;
+        NSString *destPath = [[[TemplateController templateDirectory] stringByAppendingPathComponent:category] stringByAppendingPathComponent:sourcePath.lastPathComponent];
+        NSError *error;
+        if (![fm directoryExistsAtPath:destPath.stringByDeletingLastPathComponent]) {
+            [fm createDirectoryAtPath:destPath.stringByDeletingLastPathComponent withIntermediateDirectories:YES attributes:nil error:NULL];
+        }
+        success &= [fm moveItemAtPath:sourcePath toPath:destPath error:&error];
+        if (error) {
+            DDLogError(@"%@", error);
+        }
+    }
+    if (success) {
+        [self tableViewSelectionDidChange:nil];
+    }
+    return success;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+    if (dropOperation == NSTableViewDropAbove) {
+        return NSDragOperationNone;
+    }
+    NSPasteboard* pb = info.draggingPasteboard;
+    NSArray* urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
+                                      options:nil];
+    NSMutableArray *final = [NSMutableArray arrayWithCapacity:urls.count];
+    for(NSURL *url in urls) {
+        if ([url.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
+            [final addObject:url];
+        }
+    }
+    if (final.count == 0 || self.categoriesController.selectionIndex == row) {
+        return NSDragOperationNone;
+    }
+    
+    if ([[info draggingSource] isKindOfClass:[TemplatesCollectionView class]]) {
+        return NSDragOperationMove;
+    }
+    return NSDragOperationNone;
+}
+
 
 @end

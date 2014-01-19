@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 @class Template;
-@interface TemplateController : NSWindowController<NSTableViewDelegate,NSCollectionViewDelegate> {
+@interface TemplateController : NSWindowController<NSTableViewDelegate,NSCollectionViewDelegate,NSTableViewDataSource> {
     NSPopover *editPopover;
 }
+@property (strong) IBOutlet NSTableView *categoriesView;
 
 @property NSMutableArray *categories;
 @property NSMutableArray *currentTemplates;
@@ -24,6 +25,7 @@
 @property (strong) void (^saveHandler)(Template *template, BOOL success);
 @property (strong) void (^loadHandler)(Template *template, BOOL success);
 
+- (IBAction)deleteCategory:(id)sender;
 - (void)openSavePanelForWindow:(NSWindow *)window;
 - (void)openLoadWindow;
 - (IBAction)cancel:(id)sender;

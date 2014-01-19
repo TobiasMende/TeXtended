@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TemplateController">
             <connections>
                 <outlet property="categoriesController" destination="Oxz-E2-b6H" id="wW8-T2-4cf"/>
-                <outlet property="categoriesView" destination="fot-nG-c5A" id="nDt-N2-aKG"/>
+                <outlet property="categoriesView" destination="fot-nG-c5A" id="jgR-jJ-rRi"/>
                 <outlet property="currentTemplatesView" destination="Sip-Xo-Jfb" id="9HV-ui-gvN"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -58,6 +58,7 @@
                                     <connections>
                                         <binding destination="Oxz-E2-b6H" name="content" keyPath="arrangedObjects" id="pzq-W7-aTF"/>
                                         <binding destination="Oxz-E2-b6H" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="pzq-W7-aTF" id="hHn-yH-Ibs"/>
+                                        <outlet property="dataSource" destination="-2" id="VR7-Q3-44w"/>
                                         <outlet property="delegate" destination="-2" id="wof-hK-gpk"/>
                                     </connections>
                                 </tableView>
@@ -87,6 +88,7 @@
                                     <connections>
                                         <binding destination="CGX-kn-nyz" name="content" keyPath="arrangedObjects" id="kxQ-VZ-0p9"/>
                                         <binding destination="CGX-kn-nyz" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="kxQ-VZ-0p9" id="4Uz-VS-GwM"/>
+                                        <outlet property="delegate" destination="-2" id="ZLk-Lv-s5F"/>
                                         <outlet property="itemPrototype" destination="dmS-tf-P32" id="qpc-fu-9Eu"/>
                                     </connections>
                                 </collectionView>
@@ -149,9 +151,9 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3C-DB-ELt">
-                        <rect key="frame" x="125" y="13" width="126" height="32"/>
+                        <rect key="frame" x="93" y="13" width="90" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Add Category" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B8x-VQ-4mh">
+                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B8x-VQ-4mh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -162,6 +164,17 @@ DQ
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
+                        </connections>
+                    </button>
+                    <button toolTip="Only empty categories can be removed!" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vik-aK-oI4">
+                        <rect key="frame" x="3" y="13" width="90" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eep-FI-GPQ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="deleteCategory:" target="-2" id="tgc-P9-yvl"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yp-BB-m7W">
