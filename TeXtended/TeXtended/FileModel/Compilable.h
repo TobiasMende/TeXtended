@@ -35,6 +35,9 @@
 @property (nonatomic) BOOL hasDraftCompiler;
 @property (nonatomic) BOOL hasFinalCompiler;
 
+/** The NSTextEncoding of the file */
+@property (strong,nonatomic) NSNumber *encoding;
+
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
 @property (nonatomic, strong) NSSet *mainDocuments;
 
@@ -83,12 +86,5 @@
 - (NSString *) path;
 - (NSString *) type;
 - (NSString *) infoTitle;
-- (NSDate*) lastCompile;
-- (NSDate*) lastChanged;
-- (NSNumber*) encoding;
 - (NSArray *)bibFiles;
-@end
-
-@interface Compilable (Setter)
-- (void) setEncoding:(NSNumber*)encoding;
 @end

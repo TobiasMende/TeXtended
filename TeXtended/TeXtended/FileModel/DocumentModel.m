@@ -52,7 +52,11 @@ static NSArray *TMTEncodingsToCheck;
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:error];
     } else {
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:error];
-        self.encoding = @(encoding);
+        if (encoding == 0) {
+            *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can't detect a good encoding for this file. Please try to set the encoding manual", @"Can't detect a good encoding for this file. Please try to set the encoding manual"), NSStringEncodingErrorKey: @(encoding), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
+        } else {
+            self.encoding = @(encoding);
+        }
         
     }
     
@@ -139,7 +143,6 @@ static NSArray *TMTEncodingsToCheck;
     if (self) {
         self.lastChanged = [aDecoder decodeObjectForKey:@"lastChanged"];
         self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
-        self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
         self.project = [aDecoder decodeObjectForKey:@"project"];
         self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
         self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
@@ -165,7 +168,6 @@ static NSArray *TMTEncodingsToCheck;
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
     [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
-    [aCoder encodeObject:self.encoding forKey:@"encoding"];
     [aCoder encodeConditionalObject:self.project forKey:@"project"];
     NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
     if (basePath) {
@@ -489,6 +491,13 @@ static NSArray *TMTEncodingsToCheck;
         }
     }
     return _bibFiles;
+}
+
+- (NSNumber *)encoding {
+    if (!super.encoding && self.project) {
+        return self.project.encoding;
+    }
+    return super.encoding;
 }
 
 # pragma mark - Compile Setting Handling

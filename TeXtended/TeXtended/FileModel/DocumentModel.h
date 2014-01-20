@@ -45,8 +45,6 @@
  */
 @property (strong) NSString * systemPath;
 
-/** The NSTextEncoding of the file */
-@property (strong) NSNumber *encoding;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, assign) ProjectModel *project;

@@ -45,8 +45,8 @@
         encoding++;
     }
     [allEncodings sortUsingComparator:^NSComparisonResult(id first, id second) {
-        NSString *firstName = [NSString localizedNameOfStringEncoding:[first intValue]];
-        NSString *secondName = [NSString localizedNameOfStringEncoding:[second intValue]];
+        NSString *firstName = [NSString localizedNameOfStringEncoding:[first unsignedLongValue]];
+        NSString *secondName = [NSString localizedNameOfStringEncoding:[second unsignedLongValue]];
         return [firstName compare:secondName];
     }];
     

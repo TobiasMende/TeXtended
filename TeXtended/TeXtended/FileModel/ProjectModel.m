@@ -29,6 +29,7 @@
     self = [super init];
     if (self) {
         [self initDefaults];
+        
     }
     return self;
 }
@@ -77,6 +78,9 @@
     [self updateCompileSettingBindings:live];
     [self updateCompileSettingBindings:draft];
     [self updateCompileSettingBindings:final];
+    if (!self.encoding) {
+        self.encoding = @(NSUTF8StringEncoding);
+    }
 }
 
 
@@ -127,13 +131,6 @@
     return NSLocalizedString(@"Project Information", @"Projectinformation");
 }
 
-- (NSDate *)lastChanged {
-    return nil;
-}
-
-- (NSDate *)lastCompile {
-    return nil;
-}
 
 - (void)setPath:(NSString *)path {
     if (![_path isEqualToString:path]) {
@@ -149,9 +146,6 @@
     return self;
 }
 
-- (NSNumber*) encoding {
-    return nil;
-}
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");

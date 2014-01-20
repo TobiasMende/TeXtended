@@ -38,6 +38,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         self.draftCompiler = [aDecoder decodeObjectForKey:@"draftCompiler"];
         self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
         self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
+        self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
         
         self.hasFinalCompiler = self.finalCompiler != nil;
         self.hasDraftCompiler = self.draftCompiler != nil;
@@ -70,6 +71,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
     }
     [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
+    [aCoder encodeObject:_encoding forKey:@"encoding"];
 }
 
 
