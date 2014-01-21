@@ -21,6 +21,9 @@
  
  */
 - (void)initDefaults;
+
+/** This method coverts bibfiles from older project versions from NSSet to NSArray */
+- (NSMutableArray*)convertBibFiles:(id)bibfiles;
 @end
 
 @implementation ProjectModel
@@ -39,11 +42,24 @@
     if (self) {
         self.path = [aDecoder decodeObjectForKey:@"path"];
         self.documents = [aDecoder decodeObjectForKey:@"documents"];
-        self.bibFiles = [aDecoder decodeObjectForKey:@"bibFiles"];
+        
+        self.bibFiles = [self convertBibFiles:[aDecoder decodeObjectForKey:@"bibFiles"]];
         self.properties = [aDecoder decodeObjectForKey:@"properties"];
         [self initDefaults];
     }
     return self;
+}
+
+- (NSMutableArray *)convertBibFiles:(id)bibfiles {
+    if ([bibfiles isKindOfClass:[NSSet class]]) {
+        NSMutableArray *finalBibfiles = [NSMutableArray arrayWithCapacity:[(NSSet *)bibfiles count]];
+        for(id b in bibfiles) {
+            [finalBibfiles addObject:b];
+        }
+        return finalBibfiles;
+    } else {
+        return bibfiles;
+    }
 }
 
 - (void)finishInitWithPath:(NSString *)absolutePath {
