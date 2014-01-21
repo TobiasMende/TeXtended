@@ -112,11 +112,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.2</string>
+	<string>0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>12</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -140,6 +140,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>TeXtendedProjectFolder</string>
+			<key>UTTypeIconFile</key>
+			<string>projecticon</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.folder</string>
 			<key>UTTypeTagSpecification</key>
@@ -170,6 +172,23 @@
 				<key>public.mime-type</key>
 				<array>
 					<string>text/x-latex</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>recentDocumentURLs</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>TeXtendedProject File</string>
+			<key>UTTypeIconFile</key>
+			<string>projecticon</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>teXpf</string>
 				</array>
 			</dict>
 		</dict>

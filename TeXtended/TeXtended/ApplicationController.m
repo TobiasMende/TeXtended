@@ -36,6 +36,7 @@ static ApplicationController *sharedInstance;
     //Register default user defaults
     [self registerDefaults];
     [LatexSpellChecker sharedSpellChecker];
+    [DocumentCreationController sharedDocumentController];
     // Merging compile flows
     [self mergeCompileFlows:NO];
 }
@@ -274,7 +275,6 @@ static ApplicationController *sharedInstance;
         }
     }
 }
-
 
 
 
