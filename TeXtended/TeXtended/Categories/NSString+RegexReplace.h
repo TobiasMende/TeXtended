@@ -36,6 +36,6 @@
  @see [NSRegularExpression](https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html)
  */
 - (NSString*)stringByReplacingRegularExpression:(NSString*)pattern withString:(NSString*)replace options:(NSRegularExpressionOptions)options;
-- (NSAttributedString *)attributedStringBySubstitutingPlaceholders;
+- (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders;
 
 @end

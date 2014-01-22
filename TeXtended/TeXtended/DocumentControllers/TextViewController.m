@@ -296,7 +296,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)setContent:(NSString *)content {
     if (content) {
-        [self.textView.textStorage setAttributedString:[content attributedStringBySubstitutingPlaceholders]];
+        NSMutableAttributedString *string = [content attributedStringBySubstitutingPlaceholders];
+        [string addAttributes:self.textView.typingAttributes range:NSMakeRange(0, string.length)];
+        [self.textView.textStorage setAttributedString:string];
         [self.textView.syntaxHighlighter highlightEntireDocument];
     }
     [self updateMessageCollection:nil];

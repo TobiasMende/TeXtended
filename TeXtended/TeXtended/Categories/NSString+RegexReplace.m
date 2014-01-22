@@ -45,7 +45,7 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
 }
 
 
-- (NSAttributedString *)attributedStringBySubstitutingPlaceholders {
+- (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders {
     NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:self];
         NSArray *matches = [PLACEHOLDER_REGEX matchesInString:self options:0 range:NSMakeRange(0, self.length)];
         NSInteger offset = 0;
