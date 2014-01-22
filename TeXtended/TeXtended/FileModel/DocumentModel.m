@@ -53,7 +53,7 @@ static NSArray *TMTEncodingsToCheck;
     } else {
         content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:error];
         if (encoding == 0) {
-            *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't detect a good encoding for this file. Please try to set the encoding by yourself.", @"Can't detect a good encoding for this file. Please try to set the encoding by yourself."),NSLocalizedDescriptionKey: NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey: @(encoding), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
+            *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."),NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."),NSLocalizedDescriptionKey: NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey: @(encoding), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
         } else {
             self.encoding = @(encoding);
         }
