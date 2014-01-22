@@ -134,6 +134,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+    *outError = nil;
     if (![standardDocumentTypes containsObject:typeName]) {
         if (outError) {
             *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];
@@ -151,10 +152,10 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         self.model.encoding = @([contr.encController selection]);
         
     }
-    NSError *loadError;
-    [self.model loadContent:&loadError];
-    if (loadError) {
-        *outError = loadError;
+    if (!*outError) {
+        [self.model loadContent:outError];
+    }
+    if (*outError) {
         return NO;
     }
     
