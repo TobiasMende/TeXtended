@@ -12,7 +12,8 @@ static NSSet *COMPLETION_ESCAPE_INSERTIONS;
 #define COMMAND_PREFIX_SIZE 100
 @implementation NSString (LatexExtension)
 
-+ (void)initialize {
+__attribute__((constructor))
+static void initialize_navigationBarImages() {
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
 }
 
@@ -77,8 +78,8 @@ static NSSet *COMPLETION_ESCAPE_INSERTIONS;
             result.location--;
             result.length++;
             __block NSRange tmp = NSMakeRange(result.location, 0);
-            [weakSelf enumerateSubstringsInRange:result options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-                if ([COMPLETION_ESCAPE_INSERTIONS containsObject:substring]) {
+            [weakSelf enumerateSubstringsInRange:result options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *subs, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                if ([COMPLETION_ESCAPE_INSERTIONS containsObject:subs]) {
                     *stop = YES;
                 } else {
                     tmp.length++;

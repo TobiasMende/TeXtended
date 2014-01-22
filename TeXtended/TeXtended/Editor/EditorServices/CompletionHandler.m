@@ -483,7 +483,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             if (charRange.location >= [key length]) {
                 // NSRange prefixRange = NSMakeRange(charRange.location-key.length, key.length);
                 NSString *prefixString = [view.string substringWithRange:prefixRange] ;
-                if ([prefixString hasPrefix:key]) {
+                if ([prefixString isEqualToString:key]) {
                     return [COMPLETION_BY_PREFIX_TYPE[type] intValue];
                 }
             }
