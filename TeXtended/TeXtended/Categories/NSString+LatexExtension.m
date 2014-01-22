@@ -13,7 +13,7 @@ static NSSet *COMPLETION_ESCAPE_INSERTIONS;
 @implementation NSString (LatexExtension)
 
 __attribute__((constructor))
-static void initialize_navigationBarImages() {
+static void initialize_COMPLETION_ESCAPE_INSERTIONS() {
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
 }
 

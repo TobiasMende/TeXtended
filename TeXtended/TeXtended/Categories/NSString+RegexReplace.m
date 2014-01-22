@@ -29,10 +29,10 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation NSString (RegexReplace)
 
 
-+ (void)initialize {
-    if ([self class] == [NSString class]) {
-        PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:nil];
-    }
+
+__attribute__((constructor))
+static void initialize_PLACEHOLDER_REGEX() {
+    PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:nil];
 }
 
 - (NSString*)stringByReplacingRegularExpression:(NSString*)pattern withString:(NSString*)replace options:(NSRegularExpressionOptions)options {
