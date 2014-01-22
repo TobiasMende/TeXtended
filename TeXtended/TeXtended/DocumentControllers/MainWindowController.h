@@ -69,6 +69,5 @@
 - (void) addTabViewItemToFirst:(TMTTabViewItem *)item;
 - (void) addTabViewItemToSecond:(TMTTabViewItem *)item;
 
-- (BOOL)shouldHideShareButton;
 
 @end

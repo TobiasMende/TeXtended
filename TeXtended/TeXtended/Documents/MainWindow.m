@@ -10,11 +10,18 @@
 #import "MainWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+@interface MainWindow ()
+@end
+
 @implementation MainWindow
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
 }
+
+
+
+
 
 
 @end

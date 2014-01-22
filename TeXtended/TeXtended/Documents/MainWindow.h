@@ -14,7 +14,8 @@
  **Author:** Tobias Mende
  
  */
-@interface MainWindow : NSWindow
+@interface MainWindow : NSWindow<NSToolbarDelegate>
 /** Reference to the controller of this window */
 @property (assign) IBOutlet MainWindowController *controller;
+
 @end

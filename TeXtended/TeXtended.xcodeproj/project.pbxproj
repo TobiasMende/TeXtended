@@ -101,6 +101,7 @@
 		D2574995186324730025A536 /* DBLPButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574994186324730025A536 /* DBLPButtonView.m */; };
 		D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25749961863247F0025A536 /* DBLPButtonView.xib */; };
 		D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749A11863515C0025A536 /* DBLPIntegrator.m */; };
+		D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FBAAB18903EED00FD3987 /* MainToolbar.m */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -480,6 +481,8 @@
 		D25749A01863515C0025A536 /* DBLPIntegrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPIntegrator.h; sourceTree = "<group>"; };
 		D25749A11863515C0025A536 /* DBLPIntegrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPIntegrator.m; sourceTree = "<group>"; };
 		D25749BA186370450025A536 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D25FBAAA18903EED00FD3987 /* MainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainToolbar.h; sourceTree = "<group>"; };
+		D25FBAAB18903EED00FD3987 /* MainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainToolbar.m; sourceTree = "<group>"; };
 		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
@@ -986,6 +989,8 @@
 				D252288B1764B83400C203AD /* MainWindow.m */,
 				D27F805118253A3E00BCD72A /* MainDocument.h */,
 				D27F805218253A3E00BCD72A /* MainDocument.m */,
+				D25FBAAA18903EED00FD3987 /* MainToolbar.h */,
+				D25FBAAB18903EED00FD3987 /* MainToolbar.m */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1688,6 +1693,7 @@
 				D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */,
 				D2E7A4FC1768E8F400B2BA3C /* CommandCompletion.m in Sources */,
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
+				D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
 				D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,

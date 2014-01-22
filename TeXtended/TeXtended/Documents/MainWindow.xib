@@ -101,9 +101,9 @@
                     </splitView>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368">
+            <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368" customClass="MainToolbar">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="31ED8C2B-FDAF-495E-89C6-9D4309F6B4B4" label="Share" paletteLabel="Share" image="NSShareTemplate" id="7h0-7I-Mh2" userLabel="Toolbar Item - Share">
+                    <toolbarItem implicitItemIdentifier="31ED8C2B-FDAF-495E-89C6-9D4309F6B4B4" explicitItemIdentifier="SharingButton" label="Share" paletteLabel="Share" image="NSShareTemplate" id="7h0-7I-Mh2" userLabel="Toolbar Item - Share">
                         <nil key="toolTip"/>
                         <size key="minSize" width="30" height="25"/>
                         <size key="maxSize" width="30" height="40"/>
@@ -116,7 +116,6 @@
                             </buttonCell>
                             <connections>
                                 <action selector="shareFile:" target="-1" id="cMG-2N-LD5"/>
-                                <binding destination="-2" name="hidden" keyPath="self.shouldHideShareButton" id="rbZ-EJ-KM8"/>
                             </connections>
                         </button>
                     </toolbarItem>

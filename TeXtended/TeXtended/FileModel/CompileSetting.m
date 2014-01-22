@@ -76,10 +76,10 @@
 
 - (id)copy {
     CompileSetting *setting = [CompileSetting new];
-    setting.compilerPath = self.compilerPath;
-    setting.compileBib = self.compileBib;
-    setting.numberOfCompiles = self.numberOfCompiles;
-    setting.customArgument = self.customArgument;
+    setting.compilerPath = [self.compilerPath copy];
+    setting.compileBib = [self.compileBib copy];
+    setting.numberOfCompiles = [self.numberOfCompiles copy];
+    setting.customArgument = [self.customArgument copy];
     return setting;
 }
 

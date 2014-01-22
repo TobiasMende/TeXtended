@@ -339,45 +339,7 @@ static NSArray *TMTEncodingsToCheck;
     return path;
 }
 
-- (void)updateCompileSettingBindings:(CompileMode)mode {
-    switch (mode) {
-        case live:
-        if (!self.hasLiveCompiler) {
-            if (self.project) {
-                self.liveCompiler = [self.project.liveCompiler copy];
-                [self.liveCompiler bindAllTo:self.project.liveCompiler];
-            } else {
-                [super updateCompileSettingBindings:mode];
-            }
-        }
-        break;
-        case draft:
-        if (!self.hasDraftCompiler) {
-            if (self.project) {
-                self.draftCompiler = [self.project.draftCompiler copy];
-                [self.draftCompiler bindAllTo:self.project.draftCompiler];
-            } else {
-                [super updateCompileSettingBindings:mode];
-            }
-        }
-        break;
-        case final:
-        if (!self.hasFinalCompiler) {
-            if (self.project) {
-                self.finalCompiler = [self.project.finalCompiler copy];
-                [self.finalCompiler bindAllTo:self.project.finalCompiler];
-            } else {
-                [super updateCompileSettingBindings:mode];
-            }
-        }
-        break;
-        default:
-        break;
-    }
-    if (!self.project) {
-        [super updateCompileSettingBindings:mode];
-    }
-}
+
 
 # pragma mark - KVO
 
@@ -502,6 +464,39 @@ static NSArray *TMTEncodingsToCheck;
 
 # pragma mark - Compile Setting Handling
 
+- (void)updateCompileSettingBindings:(CompileMode)mode {
+    switch (mode) {
+        case live:
+            if (!self.hasLiveCompiler) {
+                if (self.project) {
+                    self.liveCompiler = [self.project.liveCompiler copy];
+                    [self.liveCompiler bindAllTo:self.project.liveCompiler];
+                }
+            }
+            break;
+        case draft:
+            if (!self.hasDraftCompiler) {
+                if (self.project) {
+                    self.draftCompiler = [self.project.draftCompiler copy];
+                    [self.draftCompiler bindAllTo:self.project.draftCompiler];
+                }
+            }
+            break;
+        case final:
+            if (!self.hasFinalCompiler) {
+                if (self.project) {
+                    self.finalCompiler = [self.project.finalCompiler copy];
+                    [self.finalCompiler bindAllTo:self.project.finalCompiler];
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    if (!self.project) {
+        [super updateCompileSettingBindings:mode];
+    }
+}
 
 
 #pragma mark -

@@ -51,6 +51,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 {
     DDLogVerbose(@"windowDidLoad");
     [super windowDidLoad];
+    
     BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
     self.firsTabViewController.closeWindowForLastTabDrag = NO;
     self.secondTabViewController.closeWindowForLastTabDrag = NO;
@@ -102,9 +103,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     }
 }
 
-- (BOOL)shouldHideShareButton {
-    return (NSAppKitVersionNumber < NSAppKitVersionNumber10_8);
-}
 
 
 - (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
