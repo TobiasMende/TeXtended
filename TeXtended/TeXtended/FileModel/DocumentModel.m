@@ -162,6 +162,9 @@ static NSArray *TMTEncodingsToCheck;
     if (self.texPath) {
         self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
     }
+    [self updateCompileSettingBindings:live];
+    [self updateCompileSettingBindings:draft];
+    [self updateCompileSettingBindings:final];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
