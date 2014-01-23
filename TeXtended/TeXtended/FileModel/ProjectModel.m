@@ -72,6 +72,13 @@
     }
 }
 
+- (void)updateCompileSettingBindings:(CompileMode)mode {
+    [super updateCompileSettingBindings:mode];
+    for(DocumentModel *doc in self.documents) {
+        [doc updateCompileSettingBindings:mode];
+    }
+}
+
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
