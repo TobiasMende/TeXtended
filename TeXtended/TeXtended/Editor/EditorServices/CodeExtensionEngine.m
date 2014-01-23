@@ -15,6 +15,7 @@
 #import "CompletionManager.h"
 #import "CommandCompletion.h"
 #import "BibFile.h"
+#import "CiteInfoViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import <BibTexToolsFramework/TMTBibTexEntry.h>
 
@@ -136,17 +137,12 @@ static const NSSet *KEYS_TO_UNBIND;
                 if (self.shouldLinkTexdoc) {
                     
                     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
-                    TMTBibTexEntry *citeEntry = nil;
-                    for(BibFile *file in [view.firstResponderDelegate model].bibFiles) {
-                        citeEntry = [file entryForCiteKey:[str substringWithRange:finalRange]];
-                        if (citeEntry) {
-                            break;
-                        }
-                    }
-                    if (citeEntry) {
+                    NSString *key = [str substringWithRange:finalRange];
+                    TMTBibTexEntry *citeEntry = [view.firstResponderDelegate.model findBibTexEntryForKey:key containingDocument:NULL];
+                    if (key) {
                         NSString *description = [NSString stringWithFormat:@"%@\n%@", citeEntry.author, citeEntry.title];
                         attributes[NSToolTipAttributeName] = description;
-                        attributes[NSLinkAttributeName] = [NSString stringWithFormat:@"%@%@", CITE_PREFIX, description];
+                        attributes[NSLinkAttributeName] = [NSString stringWithFormat:@"%@%@", CITE_PREFIX, key];
                         attributes[NSForegroundColorAttributeName] = self.linkColor;
                         if (self.shouldUnderlineTexdoc) {
                             attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
@@ -228,13 +224,13 @@ static const NSSet *KEYS_TO_UNBIND;
         [tc executeTexdocForPackage:packageName withInfo:dict andHandler:self];
         return YES;
     } else if([url hasPrefix:CITE_PREFIX]) {
-        NSString *content = [url substringFromIndex:CITE_PREFIX.length];
-        NSArray *split = [content componentsSeparatedByString:@"\n"];
-        TMTBibTexEntry *entry = [TMTBibTexEntry new];
-        entry.title = [split objectAtIndex:1];
-        entry.author = [split objectAtIndex:0];
-        NSViewController *vc = [[NSViewController alloc] initWithNibName:@"CiteInfoView" bundle:[NSBundle mainBundle]];
+        NSString *citeKey = [url substringFromIndex:CITE_PREFIX.length];
+        NSString *filePath = nil;
+        TMTBibTexEntry *entry = [view.firstResponderDelegate.model findBibTexEntryForKey:citeKey containingDocument:&filePath];
+        
+        CiteInfoViewController *vc = [CiteInfoViewController new];
         vc.representedObject = entry;
+        vc.bibFilePath = filePath;
         popover.contentViewController = vc;
         @try {
             popover.contentSize = vc.view.bounds.size;

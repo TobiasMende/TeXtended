@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Constants.h"
 
-@class CompileSetting,DocumentModel,ProjectModel, BibFile;
+@class CompileSetting,DocumentModel,ProjectModel, BibFile, TMTBibTexEntry;
 
 /**
  Abstract parent class for ProjectModel and DocumentModel which combines similar properties of both subclasses.
@@ -76,6 +76,8 @@
 - (void) finishInitWithPath:(NSString* )absolutePath;
 
 - (void) updateCompileSettingBindings:(CompileMode) mode;
+
+- (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
 
 @end
 

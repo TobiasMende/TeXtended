@@ -108,6 +108,8 @@
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
+		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
+		D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D27CD19918913F2100A99997 /* FolderPenIcon.icns */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
 		D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28089B3181BBAE100EEF55C /* OutlineTabViewController.m */; };
 		D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089B4181BBAE100EEF55C /* OutlineTabView.xib */; };
@@ -512,6 +514,9 @@
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D27CD1961891388100A99997 /* CiteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteInfoViewController.h; sourceTree = "<group>"; };
+		D27CD1971891388100A99997 /* CiteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteInfoViewController.m; sourceTree = "<group>"; };
+		D27CD19918913F2100A99997 /* FolderPenIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FolderPenIcon.icns; sourceTree = "<group>"; };
 		D27F805118253A3E00BCD72A /* MainDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocument.h; sourceTree = "<group>"; };
 		D27F805218253A3E00BCD72A /* MainDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocument.m; sourceTree = "<group>"; };
 		D28089B2181BBAE100EEF55C /* OutlineTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineTabViewController.h; sourceTree = "<group>"; };
@@ -1101,6 +1106,8 @@
 				D2574994186324730025A536 /* DBLPButtonView.m */,
 				D25749961863247F0025A536 /* DBLPButtonView.xib */,
 				D291E684188055F700CDC8C8 /* CiteInfoView.xib */,
+				D27CD1961891388100A99997 /* CiteInfoViewController.h */,
+				D27CD1971891388100A99997 /* CiteInfoViewController.m */,
 			);
 			path = CustomTableCellViews;
 			sourceTree = "<group>";
@@ -1286,6 +1293,7 @@
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D27CD19918913F2100A99997 /* FolderPenIcon.icns */,
 				D2CF6196177247E200ACC3D5 /* info.png */,
 				D2CF6197177247E200ACC3D5 /* warning.png */,
 				D296059C178091F7007C599B /* SplitviewBottom.pdf */,
@@ -1589,6 +1597,7 @@
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
 				D257498918631AFA0025A536 /* CiteCompletionView.xib in Resources */,
 				D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */,
+				D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */,
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
 				D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */,
 				F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */,
@@ -1785,6 +1794,7 @@
 				D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */,
 				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				F6E5C488188A774400D2A911 /* GraphController.m in Sources */,
+				D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */,
 				D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,

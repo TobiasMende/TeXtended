@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CiteInfoViewController">
             <connections>
                 <outlet property="view" destination="QHM-tW-Uga" id="Fqz-6B-bfS"/>
             </connections>
@@ -25,12 +25,12 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="toolTip" keyPath="self.representedObject.title" id="jsb-6K-H4X"/>
                         <binding destination="-2" name="value" keyPath="self.representedObject.title" id="9Jv-Nu-uyg"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.representedObject.title" id="jsb-6K-H4X"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUV-9K-PZP">
-                    <rect key="frame" x="3" y="1" width="210" height="31"/>
+                    <rect key="frame" x="3" y="1" width="196" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Label" id="DWS-0F-3nc">
                         <font key="font" metaFont="miniSystem"/>
@@ -42,7 +42,26 @@
                         <binding destination="-2" name="value" keyPath="self.representedObject.author" id="kp8-0x-WGS"/>
                     </connections>
                 </textField>
+                <button toolTip="Open in Bibdesk" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pR-Xe-DMg">
+                    <rect key="frame" x="197" y="1" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="FolderPenIcon" imagePosition="above" alignment="left" imageScaling="proportionallyDown" inset="2" id="4Vh-i3-tcZ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showInBibdesk:" target="-2" id="BOA-1Q-TSc"/>
+                        <binding destination="-2" name="hidden" keyPath="self.shouldShowBibDeskButton" id="0Up-Z6-pFr">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
         </customView>
     </objects>
+    <resources>
+        <image name="FolderPenIcon" width="128" height="128"/>
+    </resources>
 </document>

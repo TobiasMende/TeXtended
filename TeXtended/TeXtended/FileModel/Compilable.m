@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
+#import "BibFile.h"
+#import <BibTexToolsFramework/TMTBibTexEntry.h>
 
 static NSUInteger LAST_IDENTIFIER = 0;
 @interface Compilable ()
@@ -175,6 +177,21 @@ static NSUInteger LAST_IDENTIFIER = 0;
         _hasFinalCompiler = hasFinalCompiler;
     }
     [self updateCompileSettingBindings:final];
+}
+
+- (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString *__autoreleasing *)path {
+    TMTBibTexEntry *citeEntry = nil;
+    
+    for(BibFile *file in self.bibFiles) {
+        citeEntry = [file entryForCiteKey:key];
+        if (citeEntry) {
+            if (path) {
+                *path = file.path;
+            }
+            break;
+        }
+    }
+    return citeEntry;
 }
 
 #pragma mark -
