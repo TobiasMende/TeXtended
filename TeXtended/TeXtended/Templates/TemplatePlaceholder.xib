@@ -44,7 +44,7 @@
                             </binding>
                         </connections>
                     </customView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="T4S-jH-TGB">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="T4S-jH-TGB">
                         <rect key="frame" x="16" y="39" width="122" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="bAK-IE-tHW">

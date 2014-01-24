@@ -38,8 +38,6 @@
                     </textField>
                 </subviews>
             </view>
-            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-            <color key="fillColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
             <connections>
                 <binding destination="-2" name="transparent" keyPath="self.selected" id="fqt-lk-bKF">
                     <dictionary key="options">

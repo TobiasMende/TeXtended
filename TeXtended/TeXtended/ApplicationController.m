@@ -122,7 +122,6 @@ static ApplicationController *sharedInstance;
                     NSString *name = path.lastPathComponent.stringByDeletingPathExtension;
                     NSString *dir = path.stringByDeletingLastPathComponent;
                     NSError *error = nil;
-                    NSFileManager *fm = [NSFileManager defaultManager];
                     Compilable *compilable = [template createInstanceWithName:name inDirectory:dir withError:&error];
                     if (error) {
                         [[NSAlert alertWithError:error] runModal];

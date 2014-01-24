@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -17,10 +17,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTY-ls-cu9">
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTY-ls-cu9">
                     <rect key="frame" x="20" y="53" width="560" height="135"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <clipView key="contentView" ambiguous="YES" misplaced="YES" id="hd3-Rh-TJ4">
+                    <clipView key="contentView" id="hd3-Rh-TJ4">
                         <rect key="frame" x="1" y="1" width="558" height="133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -81,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SCF-Zr-7C4">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="SCF-Zr-7C4">
                     <rect key="frame" x="531" y="20" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UpU-QU-HJa">
@@ -105,7 +105,7 @@
                         </binding>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8q-0E-lq6">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="d8q-0E-lq6">
                     <rect key="frame" x="555" y="20" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7e6-Kj-CXy">
@@ -121,9 +121,13 @@
                         </binding>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2sc-Bi-qf6">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="2sc-Bi-qf6">
                     <rect key="frame" x="404" y="20" width="123" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Yhe-Hg-kKL"/>
+                        <constraint firstAttribute="width" constant="123" id="gNT-ck-rTL"/>
+                    </constraints>
                     <buttonCell key="cell" type="square" title="Create Bibfile" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W1i-D7-58J">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -138,6 +142,22 @@
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="d8q-0E-lq6" firstAttribute="leading" secondItem="2sc-Bi-qf6" secondAttribute="trailing" constant="28" id="2wM-B1-E6m"/>
+                <constraint firstItem="dTY-ls-cu9" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="5eO-4b-D7S"/>
+                <constraint firstItem="dTY-ls-cu9" firstAttribute="trailing" secondItem="d8q-0E-lq6" secondAttribute="trailing" id="Bai-IQ-Rof"/>
+                <constraint firstItem="dTY-ls-cu9" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="CsX-rk-PVe"/>
+                <constraint firstItem="SCF-Zr-7C4" firstAttribute="bottom" secondItem="d8q-0E-lq6" secondAttribute="bottom" id="EPE-ig-2eE"/>
+                <constraint firstAttribute="bottom" secondItem="2sc-Bi-qf6" secondAttribute="bottom" constant="20" symbolic="YES" id="IFc-Xr-MuZ"/>
+                <constraint firstItem="SCF-Zr-7C4" firstAttribute="bottom" secondItem="2sc-Bi-qf6" secondAttribute="bottom" id="O41-xh-x0P"/>
+                <constraint firstAttribute="trailing" secondItem="dTY-ls-cu9" secondAttribute="trailing" constant="20" symbolic="YES" id="XQU-9E-KBt"/>
+                <constraint firstItem="2sc-Bi-qf6" firstAttribute="top" secondItem="dTY-ls-cu9" secondAttribute="bottom" constant="8" symbolic="YES" id="YjJ-Pg-66U"/>
+                <constraint firstAttribute="trailing" secondItem="SCF-Zr-7C4" secondAttribute="trailing" constant="44" id="fbU-MZ-Gd2"/>
+                <constraint firstItem="SCF-Zr-7C4" firstAttribute="top" secondItem="dTY-ls-cu9" secondAttribute="bottom" constant="8" symbolic="YES" id="ia0-Yh-eKK"/>
+                <constraint firstItem="d8q-0E-lq6" firstAttribute="top" secondItem="dTY-ls-cu9" secondAttribute="bottom" constant="8" symbolic="YES" id="lMH-qd-a27"/>
+                <constraint firstItem="SCF-Zr-7C4" firstAttribute="leading" secondItem="2sc-Bi-qf6" secondAttribute="trailing" constant="4" id="pwR-WP-AlO"/>
+                <constraint firstItem="d8q-0E-lq6" firstAttribute="leading" secondItem="SCF-Zr-7C4" secondAttribute="trailing" constant="-1" id="z8Z-4R-o5U"/>
+            </constraints>
         </customView>
         <arrayController automaticallyRearrangesObjects="YES" id="BAr-ek-hQR"/>
     </objects>

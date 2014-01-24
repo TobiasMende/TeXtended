@@ -16,16 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="318" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fs5-aV-QJv">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fs5-aV-QJv">
                     <rect key="frame" x="5" y="136" width="118" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="114" id="mEi-2J-T4g"/>
+                    </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Template Name:" id="1qD-n2-Wea">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3j-xe-hQT">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S3j-xe-hQT">
                     <rect key="frame" x="129" y="133" width="182" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="PSj-fw-x3y">
@@ -42,14 +45,14 @@
                         </binding>
                     </connections>
                 </textField>
-                <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5A-Ov-If4">
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5A-Ov-If4">
                     <rect key="frame" x="7" y="37" width="304" height="66"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
-                    <clipView key="contentView" ambiguous="YES" misplaced="YES" id="FRZ-61-0b6">
+                    <clipView key="contentView" id="FRZ-61-0b6">
                         <rect key="frame" x="1" y="1" width="302" height="64"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView ambiguous="YES" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="bTJ-mM-lNs">
+                            <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="bTJ-mM-lNs">
                                 <rect key="frame" x="0.0" y="0.0" width="302" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-UK-a7o">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-UK-a7o">
                     <rect key="frame" x="5" y="111" width="295" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Description:" id="SGe-kh-Kf7">
@@ -83,7 +86,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDx-NU-eSt">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NDx-NU-eSt">
                     <rect key="frame" x="191" y="0.0" width="126" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Save Changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1GC-wB-Sab">
@@ -109,6 +112,22 @@ DQ
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="Bge-UK-a7o" firstAttribute="leading" secondItem="f5A-Ov-If4" secondAttribute="leading" id="2Ng-xQ-6Lf"/>
+                <constraint firstItem="f5A-Ov-If4" firstAttribute="trailing" secondItem="NDx-NU-eSt" secondAttribute="trailing" id="4Fh-pI-XzQ"/>
+                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="Bge-UK-a7o" secondAttribute="leading" id="4ME-Qw-QMO"/>
+                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="7" id="8Mq-xI-J6c"/>
+                <constraint firstAttribute="bottom" secondItem="NDx-NU-eSt" secondAttribute="bottom" constant="7" id="8w4-8X-B0P"/>
+                <constraint firstItem="f5A-Ov-If4" firstAttribute="top" secondItem="Bge-UK-a7o" secondAttribute="bottom" constant="8" symbolic="YES" id="BFU-37-kgo"/>
+                <constraint firstItem="f5A-Ov-If4" firstAttribute="trailing" secondItem="S3j-xe-hQT" secondAttribute="trailing" id="BLV-Bb-KGH"/>
+                <constraint firstItem="S3j-xe-hQT" firstAttribute="top" secondItem="1" secondAttribute="top" constant="7" id="EWP-Nf-Wea"/>
+                <constraint firstItem="NDx-NU-eSt" firstAttribute="top" secondItem="f5A-Ov-If4" secondAttribute="bottom" constant="9" id="M96-y9-zVu"/>
+                <constraint firstAttribute="trailing" secondItem="Bge-UK-a7o" secondAttribute="trailing" constant="20" symbolic="YES" id="Oia-FM-gCA"/>
+                <constraint firstItem="S3j-xe-hQT" firstAttribute="leading" secondItem="Fs5-aV-QJv" secondAttribute="trailing" constant="8" symbolic="YES" id="aTQ-YY-MfP"/>
+                <constraint firstItem="f5A-Ov-If4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="cuS-DU-SuD"/>
+                <constraint firstItem="Bge-UK-a7o" firstAttribute="top" secondItem="Fs5-aV-QJv" secondAttribute="bottom" constant="8" symbolic="YES" id="hzw-1h-o3j"/>
+                <constraint firstItem="S3j-xe-hQT" firstAttribute="centerY" secondItem="Fs5-aV-QJv" secondAttribute="centerY" id="wie-bM-284"/>
+            </constraints>
         </customView>
     </objects>
 </document>
