@@ -14,11 +14,39 @@ static NSCharacterSet *IGNORED_CHARACTERS_IN_ENTRY_ATTRIBUTES;
 static NSCharacterSet *LINE_END_CHARACTERS;
 
 @interface TMTBibTexParser ()
+/**
+ Methods moves the scanners cursor behing comments if any
+ */
 - (void) skipComments;
+
+/**
+ Parses the entire next bib entry if available.
+ @param results an array to be filled with the results.
+ @return `YES` if the scanner was able to parse an entry or `NO` if something went wrong (e.g. wrong position)
+ */
 - (BOOL)parseNextEntry:(NSMutableArray*)results;
+
+/** Parses the entries type
+ @return the type
+ */
 - (NSString*)parseType;
+
+/** Parses the cite key and writes the result into the given entry.
+ @param entry the entry to put the key in
+ */
 - (void)parseCiteKey:(TMTBibTexEntry *)entry;
+
+/** Parses all attributes of the entry in front of the scanners cursor into the given TMTBibTexEntry.
+ An attribute is defined as `key = value`.
+ @param entry the object to fill with the parsed attributes.
+
+ */
 - (void)parseAttributes:(TMTBibTexEntry *)entry;
+
+/**
+  Parses the value of an attribute.
+ @return the attributes value or `nil` if the algorithm fails (e.g. wrong position, invalid file).
+ */
 - (NSString *)parseAttributeValue;
 - (NSString *)parseNestedValue;
 - (NSString *)parseConcatenatedValue;

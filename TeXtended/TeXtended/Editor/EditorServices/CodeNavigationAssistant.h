@@ -173,9 +173,17 @@
  */
 - (IBAction)uncommentSelectionInRangeString:(NSString*)range;
 
-
+/**
+ Builds a string representing a line break at the current cursor position in the text view
+ @return a string containing whitespaces for the line break and for preserving the indention
+ */
 - (NSString*) lineBreak;
 
+
+/**
+ Builds a string representing a single tab
+ @return a string containing \t if ![self shouldUseSpacesAsTabs] or a string containing [self numberOfSpacesForTab] spaces otherwise.
+ */
 - (NSString *) singleTab;
 
 /** Number of spaces which should replace a single tab */

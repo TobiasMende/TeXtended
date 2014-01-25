@@ -38,5 +38,10 @@
 /** The extension for the server url when fetching bibliography informations */
 @property NSString *bibtexSearchAppendix;
 
+
+/**
+ Checks if this configuration is valid or not.
+ @return `YES` if valid, `NO` otherwise.
+ */
 - (BOOL)configIsValid;
 @end
