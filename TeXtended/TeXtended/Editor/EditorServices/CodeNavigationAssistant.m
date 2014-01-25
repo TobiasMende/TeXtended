@@ -307,7 +307,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         return;
     }
     NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
-    NSUInteger currentPosition = view.selectedRange.location > 0? view.selectedRange.location -1 : 0;
+    NSUInteger currentPosition = view.selectedRange.location < view.string.length? view.selectedRange.location  : 0;
     if (currentPosition < lineRange.location) {
         return;
     }
