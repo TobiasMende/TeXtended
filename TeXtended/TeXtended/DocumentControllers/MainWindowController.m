@@ -95,6 +95,10 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
 }
 
+-(IBAction)showInformation:(id)sender {
+    [self.fileViewController showInformation];
+}
+
 - (IBAction)deleteTemporaryFiles:(id)sender {
     NSSet *dms = self.mainDocument.model.mainDocuments;
     

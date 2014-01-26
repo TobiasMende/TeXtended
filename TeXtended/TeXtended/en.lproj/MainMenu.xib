@@ -481,6 +481,11 @@
                                     <action selector="showConsoles:" target="534" id="dBm-G7-9T5"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Information" keyEquivalent="i" id="vhW-2h-YLP">
+                                <connections>
+                                    <action selector="showInformation:" target="-1" id="evA-UN-JE8"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

@@ -435,6 +435,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     self.infoWindowController.window.isVisible = YES;
 }
 
+-(void)showInformation {
+    self.infoWindowController.window.isVisible = YES;
+}
+
 - (IBAction)showInformationForFile:(id)sender {
     FileViewModel* model = [outline itemAtRow:[outline clickedRow]];
     if(!model)
