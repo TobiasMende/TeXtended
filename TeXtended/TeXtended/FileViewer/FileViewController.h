@@ -104,6 +104,10 @@
  */
 - (IBAction)openInfoViewForFile:(id)sender;
 
+/** Makes the information window visible.
+ */
+- (void)showInformation;
+
 /** Method for catching clicks on information in contextmenu of item in fileview
  @param sender is the sender
  */
