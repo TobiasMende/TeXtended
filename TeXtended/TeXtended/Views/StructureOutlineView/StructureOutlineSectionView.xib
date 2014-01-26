@@ -49,8 +49,20 @@
                                         <rect key="frame" x="1" y="1" width="263" height="14"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d3B-DP-8jM">
+                                                <rect key="frame" x="0.0" y="1" width="14" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="bZV-IB-qqE"/>
+                                                <connections>
+                                                    <binding destination="Glg-Gr-zoy" name="value" keyPath="image" id="DAi-vo-kqn">
+                                                        <dictionary key="options">
+                                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </imageView>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="AHI-3y-uAV">
-                                                <rect key="frame" x="0.0" y="0.0" width="263" height="14"/>
+                                                <rect key="frame" x="19" y="0.0" width="244" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="lQl-Vh-F7f">
                                                     <font key="font" metaFont="smallSystem"/>
@@ -60,7 +72,7 @@
                                                 <connections>
                                                     <binding destination="Glg-Gr-zoy" name="value" keyPath="objectValue.info" id="55F-2n-32z"/>
                                                     <binding destination="Glg-Gr-zoy" name="textColor" keyPath="textColor" id="UcR-Ow-BHo"/>
-                                                    <binding destination="Glg-Gr-zoy" name="toolTip" keyPath="objectValue.info" id="VPm-sU-5xR"/>
+                                                    <binding destination="Glg-Gr-zoy" name="toolTip" keyPath="toolTip" id="qE0-6k-NBW"/>
                                                 </connections>
                                             </textField>
                                         </subviews>

@@ -448,7 +448,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSArray *ranges = [self lineRanges];
     if (line <= ranges.count && line > 0) {
         NSTextCheckingResult *r = ranges[line-1];
-        DDLogWarn(@"%@", NSStringFromRange(r.range));
         [self scrollRangeToVisible:r.range];
         [self setSelectedRange:r.range];
     } else {

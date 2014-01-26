@@ -63,6 +63,11 @@
 		D21ACBEA1726892A00E2F8EC /* SourceCodePro-Regular.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDE172688B400E2F8EC /* SourceCodePro-Regular.ttf */; };
 		D21ACBEB1726892A00E2F8EC /* SourceCodePro-Semibold.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */; };
 		D21F31641895B24A00FF6E83 /* StructurOutlineCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F31621895B24A00FF6E83 /* StructurOutlineCellView.m */; };
+		D21F316A1895C73300FF6E83 /* arrow-right-c.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31651895C73300FF6E83 /* arrow-right-c.icns */; };
+		D21F316B1895C73300FF6E83 /* bookmark.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31661895C73300FF6E83 /* bookmark.icns */; };
+		D21F316C1895C73300FF6E83 /* forward.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31671895C73300FF6E83 /* forward.icns */; };
+		D21F316D1895C73300FF6E83 /* hammer.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31681895C73300FF6E83 /* hammer.icns */; };
+		D21F316E1895C73300FF6E83 /* link.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31691895C73300FF6E83 /* link.icns */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
@@ -429,6 +434,11 @@
 		D21ACBDF172688B400E2F8EC /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
 		D21F31611895B24A00FF6E83 /* StructurOutlineCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructurOutlineCellView.h; sourceTree = "<group>"; };
 		D21F31621895B24A00FF6E83 /* StructurOutlineCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructurOutlineCellView.m; sourceTree = "<group>"; };
+		D21F31651895C73300FF6E83 /* arrow-right-c.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "arrow-right-c.icns"; sourceTree = "<group>"; };
+		D21F31661895C73300FF6E83 /* bookmark.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bookmark.icns; sourceTree = "<group>"; };
+		D21F31671895C73300FF6E83 /* forward.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = forward.icns; sourceTree = "<group>"; };
+		D21F31681895C73300FF6E83 /* hammer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = hammer.icns; sourceTree = "<group>"; };
+		D21F31691895C73300FF6E83 /* link.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = link.icns; sourceTree = "<group>"; };
 		D220755917687A310041890F /* TeXtended.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TeXtended.icns; sourceTree = "<group>"; };
 		D22354C718617E7A0056A472 /* CompletionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionManager.h; sourceTree = "<group>"; };
 		D22354C818617E7A0056A472 /* CompletionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionManager.m; sourceTree = "<group>"; };
@@ -1341,6 +1351,11 @@
 				D2C2379E18954D910096ECAA /* alert-circled.icns */,
 				D27CD19918913F2100A99997 /* FolderPenIcon.icns */,
 				D2CF6196177247E200ACC3D5 /* info.png */,
+				D21F31651895C73300FF6E83 /* arrow-right-c.icns */,
+				D21F31661895C73300FF6E83 /* bookmark.icns */,
+				D21F31671895C73300FF6E83 /* forward.icns */,
+				D21F31681895C73300FF6E83 /* hammer.icns */,
+				D21F31691895C73300FF6E83 /* link.icns */,
 				D2CF6197177247E200ACC3D5 /* warning.png */,
 				D296059C178091F7007C599B /* SplitviewBottom.pdf */,
 				D296059D178091F7007C599B /* SplitviewLeft.pdf */,
@@ -1668,6 +1683,7 @@
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
+				D21F316D1895C73300FF6E83 /* hammer.icns in Resources */,
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
@@ -1681,6 +1697,7 @@
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
+				D21F316C1895C73300FF6E83 /* forward.icns in Resources */,
 				D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */,
 				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
@@ -1692,6 +1709,7 @@
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
 				D257498918631AFA0025A536 /* CiteCompletionView.xib in Resources */,
+				D21F316A1895C73300FF6E83 /* arrow-right-c.icns in Resources */,
 				D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */,
 				D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */,
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
@@ -1714,6 +1732,7 @@
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
 				7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
+				D21F316E1895C73300FF6E83 /* link.icns in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
@@ -1739,6 +1758,7 @@
 				766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */,
 				D2848715188B516E00CC91A0 /* EditTemplateView.xib in Resources */,
 				D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */,
+				D21F316B1895C73300FF6E83 /* bookmark.icns in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,

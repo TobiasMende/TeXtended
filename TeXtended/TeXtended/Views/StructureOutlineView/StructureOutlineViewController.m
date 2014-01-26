@@ -37,6 +37,7 @@
 - (void)firstResponderDidChange {
     NSSet *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     sections = [NSMutableArray arrayWithCapacity:mainDocuments.count];
+    [self.selectionPopup removeAllItems];
     for(NSTabViewItem *item in self.mainView.tabViewItems) {
         [self.mainView removeTabViewItem:item];
     }
@@ -44,15 +45,11 @@
         StructureOutlineSectionViewController *structure = [[StructureOutlineSectionViewController alloc] initWithRootNode:model];
         NSTabViewItem *item = [NSTabViewItem new];
         item.view = structure.view;
-        [item bind:@"identifier" toObject:model withKeyPath:@"texName" options:nil];
+        [item bind:@"label" toObject:model withKeyPath:@"texName" options:nil];
         [sections addObject:structure];
         [self.mainView addTabViewItem:item];
     }
-    if (mainDocuments.count <= 1) {
-        [self.mainView setTabViewType:NSNoTabsNoBorder];
-    } else {
-        [self.mainView setTabViewType:NSBottomTabsBezelBorder];
-    }
+  
 }
 
 - (void)dealloc {

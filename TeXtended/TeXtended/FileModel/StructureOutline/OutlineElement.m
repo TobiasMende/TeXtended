@@ -87,6 +87,30 @@
 }
 
 
++ (NSString *)localizedNameForType:(OutlineElementType)type {
+    switch (type) {
+        case CHAPTER:
+            return NSLocalizedString(@"Chapter", nil);
+        case SECTION:
+            return NSLocalizedString(@"Section", nil);
+        case SUBSECTION:
+            return NSLocalizedString(@"Subsection", nil);
+        case INPUT:
+            return NSLocalizedString(@"Input", nil);
+        case INCLUDE:
+            return NSLocalizedString(@"Include", nil);
+        case LABEL:
+            return NSLocalizedString(@"Label", nil);
+        case REF:
+            return NSLocalizedString(@"Reference", nil);
+        case TODO:
+            return NSLocalizedString(@"TODO", nil);
+        default:
+            return @"";
+            break;
+    }
+}
+
 
 
 @end

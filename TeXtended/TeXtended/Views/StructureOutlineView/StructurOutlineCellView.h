@@ -13,5 +13,4 @@
 
 - (OutlineElement *)element;
 - (NSImage *)image;
-
 @end

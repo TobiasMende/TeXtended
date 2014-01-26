@@ -9,6 +9,7 @@
 #import "StructurOutlineCellView.h"
 #import "OutlineElement.h"
 #import "Constants.h"
+#import "DocumentModel.h"
 
 @interface StructurOutlineCellView ()
 - (void)updateTextColor;
@@ -44,10 +45,76 @@
         case CHAPTER:
             [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_COMMAND_COLOR] options:option];
             break;
+        case REF:
+        case INCLUDE:
+        case INPUT:
+            [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_TEXDOC_LINK_COLOR] options:option];
+            break;
+        case LABEL:
+            [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_INLINE_MATH_COLOR] options:option];
+            break;
         default:
             self.textColor = [NSColor blackColor];
             break;
     }
+}
+
+- (NSImage *)image {
+    NSImage *image = nil;
+    switch (self.element.type) {
+        case TODO:
+            image = [NSImage imageNamed:@"hammer"];
+            
+            break;
+        case SECTION:
+        case SUBSECTION:
+            image = [NSImage imageNamed:@"arrow-right-c"];
+            break;
+        case CHAPTER:
+            image = [NSImage imageNamed:@"bookmark"];
+            image.backgroundColor = self.textColor;
+            break;
+        case REF:
+        case LABEL:
+            image = [NSImage imageNamed:@"link"];
+            break;
+        case INCLUDE:
+        case INPUT:
+            image = [NSImage imageNamed:@"forward"];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+    
+    NSImage *newImage = [image copy];
+        [newImage lockFocus];
+        [self.textColor set];
+        NSRect imageRect = {NSZeroPoint, [image size]};
+        NSRectFillUsingOperation(imageRect, NSCompositeSourceAtop);
+        [newImage unlockFocus];
+    return newImage;
+}
+
+
+- (NSString *)toolTip {
+    return [NSString stringWithFormat:@"%@: %@ (%@ [%li])", [OutlineElement localizedNameForType:self.element.type],self.element.info, self.element.document.texName, self.element.line];
+}
+
+
+
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"image"]) {
+        keys = [keys setByAddingObjectsFromArray:@[@"objectValue.type",@"textColor"]];
+    } else if([key isEqualToString:@"toolTip"]) {
+        keys = [keys setByAddingObjectsFromArray:@[@"element.info", @"element.document.texName", @"element.line", @"element.type"]];
+    } else if([key isEqualToString:@"element"]) {
+        keys = [keys setByAddingObject:@"objectValue"];
+    }
+    return keys;
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {

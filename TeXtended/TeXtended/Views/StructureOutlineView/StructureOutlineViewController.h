@@ -11,8 +11,9 @@
 @interface StructureOutlineViewController : NSViewController {
     NSMutableArray *sections;
 }
+@property (strong) IBOutlet NSPopUpButton *selectionPopup;
 @property (strong) IBOutlet NSTabView *mainView;
-
+@property NSUInteger selectedIndex;
 @property (assign) MainWindowController *mainWindowController;
 
 - (id)initWithMainWindowController:(MainWindowController *)mwc;

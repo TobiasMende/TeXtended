@@ -34,4 +34,6 @@ typedef enum OutlineElementType {
 - (NSArray *)children;
 - (NSUInteger)childCount;
 
++ (NSString *)localizedNameForType:(OutlineElementType)type;
+
 @end
