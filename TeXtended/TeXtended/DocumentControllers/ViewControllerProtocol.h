@@ -13,7 +13,6 @@
 
 @optional
 - (id) initWithFirstResponder:(id<FirstResponderDelegate>) dc;
-- (void)documentModelDidChange;
 - (void)documentModelHasChangedAction:(id<FirstResponderDelegate>)dc;
 - (void)documentHasChangedAction;
 - (void)breakUndoCoalescing;

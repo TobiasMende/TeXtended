@@ -18,6 +18,7 @@
 #import "ConsoleWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "LatexSpellChecker.h"
+#import "CompletionManager.h"
 #import "TemplateController.h"
 #import "Template.h"
 
@@ -37,6 +38,7 @@ static ApplicationController *sharedInstance;
     [self registerDefaults];
     [LatexSpellChecker sharedSpellChecker];
     [DocumentCreationController sharedDocumentController];
+    [CompletionManager sharedInstance];
     // Merging compile flows
     [self mergeCompileFlows:NO];
 }

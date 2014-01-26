@@ -196,15 +196,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
 #pragma mark -
 #pragma mark KVO & Notifications
-- (void)didChangeValueForKey:(NSString *)key {
-    [super didChangeValueForKey:key];
-    [self postChangeNotification];
-    
-}
 
-- (void)postChangeNotification {
-    [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDocumentModelDidChangeNotification object:self];
-}
 
 - (void)dealloc {
         [TMTNotificationCenter removeCenterForCompilable:self];

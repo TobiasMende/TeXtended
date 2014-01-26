@@ -156,7 +156,23 @@
 		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
-		D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE8D517ABCE5400298D11 /* OutlineElement.m */; };
+		D2C235781895118A0096ECAA /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C235731895118A0096ECAA /* OutlineElement.m */; };
+		D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */; };
+		D2C2357A1895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235751895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist */; };
+		D2C2357B1895118A0096ECAA /* OutlineExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C235771895118A0096ECAA /* OutlineExtractor.m */; };
+		D2C2357E189535160096ECAA /* NSString+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C2357D189535160096ECAA /* NSString+TMTExtension.m */; };
+		D2C2358A189543F00096ECAA /* NSDictionary+SMKeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23581189543F00096ECAA /* NSDictionary+SMKeyValueObserving.m */; };
+		D2C2358B189543F00096ECAA /* SMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23583189543F00096ECAA /* SMBar.m */; };
+		D2C2358C189543F00096ECAA /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23585189543F00096ECAA /* SMTabBar.m */; };
+		D2C2358D189543F00096ECAA /* SMTabBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23587189543F00096ECAA /* SMTabBarButtonCell.m */; };
+		D2C2358E189543F00096ECAA /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23589189543F00096ECAA /* SMTabBarItem.m */; };
+		D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C2379E18954D910096ECAA /* alert-circled.icns */; };
+		D2C237A1189550860096ECAA /* map.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C237A0189550860096ECAA /* map.icns */; };
+		D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A4189551670096ECAA /* StructureOutlineViewController.m */; };
+		D2C237A7189551670096ECAA /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237A5189551670096ECAA /* StructureOutlineView.xib */; };
+		D2C237AB189554BE0096ECAA /* StructureOutlineSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */; };
+		D2C237AC189554BE0096ECAA /* StructureOutlineSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */; };
+		D2C237AF18956F480096ECAA /* TMTOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237AE18956F480096ECAA /* TMTOutlineView.m */; };
 		D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
@@ -587,10 +603,36 @@
 		D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Livepreview.pdf; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
+		D2C235721895118A0096ECAA /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
+		D2C235731895118A0096ECAA /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
+		D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeLookupTable.plist; sourceTree = "<group>"; };
+		D2C235751895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeStringLookupTable.plist; sourceTree = "<group>"; };
+		D2C235761895118A0096ECAA /* OutlineExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineExtractor.h; sourceTree = "<group>"; };
+		D2C235771895118A0096ECAA /* OutlineExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineExtractor.m; sourceTree = "<group>"; };
+		D2C2357C189535160096ECAA /* NSString+TMTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TMTExtension.h"; sourceTree = "<group>"; };
+		D2C2357D189535160096ECAA /* NSString+TMTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TMTExtension.m"; sourceTree = "<group>"; };
+		D2C23580189543F00096ECAA /* NSDictionary+SMKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SMKeyValueObserving.h"; sourceTree = "<group>"; };
+		D2C23581189543F00096ECAA /* NSDictionary+SMKeyValueObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SMKeyValueObserving.m"; sourceTree = "<group>"; };
+		D2C23582189543F00096ECAA /* SMBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBar.h; sourceTree = "<group>"; };
+		D2C23583189543F00096ECAA /* SMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBar.m; sourceTree = "<group>"; };
+		D2C23584189543F00096ECAA /* SMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBar.h; sourceTree = "<group>"; };
+		D2C23585189543F00096ECAA /* SMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBar.m; sourceTree = "<group>"; };
+		D2C23586189543F00096ECAA /* SMTabBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarButtonCell.h; sourceTree = "<group>"; };
+		D2C23587189543F00096ECAA /* SMTabBarButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarButtonCell.m; sourceTree = "<group>"; };
+		D2C23588189543F00096ECAA /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarItem.h; sourceTree = "<group>"; };
+		D2C23589189543F00096ECAA /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarItem.m; sourceTree = "<group>"; };
+		D2C2379E18954D910096ECAA /* alert-circled.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "alert-circled.icns"; sourceTree = "<group>"; };
+		D2C237A0189550860096ECAA /* map.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = map.icns; sourceTree = "<group>"; };
+		D2C237A3189551670096ECAA /* StructureOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineViewController.h; sourceTree = "<group>"; };
+		D2C237A4189551670096ECAA /* StructureOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineViewController.m; sourceTree = "<group>"; };
+		D2C237A5189551670096ECAA /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
+		D2C237A8189554BE0096ECAA /* StructureOutlineSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineSectionViewController.h; sourceTree = "<group>"; };
+		D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineSectionViewController.m; sourceTree = "<group>"; };
+		D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineSectionView.xib; sourceTree = "<group>"; };
+		D2C237AD18956F480096ECAA /* TMTOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTOutlineView.h; sourceTree = "<group>"; };
+		D2C237AE18956F480096ECAA /* TMTOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTOutlineView.m; sourceTree = "<group>"; };
 		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
 		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
-		D2CAE8D417ABCE5400298D11 /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
-		D2CAE8D517ABCE5400298D11 /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
 		D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathExtension.h"; sourceTree = "<group>"; };
 		D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PathExtension.m"; sourceTree = "<group>"; };
 		D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXtended.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -633,8 +675,6 @@
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
 		D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocPanel.xib; sourceTree = "<group>"; };
-		D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeLookupTable.plist; sourceTree = "<group>"; };
-		D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeStringLookupTable.plist; sourceTree = "<group>"; };
 		D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		D2F177D017651D5A0089DBC0 /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
 		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
@@ -957,6 +997,8 @@
 				D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */,
 				D2326ADD188A98E7008DEE51 /* NSAttributedString+Replace.h */,
 				D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */,
+				D2C2357C189535160096ECAA /* NSString+TMTExtension.h */,
+				D2C2357D189535160096ECAA /* NSString+TMTExtension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1115,6 +1157,8 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2C237A21895510B0096ECAA /* StructureOutlineView */,
+				D2C2357F189543F00096ECAA /* InspectorTabBar */,
 				D2848708188B00E300CC91A0 /* ShareDialog */,
 				F6980D411882DDB80023DE4D /* MergeView */,
 				F68687EF18781CA200898026 /* PrintDialog */,
@@ -1236,8 +1280,7 @@
 		D283038A1731346200E1FC1D /* FileModel */ = {
 			isa = PBXGroup;
 			children = (
-				D2CAE8D417ABCE5400298D11 /* OutlineElement.h */,
-				D2CAE8D517ABCE5400298D11 /* OutlineElement.m */,
+				D2C23571189511580096ECAA /* StructureOutline */,
 				D2656908173A65600030381C /* CompileSetting.h */,
 				D2656909173A65600030381C /* CompileSetting.m */,
 				D2681FF7173143EC003AF83D /* BibFile.h */,
@@ -1248,8 +1291,6 @@
 				D2681FF2173143C2003AF83D /* DocumentModel.m */,
 				D2681FEE173143AF003AF83D /* Compilable.h */,
 				D2681FEF173143AF003AF83D /* Compilable.m */,
-				D2EAC45617D4CD3A00B72ECA /* OutlineElementTypeLookupTable.plist */,
-				D2EAC45817D4D4D200B72ECA /* OutlineElementTypeStringLookupTable.plist */,
 			);
 			path = FileModel;
 			sourceTree = "<group>";
@@ -1293,6 +1334,8 @@
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D2C237A0189550860096ECAA /* map.icns */,
+				D2C2379E18954D910096ECAA /* alert-circled.icns */,
 				D27CD19918913F2100A99997 /* FolderPenIcon.icns */,
 				D2CF6196177247E200ACC3D5 /* info.png */,
 				D2CF6197177247E200ACC3D5 /* warning.png */,
@@ -1307,6 +1350,51 @@
 				D2B01663176608A800C6CE23 /* ReportBug.pdf */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		D2C23571189511580096ECAA /* StructureOutline */ = {
+			isa = PBXGroup;
+			children = (
+				D2C235721895118A0096ECAA /* OutlineElement.h */,
+				D2C235731895118A0096ECAA /* OutlineElement.m */,
+				D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */,
+				D2C235751895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist */,
+				D2C235761895118A0096ECAA /* OutlineExtractor.h */,
+				D2C235771895118A0096ECAA /* OutlineExtractor.m */,
+			);
+			path = StructureOutline;
+			sourceTree = "<group>";
+		};
+		D2C2357F189543F00096ECAA /* InspectorTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D2C23580189543F00096ECAA /* NSDictionary+SMKeyValueObserving.h */,
+				D2C23581189543F00096ECAA /* NSDictionary+SMKeyValueObserving.m */,
+				D2C23582189543F00096ECAA /* SMBar.h */,
+				D2C23583189543F00096ECAA /* SMBar.m */,
+				D2C23584189543F00096ECAA /* SMTabBar.h */,
+				D2C23585189543F00096ECAA /* SMTabBar.m */,
+				D2C23586189543F00096ECAA /* SMTabBarButtonCell.h */,
+				D2C23587189543F00096ECAA /* SMTabBarButtonCell.m */,
+				D2C23588189543F00096ECAA /* SMTabBarItem.h */,
+				D2C23589189543F00096ECAA /* SMTabBarItem.m */,
+			);
+			path = InspectorTabBar;
+			sourceTree = "<group>";
+		};
+		D2C237A21895510B0096ECAA /* StructureOutlineView */ = {
+			isa = PBXGroup;
+			children = (
+				D2C237A3189551670096ECAA /* StructureOutlineViewController.h */,
+				D2C237A4189551670096ECAA /* StructureOutlineViewController.m */,
+				D2C237A5189551670096ECAA /* StructureOutlineView.xib */,
+				D2C237A8189554BE0096ECAA /* StructureOutlineSectionViewController.h */,
+				D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */,
+				D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */,
+				D2C237AD18956F480096ECAA /* TMTOutlineView.h */,
+				D2C237AE18956F480096ECAA /* TMTOutlineView.m */,
+			);
+			path = StructureOutlineView;
 			sourceTree = "<group>";
 		};
 		D2C904E91726A079006EFEC2 /* TexdocSupport */ = {
@@ -1571,6 +1659,7 @@
 				D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */,
 				D2CC5504171EAFAB00D81CF1 /* Credits.rtf in Resources */,
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
+				D2C2357A1895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist in Resources */,
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
@@ -1587,11 +1676,13 @@
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
 				F692F4D2173A62710032EF32 /* FileView.xib in Resources */,
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
+				D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */,
 				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
+				D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
 				D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */,
@@ -1601,6 +1692,7 @@
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
 				D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */,
 				F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */,
+				D2C237A1189550860096ECAA /* map.icns in Resources */,
 				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
@@ -1643,9 +1735,11 @@
 				D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
+				D2C237A7189551670096ECAA /* StructureOutlineView.xib in Resources */,
 				762DA21817CA4B210013D864 /* article.tex in Resources */,
 				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
+				D2C237AC189554BE0096ECAA /* StructureOutlineSectionView.xib in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1679,6 +1773,7 @@
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
 				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
+				D2C2357B1895118A0096ECAA /* OutlineExtractor.m in Sources */,
 				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
 				D2E7A4ED1768E8F400B2BA3C /* BibFile.m in Sources */,
@@ -1711,6 +1806,7 @@
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
+				D2C2357E189535160096ECAA /* NSString+TMTExtension.m in Sources */,
 				F6980D451882DDE10023DE4D /* MergeWindowController.m in Sources */,
 				D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */,
 				D2326AEE188ADC50008DEE51 /* TemplatesCollectionView.m in Sources */,
@@ -1726,6 +1822,7 @@
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
 				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
+				D2C2358B189543F00096ECAA /* SMBar.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
@@ -1734,6 +1831,7 @@
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
+				D2C2358C189543F00096ECAA /* SMTabBar.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
 				D2326ADC188A816D008DEE51 /* NSFileManager+TMTExtension.m in Sources */,
@@ -1745,11 +1843,13 @@
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
 				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
+				D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */,
 				D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */,
 				D2574995186324730025A536 /* DBLPButtonView.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
 				D2E7A5151768E8F400B2BA3C /* ExtendedPdf.m in Sources */,
 				F6E5C485188A750D00D2A911 /* GraphNode.m in Sources */,
+				D2C235781895118A0096ECAA /* OutlineElement.m in Sources */,
 				D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */,
 				D2078D541837B620001C4A56 /* BibFilesSelectionViewController.m in Sources */,
 				D2E7A5161768E8F400B2BA3C /* ExtendedPdfControlls.m in Sources */,
@@ -1759,6 +1859,7 @@
 				D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */,
 				D257498C18631B2E0025A536 /* CiteCompletionView.m in Sources */,
 				F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */,
+				D2C2358D189543F00096ECAA /* SMTabBarButtonCell.m in Sources */,
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
 				D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */,
@@ -1767,6 +1868,7 @@
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
 				D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
+				D2C237AB189554BE0096ECAA /* StructureOutlineSectionViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
@@ -1781,20 +1883,22 @@
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,
 				D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */,
 				D2326AE3188AC085008DEE51 /* TemplateController.m in Sources */,
+				D2C2358E189543F00096ECAA /* SMTabBarItem.m in Sources */,
 				D2326AF3188AE28A008DEE51 /* TemplatePlaceholderController.m in Sources */,
 				D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */,
 				D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */,
 				760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */,
 				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
+				D2C237AF18956F480096ECAA /* TMTOutlineView.m in Sources */,
 				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D2326AD9188A7961008DEE51 /* Template.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
 				D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */,
-				D2CAE8D617ABCE5400298D11 /* OutlineElement.m in Sources */,
 				F6E5C488188A774400D2A911 /* GraphController.m in Sources */,
 				D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */,
+				D2C2358A189543F00096ECAA /* NSDictionary+SMKeyValueObserving.m in Sources */,
 				D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */,
 				D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */,
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,

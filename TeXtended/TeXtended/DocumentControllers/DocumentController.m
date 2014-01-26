@@ -66,7 +66,6 @@
     DDLogVerbose(@"setModel: %@ (%@)", model, model.texPath);
     if (model != _model) {
         if (self.model) {
-            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTDocumentModelDidChangeNotification object:self.model];
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
             for (DocumentModel *m in self.model.mainDocuments) {
                 [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
@@ -76,7 +75,6 @@
         
         [self updateViewsAfterModelChange];
         if (self.model) {
-            [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(documentModelDidChange) name:TMTDocumentModelDidChangeNotification object:self.model];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texViewDidClose:) name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
             for (DocumentModel *m in self.model.mainDocuments) {
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pdfViewDidClose:) name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
@@ -230,13 +228,6 @@
     }
 }
 
-- (void)documentModelDidChange {
-    [self documentModelHasChangedAction:self];
-}
-
-- (void)documentModelHasChangedAction:(DocumentController *)dc {
-    // TODO: call on all children
-}
 
 #pragma mark - First Responder Delegate
 

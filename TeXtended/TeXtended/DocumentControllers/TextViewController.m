@@ -28,6 +28,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "TMTTabManager.h"
 #import "NSString+RegexReplace.h"
 #import "NSAttributedString+Replace.h"
+#import "OutlineExtractor.h"
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
@@ -92,6 +93,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption: NSLocalizedString(@"Untitled", @"Untitled")}];
         [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
         self.tabViewItem.view = self.view;
+        outlineExtractor = [OutlineExtractor new];
         
     }
     return self;
@@ -375,7 +377,13 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (messageUpdateTimer) {
         [messageUpdateTimer invalidate];
     }
+    if (!outlineExtractor.isExtracting) {
+        [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:^(NSArray *outline) {
+            DDLogInfo(@"Outline: %@", outline);
+        }];
+    }
     messageUpdateTimer = [NSTimer timerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
+    
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
     }

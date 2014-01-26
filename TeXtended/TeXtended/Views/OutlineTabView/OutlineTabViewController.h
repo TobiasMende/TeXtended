@@ -7,13 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class MainWindowController, MessageOutlineViewController;
+@class MainWindowController, MessageOutlineViewController, SMTabBar, SMTabBarItem, StructureOutlineViewController;
 @interface OutlineTabViewController : NSViewController
 @property (assign) MainWindowController* mainWindowController;
 
 @property MessageOutlineViewController* messageOutlineViewController;
-@property (strong) IBOutlet NSBox *boxView;
+@property StructureOutlineViewController *structureOutlineViewController;
+@property (strong) IBOutlet SMTabBar *tabBar;
+@property (strong) IBOutlet NSTabView *tabView;
 
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
-
+- (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;
 @end

@@ -8,8 +8,11 @@
 
 #import "OutlineTabViewController.h"
 #import "MessageOutlineViewController.h"
+#import "StructureOutlineViewController.h"
 #import "MainWindowController.h"
 #import "MainDocument.h"
+#import "SMTabBarItem.h"
+#import "SMTabBar.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 @interface OutlineTabViewController ()
@@ -31,14 +34,47 @@
     self = [super initWithNibName:@"OutlineTabView" bundle:nil];
     if (self) {
         self.mainWindowController = mwc;
+        
     }
     return self;
 }
 
+- (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item {
+    [self.tabView selectTabViewItemAtIndex:[self.tabBar.items indexOfObject:item]];
+}
+
 - (void)loadView {
     [super loadView];
+    NSMutableArray *tabBarItems = [NSMutableArray arrayWithCapacity:2];
+    {
+        NSImage *image = [NSImage imageNamed:@"alert-circled"];
+        [image setSize:NSMakeSize(16, 16)];
+        [image setTemplate:YES];
+        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:0];
+        item.toolTip = NSLocalizedString(@"Compiler Messages", nil);
+        item.keyEquivalent = @"1";
+        item.keyEquivalentModifierMask = NSCommandKeyMask;
+        [tabBarItems addObject:item];
+    }
+    {
+        NSImage *image = [NSImage imageNamed:@"map"];
+        [image setSize:NSMakeSize(16, 16)];
+        [image setTemplate:YES];
+        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:1];
+        item.toolTip = NSLocalizedString(@"Outline View", nil);
+        item.keyEquivalent = @"2";
+        item.keyEquivalentModifierMask = NSCommandKeyMask;
+        [tabBarItems addObject:item];
+    }
     self.messageOutlineViewController = [[MessageOutlineViewController alloc] initWithModel:self.mainWindowController.mainDocument.model];
-    [self.boxView setContentView:self.messageOutlineViewController.view];
+    self.structureOutlineViewController = [[StructureOutlineViewController alloc] initWithMainWindowController:self.mainWindowController];
+    NSTabViewItem *messages = [NSTabViewItem new];
+    messages.view = self.messageOutlineViewController.view;
+    [self.tabView addTabViewItem:messages];
+    NSTabViewItem *outline = [NSTabViewItem new];
+    outline.view = self.structureOutlineViewController.view;
+    [self.tabView addTabViewItem:outline];
+    self.tabBar.items = tabBarItems;
 }
 
 @end

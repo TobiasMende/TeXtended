@@ -24,15 +24,13 @@ typedef enum OutlineElementType {
 
 @interface OutlineElement : NSObject <NSCoding>
 
-@property (strong) NSNumber * type;
-@property (strong) NSNumber * line;
+@property OutlineElementType type;
+@property NSUInteger line;
 @property (strong) NSString * info;
 @property (assign) DocumentModel *document;
+@property (strong) DocumentModel *subNode;
 
-+ (NSSet*)extractIn:(NSString *)content for:(DocumentModel*)model;
-
-+ (NSRegularExpression *)regexForElementType:(OutlineElementType)type;
-
-+ (NSString *)stringForType:(OutlineElementType)type;
-
+- (BOOL)isLeaf;
+- (NSArray *)children;
+- (NSUInteger)childCount;
 @end

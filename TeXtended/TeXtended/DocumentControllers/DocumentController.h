@@ -54,10 +54,6 @@
 - (BOOL) saveDocumentModel:(NSError**) outError;
 
 
-/**
- * Called if the document model has changed.
- */
-- (void) documentModelDidChange;
 
 - (void)closeDocument;
 

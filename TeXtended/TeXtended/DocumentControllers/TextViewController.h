@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import "ViewControllerProtocol.h"
 #import "FirstResponderDelegate.h"
-@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem, LacheckParser, ChktexParser, ForwardSynctexController;
+@class HighlightingTextView, LineNumberView, DocumentModel, MessageCollection, DocumentController, TMTTabViewItem, LacheckParser, ChktexParser, ForwardSynctexController,OutlineExtractor;
 
 /**
  This view controller handles the HighlightingTextView and other important objects connected to it.
@@ -36,6 +36,7 @@
     ChktexParser *chktex;
     LacheckParser *lacheck;
     ForwardSynctexController *synctex;
+    OutlineExtractor *outlineExtractor;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;

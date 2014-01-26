@@ -115,6 +115,9 @@
         }
     }
     if (shouldCreate) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
         DocumentModel *model = [DocumentModel new];
         [self.documents addObject:model];
         model.project = self;

@@ -37,7 +37,7 @@
 @property (nonatomic, strong) NSString * pdfPath;
 
 /** The path to the tex file */
-@property (strong) NSString * texPath;
+@property (strong,nonatomic) NSString * texPath;
 
 /** The system path to the tex file version storage.
  
@@ -49,7 +49,7 @@
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, assign) ProjectModel *project;
 
-@property (strong) NSMutableSet *outlineElements;
+@property (strong) NSArray *outlineElements;
 
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;

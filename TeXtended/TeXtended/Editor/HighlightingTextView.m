@@ -38,6 +38,7 @@
 #import "ProjectDocument.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
+#import "NSString+TMTExtension.h"
 
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
@@ -456,16 +457,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (NSArray *)lineRanges {
-    NSError *error;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
-    
-    if (error) {
-        DDLogError(@"Line Ranges Error: %@", [error userInfo]);
-        return nil;
-    }
-    
-    NSArray *ranges = [regex matchesInString:self.string options:0 range:NSMakeRange(0, self.string.length)];
-    return ranges;
+    return [self.string lineRanges];
     
 }
 
