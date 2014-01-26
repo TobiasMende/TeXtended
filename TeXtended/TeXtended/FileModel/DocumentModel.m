@@ -147,7 +147,6 @@ static NSArray *TMTEncodingsToCheck;
         self.project = [aDecoder decodeObjectForKey:@"project"];
         self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
         self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
-        self.outlineElements = [aDecoder decodeObjectForKey:@"outlineElements"];
         self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
         self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
         [self initDefaults];
@@ -180,7 +179,6 @@ static NSArray *TMTEncodingsToCheck;
         [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
         [aCoder encodeObject:relativeTexPath forKey:@"texPath"];
     }
-    [aCoder encodeObject:self.outlineElements forKey:@"outlineElements"];
     [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
     [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
 }

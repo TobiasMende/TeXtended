@@ -92,9 +92,6 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             }
             if(model.project) {
                 element.subNode = [model modelForTexPath:currentPath byCreating:YES];
-                if (!element.subNode) {
-                    continue;
-                }
             }
         }
         element.line = [content lineNumberForRange:totalRange];

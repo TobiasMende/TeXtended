@@ -12,6 +12,7 @@
 #import "MainWindowController.h"
 #import "MainDocument.h"
 #import "SMTabBarItem.h"
+#import "DMPaletteContainer.h"
 #import "SMTabBar.h"
 #import <TMTHelperCollection/TMTLog.h>
 

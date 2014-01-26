@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Compilable.h"
 
-@class ProjectModel,OutlineElement;
+@class ProjectModel,OutlineElement,OutlineExtractor;
 
 
 /**
@@ -22,7 +22,6 @@
 @interface DocumentModel : Compilable {
     /** The pipes used for communication with the latex compiler */
     NSPipe *consoleOutputPipe, *consoleInputPipe;
-    
     void (^removeLiveCompileObserver)(void);
     void (^removeOpenOnExportObserver)(void);
 }

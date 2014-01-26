@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 @class DocumentModel;
-@interface StructureOutlineSectionViewController : NSViewController<NSOutlineViewDelegate>
+@interface StructureOutlineSectionViewController : NSViewController
 @property DocumentModel *rootNode;
 - (id) initWithRootNode:(DocumentModel *)model;
 @end
