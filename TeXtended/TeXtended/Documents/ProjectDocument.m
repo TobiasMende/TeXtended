@@ -208,7 +208,7 @@
     panel.nameFieldLabel = NSLocalizedString(@"File Name:", @"File Name");
     panel.title = NSLocalizedString(@"Export as single document", @"Export as single document");
     
-    [panel beginWithCompletionHandler:^(NSInteger result) {
+    [panel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSString *path = panel.URL.path;
             NSError *error;

@@ -126,8 +126,8 @@
                         <action selector="openFolderinFinder:" target="-2" id="223"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="226"/>
-                <menuItem title="Rename Project" id="225">
+                <menuItem isSeparatorItem="YES" hidden="YES" id="226"/>
+                <menuItem title="Rename Project" hidden="YES" id="225">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="renameProject:" target="-2" id="352"/>
@@ -138,7 +138,7 @@
                         </binding>
                     </connections>
                 </menuItem>
-                <menuItem title="Close Project" id="235">
+                <menuItem title="Close Project" hidden="YES" id="235">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="closeProject:" target="-2" id="353"/>
