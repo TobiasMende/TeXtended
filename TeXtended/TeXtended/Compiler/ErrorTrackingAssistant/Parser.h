@@ -25,6 +25,7 @@
  * Parses the file for a given document and returns a set of TrackingMessages
  *
  * @param path the document to check
+ * @param completionHandler a block to execute with the found messages after completing the parsing process.
  */
 - (void )parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *messages))completionHandler;
 

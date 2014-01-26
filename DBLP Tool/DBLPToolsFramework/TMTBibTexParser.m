@@ -48,10 +48,34 @@ static NSCharacterSet *LINE_END_CHARACTERS;
  @return the attributes value or `nil` if the algorithm fails (e.g. wrong position, invalid file).
  */
 - (NSString *)parseAttributeValue;
+
+/**
+ Parses the value if it is nested (it starts with {)
+ @return the value as clean string if it was found, `nil` otherwise.
+ */
 - (NSString *)parseNestedValue;
+
+/**
+ Parses the value if it is concatenated (e.g. "something" # "otherthing")
+ @return the total concatenated value (e.g. "stringA " # "stringB" --> "stringA stringB")
+ */
 - (NSString *)parseConcatenatedValue;
+
+/**
+ Parses string entries into `strings`. Strings are used like variables in bibtex and are automatically replaced when parsing the values.
+ */
 - (void)parseString;
+
+/**
+ Logs an error and the current scanner state
+ @see [self traceScannerState]
+ */
 - (void)traceError;
+
+/**
+ Logs the scanner state (the location, the string under the cursor)
+ */
+- (void)traceScannerState;
 @end
 
 @implementation TMTBibTexParser
@@ -64,6 +88,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     }
 }
 
+# pragma mark - Iterating through the content
 
 - (NSMutableArray *)parseBibTexIn:(NSString *)content {
     NSMutableArray *entries = [NSMutableArray new];
@@ -108,11 +133,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     }
 }
 
-- (NSString *)parseType {
-        NSString *type;
-        [scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"{"] intoString:&type];
-    return type;
-}
+#pragma mark - Scanning other content
 
 - (void)parseString {
     NSString *key;
@@ -127,6 +148,24 @@ static NSCharacterSet *LINE_END_CHARACTERS;
         [scanner scanString:@"}" intoString:NULL];
     }
 }
+- (void)skipComments {
+    while (![scanner isAtEnd]) {
+        if ([scanner scanString:@"%" intoString:NULL]) {
+            [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+        } else {
+            [scanner scanCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:NULL];
+        }
+        if (![scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL])
+            break;
+    }
+}
+
+#pragma mark - Extracting general cite informations
+- (NSString *)parseType {
+    NSString *type;
+    [scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"{"] intoString:&type];
+    return type;
+}
 
 - (void)parseCiteKey:(TMTBibTexEntry *)entry {
     if([scanner scanString:@"{" intoString:NULL]) {
@@ -140,6 +179,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     
 }
 
+#pragma mark - Extracting the attributes
 - (void)parseAttributes:(TMTBibTexEntry *)entry {
     // Loops through every line of kind 'key = value'
     while (![scanner scanString:@"}" intoString:NULL]) {
@@ -160,6 +200,8 @@ static NSCharacterSet *LINE_END_CHARACTERS;
         }
     }
 }
+
+#pragma mark Extracting the value
 
 - (NSString *)parseAttributeValue {
     NSString *content;
@@ -245,17 +287,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
     return content;
 }
 
-- (void)skipComments {
-    while (![scanner isAtEnd]) {
-        if ([scanner scanString:@"%" intoString:NULL]) {
-            [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
-        } else {
-            [scanner scanCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:NULL];
-        }
-        if (![scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL])
-            break;
-    }
-}
+#pragma mark - Debugging
 
 - (void)traceError {
     DDLogError(@"BibTex Parser TRACE:");

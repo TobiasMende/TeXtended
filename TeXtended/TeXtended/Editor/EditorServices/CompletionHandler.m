@@ -38,6 +38,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
  
  @param charRange the prefix range
  @param index the selected entry
+ @param info an optional dictionary which can be filled during completion
  
  @return an array of CommandCompletion objects
  */
@@ -53,7 +54,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
  @param charRange the prefix range
  @param index the selected entry
  @param type the type of the completion
- 
+ @param info an additional dictionary which can be filled in this method.
  @return an array of EnvironmentCompletion objects
  */
 - (NSArray *)environmentCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index completionType:(TMTCompletionType)type additionalInformation:(NSDictionary **) info;

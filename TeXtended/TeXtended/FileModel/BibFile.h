@@ -40,12 +40,12 @@
 @property (assign) ProjectModel *project;
 
 /** An array of citation entries in the current bib file (contains objects of type `TMTBibTexEntry`)
- @see TMTBibTexEntry
+ @see TMTHelperCollection/TMTBibTexEntry
  */
 @property NSMutableArray *entries;
 
 /**
- This method is called after [NSCoding initWithCoder:] with the absolute path to the project file. This is a good place to replace relative paths with absolute paths.
+ This method is called after [BibFile initWithCoder:] with the absolute path to the project file. This is a good place to replace relative paths with absolute paths.
  
  @param absolutePath the absolute path to the project file
  */

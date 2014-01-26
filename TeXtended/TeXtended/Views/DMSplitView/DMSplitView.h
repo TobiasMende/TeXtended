@@ -112,7 +112,7 @@ enum {
 /** @name Priorities */
 
 /** Set prirority of subview at index. Priority-based resizing nominates 1 view as the most important. This is normally the window's "main" view. This highest priority view is the only view that grows in size as the window grows.
- @param      priority        priority value
+ @param      priorityIndex        priority value
  @param      subviewIndex    target subview index
  */
 - (void) setPriority:(NSInteger) priorityIndex ofSubviewAtIndex:(NSInteger) subviewIndex;
@@ -154,13 +154,13 @@ enum {
 - (void) setCanCollapse:(BOOL) canCollapse subviewAtIndex:(NSUInteger) subviewIndex;
 
 /** Allows a subview to be collapsable by double cliking on divider
- @param  canCollapse     YES to enable collapse feature for given subview
- @param  subviewIndex    target subview index
+ @param  viewIndex     the view which should be collapsable
+ @param  dividerIndex    the devider that the user could double click for collapsing the view
  */
 - (void) setCollapseSubviewAtIndex:(NSUInteger)viewIndex forDoubleClickOnDividerAtIndex:(NSUInteger)dividerIndex;
 
 /** Return YES if subview at index can be collapsed
- @param  canCollapse     YES to enable collapse feature for given subview
+ @param  subviewIndex     the index of the subview to collapse
  @return                 YES if subview is collapsable
  */
 - (BOOL) canCollapseSubviewAtIndex:(NSUInteger) subviewIndex;
@@ -173,7 +173,7 @@ enum {
 - (BOOL) collapseOrExpandSubviewAtIndex:(NSUInteger) subviewIndex animated:(BOOL) animated;
 
 /** Collapse or expand given subview
- @param     subviewIndex        target subview
+ @param     subview        target subview
  @param     animated            use animated transitions
  @return                        YES if new subview state is collapsed
  @warning                       only
@@ -195,7 +195,7 @@ enum {
 
 /** Set more than one divider position at the same time
  @param  newPositions           an array of the new divider positions (pass it as NSNumber)
- @param  dividerIndexes         divider indexes array (set of NSNumber)
+ @param  indexes         divider indexes array (set of NSNumber)
  @param	 animated				YES to animate
  @param  completition           completition block handler
  @return                        YES if you can animate your transitions
@@ -204,7 +204,6 @@ enum {
     completitionBlock:(void (^)(BOOL isEnded)) completition;
 
 /** Set the new position of a divider at index.
- @param  position               the new divider position
  @param  dividerIndex           target divider index in this splitview
  @return                        target divider position
  */

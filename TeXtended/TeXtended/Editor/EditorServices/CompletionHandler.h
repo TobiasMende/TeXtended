@@ -40,6 +40,7 @@
  
  @param charRange the range to get the completions for.
  @param index the selected completion
+ @param info an optional dictionary which can be filled by the handler during completion
  
  @return an array of matching completions (in this case: strings that can be used as keys in the completion dictionaries)
  

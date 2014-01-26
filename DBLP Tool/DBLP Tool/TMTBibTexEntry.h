@@ -52,14 +52,25 @@
 /** The publication type */
 @property NSString *type;
 
+/** The content of the author key */
 @property NSString *author;
+
+/** The content of the ttle key */
 @property NSString *title;
-
-/** The generated bibtex entry */
-- (NSString*) bibtex;
-
-- (NSComparisonResult)compare:(TMTBibTexEntry *)other;
-
 /** The dictionary representation */
 @property NSMutableDictionary *dictionary;
+
+/** The generated bibtex entry 
+ @return a bibtex representation of this entry containing all attributes of this object and alle entries in the [self dictionary].
+ */
+- (NSString*) bibtex;
+
+/**
+ Compares this entry with the given entry using [NSString caseInsensitiveCompare:] on the attributes [self author], [self title], [self key] in the mentioned order.
+ @param other the other bibtex entry
+ @return `NSOrderSame` if both entries are equal with respect to the previous ly mentioned attributes or another result.
+ @see NSComparisonResult
+ */
+- (NSComparisonResult)compare:(TMTBibTexEntry *)other;
+
 @end
