@@ -90,9 +90,9 @@
 }
 
 - (IBAction)removeMainDocument:(id)sender {
-    NSMutableArray* mainDocs = [[self.compilable.mainDocuments allObjects] mutableCopy];
+    NSMutableArray* mainDocs = [self.compilable.mainDocuments mutableCopy];
     [mainDocs removeObjectAtIndex:[self.table selectedRow]];
-    self.compilable.mainDocuments = [NSSet setWithArray:mainDocs];
+    self.compilable.mainDocuments = mainDocs;
     [self.table reloadData];
 }
 

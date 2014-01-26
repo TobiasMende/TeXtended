@@ -100,7 +100,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (IBAction)deleteTemporaryFiles:(id)sender {
-    NSSet *dms = self.mainDocument.model.mainDocuments;
+    NSArray *dms = self.mainDocument.model.mainDocuments;
     
     for (DocumentModel *dm in dms) {
         [[NSFileManager defaultManager] removeTemporaryFilesAtPath:[dm.texPath stringByDeletingLastPathComponent]];
@@ -197,6 +197,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 -(void)dealloc {
     DDLogVerbose(@"dealloc");
     self.myCurrentFirstResponderDelegate = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTObjectWillDieNotification object:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];

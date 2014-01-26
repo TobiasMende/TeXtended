@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -23,13 +23,13 @@
         <arrayController id="367" customClass="CompileFlowHandler"/>
         <arrayController objectClassName="NSMutableArray" avoidsEmptySelection="NO" id="369">
             <connections>
-                <binding destination="-2" name="contentSet" keyPath="self.model.mainDocuments" id="384"/>
+                <binding destination="-2" name="contentArray" keyPath="self.model.mainDocuments" id="u6R-Oz-tFY"/>
             </connections>
         </arrayController>
         <window title="Export" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES" HUD="YES"/>
             <rect key="contentRect" x="131" y="159" width="537" height="341"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <value key="maxSize" type="size" width="800" height="341"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="537" height="341"/>
@@ -236,8 +236,8 @@
                                     </popUpButtonCell>
                                     <connections>
                                         <binding destination="367" name="contentValues" keyPath="arrangedObjects" id="407"/>
-                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="hCP-Dp-GAB"/>
                                         <binding destination="369" name="selectedValue" keyPath="selection.self.finalCompiler.compilerPath" previousBinding="407" id="410"/>
+                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="hCP-Dp-GAB"/>
                                     </connections>
                                 </popUpButton>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="308">
@@ -248,8 +248,8 @@
                                         <font key="font" metaFont="smallSystem"/>
                                     </buttonCell>
                                     <connections>
-                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="1ND-EE-AkW"/>
                                         <binding destination="369" name="value" keyPath="selection.self.finalCompiler.compileBib" id="412"/>
+                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="1ND-EE-AkW"/>
                                     </connections>
                                 </button>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="309">
@@ -286,8 +286,8 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="xep-Tp-UTl"/>
                                         <binding destination="369" name="value" keyPath="selection.self.finalCompiler.numberOfCompiles" previousBinding="439" id="440"/>
+                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="xep-Tp-UTl"/>
                                         <binding destination="420" name="maxValue" keyPath="self.maxIterations" id="435"/>
                                         <binding destination="420" name="minValue" keyPath="self.minIterations" previousBinding="435" id="439"/>
                                     </connections>
@@ -297,8 +297,8 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="3" doubleValue="1" valueWraps="YES" id="312"/>
                                     <connections>
-                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="ivS-Ro-rMD"/>
                                         <binding destination="369" name="value" keyPath="selection.self.finalCompiler.numberOfCompiles" previousBinding="429" id="457"/>
+                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="ivS-Ro-rMD"/>
                                         <binding destination="420" name="maxValue" keyPath="self.maxIterations" id="428"/>
                                         <binding destination="420" name="minValue" keyPath="self.minIterations" previousBinding="428" id="429"/>
                                     </connections>
@@ -315,8 +315,8 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="pnG-7G-HaP"/>
                                         <binding destination="369" name="value" keyPath="selection.self.finalCompiler.customArgument" id="443"/>
+                                        <binding destination="369" name="enabled" keyPath="selection.self.hasFinalCompiler" id="pnG-7G-HaP"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">

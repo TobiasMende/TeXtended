@@ -92,7 +92,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    self.mainDocuments = [self.parentModel.mainDocuments allObjects];
+    self.mainDocuments = self.parentModel.mainDocuments;
     if (self.mainDocuments.count) {
         [self.mainCompilableSelection selectItemAtIndex:0];
     }

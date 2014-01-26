@@ -277,8 +277,8 @@ static NSArray *TMTEncodingsToCheck;
     return [super mainCompilable];
 }
 
-- (NSSet *)mainDocuments {
-    NSSet* md = nil;
+- (NSArray *)mainDocuments {
+    NSArray* md = nil;
     if([super mainDocuments] && [[super mainDocuments]count] >0) {
             md = [super mainDocuments];
     }
@@ -286,7 +286,7 @@ static NSArray *TMTEncodingsToCheck;
         md = [self.project mainDocuments];
     }
     if(!md) {
-        md = [NSSet setWithObject:self];
+        md = @[self];
     }
     return md;
 }
@@ -294,22 +294,22 @@ static NSArray *TMTEncodingsToCheck;
 - (void)addMainDocumentsObject:(DocumentModel *)value {
     
     if(![super mainDocuments]) {
-        self.mainDocuments = [NSSet new];
+        self.mainDocuments = [NSArray new];
         if (self.project) {
-            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+            self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
         }
     }
-    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
+    self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
 }
 
-- (void)addMainDocuments:(NSSet *)values {
+- (void)addMainDocuments:(NSArray *)values {
     if(![super mainDocuments]) {
-        self.mainDocuments = [NSSet new];
+        self.mainDocuments = [NSArray new];
         if (self.project) {
-            self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:self.project.mainDocuments];
+            self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
         }
     }
-    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
+    self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:values];
 }
 
 

@@ -922,7 +922,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             }
             [self showMainDocumentsWindow:mainDocumentNames];
         } else if (model.mainDocuments.count == 1) {
-            [self insertDropCompletionForModel:[model.mainDocuments anyObject]];
+            [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
         }
         
     }

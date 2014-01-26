@@ -32,7 +32,7 @@
         <customObject id="-3" userLabel="Application"/>
         <arrayController objectClassName="NSMutableArray" avoidsEmptySelection="NO" id="1797">
             <connections>
-                <binding destination="-2" name="contentSet" keyPath="self.compilable.mainDocuments" id="2fr-tI-no6"/>
+                <binding destination="-2" name="contentArray" keyPath="self.compilable.mainDocuments" id="4Ny-RL-Vt3"/>
             </connections>
         </arrayController>
         <arrayController avoidsEmptySelection="NO" id="MKC-wh-mat" userLabel="Bib Array Controller">

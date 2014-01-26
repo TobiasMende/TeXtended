@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="mainView" destination="6za-RU-ZEg" id="G8o-eF-5oG"/>
                 <outlet property="selectionPopup" destination="JOg-XU-VMo" id="RV5-ZC-Mnj"/>
-                <outlet property="view" destination="6za-RU-ZEg" id="DJl-1s-iMh"/>
+                <outlet property="view" destination="7hM-Ui-HoE" id="i5q-ra-481"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -18,21 +18,21 @@
             <rect key="frame" x="0.0" y="0.0" width="346" height="326"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <tabView fixedFrame="YES" controlSize="mini" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="6za-RU-ZEg">
-                    <rect key="frame" x="-1" y="23" width="347" height="303"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <tabView controlSize="mini" type="noTabsNoBorder" id="6za-RU-ZEg">
+                    <rect key="frame" x="-1" y="20" width="347" height="306"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <font key="font" metaFont="miniSystem"/>
                     <tabViewItems/>
                     <connections>
                         <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="ncp-Iy-ohU"/>
                     </connections>
                 </tabView>
-                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JOg-XU-VMo">
-                    <rect key="frame" x="-2" y="-3" width="351" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bKX-be-KcP" id="vfm-Of-PfG">
+                <popUpButton verticalHuggingPriority="750" id="JOg-XU-VMo">
+                    <rect key="frame" x="-1" y="3" width="349" height="15"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="mini" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bKX-be-KcP" id="vfm-Of-PfG">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="miniSystem"/>
                         <menu key="menu" title="OtherViews" id="p9V-0H-YjO">
                             <items>
                                 <menuItem title="Item 1" state="on" id="bKX-be-KcP"/>
@@ -42,7 +42,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="ZXH-V8-afe"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="F2a-pA-pIe"/>
                     </connections>
                 </popUpButton>
             </subviews>

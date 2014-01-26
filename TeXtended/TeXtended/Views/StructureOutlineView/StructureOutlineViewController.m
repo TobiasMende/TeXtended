@@ -16,6 +16,7 @@
 
 @interface StructureOutlineViewController ()
 - (void) firstResponderDidChange;
+- (void) objectWillDie:(NSNotification *)note;
 @end
 
 @implementation StructureOutlineViewController
@@ -25,8 +26,14 @@
     if (self) {
         self.mainWindowController = mwc;
         [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectWillDie:) name:TMTObjectWillDieNotification object:self.mainWindowController];
     }
     return self;
+}
+
+- (void)objectWillDie:(NSNotification *)note {
+    [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
+    self.mainWindowController = nil;
 }
 
 
@@ -35,7 +42,7 @@
 }
 
 - (void)firstResponderDidChange {
-    NSSet *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
+    NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     sections = [NSMutableArray arrayWithCapacity:mainDocuments.count];
     [self.selectionPopup removeAllItems];
     for(NSTabViewItem *item in self.mainView.tabViewItems) {
@@ -45,6 +52,8 @@
         StructureOutlineSectionViewController *structure = [[StructureOutlineSectionViewController alloc] initWithRootNode:model];
         NSTabViewItem *item = [NSTabViewItem new];
         item.view = structure.view;
+        NSString *name = model.texName ? model.texName : model.texIdentifier;
+        [self.selectionPopup addItemWithTitle:name];
         [item bind:@"label" toObject:model withKeyPath:@"texName" options:nil];
         [sections addObject:structure];
         [self.mainView addTabViewItem:item];
@@ -55,6 +64,7 @@
 - (void)dealloc {
     if (self.mainWindowController) {
         [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 

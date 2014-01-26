@@ -86,7 +86,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
                 currentPath = [currentPath stringByAppendingPathExtension:@"tex"];
             }
             if (![currentPath isAbsolutePath]) {
-                DocumentModel *main = [model.mainDocuments anyObject];
+                DocumentModel *main = [model.mainDocuments firstObject];
                 NSString *base = main.texPath.stringByDeletingLastPathComponent;
                 currentPath = [currentPath absolutePathWithBase:base];
             }

@@ -41,7 +41,7 @@
 
 - (void) compile:(CompileMode)mode {
     [self.liveTimer invalidate];
-    NSSet *mainDocuments = [self.compileProcessHandler.model mainDocuments];
+    NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
     [[TMTNotificationCenter centerForCompilable:self.compileProcessHandler.model] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
     for (DocumentModel *model in mainDocuments) {
         if (!model.texPath) {

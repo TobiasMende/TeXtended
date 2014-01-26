@@ -16,6 +16,7 @@
 
 static NSUInteger LAST_IDENTIFIER = 0;
 @interface Compilable ()
+- (NSMutableArray*)convertMainDocuments:(id)docs;
 @end
 
 @implementation Compilable
@@ -47,7 +48,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         self.hasLiveCompiler = self.liveCompiler != nil;
         
             @try {
-                NSSet *mainDocuments =[aDecoder decodeObjectForKey:@"mainDocuments"];
+                NSArray *mainDocuments =[self convertMainDocuments:[aDecoder decodeObjectForKey:@"mainDocuments"]];
                 if (mainDocuments && mainDocuments.count > 0) {
                     self.mainDocuments = mainDocuments;
                 }
@@ -57,6 +58,17 @@ static NSUInteger LAST_IDENTIFIER = 0;
             }
     }
     return self;
+}
+
+- (NSMutableArray *)convertMainDocuments:(id)docs {
+    if ([docs isKindOfClass:[NSSet class]]) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:[docs count]];
+        for(id obj in docs) {
+            [array addObject:obj];
+        }
+        return array;
+    }
+    return docs;
 }
 
 - (void)finishInitWithPath:(NSString *)absolutePath {}
@@ -86,15 +98,15 @@ static NSUInteger LAST_IDENTIFIER = 0;
     return nil;
 }
 
-- (void)addMainDocuments:(NSSet *)values {
+- (void)addMainDocuments:(NSArray *)values {
     if (!self.mainDocuments) {
-        self.mainDocuments = [NSSet new];
+        self.mainDocuments = [NSArray new];
     }
-    self.mainDocuments = [self.mainDocuments setByAddingObjectsFromSet:values];
+    self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:values];
 }
 
-- (void)removeMainDocuments:(NSSet *)values {
-    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+- (void)removeMainDocuments:(NSArray *)values {
+    NSMutableArray *tmp = [self.mainDocuments mutableCopy];
     for(NSObject *obj in values) {
         [tmp removeObject:obj];
     }
@@ -102,16 +114,16 @@ static NSUInteger LAST_IDENTIFIER = 0;
 }
 
 - (void)removeMainDocumentsObject:(DocumentModel *)value {
-    NSMutableSet *tmp = [self.mainDocuments mutableCopy];
+    NSMutableArray *tmp = [self.mainDocuments mutableCopy];
     [tmp removeObject:value];
     self.mainDocuments = tmp;
 }
 
 - (void)addMainDocumentsObject:(DocumentModel *)value {
     if (!self.mainDocuments) {
-         self.mainDocuments = [NSSet new];
+         self.mainDocuments = [NSArray new];
     }
-    self.mainDocuments = [self.mainDocuments setByAddingObject:value];
+    self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
 }
 
 - (Compilable *)mainCompilable {
