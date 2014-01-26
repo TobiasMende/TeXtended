@@ -34,8 +34,8 @@
 +(NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
     if ([key isEqualToString:@"arrangedObjects"]) {
-        keys = [keys setByAddingObject:@"self.treeController.arrangedObjects"];
+        keys = [keys setByAddingObjectsFromArray:@[@"self.treeController.arrangedObjects",@"self.treeController.content"]];
     }
-    return keys;
+                return keys;
 }
 @end

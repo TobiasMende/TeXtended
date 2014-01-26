@@ -8,9 +8,15 @@
 
 #import "StructureOutlineSectionViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/TMTTableView.h>
+#import "StructurOutlineCellView.h"
 #import "DocumentModel.h"
+#import "Constants.h"
+#import "DocumentCreationController.h"
+#import "TMTNotificationCenter.h"
+#import "OutlineElement.h"
 @interface StructureOutlineSectionViewController ()
-
+- (void)jumpToSelection:(TMTTableView *)tableView;
 @end
 
 @implementation StructureOutlineSectionViewController
@@ -25,27 +31,33 @@
 
 - (void)loadView {
     [super loadView];
-    
-    DDLogVerbose(@"%@", self.rootNode.outlineElements);
+    self.tableView.singleClickAction = @selector(jumpToSelection:);
+    self.tableView.enterAction = @selector(jumpToSelection:);
 }
 
+- (void)jumpToSelection:(TMTTableView *)tableView {
+    NSInteger row = tableView.selectedRow;
+    
+    if (row >= 0 && row < tableView.numberOfRows) {
+        StructurOutlineCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+        if (view) {
+            NSString *path =view.element.document.texPath;
+            NSUInteger line = view.element.line;
+            [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:view.element.document andCompletionHandler:^(DocumentModel *model) {
+                if (model) {
+                    [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:line]}];
+                } else {
+                    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];
+                }
+            }];
+        }
+    }
+}
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
 }
 
-#pragma mark - Outline Delegate
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldCollapseItem:(id)item {
-    return NO;
-}
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item {
-    return YES;
-}
-
--(BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
-    return YES;
-}
+#pragma mark - Table Delegate
 
 @end

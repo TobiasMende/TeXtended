@@ -30,7 +30,7 @@
     NSArray *lines = [self lineRanges];
     for(NSUInteger line = 0; line < lines.count; line++) {
         NSRange lineRange = [lines[line] range];
-        if (NSEqualRanges(lineRange, NSUnionRange(lineRange, range))) {
+        if (NSIntersectionRange(range, lineRange).length > 0) {
             return line;
         }
     }

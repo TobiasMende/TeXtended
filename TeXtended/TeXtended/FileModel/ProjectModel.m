@@ -67,6 +67,8 @@
     for (DocumentModel * doc in self.documents) {
         [doc finishInitWithPath:absolutePath];
     }
+    
+    [self.documents makeObjectsPerformSelector:@selector(buildOutline)];
     for (BibFile *f in self.bibFiles) {
         [f finishInitWithPath:absolutePath];
     }

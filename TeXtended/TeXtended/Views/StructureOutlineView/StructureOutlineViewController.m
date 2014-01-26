@@ -37,15 +37,22 @@
 - (void)firstResponderDidChange {
     NSSet *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     sections = [NSMutableArray arrayWithCapacity:mainDocuments.count];
-    NSMutableArray *sectionViews = [NSMutableArray arrayWithCapacity:mainDocuments.count];
+    for(NSTabViewItem *item in self.mainView.tabViewItems) {
+        [self.mainView removeTabViewItem:item];
+    }
     for(DocumentModel *model in mainDocuments) {
         StructureOutlineSectionViewController *structure = [[StructureOutlineSectionViewController alloc] initWithRootNode:model];
-        DMPaletteSectionView *view = [[DMPaletteSectionView alloc] initWithContentView:structure.view andTitle:model.texName];
-        [sectionViews addObject:view];
+        NSTabViewItem *item = [NSTabViewItem new];
+        item.view = structure.view;
+        [item bind:@"identifier" toObject:model withKeyPath:@"texName" options:nil];
         [sections addObject:structure];
+        [self.mainView addTabViewItem:item];
     }
-    [self.mainView setSectionViews:sectionViews];
-    
+    if (mainDocuments.count <= 1) {
+        [self.mainView setTabViewType:NSNoTabsNoBorder];
+    } else {
+        [self.mainView setTabViewType:NSBottomTabsBezelBorder];
+    }
 }
 
 - (void)dealloc {

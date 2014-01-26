@@ -9,6 +9,7 @@
 #import "OutlineElement.h"
 #import "DocumentModel.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "TMTNotificationCenter.h"
 
 
 @implementation OutlineElement
@@ -33,7 +34,17 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%u - %@(%li)", self.type, self.document.texName, self.line];
+    return [NSString stringWithFormat:@"%u - %@(%li) - %@", self.type, self.document.texName, self.line, self.info];
+}
+
+- (void)setSubNode:(DocumentModel *)subNode {
+    if (_subNode) {
+        [_subNode removeObserver:self forKeyPath:@"outlineElements"];
+    }
+    _subNode = subNode;
+    if (_subNode) {
+        [_subNode addObserver:self forKeyPath:@"outlineElements" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+    }
 }
 
 - (BOOL)isLeaf {
@@ -62,5 +73,20 @@
     }
     return keys;
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.subNode]) {
+        self.document.outlineElements = self.document.outlineElements;
+    }
+}
+
+- (void)dealloc {
+    if (_subNode) {
+        [_subNode removeObserver:self forKeyPath:@"outlineElements"];
+    }
+}
+
+
+
 
 @end

@@ -11,6 +11,7 @@
 
 @interface TMTLoopBreakingTreeController ()
 - (BOOL)breakLoopsInContent:(id)content withPath:(NSMutableArray *)path;
+- (void)finallySetContent:(id)content;
 @end
 
 @implementation TMTLoopBreakingTreeController
@@ -19,11 +20,17 @@
 - (void)setContent:(id)content {
     NSMutableArray *path = [NSMutableArray new];
     if(![self breakLoopsInContent:content withPath:path]) {
-        [super setContent:content];
+        [self performSelectorOnMainThread:@selector(finallySetContent:) withObject:content waitUntilDone:YES];
     } else {
         DDLogError(@"Loop Detected. Can't set content");
     }
 }
+
+- (void)finallySetContent:(id)content {
+    [super setContent:content];
+}
+
+
 
 - (BOOL)breakLoopsInContent:(id)content withPath:(NSMutableArray *)path {
     for(id obj in content) {

@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class MainWindowController, DMPaletteContainer;
+@class MainWindowController;
 @interface StructureOutlineViewController : NSViewController {
     NSMutableArray *sections;
 }
-@property (strong) IBOutlet DMPaletteContainer *mainView;
+@property (strong) IBOutlet NSTabView *mainView;
 
 @property (assign) MainWindowController *mainWindowController;
 

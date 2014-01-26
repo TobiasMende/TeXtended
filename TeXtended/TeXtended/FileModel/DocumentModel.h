@@ -48,7 +48,7 @@
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
 @property (nonatomic, assign) ProjectModel *project;
 
-@property (strong) NSArray *outlineElements;
+@property (strong) NSMutableArray *outlineElements;
 
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;
@@ -124,5 +124,6 @@
 - (void) initOutlineElements;
 
 - (NSString *)header;
+- (void) buildOutline;
 @end
 

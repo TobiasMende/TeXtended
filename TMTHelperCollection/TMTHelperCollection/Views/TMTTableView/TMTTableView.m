@@ -15,13 +15,23 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (keyChar == NSEnterCharacter || keyChar == NSCarriageReturnCharacter) {
-        if ([self.delegate respondsToSelector:self.enterAction]) {
+        if (self.enterAction && [self.delegate respondsToSelector:self.enterAction]) {
             [self.delegate performSelector:self.enterAction withObject:self];
         }
         return;
     }
 #pragma clang diagnostic pop
     [super keyDown:theEvent];
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    if (theEvent.clickCount < 2 && self.singleClickAction && [self.delegate respondsToSelector:self.singleClickAction]) {
+        [self.delegate performSelector:self.singleClickAction withObject:self];
+    }
+  #pragma clang diagnostic pop  
 }
 
 - (BOOL)isOpaque {

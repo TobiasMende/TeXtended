@@ -10,4 +10,5 @@
 
 @interface TMTFlatTreeArrayController : NSArrayController
 @property IBOutlet NSTreeController *treeController;
+
 @end
