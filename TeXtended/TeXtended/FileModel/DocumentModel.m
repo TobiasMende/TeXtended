@@ -62,9 +62,6 @@ static NSArray *TMTEncodingsToCheck;
     if (error) {
         DDLogError(@"Error while loading content: %@", *error);
     }
-    if (content) {
-        [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidLoadDocumentModelContent object:self];
-    }
     if (content == nil && error != NULL) {
         *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message": @"Can't read file"}];
     }
@@ -389,9 +386,11 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)setOutlineElements:(NSMutableArray *)outlineElements {
-    _outlineElements = outlineElements;
-    if (_outlineElements) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath: [NSMutableArray arrayWithObject:self]}];
+    if (![outlineElements isEqualTo:_outlineElements]) {
+        _outlineElements = outlineElements;
+        if (_outlineElements) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self];
+        }
     }
 }
 

@@ -53,7 +53,7 @@
 - (void)subnodeDidChangeNotification:(NSNotification *)note {
     NSMutableArray *path = note.userInfo[TMTOutlineChangePath];
     [path addObject:self.document];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self.document userInfo:@{TMTOutlineChangePath: path}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self.document];
 }
 
 - (BOOL)isLeaf {
@@ -113,6 +113,35 @@
     }
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    OutlineElement *other = (OutlineElement *)object;
+    if (self.line != other.line) {
+        return NO;
+    }
+    if (self.type != other.type) {
+        return NO;
+    }
+    if (self.info != other.info) {
+        return NO;
+    }
+    return [self.document isEqual:other.document];
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + self.type;
+    result = prime * result + self.line;
+    result = prime *result + [self.info hash];
+    result = prime *result + [self.document hash];
+    return result;
+}
 
 
 @end

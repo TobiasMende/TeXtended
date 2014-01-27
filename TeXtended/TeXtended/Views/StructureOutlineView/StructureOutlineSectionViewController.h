@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 @class DocumentModel, TMTTableView;
-@interface StructureOutlineSectionViewController : NSViewController<NSTableViewDelegate>
+@interface StructureOutlineSectionViewController : NSViewController<NSTableViewDelegate> {
+}
 @property (strong) IBOutlet TMTTableView *tableView;
 @property DocumentModel *rootNode;
+@property (nonatomic) NSMutableArray *content;
 - (id) initWithRootNode:(DocumentModel *)model;
 @end

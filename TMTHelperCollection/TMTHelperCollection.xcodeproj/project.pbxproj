@@ -44,10 +44,6 @@
 		D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC1C91863784800997ADB /* TMTHelperCollection.h */; };
 		D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC26418637A4F00997ADB /* TMTTableRowView.m */; };
 		D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC26618637A4F00997ADB /* TMTTableView.m */; };
-		D2C237BC189580060096ECAA /* TMTLoopBreakingTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2C237BA189580060096ECAA /* TMTLoopBreakingTreeController.h */; };
-		D2C237BD189580060096ECAA /* TMTLoopBreakingTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237BB189580060096ECAA /* TMTLoopBreakingTreeController.m */; };
-		D2C237C018958CB00096ECAA /* TMTFlatTreeArrayController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2C237BE18958CB00096ECAA /* TMTFlatTreeArrayController.h */; };
-		D2C237C118958CB00096ECAA /* TMTFlatTreeArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237BF18958CB00096ECAA /* TMTFlatTreeArrayController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +100,6 @@
 		D22DC26418637A4F00997ADB /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
 		D22DC26518637A4F00997ADB /* TMTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableView.h; sourceTree = "<group>"; };
 		D22DC26618637A4F00997ADB /* TMTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableView.m; sourceTree = "<group>"; };
-		D2C237BA189580060096ECAA /* TMTLoopBreakingTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLoopBreakingTreeController.h; sourceTree = "<group>"; };
-		D2C237BB189580060096ECAA /* TMTLoopBreakingTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLoopBreakingTreeController.m; sourceTree = "<group>"; };
-		D2C237BE18958CB00096ECAA /* TMTFlatTreeArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTFlatTreeArrayController.h; sourceTree = "<group>"; };
-		D2C237BF18958CB00096ECAA /* TMTFlatTreeArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTFlatTreeArrayController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +166,6 @@
 		D22DC1C21863784800997ADB /* TMTHelperCollection */ = {
 			isa = PBXGroup;
 			children = (
-				D2C237B918957FF70096ECAA /* TMTLoopBreakingTreeController */,
 				D22DC24618637A4F00997ADB /* Utils */,
 				D22DC26118637A4F00997ADB /* Views */,
 				D22DC1C91863784800997ADB /* TMTHelperCollection.h */,
@@ -278,17 +269,6 @@
 			path = TMTTableView;
 			sourceTree = "<group>";
 		};
-		D2C237B918957FF70096ECAA /* TMTLoopBreakingTreeController */ = {
-			isa = PBXGroup;
-			children = (
-				D2C237BA189580060096ECAA /* TMTLoopBreakingTreeController.h */,
-				D2C237BB189580060096ECAA /* TMTLoopBreakingTreeController.m */,
-				D2C237BE18958CB00096ECAA /* TMTFlatTreeArrayController.h */,
-				D2C237BF18958CB00096ECAA /* TMTFlatTreeArrayController.m */,
-			);
-			path = TMTLoopBreakingTreeController;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -304,11 +284,9 @@
 				D22DC29418637ACA00997ADB /* DDLog.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
-				D2C237C018958CB00096ECAA /* TMTFlatTreeArrayController.h in Headers */,
 				D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */,
 				D22DC29118637ACA00997ADB /* DDAbstractDatabaseLogger.h in Headers */,
 				D22DC29218637ACA00997ADB /* DDASLLogger.h in Headers */,
-				D2C237BC189580060096ECAA /* TMTLoopBreakingTreeController.h in Headers */,
 				D22DC29318637ACA00997ADB /* DDFileLogger.h in Headers */,
 				D22DC29518637ACA00997ADB /* DDTTYLogger.h in Headers */,
 				D22DC29618637ACA00997ADB /* ContextFilterLogFormatter.h in Headers */,
@@ -415,10 +393,8 @@
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
 				D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */,
-				D2C237BD189580060096ECAA /* TMTLoopBreakingTreeController.m in Sources */,
 				D22DC28418637AB800997ADB /* DDAbstractDatabaseLogger.m in Sources */,
 				D22DC28518637AB800997ADB /* DDASLLogger.m in Sources */,
-				D2C237C118958CB00096ECAA /* TMTFlatTreeArrayController.m in Sources */,
 				D22DC28618637AB800997ADB /* DDFileLogger.m in Sources */,
 				D22DC28718637AB800997ADB /* DDLog.m in Sources */,
 				D22DC28818637AB800997ADB /* DDTTYLogger.m in Sources */,
