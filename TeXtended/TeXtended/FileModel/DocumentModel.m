@@ -292,7 +292,9 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)addMainDocumentsObject:(DocumentModel *)value {
-    
+    if ([self.mainDocuments containsObject:value]) {
+        return;
+    }
     if(![super mainDocuments]) {
         self.mainDocuments = [NSArray new];
         if (self.project) {

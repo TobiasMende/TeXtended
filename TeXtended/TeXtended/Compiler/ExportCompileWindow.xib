@@ -23,7 +23,11 @@
         <arrayController id="367" customClass="CompileFlowHandler"/>
         <arrayController objectClassName="NSMutableArray" avoidsEmptySelection="NO" id="369">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.model.mainDocuments" id="u6R-Oz-tFY"/>
+                <binding destination="-2" name="contentArray" keyPath="self.model.mainDocuments" id="E5F-2q-nUW">
+                    <dictionary key="options">
+                        <bool key="NSValidatesImmediately" value="YES"/>
+                    </dictionary>
+                </binding>
             </connections>
         </arrayController>
         <window title="Export" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" customClass="NSPanel">

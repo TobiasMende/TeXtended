@@ -120,6 +120,9 @@ static NSUInteger LAST_IDENTIFIER = 0;
 }
 
 - (void)addMainDocumentsObject:(DocumentModel *)value {
+    if ([self.mainDocuments containsObject:value]) {
+        return;
+    }
     if (!self.mainDocuments) {
          self.mainDocuments = [NSArray new];
     }
