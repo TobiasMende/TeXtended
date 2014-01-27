@@ -133,25 +133,6 @@
     return [self.bibFilesController.arrangedObjects count] > 0;
 }
 
-- (void) setCompilable:(Compilable *)compilable {
-    
-    if ([self.compilable.type isEqualToString:@"Document"]) {
-            [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
-    }
-    
-    _compilable = compilable;
-    if ([self.compilable.type isEqualToString:@"Document"]) {
-        [self.compilable addObserver:self forKeyPath:@"self.encoding" options:NSKeyValueObservingOptionInitial context:NULL];
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"self.encoding"]) {
-        if (self.compilable.encoding) {
-            [self.encodingPopUp selectItemAtIndex:[encodings indexOfObject:self.compilable.encoding]];
-        }
-    }
-}
 
 #pragma mark -
 #pragma mark Delegate Methods
@@ -173,9 +154,6 @@
 
 
 - (void)dealloc {
-    if ([self.compilable.type isEqualToString:@"Document"]) {
-            [self.compilable removeObserver:self forKeyPath:@"self.encoding"];
-    }
     DDLogVerbose(@"dealloc");
 }
 

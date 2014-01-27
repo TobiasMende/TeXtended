@@ -252,6 +252,7 @@
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
 		D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
+		D2FC9EAC189680670015C192 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FC9EAB189680670015C192 /* CacheManager.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
@@ -694,6 +695,8 @@
 		D2F177CF17651D5A0089DBC0 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
 		D2F177D017651D5A0089DBC0 /* InfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindowController.h; sourceTree = "<group>"; };
 		D2F177D117651D5A0089DBC0 /* InfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindowController.m; sourceTree = "<group>"; };
+		D2FC9EAA189680670015C192 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		D2FC9EAB189680670015C192 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		D2FCB62B1768EB40008C2FE9 /* TexdocController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocController.h; sourceTree = "<group>"; };
 		D2FCB62C1768EB40008C2FE9 /* TexdocController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocController.m; sourceTree = "<group>"; };
 		D2FD39AE171EC434008BB864 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
@@ -1418,6 +1421,8 @@
 				D2C237AD18956F480096ECAA /* TMTOutlineView.h */,
 				D2C237AE18956F480096ECAA /* TMTOutlineView.m */,
 				D2C237C21895A6EF0096ECAA /* StructureOutlineView.xib */,
+				D2FC9EAA189680670015C192 /* CacheManager.h */,
+				D2FC9EAB189680670015C192 /* CacheManager.m */,
 			);
 			path = StructureOutlineView;
 			sourceTree = "<group>";
@@ -1830,6 +1835,7 @@
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
+				D2FC9EAC189680670015C192 /* CacheManager.m in Sources */,
 				D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,

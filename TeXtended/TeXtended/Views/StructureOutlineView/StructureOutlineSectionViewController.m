@@ -34,7 +34,8 @@
 }
 
 - (void)outlineDidChange:(NSNotification *)note {
-    self.content = [self flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];;
+    NSMutableArray *result = [self flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
+    [self performSelectorOnMainThread:@selector(setContent:) withObject:result waitUntilDone:YES];
 }
 
 

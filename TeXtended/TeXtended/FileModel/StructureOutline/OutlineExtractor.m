@@ -88,9 +88,11 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             if (![currentPath isAbsolutePath]) {
                 DocumentModel *main = [model.mainDocuments firstObject];
                 NSString *base = main.texPath.stringByDeletingLastPathComponent;
-                currentPath = [currentPath absolutePathWithBase:base];
+                if (base) {
+                    currentPath = [currentPath absolutePathWithBase:base];
+                }
             }
-            if(model.project) {
+            if(currentPath && model.project) {
                 element.subNode = [model modelForTexPath:currentPath byCreating:YES];
                 if (!element.subNode) {
                     continue;

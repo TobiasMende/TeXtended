@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class OutlineElement;
 @interface StructurOutlineCellView : NSTableCellView
-@property (nonatomic) NSColor *textColor;
-
 - (OutlineElement *)element;
 - (NSImage *)image;
+- (NSColor *)textColor;
 @end

@@ -28,7 +28,7 @@ typedef enum OutlineElementType {
 @property NSUInteger line;
 @property (strong) NSString * info;
 @property (assign) DocumentModel *document;
-@property (strong,nonatomic) DocumentModel *subNode;
+@property (assign,nonatomic) DocumentModel *subNode;
 
 - (BOOL)isLeaf;
 - (NSArray *)children;

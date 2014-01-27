@@ -151,7 +151,9 @@ static NSString *CONTENT_DIR_NAME = @"content";
 
 
 - (BOOL)setDocumentWithContent:(NSString *)content model:(DocumentModel *)model andError:(NSError *__autoreleasing *)error {
-    *error = nil;
+    if (error) {
+        *error = nil;
+    }
     self.compilable = [model copy];
     NSStringEncoding encoding = model.encoding.unsignedLongValue;
     if (encoding == 0) {

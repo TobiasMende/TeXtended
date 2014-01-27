@@ -53,7 +53,7 @@
 - (void)subnodeDidChangeNotification:(NSNotification *)note {
     NSMutableArray *path = note.userInfo[TMTOutlineChangePath];
     [path addObject:self.document];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self.document];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self.document userInfo:@{TMTOutlineChangePath: path}];
 }
 
 - (BOOL)isLeaf {

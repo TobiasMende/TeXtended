@@ -134,7 +134,9 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
 
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
-    *outError = nil;
+    if (outError != NULL) {
+        *outError = nil;
+    }
     if (![standardDocumentTypes containsObject:typeName]) {
         if (outError) {
             *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:nil];

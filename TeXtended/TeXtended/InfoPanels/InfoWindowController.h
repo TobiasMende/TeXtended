@@ -32,7 +32,7 @@
 /** Tableview displaying the Bibfiles */
 @property (assign) IBOutlet NSTableView *bibTable;
 /** Model which is displayed */
-@property (strong, nonatomic) Compilable* compilable;
+@property (strong) Compilable* compilable;
 /** Label for the Document- or Projectname */
 @property (assign) IBOutlet NSTextField *lblName;
 /** Label for the documentmodel type (Project/Document) */
