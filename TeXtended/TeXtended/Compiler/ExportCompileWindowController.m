@@ -100,11 +100,12 @@
         url = [NSURL fileURLWithPath:[self.model.project.path stringByDeletingLastPathComponent]];
     }
     [texPathPanel setDirectoryURL:url];
+    __unsafe_unretained DocumentModel *weakModel = self.model;
     [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [texPathPanel URL];
-            DocumentModel *m = [self.model modelForTexPath:file.path];
-            [self.model addMainDocumentsObject:m];
+            DocumentModel *m = [weakModel modelForTexPath:file.path];
+            [weakModel addMainDocumentsObject:m];
         }
     }];
 }
