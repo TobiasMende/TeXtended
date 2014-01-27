@@ -13,6 +13,7 @@
 #import "FirstResponderDelegate.h"
 #import "DocumentModel.h"
 #import "DMPaletteSectionView.h"
+#import <TMTHelperCollection/TMTlog.h>
 
 @interface StructureOutlineViewController ()
 - (void) firstResponderDidChange;
@@ -42,12 +43,15 @@
 }
 
 - (void)firstResponderDidChange {
+    DDLogWarn(@"Responder Change");
     NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     sections = [NSMutableArray arrayWithCapacity:mainDocuments.count];
+    NSString *currentSelection = self.selectionPopup.selectedItem.title;
     [self.selectionPopup removeAllItems];
     for(NSTabViewItem *item in self.mainView.tabViewItems) {
         [self.mainView removeTabViewItem:item];
     }
+    BOOL selectionExists = NO;
     for(DocumentModel *model in mainDocuments) {
         StructureOutlineSectionViewController *structure = [[StructureOutlineSectionViewController alloc] initWithRootNode:model];
         NSTabViewItem *item = [NSTabViewItem new];
@@ -55,9 +59,18 @@
         NSString *name = model.texName ? model.texName : model.texIdentifier;
         [self.selectionPopup addItemWithTitle:name];
         [item bind:@"label" toObject:model withKeyPath:@"texName" options:nil];
+        if ([name isEqualToString:currentSelection]) {
+            selectionExists = YES;
+        }
         [sections addObject:structure];
         [self.mainView addTabViewItem:item];
+        if (selectionExists) {
+            [self.selectionPopup selectItemWithTitle:currentSelection];
+            [self.mainView selectTabViewItemAtIndex:[self.selectionPopup indexOfItemWithTitle:currentSelection]];
+            
+        }
     }
+    
   
 }
 

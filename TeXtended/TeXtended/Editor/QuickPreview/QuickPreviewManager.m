@@ -143,9 +143,6 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     return nil;
 }
 
-- (void)documentHasChangedAction {
-    
-}
 
 - (void)compile:(CompileMode)mode {
     [self.compiler compile:mode];

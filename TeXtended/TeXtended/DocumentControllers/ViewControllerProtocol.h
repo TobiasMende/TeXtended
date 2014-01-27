@@ -13,8 +13,6 @@
 
 @optional
 - (id) initWithFirstResponder:(id<FirstResponderDelegate>) dc;
-- (void)documentModelHasChangedAction:(id<FirstResponderDelegate>)dc;
-- (void)documentHasChangedAction;
 - (void)breakUndoCoalescing;
 - (NSTabViewItem *)tabViewItem;
 

@@ -11,6 +11,9 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
 
+@interface OutlineElement ()
+- (void)subnodeDidChangeNotification:(NSNotification *)note;
+@end
 
 @implementation OutlineElement
 
@@ -39,12 +42,18 @@
 
 - (void)setSubNode:(DocumentModel *)subNode {
     if (_subNode) {
-        [_subNode removeObserver:self forKeyPath:@"outlineElements"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTOutlineDidChangeNotification object:_subNode];
     }
     _subNode = subNode;
     if (_subNode) {
-        [_subNode addObserver:self forKeyPath:@"outlineElements" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subnodeDidChangeNotification:) name:TMTOutlineDidChangeNotification object:_subNode];
     }
+}
+
+- (void)subnodeDidChangeNotification:(NSNotification *)note {
+    NSMutableArray *path = note.userInfo[TMTOutlineChangePath];
+    [path addObject:self.document];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self.document userInfo:@{TMTOutlineChangePath: path}];
 }
 
 - (BOOL)isLeaf {
@@ -74,16 +83,9 @@
     return keys;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.subNode]) {
-        self.document.outlineElements = self.document.outlineElements;
-    }
-}
 
 - (void)dealloc {
-    if (_subNode) {
-        [_subNode removeObserver:self forKeyPath:@"outlineElements"];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

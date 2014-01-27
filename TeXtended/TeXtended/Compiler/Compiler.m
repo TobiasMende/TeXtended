@@ -20,7 +20,6 @@
 #import "ConsoleManager.h"
 #import "MainDocument.h"
 @interface Compiler ()
-- (void) updateDocumentController;
 - (void) finishedCompilationTask:(NSTask*)task forData:(ConsoleData*)data;
 @end
 
@@ -149,9 +148,6 @@
                                                        repeats: NO]];
 }
 
-- (void) updateDocumentController {
-    [self.compileProcessHandler documentHasChangedAction];
-}
 
 
 - (void)abort {

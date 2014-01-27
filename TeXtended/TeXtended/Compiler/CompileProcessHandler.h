@@ -14,7 +14,6 @@
 - (DocumentModel *) model;
 - (void) compile:(CompileMode)mode;
 - (void) liveCompile:(id)sender;
-- (void)documentHasChangedAction;
 - (TextViewController *)textViewController;
 - (void)abort;
 @end

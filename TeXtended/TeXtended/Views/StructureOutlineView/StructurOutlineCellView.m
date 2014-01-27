@@ -10,6 +10,7 @@
 #import "OutlineElement.h"
 #import "Constants.h"
 #import "DocumentModel.h"
+#import "NSColor+TMTExtension.h"
 
 @interface StructurOutlineCellView ()
 - (void)updateTextColor;
@@ -55,6 +56,19 @@
             break;
         default:
             self.textColor = [NSColor blackColor];
+            break;
+    }
+}
+
+- (NSColor *)textColor {
+    switch (self.element.type) {
+        case CHAPTER:
+            return [_textColor slightlyDarkerColor];
+        case SUBSECTION:
+            return [_textColor slightlyLighterColor];
+            
+        default:
+            return _textColor;
             break;
     }
 }

@@ -174,6 +174,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [ApplicationController sharedApplicationController].currentFirstResponderDelegate = self.myCurrentFirstResponderDelegate;
 }
 
+- (void)setMyCurrentFirstResponderDelegate:(id<FirstResponderDelegate>)myCurrentFirstResponderDelegate {
+    if (![_myCurrentFirstResponderDelegate isEqual:myCurrentFirstResponderDelegate]) {
+        [self willChangeValueForKey:@"myCurrentFirstResponderDelegate"];
+        _myCurrentFirstResponderDelegate = myCurrentFirstResponderDelegate;
+         [self didChangeValueForKey:@"myCurrentFirstResponderDelegate"];
+    }
+}
+
 
 - (void)windowDidUpdate:(NSNotification *)notification {
     if (self.window.isKeyWindow) {
@@ -184,10 +192,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 - (void)updateFirstResponderDelegate:(NSResponder *)firstResponder {
     if ([firstResponder respondsToSelector:@selector(firstResponderDelegate)]) {
         id<FirstResponderDelegate> del = [firstResponder performSelector:@selector(firstResponderDelegate)];
-        if (![del isEqual:self.myCurrentFirstResponderDelegate]) {
+        
             self.myCurrentFirstResponderDelegate = del;
-        }
+       
     }
+}
+
++ (BOOL)automaticallyNotifiesObserversOfMyCurrentFirstResponderDelegate {
+    return NO;
 }
 
 #pragma mark - Terminate

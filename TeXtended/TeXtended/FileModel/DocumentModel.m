@@ -388,6 +388,13 @@ static NSArray *TMTEncodingsToCheck;
     return super.encoding;
 }
 
+- (void)setOutlineElements:(NSMutableArray *)outlineElements {
+    _outlineElements = outlineElements;
+    if (_outlineElements) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath: [NSMutableArray arrayWithObject:self]}];
+    }
+}
+
 
 
 # pragma mark - KVO
@@ -497,9 +504,7 @@ static NSArray *TMTEncodingsToCheck;
 - (void)buildOutline {
     NSString *content = [self loadContent:NULL];
     if (content) {
-        [[OutlineExtractor new] extractIn:content forModel:self withCallback:^(NSArray *outline) {
-            DDLogInfo(@"Outline: %@", outline);
-        }];
+        [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
     }
 }
 

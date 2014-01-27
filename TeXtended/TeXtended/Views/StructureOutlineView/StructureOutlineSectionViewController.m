@@ -17,6 +17,7 @@
 #import "OutlineElement.h"
 @interface StructureOutlineSectionViewController ()
 - (void)jumpToSelection:(TMTTableView *)tableView;
+- (void)outlineDidChange:(NSNotification *)note;
 @end
 
 @implementation StructureOutlineSectionViewController
@@ -25,8 +26,13 @@
     self = [super initWithNibName:@"StructureOutlineSectionView" bundle:nil];
     if (self) {
         self.rootNode = model;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outlineDidChange:) name:TMTOutlineDidChangeNotification object:self.rootNode];
     }
     return self;
+}
+
+- (void)outlineDidChange:(NSNotification *)note {
+    [self.tableView reloadData];
 }
 
 - (void)loadView {
@@ -55,6 +61,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     DDLogVerbose(@"dealloc");
 }
 

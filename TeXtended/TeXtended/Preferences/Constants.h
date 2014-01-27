@@ -154,7 +154,7 @@
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 #define TMTShouldShowDBLPKey @"TMTShouldShowDBLPKey"
 #define TMTDropCompletionKey @"TMTDropCompletionKey"
-
+#define TMTOutlineChangePath @"TMTOutlineChangePath"
 
 // --------------------------------------------------------------------------------
 #pragma mark - Notification Names
@@ -177,6 +177,7 @@
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 #define TMTObjectWillDieNotification @"TMTObjectWillDieNotification"
+#define TMTOutlineDidChangeNotification @"TMTOutlineDidChangeNotification"
 
 
 

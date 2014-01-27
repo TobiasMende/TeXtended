@@ -23,7 +23,7 @@
 
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
-@property (assign) id<FirstResponderDelegate> myCurrentFirstResponderDelegate;
+@property (assign,nonatomic) id<FirstResponderDelegate> myCurrentFirstResponderDelegate;
 @property TMTTabViewController *firsTabViewController;
 @property TMTTabViewController *secondTabViewController;
 

@@ -114,12 +114,6 @@
 }
 
 
-- (void) documentModelHasChangedAction : (id<FirstResponderDelegate>) controller {
-}
-
-- (void) documentHasChangedAction {
-}
-
 - (void)loadPDF {
     if (self.model.pdfPath) {
         // what is visible before the update?

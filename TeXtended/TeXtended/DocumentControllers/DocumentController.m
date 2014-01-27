@@ -110,10 +110,6 @@
 }
 
 
-- (void)documentHasChangedAction {
-    
-}
-
 - (void)updateViewsAfterModelChange {
     DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
     _textViewController = [[TextViewController alloc] initWithFirstResponder:self];
@@ -133,8 +129,6 @@
 }
 
 - (void)showPDFViews {
-    DDLogWarn(@"PDFViews: %li", self.pdfViewControllers.count);
-    DDLogWarn(@"MainDocuments: %li", self.model.mainDocuments.count);
     for(DocumentModel *model in self.model.mainDocuments) {
         BOOL containsController = NO;
         for(ExtendedPDFViewController *controller in self.pdfViewControllers) {

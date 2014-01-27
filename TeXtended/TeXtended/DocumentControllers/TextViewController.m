@@ -310,13 +310,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     return [NSSet setWithObject:nil];
 }
 
-- (void) documentModelHasChangedAction : (id<FirstResponderDelegate>) controller {
-    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
-    for (DocumentModel *m in self.model.mainDocuments) {
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
-    }
-    //TODO: reload file path?
-}
 
 
 - (void)syncPDF:(DocumentModel *)model {
@@ -378,9 +371,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [messageUpdateTimer invalidate];
     }
     if (!outlineExtractor.isExtracting) {
-        [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:^(NSArray *outline) {
-            DDLogInfo(@"Outline: %@", outline);
-        }];
+        [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
     }
     messageUpdateTimer = [NSTimer timerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
     

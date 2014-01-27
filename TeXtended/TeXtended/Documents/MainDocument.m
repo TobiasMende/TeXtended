@@ -69,7 +69,7 @@
 }
 
 - (void)firstResponderDidChangeNotification:(NSNotification *)note {
-    self.mainWindowController.myCurrentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
+        self.mainWindowController.myCurrentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
 }
 
 

@@ -101,8 +101,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
         [outline addObject:element];
     }
     
-    [model.outlineElements removeAllObjects];
-    [model.outlineElements addObjectsFromArray:outline];
+    model.outlineElements = outline;
     if (completionHandler) {
         completionHandler(outline);
     }
