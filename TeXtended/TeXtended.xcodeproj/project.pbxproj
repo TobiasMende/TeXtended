@@ -36,6 +36,7 @@
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
 		76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */; };
+		D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */; };
 		D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D4D1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m */; };
 		D2078D501837B5B9001C4A56 /* MainDocumentsSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2078D4E1837B5B9001C4A56 /* MainDocumentsSelectionView.xib */; };
 		D2078D541837B620001C4A56 /* BibFilesSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D521837B620001C4A56 /* BibFilesSelectionViewController.m */; };
@@ -256,7 +257,6 @@
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
-		F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */; };
 		F64675471879579A006EAD63 /* DropCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = F64675461879579A006EAD63 /* DropCompletion.m */; };
 		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
 		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
@@ -357,6 +357,8 @@
 		76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteSectionView.m; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
+		D202A06E189A415B0023DA04 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
+		D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
 		D2078D4C1837B5B9001C4A56 /* MainDocumentsSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocumentsSelectionViewController.h; sourceTree = "<group>"; };
 		D2078D4D1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDocumentsSelectionViewController.m; sourceTree = "<group>"; };
 		D2078D4E1837B5B9001C4A56 /* MainDocumentsSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainDocumentsSelectionView.xib; sourceTree = "<group>"; };
@@ -707,8 +709,6 @@
 		D2FF0D7717F70017003423F7 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
-		F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
-		F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
 		F64675451879579A006EAD63 /* DropCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropCompletion.h; sourceTree = "<group>"; };
 		F64675461879579A006EAD63 /* DropCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropCompletion.m; sourceTree = "<group>"; };
 		F646754818795859006EAD63 /* DropCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DropCompletions.plist; sourceTree = "<group>"; };
@@ -845,6 +845,15 @@
 			path = DMInspectorPalette;
 			sourceTree = "<group>";
 		};
+		D202A06D189A415B0023DA04 /* LayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				D202A06E189A415B0023DA04 /* TextViewLayoutManager.h */,
+				D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */,
+			);
+			path = LayoutManager;
+			sourceTree = "<group>";
+		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +895,7 @@
 		D21ACB801726868A00E2F8EC /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D202A06D189A415B0023DA04 /* LayoutManager */,
 				D2809C32187DC6C000C59909 /* LatexSpellChecker */,
 				D23DD42718794B5100C0EF97 /* QuickPreview */,
 				D2A5506C1751FF4B00BC05DD /* TextViewController.h */,
@@ -898,8 +908,6 @@
 				D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */,
 				D21ACB9B1726868A00E2F8EC /* Placeholder */,
 				D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */,
-				F627002118379CDA0044D4A6 /* TextViewLayoutManager.h */,
-				F627002218379CDA0044D4A6 /* TextViewLayoutManager.m */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -1841,6 +1849,7 @@
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
+				D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
 				D2C2357E189535160096ECAA /* NSString+TMTExtension.m in Sources */,
@@ -1859,7 +1868,6 @@
 				F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
 				D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */,
-				F627002318379CDA0044D4A6 /* TextViewLayoutManager.m in Sources */,
 				D2C2358B189543F00096ECAA /* SMBar.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,

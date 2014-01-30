@@ -81,15 +81,15 @@
     [self showTexDocumentForPath:path withReferenceModel:nil andCompletionHandler:completionHandler];
 }
 
-- (void)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error {
+- (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error {
     if (!compilable.path) {
         NSBeep();
-        return;
+        return NO;
     }
     
     NSDocument *doc = [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:compilable.path] display:NO error:error];
     if (*error) {
-        return;
+        return NO;
     }
     if ([doc isKindOfClass:[SimpleDocument class]]) {
         [(SimpleDocument*)doc setModel:(DocumentModel*)compilable];
@@ -99,6 +99,7 @@
     [doc makeWindowControllers];
     
     [doc showWindows];
+    return YES; 
 }
 
 - (void)showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable *)model andCompletionHandler:(void (^)(DocumentModel *))completionHandler {

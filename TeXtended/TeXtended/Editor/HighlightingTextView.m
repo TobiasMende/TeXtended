@@ -409,7 +409,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         goToLineSheet = [[GoToLineSheetController alloc] init];
     }
     goToLineSheet.line = [NSNumber numberWithInteger:self.currentRow];
-    goToLineSheet.max = [NSNumber numberWithInteger:self.lineRanges.count];
+    goToLineSheet.max = [NSNumber numberWithInteger:self.string.numberOfLines];
     [NSApp beginSheet:[goToLineSheet window]
        modalForWindow: [self window]
         modalDelegate: self
@@ -445,29 +445,18 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)showLine:(NSUInteger)line {
     [self.window makeKeyAndOrderFront:self];
-    NSArray *ranges = [self lineRanges];
-    if (line <= ranges.count && line > 0) {
-        NSTextCheckingResult *r = ranges[line-1];
-        [self scrollRangeToVisible:r.range];
-        [self setSelectedRange:r.range];
+    if (line <= self.string.numberOfLines && line > 0) {
+    NSRange lineRange = [self.string rangeForLine:line-1];
+        [self scrollRangeToVisible:lineRange];
+        [self setSelectedRange:lineRange];
     } else {
         NSBeep();
     }
     
 }
 
-- (NSArray *)lineRanges {
-    return [self.string lineRanges];
-    
-}
-
 - (NSRange)rangeForLine:(NSUInteger)index {
-    NSArray *ranges = [self lineRanges];
-    if (index <= ranges.count && index > 0) {
-        return [ranges[index-1] range];
-    } else {
-        return NSMakeRange(NSNotFound, 0);
-    }
+    return [self.string rangeForLine:index-1];
 }
 
 

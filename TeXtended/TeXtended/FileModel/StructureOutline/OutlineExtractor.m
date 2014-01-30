@@ -21,11 +21,17 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 @interface OutlineExtractor ()
 - (NSString *)masterRegexString;
 - (OutlineElementType)typeForRange:(NSRange)range inContent:(NSString *)content;
-- (void)backgroundExtraction:(NSDictionary *)info;
+- (void)backgroundExtraction:(void *)info;
 - (NSRange)firstValidRangeInResult:(NSTextCheckingResult *)result;
 @end
 
 @implementation OutlineExtractor
+
+- (id)init {
+    self = [super init];
+    DDLogWarn(@"Init");
+    return self;
+}
 
 + (void)initialize {
     if (self == [OutlineExtractor class]) {
@@ -35,38 +41,40 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 }
 
 
-- (void)extractIn:(NSString *)content forModel:(DocumentModel *)model withCallback:(void (^)(NSArray *))completionHandler {
-    _isExtracting = YES;
-    if (!content || !model) {
-        if (completionHandler) {
-            completionHandler(nil);
-        }
+- (void)extractIn:(NSString *)c forModel:(DocumentModel *)m withCallback:(void (^)(NSArray *))ch {
+    if (self.isExtracting) {
         return;
     }
-    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:@{@"content": content.copy, @"model": model}];
-    if (completionHandler) {
-        info[@"completionHandler"] = completionHandler;
+    _isExtracting = YES;
+    _completionHandler = ch;
+    _content = c.copy;
+    _model = m;
+    if (!_content || !_model) {
+        if (_completionHandler) {
+            _completionHandler(nil);
+        }
+        _isExtracting = NO;
+        return;
     }
-    [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:info];
+    if (_completionHandler) {
+    }
+    [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:nil];
 }
 
-- (void)backgroundExtraction:(NSDictionary *)info {
-    NSString * content = info[@"content"];
-    DocumentModel *model = info[@"model"];
-    void (^completionHandler)(NSArray *) = info[@"completionHandler"];
+- (void)backgroundExtraction:(void *)info {
     
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[self masterRegexString] options:0 error:&error];
     if (error) {
         DDLogError(@"%@", error);
-        if (completionHandler) {
-            completionHandler(nil);
+        if (_completionHandler) {
+            _completionHandler(nil);
         }
         _isExtracting = NO;
         return;
     }
     
-    NSArray *results = [regex matchesInString:content options:0 range:NSMakeRange(0, content.length)];
+    NSArray *results = [regex matchesInString:_content options:0 range:NSMakeRange(0, _content.length)];
     NSMutableArray *outline = [NSMutableArray arrayWithCapacity:results.count];
     
     for(NSTextCheckingResult *result in results) {
@@ -77,35 +85,35 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             DDLogError(@"%li - %@", result.numberOfRanges, NSStringFromRange(totalRange));
             continue;
         }
-        element.info = [content substringWithRange:infoRange];
-        element.type = [self typeForRange:totalRange inContent:content];
-        element.document = model;
+        element.info = [_content substringWithRange:infoRange];
+        element.type = [self typeForRange:totalRange inContent:_content];
+        element.document = _model;
         if (element.type == INCLUDE || element.type == INPUT) {
             NSString *currentPath = element.info;
             if ([[element.info pathExtension] isEqualToString:@""]) {
                 currentPath = [currentPath stringByAppendingPathExtension:@"tex"];
             }
             if (![currentPath isAbsolutePath]) {
-                DocumentModel *main = [model.mainDocuments firstObject];
+                DocumentModel *main = [_model.mainDocuments firstObject];
                 NSString *base = main.texPath.stringByDeletingLastPathComponent;
                 if (base) {
                     currentPath = [currentPath absolutePathWithBase:base];
                 }
             }
-            if(currentPath && model.project) {
-                element.subNode = [model modelForTexPath:currentPath byCreating:YES];
+            if(currentPath && _model.project) {
+                element.subNode = [_model modelForTexPath:currentPath byCreating:YES];
                 if (!element.subNode) {
                     continue;
                 }
             }
         }
-        element.line = [content lineNumberForRange:totalRange]+1;
+        element.line = [_content lineNumberForRange:totalRange]+1;
         [outline addObject:element];
     }
     
-    model.outlineElements = outline;
-    if (completionHandler) {
-        completionHandler(outline);
+    _model.outlineElements = outline;
+    if (_completionHandler) {
+        _completionHandler(outline);
     }
     _isExtracting = NO;
     
@@ -177,6 +185,10 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     
     
     return regex;
+}
+
+- (void)dealloc {
+    DDLogWarn(@"Dealloc");
 }
 
 

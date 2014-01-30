@@ -207,12 +207,6 @@ GoToLineSheetController *goToLineSheet;
  */
 - (IBAction)matrixView:(id)sender;
 
-/**
- Getter for an array of NSTextCheckingResult object where each object has a single range with the meaning of the range of the line indexed by the arrays inded.
- 
- @return the line ranges.
- */
-- (NSArray*) lineRanges;
 
 /**
  Getter for a line range for a given line index.

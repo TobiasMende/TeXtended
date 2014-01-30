@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @class DocumentModel;
-@interface OutlineExtractor : NSObject
+@interface OutlineExtractor : NSObject {
+    void (^_completionHandler)(NSArray *) ;
+    NSString *_content;
+    DocumentModel *_model;
+
+}
 @property (readonly) BOOL isExtracting;
 - (void)extractIn:(NSString *)content forModel:(DocumentModel *)model withCallback:(void (^) (NSArray *outline))completionHandler;
 @end

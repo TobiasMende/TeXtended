@@ -12,6 +12,6 @@
 }
 @property (strong) IBOutlet TMTTableView *tableView;
 @property DocumentModel *rootNode;
-@property (nonatomic) NSMutableArray *content;
+@property (nonatomic,assign) NSMutableArray *content;
 - (id) initWithRootNode:(DocumentModel *)model;
 @end

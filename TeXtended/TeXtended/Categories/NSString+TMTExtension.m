@@ -12,28 +12,41 @@
 @implementation NSString (TMTExtension)
 
 
-- (NSArray *)lineRanges {
-    NSError *error;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
-    
-    if (error) {
-        DDLogError(@"Line Ranges Error: %@", [error userInfo]);
-        return nil;
-    }
-    
-    NSArray *ranges = [regex matchesInString:self options:0 range:NSMakeRange(0, self.length)];
-    return ranges;
+- (NSArray *)tmplineRanges {
+    return [self componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
 }
 
 - (NSUInteger)lineNumberForRange:(NSRange)range {
-    NSArray *lines = [self lineRanges];
-    for(NSUInteger line = 0; line < lines.count; line++) {
-        NSRange lineRange = [lines[line] range];
-        if (NSIntersectionRange(range, lineRange).length > 0) {
-            return line;
+    NSUInteger numberOfLines, index, stringLength = [self length];
+    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
+        NSRange line = [self lineRangeForRange:NSMakeRange(index, 0)];
+        if (NSUnionRange(line, range).length == line.length) {
+            return numberOfLines;
         }
+        index = NSMaxRange(line);
+        
     }
     return NSNotFound;
+    
+}
+
+- (NSUInteger)numberOfLines {
+    NSUInteger numberOfLines, index, stringLength = [self length];
+    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++)
+        index = NSMaxRange([self lineRangeForRange:NSMakeRange(index, 0)]);
+    return numberOfLines;
+}
+
+- (NSRange)rangeForLine:(NSUInteger)lineNumber {
+    NSUInteger numberOfLines, index, stringLength = [self length];
+    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
+        NSRange range = [self lineRangeForRange:NSMakeRange(index, 0)];
+        if (numberOfLines == lineNumber) {
+            return range;
+        }
+        index = NSMaxRange(range);
+    }
+    return NSMakeRange(NSNotFound, 0);
 }
 @end

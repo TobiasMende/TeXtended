@@ -23,27 +23,27 @@
             break;
         }
     }
-    NSString *finalPath = @"";
+    NSMutableArray *finalComponents = [NSMutableArray arrayWithObject:@""];
     if (bi < baseComps.count) {
         for (; bi < baseComps.count; bi++) {
-            finalPath = [finalPath stringByAppendingPathComponent:@".."];
+            [finalComponents addObject:@".."];
         }
     } else {
-        finalPath = @"./";
+        [finalComponents removeAllObjects];
+        [finalComponents addObject:@"."];
     }
     if (ai == absoluteComps.count) {
         return @".";
     } else {
         for (; ai < absoluteComps.count; ai++) {
-            finalPath = [finalPath stringByAppendingPathComponent:absoluteComps[ai]];
+            [finalComponents addObject:absoluteComps[ai]];
         }
-        return [finalPath stringByStandardizingPath];
+        return [[NSString pathWithComponents:finalComponents] stringByStandardizingPath];
     }
 }
 
 
 - (NSString*)absolutePathWithBase:(NSString*)basePath {
-    basePath = [[NSURL fileURLWithPath:basePath] path];
     NSArray *relativeComps = [self pathComponents];
     NSArray *baseComps = [basePath pathComponents];
     NSUInteger bi = 0;
@@ -56,13 +56,14 @@
     }
     NSUInteger maxBaseCount = baseComps.count-bi;
     // bi = (bi==0 ? 1 : bi);
-    NSString *finalPath = @"/";
+    NSMutableArray *finalComponents = [NSMutableArray arrayWithCapacity:maxBaseCount+relativeComps.count+1];
+    [finalComponents addObject:@"/"];
     for (NSUInteger i = 0; i<maxBaseCount; i++) {
-        finalPath = [finalPath stringByAppendingPathComponent:baseComps[i]];
+        [finalComponents addObject:baseComps[i]];
     }
     for (NSUInteger i = bi; i < relativeComps.count; i++) {
-        finalPath = [finalPath stringByAppendingPathComponent:relativeComps[i]];
+        [finalComponents addObject:relativeComps[i]];
     }
-    return [finalPath stringByStandardizingPath];
+    return [[NSString pathWithComponents:finalComponents] stringByStandardizingPath];
 }
 @end

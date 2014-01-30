@@ -38,7 +38,6 @@
 
 - (void) drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 {
-    
     for (NSUInteger i = glyphsToShow.location; i != glyphsToShow.location + glyphsToShow.length; i++)
     {
         NSUInteger charIndex = [self characterIndexForGlyphAtIndex:i];
@@ -49,7 +48,6 @@
         {
             if (self.shouldReplaceInvisibleSpaces) {
                 [self replaceGlyphAtIndex:charIndex withGlyph:bulletspace];
-                //NSColor color = [[NSColor alloc] init];
                 NSRange range = NSMakeRange(i, 1);
                 [self addTemporaryAttribute:NSForegroundColorAttributeName value:[self.symbolColor colorWithAlphaComponent:0.25] forCharacterRange:range];
             }
@@ -62,7 +60,6 @@
         if (c == '\n') {
             if (self.shouldReplaceInvisibleLineBreaks) {
                 [self replaceGlyphAtIndex:charIndex withGlyph:arrowlb];
-                //NSColor color = [[NSColor alloc] init];
                 NSRange range = NSMakeRange(i, 1);
                 [self addTemporaryAttribute:NSForegroundColorAttributeName value:[self.symbolColor colorWithAlphaComponent:0.25] forCharacterRange:range];
             }

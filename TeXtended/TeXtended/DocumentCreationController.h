@@ -19,5 +19,5 @@
 - (void) showTexDocumentForPath:(NSString *)path andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
 - (void) showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable*)model andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
 
-- (void)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error;
+- (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error;
 @end

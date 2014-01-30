@@ -25,26 +25,11 @@ static NSMutableDictionary *IMAGE_LOOKUP;
     }
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        NSLog(@"init");
-    }
-    return self;
-}
 
 
 - (OutlineElement *)element {
     return [self objectValue];
 }
-
-- (void)setObjectValue:(id)objectValue {
-    if (super.objectValue) {
-        [self unbind:@"textColor"];
-    }
-    super.objectValue = objectValue;
-}
-
 
 - (NSColor *)textColor {
     return [[CacheManager sharedCacheManager] colorForOutlineElement:self.element];
@@ -80,7 +65,4 @@ static NSMutableDictionary *IMAGE_LOOKUP;
 }
 
 
-- (void)dealloc {
-    NSLog(@"Dealloc");
-}
 @end

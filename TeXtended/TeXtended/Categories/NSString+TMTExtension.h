@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (TMTExtension)
-- (NSArray *)lineRanges;
+- (NSArray *)tmplineRanges;
 - (NSUInteger)lineNumberForRange:(NSRange)range;
+- (NSUInteger)numberOfLines;
+- (NSRange)rangeForLine:(NSUInteger)index;
 @end

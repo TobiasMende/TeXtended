@@ -32,7 +32,6 @@
     
     completionHandler = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount) {
         
-        // TODO: implement spell checking here
         
         NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         
@@ -76,10 +75,10 @@
             // The word has a prefix to ignore
             continue;
         }
-        if (prefix.location != NSNotFound) {
-            
-            DDLogInfo(@"Unskipped Command Prefix: %@ for word %@", [content substringWithRange:prefix],[content substringWithRange:range]);
-        }
+//        if (prefix.location != NSNotFound) {
+//            
+//            DDLogInfo(@"Unskipped Command Prefix: %@ for word %@", [content substringWithRange:prefix],[content substringWithRange:range]);
+//        }
         //DDLogWarn(@"NH: %@", [content substringWithRange:range]);
         // Unknown element. Add to result
         [finalResults addObject:result];
