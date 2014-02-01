@@ -142,7 +142,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     self.enableQuickPreviewAssistant = YES;
     
     
-    [self.textContainer replaceLayoutManager:[[TextViewLayoutManager alloc] init]];
+    [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
     
 }
 

@@ -75,6 +75,9 @@
 
 - (void)dealloc {
     [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT_NAME]];
+    [self unbind:@"symbolColor"];
+    [self unbind:@"shouldReplaceInvisibleLineBreaks"];
+    [self unbind:@"shouldReplaceInvisibleSpaces"];
 }
 
 @end
