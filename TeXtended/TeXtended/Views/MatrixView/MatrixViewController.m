@@ -88,6 +88,7 @@
 }
 
 - (IBAction)OKSheet:(id)sender {
+    [[self window] makeFirstResponder:self.OKButton];
     [NSApp stopModal];
     [NSApp endSheet: self.window];
     [self.window orderOut: self];

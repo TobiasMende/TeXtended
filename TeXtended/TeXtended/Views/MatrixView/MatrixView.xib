@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MatrixViewController">
             <connections>
+                <outlet property="OKButton" destination="1HP-gS-A4b" id="GHh-Rn-AK4"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
