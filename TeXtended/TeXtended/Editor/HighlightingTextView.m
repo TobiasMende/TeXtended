@@ -438,8 +438,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
     if (returnCode == NSRunStoppedResponse) {
+        [self.undoManager beginUndoGrouping];
         EnvironmentCompletion *completion = [matrixView matrixCompletion];
         [completionHandler insertEnvironmentCompletion:completion forPartialWordRange:self.selectedRange movement:NSReturnTextMovement isFinal:YES];
+        [self.undoManager endUndoGrouping];
     }
 }
 
