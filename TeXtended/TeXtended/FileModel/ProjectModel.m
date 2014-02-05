@@ -40,12 +40,12 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.path = [aDecoder decodeObjectForKey:@"path"];
-        self.documents = [aDecoder decodeObjectForKey:@"documents"];
-        
-        self.bibFiles = [self convertBibFiles:[aDecoder decodeObjectForKey:@"bibFiles"]];
-        self.properties = [aDecoder decodeObjectForKey:@"properties"];
-        [self initDefaults];
+            self.path = [aDecoder decodeObjectForKey:@"path"];
+            self.documents = [aDecoder decodeObjectForKey:@"documents"];
+            
+            self.bibFiles = [self convertBibFiles:[aDecoder decodeObjectForKey:@"bibFiles"]];
+            self.properties = [aDecoder decodeObjectForKey:@"properties"];
+            [self initDefaults];
     }
     return self;
 }
@@ -64,11 +64,10 @@
 
 - (void)finishInitWithPath:(NSString *)absolutePath {
     self.path = absolutePath;
-    for (DocumentModel * doc in self.documents) {
-        [doc finishInitWithPath:absolutePath];
-    }
     
-    [self.documents makeObjectsPerformSelector:@selector(buildOutline)];
+    NSArray *documents = self.documents.allObjects;
+    [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
+    [documents makeObjectsPerformSelector:@selector(buildOutline)];
     for (BibFile *f in self.bibFiles) {
         [f finishInitWithPath:absolutePath];
     }

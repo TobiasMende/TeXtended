@@ -59,7 +59,9 @@ static const NSDictionary *DEBUG_NUMBERS;
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
         MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
-        completionHandler(messages);
+        if (completionHandler) {
+            completionHandler(messages);
+        }
         task.terminationHandler = nil;
     }];
     @try {

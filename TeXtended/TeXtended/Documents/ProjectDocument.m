@@ -120,10 +120,11 @@
             self.model = (ProjectModel *)obj;
             DDLogVerbose(@"READ: %@", absoluteURL);
             [self.model finishInitWithPath:[absoluteURL path]];
+    
         }
     }
     @catch (NSException *exception) {
-        DDLogError(@"Can't read content: %@", exception.userInfo);
+        DDLogError(@"Can't read content: %@", exception);
         return NO;
     }
     return YES;
