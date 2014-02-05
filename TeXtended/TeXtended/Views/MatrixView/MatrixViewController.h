@@ -21,6 +21,8 @@
 
 @property (readonly) NSInteger minimumTableSize;
 
+@property IBOutlet NSButton *OKButton;
+
 /** Method for aborting the sheet
  @param sender the sender
  */
