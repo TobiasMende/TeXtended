@@ -47,16 +47,12 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 }
 
 
-
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
 }
 
 - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo {
     [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
-    if (!self.model.texPath) {
-        self.model.texPath = [absoluteURL path];
-    }
     
     NSNumber* encoding = [[self.encController.popUp selectedItem] representedObject];
     // In case of compiling the .tex file, [[self.encController.popUp selectedItem] representedObject] is (null).
@@ -75,10 +71,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         return NO;
     }
     self.model.systemPath = [url path];
-    if ([[self fileURL] path]) {
-        self.model.texPath = [[self fileURL] path];
-    }
-    
     BOOL success = YES;
     for (DocumentController *dc in self.documentControllers) {
         success &= [dc saveDocumentModel:outError];
@@ -224,6 +216,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
             }
         }
     }];
+}
+
+- (void)setFileURL:(NSURL *)url {
+    [super setFileURL:url];
+    self.model.texPath = url.path;
 }
 
 - (void)dealloc {

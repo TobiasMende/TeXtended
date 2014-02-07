@@ -546,11 +546,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
             return;
         }
         
-        if (change[NSKeyValueChangeOldKey] == [NSNull null]) {
-            return;
-        }
-        
-        if ([change[NSKeyValueChangeOldKey] isEqualToString:change[NSKeyValueChangeNewKey]]) {
+        if (change[NSKeyValueChangeOldKey] != [NSNull null] && [change[NSKeyValueChangeOldKey] isEqualToString:change[NSKeyValueChangeNewKey]]) {
             // If the path did not change, there is no need to remove pathobserver
             return;
         }
