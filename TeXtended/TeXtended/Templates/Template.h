@@ -11,7 +11,7 @@
 
 @class Compilable, DocumentModel, ProjectModel, PDFDocument;
 @interface Template : NSObject
-
+@property NSInteger uid;
 @property NSString *info;
 @property NSString *name;
 @property NSString *category;

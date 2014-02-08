@@ -61,6 +61,15 @@
     [self dismissView];
 }
 
+- (void)failedFetchingAuthors:(NSError *)error {
+    [[NSAlert alertWithError:error] runModal];
+}
+
+- (void)failedFetchingKeys:(NSError *)error {
+    [[NSAlert alertWithError:error] runModal];
+}
+
+
 - (void)dismissView {
     [popover close];
     popover = nil;

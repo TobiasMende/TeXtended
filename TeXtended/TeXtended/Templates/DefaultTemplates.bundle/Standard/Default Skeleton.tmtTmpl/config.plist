@@ -19,5 +19,7 @@
 	<string>Template for a single file containing the default LaTex skeleton to start with.</string>
 	<key>TMTTemplateTypeKey</key>
 	<integer>0</integer>
+	<key>TMTTemplateUidKey</key>
+	<integer>0</integer>
 </dict>
 </plist>

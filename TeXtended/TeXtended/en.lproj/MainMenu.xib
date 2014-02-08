@@ -256,6 +256,24 @@
                                     <action selector="selectAll:" target="-1" id="232"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Select Current Block" keyEquivalent="a" id="CNe-ZS-Nn4">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="selectCurrentBlock:" target="-1" id="3iq-o8-6fo"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Goto Block Begin" keyEquivalent="" id="4EN-U8-BMl">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="gotoBlockBegin:" target="-1" id="xeS-t5-Ijt"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Goto Block End" keyEquivalent="" id="rtq-de-izY">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="gotoBlockEnd:" target="-1" id="De0-Gn-Xbl"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="SVi-xr-eu3"/>
                             <menuItem title="Delete Lines" keyEquivalent="d" id="546">
                                 <connections>

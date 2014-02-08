@@ -27,12 +27,11 @@
     if (self) {
         self.mainWindowController = mwc;
         [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectWillDie:) name:TMTObjectWillDieNotification object:self.mainWindowController];
     }
     return self;
 }
 
-- (void)objectWillDie:(NSNotification *)note {
+- (void)windowIsGoingToDie {
     [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
     self.mainWindowController = nil;
 }
@@ -77,7 +76,6 @@
 - (void)dealloc {
     if (self.mainWindowController) {
         [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 

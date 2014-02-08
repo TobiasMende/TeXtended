@@ -576,6 +576,33 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 #pragma mark -
 #pragma mark Input Actions
 
+- (void)selectCurrentBlock:(id)sender {
+    NSRange blockRange = [self.string blockRangeForPosition:self.selectedRange.location];
+    if (blockRange.location != NSNotFound) {
+        self.selectedRange = blockRange;
+    } else {
+        NSBeep();
+    }
+}
+
+- (void)gotoBlockBegin:(id)sender {
+    NSRange beginRange = [self.string beginRangeForPosition:self.selectedRange.location];
+    if (beginRange.location != NSNotFound) {
+        self.selectedRange = NSMakeRange(NSMaxRange(beginRange), 0);
+    } else {
+        NSBeep();
+    }
+}
+
+- (void)gotoBlockEnd:(id)sender {
+    NSRange endRange = [self.string endRangeForPosition:self.selectedRange.location];
+    if (endRange.location != NSNotFound) {
+        self.selectedRange = NSMakeRange(endRange.location, 0);
+    } else {
+        NSBeep();
+    }
+}
+
 - (void)moveLeft:(id)sender {
     [super moveLeft:sender];
     [self dismissCompletionWindow];

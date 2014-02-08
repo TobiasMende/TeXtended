@@ -49,4 +49,9 @@
     }
     return NSMakeRange(NSNotFound, 0);
 }
+
+
+- (NSRange)lineRangeForPosition:(NSUInteger)position {
+    return [self lineRangeForRange:NSMakeRange(position, 0)];
+}
 @end

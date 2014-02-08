@@ -78,4 +78,8 @@
     self.tabBar.items = tabBarItems;
 }
 
+- (void)windowIsGoingToDie {
+    [self.structureOutlineViewController windowIsGoingToDie];
+}
+
 @end

@@ -20,6 +20,8 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 - (void)loadTemplatesFromCategory:(NSString *)category;
 + (NSString*)templateDirectory;
 + (void)mergeDefaultTemplates;
++ (NSMutableArray*)loadTemplateIndex;
++ (void)saveTemplateIndex:(NSArray *)index;
 @end
 
 @implementation TemplateController
@@ -31,6 +33,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 }
 
 + (void)mergeDefaultTemplates {
+    NSMutableArray *templateIndex = [self loadTemplateIndex];
     NSString *templateDest = [TemplateController templateDirectory];
     NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"DefaultTemplates" ofType:@"bundle"];
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -42,21 +45,28 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         if ([value boolValue]) {
             NSString *category = [[url path] lastPathComponent];
             NSString *destCategory = [templateDest stringByAppendingPathComponent:category];
-            if (![fm fileExistsAtPath:destCategory]) {
-                [fm createDirectoryAtPath:destCategory withIntermediateDirectories:YES attributes:nil error:NULL];
-            }
+            BOOL needToCreateCategory = ![fm fileExistsAtPath:destCategory];
             NSArray *templates = [fm  contentsOfDirectoryAtURL:url includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLIsPackageKey]  options:NSDirectoryEnumerationSkipsHiddenFiles error:NULL];
             for(NSURL *tmplUrl in templates) {
                 NSDictionary *dict = [tmplUrl resourceValuesForKeys:@[NSURLIsPackageKey, NSURLIsDirectoryKey] error:NULL];
                 if (([dict[NSURLIsDirectoryKey] boolValue] || [dict[NSURLIsPackageKey] boolValue]) && [tmplUrl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
                     NSString *templateAtDest = [destCategory stringByAppendingPathComponent:tmplUrl.lastPathComponent];
-                    if (![fm fileExistsAtPath:templateAtDest]) {
-                        [fm copyItemAtPath:tmplUrl.path toPath:templateAtDest error:NULL];
+                    Template *tmp = [Template templateFromFile:tmplUrl.path];
+                    if (![templateIndex containsObject:@(tmp.uid)] && ![fm fileExistsAtPath:templateAtDest]) {
+                        if (needToCreateCategory) {
+                            [fm createDirectoryAtPath:destCategory withIntermediateDirectories:YES attributes:nil error:NULL];
+                            needToCreateCategory = NO;
+                        }
+                        if ([fm copyItemAtPath:tmplUrl.path toPath:templateAtDest error:NULL]) {
+                            [templateIndex addObject:@(tmp.uid)];
+                        }
                     }
                 }
             }
         }
     }
+    
+    [self saveTemplateIndex:templateIndex];
 }
 
 - (id)init {
@@ -75,6 +85,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 - (void)loadCategories {
     NSFileManager *fm = [NSFileManager defaultManager];
     [self.categories removeAllObjects];
+    [self.categories addObject:@{@"value": NSLocalizedString(@"All Templates", @"All Templates Category")}];
     for (NSString *path in [fm contentsOfDirectoryAtPath:[TemplateController templateDirectory] error:nil]) {
         if ([fm directoryExistsAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:path]]) {
             [self.categories addObject:@{@"value":path}.mutableCopy];
@@ -86,6 +97,20 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 + (NSString *)templateDirectory {
     NSString *applicationSupport = [ApplicationController userApplicationSupportDirectoryPath];
     return [applicationSupport stringByAppendingPathComponent:TMTTemplateDirectoryName];
+}
+
++ (NSMutableArray *)loadTemplateIndex {
+    NSString *path = [[self templateDirectory] stringByAppendingPathComponent:@"templates.index"];
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:path];
+    if (!array) {
+        array = [NSMutableArray new];
+    }
+    return array;
+}
+
++ (void)saveTemplateIndex:(NSArray *)index {
+    NSString *path = [[self templateDirectory] stringByAppendingPathComponent:@"templates.index"];
+    [index writeToFile:path atomically:YES];
 }
 
 - (IBAction)deleteCategory:(id)sender {
@@ -278,7 +303,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     if (index == NSNotFound) {
         return;
     }
-    NSString *category = [self.categories objectAtIndex:index][@"value"];
+    NSString *category = index == 0 ? nil : [self.categories objectAtIndex:index][@"value"];
     [self loadTemplatesFromCategory:category];
 }
 
@@ -305,11 +330,25 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         [self.currentTemplates addObject:@"NewPlaceholder"];
     }
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
-    for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
-        if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
-            Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
-            [self.currentTemplates addObject:template];
+    NSMutableArray *categoriesToShow;
+    if (!category) {
+        categoriesToShow = [NSMutableArray arrayWithCapacity:self.categories.count-1];
+        NSEnumerator *iterator = self.categories.objectEnumerator;
+        iterator.nextObject; //Skip "All Templates"
+        for (NSDictionary *dict in iterator) {
+            [categoriesToShow addObject:dict[@"value"]];
+        }
+    } else {
+        categoriesToShow = [NSArray arrayWithObject:category];
+    }
+    
+    for(NSString *category in categoriesToShow) {
+        NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
+        for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
+            if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
+                Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
+                [self.currentTemplates addObject:template];
+            }
         }
     }
     [self.currentTemplatesView setContent:self.currentTemplates];
@@ -427,6 +466,9 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     if (dropOperation == NSTableViewDropAbove) {
         return NO;
     }
+    if (row == 0) {
+        return NO;
+    }
     if ((self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
         return NO;
     }
@@ -461,6 +503,9 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
     if (dropOperation == NSTableViewDropAbove) {
+        return NSDragOperationNone;
+    }
+    if (row == 0) {
         return NSDragOperationNone;
     }
     NSPasteboard* pb = info.draggingPasteboard;

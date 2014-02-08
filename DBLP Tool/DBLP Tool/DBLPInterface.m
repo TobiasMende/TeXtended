@@ -73,6 +73,15 @@
     }
 }
 
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    if ([connection isEqualTo:authorConnection]) {
+        authorConnection = nil;
+        [self.handler failedFetchingAuthors:error];
+    } else if ([connection isEqualTo:dblpKeyConnection]) {
+        [self.handler failedFetchingKeys:error];
+    }
+}
+
 - (void)finishAuthorsLoading {
     //NSLog(@"Succeeded! Received %ld bytes of data",(unsigned long)[receivedAuthorData length]);
     NSError *error;

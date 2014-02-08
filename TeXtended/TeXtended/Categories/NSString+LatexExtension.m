@@ -7,14 +7,25 @@
 //
 
 #import "NSString+LatexExtension.h"
+#import "NSString+TMTExtension.h"
 
 static NSSet *COMPLETION_ESCAPE_INSERTIONS;
+static NSRegularExpression *BLOCK_REGEX;
 #define COMMAND_PREFIX_SIZE 100
 @implementation NSString (LatexExtension)
 
 __attribute__((constructor))
 static void initialize_COMPLETION_ESCAPE_INSERTIONS() {
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", @" ", nil];
+}
+
+__attribute__((constructor))
+static void initialize_BLOCK_REGEXS() {
+    NSError *error;
+    BLOCK_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\\\begin\\W*\\{(.*?)\\}|\\\\end\\W*\\{(.*?)\\}" options:0 error:&error];
+    if (error) {
+        NSLog(@"Wrong BLOCK_REGEX");
+    }
 }
 
 - (BOOL) latexLineBreakPreceedingPosition:(NSUInteger) position {
@@ -98,4 +109,99 @@ static void initialize_COMPLETION_ESCAPE_INSERTIONS() {
         return NSMakeRange(NSNotFound, 0);
     }
 }
+
+- (NSRange)beginRangeForPosition:(NSUInteger)position {
+    NSUInteger currentPosition = position;
+    NSInteger counter = 0;
+    
+    NSRange lineRange =[self lineRangeForPosition:position];
+    if ([self rangeContainsBegin:lineRange]) {
+        currentPosition = NSMaxRange(lineRange);
+    } else if([self rangeContainsEnd:lineRange]) {
+        currentPosition = lineRange.location;
+    }
+    
+    NSArray *matches = [BLOCK_REGEX matchesInString:self options:0 range:NSMakeRange(0, currentPosition)];
+    for (NSTextCheckingResult *next in matches.reverseObjectEnumerator) {
+        if ([next rangeAtIndex:1].location == NSNotFound) {
+            // END RANGE
+            counter++;
+        } else {
+            // BEGIN RANGE
+            if (counter > 0) {
+                counter --;
+            } else {
+                return next.range;
+            }
+            
+        }
+    }
+    return NSMakeRange(NSNotFound, 0);
+}
+
+
+- (BOOL)rangeContainsBegin:(NSRange)range {
+    NSTextCheckingResult *result = [BLOCK_REGEX firstMatchInString:self options:0 range:range];
+    return result && result.range.location != NSNotFound && [result rangeAtIndex:1].location != NSNotFound;
+}
+
+- (BOOL)rangeContainsEnd:(NSRange)range {
+    NSTextCheckingResult *result = [BLOCK_REGEX firstMatchInString:self options:0 range:range];
+    return result && result.range.location != NSNotFound && [result rangeAtIndex:1].location == NSNotFound;
+}
+
+- (NSRange)endRangeForPosition:(NSUInteger)position {
+    NSUInteger currentPosition = position;
+    NSInteger counter = 0;
+    
+    NSRange lineRange =[self lineRangeForPosition:position];
+    if ([self rangeContainsBegin:lineRange]) {
+        currentPosition = NSMaxRange(lineRange);
+    } else if([self rangeContainsEnd:lineRange]) {
+        currentPosition = lineRange.location;
+    }
+    
+    while(true) {
+        NSRange current = NSMakeRange(currentPosition, self.length-currentPosition);
+            NSTextCheckingResult *next = [BLOCK_REGEX firstMatchInString:self options:0 range:current];
+        
+        if (!next || next.range.location == NSNotFound) {
+            return NSMakeRange(NSNotFound, 0);
+        }
+        if ([next rangeAtIndex:1].location == NSNotFound) {
+            // END RANGE
+            if (counter > 0) {
+                counter --;
+            } else {
+                return next.range;
+            }
+        } else {
+            // BEGIN RANGE
+            counter++;
+            
+        }
+        currentPosition = NSMaxRange(next.range);
+    }
+}
+
+- (NSRange)blockRangeForPosition:(NSUInteger)position {
+    NSRange beginRange = [self beginRangeForPosition:position];
+    beginRange.location = beginRange.location != NSNotFound ? beginRange.location: 0;
+    
+    NSRange endRange = [self endRangeForPosition:position];
+    if (endRange.location == NSNotFound) {
+        endRange = NSMakeRange(self.length-1, 1);
+    }
+    
+    return NSUnionRange(beginRange, endRange);
+    
+}
+
+- (NSString *)blockNameForPosition:(NSUInteger)position {
+    
+    NSRange beginRange = [self beginRangeForPosition:position];
+    NSTextCheckingResult *result = [BLOCK_REGEX firstMatchInString:self options:0 range:beginRange];
+    return [self substringWithRange:[result rangeAtIndex:1]];
+}
+
 @end

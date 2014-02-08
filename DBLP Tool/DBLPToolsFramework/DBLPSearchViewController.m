@@ -56,6 +56,9 @@
 
 - (void)failedFetchingAuthors:(NSError *)error {
     self.searchinAuthor = NO;
+    if ([self.handler respondsToSelector:@selector(failedFetchingAuthors:)]) {
+        [self.handler failedFetchingAuthors:error];
+    }
     NSLog(@"Failed to fetch: %@", error.userInfo);
 }
 
@@ -117,7 +120,9 @@
 }
 
 - (void)failedFetchingKeys:(NSError *)error {
-    NSLog(@"Failed to fetch keys: %@", error.userInfo);
+    if ([self.handler respondsToSelector:@selector(failedFetchingKeys:)]) {
+        [self.handler failedFetchingKeys:error];
+    }
 }
 
 - (void)startedFetchingKeys:(NSString *)urlpt {

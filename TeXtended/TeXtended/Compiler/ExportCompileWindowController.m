@@ -84,7 +84,7 @@
 
 - (IBAction)removeMainDocument:(id)sender {
     DocumentModel *m = (self.mainDocumentsController.selectedObjects)[0];
-    [self.model removeMainDocumentsObject:m];
+    [self.model removeMainDocument:m];
 }
 
 - (IBAction)addMainDocument:(id)sender {
@@ -105,7 +105,7 @@
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [texPathPanel URL];
             DocumentModel *m = [weakModel modelForTexPath:file.path];
-            [weakModel addMainDocumentsObject:m];
+            [weakModel addMainDocument:m];
         }
     }];
 }

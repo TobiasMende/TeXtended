@@ -19,15 +19,6 @@
 @end
 
 @implementation InfoWindowController
-
-- (id)initWithWindow:(NSWindow *)window {
-    self = [super initWithWindow:window];
-    if (self) {
-    }
-    
-    return self;
-}
-
 - (id)init {
     self = [super initWithWindowNibName:@"InfoWindow"];
     
@@ -84,7 +75,7 @@
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [texPathPanel URL];
             DocumentModel *m = [self.compilable modelForTexPath:file.path];
-            [self.compilable addMainDocumentsObject:m];
+            [self.compilable addMainDocument:m];
         }
     }];
 }
@@ -144,12 +135,6 @@
 
 - (void)windowDidBecomeMain:(NSNotification *)notification {
     self.window.isVisible = YES;
-    if ([[self.compilable.path pathExtension] isEqualToString:@"tex"]) {
-        [self.encodingPopUp setHidden:NO];
-    }
-    else {
-        [self.encodingPopUp setHidden:YES];
-    }
 }
 
 

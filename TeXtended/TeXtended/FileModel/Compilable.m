@@ -113,13 +113,13 @@ static NSUInteger LAST_IDENTIFIER = 0;
     self.mainDocuments = tmp;
 }
 
-- (void)removeMainDocumentsObject:(DocumentModel *)value {
+- (void)removeMainDocument:(DocumentModel *)value {
     NSMutableArray *tmp = [self.mainDocuments mutableCopy];
     [tmp removeObject:value];
     self.mainDocuments = tmp;
 }
 
-- (void)addMainDocumentsObject:(DocumentModel *)value {
+- (void)addMainDocument:(DocumentModel *)value {
     if ([self.mainDocuments containsObject:value]) {
         return;
     }

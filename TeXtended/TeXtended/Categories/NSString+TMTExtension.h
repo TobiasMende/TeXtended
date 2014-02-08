@@ -13,4 +13,5 @@
 - (NSUInteger)lineNumberForRange:(NSRange)range;
 - (NSUInteger)numberOfLines;
 - (NSRange)rangeForLine:(NSUInteger)index;
+- (NSRange)lineRangeForPosition:(NSUInteger) position;
 @end
