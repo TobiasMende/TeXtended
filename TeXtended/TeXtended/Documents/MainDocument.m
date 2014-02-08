@@ -47,6 +47,7 @@
         }
     }
     
+    
 }
 
 - (void)setNumberOfCompilingDocuments:(NSUInteger)numberOfCompilingDocuments {
@@ -120,6 +121,7 @@
     MainWindowController *mc = [[MainWindowController alloc] initForDocument:self];
     self.mainWindowController = mc;
     [self addWindowController:mc];
+    
 }
 
 - (void)finalCompileForDocumentController:(DocumentController *)dc {

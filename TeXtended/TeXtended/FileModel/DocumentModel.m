@@ -386,12 +386,10 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)setOutlineElements:(NSMutableArray *)outlineElements {
-    if (![outlineElements isEqualTo:_outlineElements]) {
         _outlineElements = outlineElements;
         if (_outlineElements) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath: [NSMutableArray arrayWithObject:self]}];
         }
-    }
 }
 
 

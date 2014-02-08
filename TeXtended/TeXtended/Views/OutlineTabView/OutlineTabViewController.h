@@ -18,4 +18,5 @@
 
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;
+- (void)windowIsGoingToDie;
 @end

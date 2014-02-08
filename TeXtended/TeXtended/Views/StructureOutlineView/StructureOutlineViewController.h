@@ -17,4 +17,5 @@
 @property (assign) MainWindowController *mainWindowController;
 
 - (id)initWithMainWindowController:(MainWindowController *)mwc;
+- (void)windowIsGoingToDie;
 @end
