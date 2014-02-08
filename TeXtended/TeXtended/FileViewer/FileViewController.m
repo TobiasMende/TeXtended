@@ -116,7 +116,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     FileViewModel *model = (FileViewModel*)item;
     NSString* oldFile = [model filePath];
     NSString* newFile = (NSString*)object;
-    if([self renameFile:oldFile toNewFile:newFile])
+    NSError *error = nil;
+    if([self renameFile:oldFile toNewFile:newFile withError:&error])
     {
         [model setFileName:oldFile toName:newFile];
         [outline reloadData];
@@ -124,7 +125,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     }
     else
     {
-        // Errormessage?
+        [[NSAlert alertWithError:error] runModal];
     }
 }
 
@@ -521,9 +522,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 }
 
 - (BOOL)renameFile:(NSString*)oldPath
-         toNewFile:(NSString*)newFile {
+         toNewFile:(NSString*)newFile withError:(NSError **)error {
     NSString *newPath = [[oldPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newFile];
-    return [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:nil];
+    return [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:error];
 }
 
 - (void)moveFile:(NSString*)oldPath
