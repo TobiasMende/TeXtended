@@ -255,4 +255,9 @@ GoToLineSheetController *goToLineSheet;
 - (IBAction)showQuickPreviewAssistant:(id)sender;
 
 - (void) makeKeyView;
+
+- (IBAction)selectCurrentBlock:(id)sender;
+- (IBAction)gotoBlockBegin:(id)sender;
+- (IBAction)gotoBlockEnd:(id)sender;
+
 @end

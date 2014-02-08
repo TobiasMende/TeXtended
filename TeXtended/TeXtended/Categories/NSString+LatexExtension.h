@@ -13,4 +13,11 @@
 - (BOOL) numberOfBackslashesBeforePositionIsEven:(NSUInteger)position ;
 - (NSUInteger) numberOfBackslashesBeforePosition:(NSUInteger) position;
 - (NSRange)latexCommandPrefixRangeBeforePosition:(NSUInteger)position;
+- (NSRange)blockRangeForPosition:(NSUInteger)position;
+- (NSString *)blockNameForPosition:(NSUInteger)position;
+- (NSRange)beginRangeForPosition:(NSUInteger)position;
+- (NSRange)endRangeForPosition:(NSUInteger)position;
+- (BOOL)rangeContainsBegin:(NSRange) range;
+- (BOOL)rangeContainsEnd:(NSRange) range;
+
 @end
