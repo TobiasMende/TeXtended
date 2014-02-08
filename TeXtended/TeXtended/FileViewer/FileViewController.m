@@ -559,11 +559,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [self loadPath:[NSURL fileURLWithPath:path]];
         [observer addObserver:self withSelector:@selector(updateFileViewModel:)];
     }
-    else if ([keyPath isEqualToString:@"self.window.isVisible"]) {
-        if (!self.infoWindowController.window.isVisible) {
-            self.infoWindowController.compilable = self.compilable;
-        }
-    }
+
     
 }
 

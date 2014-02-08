@@ -153,7 +153,9 @@
         [self.mainDocument.mainWindowController addTabViewItemToSecond:cont.tabViewItem];
     }
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.pdfIdentifier];
-    [item.tabView.window makeKeyAndOrderFront:self];
+    if (item.tabView && item.tabView.window) {
+        [item.tabView.window makeKeyAndOrderFront:nil];
+    }
     [item.tabView selectTabViewItem:item];
     [self.pdfViewControllers addObject:cont];
     
