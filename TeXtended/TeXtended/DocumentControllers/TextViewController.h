@@ -37,6 +37,7 @@
     LacheckParser *lacheck;
     ForwardSynctexController *synctex;
     OutlineExtractor *outlineExtractor;
+    NSString *currentMessageMainDocument;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;

@@ -14,7 +14,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 
 /* Size of the small line borders */
-#define BORDER_SIZE 4.0
+#define BORDER_SIZE 5.0
 
 /* Sie of the line along the line numbers */
 #define BORDER_LINE_SIZE 1.0
@@ -640,8 +640,8 @@
 }
 
 - (void) drawErrorIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
-    NSRect pos = NSMakeRect(0,
-                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
+    NSRect pos = NSMakeRect(1,
+                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4 - 1,
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
@@ -651,8 +651,8 @@
 }
 
 - (void) drawWarningIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
-    NSRect pos = NSMakeRect(0,
-                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
+    NSRect pos = NSMakeRect(1,
+                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4 - 1,
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     
@@ -662,8 +662,8 @@
 }
 
 - (void) drawInfoIn: (NSRect) dirtyRect withVisibleRect:(NSRect) visibleRect forLineHigh:(NSUInteger) lineHight {
-    NSRect pos = NSMakeRect(0,
-                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4,
+    NSRect pos = NSMakeRect(1,
+                            lineHight - visibleRect.origin.y + SYMBOL_SIZE/4 - 1,
                             SYMBOL_SIZE,
                             SYMBOL_SIZE);
     

@@ -19,6 +19,9 @@ static const NSDictionary *DEBUG_NUMBERS;
 @implementation ChktexParser
 
 + (void)initialize {
+    NSLog(@"%@", self);
+    
+    
     if (self == [ChktexParser class]) {
         //FIXME: initialize the number sets according to texdoc chktex (continue with number 11)
         

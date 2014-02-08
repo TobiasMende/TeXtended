@@ -114,6 +114,7 @@
 #define TMTDraftCompileArgs @"TMTDraftCompileArgs"
 #define TMTFinalCompileArgs @"TMTFinalCompileArgs"
 #define TMTGridUnit @"TMTGridUnit"
+#define TMTMessageSelectedMainDocument @"TMTMessageSelectedMainDocument"
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for tabview collapsed states

@@ -446,10 +446,6 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 
-
-
-
-
 - (void)dealloc {
     DDLogInfo(@"dealloc");
     [self unbind:@"liveCompile"];

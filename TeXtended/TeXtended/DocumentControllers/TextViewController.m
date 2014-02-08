@@ -95,6 +95,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         self.tabViewItem.view = self.view;
         outlineExtractor = [OutlineExtractor new];
         
+        [self bind:@"currentMessageMainDocument" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTMessageSelectedMainDocument] options:nil];
+        
     }
     return self;
 }
@@ -191,7 +193,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 
-
 - (void)logMessagesChanged:(NSNotification *)note {
     MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (collection) {
@@ -205,21 +206,30 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)updateMessageCollection:(NSNotification *)note {
+    [self clearConsoleMessages:note];
     if (self.logLevel < WARNING) {
         return;
     }
     
-    if (countRunningParsers <= 0 && self.model.texPath && self.content) {
-        NSString *tempPath = [PathFactory pathToTemporaryStorage:self.model.texPath] ;
-        NSError *error;
-        if (![self.textView.string writeToFile:tempPath atomically:NO encoding:[self.model.encoding unsignedLongValue]  error:&error]) {
-            if (error) {
-                DDLogWarn(@"%@", error.userInfo);
-            }
-            return;
+    // find the selected main document which we have to parse
+    DocumentModel *model;
+    for (DocumentModel *c in self.model.mainDocuments) {
+        if ([c.name isEqualToString:currentMessageMainDocument]) {
+            model = c;
         }
+    }
+    if (!model) return;
+    
+    // save the current document, since it is probabily included
+    NSError *error = nil;
+    [self.model saveContent:self.content error:&error];
+    if (error) {
+        DDLogError(@"%@", error);
+        return;
+    }
+    
+    if (model.texPath && self.content) {
         @synchronized(messageLock) {
-            countRunningParsers = 2;
             if(!chktex) {
                 chktex = [ChktexParser new];
             }
@@ -227,35 +237,29 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
                 lacheck = [LacheckParser new];
             }
             __unsafe_unretained id weakSelf = self;
-            [chktex parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+            [chktex parseDocument:model.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
-            [lacheck parseDocument:tempPath callbackBlock:^(MessageCollection *messages) {
+            [lacheck parseDocument:model.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
         }
     }
-    
-    
 }
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     @synchronized(messageLock) {
-        if (countRunningParsers == 2) {
-            internalMessages = [MessageCollection new];
-        }
-        countRunningParsers--;
+        internalMessages = [MessageCollection new];
         
         internalMessages = [internalMessages merge:messages];
-        if (countRunningParsers <= 0) {
             [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
             self.messages = [internalMessages merge:consoleMessages];
+            
             MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
             lineNumberView.messageCollection = subset;
             if (self.messages) {
                 [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
             }
-        }
     }
 }
 
@@ -291,7 +295,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 
 - (NSString *)content {
-    // TODO: convert placeholders
     return [[self.textView attributedString] stringByReplacingPlaceholders];
 }
 
@@ -309,8 +312,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (NSSet *)children {
     return [NSSet setWithObject:nil];
 }
-
-
 
 - (void)syncPDF:(DocumentModel *)model {
     if (model) {
@@ -330,10 +331,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             }];
         }
     }
-}
-
-- (void)goToLine:(id)sender {
-    DDLogInfo(@"Go to line");
 }
 
 - (void)breakUndoCoalescing {
@@ -373,15 +370,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (!outlineExtractor.isExtracting) {
         [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
     }
-    messageUpdateTimer = [NSTimer timerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
+    messageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
     
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
     }
 }
-
-
-
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self.model]) {
@@ -396,8 +390,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     } 
 }
 
-
-
 #pragma mark -
 #pragma mark Dealloc
 
@@ -411,6 +403,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [chktex terminate];
     [self unbind:@"liveScrolling"];
     [self unbind:@"logLevel"];
+    [self unbind:@"currentMessageMainDocument"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
     [backgroundQueue cancelAllOperations];

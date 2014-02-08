@@ -32,6 +32,8 @@
 		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
+		7686D1C718A62D4C00E0FA41 /* MessageOutlineViewContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */; };
+		7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
@@ -348,6 +350,9 @@
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
+		7686D1C418A62D4C00E0FA41 /* MessageOutlineViewContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOutlineViewContainerController.h; sourceTree = "<group>"; };
+		7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOutlineViewContainerController.m; sourceTree = "<group>"; };
+		7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageOutlineViewContainer.xib; sourceTree = "<group>"; };
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
@@ -1292,6 +1297,9 @@
 				D28089B8181BBE7B00EEF55C /* MessageOutlineViewController.h */,
 				D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */,
 				D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */,
+				7686D1C418A62D4C00E0FA41 /* MessageOutlineViewContainerController.h */,
+				7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */,
+				7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */,
 			);
 			path = MessageOutlineView;
 			sourceTree = "<group>";
@@ -1710,6 +1718,7 @@
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
+				7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
@@ -1917,6 +1926,7 @@
 				D2C237AB189554BE0096ECAA /* StructureOutlineSectionViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
+				7686D1C718A62D4C00E0FA41 /* MessageOutlineViewContainerController.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */,
 				F68687F418781D5F00898026 /* PrintDialogController.m in Sources */,

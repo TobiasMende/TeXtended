@@ -7,7 +7,7 @@
 //
 
 #import "OutlineTabViewController.h"
-#import "MessageOutlineViewController.h"
+#import "MessageOutlineViewContainerController.h"
 #import "StructureOutlineViewController.h"
 #import "MainWindowController.h"
 #import "MainDocument.h"
@@ -67,10 +67,10 @@
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
     }
-    self.messageOutlineViewController = [[MessageOutlineViewController alloc] initWithModel:self.mainWindowController.mainDocument.model];
+    self.messageOutlineViewContainerController = [[MessageOutlineViewContainerController alloc] initWithMainWindowController:self.mainWindowController];
     self.structureOutlineViewController = [[StructureOutlineViewController alloc] initWithMainWindowController:self.mainWindowController];
     NSTabViewItem *messages = [NSTabViewItem new];
-    messages.view = self.messageOutlineViewController.view;
+    messages.view = self.messageOutlineViewContainerController.view;
     [self.tabView addTabViewItem:messages];
     NSTabViewItem *outline = [NSTabViewItem new];
     outline.view = self.structureOutlineViewController.view;

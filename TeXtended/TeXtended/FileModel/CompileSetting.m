@@ -35,7 +35,6 @@
 }
 
 
-
 + (CompileSetting *)defaultDraftCompileSetting {
         return [self createCompileSettingFor:TMTDraftCompileFlow bibKey:TMTDraftCompileBib iterationKey:TMTDraftCompileIterations argsKey:TMTDraftCompileArgs];
 }
@@ -45,7 +44,6 @@
 }
 
 + (CompileSetting *)defaultFinalCompileSetting {
-        
         return [self createCompileSettingFor:TMTFinalCompileFlow bibKey:TMTFinalCompileBib iterationKey:TMTFinalCompileIterations argsKey:TMTFinalCompileArgs];
 }
 

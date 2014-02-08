@@ -116,9 +116,7 @@
         popover.contentViewController = infoController;
         [popover showRelativeToRect:self.tableView.bounds ofView:view preferredEdge:NSMaxXEdge];
     }
-
 }
-
 
 - (void)tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
     //[rowView setBackgroundColor:[NSColor greenColor]];
@@ -143,7 +141,6 @@
     }
 }
 
-
 - (void)handleMessageUpdate:(NSNotification *)note {
     [messageLock lock];
     MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
@@ -151,6 +148,7 @@
         DDLogError(@"Unexpected sender!");
         return;
     }
+    
     if (collection) {
             (self.collections)[[(Compilable*)note.object identifier]] = (note.userInfo)[TMTMessageCollectionKey];
     } else {
@@ -161,7 +159,6 @@
     
     for (MessageCollection *collection in self.collections.allValues) {
         [temp addObjectsFromArray:[collection.set allObjects]];
-        
     }
     [temp sortUsingSelector:@selector(compare:)];
     self.messages = temp;

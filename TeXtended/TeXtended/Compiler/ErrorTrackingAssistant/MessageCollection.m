@@ -37,7 +37,6 @@
         case TMTDebugMessage:
             [self.debugMessages addObject:message];
             break;
-            
         default:
             break;
     }
