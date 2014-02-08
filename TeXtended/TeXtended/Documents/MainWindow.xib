@@ -101,7 +101,7 @@
                     </splitView>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="100368" customClass="MainToolbar">
+            <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" displayMode="iconAndLabel" sizeMode="regular" id="100368" customClass="MainToolbar">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="31ED8C2B-FDAF-495E-89C6-9D4309F6B4B4" explicitItemIdentifier="SharingButton" label="Share" paletteLabel="Share" image="NSShareTemplate" id="7h0-7I-Mh2" userLabel="Toolbar Item - Share">
                         <nil key="toolTip"/>
@@ -240,9 +240,9 @@
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="qQT-eE-0AC"/>
                     <toolbarItem reference="100390"/>
                     <toolbarItem reference="100393"/>
+                    <toolbarItem reference="qQT-eE-0AC"/>
                     <toolbarItem reference="100380"/>
                     <toolbarItem reference="fGm-Vj-2Vx"/>
                     <toolbarItem reference="KhF-ac-Z4O"/>
