@@ -18,6 +18,7 @@ static const NSString *TMTTemplateInfoKey = @"TMTTemplateInfoKey";
 static const NSString *TMTTemplateTagsKey = @"TMTTemplateCategoryKey";
 static const NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 static const NSString *TMTTemplateCompilableKey = @"TMTTemplateCompilableKey";
+static const NSString *TMTTemplateUidKey = @"TMTTemplateUidKey";
 static NSString *CONFIG_FILE_NAME = @"config.plist";
 static NSString *PREVIEW_FILE_NAME = @"preview.pdf";
 static NSString *CONTENT_DIR_NAME = @"content";
@@ -37,6 +38,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
         self.category = category;
         self.name = name;
         self.info = config[TMTTemplateInfoKey];
+        self.uid = config[TMTTemplateUidKey] ? [config[TMTTemplateUidKey] integerValue]: -1;
         if (config[TMTTemplateCompilableKey]) {
             self.compilable = [NSKeyedUnarchiver unarchiveObjectWithData:config[TMTTemplateCompilableKey]];
         }
@@ -228,7 +230,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
 }
 
 - (NSDictionary *)configDictionary {
-    return @{TMTTemplateInfoKey: self.info, TMTTemplateTypeKey: @(self.type), TMTTemplateCompilableKey: [NSKeyedArchiver archivedDataWithRootObject:self.compilable]};
+    return @{TMTTemplateInfoKey: self.info, TMTTemplateTypeKey: @(self.type), TMTTemplateCompilableKey: [NSKeyedArchiver archivedDataWithRootObject:self.compilable], TMTTemplateUidKey: @(self.uid)};
 }
 
 
