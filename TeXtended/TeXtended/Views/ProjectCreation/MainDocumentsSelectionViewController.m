@@ -105,7 +105,7 @@
     NSArray *paths = self.selectedDocuments.arrangedObjects;
     for (NSString *path in paths) {
         DocumentModel *model = [project modelForTexPath:path byCreating:YES];
-        [project addMainDocumentsObject:model];
+        [project addMainDocument:model];
     }
 }
 

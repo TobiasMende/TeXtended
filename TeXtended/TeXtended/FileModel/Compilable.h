@@ -63,8 +63,8 @@
 
 
 
-- (void)addMainDocumentsObject:(DocumentModel *)value;
-- (void)removeMainDocumentsObject:(DocumentModel *)value;
+- (void)addMainDocument:(DocumentModel *)value;
+- (void)removeMainDocument:(DocumentModel *)value;
 - (void)addMainDocuments:(NSArray *)values;
 - (void)removeMainDocuments:(NSArray *)values;
 

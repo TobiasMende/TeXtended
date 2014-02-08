@@ -75,7 +75,7 @@
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *file = [texPathPanel URL];
             DocumentModel *m = [self.compilable modelForTexPath:file.path];
-            [self.compilable addMainDocumentsObject:m];
+            [self.compilable addMainDocument:m];
         }
     }];
 }

@@ -288,7 +288,8 @@ static NSArray *TMTEncodingsToCheck;
     return md;
 }
 
-- (void)addMainDocumentsObject:(DocumentModel *)value {
+- (void)addMainDocument:(DocumentModel *)value {
+    DDLogError(@"Here");
     if ([self.mainDocuments containsObject:value]) {
         return;
     }
