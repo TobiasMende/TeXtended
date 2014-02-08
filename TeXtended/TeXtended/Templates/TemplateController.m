@@ -85,6 +85,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 - (void)loadCategories {
     NSFileManager *fm = [NSFileManager defaultManager];
     [self.categories removeAllObjects];
+    [self.categories addObject:@{@"value": NSLocalizedString(@"All Templates", @"All Templates Category")}];
     for (NSString *path in [fm contentsOfDirectoryAtPath:[TemplateController templateDirectory] error:nil]) {
         if ([fm directoryExistsAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:path]]) {
             [self.categories addObject:@{@"value":path}.mutableCopy];
@@ -302,7 +303,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     if (index == NSNotFound) {
         return;
     }
-    NSString *category = [self.categories objectAtIndex:index][@"value"];
+    NSString *category = index == 0 ? nil : [self.categories objectAtIndex:index][@"value"];
     [self loadTemplatesFromCategory:category];
 }
 
@@ -329,11 +330,25 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         [self.currentTemplates addObject:@"NewPlaceholder"];
     }
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
-    for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
-        if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
-            Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
-            [self.currentTemplates addObject:template];
+    NSMutableArray *categoriesToShow;
+    if (!category) {
+        categoriesToShow = [NSMutableArray arrayWithCapacity:self.categories.count-1];
+        NSEnumerator *iterator = self.categories.objectEnumerator;
+        iterator.nextObject; //Skip "All Templates"
+        for (NSDictionary *dict in iterator) {
+            [categoriesToShow addObject:dict[@"value"]];
+        }
+    } else {
+        categoriesToShow = [NSArray arrayWithObject:category];
+    }
+    
+    for(NSString *category in categoriesToShow) {
+        NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
+        for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
+            if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
+                Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
+                [self.currentTemplates addObject:template];
+            }
         }
     }
     [self.currentTemplatesView setContent:self.currentTemplates];
@@ -451,6 +466,9 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     if (dropOperation == NSTableViewDropAbove) {
         return NO;
     }
+    if (row == 0) {
+        return NO;
+    }
     if ((self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
         return NO;
     }
@@ -485,6 +503,9 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
     if (dropOperation == NSTableViewDropAbove) {
+        return NSDragOperationNone;
+    }
+    if (row == 0) {
         return NSDragOperationNone;
     }
     NSPasteboard* pb = info.draggingPasteboard;

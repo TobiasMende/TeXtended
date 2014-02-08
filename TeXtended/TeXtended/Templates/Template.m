@@ -83,7 +83,7 @@ static NSString *CONTENT_DIR_NAME = @"content";
     
     DocumentModel *model = (DocumentModel *)[self.compilable copy];
     model.texPath = [name stringByAppendingPathExtension:@"tex"];
-    model.pdfPath = [name stringByAppendingPathComponent:@"pdf"];
+    model.pdfPath = [name stringByAppendingPathExtension:@"pdf"];
     [model finishInitWithPath:[directory stringByAppendingPathComponent:model.texPath]];
     if ([fm fileExistsAtPath:model.texPath]) {
         [fm removeItemAtPath:model.texPath error:NULL];
