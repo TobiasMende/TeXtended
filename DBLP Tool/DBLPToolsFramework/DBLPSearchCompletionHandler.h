@@ -32,4 +32,8 @@
  The search was aborted (e.g. by the user)
  */
 - (void)dblpSearchAborted;
+
+- (void)failedFetchingKeys:(NSError *)error;
+
+- (void)failedFetchingAuthors:(NSError *)error;
 @end
