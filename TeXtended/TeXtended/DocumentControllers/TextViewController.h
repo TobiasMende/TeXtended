@@ -36,6 +36,7 @@
     ForwardSynctexController *synctex;
     OutlineExtractor *outlineExtractor;
     DocumentModel *currentMessageMainDocument;
+    MessageCollection *internalMessages;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;

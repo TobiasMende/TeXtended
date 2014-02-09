@@ -87,7 +87,7 @@
                 if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable]) {
                     MessageCollection *subset = [self.model.messages messagesForDocument:newModel.texPath];
                     if (subset) {
-                        [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:@{TMTMessageCollectionKey: subset}];
+                        newModel.messages = subset;
                     }
                 }
             } else {
