@@ -54,6 +54,7 @@
     if (index >= 0 && index < mainDocuments.count) {
         [self.mainView selectTabViewItemAtIndex:index];
         DocumentModel *mainDocument = mainDocuments[index];
+        self.mainWindowController.myCurrentFirstResponderDelegate.model.currentMainDocument = mainDocument;
         [[TMTNotificationCenter centerForCompilable:mainDocument] postNotificationName:TMTMessageSelectedMainDocumentNotification object:self userInfo:@{TMTNewSelectedMainDocumentKey: mainDocument}];
     }
 }

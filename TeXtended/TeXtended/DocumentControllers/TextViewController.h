@@ -35,7 +35,6 @@
     LacheckParser *lacheck;
     ForwardSynctexController *synctex;
     OutlineExtractor *outlineExtractor;
-    DocumentModel *currentMessageMainDocument;
     MessageCollection *internalMessages;
 }
 

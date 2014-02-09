@@ -38,6 +38,8 @@
 /** The path to the tex file */
 @property (strong,nonatomic) NSString * texPath;
 
+@property (assign, nonatomic) DocumentModel* currentMainDocument;
+
 /** The system path to the tex file version storage.
  
  @warning Don't uses this if you are not exactly knowing about the purpose of this property.

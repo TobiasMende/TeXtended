@@ -69,6 +69,13 @@ static NSArray *TMTEncodingsToCheck;
     return content;
 }
 
+- (DocumentModel *)currentMainDocument {
+    if (!_currentMainDocument) {
+        _currentMainDocument = self.mainDocuments.firstObject;
+    }
+    return _currentMainDocument;
+}
+
 
 - (NSString *)header {
     NSError *error;

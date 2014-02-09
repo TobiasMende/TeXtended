@@ -104,16 +104,13 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
     _model = model;
     if (_model) {
-        if (!currentMessageMainDocument) {
-            currentMessageMainDocument = model.mainDocuments.firstObject;
-        }
         [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(updateCurrentMessageMainDocumentNotification:) name:TMTMessageSelectedMainDocumentNotification object:nil];
     }
 }
 
 
 - (void)registerModelObserver {
-     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
+     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:nil];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
@@ -121,7 +118,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)unregisterModelObserver {
-     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
+     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTLogMessageCollectionChanged object:nil];
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     
@@ -168,13 +165,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)updateCurrentMessageMainDocumentNotification:(NSNotification *)note {
     if ([self.model.mainDocuments containsObject:note.userInfo[TMTNewSelectedMainDocumentKey]]) {
-        if (currentMessageMainDocument) {
-             [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTLogMessageCollectionChanged object:currentMessageMainDocument];
-        }
-        currentMessageMainDocument = note.userInfo[TMTNewSelectedMainDocumentKey];
-        if (currentMessageMainDocument) {
-             [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:currentMessageMainDocument];
-        }
+        self.model.currentMainDocument = note.userInfo[TMTNewSelectedMainDocumentKey];
         if (messageUpdateTimer) {
             [messageUpdateTimer invalidate];
         }
@@ -187,10 +178,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)logMessagesChanged:(NSNotification *)note {
     MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (collection) {
-            if (currentMessageMainDocument.messages) {
-                currentMessageMainDocument.messages.errorMessages = collection.errorMessages;
-                internalMessages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
-                if (![self.model isEqualTo:currentMessageMainDocument]) {
+            if (self.model.currentMainDocument.messages) {
+                self.model.currentMainDocument.messages.errorMessages = collection.errorMessages;
+                internalMessages = [self.model.currentMainDocument.messages messagesForDocument:self.model.texPath];
+                if (![self.model isEqualTo:self.model.currentMainDocument]) {
                     self.model.messages = internalMessages;
                 }
                 lineNumberView.messageCollection = internalMessages;
@@ -203,7 +194,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         return;
     }
     
-    if (!currentMessageMainDocument) return;
+    if (!self.model.currentMainDocument) return;
     
     // save the current document, since it is probabily included
     NSError *error = nil;
@@ -213,7 +204,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         return;
     }
     
-    if (currentMessageMainDocument.texPath && self.content) {
+    if (self.model.currentMainDocument.texPath && self.content) {
         @synchronized(messageLock) {
             if(!chktex) {
                 chktex = [ChktexParser new];
@@ -223,10 +214,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             }
             __unsafe_unretained id weakSelf = self;
             countRunningParsers = 2;
-            [chktex parseDocument:currentMessageMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
+            [chktex parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
-            [lacheck parseDocument:currentMessageMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
+            [lacheck parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
         }
@@ -236,18 +227,18 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     @synchronized(messageLock) {
         if (countRunningParsers == 2) {
-            [currentMessageMainDocument.messages.warningMessages removeAllObjects];
-            [currentMessageMainDocument.messages.infoMessages removeAllObjects];
-            [currentMessageMainDocument.messages.debugMessages removeAllObjects];
+            [self.model.currentMainDocument.messages.warningMessages removeAllObjects];
+            [self.model.currentMainDocument.messages.infoMessages removeAllObjects];
+            [self.model.currentMainDocument.messages.debugMessages removeAllObjects];
         }
         if (countRunningParsers > 0) {
             countRunningParsers--;
         }
-        if (currentMessageMainDocument) {
+        if (self.model.currentMainDocument) {
             [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
-            [currentMessageMainDocument.messages merge:messages];
-            internalMessages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
-            if (![currentMessageMainDocument isEqualTo:self.model]) {
+            [self.model.currentMainDocument.messages merge:messages];
+            internalMessages = [self.model.currentMainDocument.messages messagesForDocument:self.model.texPath];
+            if (![self.model.currentMainDocument isEqualTo:self.model]) {
                 self.model.messages = internalMessages;
             }
             lineNumberView.messageCollection = internalMessages;
