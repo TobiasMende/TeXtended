@@ -80,6 +80,7 @@
 
 - (void)windowIsGoingToDie {
     [self.structureOutlineViewController windowIsGoingToDie];
+    [self.messageOutlineViewContainerController windowIsGoingToDie];
 }
 
 @end

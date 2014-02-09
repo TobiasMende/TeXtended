@@ -23,7 +23,7 @@
 #import "TMTCustomView.h"
 
 @interface MessageDataSource ()
-- (void) handleMessageUpdate:(NSNotification *)note;
+- (void) handleMessageUpdate;
 - (void) handleDoubleClick:(id)sender;
 - (void) handleClick:(id)sender;
 @end
@@ -39,7 +39,6 @@
 
 - (void)awakeFromNib {
     messageLock = [[NSLock alloc] init];
-    self.collections = [[NSMutableDictionary alloc] init];
     [self.tableView setTarget:self];
     [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
     [self.tableView setAction:@selector(handleClick:)];
@@ -47,6 +46,12 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.messages.count;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([object isEqualTo:self.model]) {
+        [self handleMessageUpdate];
+    }
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
@@ -79,8 +84,11 @@
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
             if (newModel) {
                 [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:message.line]}];
-                if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable] && self.collections.count > 0) {
-                    [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:@{TMTMessageCollectionKey: (self.collections.allValues)[0]}];
+                if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable]) {
+                    MessageCollection *subset = [self.model.messages messagesForDocument:newModel.texPath];
+                    if (subset) {
+                        [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTLogMessageCollectionChanged object:newModel userInfo:@{TMTMessageCollectionKey: subset}];
+                    }
                 }
             } else {
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
@@ -132,34 +140,20 @@
 - (void)setModel:(DocumentModel *)model {
     if (model != _model) {
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTMessageCollectionChanged object:nil];
+            [_model removeObserver:self forKeyPath:@"messages"];
         }
         _model = model;
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(handleMessageUpdate:) name:TMTMessageCollectionChanged object:nil];
+            [_model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
         }
     }
 }
 
-- (void)handleMessageUpdate:(NSNotification *)note {
+- (void)handleMessageUpdate {
     [messageLock lock];
-    MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
-    if (![note.object isKindOfClass:[Compilable class]]) {
-        DDLogError(@"Unexpected sender!");
-        return;
-    }
+    MessageCollection *collection = self.model.messages;
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:collection.set.allObjects];
     
-    if (collection) {
-            (self.collections)[[(Compilable*)note.object identifier]] = (note.userInfo)[TMTMessageCollectionKey];
-    } else {
-        [self.collections removeObjectForKey:[(Compilable*)note.object identifier]];
-    }
-    
-    NSMutableArray *temp = [NSMutableArray new];
-    
-    for (MessageCollection *collection in self.collections.allValues) {
-        [temp addObjectsFromArray:[collection.set allObjects]];
-    }
     [temp sortUsingSelector:@selector(compare:)];
     self.messages = temp;
     [messageLock unlock];
@@ -171,7 +165,7 @@
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
     self.tableView.dataSource = nil;
-    
+    [self.model removeObserver:self forKeyPath:@"messages"];
     self.tableView.delegate = nil;
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

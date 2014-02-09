@@ -31,16 +31,9 @@
                                 <menuItem title="Item 3" id="6L4-ma-7vn"/>
                             </items>
                         </menu>
-                        <connections>
-                            <binding destination="gge-wm-hmO" name="content" keyPath="values.TMT" id="FMW-E7-SW3"/>
-                        </connections>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="gge-wm-hmO" name="selectedValue" keyPath="values.TMTMessageSelectedMainDocument" id="dol-f5-ZD0">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
+                        <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="jBx-E8-6XP"/>
                     </connections>
                 </popUpButton>
                 <tabView type="noTabsNoBorder" id="qpF-EH-Es1">

@@ -29,15 +29,14 @@
     NSMutableSet *observers;
     NSOperationQueue *backgroundQueue;
     NSTimer *messageUpdateTimer;
-    NSObject *messageLock;
-    MessageCollection *internalMessages;
     MessageCollection *consoleMessages;
+    NSObject *messageLock;
     NSInteger countRunningParsers;
     ChktexParser *chktex;
     LacheckParser *lacheck;
     ForwardSynctexController *synctex;
     OutlineExtractor *outlineExtractor;
-    NSString *currentMessageMainDocument;
+    DocumentModel *currentMessageMainDocument;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;
@@ -48,7 +47,7 @@
 
 /** The scroll view containing the LineNumberView and the HighlightingTextView */
 @property (strong) IBOutlet NSScrollView *scrollView;
-@property (strong) DocumentModel *model;
+@property (strong, nonatomic) DocumentModel *model;
 
 
 @property (assign,nonatomic) id<FirstResponderDelegate> firstResponderDelegate;
@@ -56,7 +55,6 @@
 /** Flag for setting whether live scrolling is enabled or not. */
 @property BOOL liveScrolling;
 
-@property MessageCollection *messages;
 
 /**
  Getter for the text views content

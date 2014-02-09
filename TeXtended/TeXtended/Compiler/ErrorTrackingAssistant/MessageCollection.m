@@ -96,6 +96,16 @@
     return self.errorMessages.count + self.warningMessages.count + self.debugMessages.count + self.infoMessages.count;
 }
 
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"set"] || [key isEqualToString:@"count"]) {
+        keys = [keys setByAddingObjectsFromArray:@[@"errorMessages", @"warningMessages", @"infoMessages", @"debugMessages"]];
+    }
+    return keys;
+}
+
+
 - (void)adaptToLevel:(TMTLatexLogLevel)level {
     if (level < ALL) {
         self.debugMessages = [NSMutableSet new];

@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Compilable.h"
 
-@class ProjectModel,OutlineElement,OutlineExtractor;
+@class ProjectModel,OutlineElement,OutlineExtractor, MessageCollection;
 
 
 /**
@@ -43,6 +43,8 @@
  @warning Don't uses this if you are not exactly knowing about the purpose of this property.
  */
 @property (strong) NSString * systemPath;
+
+@property (strong) MessageCollection *messages;
 
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */

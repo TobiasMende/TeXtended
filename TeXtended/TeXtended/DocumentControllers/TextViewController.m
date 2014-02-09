@@ -67,6 +67,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
 - (void) clearConsoleMessages:(NSNotification*)note;
+- (void) updateCurrentMessageMainDocumentNotification:(NSNotification *)note;
 - (void) adapteMessageToLevel;
 @end
 
@@ -84,7 +85,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         backgroundQueue = [NSOperationQueue new];
         backgroundQueue.name = @"TextViewController-BackgroundQueue";
         consoleMessages = [MessageCollection new];
-        internalMessages = [MessageCollection new];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -95,7 +95,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         self.tabViewItem.view = self.view;
         outlineExtractor = [OutlineExtractor new];
         
-        [self bind:@"currentMessageMainDocument" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTMessageSelectedMainDocument] options:nil];
         
     }
     return self;
@@ -107,6 +106,19 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     self.model = firstResponderDelegate.model;
 }
 
+- (void)setModel:(DocumentModel *)model {
+    if (_model) {
+        [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTMessageSelectedMainDocumentNotification object:nil];
+    }
+    _model = model;
+    if (_model) {
+        if (!currentMessageMainDocument) {
+            currentMessageMainDocument = model.mainDocuments.firstObject;
+        }
+        [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(updateCurrentMessageMainDocumentNotification:) name:TMTMessageSelectedMainDocumentNotification object:nil];
+    }
+}
+
 - (void)setLogLevel:(TMTLatexLogLevel)logLevel {
     _logLevel = logLevel;
     [self adapteMessageToLevel];
@@ -115,11 +127,15 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)adapteMessageToLevel {
     [consoleMessages adaptToLevel:self.logLevel];
     @synchronized(messageLock) {
-        internalMessages = [MessageCollection new];
+        [currentMessageMainDocument.messages adaptToLevel:self.logLevel];
+        if (![self.model isEqualTo:currentMessageMainDocument]) {
+            [self.model.messages adaptToLevel:self.logLevel];
+        }
         [self updateMessageCollection:nil];
-        self.messages = [internalMessages merge:consoleMessages];
+        if (currentMessageMainDocument) {
+            currentMessageMainDocument.messages.errorMessages = consoleMessages.errorMessages;
+        }
     }
-    [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
 }
 
 - (void)registerModelObserver {
@@ -181,14 +197,27 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 }
 
-- (void)clearConsoleMessages:(NSNotification *)note {
-    consoleMessages = [MessageCollection new];
-    @synchronized(messageLock) {
-        if (countRunningParsers <= 0) {
-            self.messages = [consoleMessages merge:internalMessages];
-            lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
-            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+- (void)updateCurrentMessageMainDocumentNotification:(NSNotification *)note {
+    if ([self.model.mainDocuments containsObject:note.userInfo[TMTNewSelectedMainDocumentKey]]) {
+        currentMessageMainDocument = note.userInfo[TMTNewSelectedMainDocumentKey];
+        if (messageUpdateTimer) {
+            [messageUpdateTimer invalidate];
         }
+        [self updateMessageCollection:nil];
+    }
+}
+
+- (void)clearConsoleMessages:(NSNotification *)note {
+    @synchronized(messageLock) {
+        consoleMessages = [MessageCollection new];
+        if (countRunningParsers <= 0 && currentMessageMainDocument) {
+            [currentMessageMainDocument.messages.errorMessages removeAllObjects];
+            if (![self.model isEqualTo:currentMessageMainDocument]) {
+                self.model.messages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
+            }
+            lineNumberView.messageCollection = self.model.messages;
+        }
+        
     }
 }
 
@@ -197,10 +226,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (collection) {
         consoleMessages = [consoleMessages merge:collection];
-        if (countRunningParsers <= 0 && self.messages) {
-            self.messages = [consoleMessages merge:internalMessages];
-            lineNumberView.messageCollection = [self.messages messagesForDocument:self.model.texPath];
-            [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+        if (countRunningParsers <= 0 && currentMessageMainDocument.messages) {
+            currentMessageMainDocument.messages.errorMessages = consoleMessages.errorMessages;
+            if (![self.model isEqualTo:currentMessageMainDocument]) {
+            self.model.messages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
+            }
+            lineNumberView.messageCollection = self.model.messages;
         }
     }
 }
@@ -211,14 +242,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         return;
     }
     
-    // find the selected main document which we have to parse
-    DocumentModel *model;
-    for (DocumentModel *c in self.model.mainDocuments) {
-        if ([c.name isEqualToString:currentMessageMainDocument]) {
-            model = c;
-        }
-    }
-    if (!model) return;
+    if (!currentMessageMainDocument) return;
     
     // save the current document, since it is probabily included
     NSError *error = nil;
@@ -228,7 +252,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         return;
     }
     
-    if (model.texPath && self.content) {
+    if (currentMessageMainDocument.texPath && self.content) {
         @synchronized(messageLock) {
             if(!chktex) {
                 chktex = [ChktexParser new];
@@ -237,10 +261,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
                 lacheck = [LacheckParser new];
             }
             __unsafe_unretained id weakSelf = self;
-            [chktex parseDocument:model.texPath callbackBlock:^(MessageCollection *messages) {
+            [chktex parseDocument:currentMessageMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
-            [lacheck parseDocument:model.texPath callbackBlock:^(MessageCollection *messages) {
+            [lacheck parseDocument:currentMessageMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
         }
@@ -249,17 +273,21 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     @synchronized(messageLock) {
-        internalMessages = [MessageCollection new];
-        
-        internalMessages = [internalMessages merge:messages];
+        if (currentMessageMainDocument) {
+            MessageCollection *tmp = [MessageCollection new];
+            tmp = [tmp merge:messages];
             [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
-            self.messages = [internalMessages merge:consoleMessages];
-            
-            MessageCollection *subset = [self.messages messagesForDocument:self.model.texPath];
-            lineNumberView.messageCollection = subset;
-            if (self.messages) {
-                [[TMTNotificationCenter centerForCompilable:self.model]postNotificationName:TMTMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.messages}];
+            currentMessageMainDocument.messages = [tmp merge:consoleMessages];
+            MessageCollection *subset;
+            if (![self.model.mainCompilable isEqualTo:self.model]) {
+                subset = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
+                self.model.messages = subset;
+            } else {
+                subset = self.model.messages;
             }
+            lineNumberView.messageCollection = subset;
+        }
+        
     }
 }
 

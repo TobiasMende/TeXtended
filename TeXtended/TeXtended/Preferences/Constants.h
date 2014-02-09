@@ -114,7 +114,7 @@
 #define TMTDraftCompileArgs @"TMTDraftCompileArgs"
 #define TMTFinalCompileArgs @"TMTFinalCompileArgs"
 #define TMTGridUnit @"TMTGridUnit"
-#define TMTMessageSelectedMainDocument @"TMTMessageSelectedMainDocument"
+
 
 // --------------------------------------------------------------------------------
 #pragma mark - KVC keys for tabview collapsed states
@@ -147,6 +147,7 @@
 #define TMTIntegerKey @"TMTIntegerKey"
 #define TMTFirstResponderKey @"TMTFirstResponderKey"
 #define TMTConsoleDataKey @"TMTConsoleDataKey"
+#define TMTNewSelectedMainDocumentKey @"TMTNewSelectedMainDocumentKey"
 
 
 // --------------------------------------------------------------------------------
@@ -171,14 +172,13 @@
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
 #define TMTViewSynctexChanged @"TMTViewSynctexChanged"
 #define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
-#define TMTMessageCollectionChanged @"TMTMessageCollectionChanged"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
 #define TMT_CONSOLE_ADDED_MANAGER_CHANGED @"TMT_CONSOLE_ADDED_MANAGER_CHANGED"
 #define TMT_CONSOLE_REMOVED_MANAGER_CHANGED @"TMT_CONSOLE_REMOVED_MANAGER_CHANGED"
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 #define TMTOutlineDidChangeNotification @"TMTOutlineDidChangeNotification"
-
+#define TMTMessageSelectedMainDocumentNotification @"TMTMessageSelectedMainDocumentNotification"
 
 
 

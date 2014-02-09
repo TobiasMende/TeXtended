@@ -17,6 +17,8 @@
 @property (strong) IBOutlet NSPopUpButton *selectionPopup;
 @property (strong) IBOutlet NSTabView *mainView;
 @property (assign) MainWindowController *mainWindowController;
+@property (nonatomic) NSInteger selectedIndex;
 
 - (id)initWithMainWindowController:(MainWindowController *)mwc;
+- (void)windowIsGoingToDie;
 @end

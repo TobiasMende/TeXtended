@@ -10,10 +10,12 @@
 #import "MainWindowController.h"
 #import "MessageOutlineViewController.h"
 #import <TMTHelperCollection/TMTlog.h>
+#import "TMTNotificationCenter.h"
 
 @interface MessageOutlineViewContainerController ()
 - (void) firstResponderDidChange;
 - (void) objectWillDie:(NSNotification *)note;
+- (void) updateViewForIndex:(NSInteger) index;
 @end
 
 @implementation MessageOutlineViewContainerController
@@ -24,20 +26,36 @@
         self.mainWindowController = mwc;
         [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectWillDie:) name:TMTObjectWillDieNotification object:self.mainWindowController];
         
     }
     return self;
 }
 
-- (void)objectWillDie:(NSNotification *)note {
+- (void)windowIsGoingToDie {
     [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
     self.mainWindowController = nil;
 }
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [self firstResponderDidChange];
+    if ([object isEqualTo:self.mainWindowController]) {
+        [self firstResponderDidChange];
+    }
+}
+
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    _selectedIndex = selectedIndex;
+    
+    [self updateViewForIndex:selectedIndex];
+}
+
+- (void)updateViewForIndex:(NSInteger)index {
+    NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
+    if (index >= 0 && index < mainDocuments.count) {
+        [self.mainView selectTabViewItemAtIndex:index];
+        DocumentModel *mainDocument = mainDocuments[index];
+        [[TMTNotificationCenter centerForCompilable:mainDocument] postNotificationName:TMTMessageSelectedMainDocumentNotification object:self userInfo:@{TMTNewSelectedMainDocumentKey: mainDocument}];
+    }
 }
 
 - (void)firstResponderDidChange {
