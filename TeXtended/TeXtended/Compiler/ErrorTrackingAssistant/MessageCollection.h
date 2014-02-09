@@ -40,7 +40,9 @@
  *
  * @return self unioned with the others collections subsets.
  */
-- (MessageCollection *) merge:(MessageCollection *) other;
+- (MessageCollection *) merged:(MessageCollection *) other;
+
+- (void) merge:(MessageCollection *)other;
 
 /**
  * Adds a message to the appropriate subset.

@@ -33,12 +33,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
 
-/** Method for handling the and of a compiler task
- 
- @param note the TMTCompilerDidEndCompiling notification
-*/
-- (void) handleCompilerEnd:(NSNotification *)note;
-
 /** Method for setting up the model observations */
 - (void) registerModelObserver;
 
@@ -66,7 +60,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
-- (void) clearConsoleMessages:(NSNotification*)note;
 - (void) updateCurrentMessageMainDocumentNotification:(NSNotification *)note;
 - (void) adapteMessageToLevel;
 @end
@@ -84,7 +77,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         synctex = [ForwardSynctexController new];
         backgroundQueue = [NSOperationQueue new];
         backgroundQueue.name = @"TextViewController-BackgroundQueue";
-        consoleMessages = [MessageCollection new];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
@@ -119,42 +111,19 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 }
 
-- (void)setLogLevel:(TMTLatexLogLevel)logLevel {
-    _logLevel = logLevel;
-    [self adapteMessageToLevel];
-}
-
-- (void)adapteMessageToLevel {
-    [consoleMessages adaptToLevel:self.logLevel];
-    @synchronized(messageLock) {
-        [currentMessageMainDocument.messages adaptToLevel:self.logLevel];
-        if (![self.model isEqualTo:currentMessageMainDocument]) {
-            [self.model.messages adaptToLevel:self.logLevel];
-        }
-        [self updateMessageCollection:nil];
-        if (currentMessageMainDocument) {
-            currentMessageMainDocument.messages.errorMessages = consoleMessages.errorMessages;
-        }
-    }
-}
 
 - (void)registerModelObserver {
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:self.model];
-    [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(clearConsoleMessages:) name:TMTCompilerWillStartCompilingMainDocuments object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
-    for (DocumentModel *m in self.model.mainDocuments) {
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleCompilerEnd:) name:TMTCompilerDidEndCompiling object:m];
-    }
 }
 
 - (void)unregisterModelObserver {
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTLogMessageCollectionChanged object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
-    [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:nil];
     
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
@@ -207,37 +176,22 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 }
 
-- (void)clearConsoleMessages:(NSNotification *)note {
-    @synchronized(messageLock) {
-        consoleMessages = [MessageCollection new];
-        if (countRunningParsers <= 0 && currentMessageMainDocument) {
-            [currentMessageMainDocument.messages.errorMessages removeAllObjects];
-            if (![self.model isEqualTo:currentMessageMainDocument]) {
-                self.model.messages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
-            }
-            lineNumberView.messageCollection = self.model.messages;
-        }
-        
-    }
-}
 
 
 - (void)logMessagesChanged:(NSNotification *)note {
     MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
     if (collection) {
-        consoleMessages = [consoleMessages merge:collection];
-        if (countRunningParsers <= 0 && currentMessageMainDocument.messages) {
-            currentMessageMainDocument.messages.errorMessages = consoleMessages.errorMessages;
-            if (![self.model isEqualTo:currentMessageMainDocument]) {
-            self.model.messages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
+            if (currentMessageMainDocument.messages) {
+                currentMessageMainDocument.messages.errorMessages = collection.errorMessages;
+                if (![self.model isEqualTo:currentMessageMainDocument]) {
+                    self.model.messages = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
+                }
+                lineNumberView.messageCollection = self.model.messages;
             }
-            lineNumberView.messageCollection = self.model.messages;
-        }
     }
 }
 
 - (void)updateMessageCollection:(NSNotification *)note {
-    [self clearConsoleMessages:note];
     if (self.logLevel < WARNING) {
         return;
     }
@@ -261,6 +215,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
                 lacheck = [LacheckParser new];
             }
             __unsafe_unretained id weakSelf = self;
+            countRunningParsers = 2;
             [chktex parseDocument:currentMessageMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
                 [weakSelf mergeMessageCollection:messages];
             }];
@@ -273,13 +228,19 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)mergeMessageCollection:(MessageCollection *)messages {
     @synchronized(messageLock) {
+        if (countRunningParsers == 2) {
+            [currentMessageMainDocument.messages.warningMessages removeAllObjects];
+            [currentMessageMainDocument.messages.infoMessages removeAllObjects];
+            [currentMessageMainDocument.messages.debugMessages removeAllObjects];
+        }
+        if (countRunningParsers > 0) {
+            countRunningParsers--;
+        }
         if (currentMessageMainDocument) {
-            MessageCollection *tmp = [MessageCollection new];
-            tmp = [tmp merge:messages];
             [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
-            currentMessageMainDocument.messages = [tmp merge:consoleMessages];
+            [currentMessageMainDocument.messages merge:messages];
             MessageCollection *subset;
-            if (![self.model.mainCompilable isEqualTo:self.model]) {
+            if (![currentMessageMainDocument isEqualTo:self.model]) {
                 subset = [currentMessageMainDocument.messages messagesForDocument:self.model.texPath];
                 self.model.messages = subset;
             } else {
@@ -291,19 +252,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 }
 
-- (void)handleCompilerEnd:(NSNotification *)note {
-    DocumentModel *m = [note object];
-    if (![self.model.mainDocuments containsObject:m]) {
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:m];
-        return;
-    }
-//    [synctex  startWithInputPath:self.model.texPath outputPath:m.pdfPath row:self.textView.currentRow andColumn:self.textView.currentCol andHandler:^(ForwardSynctex *result) {
-//        if (result) {
-//            NSDictionary *info = @{TMTForwardSynctexKey: result};
-//            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
-//        }
-//    }];
-}
 
 - (void)loadView {
         [super loadView];

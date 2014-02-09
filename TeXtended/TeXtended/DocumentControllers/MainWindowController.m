@@ -175,7 +175,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (void)setMyCurrentFirstResponderDelegate:(id<FirstResponderDelegate>)myCurrentFirstResponderDelegate {
-    if (![_myCurrentFirstResponderDelegate isEqual:myCurrentFirstResponderDelegate]) {
+    if (myCurrentFirstResponderDelegate && ![_myCurrentFirstResponderDelegate isEqual:myCurrentFirstResponderDelegate]) {
         [self willChangeValueForKey:@"myCurrentFirstResponderDelegate"];
         _myCurrentFirstResponderDelegate = myCurrentFirstResponderDelegate;
          [self didChangeValueForKey:@"myCurrentFirstResponderDelegate"];

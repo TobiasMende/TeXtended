@@ -59,7 +59,7 @@
 }
 
 - (void)firstResponderDidChange {
-    DDLogWarn(@"Responder Change");
+    DDLogWarn(@"Responder Change: %@", self.mainWindowController.myCurrentFirstResponderDelegate);
     
     NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     messages = [NSMutableArray arrayWithCapacity:mainDocuments.count];

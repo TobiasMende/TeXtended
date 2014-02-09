@@ -17,6 +17,7 @@
 #import "ConsoleManager.h"
 #import "BibFile.h"
 #import "OutlineExtractor.h"
+#import "MessageCollection.h"
 static NSArray *TMTEncodingsToCheck;
 
 
@@ -181,6 +182,7 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)initDefaults {
+    self.messages = [MessageCollection new];
     _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
     _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
     self.outlineElements = [NSMutableArray new];

@@ -68,7 +68,7 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 - (void)updateLogMessages {
     LogfileParser *parser = [LogfileParser new];
     MessageCollection *collection = [parser parseContent:self.output forDocument:self.model.texPath];
-    self.consoleMessages = [self.consoleMessages merge:collection];
+    self.consoleMessages = [self.consoleMessages merged:collection];
 }
 
 - (void)configureReadHandle {

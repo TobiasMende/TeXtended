@@ -46,7 +46,7 @@
     [self addMessage:message];
 }
 
-- (MessageCollection *)merge:(MessageCollection *)other {
+- (MessageCollection *)merged:(MessageCollection *)other {
     MessageCollection *col = [self copy];
     [col.errorMessages unionSet:other.errorMessages];
     [col.warningMessages unionSet:other.warningMessages];
@@ -55,6 +55,20 @@
     return col;
 }
 
+- (void)merge:(MessageCollection *)other {
+    [self willChangeValueForKey:@"errorMessages"];
+    [self.errorMessages unionSet:other.errorMessages];
+    [self didChangeValueForKey:@"errorMessages"];
+    [self willChangeValueForKey:@"warningMessages"];
+    [self.warningMessages unionSet:other.warningMessages];
+    [self didChangeValueForKey:@"warningMessages"];
+    [self willChangeValueForKey:@"infoMessages"];
+    [self.infoMessages unionSet:other.infoMessages];
+    [self didChangeValueForKey:@"infoMessages"];
+    [self willChangeValueForKey:@"debugMessages"];
+    [self.debugMessages unionSet:other.debugMessages];
+    [self didChangeValueForKey:@"debugMessages"];
+}
                                      
 - (MessageCollection *)copy {
     MessageCollection *col = [MessageCollection new];
