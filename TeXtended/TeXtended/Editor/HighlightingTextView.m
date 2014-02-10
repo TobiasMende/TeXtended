@@ -938,8 +938,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             NSMutableSet* dirs = [[NSMutableSet alloc] init];
             for (DocumentModel *temp in model.mainDocuments) {
                 [dirs addObject:[[temp.path stringByDeletingLastPathComponent] relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
-                NSString *str = @"Relative path to ";
-                str = [str stringByAppendingString:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
+                NSString *str = [NSString stringWithFormat:NSLocalizedString(@"Relative path to %@", @"Relativ to prefix"), [temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
                 [mainDocumentNames addObject:str];
             }
             if ([dirs count] > 1) {
