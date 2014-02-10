@@ -935,10 +935,19 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
         if (model.mainDocuments.count > 1) {
             NSMutableArray* mainDocumentNames = [[NSMutableArray alloc] init];
+            NSMutableSet* dirs = [[NSMutableSet alloc] init];
             for (DocumentModel *temp in model.mainDocuments) {
-                [mainDocumentNames addObject:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
+                [dirs addObject:[[temp.path stringByDeletingLastPathComponent] relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
+                NSString *str = @"Relative path to ";
+                str = [str stringByAppendingString:[temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
+                [mainDocumentNames addObject:str];
             }
-            [self showMainDocumentsWindow:mainDocumentNames];
+            if ([dirs count] > 1) {
+                [self showMainDocumentsWindow:mainDocumentNames];
+            }
+            else {
+                [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
+            }
         } else if (model.mainDocuments.count == 1) {
             [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
         }
