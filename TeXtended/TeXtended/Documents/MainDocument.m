@@ -137,7 +137,9 @@
 
     for (DocumentController* dc in self.documentControllers) {
         if (dc.model.pdfName) {
-            [documentPaths addObject:dc.model.pdfPath];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:dc.model.pdfPath]) {
+                [documentPaths addObject:dc.model.pdfPath];
+            }
         }
     }
     
