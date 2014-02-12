@@ -60,8 +60,9 @@ static NSArray *TMTEncodingsToCheck;
         
     }
     
-    if (error) {
+    if (error && *error) {
         DDLogError(@"Error while loading content: %@", *error);
+        return nil;
     }
     if (content == nil && error != NULL) {
         *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message": @"Can't read file"}];

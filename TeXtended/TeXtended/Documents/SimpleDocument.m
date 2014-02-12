@@ -146,8 +146,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         self.model.encoding = @([contr.encController selection]);
         
     }
-    if (outError != NULL && *outError != nil) {
-        [self.model loadContent:outError];
+    if (outError == NULL || *outError == nil) {
+        NSString *content = [self.model loadContent:outError];
+        if (!content) {
+            return NO;
+        }
     }
     if (outError != NULL && *outError) {
         return NO;
