@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-/** Delay for message collection updates in seconds */
-static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 #import "TextViewController.h"
 #import "LineNumberView.h"
@@ -16,7 +14,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #import "DocumentController.h"
 #import "Constants.h"
 #import "DocumentModel.h"
-#import "MessageCollection.h"
 #import "ForwardSynctex.h"
 #import "LacheckParser.h"
 #import "ChktexParser.h"
@@ -45,23 +42,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
  */
 - (void) syncPDF:(DocumentModel *)model;
 
-/** Notifies this object about changes in the log messages. This method updates it's messages with the new arriving message collection
- 
- @param note a notification with a new MessageCollection in it's user info.
- 
- */
-- (void) logMessagesChanged:(NSNotification*)note;
-
-/** Method for rerunning lacheck and chktex for updates of the message collection 
- 
- @param note the notification
- */
-- (void) updateMessageCollection:(NSNotification *)note;
-- (void) mergeMessageCollection:(MessageCollection *)messages;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
-- (void) updateCurrentMessageMainDocumentNotification:(NSNotification *)note;
-- (void) adapteMessageToLevel;
 @end
 
 @implementation TextViewController
@@ -70,15 +52,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (id)initWithFirstResponder:(id<FirstResponderDelegate>)dc {
     self = [super initWithNibName:@"TextView" bundle:nil];
     if (self) {
-        messageLock = [NSObject new];
-        internalMessages = [MessageCollection new];
         self.firstResponderDelegate = dc;
         observers = [NSMutableSet new];
         synctex = [ForwardSynctexController new];
-        backgroundQueue = [NSOperationQueue new];
-        backgroundQueue.name = @"TextViewController-BackgroundQueue";
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
-        [self bind:@"logLevel" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTLatexLogLevelKey] options:NULL];
         [self registerModelObserver];
         
         self.tabViewItem = [TMTTabViewItem new];
@@ -98,27 +75,15 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     self.model = firstResponderDelegate.model;
 }
 
-- (void)setModel:(DocumentModel *)model {
-    if (_model) {
-        [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTMessageSelectedMainDocumentNotification object:nil];
-    }
-    _model = model;
-    if (_model) {
-        [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(updateCurrentMessageMainDocumentNotification:) name:TMTMessageSelectedMainDocumentNotification object:nil];
-    }
-}
-
 
 - (void)registerModelObserver {
-     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(logMessagesChanged:) name:TMTLogMessageCollectionChanged object:nil];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMessageCollection:) name:TMTDidSaveDocumentModelContent object:self.model];
+   
     [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)unregisterModelObserver {
-     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTLogMessageCollectionChanged object:nil];
     [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     
@@ -163,89 +128,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
 }
 
-- (void)updateCurrentMessageMainDocumentNotification:(NSNotification *)note {
-    if ([self.model.mainDocuments containsObject:note.userInfo[TMTNewSelectedMainDocumentKey]]) {
-        self.model.currentMainDocument = note.userInfo[TMTNewSelectedMainDocumentKey];
-        if (messageUpdateTimer) {
-            [messageUpdateTimer invalidate];
-        }
-        [self updateMessageCollection:nil];
-    }
-}
-
-
-
-- (void)logMessagesChanged:(NSNotification *)note {
-    MessageCollection *collection = (note.userInfo)[TMTMessageCollectionKey];
-    if (collection) {
-            if (self.model.currentMainDocument.messages) {
-                self.model.currentMainDocument.messages.errorMessages = collection.errorMessages;
-                internalMessages = [self.model.currentMainDocument.messages messagesForDocument:self.model.texPath];
-                if (![self.model isEqualTo:self.model.currentMainDocument]) {
-                    self.model.messages = internalMessages;
-                }
-                lineNumberView.messageCollection = internalMessages;
-            }
-    }
-}
-
-- (void)updateMessageCollection:(NSNotification *)note {
-    if (self.logLevel < WARNING) {
-        return;
-    }
-    
-    if (!self.model.currentMainDocument) return;
-    
-    // save the current document, since it is probabily included
-    NSError *error = nil;
-    [self.model saveContent:self.content error:&error];
-    if (error) {
-        DDLogError(@"%@", error);
-        return;
-    }
-    
-    if (self.model.currentMainDocument.texPath && self.content) {
-        @synchronized(messageLock) {
-            if(!chktex) {
-                chktex = [ChktexParser new];
-            }
-            if (!lacheck) {
-                lacheck = [LacheckParser new];
-            }
-            __unsafe_unretained id weakSelf = self;
-            countRunningParsers = 2;
-            [chktex parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
-                [weakSelf mergeMessageCollection:messages];
-            }];
-            [lacheck parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(MessageCollection *messages) {
-                [weakSelf mergeMessageCollection:messages];
-            }];
-        }
-    }
-}
-
-- (void)mergeMessageCollection:(MessageCollection *)messages {
-    @synchronized(messageLock) {
-        if (countRunningParsers == 2) {
-            [self.model.currentMainDocument.messages.warningMessages removeAllObjects];
-            [self.model.currentMainDocument.messages.infoMessages removeAllObjects];
-            [self.model.currentMainDocument.messages.debugMessages removeAllObjects];
-        }
-        if (countRunningParsers > 0) {
-            countRunningParsers--;
-        }
-        if (self.model.currentMainDocument) {
-            [[NSFileManager defaultManager] removeItemAtPath:[PathFactory pathToTemporaryStorage:self.model.texPath]  error:NULL];
-            [self.model.currentMainDocument.messages merge:messages];
-            internalMessages = [self.model.currentMainDocument.messages messagesForDocument:self.model.texPath];
-            if (![self.model.currentMainDocument isEqualTo:self.model]) {
-                self.model.messages = internalMessages;
-            }
-            lineNumberView.messageCollection = internalMessages;
-        }
-        
-    }
-}
 
 
 - (void)loadView {
@@ -277,7 +159,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self.textView.textStorage setAttributedString:string];
         [self.textView.syntaxHighlighter highlightEntireDocument];
     }
-    [self updateMessageCollection:nil];
 }
 
 - (NSSet *)children {
@@ -335,13 +216,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 
 - (void)textDidChange:(NSNotification *)notification {
-    if (messageUpdateTimer) {
-        [messageUpdateTimer invalidate];
-    }
     if (!outlineExtractor.isExtracting) {
         [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
     }
-    messageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
     
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
@@ -370,14 +247,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (item) {
         [item.tabView removeTabViewItem:item];
     }
-    [lacheck terminate];
-    [chktex terminate];
     [self unbind:@"liveScrolling"];
-    [self unbind:@"logLevel"];
-    [self unbind:@"currentMessageMainDocument"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
-    [backgroundQueue cancelAllOperations];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

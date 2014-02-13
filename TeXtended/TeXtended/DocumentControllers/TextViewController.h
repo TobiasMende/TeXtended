@@ -27,20 +27,12 @@
     
     /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
     NSMutableSet *observers;
-    NSOperationQueue *backgroundQueue;
-    NSTimer *messageUpdateTimer;
-    NSObject *messageLock;
-    NSInteger countRunningParsers;
-    ChktexParser *chktex;
-    LacheckParser *lacheck;
     ForwardSynctexController *synctex;
     OutlineExtractor *outlineExtractor;
-    MessageCollection *internalMessages;
 }
 
 @property (strong) TMTTabViewItem* tabViewItem;
 
-@property(nonatomic) TMTLatexLogLevel logLevel;
 /** The view showing the latex source code to the user */
 @property (strong) IBOutlet HighlightingTextView *textView;
 
