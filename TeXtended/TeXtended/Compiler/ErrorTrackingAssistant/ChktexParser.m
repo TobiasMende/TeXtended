@@ -9,7 +9,6 @@
 #import "ChktexParser.h"
 #import "Constants.h"
 #import "PathFactory.h"
-#import "MessageCollection.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static const NSDictionary *WARNING_NUMBERS;
@@ -39,7 +38,7 @@ static const NSDictionary *DEBUG_NUMBERS;
  * @param obj
  * @param action
  */
-- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *))handler {
+- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *))handler {
     completionHandler = handler;
     if (!path) {
         return;
@@ -61,7 +60,7 @@ static const NSDictionary *DEBUG_NUMBERS;
         NSFileHandle * read = [task.standardOutput fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-        MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
+        NSArray *messages = [self parseOutput:stringRead withBaseDir:dirPath];
         if (completionHandler) {
             completionHandler(messages);
         }
@@ -86,9 +85,9 @@ static const NSDictionary *DEBUG_NUMBERS;
  *
  * @return the output oas MessageCollection
  */
-- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+- (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
     TMTTrackingMessageType thresh = [[[NSUserDefaults standardUserDefaults] valueForKey:TMTLatexLogLevelKey] intValue];
-    MessageCollection *collection = [MessageCollection new];
+    NSMutableArray *collection = [NSMutableArray new];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     
     for (NSString *line in lines) {
@@ -107,7 +106,7 @@ static const NSDictionary *DEBUG_NUMBERS;
             TrackingMessage *m = [[TrackingMessage alloc] initMessage:type inDocument:path inLine:line withTitle:@"Chktex Warning" andInfo:info];
             m.furtherInfo = [self messageForChktexNumber:warning ofType:type];
             m.column = column;
-            [collection addMessage:m];
+            [collection addObject:m];
         }
     }
 

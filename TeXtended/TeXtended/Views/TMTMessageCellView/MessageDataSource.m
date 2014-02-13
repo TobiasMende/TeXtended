@@ -13,7 +13,6 @@
 #import "TrackingMessage.h"
 #import "TMTMessageCellView.h"
 #import "Constants.h"
-#import "MessageCollection.h"
 #import "DocumentModel.h"
 #import "DocumentCreationController.h"
 #import "SimpleDocument.h"
@@ -21,11 +20,12 @@
 #import "TMTNotificationCenter.h"
 #import "Compilable.h"
 #import "TMTCustomView.h"
+#import "MessageCoordinator.h"
 
 @interface MessageDataSource ()
-- (void) handleMessageUpdate;
 - (void) handleDoubleClick:(id)sender;
 - (void) handleClick:(id)sender;
+- (void) messagesDidChange:(NSNotification *)note;
 @end
 
 @implementation MessageDataSource
@@ -49,9 +49,30 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model]) {
-        [self handleMessageUpdate];
+    if ([keyPath isEqualToString:@"texPath"]) {
+        NSString *oldPath = change[NSKeyValueChangeOldKey];
+        if (oldPath && oldPath != [NSNull null]) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMainDocumentMessagesDidChangeNotification object:oldPath];
+        }
+        NSString *newPath = change[NSKeyValueChangeNewKey];
+        if (newPath && newPath != [NSNull null]) {
+            NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForMainDocumentPath:newPath];
+            if (messages) {
+                self.messages = messages;
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.tableView reloadData];
+                }];
+            }
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTMainDocumentMessagesDidChangeNotification object:newPath];
+        }
     }
+}
+
+- (void)messagesDidChange:(NSNotification *)note {
+    self.messages = note.userInfo[TMTMessageCollectionKey];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
@@ -84,12 +105,6 @@
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
             if (newModel) {
                 [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:message.line]}];
-                if (![newModel.mainCompilable isEqualTo:self.model.mainCompilable]) {
-                    MessageCollection *subset = [self.model.messages messagesForDocument:newModel.texPath];
-                    if (subset) {
-                        newModel.messages = subset;
-                    }
-                }
             } else {
                 [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
             }
@@ -138,34 +153,27 @@
 }
 
 - (void)setModel:(DocumentModel *)model {
-    if (model != _model) {
-        if (_model) {
-            [_model removeObserver:self forKeyPath:@"messages"];
-        }
-        _model = model;
-        if (_model) {
-            [_model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
-        }
+    if (_model) {
+        [_model removeObserver:self forKeyPath:@"texPath"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMainDocumentMessagesDidChangeNotification object:self.model.texPath];
     }
-}
-
-- (void)handleMessageUpdate {
-    [messageLock lock];
-    MessageCollection *collection = self.model.messages;
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:collection.set.allObjects];
-    
-    [temp sortUsingSelector:@selector(compare:)];
-    self.messages = temp;
-    [messageLock unlock];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
+    _model = model;
+    if (_model) {
+        NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForMainDocumentPath:self.model.texPath];
+        if (messages) {
+            self.messages = messages;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTMainDocumentMessagesDidChangeNotification object:self.model.texPath];
+        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    }
 }
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
     self.tableView.dataSource = nil;
-    [self.model removeObserver:self forKeyPath:@"messages"];
     self.tableView.delegate = nil;
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

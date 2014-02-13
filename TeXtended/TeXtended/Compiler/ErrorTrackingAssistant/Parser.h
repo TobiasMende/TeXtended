@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-@class MessageCollection;
 
 /**
  Abstract class describing an interface for parser objects which use some custom techniques for getting additional information for a given latex document.
@@ -16,10 +15,10 @@
  
  */
 @interface Parser : NSObject {
-    void (^completionHandler)(MessageCollection *);
+    void (^completionHandler)(NSArray *messages);
 }
 
-@property MessageCollection *messages;
+@property NSArray *messages;
 
 /**
  * Parses the file for a given document and returns a set of TrackingMessages
@@ -27,7 +26,7 @@
  * @param path the document to check
  * @param completionHandler a block to execute with the found messages after completing the parsing process.
  */
-- (void )parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *messages))completionHandler;
+- (void )parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *messages))completionHandler;
 
 /**
  * Parses the given document content for the document specified by path
@@ -35,7 +34,7 @@
  * @param content the content to extract messages from
  * @param path the path from which to get the base dir.
  */
-- (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path;
+- (NSArray *)parseContent:(NSString *)content forDocument:(NSString *)path;
 
 /**
  * Method for parsing the output of any internal syntac checker or log file parser
@@ -44,7 +43,7 @@
  * @param base the base dir from where the checker was executed (needed to extend relative paths in the output)
  * @return a message collection, containing all found messages lower or equal to the current log level.
  */
-- (MessageCollection *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
+- (NSArray *)parseOutput:(NSString*) output withBaseDir:(NSString*)base;
 
 /**
  * Method for checking whether the given info string is a valid message and should be added to a trackin message or not.

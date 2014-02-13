@@ -31,7 +31,7 @@
 @property NSString *input;
 
 /** The messages extracted from the latex log */
-@property (nonatomic) MessageCollection *consoleMessages;
+@property (nonatomic) NSArray *consoleMessages;
 
 @property CompileMode compileMode;
 

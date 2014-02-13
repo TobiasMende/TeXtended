@@ -8,7 +8,6 @@
 
 #import "LineNumberView.h"
 #import "HighlightingTextView.h"
-#import "MessageCollection.h"
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
@@ -341,22 +340,7 @@
 
 - (NSMutableSet*) messagesForLine:(NSUInteger)line {
     NSMutableSet *messages = [[NSMutableSet alloc] init];
-    for (TrackingMessage *m in [self.messageCollection errorMessages]) {
-        if (m.line == line) {
-            [messages addObject:m];
-        }
-    }
-    for (TrackingMessage *m in [self.messageCollection warningMessages]) {
-        if (m.line == line) {
-            [messages addObject:m];
-        }
-    }
-    for (TrackingMessage *m in [self.messageCollection infoMessages]) {
-        if (m.line == line) {
-            [messages addObject:m];
-        }
-    }
-    for (TrackingMessage *m in [self.messageCollection debugMessages]) {
+    for (TrackingMessage *m in self.messageCollection) {
         if (m.line == line) {
             [messages addObject:m];
         }
@@ -365,8 +349,8 @@
 }
 
 - (BOOL) hasWarning:(NSUInteger)line {
-    for (TrackingMessage *m in [self.messageCollection warningMessages]) {
-        if (m.line == line) {
+    for (TrackingMessage *m in self.messageCollection) {
+        if (m.line == line && m.type == TMTWarningMessage) {
             return YES;
         }
     }
@@ -375,8 +359,8 @@
 }
 
 - (BOOL) hasError:(NSUInteger)line {
-    for (TrackingMessage *m in [self.messageCollection errorMessages]) {
-        if (m.line == line) {
+    for (TrackingMessage *m in self.messageCollection) {
+        if (m.line == line && m.type == TMTErrorMessage) {
             return YES;
         }
     }
@@ -385,8 +369,8 @@
 }
 
 - (BOOL) hasInfo:(NSUInteger)line {
-    for (TrackingMessage *m in [self.messageCollection infoMessages]) {
-        if (m.line == line) {
+    for (TrackingMessage *m in self.messageCollection) {
+        if (m.line == line && m.type == TMTInfoMessage) {
             return YES;
         }
     }
@@ -395,8 +379,8 @@
 }
 
 - (BOOL) hasDebug:(NSUInteger)line {
-    for (TrackingMessage *m in [self.messageCollection debugMessages]) {
-        if (m.line == line) {
+    for (TrackingMessage *m in self.messageCollection) {
+        if (m.line == line && m.type == TMTDebugMessage) {
             return YES;
         }
     }

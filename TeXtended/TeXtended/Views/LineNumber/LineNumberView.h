@@ -85,7 +85,7 @@
 /**
  * This class holds all infos, warnings, errors and so on.
  */
-@property (strong) MessageCollection *messageCollection;
+@property (strong) NSArray *messageCollection;
 
 /** The background color of the whole ruler. */
 @property (nonatomic, strong) NSColor *backgroundColor;

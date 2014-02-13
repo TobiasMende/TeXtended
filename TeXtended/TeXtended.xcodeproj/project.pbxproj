@@ -117,6 +117,7 @@
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
+		D26B61EC18ACBC76007327F7 /* MessageCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */; };
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
 		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
 		D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D27CD19918913F2100A99997 /* FolderPenIcon.icns */; };
@@ -195,7 +196,6 @@
 		D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61861770BBDC00ACC3D5 /* ChktexDebugNumbers.plist */; };
 		D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61881770BD0000ACC3D5 /* ChktexInfoNumbers.plist */; };
 		D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CF618A1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist */; };
-		D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */; };
 		D2CF61911770FC7600ACC3D5 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF618F1770FC7600ACC3D5 /* check.png */; };
 		D2CF61921770FC7600ACC3D5 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF61901770FC7600ACC3D5 /* error.png */; };
 		D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CF61941770FD6100ACC3D5 /* EnvironmentSetupController.m */; };
@@ -545,6 +545,8 @@
 		D2681FF5173143E2003AF83D /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		D2681FF7173143EC003AF83D /* BibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibFile.h; sourceTree = "<group>"; };
 		D2681FF8173143EC003AF83D /* BibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibFile.m; sourceTree = "<group>"; };
+		D26B61EA18ACBC76007327F7 /* MessageCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCoordinator.h; sourceTree = "<group>"; };
+		D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCoordinator.m; sourceTree = "<group>"; };
 		D26C02F818964C6600289F34 /* NSColor+TMTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+TMTExtension.h"; sourceTree = "<group>"; };
 		D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+TMTExtension.m"; sourceTree = "<group>"; };
 		D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
@@ -681,8 +683,6 @@
 		D2CF61861770BBDC00ACC3D5 /* ChktexDebugNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexDebugNumbers.plist; sourceTree = "<group>"; };
 		D2CF61881770BD0000ACC3D5 /* ChktexInfoNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexInfoNumbers.plist; sourceTree = "<group>"; };
 		D2CF618A1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChktexWarningNumbers.plist; sourceTree = "<group>"; };
-		D2CF618C1770E93C00ACC3D5 /* MessageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollection.h; sourceTree = "<group>"; };
-		D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollection.m; sourceTree = "<group>"; };
 		D2CF618F1770FC7600ACC3D5 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		D2CF61901770FC7600ACC3D5 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		D2CF61931770FD6100ACC3D5 /* EnvironmentSetupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentSetupController.h; sourceTree = "<group>"; };
@@ -1560,11 +1560,11 @@
 				D2CF61801770B13E00ACC3D5 /* ChktexParser.m */,
 				D2CF61821770B31200ACC3D5 /* Parser.h */,
 				D2CF61831770B31200ACC3D5 /* Parser.m */,
-				D2CF618C1770E93C00ACC3D5 /* MessageCollection.h */,
-				D2CF618D1770E93D00ACC3D5 /* MessageCollection.m */,
 				D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */,
 				D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */,
 				D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */,
+				D26B61EA18ACBC76007327F7 /* MessageCoordinator.h */,
+				D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */,
 			);
 			path = ErrorTrackingAssistant;
 			sourceTree = "<group>";
@@ -1896,6 +1896,7 @@
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
+				D26B61EC18ACBC76007327F7 /* MessageCoordinator.m in Sources */,
 				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
 				D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */,
@@ -1933,7 +1934,6 @@
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
 				D2CF61841770B31200ACC3D5 /* Parser.m in Sources */,
-				D2CF618E1770E93D00ACC3D5 /* MessageCollection.m in Sources */,
 				D2CF61951770FD6100ACC3D5 /* EnvironmentSetupController.m in Sources */,
 				D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */,
 				D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */,

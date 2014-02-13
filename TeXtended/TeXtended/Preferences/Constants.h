@@ -171,7 +171,9 @@
 #define TMTCompilerDidEndCompiling @"TMTCompilerDidEndCompiling"
 #define TMTCompilerSynctexChanged @"TMTCompilerSynctexChanged"
 #define TMTViewSynctexChanged @"TMTViewSynctexChanged"
-#define TMTLogMessageCollectionChanged @"TMTLogMessageCollectionChanged"
+#define TMTMessagesDidChangeNotification @"TMTMessagesDidChangeNotification"
+#define TMTMainDocumentMessagesDidChangeNotification @"TMTMainDocumentMessagesDidChangeNotification"
+#define TMTPartialMessagesDidChangeNotification @"TMTPartialMessagesDidChangeNotification"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
 #define TMT_CONSOLE_ADDED_MANAGER_CHANGED @"TMT_CONSOLE_ADDED_MANAGER_CHANGED"
 #define TMT_CONSOLE_REMOVED_MANAGER_CHANGED @"TMT_CONSOLE_REMOVED_MANAGER_CHANGED"
@@ -232,6 +234,13 @@ typedef enum {
     TMTProjectTemplate
 } TMTTemplateType;
 
+
+typedef enum {
+    TMTLogFileParser,
+    TMTLacheckParser,
+    TMTChktexParser
+} TMTMessageGeneratorType;
+#define TMTMessageGeneratorTypeKey @"TMTMessageGeneratorTypeKey"
 
 // --------------------------------------------------------------------------------
 #pragma mark - Key Codes

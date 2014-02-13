@@ -17,7 +17,7 @@
 #import "ConsoleManager.h"
 #import "BibFile.h"
 #import "OutlineExtractor.h"
-#import "MessageCollection.h"
+#import "MessageCoordinator.h"
 static NSArray *TMTEncodingsToCheck;
 
 
@@ -190,7 +190,6 @@ static NSArray *TMTEncodingsToCheck;
 }
 
 - (void)initDefaults {
-    self.messages = [MessageCollection new];
     _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
     _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
     self.outlineElements = [NSMutableArray new];
@@ -236,6 +235,9 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)setTexPath:(NSString *)texPath {
     if (_texPath != texPath) {
+        if (_texPath) {
+            [[MessageCoordinator sharedMessageCoordinator] clearMessagesForPath:_texPath];
+        }
         _texPath = texPath;
         if ([_texPath isAbsolutePath]) {
             [self buildOutline];
@@ -459,6 +461,9 @@ static NSArray *TMTEncodingsToCheck;
     DDLogInfo(@"dealloc");
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
+    if (self.texPath) {
+        [[MessageCoordinator sharedMessageCoordinator] clearMessagesForPath:self.texPath];
+    }
     if (!self.project) {
         [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
     }
@@ -507,6 +512,7 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)buildOutline {
     NSString *content = [self loadContent:NULL];
+    
     if (content) {
         [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
     }

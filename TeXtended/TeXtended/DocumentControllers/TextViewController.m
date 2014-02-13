@@ -26,6 +26,10 @@
 #import "NSString+RegexReplace.h"
 #import "NSAttributedString+Replace.h"
 #import "OutlineExtractor.h"
+#import "MessageCoordinator.h"
+
+/** Delay for message collection updates in seconds */
+static const double MESSAGE_UPDATE_DELAY = 1.5;
 @interface TextViewController ()
 /** Method for handling the initial setup of this object */
 - (void) initializeAttributes;
@@ -41,9 +45,11 @@
  @param model the model to sync for
  */
 - (void) syncPDF:(DocumentModel *)model;
-
+- (void) updateMessageCollection:(NSNotification *)note;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
+
+- (void)messagesDidChange:(NSNotification *)note;
 @end
 
 @implementation TextViewController
@@ -90,7 +96,53 @@
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
 }
 
+- (void)setModel:(DocumentModel *)model {
+    if (_model) {
+        [_model removeObserver:self forKeyPath:@"texPath"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTPartialMessagesDidChangeNotification object:self.model.texPath];
+    }
+    _model = model;
+    if (_model) {
+        NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:self.model.texPath];
+        if (messages) {
+            lineNumberView.messageCollection = messages;
+        }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:self.model.texPath];
+        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+    }
+}
 
+- (void)updateMessageCollection:(NSNotification *)note {
+    if (!self.model.currentMainDocument) return;
+    
+    // save the current document, since it is probabily included
+    NSError *error = nil;
+    [self.model saveContent:self.content error:&error];
+    if (error) {
+        DDLogError(@"%@", error);
+        return;
+    }
+    
+    if (self.model.currentMainDocument.texPath && self.content) {
+            if(!chktex) {
+                chktex = [ChktexParser new];
+            }
+            if (!lacheck) {
+                lacheck = [LacheckParser new];
+            }
+            __unsafe_unretained TextViewController* weakSelf = self;
+            [chktex parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
+                if (messages) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakSelf.model.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTChktexParser)}];
+                }
+            }];
+            [lacheck parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
+                if (messages) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakSelf.model.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTLacheckParser)}];
+                }
+            }];
+        }
+}
 
 - (void)handleLineUpdateNotification:(NSNotification *)note {
     NSTabViewItem *view = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
@@ -135,6 +187,8 @@
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
         self.textView.firstResponderDelegate = self.firstResponderDelegate;
+    NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:self.model.texPath];
+    lineNumberView.messageCollection = messages;
     
 }
 
@@ -220,6 +274,11 @@
         [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
     }
     
+    if (messageUpdateTimer) {
+        [messageUpdateTimer invalidate];
+    }
+    messageUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:MESSAGE_UPDATE_DELAY target:self selector:@selector(updateMessageCollection:) userInfo:nil repeats:NO];
+    
     for (NSValue *observerValue in observers) {
         [[observerValue nonretainedObjectValue] performSelector:@selector(textDidChange:) withObject:notification];
     }
@@ -231,6 +290,20 @@
         if ([keyPath isEqualToString:@"mainDocuments"]) {
             [self registerModelObserver];
         }
+        if ([keyPath isEqualToString:@"texPath"]) {
+            NSString *oldPath = change[NSKeyValueChangeOldKey];
+            if (oldPath && oldPath != [NSNull null]) {
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTPartialMessagesDidChangeNotification object:oldPath];
+            }
+            NSString *newPath = change[NSKeyValueChangeNewKey];
+            if (newPath && newPath != [NSNull null]) {
+                NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:newPath];
+                if (messages) {
+                    lineNumberView.messageCollection = messages;
+                }
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:newPath];
+            }
+        }
     } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
         if (self.liveScrolling) {
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
@@ -238,11 +311,17 @@
     } 
 }
 
+- (void)messagesDidChange:(NSNotification *)note {
+    lineNumberView.messageCollection = note.userInfo[TMTMessageCollectionKey];
+}
+
 #pragma mark -
 #pragma mark Dealloc
 
 - (void)dealloc {
     DDLogVerbose(@"dealloc");
+    [lacheck terminate];
+    [chktex terminate];
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
     if (item) {
         [item.tabView removeTabViewItem:item];

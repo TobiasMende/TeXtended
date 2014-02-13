@@ -24,7 +24,9 @@
 @interface TextViewController : NSViewController<NSTextViewDelegate, ViewControllerProtocol> {
     /** The line number view of the HighlightingTextView */
     LineNumberView *lineNumberView;
-    
+    ChktexParser *chktex;
+    LacheckParser *lacheck;
+    NSTimer *messageUpdateTimer;
     /** A set of observers which are informed by instances of this class about NSTextViewDelegate method calls */
     NSMutableSet *observers;
     ForwardSynctexController *synctex;

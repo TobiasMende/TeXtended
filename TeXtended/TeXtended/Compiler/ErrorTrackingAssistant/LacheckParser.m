@@ -11,7 +11,6 @@
 #import "DocumentModel.h"
 #import "PathFactory.h"
 #import "TrackingMessage.h"
-#import "MessageCollection.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 
@@ -24,7 +23,7 @@
  * @param obj
  * @param action
  */
-- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *))handler{
+- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *))handler{
     completionHandler = handler;
     if (!path) {
         return;
@@ -52,7 +51,7 @@
         NSFileHandle * read = [task.standardOutput fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
         NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
-        MessageCollection *messages = [self parseOutput:stringRead withBaseDir:dirPath];
+        NSArray *messages = [self parseOutput:stringRead withBaseDir:dirPath];
         if (completionHandler) {
             completionHandler(messages);
         }
@@ -79,8 +78,8 @@
  *
  * @return the output oas MessageCollection
  */
-- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
-    MessageCollection *collection = [MessageCollection new];
+- (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+    NSMutableArray *collection = [NSMutableArray new];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\"(.*)\",\\sline\\s(.*):\\s(.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -99,7 +98,7 @@
             NSString *info = [line substringWithRange:[result rangeAtIndex:3]];
             if (path && [self infoValid:info] && lineNumber >0) {
                 TrackingMessage *m = [TrackingMessage warningInDocument:[self absolutPath:path withBaseDir:base] inLine:lineNumber withTitle:@"Lacheck Warning" andInfo:info];
-                [collection addMessage:m];
+                [collection addObject:m];
             }
         }
     }

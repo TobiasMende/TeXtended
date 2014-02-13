@@ -11,7 +11,6 @@
 #import "DocumentModel.h"
 #import "TMTNotificationCenter.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "MessageCollection.h"
 #import "ConsoleViewController.h"
 #import "LogfileParser.h"
 #import "ConsoleManager.h"
@@ -60,15 +59,14 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     if (consoleMessages != _consoleMessages) {
         _consoleMessages = consoleMessages;
         if (self.model && consoleMessages) {
-            [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTLogMessageCollectionChanged object:self.model userInfo:@{TMTMessageCollectionKey: self.consoleMessages}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self.model.texPath userInfo:@{TMTMessageCollectionKey: self.consoleMessages, TMTMessageGeneratorTypeKey: @(TMTLogFileParser)}];
         }
     }
 }
 
 - (void)updateLogMessages {
     LogfileParser *parser = [LogfileParser new];
-    MessageCollection *collection = [parser parseContent:self.output forDocument:self.model.texPath];
-    self.consoleMessages = [self.consoleMessages merged:collection];
+    self.consoleMessages = [parser parseContent:self.output forDocument:self.model.texPath];
 }
 
 - (void)configureReadHandle {
@@ -102,7 +100,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 - (void)compilerDidStartCompiling:(NSNotification *)notification {
     [self configureReadHandle];
-    self.consoleMessages = [MessageCollection new];
 }
 
 - (void)compilerDidEndCompiling:(NSNotification *)notification {

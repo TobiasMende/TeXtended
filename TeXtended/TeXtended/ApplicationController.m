@@ -20,6 +20,7 @@
 #import "LatexSpellChecker.h"
 #import "CompletionManager.h"
 #import "TemplateController.h"
+#import "MessageCoordinator.h"
 #import "Template.h"
 
 static ApplicationController *sharedInstance;
@@ -38,6 +39,7 @@ static ApplicationController *sharedInstance;
     [self registerDefaults];
     [LatexSpellChecker sharedSpellChecker];
     [DocumentCreationController sharedDocumentController];
+    [MessageCoordinator sharedMessageCoordinator];
     [CompletionManager sharedInstance];
     // Merging compile flows
     [self mergeCompileFlows:NO];

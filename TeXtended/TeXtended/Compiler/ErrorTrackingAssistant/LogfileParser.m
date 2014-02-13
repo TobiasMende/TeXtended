@@ -8,7 +8,6 @@
 
 #import "LogfileParser.h"
 #import "TrackingMessage.h"
-#import "MessageCollection.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
@@ -40,8 +39,8 @@ static const NSDictionary *LATEX_ERROR_EXTENSIONS;
  *
  * @return a MessageCollection holding the result
  */
--(MessageCollection*)parseContent:(NSString *)content forDocument:(NSString *)path {
-    MessageCollection *collection = [MessageCollection new];
+-(NSArray*)parseContent:(NSString *)content forDocument:(NSString *)path {
+    NSMutableArray *collection = [NSMutableArray new];
     NSArray *matches = [ERROR_LINES_EXPRESSION matchesInString:content options:0 range:NSMakeRange(0, content.length)];
     
     for (NSTextCheckingResult *match in matches) {
@@ -56,7 +55,7 @@ static const NSDictionary *LATEX_ERROR_EXTENSIONS;
         NSString *furtherInfo = [self furtherInformationForError:title andInfo:info];
         TrackingMessage *m = [TrackingMessage errorInDocument:doc inLine:[lineStr integerValue] withTitle:title andInfo:info];
         m.furtherInfo = furtherInfo;
-        [collection addMessage:m];
+        [collection addObject:m];
         
     }
     

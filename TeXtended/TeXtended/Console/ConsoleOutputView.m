@@ -141,7 +141,7 @@ static const NSSet *KEYS_TO_UNBIND;
         if (model) {
             [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:line]}];
             if (![model.mainCompilable isEqualTo:compiledModel.mainCompilable]) {
-                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTLogMessageCollectionChanged object:model userInfo:@{TMTMessageCollectionKey: self.controller.console.consoleMessages}];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:model.texPath userInfo:@{TMTMessageCollectionKey: self.controller.console.consoleMessages, TMTMessageGeneratorTypeKey: @(TMTLogFileParser)}];
             }
         } else {
             [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];

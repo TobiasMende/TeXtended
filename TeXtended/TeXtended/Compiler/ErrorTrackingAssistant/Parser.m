@@ -8,17 +8,16 @@
 
 #import "Parser.h"
 #import "PathFactory.h"
-#import "MessageCollection.h"
 
 @implementation Parser
 
-- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(MessageCollection *messages))completionHandler {
+- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *messages))completionHandler {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return;
 }
 
-- (MessageCollection *)parseContent:(NSString *)content forDocument:(NSString *)path {
+- (NSArray *)parseContent:(NSString *)content forDocument:(NSString *)path {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return nil;
@@ -28,7 +27,7 @@
     return NO;
 }
 
-- (MessageCollection *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
+- (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return nil;
