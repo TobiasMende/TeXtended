@@ -219,7 +219,9 @@
     }
     
     id completion = (self.content)[currentIndex];
-    self.selectionDidChangeCallback(completion);
+    if (self.selectionDidChangeCallback) {
+        self.selectionDidChangeCallback(completion);
+    }
 }
 
 #pragma mark - Key Events

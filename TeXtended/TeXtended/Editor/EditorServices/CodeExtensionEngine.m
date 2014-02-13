@@ -237,7 +237,7 @@ static const NSSet *KEYS_TO_UNBIND;
             [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxYEdge];
         }
         @catch (NSException *exception) {
-            DDLogWarn(@"Can't show texdoc popover due to %@ (%@)", exception.reason, exception.name);
+            DDLogWarn(@"Can't show popover due to %@ (%@)", exception.reason, exception.name);
         }
         return YES;
     }

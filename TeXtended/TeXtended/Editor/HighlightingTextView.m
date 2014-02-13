@@ -514,16 +514,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 -(void)showMainDocumentsWindow:(NSArray*)mainDocuments {
     if (!autoCompletionController) {
-        autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:^(id completion) {
-            
-        }];
+        autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:nil];
         autoCompletionController.parent = self;
     }
     
     NSMutableArray *dictionaryArray = [NSMutableArray new];
     
     for (NSString* path in mainDocuments) {
-        [dictionaryArray addObject:[NSDictionary dictionaryWithObject:path forKey:@"key"]];
+        [dictionaryArray addObject:@{@"key":path}];
     }
     
     [[self window] makeFirstResponder:self];
@@ -699,6 +697,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [super mouseDown:theEvent];
     if (!self.servicesOn) {
         return;
+    }
+    if (autoCompletionController) {
+        [autoCompletionController close];
+        autoCompletionController = nil;
     }
     [self.codeNavigationAssistant highlightCarret];
     if (self.selectedRanges.count== 1 || self.selectedRange.length==0) {
