@@ -178,7 +178,7 @@
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"
 #define TMTFirstResponderDelegateChangeNotification @"TMTFirstResponderDelegateChangeNotification"
 #define TMTOutlineDidChangeNotification @"TMTOutlineDidChangeNotification"
-#define TMTMessageSelectedMainDocumentNotification @"TMTMessageSelectedMainDocumentNotification"
+#define TMTSelectedMainDocumentDidChangeNotification @"TMTSelectedMainDocumentDidChangeNotification"
 
 
 

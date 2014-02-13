@@ -55,7 +55,7 @@
         [self.mainView selectTabViewItemAtIndex:index];
         DocumentModel *mainDocument = mainDocuments[index];
         self.mainWindowController.myCurrentFirstResponderDelegate.model.currentMainDocument = mainDocument;
-        [[TMTNotificationCenter centerForCompilable:mainDocument] postNotificationName:TMTMessageSelectedMainDocumentNotification object:self userInfo:@{TMTNewSelectedMainDocumentKey: mainDocument}];
+        [[TMTNotificationCenter centerForCompilable:mainDocument] postNotificationName:TMTSelectedMainDocumentDidChangeNotification object:self userInfo:@{TMTNewSelectedMainDocumentKey: mainDocument}];
     }
 }
 
