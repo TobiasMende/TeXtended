@@ -86,11 +86,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
    
-    [self.model addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)unregisterModelObserver {
-    [self.model removeObserver:self forKeyPath:@"mainDocuments"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
@@ -99,10 +97,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)setModel:(DocumentModel *)model {
     if (_model) {
         [_model removeObserver:self forKeyPath:@"texPath"];
+        [self unregisterModelObserver];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTPartialMessagesDidChangeNotification object:self.model.texPath];
     }
     _model = model;
     if (_model) {
+        [self registerModelObserver];
         NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:self.model.texPath];
         if (messages) {
             lineNumberView.messageCollection = messages;
@@ -286,10 +286,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self.model]) {
-        [self unregisterModelObserver];
-        if ([keyPath isEqualToString:@"mainDocuments"]) {
-            [self registerModelObserver];
-        }
         if ([keyPath isEqualToString:@"texPath"]) {
             NSString *oldPath = change[NSKeyValueChangeOldKey];
             if (oldPath && oldPath != [NSNull null]) {
