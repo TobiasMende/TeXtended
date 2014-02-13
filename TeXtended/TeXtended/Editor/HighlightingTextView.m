@@ -117,7 +117,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     
     
-//    [self bind:@"font" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FONT] options:option];
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
     bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
     _codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
@@ -170,12 +169,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return completions;
     }
     return nil;
-    //return [super completionsForPartialWordRange:charRange indexOfSelectedItem:index];
 }
 
 - (void)complete:(id)sender {
     [self extendedComplete:sender];
-    //[super complete:sender];
 }
 
 - (void)dismissCompletionWindow {
@@ -724,11 +721,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
-//    if (totalRange.location > 0) {
-//        // Delete line-break before selection.
-//        totalRange.location -= 1;
-//        totalRange.length +=1;
-//    }
+
     [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
 
 
@@ -817,7 +810,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         second = tmp;
     }
 
-// DDLogInfo(@"%@ %@", NSStringFromRange(first), NSStringFromRange(second));
     NSAttributedString *secondStr;
     if (second.length == 0) {
         NSUInteger pos = second.location > 0 ? second.location -1 : 0;
@@ -976,7 +968,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     glyphIndex = [layoutManager glyphIndexForPoint:aPoint
                                    inTextContainer:[self textContainer]
                     fractionOfDistanceThroughGlyph:&fraction];
-    //if( fraction > 0.5 ) glyphIndex++;
     
     if( glyphIndex == NSMaxRange(range)-1 ) return  [[self textStorage]
                                                    length];
@@ -986,15 +977,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 #pragma mark -
 #pragma mark Drawing Actions
-
-
-//- (void) drawViewBackgroundInRect:(NSRect)rect
-//{
-//        [[NSColor clearColor] set];
-//        NSRectFill(rect);
-//        [super drawViewBackgroundInRect:rect];
-//}
-
 
 - (void) drawViewBackgroundInRect:(NSRect)rect
 {
