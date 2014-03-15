@@ -54,6 +54,23 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         generatorToGlobalMessagesMap[@(type)] = pathToGlobalMessagesMap;
     }
     
+    NSMutableArray *clearedPaths = [NSMutableArray new];
+    NSArray *old = pathToGlobalMessagesMap[path];
+    for(TrackingMessage *m in old) {
+        BOOL found = NO;
+        for(TrackingMessage *new in messages) {
+            if ([m.document isEqualToString:new.document]) {
+                found = YES;
+                break;
+            }
+        }
+        if (!found) {
+            [clearedPaths addObject:m.document];
+        }
+    }
+    if (messages.count == 0) {
+        [clearedPaths addObject:path];
+    }
     pathToGlobalMessagesMap[path] = messages;
     
     
@@ -75,7 +92,13 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     
     for (NSString *path in handledPaths) {
         NSArray *messages = [self messagesForPartialDocumentPath:path];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTPartialMessagesDidChangeNotification object:path userInfo:@{TMTMessageCollectionKey: messages}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTPartialMessagesDidChangeNotification object:nil userInfo:@{TMTMessageCollectionKey: messages, TMTMessageDocumentPath: path}];
+    }
+    
+    for (NSString *path in clearedPaths) {
+        [generatorToLocalMessagesMap[@(type)] removeObjectForKey:path];
+        NSArray *messages = [self messagesForPartialDocumentPath:path];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTPartialMessagesDidChangeNotification object:nil userInfo:@{TMTMessageCollectionKey: messages, TMTMessageDocumentPath: path}];
     }
 }
 

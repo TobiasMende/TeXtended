@@ -142,6 +142,7 @@
 #define TMTBackwardSynctexBeginKey @"TMTBackwardSynctexBeginKey"
 #define TMTBackwardSynctexEndKey @"TMTBackwardSynctexEndKey"
 #define TMTMessageCollectionKey @"TMTMessageCollectionKey"
+#define TMTMessageDocumentPath @"TMTMessageDocumentPath"
 #define TMTDidSaveDocumentModelContent @"TMTDidSaveDocumentModelContent"
 #define TMTDidLoadDocumentModelContent @"TMTDidLoadDocumentModelContent"
 #define TMTIntegerKey @"TMTIntegerKey"

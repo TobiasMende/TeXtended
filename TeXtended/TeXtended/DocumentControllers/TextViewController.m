@@ -70,7 +70,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         self.tabViewItem.view = self.view;
         outlineExtractor = [OutlineExtractor new];
         
-        
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:nil];
     }
     return self;
 }
@@ -285,17 +285,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self.model]) {
         if ([keyPath isEqualToString:@"texPath"]) {
-            NSString *oldPath = change[NSKeyValueChangeOldKey];
-            if (oldPath && oldPath != [NSNull null]) {
-                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTPartialMessagesDidChangeNotification object:oldPath];
-            }
             NSString *newPath = change[NSKeyValueChangeNewKey];
             if (newPath && newPath != [NSNull null]) {
                 NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:newPath];
                 if (messages) {
                     lineNumberView.messageCollection = messages;
                 }
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:newPath];
             }
         }
     } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
@@ -306,7 +301,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)messagesDidChange:(NSNotification *)note {
-    lineNumberView.messageCollection = note.userInfo[TMTMessageCollectionKey];
+    if ([note.userInfo[TMTMessageDocumentPath] isEqualToString:self.model.texPath]) {
+        lineNumberView.messageCollection = note.userInfo[TMTMessageCollectionKey];
+    }
 }
 
 #pragma mark -
