@@ -235,7 +235,7 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)setTexPath:(NSString *)texPath {
     if (_texPath != texPath) {
-        if (_texPath) {
+        if (_texPath && [_texPath isAbsolutePath]) {
             [[MessageCoordinator sharedMessageCoordinator] clearMessagesForPath:_texPath];
         }
         _texPath = texPath;
