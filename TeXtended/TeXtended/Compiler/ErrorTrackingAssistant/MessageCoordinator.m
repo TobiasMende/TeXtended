@@ -8,6 +8,7 @@
 
 #import "MessageCoordinator.h"
 #import "TrackingMessage.h"
+#import <TMTHelperCollection/TMTLog.h>
 static MessageCoordinator *instance;
 static const NSArray *GENERATOR_TYPES_TO_USE;
 @interface MessageCoordinator ()

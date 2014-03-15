@@ -23,7 +23,7 @@
 #import "MessageCoordinator.h"
 
 @interface MessageDataSource ()
-- (void) handleDoubleClick:(id)sender;
+- (void) handleRightClick:(id)sender;
 - (void) handleClick:(id)sender;
 - (void) messagesDidChange:(NSNotification *)note;
 @end
@@ -40,7 +40,7 @@
 - (void)awakeFromNib {
     messageLock = [[NSLock alloc] init];
     [self.tableView setTarget:self];
-    [self.tableView setDoubleAction:@selector(handleDoubleClick:)];
+    [self.tableView setRightClickAction:@selector(handleRightClick:)];
     [self.tableView setAction:@selector(handleClick:)];
 }
 
@@ -97,28 +97,12 @@
     return view;
 }
 
-- (void)handleDoubleClick:(id)sender {
-    NSInteger row = [self.tableView clickedRow];
-    if (row < self.messages.count) {
-        TrackingMessage *message = (self.messages)[row];
-        
-        [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
-            if (newModel) {
-                [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:message.line]}];
-            } else {
-                [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
-            }
-        }];
-    }
-}
-
-
-- (void)handleClick:(id)sender {
+- (void)handleRightClick:(id)sender {
     if (popover) {
         [popover close];
         popover = nil;
     }
-    NSInteger row = [self.tableView clickedRow];
+    NSInteger row = [self.tableView selectedRow];
     if (row < 0) {
         return;
     }
@@ -138,6 +122,23 @@
         [(TMTCustomView*)infoController.view setBackgroundColor:[TrackingMessage backgroundColorForType:message.type]];
         popover.contentViewController = infoController;
         [popover showRelativeToRect:self.tableView.bounds ofView:view preferredEdge:NSMaxXEdge];
+    }
+    
+}
+
+
+- (void)handleClick:(id)sender {
+    NSInteger row = [self.tableView clickedRow];
+    if (row < self.messages.count) {
+        TrackingMessage *message = (self.messages)[row];
+        
+        [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel) {
+            if (newModel) {
+                [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey: [NSNumber numberWithInteger:message.line]}];
+            } else {
+                [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
+            }
+        }];
     }
 }
 
@@ -175,6 +176,9 @@
     DDLogVerbose(@"dealloc");
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
+    self.tableView.rightClickAction = nil;
+    self.tableView.singleClickAction = nil;
+    [self.model removeObserver:self forKeyPath:@"texPath"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

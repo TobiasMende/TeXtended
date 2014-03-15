@@ -325,6 +325,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
+    [self.model removeObserver:self forKeyPath:@"texPath"];
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
