@@ -14,11 +14,9 @@ end
 
 target :BibTexToolsFramework do
     xcodeproj 'DBLP Tool/DBLP Tool.xcodeproj'
-    pod 'CocoaLumberjack'
 end
 
 target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
-    pod 'CocoaLumberjack'
     pod 'DMInspectorPalette'
 end
