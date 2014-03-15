@@ -36,8 +36,6 @@
 		7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
-		76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9218378A94006B0E9F /* DMPaletteContainer.m */; };
-		76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */; };
 		D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */; };
 		D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D4D1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m */; };
 		D2078D501837B5B9001C4A56 /* MainDocumentsSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2078D4E1837B5B9001C4A56 /* MainDocumentsSelectionView.xib */; };
@@ -259,6 +257,7 @@
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
 		D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FF0D7917F70017003423F7 /* EncodingView.xib */; };
+		F4DD8D78876D4ED8B36C3C3E /* libPods-TeXtended.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D07C4DE468DD4E0CA7E079D7 /* libPods-TeXtended.a */; };
 		F64675471879579A006EAD63 /* DropCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = F64675461879579A006EAD63 /* DropCompletion.m */; };
 		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
 		F68687F118781D2E00898026 /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68687F018781D2E00898026 /* PrintDialog.xib */; };
@@ -356,12 +355,10 @@
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
-		76B88F9118378A94006B0E9F /* DMPaletteContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteContainer.h; sourceTree = "<group>"; };
-		76B88F9218378A94006B0E9F /* DMPaletteContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteContainer.m; sourceTree = "<group>"; };
-		76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMPaletteSectionView.h; sourceTree = "<group>"; };
-		76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMPaletteSectionView.m; sourceTree = "<group>"; };
 		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
 		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
+		A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.xcconfig"; path = "../Pods/Pods-TeXtended.xcconfig"; sourceTree = "<group>"; };
+		D07C4DE468DD4E0CA7E079D7 /* libPods-TeXtended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeXtended.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D202A06E189A415B0023DA04 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
 		D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
 		D2078D4C1837B5B9001C4A56 /* MainDocumentsSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDocumentsSelectionViewController.h; sourceTree = "<group>"; };
@@ -753,6 +750,7 @@
 				D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
+				F4DD8D78876D4ED8B36C3C3E /* libPods-TeXtended.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,17 +835,6 @@
 				D2D712321837E7FF0072BA22 /* ProjectCreationAssistantViewController.h */,
 			);
 			path = ProjectCreation;
-			sourceTree = "<group>";
-		};
-		76B88F9018378A94006B0E9F /* DMInspectorPalette */ = {
-			isa = PBXGroup;
-			children = (
-				76B88F9118378A94006B0E9F /* DMPaletteContainer.h */,
-				76B88F9218378A94006B0E9F /* DMPaletteContainer.m */,
-				76B88F9318378A94006B0E9F /* DMPaletteSectionView.h */,
-				76B88F9418378A94006B0E9F /* DMPaletteSectionView.m */,
-			);
-			path = DMInspectorPalette;
 			sourceTree = "<group>";
 		};
 		D202A06D189A415B0023DA04 /* LayoutManager */ = {
@@ -1197,7 +1184,6 @@
 				F6980D411882DDB80023DE4D /* MergeView */,
 				F68687EF18781CA200898026 /* PrintDialog */,
 				D257498718631AE70025A536 /* CustomTableCellViews */,
-				76B88F9018378A94006B0E9F /* DMInspectorPalette */,
 				76B88F8A18378799006B0E9F /* ProjectCreation */,
 				D22A6BEB181C148700364DD6 /* TMTCustomView */,
 				D28089B7181BBE3D00EEF55C /* MessageOutlineView */,
@@ -1467,6 +1453,7 @@
 				D26685F6176F56DA001699A8 /* texicon.icns */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D220755917687A310041890F /* TeXtended.icns */,
+				A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1489,6 +1476,7 @@
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
 				D25749BA186370450025A536 /* XCTest.framework */,
 				D2CC54F5171EAFAB00D81CF1 /* Other Frameworks */,
+				D07C4DE468DD4E0CA7E079D7 /* libPods-TeXtended.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1653,6 +1641,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2CC5510171EAFAB00D81CF1 /* Build configuration list for PBXNativeTarget "TeXtended" */;
 			buildPhases = (
+				A1CFEE058AE24C369E323F71 /* Check Pods Manifest.lock */,
 				D2CC54EC171EAFAB00D81CF1 /* Sources */,
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
@@ -1660,6 +1649,7 @@
 				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
 				D271983E174399FD00342CB0 /* Copy Files */,
 				762DA21A17CA4B780013D864 /* CopyFiles */,
+				837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1799,6 +1789,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Pods-TeXtended-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1CFEE058AE24C369E323F71 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		D21F3772171EC04000F961D6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1819,7 +1839,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B88F9518378A94006B0E9F /* DMPaletteContainer.m in Sources */,
 				D2E7A4E11768E8F400B2BA3C /* InfoWindowController.m in Sources */,
 				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
@@ -1881,7 +1900,6 @@
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
-				76B88F9618378A94006B0E9F /* DMPaletteSectionView.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
@@ -2082,6 +2100,7 @@
 		};
 		D2CC5511171EAFAB00D81CF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
@@ -2102,6 +2121,7 @@
 		};
 		D2CC5512171EAFAB00D81CF1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;

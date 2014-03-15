@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */; };
 		D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
 		D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1C51863784800997ADB /* InfoPlist.strings */; };
 		D22DC1D21863784800997ADB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1D11863784800997ADB /* XCTest.framework */; };
@@ -14,28 +15,13 @@
 		D22DC1D61863784800997ADB /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1B91863784800997ADB /* TMTHelperCollection.framework */; };
 		D22DC1DC1863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1DA1863784800997ADB /* InfoPlist.strings */; };
 		D22DC1DE1863784800997ADB /* TMTHelperCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC1DD1863784800997ADB /* TMTHelperCollectionTests.m */; };
-		D22DC27818637A4F00997ADB /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = D22DC25A18637A4F00997ADB /* README.txt */; };
 		D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC24918637A4F00997ADB /* GenericFilePresenter.m */; };
-		D22DC28418637AB800997ADB /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC24C18637A4F00997ADB /* DDAbstractDatabaseLogger.m */; };
-		D22DC28518637AB800997ADB /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC24E18637A4F00997ADB /* DDASLLogger.m */; };
-		D22DC28618637AB800997ADB /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25018637A4F00997ADB /* DDFileLogger.m */; };
-		D22DC28718637AB800997ADB /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25218637A4F00997ADB /* DDLog.m */; };
-		D22DC28818637AB800997ADB /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25418637A4F00997ADB /* DDTTYLogger.m */; };
-		D22DC28918637AB800997ADB /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25718637A4F00997ADB /* ContextFilterLogFormatter.m */; };
-		D22DC28A18637AB800997ADB /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25918637A4F00997ADB /* DispatchQueueLogFormatter.m */; };
 		D22DC28B18637AB800997ADB /* TMTLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25C18637A4F00997ADB /* TMTLog.m */; };
 		D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25E18637A4F00997ADB /* TMTLogFormatter.m */; };
 		D22DC28D18637AB800997ADB /* PathObserverFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC26018637A4F00997ADB /* PathObserverFactory.m */; };
 		D22DC28E18637AB800997ADB /* TMTHelperCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC1CA1863784800997ADB /* TMTHelperCollection.m */; };
 		D22DC28F18637ACA00997ADB /* FileObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24718637A4F00997ADB /* FileObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22DC29018637ACA00997ADB /* GenericFilePresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24818637A4F00997ADB /* GenericFilePresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D22DC29118637ACA00997ADB /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24B18637A4F00997ADB /* DDAbstractDatabaseLogger.h */; };
-		D22DC29218637ACA00997ADB /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24D18637A4F00997ADB /* DDASLLogger.h */; };
-		D22DC29318637ACA00997ADB /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC24F18637A4F00997ADB /* DDFileLogger.h */; };
-		D22DC29418637ACA00997ADB /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25118637A4F00997ADB /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D22DC29518637ACA00997ADB /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25318637A4F00997ADB /* DDTTYLogger.h */; };
-		D22DC29618637ACA00997ADB /* ContextFilterLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25618637A4F00997ADB /* ContextFilterLogFormatter.h */; };
-		D22DC29718637ACA00997ADB /* DispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25818637A4F00997ADB /* DispatchQueueLogFormatter.h */; };
 		D22DC29818637ACA00997ADB /* TMTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25B18637A4F00997ADB /* TMTLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22DC29918637ACA00997ADB /* TMTLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25D18637A4F00997ADB /* TMTLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC25F18637A4F00997ADB /* PathObserverFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22DC1B91863784800997ADB /* TMTHelperCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTHelperCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22DC1BC1863784800997ADB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D22DC1BF1863784800997ADB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,21 +62,6 @@
 		D22DC24718637A4F00997ADB /* FileObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObserver.h; sourceTree = "<group>"; };
 		D22DC24818637A4F00997ADB /* GenericFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFilePresenter.h; sourceTree = "<group>"; };
 		D22DC24918637A4F00997ADB /* GenericFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFilePresenter.m; sourceTree = "<group>"; };
-		D22DC24B18637A4F00997ADB /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
-		D22DC24C18637A4F00997ADB /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
-		D22DC24D18637A4F00997ADB /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
-		D22DC24E18637A4F00997ADB /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
-		D22DC24F18637A4F00997ADB /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
-		D22DC25018637A4F00997ADB /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
-		D22DC25118637A4F00997ADB /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
-		D22DC25218637A4F00997ADB /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
-		D22DC25318637A4F00997ADB /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
-		D22DC25418637A4F00997ADB /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
-		D22DC25618637A4F00997ADB /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
-		D22DC25718637A4F00997ADB /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
-		D22DC25818637A4F00997ADB /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
-		D22DC25918637A4F00997ADB /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
-		D22DC25A18637A4F00997ADB /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		D22DC25B18637A4F00997ADB /* TMTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLog.h; sourceTree = "<group>"; };
 		D22DC25C18637A4F00997ADB /* TMTLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLog.m; sourceTree = "<group>"; };
 		D22DC25D18637A4F00997ADB /* TMTLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLogFormatter.h; sourceTree = "<group>"; };
@@ -100,6 +72,7 @@
 		D22DC26418637A4F00997ADB /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
 		D22DC26518637A4F00997ADB /* TMTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableView.h; sourceTree = "<group>"; };
 		D22DC26618637A4F00997ADB /* TMTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableView.m; sourceTree = "<group>"; };
+		E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.xcconfig"; path = "../Pods/Pods-TMTHelperCollection.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */,
+				9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +105,7 @@
 				D22DC1D71863784800997ADB /* TMTHelperCollectionTests */,
 				D22DC1BB1863784800997ADB /* Frameworks */,
 				D22DC1BA1863784800997ADB /* Products */,
+				E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +124,7 @@
 				D22DC1BC1863784800997ADB /* Cocoa.framework */,
 				D22DC1D11863784800997ADB /* XCTest.framework */,
 				D22DC1BE1863784800997ADB /* Other Frameworks */,
+				071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,35 +195,12 @@
 		D22DC24A18637A4F00997ADB /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				D22DC24B18637A4F00997ADB /* DDAbstractDatabaseLogger.h */,
-				D22DC24C18637A4F00997ADB /* DDAbstractDatabaseLogger.m */,
-				D22DC24D18637A4F00997ADB /* DDASLLogger.h */,
-				D22DC24E18637A4F00997ADB /* DDASLLogger.m */,
-				D22DC24F18637A4F00997ADB /* DDFileLogger.h */,
-				D22DC25018637A4F00997ADB /* DDFileLogger.m */,
-				D22DC25118637A4F00997ADB /* DDLog.h */,
-				D22DC25218637A4F00997ADB /* DDLog.m */,
-				D22DC25318637A4F00997ADB /* DDTTYLogger.h */,
-				D22DC25418637A4F00997ADB /* DDTTYLogger.m */,
-				D22DC25518637A4F00997ADB /* Extensions */,
 				D22DC25B18637A4F00997ADB /* TMTLog.h */,
 				D22DC25C18637A4F00997ADB /* TMTLog.m */,
 				D22DC25D18637A4F00997ADB /* TMTLogFormatter.h */,
 				D22DC25E18637A4F00997ADB /* TMTLogFormatter.m */,
 			);
 			path = Logger;
-			sourceTree = "<group>";
-		};
-		D22DC25518637A4F00997ADB /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D22DC25618637A4F00997ADB /* ContextFilterLogFormatter.h */,
-				D22DC25718637A4F00997ADB /* ContextFilterLogFormatter.m */,
-				D22DC25818637A4F00997ADB /* DispatchQueueLogFormatter.h */,
-				D22DC25918637A4F00997ADB /* DispatchQueueLogFormatter.m */,
-				D22DC25A18637A4F00997ADB /* README.txt */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D22DC26118637A4F00997ADB /* Views */ = {
@@ -281,16 +234,9 @@
 				D22DC29818637ACA00997ADB /* TMTLog.h in Headers */,
 				D22DC29918637ACA00997ADB /* TMTLogFormatter.h in Headers */,
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
-				D22DC29418637ACA00997ADB /* DDLog.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
 				D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */,
-				D22DC29118637ACA00997ADB /* DDAbstractDatabaseLogger.h in Headers */,
-				D22DC29218637ACA00997ADB /* DDASLLogger.h in Headers */,
-				D22DC29318637ACA00997ADB /* DDFileLogger.h in Headers */,
-				D22DC29518637ACA00997ADB /* DDTTYLogger.h in Headers */,
-				D22DC29618637ACA00997ADB /* ContextFilterLogFormatter.h in Headers */,
-				D22DC29718637ACA00997ADB /* DispatchQueueLogFormatter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22DC1E11863784800997ADB /* Build configuration list for PBXNativeTarget "TMTHelperCollection" */;
 			buildPhases = (
+				B40B6FDCE3D74EC4AE325CF9 /* Check Pods Manifest.lock */,
 				D22DC1B41863784800997ADB /* Sources */,
 				D22DC1B51863784800997ADB /* Frameworks */,
 				D22DC1B61863784800997ADB /* Headers */,
 				D22DC1B71863784800997ADB /* Resources */,
+				9B437A30D8F84A829C01EC8F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -370,7 +318,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D22DC27818637A4F00997ADB /* README.txt in Resources */,
 				D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +332,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9B437A30D8F84A829C01EC8F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Pods-TMTHelperCollection-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B40B6FDCE3D74EC4AE325CF9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D22DC1B41863784800997ADB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -393,13 +373,6 @@
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
 				D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */,
-				D22DC28418637AB800997ADB /* DDAbstractDatabaseLogger.m in Sources */,
-				D22DC28518637AB800997ADB /* DDASLLogger.m in Sources */,
-				D22DC28618637AB800997ADB /* DDFileLogger.m in Sources */,
-				D22DC28718637AB800997ADB /* DDLog.m in Sources */,
-				D22DC28818637AB800997ADB /* DDTTYLogger.m in Sources */,
-				D22DC28918637AB800997ADB /* ContextFilterLogFormatter.m in Sources */,
-				D22DC28A18637AB800997ADB /* DispatchQueueLogFormatter.m in Sources */,
 				D22DC28B18637AB800997ADB /* TMTLog.m in Sources */,
 				D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */,
 				D22DC28D18637AB800997ADB /* PathObserverFactory.m in Sources */,
@@ -515,6 +488,7 @@
 		};
 		D22DC1E21863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -532,6 +506,7 @@
 		};
 		D22DC1E31863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
