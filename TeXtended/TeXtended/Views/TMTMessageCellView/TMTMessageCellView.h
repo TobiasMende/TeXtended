@@ -13,7 +13,7 @@
 - (NSImage *)image;
 - (NSString *)lineString;
 - (TrackingMessage*) message;
-- (BOOL) isExternal;
 
-@property (strong) DocumentModel *model;
+@property (strong,nonatomic) DocumentModel *model;
+@property BOOL isExternal;
 @end
