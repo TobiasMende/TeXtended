@@ -15,6 +15,7 @@
 @property StructureOutlineViewController *structureOutlineViewController;
 @property (strong) IBOutlet SMTabBar *tabBar;
 @property (strong) IBOutlet NSTabView *tabView;
+@property (strong) IBOutlet NSPopUpButton *selectionPopup;
 
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;

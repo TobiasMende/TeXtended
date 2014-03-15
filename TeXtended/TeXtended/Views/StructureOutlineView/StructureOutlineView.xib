@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StructureOutlineViewController">
             <connections>
                 <outlet property="mainView" destination="6za-RU-ZEg" id="G8o-eF-5oG"/>
-                <outlet property="selectionPopup" destination="JOg-XU-VMo" id="RV5-ZC-Mnj"/>
                 <outlet property="view" destination="7hM-Ui-HoE" id="i5q-ra-481"/>
             </connections>
         </customObject>
@@ -19,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <tabView controlSize="mini" type="noTabsNoBorder" id="6za-RU-ZEg">
-                    <rect key="frame" x="-1" y="20" width="347" height="306"/>
+                    <rect key="frame" x="-1" y="0.0" width="347" height="326"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <font key="font" metaFont="miniSystem"/>
                     <tabViewItems/>
@@ -27,24 +26,6 @@
                         <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="ncp-Iy-ohU"/>
                     </connections>
                 </tabView>
-                <popUpButton verticalHuggingPriority="750" id="JOg-XU-VMo">
-                    <rect key="frame" x="-1" y="3" width="349" height="15"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="mini" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bKX-be-KcP" id="vfm-Of-PfG">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="miniSystem"/>
-                        <menu key="menu" title="OtherViews" id="p9V-0H-YjO">
-                            <items>
-                                <menuItem title="Item 1" state="on" id="bKX-be-KcP"/>
-                                <menuItem title="Item 2" id="LV8-fZ-wtO"/>
-                                <menuItem title="Item 3" id="9T4-Xf-RhE"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="self.selectedIndex" id="F2a-pA-pIe"/>
-                    </connections>
-                </popUpButton>
             </subviews>
         </customView>
     </objects>

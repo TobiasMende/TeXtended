@@ -14,11 +14,11 @@
     NSString *mainDocument;
 }
 
-@property (strong) IBOutlet NSPopUpButton *selectionPopup;
+@property (weak) NSPopUpButton* selectionPopup;
 @property (strong) IBOutlet NSTabView *mainView;
 @property (assign) MainWindowController *mainWindowController;
 @property (nonatomic) NSInteger selectedIndex;
 
-- (id)initWithMainWindowController:(MainWindowController *)mwc;
+- (id)initWithMainWindowController:(MainWindowController *)mwc andPopUpButton:(NSPopUpButton*) button;
 - (void)windowIsGoingToDie;
 @end

@@ -2078,7 +2078,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Drop Completion" borderType="line" id="FTn-jb-qDN">
-                    <rect key="frame" x="17" y="62.000000769092168" width="691" height="403"/>
+                    <rect key="frame" x="17" y="62.000001178621659" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="0.99999923090783227" width="689" height="387"/>
