@@ -36,6 +36,6 @@ CIE, CSUR, JACM, JDIQ, JEA, JETC, TAAS, TACCESS, TACO, TALG, TALIP, TEAC, TECS, 
 	<key>TMTTemplateTypeKey</key>
 	<integer>1</integer>
 	<key>TMTTemplateUidKey</key>
-	<integer>0</integer>
+	<integer>10005</integer>
 </dict>
 </plist>
