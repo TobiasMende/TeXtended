@@ -186,7 +186,7 @@
     /* message controlling */
     [self addObserver:self
            forKeyPath:@"messageCollection"
-              options: NSKeyValueObservingOptionInitial
+              options: NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
               context:NULL];
     
     /* load images */
