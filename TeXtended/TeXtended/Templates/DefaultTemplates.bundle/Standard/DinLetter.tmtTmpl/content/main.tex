@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A simple LaTeX letter in din norm. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper, 
+               ngerman 
+              ]{dinbrief}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load some default packages, add your own here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{luainputenc}
+\usepackage{fontspec}
+\usepackage{babel}
+              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configure the letter here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Your name:
+\signature{@@Your Name@@}
+
+% Your address (can be empty):
+\address{@@Street@@ @@Streetnumber@@ \\ @@ZIP@@ @@City@@ \\ @@Country@@}
+
+% And the address to send it back.
+\backaddress{@@Street@@ @@Streetnumber@@ \\ @@ZIP@@ @@City@@ \\ @@Country@@}
+
+% City for the date:
+\place{@@City@@}
+
+% Recipients adress:
+\newcommand{\recipient}{@@Name@@\\ @@Street@@ @@Streetnumber@@ \\ 
+@@ZIP@@ @@City@@ \\ @@Country@@}
+
+% Opening of the letter:
+\newcommand{\open}{@@opening@@,}
+
+% Closing line of the letter:
+\newcommand{\close}{@@closing@@,}
+
+\begin{document}
+\begin{letter}{\recipient}
+
+\opening{\open}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Insert your letter here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@The content of the letter.@@
+
+\closing{\close}
+% Uncomment if you need cc:
+%\cc{cc 1 \\ cc 2 \\ cc 3}
+
+% Uncomment if you need encl:
+%\encl{encl 1 \\ encl 2 \\ ecnl 3}
+
+% Uncomment if you need a post scriptum:
+%\ps{Some text}
+\end{letter}
+\end{document}

@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Global configuration file.                                     %
+% All properties that effect the slides as well as the handout   %
+% should be made here.                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% default packages
+\usepackage[utf8]{luainputenc}
+\usepackage[no-math]{fontspec}
+\usepackage{babel}
+
+% define a main color that is used by the themes:
+\definecolor{main}{HTML}{006374} 
+
+% Select a font, should be one that looks good on print and
+% screen. 
+\setmainfont{Helvetica}
+\setsansfont{Helvetica} % some trouble with beamer / fontspec, need both
+\defaultfontfeatures{Ligatures=TeX} % ligature configuration
+\usepackage{MnSymbol} % for math fonts, use also could load them with font spec
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project configuration. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title, short and long version.
+\title[@@Short Title@@]{@@Long Title@@}
+
+% The subtitle.
+\subtitle{@@subtitle@@}
+
+% The author.
+\author{@@The Author@@}
+
+% The name of the institute.
+\institute{@@Name of the Institute@@}
+
+% Date when the presentation will take place.
+\date{@@date@@}
+
+% You can insert a graphic here (use \insertgraphics{}).
+\titlegraphic{@@graphics@@}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Insert custom packages here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

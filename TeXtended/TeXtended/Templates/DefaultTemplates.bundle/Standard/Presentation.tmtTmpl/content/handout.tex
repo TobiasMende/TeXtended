@@ -1,0 +1,35 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file will be compiled to the handout.                     %
+% You should only insert properties that will only effect        %
+% the handout. Global properties as well as the content should   %
+% go to properties.tex and content.tex!                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[
+	a4paper,
+	ngerman,
+	pagesize,
+	DIV=calc
+]{article}
+
+% Needed to be used with beamer.
+\usepackage[envcountsect]{beamerarticle}
+
+\input{properties.tex}
+
+% set skips and indents
+\parindent=0pt
+\parskip=\smallskipamount
+
+% better borders
+\usepackage{geometry}
+\newgeometry{
+	left=3cm,
+	right=5cm,
+	top=3cm,
+	bottom=3cm,
+}
+
+\begin{document}
+\maketitle
+\input{content}
+\end{document}
