@@ -13,7 +13,6 @@
 @implementation TMTMessageCellView
 
 - (NSImage *)image {
-    //FIXME: return image;
     NSImage *image = [TrackingMessage imageForType:self.message.type];
     [image setFlipped:NO];
     return image;

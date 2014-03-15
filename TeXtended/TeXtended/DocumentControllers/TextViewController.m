@@ -98,7 +98,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (_model) {
         [_model removeObserver:self forKeyPath:@"texPath"];
         [self unregisterModelObserver];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTPartialMessagesDidChangeNotification object:self.model.texPath];
     }
     _model = model;
     if (_model) {
@@ -107,8 +106,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         if (messages) {
             lineNumberView.messageCollection = messages;
         }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:self.model.texPath];
-        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     }
 }
 
@@ -130,15 +128,15 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             if (!lacheck) {
                 lacheck = [LacheckParser new];
             }
-            __unsafe_unretained TextViewController* weakSelf = self;
+            __unsafe_unretained DocumentModel* weakMain = self.model.currentMainDocument;
             [chktex parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
                 if (messages) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakSelf.model.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTChktexParser)}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakMain.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTChktexParser)}];
                 }
             }];
             [lacheck parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
                 if (messages) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakSelf.model.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTLacheckParser)}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakMain.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTLacheckParser)}];
                 }
             }];
         }

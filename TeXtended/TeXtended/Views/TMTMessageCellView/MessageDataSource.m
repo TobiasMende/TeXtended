@@ -156,7 +156,6 @@
 - (void)setModel:(DocumentModel *)model {
     if (_model) {
         [_model removeObserver:self forKeyPath:@"texPath"];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMainDocumentMessagesDidChangeNotification object:self.model.texPath];
     }
     _model = model;
     if (_model) {
@@ -167,8 +166,7 @@
                 [self.tableView reloadData];
             }];
         }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTMainDocumentMessagesDidChangeNotification object:self.model.texPath];
-        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:NULL];
+        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     }
 }
 
