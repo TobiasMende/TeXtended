@@ -189,6 +189,7 @@ static ApplicationController *sharedInstance;
                               TMT_SHOULD_COMPLETE_COMMANDS: @YES,
                               TMT_SHOULD_COMPLETE_ENVIRONMENTS: @YES,
                                TMTShouldCompleteCites: @YES,
+                               TMTShouldCompleteRefs: @YES,
                               TMT_SHOULD_LINK_TEXDOC: @YES,
                               TMT_SHOULD_UNDERLINE_TEXDOC_LINKS: @YES,
                               TMT_REPLACE_INVISIBLE_SPACES: @NO,

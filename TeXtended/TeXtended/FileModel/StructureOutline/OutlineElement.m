@@ -143,5 +143,20 @@
     return result;
 }
 
+- (NSString *)key {
+    return self.info;
+}
+
+- (NSString *)autoCompletionWord {
+    return self.info;
+}
+
+- (BOOL)completionMatchesPrefix:(NSString *)prefix {
+    return [self.info hasPrefix:prefix];
+}
+
+- (NSComparisonResult)compare:(OutlineElement *)other {
+    return [self.info caseInsensitiveCompare:other.info];
+}
 
 @end

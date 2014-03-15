@@ -15,10 +15,10 @@
 #import "DocumentCreationController.h"
 #import "TMTNotificationCenter.h"
 #import "OutlineElement.h"
+#import "OutlineHelper.h"
 @interface StructureOutlineSectionViewController ()
 - (void)jumpToSelection:(TMTTableView *)tableView;
 - (void)outlineDidChange:(NSNotification *)note;
-- (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path;
 @end
 
 @implementation StructureOutlineSectionViewController
@@ -28,33 +28,17 @@
     if (self) {
         self.rootNode = model;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outlineDidChange:) name:TMTOutlineDidChangeNotification object:self.rootNode];
-        self.content =[self flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
+        self.content =[OutlineHelper flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
     }
     return self;
 }
 
 - (void)outlineDidChange:(NSNotification *)note {
-    NSMutableArray *result = [self flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
+    NSMutableArray *result = [OutlineHelper flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
     [self performSelectorOnMainThread:@selector(setContent:) withObject:result waitUntilDone:YES];
 }
 
 
-- (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path{
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:currentLevel.count];
-    for(OutlineElement *obj in currentLevel) {
-        [result addObject:obj];
-        if ([obj children] && [obj children].count > 0) {
-            if (![path containsObject:obj]) {
-                [path addObject:obj];
-                [result addObjectsFromArray:[self flatten:[obj children] withPath:path]];
-                [path removeObject:obj];
-            }else {
-                DDLogError(@"Tree contains loop. Breaking loop");
-            }
-        }
-    }
-    return result;
-}
 
 - (void)loadView {
     [super loadView];

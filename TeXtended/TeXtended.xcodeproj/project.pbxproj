@@ -162,6 +162,7 @@
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
+		D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739D318D4B056005991D5 /* OutlineHelper.m */; };
 		D2A92C431882F71500F1679F /* projecticon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2A92C421882F71500F1679F /* projecticon.icns */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
@@ -623,6 +624,8 @@
 		D2A550801752081E00BC05DD /* WindowControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowControllerProtocol.h; sourceTree = "<group>"; };
 		D2A550811752085600BC05DD /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = ../DocumentControllers/MainWindowController.h; sourceTree = "<group>"; };
 		D2A550821752085600BC05DD /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = ../DocumentControllers/MainWindowController.m; sourceTree = "<group>"; };
+		D2A739D218D4B056005991D5 /* OutlineHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineHelper.h; sourceTree = "<group>"; };
+		D2A739D318D4B056005991D5 /* OutlineHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineHelper.m; sourceTree = "<group>"; };
 		D2A92C421882F71500F1679F /* projecticon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = projecticon.icns; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
@@ -1162,6 +1165,8 @@
 				D2314898181BCE6F00A3385B /* TMTNotificationCenter */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
+				D2A739D218D4B056005991D5 /* OutlineHelper.h */,
+				D2A739D318D4B056005991D5 /* OutlineHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1891,6 +1896,7 @@
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
+				D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */,
 				D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "CompletionProtocol.h"
 @class DocumentModel;
 
 typedef enum OutlineElementType {
@@ -22,7 +22,7 @@ typedef enum OutlineElementType {
     TODO = 4208
 } OutlineElementType;
 
-@interface OutlineElement : NSObject <NSCoding>
+@interface OutlineElement : NSObject <NSCoding,CompletionProtocol>
 
 @property OutlineElementType type;
 @property NSUInteger line;
