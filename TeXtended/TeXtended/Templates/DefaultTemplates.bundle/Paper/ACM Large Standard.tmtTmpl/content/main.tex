@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Large Format Single Column is used for the following journal and %
+% transactions:                                                        %
+% JOCCH, TAP, TOMCCAP.                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[prodmode,acmtap]{acmlarge}
+
+% Metadata Information
+\acmVolume{@@volume@@}
+\acmNumber{@@number@@}
+\acmArticle{@@article@@}
+\articleSeq{@@seq@@}
+\acmYear{@@year@@}
+\acmMonth{@@month@@}
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\SetAlFnt{\algofont}
+\SetAlCapFnt{\algofont}
+\SetAlCapNameFnt{\algofont}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+
+% load custom properties
+\input{properties.tex}
+
+% Define the authors shown on the top of each even page and the title
+% displayed on each odd page:
+\markboth{@@author@@￼}{@@title@@￼}
+
+% The Authors, usage: Name \affil{affiliation}
+\author{￼@@author 1@@
+\affil{@@affiliation@@￼}
+￼@@autho 2r@@
+\affil{￼@@affiliation@@}
+% you may add more
+}
+
+% The abstract.
+\begin{abstract}
+@@abstract@@
+\end{abstract}
+
+% Categories and subject descriptors
+\category{￼@@number@@}{@@category@@￼}{@@subject@@￼}
+
+% general terms, comma separated 
+\terms{@@terms@@}
+
+% keywords, comma separated 
+\keywords{@@keywords@@}
+
+% The acmformat: authors (comma separated) followed by year and title
+\acmformat{@@authors@@, @@year@@. @@title@@.}
+
+\begin{document}
+% Information below on the first page
+\begin{bottomstuff}
+@@Informations on the bottom of the first page.@@
+\end{bottomstuff}
+
+%% insert above informations
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start your paper here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@content@@
+
+%% Insert acknowledgments here
+\begin{acks}
+@@acknowledgments@@
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{library}
+\received{@@month@@ @@year@@}{@@month@@ @@year@@}
+
+\end{document}

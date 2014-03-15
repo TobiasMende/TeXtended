@@ -1,0 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The content file.                                              %
+% All content, of the slides and the handout, should go here.    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Insert the table of contents in both versions.
+\begin{frame}
+  \mode<presentation>{\frametitle{Content}}
+  \tableofcontents
+\end{frame}
+
+\section{Section 1}
+\subsection{Subsection 1}
+\begin{frame}{Title}
+  \begin{itemize}
+    \item Just start your presentation here.
+  \end{itemize}
+  
+  If you need content, that is not visible in both version, go with the 
+  following commands:
+  
+  \mode<presentation>{Some note, only visible on the slides.}
+  \mode<article>{And this ist just for the handout version.}
+\end{frame}
+

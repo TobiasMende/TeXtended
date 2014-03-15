@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Large File Double Column is used for: %
+% TOG.                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[prodmode,acmtap]{acmtog}
+
+% Metadata Information
+\acmVolume{28}
+\acmNumber{4}
+\acmYear{2009}
+\acmMonth{September}
+\acmArticleNum{106}
+\acmdoi{10.1145/1559755.1559763}
+
+
+% load custom properties
+\input{properties.tex}
+
+% Define the authors shown on the top of each even page and the title
+% displayed on each odd page:
+\markboth{@@author@@￼}{@@title@@￼}
+
+% The Authors, usage: Name \affil{affiliation}
+\author{￼@@author 1@@
+\affil{@@affiliation@@￼}
+\and
+￼@@autho 2r@@
+\affil{￼@@affiliation@@}
+% you may add more
+}
+
+% The abstract.
+\begin{abstract}
+@@abstract@@
+\end{abstract}
+
+% Categories and subject descriptors
+\category{￼@@number@@}{@@category@@￼}{@@subject@@￼}
+
+% general terms, comma separated 
+\terms{@@terms@@}
+
+% keywords, comma separated 
+\keywords{@@keywords@@}
+
+% The acmformat: authors (comma separated) followed by year and title
+\acmformat{@@authors@@, @@year@@. @@title@@.}
+
+\begin{document}
+% Information below on the first page
+\begin{bottomstuff}
+@@Informations on the bottom of the first page.@@
+\end{bottomstuff}
+
+%% insert above informations
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start your paper here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@content@@
+
+%% Insert acknowledgments here
+\begin{acks}
+@@acknowledgments@@
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{library}
+\received{@@month@@ @@year@@}{@@month@@ @@year@@}
+
+\end{document}

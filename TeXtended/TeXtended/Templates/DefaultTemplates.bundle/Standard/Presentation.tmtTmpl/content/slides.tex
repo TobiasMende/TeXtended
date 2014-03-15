@@ -1,0 +1,35 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file will be compiled to the slides.                      %
+% You should only insert properties that will only effect        %
+% the slides. Global properties as well as the content should    %
+% go to properties.tex and content.tex!                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[ignorenonframetext, 
+               ngerman
+		       ]{beamer}
+
+% global properties should be made there:
+\input{properties} 
+
+% set beamer type
+%\usetheme{default}    % without sidebar
+\usetheme{Goettingen}  % with sidebar
+\useinnertheme{default} % circles, rounded, rectangles
+
+% use personal colors
+\setbeamercolor{structure}{fg=main}
+
+\setbeamertemplate{sidebar canvas right}[vertical shading]%
+[top=white,bottom=white]
+
+\setbeamercolor{block title}{fg=white,bg=seagreen}
+\setbeamercolor{block body}
+  {parent=normal text,use=block title,bg=block title.bg!25!bg}
+\setbeamercolor{alerted text}
+  {fg=main} 
+\setbeamertemplate{navigation symbols}{} % hide navigation symbols
+
+\begin{document}
+\frame<presentation>[plain]{\titlepage}
+\mode<all>\input{content.tex}
+\end{document}

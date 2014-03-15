@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Small Standard Format is used for the following journals and        %
+% transactions:                                                           %
+% CIE, CSUR, JACM, JDIQ, JEA, JETC, TAAS, TACCESS, TACO, TALG, TALIP,     %
+% TEAC, TECS, TIIS, TISSEC, TIST, TKDD, TMIS, TOCE, TOCHI, TOCL, TOCS,    %
+% TOCT, TODAES, TODS, TOIS, TOIT, TOMACS, TOMS, TOPC, TOPLAS, TOS, TOSEM, %
+% TOSN, TRETS, TSAS, TSLP, TWEB.                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[prodmode,acmtecs]{acmsmall}
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+% Metadata Information
+\acmVolume{@@volume@@}
+\acmNumber{@@number@@}
+\acmArticle{@@article@@}
+\acmYear{@@year@@}
+\acmMonth{@@month@@}
+
+% load custom properties
+\input{properties.tex}
+
+\begin{document}
+
+% Define the authors shown on the top of each even page and the title
+% displayed on each odd page:
+\markboth{@@author@@}{@@title@@}
+
+% The title of the paper.
+\title{@@title@@}
+
+% The Authors, usage: Name \affil{informations}
+\author{@@author 1@@
+\affil{@@affiliation@@}
+@@author 2@@
+\affil{@@affiliation@@}
+% you may add more
+}
+
+% The abstract goes here
+\begin{abstract}
+@@The abstract.@@
+\end{abstract}
+
+% Categories and subject descriptors
+\category{@@number@@}{@@categories@@}{@@subject@@}
+
+% general terms, comma separated 
+\terms{@@terms@@}
+
+% keywords, comma separated 
+\keywords{@@keywords@@}
+
+% The acmformat: authors (comma separated) followed by year and title
+\acmformat{@@authors@@, @@year@@. @@title@@.}
+
+% Information below on the first page
+\begin{bottomstuff}
+@@Informations on the bottom of the first page.@@
+\end{bottomstuff}
+
+% inserting all the above informations
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start your paper here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@Content@@
+
+%% Insert acknowledgments here
+\begin{acks}
+@@acknowledgments@@
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{library}
+\received{@@month@@ @@year@@}{@@month@@ @@year@@}
+
+\end{document}
