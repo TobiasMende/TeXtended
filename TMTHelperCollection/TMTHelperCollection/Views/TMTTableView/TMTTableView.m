@@ -39,11 +39,10 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (self.rightClickAction && [self.delegate respondsToSelector:self.rightClickAction]) {
         NSPoint where;
-        NSInteger row = -1, col = -1;
+        NSInteger row = -1;
         
         where = [self convertPoint:[theEvent locationInWindow] fromView:nil];
         row = [self rowAtPoint:where];
-        col = [self columnAtPoint:where];
         if (row >= 0 && row < self.numberOfRows) {
             [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
             [self.delegate performSelector:self.rightClickAction withObject:self];

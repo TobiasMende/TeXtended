@@ -218,28 +218,6 @@
     [self.mainWindowController showDocument:dc];
 }
 
-#pragma mark - NSSharingDelegate & NSSharingPickerDelegate
-
-/*- (NSArray *)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker sharingServicesForItems:(NSArray *)items proposedSharingServices:(NSArray *)proposedServices
-{
-    
-    NSArray *services = proposedServices;
-    
-    NSSharingService *customService = [[NSSharingService alloc] initWithTitle:@"Open in Finder" image:[NSImage imageNamed:@"NSFolder"] alternateImage:nil handler:^{
-    }];
-    
-    services = [services arrayByAddingObject:customService];
-    
-    return services;
-}*/
-
-/*- (void)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker didChooseSharingService:(NSSharingService *)service
-{
-    if ([service.title isEqualToString:@"Open in Finder"]) {
-        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-        [workspace openFile:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/"];
-    }
-}*/
 
 
 #pragma mark - Printing

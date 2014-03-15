@@ -29,7 +29,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 - (id)init {
     self = [super init];
-    DDLogWarn(@"Init");
+    DDLogVerbose(@"init");
     return self;
 }
 
@@ -144,7 +144,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             NSSet *labels = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeLabel];
             for(NSValue *v in labels) {
                 CommandCompletion *c = v.nonretainedObjectValue;
-                if ([c.insertion isEqualToString:prefix]) {
+                if ([c.autoCompletionWord isEqualToString:prefix]) {
                     return LABEL;
                 }
             }
@@ -152,7 +152,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             NSSet *refs = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeRef];
             for(NSValue *v in refs) {
                 CommandCompletion *c = v.nonretainedObjectValue;
-                if ([c.insertion isEqualToString:prefix]) {
+                if ([c.autoCompletionWord isEqualToString:prefix]) {
                     return REF;
                 }
             }
@@ -188,7 +188,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 }
 
 - (void)dealloc {
-    DDLogWarn(@"Dealloc");
+    DDLogVerbose(@"dealloc");
 }
 
 

@@ -23,6 +23,8 @@
 /** if `YES` cites where automatically completed */
 @property BOOL shouldCompleteCites;
 
+@property BOOL shouldCompleteRefs;
+
 /**
  Method for retreiving matching completions for a given word.
  
@@ -96,6 +98,8 @@
 - (void)insertEnvironmentCompletion:(EnvironmentCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 - (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+
+- (void)insertRefCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
     
     - (NSAttributedString*)expandWhiteSpacesInAttrString:(NSAttributedString *) string;

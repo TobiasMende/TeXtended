@@ -16,12 +16,10 @@
  
  @author Tobias Mende
  */
-@interface LatexSyntaxHighlighter : EditorService <SyntaxHighlighter> {
+@interface BibtexSyntaxHighlighter : EditorService <SyntaxHighlighter> {
     NSDate *time;
     NSOperationQueue *backgroundQueue;
 }
-/** The color in which to highlight math (text between $ and $ or \[ and \] */
-@property (strong,nonatomic) NSColor *inlineMathColor;
 
 /** The color in which to highlight commands (e.g. \text) */
 @property (strong,nonatomic) NSColor *commandColor;
@@ -47,8 +45,6 @@
 /** Flag activating highlighting of other than curly brackets */
 @property (nonatomic) BOOL shouldHighlightBrackets;
 
-/** Flag activating highlighting of inline math */
-@property (nonatomic) BOOL shouldHighlightInlineMath;
 
 
 

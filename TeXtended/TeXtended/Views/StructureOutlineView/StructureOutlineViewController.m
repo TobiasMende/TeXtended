@@ -43,7 +43,6 @@
 }
 
 - (void)firstResponderDidChange {
-    DDLogWarn(@"Responder Change");
     NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
     sections = [NSMutableArray arrayWithCapacity:mainDocuments.count];
     NSString *currentSelection = self.selectionPopup.selectedItem.title;

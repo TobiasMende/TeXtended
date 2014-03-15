@@ -707,9 +707,9 @@
                                 </connections>
                             </colorWell>
                             <textField verticalHuggingPriority="750" id="1095">
-                                <rect key="frame" x="93" y="18" width="105" height="17"/>
+                                <rect key="frame" x="93" y="18" width="126" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Argument Color" id="1142">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Curly Bracket Color" id="1142">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2081,7 +2081,7 @@
                     <rect key="frame" x="17" y="62.000001178621659" width="691" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="689" height="387"/>
+                        <rect key="frame" x="1" y="0.99999923090783227" width="689" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="VCi-wT-rDh">

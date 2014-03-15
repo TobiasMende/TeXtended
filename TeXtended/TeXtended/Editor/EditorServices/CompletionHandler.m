@@ -24,6 +24,8 @@
 #import "BibFile.h"
 #import "CompletionTableController.h"
 #import "ProjectModel.h"
+#import "OutlineHelper.h"
+#import "OutlineElement.h"
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
 static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
@@ -46,6 +48,8 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 
 - (NSArray *)citeCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
+
+- (NSArray *)refCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **) info;
 
 
 /**
@@ -95,7 +99,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 @implementation CompletionHandler
 
 + (void)initialize {
-    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", @"shouldCompleteCites", nil];
+    KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldCompleteEnvironments",@"shouldCompleteCommands",@"shouldAutoIndentEnvironment", @"shouldCompleteCites", @"shouldCompleteRefs", nil];
     
     COMPLETION_TYPE_BY_PREFIX = @{@"\\": @(TMTCommandCompletion), @"\\begin{": @(TMTBeginCompletion), @"\\end{": @(TMTEndCompletion)};
     COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{",@"}", @"[", @"]", @"(", @")", nil];
@@ -121,6 +125,9 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     
         self.shouldCompleteCites = [[[defaults values] valueForKey:TMTShouldCompleteCites] boolValue];
         [self bind:@"shouldCompleteCites" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMTShouldCompleteCites] options:NULL];
+        
+        self.shouldCompleteRefs = [[[defaults values] valueForKey:TMTShouldCompleteRefs] boolValue];
+        [self bind:@"shouldCompleteRefs" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMTShouldCompleteRefs] options:NULL];
     
         self.shouldCompleteCommands = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_COMMANDS] boolValue];
         [self bind:@"shouldCompleteCommands" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_COMMANDS] options:NULL];
@@ -154,10 +161,8 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             return [self environmentCompletionsForPartialWordRange:charRange indexOfSelectedItem:index completionType:type additionalInformation:info];
         case TMTCiteCompletion:
             return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
-            break;
-            
-        default:
-            DDLogInfo(@"NoCompletion");
+        case TMTRefCompletion:
+            return [self refCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
     }
     return nil;
 }
@@ -185,6 +190,27 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     return matches;
 }
 
+- (NSArray *)refCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary *__autoreleasing *)info {
+    if (!self.shouldCompleteRefs) {
+        return nil;
+    }
+    *info = @{TMTCompletionTypeKey: @(TMTRefCompletion)};
+    charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+    NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    NSArray *mainDocuments = [view.firstResponderDelegate model].mainDocuments;
+    NSMutableArray *matches = [NSMutableArray new];
+    for(DocumentModel *model in mainDocuments) {
+        NSMutableArray *all = [OutlineHelper flatten:model.outlineElements withPath:[NSMutableSet new]];
+        for (OutlineElement *el in all) {
+            if (el.type == LABEL && [el completionMatchesPrefix:prefix]) {
+                [matches addObject:el];
+            }
+        }
+    }
+    [matches sortUsingSelector:@selector(compare:)];
+    return matches;
+}
 
 - (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)charRange {
     while (charRange.location > 0 && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@"{"] && ![[view.string substringWithRange:NSMakeRange(charRange.location-1, 1)] isEqualToString:@","]) {
@@ -259,6 +285,9 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
         case TMTCiteCompletion:
             [self insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:charRange movement:movement isFinal:flag];
             break;
+        case TMTRefCompletion:
+            [self insertRefCompletion:(OutlineElement *)word forPartialWordRange:charRange movement:movement isFinal:flag];
+            break;
         default:
             DDLogInfo(@"NoCompletion");
             break;
@@ -273,6 +302,19 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             [view delete:nil];
             [view  insertText:completion.key];
             [view.undoManager endUndoGrouping];
+    } else {
+        //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+    }
+}
+
+- (void)insertRefCompletion:(OutlineElement *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
+    if (flag && [self isFinalInsertion:movement]) {
+        [view.undoManager beginUndoGrouping];
+        charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+        [view setSelectedRange:charRange];
+        [view delete:nil];
+        [view  insertText:completion.key];
+        [view.undoManager endUndoGrouping];
     } else {
         //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
     }

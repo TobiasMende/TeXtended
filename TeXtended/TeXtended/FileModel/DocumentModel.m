@@ -118,11 +118,11 @@ static NSArray *TMTEncodingsToCheck;
         self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
     }
     BOOL success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
-    if (*error) {
+    if (!success) {
         NSStringEncoding alternate = NSUTF8StringEncoding;
-        NSError *error2;
+        NSError *error2 = nil;
         success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
-        if (error2) {
+        if (!success) {
             DDLogError(@"Error while saving: %@", [error2 userInfo]);
         } else {
             self.encoding = @(alternate);

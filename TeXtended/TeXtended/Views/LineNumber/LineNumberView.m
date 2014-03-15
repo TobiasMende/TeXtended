@@ -686,8 +686,6 @@
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"LineNumberView dealloc");
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"messageCollection"];
     [self unbind:@"messageCollection"];

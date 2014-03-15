@@ -24,10 +24,6 @@
 		760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760346EB1779FA6200CCE0AD /* MessageViewController.m */; };
 		760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760346EC1779FA6200CCE0AD /* MessageView.xib */; };
 		76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76041824174CF5BA000503E7 /* ExtendedPdfControlls.xib */; };
-		762DA21817CA4B210013D864 /* article.tex in Resources */ = {isa = PBXBuildFile; fileRef = 762DA21617CA4B210013D864 /* article.tex */; };
-		762DA21917CA4B210013D864 /* formal_letter.tex in Resources */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
-		762DA21B17CA4B870013D864 /* article.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21617CA4B210013D864 /* article.tex */; };
-		762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762DA21717CA4B210013D864 /* formal_letter.tex */; };
 		7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654503A18379D770013CC4D /* FolderSelectionViewController.m */; };
 		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
@@ -131,6 +127,9 @@
 		D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */; };
 		D2848715188B516E00CC91A0 /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848714188B516E00CC91A0 /* EditTemplateView.xib */; };
 		D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */; };
+		D288C94618D47E9D007384E6 /* BibDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D288C94418D47E9D007384E6 /* BibDocument.m */; };
+		D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D288C94518D47E9D007384E6 /* BibDocument.xib */; };
+		D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -159,6 +158,11 @@
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
+		D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739D318D4B056005991D5 /* OutlineHelper.m */; };
+		D2A739DB18D4BF78005991D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25749BA186370450025A536 /* XCTest.framework */; };
+		D2A739E118D4BF78005991D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2A739DF18D4BF78005991D5 /* InfoPlist.strings */; };
+		D2A739EB18D4BFD2005991D5 /* ProjectModel_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */; };
+		D2A739ED18D4C2CD005991D5 /* DocumentModel_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */; };
 		D2A92C431882F71500F1679F /* projecticon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2A92C421882F71500F1679F /* projecticon.icns */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
@@ -274,6 +278,16 @@
 		F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C48A188A786800D2A911 /* GraphEdge.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D2A739E518D4BF78005991D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2CC54E8171EAFAB00D81CF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2CC54EF171EAFAB00D81CF1;
+			remoteInfo = TeXtended;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		762DA21A17CA4B780013D864 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -281,8 +295,6 @@
 			dstPath = TemplateFiles;
 			dstSubfolderSpec = 7;
 			files = (
-				762DA21B17CA4B870013D864 /* article.tex in CopyFiles */,
-				762DA21C17CA4B870013D864 /* formal_letter.tex in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,8 +353,6 @@
 		76049C9F1752085000778E2A /* Compiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compiler.m; sourceTree = "<group>"; };
 		760922931759E220009FC8B0 /* ExtendedPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedPDFViewController.h; sourceTree = "<group>"; };
 		760922941759E220009FC8B0 /* ExtendedPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedPDFViewController.m; sourceTree = "<group>"; };
-		762DA21617CA4B210013D864 /* article.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.tex; sourceTree = "<group>"; };
-		762DA21717CA4B210013D864 /* formal_letter.tex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = formal_letter.tex; sourceTree = "<group>"; };
 		7654503918379D770013CC4D /* FolderSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderSelectionViewController.h; sourceTree = "<group>"; };
 		7654503A18379D770013CC4D /* FolderSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderSelectionViewController.m; sourceTree = "<group>"; };
 		7654503B18379D770013CC4D /* FolderSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderSelectionView.xib; sourceTree = "<group>"; };
@@ -574,6 +584,11 @@
 		D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTQuickLookView.m; sourceTree = "<group>"; };
 		D2848714188B516E00CC91A0 /* EditTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTemplateView.xib; sourceTree = "<group>"; };
 		D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DefaultTemplates.bundle; sourceTree = "<group>"; };
+		D288C94318D47E9D007384E6 /* BibDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibDocument.h; sourceTree = "<group>"; };
+		D288C94418D47E9D007384E6 /* BibDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibDocument.m; sourceTree = "<group>"; };
+		D288C94518D47E9D007384E6 /* BibDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BibDocument.xib; sourceTree = "<group>"; };
+		D288C94D18D49E68007384E6 /* BibtexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibtexSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -615,6 +630,14 @@
 		D2A550801752081E00BC05DD /* WindowControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowControllerProtocol.h; sourceTree = "<group>"; };
 		D2A550811752085600BC05DD /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = ../DocumentControllers/MainWindowController.h; sourceTree = "<group>"; };
 		D2A550821752085600BC05DD /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = ../DocumentControllers/MainWindowController.m; sourceTree = "<group>"; };
+		D2A739D218D4B056005991D5 /* OutlineHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineHelper.h; sourceTree = "<group>"; };
+		D2A739D318D4B056005991D5 /* OutlineHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineHelper.m; sourceTree = "<group>"; };
+		D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeXtended Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2A739DE18D4BF78005991D5 /* TeXtended Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TeXtended Tests-Info.plist"; sourceTree = "<group>"; };
+		D2A739E018D4BF78005991D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2A739E418D4BF78005991D5 /* TeXtended Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended Tests-Prefix.pch"; sourceTree = "<group>"; };
+		D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel_Test.m; sourceTree = "<group>"; };
+		D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel_Test.m; sourceTree = "<group>"; };
 		D2A92C421882F71500F1679F /* projecticon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = projecticon.icns; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
 		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
@@ -740,6 +763,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D2A739D718D4BF78005991D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2A739DB18D4BF78005991D5 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54ED171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -777,15 +808,6 @@
 				D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */,
 			);
 			path = Compiler;
-			sourceTree = "<group>";
-		};
-		762DA20C17CA3A5E0013D864 /* TemplateFiles */ = {
-			isa = PBXGroup;
-			children = (
-				762DA21617CA4B210013D864 /* article.tex */,
-				762DA21717CA4B210013D864 /* formal_letter.tex */,
-			);
-			path = TemplateFiles;
 			sourceTree = "<group>";
 		};
 		768BA48117E4B31000B9DAF3 /* Templates */ = {
@@ -1059,6 +1081,9 @@
 				D27F805218253A3E00BCD72A /* MainDocument.m */,
 				D25FBAAA18903EED00FD3987 /* MainToolbar.h */,
 				D25FBAAB18903EED00FD3987 /* MainToolbar.m */,
+				D288C94318D47E9D007384E6 /* BibDocument.h */,
+				D288C94418D47E9D007384E6 /* BibDocument.m */,
+				D288C94518D47E9D007384E6 /* BibDocument.xib */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1151,6 +1176,8 @@
 				D2314898181BCE6F00A3385B /* TMTNotificationCenter */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
+				D2A739D218D4B056005991D5 /* OutlineHelper.h */,
+				D2A739D318D4B056005991D5 /* OutlineHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1236,7 +1263,9 @@
 			isa = PBXGroup;
 			children = (
 				D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */,
+				D288C94D18D49E68007384E6 /* BibtexSyntaxHighlighter.h */,
 				D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */,
+				D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */,
 				D27198371743884B00342CB0 /* SyntaxHighlighter.h */,
 				D27198381743889400342CB0 /* SyntaxHighlighterStub.h */,
 				D27198391743889400342CB0 /* SyntaxHighlighterStub.m */,
@@ -1354,6 +1383,26 @@
 			path = DMSplitView;
 			sourceTree = "<group>";
 		};
+		D2A739DC18D4BF78005991D5 /* TeXtended Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D2A739DD18D4BF78005991D5 /* Supporting Files */,
+				D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */,
+				D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */,
+			);
+			path = "TeXtended Tests";
+			sourceTree = "<group>";
+		};
+		D2A739DD18D4BF78005991D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2A739DE18D4BF78005991D5 /* TeXtended Tests-Info.plist */,
+				D2A739DF18D4BF78005991D5 /* InfoPlist.strings */,
+				D2A739E418D4BF78005991D5 /* TeXtended Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1448,6 +1497,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A92C421882F71500F1679F /* projecticon.icns */,
+				D2A739DC18D4BF78005991D5 /* TeXtended Tests */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
 				D26685F6176F56DA001699A8 /* texicon.icns */,
@@ -1461,6 +1511,7 @@
 			isa = PBXGroup;
 			children = (
 				D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */,
+				D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1522,7 +1573,6 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				762DA20C17CA3A5E0013D864 /* TemplateFiles */,
 				D271983C1743989B00342CB0 /* CompileFlows */,
 				D21ACB7C172685C100E2F8EC /* Development */,
 				D21ACB721726855000E2F8EC /* Sparkle */,
@@ -1637,6 +1687,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D2A739D918D4BF78005991D5 /* TeXtended Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2A739E718D4BF78005991D5 /* Build configuration list for PBXNativeTarget "TeXtended Tests" */;
+			buildPhases = (
+				D2A739D618D4BF78005991D5 /* Sources */,
+				D2A739D718D4BF78005991D5 /* Frameworks */,
+				D2A739D818D4BF78005991D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2A739E618D4BF78005991D5 /* PBXTargetDependency */,
+			);
+			name = "TeXtended Tests";
+			productName = "TeXtended Tests";
+			productReference = D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D2CC54EF171EAFAB00D81CF1 /* TeXtended */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2CC5510171EAFAB00D81CF1 /* Build configuration list for PBXNativeTarget "TeXtended" */;
@@ -1668,6 +1736,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tobias Mende";
+				TargetAttributes = {
+					D2A739D918D4BF78005991D5 = {
+						TestTargetID = D2CC54EF171EAFAB00D81CF1;
+					};
+				};
 			};
 			buildConfigurationList = D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1683,11 +1756,20 @@
 			targets = (
 				D2CC54EF171EAFAB00D81CF1 /* TeXtended */,
 				D21F376E171EC03700F961D6 /* Documentation */,
+				D2A739D918D4BF78005991D5 /* TeXtended Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D2A739D818D4BF78005991D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2A739E118D4BF78005991D5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54EE171EAFAB00D81CF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1708,6 +1790,7 @@
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
+				D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */,
 				7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
@@ -1778,8 +1861,6 @@
 				D21F316B1895C73300FF6E83 /* bookmark.icns in Resources */,
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
-				762DA21817CA4B210013D864 /* article.tex in Resources */,
-				762DA21917CA4B210013D864 /* formal_letter.tex in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
 				D2C237AC189554BE0096ECAA /* StructureOutlineSectionView.xib in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
@@ -1835,6 +1916,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D2A739D618D4BF78005991D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2A739ED18D4C2CD005991D5 /* DocumentModel_Test.m in Sources */,
+				D2A739EB18D4BFD2005991D5 /* ProjectModel_Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2CC54EC171EAFAB00D81CF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1877,6 +1967,7 @@
 				D2E7A4FF1768E8F400B2BA3C /* LatexSyntaxHighlighter.m in Sources */,
 				D2E7A5001768E8F400B2BA3C /* SyntaxHighlighterStub.m in Sources */,
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
+				D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */,
 				D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
@@ -1892,6 +1983,7 @@
 				D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */,
 				D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */,
 				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,
+				D288C94618D47E9D007384E6 /* BibDocument.m in Sources */,
 				D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */,
 				F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
@@ -1902,6 +1994,7 @@
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
+				D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2C2358C189543F00096ECAA /* SMTabBar.m in Sources */,
@@ -1982,7 +2075,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D2A739E618D4BF78005991D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2CC54EF171EAFAB00D81CF1 /* TeXtended */;
+			targetProxy = D2A739E518D4BF78005991D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2A739E018D4BF78005991D5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2024,6 +2133,71 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D2A739E818D4BF78005991D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TeXtended Tests/TeXtended Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "TeXtended Tests/TeXtended Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D2A739E918D4BF78005991D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TeXtended Tests/TeXtended Tests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "TeXtended Tests/TeXtended Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -2151,6 +2325,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D2A739E718D4BF78005991D5 /* Build configuration list for PBXNativeTarget "TeXtended Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2A739E818D4BF78005991D5 /* Debug */,
+				D2A739E918D4BF78005991D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */ = {
 			isa = XCConfigurationList;

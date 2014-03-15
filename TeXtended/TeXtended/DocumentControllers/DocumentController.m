@@ -40,7 +40,6 @@
 - (id)initWithDocument:(DocumentModel *)model andMainDocument:(MainDocument *)mainDocument {
     self = [super init];
     if (self) {
-        DDLogVerbose(@"Init");
         self.mainDocument = mainDocument;
         self.model = model;
         self.consoleViewControllers = [NSMutableSet new];
@@ -263,7 +262,6 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     self.textViewController.firstResponderDelegate = NULL;
     [self.compiler terminateAndKill];
     for(ExtendedPDFViewController *c in self.pdfViewControllers) {
