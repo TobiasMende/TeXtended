@@ -33,11 +33,11 @@
                     <tabViewItems/>
                 </tabView>
                 <popUpButton verticalHuggingPriority="750" id="ajg-EJ-ejU">
-                    <rect key="frame" x="-2" y="-3" width="276" height="26"/>
+                    <rect key="frame" x="-3" y="-2" width="277" height="22"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="64d-qX-nLq" id="0WA-m7-h6x">
+                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="64d-qX-nLq" id="0WA-m7-h6x">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="O0Z-gr-lWo">
                             <items>
                                 <menuItem title="Item 1" state="on" id="64d-qX-nLq"/>

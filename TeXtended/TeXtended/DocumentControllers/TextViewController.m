@@ -115,9 +115,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     
     // save the current document, since it is probabily included
     NSError *error = nil;
-    [self.model saveContent:self.content error:&error];
+    [self.firstResponderDelegate saveDocument:nil];
     if (error) {
-        DDLogError(@"%@", error);
         return;
     }
     
