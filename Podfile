@@ -20,3 +20,8 @@ target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
     pod 'DMInspectorPalette'
 end
+
+target 'TeXtended Tests', :exclusive => true do
+    xcodeproj 'TeXtended/TeXtended.xcodeproj'
+    pod 'OCMockito'
+end

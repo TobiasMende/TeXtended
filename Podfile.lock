@@ -5,13 +5,19 @@ PODS:
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - DMInspectorPalette (0.0.1)
+  - OCHamcrest (3.0.1)
+  - OCMockito (1.1.0):
+    - OCHamcrest (~> 3.0)
 
 DEPENDENCIES:
   - CocoaLumberjack
   - DMInspectorPalette
+  - OCMockito
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   DMInspectorPalette: f3c4bafd80a10b5e073a42e6adfe7ad7daf2a5ed
+  OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
+  OCMockito: 317fa0cf75c9b0d73d2be335789c556537be7fd2
 
 COCOAPODS: 0.29.0
