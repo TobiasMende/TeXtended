@@ -89,6 +89,11 @@
 -(void) drawGrid:(NSSize) size;
 
 /**
+ * Update the page numbers
+ */
+-(void)updatePageNumber:(NSNotification*)note;
+
+/**
   * Init required variables. Called from all init methods.
   */
 - (void) initVariables;

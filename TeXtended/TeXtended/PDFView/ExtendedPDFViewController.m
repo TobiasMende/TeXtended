@@ -139,6 +139,8 @@
         } else {
             DDLogError(@"Invalid Index: %li", index);
         }
+        
+        [self.pdfView updatePageNumber:nil];
     }
 }
 
