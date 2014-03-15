@@ -131,6 +131,9 @@
 		D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */; };
 		D2848715188B516E00CC91A0 /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848714188B516E00CC91A0 /* EditTemplateView.xib */; };
 		D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */; };
+		D288C94618D47E9D007384E6 /* BibDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D288C94418D47E9D007384E6 /* BibDocument.m */; };
+		D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = D288C94518D47E9D007384E6 /* BibDocument.xib */; };
+		D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */; };
 		D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0D8177AD36100E4C711 /* pdflatex.rb in Copy Files */ = {isa = PBXBuildFile; fileRef = D28DC0D6177AC94900E4C711 /* pdflatex.rb */; };
 		D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */ = {isa = PBXBuildFile; fileRef = D28DC0D9177AEBC900E4C711 /* xelatex.rb */; };
@@ -574,6 +577,11 @@
 		D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTQuickLookView.m; sourceTree = "<group>"; };
 		D2848714188B516E00CC91A0 /* EditTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTemplateView.xib; sourceTree = "<group>"; };
 		D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DefaultTemplates.bundle; sourceTree = "<group>"; };
+		D288C94318D47E9D007384E6 /* BibDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibDocument.h; sourceTree = "<group>"; };
+		D288C94418D47E9D007384E6 /* BibDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibDocument.m; sourceTree = "<group>"; };
+		D288C94518D47E9D007384E6 /* BibDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BibDocument.xib; sourceTree = "<group>"; };
+		D288C94D18D49E68007384E6 /* BibtexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibtexSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D28AAFDE17EF27AA0033BDD4 /* ViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerProtocol.h; sourceTree = "<group>"; };
 		D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LatexErrorExtensions.plist; sourceTree = "<group>"; };
 		D28DC0D6177AC94900E4C711 /* pdflatex.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = pdflatex.rb; sourceTree = "<group>"; };
@@ -1059,6 +1067,9 @@
 				D27F805218253A3E00BCD72A /* MainDocument.m */,
 				D25FBAAA18903EED00FD3987 /* MainToolbar.h */,
 				D25FBAAB18903EED00FD3987 /* MainToolbar.m */,
+				D288C94318D47E9D007384E6 /* BibDocument.h */,
+				D288C94418D47E9D007384E6 /* BibDocument.m */,
+				D288C94518D47E9D007384E6 /* BibDocument.xib */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1236,7 +1247,9 @@
 			isa = PBXGroup;
 			children = (
 				D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */,
+				D288C94D18D49E68007384E6 /* BibtexSyntaxHighlighter.h */,
 				D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */,
+				D288C94E18D49EA2007384E6 /* BibtexSyntaxHighlighter.m */,
 				D27198371743884B00342CB0 /* SyntaxHighlighter.h */,
 				D27198381743889400342CB0 /* SyntaxHighlighterStub.h */,
 				D27198391743889400342CB0 /* SyntaxHighlighterStub.m */,
@@ -1708,6 +1721,7 @@
 				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
+				D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */,
 				7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
@@ -1892,6 +1906,7 @@
 				D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */,
 				D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */,
 				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,
+				D288C94618D47E9D007384E6 /* BibDocument.m in Sources */,
 				D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */,
 				F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */,
 				D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */,
@@ -1902,6 +1917,7 @@
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
+				D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
 				D2C2358C189543F00096ECAA /* SMTabBar.m in Sources */,

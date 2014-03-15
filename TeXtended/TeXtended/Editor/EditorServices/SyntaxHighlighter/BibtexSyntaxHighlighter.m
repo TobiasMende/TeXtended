@@ -6,23 +6,23 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "LatexSyntaxHighlighter.h"
+#import "BibtexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
 #import "CodeNavigationAssistant.h"
 #import "Constants.h"
 #import <TMTHelperCollection/TMTLog.h>
 
-static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
-static NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
+static NSString *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
+static NSRegularExpression *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
-@interface LatexSyntaxHighlighter ()
+@interface BibtexSyntaxHighlighter ()
 - (void) unbindFromUserDefaults;
 - (void) highlightAtSelectionChange;
 @end
 
-@implementation LatexSyntaxHighlighter
+@implementation BibtexSyntaxHighlighter
 
 
 #pragma mark Initialization
@@ -30,9 +30,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 + (void)initialize {
         // In this section,
-    COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
-    
-    INLINE_MATH_PATTERN = @"(?<![\\\\])(?:\\$(?:[^\\$]+)\\$)|(\\\\\\[(?:[^\\$]+)\\\\\\])|(\\$\\$(?:[^\\$]+)\\$\\$)";
+    COMMAND_PATTERN = @"\\@\\w*";
     
     CURLY_BRACKET_PATTERN = @"(\\{|\\})";
     
@@ -42,13 +40,12 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     
     NSError *error;
         //Regular Expression
-    INLINE_MATH_REGEX = [NSRegularExpression regularExpressionWithPattern:INLINE_MATH_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
     COMMAND_REGEX = [NSRegularExpression regularExpressionWithPattern:COMMAND_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
     CURLY_BRACKET_REGEX = [NSRegularExpression regularExpressionWithPattern:CURLY_BRACKET_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
     COMMENT_REGEX = [NSRegularExpression regularExpressionWithPattern:COMMENT_PATTERN options:NSRegularExpressionCaseInsensitive|NSRegularExpressionAnchorsMatchLines error:&error];
     BRACKET_REGEX = [NSRegularExpression regularExpressionWithPattern:BRACKET_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
     
-    USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor",@"commandColor",@"bracketColor",@"curlyBracketColor",@"commentColor",@"shouldHighlightArguments",@"shouldHighlightCommands",@"shouldHighlightComments",@"shouldHighlightBrackets",@"shouldHighlightInlineMath", nil];
+    USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"commandColor",@"bracketColor",@"curlyBracketColor",@"commentColor",@"shouldHighlightArguments",@"shouldHighlightCommands",@"shouldHighlightComments",@"shouldHighlightBrackets", nil];
     if (error) {
         DDLogError(@"Syntax Highlighter Error: %@", error.userInfo);
     }
@@ -77,9 +74,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
         Initial setup of the highlighting colors
      */
     
-    self.inlineMathColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_INLINE_MATH_COLOR]];
-    [self bind:@"inlineMathColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_INLINE_MATH_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
-    
     self.commandColor = [NSUnarchiver unarchiveObjectWithData:[[defaults values] valueForKey:TMT_COMMAND_COLOR]];
     [self bind:@"commandColor" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_COMMAND_COLOR] options:@{NSValueTransformerNameBindingOption: NSUnarchiveFromDataTransformerName}];
     
@@ -95,9 +89,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     /*
         Initial setup of the highlighting flags
      */
-    self.shouldHighlightInlineMath = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_INLINE_MATH] boolValue];
-    [self bind:@"shouldHighlightInlineMath" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_INLINE_MATH] options:NULL];
-    
     self.shouldHighlightCommands = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_COMMANDS] boolValue];
     [self bind:@"shouldHighlightCommands" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_COMMANDS] options:NULL];
     
@@ -172,7 +163,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     [self highlightCommandInRange:textRange];
     [self highlightCurlyBracketsInRange:textRange];
     [self highlightCommentInRange:textRange];
-    [self highlightInlineMathInRange:textRange];
     [view.codeExtensionEngine addLinksForRange:textRange];
 }
 
@@ -202,11 +192,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     }
 }
 
-- (void) highlightInlineMathInRange:(NSRange) totalRange {
-    if (self.shouldHighlightInlineMath) {
-        [self highlightForegroundWithExpression:INLINE_MATH_REGEX andColor:self.inlineMathColor inRange:totalRange];
-    }
-}
 
 - (void) highlightCommentInRange:(NSRange) totalRange {
     if (self.shouldHighlightComments) {
@@ -248,10 +233,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
 #pragma mark Color Setter
 
-- (void)setInlineMathColor:(NSColor *)inlineMathColor {
-    _inlineMathColor = inlineMathColor;
-    [self handleColorChange];
-}
 
 - (void)setCommandColor:(NSColor *)commandColor {
     _commandColor = commandColor;
@@ -296,10 +277,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     [self handleColorChange];
 }
 
-- (void)setShouldHighlightInlineMath:(BOOL)shouldHighlightInlineMath {
-    _shouldHighlightInlineMath = shouldHighlightInlineMath;
-    [self handleColorChange];
-}
 
 
 #pragma mark -
@@ -312,7 +289,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 }
 
 -(void)dealloc {
-    DDLogVerbose(@"LatexSyntaxHighlighter dealloc");
+    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextViewDidChangeSelectionNotification object:view];
     [self unbindFromUserDefaults];
 }

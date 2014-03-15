@@ -129,6 +129,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     [self registerUserDefaultsObserver];
     [self setRichText:NO];
+    [self setCompletionEnabled:YES];
     [self setDisplaysLinkToolTips:YES];
     [self setHorizontallyResizable:YES];
     [self setVerticallyResizable:YES];
@@ -172,7 +173,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 }
 
 - (void)complete:(id)sender {
-    [self extendedComplete:sender];
+    if (self.completionEnabled) {
+        [self extendedComplete:sender];
+    } else {
+        [super complete:sender];
+    }
 }
 
 - (void)dismissCompletionWindow {
@@ -386,7 +391,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     NSUInteger position = [self selectedRange].location;
     // Some services should not run if a latex linebreak occures befor the current position
     if (![self.string latexLineBreakPreceedingPosition:position]) {
-        if ([completionHandler shouldCompleteForInsertion:str]) {
+        if (self.completionEnabled && [completionHandler shouldCompleteForInsertion:str]) {
             [self complete:self];
         }
     } else {

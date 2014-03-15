@@ -49,7 +49,7 @@ GoToLineSheetController *goToLineSheet;
     
     NSArray *droppedFileNames;
 }
-
+@property BOOL completionEnabled;
 @property (assign) id<FirstResponderDelegate> firstResponderDelegate;
 @property NSUInteger currentModifierFlags;
 
