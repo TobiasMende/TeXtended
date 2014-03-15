@@ -163,8 +163,6 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
         case TMTRefCompletion:
             return [self refCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
-        default:
-            DDLogInfo(@"NoCompletion");
     }
     return nil;
 }

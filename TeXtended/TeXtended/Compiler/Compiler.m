@@ -27,7 +27,6 @@
 
 - (id)initWithCompileProcessHandler:(id<CompileProcessHandler>) controller {
     self = [super init];
-    DDLogVerbose(@"init");
     if (self) {
         self.compileProcessHandler = controller;
         currentTasks = [NSMutableSet new];
@@ -172,7 +171,6 @@
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [self terminateAndKill];
     
 }

@@ -29,7 +29,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 - (id)init {
     self = [super init];
-    DDLogWarn(@"Init");
+    DDLogVerbose(@"init");
     return self;
 }
 
@@ -188,7 +188,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 }
 
 - (void)dealloc {
-    DDLogWarn(@"Dealloc");
+    DDLogVerbose(@"dealloc");
 }
 
 
