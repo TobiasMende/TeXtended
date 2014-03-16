@@ -82,7 +82,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)registerModelObserver {
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
-    [_model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [self.model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
    
 }
 
@@ -90,7 +90,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
-     [_model removeObserver:self forKeyPath:@"messages"];
+     [self.model removeObserver:self forKeyPath:@"messages"];
 }
 
 - (void)setModel:(DocumentModel *)model {
@@ -296,9 +296,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     if (item) {
         [item.tabView removeTabViewItem:item];
     }
+    [self unregisterModelObserver];
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
-    [self unregisterModelObserver];
     
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
