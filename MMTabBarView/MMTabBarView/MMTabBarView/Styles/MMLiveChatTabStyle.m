@@ -54,16 +54,15 @@
 }
 
 - (void)dealloc {
-	[liveChatCloseButton release], liveChatCloseButton = nil;
-	[liveChatCloseButtonDown release], liveChatCloseButtonDown = nil;
-	[liveChatCloseButtonOver release], liveChatCloseButtonOver = nil;
-	[liveChatCloseDirtyButton release], liveChatCloseDirtyButton = nil;
-	[liveChatCloseDirtyButtonDown release], liveChatCloseDirtyButtonDown = nil;
-	[liveChatCloseDirtyButtonOver release], liveChatCloseDirtyButtonOver = nil;
+	liveChatCloseButton = nil;
+	liveChatCloseButtonDown = nil;
+	liveChatCloseButtonOver = nil;
+	liveChatCloseDirtyButton = nil;
+	liveChatCloseDirtyButtonDown = nil;
+	liveChatCloseDirtyButtonOver = nil;
     
-	[_objectCountStringAttributes release], _objectCountStringAttributes = nil;
+	_objectCountStringAttributes = nil;
 
-	[super dealloc];
 }
 
 #pragma mark -
@@ -334,13 +333,13 @@
 
 - (NSAttributedString *)attributedObjectCountStringValueForTabCell:(MMTabBarButtonCell *)cell {
 	NSString *contents = [NSString stringWithFormat:@"%lu", (unsigned long)[cell objectCount]];
-	return [[[NSMutableAttributedString alloc] initWithString:contents attributes:_objectCountStringAttributes] autorelease];
+	return [[NSMutableAttributedString alloc] initWithString:contents attributes:_objectCountStringAttributes];
 }
 
 - (NSAttributedString *)attributedStringValueForTabCell:(MMTabBarButtonCell *)cell {
 	NSMutableAttributedString *attrStr;
 	NSString * contents = [cell title];
-	attrStr = [[[NSMutableAttributedString alloc] initWithString:contents] autorelease];
+	attrStr = [[NSMutableAttributedString alloc] initWithString:contents];
 	NSRange range = NSMakeRange(0, [contents length]);
 
 	[attrStr addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
@@ -348,7 +347,7 @@
 	// Paragraph Style for Truncating Long Text
 	static NSMutableParagraphStyle *TruncatingTailParagraphStyle = nil;
 	if (!TruncatingTailParagraphStyle) {
-		TruncatingTailParagraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] retain];
+		TruncatingTailParagraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 		[TruncatingTailParagraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
 	}
 	[attrStr addAttribute:NSParagraphStyleAttributeName value:TruncatingTailParagraphStyle range:range];
@@ -369,7 +368,6 @@
 		NSBezierPath *path = [NSBezierPath bezierPathWithRect:gradientRect];
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.75 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.75 alpha:0.0]];
         [gradient drawInBezierPath:path angle:90.0];
-        [gradient release];
 	}
     
 	[[NSColor colorWithCalibratedWhite:0.576 alpha:1.0] set];
@@ -542,7 +540,6 @@
     
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
     [gradient drawInBezierPath:fillPath angle:90.0];
-    [gradient release];
 
     NSBezierPath *outlinePath = outlinePath = [NSBezierPath bezierPathWithCardInRect:aRect radius:radius capMask:capMask];
   

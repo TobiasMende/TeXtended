@@ -58,14 +58,13 @@
 }
 
 - (void)dealloc {
-    [cardCloseButton release], cardCloseButton = nil;
-    [cardCloseButtonDown release], cardCloseButtonDown = nil;
-    [cardCloseButtonOver release], cardCloseButtonOver = nil;
-    [cardCloseDirtyButton release], cardCloseDirtyButton = nil;
-    [cardCloseDirtyButtonDown release], cardCloseDirtyButtonDown = nil;
-    [cardCloseDirtyButtonOver release], cardCloseDirtyButtonOver = nil;
+    cardCloseButton = nil;
+    cardCloseButtonDown = nil;
+    cardCloseButtonOver = nil;
+    cardCloseDirtyButton = nil;
+    cardCloseDirtyButtonDown = nil;
+    cardCloseDirtyButtonOver = nil;
     
-    [super dealloc];
 }
 
 #pragma mark -
@@ -181,7 +180,6 @@
     if (gradient) {
         [gradient drawInRect:bounds angle:270];
     
-        [gradient release];
         }
 
     bounds = [tabBarView bounds];
@@ -271,7 +269,7 @@
 
         if (gradient != nil) {
             [gradient drawInBezierPath:fillPath angle:90.0f];
-            [gradient release], gradient = nil;
+            gradient = nil;
             }
     } else {
         [[NSColor windowBackgroundColor] set];

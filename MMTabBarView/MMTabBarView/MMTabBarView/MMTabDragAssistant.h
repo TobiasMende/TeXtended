@@ -46,10 +46,10 @@ extern NSString *AttachedTabBarButtonUTI;
     MMSlideButtonsAnimation         *_slideButtonsAnimation;
 }
 
-@property (retain) MMTabBarView *sourceTabBar;
-@property (retain) MMAttachedTabBarButton *attachedTabBarButton;
-@property (retain) MMTabPasteboardItem *pasteboardItem;
-@property (retain) MMTabBarView *destinationTabBar;
+@property (strong) MMTabBarView *sourceTabBar;
+@property (strong) MMAttachedTabBarButton *attachedTabBarButton;
+@property (strong) MMTabPasteboardItem *pasteboardItem;
+@property (strong) MMTabBarView *destinationTabBar;
 @property (assign) BOOL isDragging;
 @property (assign) NSPoint currentMouseLocation;
 

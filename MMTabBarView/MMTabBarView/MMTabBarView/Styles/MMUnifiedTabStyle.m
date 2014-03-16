@@ -50,14 +50,13 @@
 }
 
 - (void)dealloc {
-	[unifiedCloseButton release], unifiedCloseButton = nil;
-	[unifiedCloseButtonDown release], unifiedCloseButtonDown = nil;
-	[unifiedCloseButtonOver release], unifiedCloseButtonOver = nil;
-	[unifiedCloseDirtyButton release], unifiedCloseDirtyButton = nil;
-	[unifiedCloseDirtyButtonDown release], unifiedCloseDirtyButtonDown = nil;
-	[unifiedCloseDirtyButtonOver release], unifiedCloseDirtyButtonOver = nil;
+	unifiedCloseButton = nil;
+	unifiedCloseButtonDown = nil;
+	unifiedCloseButtonOver = nil;
+	unifiedCloseDirtyButton = nil;
+	unifiedCloseDirtyButtonDown = nil;
+	unifiedCloseDirtyButtonOver = nil;
 
-	[super dealloc];
 }
 
 #pragma mark -
@@ -149,7 +148,6 @@
 	} else {
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.835 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.843 alpha:1.0]];
         [gradient drawInRect:gradientRect angle:90.0];
-        [gradient release];
     }
 
 	[[NSColor colorWithCalibratedWhite:0.576 alpha:1.0] set];
@@ -303,12 +301,12 @@
 	// self = [super initWithCoder:aDecoder];
 	//if (self) {
 	if ([aDecoder allowsKeyedCoding]) {
-		unifiedCloseButton = [[aDecoder decodeObjectForKey:@"unifiedCloseButton"] retain];
-		unifiedCloseButtonDown = [[aDecoder decodeObjectForKey:@"unifiedCloseButtonDown"] retain];
-		unifiedCloseButtonOver = [[aDecoder decodeObjectForKey:@"unifiedCloseButtonOver"] retain];
-		unifiedCloseDirtyButton = [[aDecoder decodeObjectForKey:@"unifiedCloseDirtyButton"] retain];
-		unifiedCloseDirtyButtonDown = [[aDecoder decodeObjectForKey:@"unifiedCloseDirtyButtonDown"] retain];
-		unifiedCloseDirtyButtonOver = [[aDecoder decodeObjectForKey:@"unifiedCloseDirtyButtonOver"] retain];
+		unifiedCloseButton = [aDecoder decodeObjectForKey:@"unifiedCloseButton"];
+		unifiedCloseButtonDown = [aDecoder decodeObjectForKey:@"unifiedCloseButtonDown"];
+		unifiedCloseButtonOver = [aDecoder decodeObjectForKey:@"unifiedCloseButtonOver"];
+		unifiedCloseDirtyButton = [aDecoder decodeObjectForKey:@"unifiedCloseDirtyButton"];
+		unifiedCloseDirtyButtonDown = [aDecoder decodeObjectForKey:@"unifiedCloseDirtyButtonDown"];
+		unifiedCloseDirtyButtonOver = [aDecoder decodeObjectForKey:@"unifiedCloseDirtyButtonOver"];
 	}
 	//}
 	return self;
@@ -332,13 +330,11 @@
             NSColor *endColor = [NSColor colorWithDeviceWhite:0.663 alpha:1.000];
             NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
             [gradient drawInBezierPath:fillPath angle:80.0];
-            [gradient release];
         } else if ([button mouseHovered]) {
             NSColor *startColor = [NSColor colorWithDeviceWhite:0.8 alpha:1.000];
             NSColor *endColor = [NSColor colorWithDeviceWhite:0.8 alpha:1.000];
             NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
             [gradient drawInBezierPath:fillPath angle:80.0];
-            [gradient release];            
         }
         
     } else {
@@ -349,7 +345,6 @@
             [[NSGraphicsContext currentContext] setShouldAntialias:NO];
             [gradient drawInBezierPath:fillPath angle:90.0];
             [[NSGraphicsContext currentContext] setShouldAntialias:YES];
-            [gradient release];
         }
     }        
 

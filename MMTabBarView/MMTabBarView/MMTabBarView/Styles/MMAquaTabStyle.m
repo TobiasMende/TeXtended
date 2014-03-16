@@ -61,18 +61,17 @@
 }
 
 - (void)dealloc {
-	[aquaTabBg release], aquaTabBg = nil;
-	[aquaTabBgDown release], aquaTabBgDown = nil;
-	[aquaDividerDown release], aquaDividerDown = nil;
-	[aquaDivider release], aquaDivider = nil;
-	[aquaCloseButton release], aquaCloseButton = nil;
-	[aquaCloseButtonDown release], aquaCloseButtonDown = nil;
-	[aquaCloseButtonOver release], aquaCloseButtonOver = nil;
-	[aquaCloseDirtyButton release], aquaCloseDirtyButton = nil;
-	[aquaCloseDirtyButtonDown release], aquaCloseDirtyButtonDown = nil;
-	[aquaCloseDirtyButtonOver release], aquaCloseDirtyButtonOver = nil;
+	aquaTabBg = nil;
+	aquaTabBgDown = nil;
+	aquaDividerDown = nil;
+	aquaDivider = nil;
+	aquaCloseButton = nil;
+	aquaCloseButtonDown = nil;
+	aquaCloseButtonOver = nil;
+	aquaCloseDirtyButton = nil;
+	aquaCloseDirtyButtonDown = nil;
+	aquaCloseDirtyButtonOver = nil;
 
-	[super dealloc];
 }
 
 #pragma mark -
@@ -290,18 +289,18 @@
 	//self = [super initWithCoder:aDecoder];
 	//if (self) {
 	if ([aDecoder allowsKeyedCoding]) {
-		aquaTabBg = [[aDecoder decodeObjectForKey:@"aquaTabBg"] retain];
-		aquaTabBgDown = [[aDecoder decodeObjectForKey:@"aquaTabBgDown"] retain];
-		aquaTabBgDownGraphite = [[aDecoder decodeObjectForKey:@"aquaTabBgDownGraphite"] retain];
-		aquaTabBgDownNonKey = [[aDecoder decodeObjectForKey:@"aquaTabBgDownNonKey"] retain];
-		aquaDividerDown = [[aDecoder decodeObjectForKey:@"aquaDividerDown"] retain];
-		aquaDivider = [[aDecoder decodeObjectForKey:@"aquaDivider"] retain];
-		aquaCloseButton = [[aDecoder decodeObjectForKey:@"aquaCloseButton"] retain];
-		aquaCloseButtonDown = [[aDecoder decodeObjectForKey:@"aquaCloseButtonDown"] retain];
-		aquaCloseButtonOver = [[aDecoder decodeObjectForKey:@"aquaCloseButtonOver"] retain];
-		aquaCloseDirtyButton = [[aDecoder decodeObjectForKey:@"aquaCloseDirtyButton"] retain];
-		aquaCloseDirtyButtonDown = [[aDecoder decodeObjectForKey:@"aquaCloseDirtyButtonDown"] retain];
-		aquaCloseDirtyButtonOver = [[aDecoder decodeObjectForKey:@"aquaCloseDirtyButtonOver"] retain];
+		aquaTabBg = [aDecoder decodeObjectForKey:@"aquaTabBg"];
+		aquaTabBgDown = [aDecoder decodeObjectForKey:@"aquaTabBgDown"];
+		aquaTabBgDownGraphite = [aDecoder decodeObjectForKey:@"aquaTabBgDownGraphite"];
+		aquaTabBgDownNonKey = [aDecoder decodeObjectForKey:@"aquaTabBgDownNonKey"];
+		aquaDividerDown = [aDecoder decodeObjectForKey:@"aquaDividerDown"];
+		aquaDivider = [aDecoder decodeObjectForKey:@"aquaDivider"];
+		aquaCloseButton = [aDecoder decodeObjectForKey:@"aquaCloseButton"];
+		aquaCloseButtonDown = [aDecoder decodeObjectForKey:@"aquaCloseButtonDown"];
+		aquaCloseButtonOver = [aDecoder decodeObjectForKey:@"aquaCloseButtonOver"];
+		aquaCloseDirtyButton = [aDecoder decodeObjectForKey:@"aquaCloseDirtyButton"];
+		aquaCloseDirtyButtonDown = [aDecoder decodeObjectForKey:@"aquaCloseDirtyButtonDown"];
+		aquaCloseDirtyButtonOver = [aDecoder decodeObjectForKey:@"aquaCloseDirtyButtonOver"];
 	}
 	//}
 	return self;

@@ -36,11 +36,10 @@
 
 - (void)dealloc
 {
-    [_bezelDrawingBlock release], _bezelDrawingBlock = nil;
-    [_image release], _image = nil;
-    [_secondImage release], _secondImage = nil;
+    _bezelDrawingBlock = nil;
+    _image = nil;
+    _secondImage = nil;
     
-    [super dealloc];
 }
 
 #pragma mark -
@@ -54,10 +53,10 @@
 
         // as super class ignores setting image, we store it separately.
     if (_image) {
-        [_image release], _image = nil;
+        _image = nil;
     }
     
-    _image = [image retain];
+    _image = image;
 }
 
 #pragma mark -
@@ -134,8 +133,8 @@
 	if ((self = [super initWithCoder:aDecoder])) {
 		if ([aDecoder allowsKeyedCoding]) {
         
-            _image = [[aDecoder decodeObjectForKey:@"MMTabBarOverflowPopUpImage"] retain];
-            _secondImage = [[aDecoder decodeObjectForKey:@"MMTabBarOverflowPopUpSecondImage"] retain];
+            _image = [aDecoder decodeObjectForKey:@"MMTabBarOverflowPopUpImage"];
+            _secondImage = [aDecoder decodeObjectForKey:@"MMTabBarOverflowPopUpSecondImage"];
 		}
 	}
 	return self;
