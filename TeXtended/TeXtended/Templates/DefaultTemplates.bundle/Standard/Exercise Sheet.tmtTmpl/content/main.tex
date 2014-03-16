@@ -1,0 +1,48 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% An exercise sheet.                                               %
+% Version for students (for the solutions).                        %
+%                                                                  %
+% For configuration possibility see manual.pdf                     % 
+% For more informations visit: http://exercisesheet.googlecode.com %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{exercisesheet}
+
+% load properties
+\input{properties.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuration of the exercise sheet. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sheetconf{%
+    lecture   = @@Specimen of a Title of a Lecture@@,
+    lecturer  = @@Prof.~Foo~Bar@@,
+    semester  = @@Winter~Semester~2011/2012@@,
+    author    = @@Your Name@@,
+  }
+
+% Document starts here.
+\begin{document}
+
+% Inserting informations from above.
+\maketitle%
+\tableofcontents%
+  
+% Simply start a sheet.
+\sheet[
+    topic={@@Specimen of a Title of an Exercise Sheet@@}
+  ]
+
+% A sheet consists out of exercises.
+\exercise[
+    topic={@@Specimen of a Title of an Exercise@@}
+  ]
+
+% And an exercise out of subexercises.
+\subexercise[
+  topic={@@Specimen of a Title of a Subexercise@@}
+    ]
+
+@@The solution!@@
+
+% Hopefully you managed to solve all exercises here. :)
+\end{document}

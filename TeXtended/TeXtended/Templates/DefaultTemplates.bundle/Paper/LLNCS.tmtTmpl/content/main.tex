@@ -1,0 +1,89 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A LLNCS paper with basic configurations. %
+% For more possibilities take a look       %
+% at the llncs package documentation.      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[runningheads,a4paper]{llncs}
+
+% some default packages
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{url}
+
+% This command ist used to define the keywords later.      
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip%
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+\mainmatter% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Paper properties.         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define the title of the paper here.
+\title{@@The full Version of the Title@@}
+
+% Define a shorter version of the title (for right page headers).
+\titlerunning{@@Shorter Title@@}
+
+% Define the authors.
+\author{%
+Author 1\thanks{@@May get some informations on the bottom of the page.@@}%
+\and% separate authors with \and
+@@Author 2@@%
+% you can, of course, add more if you want
+}
+
+% Define a shorter version of the authors (for left page headers).
+\authorrunning{@@Author 1 et al.@@}
+
+% Define the affiliations here. 
+% Beside the institute, the address and email address 
+% as well as other informations, can be specified here.
+\institute{%
+@@Institute X@@, @@Department of Y @@\\ %
+@@Some Addresses here@@\\ %
+\email{\{@@author1, author2@@\}@ @@department.com@@}\\ %
+}
+
+% You can redefine the title that goes to the table of contents.
+% This is only needed for volumes.
+\toctitle{@@Title for the TOC@@}
+
+% The authors can be defined for the table of contents as well.
+% The affiliations go in brackets after the authors name.
+\tocauthor{@@Authors@@}
+
+% Actually insert the above informations.
+\maketitle
+
+% Define your abstract here.
+\begin{abstract}
+@@The full abstract here.@@
+
+% Define keywords of the paper here.
+\keywords{@@Keyword 1@@, @@Keyword 2@@}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Actual paper content here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{@@Title of the first section@@}
+
+@@Just write your paper here.@@
+
+
+% Add the end you may want to add some acknowledgments
+\subsubsection*{Acknowledgments.} @@Some acknowledgments here.@@
+
+
+% Last, but not least, the bibliography.
+\begin{thebibliography}{4}
+% insere bibitems here
+\end{thebibliography}
+
+% thats it
+\end{document}

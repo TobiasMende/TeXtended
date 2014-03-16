@@ -1,0 +1,127 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A template for IEEE paper.                                        %
+% See the documentation of IEEEtran for more configuration details. %
+%                                                                   %
+% In the documentclass configuration, use one of the following:     %
+% [12pt,journal,compsoc]                                            %
+% [conference]                                                      % 
+% [journal]                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,journal,compsoc]{IEEEtran}
+
+\begin{document}
+
+% Define the title:
+\title{@@The Title@@ \\ @@ (With Multiple Lines) @@}
+
+% Define the authors here.
+%
+\author{%
+% start of author definition v
+%
+@@Author~1@@,~\IEEEmembership{@@Membership@@,}
+@@Author~2@@,~\IEEEmembership{Membership}%
+%
+% The following environment ist used to add informations
+% for the authors in the footnotes.
+\IEEEcompsocitemizethanks{%
+%
+% one item per author
+\IEEEcompsocthanksitem%
+@@Author~1 has some properties.@@
+\protect\\
+@@They can be written in multiple lines.@@
+\IEEEcompsocthanksitem%
+@@Author~1 has some properties too.@@
+}
+%
+% Use \thanks to access the footnote area, use the commands multiple times
+% to produce multiple paragraphs.
+\thanks{@@One paragraph in the footnote area.@@}
+%
+% end of author definitions ^
+}
+
+% Define the page headers.
+\markboth{@@The jornal@@}%
+{@@Author and paper title@@}
+
+% Define the abstract and keywords here
+\IEEEcompsoctitleabstractindextext{%
+%
+% the abstract:
+\begin{abstract}
+@@The abstract.@@
+\end{abstract}
+%
+% keywords:
+\begin{IEEEkeywords}
+@@Keyword 1@@, @@Keyword 2@@.
+\end{IEEEkeywords}%
+}
+
+% insert above informations
+\maketitle%
+\IEEEdisplaynotcompsoctitleabstractindextext%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The paper starts here. %
+% %%%%%%%%%%%%%%%%%%%%%%%%
+\section{@@The first section@@}
+
+\IEEEPARstart{S}{art} @@a paragraph with this command, to obtain a drop 
+letter.
+Therefore you need at least two lines per paragraph.@@
+
+% Add a appendix at the end.
+% Every \section will be one appendix.
+\appendices%
+\section{@@Title of the appendix@@}
+@@Appendix 1.@@
+
+% An appendix don't need a title
+\section{}
+@@Appendix 2.@@
+
+
+% At the end add some acknowledgments.
+% The title differs in some version, therefore the makkro.
+% You should not change this.
+\ifCLASSOPTIONcompsoc%
+  \section*{Acknowledgments}
+\else%
+  \section*{Acknowledgment}
+\fi%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Your acknowledgment here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@Thanks!@@
+
+% Define the bibliography.
+\ifCLASSOPTIONcaptionsoff%
+  \newpage
+\fi%
+\begin{thebibliography}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add your bib items here. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibitem{IEEEhowto:@@sitekey@@}
+@@S.~Name and S.~O. Name, \emph{The Title}.@@
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Specify the authors biography at the end.       %
+% Use \newpage to balance it in multiple columns. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{IEEEbiography}{@@Author 1@@}
+@@Some biography with a photo.@@
+\end{IEEEbiography}
+
+\begin{IEEEbiographynophoto}{@@Author 2@@}
+@@Some biography without a photo.@@
+\end{IEEEbiographynophoto}
+
+% You made it!
+\end{document}
