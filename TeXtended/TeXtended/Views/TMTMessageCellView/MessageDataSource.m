@@ -171,7 +171,6 @@
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
     self.tableView.rightClickAction = nil;

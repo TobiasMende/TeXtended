@@ -289,7 +289,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 }
 
 -(void)dealloc {
-    DDLogVerbose(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextViewDidChangeSelectionNotification object:view];
     [self unbindFromUserDefaults];
 }

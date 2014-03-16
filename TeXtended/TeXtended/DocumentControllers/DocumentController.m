@@ -62,7 +62,6 @@
 
 
 - (void)setModel:(DocumentModel *)model {
-    DDLogVerbose(@"setModel: %@ (%@)", model, model.texPath);
     if (model != _model) {
         if (self.model) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
@@ -262,7 +261,7 @@
 #pragma mark Dealloc
 
 - (void)dealloc {
-    self.textViewController.firstResponderDelegate = NULL;
+    self.textViewController.firstResponderDelegate = nil;
     [self.compiler terminateAndKill];
     for(ExtendedPDFViewController *c in self.pdfViewControllers) {
         if ([c.pdfView.firstResponderDelegate isEqual:self]) {

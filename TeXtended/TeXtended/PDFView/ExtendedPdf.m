@@ -385,7 +385,6 @@ static const NSSet *KEYS_TO_UNBIND;
 #pragma mark Dealloc
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridColor];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridUnit];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTdrawHGrid];

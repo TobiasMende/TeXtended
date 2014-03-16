@@ -37,7 +37,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     self.mainDocument = document;
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
-        DDLogVerbose(@"Init");
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
         self.fileViewController = [FileViewController new];
@@ -207,7 +206,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 -(void)dealloc {
-    DDLogVerbose(@"dealloc");
     self.myCurrentFirstResponderDelegate = nil;
     [self.outlineController windowIsGoingToDie];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];

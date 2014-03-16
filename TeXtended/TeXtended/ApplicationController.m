@@ -284,7 +284,6 @@ static ApplicationController *sharedInstance;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    DDLogVerbose(@"dealloc");
 }
 
 @end

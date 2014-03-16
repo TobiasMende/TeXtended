@@ -57,8 +57,4 @@
 }
 
 
-
-- (void)dealloc {
-    DDLogVerbose(@"UndoSupport dealloc");
-}
 @end

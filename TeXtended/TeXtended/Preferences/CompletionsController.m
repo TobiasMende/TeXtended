@@ -33,7 +33,6 @@ CompletionsController *instance;
     }
     self = [super init];
     if (self) {
-        DDLogVerbose(@"init");
         self.manager = [CompletionManager sharedInstance];
         instance = self;
     }
@@ -50,6 +49,5 @@ CompletionsController *instance;
 
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
 }
 @end

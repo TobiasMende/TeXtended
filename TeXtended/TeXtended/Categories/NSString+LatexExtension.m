@@ -142,6 +142,10 @@ static void initialize_BLOCK_REGEXS() {
 }
 
 - (NSRange)endRangeForPosition:(NSUInteger)position {
+    return [self endRangeForPosition:position inRange:NSMakeRange(0, self.length)];
+}
+
+- (NSRange)endRangeForPosition:(NSUInteger)position inRange:(NSRange)range {
     NSUInteger currentPosition = position;
     NSInteger counter = 0;
     
@@ -152,9 +156,9 @@ static void initialize_BLOCK_REGEXS() {
         currentPosition = lineRange.location;
     }
     
-    while(true) {
+    while(currentPosition < NSMaxRange(range)) {
         NSRange current = NSMakeRange(currentPosition, self.length-currentPosition);
-            NSTextCheckingResult *next = [BLOCK_REGEX firstMatchInString:self options:0 range:current];
+        NSTextCheckingResult *next = [BLOCK_REGEX firstMatchInString:self options:0 range:current];
         
         if (!next || next.range.location == NSNotFound) {
             return NSMakeRange(NSNotFound, 0);

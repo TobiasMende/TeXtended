@@ -118,17 +118,17 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 - (id)initWithTextView:(HighlightingTextView *)tv {
     self = [super initWithTextView:tv];
     if (self) {
-         NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController]; 
+        NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
         
         self.shouldCompleteEnvironments = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_ENVIRONMENTS] boolValue];
         [self bind:@"shouldCompleteEnvironments" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_ENVIRONMENTS] options:NULL];
-    
+        
         self.shouldCompleteCites = [[[defaults values] valueForKey:TMTShouldCompleteCites] boolValue];
         [self bind:@"shouldCompleteCites" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMTShouldCompleteCites] options:NULL];
         
         self.shouldCompleteRefs = [[[defaults values] valueForKey:TMTShouldCompleteRefs] boolValue];
         [self bind:@"shouldCompleteRefs" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMTShouldCompleteRefs] options:NULL];
-    
+        
         self.shouldCompleteCommands = [[[defaults values] valueForKey:TMT_SHOULD_COMPLETE_COMMANDS] boolValue];
         [self bind:@"shouldCompleteCommands" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_COMPLETE_COMMANDS] options:NULL];
         
@@ -222,7 +222,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
 
 - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary *__autoreleasing *)info{
-   *info = @{TMTCompletionTypeKey: @(TMTCommandCompletion)};
+    *info = @{TMTCompletionTypeKey: @(TMTCommandCompletion)};
     NSString *prefix = [@"\\" stringByAppendingString:[view.string substringWithRange:charRange]];
     NSArray *completions = [CompletionManager sharedInstance].commandCompletions.completions  ;
     NSMutableArray *matchingKeys = [[NSMutableArray alloc] init];
@@ -242,7 +242,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     NSMutableArray *matchingCompletions = [[NSMutableArray alloc] init];
     for (EnvironmentCompletion *c in completions) {
         if ([c.key hasPrefix:prefix]) {
-                [matchingCompletions addObject:c];
+            [matchingCompletions addObject:c];
         }
     }
     [matchingCompletions sortUsingSelector:@selector(compare:)];
@@ -296,12 +296,12 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
 - (void)insertCiteCompletion:(CiteCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
     if (flag && [self isFinalInsertion:movement]) {
-            [view.undoManager beginUndoGrouping];
+        [view.undoManager beginUndoGrouping];
         charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
-            [view setSelectedRange:charRange];
-            [view delete:nil];
-            [view  insertText:completion.key];
-            [view.undoManager endUndoGrouping];
+        [view setSelectedRange:charRange];
+        [view delete:nil];
+        [view  insertText:completion.key];
+        [view.undoManager endUndoGrouping];
     } else {
         //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
     }
@@ -321,14 +321,14 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 }
 
 - (void)insertCommandCompletion:(CommandCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag {
-     
+    
     if (flag && [self isFinalInsertion:movement]) {
         completion.counter++;
         if ([completion hasPlaceholders]) {
-        
-        
+            
+            
             [view.undoManager beginUndoGrouping];
-        NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
+            NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length-1)]];
             if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
                 [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
             }
@@ -337,15 +337,15 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             [view  insertText:final];
             //[view setSelectedRange:NSMakeRange(NSMaxRange(charRange), 0)];
             if (!(view.currentModifierFlags&NSAlternateKeyMask)) {
-            [view setSelectedRange:NSMakeRange(charRange.location, 0)];
-            [view jumpToNextPlaceholder];
+                [view setSelectedRange:NSMakeRange(charRange.location, 0)];
+                [view jumpToNextPlaceholder];
             }
             [view.undoManager endUndoGrouping];
         } else {
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     } else {
-            [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
+        [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
     }
     
 }
@@ -372,17 +372,16 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     
     [self skipClosingBracket];
     NSUInteger position = [view selectedRange].location;
-    // NSRange visible = [view visibleRange];
-//    NSRange range;
-//    if (position > visible.location) {
-//        NSUInteger dif = position - visible.location;
-//        range = NSMakeRange(position, visible.length-dif);
-//    } else {
-//        range = visible;
-//    }
+    NSRange visible = [view visibleRange];
+    NSRange range;
+    if (position > visible.location) {
+        NSUInteger dif = position - visible.location;
+        range = NSMakeRange(position, visible.length-dif);
+    } else {
+        range = visible;
+    }
     
-   
-    NSRange endRange = NSMakeRange(NSNotFound, 0);//TODO: [self matchingEndForEnvironment:word inRange:range];
+    
     if (!(view.currentModifierFlags&NSAlternateKeyMask) || type == TMTNoCompletion) {
         [view.undoManager beginUndoGrouping];
         [view setSelectedRange:NSMakeRange(position, 0)];
@@ -401,13 +400,11 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                 [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
             }
         }
-        if (endRange.location == NSNotFound) {
-            if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
-                [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
-            }
-            [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
-            
+        if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
         }
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
+        
         [view insertText:string];
         [view setSelectedRange:NSMakeRange(position, 0)];
         if ([completion hasPlaceholders]) {
@@ -434,34 +431,6 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
         [extension replaceCharactersInRange:r.range withAttributedString:newLine];
     }
     return extension;
-}
-
-
-- (NSRange) matchingEndForEnvironment:(NSString*) name inRange:(NSRange) range {
-    //FIXME: doesn't work.
-    DDLogInfo(@"Range: %@, total: %@", NSStringFromRange(range), NSStringFromRange(view.visibleRange));
-    
-    NSString *start = [NSString stringWithFormat:@"\\begin{%@}", name];
-    NSString *end = [NSString stringWithFormat:@"\\end{%@}", name];
-    NSUInteger totalLength = [view string].length;
-    NSUInteger counter = 0;
-    for (NSUInteger position = range.location; position < range.location+range.length; position++) {
-        if (position+start.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, start.length)] isEqualToString:start]) {
-            DDLogVerbose(@"Found Begin");
-            counter ++;
-            continue;
-        }
-        if (position+end.length < totalLength && [[view.string substringWithRange:NSMakeRange(position, end.length)] isEqualToString:end]) {
-            if (counter == 0) {
-                DDLogVerbose(@"Match!");
-                return NSMakeRange(position, end.length);
-            }
-            DDLogVerbose(@"Found End");
-            counter --;
-            continue;
-        }
-    }
-    return NSMakeRange(NSNotFound, 0);
 }
 
 - (void) skipClosingBracket {

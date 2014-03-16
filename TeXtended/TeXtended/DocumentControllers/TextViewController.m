@@ -115,7 +115,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     
     // save the current document, since it is probabily included
     NSError *error = nil;
-    [self.firstResponderDelegate saveDocument:nil];
+    if (self.firstResponderDelegate) {
+        [self.firstResponderDelegate saveDocument:nil];
+    }
     if (error) {
         return;
     }
@@ -309,7 +311,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark Dealloc
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [lacheck terminate];
     [chktex terminate];
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];

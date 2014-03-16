@@ -67,7 +67,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    DDLogVerbose(@"dealloc");
 }
 
 #pragma mark - Table Delegate

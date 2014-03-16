@@ -8,6 +8,7 @@
 
 #import "TMTBibTexEntry.h"
 #import "DBLPConfiguration.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface TMTBibTexEntry ()
 /** Method for starting asynchronous DBLP information fetching 
@@ -104,7 +105,7 @@
     NSError *error;
     NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:receivedData options:0 error:&error];
     if (error) {
-        NSLog(@"Can't parse doc. %@", [error userInfo]);
+        DDLogError(@"Can't parse doc. %@", [error userInfo]);
     } else {
         [self fetchGeneralInfos:doc];
     }
@@ -129,7 +130,7 @@
     NSError *error;
     NSArray *array = [doc nodesForXPath:@"/dblp/*/*" error:&error];
     if (error) {
-        NSLog(@"Can't generate dictionary");
+        DDLogError(@"Can't generate dictionary: %@",error);
     } else {
         self.dictionary = [NSMutableDictionary dictionaryWithCapacity:array.count];
         for(NSXMLElement *e in array) {
@@ -154,7 +155,7 @@
 
 - (NSString *)bibtex{
     if (!self.dictionary) {
-        NSLog(@"Can't generate bibtex");
+        DDLogError(@"Can't generate bibtex (dictionary is nil)");
     } else {
         NSMutableString *entry = [[NSMutableString alloc] init];
         [entry appendFormat:@"@%@{%@,\n", self.type, self.key];

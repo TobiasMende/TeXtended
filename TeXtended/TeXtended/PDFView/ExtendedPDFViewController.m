@@ -178,9 +178,6 @@
 }
 
 - (void)dealloc {
-#ifdef DEBUG
-    DDLogVerbose(@"dealloc");
-#endif
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.pdfIdentifier];
     if (item) {
         [item.tabView removeTabViewItem:item];
