@@ -25,6 +25,7 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     [self.extendedPdf setPageAlpha:NO];
     [self.shineThrough setState:NSOffState];
 }
@@ -36,7 +37,7 @@
 
 - (IBAction)update:(id)sender {
     /* set the size of the sliders so that they cover the current page */
-    NSSize size = [[self.pdfView currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
+    NSSize size = [[self.extendedPdf currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
     double scalingFactor = [self.extendedPdf getScalingFactor];
     [self.gridHSpacingSlider setMaxValue:size.height / scalingFactor + 1];
     [self.gridHOffsetSlider  setMaxValue:size.height];

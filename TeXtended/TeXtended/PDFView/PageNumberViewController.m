@@ -24,17 +24,8 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    
-    return self;
-}
-
 - (void) awakeFromNib {
+    [super awakeFromNib];
     [self.theBox setBorderWidth:0];
     [self.theBox setCornerRadius:10];
     [self update];

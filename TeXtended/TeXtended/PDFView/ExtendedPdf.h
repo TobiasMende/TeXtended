@@ -97,7 +97,7 @@
   * Init required variables. Called from all init methods.
   */
 - (void) initVariables;
-
+- (void) initSubViews ;
 - (IBAction)showStatistics:(id)sender;
 
 /**

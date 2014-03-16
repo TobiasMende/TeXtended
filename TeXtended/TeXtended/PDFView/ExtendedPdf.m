@@ -119,10 +119,9 @@ static const NSSet *KEYS_TO_UNBIND;
 
     // notifcation if pdf page didchange
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePageNumber:) name:PDFViewPageChangedNotification object:self];
-    
+    [self initSubViews];
     // to init things at the first draw
     firstDraw = true;
-    [self initSubViews];
 }
 
 /** Needed to redraw page if grid color changes or units */
@@ -197,11 +196,16 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 
 - (void) initSubViews {
+    // FIXME: Adding subviews causes the NSBundleOverreleased WARNING (see #352)
+    
     // add the controlls
-    [self addControlls];
-    [self addSubview:[controllsView view]];
+    controllsView = [[ExtendedPdfControlls alloc] initWithExtendedPdf:self];
+    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
+    [controllsView.theBox setBorderWidth:0];
+    [controllsView.theBox setCornerRadius:10];
+    [self addSubview:controllsView.view];
     [self setAutoScales:YES];
-    [[[controllsView view] animator] setAlphaValue:0.0f];
+    [[controllsView view] setAlphaValue:0.0f];
     
     // add page numbers
     pageNumbers = [[PageNumberViewController alloc] initInPdfView:self];
@@ -341,13 +345,6 @@ static const NSSet *KEYS_TO_UNBIND;
     return 1;
 }
 
-- (void) addControlls {
-    controllsView = [[ExtendedPdfControlls alloc] initWithExtendedPdf:self];
-    [controllsView setPdfView:self];
-    [[controllsView view] setFrameOrigin:NSMakePoint((int)self.frame.size.width/2 - controllsView.view.frame.size.width/2, (int)self.frame.size.height/6 - controllsView.view.frame.size.height/2)];
-    [controllsView.theBox setBorderWidth:0];
-    [controllsView.theBox setCornerRadius:10];
-}
 #pragma mark -
 #pragma mark First Responder Chain
 

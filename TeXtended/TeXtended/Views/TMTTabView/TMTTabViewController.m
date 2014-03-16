@@ -65,7 +65,6 @@
 
 
 - (void) addTabViewItem:(TMTTabViewItem*) item {
-    DDLogVerbose(@"addTabViewItem: %@", item);
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
 	[self.tabView addTabViewItem:newItem];
@@ -111,6 +110,7 @@
 }
 
 - (NSImage *)tabView:(NSTabView *)aTabView imageForTabViewItem:(NSTabViewItem *)tabViewItem offset:(NSSize *)offset styleMask:(NSUInteger *)styleMask {
+    
     NSView *aView = aTabView;
     NSRect originRect = [aView convertRect:[aView bounds] toView:[[aView window] contentView]];
     

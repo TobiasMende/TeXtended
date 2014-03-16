@@ -56,8 +56,6 @@
  */
 - (NSString *)content;
 
-- (DocumentModel *)model;
-
 /**
  Setter for the content of the TextViewController's view.
  

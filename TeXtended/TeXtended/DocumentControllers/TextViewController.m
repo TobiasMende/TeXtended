@@ -104,7 +104,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)updateMessageCollection:(NSNotification *)note {
-    if (!self.model.currentMainDocument) return;
+    if (!self.model.currentMainDocument || !self.model.currentMainDocument.texPath) return;
     
     // save the current document, since it is probabily included
     NSError *error = nil;
@@ -292,11 +292,11 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)dealloc {
     [lacheck terminate];
     [chktex terminate];
+    [self unregisterModelObserver];
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
     if (item) {
         [item.tabView removeTabViewItem:item];
     }
-    [self unregisterModelObserver];
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     

@@ -21,7 +21,6 @@
 @property (assign) ExtendedPdf* extendedPdf;
 
 /** The PdfView were this controlls depend on */
-@property (assign) PDFView *pdfView;
 @property (assign) IBOutlet NSSlider *gridHSpacingSlider;
 @property (assign) IBOutlet NSSlider *gridHOffsetSlider;
 @property (assign) IBOutlet NSSlider *gridVSpacingSlider;

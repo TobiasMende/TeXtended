@@ -57,7 +57,7 @@
         [gradient drawInRect:self.bounds angle:90.0];
         
         // add noise
-        [self drawNoisePattern];
+        //[self drawNoisePattern];
         
         // Draw drak gray bottom border
         [borderColor setStroke];
@@ -78,7 +78,7 @@
         [gradient drawInRect:self.bounds angle:90.0];
         
         // add noise
-        [self drawNoisePattern];
+        //[self drawNoisePattern];
         
         // Draw drak gray bottom border
         [borderColor setStroke];
