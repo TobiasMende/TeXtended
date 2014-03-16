@@ -20,7 +20,7 @@
         if ([obj children] && [obj children].count > 0) {
             if (![path containsObject:obj]) {
                 [path addObject:obj];
-                [result addObjectsFromArray:[self flatten:[obj children] withPath:path]];
+                [result addObjectsFromArray:[OutlineHelper flatten:[obj children] withPath:path]];
                 [path removeObject:obj];
             }else {
                 DDLogError(@"Tree contains loop. Breaking loop");

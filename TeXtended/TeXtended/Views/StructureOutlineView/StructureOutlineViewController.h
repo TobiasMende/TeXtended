@@ -7,16 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class MainWindowController;
-@interface StructureOutlineViewController : NSViewController {
-    NSMutableArray *sections;
+@class DocumentModel, TMTTableView;
+@interface StructureOutlineViewController : NSViewController<NSTableViewDelegate> {
 }
-
-@property (weak) NSPopUpButton *selectionPopup;
-@property (strong) IBOutlet NSTabView *mainView;
-@property NSUInteger selectedIndex;
-@property (assign) MainWindowController *mainWindowController;
-
-- (id)initWithMainWindowController:(MainWindowController *)mwc andWithPopUpButton:(NSPopUpButton*) button;
-- (void)windowIsGoingToDie;
+@property (strong) IBOutlet TMTTableView *tableView;
+@property DocumentModel *rootNode;
+@property (nonatomic,assign) NSMutableArray *content;
+- (id) initWithRootNode:(DocumentModel *)model;
 @end

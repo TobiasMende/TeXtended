@@ -8,36 +8,30 @@
 
 #import "TMTTableView.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 @implementation TMTTableView
 
 - (void)keyDown:(NSEvent *)theEvent {
     char keyChar = [[theEvent characters] characterAtIndex:0];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (keyChar == NSEnterCharacter || keyChar == NSCarriageReturnCharacter) {
-        if (self.enterAction && [self.delegate respondsToSelector:self.enterAction]) {
-            [self.delegate performSelector:self.enterAction withObject:self];
+        if (self.enterAction && [self.target respondsToSelector:self.enterAction]) {
+            [self.target performSelector:self.enterAction withObject:self];
         }
         return;
     }
-#pragma clang diagnostic pop
     [super keyDown:theEvent];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if (theEvent.clickCount < 2 && self.singleClickAction && [self.delegate respondsToSelector:self.singleClickAction]) {
-        [self.delegate performSelector:self.singleClickAction withObject:self];
+    if (theEvent.clickCount < 2 && self.singleClickAction && [self.target respondsToSelector:self.singleClickAction]) {
+        [self.target performSelector:self.singleClickAction withObject:self];
     }
-  #pragma clang diagnostic pop  
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if (self.rightClickAction && [self.delegate respondsToSelector:self.rightClickAction]) {
+    if (self.rightClickAction && [self.target respondsToSelector:self.rightClickAction]) {
         NSPoint where;
         NSInteger row = -1;
         
@@ -45,13 +39,12 @@
         row = [self rowAtPoint:where];
         if (row >= 0 && row < self.numberOfRows) {
             [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-            [self.delegate performSelector:self.rightClickAction withObject:self];
+            [self.target performSelector:self.rightClickAction withObject:self];
             return;
         }
     }
     
         [super rightMouseDown:theEvent];
-    #pragma clang diagnostic pop
 }
 
 
@@ -68,3 +61,4 @@
 
 
 @end
+#pragma clang diagnostic pop

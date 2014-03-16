@@ -17,14 +17,6 @@
 
 @implementation MessageOutlineViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
 
 
 - (id)initWithModel:(Compilable*)model {

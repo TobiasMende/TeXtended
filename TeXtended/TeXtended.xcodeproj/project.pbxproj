@@ -28,8 +28,6 @@
 		7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7654503B18379D770013CC4D /* FolderSelectionView.xib */; };
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
-		7686D1C718A62D4C00E0FA41 /* MessageOutlineViewContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */; };
-		7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
 		76B88F8F183787C2006B0E9F /* ProjectCreationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */; };
 		CAE149A5B8AE46BC9D0F5A2C /* libPods-TeXtended Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2C09292FFF4E7494D6B4C0 /* libPods-TeXtended Tests.a */; };
@@ -182,11 +180,9 @@
 		D2C2358E189543F00096ECAA /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C23589189543F00096ECAA /* SMTabBarItem.m */; };
 		D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C2379E18954D910096ECAA /* alert-circled.icns */; };
 		D2C237A1189550860096ECAA /* map.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C237A0189550860096ECAA /* map.icns */; };
-		D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A4189551670096ECAA /* StructureOutlineViewController.m */; };
-		D2C237AB189554BE0096ECAA /* StructureOutlineSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */; };
-		D2C237AC189554BE0096ECAA /* StructureOutlineSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */; };
+		D2C237AB189554BE0096ECAA /* StructureOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */; };
+		D2C237AC189554BE0096ECAA /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */; };
 		D2C237AF18956F480096ECAA /* TMTOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237AE18956F480096ECAA /* TMTOutlineView.m */; };
-		D2C237C31895A6EF0096ECAA /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237C21895A6EF0096ECAA /* StructureOutlineView.xib */; };
 		D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
 		D2CC54FE171EAFAB00D81CF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */; };
@@ -360,9 +356,6 @@
 		766E35AB1780BE4C00028704 /* PageNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberViewController.h; sourceTree = "<group>"; };
 		766E35AC1780BE4C00028704 /* PageNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberViewController.m; sourceTree = "<group>"; };
 		766E35AD1780BE4C00028704 /* PageNumberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageNumberView.xib; sourceTree = "<group>"; };
-		7686D1C418A62D4C00E0FA41 /* MessageOutlineViewContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOutlineViewContainerController.h; sourceTree = "<group>"; };
-		7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOutlineViewContainerController.m; sourceTree = "<group>"; };
-		7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageOutlineViewContainer.xib; sourceTree = "<group>"; };
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
@@ -671,14 +664,11 @@
 		D2C23589189543F00096ECAA /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarItem.m; sourceTree = "<group>"; };
 		D2C2379E18954D910096ECAA /* alert-circled.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "alert-circled.icns"; sourceTree = "<group>"; };
 		D2C237A0189550860096ECAA /* map.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = map.icns; sourceTree = "<group>"; };
-		D2C237A3189551670096ECAA /* StructureOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineViewController.h; sourceTree = "<group>"; };
-		D2C237A4189551670096ECAA /* StructureOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineViewController.m; sourceTree = "<group>"; };
-		D2C237A8189554BE0096ECAA /* StructureOutlineSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineSectionViewController.h; sourceTree = "<group>"; };
-		D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineSectionViewController.m; sourceTree = "<group>"; };
-		D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineSectionView.xib; sourceTree = "<group>"; };
+		D2C237A8189554BE0096ECAA /* StructureOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineViewController.h; sourceTree = "<group>"; };
+		D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineViewController.m; sourceTree = "<group>"; };
+		D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
 		D2C237AD18956F480096ECAA /* TMTOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTOutlineView.h; sourceTree = "<group>"; };
 		D2C237AE18956F480096ECAA /* TMTOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTOutlineView.m; sourceTree = "<group>"; };
-		D2C237C21895A6EF0096ECAA /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
 		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
 		D2C904EB1726A086006EFEC2 /* TexdocEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocEntry.m; sourceTree = "<group>"; };
 		D2CAE90317AC0A3500298D11 /* NSString+PathExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathExtension.h"; sourceTree = "<group>"; };
@@ -1315,9 +1305,6 @@
 				D28089B8181BBE7B00EEF55C /* MessageOutlineViewController.h */,
 				D28089B9181BBE7B00EEF55C /* MessageOutlineViewController.m */,
 				D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */,
-				7686D1C418A62D4C00E0FA41 /* MessageOutlineViewContainerController.h */,
-				7686D1C518A62D4C00E0FA41 /* MessageOutlineViewContainerController.m */,
-				7686D1C618A62D4C00E0FA41 /* MessageOutlineViewContainer.xib */,
 			);
 			path = MessageOutlineView;
 			sourceTree = "<group>";
@@ -1468,14 +1455,11 @@
 			children = (
 				D21F31611895B24A00FF6E83 /* StructurOutlineCellView.h */,
 				D21F31621895B24A00FF6E83 /* StructurOutlineCellView.m */,
-				D2C237A3189551670096ECAA /* StructureOutlineViewController.h */,
-				D2C237A4189551670096ECAA /* StructureOutlineViewController.m */,
-				D2C237A8189554BE0096ECAA /* StructureOutlineSectionViewController.h */,
-				D2C237A9189554BE0096ECAA /* StructureOutlineSectionViewController.m */,
-				D2C237AA189554BE0096ECAA /* StructureOutlineSectionView.xib */,
+				D2C237A8189554BE0096ECAA /* StructureOutlineViewController.h */,
+				D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */,
+				D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */,
 				D2C237AD18956F480096ECAA /* TMTOutlineView.h */,
 				D2C237AE18956F480096ECAA /* TMTOutlineView.m */,
-				D2C237C21895A6EF0096ECAA /* StructureOutlineView.xib */,
 				D2FC9EAA189680670015C192 /* CacheManager.h */,
 				D2FC9EAB189680670015C192 /* CacheManager.m */,
 			);
@@ -1797,7 +1781,6 @@
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */,
-				7686D1C818A62D4C00E0FA41 /* MessageOutlineViewContainer.xib in Resources */,
 				D2F177D217651D5A0089DBC0 /* InfoWindow.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
@@ -1854,7 +1837,6 @@
 				D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */,
 				D2078D501837B5B9001C4A56 /* MainDocumentsSelectionView.xib in Resources */,
 				D2078D551837B620001C4A56 /* BibFilesSelectionView.xib in Resources */,
-				D2C237C31895A6EF0096ECAA /* StructureOutlineView.xib in Resources */,
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
@@ -1868,7 +1850,7 @@
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
-				D2C237AC189554BE0096ECAA /* StructureOutlineSectionView.xib in Resources */,
+				D2C237AC189554BE0096ECAA /* StructureOutlineView.xib in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2046,7 +2028,6 @@
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
 				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
-				D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */,
 				D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */,
 				D2574995186324730025A536 /* DBLPButtonView.m in Sources */,
 				D2E7A5141768E8F400B2BA3C /* FileViewCell.m in Sources */,
@@ -2071,10 +2052,9 @@
 				D2668629176F5B39001699A8 /* LineNumberView.m in Sources */,
 				D254798418379F080097C97D /* PropertyFileSelectionViewController.m in Sources */,
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
-				D2C237AB189554BE0096ECAA /* StructureOutlineSectionViewController.m in Sources */,
+				D2C237AB189554BE0096ECAA /* StructureOutlineViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
-				7686D1C718A62D4C00E0FA41 /* MessageOutlineViewContainerController.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */,
 				F68687F418781D5F00898026 /* PrintDialogController.m in Sources */,
@@ -2290,6 +2270,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2321,6 +2303,7 @@
 					"../**",
 					../DerivedData/TMTProject/Build/Products/Debug,
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
@@ -2342,6 +2325,7 @@
 					"../**",
 					../DerivedData/TMTProject/Build/Products/Debug,
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";

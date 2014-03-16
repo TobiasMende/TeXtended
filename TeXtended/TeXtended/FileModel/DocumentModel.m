@@ -550,6 +550,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             [result addObjectsFromArray:globalMessagesMap[type]];
         }
     }
+    [result sortUsingSelector:@selector(compare:)];
     return result;
 }
 

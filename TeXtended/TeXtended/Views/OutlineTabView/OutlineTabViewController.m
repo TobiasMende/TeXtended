@@ -7,17 +7,20 @@
 //
 
 #import "OutlineTabViewController.h"
-#import "MessageOutlineViewContainerController.h"
-#import "StructureOutlineViewController.h"
 #import "MainWindowController.h"
 #import "MainDocument.h"
 #import "SMTabBarItem.h"
 #import "DMPaletteContainer.h"
 #import "SMTabBar.h"
+#import "MessageOutlineViewController.h"
+#import "StructureOutlineViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
-@interface OutlineTabViewController ()
+static const NSUInteger MESSAGE_TAB_TAG = 0;
+static const NSUInteger OUTLINE_TAB_TAG = 1;
 
+@interface OutlineTabViewController ()
+- (void)updateViewForTab:(NSUInteger)tag andSelectedItem:(NSUInteger)item;
 @end
 
 @implementation OutlineTabViewController
@@ -42,7 +45,7 @@
 }
 
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item {
-    [self.tabView selectTabViewItemAtIndex:[self.tabBar.items indexOfObject:item]];
+    [self updateViewForTab:item.tag andSelectedItem:self.selectedItem];
 }
 
 - (void)loadView {
@@ -52,7 +55,7 @@
         NSImage *image = [NSImage imageNamed:@"alert-circled"];
         [image setSize:NSMakeSize(16, 16)];
         [image setTemplate:YES];
-        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:0];
+        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:MESSAGE_TAB_TAG];
         item.toolTip = NSLocalizedString(@"Compiler Messages", nil);
         item.keyEquivalent = @"1";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
@@ -62,28 +65,21 @@
         NSImage *image = [NSImage imageNamed:@"map"];
         [image setSize:NSMakeSize(16, 16)];
         [image setTemplate:YES];
-        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:1];
+        SMTabBarItem *item = [[SMTabBarItem alloc] initWithImage:image tag:OUTLINE_TAB_TAG];
         item.toolTip = NSLocalizedString(@"Outline View", nil);
         item.keyEquivalent = @"2";
         item.keyEquivalentModifierMask = NSCommandKeyMask;
         [tabBarItems addObject:item];
     }
-    self.messageOutlineViewContainerController = [[MessageOutlineViewContainerController alloc] initWithMainWindowController:self.mainWindowController andPopUpButton:self.selectionPopup];
-    self.structureOutlineViewController = [[StructureOutlineViewController alloc] initWithMainWindowController:self.mainWindowController andWithPopUpButton:self.selectionPopup];
-    NSTabViewItem *messages = [NSTabViewItem new];
-    messages.view = self.messageOutlineViewContainerController.view;
-    [self.tabView addTabViewItem:messages];
-    NSTabViewItem *outline = [NSTabViewItem new];
-    outline.view = self.structureOutlineViewController.view;
-    [self.tabView addTabViewItem:outline];
     self.tabBar.items = tabBarItems;
 
 }
 
 - (void)windowIsGoingToDie {
-    [self.structureOutlineViewController windowIsGoingToDie];
-    [self.messageOutlineViewContainerController windowIsGoingToDie];
     [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
+    for(NSMenuItem *item in self.selectionPopup.menu.itemArray) {
+        [item unbind:@"title"];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -95,20 +91,60 @@
 
 - (void)firstResponderDidChange {
     NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
-    NSString *currentSelection = self.selectionPopup.selectedItem.title;
-    [self.selectionPopup removeAllItems];
  
-    BOOL selectionExists = NO;
-    for(DocumentModel *model in mainDocuments) {
-        NSString *name = model.texName ? model.texName : model.texIdentifier;
-        [self.selectionPopup addItemWithTitle:name];
-        if ([name isEqualToString:currentSelection]) {
-            selectionExists = YES;
-        }
-        if (selectionExists) {
-            [self.selectionPopup selectItemWithTitle:currentSelection];
-        }
+    for(NSMenuItem *item in self.selectionPopup.menu.itemArray) {
+        [item unbind:@"title"];
     }
+    NSMenu *menu = [[NSMenu alloc] init];
+    for (DocumentModel *dm in mainDocuments) {
+        NSMenuItem *item = [[NSMenuItem alloc] init];
+        item.representedObject = dm;
+        [item bind:@"title" toObject:dm withKeyPath:@"texName" options:NULL];
+        [menu addItem:item];
+    }
+    
+    DocumentModel *current = self.selectionPopup.selectedItem.representedObject;
+    
+    self.selectionPopup.menu = menu;
+    
+    if (current) {
+        NSInteger index = [self.selectionPopup indexOfItemWithRepresentedObject:current] >= 0;
+        if (index >= 0) {
+            [self.selectionPopup selectItemAtIndex:index];
+        }
+    } else {
+        self.selectedItem = 0;
+        [self.selectionPopup selectItemAtIndex:0];
+    }
+    
+    
+}
+
+- (void)updateViewForTab:(NSUInteger)tag andSelectedItem:(NSUInteger)item {
+    if (item < 0 || item  >= self.selectionPopup.itemArray.count) {
+        return;
+    }
+    DocumentModel *model = [[self.selectionPopup itemAtIndex:item] representedObject];
+    if (!model) {
+        return;
+    }
+    NSViewController *vc = nil;
+    if (tag == MESSAGE_TAB_TAG) {
+        vc = [[MessageOutlineViewController alloc] initWithModel:model];
+    } else if(tag == OUTLINE_TAB_TAG) {
+        vc = [[StructureOutlineViewController alloc] initWithRootNode:model];
+    } else {
+        DDLogError(@"Unexpected Case!");
+        return;
+    }
+    self.currentViewController = vc;
+    self.contentView.contentView = vc.view;
+}
+
+
+- (void)setSelectedItem:(NSInteger)selectedItem {
+    _selectedItem = selectedItem;
+    [self updateViewForTab:self.tabBar.selectedItem.tag andSelectedItem:selectedItem];
 }
 
 @end
