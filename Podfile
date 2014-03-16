@@ -23,5 +23,5 @@ end
 
 target 'TeXtended Tests', :exclusive => true do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
-    pod 'OCMockito'
+    pod 'Kiwi'
 end

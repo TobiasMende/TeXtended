@@ -36,16 +36,7 @@ static void initialize_BLOCK_REGEXS() {
 }
 
 - (BOOL) numberOfBackslashesBeforePositionIsEven:(NSUInteger)position {
-    if(position < 1) {
-        // No place for backslashes
-        return true;
-    }
-    NSUInteger backslashCounter = 0;
-    while (position > 0 && [[self substringWithRange:NSMakeRange(position-1, 1)] isEqualToString:@"\\"]) {
-        position--;
-        backslashCounter ++;
-    }
-    return backslashCounter%2 ==0;
+    return [self numberOfBackslashesBeforePosition:position]%2 == 0;
 }
 
 - (NSUInteger) numberOfBackslashesBeforePosition:(NSUInteger) position {
