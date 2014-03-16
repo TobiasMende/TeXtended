@@ -372,14 +372,6 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
     
     [self skipClosingBracket];
     NSUInteger position = [view selectedRange].location;
-    NSRange visible = [view visibleRange];
-    NSRange range;
-    if (position > visible.location) {
-        NSUInteger dif = position - visible.location;
-        range = NSMakeRange(position, visible.length-dif);
-    } else {
-        range = visible;
-    }
     
     
     if (!(view.currentModifierFlags&NSAlternateKeyMask) || type == TMTNoCompletion) {
