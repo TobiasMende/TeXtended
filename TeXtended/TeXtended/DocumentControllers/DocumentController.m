@@ -104,7 +104,9 @@
             break;
         }
     }
-    [self.pdfViewControllers removeObject:controller];
+    if (controller) {
+        [self.pdfViewControllers removeObject:controller];
+    }
 }
 
 
