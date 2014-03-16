@@ -179,7 +179,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
         self.textView.firstResponderDelegate = self.firstResponderDelegate;
-    lineNumberView.messageCollection = self.model.messages;
     [self updateMessageCollection:nil];
     
 }

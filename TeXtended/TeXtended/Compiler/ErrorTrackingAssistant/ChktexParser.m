@@ -56,6 +56,7 @@ static const NSDictionary *DEBUG_NUMBERS;
     [task setArguments:@[@"-qv0", path]];
     
     [task setStandardOutput:[NSPipe pipe]];
+    [task setStandardError:[NSPipe pipe]];
     [task setTerminationHandler:^(NSTask *task) {
         NSFileHandle * read = [task.standardOutput fileHandleForReading];
         NSData * dataRead = [read readDataToEndOfFile];
