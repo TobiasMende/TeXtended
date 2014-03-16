@@ -112,7 +112,6 @@
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
-		D26B61EC18ACBC76007327F7 /* MessageCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */; };
 		D26B827F18D57E87009F3BCC /* NSString_Categories_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */; };
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
 		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
@@ -556,8 +555,6 @@
 		D2681FF5173143E2003AF83D /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 		D2681FF7173143EC003AF83D /* BibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibFile.h; sourceTree = "<group>"; };
 		D2681FF8173143EC003AF83D /* BibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibFile.m; sourceTree = "<group>"; };
-		D26B61EA18ACBC76007327F7 /* MessageCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCoordinator.h; sourceTree = "<group>"; };
-		D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCoordinator.m; sourceTree = "<group>"; };
 		D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_Categories_Test.m; sourceTree = "<group>"; };
 		D26C02F818964C6600289F34 /* NSColor+TMTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+TMTExtension.h"; sourceTree = "<group>"; };
 		D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+TMTExtension.m"; sourceTree = "<group>"; };
@@ -1610,8 +1607,6 @@
 				D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */,
 				D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */,
 				D28DC0D4177A340100E4C711 /* LatexErrorExtensions.plist */,
-				D26B61EA18ACBC76007327F7 /* MessageCoordinator.h */,
-				D26B61EB18ACBC76007327F7 /* MessageCoordinator.m */,
 			);
 			path = ErrorTrackingAssistant;
 			sourceTree = "<group>";
@@ -2049,7 +2044,6 @@
 				D2E7A50F1768E8F400B2BA3C /* MainWindow.m in Sources */,
 				D2E7A5101768E8F400B2BA3C /* FileViewController.m in Sources */,
 				D2E7A5131768E8F400B2BA3C /* FileViewModel.m in Sources */,
-				D26B61EC18ACBC76007327F7 /* MessageCoordinator.m in Sources */,
 				D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */,
 				D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */,
 				D2C237A6189551670096ECAA /* StructureOutlineViewController.m in Sources */,

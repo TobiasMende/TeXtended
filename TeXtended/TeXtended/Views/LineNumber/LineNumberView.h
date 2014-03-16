@@ -24,7 +24,7 @@
  *
  * @author Max Bannach
  */
-@class MessageCollection, MessageViewController;
+@class MessageViewController;
 @interface LineNumberView : NSRulerView {
     
     /** Font of the line numbers. */

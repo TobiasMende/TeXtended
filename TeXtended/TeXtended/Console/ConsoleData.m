@@ -55,11 +55,11 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
 
 
-- (void)setConsoleMessages:(MessageCollection *)consoleMessages {
+- (void)setConsoleMessages:(NSArray *)consoleMessages {
     if (consoleMessages != _consoleMessages) {
         _consoleMessages = consoleMessages;
         if (self.model && consoleMessages) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self.model.texPath userInfo:@{TMTMessageCollectionKey: self.consoleMessages, TMTMessageGeneratorTypeKey: @(TMTLogFileParser)}];
+            [self.model updateMessages:consoleMessages forType:TMTLogFileParser];
         }
     }
 }

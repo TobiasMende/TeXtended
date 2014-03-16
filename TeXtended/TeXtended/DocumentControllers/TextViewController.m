@@ -26,7 +26,6 @@
 #import "NSString+RegexReplace.h"
 #import "NSAttributedString+Replace.h"
 #import "OutlineExtractor.h"
-#import "MessageCoordinator.h"
 
 /** Delay for message collection updates in seconds */
 static const double MESSAGE_UPDATE_DELAY = 1.5;
@@ -49,7 +48,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void) handleLineUpdateNotification:(NSNotification*)note;
 - (void) handleBackwardSynctex:(NSNotification*)note;
 
-- (void)messagesDidChange:(NSNotification *)note;
 @end
 
 @implementation TextViewController
@@ -70,7 +68,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         self.tabViewItem.view = self.view;
         outlineExtractor = [OutlineExtractor new];
         
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTPartialMessagesDidChangeNotification object:nil];
     }
     return self;
 }
@@ -85,6 +82,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 - (void)registerModelObserver {
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
     [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
+    [_model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
    
 }
 
@@ -92,21 +90,16 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
     
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
+     [_model removeObserver:self forKeyPath:@"messages"];
 }
 
 - (void)setModel:(DocumentModel *)model {
     if (_model) {
-        [_model removeObserver:self forKeyPath:@"texPath"];
         [self unregisterModelObserver];
     }
     _model = model;
     if (_model) {
         [self registerModelObserver];
-        NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:self.model.texPath];
-        if (messages) {
-            lineNumberView.messageCollection = messages;
-        }
-        [_model addObserver:self forKeyPath:@"texPath" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     }
 }
 
@@ -132,12 +125,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             __unsafe_unretained DocumentModel* weakMain = self.model.currentMainDocument;
             [chktex parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
                 if (messages) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakMain.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTChktexParser)}];
+                    [weakMain updateMessages:messages forType:TMTChktexParser];
                 }
             }];
             [lacheck parseDocument:self.model.currentMainDocument.texPath callbackBlock:^(NSArray *messages) {
                 if (messages) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:weakMain.texPath userInfo:@{TMTMessageCollectionKey:messages, TMTMessageGeneratorTypeKey:@(TMTLacheckParser)}];
+                    [weakMain updateMessages:messages forType:TMTLacheckParser];
                 }
             }];
         }
@@ -186,8 +179,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
         self.textView.firstResponderDelegate = self.firstResponderDelegate;
-    NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:self.model.texPath];
-    lineNumberView.messageCollection = messages;
+    lineNumberView.messageCollection = self.model.messages;
     
 }
 
@@ -284,28 +276,15 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.model]) {
-        if ([keyPath isEqualToString:@"texPath"]) {
-            NSString *newPath = change[NSKeyValueChangeNewKey];
-            if (newPath && newPath != [NSNull null]) {
-                NSArray *messages = [[MessageCoordinator sharedMessageCoordinator] messagesForPartialDocumentPath:newPath];
-                if (messages) {
-                    lineNumberView.messageCollection = messages;
-                }
-            }
-        }
-    } else if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
+    if([keyPath isEqualToString:@"currentRow"] && [object isEqualTo:self.textView]) {
         if (self.liveScrolling) {
             [self performSelectorInBackground:@selector(syncPDF:) withObject:nil];
         }
-    } 
-}
-
-- (void)messagesDidChange:(NSNotification *)note {
-    if ([note.userInfo[TMTMessageDocumentPath] isEqualToString:self.model.texPath]) {
-        lineNumberView.messageCollection = note.userInfo[TMTMessageCollectionKey];
+    } else if([keyPath isEqualToString:@"messages"]) {
+        lineNumberView.messageCollection = self.model.messages;
     }
 }
+
 
 #pragma mark -
 #pragma mark Dealloc
@@ -320,7 +299,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
     [self unregisterModelObserver];
-    [self.model removeObserver:self forKeyPath:@"texPath"];
+    
     [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

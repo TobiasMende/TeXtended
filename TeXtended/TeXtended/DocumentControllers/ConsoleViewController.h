@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ViewControllerProtocol.h"
 
-@class DocumentModel, MessageCollection, ConsoleOutputView, DocumentController, ConsoleData;
+@class DocumentModel, ConsoleOutputView, DocumentController, ConsoleData;
 
 /**
  Viewcontroller for handling interaction with a single console view
