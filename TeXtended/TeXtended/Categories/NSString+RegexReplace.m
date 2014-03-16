@@ -25,6 +25,7 @@
 
 #import "NSString+RegexReplace.h"
 #import "EditorPlaceholder.h"
+#import <TMTHelperCollection/TMTLog.h>
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 @implementation NSString (RegexReplace)
 
@@ -39,7 +40,7 @@ static void initialize_PLACEHOLDER_REGEX() {
     NSError *error = nil;
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:options error:&error];
     if (error) {
-        NSLog(@"%@",error.localizedDescription);
+        DDLogError(@"%@",error.localizedDescription);
     }
     return [regex stringByReplacingMatchesInString:self options:kNilOptions range:NSMakeRange(0, [self length]) withTemplate:replace];
 }

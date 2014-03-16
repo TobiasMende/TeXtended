@@ -278,7 +278,6 @@ static const NSSet *KEYS_TO_UNBIND;
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [self unbindAll];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

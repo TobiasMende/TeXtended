@@ -586,7 +586,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     [PathObserverFactory removeObserver:self];
     [self.compilable removeObserver:self forKeyPath:@"self.path"];
     [self.infoWindowController removeObserver:self forKeyPath:@"self.window.isVisible"];
-    DDLogVerbose(@"dealloc");
 }
 
 @end

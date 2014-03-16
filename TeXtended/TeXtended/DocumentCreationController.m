@@ -54,9 +54,7 @@
 }
 
 - (void)showProjectCreationPanel {
-    if(!self.projectCreationWindowController) {
-        self.projectCreationWindowController = [ProjectCreationWindowController new];
-    }
+    self.projectCreationWindowController = [ProjectCreationWindowController new];
     
     __unsafe_unretained DocumentCreationController *weakSelf = self;
     self.projectCreationWindowController.terminationHandler = ^(ProjectDocument *document, BOOL success) {

@@ -17,6 +17,7 @@
 - (NSString *)blockNameForPosition:(NSUInteger)position;
 - (NSRange)beginRangeForPosition:(NSUInteger)position;
 - (NSRange)endRangeForPosition:(NSUInteger)position;
+- (NSRange)endRangeForPosition:(NSUInteger)position inRange:(NSRange)range;
 - (BOOL)rangeContainsBegin:(NSRange) range;
 - (BOOL)rangeContainsEnd:(NSRange) range;
 

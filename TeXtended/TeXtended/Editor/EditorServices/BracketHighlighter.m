@@ -301,7 +301,6 @@ typedef enum {
 
 
 - (void)dealloc {
-    DDLogVerbose(@"BracketHighlighter dealloc");
     [self unbindAll];
 }
 

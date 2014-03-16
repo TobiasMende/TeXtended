@@ -138,8 +138,4 @@
 }
 
 
-- (void)dealloc {
-    DDLogVerbose(@"dealloc");
-}
-
 @end

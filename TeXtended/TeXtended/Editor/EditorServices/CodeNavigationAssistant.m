@@ -559,7 +559,6 @@ NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineR
 
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [self unbindAll];
 }
 

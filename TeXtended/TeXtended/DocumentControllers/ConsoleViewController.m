@@ -75,7 +75,6 @@
 #pragma mark Dealloc etc.
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     self.console = nil;
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }

@@ -60,7 +60,6 @@
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     [filePresenter terminate];
 }
 

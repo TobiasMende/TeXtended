@@ -57,7 +57,6 @@
     
     [tabBar setDelegate:nil];
     [[TMTTabManager sharedTabManager] removeTabViewController:self];
-    DDLogVerbose(@"dealloc");
 }
 
 - (void)handleTabClose:(NSTabViewItem *)item {

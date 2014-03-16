@@ -52,7 +52,6 @@
  *
  * @param info the info message
  * @return `YES` if the message should be added, `NO`otherwise.
- * @see MessageCollection
  * @see TrackingMessage
  */
 - (BOOL) infoValid:(NSString*)info;

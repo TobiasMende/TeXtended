@@ -109,5 +109,8 @@
     }
 }
 
+- (void)dealloc {
+    [self.folderSelection removeObserver:self forKeyPath:@"path"];
+}
 
 @end

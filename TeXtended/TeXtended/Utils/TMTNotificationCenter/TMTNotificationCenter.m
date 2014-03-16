@@ -44,10 +44,12 @@ static const NSUInteger MAX_QUEUE_SIZE = 50;
 }
 
 + (void)removeCenterForCompilable:(Compilable *)compilable {
-    [mainCompilableCenters removeObjectForKey:compilable.identifier];
-    [prohibitedKeys setObject:compilable.identifier atIndexedSubscript:pkIdx];
-    pkIdx = (pkIdx + 1) % MAX_QUEUE_SIZE;
-    DDLogVerbose(@"Deleting center for %@", compilable.identifier);
+    if (mainCompilableCenters[compilable.identifier]) {
+        [mainCompilableCenters removeObjectForKey:compilable.identifier];
+        [prohibitedKeys setObject:compilable.identifier atIndexedSubscript:pkIdx];
+        pkIdx = (pkIdx + 1) % MAX_QUEUE_SIZE;
+        DDLogVerbose(@"Deleting center for %@", compilable.identifier);
+    }
 }
 
 + (NSString *)keyForCompilable:(Compilable *)compilable {

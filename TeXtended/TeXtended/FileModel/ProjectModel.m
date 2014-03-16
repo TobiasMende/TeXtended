@@ -175,7 +175,6 @@
 
 
 - (void)dealloc {
-    DDLogVerbose(@"dealloc");
     for (DocumentModel *d in self.documents) {
         d.project = nil;
     }

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 #import "CompileProcessHandler.h"
-@class DocumentModel, MessageCollection, DocumentController;
+@class DocumentModel, DocumentController;
 @interface ConsoleData : NSObject {
     /** A file handle for reading the console output */
     NSFileHandle *readHandle;

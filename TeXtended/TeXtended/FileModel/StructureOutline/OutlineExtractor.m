@@ -27,12 +27,6 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 @implementation OutlineExtractor
 
-- (id)init {
-    self = [super init];
-    DDLogVerbose(@"init");
-    return self;
-}
-
 + (void)initialize {
     if (self == [OutlineExtractor class]) {
         ELEMENT_EXTRACTOR_REGEX_LOOKUP = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OutlineElementTypeLookupTable" ofType:@"plist"]];
@@ -186,10 +180,5 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     
     return regex;
 }
-
-- (void)dealloc {
-    DDLogVerbose(@"dealloc");
-}
-
 
 @end

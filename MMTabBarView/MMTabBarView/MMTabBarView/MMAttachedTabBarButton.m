@@ -41,7 +41,7 @@
 
     self = [super initWithFrame:frame];
     if (self) {
-        _tabViewItem = [anItem retain];
+        _tabViewItem = anItem;
         _isInAnimatedSlide = NO;
         _isInDraggedSlide = NO;
     }
@@ -53,14 +53,12 @@
 
     NSAssert(FALSE,@"please use designated initializer -initWithFrame:tabViewItem:");
 
-    [self release];
     return nil;
 }
 
 - (void)dealloc
 {
-    [_tabViewItem release], _tabViewItem = nil;
-    [super dealloc];
+    _tabViewItem = nil;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -215,11 +213,11 @@
         
 	[tabBarView lockFocus];
     [tabBarView display];  // forces update to ensure that we get current state
-	NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:draggingRect] autorelease];
+	NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:draggingRect];
 	[tabBarView unlockFocus];
-	NSImage *image = [[[NSImage alloc] initWithSize:[rep size]] autorelease];
+	NSImage *image = [[NSImage alloc] initWithSize:[rep size]];
 	[image addRepresentation:rep];
-	NSImage *returnImage = [[[NSImage alloc] initWithSize:[rep size]] autorelease];
+	NSImage *returnImage = [[NSImage alloc] initWithSize:[rep size]];
 	[returnImage lockFocus];
     [image drawAtPoint:NSMakePoint(0.0, 0.0) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[returnImage unlockFocus];
@@ -229,7 +227,6 @@
 		NSPoint indicatorPoint = NSMakePoint([self frame].size.width - MARGIN_X - kMMTabBarIndicatorWidth, MARGIN_Y);
         [pi drawAtPoint:indicatorPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 		[returnImage unlockFocus];
-		[pi release];
 	}
 	return returnImage;
 }

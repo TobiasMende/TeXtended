@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class DocumentModel, MessageCollection, TrackingMessage, TMTTableView, MessageInfoViewController;
+@class DocumentModel, TrackingMessage, TMTTableView, MessageInfoViewController;
 @interface MessageDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate> {
     MessageInfoViewController *infoController;
     NSPopover *popover;

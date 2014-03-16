@@ -9,6 +9,7 @@
 #import "DBLPInterface.h"
 #import "TMTBibTexEntry.h"
 #import "DBLPConfiguration.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface DBLPInterface ()
 - (void)finishAuthorsLoading;
@@ -83,12 +84,11 @@
 }
 
 - (void)finishAuthorsLoading {
-    //NSLog(@"Succeeded! Received %ld bytes of data",(unsigned long)[receivedAuthorData length]);
     NSError *error;
     NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:receivedAuthorData options:0 error:&error];
     NSMutableDictionary *results;
     if (error) {
-        NSLog(@"Can't fetch anything");
+        DDLogError(@"Can't fetch anything: %@", error);
         [self.handler failedFetchingAuthors:error];
     } else {
         NSArray *a = [xml nodesForXPath:@"/authors/author" error:&error];
@@ -105,20 +105,18 @@
 }
 
 - (void)finishKeysLoading {
-    //NSLog(@"Succeeded! Received %ld bytes of data",(unsigned long)[receivedKeyData length]);
     NSError *error;
-    //NSLog(@"Keys-Result: %@", [[NSString alloc] initWithData:receivedKeyData encoding:NSUTF8StringEncoding]);
     NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:receivedKeyData options:0 error:&error];
     NSMutableArray *results;
     
     if (error) {
-        NSLog(@"Can't fetch anything");
+        DDLogError(@"Can't fetch anything: %@", error);
         [self.handler failedFetchingKeys:error];
     } else {
         NSArray *a = [xml nodesForXPath:@"/dblpperson/dblpkey" error:&error];
         results = [NSMutableArray arrayWithCapacity:a.count];
         if (error) {
-            NSLog(@"%@", [error userInfo]);
+            DDLogError(@"Can't extract dblpkeys from xml: %@", [error userInfo]);
         }
         for (NSXMLElement *node in a) {
             NSString *personRecord = [[node attributeForName:@"type"] stringValue];

@@ -113,7 +113,4 @@
     return [attachment isKindOfClass:[EditorPlaceholder class]];
 }
 
-- (void)dealloc {
-    DDLogVerbose(@"PlaceholderServices dealloc");
-}
 @end

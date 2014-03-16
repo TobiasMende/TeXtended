@@ -302,8 +302,4 @@
         [[self getChildrenByName:childrenName] clean:path];
     }
 }
-
-- (void)dealloc {
-    DDLogVerbose(@"dealloc");
-}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "DBLPConfiguration.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSString *SERVER_KEY = @"server";
 static const NSString *AUTHOR_SEARCH_APPENDIX_KEY = @"authorSearchAppendix";
@@ -26,7 +27,7 @@ static const NSString *BIBTEX_SEARCH_APPENDIX_KEY = @"bibtexSearchAppendix";
         self.keySearchAppendix = config[KEY_SEARCH_APPENDIX_KEY];
         self.bibtexSearchAppendix = config[BIBTEX_SEARCH_APPENDIX_KEY];
         if (![self configIsValid]) {
-            NSLog(@"Loading of config failed!");
+            DDLogError(@"Loading of config failed!");
         }
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self

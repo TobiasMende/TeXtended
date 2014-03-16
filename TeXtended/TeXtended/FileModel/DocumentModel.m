@@ -17,24 +17,28 @@
 #import "ConsoleManager.h"
 #import "BibFile.h"
 #import "OutlineExtractor.h"
-#import "MessageCoordinator.h"
+#import "TrackingMessage.h"
 static NSArray *TMTEncodingsToCheck;
-
+static const NSArray *GENERATOR_TYPES_TO_USE;
 
 @interface DocumentModel ()
 - (void) initDefaults;
 
+- (void)updateMessages:(NSArray *)messages;
+- (void)mainDocumentsMessagesDidChange:(NSNotification*)note;
 @end
 
 @implementation DocumentModel
 
 + (void)initialize {
-    
-    TMTEncodingsToCheck = @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
-                                                    [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
-                                                    [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
-                                                    [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
-                           [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding]];
+    if ([self class] == [DocumentModel class]) {
+        TMTEncodingsToCheck = @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
+                                [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
+                                [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
+                                [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
+                                [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding]];
+        GENERATOR_TYPES_TO_USE = @[@(TMTLogFileParser), @(TMTLacheckParser), @(TMTChktexParser)];
+    }
 }
 
 
@@ -72,9 +76,22 @@ static NSArray *TMTEncodingsToCheck;
 
 - (DocumentModel *)currentMainDocument {
     if (!_currentMainDocument) {
-        _currentMainDocument = self.mainDocuments.firstObject;
+        self.currentMainDocument = self.mainDocuments.firstObject;
     }
     return _currentMainDocument;
+}
+
+- (void)setCurrentMainDocument:(DocumentModel *)currentMainDocument {
+    if (_currentMainDocument) {
+        [[TMTNotificationCenter centerForCompilable:_currentMainDocument] removeObserver:self name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+    }
+    [self willChangeValueForKey:@"currentMainDocument"];
+    _currentMainDocument = currentMainDocument;
+    [self didChangeValueForKey:@"currentMainDocument"];
+    if (_currentMainDocument) {
+        [self updateMessages:[_currentMainDocument mergedGlobalMessages]];
+        [[TMTNotificationCenter centerForCompilable:_currentMainDocument] addObserver:self selector:@selector(mainDocumentsMessagesDidChange:) name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+    }
 }
 
 
@@ -193,6 +210,7 @@ static NSArray *TMTEncodingsToCheck;
     _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
     _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
     self.outlineElements = [NSMutableArray new];
+    globalMessagesMap = [NSMutableDictionary new];
     __unsafe_unretained typeof(self) weakSelf = self;
     if (!self.liveCompile) {
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
@@ -206,6 +224,7 @@ static NSArray *TMTEncodingsToCheck;
             [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
         };
     }
+    
     
     [self updateCompileSettingBindings:live];
     [self updateCompileSettingBindings:draft];
@@ -235,9 +254,6 @@ static NSArray *TMTEncodingsToCheck;
 
 - (void)setTexPath:(NSString *)texPath {
     if (_texPath != texPath) {
-        if (_texPath && [_texPath isAbsolutePath]) {
-            [[MessageCoordinator sharedMessageCoordinator] clearMessagesForPath:_texPath];
-        }
         _texPath = texPath;
         if ([_texPath isAbsolutePath]) {
             [self buildOutline];
@@ -461,9 +477,6 @@ static NSArray *TMTEncodingsToCheck;
     DDLogInfo(@"dealloc");
     [self unbind:@"liveCompile"];
     [self unbind:@"openOnExport"];
-    if (self.texPath) {
-        [[MessageCoordinator sharedMessageCoordinator] clearMessagesForPath:self.texPath];
-    }
     if (!self.project) {
         [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
     }
@@ -516,6 +529,43 @@ static NSArray *TMTEncodingsToCheck;
     if (content) {
         [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
     }
+}
+
+
+#pragma mark - Message Handling
+
+- (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type {
+    if (messages.count > 0) {
+        globalMessagesMap[@(type)] = messages;
+    } else if(globalMessagesMap[@(type)]){
+        [globalMessagesMap removeObjectForKey:@(type)];
+    }
+    [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey: [self mergedGlobalMessages]}];
+}
+
+- (NSArray *)mergedGlobalMessages {
+    NSMutableArray *result = [NSMutableArray new];
+    for(NSNumber *type in GENERATOR_TYPES_TO_USE) {
+        if (globalMessagesMap[type]) {
+            [result addObjectsFromArray:globalMessagesMap[type]];
+        }
+    }
+    return result;
+}
+
+- (void)mainDocumentsMessagesDidChange:(NSNotification *)note {
+    [self updateMessages:note.userInfo[TMTMessageCollectionKey]];
+}
+
+- (void)updateMessages:(NSArray *)messages {
+    NSMutableArray *tmp = [NSMutableArray new];
+    for (TrackingMessage *m in messages) {
+        if ([m.document isEqualToString:self.texPath]) {
+            [tmp addObject:m];
+        }
+    }
+    self.messages = tmp;
+    
 }
 
 @end

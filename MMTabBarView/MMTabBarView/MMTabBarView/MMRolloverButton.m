@@ -25,10 +25,6 @@
     return self;
 }
 
-- (void)dealloc {
-    
-	[super dealloc];
-}
 
 - (void)awakeFromNib {
 	if ([[self superclass] instancesRespondToSelector:@selector(awakeFromNib)]) {

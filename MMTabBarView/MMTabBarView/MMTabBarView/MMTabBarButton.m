@@ -58,9 +58,8 @@ NSString *kMMTabBarButtonOberserverContext = @"MMTabBarView.MMTabBarButton.Obser
 
 - (void)dealloc
 {
-    [_closeButton release], _closeButton = nil;
-    [_indicator release], _indicator = nil;    
-    [super dealloc];
+    _closeButton = nil;
+    _indicator = nil;    
 }
 
 - (MMTabBarButtonCell *)cell {
@@ -293,7 +292,7 @@ NSString *kMMTabBarButtonOberserverContext = @"MMTabBarView.MMTabBarButton.Obser
 {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     
-    if (context == kMMTabBarButtonOberserverContext)
+    if (context == (__bridge void *)(kMMTabBarButtonOberserverContext))
         {
         if ([[self tabBarView] sizeButtonsToFit])
             {

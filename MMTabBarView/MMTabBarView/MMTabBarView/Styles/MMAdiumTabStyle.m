@@ -69,17 +69,16 @@
 }
 
 - (void)dealloc {
-	[_closeButton release], _closeButton = nil;
-	[_closeButtonDown release], _closeButtonDown = nil;
-	[_closeButtonOver release], _closeButtonOver = nil;
+	_closeButton = nil;
+	_closeButtonDown = nil;
+	_closeButtonOver = nil;
 
-	[_closeDirtyButton release], _closeDirtyButton = nil;
-	[_closeDirtyButtonDown release], _closeDirtyButtonDown = nil;
-	[_closeDirtyButtonOver release], _closeDirtyButtonOver = nil;
+	_closeDirtyButton = nil;
+	_closeDirtyButtonDown = nil;
+	_closeDirtyButtonOver = nil;
 
-	[_gradientImage release], _gradientImage = nil;
+	_gradientImage = nil;
 
-	[super dealloc];
 }
 
 #pragma mark -
@@ -433,7 +432,6 @@
 			if ([tabBarView isWindowActive]) {
                 NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.835 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.843 alpha:1.0]];
                 [gradient drawInRect:rect angle:90.0];
-                [gradient release];
 			} else {
 				[[NSColor windowBackgroundColor] set];
 				NSRectFill(rect);
@@ -521,7 +519,6 @@
 	}
 	}
 
-	[shadow release];
 	[NSGraphicsContext restoreGraphicsState];
 }
 
@@ -647,12 +644,12 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	if ((self = [super init])) {
 		if ([aDecoder allowsKeyedCoding]) {
-			_closeButton = [[aDecoder decodeObjectForKey:@"closeButton"] retain];
-			_closeButtonDown = [[aDecoder decodeObjectForKey:@"closeButtonDown"] retain];
-			_closeButtonOver = [[aDecoder decodeObjectForKey:@"closeButtonOver"] retain];
-			_closeDirtyButton = [[aDecoder decodeObjectForKey:@"closeDirtyButton"] retain];
-			_closeDirtyButtonDown = [[aDecoder decodeObjectForKey:@"closeDirtyButtonDown"] retain];
-			_closeDirtyButtonOver = [[aDecoder decodeObjectForKey:@"closeDirtyButtonOver"] retain];
+			_closeButton = [aDecoder decodeObjectForKey:@"closeButton"];
+			_closeButtonDown = [aDecoder decodeObjectForKey:@"closeButtonDown"];
+			_closeButtonOver = [aDecoder decodeObjectForKey:@"closeButtonOver"];
+			_closeDirtyButton = [aDecoder decodeObjectForKey:@"closeDirtyButton"];
+			_closeDirtyButtonDown = [aDecoder decodeObjectForKey:@"closeDirtyButtonDown"];
+			_closeDirtyButtonOver = [aDecoder decodeObjectForKey:@"closeDirtyButtonOver"];
 			_drawsUnified = [aDecoder decodeBoolForKey:@"drawsUnified"];
 			_drawsRight = [aDecoder decodeBoolForKey:@"drawsRight"];
 		}
@@ -697,7 +694,6 @@
                 
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.835 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.843 alpha:1.0]];
                     [gradient drawInRect:aRect angle:90.0];
-                    [gradient release];                
 				} else {
 					[[NSColor windowBackgroundColor] set];
 					NSRectFill(aRect);
@@ -788,7 +784,6 @@
                 
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.835 alpha:1.0] endingColor:[NSColor colorWithCalibratedWhite:0.843 alpha:1.0]];
                     [gradient drawInRect:aRect angle:90.0];
-                    [gradient release];
 				} else {
 					[[NSColor windowBackgroundColor] set];
 					NSRectFill(aRect);
@@ -803,7 +798,6 @@
                 }
                 
                 [gradient drawInRect:aRect angle:0.0];
-                [gradient release];
 			}
 
 			// frame
@@ -846,7 +840,6 @@
     }
     
 	[NSGraphicsContext restoreGraphicsState];
-    [shadow release]; 
 }
 
 - (void)_drawBezelWithFrame:(NSRect)frame usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button ofTabBarView:(MMTabBarView *)tabBarView applyShadow:(BOOL)applyShadow drawRollovers:(BOOL)drawRollovers
@@ -903,7 +896,6 @@
 	}
 
 	[NSGraphicsContext restoreGraphicsState];
-	[shadow release]; 
 }
 
 @end

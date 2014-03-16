@@ -10,6 +10,7 @@
 #import "DBLPInterface.h"
 #import "TMTBibTexEntry.h"
 #import <TMTHelperCollection/TMTTableView.h>
+#import <TMTHelperCollection/TMTLog.h>
 
 @interface DBLPSearchViewController ()
 - (void)abortDBLPSearch;
@@ -59,7 +60,7 @@
     if ([self.handler respondsToSelector:@selector(failedFetchingAuthors:)]) {
         [self.handler failedFetchingAuthors:error];
     }
-    NSLog(@"Failed to fetch: %@", error.userInfo);
+    DDLogError(@"Failed to fetch: %@", error.userInfo);
 }
 
 

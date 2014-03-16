@@ -1033,7 +1033,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 -(void)dealloc {
-    DDLogVerbose(@"dealloc");
     [self unregisterUserDefaultsObserver];
   
 }

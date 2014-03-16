@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Compilable.h"
 
-@class ProjectModel,OutlineElement,OutlineExtractor, MessageCollection;
+@class ProjectModel,OutlineElement,OutlineExtractor;
 
 
 /**
@@ -24,7 +24,10 @@
     NSPipe *consoleOutputPipe, *consoleInputPipe;
     void (^removeLiveCompileObserver)(void);
     void (^removeOpenOnExportObserver)(void);
+    DocumentModel *_currentMainDocument;
+    NSMutableDictionary *globalMessagesMap;
 }
+@property NSArray *messages;
 @property (nonatomic) NSArray *bibFiles;
 /** The date of the last application internal change of the represented file */
 @property (strong) NSDate * lastChanged;
@@ -38,7 +41,8 @@
 /** The path to the tex file */
 @property (strong,nonatomic) NSString * texPath;
 
-@property (assign, nonatomic) DocumentModel* currentMainDocument;
+- (DocumentModel *)currentMainDocument;
+- (void)setCurrentMainDocument:(DocumentModel *)cmd;
 
 /** The system path to the tex file version storage.
  
@@ -46,7 +50,6 @@
  */
 @property (strong) NSString * systemPath;
 
-@property (strong) MessageCollection *messages;
 
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
@@ -129,5 +132,8 @@
 
 - (NSString *)header;
 - (void) buildOutline;
+
+- (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
+- (NSArray *)mergedGlobalMessages;
 @end
 

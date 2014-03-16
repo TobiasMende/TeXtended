@@ -36,16 +36,7 @@ static void initialize_BLOCK_REGEXS() {
 }
 
 - (BOOL) numberOfBackslashesBeforePositionIsEven:(NSUInteger)position {
-    if(position < 1) {
-        // No place for backslashes
-        return true;
-    }
-    NSUInteger backslashCounter = 0;
-    while (position > 0 && [[self substringWithRange:NSMakeRange(position-1, 1)] isEqualToString:@"\\"]) {
-        position--;
-        backslashCounter ++;
-    }
-    return backslashCounter%2 ==0;
+    return [self numberOfBackslashesBeforePosition:position]%2 == 0;
 }
 
 - (NSUInteger) numberOfBackslashesBeforePosition:(NSUInteger) position {
@@ -151,6 +142,10 @@ static void initialize_BLOCK_REGEXS() {
 }
 
 - (NSRange)endRangeForPosition:(NSUInteger)position {
+    return [self endRangeForPosition:position inRange:NSMakeRange(0, self.length)];
+}
+
+- (NSRange)endRangeForPosition:(NSUInteger)position inRange:(NSRange)range {
     NSUInteger currentPosition = position;
     NSInteger counter = 0;
     
@@ -161,9 +156,9 @@ static void initialize_BLOCK_REGEXS() {
         currentPosition = lineRange.location;
     }
     
-    while(true) {
+    while(currentPosition < NSMaxRange(range)) {
         NSRange current = NSMakeRange(currentPosition, self.length-currentPosition);
-            NSTextCheckingResult *next = [BLOCK_REGEX firstMatchInString:self options:0 range:current];
+        NSTextCheckingResult *next = [BLOCK_REGEX firstMatchInString:self options:0 range:current];
         
         if (!next || next.range.location == NSNotFound) {
             return NSMakeRange(NSNotFound, 0);

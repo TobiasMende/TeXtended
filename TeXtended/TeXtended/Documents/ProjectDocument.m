@@ -222,7 +222,6 @@
 }
 
 - (void)dealloc {
-    DDLogVerbose(@"ProjectDocument dealloc");
     for(DocumentModel *m in self.model.documents) {
         [[ConsoleManager sharedConsoleManager] removeConsoleForModel:m];
     }

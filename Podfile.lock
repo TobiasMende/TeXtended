@@ -5,19 +5,22 @@ PODS:
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - DMInspectorPalette (0.0.1)
-  - OCHamcrest (3.0.1)
-  - OCMockito (1.1.0):
-    - OCHamcrest (~> 3.0)
+  - Kiwi (2.2.4):
+    - Kiwi/SenTestingKit
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/SenTestingKit (2.2.4):
+    - Kiwi/ARC
+    - Kiwi/NonARC
 
 DEPENDENCIES:
   - CocoaLumberjack
   - DMInspectorPalette
-  - OCMockito
+  - Kiwi
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   DMInspectorPalette: f3c4bafd80a10b5e073a42e6adfe7ad7daf2a5ed
-  OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
-  OCMockito: 317fa0cf75c9b0d73d2be335789c556537be7fd2
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
 
 COCOAPODS: 0.29.0
