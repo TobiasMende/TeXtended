@@ -136,8 +136,6 @@
             if (page) {
                 [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];
             }
-        } else {
-            DDLogError(@"Invalid Index: %li", index);
         }
         
         [self.pdfView updatePageNumber:nil];

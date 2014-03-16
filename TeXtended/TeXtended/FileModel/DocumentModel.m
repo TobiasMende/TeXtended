@@ -225,6 +225,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         };
     }
     
+    
     [self updateCompileSettingBindings:live];
     [self updateCompileSettingBindings:draft];
     [self updateCompileSettingBindings:final];

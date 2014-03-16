@@ -153,7 +153,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 
 - (void)showDocument:(DocumentController *)dc {
-    DDLogVerbose(@"showDocument");
     self.myCurrentFirstResponderDelegate = dc;
     [ApplicationController sharedApplicationController].currentFirstResponderDelegate = dc;
 }
@@ -210,8 +209,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.outlineController windowIsGoingToDie];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    //[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_LEFT_TABVIEW_COLLAPSED]];
-    //[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:[@"values." stringByAppendingString:TMT_RIGHT_TABVIEW_COLLAPSED]];
     
 }
 
