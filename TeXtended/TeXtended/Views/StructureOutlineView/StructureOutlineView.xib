@@ -77,9 +77,10 @@
                                     </tableCellView>
                                 </prototypeCellViews>
                                 <connections>
-                                    <binding destination="hhk-Fo-W17" name="value" keyPath="arrangedObjects" id="J4j-fe-JeS">
+                                    <binding destination="hhk-Fo-W17" name="value" keyPath="arrangedObjects" id="nSh-HX-R9j">
                                         <dictionary key="options">
                                             <bool key="NSConditionallySetsEditable" value="YES"/>
+                                            <bool key="NSCreatesSortDescriptor" value="NO"/>
                                         </dictionary>
                                     </binding>
                                 </connections>
