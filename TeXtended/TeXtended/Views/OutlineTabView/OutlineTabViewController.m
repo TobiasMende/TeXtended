@@ -38,8 +38,9 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
     self = [super initWithNibName:@"OutlineTabView" bundle:nil];
     if (self) {
         self.mainWindowController = mwc;
+        self.currentDelegate = self.mainWindowController.myCurrentFirstResponderDelegate;
         
-        [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
+        [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
     }
     return self;
 }
@@ -72,11 +73,13 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
         [tabBarItems addObject:item];
     }
     self.tabBar.items = tabBarItems;
+    [self mainDocumentsDidChange];
 
 }
 
 - (void)windowIsGoingToDie {
-    [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate.model.mainDocuments"];
+    [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate"];
+    [self.currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
     for(NSMenuItem *item in self.selectionPopup.menu.itemArray) {
         [item unbind:@"title"];
     }
@@ -85,12 +88,23 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqualTo:self.mainWindowController]) {
-        [self firstResponderDidChange];
+        self.currentDelegate = self.mainWindowController.myCurrentFirstResponderDelegate;
+    }
+    [self mainDocumentsDidChange];
+}
+
+- (void)setCurrentDelegate:(NSObject<FirstResponderDelegate>*)currentDelegate {
+    if (_currentDelegate) {
+        [_currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
+    }
+    _currentDelegate = currentDelegate;
+    if (_currentDelegate) {
+        [_currentDelegate addObserver:self forKeyPath:@"model.mainDocuments" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
     }
 }
 
-- (void)firstResponderDidChange {
-    NSArray *mainDocuments = self.mainWindowController.myCurrentFirstResponderDelegate.model.mainDocuments;
+- (void)mainDocumentsDidChange {
+    NSArray *mainDocuments = self.currentDelegate.model.mainDocuments;
  
     for(NSMenuItem *item in self.selectionPopup.menu.itemArray) {
         [item unbind:@"title"];
