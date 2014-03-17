@@ -11,7 +11,6 @@
 #import "NSColor+TMTExtension.h"
 #import "Constants.h"
 
-static CacheManager *sharedInstance;
 static const NSString *OUTLINE_COLOR_CONTEXT = @"OUTLINE_COLOR_CONTEXT";
 static const NSArray *OUTLINE_COLOR_KEYS;;
 @implementation CacheManager
@@ -35,11 +34,14 @@ static const NSArray *OUTLINE_COLOR_KEYS;;
     return self;
 }
 
-+(CacheManager *)sharedCacheManager {
-    if (!sharedInstance) {
-        sharedInstance = [CacheManager new];
-    }
-    return sharedInstance;
++ (CacheManager *) sharedCacheManager {
+    static dispatch_once_t pred;
+    static CacheManager *cacheManager = nil;
+    
+    dispatch_once(&pred, ^{
+        cacheManager = [[CacheManager alloc] init];
+    });
+    return cacheManager;
 }
 
 - (NSImage *)imageForOutlineElement:(OutlineElement *)element {

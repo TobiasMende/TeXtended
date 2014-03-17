@@ -37,7 +37,6 @@
 }
 
 - (void)awakeFromNib {
-    DDLogWarn(@"START awake");
     [super awakeFromNib];
     messageLock = [[NSLock alloc] init];
     [self.tableView setTarget:self];

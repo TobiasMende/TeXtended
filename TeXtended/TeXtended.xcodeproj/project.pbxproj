@@ -87,6 +87,7 @@
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
 		D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */; };
+		D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -181,7 +182,6 @@
 		D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C2379E18954D910096ECAA /* alert-circled.icns */; };
 		D2C237A1189550860096ECAA /* map.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2C237A0189550860096ECAA /* map.icns */; };
 		D2C237AB189554BE0096ECAA /* StructureOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */; };
-		D2C237AC189554BE0096ECAA /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */; };
 		D2C237AF18956F480096ECAA /* TMTOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C237AE18956F480096ECAA /* TMTOutlineView.m */; };
 		D2CAE90517AC0A3500298D11 /* NSString+PathExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CAE90417AC0A3500298D11 /* NSString+PathExtension.m */; };
 		D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */; };
@@ -493,6 +493,7 @@
 		D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompileProcessHandler.h; sourceTree = "<group>"; };
 		D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickPreviewWindow.xib; sourceTree = "<group>"; };
 		D23FD40D1863A4D7006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
 		D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTMessageCellView.m; sourceTree = "<group>"; };
 		D248E4DD1777647E008DDE80 /* MessageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataSource.h; sourceTree = "<group>"; };
@@ -666,7 +667,6 @@
 		D2C237A0189550860096ECAA /* map.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = map.icns; sourceTree = "<group>"; };
 		D2C237A8189554BE0096ECAA /* StructureOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructureOutlineViewController.h; sourceTree = "<group>"; };
 		D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StructureOutlineViewController.m; sourceTree = "<group>"; };
-		D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
 		D2C237AD18956F480096ECAA /* TMTOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTOutlineView.h; sourceTree = "<group>"; };
 		D2C237AE18956F480096ECAA /* TMTOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTOutlineView.m; sourceTree = "<group>"; };
 		D2C904EA1726A086006EFEC2 /* TexdocEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocEntry.h; sourceTree = "<group>"; };
@@ -1457,11 +1457,11 @@
 				D21F31621895B24A00FF6E83 /* StructurOutlineCellView.m */,
 				D2C237A8189554BE0096ECAA /* StructureOutlineViewController.h */,
 				D2C237A9189554BE0096ECAA /* StructureOutlineViewController.m */,
-				D2C237AA189554BE0096ECAA /* StructureOutlineView.xib */,
 				D2C237AD18956F480096ECAA /* TMTOutlineView.h */,
 				D2C237AE18956F480096ECAA /* TMTOutlineView.m */,
 				D2FC9EAA189680670015C192 /* CacheManager.h */,
 				D2FC9EAB189680670015C192 /* CacheManager.m */,
+				D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */,
 			);
 			path = StructureOutlineView;
 			sourceTree = "<group>";
@@ -1809,6 +1809,7 @@
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
 				D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */,
+				D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */,
 				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
 				D2A92C431882F71500F1679F /* projecticon.icns in Resources */,
 				D26685F7176F56DA001699A8 /* texicon.icns in Resources */,
@@ -1850,7 +1851,6 @@
 				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
-				D2C237AC189554BE0096ECAA /* StructureOutlineView.xib in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

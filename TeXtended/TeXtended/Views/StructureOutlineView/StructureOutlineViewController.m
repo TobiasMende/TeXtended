@@ -28,7 +28,6 @@
     if (self) {
         self.rootNode = model;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outlineDidChange:) name:TMTOutlineDidChangeNotification object:self.rootNode];
-        self.content = [OutlineHelper flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
     }
     return self;
 }
@@ -41,6 +40,7 @@
 
 - (void)loadView {
     [super loadView];
+    self.content = [OutlineHelper flatten:self.rootNode.outlineElements withPath:[NSMutableSet new]];
     self.tableView.target = self;
     self.tableView.singleClickAction = @selector(jumpToSelection:);
     self.tableView.enterAction = @selector(jumpToSelection:);
@@ -66,7 +66,6 @@
 }
 
 - (void)dealloc {
-    DDLogWarn(@"dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
