@@ -20,7 +20,7 @@ static const NSUInteger MESSAGE_TAB_TAG = 0;
 static const NSUInteger OUTLINE_TAB_TAG = 1;
 
 @interface OutlineTabViewController ()
-- (void)updateViewForTab:(NSUInteger)tag andSelectedItem:(NSUInteger)item;
+- (void)updateViewForTab:(NSUInteger)tag;
 @end
 
 @implementation OutlineTabViewController
@@ -34,19 +34,21 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
     return self;
 }
 
+- (IBAction)selectItem:(id)sender {
+    [self updateViewForTab:self.tabBar.selectedItem.tag];
+}
+
 - (id)initWithMainWindowController:(MainWindowController *)mwc {
     self = [super initWithNibName:@"OutlineTabView" bundle:nil];
     if (self) {
         self.mainWindowController = mwc;
-        self.currentDelegate = self.mainWindowController.myCurrentFirstResponderDelegate;
-        
-        [self.mainWindowController addObserver:self forKeyPath:@"myCurrentFirstResponderDelegate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
+        [self bind:@"currentDelegate" toObject:self.mainWindowController withKeyPath:@"myCurrentFirstResponderDelegate" options:nil];
     }
     return self;
 }
 
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item {
-    [self updateViewForTab:item.tag andSelectedItem:self.selectedItem];
+    [self updateViewForTab:item.tag];
 }
 
 - (void)loadView {
@@ -73,12 +75,11 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
         [tabBarItems addObject:item];
     }
     self.tabBar.items = tabBarItems;
-    [self mainDocumentsDidChange];
 
 }
 
 - (void)windowIsGoingToDie {
-    [self.mainWindowController removeObserver:self forKeyPath:@"myCurrentFirstResponderDelegate"];
+    [self unbind:@"currentDelegate"];
     [self.currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
     for(NSMenuItem *item in self.selectionPopup.menu.itemArray) {
         [item unbind:@"title"];
@@ -87,19 +88,18 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([object isEqualTo:self.mainWindowController]) {
-        self.currentDelegate = self.mainWindowController.myCurrentFirstResponderDelegate;
-    }
     [self mainDocumentsDidChange];
 }
 
 - (void)setCurrentDelegate:(NSObject<FirstResponderDelegate>*)currentDelegate {
-    if (_currentDelegate) {
-        [_currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
-    }
-    _currentDelegate = currentDelegate;
-    if (_currentDelegate) {
-        [_currentDelegate addObserver:self forKeyPath:@"model.mainDocuments" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+    if (_currentDelegate != currentDelegate) {
+        if (_currentDelegate) {
+            [_currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
+        }
+        _currentDelegate = currentDelegate;
+        if (_currentDelegate) {
+            [_currentDelegate addObserver:self forKeyPath:@"model.mainDocuments" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+        }
     }
 }
 
@@ -118,27 +118,25 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
     }
     
     DocumentModel *current = self.selectionPopup.selectedItem.representedObject;
-    
+    NSInteger index = [self.selectionPopup indexOfItemWithRepresentedObject:current];
     self.selectionPopup.menu = menu;
     
     if (current) {
-        NSInteger index = [self.selectionPopup indexOfItemWithRepresentedObject:current] >= 0;
+        
         if (index >= 0) {
             [self.selectionPopup selectItemAtIndex:index];
         }
     } else {
-        self.selectedItem = 0;
         [self.selectionPopup selectItemAtIndex:0];
     }
+    
+    [self updateViewForTab:self.tabBar.selectedItem.tag];
     
     
 }
 
-- (void)updateViewForTab:(NSUInteger)tag andSelectedItem:(NSUInteger)item {
-    if (item < 0 || item  >= self.selectionPopup.itemArray.count) {
-        return;
-    }
-    DocumentModel *model = [[self.selectionPopup itemAtIndex:item] representedObject];
+- (void)updateViewForTab:(NSUInteger)tag {
+    DocumentModel *model = [self.selectionPopup.selectedItem representedObject];
     if (!model) {
         return;
     }
@@ -155,10 +153,5 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
     self.contentView.contentView = vc.view;
 }
 
-
-- (void)setSelectedItem:(NSInteger)selectedItem {
-    _selectedItem = selectedItem;
-    [self updateViewForTab:self.tabBar.selectedItem.tag andSelectedItem:selectedItem];
-}
 
 @end

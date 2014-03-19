@@ -18,8 +18,8 @@
 
 @property (strong) IBOutlet NSPopUpButton *selectionPopup;
 
-@property (nonatomic) NSInteger selectedItem;
 
+- (IBAction)selectItem:(id)sender;
 - (id)initWithMainWindowController:(MainWindowController*) mwc;
 - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;
 - (void)windowIsGoingToDie;

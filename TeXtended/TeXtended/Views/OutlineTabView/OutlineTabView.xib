@@ -41,7 +41,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="self.selectedItem" id="W2q-c4-rRJ"/>
+                        <action selector="selectItem:" target="-2" id="7Ui-xu-f9o"/>
                     </connections>
                 </popUpButton>
                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="none" titlePosition="noTitle" id="A0l-8a-U6d">
