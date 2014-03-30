@@ -207,7 +207,6 @@
 		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
 		D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
 		D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */; };
-		D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DADC9A1764AA92002775BA /* FileCompiler.m */; };
 		D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FD39AF171EC434008BB864 /* ApplicationController.m */; };
 		D2E7A4E81768E8F400B2BA3C /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = D271984B1745241500342CB0 /* DocumentController.m */; };
 		D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D2656909173A65600030381C /* CompileSetting.m */; };
@@ -359,8 +358,6 @@
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		76B88F8D183787C2006B0E9F /* ProjectCreationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCreationWindow.xib; sourceTree = "<group>"; };
-		76DADC991764AA92002775BA /* FileCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCompiler.h; sourceTree = "<group>"; };
-		76DADC9A1764AA92002775BA /* FileCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCompiler.m; sourceTree = "<group>"; };
 		8B2C09292FFF4E7494D6B4C0 /* libPods-TeXtended Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeXtended Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.xcconfig"; path = "../Pods/Pods-TeXtended.xcconfig"; sourceTree = "<group>"; };
 		CE96F771AA85415B94D890DB /* Pods-TeXtended Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.xcconfig"; path = "../Pods/Pods-TeXtended Tests.xcconfig"; sourceTree = "<group>"; };
@@ -792,8 +789,6 @@
 				76049C9F1752085000778E2A /* Compiler.m */,
 				D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */,
 				D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */,
-				76DADC991764AA92002775BA /* FileCompiler.h */,
-				76DADC9A1764AA92002775BA /* FileCompiler.m */,
 				D2A0E62D176DBF5800EDAB5B /* ForwardSynctex.h */,
 				D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */,
 				D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */,
@@ -1952,7 +1947,6 @@
 				D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */,
 				D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */,
 				D2E7A4E41768E8F400B2BA3C /* CompileFlowHandler.m in Sources */,
-				D2E7A4E51768E8F400B2BA3C /* FileCompiler.m in Sources */,
 				D2C2357B1895118A0096ECAA /* OutlineExtractor.m in Sources */,
 				D2E7A4E61768E8F400B2BA3C /* ApplicationController.m in Sources */,
 				D2E7A4EC1768E8F400B2BA3C /* CompileSetting.m in Sources */,
