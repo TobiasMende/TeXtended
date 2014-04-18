@@ -22,7 +22,6 @@
 #import "TemplateController.h"
 #import "Template.h"
 
-static ApplicationController *sharedInstance;
 
 
 @interface ApplicationController ()
@@ -43,28 +42,18 @@ static ApplicationController *sharedInstance;
     [self mergeCompileFlows:NO];
 }
 
-- (id)init {
-    self = [super init];
-    if (self) {
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
-    }
-    return self;
-}
 
-- (void)firstResponderDidChangeNotification:(NSNotification *)note {
-    self.currentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
-}
-
-
-+ (ApplicationController *)sharedApplicationController {
-    if (!sharedInstance) {
-        sharedInstance = [[ApplicationController alloc] init];
-    }
-    return sharedInstance;
++ (ApplicationController *) sharedApplicationController {
+    static dispatch_once_t pred;
+    static ApplicationController *applicationController = nil;
+    
+    dispatch_once(&pred, ^{
+        applicationController = [[ApplicationController alloc] init];
+    });
+    return applicationController;
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-    sharedInstance = self;
     documentCreationController = [[DocumentCreationController alloc] init];
     preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
     [TMTLog customizeLogger];
