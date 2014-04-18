@@ -109,19 +109,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     [self.templateController openSavePanelForWindow:self.mainWindowController.window];
 }
 
-- (void)setModel:(DocumentModel *)model {
-    if (model != _model) {
-        if (self.model) {
-            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
-        }
-        _model = model;
-        if (self.model) {
-            [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
-        }
-    }
-}
-
-
 
 
 

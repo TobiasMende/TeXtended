@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FirstResponderDelegate.h"
 
 @class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, ShareDialogController, TemplateController;
 
@@ -28,6 +29,8 @@
 @property (nonatomic) NSUInteger numberOfCompilingDocuments;
 
 @property EncodingController *encController;
+
+@property id<FirstResponderDelegate> currentDC;
 
 - (void) saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action;
 - (Compilable *) model;

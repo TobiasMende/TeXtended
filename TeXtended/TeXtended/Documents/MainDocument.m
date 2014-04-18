@@ -43,7 +43,7 @@
     }
     if ([windowController isKindOfClass:[MainWindowController class]]) {
         for(DocumentController *dc in self.documentControllers) {
-            [self.mainWindowController showDocument:dc];
+            self.currentDC = dc;
         }
     }
     
@@ -67,10 +67,6 @@
     [numberLock lock];
         self.numberOfCompilingDocuments++;
     [numberLock unlock];
-}
-
-- (void)firstResponderDidChangeNotification:(NSNotification *)note {
-        self.mainWindowController.myCurrentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
 }
 
 
@@ -107,8 +103,6 @@
 }
 
 - (void)removeDocumentController:(DocumentController *)dc {
-    self.mainWindowController.myCurrentFirstResponderDelegate = nil;
-    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
     [self.documentControllers removeObject:dc];
     if (self.documentControllers.count == 0) {
         [self close];
@@ -208,14 +202,14 @@
                 [item.tabView selectTabViewItem:item];
             }
             [dc showPDFViews];
-            [self.mainWindowController showDocument:dc];
+            self.currentDC = dc;
             return;
         }
     }
     
     DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
     [self.documentControllers addObject:dc];
-    [self.mainWindowController showDocument:dc];
+    self.currentDC = dc;
 }
 
 

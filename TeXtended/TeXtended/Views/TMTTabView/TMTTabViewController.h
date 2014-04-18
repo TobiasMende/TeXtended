@@ -14,7 +14,7 @@
     __unsafe_unretained IBOutlet MMTabBarView *tabBar;
 }
 
-@property BOOL closeWindowForLastTabDrag;
+@property (getter = shouldCloseWindowForLastTabDrag) BOOL closeWindowForLastTabDrag;
 @property IBOutlet NSTabView *tabView;
 - (void)addTabViewItem:(TMTTabViewItem*) item;
 - (void)addNewTabWithTitle:(NSString *)aTitle;
