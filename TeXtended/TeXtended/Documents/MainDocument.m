@@ -199,6 +199,15 @@
     [NSException raise:@"exportSingleDocument not implemented." format:@"Yout have to implement exportSingleDocument in subclasses of MainDocument."];
 }
 
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(exportSingleDocument:)) {
+        return self.fileURL != nil;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
+
 - (void)openNewTabForCompilable:(DocumentModel*)model {
     for (DocumentController *dc in self.documentControllers) {
         if (dc.model == model) {

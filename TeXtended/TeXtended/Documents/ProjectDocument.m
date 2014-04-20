@@ -189,10 +189,8 @@
         content = [mergeWindowController getMergedContentOfFile:path withBase:[path stringByDeletingLastPathComponent]];
     }
     @catch (NSException *exception) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"OK"];
-        [alert setMessageText:[exception name]];
-        [alert setInformativeText:[exception reason]];
+        
+        NSAlert *alert = [NSAlert alertWithError:exception];
         [alert setAlertStyle:NSWarningAlertStyle];
         [alert runModal];
         return;
