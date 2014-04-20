@@ -144,7 +144,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://textended.tobsolution.de/appcast.xml</string>
+	<string>http://get.textended.de/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_textended.pem</string>
 	<key>UTExportedTypeDeclarations</key>
