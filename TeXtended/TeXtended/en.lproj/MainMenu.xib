@@ -438,12 +438,11 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="583"/>
-                            <menuItem title="Live Compile" state="on" keyEquivalent="c" id="588">
+                            <menuItem title="Live Compile" state="on" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <binding destination="05y-aw-ghU" name="value" keyPath="self.currentDocument.currentDC.liveCompileEnabled" id="OSO-o9-4j6">
+                                    <binding destination="05y-aw-ghU" name="value" keyPath="self.currentDocument.currentDC.liveCompileEnabled" id="2I3-UW-95H">
                                         <dictionary key="options">
-                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                             <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <bool key="NSValidatesImmediately" value="YES"/>
                                         </dictionary>

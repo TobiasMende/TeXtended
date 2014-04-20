@@ -43,7 +43,7 @@
         self.mainDocument = mainDocument;
         self.model = model;
         self.consoleViewControllers = [NSMutableSet new];
-        
+        [self bind:@"liveCompileEnabled" toObject:self.model withKeyPath:@"liveCompile" options:nil];
         self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
         [self.textViewController addObserver:self.compiler];
     }
@@ -245,15 +245,6 @@
     [self.mainDocument finalCompileForDocumentController:self];
 }
 
-- (BOOL)isLiveCompileEnabled {
-    return self.model.liveCompile.boolValue;
-}
-
-- (void)setLiveCompileEnabled:(BOOL)enable {
-    [self willChangeValueForKey:@"liveCompileEnabled"];
-    self.model.liveCompile = @(enable);
-    [self didChangeValueForKey:@"liveCompileEnabled"];
-}
 
 - (void)abort {
     [self.compiler abort];

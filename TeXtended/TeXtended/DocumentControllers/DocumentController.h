@@ -24,6 +24,7 @@
 
 /** The model handeld by this controller. */
 @property (strong,nonatomic) DocumentModel *model;
+@property (getter = isLiveCompileEnabled) BOOL liveCompileEnabled;
 
 /** Controller for the TextView. */
 @property (strong) TextViewController* textViewController;
