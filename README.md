@@ -1,4 +1,4 @@
-TeXtended
+TeXtended - LaTeX Editor for OS X.
 =========
 
 The most fantastic LaTeX Editor for OS X.
