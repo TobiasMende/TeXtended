@@ -43,7 +43,6 @@
         self.mainDocument = mainDocument;
         self.model = model;
         self.consoleViewControllers = [NSMutableSet new];
-        [self bind:@"liveCompileEnabled" toObject:self.model withKeyPath:@"liveCompile" options:nil];
         self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
         [self.textViewController addObserver:self.compiler];
     }

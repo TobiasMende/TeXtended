@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -441,7 +441,7 @@
                             <menuItem title="Live Compile" state="on" alternate="YES" keyEquivalent="c" id="588">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <binding destination="05y-aw-ghU" name="value" keyPath="self.currentDocument.currentDC.liveCompileEnabled" id="2I3-UW-95H">
+                                    <binding destination="05y-aw-ghU" name="value" keyPath="self.currentDocument.currentDC.model.liveCompile" id="yBF-Yh-BY1">
                                         <dictionary key="options">
                                             <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <bool key="NSValidatesImmediately" value="YES"/>

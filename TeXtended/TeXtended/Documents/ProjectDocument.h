@@ -21,7 +21,7 @@
 
 
 /** The model of the project. */
-@property (strong) ProjectModel *model;
+@property (strong,nonatomic) ProjectModel *model;
 
 - (void)mergeSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 

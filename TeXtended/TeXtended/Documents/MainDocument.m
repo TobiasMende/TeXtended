@@ -23,6 +23,10 @@
 #import "Template.h"
 #import "SimpleDocument.h"
 
+@interface MainDocument ()
+- (void)firstResponderDidChangeNotification:(NSNotification *)note;
+@end
+
 @implementation MainDocument
 
 - (id)init
@@ -85,6 +89,16 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
+}
+
+- (void)firstResponderDidChangeNotification:(NSNotification *)note {
+    
+    id<FirstResponderDelegate> delegate = note.userInfo[TMTFirstResponderKey];
+    
+    self.currentDC = delegate;
+    if (note.object && [note.object isKindOfClass:[NSView class]]) {
+        ((NSWindowController *)[note.object window].windowController).document = self;
+    }
 }
 
 + (BOOL)autosavesInPlace
@@ -168,8 +182,6 @@
 }
 
 -(void)shareItems:(NSArray *)items {
-    //NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:[[NSArray alloc] initWithObjects:[[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/hauptdatei.pdf"], nil]];
-    
     if (items.count == 0) {
         return;
     }

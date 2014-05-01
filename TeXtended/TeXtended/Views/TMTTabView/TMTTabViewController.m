@@ -180,10 +180,9 @@
 
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
-    if (((TMTTabViewItem*)tabViewItem.identifier).document) {
-        ((NSWindowController*)tabView.window.windowController).document = ((TMTTabViewItem*)tabViewItem.identifier).document;
-    }
+    [[tabViewItem.view window] makeFirstResponder:tabViewItem.view];
 }
+
 
 - (BOOL)shouldHideWindowWhenDraggingFrom:(MMTabBarView *)tabBarController {
     return self.closeWindowForLastTabDrag;
