@@ -438,17 +438,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="583"/>
-                            <menuItem title="Live Compile" state="on" alternate="YES" keyEquivalent="c" id="588">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <binding destination="05y-aw-ghU" name="value" keyPath="self.currentDocument.currentDC.model.liveCompile" id="yBF-Yh-BY1">
-                                        <dictionary key="options">
-                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                            <bool key="NSValidatesImmediately" value="YES"/>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Live Scrolling" keyEquivalent="L" id="584">
                                 <connections>
                                     <binding destination="585" name="value" keyPath="values.TMTDocumentEnableLiveScrolling" id="587"/>
