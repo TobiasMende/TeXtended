@@ -198,6 +198,18 @@
     }
 }
 
+- (void)tabViewDidChangeNumberOfTabViewItems:(NSTabView *)tabView {
+    NSWindow *w = tabView.window;
+    if (tabView.numberOfTabViewItems == 0) {
+        if ([w isKindOfClass:[TMTTabViewWindow class]]) {
+            [[TMTTabManager sharedTabManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+        }
+        if (self.closeWindowForLastTabDrag) {
+            [w close];
+        }
+    }
+}
+
 - (void)tabView:(NSTabView *)aTabView didCloseTabViewItem:(NSTabViewItem *)tabViewItem {
     [self handleTabClose:tabViewItem];
     DDLogWarn(@"Closing %@", tabViewItem);

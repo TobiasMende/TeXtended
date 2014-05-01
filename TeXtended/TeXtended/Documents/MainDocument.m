@@ -304,6 +304,7 @@
 
 - (void)dealloc {
     for (DocumentController *dc in self.documentControllers) {
+        [dc closeDocument];
         dc.mainDocument = nil;
     }
 }
