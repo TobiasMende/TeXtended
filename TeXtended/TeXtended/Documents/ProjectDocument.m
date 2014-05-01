@@ -75,6 +75,11 @@
             [dc saveDocumentModel:&error];
             if (error) {
                 DDLogError(@"Can't save texfile %@. Error: %@", dc.model.texPath, error.userInfo);
+                if (outError != NULL) {
+                    *outError = error;
+                }
+                return NO;
+                
             }
         }
     }
