@@ -8,8 +8,6 @@
 
 #import "MainWindowController.h"
 #import "DocumentController.h"
-#import "FileViewController.h"
-#import "InfoWindowController.h"
 #import "DMSplitView.h"
 #import "Compilable.h"
 #import "MainDocument.h"
@@ -38,7 +36,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         self.mainDocument = document;
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
-        self.fileViewController = [FileViewController new];
         self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
     }
@@ -58,10 +55,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     
     self.outlineViewArea.contentView = self.outlineController.view;
     
-    [self.fileViewArea setContentView:self.fileViewController.view];
-    [self.fileViewController setCompilable:self.mainDocument.model];
-    self.fileViewController.mainDocument = self.mainDocument;
-    
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
     
@@ -74,9 +67,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.shareButton sendActionOn:NSLeftMouseDownMask];
 }
 
-- (void)windowWillClose:(NSNotification *)notification {
-    [self.fileViewController.infoWindowController close];
-}
 
 - (IBAction)reportBug:(id)sender {
     NSURL *url = [NSURL URLWithString:@"http://dev.tobsolution.de/projects/textended-feedback-support/issues/new"];
@@ -94,7 +84,8 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 -(IBAction)showInformation:(id)sender {
-    [self.fileViewController showInformation];
+    // TODO: implement showInformation
+    DDLogWarn(@"showInformation not implemented yet!");
 }
 
 - (IBAction)deleteTemporaryFiles:(id)sender {

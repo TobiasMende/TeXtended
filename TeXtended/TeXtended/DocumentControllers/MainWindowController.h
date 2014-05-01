@@ -46,9 +46,6 @@
 
 @property IBOutlet OutlineTabViewController* outlineController;
 
-/** the FileViewController containing the file outline view */
-@property  FileViewController *fileViewController;
-
 
 /** Action for opening the redmine ticket system in the default web browser 
  
