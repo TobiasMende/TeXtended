@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "DMSplitView.h"
 #import "ViewControllerProtocol.h"
-#import "FirstResponderDelegate.h"
 @class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem;
 
 /**
@@ -23,7 +22,6 @@
 
 @interface MainWindowController : NSWindowController<NSWindowDelegate,DMSplitViewDelegate> {
 }
-@property (assign,nonatomic) id<FirstResponderDelegate> myCurrentFirstResponderDelegate;
 @property TMTTabViewController *firsTabViewController;
 @property TMTTabViewController *secondTabViewController;
 
@@ -66,7 +64,6 @@
 
 - (id)initForDocument:(MainDocument*)document;
 
-- (void) showDocument:(DocumentController *)dc;
 - (void) addTabViewItemToFirst:(TMTTabViewItem *)item;
 - (void) addTabViewItemToSecond:(TMTTabViewItem *)item;
 

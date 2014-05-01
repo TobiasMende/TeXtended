@@ -24,7 +24,6 @@
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 @interface MainWindowController ()
-- (void)updateFirstResponderDelegate:(NSResponder*)firstResponder;
 @end
 
 @implementation MainWindowController
@@ -34,9 +33,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (id)initForDocument:(MainDocument*)document {
-    self.mainDocument = document;
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
+        self.mainDocument = document;
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
         self.fileViewController = [FileViewController new];
@@ -152,11 +151,6 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 
-- (void)showDocument:(DocumentController *)dc {
-    self.myCurrentFirstResponderDelegate = dc;
-    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = dc;
-}
-
 - (void)addTabViewItemToFirst:(TMTTabViewItem *)item {
     DDLogVerbose(@"addTabViewItemToFirst: first = %@, item = %@", self.firsTabViewController, item);
     [self.firsTabViewController addTabViewItem:item];
@@ -166,46 +160,11 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.secondTabViewController addTabViewItem:item];
 }
 
-
-- (void)windowDidBecomeKey:(NSNotification *)notification {
-    [self updateFirstResponderDelegate:self.window.firstResponder];
-    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = self.myCurrentFirstResponderDelegate;
-}
-
-- (void)setMyCurrentFirstResponderDelegate:(id<FirstResponderDelegate>)myCurrentFirstResponderDelegate {
-    if (myCurrentFirstResponderDelegate && ![_myCurrentFirstResponderDelegate isEqual:myCurrentFirstResponderDelegate]) {
-        [self willChangeValueForKey:@"myCurrentFirstResponderDelegate"];
-        _myCurrentFirstResponderDelegate = myCurrentFirstResponderDelegate;
-         [self didChangeValueForKey:@"myCurrentFirstResponderDelegate"];
-    }
-}
-
-
-- (void)windowDidUpdate:(NSNotification *)notification {
-    if (self.window.isKeyWindow) {
-        [self updateFirstResponderDelegate:self.window.firstResponder];
-    }
-}
-
-- (void)updateFirstResponderDelegate:(NSResponder *)firstResponder {
-    if ([firstResponder respondsToSelector:@selector(firstResponderDelegate)]) {
-        id<FirstResponderDelegate> del = [firstResponder performSelector:@selector(firstResponderDelegate)];
-        
-            self.myCurrentFirstResponderDelegate = del;
-       
-    }
-}
-
-+ (BOOL)automaticallyNotifiesObserversOfMyCurrentFirstResponderDelegate {
-    return NO;
-}
-
 #pragma mark - Terminate
 
 
 
 -(void)dealloc {
-    self.myCurrentFirstResponderDelegate = nil;
     [self.outlineController windowIsGoingToDie];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

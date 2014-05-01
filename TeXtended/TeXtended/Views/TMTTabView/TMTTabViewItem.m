@@ -14,17 +14,8 @@
 
 - (id)init {
 	if (self = [super init]) {
-		self.isProcessing     = NO;
-		self.icon             = nil;
-		self.iconName         = nil;
-        self.largeImage       = nil;
-		self.objectCount      = 0;
-		self.isEdited         = NO;
         self.hasCloseButton   = YES;
         self.title            = @"TeXtended!";
-        self.objectCountColor = nil;
-        self.showObjectCount  = NO;
-        self.view             = nil;
 	}
 	return self;
 }
