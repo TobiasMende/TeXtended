@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DMSplitView.h"
 #import "ViewControllerProtocol.h"
-@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem;
+@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem, FileViewController;
 
 /**
  The MainWindowController is the controller of the main window of each document. 
@@ -24,6 +24,7 @@
 }
 @property TMTTabViewController *firsTabViewController;
 @property TMTTabViewController *secondTabViewController;
+@property FileViewController *fileViewController;
 
 @property (assign) MainDocument *mainDocument;
 

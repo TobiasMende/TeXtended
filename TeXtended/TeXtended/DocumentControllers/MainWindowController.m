@@ -11,6 +11,7 @@
 #import "DMSplitView.h"
 #import "Compilable.h"
 #import "MainDocument.h"
+#import "FileViewController.h"
 #import "TextViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabViewController.h"
@@ -34,10 +35,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
         self.mainDocument = document;
-        self.firsTabViewController = [TMTTabViewController new];
-        self.secondTabViewController = [TMTTabViewController new];
-        self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
+        
     }
     return self;
 }
@@ -47,6 +45,12 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     DDLogVerbose(@"windowDidLoad");
     [super windowDidLoad];
     
+    self.firsTabViewController = [TMTTabViewController new];
+    self.secondTabViewController = [TMTTabViewController new];
+    self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
+    self.fileViewController = [FileViewController new];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
+    
     BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
     self.firsTabViewController.closeWindowForLastTabDrag = NO;
     self.secondTabViewController.closeWindowForLastTabDrag = NO;
@@ -54,7 +58,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.contentView setSubviews:@[self.firsTabViewController.view, self.secondTabViewController.view]];
     
     self.outlineViewArea.contentView = self.outlineController.view;
-    
+    self.fileViewArea.contentView = self.fileViewController.view;
     [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
     [self.mainView setEventsDelegate:self];
     
