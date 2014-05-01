@@ -33,9 +33,9 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 }
 
 - (id)initForDocument:(MainDocument*)document {
-    self.mainDocument = document;
     self = [super initWithWindowNibName:@"MainWindow"];
     if (self) {
+        self.mainDocument = document;
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
         self.fileViewController = [FileViewController new];

@@ -97,7 +97,7 @@
     
     self.currentDC = delegate;
     if (note.object && [note.object isKindOfClass:[NSView class]]) {
-        ((NSWindowController *)[note.object window].windowController).document = self;
+        [self addWindowController:(NSWindowController *)[note.object window].windowController];
     }
 }
 

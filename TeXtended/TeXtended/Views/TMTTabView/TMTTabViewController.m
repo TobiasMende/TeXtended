@@ -190,9 +190,6 @@
 
 
 - (void)tabView:(NSTabView *)aTabView didDropTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
-    if (((TMTTabViewItem*)tabViewItem.identifier).document) {
-        ((NSWindowController*)tabBarView.window.windowController).document = ((TMTTabViewItem*)tabViewItem.identifier).document;
-    }
     if (!self.closeWindowForLastTabDrag) {
         [self.tabView.window orderWindow:NSWindowBelow relativeTo:tabBarView.window.windowNumber];
     }
