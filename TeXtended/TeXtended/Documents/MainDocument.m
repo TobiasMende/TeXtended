@@ -303,9 +303,8 @@
 #pragma mark -
 
 - (void)dealloc {
-    for (DocumentController *dc in self.documentControllers) {
+    for (DocumentController *dc in [self.documentControllers copy]) {
         [dc closeDocument];
-        dc.mainDocument = nil;
     }
 }
 
