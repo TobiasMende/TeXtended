@@ -16,8 +16,8 @@
 @interface SMTabBar : SMBar
 
 @property (nonatomic, copy) NSArray *items;
-@property (nonatomic, weak) SMTabBarItem *selectedItem;
-@property (nonatomic, weak) IBOutlet id<SMTabBarDelegate> delegate;
+@property (nonatomic, assign) SMTabBarItem *selectedItem;
+@property (nonatomic, assign) IBOutlet id<SMTabBarDelegate> delegate;
 
 @end
 
