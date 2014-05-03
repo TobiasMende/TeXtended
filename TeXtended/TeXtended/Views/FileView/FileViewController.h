@@ -26,7 +26,10 @@
 - (IBAction)deleteFile:(id)sender;
 - (IBAction)createNewFolder:(id)sender;
 - (IBAction)createNewFile:(id)sender;
+- (IBAction)createNewFolderInRoot:(id)sender;
+- (IBAction)createNewFileInRoot:(id)sender;
 - (IBAction)revealInFinder:(id)sender;
+- (IBAction)openRootInFinder:(id)sender;
 - (IBAction)showInformation:(id)sender;
 
 @end

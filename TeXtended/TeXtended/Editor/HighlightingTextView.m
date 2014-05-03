@@ -1051,12 +1051,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     return nil;
 }
 
-
-- (BOOL)canBecomeKeyView {
-    DDLogInfo(@"Become KeyView: %@", self.firstResponderDelegate);
-    return [super canBecomeKeyView];
-}
-
 - (BOOL)becomeFirstResponder {
     [self makeKeyView];
     return [super becomeFirstResponder];

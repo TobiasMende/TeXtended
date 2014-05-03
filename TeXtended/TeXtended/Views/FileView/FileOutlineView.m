@@ -18,4 +18,13 @@
     
 }
 
+
+- (NSMenu *)menuForEvent:(NSEvent *)event {
+    NSMenu *menu = [super menuForEvent:event];
+    if (event.type == NSRightMouseDown && self.clickedRow < 0 && self.backgroundMenu) {
+        menu = self.backgroundMenu;
+    }
+    
+    return menu;
+}
 @end

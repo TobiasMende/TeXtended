@@ -10,4 +10,5 @@
 
 @interface FileOutlineView : NSOutlineView
 @property IBOutlet NSMenu *contextualMenu;
+@property IBOutlet NSMenu *backgroundMenu;
 @end

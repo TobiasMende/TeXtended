@@ -22,11 +22,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="204" height="462"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="5ix-G1-Azx">
-                        <rect key="frame" x="1" y="17" width="202" height="444"/>
+                        <rect key="frame" x="1" y="1" width="202" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" headerView="kfz-ms-ReK" viewBased="YES" indentationPerLevel="14" autosaveExpandedItems="YES" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe" customClass="FileOutlineView">
-                                <rect key="frame" x="0.0" y="0.0" width="202" height="444"/>
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" viewBased="YES" indentationPerLevel="14" autosaveExpandedItems="YES" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe" customClass="FileOutlineView">
+                                <rect key="frame" x="0.0" y="0.0" width="202" height="460"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +83,13 @@
                                 </tableColumns>
                                 <connections>
                                     <binding destination="UsM-XZ-1lJ" name="content" keyPath="arrangedObjects" id="zgU-e3-ONE"/>
+                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" id="VOQ-fD-P0e">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">openFile:</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="UsM-XZ-1lJ" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="zgU-e3-ONE" id="M3s-ce-EDo"/>
+                                    <outlet property="backgroundMenu" destination="4uV-Iu-4tA" id="qV4-Ua-2q8"/>
                                     <outlet property="contextualMenu" destination="vNl-31-Y3q" id="xuz-1Q-3wc"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
                                     <outlet property="menu" destination="vNl-31-Y3q" id="ogY-EV-u3P"/>
@@ -96,14 +102,10 @@
                         <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ere-LO-nBs">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Ere-LO-nBs">
                         <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <tableHeaderView key="headerView" id="kfz-ms-ReK">
-                        <rect key="frame" x="0.0" y="0.0" width="202" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </tableHeaderView>
                 </scrollView>
             </subviews>
         </customView>
@@ -116,7 +118,7 @@
                 <binding destination="-2" name="contentArray" keyPath="self.contents" id="55R-gv-55a"/>
             </connections>
         </treeController>
-        <menu id="vNl-31-Y3q">
+        <menu id="vNl-31-Y3q" userLabel="File Menu">
             <items>
                 <menuItem title="Open" id="Myw-qT-J8Q">
                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -171,6 +173,32 @@ CA
             </items>
             <connections>
                 <outlet property="delegate" destination="-2" id="YVm-KR-Hdz"/>
+            </connections>
+        </menu>
+        <menu id="4uV-Iu-4tA" userLabel="Outline Menu">
+            <items>
+                <menuItem title="New Folder" id="qMp-Ud-rYV">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createNewFolderInRoot:" target="-2" id="xul-7k-hLP"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="New File" id="uwa-GH-aCf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createNewFileInRoot:" target="-2" id="Nl2-I4-tHR"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="QWV-5H-cUb"/>
+                <menuItem title="Open in Finder" id="nHS-RC-9KF">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openRootInFinder:" target="-2" id="mDk-uW-hmx"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="C1E-u5-G6W"/>
             </connections>
         </menu>
     </objects>

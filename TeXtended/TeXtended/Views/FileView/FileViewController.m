@@ -19,7 +19,10 @@ static const NSString *WINDOW_KEY_PATH = @"window";
 static NSArray *INTERNAL_EXTENSIONS;
 
 @interface FileViewController ()
-
+- (MainDocument *)currentMainDocument;
+- (NSString *)basePathForCreation:(NSString *)path;
+- (void)createDirectoryInDirectory:(NSString *)path;
+- (void)createFileInDirectory:(NSString *)path;
 @end
 
 @implementation FileViewController
@@ -102,14 +105,23 @@ static NSArray *INTERNAL_EXTENSIONS;
     return [[self.outlineView itemAtRow:row] representedObject];
 }
 
-#pragma mark - Context Menu Actions
-- (void)menuNeedsUpdate:(NSMenu *)menu {
-    NSInteger row = self.outlineView.clickedRow;
-    if (row < 0) {
-        [menu cancelTrackingWithoutAnimation];
-        return;
+- (MainDocument *)currentMainDocument {
+    if ([self.document isKindOfClass:[MainDocument class]]) {
+        return self.document;
     }
+    return nil;
 }
+
+- (NSString *)basePathForCreation:(NSString *)path {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir;
+    
+    [fm fileExistsAtPath:path isDirectory:&isDir];
+    
+    return isDir ? path : [path stringByDeletingLastPathComponent];
+    
+}
+#pragma mark - Context Menu Actions
 
 
 - (IBAction)openFile:(id)sender {
@@ -122,22 +134,97 @@ static NSArray *INTERNAL_EXTENSIONS;
     }
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (!self.currentMainDocument) {
+        return [super respondsToSelector:aSelector];
+    }
+    if (aSelector == @selector(deleteFile:)) {
+        FileNode *node = self.currentFileNode;
+        MainDocument *md = self.currentMainDocument;
+        return  node && md && ![md.model.path isEqualToString:node.path];
+    }
+    
+    return [super respondsToSelector:aSelector];
+}
+
 - (IBAction)renameFile:(id)sender {
+    NSInteger row = self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
+    [self.outlineView editColumn:0 row:row withEvent:nil select:YES];
+    // TODO: finish implementation
 }
 
 - (IBAction)deleteFile:(id)sender {
-}
-
-- (IBAction)createNewFolder:(id)sender {
+    FileNode *node = self.currentFileNode;
+    NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Delete File?", @"Delete File Alert Title") defaultButton:NSLocalizedString(@"Delete", @"Delete Button") alternateButton:NSLocalizedString(@"Cancel", @"Cancel Button") otherButton:nil informativeTextWithFormat:NSLocalizedString(@"Are you sure to delete the file %@", @""), node.path.lastPathComponent];
+    alert.icon = node.icon;
+    NSModalResponse response = [alert runModal];
+    
+    if (response == NSAlertDefaultReturn) {
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:node.path error:&error];
+        if (error) {
+            [[NSAlert alertWithError:error] runModal];
+        }
+    }
+    
+    
 }
 
 - (IBAction)createNewFile:(id)sender {
+    FileNode *node = self.currentFileNode;
+    NSString *path = [self basePathForCreation:node.path];
+    [self createFileInDirectory:path];
+}
+
+- (void)createNewFileInRoot:(id)sender {
+    [self createFileInDirectory:self.path];
+}
+
+- (void)createFileInDirectory:(NSString *)path {
+    
+}
+
+- (IBAction)createNewFolder:(id)sender {
+    FileNode *node = self.currentFileNode;
+    NSString *path = [self basePathForCreation:node.path];
+    [self createDirectoryInDirectory:path];
+}
+
+
+- (void)createNewFolderInRoot:(id)sender {
+    [self createDirectoryInDirectory:self.path];
+}
+
+- (void)createDirectoryInDirectory:(NSString *)path {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *base = NSLocalizedString(@"Untitled Folder", @"");
+    NSString *name = [NSString stringWithString:base];
+    NSUInteger idx = 2;
+    while ([fm fileExistsAtPath:[path stringByAppendingPathComponent:name]]) {
+        name = [NSString stringWithFormat:@"%@ %li", base, idx];
+        idx ++;
+    }
+    NSString *totalPath = [path stringByAppendingPathComponent:name];
+    NSError *error;
+    [fm createDirectoryAtPath:totalPath withIntermediateDirectories:NO attributes:nil error:&error];
+    if (error) {
+        [[NSAlert alertWithError:error] runModal];
+    } else {
+        // TODO: implement
+    }
 }
 
 - (IBAction)revealInFinder:(id)sender {
+    FileNode *node = self.currentFileNode;
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:node.path]]];
+}
+
+- (void)openRootInFinder:(id)sender {
+    [[NSWorkspace sharedWorkspace] openFile:self.path];
 }
 
 - (IBAction)showInformation:(id)sender {
+    // TODO: implement
 }
 
 @end
