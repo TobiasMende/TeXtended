@@ -115,6 +115,7 @@
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
 		D26E8CF81912D33500326CAE /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26E8CF61912D33500326CAE /* FileViewController.m */; };
 		D26E8CF91912D33500326CAE /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D26E8CF71912D33500326CAE /* FileView.xib */; };
+		D2784BFF19153998002497D8 /* FileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784BFE19153998002497D8 /* FileNode.m */; };
 		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
 		D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D27CD19918913F2100A99997 /* FolderPenIcon.icns */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
@@ -553,6 +554,8 @@
 		D27198391743889400342CB0 /* SyntaxHighlighterStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlighterStub.m; sourceTree = "<group>"; };
 		D271984A1745241500342CB0 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		D2784BFD19153998002497D8 /* FileNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileNode.h; sourceTree = "<group>"; };
+		D2784BFE19153998002497D8 /* FileNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileNode.m; sourceTree = "<group>"; };
 		D27CD1961891388100A99997 /* CiteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteInfoViewController.h; sourceTree = "<group>"; };
 		D27CD1971891388100A99997 /* CiteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteInfoViewController.m; sourceTree = "<group>"; };
 		D27CD19918913F2100A99997 /* FolderPenIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FolderPenIcon.icns; sourceTree = "<group>"; };
@@ -1229,6 +1232,8 @@
 				D26E8CF51912D33500326CAE /* FileViewController.h */,
 				D26E8CF61912D33500326CAE /* FileViewController.m */,
 				D26E8CF71912D33500326CAE /* FileView.xib */,
+				D2784BFD19153998002497D8 /* FileNode.h */,
+				D2784BFE19153998002497D8 /* FileNode.m */,
 			);
 			path = FileView;
 			sourceTree = "<group>";
@@ -1946,6 +1951,7 @@
 				D2E7A4FD1768E8F400B2BA3C /* Completion.m in Sources */,
 				D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */,
 				D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */,
+				D2784BFF19153998002497D8 /* FileNode.m in Sources */,
 				D2FC9EAC189680670015C192 /* CacheManager.m in Sources */,
 				D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */,
 				D2E7A4FE1768E8F400B2BA3C /* EnvironmentCompletion.m in Sources */,

@@ -69,6 +69,12 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     [self.mainDocument windowControllerDidLoadNib:self];
     
     [self.shareButton sendActionOn:NSLeftMouseDownMask];
+    self.fileViewController.document = self.document;
+}
+
+- (void)setDocument:(NSDocument *)document {
+    [super setDocument:document];
+    self.fileViewController.document = document;
 }
 
 
