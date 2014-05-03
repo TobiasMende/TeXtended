@@ -57,4 +57,18 @@
     return contents;
 }
 
+- (NSString *)description {
+    return self.path;
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + [self.path hash];
+}
+
+- (BOOL)isEqual:(id)object {
+    return [object isKindOfClass:[FileNode class]] && [[(FileNode*)object path] isEqualToString:self.path];
+}
+
 @end

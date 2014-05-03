@@ -116,6 +116,7 @@
 		D26E8CF81912D33500326CAE /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26E8CF61912D33500326CAE /* FileViewController.m */; };
 		D26E8CF91912D33500326CAE /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D26E8CF71912D33500326CAE /* FileView.xib */; };
 		D2784BFF19153998002497D8 /* FileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784BFE19153998002497D8 /* FileNode.m */; };
+		D2784C0519155196002497D8 /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784C0419155196002497D8 /* FileOutlineView.m */; };
 		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
 		D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D27CD19918913F2100A99997 /* FolderPenIcon.icns */; };
 		D27F805418253A3E00BCD72A /* MainDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D27F805218253A3E00BCD72A /* MainDocument.m */; };
@@ -556,6 +557,8 @@
 		D271984B1745241500342CB0 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 		D2784BFD19153998002497D8 /* FileNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileNode.h; sourceTree = "<group>"; };
 		D2784BFE19153998002497D8 /* FileNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileNode.m; sourceTree = "<group>"; };
+		D2784C0319155196002497D8 /* FileOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutlineView.h; sourceTree = "<group>"; };
+		D2784C0419155196002497D8 /* FileOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutlineView.m; sourceTree = "<group>"; };
 		D27CD1961891388100A99997 /* CiteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CiteInfoViewController.h; sourceTree = "<group>"; };
 		D27CD1971891388100A99997 /* CiteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CiteInfoViewController.m; sourceTree = "<group>"; };
 		D27CD19918913F2100A99997 /* FolderPenIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FolderPenIcon.icns; sourceTree = "<group>"; };
@@ -1234,6 +1237,8 @@
 				D26E8CF71912D33500326CAE /* FileView.xib */,
 				D2784BFD19153998002497D8 /* FileNode.h */,
 				D2784BFE19153998002497D8 /* FileNode.m */,
+				D2784C0319155196002497D8 /* FileOutlineView.h */,
+				D2784C0419155196002497D8 /* FileOutlineView.m */,
 			);
 			path = FileView;
 			sourceTree = "<group>";
@@ -2024,6 +2029,7 @@
 				D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */,
 				D2C237AB189554BE0096ECAA /* StructureOutlineViewController.m in Sources */,
 				D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */,
+				D2784C0519155196002497D8 /* FileOutlineView.m in Sources */,
 				D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */,
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */,

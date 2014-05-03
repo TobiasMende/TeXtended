@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="FileViewController">
             <connections>
                 <outlet property="fileTree" destination="UsM-XZ-1lJ" id="lze-GU-ocY"/>
+                <outlet property="outlineView" destination="i4F-Z5-MRe" id="JBj-e3-Iza"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -24,7 +25,7 @@
                         <rect key="frame" x="1" y="17" width="202" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" headerView="kfz-ms-ReK" viewBased="YES" indentationPerLevel="14" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" headerView="kfz-ms-ReK" viewBased="YES" indentationPerLevel="14" autosaveExpandedItems="YES" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe" customClass="FileOutlineView">
                                 <rect key="frame" x="0.0" y="0.0" width="202" height="444"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
@@ -83,7 +84,9 @@
                                 <connections>
                                     <binding destination="UsM-XZ-1lJ" name="content" keyPath="arrangedObjects" id="zgU-e3-ONE"/>
                                     <binding destination="UsM-XZ-1lJ" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="zgU-e3-ONE" id="M3s-ce-EDo"/>
+                                    <outlet property="contextualMenu" destination="vNl-31-Y3q" id="xuz-1Q-3wc"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
+                                    <outlet property="menu" destination="vNl-31-Y3q" id="ogY-EV-u3P"/>
                                 </connections>
                             </outlineView>
                         </subviews>
@@ -104,7 +107,7 @@
                 </scrollView>
             </subviews>
         </customView>
-        <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" id="UsM-XZ-1lJ">
+        <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" selectsInsertedObjects="NO" id="UsM-XZ-1lJ">
             <declaredKeys>
                 <string>name</string>
                 <string>icon</string>
@@ -113,6 +116,63 @@
                 <binding destination="-2" name="contentArray" keyPath="self.contents" id="55R-gv-55a"/>
             </connections>
         </treeController>
+        <menu id="vNl-31-Y3q">
+            <items>
+                <menuItem title="Open" id="Myw-qT-J8Q">
+                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                    <connections>
+                        <action selector="openFile:" target="-2" id="tz3-aq-0MJ"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Rename" id="FPA-Q2-its">
+                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="renameFile:" target="-2" id="jnn-5i-TDh"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Delete" id="7I2-25-Qgl">
+                    <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                    <connections>
+                        <action selector="deleteFile:" target="-2" id="WpL-Qp-f3Y"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="fge-yb-XTJ"/>
+                <menuItem title="New Folder" id="T8C-lw-sZi">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createNewFolder:" target="-2" id="zR2-iW-sMH"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="New File" id="qrM-ws-I4T">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createNewFile:" target="-2" id="B2b-BJ-ech"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="dCL-cf-2Wj"/>
+                <menuItem title="Reveal in Finder" id="sqy-ou-R8N">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="revealInFinder:" target="-2" id="TYI-ew-5JR"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Information" keyEquivalent="i" id="jE3-r9-dsQ">
+                    <connections>
+                        <action selector="showInformation:" target="-2" id="dOz-Rx-apF"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="YVm-KR-Hdz"/>
+            </connections>
+        </menu>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

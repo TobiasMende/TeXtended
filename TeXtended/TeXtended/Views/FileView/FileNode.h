@@ -20,4 +20,5 @@
 
 + (FileNode *)fileNodeWithPath:(NSString *)path;
 
+- (IBAction)toggleRenameMode:(id)sender;
 @end
