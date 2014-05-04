@@ -21,6 +21,7 @@
 - (void) updatePath;
 - (void) buildTree;
 - (FileNode *)currentFileNode;
+- (NSInteger) currentRow;
 
 
 #pragma mark - Context Menu Actions

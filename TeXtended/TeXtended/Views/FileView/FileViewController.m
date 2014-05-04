@@ -113,8 +113,11 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 
+- (NSInteger)currentRow {
+    return self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
+}
 - (FileNode *)currentFileNode {
-    NSInteger row = self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
+    NSInteger row = self.currentRow;
     if (row < 0) {
         return nil;
     }
@@ -210,6 +213,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 
 - (IBAction)deleteFile:(id)sender {
+    pathObserverIsActive = NO;
     FileNode *node = self.currentFileNode;
     NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Delete File?", @"Delete File Alert Title") defaultButton:NSLocalizedString(@"Delete", @"Delete Button") alternateButton:NSLocalizedString(@"Cancel", @"Cancel Button") otherButton:nil informativeTextWithFormat:NSLocalizedString(@"Are you sure to delete the file %@", @""), node.path.lastPathComponent];
     alert.icon = node.icon;
@@ -217,20 +221,29 @@ static NSArray *INTERNAL_EXTENSIONS;
     
     if (response == NSAlertDefaultReturn) {
         NSError *error;
-        [[NSFileManager defaultManager] removeItemAtPath:node.path error:&error];
-        if (error) {
-            [[NSAlert alertWithError:error] runModal];
-        }
+        const NSInteger currentRow = self.currentRow;
+        
+        [[NSWorkspace sharedWorkspace] recycleURLs:@[[NSURL fileURLWithPath:node.path]] completionHandler:^(NSDictionary *newURLs, NSError *error) {
+            if (error) {
+                [[NSAlert alertWithError:error] runModal];
+            }
+            [self buildTree];
+            NSInteger row = currentRow > 0 ? currentRow-1: currentRow;
+            [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        }];
+    
+    
     }
+    
+    pathObserverIsActive = YES;
     
     
 }
 
 - (IBAction)createNewFile:(id)sender {
-    
     FileNode *node = self.currentFileNode;
     NSString *path = [self basePathForCreation:node.path];
-        [self createFileInDirectory:path];
+    [self createFileInDirectory:path];
 }
 
 - (void)createNewFileInRoot:(id)sender {
