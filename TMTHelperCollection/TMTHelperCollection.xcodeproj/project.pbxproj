@@ -30,6 +30,9 @@
 		D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = D22DC1C91863784800997ADB /* TMTHelperCollection.h */; };
 		D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC26418637A4F00997ADB /* TMTTableRowView.m */; };
 		D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC26618637A4F00997ADB /* TMTTableView.m */; };
+		D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821619166B5F00C1B9E0 /* TMTTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D295821719166B5F00C1B9E0 /* TMTTextField.m */; };
+		D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		D22DC26418637A4F00997ADB /* TMTTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableRowView.m; sourceTree = "<group>"; };
 		D22DC26518637A4F00997ADB /* TMTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTableView.h; sourceTree = "<group>"; };
 		D22DC26618637A4F00997ADB /* TMTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTableView.m; sourceTree = "<group>"; };
+		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
+		D295821619166B5F00C1B9E0 /* TMTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTextField.h; sourceTree = "<group>"; };
+		D295821719166B5F00C1B9E0 /* TMTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTextField.m; sourceTree = "<group>"; };
 		E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.xcconfig"; path = "../Pods/Pods-TMTHelperCollection.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +148,7 @@
 		D22DC1C21863784800997ADB /* TMTHelperCollection */ = {
 			isa = PBXGroup;
 			children = (
+				D295821319166AF000C1B9E0 /* Protocols */,
 				D22DC24618637A4F00997ADB /* Utils */,
 				D22DC26118637A4F00997ADB /* Views */,
 				D22DC1C91863784800997ADB /* TMTHelperCollection.h */,
@@ -206,6 +213,7 @@
 		D22DC26118637A4F00997ADB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D295821519166B4400C1B9E0 /* TMTTextField */,
 				D22DC26218637A4F00997ADB /* TMTTableView */,
 			);
 			path = Views;
@@ -222,6 +230,23 @@
 			path = TMTTableView;
 			sourceTree = "<group>";
 		};
+		D295821319166AF000C1B9E0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D295821519166B4400C1B9E0 /* TMTTextField */ = {
+			isa = PBXGroup;
+			children = (
+				D295821619166B5F00C1B9E0 /* TMTTextField.h */,
+				D295821719166B5F00C1B9E0 /* TMTTextField.m */,
+			);
+			path = TMTTextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -234,6 +259,8 @@
 				D22DC29818637ACA00997ADB /* TMTLog.h in Headers */,
 				D22DC29918637ACA00997ADB /* TMTLogFormatter.h in Headers */,
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
+				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
+				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
 				D22DC29D18637ACA00997ADB /* TMTHelperCollection.h in Headers */,
@@ -372,6 +399,7 @@
 			files = (
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
+				D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */,
 				D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */,
 				D22DC28B18637AB800997ADB /* TMTLog.m in Sources */,
 				D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */,
