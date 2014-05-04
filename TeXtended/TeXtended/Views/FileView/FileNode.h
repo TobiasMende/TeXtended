@@ -10,10 +10,11 @@
 
 @interface FileNode : NSObject
 
-@property NSString *path;
+@property (nonatomic) NSString *path;
 
 
 - (NSString *)name;
+- (void) setName:(NSString *)name;
 - (BOOL)isLeaf;
 - (NSImage *)icon;
 - (NSMutableArray *)children;

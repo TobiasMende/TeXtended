@@ -28,8 +28,32 @@
     return keys;
 }
 
+- (void)setPath:(NSString *)path {
+    if ([path isEqualTo:_path]) {
+        return;
+    }
+    NSString *oldPath = _path;
+    _path = path;
+    if (oldPath) {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSError *error;
+        [fm moveItemAtPath:oldPath toPath:path error:&error];
+        if (error) {
+            DDLogError(@"Can't set path! %@", error.userInfo);
+        }
+    }
+    
+}
+
 - (NSString *)name {
     return self.path.lastPathComponent;
+}
+
+- (void)setName:(NSString *)name {
+    if (!name || name.length == 0 || [name isEqualTo:self.name]) {
+        return;
+    }
+    self.path = [[self.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:name];
 }
 
 - (BOOL)isLeaf {

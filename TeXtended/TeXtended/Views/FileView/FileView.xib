@@ -38,7 +38,7 @@
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableHeaderCell>
-                                        <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="r8O-fg-ob5">
+                                        <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text Cell" id="r8O-fg-ob5">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -57,16 +57,17 @@
                                                             <binding destination="Iow-1E-8d1" name="value" keyPath="objectValue.icon" id="5b0-qe-Qnz"/>
                                                         </connections>
                                                     </imageView>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="sl1-ih-yeL">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="sl1-ih-yeL" customClass="TMTTextField">
                                                         <rect key="frame" x="25" y="-3" width="174" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="UFz-dp-GX3">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="UFz-dp-GX3">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
                                                             <binding destination="Iow-1E-8d1" name="value" keyPath="objectValue.name" id="d9h-lk-rk8"/>
+                                                            <outlet property="delegate" destination="-2" id="qaZ-q4-isO"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -83,12 +84,12 @@
                                 </tableColumns>
                                 <connections>
                                     <binding destination="UsM-XZ-1lJ" name="content" keyPath="arrangedObjects" id="zgU-e3-ONE"/>
+                                    <binding destination="UsM-XZ-1lJ" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="zgU-e3-ONE" id="M3s-ce-EDo"/>
                                     <binding destination="-2" name="doubleClickTarget" keyPath="self" id="VOQ-fD-P0e">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">openFile:</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="UsM-XZ-1lJ" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="zgU-e3-ONE" id="M3s-ce-EDo"/>
                                     <outlet property="backgroundMenu" destination="4uV-Iu-4tA" id="qV4-Ua-2q8"/>
                                     <outlet property="contextualMenu" destination="vNl-31-Y3q" id="xuz-1Q-3wc"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
@@ -129,9 +130,6 @@ DQ
                     </connections>
                 </menuItem>
                 <menuItem title="Rename" id="FPA-Q2-its">
-                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="renameFile:" target="-2" id="jnn-5i-TDh"/>

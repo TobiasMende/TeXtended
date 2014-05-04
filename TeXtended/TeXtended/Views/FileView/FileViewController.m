@@ -13,6 +13,8 @@
 #import "MainDocument.h"
 
 #import <TMTHelperCollection/PathObserverFactory.h>
+#import <TMTHelperCollection/TMTTextFieldDelegate.h>
+#import <TMTHelperCollection/TMTTextField.h>
 
 static const NSString *FILE_KEY_PATH = @"fileURL";
 static const NSString *WINDOW_KEY_PATH = @"window";
@@ -23,6 +25,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 - (NSString *)basePathForCreation:(NSString *)path;
 - (void)createDirectoryInDirectory:(NSString *)path;
 - (void)createFileInDirectory:(NSString *)path;
+- (void)pathObserverBuildTree;
 @end
 
 @implementation FileViewController
@@ -42,6 +45,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Initialization code here.
+        pathObserverIsActive = YES;
     }
     return self;
 }
@@ -64,9 +68,15 @@ static NSArray *INTERNAL_EXTENSIONS;
         _path = path;
         
         if (_path) {
-            [[PathObserverFactory pathObserverForPath:_path] addObserver:self withSelector:@selector(buildTree)];
+            [[PathObserverFactory pathObserverForPath:_path] addObserver:self withSelector:@selector(pathObserverBuildTree)];
             [self buildTree];
         }
+    }
+}
+
+- (void)pathObserverBuildTree {
+    if (pathObserverIsActive) {
+        [self buildTree];
     }
 }
 
@@ -121,6 +131,37 @@ static NSArray *INTERNAL_EXTENSIONS;
     return isDir ? path : [path stringByDeletingLastPathComponent];
     
 }
+
+#pragma mark - Text Delegates
+
+
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+    [self buildTree];    
+    pathObserverIsActive = YES;
+}
+
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    DDLogInfo(@"Should?");
+    return YES;
+    
+}
+
+- (BOOL)control:(NSControl *)control isValidObject:(id)obj {
+    FileNode *node = [self currentFileNode];
+    NSString *basePath = [node.path stringByDeletingLastPathComponent];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    return [obj length] > 0 && ![obj hasPrefix:@"."] && ([node.name isEqualTo:obj] || ! [fm fileExistsAtPath:[basePath stringByAppendingPathComponent:obj]]);
+}
+
+- (void) controlDidSelectText:(TMTTextField *)control {
+    pathObserverIsActive = NO;
+    NSText *editor = [self.view.window fieldEditor:YES forObject:control];
+    NSString *base = [control.stringValue stringByDeletingPathExtension];
+    [editor setSelectedRange:[control.stringValue rangeOfString:base]];
+}
+
 #pragma mark - Context Menu Actions
 
 
@@ -149,9 +190,18 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 - (IBAction)renameFile:(id)sender {
     NSInteger row = self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
+    if (row < 0) {
+        NSBeep();
+        return;
+    }
+    [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    
     [self.outlineView editColumn:0 row:row withEvent:nil select:YES];
     // TODO: finish implementation
+    
 }
+
+
 
 - (IBAction)deleteFile:(id)sender {
     FileNode *node = self.currentFileNode;
