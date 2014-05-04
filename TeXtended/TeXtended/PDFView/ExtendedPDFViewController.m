@@ -45,6 +45,7 @@
 }
 
 
+
 - (void) startBackwardSynctex:(id)sender {
     PDFSelection *currentSelection = [self.pdfView currentSelection];
     if (currentSelection) {

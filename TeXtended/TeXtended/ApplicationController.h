@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FirstResponderDelegate.h"
 @class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController, ConsoleWindowController, TemplateController;
 
 /**
@@ -32,7 +31,6 @@
     TemplateController *templateController;
 }
 
-@property (assign) id<FirstResponderDelegate> currentFirstResponderDelegate;
 
 /** Method for showing the texdoc panel to the user 
  

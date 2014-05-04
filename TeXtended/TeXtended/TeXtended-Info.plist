@@ -128,11 +128,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8</string>
+	<string>0.8.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -144,7 +144,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://textended.tobsolution.de/appcast.xml</string>
+	<string>http://get.textended.de/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_textended.pem</string>
 	<key>UTExportedTypeDeclarations</key>

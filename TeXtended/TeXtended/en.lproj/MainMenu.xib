@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -130,8 +130,9 @@
                             </menuItem>
                             <menuItem title="Export ..." keyEquivalent="e" id="571">
                                 <connections>
-                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="sB0-RZ-aaV">
+                                    <binding destination="05y-aw-ghU" name="target" keyPath="self.currentDocument.currentDC" id="Omg-UN-03m">
                                         <dictionary key="options">
+                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <string key="NSSelectorName">finalCompile:</string>
                                         </dictionary>
                                     </binding>
@@ -417,8 +418,9 @@
                             <menuItem title="Refresh Live View" tag="1001" keyEquivalent="r" id="562">
                                 <accessibility description="TMTRefreshLiveView"/>
                                 <connections>
-                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="0VK-RN-dGn">
+                                    <binding destination="05y-aw-ghU" name="target" keyPath="self.currentDocument.currentDC" id="F5C-Ta-6pa">
                                         <dictionary key="options">
+                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <string key="NSSelectorName">liveCompile:</string>
                                         </dictionary>
                                     </binding>
@@ -427,21 +429,16 @@
                             <menuItem title="Draft Compile" keyEquivalent="r" id="567">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <binding destination="534" name="target" keyPath="self.currentFirstResponderDelegate" id="dFC-Kc-F4J">
+                                    <binding destination="05y-aw-ghU" name="target" keyPath="self.currentDocument.currentDC" id="ycO-G0-JV0">
                                         <dictionary key="options">
+                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                             <string key="NSSelectorName">draftCompile:</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="583"/>
-                            <menuItem title="Live Compile" alternate="YES" keyEquivalent="c" id="588">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <binding destination="534" name="value" keyPath="self.currentFirstResponderDelegate.liveCompileEnabled" id="lzr-9Y-LZe"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Live Scrolling" alternate="YES" keyEquivalent="L" id="584">
+                            <menuItem title="Live Scrolling" keyEquivalent="L" id="584">
                                 <connections>
                                     <binding destination="585" name="value" keyPath="values.TMTDocumentEnableLiveScrolling" id="587"/>
                                 </connections>
@@ -562,5 +559,6 @@
         <customObject id="534" customClass="ApplicationController"/>
         <customObject id="537" customClass="SUUpdater"/>
         <userDefaultsController representsSharedInstance="YES" id="585"/>
+        <customObject id="05y-aw-ghU" customClass="DocumentCreationController"/>
     </objects>
 </document>

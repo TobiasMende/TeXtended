@@ -23,6 +23,10 @@
 #import "Template.h"
 #import "SimpleDocument.h"
 
+@interface MainDocument ()
+- (void)firstResponderDidChangeNotification:(NSNotification *)note;
+@end
+
 @implementation MainDocument
 
 - (id)init
@@ -43,7 +47,7 @@
     }
     if ([windowController isKindOfClass:[MainWindowController class]]) {
         for(DocumentController *dc in self.documentControllers) {
-            [self.mainWindowController showDocument:dc];
+            self.currentDC = dc;
         }
     }
     
@@ -69,10 +73,6 @@
     [numberLock unlock];
 }
 
-- (void)firstResponderDidChangeNotification:(NSNotification *)note {
-        self.mainWindowController.myCurrentFirstResponderDelegate = (note.userInfo)[TMTFirstResponderKey];
-}
-
 
 - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -91,6 +91,16 @@
                                  userInfo:nil];
 }
 
+- (void)firstResponderDidChangeNotification:(NSNotification *)note {
+    
+    id<FirstResponderDelegate> delegate = note.userInfo[TMTFirstResponderKey];
+    
+    self.currentDC = delegate;
+    if (note.object && [note.object isKindOfClass:[NSView class]]) {
+        [self addWindowController:(NSWindowController *)[note.object window].windowController];
+    }
+}
+
 + (BOOL)autosavesInPlace
 {
     return YES;
@@ -107,8 +117,6 @@
 }
 
 - (void)removeDocumentController:(DocumentController *)dc {
-    self.mainWindowController.myCurrentFirstResponderDelegate = nil;
-    [ApplicationController sharedApplicationController].currentFirstResponderDelegate = nil;
     [self.documentControllers removeObject:dc];
     if (self.documentControllers.count == 0) {
         [self close];
@@ -174,8 +182,6 @@
 }
 
 -(void)shareItems:(NSArray *)items {
-    //NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:[[NSArray alloc] initWithObjects:[[NSURL alloc] initFileURLWithPath:@"/Users/Tobias/Google Drive/Übungszettel/Seminar/Ausarbeitung/hauptdatei.pdf"], nil]];
-    
     if (items.count == 0) {
         return;
     }
@@ -199,6 +205,15 @@
     [NSException raise:@"exportSingleDocument not implemented." format:@"Yout have to implement exportSingleDocument in subclasses of MainDocument."];
 }
 
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(exportSingleDocument:)) {
+        return self.fileURL != nil;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
+
 - (void)openNewTabForCompilable:(DocumentModel*)model {
     for (DocumentController *dc in self.documentControllers) {
         if (dc.model == model) {
@@ -208,14 +223,14 @@
                 [item.tabView selectTabViewItem:item];
             }
             [dc showPDFViews];
-            [self.mainWindowController showDocument:dc];
+            self.currentDC = dc;
             return;
         }
     }
     
     DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
     [self.documentControllers addObject:dc];
-    [self.mainWindowController showDocument:dc];
+    self.currentDC = dc;
 }
 
 
@@ -297,8 +312,8 @@
 #pragma mark -
 
 - (void)dealloc {
-    for (DocumentController *dc in self.documentControllers) {
-        dc.mainDocument = nil;
+    for (DocumentController *dc in [self.documentControllers copy]) {
+        [dc closeDocument];
     }
 }
 

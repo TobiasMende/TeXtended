@@ -33,6 +33,7 @@
 - (void)awakeFromNib {
     [[TMTTabManager sharedTabManager] addTabViewController:self];
     //[tabBar setDelegate:self];
+    //self.tabView.delegate = self;
     [tabBar setStyleNamed:@"Safari"];
     [tabBar setOnlyShowCloseOnHover:YES];
     [tabBar setCanCloseOnlyTab:NO];
@@ -50,6 +51,7 @@
     [tabBar setTearOffStyle:MMTabBarTearOffAlphaWindow];
 }
 
+
 - (void)dealloc {
     for(NSTabViewItem *item in self.tabView.tabViewItems) {
         [self handleTabClose:item];
@@ -65,6 +67,10 @@
 
 
 - (void) addTabViewItem:(TMTTabViewItem*) item {
+    if (!item.document) {
+        item.document = ((NSWindowController*)self.tabView.window.windowController).document;
+    }
+    
     NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
     [newItem setView:[item view]];
 	[self.tabView addTabViewItem:newItem];
@@ -95,10 +101,6 @@
 
 - (BOOL)tabView:(NSTabView*)aTabView shouldDragTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
 	return YES;
-}
-
-- (BOOL)shouldCloseWindowForLastTabDrag {
-    return self.closeWindowForLastTabDrag;
 }
 
 - (NSDragOperation)tabView:(NSTabView*)aTabView validateDrop:(id<NSDraggingInfo>)sender proposedItem:(NSTabViewItem *)tabViewItem proposedIndex:(NSUInteger)proposedIndex inTabBarView:(MMTabBarView *)tabBarView {
@@ -176,6 +178,12 @@
 
 }
 
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
+    [[tabViewItem.view window] makeFirstResponder:tabViewItem.view];
+}
+
+
 - (BOOL)shouldHideWindowWhenDraggingFrom:(MMTabBarView *)tabBarController {
     return self.closeWindowForLastTabDrag;
 }
@@ -184,6 +192,18 @@
 - (void)tabView:(NSTabView *)aTabView didDropTabViewItem:(NSTabViewItem *)tabViewItem inTabBarView:(MMTabBarView *)tabBarView {
     if (!self.closeWindowForLastTabDrag) {
         [self.tabView.window orderWindow:NSWindowBelow relativeTo:tabBarView.window.windowNumber];
+    }
+}
+
+- (void)tabViewDidChangeNumberOfTabViewItems:(NSTabView *)tabView {
+    NSWindow *w = tabView.window;
+    if (tabView.numberOfTabViewItems == 0) {
+        if ([w isKindOfClass:[TMTTabViewWindow class]]) {
+            [[TMTTabManager sharedTabManager] removeTabViewWindow:(TMTTabViewWindow*)w];
+        }
+        if (self.closeWindowForLastTabDrag) {
+            [w close];
+        }
     }
 }
 

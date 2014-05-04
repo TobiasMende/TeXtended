@@ -42,7 +42,7 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
     self = [super initWithNibName:@"OutlineTabView" bundle:nil];
     if (self) {
         self.mainWindowController = mwc;
-        [self bind:@"currentDelegate" toObject:self.mainWindowController withKeyPath:@"myCurrentFirstResponderDelegate" options:nil];
+        [self bind:@"currentDelegate" toObject:self.mainWindowController withKeyPath:@"document.currentDC" options:nil];
     }
     return self;
 }

@@ -139,10 +139,17 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         NSStringEncoding alternate = NSUTF8StringEncoding;
         NSError *error2 = nil;
         success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
-        if (!success) {
-            DDLogError(@"Error while saving: %@", [error2 userInfo]);
-        } else {
+        if (success) {
             self.encoding = @(alternate);
+        } else {
+            if(error2) {
+                DDLogError(@"Error while saving: %@", [error2 userInfo]);
+            } else {
+                DDLogError(@"Error while saving (unknown)");
+            }
+            if (error != NULL) {
+                *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."),NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."),NSLocalizedDescriptionKey: NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey: @(alternate), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
+            }
         }
     }
     if (success) {
