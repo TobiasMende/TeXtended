@@ -11,4 +11,7 @@
 @interface FileOutlineView : NSOutlineView
 @property IBOutlet NSMenu *contextualMenu;
 @property IBOutlet NSMenu *backgroundMenu;
+
+- (NSArray *)expandedItems;
+- (void)restoreExpandedStateWithArray:(NSArray *)array;
 @end

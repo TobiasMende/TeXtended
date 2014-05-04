@@ -7,11 +7,12 @@
 //
 
 #import "FileViewController.h"
-#import <TMTHelperCollection/TMTLog.h>
 #import "FileNode.h"
 #import "DocumentCreationController.h"
 #import "MainDocument.h"
+#import "FileOutlineView.h"
 
+#import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/PathObserverFactory.h>
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
 #import <TMTHelperCollection/TMTTextField.h>
@@ -26,6 +27,8 @@ static NSArray *INTERNAL_EXTENSIONS;
 - (void)createDirectoryInDirectory:(NSString *)path;
 - (void)createFileInDirectory:(NSString *)path;
 - (void)pathObserverBuildTree;
+- (NSIndexPath *)indexPathForPath:(NSString *)path;
+- (FileNode *)findFileNodeForPath:(NSString *)path;
 @end
 
 @implementation FileViewController
@@ -81,10 +84,13 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 - (void)buildTree {
+    [self.fileTree discardEditing];
+    NSArray *expanedItems = [self.outlineView expandedItems];
     NSError *error;
     FileNode *root = [FileNode fileNodeWithPath:self.path];
     self.contents = root.children;
     [self.fileTree rearrangeObjects];
+    [self.outlineView restoreExpandedStateWithArray:expanedItems];
     
 }
 
@@ -137,7 +143,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
-    [self buildTree];    
+    [self buildTree];
     pathObserverIsActive = YES;
 }
 
@@ -152,7 +158,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     FileNode *node = [self currentFileNode];
     NSString *basePath = [node.path stringByDeletingLastPathComponent];
     NSFileManager *fm = [NSFileManager defaultManager];
-    return [obj length] > 0 && ![obj hasPrefix:@"."] && ([node.name isEqualTo:obj] || ! [fm fileExistsAtPath:[basePath stringByAppendingPathComponent:obj]]);
+    return [obj length] > 0 && ![obj hasPrefix:@"."] && [obj rangeOfString:@"/"].location == NSNotFound && ([node.name isEqualTo:obj] || ! [fm fileExistsAtPath:[basePath stringByAppendingPathComponent:obj]]);
 }
 
 - (void) controlDidSelectText:(TMTTextField *)control {
@@ -221,9 +227,10 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 - (IBAction)createNewFile:(id)sender {
+    
     FileNode *node = self.currentFileNode;
     NSString *path = [self basePathForCreation:node.path];
-    [self createFileInDirectory:path];
+        [self createFileInDirectory:path];
 }
 
 - (void)createNewFileInRoot:(id)sender {
@@ -231,13 +238,33 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 - (void)createFileInDirectory:(NSString *)path {
-    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    pathObserverIsActive = NO;
+    NSString *base = NSLocalizedString(@"Untitled", @"");
+    NSString *name = [NSString stringWithString:base];
+    NSUInteger idx = 2;
+    while ([fm fileExistsAtPath:[[path stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"tex"]]) {
+        name = [NSString stringWithFormat:@"%@ %li", base, idx++];
+    }
+    NSString *totalPath = [[path stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"tex"];
+    NSError *error;
+    [fm createFileAtPath:totalPath contents:[@"" dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+    if (error) {
+        [[NSAlert alertWithError:error] runModal];
+    } else {
+        
+        [self buildTree];
+        NSIndexPath *indexes = [self indexPathForPath:totalPath];
+        if ([self.fileTree setSelectionIndexPath:indexes] &&  self.outlineView.selectedRow >= 0) {
+            [self.outlineView editColumn:0 row:self.outlineView.selectedRow withEvent:nil select:YES];
+        }
+    }
 }
 
 - (IBAction)createNewFolder:(id)sender {
-    FileNode *node = self.currentFileNode;
-    NSString *path = [self basePathForCreation:node.path];
-    [self createDirectoryInDirectory:path];
+        FileNode *node = self.currentFileNode;
+        NSString *path = [self basePathForCreation:node.path];
+        [self createDirectoryInDirectory:path];
 }
 
 
@@ -247,12 +274,12 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 - (void)createDirectoryInDirectory:(NSString *)path {
     NSFileManager *fm = [NSFileManager defaultManager];
+    pathObserverIsActive = NO;
     NSString *base = NSLocalizedString(@"Untitled Folder", @"");
     NSString *name = [NSString stringWithString:base];
     NSUInteger idx = 2;
     while ([fm fileExistsAtPath:[path stringByAppendingPathComponent:name]]) {
-        name = [NSString stringWithFormat:@"%@ %li", base, idx];
-        idx ++;
+        name = [NSString stringWithFormat:@"%@ %li", base, idx++];
     }
     NSString *totalPath = [path stringByAppendingPathComponent:name];
     NSError *error;
@@ -260,7 +287,11 @@ static NSArray *INTERNAL_EXTENSIONS;
     if (error) {
         [[NSAlert alertWithError:error] runModal];
     } else {
-        // TODO: implement
+        [self buildTree];
+        NSIndexPath *indexes = [self indexPathForPath:totalPath];
+        if ([self.fileTree setSelectionIndexPath:indexes] && self.outlineView.selectedRow >= 0) {
+            [self.outlineView editColumn:0 row:self.outlineView.selectedRow withEvent:nil select:YES];
+        }
     }
 }
 
@@ -277,4 +308,33 @@ static NSArray *INTERNAL_EXTENSIONS;
     // TODO: implement
 }
 
+
+# pragma mark - Tree Helpers
+
+- (NSIndexPath *)indexPathForPath:(NSString *)path {
+    if (![path hasPrefix: self.path]) {
+        return nil;
+    }
+    NSUInteger count = 0;
+    for(FileNode *node in self.contents) {
+        NSIndexPath *result = [node indexPathForPath:path andPrefix:[NSIndexPath indexPathWithIndex:count]];
+        if (result) {
+            return result;
+        }
+        count ++;
+    }
+    return nil;
+}
+
+
+- (FileNode *)findFileNodeForPath:(NSString *)path {
+    
+    for(FileNode *node in self.contents) {
+        FileNode *result = [node fileNodeForPath:path];
+        if (result) {
+            return result;
+        }
+    }
+    return nil;
+}
 @end

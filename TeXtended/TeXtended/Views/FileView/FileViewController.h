@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
-@class FileNode;
+@class FileNode, FileOutlineView;
 @interface FileViewController : NSViewController <NSOutlineViewDelegate,NSMenuDelegate, NSControlTextEditingDelegate> {
     BOOL pathObserverIsActive;
 }
@@ -16,7 +16,7 @@
 @property (nonatomic) NSString *path;
 @property (assign,nonatomic) NSDocument *document;
 @property NSMutableArray *contents;
-@property (strong) IBOutlet NSOutlineView *outlineView;
+@property (strong) IBOutlet FileOutlineView *outlineView;
 
 - (void) updatePath;
 - (void) buildTree;

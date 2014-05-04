@@ -95,4 +95,38 @@
     return [object isKindOfClass:[FileNode class]] && [[(FileNode*)object path] isEqualToString:self.path];
 }
 
+- (FileNode *)fileNodeForPath:(NSString *)path {
+    if (![path hasPrefix:self.path]) {
+        return  nil;
+    }
+    if ([path isEqualTo:self.path]) {
+        return self;
+    }
+    for(FileNode *node in self.children) {
+        if ([path hasPrefix:[self.path stringByAppendingString:@"/"]]) {
+            return [node fileNodeForPath:path];
+        }
+    }
+    return nil;
+}
+
+- (NSIndexPath *)indexPathForPath:(NSString *)path andPrefix:(NSIndexPath *)prefix {
+    if (![path hasPrefix:self.path]) {
+        return  nil;
+    }
+    if ([path isEqualTo:self.path]) {
+        return prefix;
+    }
+    NSUInteger count = 0;
+    for(FileNode *node in self.children) {
+        if ([path hasPrefix:[self.path stringByAppendingString:@"/"]]) {
+            NSIndexPath *result = [node indexPathForPath:path andPrefix:[prefix indexPathByAddingIndex:count]];
+            if (result) {
+                return result;
+            }
+        }
+        count ++;
+    }
+    return nil;
+}
 @end

@@ -22,4 +22,7 @@
 + (FileNode *)fileNodeWithPath:(NSString *)path;
 
 - (IBAction)toggleRenameMode:(id)sender;
+
+- (FileNode *)fileNodeForPath:(NSString *)path;
+- (NSIndexPath *)indexPathForPath:(NSString *)path andPrefix:(NSIndexPath *)prefix;
 @end
