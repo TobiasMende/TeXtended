@@ -332,25 +332,74 @@ static NSArray *INTERNAL_EXTENSIONS;
 #pragma mark - Drag & Drop
 
 - (NSDragOperation)outlineView:(NSOutlineView *)ov validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)childIndex {
-    FileNode *node = [item representedObject];
-    if ([node isLeaf]) {
+    NSArray *types = [[info draggingPasteboard] types];
+    if (![types containsObject:NSURLPboardType] || ![types containsObject:NSFilenamesPboardType]) {
         return NSDragOperationNone;
+    }
+    FileNode *node = [item representedObject];
+    id finalItem = item;
+    if ([node isLeaf]) {
+        NSTreeNode *parent = [item parentNode];
+        if (parent) {
+            [self.outlineView setDropItem:parent dropChildIndex:NSOutlineViewDropOnItemIndex];
+        }
     }
     return NSDragOperationGeneric;
 }
 
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+    NSArray *objects = [[info draggingPasteboard] readObjectsForClasses:@[[NSURL class]] options:@{NSPasteboardURLReadingFileURLsOnlyKey: @(YES)}];
+    
+    if (objects) {
+        pathObserverIsActive = NO;
+        NSString *destPath = item ? [[item representedObject] path] : self.path;
+        NSURL *destination = [NSURL fileURLWithPath:destPath];
+        NSMutableArray *failedURLS = [NSMutableArray new];
+        NSMutableArray *errors = [NSMutableArray new];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        for (NSURL *url in objects) {
+            NSError *moveError;
+            BOOL success = [fm moveItemAtURL:url toURL:[destination URLByAppendingPathComponent:url.lastPathComponent] error:&moveError];
+            if (!success) {
+                [failedURLS addObject:url];
+            }
+            if (moveError) {
+                DDLogError(@"Error while moving %@: %@0", url.lastPathComponent, moveError.userInfo);
+                [errors addObject:moveError];
+            }
+        }
+        [self buildTree];
+        if (failedURLS.count > 0) {
+            NSAlert *alert;
+            if (errors.count == 1) {
+                alert = [NSAlert alertWithError:errors.firstObject];
+            } else {
+                
+                NSMutableString *description = [NSMutableString new];
+                for (NSURL *url in failedURLS) {
+                    [description appendFormat:@" - %@\n", url.lastPathComponent];
+                }
+                [description deleteCharactersInRange:NSMakeRange(description.length-1, 1)];
+                alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error while moving files", @"") defaultButton:NSLocalizedString(@"Okay", @"") alternateButton:nil otherButton:nil informativeTextWithFormat:NSLocalizedString(@"Failed to move the following files:\n%@", @""), description];
+                
+                alert.alertStyle = NSCriticalAlertStyle;
+            }
+            [alert runModal];
+            
+            
+        }
+        pathObserverIsActive = YES;
+    }
+    
+    
+    DDLogInfo(@"Items: %@ - %@", item, objects);
     return YES;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
+    DDLogInfo(@"Write %@", items);
     return YES;
-}
-
-- (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items {
-    DDLogInfo(@"%@: %@", dropDestination, items);
-    return nil;
 }
 
 - (id <NSPasteboardWriting>)outlineView:(NSOutlineView *)outlineView pasteboardWriterForItem:(id)item {
