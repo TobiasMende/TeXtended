@@ -53,6 +53,13 @@ static NSArray *INTERNAL_EXTENSIONS;
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.outlineView registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil]];
+    [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
+    [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];
+}
+
 - (void)setDocument:(NSDocument *)document {
     if (_document) {
         [_document removeObserver:self forKeyPath:FILE_KEY_PATH];
@@ -322,6 +329,43 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 
+#pragma mark - Drag & Drop
+
+- (NSDragOperation)outlineView:(NSOutlineView *)ov validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)childIndex {
+    FileNode *node = [item representedObject];
+    if ([node isLeaf]) {
+        return NSDragOperationNone;
+    }
+    return NSDragOperationGeneric;
+}
+
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+    return YES;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
+    return YES;
+}
+
+- (NSArray *)outlineView:(NSOutlineView *)outlineView namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination forDraggedItems:(NSArray *)items {
+    DDLogInfo(@"%@: %@", dropDestination, items);
+    return nil;
+}
+
+- (id <NSPasteboardWriting>)outlineView:(NSOutlineView *)outlineView pasteboardWriterForItem:(id)item {
+    return (id <NSPasteboardWriting>)[item representedObject];
+}
+
+
+- (void)outlineView:(NSOutlineView *)outlineView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+    // If the session ended in the trash, then delete all the items
+    pathObserverIsActive = NO;
+    [self buildTree];
+    pathObserverIsActive = YES;
+}
+
+
 # pragma mark - Tree Helpers
 
 - (NSIndexPath *)indexPathForPath:(NSString *)path {
@@ -350,4 +394,5 @@ static NSArray *INTERNAL_EXTENSIONS;
     }
     return nil;
 }
+
 @end

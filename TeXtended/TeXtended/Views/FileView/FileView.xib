@@ -92,6 +92,7 @@
                                     </binding>
                                     <outlet property="backgroundMenu" destination="4uV-Iu-4tA" id="qV4-Ua-2q8"/>
                                     <outlet property="contextualMenu" destination="vNl-31-Y3q" id="xuz-1Q-3wc"/>
+                                    <outlet property="dataSource" destination="-2" id="Uou-em-BSd"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
                                     <outlet property="menu" destination="vNl-31-Y3q" id="ogY-EV-u3P"/>
                                 </connections>

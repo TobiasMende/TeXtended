@@ -22,7 +22,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
-    if ([key isEqualToString:@"name"] || [key isEqualToString:@"isLeaf"] || [key isEqualToString:@"icon"] || [key isEqualToString:@"children"]) {
+    if ([key isEqualToString:@"name"] || [key isEqualToString:@"isLeaf"] || [key isEqualToString:@"icon"] || [key isEqualToString:@"children"] || [key isEqualToString:@"fileURL"]) {
         keys = [keys setByAddingObject:@"path"];
     }
     return keys;
@@ -43,6 +43,10 @@
         }
     }
     
+}
+
+- (NSURL *)fileURL {
+    return [NSURL fileURLWithPath:self.path];
 }
 
 - (NSString *)name {
@@ -129,4 +133,45 @@
     }
     return nil;
 }
+
+
+#pragma mark - NSPasteboardWriting support
+
+- (NSArray *)writableTypesForPasteboard:(NSPasteboard *)pasteboard {
+    return [self.fileURL writableTypesForPasteboard:pasteboard];
+}
+
+- (NSPasteboardWritingOptions)writingOptionsForType:(NSString *)type pasteboard:(NSPasteboard *)pasteboard {
+    return [self.fileURL writingOptionsForType:type pasteboard:pasteboard];
+}
+
+- (id)pasteboardPropertyListForType:(NSString *)type {
+    return [self.fileURL pasteboardPropertyListForType:type];
+}
+
+#pragma mark - NSPasteboardReading support
+
++ (NSArray *)readableTypesForPasteboard:(NSPasteboard *)pasteboard {
+    // We allow creation from URLs so Finder items can be dragged to us
+    return [NSURL readableTypesForPasteboard:pasteboard];
+}
+
++ (NSPasteboardReadingOptions)readingOptionsForType:(NSString *)type pasteboard:(NSPasteboard *)pasteboard {
+    [NSURL readingOptionsForType:type pasteboard:pasteboard];
+}
+
+- (id)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type {
+    // See if an NSURL can be created from this type
+    
+    NSURL *url = [[NSURL alloc] initWithPasteboardPropertyList:propertyList ofType:type];
+    if (url) {
+        self = [super init];
+        self.path = url.path;
+        return self;
+    }
+    return nil;
+    
+}
+
+
 @end

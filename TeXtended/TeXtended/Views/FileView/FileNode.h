@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileNode : NSObject
+@interface FileNode : NSObject<NSPasteboardWriting, NSPasteboardReading>
 
 @property (nonatomic) NSString *path;
 
@@ -17,6 +17,7 @@
 - (void) setName:(NSString *)name;
 - (BOOL)isLeaf;
 - (NSImage *)icon;
+- (NSURL *)fileURL;
 - (NSMutableArray *)children;
 
 + (FileNode *)fileNodeWithPath:(NSString *)path;
