@@ -392,13 +392,10 @@ static NSArray *INTERNAL_EXTENSIONS;
         pathObserverIsActive = YES;
     }
     
-    
-    DDLogInfo(@"Items: %@ - %@", item, objects);
     return YES;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView writeItems:(NSArray *)items toPasteboard:(NSPasteboard *)pasteboard {
-    DDLogInfo(@"Write %@", items);
     return YES;
 }
 
