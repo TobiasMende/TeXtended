@@ -122,7 +122,7 @@
                     </connections>
                 </popUpButton>
                 <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bz5-Ap-P06" customClass="TMTQuickLookView">
-                    <rect key="frame" x="272" y="14" width="115" height="148"/>
+                    <rect key="frame" x="274" y="14" width="115" height="148"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="self.pdfExists" id="6s4-fm-i3V">

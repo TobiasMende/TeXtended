@@ -21,8 +21,14 @@
 @property (strong) IBOutlet NSBox *liveCompilerView;
 @property (strong) IBOutlet NSBox *draftCompilerView;
 @property (strong) IBOutlet NSBox *finalCompilerView;
+@property (strong) IBOutlet NSArrayController *mainDocumentsController;
+@property (strong) IBOutlet NSArrayController *bibFilesController;
+@property (strong) IBOutlet NSTableView *bibFiles;
+@property (strong) IBOutlet NSTableView *mainDocuments;
 
-
-- (id)init;
+- (IBAction)addMainDocument:(id)sender;
+- (BOOL)canRemoveMainDocument;
+- (IBAction)addBibFiles:(id)sender;
+- (BOOL)canRemoveBibFiles;
 
 @end

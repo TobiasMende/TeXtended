@@ -72,4 +72,62 @@
 }
 
 
+- (IBAction)addMainDocument:(id)sender {
+    NSOpenPanel *addPanel = [NSOpenPanel openPanel];
+    addPanel.message = NSLocalizedString(@"Choose a tex document", @"chooseTexPath");
+    addPanel.canCreateDirectories = YES;
+    addPanel.canSelectHiddenExtension = YES;
+    addPanel.allowsMultipleSelection = YES;
+    addPanel.allowedFileTypes = @[@"tex"];
+    
+    NSURL *url= [NSURL fileURLWithPath:[self.model.path stringByDeletingLastPathComponent]];
+    [addPanel setDirectoryURL:url];
+    [addPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            for(NSURL *file in addPanel.URLs) {
+                DocumentModel *m = [self.model modelForTexPath:file.path byCreating:YES];
+                [self.model addMainDocument:m];
+            }
+            [self.mainDocuments reloadData];
+        }
+    }];
+    
+}
+
+
+- (BOOL)canRemoveMainDocument {
+    return self.model.mainDocuments.count > self.mainDocumentsController.selectionIndexes.count && self.mainDocumentsController.selectionIndexes.count > 0;
+}
+
+- (IBAction)addBibFiles:(id)sender {
+    NSOpenPanel *addPanel = [NSOpenPanel openPanel];
+    addPanel.message = NSLocalizedString(@"Choose a bib document", @"chooseBibPath");
+    addPanel.canCreateDirectories = YES;
+    addPanel.canSelectHiddenExtension = YES;
+    addPanel.allowsMultipleSelection = YES;
+    addPanel.allowedFileTypes = @[@"bib"];
+    
+    NSURL *url= [NSURL fileURLWithPath:[self.model.path stringByDeletingLastPathComponent]];
+    [addPanel setDirectoryURL:url];
+    [addPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            for(NSURL *file in addPanel.URLs) {
+                [self.model addBibFileWithPath:file.path];
+            }
+            [self.bibFiles reloadData];
+        }
+        
+    }];
+}
+
+
+
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"canRemoveMainDocument"]) {
+        keys = [keys setByAddingObjectsFromArray:@[@"model.mainDocuments.@count", @"mainDocumentsController.selectionIndexes.@count"]];
+    }
+    return keys;
+}
 @end
