@@ -17,6 +17,7 @@
 
 @interface CompileSetting : NSObject <NSCoding>
 
+#pragma mark - Properties
 /** The path to the compile flow */
 @property (nonatomic, strong) NSString *compilerPath;
 
@@ -29,6 +30,23 @@
 /** some custom argument set by the user */
 @property (nonatomic, strong) NSString *customArgument;
 
+
+#pragma mark - Key Value Binding
+
+/**
+ * Method for binding all properties to another setting object.
+ *
+ * This method is usefull when handling the symbiosis between ProjectModel and DocumentModel.
+ *
+ * @param setting the settings to bind to
+ */
+- (void)bindAllTo:(CompileSetting *)setting;
+
+/** Method for unbinding all properties of this object */
+- (void)unbindAll;
+
+
+#pragma mark - Static Methods
 
 /** Getter for a default live compile setting generated using the user defaults
  *
@@ -53,18 +71,5 @@
  * return a new compile setting object
  */
 + (CompileSetting *)defaultFinalCompileSetting;
-
-/** Method for unbinding all properties of this object */
-- (void)unbindAll;
-
-
-/**
- * Method for binding all properties to another setting object.
- *
- * This method is usefull when handling the symbiosis between ProjectModel and DocumentModel.
- *
- * @param setting the settings to bind to
- */
-- (void)bindAllTo:(CompileSetting *)setting;
 
 @end
