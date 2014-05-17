@@ -9,23 +9,41 @@
 #import <Cocoa/Cocoa.h>
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
 #import <Quartz/Quartz.h>
+
 @class FileNode, FileOutlineView, ModelInfoWindowController;
-@interface FileViewController : NSViewController <NSOutlineViewDelegate,NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource,QLPreviewPanelDelegate,QLPreviewPanelDataSource> {
-    BOOL pathObserverIsActive;
+
+@interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource> {
+    
+	BOOL pathObserverIsActive;
+    
 }
+
+#pragma mark - Properties
+
 @property (strong) IBOutlet NSTreeController *fileTree;
+
 @property (nonatomic) NSString *path;
-@property (assign,nonatomic) NSDocument *document;
+
+@property (assign, nonatomic) NSDocument *document;
+
 @property NSMutableArray *contents;
+
 @property (strong) IBOutlet FileOutlineView *outlineView;
+
 @property (strong) QLPreviewPanel *previewPanel;
 
 @property ModelInfoWindowController *infoWindowController;
 
-- (void) updatePath;
-- (void) buildTree;
+
+#pragma mark - Methods
+
+- (void)updatePath;
+
+- (void)buildTree;
+
 - (FileNode *)currentFileNode;
-- (NSInteger) currentRow;
+
+- (NSInteger)currentRow;
 
 
 #pragma mark - Context Menu Actions

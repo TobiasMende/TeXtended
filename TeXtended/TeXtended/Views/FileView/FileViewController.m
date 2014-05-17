@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Tobias Mende. All rights reserved.
 //
 
+#import <TMTHelperCollection/PathObserverFactory.h>
+#import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/TMTTextField.h>
+#import <TMTHelperCollection/TMTTextFieldDelegate.h>
+#import <Quartz/Quartz.h>
+
 #import "FileViewController.h"
 #import "FileNode.h"
 #import "DocumentCreationController.h"
@@ -13,33 +19,39 @@
 #import "ModelInfoWindowController.h"
 #import "FileOutlineView.h"
 
-#import <TMTHelperCollection/TMTLog.h>
-#import <TMTHelperCollection/PathObserverFactory.h>
-#import <TMTHelperCollection/TMTTextFieldDelegate.h>
-#import <TMTHelperCollection/TMTTextField.h>
-
-#import <Quartz/Quartz.h>
 
 static const NSString *FILE_KEY_PATH = @"fileURL";
+
 static const NSString *WINDOW_KEY_PATH = @"window";
+
 static NSArray *INTERNAL_EXTENSIONS;
 
+
 @interface FileViewController ()
+
 - (MainDocument *)currentMainDocument;
+
 - (NSString *)basePathForCreation:(NSString *)path;
+
 - (void)createDirectoryInDirectory:(NSString *)path;
+
 - (void)createFileInDirectory:(NSString *)path;
+
 - (void)pathObserverBuildTree;
+
 - (NSIndexPath *)indexPathForPath:(NSString *)path;
+
 - (FileNode *)findFileNodeForPath:(NSString *)path;
+
 @end
 
 @implementation FileViewController
 
-+ (void)initialize {
-    if ([self class]== [FileViewController class]) {
-        INTERNAL_EXTENSIONS = @[@"tex", @"sty", @"cls"];
-    }
+#pragma mark Init & Dealloc
+
+- (void)dealloc {
+    [self.document removeObserver:self forKeyPath:FILE_KEY_PATH];
+    [PathObserverFactory removeObserver:self];
 }
 
 - (id)init {
@@ -56,13 +68,46 @@ static NSArray *INTERNAL_EXTENSIONS;
     return self;
 }
 
+
++ (void)initialize {
+    if ([self class]== [FileViewController class]) {
+        INTERNAL_EXTENSIONS = @[@"tex", @"sty", @"cls"];
+    }
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.outlineView registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil]];
     [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
     [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];
-
+    
 }
+
+
+#pragma mark - Getter
+
+- (FileNode *)currentFileNode {
+    NSInteger row = self.currentRow;
+    if (row < 0) {
+        return nil;
+    }
+    return [[self.outlineView itemAtRow:row] representedObject];
+}
+
+- (NSInteger)currentRow {
+    return self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
+}
+
+- (MainDocument *)currentMainDocument {
+    if ([self.document isKindOfClass:[MainDocument class]]) {
+        return self.document;
+    }
+    return nil;
+}
+
+
+#pragma mark - Setter
 
 - (void)setDocument:(NSDocument *)document {
     if (_document) {
@@ -88,24 +133,6 @@ static NSArray *INTERNAL_EXTENSIONS;
     }
 }
 
-- (void)pathObserverBuildTree {
-    if (pathObserverIsActive) {
-        [self buildTree];
-    }
-}
-
-- (void)buildTree {
-    [self.fileTree discardEditing];
-    NSArray *expanedItems = [self.outlineView expandedItems];
-    NSError *error;
-    FileNode *root = [FileNode fileNodeWithPath:self.path];
-    self.contents = root.children;
-    [self.fileTree rearrangeObjects];
-    [self.outlineView restoreExpandedStateWithArray:expanedItems];
-    
-}
-
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:FILE_KEY_PATH]) {
         [self updatePath];
@@ -118,29 +145,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     DDLogWarn(@"Setting path: %@", self.path);
 }
 
-- (void)dealloc {
-    [self.document removeObserver:self forKeyPath:FILE_KEY_PATH];
-     [PathObserverFactory removeObserver:self];
-}
 
-
-- (NSInteger)currentRow {
-    return self.outlineView.clickedRow < 0 ? self.outlineView.selectedRow : self.outlineView.clickedRow;
-}
-- (FileNode *)currentFileNode {
-    NSInteger row = self.currentRow;
-    if (row < 0) {
-        return nil;
-    }
-    return [[self.outlineView itemAtRow:row] representedObject];
-}
-
-- (MainDocument *)currentMainDocument {
-    if ([self.document isKindOfClass:[MainDocument class]]) {
-        return self.document;
-    }
-    return nil;
-}
 
 - (NSString *)basePathForCreation:(NSString *)path {
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -152,9 +157,8 @@ static NSArray *INTERNAL_EXTENSIONS;
     
 }
 
+
 #pragma mark - Text Delegates
-
-
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
     [self buildTree];
@@ -182,8 +186,8 @@ static NSArray *INTERNAL_EXTENSIONS;
     [editor setSelectedRange:[control.stringValue rangeOfString:base]];
 }
 
-#pragma mark - Context Menu Actions
 
+#pragma mark - Context Menu Actions
 
 - (IBAction)openFile:(id)sender {
     FileNode *node = self.currentFileNode;
@@ -242,8 +246,8 @@ static NSArray *INTERNAL_EXTENSIONS;
             NSInteger row = currentRow > 0 ? currentRow-1: currentRow;
             [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
         }];
-    
-    
+        
+        
     }
     
     pathObserverIsActive = YES;
@@ -286,9 +290,9 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 - (IBAction)createNewFolder:(id)sender {
-        FileNode *node = self.currentFileNode;
-        NSString *path = [self basePathForCreation:node.path];
-        [self createDirectoryInDirectory:path];
+    FileNode *node = self.currentFileNode;
+    NSString *path = [self basePathForCreation:node.path];
+    [self createDirectoryInDirectory:path];
 }
 
 
@@ -437,8 +441,24 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 
-
 # pragma mark - Tree Helpers
+
+- (void)pathObserverBuildTree {
+    if (pathObserverIsActive) {
+        [self buildTree];
+    }
+}
+
+- (void)buildTree {
+    [self.fileTree discardEditing];
+    NSArray *expanedItems = [self.outlineView expandedItems];
+    NSError *error;
+    FileNode *root = [FileNode fileNodeWithPath:self.path];
+    self.contents = root.children;
+    [self.fileTree rearrangeObjects];
+    [self.outlineView restoreExpandedStateWithArray:expanedItems];
+    
+}
 
 - (NSIndexPath *)indexPathForPath:(NSString *)path {
     if (![path hasPrefix: self.path]) {
@@ -554,7 +574,6 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 // this delegate method provides a transition image between the table view and the preview panel
-//
 - (id)previewPanel:(QLPreviewPanel *)panel transitionImageForPreviewItem:(id <QLPreviewItem>)item contentRect:(NSRect *)contentRect
 {
     
