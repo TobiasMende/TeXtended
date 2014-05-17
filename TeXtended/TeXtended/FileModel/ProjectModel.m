@@ -22,8 +22,6 @@
  */
 - (void)initDefaults;
 
-/** This method coverts bibfiles from older project versions from NSSet to NSArray */
-- (NSMutableArray*)convertBibFiles:(id)bibfiles;
 @end
 
 @implementation ProjectModel
@@ -43,24 +41,13 @@
             self.path = [aDecoder decodeObjectForKey:@"path"];
             self.documents = [aDecoder decodeObjectForKey:@"documents"];
             
-            self.bibFiles = [self convertBibFiles:[aDecoder decodeObjectForKey:@"bibFiles"]];
+            
             self.properties = [aDecoder decodeObjectForKey:@"properties"];
             [self initDefaults];
     }
     return self;
 }
 
-- (NSMutableArray *)convertBibFiles:(id)bibfiles {
-    if ([bibfiles isKindOfClass:[NSSet class]]) {
-        NSMutableArray *finalBibfiles = [NSMutableArray arrayWithCapacity:[(NSSet *)bibfiles count]];
-        for(id b in bibfiles) {
-            [finalBibfiles addObject:b];
-        }
-        return finalBibfiles;
-    } else {
-        return bibfiles;
-    }
-}
 
 - (void)finishInitWithPath:(NSString *)absolutePath {
     self.path = absolutePath;
@@ -87,7 +74,6 @@
     NSString *relativePath = [self.path relativePathWithBase:[self.path stringByDeletingLastPathComponent]];
     [aCoder encodeObject:relativePath forKey:@"path"];
     [aCoder encodeObject:self.documents forKey:@"documents"];
-    [aCoder encodeObject:self.bibFiles forKey:@"bibFiles"];
     [aCoder encodeObject:self.properties forKey:@"properties"];
 }
 
@@ -129,20 +115,6 @@
     }
 }
 
-- (void)addBibFileWithPath:(NSString *)path {
-    BibFile *file = [BibFile new];
-    file.project = self;
-    file.path = path;
-    [self willChangeValueForKey:@"bibFiles"];
-    [self.bibFiles addObject:file];
-    [self didChangeValueForKey:@"bibFiles"];
-}
-
-- (void) removeBibFileWithIndex:(NSUInteger)index {
-    [self willChangeValueForKey:@"bibFiles"];
-    [self.bibFiles removeObjectAtIndex:index];
-    [self didChangeValueForKey:@"bibFiles"];
-}
 
 # pragma mark - Getter & Setter
 

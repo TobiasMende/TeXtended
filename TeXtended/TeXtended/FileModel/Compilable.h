@@ -31,6 +31,9 @@
 /** The live compile flow for this compilabel */
 @property (nonatomic, strong) CompileSetting * liveCompiler;
 
+/** A set of all bibFiles connected to this project */
+@property (strong) NSMutableArray *bibFiles;
+
 @property (nonatomic) BOOL hasLiveCompiler;
 @property (nonatomic) BOOL hasDraftCompiler;
 @property (nonatomic) BOOL hasFinalCompiler;
@@ -77,6 +80,9 @@
 
 - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
 
+- (void) addBibFileWithPath:(NSString *)path;
+- (void) removeBibFileWithIndex:(NSUInteger)index;
+
 @end
 
 
@@ -86,5 +92,4 @@
 - (NSString *) path;
 - (NSString *) type;
 - (NSString *) infoTitle;
-- (NSArray *)bibFiles;
 @end

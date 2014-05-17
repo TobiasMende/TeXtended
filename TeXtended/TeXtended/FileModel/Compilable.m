@@ -17,6 +17,9 @@
 static NSUInteger LAST_IDENTIFIER = 0;
 @interface Compilable ()
 - (NSMutableArray*)convertMainDocuments:(id)docs;
+
+/** This method coverts bibfiles from older project versions from NSSet to NSArray */
+- (NSMutableArray*)convertBibFiles:(id)bibfiles;
 @end
 
 @implementation Compilable
@@ -42,6 +45,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         self.finalCompiler = [aDecoder decodeObjectForKey:@"finalCompiler"];
         self.liveCompiler = [aDecoder decodeObjectForKey:@"liveCompiler"];
         self.encoding = [aDecoder decodeObjectForKey:@"encoding"];
+        self.bibFiles = [self convertBibFiles:[aDecoder decodeObjectForKey:@"bibFiles"]];
         
         self.hasFinalCompiler = self.finalCompiler != nil;
         self.hasDraftCompiler = self.draftCompiler != nil;
@@ -58,6 +62,33 @@ static NSUInteger LAST_IDENTIFIER = 0;
             }
     }
     return self;
+}
+
+- (NSMutableArray *)convertBibFiles:(id)bibfiles {
+    if ([bibfiles isKindOfClass:[NSSet class]]) {
+        NSMutableArray *finalBibfiles = [NSMutableArray arrayWithCapacity:[(NSSet *)bibfiles count]];
+        for(id b in bibfiles) {
+            [finalBibfiles addObject:b];
+        }
+        return finalBibfiles;
+    } else {
+        return bibfiles;
+    }
+}
+
+- (void)addBibFileWithPath:(NSString *)path {
+    BibFile *file = [BibFile new];
+    file.project = self;
+    file.path = path;
+    [self willChangeValueForKey:@"bibFiles"];
+    [self.bibFiles addObject:file];
+    [self didChangeValueForKey:@"bibFiles"];
+}
+
+- (void) removeBibFileWithIndex:(NSUInteger)index {
+    [self willChangeValueForKey:@"bibFiles"];
+    [self.bibFiles removeObjectAtIndex:index];
+    [self didChangeValueForKey:@"bibFiles"];
 }
 
 - (NSMutableArray *)convertMainDocuments:(id)docs {
@@ -86,6 +117,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
     }
     [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
     [aCoder encodeObject:_encoding forKey:@"encoding"];
+    [aCoder encodeObject:_bibFiles forKey:@"bibFiles"];
 }
 
 
@@ -228,6 +260,15 @@ static NSUInteger LAST_IDENTIFIER = 0;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@[self]];
     id copied = [NSKeyedUnarchiver unarchiveObjectWithData:data][0];
     return copied;
+}
+
+
+- (BOOL)isEqual:(id)object {
+    if (![object isKindOfClass:[Compilable class]]) {
+        return NO;
+    }
+    Compilable *other = (Compilable *)object;
+    return [self.path isEqualTo:other.path];
 }
 
 @end

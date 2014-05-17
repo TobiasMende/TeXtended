@@ -325,12 +325,13 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return;
     }
     if(![super mainDocuments]) {
-        self.mainDocuments = [NSArray new];
+        [super setMainDocuments:[NSArray new]];
         if (self.project) {
-            self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
+            super.mainDocuments = [super.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
         }
     }
-    self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
+    super.mainDocuments = [super.mainDocuments arrayByAddingObject:value];
+    
 }
 
 - (void)addMainDocuments:(NSArray *)values {
@@ -386,7 +387,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 - (NSArray *)bibFiles {
     if (self.project) {
         return self.project.bibFiles;
-    } else if(!_bibFiles && self.texPath){
+    } else if(![super bibFiles] && self.texPath){
         NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
         NSMutableArray *matches = [NSMutableArray new];
         NSFileManager *manager = [NSFileManager defaultManager];
@@ -404,10 +405,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         if (matches.count > 0) {
-            _bibFiles = matches;
+            [super setBibFiles:matches];
         }
     }
-    return _bibFiles;
+    return [super bibFiles];
 }
 
 - (NSNumber *)encoding {
