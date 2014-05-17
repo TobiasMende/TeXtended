@@ -19,19 +19,23 @@
  **Author:** Tobias Mende
  
  */
-@interface ProjectModel : Compilable
+@interface ProjectModel : Compilable {
+    
+}
 
+#pragma mark - Properties
 
 /** The absolute path to the project file */
 @property (nonatomic, strong) NSString * path;
-
-
 
 /** A set of all documents belonging to this project */
 @property (strong) NSMutableSet *documents;
 
 /** The main properties of this project */
 @property (strong) DocumentModel *properties;
+
+
+#pragma mark - Getter
 
 - (NSString*) folderPath;
 
