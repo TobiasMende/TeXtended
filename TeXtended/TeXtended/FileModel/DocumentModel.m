@@ -43,7 +43,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 
 - (NSString *)loadContent:(NSError*__autoreleasing*)error {
-    self.lastChanged = [NSDate new];
     if (!self.systemPath) {
         if (!self.texPath) {
             return nil;
@@ -127,7 +126,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 
 - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
-    self.lastChanged = [[NSDate alloc] init];
     if (!self.systemPath) {
         return NO;
     }
@@ -172,7 +170,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.lastChanged = [aDecoder decodeObjectForKey:@"lastChanged"];
         self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
         self.project = [aDecoder decodeObjectForKey:@"project"];
         self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
@@ -200,7 +197,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
-    [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
     [aCoder encodeConditionalObject:self.project forKey:@"project"];
     NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
     if (basePath) {

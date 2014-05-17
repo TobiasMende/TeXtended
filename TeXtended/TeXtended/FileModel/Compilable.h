@@ -72,6 +72,9 @@
 
 - (void) updateCompileSettingBindings:(CompileMode) mode;
 
+- (NSDate *)lastChanged;
+- (NSDictionary *)fileSystemAttributes;
+
 - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
 
 @end

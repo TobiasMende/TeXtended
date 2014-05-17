@@ -10,6 +10,7 @@
 #import "FileNode.h"
 #import "DocumentCreationController.h"
 #import "MainDocument.h"
+#import "ModelInfoWindowController.h"
 #import "FileOutlineView.h"
 
 #import <TMTHelperCollection/TMTLog.h>
@@ -325,7 +326,28 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 - (IBAction)showInformation:(id)sender {
-    // TODO: implement
+    FileNode *node = self.currentFileNode;
+    Compilable *model;
+    if ([INTERNAL_EXTENSIONS containsObject:node.path.pathExtension]) {
+        model = [self.currentMainDocument.model modelForTexPath:node.path byCreating:YES];
+        
+    } else if([node.path.pathExtension.lowercaseString isEqualToString:@"texpf"]) {
+        NSDocument *doc = [[NSDocumentController sharedDocumentController] documentForURL:[NSURL fileURLWithPath:node.path]];
+        if (doc && [doc isKindOfClass:[MainDocument class]]) {
+            model = ((MainDocument*)doc).model;
+        }
+    }
+    if (model) {
+        if (!self.infoWindowController) {
+            self.infoWindowController = [ModelInfoWindowController new];
+        }
+        self.infoWindowController.model = model;
+        [self.infoWindowController showWindow:self];
+    } else {
+        NSBeep();
+        // TODO: implement
+    }
+    
 }
 
 

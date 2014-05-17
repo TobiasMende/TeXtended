@@ -29,8 +29,6 @@
 }
 @property NSArray *messages;
 @property (nonatomic) NSArray *bibFiles;
-/** The date of the last application internal change of the represented file */
-@property (strong) NSDate * lastChanged;
 
 /** The date of the last compilation of the represented file */
 @property (strong) NSDate * lastCompile;

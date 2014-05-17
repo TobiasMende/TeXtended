@@ -142,6 +142,13 @@ static NSUInteger LAST_IDENTIFIER = 0;
     return nil;
 }
 
+- (NSDate *)lastChanged {
+    return [self.fileSystemAttributes fileModificationDate];
+}
+
+- (NSDictionary *)fileSystemAttributes {
+    return [[NSFileManager defaultManager] attributesOfItemAtPath:self.path error:NULL];
+}
 
 #pragma mark Compile Setting Handling
 

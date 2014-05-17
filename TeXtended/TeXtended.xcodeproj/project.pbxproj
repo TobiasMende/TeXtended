@@ -105,6 +105,14 @@
 		D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25749961863247F0025A536 /* DBLPButtonView.xib */; };
 		D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749A11863515C0025A536 /* DBLPIntegrator.m */; };
 		D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FBAAB18903EED00FD3987 /* MainToolbar.m */; };
+		D2654AAB192752A500DE58B2 /* ModelInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AA9192752A500DE58B2 /* ModelInfoWindowController.m */; };
+		D2654AAC192752A500DE58B2 /* ModelInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AAA192752A500DE58B2 /* ModelInfoWindow.xib */; };
+		D2654AB11927566D00DE58B2 /* CompilerPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AAF1927566D00DE58B2 /* CompilerPreferencesViewController.m */; };
+		D2654AB21927566D00DE58B2 /* CompilerPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AB01927566D00DE58B2 /* CompilerPreferencesView.xib */; };
+		D2654ABD192777A800DE58B2 /* ProjectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */; };
+		D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */; };
+		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
+		D2654AC3192777FB00DE58B2 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -523,6 +531,19 @@
 		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
+		D2654AA8192752A500DE58B2 /* ModelInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInfoWindowController.h; sourceTree = "<group>"; };
+		D2654AA9192752A500DE58B2 /* ModelInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelInfoWindowController.m; sourceTree = "<group>"; };
+		D2654AAA192752A500DE58B2 /* ModelInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModelInfoWindow.xib; sourceTree = "<group>"; };
+		D2654AAE1927566D00DE58B2 /* CompilerPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilerPreferencesViewController.h; sourceTree = "<group>"; };
+		D2654AAF1927566D00DE58B2 /* CompilerPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilerPreferencesViewController.m; sourceTree = "<group>"; };
+		D2654AB01927566D00DE58B2 /* CompilerPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompilerPreferencesView.xib; sourceTree = "<group>"; };
+		D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfoViewController.h; sourceTree = "<group>"; };
+		D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfoViewController.m; sourceTree = "<group>"; };
+		D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
+		D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentInfoViewController.h; sourceTree = "<group>"; };
+		D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentInfoViewController.m; sourceTree = "<group>"; };
+		D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentInfoView.xib; sourceTree = "<group>"; };
+		D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfoViewController.h; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
@@ -1171,9 +1192,46 @@
 			path = CustomTableCellViews;
 			sourceTree = "<group>";
 		};
+		D2654AA71927526A00DE58B2 /* InfoWindows */ = {
+			isa = PBXGroup;
+			children = (
+				D2654AA8192752A500DE58B2 /* ModelInfoWindowController.h */,
+				D2654AA9192752A500DE58B2 /* ModelInfoWindowController.m */,
+				D2654AAA192752A500DE58B2 /* ModelInfoWindow.xib */,
+			);
+			path = InfoWindows;
+			sourceTree = "<group>";
+		};
+		D2654AAD1927564F00DE58B2 /* CompilerPreferencesView */ = {
+			isa = PBXGroup;
+			children = (
+				D2654AAE1927566D00DE58B2 /* CompilerPreferencesViewController.h */,
+				D2654AAF1927566D00DE58B2 /* CompilerPreferencesViewController.m */,
+				D2654AB01927566D00DE58B2 /* CompilerPreferencesView.xib */,
+			);
+			path = CompilerPreferencesView;
+			sourceTree = "<group>";
+		};
+		D2654AB91927778B00DE58B2 /* InfoViews */ = {
+			isa = PBXGroup;
+			children = (
+				D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */,
+				D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */,
+				D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */,
+				D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */,
+				D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */,
+				D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */,
+				D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */,
+			);
+			path = InfoViews;
+			sourceTree = "<group>";
+		};
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2654AB91927778B00DE58B2 /* InfoViews */,
+				D2654AAD1927564F00DE58B2 /* CompilerPreferencesView */,
+				D2654AA71927526A00DE58B2 /* InfoWindows */,
 				D26E8CF41912D2C000326CAE /* FileView */,
 				D2C237A21895510B0096ECAA /* StructureOutlineView */,
 				D2C2357F189543F00096ECAA /* InspectorTabBar */,
@@ -1805,6 +1863,7 @@
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
+				D2654AC3192777FB00DE58B2 /* DocumentInfoView.xib in Resources */,
 				D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */,
 				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
@@ -1819,6 +1878,8 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
+				D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */,
+				D2654AB21927566D00DE58B2 /* CompilerPreferencesView.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				D2326AF5188AE455008DEE51 /* AddNewTemplateWindow.xib in Resources */,
 				F6980D461882DDE10023DE4D /* MergeWindow.xib in Resources */,
@@ -1830,6 +1891,7 @@
 				D20C97461826FA0F00E23911 /* ConsoleWindow.xib in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
+				D2654AAC192752A500DE58B2 /* ModelInfoWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1942,9 +2004,12 @@
 				D2E7A4F01768E8F400B2BA3C /* Compilable.m in Sources */,
 				D2E7A4F11768E8F400B2BA3C /* DocumentCreationController.m in Sources */,
 				F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */,
+				D2654AB11927566D00DE58B2 /* CompilerPreferencesViewController.m in Sources */,
 				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
+				D2654AAB192752A500DE58B2 /* ModelInfoWindowController.m in Sources */,
 				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
 				D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */,
+				D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */,
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
@@ -1988,6 +2053,7 @@
 				D2C2358B189543F00096ECAA /* SMBar.m in Sources */,
 				D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */,
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
+				D2654ABD192777A800DE58B2 /* ProjectInfoViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,

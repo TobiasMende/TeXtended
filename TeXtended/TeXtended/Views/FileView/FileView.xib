@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -19,14 +19,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="EGM-Yg-2IP">
-                    <rect key="frame" x="0.0" y="0.0" width="204" height="462"/>
+                    <rect key="frame" x="0.0" y="0.0" width="204" height="488"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="5ix-G1-Azx">
-                        <rect key="frame" x="1" y="1" width="202" height="460"/>
+                        <rect key="frame" x="1" y="1" width="202" height="486"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" viewBased="YES" indentationPerLevel="14" autosaveExpandedItems="YES" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe" customClass="FileOutlineView">
-                                <rect key="frame" x="0.0" y="0.0" width="202" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="202" height="486"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -166,7 +166,7 @@ CA
                 </menuItem>
                 <menuItem title="Information" keyEquivalent="i" id="jE3-r9-dsQ">
                     <connections>
-                        <action selector="showInformation:" target="-2" id="dOz-Rx-apF"/>
+                        <action selector="showInformation:" target="-2" id="Z2Q-DZ-Y9g"/>
                     </connections>
                 </menuItem>
             </items>
