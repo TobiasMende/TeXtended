@@ -112,8 +112,8 @@
 		D2654ABD192777A800DE58B2 /* ProjectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */; };
 		D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */; };
 		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
-		D2654AC3192777FB00DE58B2 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */; };
 		D2654AC61927925600DE58B2 /* edit.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC51927925600DE58B2 /* edit.icns */; };
+		D2654AC81927961100DE58B2 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC71927961100DE58B2 /* DocumentInfoView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -543,9 +543,9 @@
 		D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
 		D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentInfoViewController.h; sourceTree = "<group>"; };
 		D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentInfoViewController.m; sourceTree = "<group>"; };
-		D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentInfoView.xib; sourceTree = "<group>"; };
 		D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfoViewController.h; sourceTree = "<group>"; };
 		D2654AC51927925600DE58B2 /* edit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = edit.icns; sourceTree = "<group>"; };
+		D2654AC71927961100DE58B2 /* DocumentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentInfoView.xib; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
@@ -1217,12 +1217,12 @@
 		D2654AB91927778B00DE58B2 /* InfoViews */ = {
 			isa = PBXGroup;
 			children = (
+				D2654AC71927961100DE58B2 /* DocumentInfoView.xib */,
 				D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */,
 				D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */,
 				D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */,
 				D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */,
 				D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */,
-				D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */,
 				D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */,
 			);
 			path = InfoViews;
@@ -1831,6 +1831,7 @@
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
+				D2654AC81927961100DE58B2 /* DocumentInfoView.xib in Resources */,
 				D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
@@ -1867,7 +1868,6 @@
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
-				D2654AC3192777FB00DE58B2 /* DocumentInfoView.xib in Resources */,
 				D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */,
 				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,

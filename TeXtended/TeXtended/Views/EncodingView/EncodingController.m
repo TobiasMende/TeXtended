@@ -8,7 +8,7 @@
 
 #import "EncodingController.h"
 #import <TMTHelperCollection/TMTLog.h>
-
+#import <TMTHelperCollection/TMTEncodingManager.h>
 @interface EncodingController ()
 
 @end
@@ -19,18 +19,8 @@
 {
     self = [super initWithNibName:@"EncodingView" bundle:nil];
     if (self) {
-        const NSStringEncoding *encodings = [NSString availableStringEncodings];
-        NSMutableArray *allEncodings = [[NSMutableArray alloc] init];
-        while (*encodings != 0) {
-            [allEncodings addObject:@(*encodings)];
-            encodings++;
-        }
-        [allEncodings sortUsingComparator:^NSComparisonResult(id first, id second) {
-            NSString *firstName = [NSString localizedNameOfStringEncoding:[first intValue]];
-            NSString *secondName = [NSString localizedNameOfStringEncoding:[second intValue]];
-            return [firstName compare:secondName];
-        }];
-        self.encodings = allEncodings;
+        
+        self.encodings = [[TMTEncodingManager sharedManager] stringEncodings];
         self.selectionDidChange = NO;
     }
     return self;
