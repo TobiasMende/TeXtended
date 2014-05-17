@@ -19,9 +19,13 @@
  */
 
 @interface BibFile : NSObject <NSCoding, FileObserver> {
+    
 	/** The presenter observes the file for changes made by other applications */
 	GenericFilePresenter *filePresenter;
+    
 }
+
+#pragma mark - Properties
 
 /** the date of the last application internal read access to this file */
 @property (strong) NSDate *lastRead;
@@ -43,12 +47,8 @@
  */
 @property NSMutableArray *entries;
 
-/**
- * This method is called after [BibFile initWithCoder:] with the absolute path to the project file. This is a good place to replace relative paths with absolute paths.
- *
- * @param absolutePath the absolute path to the project file
- */
-- (void)finishInitWithPath:(NSString *)absolutePath;
+
+#pragma mark - Manipulating Contents
 
 /**
  * Inserts a new entry into the entries list and writes the file to disk
@@ -58,6 +58,16 @@
  *
  */
 - (BOOL)insertEntry:(TMTBibTexEntry *)entry;
+
+/**
+ * Searches this bib file for the given cite key and returns the adjacent entry.
+ * @param key the cite key
+ * @return the entry belonging to the given cite key or `nil` if there isn't a matching key in this file.
+ */
+- (TMTBibTexEntry *)entryForCiteKey:(NSString *)key;
+
+
+#pragma mark - Loading & Saving
 
 /**
  * Loads the content of the bibtex file
@@ -72,10 +82,13 @@
  */
 - (BOOL)writeFileContent:(NSString *)content;
 
+
+#pragma mark - Init & Dealloc
+
 /**
- * Searches this bib file for the given cite key and returns the adjacent entry.
- * @param key the cite key
- * @return the entry belonging to the given cite key or `nil` if there isn't a matching key in this file.
+ * This method is called after [BibFile initWithCoder:] with the absolute path to the project file. This is a good place to replace relative paths with absolute paths.
+ *
+ * @param absolutePath the absolute path to the project file
  */
-- (TMTBibTexEntry *)entryForCiteKey:(NSString *)key;
+- (void)finishInitWithPath:(NSString *)absolutePath;
 @end

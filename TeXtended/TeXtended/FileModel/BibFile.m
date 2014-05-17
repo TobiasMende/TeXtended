@@ -30,7 +30,44 @@
 
 @implementation BibFile
 
-# pragma mark - Initialization, Deallocation, NSCoding
+# pragma mark - Init & Dealloc
+
+- (void)dealloc
+{
+	[filePresenter terminate];
+}
+
+- (void)finishInitWithPath:(NSString *)absolutePath
+{
+	[self setPathAfterDecoding:self.path];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self initDefaults];
+    }
+    return self;
+}
+
+- (void)initDefaults
+{
+	filePresenter = [[GenericFilePresenter alloc] initWithOperationQueue:[NSOperationQueue mainQueue]];
+	filePresenter.observer = self;
+	self.fileEncoding = [NSNumber numberWithLong:NSUTF8StringEncoding];
+}
+
+
+#pragma mark - NSCoding Support
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+	[aCoder encodeConditionalObject:self.project forKey:@"project"];
+	[aCoder encodeObject:self.pathForEncoding forKey:@"path"];
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
@@ -43,38 +80,6 @@
 	return self;
 }
 
-- (id)init
-{
-	self = [super init];
-	if (self)
-	{
-		[self initDefaults];
-	}
-	return self;
-}
-
-- (void)finishInitWithPath:(NSString *)absolutePath
-{
-	[self setPathAfterDecoding:self.path];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-	[aCoder encodeConditionalObject:self.project forKey:@"project"];
-	[aCoder encodeObject:self.pathForEncoding forKey:@"path"];
-}
-
-- (void)initDefaults
-{
-	filePresenter = [[GenericFilePresenter alloc] initWithOperationQueue:[NSOperationQueue mainQueue]];
-	filePresenter.observer = self;
-	self.fileEncoding = [NSNumber numberWithLong:NSUTF8StringEncoding];
-}
-
-- (void)dealloc
-{
-	[filePresenter terminate];
-}
 
 #pragma mark - Path Corrections
 
@@ -107,6 +112,7 @@
 	}
 }
 
+
 #pragma mark - Content Management
 
 - (void)setPath:(NSString *)path
@@ -123,17 +129,6 @@
 		_name = [path lastPathComponent];
 		[self didChangeValueForKey:@"name"];
 	}
-}
-
-- (void)presentedItemDidChange
-{
-	DDLogWarn(@"Item changed!");
-	[self readFile];
-}
-
-- (void)presentedItemDidMoveToURL:(NSURL *)newURL
-{
-	self.path = [newURL path];
 }
 
 - (void)readFile
@@ -153,37 +148,8 @@
 	}
 }
 
-- (NSString *)loadFileContent
-{
-	NSError *error;
-	NSStringEncoding encoding;
-	NSString *content = [NSString stringWithContentsOfFile:self.path usedEncoding:&encoding error:&error];
 
-	if (error)
-	{
-		DDLogError(@"Can't load bib content: %@", error.userInfo);
-		return nil;
-	}
-	else
-	{
-		self.fileEncoding = [NSNumber numberWithLong:encoding];
-		return content;
-	}
-}
-
-- (BOOL)writeFileContent:(NSString *)content
-{
-	NSStringEncoding encoding = self.fileEncoding ? self.fileEncoding.longValue : NSUTF8StringEncoding;
-	NSError *error;
-
-	[content writeToFile:self.path atomically:YES encoding:encoding error:&error];
-	if (error)
-	{
-		DDLogError(@"Error while writing bib file: %@", error.userInfo);
-		return NO;
-	}
-	return YES;
-}
+#pragma mark - Manipulating Contents
 
 - (BOOL)insertEntry:(TMTBibTexEntry *)entry
 {
@@ -195,9 +161,7 @@
 		NSString *bibtex = entry.bibtex;
 		if (bibtex)
 		{
-			content = [content stringByAppendingFormat:@"
-
-%@", bibtex];
+			content = [content stringByAppendingFormat:@"\n\n%@", bibtex];
 			success = [self writeFileContent:content];
 		}
 	}
@@ -216,6 +180,55 @@
 		}
 	}
 	return nil;
+}
+
+
+#pragma mark - Loading & Saving
+
+- (NSString *)loadFileContent
+{
+	NSError *error;
+	NSStringEncoding encoding;
+	NSString *content = [NSString stringWithContentsOfFile:self.path usedEncoding:&encoding error:&error];
+    
+	if (error)
+	{
+		DDLogError(@"Can't load bib content: %@", error.userInfo);
+		return nil;
+	}
+	else
+	{
+		self.fileEncoding = [NSNumber numberWithLong:encoding];
+		return content;
+	}
+}
+
+- (BOOL)writeFileContent:(NSString *)content
+{
+	NSStringEncoding encoding = self.fileEncoding ? self.fileEncoding.longValue : NSUTF8StringEncoding;
+	NSError *error;
+    
+	[content writeToFile:self.path atomically:YES encoding:encoding error:&error];
+	if (error)
+	{
+		DDLogError(@"Error while writing bib file: %@", error.userInfo);
+		return NO;
+	}
+	return YES;
+}
+
+
+#pragma mark - FileObserver Methods
+
+- (void)presentedItemDidChange
+{
+	DDLogDebug(@"Item changed!");
+	[self readFile];
+}
+
+- (void)presentedItemDidMoveToURL:(NSURL *)newURL
+{
+	self.path = [newURL path];
 }
 
 @end
