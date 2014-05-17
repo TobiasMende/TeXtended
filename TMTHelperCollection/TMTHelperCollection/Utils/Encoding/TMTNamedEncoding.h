@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TMTNamedEncoding : NSNumber
+@interface TMTNamedEncoding : NSObject
 
+- (id)initWithEncoding:(NSNumber *)number;
+
+@property NSNumber *encoding;
 @end
