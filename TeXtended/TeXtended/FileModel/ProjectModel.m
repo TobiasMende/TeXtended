@@ -88,12 +88,12 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-            self.path = [aDecoder decodeObjectForKey:@"path"];
-            self.documents = [aDecoder decodeObjectForKey:@"documents"];
-            
-            
-            self.properties = [aDecoder decodeObjectForKey:@"properties"];
-            [self initDefaults];
+        self.path = [aDecoder decodeObjectForKey:@"path"];
+        self.documents = [aDecoder decodeObjectForKey:@"documents"];
+        
+        
+        self.properties = [aDecoder decodeObjectForKey:@"properties"];
+        [self initDefaults];
     }
     return self;
 }

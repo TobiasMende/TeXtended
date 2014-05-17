@@ -51,15 +51,15 @@ static NSUInteger LAST_IDENTIFIER = 0;
         self.hasDraftCompiler = self.draftCompiler != nil;
         self.hasLiveCompiler = self.liveCompiler != nil;
         
-            @try {
-                NSArray *mainDocuments =[self convertMainDocuments:[aDecoder decodeObjectForKey:@"mainDocuments"]];
-                if (mainDocuments && mainDocuments.count > 0) {
-                    self.mainDocuments = mainDocuments;
-                }
+        @try {
+            NSArray *mainDocuments =[self convertMainDocuments:[aDecoder decodeObjectForKey:@"mainDocuments"]];
+            if (mainDocuments && mainDocuments.count > 0) {
+                self.mainDocuments = mainDocuments;
             }
-            @catch (NSException *exception) {
-                DDLogVerbose(@"Invalid mainDocuments set. Exception: %@", exception);
-            }
+        }
+        @catch (NSException *exception) {
+            DDLogVerbose(@"Invalid mainDocuments set. Exception: %@", exception);
+        }
     }
     return self;
 }
@@ -156,7 +156,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return;
     }
     if (!self.mainDocuments) {
-         self.mainDocuments = [NSArray new];
+        self.mainDocuments = [NSArray new];
     }
     self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
 }
@@ -187,28 +187,28 @@ static NSUInteger LAST_IDENTIFIER = 0;
 - (void)updateCompileSettingBindings:(CompileMode)mode {
     switch (mode) {
         case live:
-        if (self.hasLiveCompiler) {
-            [self.liveCompiler unbindAll];
-        } else {
-            self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
-        }
-        break;
+            if (self.hasLiveCompiler) {
+                [self.liveCompiler unbindAll];
+            } else {
+                self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
+            }
+            break;
         case draft:
-        if (self.hasDraftCompiler) {
-            [self.draftCompiler unbindAll];
-        } else {
-            self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
-        }
-        break;
+            if (self.hasDraftCompiler) {
+                [self.draftCompiler unbindAll];
+            } else {
+                self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
+            }
+            break;
         case final:
-        if (self.hasFinalCompiler) {
-            [self.finalCompiler unbindAll];
-        } else {
-            self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
-        }
-        break;
+            if (self.hasFinalCompiler) {
+                [self.finalCompiler unbindAll];
+            } else {
+                self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
+            }
+            break;
         default:
-        break;
+            break;
     }
 }
 
@@ -253,7 +253,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
 
 - (void)dealloc {
-        [TMTNotificationCenter removeCenterForCompilable:self];
+    [TMTNotificationCenter removeCenterForCompilable:self];
 }
 
 - (id)copy {

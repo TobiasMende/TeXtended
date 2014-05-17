@@ -455,7 +455,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     } else if([key isEqualToString:@"path"]) {
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
     } else if([key isEqualToString:@"name"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texName"];  
+        keyPaths = [keyPaths setByAddingObject:@"texName"];
     } else if([key isEqualToString:@"pdfPath"]) {
         keyPaths = [keyPaths setByAddingObject:@"texPath"];
     }
