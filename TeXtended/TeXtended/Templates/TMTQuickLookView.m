@@ -26,7 +26,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
-    if ([self shouldDelegateEvent:theEvent]) {
+    if (self.mouseDownHandler && [self shouldDelegateEvent:theEvent]) {
         self.mouseDownHandler(theEvent);
     }
 }
@@ -36,6 +36,8 @@
     NSRect forbidden = NSMakeRect(25.5, 11.5, 69.5, 30);
     return !NSPointInRect(localLocation, forbidden);
 }
+
+
 
 
 @end
