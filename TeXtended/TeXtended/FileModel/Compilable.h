@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+
 #import "Constants.h"
 
 @class CompileSetting, DocumentModel, ProjectModel, BibFile, TMTBibTexEntry;

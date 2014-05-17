@@ -6,20 +6,26 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
+#import <BibTexToolsFramework/TMTBibTexEntry.h>
+#import <TMTHelperCollection/TMTLog.h>
+
+#import "BibFile.h"
 #import "Compilable.h"
 #import "CompileSetting.h"
 #import "Constants.h"
-#import <TMTHelperCollection/TMTLog.h>
 #import "TMTNotificationCenter.h"
-#import "BibFile.h"
-#import <BibTexToolsFramework/TMTBibTexEntry.h>
+
 
 static NSUInteger LAST_IDENTIFIER = 0;
+
+
 @interface Compilable ()
+
 - (NSMutableArray *)convertMainDocuments:(id)docs;
 
 /** This method coverts bibfiles from older project versions from NSSet to NSArray */
 - (NSMutableArray *)convertBibFiles:(id)bibfiles;
+
 @end
 
 @implementation Compilable

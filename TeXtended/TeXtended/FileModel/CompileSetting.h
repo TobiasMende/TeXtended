@@ -7,65 +7,64 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
 /**
- Instances of this class represent the core data object CompileSetting which is used to store the compiler configuration for a project oder document model.
- 
- **Author:** Tobias Mende
- 
+ * Instances of this class represent the core data object CompileSetting which is used to store the compiler configuration for a project oder document model.
+ *
+ * **Author:** Tobias Mende
+ *
  */
 
 @interface CompileSetting : NSObject <NSCoding>
 
 /** The path to the compile flow */
-@property (nonatomic, strong) NSString * compilerPath;
+@property (nonatomic, strong) NSString *compilerPath;
 
 /** Flag whether to compile bibliography or not */
-@property (nonatomic, strong) NSNumber * compileBib;
+@property (nonatomic, strong) NSNumber *compileBib;
 
 /** the number of compiler iterations */
-@property (nonatomic, strong) NSNumber * numberOfCompiles;
+@property (nonatomic, strong) NSNumber *numberOfCompiles;
 
 /** some custom argument set by the user */
-@property (nonatomic, strong) NSString * customArgument;
+@property (nonatomic, strong) NSString *customArgument;
 
 
 /** Getter for a default live compile setting generated using the user defaults
- 
- @param context The context to insert the new object into
- 
- return a new compile setting object
+ *
+ * @param context The context to insert the new object into
+ *
+ * return a new compile setting object
  */
 + (CompileSetting *)defaultLiveCompileSetting;
 
 /** Getter for a default draft compile setting generated using the user defaults
- 
- @param context The context to insert the new object into
- 
- return a new compile setting object
+ *
+ * @param context The context to insert the new object into
+ *
+ * return a new compile setting object
  */
 + (CompileSetting *)defaultDraftCompileSetting;
 
 /** Getter for a default final compile setting generated using the user defaults
- 
- @param context The context to insert the new object into
- 
- return a new compile setting object
+ *
+ * @param context The context to insert the new object into
+ *
+ * return a new compile setting object
  */
 + (CompileSetting *)defaultFinalCompileSetting;
 
 /** Method for unbinding all properties of this object */
-- (void) unbindAll;
+- (void)unbindAll;
 
 
 /**
- Method for binding all properties to another setting object.
- 
- This method is usefull when handling the symbiosis between ProjectModel and DocumentModel.
- 
- @param setting the settings to bind to
+ * Method for binding all properties to another setting object.
+ *
+ * This method is usefull when handling the symbiosis between ProjectModel and DocumentModel.
+ *
+ * @param setting the settings to bind to
  */
-- (void) bindAllTo:(CompileSetting *)setting;
+- (void)bindAllTo:(CompileSetting *)setting;
 
 @end

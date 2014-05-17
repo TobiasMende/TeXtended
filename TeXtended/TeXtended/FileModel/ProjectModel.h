@@ -7,26 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+
 #import "Compilable.h"
 
 @class BibFile, DocumentModel;
 
 
 /**
- The ProjectModel is the representation of the core data object for a project.
- 
- **Author:** Tobias Mende
- 
+ * The ProjectModel is the representation of the core data object for a project.
+ *
+ * **Author:** Tobias Mende
+ *
  */
 @interface ProjectModel : Compilable {
-    
 }
 
 #pragma mark - Properties
 
 /** The absolute path to the project file */
-@property (nonatomic, strong) NSString * path;
+@property (nonatomic, strong) NSString *path;
 
 /** A set of all documents belonging to this project */
 @property (strong) NSMutableSet *documents;
@@ -37,6 +36,6 @@
 
 #pragma mark - Getter
 
-- (NSString*) folderPath;
+- (NSString *)folderPath;
 
 @end
