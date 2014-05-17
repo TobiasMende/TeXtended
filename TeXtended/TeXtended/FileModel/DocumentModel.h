@@ -20,39 +20,28 @@
  
  */
 @interface DocumentModel : Compilable {
-    /** The pipes used for communication with the latex compiler */
-    NSPipe *consoleOutputPipe, *consoleInputPipe;
     void (^removeLiveCompileObserver)(void);
+    
     void (^removeOpenOnExportObserver)(void);
+    
     DocumentModel *_currentMainDocument;
+    
     NSMutableDictionary *globalMessagesMap;
 }
-@property NSArray *messages;
+
+#pragma mark - Properties
 
 /** The date of the last compilation of the represented file */
 @property (strong) NSDate * lastCompile;
+
+/** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
+@property (nonatomic, assign) ProjectModel *project;
 
 /** The path to the output file (might be empty) */
 @property (nonatomic, strong) NSString * pdfPath;
 
 /** The path to the tex file */
-@property (strong,nonatomic) NSString * texPath;
-
-- (DocumentModel *)currentMainDocument;
-- (void)setCurrentMainDocument:(DocumentModel *)cmd;
-
-/** The system path to the tex file version storage.
- 
- @warning Don't uses this if you are not exactly knowing about the purpose of this property.
- */
-@property (strong) NSString * systemPath;
-
-
-
-/** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
-@property (nonatomic, assign) ProjectModel *project;
-
-@property (strong,nonatomic) NSMutableArray *outlineElements;
+@property (nonatomic, strong) NSString * texPath;
 
 /** Flag determing whether live compile is active for this document or not */
 @property (nonatomic, strong) NSNumber* liveCompile;
@@ -62,6 +51,31 @@
 
 @property BOOL isCompiling;
 
+@property NSArray *messages;
+
+@property (nonatomic, strong) NSMutableArray *outlineElements;
+
+#pragma mark Readonly Properties
+
+@property (readonly) NSString* texIdentifier;
+
+@property (readonly) NSString* pdfIdentifier;
+
+
+#pragma mark System Properties
+
+/** The system path to the tex file version storage.
+ 
+ @warning Don't uses this if you are not exactly knowing about the purpose of this property.
+ */
+@property (strong) NSString * systemPath;
+
+@property NSPipe *consoleOutputPipe;
+
+@property NSPipe *consoleInputPipe;
+
+
+#pragma mark - Loading & Saving
 /**
  Method for loading the content of the represented file
  
@@ -79,12 +93,12 @@
  */
 - (BOOL) saveContent:(NSString*) content error:(NSError**) error;
 
-/**
- Getter for the name of the texFile (only the last component of the texPath)
- 
- @return the files name
- */
-- (NSString *)texName;
+
+#pragma mark -  Getter
+
+- (DocumentModel *)currentMainDocument;
+
+- (NSString *)header;
 
 /**
  Getter for the name of the pdf file (only the last component of the pdfPath)
@@ -93,44 +107,28 @@
  */
 - (NSString *)pdfName;
 
-@property (readonly) NSString* texIdentifier;
-@property (readonly) NSString* pdfIdentifier;
-
-
 /**
- Getter for the output pipe
+ Getter for the name of the texFile (only the last component of the texPath)
  
- @return the output pipe
+ @return the files name
  */
-- (NSPipe*)consoleOutputPipe;
+- (NSString *)texName;
 
-/**
- Getter for the input pipe
- 
- @return the input pipe
- */
-- (NSPipe*)consoleInputPipe;
 
-/**
- Setter for the output pipe
- 
- @param pipe the output pipe
- */
-- (void)setConsoleOutputPipe:(NSPipe*)pipe;
+#pragma mark - Setter
 
-/**
- Setter for the input pipe
- 
- @param pipe the input pipe
- */
-- (void)setConsoleInputPipe:(NSPipe*)pipe;
+- (void)setCurrentMainDocument:(DocumentModel *)cmd;
 
-- (void) initOutlineElements;
 
-- (NSString *)header;
-- (void) buildOutline;
+#pragma mark - Message Handling
 
 - (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
+
 - (NSArray *)mergedGlobalMessages;
+
+
+#pragma mark - Outline Handling
+
+- (void) buildOutline;
 @end
 
