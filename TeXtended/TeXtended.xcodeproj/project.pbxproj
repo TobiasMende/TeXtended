@@ -113,6 +113,7 @@
 		D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */; };
 		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
 		D2654AC3192777FB00DE58B2 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */; };
+		D2654AC61927925600DE58B2 /* edit.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC51927925600DE58B2 /* edit.icns */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -544,6 +545,7 @@
 		D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentInfoViewController.m; sourceTree = "<group>"; };
 		D2654AC1192777FB00DE58B2 /* DocumentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentInfoView.xib; sourceTree = "<group>"; };
 		D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfoViewController.h; sourceTree = "<group>"; };
+		D2654AC51927925600DE58B2 /* edit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = edit.icns; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
@@ -1452,6 +1454,7 @@
 				D2CF6196177247E200ACC3D5 /* info.png */,
 				D21F31651895C73300FF6E83 /* arrow-right-c.icns */,
 				D21F31661895C73300FF6E83 /* bookmark.icns */,
+				D2654AC51927925600DE58B2 /* edit.icns */,
 				D21F31671895C73300FF6E83 /* forward.icns */,
 				D21F31681895C73300FF6E83 /* hammer.icns */,
 				D21F31691895C73300FF6E83 /* link.icns */,
@@ -1839,6 +1842,7 @@
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
 				D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */,
 				F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */,
+				D2654AC61927925600DE58B2 /* edit.icns in Resources */,
 				D2C237A1189550860096ECAA /* map.icns in Resources */,
 				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
 				D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */,
