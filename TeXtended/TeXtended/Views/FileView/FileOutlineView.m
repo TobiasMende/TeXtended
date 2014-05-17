@@ -8,6 +8,7 @@
 
 #import "FileOutlineView.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "ApplicationController.h"
 @implementation FileOutlineView
 
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
@@ -66,6 +67,48 @@
 			}
 		}
 	}
+}
+
+- (void)keyDown:(NSEvent *)theEvent {
+    NSString *key = [theEvent charactersIgnoringModifiers];
+    if ([key isEqual:@" "])
+    {
+        [[ApplicationController sharedApplicationController] togglePreviewPanel:self];
+    }
+    else
+    {
+        [super keyDown:theEvent];
+    }
+}
+
+- (void)setViewController:(NSViewController *)newController
+{
+    if (viewController)
+    {
+        NSResponder *controllerNextResponder = [viewController nextResponder];
+        [super setNextResponder:controllerNextResponder];
+        [viewController setNextResponder:nil];
+    }
+    
+    viewController = newController;
+    
+    if (newController)
+    {
+        NSResponder *ownNextResponder = [self nextResponder];
+        [super setNextResponder: viewController];
+        [viewController setNextResponder:ownNextResponder];
+    }
+}
+
+- (void)setNextResponder:(NSResponder *)newNextResponder
+{
+    if (viewController)
+    {
+        [viewController setNextResponder:newNextResponder];
+        return;
+    }
+    
+    [super setNextResponder:newNextResponder];
 }
 
 

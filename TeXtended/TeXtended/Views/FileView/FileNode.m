@@ -174,4 +174,14 @@
 }
 
 
+#pragma mark - QLPreviewItem
+
+- (NSString *)previewItemTitle {
+    return self.name;
+}
+
+- (NSURL *)previewItemURL {
+    return self.fileURL;
+}
+
 @end

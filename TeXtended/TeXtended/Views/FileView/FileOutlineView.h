@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FileOutlineView : NSOutlineView
+@interface FileOutlineView : NSOutlineView {
+    IBOutlet NSViewController *viewController;
+}
 @property IBOutlet NSMenu *contextualMenu;
 @property IBOutlet NSMenu *backgroundMenu;
 

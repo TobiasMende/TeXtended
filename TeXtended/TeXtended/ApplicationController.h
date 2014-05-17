@@ -65,4 +65,6 @@
  */
 + (NSString*) userApplicationSupportDirectoryPath;
 + (void)mergeCompileFlows:(BOOL)force;
+
+- (IBAction)togglePreviewPanel:(id)previewPanel;
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface FileNode : NSObject<NSPasteboardWriting, NSPasteboardReading>
+#import <Quartz/Quartz.h>
+@interface FileNode : NSObject<NSPasteboardWriting, NSPasteboardReading,QLPreviewItem>
 
 @property (nonatomic) NSString *path;
 

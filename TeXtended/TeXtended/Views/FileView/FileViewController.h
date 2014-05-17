@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
+#import <Quartz/Quartz.h>
 @class FileNode, FileOutlineView, ModelInfoWindowController;
-@interface FileViewController : NSViewController <NSOutlineViewDelegate,NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource> {
+@interface FileViewController : NSViewController <NSOutlineViewDelegate,NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource,QLPreviewPanelDelegate,QLPreviewPanelDataSource> {
     BOOL pathObserverIsActive;
 }
 @property (strong) IBOutlet NSTreeController *fileTree;
@@ -17,6 +18,7 @@
 @property (assign,nonatomic) NSDocument *document;
 @property NSMutableArray *contents;
 @property (strong) IBOutlet FileOutlineView *outlineView;
+@property (strong) QLPreviewPanel *previewPanel;
 
 @property ModelInfoWindowController *infoWindowController;
 

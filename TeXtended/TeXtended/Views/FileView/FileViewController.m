@@ -18,6 +18,8 @@
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
 #import <TMTHelperCollection/TMTTextField.h>
 
+#import <Quartz/Quartz.h>
+
 static const NSString *FILE_KEY_PATH = @"fileURL";
 static const NSString *WINDOW_KEY_PATH = @"window";
 static NSArray *INTERNAL_EXTENSIONS;
@@ -59,6 +61,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     [self.outlineView registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil]];
     [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
     [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];
+
 }
 
 - (void)setDocument:(NSDocument *)document {
@@ -434,6 +437,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 }
 
 
+
 # pragma mark - Tree Helpers
 
 - (NSIndexPath *)indexPathForPath:(NSString *)path {
@@ -462,5 +466,100 @@ static NSArray *INTERNAL_EXTENSIONS;
     }
     return nil;
 }
+
+
+#pragma mark - Quick Look panel support
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+    [self.previewPanel reloadData];
+}
+
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    return YES;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document is now responsible of the preview panel
+    // It is allowed to set the delegate, data source and refresh panel.
+    //
+    _previewPanel = panel;
+    panel.delegate = self;
+    panel.dataSource = self;
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document loses its responsisibility on the preview panel
+    // Until the next call to -beginPreviewPanelControl: it must not
+    // change the panel's delegate, data source or refresh it.
+    //
+    _previewPanel = nil;
+}
+
+
+#pragma mark - QLPreviewPanelDataSource
+
+- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel
+{
+    return 1;
+}
+
+- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index
+{
+    return self.currentFileNode;
+}
+
+
+#pragma mark - QLPreviewPanelDelegate
+
+- (BOOL)previewPanel:(QLPreviewPanel *)panel handleEvent:(NSEvent *)event
+{
+    // redirect all key down events to the table view
+    if ([event type] == NSKeyDown)
+    {
+        [self.outlineView keyDown:event];
+        return YES;
+    }
+    return NO;
+}
+
+// This delegate method provides the rect on screen from which the panel will zoom.
+- (NSRect)previewPanel:(QLPreviewPanel *)panel sourceFrameOnScreenForPreviewItem:(id <QLPreviewItem>)item
+{
+    FileNode *node = [FileNode new];
+    node.path = [item previewItemURL].path;
+    NSInteger index = [self.contents indexOfObject:item];
+    if (index == NSNotFound)
+    {
+        return NSZeroRect;
+    }
+    
+    NSRect iconRect = [self.outlineView frameOfCellAtColumn:0 row:index];
+    
+    // check that the icon rect is visible on screen
+    NSRect visibleRect = [self.outlineView visibleRect];
+    
+    if (!NSIntersectsRect(visibleRect, iconRect))
+    {
+        return NSZeroRect;
+    }
+    
+    // convert icon rect to screen coordinates
+    iconRect = [self.outlineView convertRectToBase:iconRect];
+    iconRect.origin = [[self.outlineView window] convertBaseToScreen:iconRect.origin];
+    
+    return iconRect;
+}
+
+// this delegate method provides a transition image between the table view and the preview panel
+//
+- (id)previewPanel:(QLPreviewPanel *)panel transitionImageForPreviewItem:(id <QLPreviewItem>)item contentRect:(NSRect *)contentRect
+{
+    
+    return [[NSWorkspace sharedWorkspace] iconForFile:[item previewItemURL].path] ;
+}
+
 
 @end

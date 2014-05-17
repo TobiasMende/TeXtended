@@ -21,6 +21,7 @@
 #import "CompletionManager.h"
 #import "TemplateController.h"
 #import "Template.h"
+#import <Quartz/Quartz.h>
 
 
 
@@ -271,6 +272,20 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - QuickLook
+
+- (IBAction)togglePreviewPanel:(id)previewPanel
+{
+    if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible])
+    {
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    }
+    else
+    {
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
+    }
 }
 
 @end
