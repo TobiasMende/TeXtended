@@ -15,36 +15,39 @@
 
 @implementation ExtendedPdfControlls
 
-- (id)initWithExtendedPdf:(ExtendedPdf*) extedendPdf
-{
-    self = [super initWithNibName:@"ExtendedPdfControlls" bundle:nil];
-    if (self) {
-        [self setExtendedPdf:extedendPdf];
+    - (id)initWithExtendedPdf:(ExtendedPdf *)extedendPdf
+    {
+        self = [super initWithNibName:@"ExtendedPdfControlls" bundle:nil];
+        if (self) {
+            [self setExtendedPdf:extedendPdf];
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self.extendedPdf setPageAlpha:NO];
-    [self.shineThrough setState:NSOffState];
-}
+    - (void)awakeFromNib
+    {
+        [super awakeFromNib];
+        [self.extendedPdf setPageAlpha:NO];
+        [self.shineThrough setState:NSOffState];
+    }
 
-- (void)checkShineThrough:(id)sender {
-    [self.extendedPdf setPageAlpha:!self.extendedPdf.pageAlpha];
-    [self.extendedPdf layoutDocumentView];
-}
+    - (void)checkShineThrough:(id)sender
+    {
+        [self.extendedPdf setPageAlpha:!self.extendedPdf.pageAlpha];
+        [self.extendedPdf layoutDocumentView];
+    }
 
-- (IBAction)update:(id)sender {
-    /* set the size of the sliders so that they cover the current page */
-    NSSize size = [[self.extendedPdf currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
-    double scalingFactor = [self.extendedPdf getScalingFactor];
-    [self.gridHSpacingSlider setMaxValue:size.height / scalingFactor + 1];
-    [self.gridHOffsetSlider  setMaxValue:size.height];
-    [self.gridVSpacingSlider setMaxValue:size.width / scalingFactor + 1];
-    [self.gridVOffsetSlider  setMaxValue:size.width];
+    - (IBAction)update:(id)sender
+    {
+        /* set the size of the sliders so that they cover the current page */
+        NSSize size = [[self.extendedPdf currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
+        double scalingFactor = [self.extendedPdf getScalingFactor];
+        [self.gridHSpacingSlider setMaxValue:size.height / scalingFactor + 1];
+        [self.gridHOffsetSlider setMaxValue:size.height];
+        [self.gridVSpacingSlider setMaxValue:size.width / scalingFactor + 1];
+        [self.gridVOffsetSlider setMaxValue:size.width];
 
-    [self.view setNeedsDisplay:YES];
-}
+        [self.view setNeedsDisplay:YES];
+    }
 
 @end

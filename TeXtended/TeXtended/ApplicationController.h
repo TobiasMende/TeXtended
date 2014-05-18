@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PreferencesController,DocumentCreationController, CompletionsController,TexdocPanelController, ConsoleWindowController, TemplateController;
+
+@class PreferencesController, DocumentCreationController, CompletionsController, TexdocPanelController, ConsoleWindowController, TemplateController;
 
 /**
  The application controller is a singleton which represents the central instance of the TeXtended application.
@@ -16,55 +17,57 @@
  
  */
 
-@interface ApplicationController : NSObject <NSApplicationDelegate> {
-    /** references to the controller which handels the preferences window. */
-    PreferencesController *preferencesController;
-    
-    /** reference to the controller handling the creation and management of all documents in this application */
-    DocumentCreationController *documentCreationController;
-    
-    /** reference to the texdoc panel controller handling the app wide texdoc support */
-    TexdocPanelController *texdocPanelController;
-    
-    ConsoleWindowController *consoleWindowController;
-    
-    TemplateController *templateController;
-}
+@interface ApplicationController : NSObject <NSApplicationDelegate>
+    {
+        /** references to the controller which handels the preferences window. */
+        PreferencesController *preferencesController;
+
+        /** reference to the controller handling the creation and management of all documents in this application */
+        DocumentCreationController *documentCreationController;
+
+        /** reference to the texdoc panel controller handling the app wide texdoc support */
+        TexdocPanelController *texdocPanelController;
+
+        ConsoleWindowController *consoleWindowController;
+
+        TemplateController *templateController;
+    }
 
 
 /** Method for showing the texdoc panel to the user 
  
  @param sender the sender
  */
-- (IBAction)showTexdocPanel:(id)sender;
+    - (IBAction)showTexdocPanel:(id)sender;
 
 /** Method for showing the preferences window to the user 
  
  @param sender the sender
  */
-- (IBAction)showPreferences:(id)sender;
+    - (IBAction)showPreferences:(id)sender;
 
-- (IBAction)showConsoles:(id)sender;
+    - (IBAction)showConsoles:(id)sender;
 
-- (IBAction)showNewFromTemplate:(id)sender;
+    - (IBAction)showNewFromTemplate:(id)sender;
 
 /** Getter for the completion controller handling code autocompletions 
  
  @return the completion controller
  */
-- (CompletionsController*) completionsController;
+    - (CompletionsController *)completionsController;
 
 /** Getter for the shared instance of this singleton 
  
  @return the one and only instance of this class.
  */
-+ (ApplicationController*) sharedApplicationController;
+    + (ApplicationController *)sharedApplicationController;
 
 /** Getter for the absolute path to the current users application support directory
  @return the absolute path
  */
-+ (NSString*) userApplicationSupportDirectoryPath;
-+ (void)mergeCompileFlows:(BOOL)force;
+    + (NSString *)userApplicationSupportDirectoryPath;
 
-- (IBAction)togglePreviewPanel:(id)previewPanel;
+    + (void)mergeCompileFlows:(BOOL)force;
+
+    - (IBAction)togglePreviewPanel:(id)previewPanel;
 @end

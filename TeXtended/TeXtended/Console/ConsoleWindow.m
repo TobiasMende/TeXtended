@@ -10,9 +10,11 @@
 #import "ConsoleWindowController.h"
 
 @implementation ConsoleWindow
-- (void)liveCompile:(id)sender {
-    [self.controller refreshCompile];
-}
+
+    - (void)liveCompile:(id)sender
+    {
+        [self.controller refreshCompile];
+    }
 
 
 @end

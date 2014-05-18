@@ -9,9 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "ProjectCreationAssistantViewController.h"
 
-@interface FolderSelectionViewController : NSViewController<ProjectCreationAssistantViewController>
+@interface FolderSelectionViewController : NSViewController <ProjectCreationAssistantViewController>
 
-@property (strong) NSString *path;
-- (IBAction)select:(id)sender;
+    @property (strong) NSString *path;
+
+    - (IBAction)select:(id)sender;
 
 @end

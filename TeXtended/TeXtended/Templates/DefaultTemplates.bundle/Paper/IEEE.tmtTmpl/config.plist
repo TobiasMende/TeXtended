@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRoXW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9qZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiACYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNXZa0Ev9YAE0iMkJSZaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNXayUY+joAEWG1haW4ucGRmWG1haW4udGV4CAnSIyQwMV1Eb2N1bWVudE1vZGVsozIzJ11Eb2N1bWVudE1vZGVsWkNvbXBpbGFibGVfEA9OU0tleWVkQXJjaGl2ZXLRNjdUcm9vdIABAAgAEQAaACMALQAyADcAQwBJAF4AZgB0AIAAjQCUAJwAqAC0ALwAxQDHAMkAywDNAM8A0QDTANUA1wDZANsA4ADoAPEA8wD4AQMBDAETARYBHwEkAS0BLwE4AUEBQgFDAUgBVgFaAWgBcwGFAYgBjQAAAAAAAAIBAAAAAAAAADgAAAAAAAAAAAAAAAAAAAGP</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>Manuscript Templates for Conference Proceedings.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>0</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10007</integer>
-</dict>
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRoXW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9qZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiACYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNXZa0Ev9YAE0iMkJSZaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNXayUY+joAEWG1haW4ucGRmWG1haW4udGV4CAnSIyQwMV1Eb2N1bWVudE1vZGVsozIzJ11Eb2N1bWVudE1vZGVsWkNvbXBpbGFibGVfEA9OU0tleWVkQXJjaGl2ZXLRNjdUcm9vdIABAAgAEQAaACMALQAyADcAQwBJAF4AZgB0AIAAjQCUAJwAqAC0ALwAxQDHAMkAywDNAM8A0QDTANUA1wDZANsA4ADoAPEA8wD4AQMBDAETARYBHwEkAS0BLwE4AUEBQgFDAUgBVgFaAWgBcwGFAYgBjQAAAAAAAAIBAAAAAAAAADgAAAAAAAAAAAAAAAAAAAGP
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>Manuscript Templates for Conference Proceedings.</string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>0</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10007</integer>
+    </dict>
 </plist>

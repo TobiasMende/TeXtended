@@ -11,64 +11,73 @@
 
 @implementation EnvironmentCompletion
 
-- (id)initWithDictionary:(NSDictionary *)dict {
-    self = [super initWithDictionary:dict];
-    if (self) {
-        NSString *firstLine = dict[TMTCompletionsFirstLineExtensionKey];
-        if (firstLine) {
-            _firstLineExtension = firstLine;
-        } else {
+    - (id)initWithDictionary:(NSDictionary *)dict
+    {
+        self = [super initWithDictionary:dict];
+        if (self) {
+            NSString *firstLine = dict[TMTCompletionsFirstLineExtensionKey];
+            if (firstLine) {
+                _firstLineExtension = firstLine;
+            } else {
+                _firstLineExtension = @"";
+            }
+        }
+        return self;
+    }
+
+    - (id)init
+    {
+        self = [super init];
+        if (self) {
             _firstLineExtension = @"";
         }
+        return self;
     }
-    return self;
-}
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        _firstLineExtension = @"";
+    - (NSMutableDictionary *)dictionaryRepresentation
+    {
+        NSMutableDictionary *dict = [super dictionaryRepresentation];
+        dict[TMTCompletionsFirstLineExtensionKey] = self.firstLineExtension;
+        return dict;
     }
-    return self;
-}
 
-- (NSMutableDictionary *)dictionaryRepresentation {
-    NSMutableDictionary *dict = [super dictionaryRepresentation];
-    dict[TMTCompletionsFirstLineExtensionKey] = self.firstLineExtension;
-    return dict;
-}
-
-- (BOOL)hasPlaceholders {
-    return [super hasPlaceholders] || ([self hasFirstLineExtension] && [super stringContainsPlaceholders:self.firstLineExtension]);
-}
-
-
--(NSString *)key {
-    return [NSString stringWithFormat:@"%@ | %@%@", self.insertion, self.firstLineExtension, self.extension];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-    if ([key isEqualToString:@"key"]) {
-        keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
-    } else if([key isEqualToString:@"hasFirstLineExtension"]) {
-        keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
+    - (BOOL)hasPlaceholders
+    {
+        return [super hasPlaceholders] || ([self hasFirstLineExtension] && [super stringContainsPlaceholders:self.firstLineExtension]);
     }
-    return keyPaths;
-}
 
-- (BOOL)hasFirstLineExtension {
-    return self.firstLineExtension && self.firstLineExtension.length > 0;
-}
 
-- (NSAttributedString *)substitutedFirstLineExtension {
-    return [self substitutePlaceholdersInString:self.firstLineExtension];
-}
+    - (NSString *)key
+    {
+        return [NSString stringWithFormat:@"%@ | %@%@", self.insertion, self.firstLineExtension, self.extension];
+    }
 
-+ (EnvironmentCompletion *)dummyCompletion:(NSString *)name {
-    EnvironmentCompletion *completion = [EnvironmentCompletion new];
-    completion.insertion = name;
-    completion.extension = @"@@content@@";
-    return completion;
-}
+    + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+    {
+        NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+        if ([key isEqualToString:@"key"]) {
+            keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
+        } else if ([key isEqualToString:@"hasFirstLineExtension"]) {
+            keyPaths = [keyPaths setByAddingObject:@"firstLineExtension"];
+        }
+        return keyPaths;
+    }
+
+    - (BOOL)hasFirstLineExtension
+    {
+        return self.firstLineExtension && self.firstLineExtension.length > 0;
+    }
+
+    - (NSAttributedString *)substitutedFirstLineExtension
+    {
+        return [self substitutePlaceholdersInString:self.firstLineExtension];
+    }
+
+    + (EnvironmentCompletion *)dummyCompletion:(NSString *)name
+    {
+        EnvironmentCompletion *completion = [EnvironmentCompletion new];
+        completion.insertion = name;
+        completion.extension = @"@@content@@";
+        return completion;
+    }
 @end

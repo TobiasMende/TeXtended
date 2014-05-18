@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TMTArrayController : NSArrayController
-@property (strong) IBOutlet NSTableView *tableView;
+
+    @property (strong) IBOutlet NSTableView *tableView;
 @end

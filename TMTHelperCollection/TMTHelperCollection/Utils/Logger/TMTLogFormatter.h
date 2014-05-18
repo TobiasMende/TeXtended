@@ -11,10 +11,12 @@
 
 @interface TMTLogFormatter : NSObject <DDLogFormatter>
 
-@property BOOL extended;
+    @property BOOL extended;
 
-- (id)initExtended:(BOOL)isExtended;
-+ (void) updateMaxLength:(NSUInteger)length;
-+ (NSString *) extendClassPart:(NSString *)classPart;
+    - (id)initExtended:(BOOL)isExtended;
+
+    + (void)updateMaxLength:(NSUInteger)length;
+
+    + (NSString *)extendClassPart:(NSString *)classPart;
 
 @end

@@ -10,33 +10,50 @@
 #import "Constants.h"
 
 @class Compilable, DocumentModel, ProjectModel, PDFDocument;
+
 @interface Template : NSObject
-@property NSInteger uid;
-@property NSString *info;
-@property NSString *name;
-@property NSString *category;
-@property TMTTemplateType type;
-@property NSString *mainFileName;
-@property Compilable *compilable;
 
-- (BOOL) setDocumentWithContent:(NSString *)content model:(DocumentModel *)model andError:(NSError **)error;
-- (BOOL) setProjectWithPath:(NSString *)projectPath model:(ProjectModel *)model andError:(NSError **)error;
+    @property NSInteger uid;
 
-- (BOOL)packageExists;
-- (NSString *)contentPath;
-- (NSString *)templatePath;
-- (BOOL)save:(NSError **)error;
-- (NSDictionary *)configDictionary;
-- (Compilable *)createInstanceWithName:(NSString *)name inDirectory:(NSString *)directory withError:(NSError **)error;
+    @property NSString *info;
 
-- (NSString *)previewPath;
-- (BOOL) hasPreviewPDF;
+    @property NSString *name;
 
-+ (Template *)templateFromFile:(NSString *)templatePath;
+    @property NSString *category;
 
-- (id)initWithDictionary:(NSDictionary *)config name:(NSString *)name andCategory:(NSString *)category;
+    @property TMTTemplateType type;
 
-- (BOOL)remove:(NSError **)error;
-- (BOOL)rename:(NSString *)newName  withError:(NSError **)error;
-- (BOOL) replacePreviewPdf:(NSString *)pdfPath;
+    @property NSString *mainFileName;
+
+    @property Compilable *compilable;
+
+    - (BOOL)setDocumentWithContent:(NSString *)content model:(DocumentModel *)model andError:(NSError **)error;
+
+    - (BOOL)setProjectWithPath:(NSString *)projectPath model:(ProjectModel *)model andError:(NSError **)error;
+
+    - (BOOL)packageExists;
+
+    - (NSString *)contentPath;
+
+    - (NSString *)templatePath;
+
+    - (BOOL)save:(NSError **)error;
+
+    - (NSDictionary *)configDictionary;
+
+    - (Compilable *)createInstanceWithName:(NSString *)name inDirectory:(NSString *)directory withError:(NSError **)error;
+
+    - (NSString *)previewPath;
+
+    - (BOOL)hasPreviewPDF;
+
+    + (Template *)templateFromFile:(NSString *)templatePath;
+
+    - (id)initWithDictionary:(NSDictionary *)config name:(NSString *)name andCategory:(NSString *)category;
+
+    - (BOOL)remove:(NSError **)error;
+
+    - (BOOL)rename:(NSString *)newName withError:(NSError **)error;
+
+    - (BOOL)replacePreviewPdf:(NSString *)pdfPath;
 @end

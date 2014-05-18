@@ -10,18 +10,20 @@
 
 @implementation SMTabBarItem
 
-- (id)initWithImage:(NSImage *)image tag:(NSInteger)tag {
-    self = [super init];
-    if (self) {
-        self.image = image;
-        self.tag = tag;
-        self.enabled = YES;
+    - (id)initWithImage:(NSImage *)image tag:(NSInteger)tag
+    {
+        self = [super init];
+        if (self) {
+            self.image = image;
+            self.tag = tag;
+            self.enabled = YES;
+        }
+        return self;
     }
-    return self;
-}
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"SMTabBarItem{tag=%li}", self.tag];
-}
+    - (NSString *)description
+    {
+        return [NSString stringWithFormat:@"SMTabBarItem{tag=%li}", self.tag];
+    }
 
 @end

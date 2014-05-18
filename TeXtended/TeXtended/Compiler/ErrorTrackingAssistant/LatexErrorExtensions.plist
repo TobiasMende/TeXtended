@@ -2,14 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <dict>
     <key>Undefined control sequence.</key>
-    <string>LaTeX is complaining that it has no such command ("control sequence"). Maybe the command "@@info@@" has been mistyped.</string>
+    <string>LaTeX is complaining that it has no such command ("control sequence"). Maybe the command "@@info@@" has been
+        mistyped.
+    </string>
     <key>Too many \}'s.</key>
-    <string>The reason LaTeX thinks there are too many }'s may be, that an opening curly brace is missing after the command</string>
+    <string>The reason LaTeX thinks there are too many }'s may be, that an opening curly brace is missing after the
+        command
+    </string>
     <key>Missing \$ inserted</key>
-    <string>A character that can only be used in the mathematics was inserted in normal text. If you intended to use mathematics mode, then use $...$ or \begin{math}...\end{math} or use the 'quick math mode': \ensuremath{...}. If you did not intend to use mathematics mode, then perhaps you are trying to use a special character that needs to be entered in a different way; for example _ will be interpreted as a subscript operator in mathematics mode, and you need \_ to get an underscore character. For a dollar sign, use \$ instead.</string>
+    <string>A character that can only be used in the mathematics was inserted in normal text. If you intended to use
+        mathematics mode, then use $...$ or \begin{math}...\end{math} or use the 'quick math mode': \ensuremath{...}. If
+        you did not intend to use mathematics mode, then perhaps you are trying to use a special character that needs to
+        be entered in a different way; for example _ will be interpreted as a subscript operator in mathematics mode,
+        and you need \_ to get an underscore character. For a dollar sign, use \$ instead.
+    </string>
     <key>Paragraph ended before \\(\S*) was complete.</key>
-    <string>In this error, the closing curly brace has been omitted from the command @@placeholder@@. It's the opposite of the error of too many }'s</string>
+    <string>In this error, the closing curly brace has been omitted from the command @@placeholder@@. It's the opposite
+        of the error of too many }'s
+    </string>
     <key>LaTeX Error: File `(.*)' not found.</key>
-    <string>When you use the \usepackage command to request LaTeX to use a certain package, it will look for a file with the specified name and the filetype .sty. Maybe you have mistyped the package name @@placeholder@@. However, if you get the name right, but the package is not installed on your machine, you will need to download and install it before continuing. If you don't want to affect the global installation of the machine, you can simply download from Internet the necessary .sty file and put it in the same folder of the document you are compiling.</string>
+    <string>When you use the \usepackage command to request LaTeX to use a certain package, it will look for a file with
+        the specified name and the filetype .sty. Maybe you have mistyped the package name @@placeholder@@. However, if
+        you get the name right, but the package is not installed on your machine, you will need to download and install
+        it before continuing. If you don't want to affect the global installation of the machine, you can simply
+        download from Internet the necessary .sty file and put it in the same folder of the document you are compiling.
+    </string>
 </dict>
-</plist>
+        </plist>

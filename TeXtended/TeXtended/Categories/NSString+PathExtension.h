@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (PathExtension)
-- (NSString*)relativePathWithBase:(NSString*)basePath;
-- (NSString*)absolutePathWithBase:(NSString*)basePath;
+
+    - (NSString *)relativePathWithBase:(NSString *)basePath;
+
+    - (NSString *)absolutePathWithBase:(NSString *)basePath;
 @end

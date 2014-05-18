@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Compilable.h"
+
 @protocol ModelInfoViewController <NSObject>
+
     - (void)setModel:(Compilable *)model;
 
 @end

@@ -10,24 +10,25 @@
 
 @implementation DefaultCompletionView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
+    - (id)initWithFrame:(NSRect)frame
+    {
+        self = [super initWithFrame:frame];
+        if (self) {
+            // Initialization code here.
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-	[super drawRect:dirtyRect];
-	
-    // Drawing code here.
-}
+    - (void)drawRect:(NSRect)dirtyRect
+    {
+        [super drawRect:dirtyRect];
 
-+ (NSInteger)defaultViewHeight {
-    return 16;
-}
+        // Drawing code here.
+    }
+
+    + (NSInteger)defaultViewHeight
+    {
+        return 16;
+    }
 
 @end

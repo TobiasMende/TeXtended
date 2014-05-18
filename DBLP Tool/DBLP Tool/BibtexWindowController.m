@@ -14,22 +14,25 @@
 
 @implementation BibtexWindowController
 
-- (id)initWithPublication:(TMTBibTexEntry *)publication {
-    self = [super initWithWindowNibName:@"BibtexWindow"];
-    
-    if (self) {
-        _publication = publication;
+    - (id)initWithPublication:(TMTBibTexEntry *)publication
+    {
+        self = [super initWithWindowNibName:@"BibtexWindow"];
+
+        if (self) {
+            _publication = publication;
+        }
+        return self;
     }
-    return  self;
-}
 
-- (void)windowDidLoad {
-    [self.bibtexView setTextColor:[NSColor controlLightHighlightColor]];
-}
+    - (void)windowDidLoad
+    {
+        [self.bibtexView setTextColor:[NSColor controlLightHighlightColor]];
+    }
 
-- (void)showPublication:(TMTBibTexEntry *)publication {
-    self.publication = publication;
-    [self showWindow:self];
-}
+    - (void)showPublication:(TMTBibTexEntry *)publication
+    {
+        self.publication = publication;
+        [self showWindow:self];
+    }
 
 @end

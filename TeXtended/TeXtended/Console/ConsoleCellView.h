@@ -7,12 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class ConsoleData, ConsoleWindowController;
-@interface ConsoleCellView : NSTableCellView
-@property (strong) IBOutlet NSProgressIndicator *progress;
-@property (assign) ConsoleWindowController *controller;
-@property (strong) ConsoleData *console;
 
-- (IBAction)remove:(id)sender;
-- (NSString *)compilerInfo;
+@class ConsoleData, ConsoleWindowController;
+
+@interface ConsoleCellView : NSTableCellView
+
+    @property (strong) IBOutlet NSProgressIndicator *progress;
+
+    @property (assign) ConsoleWindowController *controller;
+
+    @property (strong) ConsoleData *console;
+
+    - (IBAction)remove:(id)sender;
+
+    - (NSString *)compilerInfo;
 @end

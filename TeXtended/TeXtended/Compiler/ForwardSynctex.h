@@ -16,38 +16,41 @@
  * **Author:** Tobias Mende
  *
  */
-@interface ForwardSynctex : NSObject {
-}
+@interface ForwardSynctex : NSObject
+    {
+    }
 
-- (id)initWithOutput:(NSString *)output;
+    - (id)initWithOutput:(NSString *)output;
 
 /** The page in the output file */
-@property NSUInteger page;
+    @property NSUInteger page;
 
 /** The x output of the synctex task */
-@property CGFloat x;
+    @property CGFloat x;
 
 /** The y output of the synctex task */
-@property CGFloat y;
+    @property CGFloat y;
 
 /** The x coordinate in the output file */
-@property CGFloat h;
+    @property CGFloat h;
 
 /** The y coordinate in the output file */
-@property CGFloat v;
+    @property CGFloat v;
 
 /** The W output of the synctex task */
-@property CGFloat width;
+    @property CGFloat width;
 
 /** The H output of the synctex task */
-@property CGFloat height;
+    @property CGFloat height;
 @end
 
 
-@interface ForwardSynctexController : NSObject {
-    __unsafe_unretained id weakSelf;
-    NSMutableArray *tasks;
-}
+@interface ForwardSynctexController : NSObject
+    {
+        __unsafe_unretained id weakSelf;
+
+        NSMutableArray *tasks;
+    }
 
 /**
  * Initializes the algorithm.
@@ -58,8 +61,7 @@
  * @param col the column in the latex file
  * @return an instance which automatically starts a synctex task and blocks until it returns.
  */
-- (void)startWithInputPath:(NSString*)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col andHandler:(void (^)(ForwardSynctex *result)) completionHandler;
-
+    - (void)startWithInputPath:(NSString *)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col andHandler:(void (^)(ForwardSynctex *result))completionHandler;
 
 
 @end

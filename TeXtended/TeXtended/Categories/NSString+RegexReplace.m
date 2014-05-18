@@ -26,42 +26,46 @@
 #import "NSString+RegexReplace.h"
 #import "EditorPlaceholder.h"
 #import <TMTHelperCollection/TMTLog.h>
+
 static const NSRegularExpression *PLACEHOLDER_REGEX;
+
 @implementation NSString (RegexReplace)
 
 
-
-__attribute__((constructor))
-static void initialize_PLACEHOLDER_REGEX() {
-    PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:nil];
-}
-
-- (NSString*)stringByReplacingRegularExpression:(NSString*)pattern withString:(NSString*)replace options:(NSRegularExpressionOptions)options {
-    NSError *error = nil;
-    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:options error:&error];
-    if (error) {
-        DDLogError(@"%@",error.localizedDescription);
+    __attribute__((constructor))
+    static void initialize_PLACEHOLDER_REGEX()
+    {
+        PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:nil];
     }
-    return [regex stringByReplacingMatchesInString:self options:kNilOptions range:NSMakeRange(0, [self length]) withTemplate:replace];
-}
+
+    - (NSString *)stringByReplacingRegularExpression:(NSString *)pattern withString:(NSString *)replace options:(NSRegularExpressionOptions)options
+    {
+        NSError *error = nil;
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:options error:&error];
+        if (error) {
+            DDLogError(@"%@", error.localizedDescription);
+        }
+        return [regex stringByReplacingMatchesInString:self options:kNilOptions range:NSMakeRange(0, [self length]) withTemplate:replace];
+    }
 
 
-- (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders {
-    NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:self];
+    - (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders
+    {
+        NSMutableAttributedString *extension = [[NSMutableAttributedString alloc] initWithString:self];
         NSArray *matches = [PLACEHOLDER_REGEX matchesInString:self options:0 range:NSMakeRange(0, self.length)];
         NSInteger offset = 0;
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match range];
-            NSRange final = NSMakeRange(range.location+2, range.length-4);
+            NSRange final = NSMakeRange(range.location + 2, range.length - 4);
             NSString *title = [self substringWithRange:final];
             NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
-            NSRange newRange = NSMakeRange(range.location+offset, range.length);
+            NSRange newRange = NSMakeRange(range.location + offset, range.length);
             [extension replaceCharactersInRange:newRange withAttributedString:placeholder];
             offset += placeholder.length - range.length;
-            
-            
+
+
         }
-    return extension;
-}
+        return extension;
+    }
 
 @end

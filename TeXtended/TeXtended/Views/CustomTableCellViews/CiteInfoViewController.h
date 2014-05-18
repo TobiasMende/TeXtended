@@ -10,7 +10,9 @@
 
 @interface CiteInfoViewController : NSViewController
 
-- (IBAction)showInBibdesk:(id)sender;
-- (BOOL)shouldShowBibDeskButton;
-@property NSString *bibFilePath;
+    - (IBAction)showInBibdesk:(id)sender;
+
+    - (BOOL)shouldShowBibDeskButton;
+
+    @property NSString *bibFilePath;
 @end

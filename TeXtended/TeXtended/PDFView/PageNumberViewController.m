@@ -16,25 +16,28 @@
 @implementation PageNumberViewController
 
 
-- (id) initInPdfView:(PDFView*) view {
-    self = [super initWithNibName:@"PageNumberView" bundle:nil];
-    if (self) {
-        pdfView = view;
+    - (id)initInPdfView:(PDFView *)view
+    {
+        self = [super initWithNibName:@"PageNumberView" bundle:nil];
+        if (self) {
+            pdfView = view;
+        }
+        return self;
     }
-    return self;
-}
 
-- (void) awakeFromNib {
-    [super awakeFromNib];
-    [self.theBox setBorderWidth:0];
-    [self.theBox setCornerRadius:10];
-    [self update];
-}
+    - (void)awakeFromNib
+    {
+        [super awakeFromNib];
+        [self.theBox setBorderWidth:0];
+        [self.theBox setCornerRadius:10];
+        [self update];
+    }
 
-- (void) update {
-    NSString* label = [NSString stringWithFormat:@"%lu/%lu", [pdfView.document indexForPage:pdfView.currentPage]+1, [pdfView.document pageCount]];
-    [self.theLabel setStringValue:label];
-    [self.view setNeedsDisplay:YES];
-}
+    - (void)update
+    {
+        NSString *label = [NSString stringWithFormat:@"%lu/%lu", [pdfView.document indexForPage:pdfView.currentPage] + 1, [pdfView.document pageCount]];
+        [self.theLabel setStringValue:label];
+        [self.view setNeedsDisplay:YES];
+    }
 
 @end

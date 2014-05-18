@@ -7,11 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class Compilable, MessageDataSource;
-@interface MessageOutlineViewController : NSViewController 
-@property (assign) Compilable* model;
-@property (assign)  IBOutlet MessageDataSource *messageDataSource;
+
+@interface MessageOutlineViewController : NSViewController
+
+    @property (assign) Compilable *model;
+
+    @property (assign) IBOutlet MessageDataSource *messageDataSource;
 
 
-- (id)initWithModel:(Compilable*)model;
+    - (id)initWithModel:(Compilable *)model;
 @end

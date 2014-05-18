@@ -19,16 +19,16 @@
 
 #pragma mark - Properties
 /** The path to the compile flow */
-@property (nonatomic, strong) NSString *compilerPath;
+    @property (nonatomic, strong) NSString *compilerPath;
 
 /** Flag whether to compile bibliography or not */
-@property (nonatomic, strong) NSNumber *compileBib;
+    @property (nonatomic, strong) NSNumber *compileBib;
 
 /** the number of compiler iterations */
-@property (nonatomic, strong) NSNumber *numberOfCompiles;
+    @property (nonatomic, strong) NSNumber *numberOfCompiles;
 
 /** some custom argument set by the user */
-@property (nonatomic, strong) NSString *customArgument;
+    @property (nonatomic, strong) NSString *customArgument;
 
 
 #pragma mark - Key Value Binding
@@ -40,10 +40,10 @@
  *
  * @param setting the settings to bind to
  */
-- (void)bindAllTo:(CompileSetting *)setting;
+    - (void)bindAllTo:(CompileSetting *)setting;
 
 /** Method for unbinding all properties of this object */
-- (void)unbindAll;
+    - (void)unbindAll;
 
 
 #pragma mark - Static Methods
@@ -54,7 +54,7 @@
  *
  * return a new compile setting object
  */
-+ (CompileSetting *)defaultLiveCompileSetting;
+    + (CompileSetting *)defaultLiveCompileSetting;
 
 /** Getter for a default draft compile setting generated using the user defaults
  *
@@ -62,7 +62,7 @@
  *
  * return a new compile setting object
  */
-+ (CompileSetting *)defaultDraftCompileSetting;
+    + (CompileSetting *)defaultDraftCompileSetting;
 
 /** Getter for a default final compile setting generated using the user defaults
  *
@@ -70,6 +70,6 @@
  *
  * return a new compile setting object
  */
-+ (CompileSetting *)defaultFinalCompileSetting;
+    + (CompileSetting *)defaultFinalCompileSetting;
 
 @end

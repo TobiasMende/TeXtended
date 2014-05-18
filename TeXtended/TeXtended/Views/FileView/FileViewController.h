@@ -10,53 +10,65 @@
 #import <TMTHelperCollection/TMTTextFieldDelegate.h>
 #import <Quartz/Quartz.h>
 
+
 @class FileNode, FileOutlineView, ModelInfoWindowController;
 
-@interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource> {
-    
-	BOOL pathObserverIsActive;
-    
-}
+@interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource>
+    {
+
+        BOOL pathObserverIsActive;
+
+    }
 
 #pragma mark - Properties
 
-@property (strong) IBOutlet NSTreeController *fileTree;
+    @property (strong) IBOutlet NSTreeController *fileTree;
 
-@property (nonatomic) NSString *path;
+    @property (nonatomic) NSString *path;
 
-@property (assign, nonatomic) NSDocument *document;
+    @property (assign, nonatomic) NSDocument *document;
 
-@property NSMutableArray *contents;
+    @property NSMutableArray *contents;
 
-@property (strong) IBOutlet FileOutlineView *outlineView;
+    @property (strong) IBOutlet FileOutlineView *outlineView;
 
-@property (strong) QLPreviewPanel *previewPanel;
+    @property (strong) QLPreviewPanel *previewPanel;
 
-@property ModelInfoWindowController *infoWindowController;
+    @property ModelInfoWindowController *infoWindowController;
 
 
 #pragma mark - Methods
 
-- (void)updatePath;
+    - (void)updatePath;
 
-- (void)buildTree;
+    - (void)buildTree;
 
-- (FileNode *)currentFileNode;
+    - (FileNode *)currentFileNode;
 
-- (NSInteger)currentRow;
+    - (NSInteger)currentRow;
 
 
 #pragma mark - Context Menu Actions
-- (IBAction)openFile:(id)sender;
-- (IBAction)renameFile:(id)sender;
-- (IBAction)deleteFile:(id)sender;
-- (IBAction)createNewFolder:(id)sender;
-- (IBAction)createNewFile:(id)sender;
-- (IBAction)createNewFolderInRoot:(id)sender;
-- (IBAction)createNewFileInRoot:(id)sender;
-- (IBAction)revealInFinder:(id)sender;
-- (IBAction)openRootInFinder:(id)sender;
-- (IBAction)showInformation:(id)sender;
+
+    - (IBAction)openFile:(id)sender;
+
+    - (IBAction)renameFile:(id)sender;
+
+    - (IBAction)deleteFile:(id)sender;
+
+    - (IBAction)createNewFolder:(id)sender;
+
+    - (IBAction)createNewFile:(id)sender;
+
+    - (IBAction)createNewFolderInRoot:(id)sender;
+
+    - (IBAction)createNewFileInRoot:(id)sender;
+
+    - (IBAction)revealInFinder:(id)sender;
+
+    - (IBAction)openRootInFinder:(id)sender;
+
+    - (IBAction)showInformation:(id)sender;
 
 
 @end

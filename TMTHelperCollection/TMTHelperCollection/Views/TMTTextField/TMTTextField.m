@@ -7,15 +7,16 @@
 //
 
 #import "TMTTextField.h"
-#import "TMTLog.h"
 #import "TMTTextFieldDelegate.h"
+
 @implementation TMTTextField
 
-- (void)selectText:(id)sender {
-    [super selectText:sender];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(controlDidSelectText:)]) {
-        [(id<TMTTextFieldDelegate>)self.delegate controlDidSelectText:self];
+    - (void)selectText:(id)sender
+    {
+        [super selectText:sender];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(controlDidSelectText:)]) {
+            [(id <TMTTextFieldDelegate>) self.delegate controlDidSelectText:self];
+        }
     }
-}
 
 @end

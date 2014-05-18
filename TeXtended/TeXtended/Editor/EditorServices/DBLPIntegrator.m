@@ -11,68 +11,76 @@
 #import "BibFile.h"
 #import <BibTexToolsFramework/DBLPSearchViewController.h>
 #import "CiteCompletion.h"
+
 @implementation DBLPIntegrator
 
-- (id)initWithTextView:(HighlightingTextView *)tv {
-    self = [super initWithTextView:tv];
-    if (self) {
-        self.vc = [DBLPSearchViewController new];
-        self.vc.executeCitationLabel = NSLocalizedString(@"Insert Citation", @"Insert Citation Button Label");
-        self.vc.handler = self;
+    - (id)initWithTextView:(HighlightingTextView *)tv
+    {
+        self = [super initWithTextView:tv];
+        if (self) {
+            self.vc = [DBLPSearchViewController new];
+            self.vc.executeCitationLabel = NSLocalizedString(@"Insert Citation", @"Insert Citation Button Label");
+            self.vc.handler = self;
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)executeCitation:(TMTBibTexEntry *)citation forBibFile:(NSString *)path {
-    [self dismissView];
-    BibFile *file;
-     NSArray *files = [[view.firstResponderDelegate model] bibFiles];
-    for (BibFile *f in files) {
-        if ([path isEqualToString:f.path]) {
-            file = f;
-            break;
+    - (void)executeCitation:(TMTBibTexEntry *)citation forBibFile:(NSString *)path
+    {
+        [self dismissView];
+        BibFile *file;
+        NSArray *files = [[view.firstResponderDelegate model] bibFiles];
+        for (BibFile *f in files) {
+            if ([path isEqualToString:f.path]) {
+                file = f;
+                break;
+            }
+        }
+        if (!file) {
+            return;
+        }
+        if ([file insertEntry:citation]) {
+            CiteCompletion *completion = [[CiteCompletion alloc] initWithBibEntry:citation];
+            [view insertCompletion:completion forPartialWordRange:view.selectedRange movement:NSReturnTextMovement isFinal:YES];
         }
     }
-    if (!file) {
-        return;
+
+    - (void)initializeDBLPView
+    {
+        NSArray *files = [[view.firstResponderDelegate model] bibFiles];
+        NSMutableArray *paths = [NSMutableArray arrayWithCapacity:files.count];
+        for (BibFile *file in files) {
+            [paths addObject:file.path];
+        }
+        self.vc.bibFilePaths = paths;
+        NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(view.selectedRange.location, 1) inTextContainer:view.textContainer];
+        popover = [NSPopover new];
+        popover.contentViewController = self.vc;
+        popover.behavior = NSPopoverBehaviorSemitransient;
+        [self.vc finishInitialization];
+        [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxXEdge];
     }
-    if ([file insertEntry:citation]) {
-        CiteCompletion *completion = [[CiteCompletion alloc] initWithBibEntry:citation];
-        [view insertCompletion:completion forPartialWordRange:view.selectedRange movement:NSReturnTextMovement isFinal:YES];
+
+    - (void)dblpSearchAborted
+    {
+        [self dismissView];
     }
-}
 
-- (void)initializeDBLPView {
-    NSArray *files = [[view.firstResponderDelegate model] bibFiles];
-    NSMutableArray *paths = [NSMutableArray arrayWithCapacity:files.count];
-    for (BibFile *file in files) {
-        [paths addObject:file.path];
+    - (void)failedFetchingAuthors:(NSError *)error
+    {
+        [[NSAlert alertWithError:error] runModal];
     }
-    self.vc.bibFilePaths = paths;
-    NSRect boundingRect = [view.layoutManager boundingRectForGlyphRange:NSMakeRange(view.selectedRange.location, 1) inTextContainer:view.textContainer];
-    popover = [NSPopover new];
-    popover.contentViewController = self.vc;
-    popover.behavior = NSPopoverBehaviorSemitransient;
-    [self.vc finishInitialization];
-    [popover showRelativeToRect:boundingRect ofView:view preferredEdge:NSMaxXEdge];
-}
 
-- (void)dblpSearchAborted {
-    [self dismissView];
-}
-
-- (void)failedFetchingAuthors:(NSError *)error {
-    [[NSAlert alertWithError:error] runModal];
-}
-
-- (void)failedFetchingKeys:(NSError *)error {
-    [[NSAlert alertWithError:error] runModal];
-}
+    - (void)failedFetchingKeys:(NSError *)error
+    {
+        [[NSAlert alertWithError:error] runModal];
+    }
 
 
-- (void)dismissView {
-    [popover close];
-    popover = nil;
-    [view.window makeKeyAndOrderFront:self];
-}
+    - (void)dismissView
+    {
+        [popover close];
+        popover = nil;
+        [view.window makeKeyAndOrderFront:self];
+    }
 @end

@@ -9,43 +9,48 @@
 #import "TexdocEntry.h"
 
 @implementation TexdocEntry
-- (id)initWithArray:(NSArray *)texdoc {
-    self = [super init];
-    if (self) {
-        if (texdoc.count >= 4) {
-            NSString *path = texdoc[2];
-            if ([path isAbsolutePath]) {
-                self.path = path;
-            } else {
-                self.path = [[@"~/" stringByAppendingString:path] stringByExpandingTildeInPath];
+
+    - (id)initWithArray:(NSArray *)texdoc
+    {
+        self = [super init];
+        if (self) {
+            if (texdoc.count >= 4) {
+                NSString *path = texdoc[2];
+                if ([path isAbsolutePath]) {
+                    self.path = path;
+                } else {
+                    self.path = [[@"~/" stringByAppendingString:path] stringByExpandingTildeInPath];
+                }
+                _description = texdoc[4];
+                if (_description.length == 0) {
+                    _description = [[_path lastPathComponent] stringByDeletingPathExtension];
+                }
+                _score = @([texdoc[1] doubleValue]);
             }
-            _description = texdoc[4];
-            if (_description.length == 0) {
-                _description = [[_path lastPathComponent] stringByDeletingPathExtension];
-            }
-            _score = @([texdoc[1] doubleValue]);
         }
-    }
-    
-    return self;
-}
 
-- (NSString *)fileName {
-    return [self.path lastPathComponent];
-}
-
-- (NSImage*) fileIcon {
-    if (self.path) {
-        return [[NSWorkspace sharedWorkspace] iconForFile:self.path];
+        return self;
     }
-    return nil;
-}
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-    if ([key isEqualToString:@"fileName"] || [key isEqualToString:@"fileIcon"]) {
-        keyPaths = [keyPaths setByAddingObject:@"path"];
+    - (NSString *)fileName
+    {
+        return [self.path lastPathComponent];
     }
-    return keyPaths;
-}
+
+    - (NSImage *)fileIcon
+    {
+        if (self.path) {
+            return [[NSWorkspace sharedWorkspace] iconForFile:self.path];
+        }
+        return nil;
+    }
+
+    + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+    {
+        NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+        if ([key isEqualToString:@"fileName"] || [key isEqualToString:@"fileIcon"]) {
+            keyPaths = [keyPaths setByAddingObject:@"path"];
+        }
+        return keyPaths;
+    }
 @end

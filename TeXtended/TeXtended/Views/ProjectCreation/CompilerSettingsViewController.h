@@ -8,18 +8,24 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ProjectCreationAssistantViewController.h"
+
 @class CompileSetting;
 
-@interface CompilerSettingsViewController : NSViewController <ProjectCreationAssistantViewController>{
-    NSManagedObjectContext *context;
-}
+@interface CompilerSettingsViewController : NSViewController <ProjectCreationAssistantViewController>
+    {
+        NSManagedObjectContext *context;
+    }
 
-@property CompileSetting *liveCompiler;
-@property CompileSetting *draftCompiler;
-@property CompileSetting *finalCompiler;
+    @property CompileSetting *liveCompiler;
 
-@property BOOL hasLiveCompiler;
-@property BOOL hasDraftCompiler;
-@property BOOL hasFinalCompiler;
+    @property CompileSetting *draftCompiler;
+
+    @property CompileSetting *finalCompiler;
+
+    @property BOOL hasLiveCompiler;
+
+    @property BOOL hasDraftCompiler;
+
+    @property BOOL hasFinalCompiler;
 
 @end

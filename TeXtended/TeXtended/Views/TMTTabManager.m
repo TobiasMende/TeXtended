@@ -8,54 +8,63 @@
 
 #import "TMTTabManager.h"
 #import "TMTTabViewController.h"
-static TMTTabManager* tabManager = nil;
+
+static TMTTabManager *tabManager = nil;
+
 @implementation TMTTabManager
 
-- (id)init {
-    self = [super init];
-    windowSet = [NSMutableSet new];
-    tabViewControllers = [NSMutableSet new];
-    
-    return self;
-}
+    - (id)init
+    {
+        self = [super init];
+        windowSet = [NSMutableSet new];
+        tabViewControllers = [NSMutableSet new];
 
-+ (TMTTabManager *)sharedTabManager {
-    if(!tabManager) {
-        tabManager = [TMTTabManager new];
+        return self;
     }
-    return tabManager;
-}
+
+    + (TMTTabManager *)sharedTabManager
+    {
+        if (!tabManager) {
+            tabManager = [TMTTabManager new];
+        }
+        return tabManager;
+    }
 
 
-- (void)addTabViewWindow:(TMTTabViewWindow *)window {
-    [windowSet addObject:window];
-}
+    - (void)addTabViewWindow:(TMTTabViewWindow *)window
+    {
+        [windowSet addObject:window];
+    }
 
-- (void)removeTabViewWindow:(TMTTabViewWindow *)window {
-    [windowSet removeObject:window];
-}
+    - (void)removeTabViewWindow:(TMTTabViewWindow *)window
+    {
+        [windowSet removeObject:window];
+    }
 
 
-- (void)addTabViewController:(TMTTabViewController *)controller {
-    [tabViewControllers addObject:[NSValue valueWithNonretainedObject:controller]];
-}
+    - (void)addTabViewController:(TMTTabViewController *)controller
+    {
+        [tabViewControllers addObject:[NSValue valueWithNonretainedObject:controller]];
+    }
 
-- (void)removeTabViewController:(TMTTabViewController *)controller {
-    [tabViewControllers removeObject:[NSValue valueWithNonretainedObject:controller]];
-}
+    - (void)removeTabViewController:(TMTTabViewController *)controller
+    {
+        [tabViewControllers removeObject:[NSValue valueWithNonretainedObject:controller]];
+    }
 
-- (NSTabViewItem *)tabViewItemForIdentifier:(NSString *)identifier {
-    for (NSValue *v in tabViewControllers) {
-        TMTTabViewController *controller = v.nonretainedObjectValue;
-        if (controller) {
-            for (NSTabViewItem *item in controller.tabView.tabViewItems) {
-                if ([[item.identifier identifier] isEqualToString:identifier]) {
-                    return item;
+    - (NSTabViewItem *)tabViewItemForIdentifier:(NSString *)identifier
+    {
+        for (NSValue *v in tabViewControllers) {
+            TMTTabViewController *controller = v.nonretainedObjectValue;
+            if (controller) {
+                for (NSTabViewItem *item in controller.tabView.tabViewItems) {
+                    if ([[item.identifier identifier] isEqualToString:identifier]) {
+                        return item;
+                    }
                 }
             }
         }
+        return nil;
     }
-    return nil;
-}
 
 @end

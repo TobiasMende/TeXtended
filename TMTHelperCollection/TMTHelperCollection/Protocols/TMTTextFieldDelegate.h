@@ -14,6 +14,6 @@
 
 @optional
 
-- (void) controlDidSelectText:(TMTTextField *)control;
+    - (void)controlDidSelectText:(TMTTextField *)control;
 
 @end

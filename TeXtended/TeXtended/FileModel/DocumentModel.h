@@ -19,47 +19,48 @@
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentModel : Compilable {
-	void (^ removeLiveCompileObserver)(void);
+@interface DocumentModel : Compilable
+    {
+        void (^removeLiveCompileObserver)(void);
 
-	void (^ removeOpenOnExportObserver)(void);
+        void (^removeOpenOnExportObserver)(void);
 
-	DocumentModel *_currentMainDocument;
+        DocumentModel *_currentMainDocument;
 
-	NSMutableDictionary *globalMessagesMap;
-}
+        NSMutableDictionary *globalMessagesMap;
+    }
 
 #pragma mark - Properties
 
 /** The date of the last compilation of the represented file */
-@property (strong) NSDate *lastCompile;
+    @property (strong) NSDate *lastCompile;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
-@property (nonatomic, assign) ProjectModel *project;
+    @property (nonatomic, assign) ProjectModel *project;
 
 /** The path to the output file (might be empty) */
-@property (nonatomic, strong) NSString *pdfPath;
+    @property (nonatomic, strong) NSString *pdfPath;
 
 /** The path to the tex file */
-@property (nonatomic, strong) NSString *texPath;
+    @property (nonatomic, strong) NSString *texPath;
 
 /** Flag determing whether live compile is active for this document or not */
-@property (nonatomic, strong) NSNumber *liveCompile;
+    @property (nonatomic, strong) NSNumber *liveCompile;
 
 /** If on, the pdf is opened in the default pdf viewer after export */
-@property (nonatomic, strong) NSNumber *openOnExport;
+    @property (nonatomic, strong) NSNumber *openOnExport;
 
-@property BOOL isCompiling;
+    @property BOOL isCompiling;
 
-@property NSArray *messages;
+    @property NSArray *messages;
 
-@property (nonatomic, strong) NSMutableArray *outlineElements;
+    @property (nonatomic, strong) NSMutableArray *outlineElements;
 
 #pragma mark Readonly Properties
 
-@property (readonly) NSString *texIdentifier;
+    @property (readonly) NSString *texIdentifier;
 
-@property (readonly) NSString *pdfIdentifier;
+    @property (readonly) NSString *pdfIdentifier;
 
 
 #pragma mark System Properties
@@ -68,11 +69,11 @@
  *
  * @warning Don't uses this if you are not exactly knowing about the purpose of this property.
  */
-@property (strong) NSString *systemPath;
+    @property (strong) NSString *systemPath;
 
-@property NSPipe *consoleOutputPipe;
+    @property NSPipe *consoleOutputPipe;
 
-@property NSPipe *consoleInputPipe;
+    @property NSPipe *consoleInputPipe;
 
 
 #pragma mark - Loading & Saving
@@ -81,7 +82,7 @@
  *
  * @return the files content
  */
-- (NSString *)loadContent:(NSError **)error;
+    - (NSString *)loadContent:(NSError **)error;
 
 /**
  * Method for saving new content to the represented file
@@ -91,44 +92,44 @@
  *
  * @return `YES` if the content was saved succesful, `NO` otherwise.
  */
-- (BOOL)saveContent:(NSString *)content error:(NSError **)error;
+    - (BOOL)saveContent:(NSString *)content error:(NSError **)error;
 
 
 #pragma mark -  Getter
 
-- (DocumentModel *)currentMainDocument;
+    - (DocumentModel *)currentMainDocument;
 
-- (NSString *)header;
+    - (NSString *)header;
 
 /**
  * Getter for the name of the pdf file (only the last component of the pdfPath)
  *
  * @return the files name
  */
-- (NSString *)pdfName;
+    - (NSString *)pdfName;
 
 /**
  * Getter for the name of the texFile (only the last component of the texPath)
  *
  * @return the files name
  */
-- (NSString *)texName;
+    - (NSString *)texName;
 
 
 #pragma mark - Setter
 
-- (void)setCurrentMainDocument:(DocumentModel *)cmd;
+    - (void)setCurrentMainDocument:(DocumentModel *)cmd;
 
 
 #pragma mark - Message Handling
 
-- (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
+    - (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
 
-- (NSArray *)mergedGlobalMessages;
+    - (NSArray *)mergedGlobalMessages;
 
 
 #pragma mark - Outline Handling
 
-- (void)buildOutline;
+    - (void)buildOutline;
 @end
 

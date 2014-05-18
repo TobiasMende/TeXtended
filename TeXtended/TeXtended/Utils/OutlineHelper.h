@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface OutlineHelper : NSObject
-+ (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path;
+
+    + (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path;
 @end

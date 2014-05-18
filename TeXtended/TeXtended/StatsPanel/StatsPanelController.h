@@ -10,14 +10,22 @@
 
 @interface StatsPanelController : NSWindowController
 
-@property IBOutlet NSString* panelTitle;
-@property IBOutlet NSString* words;
-@property IBOutlet NSString* sentences;
-@property IBOutlet NSString* letters;
-@property IBOutlet NSString* symbols;
-@property IBOutlet NSString* wordsPerSentence;
-@property IBOutlet NSString* symbolsPerSentence;
-@property IBOutlet NSString* lettersPerSentence;
-- (void)showStatistics:(NSString*)content;
+    @property IBOutlet NSString *panelTitle;
+
+    @property IBOutlet NSString *words;
+
+    @property IBOutlet NSString *sentences;
+
+    @property IBOutlet NSString *letters;
+
+    @property IBOutlet NSString *symbols;
+
+    @property IBOutlet NSString *wordsPerSentence;
+
+    @property IBOutlet NSString *symbolsPerSentence;
+
+    @property IBOutlet NSString *lettersPerSentence;
+
+    - (void)showStatistics:(NSString *)content;
 
 @end

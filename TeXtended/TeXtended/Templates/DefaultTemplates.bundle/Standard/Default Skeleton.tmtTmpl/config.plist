@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGLC1YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKcHCBsfJSYnVSRudWxs2QkKCwwNDg8QERITFBQUFBgZE1YkY2xhc3NbbGl2ZUNv
-	bXBpbGVdbWFpbkRvY3VtZW50c18QD291dGxpbmVFbGVtZW50c1dwcm9qZWN0W2xhc3RD
-	b21waWxlW2xhc3RDaGFuZ2VkWGVuY29kaW5nXG9wZW5PbkV4cG9ydIAGgAWAAIAAgACA
-	AIACgASABdIcCR0eV05TLnRpbWUjQbiLcs96Zw6AA9IgISIjWiRjbGFzc25hbWVYJGNs
-	YXNzZXNWTlNEYXRloiIkWE5TT2JqZWN0EAQJ0iAhKCldRG9jdW1lbnRNb2RlbKMqKyRd
-	RG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0S4vVHJvb3SA
-	AQAIABEAGgAjAC0AMgA3AD8ARQBYAF8AawB5AIsAkwCfAKsAtADBAMMAxQDHAMkAywDN
-	AM8A0QDTANgA4ADpAOsA8AD7AQQBCwEOARcBGQEaAR8BLQExAT8BSgFcAV8BZAAAAAAA
-	AAIBAAAAAAAAADAAAAAAAAAAAAAAAAAAAAFm
-	</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>Template for a single file containing the default LaTex skeleton to start with.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>0</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>0</integer>
-</dict>
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGLC1YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+            AAGGoKcHCBsfJSYnVSRudWxs2QkKCwwNDg8QERITFBQUFBgZE1YkY2xhc3NbbGl2ZUNv
+            bXBpbGVdbWFpbkRvY3VtZW50c18QD291dGxpbmVFbGVtZW50c1dwcm9qZWN0W2xhc3RD
+            b21waWxlW2xhc3RDaGFuZ2VkWGVuY29kaW5nXG9wZW5PbkV4cG9ydIAGgAWAAIAAgACA
+            AIACgASABdIcCR0eV05TLnRpbWUjQbiLcs96Zw6AA9IgISIjWiRjbGFzc25hbWVYJGNs
+            YXNzZXNWTlNEYXRloiIkWE5TT2JqZWN0EAQJ0iAhKCldRG9jdW1lbnRNb2RlbKMqKyRd
+            RG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0S4vVHJvb3SA
+            AQAIABEAGgAjAC0AMgA3AD8ARQBYAF8AawB5AIsAkwCfAKsAtADBAMMAxQDHAMkAywDN
+            AM8A0QDTANgA4ADpAOsA8AD7AQQBCwEOARcBGQEaAR8BLQExAT8BSgFcAV8BZAAAAAAA
+            AAIBAAAAAAAAADAAAAAAAAAAAAAAAAAAAAFm
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>Template for a single file containing the default LaTex skeleton to start with.</string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>0</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>0</integer>
+    </dict>
 </plist>

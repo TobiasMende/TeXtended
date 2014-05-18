@@ -10,7 +10,8 @@
 
 @interface GraphNode : NSObject
 
-@property NSMutableSet* predecessors;
-@property NSMutableSet* successors;
+    @property NSMutableSet *predecessors;
+
+    @property NSMutableSet *successors;
 
 @end

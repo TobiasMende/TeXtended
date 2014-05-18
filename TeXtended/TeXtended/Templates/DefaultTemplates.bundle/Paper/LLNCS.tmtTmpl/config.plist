@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>YnBsaXN0MDDUAQIDBAUGMTJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKoHCB0eIigpKissVSRudWxs2gkKCwwNDg8QERITFBUWFxQUGhscV3BkZlBhdGhdbWFpbkRvY3VtZW50c1tsaXZlQ29tcGlsZVxvcGVuT25FeHBvcnRWJGNsYXNzV3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aFhlbmNvZGluZ4AFgACAB4AIgAmAAIAAgAOABoACEATSHw0gIVdOUy50aW1lI0G41ac9DL1VgATSIyQlJlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRGF0ZaIlJ1hOU09iamVjdFhtYWluLnBkZlhtYWluLnRleAgJ0iMkLS5dRG9jdW1lbnRNb2RlbKMvMCddRG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TM0VHJvb3SAAQAIABEAGgAjAC0AMgA3AEIASABdAGUAcwB/AIwAkwCbAKcAswC7AMQAxgDIAMoAzADOANAA0gDUANYA2ADaAN8A5wDwAPIA9wECAQsBEgEVAR4BJwEwATEBMgE3AUUBSQFXAWIBdAF3AXwAAAAAAAACAQAAAAAAAAA1AAAAAAAAAAAAAAAAAAABfg==</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>For the Springer series „Lecture Notes in Computer Science“.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>0</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10008</integer>
-</dict>
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGMTJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKoHCB0eIigpKissVSRudWxs2gkKCwwNDg8QERITFBUWFxQUGhscV3BkZlBhdGhdbWFpbkRvY3VtZW50c1tsaXZlQ29tcGlsZVxvcGVuT25FeHBvcnRWJGNsYXNzV3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aFhlbmNvZGluZ4AFgACAB4AIgAmAAIAAgAOABoACEATSHw0gIVdOUy50aW1lI0G41ac9DL1VgATSIyQlJlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRGF0ZaIlJ1hOU09iamVjdFhtYWluLnBkZlhtYWluLnRleAgJ0iMkLS5dRG9jdW1lbnRNb2RlbKMvMCddRG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TM0VHJvb3SAAQAIABEAGgAjAC0AMgA3AEIASABdAGUAcwB/AIwAkwCbAKcAswC7AMQAxgDIAMoAzADOANAA0gDUANYA2ADaAN8A5wDwAPIA9wECAQsBEgEVAR4BJwEwATEBMgE3AUUBSQFXAWIBdAF3AXwAAAAAAAACAQAAAAAAAAA1AAAAAAAAAAAAAAAAAAABfg==
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>For the Springer series „Lecture Notes in Computer Science“.</string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>0</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10008</integer>
+    </dict>
 </plist>

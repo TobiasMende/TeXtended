@@ -9,39 +9,39 @@
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
-@interface FileNode : NSObject<NSPasteboardWriting, NSPasteboardReading,QLPreviewItem>
+@interface FileNode : NSObject <NSPasteboardWriting, NSPasteboardReading, QLPreviewItem>
 
 #pragma mark - Properties
 
-@property (nonatomic) NSString *path;
+    @property (nonatomic) NSString *path;
 
 
 #pragma mark - Getter
 
-- (NSMutableArray *)children;
+    - (NSMutableArray *)children;
 
-- (NSURL *)fileURL;
+    - (NSURL *)fileURL;
 
-- (NSImage *)icon;
+    - (NSImage *)icon;
 
-- (BOOL)isLeaf;
+    - (BOOL)isLeaf;
 
-- (NSString *)name;
+    - (NSString *)name;
 
 
 #pragma mark - Setter
 
-- (void) setName:(NSString *)name;
+    - (void)setName:(NSString *)name;
 
 
 #pragma mark - File Path Helpers
 
-+ (FileNode *)fileNodeWithPath:(NSString *)path;
+    + (FileNode *)fileNodeWithPath:(NSString *)path;
 
-- (IBAction)toggleRenameMode:(id)sender;
+    - (IBAction)toggleRenameMode:(id)sender;
 
-- (FileNode *)fileNodeForPath:(NSString *)path;
+    - (FileNode *)fileNodeForPath:(NSString *)path;
 
-- (NSIndexPath *)indexPathForPath:(NSString *)path andPrefix:(NSIndexPath *)prefix;
+    - (NSIndexPath *)indexPathForPath:(NSString *)path andPrefix:(NSIndexPath *)prefix;
 
 @end

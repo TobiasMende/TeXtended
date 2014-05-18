@@ -21,35 +21,35 @@
  
  @return the absolut path
  */
-+ (NSString*) texdoc;
+    + (NSString *)texdoc;
 
 /**
  Getter for the path to the synctex executable
  
  @return the absolut path
  */
-+ (NSString*) synctex;
+    + (NSString *)synctex;
 
 /**
  Getter for the path to the lacheck executable
  
  @return the absolut path
  */
-+ (NSString*) lacheck;
+    + (NSString *)lacheck;
 
 /**
  Getter for the path to the chktex executable
  
  @return the absolut path
  */
-+ (NSString*) chktex;
+    + (NSString *)chktex;
 
 /**
  Getter for the path to the texbin directory
  
  @return the absolut path
  */
-+ (NSString*) texbin;
+    + (NSString *)texbin;
 
 
 /**
@@ -59,7 +59,7 @@
  
  @return `YES` if a directory exists at the given path or could be created succesful, `NO` otherwise.
  */
-+ (BOOL)checkForAndCreateFolder:(NSString* )path;
+    + (BOOL)checkForAndCreateFolder:(NSString *)path;
 
 /**
  Method for extending a given path to get a temporary storage path
@@ -67,7 +67,7 @@
  
  @return a path containing the extension .TMTTemporaryStorage
  */
-+ (NSString *)pathToTemporaryStorage:(NSString *)path;
+    + (NSString *)pathToTemporaryStorage:(NSString *)path;
 
 /**
  Method for converting a temporary object path to a real object path
@@ -75,7 +75,7 @@
  @return the real path
  
  */
-+ (NSString *) realPathFromTemporaryStorage:(NSString *)temp;
+    + (NSString *)realPathFromTemporaryStorage:(NSString *)temp;
 
-+ (NSString *) absolutPathFor:(NSString *)path withBasedir:(NSString *)dir;
+    + (NSString *)absolutPathFor:(NSString *)path withBasedir:(NSString *)dir;
 @end

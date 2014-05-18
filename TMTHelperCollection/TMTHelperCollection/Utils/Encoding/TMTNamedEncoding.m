@@ -10,15 +10,17 @@
 
 @implementation TMTNamedEncoding
 
-- (id)initWithEncoding:(NSNumber *)number {
-    self = [super init];
-    if (self) {
-        self.encoding = number;
+    - (id)initWithEncoding:(NSNumber *)number
+    {
+        self = [super init];
+        if (self) {
+            self.encoding = number;
+        }
+        return self;
     }
-    return self;
-}
 
-- (NSString *)description {
-    return [NSString localizedNameOfStringEncoding:[self.encoding unsignedIntegerValue]];
-}
+    - (NSString *)description
+    {
+        return [NSString localizedNameOfStringEncoding:[self.encoding unsignedIntegerValue]];
+    }
 @end

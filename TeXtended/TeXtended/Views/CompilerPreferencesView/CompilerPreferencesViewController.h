@@ -9,10 +9,12 @@
 #import <Cocoa/Cocoa.h>
 
 @class CompileSetting;
+
 @interface CompilerPreferencesViewController : NSViewController
 
-@property CompileSetting *compiler;
-@property BOOL enabled;
+    @property CompileSetting *compiler;
 
-- (NSColor *)defaultTextColor;
+    @property BOOL enabled;
+
+    - (NSColor *)defaultTextColor;
 @end

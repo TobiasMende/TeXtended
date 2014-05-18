@@ -8,12 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FileOutlineView : NSOutlineView {
-    IBOutlet NSViewController *viewController;
-}
-@property IBOutlet NSMenu *contextualMenu;
-@property IBOutlet NSMenu *backgroundMenu;
+@interface FileOutlineView : NSOutlineView
+    {
+        IBOutlet NSViewController *viewController;
+    }
 
-- (NSArray *)expandedItems;
-- (void)restoreExpandedStateWithArray:(NSArray *)array;
+    @property IBOutlet NSMenu *contextualMenu;
+
+    @property IBOutlet NSMenu *backgroundMenu;
+
+    - (NSArray *)expandedItems;
+
+    - (void)restoreExpandedStateWithArray:(NSArray *)array;
 @end

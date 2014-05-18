@@ -59,7 +59,7 @@
 #define TMTLiveCompileIterations @"TMTLiveCompileIterations"
 #define TMTDraftCompileIterations @"TMTDraftCompileIterations"
 #define TMTFinalCompileIterations @"TMTFinalCompileIterations"
-#define TMTLatexLogLevelKey @"TMTLatexLogLevelKey" 
+#define TMTLatexLogLevelKey @"TMTLatexLogLevelKey"
 #define TMTLineSpacing @"TMTLineSpacing"
 #define TMTHGridSpacing @"TMTHGridSpacing"
 #define TMTVGridSpacing @"TMTVGridSpacing"
@@ -189,29 +189,39 @@
 // --------------------------------------------------------------------------------
 # pragma mark - Global Enumerations
 
-typedef enum LineWrappingMode {HardWrap = 0,
-                                SoftWrap = 1,
-                                    NoWrap = 2} TMTLineWrappingMode;
+typedef enum LineWrappingMode
+{
+    HardWrap = 0,
+    SoftWrap = 1,
+    NoWrap = 2
+} TMTLineWrappingMode;
 
-typedef enum LatexLogLevel {OFF = 0,
-                            ERROR = 1,
-                            WARNING = 2,
-                            INFO = 3,
-                            ALL = 4} TMTLatexLogLevel;
+typedef enum LatexLogLevel
+{
+    OFF = 0,
+    ERROR = 1,
+    WARNING = 2,
+    INFO = 3,
+    ALL = 4
+} TMTLatexLogLevel;
 
-typedef enum TrackingMessageType{
+typedef enum TrackingMessageType
+{
     TMTUnknownMessage,
     TMTErrorMessage,
     TMTWarningMessage,
     TMTInfoMessage,
     TMTDebugMessage
-    } TMTTrackingMessageType;
+} TMTTrackingMessageType;
 
-typedef enum SplitViewOrderType {
+typedef enum SplitViewOrderType
+{
     TMTHorizontal = 0,
-    TMTVertical = 1} TMTSplitViewOrderType;
+    TMTVertical = 1
+} TMTSplitViewOrderType;
 
-typedef enum TMTCompletionType {
+typedef enum TMTCompletionType
+{
     TMTNoCompletion,
     TMTCommandCompletion,
     TMTBeginCompletion,
@@ -224,24 +234,28 @@ typedef enum TMTCompletionType {
 
 
 /** Defines the different compilemodes that are possible */
-typedef enum {
+typedef enum
+{
     live = 0,
     draft = 1,
     final = 2
 } CompileMode;
 
 
-typedef enum {
+typedef enum
+{
     TMTDocumentTemplate,
     TMTProjectTemplate
 } TMTTemplateType;
 
 
-typedef enum {
+typedef enum
+{
     TMTLogFileParser,
     TMTLacheckParser,
     TMTChktexParser
 } TMTMessageGeneratorType;
+
 #define TMTMessageGeneratorTypeKey @"TMTMessageGeneratorTypeKey"
 
 // --------------------------------------------------------------------------------

@@ -1,46 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>44</key>
-	<string>A pattern you’ve specified using UserWarnRegex in the “chktexrc” file, has been found. See also warning 20 which allows specification of simple string matching.</string>
-	<key>4</key>
-	<string>If you try to use the \/ command when ChkTEX believes that the buffer is not outputted as italic, you’ll get this warning.</string>
-	<key>5</key>
-	<string>If the buffer is italic, and you try to use the \/ command more than once, you’ll get this warning.</string>
-	<key>6</key>
-	<string>You get this error if ChkTEX believes that you are switching from italic to non-italic, and you’ve forgot to use the \/ command to insert that extra little spacing. If you use the “em” option, you may ignore this warning.</string>
-	<key>7</key>
-	<string>If you’re using accenting commands, ‘i’ and ‘j’ should lose their dots before they get accented. This is accomplished by using the \i, \j, \imath and \jmath command.</string>
-	<key>8</key>
-	<string>This warning suggests that a wrong number of dashes may have been used. It does this by classifying the dash according to the the character in front and after the dashes.
-            If they are of the same type, ChkTEX will determine which keyword to use in the “chktexrc” file. If not, it will shut up and accept that it doesn’t know.</string>
-	<key>10</key>
-	<string>Either brackets or environments don’t match. ChkTEX expects to find matching brackets/environments in the same order as their op- posites were found, and no closing delimiters which haven’t been preceded by an opening one.
-            While bracket matching is not an explicit error, it is usually a sign that something is wrong.</string>
-	<key>12</key>
-	<string>One of the specified abbreviations were found. Unless you have pre- viously said \frenchspacing, you’ll have incorrect spacing, which one should avoid if possible.</string>
-	<key>13</key>
-	<string>LATEX’ detection of whether a period ends a sentence or not, is only based upon the character in front of the period. If it’s uppercase, it assumes that it does not end a sentence. While this may be correct in many cases, it may be incorrect in others. ChkTEX thus outputs this warning in every such case.</string>
-	<key>23</key>
-	<string>This error is generated whenever you try to typeset three quotes in a row; this will not look pretty, and one of them should be separated from the rest.</string>
-	<key>24</key>
-	<string>This message, issued when a space is found in front of a \index, \label or similar command (can be set in the “chktexrc” file). Sometimes, this space may cause that the word and the index hap- pens on separate pages, if a pagebreak happens just there.
-            You might also use this warning to warn you about spaces in front of footnotes; however, the warning text may not be entirely correct then.</string>
-	<key>26</key>
-	<string>This warning is issued if ChkTEX finds space in front of an end-of- sentence character.</string>
-	<key>29</key>
-	<string>In ASCII environments, it is usual to use the ‘x’ character as an infix operator to denote a dimension. The mathemathical symbol × provided by the $\times$ command is better suited for this.</string>
-	<key>30</key>
-	<string>This warning, intended for the novice, will remind you that even if you type multiple spaces in your input, only a single space will come out. Some ways to come around this is listed below.</string>
-	<key>36</key>
-	<string>Outside math mode, you should put a space in front of any group of opening parenthesis, and no spaces after. If you have several after each other, you should of course not put a space in between each. Likewise, there should not be spaces in front of closing parenthesis, but there should be at least one after.</string>
-	<key>37</key>
-	<string>Outside math mode, you should put a space in front of any group of opening parenthesis, and no spaces after. If you have several after each other, you should of course not put a space in between each. Likewise, there should not be spaces in front of closing parenthesis, but there should be at least one after.</string>
-	<key>40</key>
-	<string>As recommended in the TEXbook, you should try to put punctuation outside inner math mode, as this is gets formatted better.
-            Similarily, you should let any final punctuation in display math mode end up within it.</string>
-	<key>41</key>
-	<string>This warning is triggered whenever you use a raw TEX command which has been replaced by a LATEX equivalent. If you consider yourself a purist (or want to be sure your code works under LATEX3), you should use the LATEX equivalent.</string>
-</dict>
+    <dict>
+        <key>44</key>
+        <string>A pattern you’ve specified using UserWarnRegex in the “chktexrc” file, has been found. See also warning
+            20 which allows specification of simple string matching.
+        </string>
+        <key>4</key>
+        <string>If you try to use the \/ command when ChkTEX believes that the buffer is not outputted as italic, you’ll
+            get this warning.
+        </string>
+        <key>5</key>
+        <string>If the buffer is italic, and you try to use the \/ command more than once, you’ll get this warning.
+        </string>
+        <key>6</key>
+        <string>You get this error if ChkTEX believes that you are switching from italic to non-italic, and you’ve
+            forgot to use the \/ command to insert that extra little spacing. If you use the “em” option, you may ignore
+            this warning.
+        </string>
+        <key>7</key>
+        <string>If you’re using accenting commands, ‘i’ and ‘j’ should lose their dots before they get accented. This is
+            accomplished by using the \i, \j, \imath and \jmath command.
+        </string>
+        <key>8</key>
+        <string>This warning suggests that a wrong number of dashes may have been used. It does this by classifying the
+            dash according to the the character in front and after the dashes.
+            If they are of the same type, ChkTEX will determine which keyword to use in the “chktexrc” file. If not, it
+            will shut up and accept that it doesn’t know.
+        </string>
+        <key>10</key>
+        <string>Either brackets or environments don’t match. ChkTEX expects to find matching brackets/environments in
+            the same order as their op- posites were found, and no closing delimiters which haven’t been preceded by an
+            opening one.
+            While bracket matching is not an explicit error, it is usually a sign that something is wrong.
+        </string>
+        <key>12</key>
+        <string>One of the specified abbreviations were found. Unless you have pre- viously said \frenchspacing, you’ll
+            have incorrect spacing, which one should avoid if possible.
+        </string>
+        <key>13</key>
+        <string>LATEX’ detection of whether a period ends a sentence or not, is only based upon the character in front
+            of the period. If it’s uppercase, it assumes that it does not end a sentence. While this may be correct in
+            many cases, it may be incorrect in others. ChkTEX thus outputs this warning in every such case.
+        </string>
+        <key>23</key>
+        <string>This error is generated whenever you try to typeset three quotes in a row; this will not look pretty,
+            and one of them should be separated from the rest.
+        </string>
+        <key>24</key>
+        <string>This message, issued when a space is found in front of a \index, \label or similar command (can be set
+            in the “chktexrc” file). Sometimes, this space may cause that the word and the index hap- pens on separate
+            pages, if a pagebreak happens just there.
+            You might also use this warning to warn you about spaces in front of footnotes; however, the warning text
+            may not be entirely correct then.
+        </string>
+        <key>26</key>
+        <string>This warning is issued if ChkTEX finds space in front of an end-of- sentence character.</string>
+        <key>29</key>
+        <string>In ASCII environments, it is usual to use the ‘x’ character as an infix operator to denote a dimension.
+            The mathemathical symbol × provided by the $\times$ command is better suited for this.
+        </string>
+        <key>30</key>
+        <string>This warning, intended for the novice, will remind you that even if you type multiple spaces in your
+            input, only a single space will come out. Some ways to come around this is listed below.
+        </string>
+        <key>36</key>
+        <string>Outside math mode, you should put a space in front of any group of opening parenthesis, and no spaces
+            after. If you have several after each other, you should of course not put a space in between each. Likewise,
+            there should not be spaces in front of closing parenthesis, but there should be at least one after.
+        </string>
+        <key>37</key>
+        <string>Outside math mode, you should put a space in front of any group of opening parenthesis, and no spaces
+            after. If you have several after each other, you should of course not put a space in between each. Likewise,
+            there should not be spaces in front of closing parenthesis, but there should be at least one after.
+        </string>
+        <key>40</key>
+        <string>As recommended in the TEXbook, you should try to put punctuation outside inner math mode, as this is
+            gets formatted better.
+            Similarily, you should let any final punctuation in display math mode end up within it.
+        </string>
+        <key>41</key>
+        <string>This warning is triggered whenever you use a raw TEX command which has been replaced by a LATEX
+            equivalent. If you consider yourself a purist (or want to be sure your code works under LATEX3), you should
+            use the LATEX equivalent.
+        </string>
+    </dict>
 </plist>

@@ -10,7 +10,7 @@
 
 @interface TMTNamedEncoding : NSObject
 
-- (id)initWithEncoding:(NSNumber *)number;
+    - (id)initWithEncoding:(NSNumber *)number;
 
-@property NSNumber *encoding;
+    @property NSNumber *encoding;
 @end

@@ -35,7 +35,8 @@
  @param options Options for the regular expression.
  @see [NSRegularExpression](https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html)
  */
-- (NSString*)stringByReplacingRegularExpression:(NSString*)pattern withString:(NSString*)replace options:(NSRegularExpressionOptions)options;
-- (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders;
+    - (NSString *)stringByReplacingRegularExpression:(NSString *)pattern withString:(NSString *)replace options:(NSRegularExpressionOptions)options;
+
+    - (NSMutableAttributedString *)attributedStringBySubstitutingPlaceholders;
 
 @end

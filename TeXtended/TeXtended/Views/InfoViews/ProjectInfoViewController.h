@@ -7,11 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class ProjectModel;
-@interface ProjectInfoViewController : NSViewController<NSPathControlDelegate>
-@property (strong) IBOutlet NSPathControl *directoryPathControl;
-@property ProjectModel *model;
+
+@interface ProjectInfoViewController : NSViewController <NSPathControlDelegate>
+
+    @property (strong) IBOutlet NSPathControl *directoryPathControl;
+
+    @property ProjectModel *model;
 
 
-- (IBAction)editPropertyFile:(id)sender;
+    - (IBAction)editPropertyFile:(id)sender;
 @end

@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NSColor (TMTExtension)
-- (NSColor *)slightlyDarkerColor;
-- (NSColor *)slightlyLighterColor;
+
+    - (NSColor *)slightlyDarkerColor;
+
+    - (NSColor *)slightlyLighterColor;
 @end

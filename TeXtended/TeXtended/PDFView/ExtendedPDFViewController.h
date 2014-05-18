@@ -15,23 +15,23 @@
  *
  * @author Max Bannach
  */
-@class ExtendedPdf, DocumentModel,PDFView, DocumentController, TMTTabViewItem;
+@class ExtendedPdf, DocumentModel, PDFView, DocumentController, TMTTabViewItem;
 
-@interface ExtendedPDFViewController : NSViewController<ViewControllerProtocol>
+@interface ExtendedPDFViewController : NSViewController <ViewControllerProtocol>
 
 /** Current model from which the pdf is handeld by this class. */
-@property (strong,nonatomic) DocumentModel *model;
+    @property (strong, nonatomic) DocumentModel *model;
 
 /** The coresponding PdfView. */
-@property (strong) IBOutlet ExtendedPdf *pdfView;
+    @property (strong) IBOutlet ExtendedPdf *pdfView;
 
-@property (strong) TMTTabViewItem* tabViewItem;
+    @property (strong) TMTTabViewItem *tabViewItem;
 
 /** 
  * Setup synctex from the pdf back to tex.
  * @param sender
  */
-- (void) startBackwardSynctex:(id)sender;
+    - (void)startBackwardSynctex:(id)sender;
 
-- (void) setFirstResponderDelegate:(id<FirstResponderDelegate>)delegate;
+    - (void)setFirstResponderDelegate:(id <FirstResponderDelegate>)delegate;
 @end

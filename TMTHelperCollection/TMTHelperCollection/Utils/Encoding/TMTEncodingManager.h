@@ -10,6 +10,7 @@
 
 @interface TMTEncodingManager : NSObject
 
-- (NSArray*) stringEncodings;
-+ (TMTEncodingManager *) sharedManager;
+    - (NSArray *)stringEncodings;
+
+    + (TMTEncodingManager *)sharedManager;
 @end

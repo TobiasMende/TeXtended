@@ -11,26 +11,27 @@
 
 @protocol FirstResponderDelegate <NSObject>
 
-- (DocumentModel *) model;
+    - (DocumentModel *)model;
 
 
 @optional
-- (BOOL) canShowQuickPreviewWindow;
+    - (BOOL)canShowQuickPreviewWindow;
 
 /* Do a draft compile */
-- (void) draftCompile:(id)sender;
+    - (void)draftCompile:(id)sender;
 
 /* Show export window */
-- (void) finalCompile:(id)sender;
+    - (void)finalCompile:(id)sender;
 
 /* Refresh live compile */
-- (void) liveCompile:(id)sender;
+    - (void)liveCompile:(id)sender;
 
 /* Save Document */
-- (void) saveDocument:(id)sender;
+    - (void)saveDocument:(id)sender;
 
 
-- (BOOL)isLiveCompileEnabled;
-- (void)setLiveCompileEnabled:(BOOL)enable;
+    - (BOOL)isLiveCompileEnabled;
+
+    - (void)setLiveCompileEnabled:(BOOL)enable;
 
 @end

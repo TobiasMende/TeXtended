@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class Compilable;
+
 @interface TMTNotificationCenter : NSNotificationCenter
 
 
-+ (NSNotificationCenter*) centerForCompilable:(Compilable*)compilable;
-+ (void) removeCenterForCompilable:(Compilable*)compilable;
+    + (NSNotificationCenter *)centerForCompilable:(Compilable *)compilable;
+
+    + (void)removeCenterForCompilable:(Compilable *)compilable;
 @end

@@ -18,43 +18,44 @@
  * **Author:** Tobias Mende
  *
  */
-@interface Compilable : NSObject <NSCoding> {
-    
-}
+@interface Compilable : NSObject <NSCoding>
+    {
+
+    }
 
 #pragma mark - Properties
 
 /** The NSTextEncoding of the file */
-@property (strong, nonatomic) NSNumber *encoding;
+    @property (strong, nonatomic) NSNumber *encoding;
 
 /** A set of mainDocuments that should be compiled instead of this compilabel itself */
-@property (nonatomic, strong) NSArray *mainDocuments;
+    @property (nonatomic, strong) NSArray *mainDocuments;
 
 /** A set of all bibFiles connected to this project */
-@property (strong) NSMutableArray *bibFiles;
+    @property (strong) NSMutableArray *bibFiles;
 
-@property (readonly) NSString *identifier;
+    @property (readonly) NSString *identifier;
 
 
 #pragma mark Compile Settings
 
 /** The draft compile flow for this compilabel */
-@property (nonatomic, strong) CompileSetting *draftCompiler;
+    @property (nonatomic, strong) CompileSetting *draftCompiler;
 
 /** The final compile flow for this compilabel */
-@property (nonatomic, strong) CompileSetting *finalCompiler;
+    @property (nonatomic, strong) CompileSetting *finalCompiler;
 
 /** The live compile flow for this compilabel */
-@property (nonatomic, strong) CompileSetting *liveCompiler;
+    @property (nonatomic, strong) CompileSetting *liveCompiler;
 
 
 #pragma mark Flag Properties
 
-@property (nonatomic) BOOL hasLiveCompiler;
+    @property (nonatomic) BOOL hasLiveCompiler;
 
-@property (nonatomic) BOOL hasDraftCompiler;
+    @property (nonatomic) BOOL hasDraftCompiler;
 
-@property (nonatomic) BOOL hasFinalCompiler;
+    @property (nonatomic) BOOL hasFinalCompiler;
 
 
 #pragma mark Getter & Setter
@@ -64,21 +65,21 @@
  *
  * @return the main model of this Document
  */
-- (Compilable *)mainCompilable;
+    - (Compilable *)mainCompilable;
 
-- (ProjectModel *)project;
+    - (ProjectModel *)project;
 
-- (NSDate *)lastChanged;
+    - (NSDate *)lastChanged;
 
-- (NSDictionary *)fileSystemAttributes;
+    - (NSDictionary *)fileSystemAttributes;
 
-- (NSString *)name;
+    - (NSString *)name;
 
-- (NSString *)path;
+    - (NSString *)path;
 
-- (NSString *)type;
+    - (NSString *)type;
 
-- (NSString *)infoTitle;
+    - (NSString *)infoTitle;
 
 
 #pragma mark - Collection Helpers
@@ -89,33 +90,33 @@
  *
  * @return a matching document model.
  */
-- (DocumentModel *)modelForTexPath:(NSString *)path;
+    - (DocumentModel *)modelForTexPath:(NSString *)path;
 
-- (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate;
+    - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate;
 
-- (void)finishInitWithPath:(NSString * )absolutePath;
+    - (void)finishInitWithPath:(NSString *)absolutePath;
 
-- (void)updateCompileSettingBindings:(CompileMode)mode;
+    - (void)updateCompileSettingBindings:(CompileMode)mode;
 
 
 #pragma mark MainDocument Collection Helpers
 
-- (void)addMainDocument:(DocumentModel *)value;
+    - (void)addMainDocument:(DocumentModel *)value;
 
-- (void)removeMainDocument:(DocumentModel *)value;
+    - (void)removeMainDocument:(DocumentModel *)value;
 
-- (void)addMainDocuments:(NSArray *)values;
+    - (void)addMainDocuments:(NSArray *)values;
 
-- (void)removeMainDocuments:(NSArray *)values;
+    - (void)removeMainDocuments:(NSArray *)values;
 
 
 #pragma mark BibFile Collection Helpers
 
-- (void)addBibFileWithPath:(NSString *)path;
+    - (void)addBibFileWithPath:(NSString *)path;
 
-- (void)removeBibFileWithIndex:(NSUInteger)index;
+    - (void)removeBibFileWithIndex:(NSUInteger)index;
 
-- (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
+    - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
 
 
 @end

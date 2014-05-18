@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol CustomTableCellView <NSObject>
-+ (NSInteger) defaultViewHeight;
-@property id objectValue;
+
+    + (NSInteger)defaultViewHeight;
+
+    @property id objectValue;
 @end

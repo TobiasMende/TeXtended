@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class DocumentController;
 
 /**
@@ -21,13 +22,13 @@
  *
  * @param dc the DocumentController
  */
-- (void) setDocumentController:(DocumentController *) dc;
+    - (void)setDocumentController:(DocumentController *)dc;
 
 /**
  * Makes the given view the first responder.
  *
  * @param view
  */
-- (void) makeFirstResponder:(NSView*)view;
+    - (void)makeFirstResponder:(NSView *)view;
 
 @end

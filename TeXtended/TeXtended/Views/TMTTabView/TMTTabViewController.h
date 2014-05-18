@@ -10,15 +10,21 @@
 #import <MMTabBarView/MMTabBarView.h>
 
 @class TMTTabViewItem;
-@interface TMTTabViewController : NSViewController <MMTabBarViewDelegate> {
-    __unsafe_unretained IBOutlet MMTabBarView *tabBar;
-}
 
-@property (getter = shouldCloseWindowForLastTabDrag) BOOL closeWindowForLastTabDrag;
-@property IBOutlet NSTabView *tabView;
-- (void)addTabViewItem:(TMTTabViewItem*) item;
-- (void)addNewTabWithTitle:(NSString *)aTitle;
-- (MMTabBarView *)tabBar;
+@interface TMTTabViewController : NSViewController <MMTabBarViewDelegate>
+    {
+        __unsafe_unretained IBOutlet MMTabBarView *tabBar;
+    }
+
+    @property (getter = shouldCloseWindowForLastTabDrag) BOOL closeWindowForLastTabDrag;
+
+    @property IBOutlet NSTabView *tabView;
+
+    - (void)addTabViewItem:(TMTTabViewItem *)item;
+
+    - (void)addNewTabWithTitle:(NSString *)aTitle;
+
+    - (MMTabBarView *)tabBar;
 
 @end
 

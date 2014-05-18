@@ -7,7 +7,7 @@
 //
 
 #import "CompilerPreferencesViewController.h"
-#import "CompileSetting.h"
+
 @interface CompilerPreferencesViewController ()
 
 @end
@@ -15,29 +15,33 @@
 @implementation CompilerPreferencesViewController
 
 
-- (id)init {
-    self = [super initWithNibName:@"CompilerPreferencesView" bundle:nil];
-    return self;
-}
-
-- (void)dealloc {
-    [self unbind:@"enabled"];
-}
-
-
-- (NSColor *)defaultTextColor {
-    if (!self.enabled) {
-        return [NSColor disabledControlTextColor];
+    - (id)init
+    {
+        self = [super initWithNibName:@"CompilerPreferencesView" bundle:nil];
+        return self;
     }
-    return [NSColor textColor];
-}
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
-    
-    if ([key isEqualToString:@"defaultTextColor"]) {
-        keys = [keys setByAddingObject:@"enabled"];
+    - (void)dealloc
+    {
+        [self unbind:@"enabled"];
     }
-    return keys;
-}
+
+
+    - (NSColor *)defaultTextColor
+    {
+        if (!self.enabled) {
+            return [NSColor disabledControlTextColor];
+        }
+        return [NSColor textColor];
+    }
+
+    + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+    {
+        NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
+
+        if ([key isEqualToString:@"defaultTextColor"]) {
+            keys = [keys setByAddingObject:@"enabled"];
+        }
+        return keys;
+    }
 @end

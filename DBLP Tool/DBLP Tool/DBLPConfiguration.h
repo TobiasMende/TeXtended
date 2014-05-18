@@ -17,31 +17,32 @@
  
  */
 @interface DBLPConfiguration : NSObject
+
 /**
  Getter for the singleton
  
  @return the singleton instance
  */
-+(DBLPConfiguration *)sharedInstance;
+    + (DBLPConfiguration *)sharedInstance;
 
 /**
  The url to the DBLP server
  */
-@property NSString* server;
+    @property NSString *server;
 
 /** The extension for the server url when searching for author names */
-@property NSString *authorSearchAppendix;
+    @property NSString *authorSearchAppendix;
 
 /** The extension for the server url when searching for an authors key */
-@property NSString *keySearchAppendix;
+    @property NSString *keySearchAppendix;
 
 /** The extension for the server url when fetching bibliography informations */
-@property NSString *bibtexSearchAppendix;
+    @property NSString *bibtexSearchAppendix;
 
 
 /**
  Checks if this configuration is valid or not.
  @return `YES` if valid, `NO` otherwise.
  */
-- (BOOL)configIsValid;
+    - (BOOL)configIsValid;
 @end

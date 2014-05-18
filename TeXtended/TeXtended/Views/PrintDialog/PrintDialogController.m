@@ -14,39 +14,41 @@
 
 @implementation PrintDialogController
 
--(id)init
-{
-    self = [super initWithWindowNibName:@"PrintDialog"];
-    if (self) {
-        // Initialization code here.
+    - (id)init
+    {
+        self = [super initWithWindowNibName:@"PrintDialog"];
+        if (self) {
+            // Initialization code here.
+        }
+        return self;
     }
-    return self;
-}
 
-- (id)initWithWindow:(NSWindow *)window
-{
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
+    - (id)initWithWindow:(NSWindow *)window
+    {
+        self = [super initWithWindow:window];
+        if (self) {
+            // Initialization code here.
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-}
+    - (void)windowDidLoad
+    {
+        [super windowDidLoad];
+    }
 
-- (IBAction)cancelDialog:(id)sender {
-    [NSApp stopModal];
-    [NSApp endSheet: self.window returnCode:NSRunAbortedResponse];
-    [self.window orderOut: self];
-}
+    - (IBAction)cancelDialog:(id)sender
+    {
+        [NSApp stopModal];
+        [NSApp endSheet:self.window returnCode:NSRunAbortedResponse];
+        [self.window orderOut:self];
+    }
 
-- (IBAction)OKDialog:(id)sender {
-    [NSApp stopModal];
-    [NSApp endSheet: self.window];
-    [self.window orderOut: self];
-}
+    - (IBAction)OKDialog:(id)sender
+    {
+        [NSApp stopModal];
+        [NSApp endSheet:self.window];
+        [self.window orderOut:self];
+    }
 
 @end

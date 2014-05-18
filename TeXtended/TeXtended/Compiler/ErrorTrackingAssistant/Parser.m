@@ -11,37 +11,43 @@
 
 @implementation Parser
 
-- (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *messages))completionHandler {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-    return;
-}
-
-- (NSArray *)parseContent:(NSString *)content forDocument:(NSString *)path {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-    return nil;
-}
-
-- (BOOL)infoValid:(NSString *)info {
-    return NO;
-}
-
-- (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-    return nil;
-}
-
-- (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base {
-    if ([path isAbsolutePath]) {
-        return [PathFactory realPathFromTemporaryStorage:path];
+    - (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *messages))completionHandler
+    {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        return;
     }
-    return [PathFactory realPathFromTemporaryStorage:[base stringByAppendingPathComponent:path]];
-}
 
-- (void)terminate {
-    completionHandler = nil;
-}
+    - (NSArray *)parseContent:(NSString *)content forDocument:(NSString *)path
+    {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        return nil;
+    }
+
+    - (BOOL)infoValid:(NSString *)info
+    {
+        return NO;
+    }
+
+    - (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base
+    {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        return nil;
+    }
+
+    - (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base
+    {
+        if ([path isAbsolutePath]) {
+            return [PathFactory realPathFromTemporaryStorage:path];
+        }
+        return [PathFactory realPathFromTemporaryStorage:[base stringByAppendingPathComponent:path]];
+    }
+
+    - (void)terminate
+    {
+        completionHandler = nil;
+    }
 
 @end

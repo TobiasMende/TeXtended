@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface LatexSpellChecker : NSSpellChecker {
-    __unsafe_unretained LatexSpellChecker *weakSelf;
-    NSArray *prefixesToIgnore;
-}
+@interface LatexSpellChecker : NSSpellChecker
+    {
+        __unsafe_unretained LatexSpellChecker *weakSelf;
+
+        NSArray *prefixesToIgnore;
+    }
 
 @end

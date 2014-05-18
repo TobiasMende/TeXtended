@@ -23,23 +23,26 @@
  **Author:** Tobias Mende
  
  */
-@interface PathObserver : NSObject {
-    /** The lock ensures, that the `observers` array stays in sync with the actions array at every time */
-    NSLock *observersLock;
-    
-    /** An array containing the `observers` interestes in changes of the directory in `filePath` */
-    NSMutableArray *observers;
-    
-    /** An array of selectors performed on the observers */
-    NSMutableArray *actions;
-    
-    /** The path observed by this PathObserver */
-    NSString *filePath;
-    
-    /** The current stream */
-    FSEventStreamRef stream;
-}
-- (NSUInteger) numberOfObservers;
+@interface PathObserver : NSObject
+    {
+        /** The lock ensures, that the `observers` array stays in sync with the actions array at every time */
+        NSLock *observersLock;
+
+        /** An array containing the `observers` interestes in changes of the directory in `filePath` */
+        NSMutableArray *observers;
+
+        /** An array of selectors performed on the observers */
+        NSMutableArray *actions;
+
+        /** The path observed by this PathObserver */
+        NSString *filePath;
+
+        /** The current stream */
+        FSEventStreamRef stream;
+    }
+
+    - (NSUInteger)numberOfObservers;
+
 /**
  Initializes a new PathObserver for a given path
  
@@ -47,10 +50,10 @@
  
  @return the observer
  */
-- (id)initWithPath:(NSString *)path;
+    - (id)initWithPath:(NSString *)path;
 
 /** Notifies the observer about changes in the directory */
-- (void) pathWasModified:(NSArray *)affectedPaths;
+    - (void)pathWasModified:(NSArray *)affectedPaths;
 
 /**
  Method for adding an observer on which the given selector is performed on events
@@ -59,7 +62,7 @@
  @param action the action to perform on the observer in case of changes
  
  */
-- (void) addObserver:(id)observer withSelector:(SEL)action;
+    - (void)addObserver:(id)observer withSelector:(SEL)action;
 
 @end
 
@@ -69,9 +72,10 @@
  **Author:** Tobias Mende
  
  */
-@interface PathObserverFactory : NSObject {
-    
-}
+@interface PathObserverFactory : NSObject
+    {
+
+    }
 
 /**
  Method for getting an appropriate PathObserver instance for a given path.
@@ -82,7 +86,7 @@
  
  @return a PathObserver observing changes in the given path.
  */
-+ (PathObserver *)pathObserverForPath:(NSString*)path;
+    + (PathObserver *)pathObserverForPath:(NSString *)path;
 
 /** Method for removing a PathObserver instance from the factorys dictionary.
  
@@ -91,7 +95,7 @@
  @param path the path to remove the observer from
  
  */
-+ (void) removePathObserverForPath:(NSString *)path;
+    + (void)removePathObserverForPath:(NSString *)path;
 
 /** Method for removing an observer from all stored PathObserver instances.
  
@@ -99,7 +103,7 @@
  
  @param observer the observer to remove from all PathObserver instances
  */
-+ (void) removeObserver:(id)observer;
+    + (void)removeObserver:(id)observer;
 
 @end
 

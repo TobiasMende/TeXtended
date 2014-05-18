@@ -7,18 +7,18 @@
 //
 
 #import "TMTTabViewItem.h"
-#import <TMTHelperCollection/TMTLog.h>
 
 @implementation TMTTabViewItem
 
 
-- (id)init {
-	if (self = [super init]) {
-        self.hasCloseButton   = YES;
-        self.title            = @"TeXtended!";
-	}
-	return self;
-}
+    - (id)init
+    {
+        if (self = [super init]) {
+            self.hasCloseButton = YES;
+            self.title = @"TeXtended!";
+        }
+        return self;
+    }
 
 
 @end

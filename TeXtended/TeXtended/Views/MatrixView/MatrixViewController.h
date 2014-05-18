@@ -9,30 +9,31 @@
 #import <Cocoa/Cocoa.h>
 
 @class EnvironmentCompletion;
+
 @interface MatrixViewController : NSWindowController
 
-@property NSInteger rows;
+    @property NSInteger rows;
 
-@property NSInteger columns;
+    @property NSInteger columns;
 
-@property NSString* type;
+    @property NSString *type;
 
-@property BOOL alignment;
+    @property BOOL alignment;
 
-@property (readonly) NSInteger minimumTableSize;
+    @property (readonly) NSInteger minimumTableSize;
 
-@property IBOutlet NSButton *OKButton;
+    @property IBOutlet NSButton *OKButton;
 
 /** Method for aborting the sheet
  @param sender the sender
  */
-- (IBAction)cancelSheet:(id)sender;
+    - (IBAction)cancelSheet:(id)sender;
 
 /** Method for starting the matrix template action
  @param sender the sender
  */
-- (IBAction)OKSheet:(id)sender;
+    - (IBAction)OKSheet:(id)sender;
 
-- (EnvironmentCompletion *)matrixCompletion;
+    - (EnvironmentCompletion *)matrixCompletion;
 
 @end

@@ -18,34 +18,35 @@
  *
  */
 
-@interface BibFile : NSObject <NSCoding, FileObserver> {
-    
-	/** The presenter observes the file for changes made by other applications */
-	GenericFilePresenter *filePresenter;
-    
-}
+@interface BibFile : NSObject <NSCoding, FileObserver>
+    {
+
+        /** The presenter observes the file for changes made by other applications */
+        GenericFilePresenter *filePresenter;
+
+    }
 
 #pragma mark - Properties
 
 /** the date of the last application internal read access to this file */
-@property (strong) NSDate *lastRead;
+    @property (strong) NSDate *lastRead;
 
 /** The encoding */
-@property NSNumber *fileEncoding;
+    @property NSNumber *fileEncoding;
 
 /** The absolute path to the bib file */
-@property (strong, nonatomic) NSString *path;
+    @property (strong, nonatomic) NSString *path;
 
 /** The files name (last pathcomponent) */
-@property (strong, readonly) NSString *name;
+    @property (strong, readonly) NSString *name;
 
 /** The project to which this entry belongs */
-@property (assign) ProjectModel *project;
+    @property (assign) ProjectModel *project;
 
 /** An array of citation entries in the current bib file (contains objects of type `TMTBibTexEntry`)
  * @see TMTHelperCollection/TMTBibTexEntry
  */
-@property NSMutableArray *entries;
+    @property NSMutableArray *entries;
 
 
 #pragma mark - Manipulating Contents
@@ -57,14 +58,14 @@
  * @return `YES` if the file was written successfull, `NO` otherwise.
  *
  */
-- (BOOL)insertEntry:(TMTBibTexEntry *)entry;
+    - (BOOL)insertEntry:(TMTBibTexEntry *)entry;
 
 /**
  * Searches this bib file for the given cite key and returns the adjacent entry.
  * @param key the cite key
  * @return the entry belonging to the given cite key or `nil` if there isn't a matching key in this file.
  */
-- (TMTBibTexEntry *)entryForCiteKey:(NSString *)key;
+    - (TMTBibTexEntry *)entryForCiteKey:(NSString *)key;
 
 
 #pragma mark - Loading & Saving
@@ -73,14 +74,14 @@
  * Loads the content of the bibtex file
  * @return the file content or `nil`, if an error occured.
  */
-- (NSString *)loadFileContent;
+    - (NSString *)loadFileContent;
 
 /**
  * Writes the given content into the bibtex file and replaces the current content.
  * @param content the content to write
  * @return `YES` if write was successfull, `NO` otherwise.
  */
-- (BOOL)writeFileContent:(NSString *)content;
+    - (BOOL)writeFileContent:(NSString *)content;
 
 
 #pragma mark - Init & Dealloc
@@ -90,5 +91,5 @@
  *
  * @param absolutePath the absolute path to the project file
  */
-- (void)finishInitWithPath:(NSString *)absolutePath;
+    - (void)finishInitWithPath:(NSString *)absolutePath;
 @end
