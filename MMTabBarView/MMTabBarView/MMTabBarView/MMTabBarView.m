@@ -2644,9 +2644,7 @@ static NSMutableDictionary *registeredStyleClasses = nil;
 - (void)_beginResizingWithMouseDownEvent:(NSEvent *)theEvent {
 
     NSEvent *nextEvent = nil,
-            *firstEvent = nil,
-            *dragEvent = nil,
-            *mouseUp = nil;
+            *firstEvent = nil;
     NSDate *expiration = [NSDate distantFuture];
 
     if ([self orientation] == MMTabBarHorizontalOrientation)
@@ -2664,9 +2662,7 @@ static NSMutableDictionary *registeredStyleClasses = nil;
         }
         
         if ([nextEvent type] == NSLeftMouseDragged) {
-            dragEvent = nextEvent;
-            #pragma unused(dragEvent)
-            
+
             NSPoint currentPoint = [self convertPoint:[nextEvent locationInWindow] fromView:nil];
             NSRect frame = [self frame];
             CGFloat resizeAmount = [nextEvent deltaX];
@@ -2690,8 +2686,6 @@ static NSMutableDictionary *registeredStyleClasses = nil;
             }
                     
         } else if ([nextEvent type] == NSLeftMouseUp) {
-            mouseUp = nextEvent;
-            #pragma unused(mouseUp)
             break;
         }
         

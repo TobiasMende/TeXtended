@@ -7,8 +7,6 @@
 //
 
 #import "MMAdiumTabStyle.h"
-#import "MMAttachedTabBarButtonCell.h"
-#import "MMTabBarView.h"
 #import "MMAttachedTabBarButton.h"
 #import "NSView+MMTabBarViewExtensions.h"
 #import "NSCell+MMTabBarViewExtensions.h"
@@ -16,7 +14,6 @@
 
 // #define Adium_CellPadding 2
 #define Adium_MARGIN_X 4
-#define kMMAdiumCounterPadding 3.0
 
 @interface MMTabBarButtonCell(SharedPrivates)
 

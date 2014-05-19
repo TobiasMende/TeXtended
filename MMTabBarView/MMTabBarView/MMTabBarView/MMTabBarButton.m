@@ -7,10 +7,6 @@
 //
 
 #import "MMTabBarButton.h"
-#import "MMRolloverButton.h"
-#import "MMTabBarButtonCell.h"
-#import "MMTabBarView.h"
-#import "MMTabDragAssistant.h"
 #import "NSView+MMTabBarViewExtensions.h"
 
 // Pointer value that we use as the binding context

@@ -8,7 +8,6 @@
 
 #import "MMMetalTabStyle.h"
 #import "MMAttachedTabBarButton.h"
-#import "MMTabBarView.h"
 #import "NSView+MMTabBarViewExtensions.h"
 #import "NSBezierPath+MMTabBarViewExtensions.h"
 

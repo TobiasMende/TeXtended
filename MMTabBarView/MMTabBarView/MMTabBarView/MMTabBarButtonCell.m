@@ -9,7 +9,6 @@
 #import "MMTabBarButtonCell.h"
 
 #import "MMTabBarButton.h"
-#import "MMTabBarView.h"
 #import "MMTabStyle.h"
 #import "NSView+MMTabBarViewExtensions.h"
 #import "NSCell+MMTabBarViewExtensions.h"
