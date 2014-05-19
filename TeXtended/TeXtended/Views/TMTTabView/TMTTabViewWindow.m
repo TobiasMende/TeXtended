@@ -13,7 +13,6 @@
 
 @interface TMTTabViewWindow (PRIVATE)
 
-    - (void)configureTabBarInitially;
 @end
 
 @interface TMTTabViewWindow ()

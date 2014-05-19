@@ -171,6 +171,14 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return nil;
     }
 
+    - (NSString *)debugDescription
+    {
+        return [NSString stringWithFormat:@"%@[%@]", [self class], self.path];
+    }
+
+    - (id)debugQuickLookObject {
+        return [NSURL fileURLWithPath:self.path];
+    }
 
 #pragma mark - Setter
 

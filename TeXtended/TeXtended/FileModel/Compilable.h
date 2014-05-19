@@ -79,8 +79,6 @@
 
     - (NSString *)type;
 
-    - (NSString *)infoTitle;
-
 
 #pragma mark - Collection Helpers
 /**
@@ -116,7 +114,7 @@
 
     - (void)removeBibFileWithIndex:(NSUInteger)index;
 
-    - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString **)path;
+    - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(__autoreleasing NSString **)path;
 
 
 @end

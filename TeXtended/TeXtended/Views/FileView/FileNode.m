@@ -14,9 +14,31 @@
 
 #pragma mark - Getter
 
+    - (BOOL)isEqual:(id)other
+    {
+        if (other == self)
+            return YES;
+        return !(!other || ![[other class] isEqual:[self class]]) && [self isEqualToNode:other];
+
+    }
+
+    - (BOOL)isEqualToNode:(FileNode *)node
+    {
+        if (self == node)
+            return YES;
+        if (node == nil)
+            return NO;
+        return !(self.path != node.path && ![self.path isEqualToString:node.path]);
+    }
+
+    - (NSUInteger)hash
+    {
+        return [self.path hash];
+    }
+
     - (NSMutableArray *)children
     {
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:self.path] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles errorHandler:nil];
+        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:self.path] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles errorHandler:nil];
 
         NSMutableArray *contents = [NSMutableArray new];
 
@@ -31,6 +53,15 @@
     - (NSString *)description
     {
         return self.path;
+    }
+
+    - (NSString *)debugDescription
+    {
+        return [NSString stringWithFormat:@"%@[%@]", [self class], self.path];
+    }
+
+    - (id)debugQuickLookObject {
+        return [NSURL fileURLWithPath:self.path];
     }
 
     - (NSURL *)fileURL
@@ -88,18 +119,7 @@
 
 #pragma mark - Comparision
 
-    - (NSUInteger)hash
-    {
-        NSUInteger prime = 31;
-        NSUInteger result = 1;
 
-        result = prime * result + [self.path hash];
-    }
-
-    - (BOOL)isEqual:(id)object
-    {
-        return [object isKindOfClass:[FileNode class]] && [[(FileNode *) object path] isEqualToString:self.path];
-    }
 
     - (FileNode *)fileNodeForPath:(NSString *)path
     {

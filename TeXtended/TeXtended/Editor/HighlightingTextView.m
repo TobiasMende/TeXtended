@@ -157,6 +157,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 
+    - (id)debugQuickLookObject {
+        return self.attributedString;
+    }
+
     - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **)info
     {
         if (!self.servicesOn) {
@@ -455,7 +459,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
     {
         if (returnCode == NSRunStoppedResponse) {
-            [self showLine:[goToLineSheet.line integerValue]];
+            [self showLine:goToLineSheet.line.unsignedIntegerValue];
         }
     }
 
@@ -681,7 +685,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                             [self showDBLPSearchView];
                         }
                     } else {
-                        NSUInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+                        NSUInteger index = (NSUInteger) (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
 
                         if ([(autoCompletionController.additionalInformation)[TMTDropCompletionKey] boolValue]) {
                             NSDictionary *pathDioctionary = (autoCompletionController.content)[index];
@@ -797,26 +801,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     {
         if (aSelector == @selector(moveLinesUp:)) {
             NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
-            if (totalRange.location == 0) {
-                return NO;
-            } else {
-                return YES;
-            }
+            return totalRange.location != 0;
         } else if (aSelector == @selector(moveLinesDown:)) {
             NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
-            if (NSMaxRange(totalRange) < self.string.length) {
-                return YES;
-            } else {
-                return NO;
-            }
+            return NSMaxRange(totalRange) < self.string.length;
         } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
             return self.selectedRanges.count == 1;
         } else if (aSelector == @selector(jumpNextAnchor:) || aSelector == @selector(jumpPreviousAnchor:)) {
-            if (self.lineNumberView && self.lineNumberView.anchoredLines.count > 0) {
-                return YES;
-            } else {
-                return NO;
-            }
+            return self.lineNumberView && self.lineNumberView.anchoredLines.count > 0;
         } else if (aSelector == @selector(showQuickPreviewAssistant:)) {
             return self.enableQuickPreviewAssistant && self.firstResponderDelegate.model.texPath && self.firstResponderDelegate.model.texPath.length > 0;
         } else {
@@ -920,10 +912,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger nextLine = NSNotFound;
         for (NSNumber *line in anchors) {
             if (nextLine == NSNotFound) {
-                nextLine = line.integerValue;
+                nextLine = line.unsignedIntegerValue
+                        ;
             }
             if (line.integerValue > current) {
-                nextLine = line.integerValue;
+                nextLine = line.unsignedIntegerValue;
                 break;
             }
         }
@@ -938,10 +931,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         NSUInteger nextLine = NSNotFound;
         for (NSNumber *line in [anchors reverseObjectEnumerator]) {
             if (nextLine == NSNotFound) {
-                nextLine = line.integerValue;
+                nextLine = line.unsignedIntegerValue;
             }
             if (line.integerValue < current) {
-                nextLine = line.integerValue;
+                nextLine = line.unsignedIntegerValue;
                 break;
             }
         }
@@ -1057,7 +1050,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             NSDictionary *selectionAttributes = @{NSForegroundColorAttributeName : textColor, NSBackgroundColorAttributeName : backgroundColor};
             [self setSelectedTextAttributes:selectionAttributes];
         } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_LINE_WRAP_MODE]]) {
-            self.lineWrapMode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
+            self.lineWrapMode = (TMTLineWrappingMode) [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_LINE_WRAP_MODE] intValue];
         } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_EDITOR_HARD_WRAP_AFTER]]) {
             self.hardWrapAfter = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKeyPath:TMT_EDITOR_HARD_WRAP_AFTER];
         } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMT_REPLACE_INVISIBLE_SPACES]]) {

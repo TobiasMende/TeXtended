@@ -82,7 +82,7 @@
  *
  * @return the files content
  */
-    - (NSString *)loadContent:(NSError **)error;
+    - (NSString *)loadContent:(__autoreleasing NSError **)error;
 
 /**
  * Method for saving new content to the represented file
@@ -92,7 +92,7 @@
  *
  * @return `YES` if the content was saved succesful, `NO` otherwise.
  */
-    - (BOOL)saveContent:(NSString *)content error:(NSError **)error;
+    - (BOOL)saveContent:(NSString *)content error:(__autoreleasing NSError **)error;
 
 
 #pragma mark -  Getter

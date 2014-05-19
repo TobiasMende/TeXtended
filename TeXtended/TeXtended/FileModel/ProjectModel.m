@@ -116,11 +116,6 @@
         return [self.path stringByDeletingLastPathComponent];
     }
 
-    - (NSString *)infoTitle
-    {
-        return NSLocalizedString(@"Project Information", @"Projectinformation");
-    }
-
     - (ProjectModel *)project
     {
         return self;

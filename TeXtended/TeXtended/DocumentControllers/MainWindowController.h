@@ -10,7 +10,7 @@
 #import "DMSplitView.h"
 #import "ViewControllerProtocol.h"
 
-@class DocumentController, FileViewController, TMTSplitView, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem, FileViewController;
+@class DocumentController, FileViewController, DMSplitView, OutlineTabViewController, TMTTabViewController, MainDocument, TMTTabViewItem, FileViewController;
 
 /**
  The MainWindowController is the controller of the main window of each document. 

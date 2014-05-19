@@ -52,7 +52,7 @@ private)
  * @return the line number
  *
  */
-    - (NSUInteger)lineNumberForCharacterIndex:(NSUInteger)index inText:(NSString *)text;
+    - (NSUInteger)lineNumberForCharacterIndex:(NSUInteger)index;
 
 /**
  * Calculate the thickness that the view needs to display all line numbers.
@@ -104,7 +104,7 @@ private)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
-    - (void)drawErrorIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
+    - (void)drawErrorInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
 
 /**
  * Draws a warning for a selected line.
@@ -112,7 +112,7 @@ private)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
-    - (void)drawWarningIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
+    - (void)drawWarningInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
 
 /**
  * Draws a info for a selected line.
@@ -120,7 +120,7 @@ private)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
-    - (void)drawInfoIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
+    - (void)drawInfoInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
 
 /**
  * Draws a debug for a selected line.
@@ -128,7 +128,7 @@ private)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
-    - (void)drawDebugIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
+    - (void)drawDebugInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight;
 
 /**
  * Since we cant init a NSColor with customs color, this method will return the default color until
@@ -293,7 +293,7 @@ private)
         glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
         range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
         range.length++;
-        NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location inText:text];
+        NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location];
         NSMutableArray *lineHights;
         lineHights = [self calculateLineHeights:lineLabel];
 
@@ -398,33 +398,33 @@ private)
         return NO;
     }
 
-    - (NSUInteger)lineNumberForCharacterIndex:(NSUInteger)index inText:(NSString *)text
+    - (NSUInteger)lineNumberForCharacterIndex:(NSUInteger)index
     {
-        NSUInteger left, right, mid, lineStart;
-        NSMutableArray *linesToTest;
+            NSUInteger left, right, mid, lineStart;
+            NSMutableArray *linesToTest;
 
-        linesToTest = [self lines];
+            linesToTest = [self lines];
 
-        // Binary search
-        left = 0;
-        right = [lines count];
+            // Binary search
+            left = 0;
+            right = [lines count];
 
-        while ((right - left) > 1) {
-            mid = (right + left) / 2;
-            lineStart = [linesToTest[mid] unsignedIntValue];
+            while ((right - left) > 1) {
+                mid = (right + left) / 2;
+                lineStart = [linesToTest[mid] unsignedIntValue];
 
-            if (index < lineStart) {
-                right = mid;
+                if (index < lineStart) {
+                    right = mid;
+                }
+                else if (index > lineStart) {
+                    left = mid;
+                }
+                else {
+                    return mid;
+                }
             }
-            else if (index > lineStart) {
-                left = mid;
-            }
-            else {
-                return mid;
-            }
+            return left;
         }
-        return left;
-    }
 
     - (CGFloat)requiredThickness
     {
@@ -551,7 +551,7 @@ private)
         glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
         range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
         range.length++;
-        NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location inText:text];
+        NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location];
         NSMutableArray *lineHights;
 
         lineHights = [self calculateLineHeights:lineLabel];
@@ -565,7 +565,7 @@ private)
          * Calculate the current line and the first visible line, this is needed from other views
          * and set here, because the lines are allready calculated.
          */
-        NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location inText:text] + 1;
+        NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location] + 1;
         if (view.currentRow != currentLine) {
             [view setCurrentRow:currentLine];
         }
@@ -593,13 +593,13 @@ private)
             }
 
             if ([self hasError:lineLabel + i + 1]) {
-                [self drawErrorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawErrorInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
             } else if ([self hasWarning:lineLabel + i + 1]) {
-                [self drawWarningIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawWarningInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
             } else if ([self hasInfo:lineLabel + i + 1]) {
-                [self drawInfoIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawInfoInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
             } else if ([self hasDebug:lineLabel + i + 1]) {
-                [self drawDebugIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawDebugInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
             }
 
             NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel + i + 1];
@@ -630,53 +630,53 @@ private)
         [line stroke];
     }
 
-    - (void)drawErrorIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
+    - (void)drawErrorInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
     {
-        NSRect pos = NSMakeRect(1,
-                lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
-                SYMBOL_SIZE,
-                SYMBOL_SIZE);
+            NSRect pos = NSMakeRect(1,
+                    lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
+                    SYMBOL_SIZE,
+                    SYMBOL_SIZE);
 
-        [errorImage setFlipped:YES];
-        [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-        [errorImage setFlipped:NO];
-    }
+            [errorImage setFlipped:YES];
+            [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+            [errorImage setFlipped:NO];
+        }
 
-    - (void)drawWarningIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
+    - (void)drawWarningInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
     {
-        NSRect pos = NSMakeRect(1,
-                lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
-                SYMBOL_SIZE,
-                SYMBOL_SIZE);
+            NSRect pos = NSMakeRect(1,
+                    lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
+                    SYMBOL_SIZE,
+                    SYMBOL_SIZE);
 
-        [warningImage setFlipped:YES];
-        [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-        [warningImage setFlipped:NO];
-    }
+            [warningImage setFlipped:YES];
+            [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+            [warningImage setFlipped:NO];
+        }
 
-    - (void)drawInfoIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
+    - (void)drawInfoInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
     {
-        NSRect pos = NSMakeRect(1,
-                lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
-                SYMBOL_SIZE,
-                SYMBOL_SIZE);
+            NSRect pos = NSMakeRect(1,
+                    lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4 - 1,
+                    SYMBOL_SIZE,
+                    SYMBOL_SIZE);
 
-        [infoImage setFlipped:YES];
-        [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-        [infoImage setFlipped:NO];
-    }
+            [infoImage setFlipped:YES];
+            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+            [infoImage setFlipped:NO];
+        }
 
-    - (void)drawDebugIn:(NSRect)dirtyRect withVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
+    - (void)drawDebugInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
     {
-        NSRect pos = NSMakeRect(0,
-                lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4,
-                SYMBOL_SIZE,
-                SYMBOL_SIZE);
+            NSRect pos = NSMakeRect(0,
+                    lineHight - visibleRect.origin.y + SYMBOL_SIZE / 4,
+                    SYMBOL_SIZE,
+                    SYMBOL_SIZE);
 
-        [infoImage setFlipped:YES];
-        [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-        [infoImage setFlipped:NO];
-    }
+            [infoImage setFlipped:YES];
+            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
+            [infoImage setFlipped:NO];
+        }
 
     - (NSColor *)getAnchorColor
     {

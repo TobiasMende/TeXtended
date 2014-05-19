@@ -38,10 +38,14 @@
 
     + (FileNode *)fileNodeWithPath:(NSString *)path;
 
-    - (IBAction)toggleRenameMode:(id)sender;
-
     - (FileNode *)fileNodeForPath:(NSString *)path;
 
     - (NSIndexPath *)indexPathForPath:(NSString *)path andPrefix:(NSIndexPath *)prefix;
+
+    - (BOOL)isEqual:(id)other;
+
+    - (BOOL)isEqualToNode:(FileNode *)node;
+
+    - (NSUInteger)hash;
 
 @end

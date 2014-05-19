@@ -20,8 +20,6 @@
 #import "TrackingMessage.h"
 
 
-static NSArray *TMTEncodingsToCheck;
-
 static const NSArray *GENERATOR_TYPES_TO_USE;
 
 
@@ -103,7 +101,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     + (void)initialize
     {
         if ([self class] == [DocumentModel class]) {
-            TMTEncodingsToCheck = @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
+            @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
                     [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
                     [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
                     [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
@@ -216,7 +214,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 #pragma mark -  Getter
 
-    - (NSArray *)bibFiles
+    - (NSMutableArray *)bibFiles
     {
         if (self.project) {
             return self.project.bibFiles;
@@ -275,11 +273,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         return nil;
-    }
-
-    - (NSString *)infoTitle
-    {
-        return NSLocalizedString(@"Document Information", @"Documentinformation");
     }
 
     - (Compilable *)mainCompilable
