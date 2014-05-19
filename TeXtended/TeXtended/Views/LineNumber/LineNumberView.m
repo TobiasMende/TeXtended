@@ -159,7 +159,7 @@ private)
         if ((self = [super initWithScrollView:scrollView orientation:NSVerticalRuler]) != nil) {
             [self initVariables];
             [self observeScrolling:scrollView];
-            [self setClientView:[scrollView documentView]];
+            self.clientView = scrollView.documentView;
         }
         return self;
     }
@@ -172,15 +172,15 @@ private)
         _borderColorB = [NSColor grayColor];
         _textColor = [NSColor darkGrayColor];
 
-        lines = [[NSMutableArray alloc] init];
+        lines = [NSMutableArray new];
         numberFont = [NSFont fontWithName:@"SourceCodePro-Regular" size:9.5];
         numberStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        [numberStyle setAlignment:NSRightTextAlignment];
+        numberStyle.alignment = NSRightTextAlignment;
         numberStyle.lineSpacing = 10;
 
         attributesForNumbers = @{NSFontAttributeName : numberFont,
                 NSParagraphStyleAttributeName : numberStyle,
-                NSForegroundColorAttributeName : [self textColor]};
+                NSForegroundColorAttributeName : self.textColor};
 
         lineAnchors = [[NSMutableDictionary alloc] init];
 
@@ -220,7 +220,7 @@ private)
     {
         id oldScrollView;
 
-        oldScrollView = [self scrollView];
+        oldScrollView = self.scrollView;
 
         if ((oldScrollView != aScrollView) && [oldScrollView isKindOfClass:[NSScrollView class]]) {
             [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -244,7 +244,7 @@ private)
     - (void)textDidChange:(NSNotification *)notification
     {
         lines = nil;
-        [self setNeedsDisplay:YES];
+        self.needsDisplay = YES;
     }
 
 /**
@@ -263,7 +263,7 @@ private)
     - (void)contentBoundsDidChange:(NSNotification *)notification
     {
         [messageWindow close];
-        [self setNeedsDisplay:YES];
+        self.needsDisplay = YES;
     }
 
     - (NSMutableArray *)lines
@@ -281,13 +281,13 @@ private)
     - (void)mouseDown:(NSEvent *)theEvent
     {
         NSPoint location;
-        location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+        location = [self convertPoint:theEvent.locationInWindow fromView:nil];
 
-        NSTextView *view = [[self scrollView] documentView];
-        NSRect visibleRect = [view visibleRect];
-        NSLayoutManager *manager = [view layoutManager];
-        NSTextContainer *container = [view textContainer];
-        NSString *text = [view string];
+        NSTextView *view = self.scrollView.documentView;
+        NSRect visibleRect = view.visibleRect;
+        NSLayoutManager *manager = view.layoutManager;
+        NSTextContainer *container = view.textContainer;
+        NSString *text = view.string;
         NSRange range, glyphRange;
 
         glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
@@ -403,11 +403,11 @@ private)
             NSUInteger left, right, mid, lineStart;
             NSMutableArray *linesToTest;
 
-            linesToTest = [self lines];
+            linesToTest = self.lines;
 
             // Binary search
             left = 0;
-            right = [lines count];
+            right = lines.count;
 
             while ((right - left) > 1) {
                 mid = (right + left) / 2;
@@ -432,7 +432,7 @@ private)
         NSMutableString *sampleString;
         NSSize stringSize;
 
-        lineCount = [[self lines] count];
+        lineCount = self.lines.count;
         digits = (unsigned) log10(lineCount) + 1;
         sampleString = [NSMutableString string];
         for (i = 0 ; i < digits ; i++) {
@@ -452,9 +452,9 @@ private)
     - (void)calculateLines
     {
 
-        lines = [[NSMutableArray alloc] init];
-        NSTextView *view = [self.scrollView documentView];
-        NSString *text = [view string];
+        lines = [NSMutableArray new];
+        NSTextView *view = self.scrollView.documentView;
+        NSString *text = view.string;
         float index = 0;
 
         do {
@@ -471,16 +471,16 @@ private)
         }
 
         CGFloat oldThickness, newThickness;
-        oldThickness = [self ruleThickness];
-        newThickness = [self requiredThickness];
+        oldThickness = self.ruleThickness;
+        newThickness = self.requiredThickness;
         if (fabs(oldThickness - newThickness) > 1) {
             NSInvocation *invocation;
 
             // Not a good idea to resize the view during calculations (which can happen during
             // display). Do a delayed perform (using NSInvocation since arg is a float).
             invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:@selector(setRuleThickness:)]];
-            [invocation setSelector:@selector(setRuleThickness:)];
-            [invocation setTarget:self];
+            invocation.selector = @selector(setRuleThickness:);
+            invocation.target = self;
             [invocation setArgument:&newThickness atIndex:2];
 
             [invocation performSelector:@selector(invoke) withObject:nil afterDelay:0.0];
@@ -490,18 +490,18 @@ private)
 
     - (NSMutableArray *)calculateLineHeights:(NSUInteger)startLine
     {
-        NSMutableArray *heights = [[NSMutableArray alloc] init];
-        NSMutableArray *currentLines = [self lines];
-        NSTextView *view = [[self scrollView] documentView];
-        NSTextContainer *container = [view textContainer];
-        NSRect visibleRect = [view visibleRect];
+        NSMutableArray *heights = [NSMutableArray new];
+        NSMutableArray *currentLines = self.lines;
+        NSTextView *view = self.scrollView.documentView;
+        NSTextContainer *container = view.textContainer;
+        NSRect visibleRect = view.visibleRect;
         NSRange nullRange = NSMakeRange(NSNotFound, 0);
         NSRectArray rects = 0;
 
         float height = 0;
         NSUInteger index = 0, rectCount;
 
-        for (NSUInteger line = startLine ; height < NSMaxY(visibleRect) && line < [lines count] ; line++) {
+        for (NSUInteger line = startLine ; height < NSMaxY(visibleRect) && line < lines.count ; line++) {
 
             index = [currentLines[line] unsignedIntValue];
             rects = [[view layoutManager] rectArrayForCharacterRange:NSMakeRange(index, 0)
@@ -531,10 +531,10 @@ private)
 
     - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect
     {
-        NSRect visibleRect = [[[self scrollView] documentView] visibleRect];
+        NSRect visibleRect = [self.scrollView.documentView visibleRect];
 
         /* draw small black line */
-        [[self lineColor] set];
+        [self.lineColor set];
         NSRect rect = {dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE ,
                 0,
                 BORDER_LINE_SIZE,
@@ -542,10 +542,10 @@ private)
         };
         NSRectFill(rect);
 
-        HighlightingTextView *view = [[self scrollView] documentView];
-        NSLayoutManager *manager = [view layoutManager];
-        NSTextContainer *container = [view textContainer];
-        NSString *text = [view string];
+        HighlightingTextView *view = [self.scrollView documentView];
+        NSLayoutManager *manager = view.layoutManager;
+        NSTextContainer *container = view.textContainer;
+        NSString *text = view.string;
         NSRange range, glyphRange;
 
         glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
@@ -567,10 +567,10 @@ private)
          */
         NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location] + 1;
         if (view.currentRow != currentLine) {
-            [view setCurrentRow:currentLine];
+            view.currentRow = currentLine;
         }
         if (view.firstVisibleRow != lineLabel + 1) {
-            [view setFirstVisibleRow:lineLabel + 1];
+            view.firstVisibleRow = lineLabel + 1;
         }
 
         for (int i = 0 ; i < [lineHights count] - 1 ; i++) {
@@ -582,9 +582,9 @@ private)
             };
 
             if ((lineLabel + i) % 2 == 0) {
-                [[self borderColorA] set];
+                [self.borderColorA set];
             } else {
-                [[self borderColorB] set];
+                [self.borderColorB set];
             }
             NSRectFill(rect);
 
@@ -624,9 +624,9 @@ private)
         [line lineToPoint:NSMakePoint(dirtyRect.size.width - 2 * BORDER_SIZE, lineHight - visibleRect.origin.y + 1.5 * SYMBOL_SIZE - 1)];
         [line lineToPoint:NSMakePoint(0, lineHight - visibleRect.origin.y + 1.5 * SYMBOL_SIZE - 1)];
 
-        [[self getAnchorColor] set];
+        [self.getAnchorColor set];
         [line fill];
-        [[self getAnchorBorderColor] set];
+        [self.getAnchorBorderColor set];
         [line stroke];
     }
 
@@ -637,9 +637,9 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            [errorImage setFlipped:YES];
+            errorImage.flipped = YES;
             [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            [errorImage setFlipped:NO];
+            errorImage.flipped = NO;
         }
 
     - (void)drawWarningInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -649,9 +649,9 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            [warningImage setFlipped:YES];
+            warningImage.flipped = YES;
             [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            [warningImage setFlipped:NO];
+            warningImage.flipped = NO;
         }
 
     - (void)drawInfoInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -661,9 +661,9 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            [infoImage setFlipped:YES];
+            infoImage.flipped = YES;
             [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            [infoImage setFlipped:NO];
+            infoImage.flipped = NO;
         }
 
     - (void)drawDebugInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -673,30 +673,30 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            [infoImage setFlipped:YES];
+            infoImage.flipped = YES;
             [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            [infoImage setFlipped:NO];
+            infoImage.flipped = NO;
         }
 
     - (NSColor *)getAnchorColor
     {
-        if ([self anchorColor] == nil) {
+        if (!self.anchorColor) {
             return [NSColor colorWithCalibratedRed:0 green:0.29f blue:0.35f alpha:0.25f];
         }
-        return [self anchorColor];
+        return self.anchorColor;
     }
 
     - (NSColor *)getAnchorBorderColor
     {
-        if ([self anchorBorderColor] == nil) {
+        if (!self.anchorBorderColor) {
             return [NSColor colorWithCalibratedRed:0 green:0.29f blue:0.35f alpha:1.0f];
         }
-        return [self anchorBorderColor];
+        return self.anchorBorderColor;
     }
 
     - (NSArray *)anchoredLines
     {
-        return [lineAnchors allKeys];
+        return lineAnchors.allKeys;
     }
 
     - (void)dealloc
