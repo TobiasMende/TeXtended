@@ -11,7 +11,6 @@
 #import "Compiler.h"
 #import "TextViewController.h"
 #import "ExtendedPDFViewController.h"
-#import "TMTNotificationCenter.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
@@ -75,8 +74,8 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
             [self.parentModel removeObserver:self forKeyPath:@"self.mainDocuments"];
         }
         if (self.model) {
-            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidEndCompiling object:self.model];
-            [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTCompilerDidStartCompiling object:self.model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self.model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:self.model];
         }
         self.parentModel = model;
         self.model = [DocumentModel new];
@@ -87,8 +86,8 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         [self.parentModel addObserver:self forKeyPath:@"self.mainDocuments" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
 
         [self.pvc setModel:self.model];
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(compilerStart:) name:TMTCompilerDidStartCompiling object:self.model];
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(compilerEnd:) name:TMTCompilerDidEndCompiling object:self.model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerStart:) name:TMTCompilerDidStartCompiling object:self.model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerEnd:) name:TMTCompilerDidEndCompiling object:self.model];
     }
 
     - (void)compilerStart:(NSNotification *)note

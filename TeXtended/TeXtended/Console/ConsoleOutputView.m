@@ -14,7 +14,6 @@
 #import "ConsoleViewController.h"
 #import "ConsoleData.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "TMTNotificationCenter.h"
 
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 
@@ -150,7 +149,7 @@ static const NSSet *KEYS_TO_UNBIND;
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:compiledModel andCompletionHandler:^(DocumentModel *model)
         {
             if (model) {
-                [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:line]}];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:line]}];
                 if (![model.mainCompilable isEqualTo:compiledModel.mainCompilable]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:model.texPath userInfo:@{TMTMessageCollectionKey : self.controller.console.consoleMessages, TMTMessageGeneratorTypeKey : @(TMTLogFileParser)}];
                 }

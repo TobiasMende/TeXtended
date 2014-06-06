@@ -12,7 +12,6 @@
 #import "BibFile.h"
 #import "Compilable.h"
 #import "CompileSetting.h"
-#import "TMTNotificationCenter.h"
 
 
 static NSUInteger LAST_IDENTIFIER = 0;
@@ -37,11 +36,6 @@ static NSUInteger LAST_IDENTIFIER = 0;
         id copied = [NSKeyedUnarchiver unarchiveObjectWithData:data][0];
 
         return copied;
-    }
-
-    - (void)dealloc
-    {
-        [TMTNotificationCenter removeCenterForCompilable:self];
     }
 
     - (void)finishInitWithPath:(NSString *)absolutePath

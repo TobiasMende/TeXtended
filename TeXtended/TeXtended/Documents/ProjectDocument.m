@@ -11,7 +11,6 @@
 #import "DocumentController.h"
 #import "ProjectModel.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
 #import "MergeWindowController.h"
 #import "EncodingController.h"
@@ -43,11 +42,11 @@
     - (void)setModel:(ProjectDocument *)model
     {
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:nil];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:_model];
         }
         _model = model;
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:_model];
 
         }
     }

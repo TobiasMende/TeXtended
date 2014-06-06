@@ -10,7 +10,6 @@
 #import "ExtendedPdfControlls.h"
 #import "ExtendedPDFViewController.h"
 #import "PageNumberViewController.h"
-#import "TMTNotificationCenter.h"
 #import "StatsPanelController.h"
 
 static const NSSet *KEYS_TO_UNBIND;
@@ -369,8 +368,7 @@ static const NSSet *KEYS_TO_UNBIND;
     {
         BOOL result = [super becomeFirstResponder];
         if (result && self.firstResponderDelegate) {
-            [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
         }
         return result;
     }

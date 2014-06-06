@@ -8,7 +8,6 @@
 
 #import "ConsoleData.h"
 #import "DocumentModel.h"
-#import "TMTNotificationCenter.h"
 #import "ConsoleViewController.h"
 #import "LogfileParser.h"
 #import "ConsoleManager.h"
@@ -45,13 +44,13 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
     {
         if (model != _model) {
             if (_model) {
-                [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
-                [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
             }
             _model = model;
             if (_model) {
-                [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
-                [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidStartCompiling:) name:TMTCompilerDidStartCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
             }
         }
     }
@@ -154,7 +153,6 @@ static const NSTimeInterval LOG_MESSAGE_UPDATE_INTERVAL = 0.4;
 
     - (void)dealloc
     {
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 

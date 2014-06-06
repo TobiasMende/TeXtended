@@ -16,7 +16,6 @@
 #import "NSString+PathExtension.h"
 #import "OutlineExtractor.h"
 #import "ProjectModel.h"
-#import "TMTNotificationCenter.h"
 #import "TrackingMessage.h"
 
 
@@ -42,9 +41,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         DDLogInfo(@"dealloc");
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
-        if (!self.project) {
-            [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
-        }
     }
 
     - (void)finishInitWithPath:(NSString *)absolutePath
@@ -207,7 +203,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         if (success) {
-            [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidSaveDocumentModelContent object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
         }
         return success;
     }
@@ -349,14 +345,14 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)setCurrentMainDocument:(DocumentModel *)currentMainDocument
     {
         if (_currentMainDocument) {
-            [[TMTNotificationCenter centerForCompilable:_currentMainDocument] removeObserver:self name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessagesDidChangeNotification object:_currentMainDocument];
         }
         [self willChangeValueForKey:@"currentMainDocument"];
         _currentMainDocument = currentMainDocument;
         [self didChangeValueForKey:@"currentMainDocument"];
         if (_currentMainDocument) {
             [self updateMessages:[_currentMainDocument mergedGlobalMessages]];
-            [[TMTNotificationCenter centerForCompilable:_currentMainDocument] addObserver:self selector:@selector(mainDocumentsMessagesDidChange:) name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainDocumentsMessagesDidChange:) name:TMTMessagesDidChangeNotification object:_currentMainDocument];
         }
     }
 
@@ -386,13 +382,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
     }
 
-    - (void)setProject:(ProjectModel *)project
-    {
-        if (self == self.mainCompilable) {
-            [TMTNotificationCenter removeCenterForCompilable:self];
-        }
-        _project = project;
-    }
 
     - (void)setTexPath:(NSString *)texPath
     {
@@ -565,7 +554,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         else if (globalMessagesMap[@(type)]) {
             [globalMessagesMap removeObjectForKey:@(type)];
         }
-        [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey : [self mergedGlobalMessages]}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey : [self mergedGlobalMessages]}];
     }
 
     - (NSArray *)mergedGlobalMessages

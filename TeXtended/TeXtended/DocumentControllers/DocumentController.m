@@ -12,7 +12,6 @@
 #import "MainWindowController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "ExtendedPDFViewController.h"
-#import "TMTNotificationCenter.h"
 #import "MainDocument.h"
 #import "TMTTabManager.h"
 #import "HighlightingTextView.h"
@@ -285,7 +284,6 @@
                 c.pdfView.firstResponderDelegate = NULL;
             }
         }
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 @end

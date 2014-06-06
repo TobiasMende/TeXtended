@@ -13,7 +13,6 @@
 #import "DocumentController.h"
 #import "TextViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "TMTNotificationCenter.h"
 #import "ConsoleData.h"
 #import "ConsoleManager.h"
 #import "MainDocument.h"
@@ -42,7 +41,7 @@
     {
         [self.liveTimer invalidate];
         NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
-        [[TMTNotificationCenter centerForCompilable:self.compileProcessHandler.model] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
         for (DocumentModel *model in mainDocuments) {
             if (!model.texPath) {
                 continue;
@@ -89,7 +88,7 @@
                 [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
             }
             [currentTask setArguments:arguments];
-            [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTCompilerDidStartCompiling object:model];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
             [currentTask setTerminationHandler:^(NSTask *task)
             {
                 [weakSelf finishedCompilationTask:task forData:console];
@@ -113,7 +112,7 @@
     {
         [data.firstResponderDelegate.mainDocument decrementNumberOfCompilingDocuments];
         data.model.isCompiling = NO;
-        [[TMTNotificationCenter centerForCompilable:data.model] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
         data.model.lastCompile = [NSDate new];
         data.compileRunning = NO;
         if (data.compileMode == final && [data.model.openOnExport boolValue]) {

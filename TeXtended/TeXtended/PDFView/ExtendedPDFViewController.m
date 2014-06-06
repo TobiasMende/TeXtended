@@ -11,7 +11,6 @@
 #import "ForwardSynctex.h"
 #import "BackwardSynctex.h"
 #import "DocumentCreationController.h"
-#import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
 
@@ -66,7 +65,7 @@
             if (beginTex && endTex) {
                 [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:beginTex.inputPath withReferenceModel:self.model andCompletionHandler:^(DocumentModel *model)
                 {
-                    [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTViewSynctexChanged object:model userInfo:@{TMTBackwardSynctexBeginKey : beginTex, TMTBackwardSynctexEndKey : endTex}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTViewSynctexChanged object:model userInfo:@{TMTBackwardSynctexBeginKey : beginTex, TMTBackwardSynctexEndKey : endTex}];
                 }];
 
 
@@ -87,15 +86,15 @@
     {
         if (model != _model) {
             if (_model) {
-                [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
-                [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerSynctexChanged object:_model];
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:_model];
                 [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
             }
             _model = model;
             [self updateTabViewItem];
             if (_model) {
-                [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
-                [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(compilerSynctexDidChange:) name:TMTCompilerSynctexChanged object:_model];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerDidEndCompiling:) name:TMTCompilerDidEndCompiling object:_model];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerSynctexDidChange:) name:TMTCompilerSynctexChanged object:_model];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidClose:) name:TMTTabViewDidCloseNotification object:_model.pdfIdentifier];
 
             }
@@ -196,7 +195,6 @@
         if (item) {
             [item.tabView removeTabViewItem:item];
         }
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 

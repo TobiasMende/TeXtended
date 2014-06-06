@@ -14,7 +14,6 @@
 #import "DocumentModel.h"
 #import "DocumentCreationController.h"
 #import "MessageInfoViewController.h"
-#import "TMTNotificationCenter.h"
 #import "TMTCustomView.h"
 
 @interface MessageDataSource ()
@@ -124,7 +123,7 @@
             {
                 if (newModel) {
                     newModel.currentMainDocument = self.model;
-                    [[TMTNotificationCenter centerForCompilable:newModel] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:message.line]}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:newModel userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:message.line]}];
                 } else {
                     [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:message.document]];
                 }
@@ -148,11 +147,11 @@
     {
         if (_model) {
             [_model removeObserver:self forKeyPath:@"texPath"];
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTMessagesDidChangeNotification object:_model];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessagesDidChangeNotification object:_model];
         }
         _model = model;
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(messagesDidChange:) name:TMTMessagesDidChangeNotification object:_model];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesDidChange:) name:TMTMessagesDidChangeNotification object:_model];
             NSArray *messages = [_model mergedGlobalMessages];
             if (messages) {
                 self.messages = messages;
@@ -170,7 +169,6 @@
         self.tableView.delegate = nil;
         self.tableView.rightClickAction = nil;
         self.tableView.singleClickAction = nil;
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 @end

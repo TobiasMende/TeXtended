@@ -23,7 +23,6 @@
 #import "MatrixViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TextViewLayoutManager.h"
-#import "TMTNotificationCenter.h"
 #import "DBLPIntegrator.h"
 #import "QuickPreviewManager.h"
 #import "CompletionManager.h"
@@ -1114,8 +1113,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)makeKeyView
     {
         if (self.firstResponderDelegate) {
-            [[TMTNotificationCenter centerForCompilable:self.firstResponderDelegate.model] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:nil userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
         }
     }
 

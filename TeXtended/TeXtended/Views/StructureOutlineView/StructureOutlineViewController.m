@@ -11,7 +11,6 @@
 #import "StructurOutlineCellView.h"
 #import "DocumentModel.h"
 #import "DocumentCreationController.h"
-#import "TMTNotificationCenter.h"
 #import "OutlineElement.h"
 #import "OutlineHelper.h"
 
@@ -62,7 +61,7 @@
                 [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:view.element.document andCompletionHandler:^(DocumentModel *model)
                 {
                     if (model) {
-                        [[TMTNotificationCenter centerForCompilable:model] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:line]}];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:line]}];
                     } else {
                         [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:path]];
                     }

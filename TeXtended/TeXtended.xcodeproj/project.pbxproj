@@ -73,7 +73,6 @@
 		D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16981824ED10005B5B91 /* TMTTabViewItem.m */; };
 		D22E169F1824ED10005B5B91 /* TMTTabViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */; };
 		D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */; };
-		D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D231489A181BCE8300A3385B /* TMTNotificationCenter.m */; };
 		D2326AD9188A7961008DEE51 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AD8188A7961008DEE51 /* Template.m */; };
 		D2326ADC188A816D008DEE51 /* NSFileManager+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */; };
 		D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */; };
@@ -469,8 +468,6 @@
 		D22E16991824ED10005B5B91 /* TMTTabViewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTTabViewWindow.h; path = TMTTabView/TMTTabViewWindow.h; sourceTree = "<group>"; };
 		D22E169A1824ED10005B5B91 /* TMTTabViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTTabViewWindow.m; path = TMTTabView/TMTTabViewWindow.m; sourceTree = "<group>"; };
 		D22E169B1824ED10005B5B91 /* TMTTabViewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TMTTabViewWindow.xib; path = TMTTabView/TMTTabViewWindow.xib; sourceTree = "<group>"; };
-		D2314899181BCE8300A3385B /* TMTNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNotificationCenter.h; sourceTree = "<group>"; };
-		D231489A181BCE8300A3385B /* TMTNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNotificationCenter.m; sourceTree = "<group>"; };
 		D2326AD7188A7961008DEE51 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
 		D2326AD8188A7961008DEE51 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
 		D2326ADA188A816D008DEE51 /* NSFileManager+TMTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+TMTExtension.h"; sourceTree = "<group>"; };
@@ -1128,15 +1125,6 @@
 			path = TMTCustomView;
 			sourceTree = "<group>";
 		};
-		D2314898181BCE6F00A3385B /* TMTNotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
-				D2314899181BCE8300A3385B /* TMTNotificationCenter.h */,
-				D231489A181BCE8300A3385B /* TMTNotificationCenter.m */,
-			);
-			path = TMTNotificationCenter;
-			sourceTree = "<group>";
-		};
 		D23DD42718794B5100C0EF97 /* QuickPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,7 +1153,6 @@
 		D24EA2AA1760649A00CE56B2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D2314898181BCE6F00A3385B /* TMTNotificationCenter */,
 				D2A0E630176DCAA700EDAB5B /* PathFactory.h */,
 				D2A0E631176DCAA700EDAB5B /* PathFactory.m */,
 				D2A739D218D4B056005991D5 /* OutlineHelper.h */,
@@ -2120,7 +2107,6 @@
 				D25479891837A0D30097C97D /* CompilerSettingsViewController.m in Sources */,
 				D28DC0E1177B691C00E4C711 /* BackwardSynctex.m in Sources */,
 				D2C237AF18956F480096ECAA /* TMTOutlineView.m in Sources */,
-				D231489B181BCE8300A3385B /* TMTNotificationCenter.m in Sources */,
 				D2326AD9188A7961008DEE51 /* Template.m in Sources */,
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,

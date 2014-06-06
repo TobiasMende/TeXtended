@@ -14,7 +14,6 @@
 #import "LacheckParser.h"
 #import "ChktexParser.h"
 #import "BackwardSynctex.h"
-#import "TMTNotificationCenter.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
 #import "NSString+RegexReplace.h"
@@ -82,17 +81,17 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     - (void)registerModelObserver
     {
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
-        [[TMTNotificationCenter centerForCompilable:self.model] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
         [self.model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
 
     }
 
     - (void)unregisterModelObserver
     {
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
 
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self name:TMTViewSynctexChanged object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:nil];
         [self.model removeObserver:self forKeyPath:@"messages"];
     }
 
@@ -230,7 +229,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             {
                 if (result) {
                     NSDictionary *info = @{TMTForwardSynctexKey : result};
-                    [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:model userInfo:info];
                 }
             }];
         } else {
@@ -239,7 +238,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
                 {
                     if (result) {
                         NSDictionary *info = @{TMTForwardSynctexKey : result};
-                        [[TMTNotificationCenter centerForCompilable:self.model] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerSynctexChanged object:m userInfo:info];
                     }
                 }];
             }
@@ -324,7 +323,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self unbind:@"liveScrolling"];
         [self.textView removeObserver:self forKeyPath:@"currentRow"];
 
-        [[TMTNotificationCenter centerForCompilable:self.model] removeObserver:self];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 

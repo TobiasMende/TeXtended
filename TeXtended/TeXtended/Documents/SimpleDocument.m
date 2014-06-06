@@ -12,7 +12,6 @@
 #import "EncodingController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "DocumentCreationController.h"
-#import "TMTNotificationCenter.h"
 #import "ConsoleManager.h"
 #import "MergeWindowController.h"
 #import "Template.h"
@@ -50,11 +49,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     - (void)setModel:(DocumentModel *)model
     {
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:nil];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:_model];
         }
         _model = model;
         if (_model) {
-            [[TMTNotificationCenter centerForCompilable:_model] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderDidChangeNotification:) name:TMTFirstResponderDelegateChangeNotification object:_model];
 
         }
     }
