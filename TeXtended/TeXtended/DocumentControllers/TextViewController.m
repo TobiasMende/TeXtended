@@ -19,6 +19,7 @@
 #import "NSString+RegexReplace.h"
 #import "NSAttributedString+Replace.h"
 #import "OutlineExtractor.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 /** Delay for message collection updates in seconds */
 static const double MESSAGE_UPDATE_DELAY = 1.5;
@@ -59,7 +60,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             observers = [NSMutableSet new];
             synctex = [ForwardSynctexController new];
             [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
-            [self registerModelObserver];
 
             self.tabViewItem = [TMTTabViewItem new];
             [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption : NSLocalizedString(@"Untitled", @"Untitled")}];
@@ -83,7 +83,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLineUpdateNotification:) name:TMTShowLineInTextViewNotification object:self.model];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBackwardSynctex:) name:TMTViewSynctexChanged object:self.model];
-        [self.model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+        [self.model addObserver:self forKeyPath:@"messages" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
+        
 
     }
 
