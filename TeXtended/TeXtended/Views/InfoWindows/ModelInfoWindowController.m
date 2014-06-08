@@ -152,7 +152,7 @@
         NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
 
         if ([key isEqualToString:@"canRemoveMainDocument"]) {
-            keys = [keys setByAddingObjectsFromArray:@[@"model.mainDocuments.@count", @"mainDocumentsController.selectionIndexes.@count"]];
+            keys = [keys setByAddingObjectsFromArray:@[@"model.mainDocuments.@count", @"mainDocumentsController.selectionIndexes.@count", @"mainDocumentsController.selectionIndexes"]];
         }
         return keys;
     }

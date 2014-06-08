@@ -74,18 +74,18 @@
                         <tabViewItems>
                             <tabViewItem label="Main Documents" identifier="1" id="eSw-y1-xbK">
                                 <view key="view" id="tYe-ov-6st">
-                                    <rect key="frame" x="10" y="25" width="184" height="181"/>
+                                    <rect key="frame" x="10" y="29" width="184" height="177"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="GDG-B7-F4m">
-                                            <rect key="frame" x="17" y="40" width="150" height="135"/>
+                                            <rect key="frame" x="17" y="40" width="150" height="131"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="p4W-Gl-2LZ">
-                                                <rect key="frame" x="1" y="1" width="148" height="133"/>
+                                                <rect key="frame" x="1" y="1" width="148" height="129"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" viewBased="YES" id="new-cz-gLT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="133"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="129"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,8 +117,8 @@
                                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <binding destination="IbJ-ok-lhJ" name="toolTip" keyPath="objectValue.texPath" id="w1D-Yn-v9G"/>
                                                                                     <binding destination="IbJ-ok-lhJ" name="value" keyPath="objectValue.texName" id="QT8-U0-sZh"/>
+                                                                                    <binding destination="IbJ-ok-lhJ" name="toolTip" keyPath="objectValue.texPath" id="w1D-Yn-v9G"/>
                                                                                 </connections>
                                                                             </textField>
                                                                         </subviews>
@@ -169,7 +169,15 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="remove:" target="63J-IZ-Arh" id="gCv-8h-VZr"/>
-                                                <binding destination="-2" name="enabled" keyPath="self.canRemoveMainDocument" id="c20-OV-kEr"/>
+                                                <binding destination="63J-IZ-Arh" name="enabled2" keyPath="selectionIndexes.count" previousBinding="Sg1-bB-0Xh" id="umd-DU-8Ri">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="self.canRemoveMainDocument" id="Sg1-bB-0Xh"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -220,8 +228,8 @@
                                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                                 <connections>
-                                                                                    <binding destination="xzO-DK-oRt" name="toolTip" keyPath="objectValue.path" id="Twv-Sh-oah"/>
                                                                                     <binding destination="xzO-DK-oRt" name="value" keyPath="objectValue.name" id="NuN-Uo-rZX"/>
+                                                                                    <binding destination="xzO-DK-oRt" name="toolTip" keyPath="objectValue.path" id="Twv-Sh-oah"/>
                                                                                 </connections>
                                                                             </textField>
                                                                         </subviews>
