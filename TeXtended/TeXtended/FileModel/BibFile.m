@@ -213,4 +213,33 @@
         self.path = [newURL path];
     }
 
+#pragma mark - Hash & Equals
+
+
+    - (BOOL)isEqual:(id)other
+    {
+        if (other == self)
+            return YES;
+        if (!other || ![[other class] isEqual:[self class]])
+            return NO;
+
+        return [self isEqualToFile:other];
+    }
+
+    - (BOOL)isEqualToFile:(BibFile *)file
+    {
+        if (self == file)
+            return YES;
+        if (file == nil)
+            return NO;
+        if (self.path != file.path && ![self.path isEqualToString:file.path])
+            return NO;
+        return YES;
+    }
+
+    - (NSUInteger)hash
+    {
+        return [self.path hash];
+    }
+
 @end

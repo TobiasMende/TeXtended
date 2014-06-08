@@ -92,4 +92,10 @@
  * @param absolutePath the absolute path to the project file
  */
     - (void)finishInitWithPath:(NSString *)absolutePath;
+
+    - (BOOL)isEqual:(id)other;
+
+    - (BOOL)isEqualToFile:(BibFile *)file;
+
+    - (NSUInteger)hash;
 @end

@@ -54,11 +54,12 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return self;
     }
 
-- (void)projectModelIsDeallocating {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
+    - (void)projectModelIsDeallocating
+    {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
+    }
 
 
 #pragma mark - NSCoding Support
@@ -305,7 +306,9 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
         file.project = self;
         file.path = path;
-        self.bibFiles = [self.bibFiles arrayByAddingObject:file];
+        if (![self.bibFiles containsObject:file]) {
+            self.bibFiles = [self.bibFiles arrayByAddingObject:file];
+        }
     }
 
 
