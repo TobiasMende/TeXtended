@@ -16,10 +16,10 @@
 @interface ProjectModel ()
 
 /** Method for configuring the default settings of a project
- *
- * @param context the context.
- *
- */
+*
+* @param context the context.
+*
+*/
     - (void)initDefaults;
 
 @end
@@ -30,14 +30,18 @@
 
     - (void)dealloc
     {
-        for (DocumentModel *d in self.documents) {
-            d.project = nil;
-        }
-        self.properties.project = nil;
-        for (BibFile *d in self.bibFiles) {
-            d.project = nil;
-        }
+        [self projectModelIsDeallocating];
     }
+
+- (void)projectModelIsDeallocating {
+    for (DocumentModel *d in self.documents) {
+        [d projectModelIsDeallocating];
+    }
+    
+    for (BibFile *d in self.bibFiles) {
+        d.project = nil;
+    }
+}
 
     - (void)finishInitWithPath:(NSString *)absolutePath
     {
@@ -46,9 +50,7 @@
         NSArray *documents = self.documents.allObjects;
         [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         [documents makeObjectsPerformSelector:@selector(buildOutline)];
-        for (BibFile *f in self.bibFiles) {
-            [f finishInitWithPath:absolutePath];
-        }
+        [self.bibFiles makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
     }
 
     - (id)init
@@ -110,6 +112,10 @@
     }
 
 # pragma mark - Getter
+
+- (Compilable *)mainCompilable {
+    return self;
+}
 
     - (NSString *)folderPath
     {

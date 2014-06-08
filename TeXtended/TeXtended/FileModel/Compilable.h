@@ -11,6 +11,7 @@
 #import "Constants.h"
 
 @class CompileSetting, DocumentModel, ProjectModel, BibFile, TMTBibTexEntry;
+@class __DocumentModelProjectSyncState;
 
 /**
  * Abstract parent class for ProjectModel and DocumentModel which combines similar properties of both subclasses.
@@ -32,7 +33,7 @@
     @property (nonatomic, strong) NSArray *mainDocuments;
 
 /** A set of all bibFiles connected to this project */
-    @property (strong) NSMutableArray *bibFiles;
+    @property (strong) NSArray *bibFiles;
 
     @property (readonly) NSString *identifier;
 
@@ -96,6 +97,8 @@
 
     - (void)updateCompileSettingBindings:(CompileMode)mode;
 
+- (void)projectModelIsDeallocating;
+
 
 #pragma mark MainDocument Collection Helpers
 
@@ -103,18 +106,30 @@
 
     - (void)removeMainDocument:(DocumentModel *)value;
 
-    - (void)addMainDocuments:(NSArray *)values;
-
-    - (void)removeMainDocuments:(NSArray *)values;
-
 
 #pragma mark BibFile Collection Helpers
 
     - (void)addBibFileWithPath:(NSString *)path;
 
-    - (void)removeBibFileWithIndex:(NSUInteger)index;
-
     - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(__autoreleasing NSString **)path;
 
+#pragma mark Encoding Extension
 
+    - (void)encodeWithCoder:(NSCoder *)coder andProjectSyncState:(__DocumentModelProjectSyncState *)state;
+
+
+@end
+
+
+@interface __DocumentModelProjectSyncState : NSObject
+
+    + (__DocumentModelProjectSyncState *)fullyUnsynced;
+
+    + (__DocumentModelProjectSyncState *)fullySynced;
+
+    @property BOOL encoding;
+
+    @property BOOL mainDocuments;
+
+    @property BOOL bibFiles;
 @end

@@ -19,10 +19,10 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
 @interface Compilable ()
 
-    - (NSMutableArray *)convertMainDocuments:(id)docs;
+    - (NSArray *)convertMainDocuments:(id)docs;
 
 /** This method coverts bibfiles from older project versions from NSSet to NSArray */
-    - (NSMutableArray *)convertBibFiles:(id)bibfiles;
+    - (NSArray *)convertBibFiles:(id)bibfiles;
 
 @end
 
@@ -54,10 +54,21 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return self;
     }
 
+- (void)projectModelIsDeallocating {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
 
 #pragma mark - NSCoding Support
 
     - (void)encodeWithCoder:(NSCoder *)aCoder
+    {
+        [self encodeWithCoder:aCoder andProjectSyncState:nil];
+    }
+
+    - (void)encodeWithCoder:(NSCoder *)aCoder andProjectSyncState:(__DocumentModelProjectSyncState *)state
     {
         if (self.hasDraftCompiler) {
             [aCoder encodeObject:self.draftCompiler forKey:@"draftCompiler"];
@@ -68,9 +79,15 @@ static NSUInteger LAST_IDENTIFIER = 0;
         if (self.hasFinalCompiler) {
             [aCoder encodeObject:self.finalCompiler forKey:@"finalCompiler"];
         }
-        [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
-        [aCoder encodeObject:_encoding forKey:@"encoding"];
-        [aCoder encodeObject:_bibFiles forKey:@"bibFiles"];
+        if (!state || !state.mainDocuments) {
+            [aCoder encodeObject:_mainDocuments forKey:@"mainDocuments"];
+        }
+        if (!state || !state.encoding) {
+            [aCoder encodeObject:_encoding forKey:@"encoding"];
+        }
+        if (!state || !state.bibFiles) {
+            [aCoder encodeObject:_bibFiles forKey:@"bibFiles"];
+        }
     }
 
     - (id)initWithCoder:(NSCoder *)aDecoder
@@ -109,6 +126,9 @@ static NSUInteger LAST_IDENTIFIER = 0;
         if (![object isKindOfClass:[Compilable class]]) {
             return NO;
         }
+        if (self == object) {
+            return YES;
+        }
         Compilable *other = (Compilable *) object;
         return [self.path isEqualTo:other.path];
     }
@@ -116,30 +136,30 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
 #pragma mark - Converter Methods
 
-    - (NSMutableArray *)convertBibFiles:(id)bibfiles
+    - (NSArray *)convertBibFiles:(id)bibfiles
     {
         if ([bibfiles isKindOfClass:[NSSet class]]) {
             NSMutableArray *finalBibfiles = [NSMutableArray arrayWithCapacity:[(NSSet *) bibfiles count]];
             for (id b in bibfiles) {
                 [finalBibfiles addObject:b];
             }
-            return finalBibfiles;
+            return [finalBibfiles copy];
         }
         else {
-            return bibfiles;
+            return [bibfiles copy];
         }
     }
 
-    - (NSMutableArray *)convertMainDocuments:(id)docs
+    - (NSArray *)convertMainDocuments:(id)docs
     {
         if ([docs isKindOfClass:[NSSet class]]) {
             NSMutableArray *array = [NSMutableArray arrayWithCapacity:[docs count]];
             for (id obj in docs) {
                 [array addObject:obj];
             }
-            return array;
+            return [array copy];
         }
-        return docs;
+        return [docs copy];
     }
 
 
@@ -157,12 +177,16 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
     - (Compilable *)mainCompilable
     {
-        return self;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
     - (ProjectModel *)project
     {
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
     - (NSString *)debugDescription
@@ -170,7 +194,8 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return [NSString stringWithFormat:@"%@[%@]", [self class], self.path];
     }
 
-    - (id)debugQuickLookObject {
+    - (id)debugQuickLookObject
+    {
         return [NSURL fileURLWithPath:self.path];
     }
 
@@ -244,37 +269,20 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
     - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate
     {
-        DDLogError(@"This is not my job. Ask ProjectModel or DocumentModel instead.");
-        return nil;
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
 
 #pragma mark - MainDocument Collection Helpers
-
-    - (void)addMainDocuments:(NSArray *)values
-    {
-        if (!self.mainDocuments) {
-            self.mainDocuments = [NSArray new];
-        }
-        self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:values];
-    }
-
-    - (void)removeMainDocuments:(NSArray *)values
-    {
-        NSMutableArray *tmp = [self.mainDocuments mutableCopy];
-
-        for (NSObject *obj in values) {
-            [tmp removeObject:obj];
-        }
-        self.mainDocuments = tmp;
-    }
 
     - (void)removeMainDocument:(DocumentModel *)value
     {
         NSMutableArray *tmp = [self.mainDocuments mutableCopy];
 
         [tmp removeObject:value];
-        self.mainDocuments = tmp;
+        self.mainDocuments = [tmp copy];
     }
 
     - (void)addMainDocument:(DocumentModel *)value
@@ -297,19 +305,11 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
         file.project = self;
         file.path = path;
-        [self willChangeValueForKey:@"bibFiles"];
-        [self.bibFiles addObject:file];
-        [self didChangeValueForKey:@"bibFiles"];
+        self.bibFiles = [self.bibFiles arrayByAddingObject:file];
     }
 
-    - (void)removeBibFileWithIndex:(NSUInteger)index
-    {
-        [self willChangeValueForKey:@"bibFiles"];
-        [self.bibFiles removeObjectAtIndex:index];
-        [self didChangeValueForKey:@"bibFiles"];
-    }
 
-    - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString * __autoreleasing *)path
+    - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString *__autoreleasing *)path
     {
         TMTBibTexEntry *citeEntry = nil;
 

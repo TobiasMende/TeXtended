@@ -54,7 +54,7 @@
 
     @property NSArray *messages;
 
-    @property (nonatomic, strong) NSMutableArray *outlineElements;
+    @property (nonatomic, strong) NSArray *outlineElements;
 
 #pragma mark Readonly Properties
 

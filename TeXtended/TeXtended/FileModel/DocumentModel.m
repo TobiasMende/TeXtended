@@ -11,7 +11,6 @@
 #import "BibFile.h"
 #import "CompileSetting.h"
 #import "Constants.h"
-#import "ConsoleManager.h"
 #import "DocumentModel.h"
 #import "NSString+PathExtension.h"
 #import "OutlineExtractor.h"
@@ -21,6 +20,23 @@
 
 static const NSArray *GENERATOR_TYPES_TO_USE;
 
+@implementation __DocumentModelProjectSyncState
+
+    + (__DocumentModelProjectSyncState *)fullyUnsynced
+    {
+        return [self new];
+    }
+
+    + (__DocumentModelProjectSyncState *)fullySynced
+    {
+        __DocumentModelProjectSyncState *instance = [self new];
+        instance.bibFiles = YES;
+        instance.mainDocuments = YES;
+        instance.encoding = YES;
+        return instance;
+    }
+
+@end
 
 @interface DocumentModel ()
 
@@ -29,6 +45,12 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)updateMessages:(NSArray *)messages;
 
     - (void)mainDocumentsMessagesDidChange:(NSNotification *)note;
+
+    - (void)initProjectSyncState;
+
+    - (void)unsyncProjectState;
+
+    @property __DocumentModelProjectSyncState *__projectSyncState;
 
 @end
 
@@ -41,6 +63,50 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         DDLogInfo(@"dealloc");
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
+        [self unsyncProjectState];
+    }
+
+- (void)projectModelIsDeallocating {
+    @synchronized(self) {
+        [self unsyncProjectState];
+        self.project = nil;
+    }
+    
+}
+
+    - (void)unsyncProjectState
+    {
+        if (self.project) {
+            if (___projectSyncState.bibFiles) {
+                @try {
+                    DDLogVerbose(@"%@: unsync bibfiles", self);
+                    [self.project removeObserver:self forKeyPath:@"bibFiles"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove bibFiles observer: %@", exception.reason);
+                }
+            }
+            if (___projectSyncState.mainDocuments) {
+                @try {
+                    DDLogVerbose(@"%@: unsync mainDocuments", self);
+                    [self.project removeObserver:self forKeyPath:@"mainDocuments"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove mainDocuments observer: %@", exception.reason);
+                }
+            }
+            if (___projectSyncState.encoding) {
+                @try {
+                    DDLogVerbose(@"%@: unsync encoding", self);
+                    [self.project removeObserver:self forKeyPath:@"encoding"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove encoding observer: %@", exception.reason);
+                }
+            }
+        }
+        ___projectSyncState = nil;
+
     }
 
     - (void)finishInitWithPath:(NSString *)absolutePath
@@ -72,18 +138,16 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
         self.outlineElements = [NSMutableArray new];
         globalMessagesMap = [NSMutableDictionary new];
-        __unsafe_unretained typeof (self) weakSelf = self;
+        __unsafe_unretained typeof(self) weakSelf = self;
         if (!self.liveCompile) {
             [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
-            removeLiveCompileObserver = ^(void)
-            {
+            removeLiveCompileObserver = ^(void) {
                 [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
             };
         }
         if (!self.openOnExport) {
             [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
-            removeOpenOnExportObserver = ^(void)
-            {
+            removeOpenOnExportObserver = ^(void) {
                 [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
             };
         }
@@ -94,14 +158,40 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         [self updateCompileSettingBindings:final];
     }
 
+    - (void)initProjectSyncState
+    {
+        if (self.project) {
+            ___projectSyncState = [__DocumentModelProjectSyncState fullyUnsynced];
+
+            if (!super.bibFiles) {
+                DDLogVerbose(@"%@: sync bibfiles", self);
+                super.bibFiles = [self.project.bibFiles copy];
+                [self.project addObserver:self forKeyPath:@"bibFiles" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.bibFiles = YES;
+            }
+            if (!super.mainDocuments) {
+                DDLogVerbose(@"%@: sync mainDocuments", self);
+                super.mainDocuments = [self.project.mainDocuments copy];
+                [self.project addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.mainDocuments = YES;
+            }
+
+            if (!super.encoding) {
+                DDLogVerbose(@"%@: sync encoding", self);
+                super.encoding = [self.project.encoding copy];
+                [self.project addObserver:self forKeyPath:@"encoding" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.encoding = YES;
+            }
+
+        } else {
+            ___projectSyncState = nil;
+        }
+
+    }
+
     + (void)initialize
     {
         if ([self class] == [DocumentModel class]) {
-            @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
-                    [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
-                    [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
-                    [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
-                    [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding]];
             GENERATOR_TYPES_TO_USE = @[@(TMTLogFileParser), @(TMTLacheckParser), @(TMTChktexParser)];
         }
     }
@@ -110,7 +200,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)encodeWithCoder:(NSCoder *)aCoder
     {
-        [super encodeWithCoder:aCoder];
+
+        [super encodeWithCoder:aCoder andProjectSyncState:___projectSyncState];
         [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
         [aCoder encodeConditionalObject:self.project forKey:@"project"];
         NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
@@ -141,7 +232,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 #pragma mark - Loading & Saving
 
-    - (NSString *)loadContent:(NSError * __autoreleasing *)error
+    - (NSString *)loadContent:(NSError *__autoreleasing *)error
     {
         if (!self.systemPath) {
             if (!self.texPath) {
@@ -174,7 +265,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return content;
     }
 
-    - (BOOL)saveContent:(NSString *)content error:(NSError * __autoreleasing *)error
+    - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error
     {
         if (!self.systemPath) {
             return NO;
@@ -210,12 +301,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 #pragma mark -  Getter
 
-    - (NSMutableArray *)bibFiles
+    - (NSArray *)bibFiles
     {
-        if (self.project) {
-            return self.project.bibFiles;
-        }
-        else if (![super bibFiles] && self.texPath) {
+
+        if (!super.bibFiles && self.texPath) {
             NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
             NSMutableArray *matches = [NSMutableArray new];
             NSFileManager *manager = [NSFileManager defaultManager];
@@ -233,10 +322,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
                 }
             }
             if (matches.count > 0) {
-                [super setBibFiles:matches];
+                self.bibFiles = matches;
             }
         }
-        return [super bibFiles];
+        return super.bibFiles;
     }
 
     - (DocumentModel *)currentMainDocument
@@ -245,14 +334,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             self.currentMainDocument = self.mainDocuments.firstObject;
         }
         return _currentMainDocument;
-    }
-
-    - (NSNumber *)encoding
-    {
-        if (!super.encoding && self.project) {
-            return self.project.encoding;
-        }
-        return super.encoding;
     }
 
     - (NSString *)header
@@ -273,27 +354,15 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (Compilable *)mainCompilable
     {
-        if (self.project) {
-            return [self.project mainCompilable];
-        }
-        return [super mainCompilable];
+        return self.project ? self.project.mainCompilable : self;
     }
 
-    - (NSArray *)mainDocuments
-    {
-        NSArray *md = nil;
-
-        if ([super mainDocuments] && [[super mainDocuments] count] > 0) {
-            md = [super mainDocuments];
-        }
-        if (!md && self.project) {
-            md = [self.project mainDocuments];
-        }
-        if (!md) {
-            md = @[self];
-        }
-        return md;
+- (NSArray *)mainDocuments {
+    if ([super mainDocuments]) {
+        return [super mainDocuments];
     }
+    return @[self];
+}
 
     - (NSString *)name
     {
@@ -374,9 +443,9 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         _openOnExport = openOnExport;
     }
 
-    - (void)setOutlineElements:(NSMutableArray *)outlineElements
+    - (void)setOutlineElements:(NSArray *)outlineElements
     {
-        _outlineElements = outlineElements;
+        _outlineElements = [outlineElements copy];
         if (_outlineElements) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath : [NSMutableArray arrayWithObject:self]}];
         }
@@ -390,6 +459,41 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             if ([_texPath isAbsolutePath]) {
                 [self buildOutline];
             }
+        }
+    }
+
+    - (void)setBibFiles:(NSArray *)bibFiles
+    {
+        if (___projectSyncState.bibFiles) {
+            [self.project removeObserver:self forKeyPath:@"bibFiles"];
+            ___projectSyncState.bibFiles = NO;
+        }
+        super.bibFiles = bibFiles;
+    }
+
+    - (void)setMainDocuments:(NSArray *)mainDocuments
+    {
+        if (___projectSyncState.mainDocuments) {
+            [self.project removeObserver:self forKeyPath:@"mainDocuments"];
+            ___projectSyncState.mainDocuments = NO;
+        }
+        super.mainDocuments = mainDocuments;
+    }
+
+    - (void)setEncoding:(NSNumber *)encoding
+    {
+        if (___projectSyncState.encoding) {
+            [self.project removeObserver:self forKeyPath:@"encoding"];
+            ___projectSyncState.encoding = NO;
+        }
+        super.encoding = encoding;
+    }
+
+    - (void)setProject:(ProjectModel *)project
+    {
+        if (project != _project) {
+            _project = project;
+            [self initProjectSyncState];
         }
     }
 
@@ -414,31 +518,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return nil;
     }
 
-    - (void)addMainDocument:(DocumentModel *)value
-    {
-        DDLogError(@"Here");
-        if ([self.mainDocuments containsObject:value]) {
-            return;
-        }
-        if (![super mainDocuments]) {
-            [super setMainDocuments:[NSArray new]];
-            if (self.project) {
-                super.mainDocuments = [super.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
-            }
-        }
-        super.mainDocuments = [super.mainDocuments arrayByAddingObject:value];
-    }
-
-    - (void)addMainDocuments:(NSArray *)values
-    {
-        if (![super mainDocuments]) {
-            self.mainDocuments = [NSArray new];
-            if (self.project) {
-                self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
-            }
-        }
-        self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:values];
-    }
 
 # pragma mark - Key Value Observing
 
@@ -446,21 +525,22 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     {
         // Pass notifications if change affects this model:
         if ([object isEqualTo:self.project]) {
-            if (![self valueForKeyPath:keyPath]) {
-                [self didChangeValueForKey:keyPath];
+            if ([keyPath isEqualToString:@"bibFiles"]) {
+                super.bibFiles = self.project.bibFiles;
+            } else if ([keyPath isEqualToString:@"mainDocuments"]) {
+                super.mainDocuments = self.project.mainDocuments;
+            } else if ([keyPath isEqualToString:@"encoding"]) {
+                super.encoding = self.project.encoding;
             }
-        }
-        if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
+        } else if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
             if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]]) {
                 self.liveCompile = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
-                return;
-            }
-            if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
+            } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
                 self.openOnExport = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
-                return;
             }
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 
     + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
@@ -588,3 +668,5 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     }
 
 @end
+
+
