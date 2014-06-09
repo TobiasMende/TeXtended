@@ -16,7 +16,7 @@
         return @"<<invalid type>>";
     }
     NSString *unit = @"B";
-    NSUInteger size = [obj longLongValue];
+    CGFloat size = [obj doubleValue];
     if (size >= 1024) {
         unit = @"KB";
         size /= 1024;
@@ -34,6 +34,6 @@
         size /= 1024;
     }
     
-    return [NSString stringWithFormat:@"%li %@", size, unit];
+    return [NSString stringWithFormat:@"%li %@", (NSUInteger)(size+0.5), unit];
 }
 @end
