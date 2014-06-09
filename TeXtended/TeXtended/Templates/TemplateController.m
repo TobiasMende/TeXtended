@@ -174,6 +174,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     {
         Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
         self.loadHandler(template, YES);
+        [self close];
     }
 
     - (IBAction)save:(id)sender
