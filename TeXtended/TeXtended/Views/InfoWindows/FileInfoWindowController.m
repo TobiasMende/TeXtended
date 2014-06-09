@@ -10,11 +10,19 @@
 #import "TMTQuickLookView.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+static const NSDictionary *FILE_TYPE_INFOS;
+
 @interface FileInfoWindowController ()
 
 @end
 
 @implementation FileInfoWindowController
+
++ (void)initialize {
+    if ([self class] == [FileInfoWindowController class]) {
+        FILE_TYPE_INFOS = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"FileTypeInfos" ofType:@"plist"]];
+    }
+}
 
 - (id)init
 {
@@ -76,11 +84,21 @@
 }
 
 - (NSString *)fileType {
-    return self.wrapper.fileAttributes.fileType;
+    
+    NSWorkspace *ws = [NSWorkspace sharedWorkspace];
+    return [ws localizedDescriptionForType:[ws typeOfFile:self.fileURL.path error:nil]];
 }
 
 - (NSString *)fileTypeInfo {
-    return @"TODO";
+    
+    for (NSString *extension in FILE_TYPE_INFOS.allKeys) {
+        if ([self.fileName hasSuffix:[NSString stringWithFormat:@".%@", extension]]) {
+            return FILE_TYPE_INFOS[extension];
+        }
+    }
+    
+    return nil;
+    
 }
 
 @end
