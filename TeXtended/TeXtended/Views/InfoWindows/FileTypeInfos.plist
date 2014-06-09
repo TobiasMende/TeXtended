@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>nav</key>
+	<string>This file is used by the Beamer package of TeX/LaTeX. It stores informations of the navigation system.</string>
+	<key>ps</key>
+	<string>A PostScript file. PostScript is a language to descibe vector graphics.</string>
+	<key>dvi</key>
+	<string>The device independent file format is a output format of TeX/LaTeX. It descipes pages.</string>
+	<key>ilg</key>
+	<string>Stores the index of TeX/LaTeX. This file is needed to save the index between multiple compile calls.</string>
+	<key>ind</key>
+	<string>Stores the index of TeX/LaTeX. This file is needed to save the index between multiple compile calls.</string>
+	<key>idx</key>
+	<string>Stores the index of TeX/LaTeX. This file is needed to save the index between multiple compile calls.</string>
+	<key>lot</key>
+	<string>The file stores the list of tables of TeX/LaTeX. This file is needed to save the list of tables between multiple compile calls.</string>
+	<key>lof</key>
+	<string>The file stores the list of figures of TeX/LaTeX. This file is needed to save the list of figures between multiple compile calls.</string>
+	<key>glg</key>
+	<string>Stores information about the glossary of TeX/LaTeX.</string>
+	<key>gls</key>
+	<string>Stores information about the glossary of TeX/LaTeX.</string>
+	<key>glo</key>
+	<string>Stores information about the glossary of TeX/LaTeX.</string>
+	<key>toc</key>
+	<string>Stores the table of contents. This file is needed to save the table of contents between multiple compile calls.</string>
+	<key>blg</key>
+	<string>A file storing bibliographic informations of BibTeX.</string>
+	<key>out</key>
+	<string>This file is used by the Hyperref package within TeX/LaTeX. It stores references and links within the document.</string>
+	<key>bbl</key>
+	<string>A file storing bibliographic informations of BibTeX.</string>
+	<key>synctex.gz</key>
+	<string>Storage of the SyncTeX program. SyncTeX checks file syntax and produces warnings for incorrent LaTeX code.  </string>
+	<key>log</key>
+	<string>A log file for TeX/LaTeX. Stores the terminal output of a compile call.</string>
+	<key>aux</key>
+	<string>An auxiliary reference file for TeX/LaTeX. Store informations between multiple compile calls.</string>
+</dict>
+</plist>
