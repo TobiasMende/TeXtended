@@ -7,6 +7,7 @@
 //
 
 #import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/GenericFilePresenter.h>
 
 #import "BibFile.h"
 #import "CompileSetting.h"
@@ -16,6 +17,7 @@
 #import "OutlineExtractor.h"
 #import "ProjectModel.h"
 #import "TrackingMessage.h"
+#import <TMTHelperCollection/FileObserver.h>
 
 
 static const NSArray *GENERATOR_TYPES_TO_USE;
@@ -52,6 +54,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)dealloc
     {
         DDLogInfo(@"dealloc");
+        [_filePresenter terminate];
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
         [self unsyncProjectState];
@@ -141,7 +144,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             };
         }
 
-
+        _filePresenter = [[GenericFilePresenter alloc] initWithOperationQueue:[NSOperationQueue currentQueue]];
+        _filePresenter.observer =self;
         [self updateCompileSettingBindings:live];
         [self updateCompileSettingBindings:draft];
         [self updateCompileSettingBindings:final];
@@ -451,6 +455,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         if (_texPath != texPath) {
             _texPath = texPath;
             if ([_texPath isAbsolutePath]) {
+                [_filePresenter setPath:texPath];
                 [self buildOutline];
             }
         }
@@ -662,6 +667,22 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         self.messages = tmp;
+    }
+
+#pragma mark - File Observer
+
+    - (void)presentedItemDidMoveToURL:(NSURL *)newURL {
+        NSString *oldPDFPath = self.pdfPath;
+        NSString *oldTexPath = self.texPath;
+        self.texPath = newURL.path;
+        self.systemPath = newURL.path;
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:oldPDFPath]) {
+            return;
+        }
+        NSString *relativePDFPath = [oldPDFPath relativePathWithBase:[oldTexPath stringByDeletingLastPathComponent]];
+        self.pdfPath = [relativePDFPath absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
+        
     }
 
 @end

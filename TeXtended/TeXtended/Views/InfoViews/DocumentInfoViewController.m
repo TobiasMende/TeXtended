@@ -25,6 +25,7 @@
     - (void)awakeFromNib
     {
         [super awakeFromNib];
+        self.quickLook.shouldCloseWithWindow = NO;
         [self.quickLook bind:@"previewItem" toObject:self withKeyPath:@"previewItem" options:nil];
     }
 
@@ -51,5 +52,10 @@
     {
         return [[NSFileManager defaultManager] fileExistsAtPath:self.model.pdfPath];
     }
+
+-(void)dealloc {
+    [self.quickLook close];
+    
+}
 
 @end

@@ -11,7 +11,8 @@
 #import <Foundation/Foundation.h>
 
 @class ProjectModel, OutlineElement, OutlineExtractor;
-
+@class GenericFilePresenter;
+@protocol FileObserver;
 
 /**
  * Instances of this class represent a core data object containing information about a single latex file.
@@ -19,7 +20,7 @@
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentModel : Compilable
+@interface DocumentModel : Compilable<FileObserver>
     {
         void (^removeLiveCompileObserver)(void);
 
@@ -28,6 +29,8 @@
         DocumentModel *_currentMainDocument;
 
         NSMutableDictionary *globalMessagesMap;
+
+        GenericFilePresenter *_filePresenter;
     }
 
 #pragma mark - Properties

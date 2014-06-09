@@ -72,6 +72,7 @@
             [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
         }
         @try {
+            self.model.path = absoluteOriginalContentsURL.path;
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.model];
             [data writeToURL:url atomically:YES];
             for (DocumentController *dc in self.documentControllers) {
