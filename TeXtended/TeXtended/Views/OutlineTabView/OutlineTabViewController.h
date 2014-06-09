@@ -12,6 +12,7 @@
 @class MainWindowController, SMTabBar, SMTabBarItem;
 
 @interface OutlineTabViewController : NSViewController
+@property (strong) IBOutlet NSArrayController *mainDocumentsController;
 
     @property (assign) MainWindowController *mainWindowController;
 

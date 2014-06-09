@@ -399,6 +399,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return NSLocalizedString(@"Document", @"Document");
     }
 
+- (NSString *)description {
+    return self.texName;
+}
+
 #pragma mark - Setter
 
     - (void)setCurrentMainDocument:(DocumentModel *)currentMainDocument
@@ -468,6 +472,9 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             ___projectSyncState.mainDocuments = NO;
         }
         super.mainDocuments = mainDocuments;
+        if (![super.mainDocuments containsObject:self.currentMainDocument]) {
+            self.currentMainDocument = super.mainDocuments.firstObject;
+        }
     }
 
     - (void)setEncoding:(NSNumber *)encoding

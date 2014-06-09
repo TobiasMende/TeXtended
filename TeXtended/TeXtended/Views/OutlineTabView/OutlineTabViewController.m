@@ -12,6 +12,7 @@
 #import "SMTabBar.h"
 #import "MessageOutlineViewController.h"
 #import "StructureOutlineViewController.h"
+#import "MainDocument.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static const NSUInteger MESSAGE_TAB_TAG = 0;
@@ -82,70 +83,37 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
 
     }
 
+- (void)setCurrentDelegate:(NSObject<FirstResponderDelegate> *)currentDelegate {
+    if (_currentDelegate) {
+        [_currentDelegate removeObserver:self forKeyPath:@"model.currentMainDocument"];
+    }
+    _currentDelegate = currentDelegate;
+    if (_currentDelegate) {
+        [_currentDelegate addObserver:self forKeyPath:@"model.currentMainDocument" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+    }
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"model.currentMainDocument"]) {
+        [self updateViewForTab:self.tabBar.selectedItem.tag];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
     - (void)windowIsGoingToDie
     {
         [self unbind:@"currentDelegate"];
-        [self.currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
         for (NSMenuItem *item in self.selectionPopup.menu.itemArray) {
             [item unbind:@"title"];
         }
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 
-    - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-    {
-        [self mainDocumentsDidChange];
-    }
-
-    - (void)setCurrentDelegate:(NSObject <FirstResponderDelegate> *)currentDelegate
-    {
-        if (_currentDelegate != currentDelegate) {
-            if (_currentDelegate) {
-                [_currentDelegate removeObserver:self forKeyPath:@"model.mainDocuments"];
-            }
-            _currentDelegate = currentDelegate;
-            if (_currentDelegate) {
-                [_currentDelegate addObserver:self forKeyPath:@"model.mainDocuments" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
-            }
-        }
-    }
-
-    - (void)mainDocumentsDidChange
-    {
-        NSArray *mainDocuments = self.currentDelegate.model.mainDocuments;
-
-        for (NSMenuItem *item in self.selectionPopup.menu.itemArray) {
-            [item unbind:@"title"];
-        }
-        NSMenu *menu = [[NSMenu alloc] init];
-        for (DocumentModel *dm in mainDocuments) {
-            NSMenuItem *item = [[NSMenuItem alloc] init];
-            item.representedObject = dm;
-            [item bind:@"title" toObject:dm withKeyPath:@"texName" options:NULL];
-            [menu addItem:item];
-        }
-
-        DocumentModel *current = self.selectionPopup.selectedItem.representedObject;
-        NSInteger index = [self.selectionPopup indexOfItemWithRepresentedObject:current];
-        self.selectionPopup.menu = menu;
-
-        if (current) {
-
-            if (index >= 0) {
-                [self.selectionPopup selectItemAtIndex:index];
-            }
-        } else {
-            [self.selectionPopup selectItemAtIndex:0];
-        }
-
-        [self updateViewForTab:self.tabBar.selectedItem.tag];
-
-
-    }
-
     - (void)updateViewForTab:(NSUInteger)tag
     {
-        DocumentModel *model = [self.selectionPopup.selectedItem representedObject];
+        DocumentModel *model = self.currentDelegate.model.currentMainDocument;
         if (!model) {
             return;
         }
@@ -162,5 +130,8 @@ static const NSUInteger OUTLINE_TAB_TAG = 1;
         self.contentView.contentView = vc.view;
     }
 
+- (void)dealloc {
+    self.currentDelegate = nil;
+}
 
 @end
