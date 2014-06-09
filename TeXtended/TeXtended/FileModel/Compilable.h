@@ -125,8 +125,6 @@
 
     + (__DocumentModelProjectSyncState *)fullyUnsynced;
 
-    + (__DocumentModelProjectSyncState *)fullySynced;
-
     @property BOOL encoding;
 
     @property BOOL mainDocuments;

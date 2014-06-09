@@ -27,15 +27,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return [self new];
     }
 
-    + (__DocumentModelProjectSyncState *)fullySynced
-    {
-        __DocumentModelProjectSyncState *instance = [self new];
-        instance.bibFiles = YES;
-        instance.mainDocuments = YES;
-        instance.encoding = YES;
-        return instance;
-    }
-
 @end
 
 @interface DocumentModel ()
@@ -66,13 +57,11 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         [self unsyncProjectState];
     }
 
-- (void)projectModelIsDeallocating {
-    @synchronized(self) {
+    - (void)projectModelIsDeallocating
+    {
         [self unsyncProjectState];
         self.project = nil;
     }
-    
-}
 
     - (void)unsyncProjectState
     {
@@ -165,20 +154,20 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
             if (!super.bibFiles) {
                 DDLogVerbose(@"%@: sync bibfiles", self);
-                super.bibFiles = [self.project.bibFiles copy];
+                super.bibFiles = self.project.bibFiles;
                 [self.project addObserver:self forKeyPath:@"bibFiles" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.bibFiles = YES;
             }
             if (!super.mainDocuments) {
                 DDLogVerbose(@"%@: sync mainDocuments", self);
-                super.mainDocuments = [self.project.mainDocuments copy];
+                super.mainDocuments = self.project.mainDocuments;
                 [self.project addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.mainDocuments = YES;
             }
 
             if (!super.encoding) {
                 DDLogVerbose(@"%@: sync encoding", self);
-                super.encoding = [self.project.encoding copy];
+                super.encoding = self.project.encoding;
                 [self.project addObserver:self forKeyPath:@"encoding" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.encoding = YES;
             }
@@ -357,12 +346,13 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return self.project ? self.project.mainCompilable : self;
     }
 
-- (NSArray *)mainDocuments {
-    if ([super mainDocuments]) {
-        return [super mainDocuments];
+    - (NSArray *)mainDocuments
+    {
+        if ([super mainDocuments]) {
+            return [super mainDocuments];
+        }
+        return @[self];
     }
-    return @[self];
-}
 
     - (NSString *)name
     {
