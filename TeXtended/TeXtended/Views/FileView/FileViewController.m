@@ -371,7 +371,7 @@ static NSArray *INTERNAL_EXTENSIONS;
         }
         if (model) {
             if (!self.infoWindowController) {
-                self.infoWindowController = [ModelInfoWindowController new];
+                self.infoWindowController = [ModelInfoWindowController sharedInstance];
             }
             self.infoWindowController.model = model;
             [self.infoWindowController showWindow:self];
@@ -385,6 +385,7 @@ static NSArray *INTERNAL_EXTENSIONS;
             
         }
     }
+
 
 
 #pragma mark - Drag & Drop

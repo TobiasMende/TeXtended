@@ -263,6 +263,8 @@
 
     - (IBAction)showQuickPreviewAssistant:(id)sender;
 
+    
+
     - (void)makeKeyView;
 
     - (IBAction)selectCurrentBlock:(id)sender;

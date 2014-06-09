@@ -34,4 +34,7 @@
 
     - (void)setLiveCompileEnabled:(BOOL)enable;
 
+- (IBAction)showInformation:(id)sender;
+- (IBAction)showProjectInformation:(id)sender;
+
 @end

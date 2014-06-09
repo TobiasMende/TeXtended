@@ -93,11 +93,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
         [self.contentView collapseOrExpandSubviewAtIndex:1 animated:YES];
     }
 
-    - (IBAction)showInformation:(id)sender
-    {
-        // TODO: implement showInformation
-        DDLogWarn(@"showInformation not implemented yet!");
-    }
+
 
     - (IBAction)deleteTemporaryFiles:(id)sender
     {

@@ -12,7 +12,7 @@
 #import "CompileProcessHandler.h"
 #import "Constants.h"
 
-@class DocumentModel, TextViewController, Compiler, MainDocument;
+@class DocumentModel, TextViewController, Compiler, MainDocument,ModelInfoWindowController;
 
 /**
  * The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
@@ -22,6 +22,7 @@
  */
 @interface DocumentController : NSObject <ViewControllerProtocol, FirstResponderDelegate, CompileProcessHandler>
     {
+        ModelInfoWindowController *_modelInfoWindow;
     }
 
 /** The model handeld by this controller. */

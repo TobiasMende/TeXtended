@@ -16,6 +16,7 @@
         if (![self.contextualMenu performKeyEquivalent:theEvent]) {
             return [super performKeyEquivalent:theEvent];
         }
+
         return YES;
     }
 

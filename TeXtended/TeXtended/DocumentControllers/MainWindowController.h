@@ -66,7 +66,6 @@
 
     - (IBAction)toggleSecondView:(id)sender;
 
-    - (IBAction)showInformation:(id)sender;
 
     - (IBAction)deleteTemporaryFiles:(id)sender;
 

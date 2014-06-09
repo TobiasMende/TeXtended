@@ -165,7 +165,8 @@ CA
                         <action selector="revealInFinder:" target="-2" id="TYI-ew-5JR"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Information" keyEquivalent="i" id="jE3-r9-dsQ">
+                <menuItem title="Information" id="jE3-r9-dsQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showInformation:" target="-2" id="Z2Q-DZ-Y9g"/>
                     </connections>

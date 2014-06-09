@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MainDocument.h"
 
-@class MainWindowController, ProjectModel;
+@class MainWindowController, ProjectModel, ModelInfoWindowController;
 
 /**
  The ProjectDocument is a NSDocument instance holding all information, model and controller connections for a project.
@@ -18,7 +18,9 @@
  **Author:** Tobias Mende
  
  */
-@interface ProjectDocument : MainDocument
+@interface ProjectDocument : MainDocument {
+    ModelInfoWindowController *_modelInfoWindow;
+}
 
 
 /** The model of the project. */

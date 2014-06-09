@@ -25,6 +25,9 @@
 
 @implementation ModelInfoWindowController
 
+
+
+
 #pragma mark - Init & Dealloc
 
     - (void)dealloc
@@ -155,6 +158,19 @@
             keys = [keys setByAddingObjectsFromArray:@[@"model.mainDocuments.@count", @"mainDocumentsController.selectionIndexes.@count", @"mainDocumentsController.selectionIndexes"]];
         }
         return keys;
+    }
+
+    + (ModelInfoWindowController *)sharedInstance
+    {
+        static ModelInfoWindowController *_instance = nil;
+
+        @synchronized (self) {
+            if (_instance == nil) {
+                _instance = [[self alloc] init];
+            }
+        }
+
+        return _instance;
     }
 
 @end

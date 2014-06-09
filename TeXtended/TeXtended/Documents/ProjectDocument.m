@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
+#import <TMTHelperCollection/FileObserver.h>
 #import "ProjectDocument.h"
 #import "MainWindowController.h"
 #import "DocumentController.h"
@@ -16,6 +17,7 @@
 #import "EncodingController.h"
 #import "Template.h"
 #import "TemplateController.h"
+#import "ModelInfoWindowController.h"
 
 @interface ProjectDocument ()
 
@@ -51,6 +53,16 @@
         }
     }
 
+    - (void)showProjectInformation:(id)sender
+    {
+        if (!_modelInfoWindow) {
+            _modelInfoWindow = [ModelInfoWindowController sharedInstance];
+        }
+        _modelInfoWindow.model = self.model;
+        [_modelInfoWindow showWindow:self];
+
+    }
+
     - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action
     {
         [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
@@ -66,7 +78,7 @@
         }
     }
 
-    - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * __autoreleasing *)outError
+    - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError *__autoreleasing *)outError
     {
         if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
             [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
@@ -99,8 +111,7 @@
     {
         [super saveAsTemplate:sender];
         __unsafe_unretained ProjectDocument *weakSelf = self;
-        self.templateController.saveHandler = ^(Template *template, BOOL success)
-        {
+        self.templateController.saveHandler = ^(Template *template, BOOL success) {
             if (success) {
                 template.compilable = weakSelf.model;
                 NSError *error;
@@ -125,7 +136,7 @@
     }
 
 
-    - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError * __autoreleasing *)error
+    - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error
     {
         @try {
             id obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:absoluteURL]];
@@ -224,16 +235,16 @@
         panel.title = NSLocalizedString(@"Export as single document", @"Export as single document");
 
         [panel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result)
-        {
-            if (result == NSFileHandlingPanelOKButton) {
-                NSString *path = panel.URL.path;
-                NSError *error;
-                [content writeToFile:path atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
-                if (error) {
-                    DDLogError(@"Can't create document at %@: %@", path, error.userInfo);
-                }
-            }
-        }];
+                {
+                    if (result == NSFileHandlingPanelOKButton) {
+                        NSString *path = panel.URL.path;
+                        NSError *error;
+                        [content writeToFile:path atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
+                        if (error) {
+                            DDLogError(@"Can't create document at %@: %@", path, error.userInfo);
+                        }
+                    }
+                }];
     }
 
     - (void)dealloc

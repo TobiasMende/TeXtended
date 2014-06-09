@@ -16,6 +16,7 @@
 #import "TMTTabManager.h"
 #import "HighlightingTextView.h"
 #import "ExtendedPdf.h"
+#import "ModelInfoWindowController.h"
 
 @interface DocumentController ()
 
@@ -271,6 +272,36 @@
     {
         [self.compiler abort];
     }
+
+- (void)showInformation:(id)sender {
+    
+    if (!_modelInfoWindow) {
+        _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+    }
+    _modelInfoWindow.model = self.model;
+    [_modelInfoWindow showWindow:self];
+    
+}
+
+- (void)showProjectInformation:(id)sender {
+    if (self.model.project) {
+        if (!_modelInfoWindow) {
+            _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+        }
+        _modelInfoWindow.model = self.model.project;
+        [_modelInfoWindow showWindow:self];
+    } else {
+        NSBeep();
+    }
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(showProjectInformation:)) {
+        return self.model.project;
+    } else {
+        return [super respondsToSelector:aSelector];
+    }
+}
 
 #pragma mark -
 #pragma mark Dealloc

@@ -47,6 +47,8 @@
 
     @property (strong) IBOutlet NSBox *infoView;
 
+    + (ModelInfoWindowController *)sharedInstance;
+
 
 #pragma mark - Actions
 
@@ -55,5 +57,6 @@
     - (IBAction)addMainDocument:(id)sender;
 
     - (BOOL)canRemoveMainDocument;
+
 
 @end
