@@ -52,8 +52,4 @@
         return [[NSFileManager defaultManager] fileExistsAtPath:self.model.pdfPath];
     }
 
-    - (void)dealloc
-    {
-        //[self.quickLook unbind:@"previewItem"];
-    }
 @end

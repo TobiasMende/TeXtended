@@ -17,6 +17,7 @@
 #import "MainDocument.h"
 #import "ModelInfoWindowController.h"
 #import "FileOutlineView.h"
+#import "FileInfoWindowController.h"
 
 
 static const NSString *FILE_KEY_PATH = @"fileURL";
@@ -376,8 +377,12 @@ static NSArray *INTERNAL_EXTENSIONS;
             [self.infoWindowController showWindow:self];
         }
         else {
-            NSBeep();
-            // TODO: implement
+            if (!self.fileInfoWindowController) {
+                self.fileInfoWindowController = [FileInfoWindowController new];
+            }
+            self.fileInfoWindowController.fileURL = node.fileURL;
+            [self.fileInfoWindowController showWindow:self];
+            
         }
     }
 

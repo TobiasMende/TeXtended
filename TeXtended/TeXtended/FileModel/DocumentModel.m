@@ -400,7 +400,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     }
 
 - (NSString *)description {
-    return self.texName;
+    return self.texName ? self.texName : [super description];
 }
 
 #pragma mark - Setter

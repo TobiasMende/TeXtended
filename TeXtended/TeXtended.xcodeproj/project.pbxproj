@@ -156,6 +156,8 @@
 		D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */; };
 		D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */; };
 		D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E690188290F600CDC8C8 /* CompletionTableController.m */; };
+		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
+		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
@@ -626,6 +628,9 @@
 		D291E68F188290F600CDC8C8 /* CompletionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionTableController.h; sourceTree = "<group>"; };
 		D291E690188290F600CDC8C8 /* CompletionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionTableController.m; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
+		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
+		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
+		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
 		D296059D178091F7007C599B /* SplitviewLeft.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewLeft.pdf; sourceTree = "<group>"; };
 		D296059E178091F7007C599B /* SplitviewRight.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewRight.pdf; sourceTree = "<group>"; };
@@ -1187,6 +1192,9 @@
 				D2654AA8192752A500DE58B2 /* ModelInfoWindowController.h */,
 				D2654AA9192752A500DE58B2 /* ModelInfoWindowController.m */,
 				D2654AAA192752A500DE58B2 /* ModelInfoWindow.xib */,
+				D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */,
+				D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */,
+				D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */,
 			);
 			path = InfoWindows;
 			sourceTree = "<group>";
@@ -1866,6 +1874,7 @@
 				D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */,
 				D2078D501837B5B9001C4A56 /* MainDocumentsSelectionView.xib in Resources */,
 				D2078D551837B620001C4A56 /* BibFilesSelectionView.xib in Resources */,
+				D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */,
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
@@ -2004,6 +2013,7 @@
 				D2E7A4F41768E8F400B2BA3C /* ConsoleOutputView.m in Sources */,
 				D2E7A4F51768E8F400B2BA3C /* ConsoleInputField.m in Sources */,
 				D2E7A4F61768E8F400B2BA3C /* TextViewController.m in Sources */,
+				D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */,
 				D2E7A4F71768E8F400B2BA3C /* TexdocEntry.m in Sources */,
 				D20C97451826FA0F00E23911 /* ConsoleWindowController.m in Sources */,
 				D2E7A4F91768E8F400B2BA3C /* TexdocPanelController.m in Sources */,

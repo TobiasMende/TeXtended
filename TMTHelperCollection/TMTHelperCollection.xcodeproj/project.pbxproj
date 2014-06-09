@@ -36,6 +36,8 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
+		D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */; };
+		D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */; };
 		D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821619166B5F00C1B9E0 /* TMTTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D295821719166B5F00C1B9E0 /* TMTTextField.m */; };
 		D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +89,8 @@
 		D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNamedEncoding.m; sourceTree = "<group>"; };
 		D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTEncodingTransformer.h; sourceTree = "<group>"; };
 		D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTEncodingTransformer.m; sourceTree = "<group>"; };
+		D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTByteCountFormatter.h; sourceTree = "<group>"; };
+		D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTByteCountFormatter.m; sourceTree = "<group>"; };
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
 		D295821619166B5F00C1B9E0 /* TMTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTextField.h; sourceTree = "<group>"; };
 		D295821719166B5F00C1B9E0 /* TMTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTextField.m; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 		D22DC24618637A4F00997ADB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D29383B41945CDFF005C6C3F /* Formatter */,
 				D2654AD21927A4F400DE58B2 /* Encoding */,
 				D22DC24718637A4F00997ADB /* FileObserver.h */,
 				D22DC24818637A4F00997ADB /* GenericFilePresenter.h */,
@@ -256,6 +261,15 @@
 			path = Encoding;
 			sourceTree = "<group>";
 		};
+		D29383B41945CDFF005C6C3F /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */,
+				D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		D295821319166AF000C1B9E0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +303,7 @@
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
 				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
 				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
+				D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */,
 				D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
@@ -430,6 +445,7 @@
 				D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */,
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
+				D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */,
 				D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */,
 				D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */,
 				D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */,

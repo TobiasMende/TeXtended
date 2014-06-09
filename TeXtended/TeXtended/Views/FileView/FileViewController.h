@@ -11,7 +11,7 @@
 #import <Quartz/Quartz.h>
 
 
-@class FileNode, FileOutlineView, ModelInfoWindowController;
+@class FileNode, FileOutlineView, ModelInfoWindowController, FileInfoWindowController;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource>
     {
@@ -35,6 +35,8 @@
     @property (strong) QLPreviewPanel *previewPanel;
 
     @property ModelInfoWindowController *infoWindowController;
+
+@property FileInfoWindowController *fileInfoWindowController;
 
 
 #pragma mark - Methods
