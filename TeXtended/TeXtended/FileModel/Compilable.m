@@ -154,10 +154,10 @@ static NSUInteger LAST_IDENTIFIER = 0;
             for (id b in bibfiles) {
                 [finalBibfiles addObject:b];
             }
-            return [finalBibfiles copy];
+            return finalBibfiles;
         }
         else {
-            return [bibfiles copy];
+            return bibfiles;
         }
     }
 
@@ -168,9 +168,9 @@ static NSUInteger LAST_IDENTIFIER = 0;
             for (id obj in docs) {
                 [array addObject:obj];
             }
-            return [array copy];
+            return array;
         }
-        return [docs copy];
+        return docs;
     }
 
 
@@ -298,14 +298,16 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
     - (void)addMainDocument:(DocumentModel *)value
     {
-        if ([self.mainDocuments containsObject:value]) {
-            return;
-        }
-        if (!self.mainDocuments) {
-            self.mainDocuments = [NSArray new];
-        }
-        self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
+            if (!value || [self.mainDocuments containsObject:value]) {
+                return;
+            }
+            if (!self.mainDocuments) {
+                _mainDocuments = [NSArray new];
+            }
+        NSArray *array =[self.mainDocuments arrayByAddingObject:value];
+            self.mainDocuments = array;
     }
+
 
 
 #pragma mark BibFile Collection Helpers

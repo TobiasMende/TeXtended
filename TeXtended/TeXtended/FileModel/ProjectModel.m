@@ -11,6 +11,7 @@
 #import "DocumentModel.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 
 @interface ProjectModel ()
@@ -30,6 +31,7 @@
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc - %@", self);
         [self projectModelIsDeallocating];
     }
 
