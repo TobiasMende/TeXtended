@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FolderSelectionViewController">
             <connections>
+                <outlet property="pathControl" destination="iTQ-uv-zuN" id="k19-MO-A0Z"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -16,18 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfi-Tc-2if">
-                    <rect key="frame" x="21" y="18" width="398" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Fnv-YK-EFz">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="self.path" id="nam-wW-xsa"/>
-                    </connections>
-                </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Kw-R2-Kmt">
                     <rect key="frame" x="421" y="13" width="165" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -39,6 +28,21 @@
                         <action selector="select:" target="-2" id="66P-w5-Yhv"/>
                     </connections>
                 </button>
+                <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iTQ-uv-zuN">
+                    <rect key="frame" x="21" y="21" width="398" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="Zpz-YP-Nua">
+                        <font key="font" metaFont="smallSystem"/>
+                        <url key="url" string="file://localhost/Applications/"/>
+                        <allowedTypes>
+                            <string>folder</string>
+                        </allowedTypes>
+                    </pathCell>
+                    <connections>
+                        <action selector="select:" target="-2" id="OKS-OA-2bX"/>
+                        <binding destination="-2" name="value" keyPath="self.path" id="GWd-F8-5hh"/>
+                    </connections>
+                </pathControl>
             </subviews>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="vg9-0f-nYJ"/>

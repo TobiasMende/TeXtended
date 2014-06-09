@@ -12,6 +12,7 @@
 @class FolderSelectionViewController;
 
 @interface PropertyFileSelectionViewController : NSViewController <ProjectCreationAssistantViewController>
+    @property (strong) IBOutlet NSPathControl *pathControl;
 
     @property (strong) IBOutlet NSString *filePath;
 
@@ -20,5 +21,4 @@
     - (id)initWithFolderSelectionController:(FolderSelectionViewController *)folderSelection;
 
     - (IBAction)select:(id)sender;
-
 @end

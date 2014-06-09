@@ -27,6 +27,10 @@
     - (IBAction)select:(id)sender
     {
         NSOpenPanel *panel = [[NSOpenPanel alloc] init];
+        
+        if ([sender isEqual:self.pathControl]) {
+            panel.directoryURL = self.pathControl.clickedPathComponentCell.URL;
+        }
 
         panel.canChooseFiles = NO;
         panel.canChooseDirectories = YES;

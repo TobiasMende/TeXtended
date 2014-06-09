@@ -82,7 +82,7 @@
                 <pathControl focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NtV-vG-SXK">
                     <rect key="frame" x="100" y="89" width="275" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <pathCell key="cell" controlSize="small" selectable="YES" focusRingType="none" alignment="left" id="vOI-qc-15N">
+                    <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" id="vOI-qc-15N">
                         <font key="font" metaFont="smallSystem"/>
                         <url key="url" string="file://localhost/Applications/"/>
                     </pathCell>

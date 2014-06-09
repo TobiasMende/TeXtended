@@ -10,6 +10,7 @@
 #import "ProjectCreationAssistantViewController.h"
 
 @interface FolderSelectionViewController : NSViewController <ProjectCreationAssistantViewController>
+@property (strong) IBOutlet NSPathControl *pathControl;
 
     @property (strong) NSString *path;
 

@@ -28,6 +28,10 @@
     - (IBAction)select:(id)sender
     {
         NSOpenPanel *panel = [[NSOpenPanel alloc] init];
+        
+        if ([sender isEqual:self.pathControl]) {
+            panel.directoryURL = self.pathControl.clickedPathComponentCell.URL;
+        }
 
         panel.canChooseFiles = YES;
         panel.canChooseDirectories = NO;
@@ -53,5 +57,7 @@
             project.properties = [project modelForTexPath:self.filePath byCreating:YES];
         }
     }
+
+
 
 @end
