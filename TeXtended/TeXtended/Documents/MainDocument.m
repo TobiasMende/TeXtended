@@ -98,8 +98,8 @@
         id <FirstResponderDelegate> delegate = note.userInfo[TMTFirstResponderKey];
 
         self.currentDC = delegate;
-        if (note.object && [note.object isKindOfClass:[NSView class]]) {
-            [self addWindowController:(NSWindowController *) [note.object window].windowController];
+        if (note.userInfo[TMTNotificationSourceWindowKey]) {
+            [self addWindowController:[note.userInfo[TMTNotificationSourceWindowKey] windowController]];
         }
     }
 

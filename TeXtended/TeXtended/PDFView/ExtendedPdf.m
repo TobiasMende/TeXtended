@@ -368,7 +368,7 @@ static const NSSet *KEYS_TO_UNBIND;
     {
         BOOL result = [super becomeFirstResponder];
         if (result && self.firstResponderDelegate) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate, TMTNotificationSourceWindowKey : self.window}];
         }
         return result;
     }

@@ -161,6 +161,7 @@
 #define TMTOutlineChangePath @"TMTOutlineChangePath"
 #define TMTTexIdentifierKey @"TMTTexIdentifierKey"
 #define TMTPdfIdentifierKey @"TMTPdfIdentifierKey"
+#define TMTNotificationSourceWindowKey @"TMTNotificationSourceWindowKey"
 
 // --------------------------------------------------------------------------------
 #pragma mark - Notification Names

@@ -92,7 +92,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTShowLineInTextViewNotification object:self.model];
 
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:self.model];
         [self.model removeObserver:self forKeyPath:@"messages"];
     }
 

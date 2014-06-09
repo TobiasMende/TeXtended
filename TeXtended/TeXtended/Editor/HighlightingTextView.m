@@ -1113,7 +1113,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)makeKeyView
     {
         if (self.firstResponderDelegate) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate, TMTNotificationSourceWindowKey: self.window}];
         }
     }
 
