@@ -159,6 +159,8 @@
 #define TMTShouldShowDBLPKey @"TMTShouldShowDBLPKey"
 #define TMTDropCompletionKey @"TMTDropCompletionKey"
 #define TMTOutlineChangePath @"TMTOutlineChangePath"
+#define TMTTexIdentifierKey @"TMTTexIdentifierKey"
+#define TMTPdfIdentifierKey @"TMTPdfIdentifierKey"
 
 // --------------------------------------------------------------------------------
 #pragma mark - Notification Names
@@ -177,6 +179,7 @@
 #define TMTMainDocumentMessagesDidChangeNotification @"TMTMainDocumentMessagesDidChangeNotification"
 #define TMTPartialMessagesDidChangeNotification @"TMTPartialMessagesDidChangeNotification"
 #define TMTShowLineInTextViewNotification @"TMTShowLineInTextViewNotification"
+#define TMTDocumentModelIsDeleted @"TMTDocumentModelIsDeleted"
 #define TMT_CONSOLE_ADDED_MANAGER_CHANGED @"TMT_CONSOLE_ADDED_MANAGER_CHANGED"
 #define TMT_CONSOLE_REMOVED_MANAGER_CHANGED @"TMT_CONSOLE_REMOVED_MANAGER_CHANGED"
 #define TMTTabViewDidCloseNotification @"TMTTabViewDidCloseNotification"

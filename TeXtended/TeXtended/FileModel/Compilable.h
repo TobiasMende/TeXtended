@@ -117,6 +117,8 @@
 
     - (void)encodeWithCoder:(NSCoder *)coder andProjectSyncState:(__DocumentModelProjectSyncState *)state;
 
+    - (void)deleteDocumentModel:(DocumentModel *)model;
+
 
 @end
 

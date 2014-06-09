@@ -61,6 +61,16 @@ static NSUInteger LAST_IDENTIFIER = 0;
                                      userInfo:nil];
     }
 
+- (void)deleteDocumentModel:(DocumentModel *)model {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 #pragma mark - NSCoding Support
 

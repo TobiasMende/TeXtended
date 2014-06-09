@@ -194,6 +194,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)encodeWithCoder:(NSCoder *)aCoder
     {
 
+        if (![[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
+            return;
+        }
+        
         [super encodeWithCoder:aCoder andProjectSyncState:___projectSyncState];
         [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
         [aCoder encodeConditionalObject:self.project forKey:@"project"];
@@ -520,6 +524,25 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return nil;
     }
 
+- (void)deleteDocumentModel:(DocumentModel *)model {
+    if (model == self) {
+        return;
+    }
+    if (model == nil) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelIsDeleted object:nil userInfo:@{TMTTexIdentifierKey: self.texIdentifier.copy, TMTPdfIdentifierKey : self.pdfIdentifier.copy}];
+        if (self.project) {
+            
+            [self.project deleteDocumentModel:self];
+        }
+    }
+    
+    if ((!___projectSyncState || !___projectSyncState.mainDocuments )&& [[super mainDocuments] containsObject:model]) {
+        NSMutableArray *tmp = [[super mainDocuments] mutableCopy];
+        [tmp removeObject:model];
+        self.mainDocuments = tmp.copy;
+    }
+}
+
 
 # pragma mark - Key Value Observing
 
@@ -630,26 +653,30 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type
     {
+        @synchronized(self) {
         if (messages.count > 0) {
             globalMessagesMap[@(type)] = messages;
         }
         else if (globalMessagesMap[@(type)]) {
             [globalMessagesMap removeObjectForKey:@(type)];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey : [self mergedGlobalMessages]}];
+             [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey : self.mergedGlobalMessages.copy}];
+        }
     }
 
     - (NSArray *)mergedGlobalMessages
     {
-        NSMutableArray *result = [NSMutableArray new];
-
-        for (NSNumber *type in GENERATOR_TYPES_TO_USE) {
-            if (globalMessagesMap[type]) {
-                [result addObjectsFromArray:globalMessagesMap[type]];
+        @synchronized(self) {
+            NSMutableArray *result = [NSMutableArray new];
+            
+            for (NSNumber *type in GENERATOR_TYPES_TO_USE) {
+                if (globalMessagesMap[type]) {
+                    [result addObjectsFromArray:globalMessagesMap[type]];
+                }
             }
+            [result sortUsingSelector:@selector(compare:)];
+            return result;
         }
-        [result sortUsingSelector:@selector(compare:)];
-        return result;
     }
 
     - (void)mainDocumentsMessagesDidChange:(NSNotification *)note
@@ -672,16 +699,31 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 #pragma mark - File Observer
 
     - (void)presentedItemDidMoveToURL:(NSURL *)newURL {
-        NSString *oldPDFPath = self.pdfPath;
-        NSString *oldTexPath = self.texPath;
-        self.texPath = newURL.path;
-        self.systemPath = newURL.path;
+        NSError *error;
+        NSURL *trashURL = [[NSFileManager defaultManager] URLForDirectory:NSTrashDirectory inDomain:NSUserDomainMask appropriateForURL:nil
+                            create:NO error:&error];
         
-        if ([[NSFileManager defaultManager] fileExistsAtPath:oldPDFPath]) {
-            return;
+        if (!trashURL && error) {
+            DDLogError(@"Can't find trash url: %@", error);
+        } else {
+            if ([newURL.path hasPrefix:trashURL.path]) {
+                if (self.project) {
+                    [self deleteDocumentModel:nil];
+                }
+            } else {
+                NSString *oldPDFPath = self.pdfPath;
+                NSString *oldTexPath = self.texPath;
+                self.texPath = newURL.path;
+                self.systemPath = newURL.path;
+                
+                if ([[NSFileManager defaultManager] fileExistsAtPath:oldPDFPath]) {
+                    return;
+                }
+                NSString *relativePDFPath = [oldPDFPath relativePathWithBase:[oldTexPath stringByDeletingLastPathComponent]];
+                self.pdfPath = [relativePDFPath absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
+            }
         }
-        NSString *relativePDFPath = [oldPDFPath relativePathWithBase:[oldTexPath stringByDeletingLastPathComponent]];
-        self.pdfPath = [relativePDFPath absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
+        
         
     }
 

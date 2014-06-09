@@ -8,8 +8,15 @@
 
 #import "TMTTabManager.h"
 #import "TMTTabViewController.h"
+#import "Constants.h"
 
 static TMTTabManager *tabManager = nil;
+
+@interface TMTTabManager ()
+
+- documentModelIsDeleted:(NSNotification *)note;
+
+@end
 
 @implementation TMTTabManager
 
@@ -18,7 +25,7 @@ static TMTTabManager *tabManager = nil;
         self = [super init];
         windowSet = [NSMutableSet new];
         tabViewControllers = [NSMutableSet new];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentModelIsDeleted:) name:TMTDocumentModelIsDeleted object:nil];
         return self;
     }
 
@@ -66,5 +73,25 @@ static TMTTabManager *tabManager = nil;
         }
         return nil;
     }
+
+- (id)documentModelIsDeleted:(NSNotification *)note {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSTabViewItem *item = [self tabViewItemForIdentifier:note.userInfo[TMTTexIdentifierKey]];
+        if (item) {
+            [item.tabView removeTabViewItem:item];
+             [[NSNotificationCenter defaultCenter] postNotificationName:TMTTabViewDidCloseNotification object:[item.identifier identifier]];
+        }
+        
+        item = [self tabViewItemForIdentifier:note.userInfo[TMTPdfIdentifierKey]];
+        if (item) {
+            [item.tabView removeTabViewItem:item];
+             [[NSNotificationCenter defaultCenter] postNotificationName:TMTTabViewDidCloseNotification object:[item.identifier identifier]];
+        }
+    }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

@@ -170,6 +170,20 @@
         }
     }
 
+- (void)deleteDocumentModel:(DocumentModel *)model {
+    [self.documents removeObject:model];
+    if ([self.properties isEqual:model]) {
+        self.properties = nil;
+    }
+    
+    NSMutableArray *tmp = [self.mainDocuments mutableCopy];
+    [tmp removeObject:model];
+    self.mainDocuments = tmp;
+    
+    [self.documents makeObjectsPerformSelector:@selector(deleteDocumentModel:) withObject:model];
+    
+}
+
 # pragma mark - KVO
 
     + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
