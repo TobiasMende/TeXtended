@@ -293,7 +293,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
         NSMutableArray *tmp = [self.mainDocuments mutableCopy];
 
         [tmp removeObject:value];
-        self.mainDocuments = [tmp copy];
+        self.mainDocuments = tmp;
     }
 
     - (void)addMainDocument:(DocumentModel *)value

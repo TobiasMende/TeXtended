@@ -529,7 +529,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return;
     }
     if (model == nil) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelIsDeleted object:nil userInfo:@{TMTTexIdentifierKey: self.texIdentifier.copy, TMTPdfIdentifierKey : self.pdfIdentifier.copy}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelIsDeleted object:nil userInfo:@{TMTTexIdentifierKey: self.texIdentifier, TMTPdfIdentifierKey : self.pdfIdentifier}];
         if (self.project) {
             
             [self.project deleteDocumentModel:self];
@@ -539,7 +539,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     if ((!___projectSyncState || !___projectSyncState.mainDocuments )&& [[super mainDocuments] containsObject:model]) {
         NSMutableArray *tmp = [[super mainDocuments] mutableCopy];
         [tmp removeObject:model];
-        self.mainDocuments = tmp.copy;
+        self.mainDocuments = tmp;
     }
 }
 
