@@ -10,13 +10,15 @@
 #import "DDLog.h"
 
 #ifdef DEBUG
+
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 #else
 static const int ddLogLevel = LOG_LEVEL_WARN;
 #endif
 
 @interface TMTLog : NSObject
 
-+ (void) customizeLogger;
+    + (void)customizeLogger;
 
 @end

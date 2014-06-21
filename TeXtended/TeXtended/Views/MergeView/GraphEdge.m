@@ -10,21 +10,23 @@
 
 @implementation GraphEdge
 
--(id)init {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
+    - (id)init
+    {
+        self = [super init];
+        if (self) {
+            // Initialization code here.
+        }
+        return self;
     }
-    return self;
-}
 
--(id)initWithHead:(GraphNode*)head andTail:(GraphNode*)tail {
-    self = [super init];
-    if (self) {
-        self.head = head;
-        self.tail = tail;
+    - (id)initWithHead:(GraphNode *)head andTail:(GraphNode *)tail
+    {
+        self = [super init];
+        if (self) {
+            self.head = head;
+            self.tail = tail;
+        }
+        return self;
     }
-    return self;
-}
 
 @end

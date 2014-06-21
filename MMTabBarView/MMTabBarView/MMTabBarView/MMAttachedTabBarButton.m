@@ -9,7 +9,6 @@
 #import "MMAttachedTabBarButton.h"
 
 #import "MMAttachedTabBarButtonCell.h"
-#import "MMTabDragAssistant.h"
 #import "MMTabStyle.h"
 #import "NSView+MMTabBarViewExtensions.h"
 

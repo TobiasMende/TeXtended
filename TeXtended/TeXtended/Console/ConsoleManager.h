@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @class DocumentModel, ConsoleData;
+
 @interface ConsoleManager : NSObject
 
-@property NSMutableDictionary *consoles;
-+ (ConsoleManager *)sharedConsoleManager;
+    @property NSMutableDictionary *consoles;
 
-- (ConsoleData *)consoleForModel:(DocumentModel *)model;
-- (ConsoleData *)consoleForModel:(DocumentModel *)model byCreating:(BOOL)create;
-- (void)removeConsoleForModel:(DocumentModel *)model;
+    + (ConsoleManager *)sharedConsoleManager;
+
+    - (ConsoleData *)consoleForModel:(DocumentModel *)model;
+
+    - (ConsoleData *)consoleForModel:(DocumentModel *)model byCreating:(BOOL)create;
+
+    - (void)removeConsoleForModel:(DocumentModel *)model;
 @end

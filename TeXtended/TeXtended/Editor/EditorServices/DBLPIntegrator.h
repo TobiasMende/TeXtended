@@ -8,13 +8,19 @@
 
 #import "EditorService.h"
 #import <BibTexToolsFramework/DBLPSearchCompletionHandler.h>
-@class DBLPSearchViewController;
-@interface DBLPIntegrator : EditorService<DBLPSearchCompletionHandler> {
-    NSWindow *window;
-    NSPopover *popover;
-}
-@property DBLPSearchViewController *vc;
 
-- (void)initializeDBLPView;
-- (void)dismissView;
+@class DBLPSearchViewController;
+
+@interface DBLPIntegrator : EditorService <DBLPSearchCompletionHandler>
+    {
+        NSWindow *window;
+
+        NSPopover *popover;
+    }
+
+    @property DBLPSearchViewController *vc;
+
+    - (void)initializeDBLPView;
+
+    - (void)dismissView;
 @end

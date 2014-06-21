@@ -14,30 +14,33 @@
 
 @implementation GoToLineSheetController
 
-- (id)init {
-    self = [super initWithWindowNibName:@"GoToLineSheet"];
-    if (self) {
-        
+    - (id)init
+    {
+        self = [super initWithWindowNibName:@"GoToLineSheet"];
+        if (self) {
+
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-}
+    - (void)windowDidLoad
+    {
+        [super windowDidLoad];
 
-- (IBAction)cancelSheet:(id)sender {
-    [NSApp stopModal];
-    [NSApp endSheet: self.window returnCode:NSRunAbortedResponse];
-    [self.window orderOut: self];
-}
+        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    }
 
-- (IBAction)goToLine:(id)sender {
-    [NSApp stopModal];
-    [NSApp endSheet: self.window];
-    [self.window orderOut: self];
-}
+    - (IBAction)cancelSheet:(id)sender
+    {
+        [NSApp stopModal];
+        [NSApp endSheet:self.window returnCode:NSRunAbortedResponse];
+        [self.window orderOut:self];
+    }
+
+    - (IBAction)goToLine:(id)sender
+    {
+        [NSApp stopModal];
+        [NSApp endSheet:self.window];
+        [self.window orderOut:self];
+    }
 @end

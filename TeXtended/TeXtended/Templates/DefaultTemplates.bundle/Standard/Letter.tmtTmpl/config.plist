@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRo
-	XW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9q
-	ZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiA
-	CYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNTFapK4UoAE0iMkJSZaJGNsYXNz
-	bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNTFd28TBoAEWkxl
-	dHRlci5wZGZaTGV0dGVyLnRleAgJ0iMkMDFdRG9jdW1lbnRNb2RlbKMyMyddRG9jdW1l
-	bnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TY3VHJvb3SAAQAIABEA
-	GgAjAC0AMgA3AEMASQBeAGYAdACAAI0AlACcAKgAtAC8AMUAxwDJAMsAzQDPANEA0wDV
-	ANcA2QDbAOAA6ADxAPMA+AEDAQwBEwEWAR8BJAEtAS8BOgFFAUYBRwFMAVoBXgFsAXcB
-	iQGMAZEAAAAAAAACAQAAAAAAAAA4AAAAAAAAAAAAAAAAAAABkw==
-	</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>A simple letter.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>0</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10002</integer>
-</dict>
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+            AAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRo
+            XW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9q
+            ZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiA
+            CYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNTFapK4UoAE0iMkJSZaJGNsYXNz
+            bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNTFd28TBoAEWkxl
+            dHRlci5wZGZaTGV0dGVyLnRleAgJ0iMkMDFdRG9jdW1lbnRNb2RlbKMyMyddRG9jdW1l
+            bnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TY3VHJvb3SAAQAIABEA
+            GgAjAC0AMgA3AEMASQBeAGYAdACAAI0AlACcAKgAtAC8AMUAxwDJAMsAzQDPANEA0wDV
+            ANcA2QDbAOAA6ADxAPMA+AEDAQwBEwEWAR8BJAEtAS8BOgFFAUYBRwFMAVoBXgFsAXcB
+            iQGMAZEAAAAAAAACAQAAAAAAAAA4AAAAAAAAAAAAAAAAAAABkw==
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>A simple letter.</string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>0</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10002</integer>
+    </dict>
 </plist>

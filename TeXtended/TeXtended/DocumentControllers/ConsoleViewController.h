@@ -17,18 +17,20 @@
  **Author:** Tobias Mende
  
  */
-@interface ConsoleViewController : NSViewController <NSTextFieldDelegate, ViewControllerProtocol> {
-}
+@interface ConsoleViewController : NSViewController <NSTextFieldDelegate, ViewControllerProtocol>
+    {
+    }
 
-@property (assign, nonatomic) ConsoleData *console;
+    @property (assign, nonatomic) ConsoleData *console;
 
 /** The input view for sending messages to the compiler */
-@property (strong) IBOutlet NSTextField *inputView;
+    @property (strong) IBOutlet NSTextField *inputView;
 
 
 /** The output view for showing the compilers output to the user */
-@property (strong) IBOutlet ConsoleOutputView *outputView;
+    @property (strong) IBOutlet ConsoleOutputView *outputView;
 
-- (void)scrollToCurrentPosition;
-- (IBAction)cancelCompiling:(id)sender;
+    - (void)scrollToCurrentPosition;
+
+    - (IBAction)cancelCompiling:(id)sender;
 @end

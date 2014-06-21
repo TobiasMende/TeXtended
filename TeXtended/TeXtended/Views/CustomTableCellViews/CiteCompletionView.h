@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CustomTableCellView.h"
+
 @class CiteCompletion;
-@interface CiteCompletionView : NSTableCellView<CustomTableCellView>
+
+@interface CiteCompletionView : NSTableCellView <CustomTableCellView>
 
 
 @end

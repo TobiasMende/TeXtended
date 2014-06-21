@@ -10,7 +10,8 @@
 
 @interface DropCompletion : Completion
 
-@property BOOL usePathExtentsion;
--(NSAttributedString*)getCompletion:(NSString*)path;
+    @property BOOL usePathExtentsion;
+
+    - (NSAttributedString *)getCompletion:(NSString *)path;
 
 @end

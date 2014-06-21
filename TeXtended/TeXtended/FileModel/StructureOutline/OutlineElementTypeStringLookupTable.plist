@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>%</key>
-	<integer>4208</integer>
-	<key>\include</key>
-	<integer>4205</integer>
-	<key>\input</key>
-	<integer>4204</integer>
-	<key>\subsection</key>
-	<integer>4203</integer>
-	<key>\section</key>
-	<integer>4202</integer>
-	<key>\chapter</key>
-	<integer>4201</integer>
-</dict>
+    <dict>
+        <key>%</key>
+        <integer>4208</integer>
+        <key>\include</key>
+        <integer>4205</integer>
+        <key>\input</key>
+        <integer>4204</integer>
+        <key>\subsection</key>
+        <integer>4203</integer>
+        <key>\section</key>
+        <integer>4202</integer>
+        <key>\chapter</key>
+        <integer>4201</integer>
+    </dict>
 </plist>

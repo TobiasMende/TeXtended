@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "CustomTableCellView.h"
 #import "CompletionProtocol.h"
-@interface DefaultCompletionView : NSTableCellView<CustomTableCellView>
+
+@interface DefaultCompletionView : NSTableCellView <CustomTableCellView>
 @end

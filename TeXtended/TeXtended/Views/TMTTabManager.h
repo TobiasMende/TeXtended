@@ -7,19 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class TMTTabViewWindow, TMTTabViewController;
 
-@interface TMTTabManager : NSObject {
-    NSMutableSet *windowSet;
-    NSMutableSet *tabViewControllers;
-    
-}
+@interface TMTTabManager : NSObject
+    {
+        NSMutableSet *windowSet;
 
-+ (TMTTabManager *) sharedTabManager;
+        NSMutableSet *tabViewControllers;
 
-- (void) addTabViewWindow:(TMTTabViewWindow *)window;
-- (void) removeTabViewWindow:(TMTTabViewWindow *)window;
-- (void) addTabViewController:(TMTTabViewController *)controller;
-- (void) removeTabViewController:(TMTTabViewController *)controller;
-- (NSTabViewItem *)tabViewItemForIdentifier:(NSString *)identifier;
+    }
+
+    + (TMTTabManager *)sharedTabManager;
+
+    - (void)addTabViewWindow:(TMTTabViewWindow *)window;
+
+    - (void)removeTabViewWindow:(TMTTabViewWindow *)window;
+
+    - (void)addTabViewController:(TMTTabViewController *)controller;
+
+    - (void)removeTabViewController:(TMTTabViewController *)controller;
+
+    - (NSTabViewItem *)tabViewItemForIdentifier:(NSString *)identifier;
 @end

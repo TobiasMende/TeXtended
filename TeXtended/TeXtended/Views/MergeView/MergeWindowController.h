@@ -7,17 +7,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class GraphController;
 
-@interface MergeWindowController : NSWindowController {
-    GraphController *graphController;
-}
+@interface MergeWindowController : NSWindowController
+    {
+        GraphController *graphController;
+    }
 
-@property NSArray* popUpElements;
-@property NSArray* popUpPaths;
-@property (assign) IBOutlet NSPopUpButton *documentName;
+    @property NSArray *popUpElements;
 
-- (NSString*)getMergedContentOfFile:(NSString*)path withBase:(NSString*)base;
-- (void)reset;
+    @property NSArray *popUpPaths;
+
+    @property (assign) IBOutlet NSPopUpButton *documentName;
+
+    - (NSString *)getMergedContentOfFile:(NSString *)path withBase:(NSString *)base;
+
+    - (void)reset;
 
 @end

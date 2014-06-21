@@ -8,36 +8,41 @@
 
 #import "DropCompletion.h"
 #import "Constants.h"
+
 @implementation DropCompletion
 
--(id)init {
-    return [self initWithInsertion:@"" andExtension:@"@@destination@@"];
-}
-
-- (id)initWithDictionary:(NSDictionary *)dict {
-    self = [super initWithDictionary:dict];
-    if (self) {
-        self.usePathExtentsion = [dict[TMTCompletionUseExtensionKey] boolValue];
+    - (id)init
+    {
+        return [self initWithInsertion:@"" andExtension:@"@@destination@@"];
     }
-    return self;
-}
 
-- (NSMutableDictionary *)dictionaryRepresentation {
-    NSMutableDictionary *result = [super dictionaryRepresentation];
-    result[TMTCompletionUseExtensionKey] = @(self.usePathExtentsion);
-    return result;
-}
+    - (id)initWithDictionary:(NSDictionary *)dict
+    {
+        self = [super initWithDictionary:dict];
+        if (self) {
+            self.usePathExtentsion = [dict[TMTCompletionUseExtensionKey] boolValue];
+        }
+        return self;
+    }
 
--(NSAttributedString*)getCompletion:(NSString*)path {
-    NSString* retValue;
-    if (!self.usePathExtentsion) {
-        retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:[path stringByDeletingPathExtension]];
+    - (NSMutableDictionary *)dictionaryRepresentation
+    {
+        NSMutableDictionary *result = [super dictionaryRepresentation];
+        result[TMTCompletionUseExtensionKey] = @(self.usePathExtentsion);
+        return result;
     }
-    else {
-        retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+
+    - (NSAttributedString *)getCompletion:(NSString *)path
+    {
+        NSString *retValue;
+        if (!self.usePathExtentsion) {
+            retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:[path stringByDeletingPathExtension]];
+        }
+        else {
+            retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+        }
+
+        return [self substitutePlaceholdersInString:retValue];
     }
-    
-    return [self substitutePlaceholdersInString:retValue];
-}
 
 @end

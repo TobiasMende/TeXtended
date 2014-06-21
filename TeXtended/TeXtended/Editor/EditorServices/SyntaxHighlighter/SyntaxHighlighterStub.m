@@ -7,35 +7,42 @@
 //
 
 #import "SyntaxHighlighterStub.h"
-#import "EditorService.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 @implementation SyntaxHighlighterStub
-- (id)initWithTextView:(HighlightingTextView *)tv {
-    self = [super initWithTextView:tv];
-    if (self) {
-        DDLogInfo(@"Init with text view %@", tv);
+
+    - (id)initWithTextView:(HighlightingTextView *)tv
+    {
+        self = [super initWithTextView:tv];
+        if (self) {
+            DDLogInfo(@"Init with text view %@", tv);
+        }
+        return self;
     }
-    return self;
-}
-- (void)highlightEntireDocument {
-    DDLogInfo(@"Highlighting entire Document");
-}
 
-- (void)highlightVisibleArea {
-    DDLogInfo(@"Highlighting visible area");
-}
+    - (void)highlightEntireDocument
+    {
+        DDLogInfo(@"Highlighting entire Document");
+    }
 
-- (void)highlightNarrowArea {
-    DDLogInfo(@"Highlighting narrow area");
-}
+    - (void)highlightVisibleArea
+    {
+        DDLogInfo(@"Highlighting visible area");
+    }
 
-- (void)highlightRange:(NSRange)range {
-    DDLogInfo(@"Highlighting range %@", NSStringFromRange(range));
-}
+    - (void)highlightNarrowArea
+    {
+        DDLogInfo(@"Highlighting narrow area");
+    }
 
-- (void)dealloc {
-    DDLogVerbose(@"dealloc");
-}
+    - (void)highlightRange:(NSRange)range
+    {
+        DDLogInfo(@"Highlighting range %@", NSStringFromRange(range));
+    }
+
+    - (void)dealloc
+    {
+        DDLogVerbose(@"dealloc");
+    }
 
 @end

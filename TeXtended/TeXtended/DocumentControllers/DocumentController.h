@@ -12,38 +12,42 @@
 #import "CompileProcessHandler.h"
 #import "Constants.h"
 
-@class DocumentModel, OutlineViewController, PDFViewsController, TextViewController, Compiler, MainDocument;
+@class DocumentModel, TextViewController, Compiler, MainDocument,ModelInfoWindowController;
+
 /**
  * The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
  *
  * **Author:** Tobias Mende
  *
  */
-@interface DocumentController : NSObject<ViewControllerProtocol,FirstResponderDelegate, CompileProcessHandler> {
-}
+@interface DocumentController : NSObject <ViewControllerProtocol, FirstResponderDelegate, CompileProcessHandler>
+    {
+        ModelInfoWindowController *_modelInfoWindow;
+    }
 
 /** The model handeld by this controller. */
-@property (strong,nonatomic) DocumentModel *model;
+    @property (strong, nonatomic) DocumentModel *model;
 
 /** Controller for the TextView. */
-@property (strong) TextViewController* textViewController;
+    @property (strong) TextViewController *textViewController;
 
-@property (strong) NSMutableSet *pdfViewControllers;
-@property (strong) NSMutableSet *consoleViewControllers;
+    @property (strong) NSMutableSet *pdfViewControllers;
+
+    @property (strong) NSMutableSet *consoleViewControllers;
 
 
 /** The compiler that will be used to compile the main documents. */
-@property (strong) Compiler* compiler;
+    @property (strong) Compiler *compiler;
 
 /** The main document. */
-@property (assign) MainDocument *mainDocument;
+    @property (assign) MainDocument *mainDocument;
 
 /**
  * Init the class with a model and a main document.
  *
  * @param model the DocumentModel
  */
-- (id)initWithDocument:(DocumentModel *)model andMainDocument:(MainDocument *)mainDocument;
+    - (id)initWithDocument:(DocumentModel *)model andMainDocument:(MainDocument *)mainDocument;
 
 /**
  * Save the handeld document.
@@ -51,11 +55,10 @@
  * @param outError a pointer to NSError in which the error log is written
  * @return ´YES´ if the save was succsesfull
  */
-- (BOOL) saveDocumentModel:(NSError**) outError;
+    - (BOOL)saveDocumentModel:(NSError **)outError;
 
 
-
-- (void)closeDocument;
+    - (void)closeDocument;
 
 
 /**
@@ -65,7 +68,7 @@
  * @param didSave should be ´YES´ if the document was saved before
  * @param context not used by this method (framework stuff)
  */
-- (void)draftCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
+    - (void)draftCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context;
 
 /**
  * Calls final compile on the compiler if the file was saved before (didSave is ´YES´).
@@ -74,7 +77,7 @@
  * @param didSave should be ´YES´ if the document was saved before
  * @param context not used by this method (framework stuff)
  */
-- (void)finalCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
+    - (void)finalCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context;
 
 /**
  * Calls live compile on the compiler if the file was saved before (didSave is ´YES´).
@@ -83,12 +86,14 @@
  * @param didSave should be ´YES´ if the document was saved before
  * @param context not used by this method (framework stuff)
  */
-- (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void  *)context;
+    - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context;
 
-- (void)compile:(CompileMode)mode;
+    - (void)compile:(CompileMode)mode;
 
-- (void) texViewDidClose:(NSNotification *)note;
-- (void) pdfViewDidClose:(NSNotification *)note;
-- (void) showPDFViews;
+    - (void)texViewDidClose:(NSNotification *)note;
+
+    - (void)pdfViewDidClose:(NSNotification *)note;
+
+    - (void)showPDFViews;
 
 @end

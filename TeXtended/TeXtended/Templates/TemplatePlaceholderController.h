@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class TMTQuickLookView;
+
 @interface TemplatePlaceholderController : NSCollectionViewItem
-@property (strong) IBOutlet TMTQuickLookView *quickLook;
+
+    @property (strong) IBOutlet TMTQuickLookView *quickLook;
 
 @end

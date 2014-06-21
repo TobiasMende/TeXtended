@@ -8,7 +8,6 @@
 
 #import "MMSafariTabStyle.h"
 
-#import "MMTabBarView.h"
 #import "MMAttachedTabBarButton.h"
 #import "NSView+MMTabBarViewExtensions.h"
 

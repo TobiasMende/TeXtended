@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class HighlightingTextView;
 
 /**
@@ -14,9 +15,10 @@
 
  Superclass for additional services for the HighlightingTextView
  */
-@interface EditorService : NSObject {
-    __unsafe_unretained HighlightingTextView* view;
-}
+@interface EditorService : NSObject
+    {
+        __unsafe_unretained HighlightingTextView *view;
+    }
 
 /**
  Method for initializing an EditorService with a HighlightingTextView
@@ -26,5 +28,5 @@
  @return the EditorService
  */
 
-- (id)initWithTextView:(HighlightingTextView*) tv;
+    - (id)initWithTextView:(HighlightingTextView *)tv;
 @end

@@ -9,35 +9,37 @@
 #import "TemplatePlaceholderController.h"
 #import "Template.h"
 #import "TMTQuickLookView.h"
+
 @interface TemplatePlaceholderController ()
 
 @end
 
 @implementation TemplatePlaceholderController
 
-- (id)init {
-    self = [super initWithNibName:@"TemplatePlaceholder" bundle:nil];
-    if (self) {
-        
+    - (id)init
+    {
+        self = [super initWithNibName:@"TemplatePlaceholder" bundle:nil];
+        if (self) {
+
+        }
+        return self;
     }
-    return  self;
-}
 
-- (void)loadView {
-    [super loadView];
-    __unsafe_unretained TemplatePlaceholderController *weakSelf = self;
-    if ([self.representedObject hasPreviewPDF]) {
-        [self.quickLook setPreviewItem:[NSURL fileURLWithPath:[self.representedObject previewPath]]];
-        self.quickLook.mouseDownHandler = ^(NSEvent *theEvent) {
-            weakSelf.selected = YES;
-            [weakSelf.collectionView mouseDown:theEvent];
-        };
+    - (void)loadView
+    {
+        [super loadView];
+        __unsafe_unretained TemplatePlaceholderController *weakSelf = self;
+        if ([self.representedObject hasPreviewPDF]) {
+            [self.quickLook setPreviewItem:[NSURL fileURLWithPath:[self.representedObject previewPath]]];
+            self.quickLook.mouseDownHandler = ^(NSEvent *theEvent)
+            {
+                weakSelf.selected = YES;
+                [weakSelf.collectionView mouseDown:theEvent];
+            };
+        }
+
+
     }
-    
-    
-}
-
-
 
 
 @end

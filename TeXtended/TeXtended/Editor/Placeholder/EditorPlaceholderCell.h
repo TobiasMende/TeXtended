@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface EditorPlaceholderCell : NSTextAttachmentCell
-- (BOOL) isSelectedInRect:(NSRect) cellFrame ofView:(NSView*) controlView;
+
+    - (BOOL)isSelectedInRect:(NSRect)cellFrame ofView:(NSView *)controlView;
 @end

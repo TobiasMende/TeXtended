@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CompletionManager,TMTArrayController;
+
+@class CompletionManager, TMTArrayController;
+
 /**
  The CompletionsController handles loading and saving of auto completions and the displaying and editing of them in the preferences window.
 
@@ -18,26 +20,30 @@
  
  @warning *Important:* Due to the fact that this class deals with files in the application support folder. There can't be more than one instance of the CompletionsController. To ensure this fact, it's designed as singleton. Therefor calling [CompletionsController init] doesn't create a new instance if one exists.
  */
-@interface CompletionsController : NSObject<NSTableViewDelegate> {
+@interface CompletionsController : NSObject <NSTableViewDelegate>
+    {
 
-}
-@property (assign) CompletionManager *manager;
+    }
+
+    @property (assign) CompletionManager *manager;
 
 
-@property (assign) IBOutlet TMTArrayController *commandsController;
-@property (assign) IBOutlet TMTArrayController *environmentsController;
-@property (assign) IBOutlet TMTArrayController *dropsController;
+    @property (assign) IBOutlet TMTArrayController *commandsController;
+
+    @property (assign) IBOutlet TMTArrayController *environmentsController;
+
+    @property (assign) IBOutlet TMTArrayController *dropsController;
+
 /** The environment completion view */
-@property (assign) IBOutlet NSTableView *environmentView;
+    @property (assign) IBOutlet NSTableView *environmentView;
 
 /** The command completion view */
-@property (assign) IBOutlet NSTableView *commandsView;
+    @property (assign) IBOutlet NSTableView *commandsView;
 
 /** The drop completion view */
-@property (assign) IBOutlet NSTableView *dropView;
+    @property (assign) IBOutlet NSTableView *dropView;
 
 
-
-+ (CompletionsController *)sharedCompletionsController;
+    + (CompletionsController *)sharedCompletionsController;
 
 @end

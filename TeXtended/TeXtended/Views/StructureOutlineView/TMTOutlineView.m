@@ -10,20 +10,24 @@
 
 @implementation TMTOutlineView
 
-- (NSRect)frameOfOutlineCellAtRow:(NSInteger)row {
-    return NSZeroRect;
-}
+    - (NSRect)frameOfOutlineCellAtRow:(NSInteger)row
+    {
+        return NSZeroRect;
+    }
 
-- (BOOL)isItemExpanded:(id)item {
-    return YES;
-}
+    - (BOOL)isItemExpanded:(id)item
+    {
+        return YES;
+    }
 
-- (BOOL)isExpandable:(id)item {
-    return YES;
-}
+    - (BOOL)isExpandable:(id)item
+    {
+        return YES;
+    }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self expandItem:nil expandChildren:YES];
-}
+    - (void)awakeFromNib
+    {
+        [super awakeFromNib];
+        [self expandItem:nil expandChildren:YES];
+    }
 @end

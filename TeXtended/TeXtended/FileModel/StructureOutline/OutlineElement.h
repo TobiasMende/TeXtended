@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "CompletionProtocol.h"
+
 @class DocumentModel;
 
-typedef enum OutlineElementType {
+typedef enum OutlineElementType
+{
     CHAPTER = 4201,
     SECTION = 4202,
     SUBSECTION = 4203,
@@ -22,18 +24,24 @@ typedef enum OutlineElementType {
     TODO = 4208
 } OutlineElementType;
 
-@interface OutlineElement : NSObject <NSCoding,CompletionProtocol>
+@interface OutlineElement : NSObject <NSCoding, CompletionProtocol>
 
-@property OutlineElementType type;
-@property NSUInteger line;
-@property (strong) NSString * info;
-@property (assign) DocumentModel *document;
-@property (assign,nonatomic) DocumentModel *subNode;
+    @property OutlineElementType type;
 
-- (BOOL)isLeaf;
-- (NSArray *)children;
-- (NSUInteger)childCount;
+    @property NSUInteger line;
 
-+ (NSString *)localizedNameForType:(OutlineElementType)type;
+    @property (strong) NSString *info;
+
+    @property (assign) DocumentModel *document;
+
+    @property (assign, nonatomic) DocumentModel *subNode;
+
+    - (BOOL)isLeaf;
+
+    - (NSArray *)children;
+
+    - (NSUInteger)childCount;
+
+    + (NSString *)localizedNameForType:(OutlineElementType)type;
 
 @end

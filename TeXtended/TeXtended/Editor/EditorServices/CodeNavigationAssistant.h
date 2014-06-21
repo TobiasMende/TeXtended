@@ -14,23 +14,26 @@
  
  @author Tobias Mende
  */
-@interface CodeNavigationAssistant : EditorService {
-    /** The last carret range (needed for deleting highlightes) */
-    NSRange lastCarretRange;
-    /** The range of the last selected line */
-    NSRange lastLineRange;
-}
+@interface CodeNavigationAssistant : EditorService
+    {
+        /** The last carret range (needed for deleting highlightes) */
+        NSRange lastCarretRange;
+
+        /** The range of the last selected line */
+        NSRange lastLineRange;
+    }
+
 /**
  Method for highlighting the current line
  */
-- (void) highlightCurrentLine;
+    - (void)highlightCurrentLine;
 
 /**
  Highlights the current lines background.
  
  @warning You shouldn't call this method directly. It's called by the view when needed.
  */
-- (void) highlightCurrentLineBackground;
+    - (void)highlightCurrentLineBackground;
 
 /**
  Method for highlighting the current foreground text in a given range
@@ -43,29 +46,29 @@
 /**
  Method for highlighting the carret's position.
  */
-- (void) highlightCarret;
+    - (void)highlightCarret;
 
 /**
  Method for highlighting the current line as well as the carrets position.
  */
-- (void) highlight;
+    - (void)highlight;
 
 /**
  Handles the insertion of a tab. If activated by the user, tabs will be replaced by a user defined amount of spaces.
  */
-- (BOOL) handleTabInsertion;
+    - (BOOL)handleTabInsertion;
 
 /**
  Handles a backtab insertion after insert in a proper way: If there is a tab oder a matching amount of spaces before, delete them, if not: do nothing.
  
  @return `YES` if this method has handled the backtab, `NO` otherwise.
  */
-- (BOOL) handleBacktabInsertion;
+    - (BOOL)handleBacktabInsertion;
 
 /**
  Handles insertion of a new line. If defined by the user the new line will begin with the same indention as the previous line.
  */
-- (void) handleNewLineInsertion;
+    - (void)handleNewLineInsertion;
 
 /**
  Getter for the line range for a provided range
@@ -74,7 +77,7 @@
  
  @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
  */
-- (NSRange) lineTextRangeWithRange:(NSRange) range;
+    - (NSRange)lineTextRangeWithRange:(NSRange)range;
 
 
 /**
@@ -85,7 +88,7 @@
  
  @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
  */
-- (NSRange) lineTextRangeWithRange:(NSRange) range withLineTerminator:(BOOL)flag;
+    - (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag;
 
 /**
  Handles automatic hard wrapping of long lines in the provided range
@@ -94,7 +97,7 @@
  
  @return `YES` if this method has wrapped something.
  */
-- (BOOL) handleWrappingInRange:(NSRange) textRange;
+    - (BOOL)handleWrappingInRange:(NSRange)textRange;
 
 /**
  Handles automatic hard wrapping in the provided line
@@ -103,7 +106,7 @@
  
  @return `YES` if this method has wrapped somewhere
  */
-- (BOOL) handleWrappingInLine:(NSRange) lineRange;
+    - (BOOL)handleWrappingInLine:(NSRange)lineRange;
 
 /**
  Handles automatic hard wrapping in the provided line and string
@@ -113,7 +116,8 @@
  
  @return `YES` if this method has wrapped somewhere
  */
-- (BOOL) handleWrappingInLine:(NSRange) lineRange ofString:(NSMutableString *) string;
+    - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string;
+
 /**
  Method returns the white space at the beginning of a given line (Usefull for auto-indention)
  
@@ -121,7 +125,7 @@
  
  @return The whitespaces at the line beginning.
  */
-- (NSString *) whiteSpacesAtLineBeginning:(NSRange) lineRange;
+    - (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange;
 
 
 /**
@@ -131,7 +135,8 @@
  
  @param range the range to toggle comments for
  */
-- (IBAction)toggleCommentInRange:(NSRange)range;
+    - (IBAction)toggleCommentInRange:(NSRange)range;
+
 /**
  This method toggles the comment in each selected line.
  
@@ -141,13 +146,15 @@
  
  @param range the string to toggle comments in
  */
-- (IBAction)toggleCommentInRangeString:(NSString*)range;
+    - (IBAction)toggleCommentInRangeString:(NSString *)range;
+
 /**
  This method adds a comment sign at the beginning of each line within the provided range
  
  @param range the range to comment lines in.
  */
-- (IBAction)commentSelectionInRange:(NSRange)range;
+    - (IBAction)commentSelectionInRange:(NSRange)range;
+
 /**
  This method adds a comment sign at the beginning of each line within the provided range.
  
@@ -155,14 +162,14 @@
  
  @param range the range to comment lines in.
  */
-- (IBAction)commentSelectionInRangeString:(NSString*)range;
+    - (IBAction)commentSelectionInRangeString:(NSString *)range;
 
 /**
  This method removes a comment sign at the beginning of each line within the provided range
  
  @param range the range to uncomment lines in.
  */
-- (IBAction)uncommentSelectionInRange:(NSRange)range;
+    - (IBAction)uncommentSelectionInRange:(NSRange)range;
 
 /**
  This method removes a comment sign at the beginning of each line within the provided range
@@ -171,46 +178,46 @@
  
  @param range the range to uncomment lines in.
  */
-- (IBAction)uncommentSelectionInRangeString:(NSString*)range;
+    - (IBAction)uncommentSelectionInRangeString:(NSString *)range;
 
 /**
  Builds a string representing a line break at the current cursor position in the text view
  @return a string containing whitespaces for the line break and for preserving the indention
  */
-- (NSString*) lineBreak;
+    - (NSString *)lineBreak;
 
 
 /**
  Builds a string representing a single tab
  @return a string containing \t if ![self shouldUseSpacesAsTabs] or a string containing [self numberOfSpacesForTab] spaces otherwise.
  */
-- (NSString *) singleTab;
+    - (NSString *)singleTab;
 
 /** Number of spaces which should replace a single tab */
-@property NSNumber *numberOfSpacesForTab;
+    @property NSNumber *numberOfSpacesForTab;
 
 /** The background color for highlighting the current line. */
-@property (strong) NSColor* currentLineColor;
+    @property (strong) NSColor *currentLineColor;
 
 /** The text color for highlighting the current line */
-@property (strong) NSColor* currentLineTextColor;
+    @property (strong) NSColor *currentLineTextColor;
 
 /** The color for highlighting the character under the carret */
-@property (strong) NSColor* carretColor;
+    @property (strong) NSColor *carretColor;
 
 /** If `YES`, line highlighting ist active */
-@property BOOL shouldHighlightCurrentLine;
+    @property BOOL shouldHighlightCurrentLine;
 
 /** If `YES`, carret highlighting is active */
-@property BOOL shouldHighlightCarret;
+    @property BOOL shouldHighlightCarret;
 
 /** If `YES`, the text of the current line is highlighted */
-@property BOOL shouldHighlightCurrentLineText;
+    @property BOOL shouldHighlightCurrentLineText;
 
 /** If `YES`, tabs were replaced during writing */
-@property BOOL shouldUseSpacesAsTabs;
+    @property BOOL shouldUseSpacesAsTabs;
 
 /** If `YES`, a new line has the same indention as the previous line */
-@property BOOL shouldAutoIndentLines;
+    @property BOOL shouldAutoIndentLines;
 
 @end

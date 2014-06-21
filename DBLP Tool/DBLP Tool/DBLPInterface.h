@@ -8,21 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "DBLPCallbackHandler.h"
+
 @class DBLPConfiguration;
+
 /**
  This class provides an interface to a DBLP database and handles search requests for authors and bib entries.
  
  **Author:** Tobias Mende
  
  */
-@interface DBLPInterface : NSObject<NSURLConnectionDataDelegate, NSXMLParserDelegate> {
-    NSMutableData *receivedAuthorData;
-    NSMutableData *receivedKeyData;
-    NSURLConnection *authorConnection;
-    NSURLConnection *dblpKeyConnection;
-    DBLPConfiguration *config;
-    
-}
+@interface DBLPInterface : NSObject <NSURLConnectionDataDelegate, NSXMLParserDelegate>
+    {
+        NSMutableData *receivedAuthorData;
+
+        NSMutableData *receivedKeyData;
+
+        NSURLConnection *authorConnection;
+
+        NSURLConnection *dblpKeyConnection;
+
+        DBLPConfiguration *config;
+
+    }
+
 /**
  Method for initializing a new DBLP interface.
  
@@ -30,7 +38,7 @@
  
  @return a new instance
  */
-- (id) initWithHandler:(id<DBLPCallbackHandler>)handler;
+    - (id)initWithHandler:(id <DBLPCallbackHandler>)handler;
 
 /**
  Method for starting the author search.
@@ -39,7 +47,7 @@
  
  @param query the search query
  */
-- (void) searchAuthor:(NSString*) query;
+    - (void)searchAuthor:(NSString *)query;
 
 /**
  Method for starting the publications search.
@@ -48,10 +56,10 @@
  
  @param urlpt the authors DBLP url
  */
-- (void) publicationsForAuthor:(NSString*) urlpt;
+    - (void)publicationsForAuthor:(NSString *)urlpt;
 
 
 /** The callback handler connected to this interface */
-@property id<DBLPCallbackHandler> handler;
+    @property id <DBLPCallbackHandler> handler;
 
 @end

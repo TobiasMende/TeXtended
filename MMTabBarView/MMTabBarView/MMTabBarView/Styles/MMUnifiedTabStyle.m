@@ -8,14 +8,14 @@
 
 #import "MMUnifiedTabStyle.h"
 #import "MMAttachedTabBarButton.h"
-#import "MMTabBarView.h"
 #import "NSView+MMTabBarViewExtensions.h"
 #import "NSBezierPath+MMTabBarViewExtensions.h"
 
 @interface MMUnifiedTabStyle (/*Private*/)
 
 - (void)_drawCardBezelInRect:(NSRect)aRect withCapMask:(MMBezierShapeCapMask)capMask usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button ofTabBarView:(MMTabBarView *)tabBarView;
-- (void)_drawBoxBezelInRect:(NSRect)aRect withCapMask:(MMBezierShapeCapMask)capMask usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button ofTabBarView:(MMTabBarView *)tabBarView;
+
+    - (void)_drawBoxBezelInRect:(NSRect)aRect usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button;
 
 @end
 
@@ -233,9 +233,9 @@
         }
 
         if (overflowMode) {
-            [self _drawBoxBezelInRect:aRect withCapMask:MMBezierShapeLeftCap usingStatesOfAttachedButton:button ofTabBarView:tabBarView];
+            [self _drawBoxBezelInRect:aRect usingStatesOfAttachedButton:button];
         } else {
-            [self _drawBoxBezelInRect:aRect withCapMask:MMBezierShapeAllCaps usingStatesOfAttachedButton:button ofTabBarView:tabBarView];
+            [self _drawBoxBezelInRect:aRect usingStatesOfAttachedButton:button];
         }
     }
 }
@@ -268,7 +268,7 @@
         NSRect aRect = NSMakeRect(frame.origin.x, frame.origin.y+0.5, frame.size.width-0.5f, frame.size.height-1.0);
         aRect.size.width += 5.0;
         
-        [self _drawBoxBezelInRect:aRect withCapMask:MMBezierShapeRightCap|MMBezierShapeFlippedVertically usingStatesOfAttachedButton:lastAttachedButton ofTabBarView:tabBarView];
+        [self _drawBoxBezelInRect:aRect usingStatesOfAttachedButton:lastAttachedButton];
 
         if ([tabBarView showAddTabButton]) {
 
@@ -354,18 +354,19 @@
     [strokePath stroke];
 }
 
-- (void)_drawBoxBezelInRect:(NSRect)aRect withCapMask:(MMBezierShapeCapMask)capMask usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button ofTabBarView:(MMTabBarView *)tabBarView {
+    - (void)_drawBoxBezelInRect:(NSRect)aRect usingStatesOfAttachedButton:(MMAttachedTabBarButton *)button
+    {
 
-    //capMask &= ~MMBezierShapeFillPath;
-    
-        // fill
-    if ([button state] == NSOnState) {
-        [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
-        NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);            
-    } else if ([button mouseHovered]) {
-        [[NSColor colorWithCalibratedWhite:0.0 alpha:0.1] set];
-        NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);
-    }
-}
+            //capMask &= ~MMBezierShapeFillPath;
+
+                // fill
+            if ([button state] == NSOnState) {
+                [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
+                NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);
+            } else if ([button mouseHovered]) {
+                [[NSColor colorWithCalibratedWhite:0.0 alpha:0.1] set];
+                NSRectFillUsingOperation(aRect, NSCompositeSourceAtop);
+            }
+        }
 
 @end

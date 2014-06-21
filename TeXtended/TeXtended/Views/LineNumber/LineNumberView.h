@@ -25,88 +25,90 @@
  * @author Max Bannach
  */
 @class MessageViewController;
-@interface LineNumberView : NSRulerView {
-    
-    /** Font of the line numbers. */
-    NSFont *numberFont;
-    
-    /** Style for the line numbers. */
-    NSMutableParagraphStyle *numberStyle;
-    
-    /**
-     * Format for the line numbers based on
-     * [numberFont](numberFont), [numberStyle](numberStyle)
-     * and [textColor](textColor).
-     */
-    NSDictionary *attributesForNumbers;
-    
-    /**
-     * Holds the start index for every line,
-     * can be used in NSRange.
-     */
-    NSMutableArray  *lines;
-    
-    /**
-     * Holds a key for every line that is anchored.
-     */
-    NSMutableDictionary *lineAnchors;
-    
-    /**
-     * Holds a key for every line that has a warning.
-     */
-    NSMutableDictionary *lineWarnings;
-    
-    /**
-     * Holds a key for every line that has a error.
-     */
-    NSMutableDictionary *lineErrors;
-    
-    /**
-     * Image shown if a error appears.
-     */
-    NSImage *errorImage;
-    
-    /**
-     * Image shown if a warning appears.
-     */
-    NSImage *warningImage;
-    
-    /**
-     * Image shown if a info appears.
-     */
-    NSImage *infoImage;
-    
-    /**
-     * The window showing massages.
-     */
-    MessageViewController *messageWindow;
-}
+
+@interface LineNumberView : NSRulerView
+    {
+
+        /** Font of the line numbers. */
+        NSFont *numberFont;
+
+        /** Style for the line numbers. */
+        NSMutableParagraphStyle *numberStyle;
+
+        /**
+         * Format for the line numbers based on
+         * [numberFont](numberFont), [numberStyle](numberStyle)
+         * and [textColor](textColor).
+         */
+        NSDictionary *attributesForNumbers;
+
+        /**
+         * Holds the start index for every line,
+         * can be used in NSRange.
+         */
+        NSMutableArray *lines;
+
+        /**
+         * Holds a key for every line that is anchored.
+         */
+        NSMutableDictionary *lineAnchors;
+
+        /**
+         * Holds a key for every line that has a warning.
+         */
+        NSMutableDictionary *lineWarnings;
+
+        /**
+         * Holds a key for every line that has a error.
+         */
+        NSMutableDictionary *lineErrors;
+
+        /**
+         * Image shown if a error appears.
+         */
+        NSImage *errorImage;
+
+        /**
+         * Image shown if a warning appears.
+         */
+        NSImage *warningImage;
+
+        /**
+         * Image shown if a info appears.
+         */
+        NSImage *infoImage;
+
+        /**
+         * The window showing massages.
+         */
+        MessageViewController *messageWindow;
+    }
 
 /**
  * This class holds all infos, warnings, errors and so on.
  */
-@property (strong) NSArray *messageCollection;
+    @property (strong) NSArray *messageCollection;
 
 /** The background color of the whole ruler. */
-@property (nonatomic, strong) NSColor *backgroundColor;
+    @property (nonatomic, strong) NSColor *backgroundColor;
 
 /** Color of the small line beside the numbers */
-@property (nonatomic, strong) NSColor *lineColor;
+    @property (nonatomic, strong) NSColor *lineColor;
 
 /** Color for the border of even line numbers. */
-@property (nonatomic, strong) NSColor *borderColorA;
+    @property (nonatomic, strong) NSColor *borderColorA;
 
 /** Color for the border of odd line numbers */
-@property (nonatomic, strong) NSColor *borderColorB;
+    @property (nonatomic, strong) NSColor *borderColorB;
 
 /** Color of the line numbers. */
-@property (nonatomic, strong) NSColor *textColor;
+    @property (nonatomic, strong) NSColor *textColor;
 
 /** Color for of line anchors */
-@property (nonatomic, strong) NSColor *anchorColor;
+    @property (nonatomic, strong) NSColor *anchorColor;
 
 /** Color for border of line anchors */
-@property (nonatomic, strong) NSColor *anchorBorderColor;
+    @property (nonatomic, strong) NSColor *anchorBorderColor;
 
 /**
  * Init the LineNumberView with a scrolView.
@@ -114,59 +116,59 @@
  * content of the scrolLView changes.
  * @param aScrollView to show the line numbers in
  */
-- (id)initWithScrollView:(NSScrollView *)aScrollView;
+    - (id)initWithScrollView:(NSScrollView *)aScrollView;
 
 /**
  * Adds a anchor to the given line.
  * @param line to add a anchor to
  */
-- (void) addAnchorToLine: (NSUInteger) line;
+    - (void)addAnchorToLine:(NSUInteger)line;
 
 /**
  * Removes a anchor from the given line.
  * @param line to remove a anchor from
  */
-- (void) removeAnchorFromLine: (NSUInteger) line;
+    - (void)removeAnchorFromLine:(NSUInteger)line;
 
 /**
  * Tests if the given line has a anchor.
  * @param line the line to test
  * @return YES if the line has a anchor
  */
-- (BOOL) hasAnchor: (NSUInteger) line;
+    - (BOOL)hasAnchor:(NSUInteger)line;
 
 /**
  * Tests if the given line has a wanring.
  * @param line the line to test
  * @return YES if the line has a warning
  */
-- (BOOL) hasWarning: (NSUInteger) line;
+    - (BOOL)hasWarning:(NSUInteger)line;
 
 /**
  * Tests if the given line has a error.
  * @param line the line to test
  * @return YES if the line has a error
  */
-- (BOOL) hasError: (NSUInteger) line;
+    - (BOOL)hasError:(NSUInteger)line;
 
 /**
  * Tests if the given line has a info.
  * @param line the line to test
  * @return YES if the line has a info
  */
-- (BOOL) hasInfo: (NSUInteger) line;
+    - (BOOL)hasInfo:(NSUInteger)line;
 
 /**
  * Tests if the given line has a debug.
  * @param line the line to test
  * @return YES if the line has a debug
  */
-- (BOOL) hasDebug: (NSUInteger) line;
+    - (BOOL)hasDebug:(NSUInteger)line;
 
 /**
  * Returns a array that holds the linenumbers of all lines with a anchor.
  * @return NSArray with NSUIntegers for the linenumbers
  */
-- (NSArray*) anchoredLines;
+    - (NSArray *)anchoredLines;
 
 @end

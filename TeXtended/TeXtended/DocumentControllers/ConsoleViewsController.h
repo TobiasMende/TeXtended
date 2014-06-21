@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DocumentControllerProtocol.h"
+
 @class DocumentModel, MessageDataSource;
 
 /**
@@ -16,24 +17,24 @@
  *
  * @author TObias MEnde
  */
-@interface ConsoleViewsController : NSViewController<DocumentControllerProtocol>
+@interface ConsoleViewsController : NSViewController <DocumentControllerProtocol>
 
 /** The data source for messages */
-@property (assign) IBOutlet MessageDataSource *messageDataSource;
+    @property (assign) IBOutlet MessageDataSource *messageDataSource;
 
 /** Parent in the document controller tree.*/
-@property (assign) id<DocumentControllerProtocol> parent;
+    @property (assign) id <DocumentControllerProtocol> parent;
 
 /** Children in the document controller tree. */
-@property (strong) NSSet* children;
+    @property (strong) NSSet *children;
 
 /** A tabView holding the views for all consoles. */
-@property (strong) IBOutlet NSTabView *tabView;
+    @property (strong) IBOutlet NSTabView *tabView;
 
 /** A tableview holding outline informations for messages like warnings. */
-@property (strong) IBOutlet NSTableView *messageOutline;
+    @property (strong) IBOutlet NSTableView *messageOutline;
 
 /** The DocumentModel the console views are for. */
-@property (strong) DocumentModel *model;
+    @property (strong) DocumentModel *model;
 
 @end

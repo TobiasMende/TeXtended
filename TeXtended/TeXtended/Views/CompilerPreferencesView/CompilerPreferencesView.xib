@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CompilerPreferencesViewController">
+            <connections>
+                <outlet property="view" destination="SCa-BI-jdW" id="w9h-16-dmd"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <arrayController preservesSelection="NO" id="6Jl-Ka-5Ld" userLabel="Availabel Compilers" customClass="CompileFlowHandler"/>
+        <customObject id="TyT-Uo-xf9" customClass="CompileFlowHandler"/>
+        <customView id="SCa-BI-jdW">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" id="ShI-RN-9cU">
+                    <rect key="frame" x="77" y="187" width="89" height="17"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="iterations" id="7qO-Ck-Pca">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="a3b-Us-nWb"/>
+                        <binding destination="-2" name="textColor" keyPath="self.defaultTextColor" id="ele-DB-nAO">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="CL4-RQ-Tol">
+                    <rect key="frame" x="60" y="183" width="19" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="3" doubleValue="1" valueWraps="YES" id="MSM-Mv-hjL"/>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="BuS-Zp-kKj"/>
+                        <binding destination="TyT-Uo-xf9" name="maxValue" keyPath="self.maxIterations" id="iBx-pt-h38"/>
+                        <binding destination="TyT-Uo-xf9" name="minValue" keyPath="self.minIterations" previousBinding="iBx-pt-h38" id="cfp-5a-LGL"/>
+                        <binding destination="-2" name="value" keyPath="self.compiler.numberOfCompiles" previousBinding="cfp-5a-LGL" id="85Q-vD-3uF"/>
+                    </connections>
+                </stepper>
+                <textField verticalHuggingPriority="750" id="NYc-Oa-ozr">
+                    <rect key="frame" x="15" y="186" width="46" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dmi-79-ABN">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="," groupingSeparator="." currencyDecimalSeparator="," plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="vws-si-9PF">
+                            <integer key="minimum" value="1"/>
+                            <integer key="maximum" value="3"/>
+                        </numberFormatter>
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="RQD-Pi-ISJ"/>
+                        <binding destination="TyT-Uo-xf9" name="maxValue" keyPath="self.maxIterations" id="gNA-W8-yNq"/>
+                        <binding destination="TyT-Uo-xf9" name="minValue" keyPath="self.minIterations" previousBinding="gNA-W8-yNq" id="KOr-wM-7eZ"/>
+                        <binding destination="-2" name="value" keyPath="self.compiler.numberOfCompiles" previousBinding="KOr-wM-7eZ" id="M0o-z6-htw"/>
+                    </connections>
+                </textField>
+                <button id="kYY-bM-nrn">
+                    <rect key="frame" x="13" y="240" width="22" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="j0g-K1-sKq">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.enabled" id="Aav-P8-1kh"/>
+                    </connections>
+                </button>
+                <popUpButton verticalHuggingPriority="750" id="loL-hU-ufC">
+                    <rect key="frame" x="34" y="236" width="132" height="26"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Item 3" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="fuC-nA-Dfw" id="Sle-lX-Ons">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <menu key="menu" title="OtherViews" id="Vht-eT-DG9">
+                            <items>
+                                <menuItem title="Item 1" id="7Aq-nd-ySR"/>
+                                <menuItem title="Item 2" id="Yro-ap-OqN"/>
+                                <menuItem title="Item 3" state="on" id="fuC-nA-Dfw"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="6Jl-Ka-5Ld" name="contentValues" keyPath="arrangedObjects" id="RZI-rn-WKh"/>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="1pb-Gt-lEf"/>
+                        <binding destination="-2" name="selectedObject" keyPath="self.compiler.compilerPath" previousBinding="RZI-rn-WKh" id="Oaq-LN-xYZ"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="ssQ-dc-Oe2">
+                    <rect key="frame" x="15" y="14" width="149" height="148"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rVO-y1-g9w">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="jri-fo-myL"/>
+                        <binding destination="-2" name="value" keyPath="self.compiler.customArgument" id="WRu-hG-tWc"/>
+                    </connections>
+                </textField>
+                <button id="mz7-Rf-ZQZ">
+                    <rect key="frame" x="13" y="215" width="143" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Bibliography" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9mK-4c-KKQ">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.enabled" id="lZb-bE-Lke"/>
+                        <binding destination="-2" name="value" keyPath="self.compiler.compileBib" id="Lff-ie-MGu"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="F6G-io-mhJ">
+                    <rect key="frame" x="13" y="165" width="124" height="14"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Custom Argument:" id="eye-1N-9R3">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="textColor" keyPath="self.defaultTextColor" id="SgL-DH-PBp">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+            </subviews>
+        </customView>
+    </objects>
+</document>

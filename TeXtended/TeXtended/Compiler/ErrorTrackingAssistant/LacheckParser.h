@@ -19,6 +19,7 @@
  *
  */
 
-@interface LacheckParser : Parser {
-}
+@interface LacheckParser : Parser
+    {
+    }
 @end

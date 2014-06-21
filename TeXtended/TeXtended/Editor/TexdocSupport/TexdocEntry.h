@@ -16,13 +16,15 @@
  
  */
 @interface TexdocEntry : NSObject
+
 /** The description of the entry of the file name if description is empty */
-@property (strong) NSString *description;
+    @property (strong) NSString *description;
+
 /** The rank score of this entry (float) */
-@property (strong) NSNumber *score;
+    @property (strong) NSNumber *score;
 
 /** The path to the file */
-@property (strong) NSString *path;
+    @property (strong) NSString *path;
 
 /**
  Initializes a new TexdocEntry by transforming an array of string into correct datatypes.
@@ -31,19 +33,19 @@
  
  @return self
  */
-- (id) initWithArray:(NSArray *) texdoc;
+    - (id)initWithArray:(NSArray *)texdoc;
 
 /**
  Method for getting the file name (depends on [TexdocEntry path])
  
  @return the file name
  */
-- (NSString *)fileName;
+    - (NSString *)fileName;
 
 /**
  Returns the file icon (depends on [TexdocEntry path])
  
  @return a meaningfull file icon
  */
-- (NSImage*) fileIcon;
+    - (NSImage *)fileIcon;
 @end

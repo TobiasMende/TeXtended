@@ -15,9 +15,10 @@
  **Author:** Tobias Mende
  
  */
-@interface TexdocController : NSObject {
-    NSTask *task;
-}
+@interface TexdocController : NSObject
+    {
+        NSTask *task;
+    }
 
 /**
  Method for starting a texdoc terminal task for getting a list of entries for the given package name
@@ -26,5 +27,5 @@
  @param info information that should be passed through the extraction process.
  @param handler an implementation TexdocHandlerProtocol where to call the callback action [TexdocHandlerProtocol texdocReadComplete:withPackageName:andInfo:]
  */
-- (void) executeTexdocForPackage:(NSString*)name withInfo:(NSDictionary*)info andHandler:(id<TexdocHandlerProtocol>) handler;
+    - (void)executeTexdocForPackage:(NSString *)name withInfo:(NSDictionary *)info andHandler:(id <TexdocHandlerProtocol>)handler;
 @end

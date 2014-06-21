@@ -14,8 +14,4 @@
 @implementation MainWindow
 
 
-
-
-
-
 @end

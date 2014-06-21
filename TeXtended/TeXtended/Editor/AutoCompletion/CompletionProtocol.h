@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @protocol CompletionProtocol <NSObject>
+
 /** Method returns the word which is used during auto completion */
-- (NSString*)autoCompletionWord;
+    - (NSString *)autoCompletionWord;
 
 /**
  Method for retreiving a key which represents the completion and can be shown to the user to identify this completion.
  @return a key string
  */
-- (NSString*)key;
+    - (NSString *)key;
 
 @optional
-- (BOOL)completionMatchesPrefix:(NSString *)prefix;
+    - (BOOL)completionMatchesPrefix:(NSString *)prefix;
 @end

@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class ConsoleWindowController;
-@interface ConsoleWindow : NSWindow
-- (void)liveCompile:(id)sender;
 
-@property (assign) ConsoleWindowController* controller;
+@class ConsoleWindowController;
+
+@interface ConsoleWindow : NSWindow
+
+    - (void)liveCompile:(id)sender;
+
+    @property (assign) ConsoleWindowController *controller;
 @end

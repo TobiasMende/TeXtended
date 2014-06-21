@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CustomTableCellView.h"
-@interface DBLPButtonView : NSTableCellView<CustomTableCellView>
+
+@interface DBLPButtonView : NSTableCellView <CustomTableCellView>
 
 @end

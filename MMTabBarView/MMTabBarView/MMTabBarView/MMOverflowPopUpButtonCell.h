@@ -10,7 +10,6 @@
 
 #import "MMOverflowPopUpButton.h"
 
-@class MMImageTransitionAnimation;
 
 @interface MMOverflowPopUpButtonCell : NSPopUpButtonCell <NSAnimationDelegate> {
 

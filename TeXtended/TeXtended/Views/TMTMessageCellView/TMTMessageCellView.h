@@ -9,11 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 @class TrackingMessage, DocumentModel;
-@interface TMTMessageCellView : NSTableCellView
-- (NSImage *)image;
-- (NSString *)lineString;
-- (TrackingMessage*) message;
 
-@property (strong,nonatomic) DocumentModel *model;
-@property BOOL isExternal;
+@interface TMTMessageCellView : NSTableCellView
+
+    - (NSImage *)image;
+
+    - (NSString *)lineString;
+
+    - (TrackingMessage *)message;
+
+    @property (strong, nonatomic) DocumentModel *model;
+
+    @property BOOL isExternal;
 @end

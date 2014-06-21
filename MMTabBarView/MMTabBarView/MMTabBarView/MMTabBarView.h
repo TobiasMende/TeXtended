@@ -40,7 +40,6 @@ static NSImage* _static##name##Image() \
 
 @class MMOverflowPopUpButton;
 @class MMRolloverButton;
-@class MMTabBarViewler;
 @class MMTabBarButton;
 @class MMAttachedTabBarButton;
 @class MMSlideButtonsAnimation;

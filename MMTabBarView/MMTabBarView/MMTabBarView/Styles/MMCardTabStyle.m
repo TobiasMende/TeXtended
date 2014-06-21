@@ -10,7 +10,6 @@
 
 #import "MMAttachedTabBarButton.h"
 #import "NSView+MMTabBarViewExtensions.h"
-#import "NSBezierPath+MMTabBarViewExtensions.h"
 
 @interface MMTabBarView(SharedPrivates)
 

@@ -7,10 +7,11 @@
 //
 
 #import "CiteCompletionView.h"
-#import "CiteCompletion.h"
 
 @implementation CiteCompletionView
-+ (NSInteger)defaultViewHeight {
-    return 35;
-}
+
+    + (NSInteger)defaultViewHeight
+    {
+        return 35;
+    }
 @end

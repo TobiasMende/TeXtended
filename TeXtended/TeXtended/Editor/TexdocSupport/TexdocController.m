@@ -13,6 +13,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 
 @interface TexdocController ()
+
 /**
  Method called when the task terminates
  
@@ -21,7 +22,7 @@
  @param info the additional user info
  @param handler the callback handler
  */
-- (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package info:(NSDictionary*)info andHandler:(id<TexdocHandlerProtocol>)handler;
+    - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString *)package info:(NSDictionary *)info andHandler:(id <TexdocHandlerProtocol>)handler;
 
 /**
  Parser method for extracting TexdocEntry objects from the tasks output
@@ -30,76 +31,81 @@
  
  @return an array of TexdocEntry objects.
  */
-- (NSMutableArray *)parseTexdocList:(NSString *)texdocList;
+    - (NSMutableArray *)parseTexdocList:(NSString *)texdocList;
 @end
 
 @implementation TexdocController
 
-- (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString*) package info:(NSDictionary *)info andHandler:(id<TexdocHandlerProtocol>) handler {
-    NSData *data = [notification userInfo][NSFileHandleNotificationDataItem];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSMutableArray *texdocArray = [self parseTexdocList:string];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
-    [handler texdocReadComplete:texdocArray withPackageName:package andInfo:info];
- 
-    
-}
+    - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString *)package info:(NSDictionary *)info andHandler:(id <TexdocHandlerProtocol>)handler
+    {
+        NSData *data = [notification userInfo][NSFileHandleNotificationDataItem];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSMutableArray *texdocArray = [self parseTexdocList:string];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
+        [handler texdocReadComplete:texdocArray withPackageName:package andInfo:info];
 
-- (NSMutableArray *)parseTexdocList:(NSString *)texdocList {
-    if (texdocList.length == 0) {
-        return nil;
+
     }
-    NSArray *lines = [texdocList componentsSeparatedByString:@"\n"];
-    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:lines.count];
-    for (NSString *line in lines) {
-        NSArray *entry = [line componentsSeparatedByString:@"\t"];
-        TexdocEntry *e = [[TexdocEntry alloc] initWithArray:entry];
-        if (e) {
-            [result addObject:e];
+
+    - (NSMutableArray *)parseTexdocList:(NSString *)texdocList
+    {
+        if (texdocList.length == 0) {
+            return nil;
+        }
+        NSArray *lines = [texdocList componentsSeparatedByString:@"\n"];
+        NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:lines.count];
+        for (NSString *line in lines) {
+            NSArray *entry = [line componentsSeparatedByString:@"\t"];
+            TexdocEntry *e = [[TexdocEntry alloc] initWithArray:entry];
+            if (e) {
+                [result addObject:e];
+            }
+        }
+
+
+        return result;
+    }
+
+    - (void)executeTexdocForPackage:(NSString *)name withInfo:(NSDictionary *)info andHandler:(id <TexdocHandlerProtocol>)handler
+    {
+        if (task) {
+            if (task.isRunning) {
+                [task interrupt];
+            }
+        }
+        task = [NSTask new];
+        NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
+
+        NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
+        NSString *command = [PathFactory texdoc];
+        [task setEnvironment:@{@"PATH" : pathVariables}];
+        [task setLaunchPath:command];
+        NSArray *args = @[@"-l", @"-M", name];
+        NSPipe *outputPipe = [NSPipe pipe];
+        [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
+
+        [task setStandardOutput:outputPipe];
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note)
+        {
+            [self texdocReadComplete:note withPackageName:name info:info andHandler:handler];
+        }];
+        [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+        [task setArguments:args];
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            DDLogError(@"Cant'start texdoc task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
+            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
         }
     }
-    
-    
-    return result;
-}
 
-- (void)executeTexdocForPackage:(NSString *)name withInfo:(NSDictionary *)info andHandler:(id<TexdocHandlerProtocol>)handler{
-    if (task) {
-        if (task.isRunning) {
+    - (void)dealloc
+    {
+        if (task && task.isRunning) {
             [task interrupt];
         }
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
-   task = [NSTask new];
-    NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-    
-    NSString *pathVariables = [defaults valueForKeyPath:[@"values." stringByAppendingString:TMT_ENVIRONMENT_PATH]];
-    NSString *command = [PathFactory texdoc];
-    [task setEnvironment:@{@"PATH": pathVariables}];
-    [task setLaunchPath:command];
-    NSArray	*args = @[@"-l", @"-M", name];
-    NSPipe *outputPipe = [NSPipe pipe];
-    [task setCurrentDirectoryPath:[@"~" stringByExpandingTildeInPath]];
-
-    [task setStandardOutput:outputPipe];
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleReadToEndOfFileCompletionNotification object:[outputPipe fileHandleForReading] queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [self texdocReadComplete:note withPackageName:name info:info andHandler:handler];
-    }];
-    [[outputPipe fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-    [task setArguments: args];
-    @try {
-        [task launch];
-    }
-    @catch (NSException *exception) {
-        DDLogError(@"Cant'start texdoc task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
-        DDLogVerbose(@"%@", [NSThread callStackSymbols]);
-    }
-}
-
-- (void)dealloc {
-    if (task && task.isRunning) {
-        [task interrupt];
-    }
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 @end

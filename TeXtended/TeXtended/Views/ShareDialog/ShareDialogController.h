@@ -10,10 +10,14 @@
 
 @interface ShareDialogController : NSWindowController
 
-@property (assign) IBOutlet NSTableView* table;
-@property (nonatomic) NSArray* content;
-@property (readonly) NSArray* fileNames;
-@property (nonatomic,readonly) NSArray* choice;
-@property IBOutlet NSButton* okButton;
+    @property (assign) IBOutlet NSTableView *table;
+
+    @property (nonatomic) NSArray *content;
+
+    @property (readonly) NSArray *fileNames;
+
+    @property (nonatomic, readonly) NSArray *choice;
+
+    @property IBOutlet NSButton *okButton;
 
 @end

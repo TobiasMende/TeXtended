@@ -9,24 +9,25 @@
 #import "OutlineHelper.h"
 #import "OutlineElement.h"
 #import <TMTHelperCollection/TMTLog.h>
+
 @implementation OutlineHelper
 
 
-
-+ (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path{
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:currentLevel.count];
-    for(OutlineElement *obj in currentLevel) {
-        [result addObject:obj];
-        if ([obj children] && [obj children].count > 0) {
-            if (![path containsObject:obj]) {
-                [path addObject:obj];
-                [result addObjectsFromArray:[OutlineHelper flatten:[obj children] withPath:path]];
-                [path removeObject:obj];
-            }else {
-                DDLogError(@"Tree contains loop. Breaking loop");
+    + (NSMutableArray *)flatten:(NSArray *)currentLevel withPath:(NSMutableSet *)path
+    {
+        NSMutableArray *result = [NSMutableArray arrayWithCapacity:currentLevel.count];
+        for (OutlineElement *obj in currentLevel) {
+            [result addObject:obj];
+            if ([obj children] && [obj children].count > 0) {
+                if (![path containsObject:obj]) {
+                    [path addObject:obj];
+                    [result addObjectsFromArray:[OutlineHelper flatten:[obj children] withPath:path]];
+                    [path removeObject:obj];
+                } else {
+                    DDLogError(@"Tree contains loop. Breaking loop");
+                }
             }
         }
+        return result;
     }
-    return result;
-}
 @end

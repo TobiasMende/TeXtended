@@ -7,8 +7,6 @@
 
 #import "MMRolloverButton.h"
 
-#import "MMRolloverButtonCell.h"
-
 @implementation MMRolloverButton
 
 + (Class)cellClass {

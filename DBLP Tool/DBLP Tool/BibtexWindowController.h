@@ -9,10 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 @class TMTBibTexEntry;
-@interface BibtexWindowController : NSWindowController
-@property (unsafe_unretained) IBOutlet NSTextView *bibtexView;
-@property TMTBibTexEntry *publication;
 
-- (id)initWithPublication:(TMTBibTexEntry *)publication;
-- (void) showPublication:(TMTBibTexEntry *)publication;
+@interface BibtexWindowController : NSWindowController
+
+    @property (unsafe_unretained) IBOutlet NSTextView *bibtexView;
+
+    @property TMTBibTexEntry *publication;
+
+    - (id)initWithPublication:(TMTBibTexEntry *)publication;
+
+    - (void)showPublication:(TMTBibTexEntry *)publication;
 @end
