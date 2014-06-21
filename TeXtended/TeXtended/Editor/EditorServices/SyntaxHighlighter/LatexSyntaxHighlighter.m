@@ -12,11 +12,13 @@
 #import "NSString+LatexExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
 
-static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
-
-static NSRegularExpression *INLINE_MATH_REGEX, *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;
-
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
+static const NSCharacterSet *ALL_SYMBOLS;
+static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS;
+
+static NSString *COMMAND_PATTERN;
+
+static NSRegularExpression *COMMAND_REGEX;
 
 @interface LatexSyntaxHighlighter ()
 
@@ -33,29 +35,14 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
     + (void)initialize
     {
-        // In this section,
-        COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
-
-        INLINE_MATH_PATTERN = @"(?<![\\\\])(?:\\$(?:[^\\$]+)\\$)|(\\\\\\[(?:[^\\$]+)\\\\\\])|(\\$\\$(?:[^\\$]+)\\$\\$)";
-
-        CURLY_BRACKET_PATTERN = @"(\\{|\\})";
-
-        COMMENT_PATTERN = @"(?:%.*)";
-
-        BRACKET_PATTERN = @"(?:\\(|\\)|\\[|\\]|\\\\\\{|\\\\\\})";
-
-        NSError *error;
-        //Regular Expression
-        INLINE_MATH_REGEX = [NSRegularExpression regularExpressionWithPattern:INLINE_MATH_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
-        COMMAND_REGEX = [NSRegularExpression regularExpressionWithPattern:COMMAND_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
-        CURLY_BRACKET_REGEX = [NSRegularExpression regularExpressionWithPattern:CURLY_BRACKET_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
-        COMMENT_REGEX = [NSRegularExpression regularExpressionWithPattern:COMMENT_PATTERN options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
-        BRACKET_REGEX = [NSRegularExpression regularExpressionWithPattern:BRACKET_PATTERN options:NSRegularExpressionCaseInsensitive error:&error];
 
         USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor", @"commandColor", @"bracketColor", @"curlyBracketColor", @"commentColor", @"shouldHighlightArguments", @"shouldHighlightCommands", @"shouldHighlightComments", @"shouldHighlightBrackets", @"shouldHighlightInlineMath", nil];
-        if (error) {
-            DDLogError(@"Syntax Highlighter Error: %@", error.userInfo);
-        }
+        ALL_SYMBOLS = [NSCharacterSet characterSetWithCharactersInString:@"()[]{}%$\\"];
+        CURLY_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"{}"];
+        ROUND_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"()"];
+        RECT_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"[]"];
+        
+        COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
 
     }
 
@@ -152,7 +139,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
     - (void)highlightNarrowArea
     {
-        //TODO: online highlight +- 5 lines;
         [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
     }
 
@@ -163,7 +149,6 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
 
     - (void)highlightRange:(NSRange)range
     {
-        [[view layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
         [self performHighlightingInRange:range];
     }
 
@@ -176,71 +161,112 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
  */
     - (void)performHighlightingInRange:(NSRange)textRange
     {
+        
         //[view.codeNavigationAssistant highlightCurrentLineForegroundWithRange:view.selectedRange];
 
         if (textRange.length == 0) {
             return;
         }
-        [self highlightMathBracketsInRange:textRange];
-        [self highlightCommandInRange:textRange];
-        [self highlightCurlyBracketsInRange:textRange];
-        [self highlightCommentInRange:textRange];
-        [self highlightInlineMathInRange:textRange];
-        [view.codeExtensionEngine addLinksForRange:textRange];
-    }
-
-    - (void)highlightCommandInRange:(NSRange)totalRange
-    {
-        if (self.shouldHighlightCommands) {
-            NSLayoutManager *lm = [view layoutManager];
-
-            NSString *str = view.string;
-            NSArray *matches = [COMMAND_REGEX matchesInString:str options:0 range:totalRange];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match range];
-                [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commandColor forCharacterRange:range];
-
-            }
-        }
-    }
-
-    - (void)highlightMathBracketsInRange:(NSRange)totalRange
-    {
-        if (self.shouldHighlightBrackets) {
-            [self highlightForegroundWithExpression:BRACKET_REGEX andColor:self.bracketColor inRange:totalRange];
-        }
-    }
-
-    - (void)highlightCurlyBracketsInRange:(NSRange)totalRange
-    {
-        if (self.shouldHighlightArguments) {
-            [self highlightForegroundWithExpression:CURLY_BRACKET_REGEX andColor:self.curlyBracketColor inRange:totalRange];
-        }
-    }
-
-    - (void)highlightInlineMathInRange:(NSRange)totalRange
-    {
-        if (self.shouldHighlightInlineMath) {
-            [self highlightForegroundWithExpression:INLINE_MATH_REGEX andColor:self.inlineMathColor inRange:totalRange];
-        }
-    }
-
-    - (void)highlightCommentInRange:(NSRange)totalRange
-    {
-        if (self.shouldHighlightComments) {
-            NSLayoutManager *lm = [view layoutManager];
-            NSString *str = view.string;
-            NSArray *matches = [COMMENT_REGEX matchesInString:str options:0 range:totalRange];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match range];
-                if (range.location > 0 && ![str numberOfBackslashesBeforePositionIsEven:range.location]) {
-                    continue;
+        
+        NSScanner *scanner = [NSScanner scannerWithString:view.string];
+        scanner.scanLocation = textRange.location;
+        NSUInteger rangeStart = textRange.location;
+        
+        while (scanner.scanLocation < NSMaxRange(textRange) && !scanner.isAtEnd) {
+            [scanner scanUpToCharactersFromSet:ALL_SYMBOLS intoString:NULL];
+                // Found Begin of Something
+                // Uncolor normal text
+                [self highlightFrom:rangeStart to:scanner.scanLocation withColor:nil andFlag:NO];
+                
+                rangeStart = scanner.scanLocation;
+                if ([scanner scanCharactersFromSet:ROUND_BRACKETS intoString:NULL] ) {
+                    // color round brackets
+                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
+                } else if ([scanner scanCharactersFromSet:CURLY_BRACKETS intoString:NULL]) {
+                    // color curly brackets
+                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.curlyBracketColor andFlag:self.shouldHighlightArguments];
+                } else if ([scanner scanCharactersFromSet:RECT_BRACKETS intoString:NULL]) {
+                    // color rect brackets
+                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
+                } else if([scanner scanString:@"\\" intoString:NULL]) {
+                    // color commands
+                    NSMutableCharacterSet *charactersInCommand = [NSMutableCharacterSet characterSetWithCharactersInString:@"{}[]"];
+                    [charactersInCommand formUnionWithCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    [scanner scanUpToCharactersFromSet:charactersInCommand  intoString:NULL];
+                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
+                } else if([scanner scanString:@"$" intoString:NULL]) {
+                    if ([scanner scanString:@"$" intoString:NULL]) {
+                        // Start is $$
+                        if ([scanner scanUpToString:@"$$" intoString:NULL]) {
+                            // Found end for $$
+                            [scanner scanString:@"$$" intoString:NULL];
+                        }
+                    } else if ([scanner scanUpToString:@"$" intoString:NULL]) {
+                        // Found end for $
+                        [scanner scanString:@"$" intoString:NULL];
+                    }
+                    
+                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
+                } else if([scanner scanString:@"%" intoString:NULL]) {
+                    // comment
+                    
+                    [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
+                    [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+                } else if (scanner.isAtEnd) {
+                    // ignore this case. no special symbols in content
+                } else {
+                    DDLogError(@"Unexpected Case!! Seeing: %@", [view.string substringToIndex:rangeStart]);
                 }
-                [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commentColor forCharacterRange:range];
+                rangeStart = scanner.scanLocation;
+         
+        }
+        
+    }
+
+
++ (void) logCharacterSet:(NSCharacterSet*)characterSet
+{
+    unichar unicharBuffer[20];
+    int index = 0;
+    
+    for (unichar uc = 0; uc < (0xFFFF); uc ++)
+    {
+        if ([characterSet characterIsMember:uc])
+        {
+            unicharBuffer[index] = uc;
+            
+            index ++;
+            
+            if (index == 20)
+            {
+                NSString * characters = [NSString stringWithCharacters:unicharBuffer length:index];
+                NSLog(@"%@", characters);
+                
+                index = 0;
             }
         }
-
     }
+    
+    if (index != 0)
+    {
+        NSString * characters = [NSString stringWithCharacters:unicharBuffer length:index];
+        NSLog(@"%@", characters);
+    }
+}
+
+- (void)highlightFrom:(NSUInteger)start to:(NSUInteger)end withColor:(NSColor *)color andFlag:(BOOL)shouldHighlight {
+    NSRange range = NSMakeRange(start, end-start);
+    if (range.length == 0) {
+        return;
+    }
+            NSLayoutManager *lm = [view layoutManager];
+    if (shouldHighlight) {
+        [lm addTemporaryAttribute:NSForegroundColorAttributeName value:color forCharacterRange:range];
+    } else {
+        [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:range];
+    }
+}
 
 
 /**
@@ -258,6 +284,8 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
             [lm addTemporaryAttribute:NSForegroundColorAttributeName value:color forCharacterRange:range];
         }
     }
+
+
 
 
 

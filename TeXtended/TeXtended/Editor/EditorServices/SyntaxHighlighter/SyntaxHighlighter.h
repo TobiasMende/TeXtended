@@ -33,4 +33,6 @@
  @param range the range to highlight
  */
     - (void)highlightRange:(NSRange)range;
+
+- (void)highlightContextBased:(NSString *)context;
 @end
