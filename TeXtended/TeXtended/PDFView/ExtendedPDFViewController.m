@@ -135,19 +135,21 @@
             }
 
             // update
-            NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
-            PDFDocument *pdfDoc;
-            pdfDoc = [[PDFDocument alloc] initWithURL:url];
-            [self.pdfView setDocument:pdfDoc];
-            // restore visible region
-            if (index >= 0 && index < pdfDoc.pageCount) {
-                PDFPage *page = [pdfDoc pageAtIndex:index];
-                if (page) {
-                    [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:self.model.pdfPath]) {
+                NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
+                PDFDocument *pdfDoc;
+                pdfDoc = [[PDFDocument alloc] initWithURL:url];
+                [self.pdfView setDocument:pdfDoc];
+                // restore visible region
+                if (index >= 0 && index < pdfDoc.pageCount) {
+                    PDFPage *page = [pdfDoc pageAtIndex:index];
+                    if (page) {
+                        [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];
+                    }
                 }
+                
+                [self.pdfView updatePageNumber:nil];
             }
-
-            [self.pdfView updatePageNumber:nil];
         }
     }
 
