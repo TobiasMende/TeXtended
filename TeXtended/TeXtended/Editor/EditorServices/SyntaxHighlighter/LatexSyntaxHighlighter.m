@@ -208,11 +208,14 @@ static NSRegularExpression *COMMAND_REGEX;
                     
                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
                 } else if([scanner scanString:@"%" intoString:NULL]) {
-                    // comment
-                    
+                    // color comment
+                    NSCharacterSet *tmp = scanner.charactersToBeSkipped;
+                    scanner.charactersToBeSkipped = nil;
                     [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+                    
                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
                     [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+                    scanner.charactersToBeSkipped = tmp;
                 } else if (scanner.isAtEnd) {
                     // ignore this case. no special symbols in content
                 } else {
