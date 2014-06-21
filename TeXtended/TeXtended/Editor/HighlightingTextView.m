@@ -761,9 +761,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     {
 
         TMTLineWrappingMode current = self.lineWrapMode;
+        stopTextDidChangeNotifications = YES;
         self.lineWrapMode = HardWrap;
         [self.codeNavigationAssistant handleWrappingInRange:NSMakeRange(0, self.string.length)];
         self.lineWrapMode = current;
+        stopTextDidChangeNotifications = NO;
+        [self didChangeText];
 
     }
 
@@ -786,6 +789,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
         if (NSMaxRange(totalRange) < self.string.length) {
+            stopTextDidChangeNotifications = YES;
             NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
             NSRange nextLine = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(NSMaxRange(totalRange) + 1, 0)];
             [self.undoManager beginUndoGrouping];
@@ -793,6 +797,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self setSelectedRange:[self firstRangeAfterSwapping:totalRange and:nextLine]];
             [self.undoManager setActionName:actionName];
             [self.undoManager endUndoGrouping];
+            stopTextDidChangeNotifications = NO;
+            [self didChangeText];
         }
     }
 
@@ -823,6 +829,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
         if (totalRange.location > 0) {
+            stopTextDidChangeNotifications = YES;
             NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
             NSRange lineBefore = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(totalRange.location - 1, 0)];
             [self.undoManager beginUndoGrouping];
@@ -830,8 +837,17 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self setSelectedRange:NSMakeRange(lineBefore.location, totalRange.length)];
             [self.undoManager setActionName:actionName];
             [self.undoManager endUndoGrouping];
+            stopTextDidChangeNotifications = NO;
+            [self didChangeText];
         }
     }
+
+
+- (void)didChangeText {
+    if (!stopTextDidChangeNotifications) {
+        [super didChangeText];
+    }
+}
 
     - (NSRange)firstRangeAfterSwapping:(NSRange)first and:(NSRange)second
     {
