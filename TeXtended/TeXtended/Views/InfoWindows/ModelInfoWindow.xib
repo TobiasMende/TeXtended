@@ -20,7 +20,7 @@
         </customObject>
         <arrayController objectClassName="DocumentModel" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="63J-IZ-Arh" userLabel="Main Documents">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.model.mainDocuments" id="5jn-qS-eLk"/>
+                <binding destination="-2" name="contentArray" keyPath="self.model.mainDocuments" id="VQL-Ha-5ci"/>
             </connections>
         </arrayController>
         <arrayController objectClassName="BibFile" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="ZsS-eO-WFV" userLabel="Bib Files">
@@ -74,18 +74,18 @@
                         <tabViewItems>
                             <tabViewItem label="Main Documents" identifier="1" id="eSw-y1-xbK">
                                 <view key="view" id="tYe-ov-6st">
-                                    <rect key="frame" x="10" y="29" width="184" height="177"/>
+                                    <rect key="frame" x="10" y="25" width="184" height="181"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="GDG-B7-F4m">
-                                            <rect key="frame" x="17" y="40" width="150" height="131"/>
+                                            <rect key="frame" x="17" y="40" width="150" height="135"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="p4W-Gl-2LZ">
-                                                <rect key="frame" x="1" y="1" width="148" height="129"/>
+                                                <rect key="frame" x="1" y="1" width="148" height="133"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" viewBased="YES" id="new-cz-gLT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="129"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="133"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

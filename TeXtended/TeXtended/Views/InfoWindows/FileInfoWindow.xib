@@ -15,8 +15,7 @@
         <customObject id="-3" userLabel="Application"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="Z8b-Hb-Oe7" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="272" y="172" width="557" height="261"/>
+            <rect key="contentRect" x="1007" y="566" width="557" height="261"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="pTa-Ot-nbp">
                 <rect key="frame" x="0.0" y="0.0" width="557" height="261"/>
@@ -106,7 +105,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="aUc-FM-vM8">
                         <rect key="frame" x="352" y="164" width="187" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="fSf-LM-g9T">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="fSf-LM-g9T">
                             <customFormatter key="formatter" id="goG-Se-HIp" customClass="TMTByteCountFormatter"/>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -137,19 +136,19 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="-2" name="value" keyPath="self.wrapper.fileTypeInfo" id="My0-9Z-MTb"/>
                             <binding destination="-2" name="hidden" keyPath="self.wrapper.fileTypeInfo" id="ey1-1D-mNZ">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSIsNil</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="-2" name="value" keyPath="self.wrapper.fileTypeInfo" id="My0-9Z-MTb"/>
                         </connections>
                     </textField>
                 </subviews>
             </view>
             <connections>
-                <binding destination="-2" name="representedFilename" keyPath="self.wrapper.fileURL.path" id="pSG-EW-1Tq"/>
                 <binding destination="-2" name="title" keyPath="self.wrapper.fileURL.lastPathComponent" previousBinding="pSG-EW-1Tq" id="fb9-5k-nvx"/>
+                <binding destination="-2" name="representedFilename" keyPath="self.wrapper.fileURL.path" id="pSG-EW-1Tq"/>
                 <outlet property="delegate" destination="-2" id="dgd-wt-WnW"/>
             </connections>
         </window>
