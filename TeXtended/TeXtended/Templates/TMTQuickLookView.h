@@ -9,6 +9,7 @@
 #import <Quartz/Quartz.h>
 
 @interface TMTQuickLookView : QLPreviewView
-@property (strong) void (^mouseDownHandler)(NSEvent *theEvent);
+
+    @property (strong) void (^mouseDownHandler)(NSEvent *theEvent);
 
 @end

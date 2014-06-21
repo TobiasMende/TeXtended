@@ -7,47 +7,47 @@
 //
 
 #import "CompletionsController.h"
-#import "CommandCompletion.h"
-#import "EnvironmentCompletion.h"
-#import "DropCompletion.h"
-#import "ApplicationController.h"
-#import "Constants.h"
-#import <TMTHelperCollection/TMTLog.h>
 #import "CompletionManager.h"
 
 
-
-@interface CompletionsController()
+@interface CompletionsController ()
 
 
 @end
+
 NSInteger commandTag = 1;
+
 NSInteger environmentTag = 2;
+
 NSInteger dropTag = 3;
+
 CompletionsController *instance;
+
 @implementation CompletionsController
 
-- (id)init {
-    if (instance) {
+    - (id)init
+    {
+        if (instance) {
+            return instance;
+        }
+        self = [super init];
+        if (self) {
+            self.manager = [CompletionManager sharedInstance];
+            instance = self;
+        }
+        return self;
+    }
+
+    + (CompletionsController *)sharedCompletionsController
+    {
+        if (!instance) {
+            instance = [CompletionsController new];
+        }
         return instance;
     }
-    self = [super init];
-    if (self) {
-        self.manager = [CompletionManager sharedInstance];
-        instance = self;
+
+
+    - (void)dealloc
+    {
     }
-    return self;
-}
-
-+ (CompletionsController *)sharedCompletionsController {
-    if (!instance) {
-        instance = [CompletionsController new];
-    }
-    return instance;
-}
-
-
-
-- (void)dealloc {
-}
 @end

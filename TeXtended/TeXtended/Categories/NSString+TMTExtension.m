@@ -7,51 +7,55 @@
 //
 
 #import "NSString+TMTExtension.h"
-#import <TMTHelperCollection/TMTLog.h>
 
 @implementation NSString (TMTExtension)
 
 
-- (NSArray *)tmplineRanges {
-    return [self componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-}
+    - (NSArray *)tmplineRanges
+    {
+        return [self componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 
-- (NSUInteger)lineNumberForRange:(NSRange)range {
-    NSUInteger numberOfLines, index, stringLength = [self length];
-    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
-        NSRange line = [self lineRangeForRange:NSMakeRange(index, 0)];
-        if (NSUnionRange(line, range).length == line.length) {
-            return numberOfLines;
-        }
-        index = NSMaxRange(line);
-        
     }
-    return NSNotFound;
-    
-}
 
-- (NSUInteger)numberOfLines {
-    NSUInteger numberOfLines, index, stringLength = [self length];
-    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++)
-        index = NSMaxRange([self lineRangeForRange:NSMakeRange(index, 0)]);
-    return numberOfLines;
-}
+    - (NSUInteger)lineNumberForRange:(NSRange)range
+    {
+        NSUInteger numberOfLines, index, stringLength = [self length];
+        for (index = 0, numberOfLines = 0 ; index < stringLength ; numberOfLines++) {
+            NSRange line = [self lineRangeForRange:NSMakeRange(index, 0)];
+            if (NSUnionRange(line, range).length == line.length) {
+                return numberOfLines;
+            }
+            index = NSMaxRange(line);
 
-- (NSRange)rangeForLine:(NSUInteger)lineNumber {
-    NSUInteger numberOfLines, index, stringLength = [self length];
-    for (index = 0, numberOfLines = 0; index < stringLength; numberOfLines++) {
-        NSRange range = [self lineRangeForRange:NSMakeRange(index, 0)];
-        if (numberOfLines == lineNumber) {
-            return range;
         }
-        index = NSMaxRange(range);
+        return NSNotFound;
+
     }
-    return NSMakeRange(NSNotFound, 0);
-}
+
+    - (NSUInteger)numberOfLines
+    {
+        NSUInteger numberOfLines, index, stringLength = [self length];
+        for (index = 0, numberOfLines = 0 ; index < stringLength ; numberOfLines++)
+            index = NSMaxRange([self lineRangeForRange:NSMakeRange(index, 0)]);
+        return numberOfLines;
+    }
+
+    - (NSRange)rangeForLine:(NSUInteger)lineNumber
+    {
+        NSUInteger numberOfLines, index, stringLength = [self length];
+        for (index = 0, numberOfLines = 0 ; index < stringLength ; numberOfLines++) {
+            NSRange range = [self lineRangeForRange:NSMakeRange(index, 0)];
+            if (numberOfLines == lineNumber) {
+                return range;
+            }
+            index = NSMaxRange(range);
+        }
+        return NSMakeRange(NSNotFound, 0);
+    }
 
 
-- (NSRange)lineRangeForPosition:(NSUInteger)position {
-    return [self lineRangeForRange:NSMakeRange(position, 0)];
-}
+    - (NSRange)lineRangeForPosition:(NSUInteger)position
+    {
+        return [self lineRangeForRange:NSMakeRange(position, 0)];
+    }
 @end

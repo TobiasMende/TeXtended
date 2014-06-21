@@ -33,7 +33,7 @@
  @param pattern A regular expression.
  @see [NSRegularExpression](https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html)
  */
-+ (NSRegularExpression*)simpleRegex:(NSString*)pattern;
+    + (NSRegularExpression *)simpleRegex:(NSString *)pattern;
 
 /** Replace all occurences of a pattern with a template.
  
@@ -49,6 +49,6 @@
  @param count A pointer count to get the total number of matches that were replaced.
  @see @see [NSRegularExpression](https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSRegularExpression_Class/Reference/Reference.html)
  */
-+ (NSString*)stringByReplacingOccurenceOfPatterns:(NSArray*)patterns inString:(NSString*)string options:(NSRegularExpressionOptions)options withTemplate:(NSString*)templ count:(NSInteger*)count;
+    + (NSString *)stringByReplacingOccurenceOfPatterns:(NSArray *)patterns inString:(NSString *)string options:(NSRegularExpressionOptions)options withTemplate:(NSString *)templ count:(NSInteger *)count;
 
 @end

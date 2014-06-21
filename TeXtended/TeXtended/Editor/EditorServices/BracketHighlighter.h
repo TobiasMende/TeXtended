@@ -8,21 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "EditorService.h"
+
 /**
  This class contains some algorithms for finding matching brackets and highlighting them.
  @author Tobias Mende
  @warning Be aware, that all positions in this interface are ment to be behind the bracket.
  
  */
-@interface BracketHighlighter : EditorService {
-    /** The date of the last auto insertion of a closing bracket */
-    NSDate *lastAutoinsert;
-}
+@interface BracketHighlighter : EditorService
+    {
+        /** The date of the last auto insertion of a closing bracket */
+        NSDate *lastAutoinsert;
+    }
+
 /** if `YES` matching brackets where automatically highlighted */
-@property BOOL shouldHighlightMatchingBrackets;
+    @property BOOL shouldHighlightMatchingBrackets;
 
 /** if `YES` machting closing brackets where automatically inserted */
-@property BOOL shouldAutoInsertClosingBrackets;
+    @property BOOL shouldAutoInsertClosingBrackets;
 
 
 /**
@@ -32,13 +35,14 @@
  
  @return `YES` if the bracket should be autocompleted, `NO` otherwise
  */
-- (BOOL) shouldInsert:(NSString*)str;
+    - (BOOL)shouldInsert:(NSString *)str;
+
 /**
  Method for analyze the given input and highlight brackets according to matching rules.
  @param str the current input
  
  */
-- (void) handleBracketsOnInsertWithInsertion:(NSString *) str;
+    - (void)handleBracketsOnInsertWithInsertion:(NSString *)str;
 
 
 /**
@@ -46,17 +50,17 @@
  
  @param str the input
  */
-- (NSArray*) highlightOnInsertWithInsertion:(NSString *) str;
+    - (NSArray *)highlightOnInsertWithInsertion:(NSString *)str;
 
 /**
  Method for analyzing the surounding of the current caret position and for highlighting matching brackets, when moving caret to the left.
  */
-- (void) highlightOnMoveLeft;
+    - (void)highlightOnMoveLeft;
 
 /**
  Method for analyzing the surounding of the current caret position and for highlighting matching brackets, when moving caret to the right.
  */
-- (void) highlightOnMoveRight;
+    - (void)highlightOnMoveRight;
 
 
 /**
@@ -66,7 +70,7 @@
  @param range the range to search in
  @return `nil` if no matches where found, an array containing two range values otherwise. In the second case, the first entry is the range value for the input and the second range value is the range of the matching bracket.
  */
-- (NSArray *) findMatchingBracketFor:(NSString *) bracket
-                           withStart:(NSUInteger) position
-                             inRange:(NSRange) range;
+    - (NSArray *)findMatchingBracketFor:(NSString *)bracket
+                              withStart:(NSUInteger)position
+                                inRange:(NSRange)range;
 @end

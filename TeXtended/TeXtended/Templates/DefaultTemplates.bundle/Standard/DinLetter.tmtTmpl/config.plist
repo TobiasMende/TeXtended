@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRo
-	XW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9q
-	ZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiA
-	CYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNTFlREhm4AE0iMkJSZaJGNsYXNz
-	bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNTFk9aWT4AEXURp
-	bkxldHRlci5wZGZdRGluTGV0dGVyLnRleAgJ0iMkMDFdRG9jdW1lbnRNb2RlbKMyMydd
-	RG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TY3VHJvb3SA
-	AQAIABEAGgAjAC0AMgA3AEMASQBeAGYAdACAAI0AlACcAKgAtAC8AMUAxwDJAMsAzQDP
-	ANEA0wDVANcA2QDbAOAA6ADxAPMA+AEDAQwBEwEWAR8BJAEtAS8BPQFLAUwBTQFSAWAB
-	ZAFyAX0BjwGSAZcAAAAAAAACAQAAAAAAAAA4AAAAAAAAAAAAAAAAAAABmQ==
-	</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>A letter in DIN norm.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>0</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10001</integer>
-</dict>
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGNDVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+            AAGGoKsHCB0eIigrLC0uL1UkbnVsbNoJCgsMDQ4PEBESExQVFhcUGRobHFdwZGZQYXRo
+            XW1haW5Eb2N1bWVudHNbbGl2ZUNvbXBpbGVcb3Blbk9uRXhwb3J0ViRjbGFzc1dwcm9q
+            ZWN0W2xhc3RDb21waWxlW2xhc3RDaGFuZ2VkV3RleFBhdGhYZW5jb2RpbmeABoAAgAiA
+            CYAKgACAA4AFgAeAAhAE0h8NICFXTlMudGltZSNBuNTFlREhm4AE0iMkJSZaJGNsYXNz
+            bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiJSdYTlNPYmplY3TSHw0pISNBuNTFk9aWT4AEXURp
+            bkxldHRlci5wZGZdRGluTGV0dGVyLnRleAgJ0iMkMDFdRG9jdW1lbnRNb2RlbKMyMydd
+            RG9jdW1lbnRNb2RlbFpDb21waWxhYmxlXxAPTlNLZXllZEFyY2hpdmVy0TY3VHJvb3SA
+            AQAIABEAGgAjAC0AMgA3AEMASQBeAGYAdACAAI0AlACcAKgAtAC8AMUAxwDJAMsAzQDP
+            ANEA0wDVANcA2QDbAOAA6ADxAPMA+AEDAQwBEwEWAR8BJAEtAS8BPQFLAUwBTQFSAWAB
+            ZAFyAX0BjwGSAZcAAAAAAAACAQAAAAAAAAA4AAAAAAAAAAAAAAAAAAABmQ==
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>A letter in DIN norm.</string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>0</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10001</integer>
+    </dict>
 </plist>

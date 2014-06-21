@@ -7,17 +7,23 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class EncodingController, ProjectCreationWindowController, Compilable, DocumentModel;
 
-@interface DocumentCreationController : NSDocumentController{
-    
-}
+@interface DocumentCreationController : NSDocumentController
+    {
 
-@property ProjectCreationWindowController *projectCreationWindowController;
-@property EncodingController *encController;
-- (void) newProject:(id)sender;
-- (void) showTexDocumentForPath:(NSString *)path andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
-- (void) showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable*)model andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
+    }
 
-- (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error;
+    @property ProjectCreationWindowController *projectCreationWindowController;
+
+    @property EncodingController *encController;
+
+    - (void)newProject:(id)sender;
+
+    - (void)showTexDocumentForPath:(NSString *)path andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
+
+    - (void)showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable *)model andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
+
+    - (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error;
 @end

@@ -10,25 +10,38 @@
 
 #import <MMTabBarView/MMTabBarItem.h>
 
-@interface TMTTabViewItem : NSObject <MMTabBarItem> {
-}
+@interface TMTTabViewItem : NSObject <MMTabBarItem>
+    {
+    }
 
-@property (copy)   NSString  *title;
-@property (retain) NSImage   *largeImage;
-@property (retain) NSImage   *icon;
-@property (retain) NSString  *iconName;
-@property (assign) BOOL       isProcessing;
-@property (assign) NSInteger  objectCount;
-@property (retain) NSColor   *objectCountColor;
-@property (assign) BOOL       showObjectCount;
-@property (assign) BOOL       isEdited;
-@property (assign) BOOL       hasCloseButton;
-@property (assign) NSView    *view;
-@property (assign) NSDocument *document;
-@property (strong) id identifier;
+    @property (copy) NSString *title;
+
+    @property (retain) NSImage *largeImage;
+
+    @property (retain) NSImage *icon;
+
+    @property (retain) NSString *iconName;
+
+    @property (assign) BOOL isProcessing;
+
+    @property (assign) NSInteger objectCount;
+
+    @property (retain) NSColor *objectCountColor;
+
+    @property (assign) BOOL showObjectCount;
+
+    @property (assign) BOOL isEdited;
+
+    @property (assign) BOOL hasCloseButton;
+
+    @property (assign) NSView *view;
+
+    @property (assign) NSDocument *document;
+
+    @property (strong) id identifier;
 
 
 // designated initializer
-- (id)init;
+    - (id)init;
 
 @end

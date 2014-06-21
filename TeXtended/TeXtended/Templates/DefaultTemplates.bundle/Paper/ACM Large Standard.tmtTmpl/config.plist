@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGd3hYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoK8QGwcIFxwuMjg7PD0+P0RHSElOWVxdXmJmamtvclUkbnVsbNcJCgsMDQ4PEBES
-	ExQVFllkb2N1bWVudHNdbWFpbkRvY3VtZW50c1hiaWJGaWxlc1YkY2xhc3NacHJvcGVy
-	dGllc1RwYXRoWGVuY29kaW5ngA+AAoAVgBqAEIAOgA3SGAwZG1pOUy5vYmplY3RzoRqA
-	A4AM2h0KHh8MICEiIw8kJSYnKCkqKywlV3BkZlBhdGhbbGl2ZUNvbXBpbGVcb3Blbk9u
-	RXhwb3J0V3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aIAHgACA
-	CYAKgAuAAYAEgAaACIAA0i8MMDFXTlMudGltZSNBuNS/4Hhm04AF0jM0NTZaJGNsYXNz
-	bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiNTdYTlNPYmplY3TSLww5MSNBuNTGFKPTLIAFWG1h
-	aW4ucGRmWG1haW4udGV4CAnSMzRAQV1Eb2N1bWVudE1vZGVso0JDN11Eb2N1bWVudE1v
-	ZGVsWkNvbXBpbGFibGXSMzRFRldOU0FycmF5okU3EAReYWNtbGFyZ2UudGVYcGbSGAxK
-	TaIUGoAQgAOAFNodCh4fDCAhIiMPTyUmJygpJVZXJYASgACACYAKgAuAAYAAgBGAE4AA
-	0i8MWjEjQbjUxhSNPgyABV5wcm9wZXJ0aWVzLnBkZl5wcm9wZXJ0aWVzLnRleNIzNF9g
-	XE5TTXV0YWJsZVNldKNfYTdVTlNTZXTSGAxjZaFkgBaAGdMgDgwpaGmAAYAXgBhabGli
-	YXJ5LmJpYtIzNGxtV0JpYkZpbGWibjdXQmliRmlsZdIzNHBxXk5TTXV0YWJsZUFycmF5
-	o3BFN9IzNHN0XFByb2plY3RNb2RlbKN1djdcUHJvamVjdE1vZGVsWkNvbXBpbGFibGVf
-	EA9OU0tleWVkQXJjaGl2ZXLReSlUcm9vdIABAAgAEQAaACMALQAyADcAVQBbAGoAdACC
-	AIsAkgCdAKIAqwCtAK8AsQCzALUAtwC5AL4AyQDLAM0AzwDkAOwA+AEFAQ0BGQElAS0B
-	LwExATMBNQE3ATkBOwE9AT8BQQFGAU4BVwFZAV4BaQFyAXkBfAGFAYoBkwGVAZ4BpwGo
-	AakBrgG8AcABzgHZAd4B5gHpAesB+gH/AgICBAIGAggCHQIfAiECIwIlAicCKQIrAi0C
-	LwIxAjYCPwJBAlACXwJkAnECdQJ7AoACggKEAoYCjQKPApECkwKeAqMCqwKuArYCuwLK
-	As4C0wLgAuQC8QL8Aw4DEQMWAAAAAAAAAgEAAAAAAAAAewAAAAAAAAAAAAAAAAAAAxg=
-	</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>The Large Format Single Column is used for the following journal and transactions:
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGd3hYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+            AAGGoK8QGwcIFxwuMjg7PD0+P0RHSElOWVxdXmJmamtvclUkbnVsbNcJCgsMDQ4PEBES
+            ExQVFllkb2N1bWVudHNdbWFpbkRvY3VtZW50c1hiaWJGaWxlc1YkY2xhc3NacHJvcGVy
+            dGllc1RwYXRoWGVuY29kaW5ngA+AAoAVgBqAEIAOgA3SGAwZG1pOUy5vYmplY3RzoRqA
+            A4AM2h0KHh8MICEiIw8kJSYnKCkqKywlV3BkZlBhdGhbbGl2ZUNvbXBpbGVcb3Blbk9u
+            RXhwb3J0V3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aIAHgACA
+            CYAKgAuAAYAEgAaACIAA0i8MMDFXTlMudGltZSNBuNS/4Hhm04AF0jM0NTZaJGNsYXNz
+            bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiNTdYTlNPYmplY3TSLww5MSNBuNTGFKPTLIAFWG1h
+            aW4ucGRmWG1haW4udGV4CAnSMzRAQV1Eb2N1bWVudE1vZGVso0JDN11Eb2N1bWVudE1v
+            ZGVsWkNvbXBpbGFibGXSMzRFRldOU0FycmF5okU3EAReYWNtbGFyZ2UudGVYcGbSGAxK
+            TaIUGoAQgAOAFNodCh4fDCAhIiMPTyUmJygpJVZXJYASgACACYAKgAuAAYAAgBGAE4AA
+            0i8MWjEjQbjUxhSNPgyABV5wcm9wZXJ0aWVzLnBkZl5wcm9wZXJ0aWVzLnRleNIzNF9g
+            XE5TTXV0YWJsZVNldKNfYTdVTlNTZXTSGAxjZaFkgBaAGdMgDgwpaGmAAYAXgBhabGli
+            YXJ5LmJpYtIzNGxtV0JpYkZpbGWibjdXQmliRmlsZdIzNHBxXk5TTXV0YWJsZUFycmF5
+            o3BFN9IzNHN0XFByb2plY3RNb2RlbKN1djdcUHJvamVjdE1vZGVsWkNvbXBpbGFibGVf
+            EA9OU0tleWVkQXJjaGl2ZXLReSlUcm9vdIABAAgAEQAaACMALQAyADcAVQBbAGoAdACC
+            AIsAkgCdAKIAqwCtAK8AsQCzALUAtwC5AL4AyQDLAM0AzwDkAOwA+AEFAQ0BGQElAS0B
+            LwExATMBNQE3ATkBOwE9AT8BQQFGAU4BVwFZAV4BaQFyAXkBfAGFAYoBkwGVAZ4BpwGo
+            AakBrgG8AcABzgHZAd4B5gHpAesB+gH/AgICBAIGAggCHQIfAiECIwIlAicCKQIrAi0C
+            LwIxAjYCPwJBAlACXwJkAnECdQJ7AoACggKEAoYCjQKPApECkwKeAqMCqwKuArYCuwLK
+            As4C0wLgAuQC8QL8Aw4DEQMWAAAAAAAAAgEAAAAAAAAAewAAAAAAAAAAAAAAAAAAAxg=
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>The Large Format Single Column is used for the following journal and transactions:
 
-JOCCH, TAP, TOMCCAP.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>1</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10004</integer>
-</dict>
+            JOCCH, TAP, TOMCCAP.
+        </string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>1</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10004</integer>
+    </dict>
 </plist>

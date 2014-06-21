@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface EditorPlaceholder : NSTextAttachment
-- (id) initWithName:(NSString*)name;
-+ (NSAttributedString*) placeholderAsAttributedStringWithName:(NSString*) name;
+
+    - (id)initWithName:(NSString *)name;
+
+    + (NSAttributedString *)placeholderAsAttributedStringWithName:(NSString *)name;
 @end

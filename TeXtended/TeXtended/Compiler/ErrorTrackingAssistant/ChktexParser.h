@@ -20,8 +20,9 @@
  * **Author:** Tobias Mende
  *
  */
-@interface ChktexParser : Parser {
-}
+@interface ChktexParser : Parser
+    {
+    }
 
 /**
  * Getter which identifies a message type by a given chktex warning number. (see *texdoc chktex* for further information)
@@ -30,7 +31,7 @@
  *
  * @return the message type
  */
-- (TMTTrackingMessageType) typeForChktexNumber:(NSInteger)number;
+    - (TMTTrackingMessageType)typeForChktexNumber:(NSInteger)number;
 
 /**
  * Getter for the further description for a message with a given chktex warning number and a message type
@@ -41,5 +42,5 @@
  *
  * @return the further information
  */
-- (NSString *) messageForChktexNumber: (NSInteger)number ofType:(TMTTrackingMessageType)type;
+    - (NSString *)messageForChktexNumber:(NSInteger)number ofType:(TMTTrackingMessageType)type;
 @end

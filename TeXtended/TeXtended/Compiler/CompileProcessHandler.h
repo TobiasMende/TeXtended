@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @class MainDocument, DocumentModel, TextViewController;
+
 @protocol CompileProcessHandler <NSObject>
-- (MainDocument *)mainDocument;
-- (DocumentModel *) model;
-- (void) compile:(CompileMode)mode;
-- (void) liveCompile:(id)sender;
-- (TextViewController *)textViewController;
-- (void)abort;
+
+    - (MainDocument *)mainDocument;
+
+    - (DocumentModel *)model;
+
+    - (void)compile:(CompileMode)mode;
+
+    - (void)liveCompile:(id)sender;
+
+    - (TextViewController *)textViewController;
+
+    - (void)abort;
 @end

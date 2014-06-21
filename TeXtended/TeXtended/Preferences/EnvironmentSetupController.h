@@ -18,19 +18,19 @@
 @interface EnvironmentSetupController : NSObject
 
 /** The path to the texbin directory */
-@property NSString *texbinPath;
+    @property NSString *texbinPath;
 
 /** The state image for the synctex executable */
-- (NSImage *)synctexImage;
+    - (NSImage *)synctexImage;
 
 /** The state image for the lacheck executable */
-- (NSImage *)lacheckImage;
+    - (NSImage *)lacheckImage;
 
 /** The state image for the chktex executable */
-- (NSImage *)chktexImage;
+    - (NSImage *)chktexImage;
 
 /** The state image for the texdoc executable */
-- (NSImage *)texdocImage;
+    - (NSImage *)texdocImage;
 
 
 /**
@@ -40,5 +40,5 @@
  
  @return the image. A check mark, if the path points to a valid executable, an error sign otherwise.
  */
-- (NSImage *)imageForPath:(NSString*)path;
+    - (NSImage *)imageForPath:(NSString *)path;
 @end

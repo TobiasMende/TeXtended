@@ -8,23 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BackwardSynctex : NSObject {
-}
-- initWithOutputPath:(NSString *)outPath page:(NSUInteger)page andPosition:(NSPoint) position;
+@interface BackwardSynctex : NSObject
+    {
+    }
+
+    - initWithOutputPath:(NSString *)outPath page:(NSUInteger)page andPosition:(NSPoint)position;
 
 /** The line in the input document */
-@property NSUInteger line;
+    @property NSUInteger line;
 
 /** The column in the input document */
-@property NSUInteger column;
+    @property NSUInteger column;
 
 /** The input document for the given position */
-@property NSString *inputPath;
+    @property NSString *inputPath;
 
 /** A given offset */
-@property NSInteger offset;
+    @property NSInteger offset;
 
 /** The context to work in */
-@property NSString *context;
+    @property NSString *context;
 
 @end

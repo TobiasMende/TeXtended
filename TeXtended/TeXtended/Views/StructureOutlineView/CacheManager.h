@@ -7,13 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-@class OutlineElement;
-@interface CacheManager : NSObject {
-    NSMutableDictionary *COLOR_LOOKUP;
-    NSMutableDictionary *IMAGE_LOOKUP;
-}
-- (NSImage *)imageForOutlineElement:(OutlineElement *)element;
-- (NSColor *)colorForOutlineElement:(OutlineElement *)element;
 
-+ (CacheManager *)sharedCacheManager;
+@class OutlineElement;
+
+@interface CacheManager : NSObject
+    {
+        NSMutableDictionary *COLOR_LOOKUP;
+
+        NSMutableDictionary *IMAGE_LOOKUP;
+    }
+
+    - (NSImage *)imageForOutlineElement:(OutlineElement *)element;
+
+    - (NSColor *)colorForOutlineElement:(OutlineElement *)element;
+
+    + (CacheManager *)sharedCacheManager;
 @end

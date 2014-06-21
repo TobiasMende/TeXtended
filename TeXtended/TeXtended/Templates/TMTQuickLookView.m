@@ -10,32 +10,36 @@
 
 
 @interface TMTQuickLookView ()
-- (BOOL)shouldDelegateEvent:(NSEvent *)event;
+
+    - (BOOL)shouldDelegateEvent:(NSEvent *)event;
 @end
+
 @implementation TMTQuickLookView
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame style:QLPreviewViewStyleCompact];
-    if (self) {
-        // Initialization code here.
+    - (id)initWithFrame:(NSRect)frame
+    {
+        self = [super initWithFrame:frame style:QLPreviewViewStyleCompact];
+        if (self) {
+            // Initialization code here.
+        }
+        return self;
     }
-    return self;
-}
 
 
-- (void)mouseDown:(NSEvent *)theEvent {
-    [super mouseDown:theEvent];
-    if ([self shouldDelegateEvent:theEvent]) {
-        self.mouseDownHandler(theEvent);
+    - (void)mouseDown:(NSEvent *)theEvent
+    {
+        [super mouseDown:theEvent];
+        if (self.mouseDownHandler && [self shouldDelegateEvent:theEvent]) {
+            self.mouseDownHandler(theEvent);
+        }
     }
-}
 
-- (BOOL)shouldDelegateEvent:(NSEvent *)event {
-    NSPoint localLocation = [self convertPoint:event.locationInWindow fromView:nil];
-    NSRect forbidden = NSMakeRect(25.5, 11.5, 69.5, 30);
-    return !NSPointInRect(localLocation, forbidden);
-}
+    - (BOOL)shouldDelegateEvent:(NSEvent *)event
+    {
+        NSPoint localLocation = [self convertPoint:event.locationInWindow fromView:nil];
+        NSRect forbidden = NSMakeRect(25.5, 11.5, 69.5, 30);
+        return !NSPointInRect(localLocation, forbidden);
+    }
 
 
 @end

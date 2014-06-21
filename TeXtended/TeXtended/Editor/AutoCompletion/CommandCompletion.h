@@ -7,10 +7,12 @@
 //
 
 #import "Completion.h"
+
 #define CommandTypeNormal @"normal"
 #define CommandTypeCite @"cite"
 #define CommandTypeLabel @"label"
 #define CommandTypeRef @"ref"
+
 /**
  Class for \command completions. Just needed for identification of the completion type. May provide custom functionality later.
  
@@ -19,6 +21,6 @@
 @interface CommandCompletion : Completion
 
 /** The type of this completion (e.g. normal, cite, label or ref) */
-@property (strong, nonatomic) NSString *completionType;
+    @property (strong, nonatomic) NSString *completionType;
 
 @end

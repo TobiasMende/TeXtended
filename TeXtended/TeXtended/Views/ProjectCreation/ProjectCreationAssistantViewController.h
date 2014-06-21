@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class ProjectModel;
+
 @protocol ProjectCreationAssistantViewController <NSObject>
-- (void) configureProjectModel:(ProjectModel *)project;
+
+    - (void)configureProjectModel:(ProjectModel *)project;
 @end

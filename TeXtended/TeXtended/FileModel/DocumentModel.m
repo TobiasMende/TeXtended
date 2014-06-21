@@ -6,574 +6,727 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "DocumentModel.h"
-#import "ProjectModel.h"
-#import "Constants.h"
-#import "CompileSetting.h"
-#import "NSString+PathExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "EncodingController.h"
-#import "TMTNotificationCenter.h"
-#import "ConsoleManager.h"
+#import <TMTHelperCollection/GenericFilePresenter.h>
+
 #import "BibFile.h"
+#import "CompileSetting.h"
+#import "Constants.h"
+#import "DocumentModel.h"
+#import "NSString+PathExtension.h"
 #import "OutlineExtractor.h"
+#import "ProjectModel.h"
 #import "TrackingMessage.h"
-static NSArray *TMTEncodingsToCheck;
+#import <TMTHelperCollection/FileObserver.h>
+
+
 static const NSArray *GENERATOR_TYPES_TO_USE;
 
-@interface DocumentModel ()
-- (void) initDefaults;
+@implementation __DocumentModelProjectSyncState
 
-- (void)updateMessages:(NSArray *)messages;
-- (void)mainDocumentsMessagesDidChange:(NSNotification*)note;
+    + (__DocumentModelProjectSyncState *)fullyUnsynced
+    {
+        return [self new];
+    }
+
+@end
+
+@interface DocumentModel ()
+
+    - (void)initDefaults;
+
+    - (void)updateMessages:(NSArray *)messages;
+
+    - (void)mainDocumentsMessagesDidChange:(NSNotification *)note;
+
+    - (void)initProjectSyncState;
+
+    - (void)unsyncProjectState;
+
+    @property __DocumentModelProjectSyncState *__projectSyncState;
+
 @end
 
 @implementation DocumentModel
 
-+ (void)initialize {
-    if ([self class] == [DocumentModel class]) {
-        TMTEncodingsToCheck = @[[NSNumber numberWithUnsignedLong:NSUTF8StringEncoding],
-                                [NSNumber numberWithUnsignedLong:NSMacOSRomanStringEncoding],
-                                [NSNumber numberWithUnsignedLong:NSASCIIStringEncoding],
-                                [NSNumber numberWithUnsignedLong:NSISOLatin2StringEncoding],
-                                [NSNumber numberWithUnsignedLong:NSISOLatin1StringEncoding]];
-        GENERATOR_TYPES_TO_USE = @[@(TMTLogFileParser), @(TMTLacheckParser), @(TMTChktexParser)];
+#pragma mark - Init & Dealloc
+
+    - (void)dealloc
+    {
+        DDLogInfo(@"dealloc");
+        [_filePresenter terminate];
+        [self unbind:@"liveCompile"];
+        [self unbind:@"openOnExport"];
+        [self unsyncProjectState];
     }
-}
 
+    - (void)projectModelIsDeallocating
+    {
+        [self unsyncProjectState];
+        self.project = nil;
+    }
 
-- (NSString *)loadContent:(NSError*__autoreleasing*)error {
-    self.lastChanged = [NSDate new];
-    if (!self.systemPath) {
-        if (!self.texPath) {
-            return nil;
+    - (void)unsyncProjectState
+    {
+        if (self.project) {
+            if (___projectSyncState.bibFiles) {
+                @try {
+                    DDLogVerbose(@"%@: unsync bibfiles", self);
+                    [self.project removeObserver:self forKeyPath:@"bibFiles"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove bibFiles observer: %@", exception.reason);
+                }
+            }
+            if (___projectSyncState.mainDocuments) {
+                @try {
+                    DDLogVerbose(@"%@: unsync mainDocuments", self);
+                    [self.project removeObserver:self forKeyPath:@"mainDocuments"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove mainDocuments observer: %@", exception.reason);
+                }
+            }
+            if (___projectSyncState.encoding) {
+                @try {
+                    DDLogVerbose(@"%@: unsync encoding", self);
+                    [self.project removeObserver:self forKeyPath:@"encoding"];
+                }
+                @catch (NSException *exception) {
+                    DDLogWarn(@"Can't remove encoding observer: %@", exception.reason);
+                }
+            }
         }
-        self.systemPath = self.texPath;
+        ___projectSyncState = nil;
+
     }
-    NSStringEncoding encoding = 0;
-    NSString *content;
-    if (self.encoding && [self.encoding unsignedLongValue] > 0) {
-        content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:error];
-    } else {
-        content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:error];
-        if (encoding == 0 && error != NULL) {
-            *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."),NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."),NSLocalizedDescriptionKey: NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey: @(encoding), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
+
+    - (void)finishInitWithPath:(NSString *)absolutePath
+    {
+        if (self.pdfPath) {
+            self.pdfPath = [self.pdfPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+        }
+
+        if (self.texPath) {
+            self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
+        }
+        [self updateCompileSettingBindings:live];
+        [self updateCompileSettingBindings:draft];
+        [self updateCompileSettingBindings:final];
+    }
+
+    - (id)init
+    {
+        self = [super init];
+        if (self) {
+            [self initDefaults];
+        }
+        return self;
+    }
+
+    - (void)initDefaults
+    {
+        _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
+        _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
+        self.outlineElements = [NSMutableArray new];
+        globalMessagesMap = [NSMutableDictionary new];
+        __unsafe_unretained typeof(self) weakSelf = self;
+        if (!self.liveCompile) {
+            [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
+            removeLiveCompileObserver = ^(void) {
+                [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
+            };
+        }
+        if (!self.openOnExport) {
+            [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
+            removeOpenOnExportObserver = ^(void) {
+                [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
+            };
+        }
+
+        _filePresenter = [[GenericFilePresenter alloc] initWithOperationQueue:[NSOperationQueue currentQueue]];
+        _filePresenter.observer =self;
+        [self updateCompileSettingBindings:live];
+        [self updateCompileSettingBindings:draft];
+        [self updateCompileSettingBindings:final];
+    }
+
+    - (void)initProjectSyncState
+    {
+        if (self.project) {
+            ___projectSyncState = [__DocumentModelProjectSyncState fullyUnsynced];
+
+            if (!super.bibFiles) {
+                DDLogVerbose(@"%@: sync bibfiles", self);
+                super.bibFiles = self.project.bibFiles;
+                [self.project addObserver:self forKeyPath:@"bibFiles" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.bibFiles = YES;
+            }
+            if (!super.mainDocuments) {
+                DDLogVerbose(@"%@: sync mainDocuments", self);
+                super.mainDocuments = self.project.mainDocuments;
+                [self.project addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.mainDocuments = YES;
+            }
+
+            if (!super.encoding) {
+                DDLogVerbose(@"%@: sync encoding", self);
+                super.encoding = self.project.encoding;
+                [self.project addObserver:self forKeyPath:@"encoding" options:NSKeyValueObservingOptionNew context:NULL];
+                ___projectSyncState.encoding = YES;
+            }
+
         } else {
-            self.encoding = @(encoding);
+            ___projectSyncState = nil;
+        }
+
+    }
+
+    + (void)initialize
+    {
+        if ([self class] == [DocumentModel class]) {
+            GENERATOR_TYPES_TO_USE = @[@(TMTLogFileParser), @(TMTLacheckParser), @(TMTChktexParser)];
+        }
+    }
+
+#pragma mark - NSCoding Support
+
+    - (void)encodeWithCoder:(NSCoder *)aCoder
+    {
+
+        if (![[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
+            return;
         }
         
+        [super encodeWithCoder:aCoder andProjectSyncState:___projectSyncState];
+        [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
+        [aCoder encodeConditionalObject:self.project forKey:@"project"];
+        NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
+        if (basePath) {
+            NSString *relativePdfPath = [self.pdfPath relativePathWithBase:basePath];
+            NSString *relativeTexPath = [self.texPath relativePathWithBase:basePath];
+            [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
+            [aCoder encodeObject:relativeTexPath forKey:@"texPath"];
+        }
+        [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
+        [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
     }
-    
-    if (error && *error) {
-        DDLogError(@"Error while loading content: %@", *error);
+
+    - (id)initWithCoder:(NSCoder *)aDecoder
+    {
+        self = [super initWithCoder:aDecoder];
+        if (self) {
+            self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
+            self.project = [aDecoder decodeObjectForKey:@"project"];
+            self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
+            self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
+            self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
+            self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
+            [self initDefaults];
+        }
+        return self;
+    }
+
+#pragma mark - Loading & Saving
+
+    - (NSString *)loadContent:(NSError *__autoreleasing *)error
+    {
+        if (!self.systemPath) {
+            if (!self.texPath) {
+                return nil;
+            }
+            self.systemPath = self.texPath;
+        }
+        NSStringEncoding encoding = 0;
+        NSString *content;
+        if (self.encoding && [self.encoding unsignedLongValue] > 0) {
+            content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:error];
+        }
+        else {
+            content = [[NSString alloc] initWithContentsOfFile:self.systemPath usedEncoding:&encoding error:error];
+            if (encoding == 0 && error != NULL) {
+                *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."), NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."), NSLocalizedDescriptionKey : NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey : @(encoding), NSFilePathErrorKey : self.systemPath, NSURLErrorFailingURLErrorKey : [NSURL fileURLWithPath:self.systemPath]}];
+            }
+            else {
+                self.encoding = @(encoding);
+            }
+        }
+
+        if (error && *error) {
+            DDLogError(@"Error while loading content: %@", *error);
+            return nil;
+        }
+        if (content == nil && error != NULL) {
+            *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message" : @"Can't read file"}];
+        }
+        return content;
+    }
+
+    - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error
+    {
+        if (!self.systemPath) {
+            return NO;
+        }
+        if (!self.encoding || [self.encoding unsignedLongValue] == 0) {
+            self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
+        }
+        BOOL success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
+        if (!success) {
+            NSStringEncoding alternate = NSUTF8StringEncoding;
+            NSError *error2 = nil;
+            success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
+            if (success) {
+                self.encoding = @(alternate);
+            }
+            else {
+                if (error2) {
+                    DDLogError(@"Error while saving: %@", [error2 userInfo]);
+                }
+                else {
+                    DDLogError(@"Error while saving (unknown)");
+                }
+                if (error != NULL) {
+                    *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."), NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."), NSLocalizedDescriptionKey : NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey : @(alternate), NSFilePathErrorKey : self.systemPath, NSURLErrorFailingURLErrorKey : [NSURL fileURLWithPath:self.systemPath]}];
+                }
+            }
+        }
+        if (success) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
+        }
+        return success;
+    }
+
+#pragma mark -  Getter
+
+    - (NSArray *)bibFiles
+    {
+
+        if (!super.bibFiles && self.texPath) {
+            NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
+            NSMutableArray *matches = [NSMutableArray new];
+            NSFileManager *manager = [NSFileManager defaultManager];
+            NSError *error;
+            NSArray *contents = [manager contentsOfDirectoryAtPath:dirPath error:&error];
+            if (error) {
+                DDLogError(@"Error while searching bib files: %@", error.userInfo);
+                return nil;
+            }
+            for (NSString *item in contents) {
+                if ([item.pathExtension.lowercaseString isEqualToString:@"bib"]) {
+                    BibFile *f = [BibFile new];
+                    f.path = [item absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
+                    [matches addObject:f];
+                }
+            }
+            if (matches.count > 0) {
+                self.bibFiles = matches;
+            }
+        }
+        return super.bibFiles;
+    }
+
+    - (DocumentModel *)currentMainDocument
+    {
+        if (!_currentMainDocument) {
+            self.currentMainDocument = self.mainDocuments.firstObject;
+        }
+        return _currentMainDocument;
+    }
+
+    - (NSString *)header
+    {
+        NSError *error;
+        NSString *content = [NSString stringWithContentsOfFile:self.texPath encoding:self.encoding.unsignedLongValue error:&error];
+
+        if (!error) {
+            NSScanner *scanner = [NSScanner scannerWithString:content];
+            NSString *result;
+            BOOL success = [scanner scanUpToString:@"\begin{document}" intoString:&result];
+            if (success && result) {
+                return result;
+            }
+        }
         return nil;
     }
-    if (content == nil && error != NULL) {
-        *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message": @"Can't read file"}];
-    }
-    return content;
-}
 
-- (DocumentModel *)currentMainDocument {
-    if (!_currentMainDocument) {
-        self.currentMainDocument = self.mainDocuments.firstObject;
+    - (Compilable *)mainCompilable
+    {
+        return self.project ? self.project.mainCompilable : self;
     }
-    return _currentMainDocument;
-}
 
-- (void)setCurrentMainDocument:(DocumentModel *)currentMainDocument {
-    if (_currentMainDocument) {
-        [[TMTNotificationCenter centerForCompilable:_currentMainDocument] removeObserver:self name:TMTMessagesDidChangeNotification object:_currentMainDocument];
-    }
-    [self willChangeValueForKey:@"currentMainDocument"];
-    _currentMainDocument = currentMainDocument;
-    [self didChangeValueForKey:@"currentMainDocument"];
-    if (_currentMainDocument) {
-        [self updateMessages:[_currentMainDocument mergedGlobalMessages]];
-        [[TMTNotificationCenter centerForCompilable:_currentMainDocument] addObserver:self selector:@selector(mainDocumentsMessagesDidChange:) name:TMTMessagesDidChangeNotification object:_currentMainDocument];
-    }
-}
-
-
-- (NSString *)header {
-    NSError *error;
-    NSString *content = [NSString stringWithContentsOfFile:self.texPath encoding:self.encoding.unsignedLongValue error:&error];
-    if (!error) {
-        NSScanner *scanner = [NSScanner scannerWithString:content];
-        NSString *result;
-        BOOL success = [scanner scanUpToString:@"\\begin{document}" intoString:&result];
-        if (success && result) {
-            return result;
+    - (NSArray *)mainDocuments
+    {
+        if ([super mainDocuments]) {
+            return [super mainDocuments];
         }
+        return @[self];
     }
-    return nil;
-}
 
-- (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate {
-    if ([self.texPath isEqualToString:path]) {
-        return self;
-    } else if(self.project) {
-        return [self.project modelForTexPath:path];
-    } else if(shouldCreate){
-        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            return nil;
+    - (NSString *)name
+    {
+        return self.texName;
+    }
+
+    - (NSString *)path
+    {
+        return self.texPath;
+    }
+
+    - (NSString *)pdfName
+    {
+        if (self.pdfPath) {
+            return [self.pdfPath lastPathComponent];
         }
-        DocumentModel *model = [DocumentModel new];
-        model.texPath = path;
-        return model;
+        return nil;
     }
-    return nil;
-}
 
+    - (NSString *)pdfPath
+    {
+        NSString *path = _pdfPath;
 
-- (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error{
-    self.lastChanged = [[NSDate alloc] init];
-    if (!self.systemPath) {
-        return NO;
-    }
-    if (!self.encoding || [self.encoding unsignedLongValue] == 0) {
-        self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
-    }
-    BOOL success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
-    if (!success) {
-        NSStringEncoding alternate = NSUTF8StringEncoding;
-        NSError *error2 = nil;
-        success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:alternate error:&error2];
-        if (success) {
-            self.encoding = @(alternate);
-        } else {
-            if(error2) {
-                DDLogError(@"Error while saving: %@", [error2 userInfo]);
-            } else {
-                DDLogError(@"Error while saving (unknown)");
-            }
-            if (error != NULL) {
-                *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:NSFileReadUnknownStringEncodingError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't detect a good encoding for this file.", @"Can't detect a good encoding for this file."),NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please try to set the encoding by yourself.", @"Please try to set the encoding by yourself."),NSLocalizedDescriptionKey: NSLocalizedString(@"Can't choose a correct encoding for this file", @"Can't choose a correct encoding for this file"), NSStringEncodingErrorKey: @(alternate), NSFilePathErrorKey:self.systemPath, NSURLErrorFailingURLErrorKey: [NSURL fileURLWithPath:self.systemPath]}];
-            }
+        if (path && path.length > 0) {
+            return path;
         }
-    }
-    if (success) {
-        [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTDidSaveDocumentModelContent object:self];
-    }
-    return success;
-}
-
-
-- (id)init {
-    
-    self = [super init];
-    if (self) {
-        [self initDefaults];
-    }
-    return self;
-}
-
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.lastChanged = [aDecoder decodeObjectForKey:@"lastChanged"];
-        self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
-        self.project = [aDecoder decodeObjectForKey:@"project"];
-        self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
-        self.texPath = [aDecoder decodeObjectForKey:@"texPath"];
-        self.liveCompile = [aDecoder decodeObjectForKey:@"liveCompile"];
-        self.openOnExport = [aDecoder decodeObjectForKey:@"openOnExport"];
-        [self initDefaults];
-    }
-    return self;
-}
-
-- (void)finishInitWithPath:(NSString *)absolutePath {
-    if (self.pdfPath) {
-        self.pdfPath = [self.pdfPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
-    }
-    
-    if (self.texPath) {
-        self.texPath = [self.texPath absolutePathWithBase:[absolutePath stringByDeletingLastPathComponent]];
-    }
-    [self updateCompileSettingBindings:live];
-    [self updateCompileSettingBindings:draft];
-    [self updateCompileSettingBindings:final];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:self.lastCompile forKey:@"lastCompile"];
-    [aCoder encodeObject:self.lastChanged forKey:@"lastChanged"];
-    [aCoder encodeConditionalObject:self.project forKey:@"project"];
-    NSString *basePath = self.project ? self.project.path.stringByDeletingLastPathComponent : self.texPath.stringByDeletingLastPathComponent;
-    if (basePath) {
-        NSString *relativePdfPath = [self.pdfPath relativePathWithBase:basePath];
-        NSString *relativeTexPath = [self.texPath relativePathWithBase:basePath];
-        [aCoder encodeObject:relativePdfPath forKey:@"pdfPath"];
-        [aCoder encodeObject:relativeTexPath forKey:@"texPath"];
-    }
-    [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
-    [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
-}
-
-- (void)initDefaults {
-    _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
-    _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
-    self.outlineElements = [NSMutableArray new];
-    globalMessagesMap = [NSMutableDictionary new];
-    __unsafe_unretained typeof(self) weakSelf = self;
-    if (!self.liveCompile) {
-        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-        removeLiveCompileObserver = ^(void) {
-            [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
-        };
-    }
-    if (!self.openOnExport) {
-        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport] options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:NULL];
-        removeOpenOnExportObserver = ^(void) {
-            [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:weakSelf forKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
-        };
-    }
-    
-    
-    [self updateCompileSettingBindings:live];
-    [self updateCompileSettingBindings:draft];
-    [self updateCompileSettingBindings:final];
-}
-- (void)setLiveCompile:(NSNumber *)liveCompile {
-    if (removeLiveCompileObserver) {
-        removeLiveCompileObserver();
-        removeLiveCompileObserver = nil;
-    }
-    _liveCompile = liveCompile;
-    
-}
-
-- (void)setOpenOnExport:(NSNumber *)openOnExport {
-    if (removeOpenOnExportObserver) {
-        removeOpenOnExportObserver();
-        removeOpenOnExportObserver = nil;
-    }
-    _openOnExport = openOnExport;
-}
-
-
-
-#pragma mark -
-#pragma mark Getter & Setter
-
-- (void)setTexPath:(NSString *)texPath {
-    if (_texPath != texPath) {
-        _texPath = texPath;
-        if ([_texPath isAbsolutePath]) {
-            [self buildOutline];
+        if (self.texPath && self.texPath.length > 0) {
+            path = [self.texPath stringByDeletingPathExtension];
+            return [path stringByAppendingPathExtension:@"pdf"];
         }
-    }
-}
-
-- (NSString *)texName {
-    if (self.texPath) {
-        return [self.texPath lastPathComponent];
-    }
-    return nil;
-}
-
-- (NSString *)pdfName {
-    if (self.pdfPath) {
-        return [self.pdfPath lastPathComponent];
-    }
-    return nil;
-}
-
-- (NSPipe *)consoleOutputPipe {
-    return consoleOutputPipe;
-}
-
-- (NSPipe *)consoleInputPipe {
-    return consoleInputPipe;
-}
-
-- (void)setConsoleOutputPipe:(NSPipe *)pipe {
-    [self willChangeValueForKey:@"consoleOutputPipe"];
-    consoleOutputPipe = pipe;
-    [self didChangeValueForKey:@"consoleOutputPipe"];
-}
-
-- (void)setConsoleInputPipe:(NSPipe *)pipe {
-    [self willChangeValueForKey:@"consoleInputPipe"];
-    consoleInputPipe = pipe;
-    [self didChangeValueForKey:@"consoleInputPipe"];
-}
-
-- (Compilable *)mainCompilable {
-    if (self.project) {
-        return [self.project mainCompilable];
-    }
-    return [super mainCompilable];
-}
-
-- (NSArray *)mainDocuments {
-    NSArray* md = nil;
-    if([super mainDocuments] && [[super mainDocuments]count] >0) {
-            md = [super mainDocuments];
-    }
-    if(!md && self.project) {
-        md = [self.project mainDocuments];
-    }
-    if(!md) {
-        md = @[self];
-    }
-    return md;
-}
-
-- (void)addMainDocument:(DocumentModel *)value {
-    DDLogError(@"Here");
-    if ([self.mainDocuments containsObject:value]) {
-        return;
-    }
-    if(![super mainDocuments]) {
-        self.mainDocuments = [NSArray new];
-        if (self.project) {
-            self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
-        }
-    }
-    self.mainDocuments = [self.mainDocuments arrayByAddingObject:value];
-}
-
-- (void)addMainDocuments:(NSArray *)values {
-    if(![super mainDocuments]) {
-        self.mainDocuments = [NSArray new];
-        if (self.project) {
-            self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:self.project.mainDocuments];
-        }
-    }
-    self.mainDocuments = [self.mainDocuments arrayByAddingObjectsFromArray:values];
-}
-
-
-- (void)setProject:(ProjectModel *)project {
-    if (self == self.mainCompilable) {
-        [TMTNotificationCenter removeCenterForCompilable:self];
-    }
-    _project = project;
-}
-
-
-
-
-- (NSString *)pdfPath {
-    NSString *path = _pdfPath;
-    if (path && path.length > 0) {
         return path;
     }
-    if (self.texPath && self.texPath.length > 0) {
-        path = [self.texPath stringByDeletingPathExtension];
-        return [path stringByAppendingPathExtension:@"pdf"];
-    }
-    return path;
-}
 
-
-- (NSString *)infoTitle {
-    return NSLocalizedString(@"Document Information", @"Documentinformation");
-}
-
-- (NSString *)type {
-    return NSLocalizedString(@"Document", @"Document");
-}
-
-- (NSString *)name {
-    return self.texName;
-}
-
-- (NSString *)path {
-    return self.texPath;
-}
-
-- (NSArray *)bibFiles {
-    if (self.project) {
-        return self.project.bibFiles;
-    } else if(!_bibFiles && self.texPath){
-        NSString *dirPath = [self.texPath stringByDeletingLastPathComponent];
-        NSMutableArray *matches = [NSMutableArray new];
-        NSFileManager *manager = [NSFileManager defaultManager];
-        NSError *error;
-        NSArray *contents = [manager contentsOfDirectoryAtPath:dirPath error:&error];
-        if (error) {
-            DDLogError(@"Error while searching bib files: %@", error.userInfo);
-            return nil;
+    - (NSString *)texName
+    {
+        if (self.texPath) {
+            return [self.texPath lastPathComponent];
         }
-        for(NSString *item in contents) {
-            if ([item.pathExtension.lowercaseString isEqualToString:@"bib"]) {
-                BibFile *f = [BibFile new];
-                f.path = [item absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
-                [matches addObject:f];
+        return nil;
+    }
+
+    - (NSString *)type
+    {
+        return NSLocalizedString(@"Document", @"Document");
+    }
+
+- (NSString *)description {
+    return self.texName ? self.texName : [super description];
+}
+
+#pragma mark - Setter
+
+    - (void)setCurrentMainDocument:(DocumentModel *)currentMainDocument
+    {
+        if (_currentMainDocument) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+        }
+        [self willChangeValueForKey:@"currentMainDocument"];
+        _currentMainDocument = currentMainDocument;
+        [self didChangeValueForKey:@"currentMainDocument"];
+        if (_currentMainDocument) {
+            [self updateMessages:[_currentMainDocument mergedGlobalMessages]];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainDocumentsMessagesDidChange:) name:TMTMessagesDidChangeNotification object:_currentMainDocument];
+        }
+    }
+
+    - (void)setLiveCompile:(NSNumber *)liveCompile
+    {
+        if (removeLiveCompileObserver) {
+            removeLiveCompileObserver();
+            removeLiveCompileObserver = nil;
+        }
+        _liveCompile = liveCompile;
+    }
+
+    - (void)setOpenOnExport:(NSNumber *)openOnExport
+    {
+        if (removeOpenOnExportObserver) {
+            removeOpenOnExportObserver();
+            removeOpenOnExportObserver = nil;
+        }
+        _openOnExport = openOnExport;
+    }
+
+    - (void)setOutlineElements:(NSArray *)outlineElements
+    {
+        _outlineElements = [outlineElements copy];
+        if (_outlineElements) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath : [NSMutableArray arrayWithObject:self]}];
+        }
+    }
+
+
+    - (void)setTexPath:(NSString *)texPath
+    {
+        if (_texPath != texPath) {
+            _texPath = texPath;
+            if ([_texPath isAbsolutePath]) {
+                [_filePresenter setPath:texPath];
+                [self buildOutline];
             }
         }
-        if (matches.count > 0) {
-            _bibFiles = matches;
+    }
+
+    - (void)setBibFiles:(NSArray *)bibFiles
+    {
+        if (___projectSyncState.bibFiles) {
+            [self.project removeObserver:self forKeyPath:@"bibFiles"];
+            ___projectSyncState.bibFiles = NO;
+        }
+        super.bibFiles = bibFiles;
+    }
+
+    - (void)setMainDocuments:(NSArray *)mainDocuments
+    {
+        if (___projectSyncState.mainDocuments) {
+            [self.project removeObserver:self forKeyPath:@"mainDocuments"];
+            ___projectSyncState.mainDocuments = NO;
+        }
+        super.mainDocuments = mainDocuments;
+        if (![super.mainDocuments containsObject:self.currentMainDocument]) {
+            self.currentMainDocument = super.mainDocuments.firstObject;
         }
     }
-    return _bibFiles;
-}
 
-- (NSNumber *)encoding {
-    if (!super.encoding && self.project) {
-        return self.project.encoding;
-    }
-    return super.encoding;
-}
-
-- (void)setOutlineElements:(NSMutableArray *)outlineElements {
-        _outlineElements = outlineElements;
-        if (_outlineElements) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTOutlineDidChangeNotification object:self userInfo:@{TMTOutlineChangePath: [NSMutableArray arrayWithObject:self]}];
+    - (void)setEncoding:(NSNumber *)encoding
+    {
+        if (___projectSyncState.encoding) {
+            [self.project removeObserver:self forKeyPath:@"encoding"];
+            ___projectSyncState.encoding = NO;
         }
-}
+        super.encoding = encoding;
+    }
 
-
-
-# pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    // Pass notifications if change affects this model:
-    if ([object isEqualTo:self.project]) {
-        if (![self valueForKeyPath:keyPath]) {
-            [self didChangeValueForKey:keyPath];
+    - (void)setProject:(ProjectModel *)project
+    {
+        if (project != _project) {
+            _project = project;
+            [self initProjectSyncState];
         }
     }
-    if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
-        if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]]) {
-            self.liveCompile =[[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
-            return;
+
+#pragma mark - Collection Helpers
+
+    - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate
+    {
+        if ([self.texPath isEqualToString:path]) {
+            return self;
         }
-        if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
-            self.openOnExport = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
-            return;
+        else if (self.project) {
+            return [self.project modelForTexPath:path];
+        }
+        else if (shouldCreate) {
+            if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                return nil;
+            }
+            DocumentModel *model = [DocumentModel new];
+            model.texPath = path;
+            return model;
+        }
+        return nil;
+    }
+
+- (void)deleteDocumentModel:(DocumentModel *)model {
+    if (model == self) {
+        return;
+    }
+    if (model == nil) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TMTDocumentModelIsDeleted object:nil userInfo:@{TMTTexIdentifierKey: self.texIdentifier, TMTPdfIdentifierKey : self.pdfIdentifier}];
+        if (self.project) {
+            
+            [self.project deleteDocumentModel:self];
         }
     }
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-    if ([key isEqualToString:@"pdfName"]) {
-        keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
-    } else if([key isEqualToString:@"texName"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texPath"];
-    } else if([key isEqualToString:@"path"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texPath"];
-    } else if([key isEqualToString:@"name"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texName"];  
-    } else if([key isEqualToString:@"pdfPath"]) {
-        keyPaths = [keyPaths setByAddingObject:@"texPath"];
-    }
-    return keyPaths;
-}
-
-+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
-    if ([key isEqualToString:@"texName"]) {
-        return YES;
-    }
-    if ([key isEqualToString:@"pdfName"]) {
-        return YES;
-    }
-    return [super automaticallyNotifiesObserversForKey:key];
-}
-
-
-- (void)dealloc {
-    DDLogInfo(@"dealloc");
-    [self unbind:@"liveCompile"];
-    [self unbind:@"openOnExport"];
-    if (!self.project) {
-        [[TMTNotificationCenter centerForCompilable:self] removeObserver:self];
+    
+    if ((!___projectSyncState || !___projectSyncState.mainDocuments )&& [[super mainDocuments] containsObject:model]) {
+        NSMutableArray *tmp = [[super mainDocuments] mutableCopy];
+        [tmp removeObject:model];
+        self.mainDocuments = tmp;
     }
 }
 
+
+# pragma mark - Key Value Observing
+
+    - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+    {
+        // Pass notifications if change affects this model:
+        if ([object isEqualTo:self.project]) {
+            if ([keyPath isEqualToString:@"bibFiles"]) {
+                super.bibFiles = self.project.bibFiles;
+            } else if ([keyPath isEqualToString:@"mainDocuments"]) {
+                super.mainDocuments = self.project.mainDocuments;
+            } else if ([keyPath isEqualToString:@"encoding"]) {
+                super.encoding = self.project.encoding;
+            }
+        } else if ([object isEqualTo:[NSUserDefaultsController sharedUserDefaultsController]]) {
+            if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]]) {
+                self.liveCompile = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile]];
+            } else if ([keyPath isEqualToString:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]]) {
+                self.openOnExport = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:[@"values." stringByAppendingString:TMTDocumentAutoOpenOnExport]];
+            }
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
+    }
+
+    + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+    {
+        NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+
+        if ([key isEqualToString:@"pdfName"]) {
+            keyPaths = [keyPaths setByAddingObject:@"pdfPath"];
+        }
+        else if ([key isEqualToString:@"texName"]) {
+            keyPaths = [keyPaths setByAddingObject:@"texPath"];
+        }
+        else if ([key isEqualToString:@"path"]) {
+            keyPaths = [keyPaths setByAddingObject:@"texPath"];
+        }
+        else if ([key isEqualToString:@"name"]) {
+            keyPaths = [keyPaths setByAddingObject:@"texName"];
+        }
+        else if ([key isEqualToString:@"pdfPath"]) {
+            keyPaths = [keyPaths setByAddingObject:@"texPath"];
+        }
+        return keyPaths;
+    }
+
+    + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
+    {
+        if ([key isEqualToString:@"texName"]) {
+            return YES;
+        }
+        if ([key isEqualToString:@"pdfName"]) {
+            return YES;
+        }
+        return [super automaticallyNotifiesObserversForKey:key];
+    }
 
 # pragma mark - Compile Setting Handling
 
-- (void)updateCompileSettingBindings:(CompileMode)mode {
-    switch (mode) {
-        case live:
-            if (!self.hasLiveCompiler) {
-                if (self.project) {
-                    self.liveCompiler = [self.project.liveCompiler copy];
-                    [self.liveCompiler bindAllTo:self.project.liveCompiler];
+    - (void)updateCompileSettingBindings:(CompileMode)mode
+    {
+        switch (mode) {
+            case live :
+                if (!self.hasLiveCompiler) {
+                    if (self.project) {
+                        self.liveCompiler = [self.project.liveCompiler copy];
+                        [self.liveCompiler bindAllTo:self.project.liveCompiler];
+                    }
                 }
-            }
-            break;
-        case draft:
-            if (!self.hasDraftCompiler) {
-                if (self.project) {
-                    self.draftCompiler = [self.project.draftCompiler copy];
-                    [self.draftCompiler bindAllTo:self.project.draftCompiler];
+                break;
+            case draft :
+                if (!self.hasDraftCompiler) {
+                    if (self.project) {
+                        self.draftCompiler = [self.project.draftCompiler copy];
+                        [self.draftCompiler bindAllTo:self.project.draftCompiler];
+                    }
                 }
-            }
-            break;
-        case final:
-            if (!self.hasFinalCompiler) {
-                if (self.project) {
-                    self.finalCompiler = [self.project.finalCompiler copy];
-                    [self.finalCompiler bindAllTo:self.project.finalCompiler];
+                break;
+            case final :
+                if (!self.hasFinalCompiler) {
+                    if (self.project) {
+                        self.finalCompiler = [self.project.finalCompiler copy];
+                        [self.finalCompiler bindAllTo:self.project.finalCompiler];
+                    }
                 }
-            }
-            break;
-        default:
-            break;
+                break;
+            default :
+                break;
+        }
+        if (!self.project) {
+            [super updateCompileSettingBindings:mode];
+        }
     }
-    if (!self.project) {
-        [super updateCompileSettingBindings:mode];
+
+#pragma mark - Outline Handling
+
+    - (void)buildOutline
+    {
+        NSString *content = [self loadContent:NULL];
+
+        if (content) {
+            [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
+        }
     }
-}
-
-
-#pragma mark -
-#pragma mark DocumentModelExtension
-
-- (void)buildOutline {
-    NSString *content = [self loadContent:NULL];
-    
-    if (content) {
-        [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
-    }
-}
-
 
 #pragma mark - Message Handling
 
-- (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type {
-    if (messages.count > 0) {
-        globalMessagesMap[@(type)] = messages;
-    } else if(globalMessagesMap[@(type)]){
-        [globalMessagesMap removeObjectForKey:@(type)];
-    }
-    [[TMTNotificationCenter centerForCompilable:self] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey: [self mergedGlobalMessages]}];
-}
-
-- (NSArray *)mergedGlobalMessages {
-    NSMutableArray *result = [NSMutableArray new];
-    for(NSNumber *type in GENERATOR_TYPES_TO_USE) {
-        if (globalMessagesMap[type]) {
-            [result addObjectsFromArray:globalMessagesMap[type]];
+    - (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type
+    {
+        @synchronized(self) {
+        if (messages.count > 0) {
+            globalMessagesMap[@(type)] = messages;
+        }
+        else if (globalMessagesMap[@(type)]) {
+            [globalMessagesMap removeObjectForKey:@(type)];
+        }
+             [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:self userInfo:@{TMTMessageCollectionKey : self.mergedGlobalMessages.copy}];
         }
     }
-    [result sortUsingSelector:@selector(compare:)];
-    return result;
-}
 
-- (void)mainDocumentsMessagesDidChange:(NSNotification *)note {
-    [self updateMessages:note.userInfo[TMTMessageCollectionKey]];
-}
-
-- (void)updateMessages:(NSArray *)messages {
-    NSMutableArray *tmp = [NSMutableArray new];
-    for (TrackingMessage *m in messages) {
-        if ([m.document isEqualToString:self.texPath]) {
-            [tmp addObject:m];
+    - (NSArray *)mergedGlobalMessages
+    {
+        @synchronized(self) {
+            NSMutableArray *result = [NSMutableArray new];
+            
+            for (NSNumber *type in GENERATOR_TYPES_TO_USE) {
+                if (globalMessagesMap[type]) {
+                    [result addObjectsFromArray:globalMessagesMap[type]];
+                }
+            }
+            [result sortUsingSelector:@selector(compare:)];
+            return result;
         }
     }
-    self.messages = tmp;
-    
-}
+
+    - (void)mainDocumentsMessagesDidChange:(NSNotification *)note
+    {
+        [self updateMessages:note.userInfo[TMTMessageCollectionKey]];
+    }
+
+    - (void)updateMessages:(NSArray *)messages
+    {
+        NSMutableArray *tmp = [NSMutableArray new];
+
+        for (TrackingMessage *m in messages) {
+            if ([m.document isEqualToString:self.texPath]) {
+                [tmp addObject:m];
+            }
+        }
+        self.messages = tmp;
+    }
+
+#pragma mark - File Observer
+
+    - (void)presentedItemDidMoveToURL:(NSURL *)newURL {
+        NSError *error;
+        NSURL *trashURL = [[NSFileManager defaultManager] URLForDirectory:NSTrashDirectory inDomain:NSUserDomainMask appropriateForURL:nil
+                            create:NO error:&error];
+        
+        if (!trashURL && error) {
+            DDLogError(@"Can't find trash url: %@", error);
+        } else {
+            if ([newURL.path hasPrefix:trashURL.path]) {
+                if (self.project) {
+                    [self deleteDocumentModel:nil];
+                }
+            } else {
+                NSString *oldPDFPath = self.pdfPath;
+                NSString *oldTexPath = self.texPath;
+                self.texPath = newURL.path;
+                self.systemPath = newURL.path;
+                
+                if ([[NSFileManager defaultManager] fileExistsAtPath:oldPDFPath]) {
+                    return;
+                }
+                NSString *relativePDFPath = [oldPDFPath relativePathWithBase:[oldTexPath stringByDeletingLastPathComponent]];
+                self.pdfPath = [relativePDFPath absolutePathWithBase:[self.texPath stringByDeletingLastPathComponent]];
+            }
+        }
+        
+        
+    }
 
 @end
+
+

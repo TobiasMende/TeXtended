@@ -16,35 +16,38 @@
 
 @implementation CompilerSettingsViewController
 
-- (id)init {
-    self = [super initWithNibName:@"CompilerSettingsView" bundle:nil];
-    if (self) {
-        context = [NSManagedObjectContext new];
-        context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
+    - (id)init
+    {
+        self = [super initWithNibName:@"CompilerSettingsView" bundle:nil];
+        if (self) {
+            context = [NSManagedObjectContext new];
+            context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)loadView {
-    [super loadView];
-    self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
-    self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
-    self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
-}
+    - (void)loadView
+    {
+        [super loadView];
+        self.liveCompiler = [CompileSetting defaultLiveCompileSetting];
+        self.draftCompiler = [CompileSetting defaultDraftCompileSetting];
+        self.finalCompiler = [CompileSetting defaultFinalCompileSetting];
+    }
 
 
-- (void)configureProjectModel:(ProjectModel *)project {
-    if (self.hasLiveCompiler) {
-        project.liveCompiler = [self.liveCompiler copy];
-        project.hasLiveCompiler = YES;
+    - (void)configureProjectModel:(ProjectModel *)project
+    {
+        if (self.hasLiveCompiler) {
+            project.liveCompiler = [self.liveCompiler copy];
+            project.hasLiveCompiler = YES;
+        }
+        if (self.hasFinalCompiler) {
+            project.finalCompiler = [self.finalCompiler copy];
+            project.hasFinalCompiler = YES;
+        }
+        if (self.hasDraftCompiler) {
+            project.draftCompiler = [self.draftCompiler copy];
+            project.hasDraftCompiler = YES;
+        }
     }
-    if (self.hasFinalCompiler) {
-        project.finalCompiler = [self.finalCompiler copy];
-        project.hasFinalCompiler = YES;
-    }
-    if (self.hasDraftCompiler) {
-        project.draftCompiler = [self.draftCompiler copy];
-        project.hasDraftCompiler = YES;
-    }
-}
 @end

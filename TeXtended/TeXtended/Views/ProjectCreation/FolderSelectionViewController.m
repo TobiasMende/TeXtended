@@ -8,44 +8,53 @@
 
 #import "FolderSelectionViewController.h"
 #import "ProjectModel.h"
+
 @interface FolderSelectionViewController ()
 
 @end
 
 @implementation FolderSelectionViewController
 
-- (id)init {
-    self = [super initWithNibName:@"FolderSelectionView" bundle:nil];
-    if (self) {
-        
-    }
-    return self;
-}
+    - (id)init
+    {
+        self = [super initWithNibName:@"FolderSelectionView" bundle:nil];
+        if (self) {
 
-- (IBAction)select:(id)sender {
-    NSOpenPanel *panel = [[NSOpenPanel alloc] init];
-    
-    panel.canChooseFiles = NO;
-    panel.canChooseDirectories = YES;
-    panel.title = NSLocalizedString(@"Choose Project Folder", @"Choose Project Folder");
-    panel.canCreateDirectories = YES;
-    
-    [panel beginWithCompletionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            NSURL *directory = [panel URL];
-            self.path = [directory path];
-            [self.view.window orderFront:nil];
         }
-    }];
-}
-
-- (void)configureProjectModel:(ProjectModel *)project {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    BOOL isDir;
-    if (self.path && [fm fileExistsAtPath:self.path isDirectory:&isDir] && isDir) {
-        NSString *projectName = self.path.lastPathComponent;
-        project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"teXpf"]];
+        return self;
     }
-}
+
+    - (IBAction)select:(id)sender
+    {
+        NSOpenPanel *panel = [[NSOpenPanel alloc] init];
+        
+        if ([sender isEqual:self.pathControl]) {
+            panel.directoryURL = self.pathControl.clickedPathComponentCell.URL;
+        }
+
+        panel.canChooseFiles = NO;
+        panel.canChooseDirectories = YES;
+        panel.title = NSLocalizedString(@"Choose Project Folder", @"Choose Project Folder");
+        panel.canCreateDirectories = YES;
+
+        [panel beginWithCompletionHandler:^(NSInteger result)
+        {
+            if (result == NSFileHandlingPanelOKButton) {
+                NSURL *directory = [panel URL];
+                self.path = [directory path];
+                [self.view.window orderFront:nil];
+            }
+        }];
+    }
+
+    - (void)configureProjectModel:(ProjectModel *)project
+    {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        BOOL isDir;
+        if (self.path && [fm fileExistsAtPath:self.path isDirectory:&isDir] && isDir) {
+            NSString *projectName = self.path.lastPathComponent;
+            project.path = [self.path stringByAppendingPathComponent:[projectName stringByAppendingPathExtension:@"teXpf"]];
+        }
+    }
 
 @end

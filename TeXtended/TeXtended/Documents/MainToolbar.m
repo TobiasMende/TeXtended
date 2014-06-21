@@ -11,20 +11,22 @@
 @implementation MainToolbar
 
 
-- (BOOL)shouldHideShareButton {
-    return (NSAppKitVersionNumber < NSAppKitVersionNumber10_8);
-}
+    - (BOOL)shouldHideShareButton
+    {
+        return (NSAppKitVersionNumber < NSAppKitVersionNumber10_8);
+    }
 
 
-- (void)validateVisibleItems {
-    for(NSUInteger index = 0; index < self.items.count; index ++) {
-        NSToolbarItem *item = self.items[index];
-        if (![item.itemIdentifier isEqualToString:@"SharingButton"] || !self.shouldHideShareButton) {
-            [item validate];
-        } else {
-            [self removeItemAtIndex:index];
+    - (void)validateVisibleItems
+    {
+        for (NSUInteger index = 0 ; index < self.items.count ; index++) {
+            NSToolbarItem *item = self.items[index];
+            if (![item.itemIdentifier isEqualToString:@"SharingButton"] || !self.shouldHideShareButton) {
+                [item validate];
+            } else {
+                [self removeItemAtIndex:index];
+            }
         }
     }
-}
 
 @end

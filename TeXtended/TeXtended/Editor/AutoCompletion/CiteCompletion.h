@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CompletionProtocol.h"
-@class TMTBibTexEntry;
-@interface CiteCompletion : NSObject <CompletionProtocol>
-@property TMTBibTexEntry *entry;
 
-- (id)initWithBibEntry:(TMTBibTexEntry *)entry;
-- (NSComparisonResult)compare:(CiteCompletion *)other;
+@class TMTBibTexEntry;
+
+@interface CiteCompletion : NSObject <CompletionProtocol>
+
+    @property TMTBibTexEntry *entry;
+
+    - (id)initWithBibEntry:(TMTBibTexEntry *)entry;
+
+    - (NSComparisonResult)compare:(CiteCompletion *)other;
 @end

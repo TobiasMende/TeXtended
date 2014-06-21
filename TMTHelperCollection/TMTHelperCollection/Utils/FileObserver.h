@@ -11,6 +11,7 @@
 @protocol FileObserver <NSObject>
 
 @optional
-- (void)presentedItemDidChange;
-- (void)presentedItemDidMoveToURL:(NSURL *)newURL;
+    - (void)presentedItemDidChange;
+
+    - (void)presentedItemDidMoveToURL:(NSURL *)newURL;
 @end

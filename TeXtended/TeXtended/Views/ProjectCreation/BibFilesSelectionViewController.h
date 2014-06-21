@@ -8,16 +8,24 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ProjectCreationAssistantViewController.h"
+
 @class FolderSelectionViewController;
-@interface BibFilesSelectionViewController : NSViewController <ProjectCreationAssistantViewController> {
-    NSOpenPanel *addPanel;
-    NSSavePanel *createPanel;
-}
+
+@interface BibFilesSelectionViewController : NSViewController <ProjectCreationAssistantViewController>
+    {
+        NSOpenPanel *addPanel;
+
+        NSSavePanel *createPanel;
+    }
 
 
-@property FolderSelectionViewController *folderSelection;
-@property (strong) IBOutlet NSArrayController *bibFiles;
-- (id)initWithFolderSelectionController:(FolderSelectionViewController*) folderSelection;
-- (IBAction)addBibFile:(id)sender;
-- (IBAction)createBibFile:(id)sender;
+    @property FolderSelectionViewController *folderSelection;
+
+    @property (strong) IBOutlet NSArrayController *bibFiles;
+
+    - (id)initWithFolderSelectionController:(FolderSelectionViewController *)folderSelection;
+
+    - (IBAction)addBibFile:(id)sender;
+
+    - (IBAction)createBibFile:(id)sender;
 @end

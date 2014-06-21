@@ -15,9 +15,11 @@
 
 @interface SMTabBar : SMBar
 
-@property (nonatomic, copy) NSArray *items;
-@property (nonatomic, assign) SMTabBarItem *selectedItem;
-@property (nonatomic, assign) IBOutlet id<SMTabBarDelegate> delegate;
+    @property (nonatomic, copy) NSArray *items;
+
+    @property (nonatomic, assign) SMTabBarItem *selectedItem;
+
+    @property (nonatomic, assign) IBOutlet id <SMTabBarDelegate> delegate;
 
 @end
 
@@ -25,8 +27,10 @@
 @protocol SMTabBarDelegate <NSObject>
 
 @optional
-- (BOOL)tabBar:(SMTabBar *)tabBar shouldSelectItem:(SMTabBarItem *)item;
-- (void)tabBar:(SMTabBar *)tabBar willSelectItem:(SMTabBarItem *)item;
-- (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;
+    - (BOOL)tabBar:(SMTabBar *)tabBar shouldSelectItem:(SMTabBarItem *)item;
+
+    - (void)tabBar:(SMTabBar *)tabBar willSelectItem:(SMTabBarItem *)item;
+
+    - (void)tabBar:(SMTabBar *)tabBar didSelectItem:(SMTabBarItem *)item;
 
 @end

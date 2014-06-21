@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TMTTemplateCompilableKey</key>
-	<data>
-	YnBsaXN0MDDUAQIDBAUGd3hYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
-	AAGGoK8QGwcIFxwuMjg7PD0+P0RHSElOWVxdXmJmamtvclUkbnVsbNcJCgsMDQ4PEBES
-	ExQVFllkb2N1bWVudHNdbWFpbkRvY3VtZW50c1hiaWJGaWxlc1YkY2xhc3NacHJvcGVy
-	dGllc1RwYXRoWGVuY29kaW5ngA+AAoAVgBqAEIAOgA3SGAwZG1pOUy5vYmplY3RzoRqA
-	A4AM2h0KHh8MICEiIw8kJSYnKCkqKywlV3BkZlBhdGhbbGl2ZUNvbXBpbGVcb3Blbk9u
-	RXhwb3J0V3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aIAHgACA
-	CYAKgAuAAYAEgAaACIAA0i8MMDFXTlMudGltZSNBuNTGSZYBvYAF0jM0NTZaJGNsYXNz
-	bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiNTdYTlNPYmplY3TSLww5MSNBuNTGSPuy7oAFWG1h
-	aW4ucGRmWG1haW4udGV4CAnSMzRAQV1Eb2N1bWVudE1vZGVso0JDN11Eb2N1bWVudE1v
-	ZGVsWkNvbXBpbGFibGXSMzRFRldOU0FycmF5okU3EARcYWNtdG9nLnRlWHBm0hgMSk2i
-	FBqAEIADgBTaHQoeHwwgISIjD08lJicoKSVWVyWAEoAAgAmACoALgAGAAIARgBOAANIv
-	DFoxI0G41MZHoIMCgAVecHJvcGVydGllcy5wZGZecHJvcGVydGllcy50ZXjSMzRfYFxO
-	U011dGFibGVTZXSjX2E3VU5TU2V00hgMY2WhZIAWgBnTIA4MKWhpgAGAF4AYW2xpYnJh
-	cnkuYmli0jM0bG1XQmliRmlsZaJuN1dCaWJGaWxl0jM0cHFeTlNNdXRhYmxlQXJyYXmj
-	cEU30jM0c3RcUHJvamVjdE1vZGVso3V2N1xQcm9qZWN0TW9kZWxaQ29tcGlsYWJsZV8Q
-	D05TS2V5ZWRBcmNoaXZlctF5KVRyb290gAEACAARABoAIwAtADIANwBVAFsAagB0AIIA
-	iwCSAJ0AogCrAK0ArwCxALMAtQC3ALkAvgDJAMsAzQDPAOQA7AD4AQUBDQEZASUBLQEv
-	ATEBMwE1ATcBOQE7AT0BPwFBAUYBTgFXAVkBXgFpAXIBeQF8AYUBigGTAZUBngGnAagB
-	qQGuAbwBwAHOAdkB3gHmAekB6wH4Af0CAAICAgQCBgIbAh0CHwIhAiMCJQInAikCKwIt
-	Ai8CNAI9Aj8CTgJdAmICbwJzAnkCfgKAAoIChAKLAo0CjwKRAp0CogKqAq0CtQK6AskC
-	zQLSAt8C4wLwAvsDDQMQAxUAAAAAAAACAQAAAAAAAAB7AAAAAAAAAAAAAAAAAAADFw==
-	</data>
-	<key>TMTTemplateInfoKey</key>
-	<string>The Large File Double Column is used for:
+    <dict>
+        <key>TMTTemplateCompilableKey</key>
+        <data>
+            YnBsaXN0MDDUAQIDBAUGd3hYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+            AAGGoK8QGwcIFxwuMjg7PD0+P0RHSElOWVxdXmJmamtvclUkbnVsbNcJCgsMDQ4PEBES
+            ExQVFllkb2N1bWVudHNdbWFpbkRvY3VtZW50c1hiaWJGaWxlc1YkY2xhc3NacHJvcGVy
+            dGllc1RwYXRoWGVuY29kaW5ngA+AAoAVgBqAEIAOgA3SGAwZG1pOUy5vYmplY3RzoRqA
+            A4AM2h0KHh8MICEiIw8kJSYnKCkqKywlV3BkZlBhdGhbbGl2ZUNvbXBpbGVcb3Blbk9u
+            RXhwb3J0V3Byb2plY3RbbGFzdENvbXBpbGVbbGFzdENoYW5nZWRXdGV4UGF0aIAHgACA
+            CYAKgAuAAYAEgAaACIAA0i8MMDFXTlMudGltZSNBuNTGSZYBvYAF0jM0NTZaJGNsYXNz
+            bmFtZVgkY2xhc3Nlc1ZOU0RhdGWiNTdYTlNPYmplY3TSLww5MSNBuNTGSPuy7oAFWG1h
+            aW4ucGRmWG1haW4udGV4CAnSMzRAQV1Eb2N1bWVudE1vZGVso0JDN11Eb2N1bWVudE1v
+            ZGVsWkNvbXBpbGFibGXSMzRFRldOU0FycmF5okU3EARcYWNtdG9nLnRlWHBm0hgMSk2i
+            FBqAEIADgBTaHQoeHwwgISIjD08lJicoKSVWVyWAEoAAgAmACoALgAGAAIARgBOAANIv
+            DFoxI0G41MZHoIMCgAVecHJvcGVydGllcy5wZGZecHJvcGVydGllcy50ZXjSMzRfYFxO
+            U011dGFibGVTZXSjX2E3VU5TU2V00hgMY2WhZIAWgBnTIA4MKWhpgAGAF4AYW2xpYnJh
+            cnkuYmli0jM0bG1XQmliRmlsZaJuN1dCaWJGaWxl0jM0cHFeTlNNdXRhYmxlQXJyYXmj
+            cEU30jM0c3RcUHJvamVjdE1vZGVso3V2N1xQcm9qZWN0TW9kZWxaQ29tcGlsYWJsZV8Q
+            D05TS2V5ZWRBcmNoaXZlctF5KVRyb290gAEACAARABoAIwAtADIANwBVAFsAagB0AIIA
+            iwCSAJ0AogCrAK0ArwCxALMAtQC3ALkAvgDJAMsAzQDPAOQA7AD4AQUBDQEZASUBLQEv
+            ATEBMwE1ATcBOQE7AT0BPwFBAUYBTgFXAVkBXgFpAXIBeQF8AYUBigGTAZUBngGnAagB
+            qQGuAbwBwAHOAdkB3gHmAekB6wH4Af0CAAICAgQCBgIbAh0CHwIhAiMCJQInAikCKwIt
+            Ai8CNAI9Aj8CTgJdAmICbwJzAnkCfgKAAoIChAKLAo0CjwKRAp0CogKqAq0CtQK6AskC
+            zQLSAt8C4wLwAvsDDQMQAxUAAAAAAAACAQAAAAAAAAB7AAAAAAAAAAAAAAAAAAADFw==
+        </data>
+        <key>TMTTemplateInfoKey</key>
+        <string>The Large File Double Column is used for:
 
-TOG.</string>
-	<key>TMTTemplateTypeKey</key>
-	<integer>1</integer>
-	<key>TMTTemplateUidKey</key>
-	<integer>10006</integer>
-</dict>
+            TOG.
+        </string>
+        <key>TMTTemplateTypeKey</key>
+        <integer>1</integer>
+        <key>TMTTemplateUidKey</key>
+        <integer>10006</integer>
+    </dict>
 </plist>

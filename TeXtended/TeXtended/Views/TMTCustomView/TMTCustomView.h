@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TMTCustomView : NSView
-@property NSColor *backgroundColor;
+
+    @property NSColor *backgroundColor;
 @end

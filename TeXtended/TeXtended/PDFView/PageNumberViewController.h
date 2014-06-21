@@ -7,12 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class PDFDocument, PDFView;
-@interface PageNumberViewController : NSViewController {
-    __unsafe_unretained PDFView* pdfView;
-}
-@property (assign) IBOutlet NSBox *theBox;
-@property (assign) IBOutlet NSTextField *theLabel;
-- (id) initInPdfView:(PDFView*) view;
-- (void) update;
+
+@interface PageNumberViewController : NSViewController
+    {
+        __unsafe_unretained PDFView *pdfView;
+    }
+
+    @property (assign) IBOutlet NSBox *theBox;
+
+    @property (assign) IBOutlet NSTextField *theLabel;
+
+    - (id)initInPdfView:(PDFView *)view;
+
+    - (void)update;
 @end

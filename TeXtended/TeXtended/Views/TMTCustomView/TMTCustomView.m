@@ -10,13 +10,14 @@
 
 @implementation TMTCustomView
 
-- (void)drawRect:(NSRect)dirtyRect {
-    // set any NSColor for filling, say white:
-    if (self.backgroundColor) {
-        [self.backgroundColor setFill];
-        NSRectFill(dirtyRect);
+    - (void)drawRect:(NSRect)dirtyRect
+    {
+        // set any NSColor for filling, say white:
+        if (self.backgroundColor) {
+            [self.backgroundColor setFill];
+            NSRectFill(dirtyRect);
+        }
+        [super drawRect:dirtyRect];
     }
-    [super drawRect:dirtyRect];
-}
 
 @end

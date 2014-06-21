@@ -11,21 +11,23 @@
 
 @implementation EditorPlaceholder
 
-- (id)initWithName:(NSString *)name {
-    NSFileWrapper *fw = [[NSFileWrapper alloc] init];
-	[fw setPreferredFilename:@"placeholder"];
-	self = [super initWithFileWrapper:fw];
-	if (self) {
-		EditorPlaceholderCell *aCell = [[EditorPlaceholderCell alloc] initTextCell:name];
-		[self setAttachmentCell:aCell];
-	}
-	
-	return self;
+    - (id)initWithName:(NSString *)name
+    {
+        NSFileWrapper *fw = [[NSFileWrapper alloc] init];
+        [fw setPreferredFilename:@"placeholder"];
+        self = [super initWithFileWrapper:fw];
+        if (self) {
+            EditorPlaceholderCell *aCell = [[EditorPlaceholderCell alloc] initTextCell:name];
+            [self setAttachmentCell:aCell];
+        }
 
-}
+        return self;
 
-+ (NSAttributedString *)placeholderAsAttributedStringWithName:(NSString *)name {
-    EditorPlaceholder *attachment = [[EditorPlaceholder alloc] initWithName:name];
-    return [NSAttributedString attributedStringWithAttachment:attachment];
-}
+    }
+
+    + (NSAttributedString *)placeholderAsAttributedStringWithName:(NSString *)name
+    {
+        EditorPlaceholder *attachment = [[EditorPlaceholder alloc] initWithName:name];
+        return [NSAttributedString attributedStringWithAttachment:attachment];
+    }
 @end

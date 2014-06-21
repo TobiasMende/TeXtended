@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "FirstResponderDelegate.h"
+
 @protocol ViewControllerProtocol <NSObject>
 
 
 @optional
-- (id) initWithFirstResponder:(id<FirstResponderDelegate>) dc;
-- (void)breakUndoCoalescing;
-- (NSTabViewItem *)tabViewItem;
+    - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc;
+
+    - (void)breakUndoCoalescing;
+
+    - (NSTabViewItem *)tabViewItem;
 
 @end

@@ -16,6 +16,7 @@
  
  */
 @protocol TexdocHandlerProtocol <NSObject>
+
 /**
  Callback method for the texdoc task is called after the texdoc command has finished returning a list of possible documents.
  
@@ -23,5 +24,5 @@
  @param package The package name which was clicked
  @param rect a rect for specifing the position where to show the documents
  */
-- (void)texdocReadComplete:(NSMutableArray*)texdocArray withPackageName:(NSString*) package andInfo:(NSDictionary *)info;
+    - (void)texdocReadComplete:(NSMutableArray *)texdocArray withPackageName:(NSString *)package andInfo:(NSDictionary *)info;
 @end

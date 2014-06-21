@@ -1,55 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
-   <channel>
-      <title>TeXtended Changelog</title>
-      <link>http://textended.tobsolution.de/appcast.xml</link>
-      <description>Most recent changes with links to updates.</description>
-      <language>en</language>
-         <item>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"
+        >
+    <channel>
+        <title>TeXtended Changelog</title>
+        <link>http://textended.tobsolution.de/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
             <title>Version 0.1 (First Version)</title>
-						<sparkle:releaseNotesLink>
-							http://textended.tobsolution.de/app/0.1.html
-						</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink>
+                http://textended.tobsolution.de/app/0.1.html
+            </sparkle:releaseNotesLink>
             <pubDate>Tue, 23 Apr 2013 10:00:00 +0200</pubDate>
-            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.1.zip" sparkle:version="0.1" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCSd76jq2RKtUIq303OPYsYydvjhgIVAJjYDVOU/slgUKsCDauJeqxDjPil" />
-         	<sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
-         </item>
-       <item>
-           <title>Version 0.2 (Sparkle Test)</title>
-           <sparkle:releaseNotesLink>
-               http://textended.tobsolution.de/app/0.2.html
-           </sparkle:releaseNotesLink>
-           <pubDate>Tue, 23 Apr 2013 10:30:00 +0200</pubDate>
-           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.2.zip" sparkle:version="0.2" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCGp+S0LdES1ziYdOCo7MeFoztGHQIVAMGaZ5Go0BbLPS4xFdS6dmCze6Dr" />
-           <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
-       </item>
-       <item>
-           <title>Beta Release 1 (TeXtended 0.4)</title>
-           <sparkle:releaseNotesLink>
-               http://textended.tobsolution.de/app/0.4.html
-           </sparkle:releaseNotesLink>
-           <pubDate>Tue, 16 Jul 2013 13:37:00 +0200</pubDate>
-           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.zip" sparkle:version="a96301723" sparkle:shortVersionString="0.4" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFBTbWnscwLfvqZtuJwUrdK9VLgZ2AhUAlu26LCpC7Y5Nz7JpEqA6bcejFIo=" />
-           <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
-       </item>
-       <item>
-           <title>Adaption for OS X 10.7.x</title>
-           <sparkle:releaseNotesLink>
-               http://textended.tobsolution.de/app/0.4.1.html
-           </sparkle:releaseNotesLink>
-           <pubDate>Tue, 16 Jul 2013 15:00:00 +0200</pubDate>
-           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.1.zip" sparkle:version="3c30d102d" sparkle:shortVersionString="0.4.1" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCJZfP7xJuj4DOF/qsCVslFrItKXQIUBunEYNdqnjCO5gpV4Oq7hRA7Z9E=" />
-           <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
-       </item>
-       <item>
-           <title>Small Fixes in the user defaults</title>
-           <sparkle:releaseNotesLink>
-               http://textended.tobsolution.de/app/0.4.2.html
-           </sparkle:releaseNotesLink>
-           <pubDate>Tue, 18 Jul 2013 19:00:00 +0200</pubDate>
-           <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.2.zip" sparkle:version="0deb6831b" sparkle:shortVersionString="0.4.2" length="1623481" type="application/octet-stream" sparkle:dsaSignature="MC0CFFLF9jx3hFgaslMjoQhaNEu0w6Z+AhUAh9d997JcjyjD4mCs3BHyPf8ItO8=" />
-           <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
-       </item>
-       
-   </channel>
+            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.1.zip" sparkle:version="0.1"
+                       length="1623481" type="application/octet-stream"
+                       sparkle:dsaSignature="MC4CFQCSd76jq2RKtUIq303OPYsYydvjhgIVAJjYDVOU/slgUKsCDauJeqxDjPil"/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>
+        <item>
+            <title>Version 0.2 (Sparkle Test)</title>
+            <sparkle:releaseNotesLink>
+                http://textended.tobsolution.de/app/0.2.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Tue, 23 Apr 2013 10:30:00 +0200</pubDate>
+            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.2.zip" sparkle:version="0.2"
+                       length="1623481" type="application/octet-stream"
+                       sparkle:dsaSignature="MC4CFQCGp+S0LdES1ziYdOCo7MeFoztGHQIVAMGaZ5Go0BbLPS4xFdS6dmCze6Dr"/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>
+        <item>
+            <title>Beta Release 1 (TeXtended 0.4)</title>
+            <sparkle:releaseNotesLink>
+                http://textended.tobsolution.de/app/0.4.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Tue, 16 Jul 2013 13:37:00 +0200</pubDate>
+            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.zip" sparkle:version="a96301723"
+                       sparkle:shortVersionString="0.4" length="1623481" type="application/octet-stream"
+                       sparkle:dsaSignature="MC0CFBTbWnscwLfvqZtuJwUrdK9VLgZ2AhUAlu26LCpC7Y5Nz7JpEqA6bcejFIo="/>
+            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
+        </item>
+        <item>
+            <title>Adaption for OS X 10.7.x</title>
+            <sparkle:releaseNotesLink>
+                http://textended.tobsolution.de/app/0.4.1.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Tue, 16 Jul 2013 15:00:00 +0200</pubDate>
+            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.1.zip" sparkle:version="3c30d102d"
+                       sparkle:shortVersionString="0.4.1" length="1623481" type="application/octet-stream"
+                       sparkle:dsaSignature="MC0CFQCJZfP7xJuj4DOF/qsCVslFrItKXQIUBunEYNdqnjCO5gpV4Oq7hRA7Z9E="/>
+            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
+        </item>
+        <item>
+            <title>Small Fixes in the user defaults</title>
+            <sparkle:releaseNotesLink>
+                http://textended.tobsolution.de/app/0.4.2.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Tue, 18 Jul 2013 19:00:00 +0200</pubDate>
+            <enclosure url="http://textended.tobsolution.de/app/TeXtended 0.4.2.zip" sparkle:version="0deb6831b"
+                       sparkle:shortVersionString="0.4.2" length="1623481" type="application/octet-stream"
+                       sparkle:dsaSignature="MC0CFFLF9jx3hFgaslMjoQhaNEu0w6Z+AhUAh9d997JcjyjD4mCs3BHyPf8ItO8="/>
+            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
+        </item>
+
+    </channel>
 </rss>

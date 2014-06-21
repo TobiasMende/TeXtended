@@ -24,7 +24,7 @@
  @param index the position where to insert the string
  @param name the name of the undo action.
  */
-- (void) insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString*)name;
+    - (void)insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name;
 
 /**
  Inserts an attributed text into the text storage and adds undo support
@@ -33,7 +33,7 @@
  @param index the position
  @param name the undo action's name
  */
-- (void) insertText:(NSAttributedString *)insertion atIndex:(NSUInteger)index withActionName:(NSString*)name;
+    - (void)insertText:(NSAttributedString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name;
 
 /**
  Deletes text from text storage within the given range
@@ -41,7 +41,7 @@
  @param range the text's range
  @param name the action's name
  */
-- (void) deleteTextInRange:(NSValue*)range withActionName:(NSString*)name;
+    - (void)deleteTextInRange:(NSValue *)range withActionName:(NSString *)name;
 
 
 /**
@@ -50,6 +50,6 @@
  @param string the string to set
  @param name the action name to store
  */
-- (void) setString:(NSString *)string withActionName:(NSString*)name;
+    - (void)setString:(NSString *)string withActionName:(NSString *)name;
 
 @end

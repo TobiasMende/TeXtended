@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSAttributedString (Replace)
-- (NSString *)stringByReplacingPlaceholders;
+
+    - (NSString *)stringByReplacingPlaceholders;
 @end

@@ -6,134 +6,133 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 #import "Compilable.h"
 
-@class ProjectModel,OutlineElement,OutlineExtractor;
+#import <Foundation/Foundation.h>
 
+@class ProjectModel, OutlineElement, OutlineExtractor;
+@class GenericFilePresenter;
+@protocol FileObserver;
 
 /**
- Instances of this class represent a core data object containing information about a single latex file.
- 
- **Author:** Tobias Mende
- 
+ * Instances of this class represent a core data object containing information about a single latex file.
+ *
+ * **Author:** Tobias Mende
+ *
  */
-@interface DocumentModel : Compilable {
-    /** The pipes used for communication with the latex compiler */
-    NSPipe *consoleOutputPipe, *consoleInputPipe;
-    void (^removeLiveCompileObserver)(void);
-    void (^removeOpenOnExportObserver)(void);
-    DocumentModel *_currentMainDocument;
-    NSMutableDictionary *globalMessagesMap;
-}
-@property NSArray *messages;
-@property (nonatomic) NSArray *bibFiles;
-/** The date of the last application internal change of the represented file */
-@property (strong) NSDate * lastChanged;
+@interface DocumentModel : Compilable<FileObserver>
+    {
+        void (^removeLiveCompileObserver)(void);
+
+        void (^removeOpenOnExportObserver)(void);
+
+        DocumentModel *_currentMainDocument;
+
+        NSMutableDictionary *globalMessagesMap;
+
+        GenericFilePresenter *_filePresenter;
+    }
+
+#pragma mark - Properties
 
 /** The date of the last compilation of the represented file */
-@property (strong) NSDate * lastCompile;
-
-/** The path to the output file (might be empty) */
-@property (nonatomic, strong) NSString * pdfPath;
-
-/** The path to the tex file */
-@property (strong,nonatomic) NSString * texPath;
-
-- (DocumentModel *)currentMainDocument;
-- (void)setCurrentMainDocument:(DocumentModel *)cmd;
-
-/** The system path to the tex file version storage.
- 
- @warning Don't uses this if you are not exactly knowing about the purpose of this property.
- */
-@property (strong) NSString * systemPath;
-
-
+    @property (strong) NSDate *lastCompile;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
-@property (nonatomic, assign) ProjectModel *project;
+    @property (assign) ProjectModel *project;
 
-@property (strong,nonatomic) NSMutableArray *outlineElements;
+/** The path to the output file (might be empty) */
+    @property (nonatomic, strong) NSString *pdfPath;
+
+/** The path to the tex file */
+    @property (nonatomic, strong) NSString *texPath;
 
 /** Flag determing whether live compile is active for this document or not */
-@property (nonatomic, strong) NSNumber* liveCompile;
+    @property (nonatomic, strong) NSNumber *liveCompile;
 
 /** If on, the pdf is opened in the default pdf viewer after export */
-@property (nonatomic, strong) NSNumber* openOnExport;
+    @property (nonatomic, strong) NSNumber *openOnExport;
 
-@property BOOL isCompiling;
+    @property BOOL isCompiling;
+
+    @property NSArray *messages;
+
+    @property (nonatomic, strong) NSArray *outlineElements;
+
+#pragma mark Readonly Properties
+
+    @property (readonly) NSString *texIdentifier;
+
+    @property (readonly) NSString *pdfIdentifier;
+
+
+#pragma mark System Properties
+
+/** The system path to the tex file version storage.
+ *
+ * @warning Don't uses this if you are not exactly knowing about the purpose of this property.
+ */
+    @property (strong) NSString *systemPath;
+
+    @property NSPipe *consoleOutputPipe;
+
+    @property NSPipe *consoleInputPipe;
+
+
+#pragma mark - Loading & Saving
+/**
+ * Method for loading the content of the represented file
+ *
+ * @return the files content
+ */
+    - (NSString *)loadContent:(__autoreleasing NSError **)error;
 
 /**
- Method for loading the content of the represented file
- 
- @return the files content
+ * Method for saving new content to the represented file
+ *
+ * @param content the content to save
+ * @param error a reference to an error object in which to store erros occuring while saving.
+ *
+ * @return `YES` if the content was saved succesful, `NO` otherwise.
  */
-- (NSString*) loadContent:(NSError**)error;
+    - (BOOL)saveContent:(NSString *)content error:(__autoreleasing NSError **)error;
+
+
+#pragma mark -  Getter
+
+    - (DocumentModel *)currentMainDocument;
+
+    - (NSString *)header;
 
 /**
- Method for saving new content to the represented file
- 
- @param content the content to save
- @param error a reference to an error object in which to store erros occuring while saving.
- 
- @return `YES` if the content was saved succesful, `NO` otherwise.
+ * Getter for the name of the pdf file (only the last component of the pdfPath)
+ *
+ * @return the files name
  */
-- (BOOL) saveContent:(NSString*) content error:(NSError**) error;
+    - (NSString *)pdfName;
 
 /**
- Getter for the name of the texFile (only the last component of the texPath)
- 
- @return the files name
+ * Getter for the name of the texFile (only the last component of the texPath)
+ *
+ * @return the files name
  */
-- (NSString *)texName;
-
-/**
- Getter for the name of the pdf file (only the last component of the pdfPath)
- 
- @return the files name
- */
-- (NSString *)pdfName;
-
-@property (readonly) NSString* texIdentifier;
-@property (readonly) NSString* pdfIdentifier;
+    - (NSString *)texName;
 
 
-/**
- Getter for the output pipe
- 
- @return the output pipe
- */
-- (NSPipe*)consoleOutputPipe;
+#pragma mark - Setter
 
-/**
- Getter for the input pipe
- 
- @return the input pipe
- */
-- (NSPipe*)consoleInputPipe;
+    - (void)setCurrentMainDocument:(DocumentModel *)cmd;
 
-/**
- Setter for the output pipe
- 
- @param pipe the output pipe
- */
-- (void)setConsoleOutputPipe:(NSPipe*)pipe;
 
-/**
- Setter for the input pipe
- 
- @param pipe the input pipe
- */
-- (void)setConsoleInputPipe:(NSPipe*)pipe;
+#pragma mark - Message Handling
 
-- (void) initOutlineElements;
+    - (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
 
-- (NSString *)header;
-- (void) buildOutline;
+    - (NSArray *)mergedGlobalMessages;
 
-- (void)updateMessages:(NSArray *)messages forType:(TMTMessageGeneratorType)type;
-- (NSArray *)mergedGlobalMessages;
+
+#pragma mark - Outline Handling
+
+    - (void)buildOutline;
 @end
 

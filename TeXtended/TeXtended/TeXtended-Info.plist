@@ -34,7 +34,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>projecticon</string>
 			<key>CFBundleTypeName</key>
-			<string>TeXtendedProjectFile</string>
+			<string>TeXtended Project File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
@@ -44,7 +44,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>projecticon</string>
 			<key>CFBundleTypeName</key>
-			<string>TeXtendedProjectFolder</string>
+			<string>TeXtended Project Folder</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
@@ -128,11 +128,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8.1</string>
+	<string>0.8.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>17</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>

@@ -7,14 +7,9 @@
 //
 
 #import "ConsoleViewController.h"
-#import "DocumentModel.h"
-#import "Constants.h"
 #import "DocumentController.h"
 #import "ConsoleOutputView.h"
-#import <TMTHelperCollection/TMTLog.h>
-#import "TMTNotificationCenter.h"
 #import "ConsoleData.h"
-
 
 
 @interface ConsoleViewController ()
@@ -23,61 +18,66 @@
 @implementation ConsoleViewController
 
 
-- (id) init {
-    self = [super initWithNibName:@"ConsoleView" bundle:nil];
-    if (self) {
-    }
-    return self;
-}
-
-- (void)loadView {
-    [super loadView];
-    self.outputView.controller = self;
-}
-
-
-
-- (void)setConsole:(ConsoleData *)console {
-    if (console != _console) {
-        if (_console) {
-            _console.selectedRange = [self.outputView selectedRange];
+    - (id)init
+    {
+        self = [super initWithNibName:@"ConsoleView" bundle:nil];
+        if (self) {
         }
-        _console = console;
+        return self;
     }
-}
 
-- (void)scrollToCurrentPosition {
-    if(self.console.selectedRange.location != NSNotFound && NSMaxRange(self.console.selectedRange) < self.outputView.string.length) {
-        [self.outputView setSelectedRange:self.console.selectedRange];
-        [self.outputView scrollRangeToVisible:self.console.selectedRange];
-    } else {
-        [self.outputView scrollToEndOfDocument:nil];
+    - (void)loadView
+    {
+        [super loadView];
+        self.outputView.controller = self;
     }
-    
-}
 
-- (IBAction)cancelCompiling:(id)sender {
-    [self.console.firstResponderDelegate abort];
-}
+
+    - (void)setConsole:(ConsoleData *)console
+    {
+        if (console != _console) {
+            if (_console) {
+                _console.selectedRange = [self.outputView selectedRange];
+            }
+            _console = console;
+        }
+    }
+
+    - (void)scrollToCurrentPosition
+    {
+        if (self.console.selectedRange.location != NSNotFound && NSMaxRange(self.console.selectedRange) < self.outputView.string.length) {
+            [self.outputView setSelectedRange:self.console.selectedRange];
+            [self.outputView scrollRangeToVisible:self.console.selectedRange];
+        } else {
+            [self.outputView scrollToEndOfDocument:nil];
+        }
+
+    }
+
+    - (IBAction)cancelCompiling:(id)sender
+    {
+        [self.console.firstResponderDelegate abort];
+    }
 
 
 #pragma mark -
 #pragma mark NSTextFieldDelegate Methods
 
--(void)controlTextDidEndEditing:(NSNotification *)notification {
-    if ( [[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement )
+    - (void)controlTextDidEndEditing:(NSNotification *)notification
     {
-        [self.console commitInput];
+        if ([[notification userInfo][@"NSTextMovement"] intValue] == NSReturnTextMovement) {
+            [self.console commitInput];
+        }
     }
-}
 
 #pragma mark -
 #pragma mark Dealloc etc.
 
-- (void)dealloc {
-    self.console = nil;
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
+    - (void)dealloc
+    {
+        self.console = nil;
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
 
 
 @end

@@ -9,25 +9,38 @@
 #import <Foundation/Foundation.h>
 #import "FirstResponderDelegate.h"
 #import "CompileProcessHandler.h"
+
 @class HighlightingTextView, TextViewController, ExtendedPDFViewController, DocumentModel, Compiler;
-@interface QuickPreviewManager : NSWindowController<FirstResponderDelegate,CompileProcessHandler,NSWindowDelegate>
 
-@property (assign) HighlightingTextView *parentView;
-@property TextViewController *textViewController;
-@property ExtendedPDFViewController *pvc;
+@interface QuickPreviewManager : NSWindowController <FirstResponderDelegate, CompileProcessHandler, NSWindowDelegate>
 
-@property DocumentModel *model;
-@property DocumentModel *parentModel;
-@property (strong) IBOutlet NSPopUpButton *mainCompilableSelection;
+    @property (assign) HighlightingTextView *parentView;
 
-@property (strong) Compiler* compiler;
-@property (strong) NSArray *mainDocuments;
-@property DocumentModel *mainCompilable;
-@property (strong) NSString *currentHeader;
-@property BOOL isCompiling;
-@property (strong) IBOutlet NSSplitView *splitView;
-- (IBAction)commandEnter:(id)sender;
-- (IBAction)cancel:(id)sender;
+    @property TextViewController *textViewController;
 
-- (id) initWithParentView:(HighlightingTextView *)parent;
+    @property ExtendedPDFViewController *pvc;
+
+    @property DocumentModel *model;
+
+    @property DocumentModel *parentModel;
+
+    @property (strong) IBOutlet NSPopUpButton *mainCompilableSelection;
+
+    @property (strong) Compiler *compiler;
+
+    @property (strong) NSArray *mainDocuments;
+
+    @property DocumentModel *mainCompilable;
+
+    @property (strong) NSString *currentHeader;
+
+    @property BOOL isCompiling;
+
+    @property (strong) IBOutlet NSSplitView *splitView;
+
+    - (IBAction)commandEnter:(id)sender;
+
+    - (IBAction)cancel:(id)sender;
+
+    - (id)initWithParentView:(HighlightingTextView *)parent;
 @end

@@ -10,13 +10,14 @@
 
 @implementation GraphNode
 
--(id)init {
-    self = [super init];
-    if (self) {
-        self.predecessors = [NSMutableSet new];
-        self.successors = [NSMutableSet new];
+    - (id)init
+    {
+        self = [super init];
+        if (self) {
+            self.predecessors = [NSMutableSet new];
+            self.successors = [NSMutableSet new];
+        }
+        return self;
     }
-    return self;
-}
 
 @end

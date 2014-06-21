@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class GraphNode;
 
 @interface GraphEdge : NSObject
 
-@property GraphNode* head;
-@property GraphNode* tail;
+    @property GraphNode *head;
 
--(id)initWithHead:(GraphNode*)head andTail:(GraphNode*)tail;
+    @property GraphNode *tail;
+
+    - (id)initWithHead:(GraphNode *)head andTail:(GraphNode *)tail;
 
 @end

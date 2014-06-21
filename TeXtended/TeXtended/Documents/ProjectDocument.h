@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MainDocument.h"
-@class MainWindowController, ProjectModel;
+
+@class MainWindowController, ProjectModel, ModelInfoWindowController;
 
 /**
  The ProjectDocument is a NSDocument instance holding all information, model and controller connections for a project.
@@ -17,12 +18,14 @@
  **Author:** Tobias Mende
  
  */
-@interface ProjectDocument : MainDocument
+@interface ProjectDocument : MainDocument {
+    ModelInfoWindowController *_modelInfoWindow;
+}
 
 
 /** The model of the project. */
-@property (strong,nonatomic) ProjectModel *model;
+    @property (strong, nonatomic) ProjectModel *model;
 
-- (void)mergeSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
+    - (void)mergeSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
 @end

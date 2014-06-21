@@ -9,35 +9,46 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 #import "CompileProcessHandler.h"
+
 @class DocumentModel, DocumentController;
-@interface ConsoleData : NSObject {
-    /** A file handle for reading the console output */
-    NSFileHandle *readHandle;
-    NSTimer *logMessageUpdateTimer;
-}
-@property (strong, nonatomic) DocumentModel *model;
-@property (assign) id<CompileProcessHandler> firstResponderDelegate;
+
+@interface ConsoleData : NSObject
+    {
+        /** A file handle for reading the console output */
+        NSFileHandle *readHandle;
+
+        NSTimer *logMessageUpdateTimer;
+    }
+
+    @property (strong, nonatomic) DocumentModel *model;
+
+    @property (assign) id <CompileProcessHandler> firstResponderDelegate;
 
 /** Flag for showing whether the console is active or not */
-@property (nonatomic)BOOL consoleActive;
+    @property (nonatomic) BOOL consoleActive;
 
-@property BOOL compileRunning;
+    @property BOOL compileRunning;
 
-@property BOOL showConsole;
+    @property BOOL showConsole;
 
-@property NSRange selectedRange;
+    @property NSRange selectedRange;
 
-@property NSString *output;
-@property NSString *input;
+    @property NSString *output;
+
+    @property NSString *input;
 
 /** The messages extracted from the latex log */
-@property (nonatomic) NSArray *consoleMessages;
+    @property (nonatomic) NSArray *consoleMessages;
 
-@property CompileMode compileMode;
+    @property CompileMode compileMode;
 
-- (void)updateLogMessages;
-- (void)commitInput;
-- (void)remove;
-- (void)refreshCompile;
-- (NSComparisonResult) compareConsoleData:(ConsoleData *)other;
+    - (void)updateLogMessages;
+
+    - (void)commitInput;
+
+    - (void)remove;
+
+    - (void)refreshCompile;
+
+    - (NSComparisonResult)compareConsoleData:(ConsoleData *)other;
 @end

@@ -17,18 +17,18 @@
 @interface GoToLineSheetController : NSWindowController
 
 /** Property for the current line */
-@property NSNumber *line;
+    @property NSNumber *line;
 
 /** Property for the maximum number of lines */
-@property NSNumber *max;
+    @property NSNumber *max;
 
 /** Method for aborting the sheet 
  @param sender the sender
  */
-- (IBAction)cancelSheet:(id)sender;
+    - (IBAction)cancelSheet:(id)sender;
 
 /** Method for starting the go to line action 
  @param sender the sender
  */
-- (IBAction)goToLine:(id)sender;
+    - (IBAction)goToLine:(id)sender;
 @end

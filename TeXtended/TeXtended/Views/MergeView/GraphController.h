@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GraphController : NSObject{
-    NSMutableDictionary* nodes;
-    NSMutableArray* edges;
-}
+@interface GraphController : NSObject
+    {
+        NSMutableDictionary *nodes;
 
--(void)addNodeForNodeKey:(NSString*)nodeKey;
--(void)addEdgeForHead:(NSString*)head toTail:(NSString*)tail;
--(BOOL)hasCycleFromNode:(NSString*)nodeKey;
--(void)reset;
+        NSMutableArray *edges;
+    }
+
+    - (void)addNodeForNodeKey:(NSString *)nodeKey;
+
+    - (void)addEdgeForHead:(NSString *)head toTail:(NSString *)tail;
+
+    - (BOOL)hasCycleFromNode:(NSString *)nodeKey;
+
+    - (void)reset;
 @end

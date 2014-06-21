@@ -17,43 +17,43 @@
  **Author:** Tobias Mende
  
  */
-@interface TexdocPanelController : NSWindowController<NSTextFieldDelegate,TexdocHandlerProtocol>
+@interface TexdocPanelController : NSWindowController <NSTextFieldDelegate, TexdocHandlerProtocol>
 
 /** The content box of the panel */
-@property (assign) IBOutlet NSBox *contentBox;
+    @property (assign) IBOutlet NSBox *contentBox;
 
 /** The main view of the panel */
-@property (assign) IBOutlet NSView *view;
+    @property (assign) IBOutlet NSView *view;
 
 /** The field in which to enter the package name */
-@property (assign) IBOutlet NSTextField *packageField;
+    @property (assign) IBOutlet NSTextField *packageField;
 
 /** The TexdocViewController controlling the results and the according view */
-@property (strong) IBOutlet TexdocViewController *texdocViewController;
+    @property (strong) IBOutlet TexdocViewController *texdocViewController;
 
 /** The search panel for starting a request */
-@property (assign) IBOutlet NSView *searchPanel;
+    @property (assign) IBOutlet NSView *searchPanel;
 
 /** If `YES` the task is searching for results. */
-@property BOOL searching;
+    @property BOOL searching;
 
 /** Method for starting the texdoc search
  
  @param sender the sender
  */
-- (IBAction)startTexdoc:(id)sender;
+    - (IBAction)startTexdoc:(id)sender;
 
 /** Method for clearing the results and starting a new search
  
  @param sender the sender
  */
-- (IBAction)clearSearch:(id)sender;
+    - (IBAction)clearSearch:(id)sender;
 
 /** Outlet to the clear button */
-@property (assign) IBOutlet NSButton *clearButton;
+    @property (assign) IBOutlet NSButton *clearButton;
 
 /** Outlet to the search button */
-@property (assign) IBOutlet NSButton *searchButton;
+    @property (assign) IBOutlet NSButton *searchButton;
 
 
 @end

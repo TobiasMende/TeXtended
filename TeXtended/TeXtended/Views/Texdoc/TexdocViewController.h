@@ -9,38 +9,44 @@
 #import <Cocoa/Cocoa.h>
 
 @class TMTTableView;
+
 /**
  The TexdocViewController controlls the view which is displayed when showing a list of package documentation.
  
  **Author:** Tobias Mende
  
  */
-@interface TexdocViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>{
-    /** An array of TexdocEntry objects */
-    IBOutlet NSMutableArray *entries;
-  
-    
-    /** The view which should be displayed if no matching entries where found */
-    __unsafe_unretained IBOutlet NSView *notFoundView;
-}
-  /** The table view to display the entries in */
-@property (assign)IBOutlet TMTTableView *listView;;
-@property (assign) IBOutlet NSTextField *label;
+@interface TexdocViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+    {
+        /** An array of TexdocEntry objects */
+        IBOutlet NSMutableArray *entries;
+
+
+        /** The view which should be displayed if no matching entries where found */
+        __unsafe_unretained IBOutlet NSView *notFoundView;
+    }
+
+    /** The table view to display the entries in */
+    @property (assign) IBOutlet TMTTableView *listView;;
+
+    @property (assign) IBOutlet NSTextField *label;
+
 /** The package name (returning the heading for the listView */
-@property (assign, nonatomic) NSString *package;
-/** Method for setting the entries 
+    @property (assign, nonatomic) NSString *package;
+
+/** Method for setting the entries
  @param texdoc an array of TexdocEntry objects
  */
-- (void) setContent:(NSMutableArray*) texdoc;
+    - (void)setContent:(NSMutableArray *)texdoc;
 
 /** Method for catching the click on the table view 
  @param sender the sender
  */
-- (IBAction)click:(id)sender;
+    - (IBAction)click:(id)sender;
 
 /** Method for setting the views design to dark background mode */
-- (void)setDarkBackgroundMode;
+    - (void)setDarkBackgroundMode;
 
 /** Method for opening the currently selected entry */
-- (void) openSelectedDoc;
+    - (void)openSelectedDoc;
 @end
