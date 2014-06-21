@@ -50,6 +50,8 @@
         QuickPreviewManager *quickPreview;
 
         NSArray *droppedFileNames;
+        
+        BOOL stopTextDidChangeNotifications;
     }
 
     @property BOOL completionEnabled;
