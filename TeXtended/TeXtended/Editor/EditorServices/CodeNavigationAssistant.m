@@ -498,7 +498,8 @@ static const NSSet *KEYS_TO_OBSERVE;
     - (BOOL)handleWrappingInLine:(NSRange)lineRange
     {
         NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
-        if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
+        NSUInteger cursorPositionInLine = view.selectedRange.location - lineRange.location;
+        if (view.lineWrapMode != HardWrap || cursorPositionInLine <= wrapAfter) {
             return NO;
         }
         [view.undoManager beginUndoGrouping];
@@ -509,30 +510,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
         NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
 
-
-        NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineRange];
-        NSUInteger goodPositionToBreak = NSNotFound;
-        NSUInteger lastBreakLocation = lineRange.location;
-        NSUInteger offset = 0;
-        NSUInteger counter = 0;
-        for (NSTextCheckingResult *match in spaces) {
-            counter++;
-            NSRange matchRange = [match range];
-            matchRange.location += offset;
-            NSUInteger currentPosition = NSMaxRange(matchRange);
-
-            if (matchRange.location - lastBreakLocation <= wrapAfter || currentPosition - lastBreakLocation <= wrapAfter || goodPositionToBreak == NSNotFound) {
-                // Break after the spaces:
-                goodPositionToBreak = currentPosition;
-            }
-            if ((currentPosition - lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange) - lastBreakLocation >= wrapAfter)) && goodPositionToBreak != NSNotFound) {
-                [view.undoSupport insertText:insertion atIndex:goodPositionToBreak withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
-
-                offset += insertion.length;
-                lastBreakLocation = goodPositionToBreak + 1;
-                goodPositionToBreak = NSNotFound;
-            }
-        }
+        [view.undoSupport insertText:insertion atIndex:view.selectedRange.location withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
 
         [view.undoManager endUndoGrouping];
         return YES;
