@@ -14,7 +14,7 @@
 
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
 static const NSCharacterSet *ALL_SYMBOLS;
-static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS;
+static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *COMMAND_END_CHARACTERS, *ALLOWED_IN_MATH_MODE;
 
 static NSString *COMMAND_PATTERN;
 
@@ -25,6 +25,11 @@ static NSRegularExpression *COMMAND_REGEX;
     - (void)unbindFromUserDefaults;
 
     - (void)highlightAtSelectionChange;
+
+
+- (BOOL)highlightInlineMath:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart andRangeEnd:(NSUInteger)rangeEnd;
+- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andRangeEnd:(NSUInteger)rangeEnd;
+- (BOOL)highlightComment:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart;
 @end
 
 @implementation LatexSyntaxHighlighter
@@ -41,7 +46,10 @@ static NSRegularExpression *COMMAND_REGEX;
         CURLY_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"{}"];
         ROUND_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"()"];
         RECT_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"[]"];
-        
+        ALLOWED_IN_MATH_MODE = [NSCharacterSet characterSetWithCharactersInString:@"\\%$"];
+        NSMutableCharacterSet *tmp = [NSMutableCharacterSet characterSetWithCharactersInString:@"{}[],.%"];
+        [tmp formUnionWithCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        COMMAND_END_CHARACTERS = tmp.copy;
         COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
 
     }
@@ -171,8 +179,9 @@ static NSRegularExpression *COMMAND_REGEX;
         NSScanner *scanner = [NSScanner scannerWithString:view.string];
         scanner.scanLocation = textRange.location;
         NSUInteger rangeStart = textRange.location;
+        NSUInteger end = NSMaxRange(textRange);
         
-        while (scanner.scanLocation < NSMaxRange(textRange) && !scanner.isAtEnd) {
+        while (scanner.scanLocation < end && !scanner.isAtEnd) {
             [scanner scanUpToCharactersFromSet:ALL_SYMBOLS intoString:NULL];
                 // Found Begin of Something
                 // Uncolor normal text
@@ -190,32 +199,12 @@ static NSRegularExpression *COMMAND_REGEX;
                      [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
                 } else if([scanner scanString:@"\\" intoString:NULL]) {
                     // color commands
-                    NSMutableCharacterSet *charactersInCommand = [NSMutableCharacterSet characterSetWithCharactersInString:@"{}[]"];
-                    [charactersInCommand formUnionWithCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    [scanner scanUpToCharactersFromSet:charactersInCommand  intoString:NULL];
+                    [scanner scanUpToCharactersFromSet:COMMAND_END_CHARACTERS  intoString:NULL];
                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
-                } else if([scanner scanString:@"$" intoString:NULL]) {
-                    if ([scanner scanString:@"$" intoString:NULL]) {
-                        // Start is $$
-                        if ([scanner scanUpToString:@"$$" intoString:NULL]) {
-                            // Found end for $$
-                            [scanner scanString:@"$$" intoString:NULL];
-                        }
-                    } else if ([scanner scanUpToString:@"$" intoString:NULL]) {
-                        // Found end for $
-                        [scanner scanString:@"$" intoString:NULL];
-                    }
+                } else if([self highlightInlineMath:scanner withRangeStart:rangeStart andRangeEnd:end]) {
                     
-                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
-                } else if([scanner scanString:@"%" intoString:NULL]) {
-                    // color comment
-                    NSCharacterSet *tmp = scanner.charactersToBeSkipped;
-                    scanner.charactersToBeSkipped = nil;
-                    [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
-                    
-                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
-                    [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
-                    scanner.charactersToBeSkipped = tmp;
+                } else if([self highlightComment:scanner withRangeStart:rangeStart]) {
+                
                 } else if (scanner.isAtEnd) {
                     // ignore this case. no special symbols in content
                 } else {
@@ -227,36 +216,61 @@ static NSRegularExpression *COMMAND_REGEX;
         
     }
 
-
-+ (void) logCharacterSet:(NSCharacterSet*)characterSet
-{
-    unichar unicharBuffer[20];
-    int index = 0;
-    
-    for (unichar uc = 0; uc < (0xFFFF); uc ++)
-    {
-        if ([characterSet characterIsMember:uc])
-        {
-            unicharBuffer[index] = uc;
+- (BOOL)highlightInlineMath:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart andRangeEnd:(NSUInteger)rangeEnd {
+    if ([scanner scanString:@"$" intoString:NULL]) {
+        if ([scanner scanString:@"$" intoString:NULL]) {
+            // Start is $$
             
-            index ++;
+            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andRangeEnd:rangeEnd];
+            [scanner scanString:@"$" intoString:NULL];
+        } else  {
+            // Start is $
+            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andRangeEnd:rangeEnd];
             
-            if (index == 20)
-            {
-                NSString * characters = [NSString stringWithCharacters:unicharBuffer length:index];
-                NSLog(@"%@", characters);
-                
-                index = 0;
-            }
         }
-    }
-    
-    if (index != 0)
-    {
-        NSString * characters = [NSString stringWithCharacters:unicharBuffer length:index];
-        NSLog(@"%@", characters);
+        
+        [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
+        return YES;
+    } else {
+        return NO;
     }
 }
+
+- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andRangeEnd:(NSUInteger)rangeEnd {
+    while (!scanner.isAtEnd && scanner.scanLocation < rangeEnd) {
+        [scanner scanUpToCharactersFromSet:ALLOWED_IN_MATH_MODE intoString:NULL];
+        NSUInteger subrangeEnd = scanner.scanLocation;
+        if ([scanner scanString:@"$" intoString:NULL]) {
+            break;
+        } else if([scanner scanString:@"\\" intoString:NULL]) {
+            if (!scanner.isAtEnd) {
+                scanner.scanLocation +=1;
+            }
+        } else if([self highlightComment:scanner withRangeStart:scanner.scanLocation]) {
+            [self highlightFrom:*rangeStart to:subrangeEnd withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
+            *rangeStart = scanner.scanLocation;
+        }
+        
+    }
+    
+}
+
+- (BOOL)highlightComment:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart {
+    if([scanner scanString:@"%" intoString:NULL]) {
+        // color comment
+        NSCharacterSet *tmp = scanner.charactersToBeSkipped;
+        scanner.charactersToBeSkipped = nil;
+        [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+        
+        [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
+        [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+        scanner.charactersToBeSkipped = tmp;
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 
 - (void)highlightFrom:(NSUInteger)start to:(NSUInteger)end withColor:(NSColor *)color andFlag:(BOOL)shouldHighlight {
     NSRange range = NSMakeRange(start, end-start);
