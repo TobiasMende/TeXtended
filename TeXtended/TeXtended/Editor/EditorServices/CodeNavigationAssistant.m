@@ -10,10 +10,12 @@
 #import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import "NSString+LatexExtension.h"
 
 static const NSSet *WHITESPACES;
 
 static const NSRegularExpression *SPACE_REGEX;
+
 
 static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 
@@ -44,7 +46,8 @@ static const NSSet *KEYS_TO_OBSERVE;
         WHITESPACES = [NSSet setWithObjects:@" ", @"\t", nil];
         NSError *error;
         SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
-        SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(?:\\t| )+(?!$)" options:NSRegularExpressionAnchorsMatchLines error:&error];
+        SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\w((?:\\t| )+(?!$))\\w" options:NSRegularExpressionAnchorsMatchLines error:&error];
+        
         FIRST_NONWHITESPACE_IN_LINE = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\s*)(\\S)(?:.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
         if (error) {
             DDLogError(@"Error!!!");
@@ -499,7 +502,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     {
         NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
         NSUInteger cursorPositionInLine = view.selectedRange.location - lineRange.location;
-        if (view.lineWrapMode != HardWrap || cursorPositionInLine <= wrapAfter) {
+        if (view.lineWrapMode != HardWrap || cursorPositionInLine < wrapAfter) {
             return NO;
         }
         [view.undoManager beginUndoGrouping];
@@ -519,7 +522,7 @@ static const NSSet *KEYS_TO_OBSERVE;
     - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string
     {
         NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
-        if (view.lineWrapMode != HardWrap || lineRange.length <= wrapAfter) {
+        if (view.lineWrapMode != HardWrap || lineRange.length < wrapAfter) {
             return NO;
         }
         NSString *newLineInsertion = @"\n";
@@ -530,26 +533,56 @@ static const NSSet *KEYS_TO_OBSERVE;
         NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineRange];
         NSUInteger goodPositionToBreak = NSNotFound;
         NSUInteger lastBreakLocation = lineRange.location;
-        NSUInteger offset = 0;
         NSUInteger counter = 0;
+        NSMutableArray *wrapPositions = [NSMutableArray new];
         for (NSTextCheckingResult *match in spaces) {
             counter++;
-            NSRange matchRange = [match range];
-            matchRange.location += offset;
+            NSRange matchRange = [match rangeAtIndex:1];
             NSUInteger currentPosition = NSMaxRange(matchRange);
-
-            if (matchRange.location - lastBreakLocation <= wrapAfter || currentPosition - lastBreakLocation <= wrapAfter || goodPositionToBreak == NSNotFound) {
-                // Break after the spaces:
+            
+            if (currentPosition-lastBreakLocation >= wrapAfter) {
+                
+                if (goodPositionToBreak != NSNotFound) {
+                    [wrapPositions addObject:@(goodPositionToBreak)];
+                    lastBreakLocation = goodPositionToBreak;
+                    goodPositionToBreak = currentPosition;
+                } else {
+                    [wrapPositions addObject:@(currentPosition)];
+                    lastBreakLocation = currentPosition;
+                }
+            } else {
                 goodPositionToBreak = currentPosition;
             }
-            if ((currentPosition - lastBreakLocation >= wrapAfter || (counter == spaces.count && NSMaxRange(lineRange) - lastBreakLocation >= wrapAfter)) && goodPositionToBreak != NSNotFound) {
-                [string insertString:newLineInsertion atIndex:goodPositionToBreak];
 
-                offset += newLineInsertion.length;
-                lastBreakLocation = goodPositionToBreak + 1;
-                goodPositionToBreak = NSNotFound;
+        }
+        if (goodPositionToBreak != NSNotFound && NSMaxRange(lineRange)-lastBreakLocation >= wrapAfter) {
+            [wrapPositions addObject:@(goodPositionToBreak)];
+        }
+        
+        NSUInteger commentPosition = NSNotFound;
+        NSRange commentSearchRange = lineRange;
+        while (commentPosition == NSNotFound) {
+            NSRange r = [string rangeOfString:@"%" options:0 range:commentSearchRange];
+            if (r.location == NSNotFound) {
+                break;
+            }
+            if ([string numberOfBackslashesBeforePositionIsEven:r.location]) {
+                commentPosition = r.location;
+            } else {
+                commentSearchRange = NSMakeRange(NSMaxRange(r), NSMaxRange(commentSearchRange)-NSMaxRange(r));
+            }
+            
+        }
+        
+        [view.undoManager beginUndoGrouping];
+        for (NSNumber *pos in wrapPositions.reverseObjectEnumerator) {
+            NSUInteger position = pos.unsignedIntegerValue;
+            [string insertString:newLineInsertion atIndex:position];
+            if (commentPosition != NSNotFound && position > commentPosition) {
+                [string insertString:@"% " atIndex:position+newLineInsertion.length];
             }
         }
+        [view.undoManager endUndoGrouping];
         return YES;
     }
 

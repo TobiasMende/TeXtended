@@ -225,8 +225,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Hard Wrap Text" id="540">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Hard Wrap Text" keyEquivalent="y" id="540">
                                 <connections>
                                     <action selector="hardWrapText:" target="-1" id="542"/>
                                 </connections>

@@ -9,6 +9,7 @@
 #import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
+#import "NSString+LatexExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSString *INLINE_MATH_PATTERN, *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
@@ -232,7 +233,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
             NSArray *matches = [COMMENT_REGEX matchesInString:str options:0 range:totalRange];
             for (NSTextCheckingResult *match in matches) {
                 NSRange range = [match range];
-                if (range.location > 0 && [[str substringWithRange:NSMakeRange(range.location - 1, 1)] isEqualToString:@"\\"]) {
+                if (range.location > 0 && ![str numberOfBackslashesBeforePositionIsEven:range.location]) {
                     continue;
                 }
                 [lm addTemporaryAttribute:NSForegroundColorAttributeName value:self.commentColor forCharacterRange:range];
