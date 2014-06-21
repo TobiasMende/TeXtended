@@ -113,7 +113,6 @@
                 for (NSURL *file in addPanel.URLs) {
                     [self.model addBibFileWithPath:file.path];
                 }
-                [self.bibFiles reloadData];
             }
         }];
     }
@@ -137,7 +136,6 @@
                     DocumentModel *m = [self.model modelForTexPath:file.path byCreating:YES];
                     [self.model addMainDocument:m];
                 }
-                [self.mainDocuments reloadData];
             }
         }];
     }
@@ -155,7 +153,7 @@
         NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];
 
         if ([key isEqualToString:@"canRemoveMainDocument"]) {
-            keys = [keys setByAddingObjectsFromArray:@[@"model.mainDocuments.@count", @"mainDocumentsController.selectionIndexes.@count", @"mainDocumentsController.selectionIndexes"]];
+            keys = [keys setByAddingObjectsFromArray:@[@"mainDocumentsController.selectionIndexes.@count", @"mainDocumentsController.selectionIndexes"]];
         }
         return keys;
     }
