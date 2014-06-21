@@ -233,4 +233,10 @@
         DDLogWarn(@"Closing %@", tabViewItem);
     }
 
+- (void)closeAll {
+    for (NSTabViewItem *item in self.tabView.tabViewItems) {
+        [self handleTabClose:item];
+    }
+}
+
 @end

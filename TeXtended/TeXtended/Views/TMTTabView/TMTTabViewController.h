@@ -26,5 +26,7 @@
 
     - (MMTabBarView *)tabBar;
 
+- (void)closeAll;
+
 @end
 

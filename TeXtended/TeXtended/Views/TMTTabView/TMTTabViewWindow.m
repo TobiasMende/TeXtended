@@ -41,6 +41,7 @@
 
     - (void)windowWillClose:(NSNotification *)notification
     {
+        [self.tabView closeAll];
         [[TMTTabManager sharedTabManager] removeTabViewWindow:self];
     }
 
