@@ -9,6 +9,7 @@
 #import <TMTHelperCollection/PathObserverFactory.h>
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/TMTTextField.h>
+#import <TMTHelperCollection/TMTTreeController.h>
 #import <Quartz/Quartz.h>
 
 #import "FileViewController.h"
@@ -168,11 +169,26 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 #pragma mark - Text Delegates
 
-    - (void)controlTextDidEndEditing:(NSNotification *)obj
+    - (void)controlTextDidEndEditing:(NSNotification *)note
     {
-        [self buildTree];
-        pathObserverIsActive = YES;
+        if (note.object != self.searchField) {
+            [self buildTree];
+            pathObserverIsActive = YES;
+        }
     }
+
+-(void)controlTextDidChange:(NSNotification *)note {
+    if (note.object == self.searchField) {
+        if ([self.searchField.stringValue isEqualToString:@""]) {
+            [self.outlineView collapseItem:nil collapseChildren:YES];
+            self.fileTree.selectionIndexPaths = @[];
+        } else {
+            [self.fileTree filterContentBy:[NSPredicate predicateWithFormat:@"name contains[c] %@", self.searchField.stringValue]];
+            [self.outlineView collapseItem:nil collapseChildren:YES];
+            [self.outlineView expandItem:self.fileTree.selectionIndexPaths];
+        }
+    }
+}
 
     - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
     {

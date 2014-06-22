@@ -36,6 +36,8 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
+		D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D276C8151956CDA1009DB27D /* TMTTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D276C8161956CDA1009DB27D /* TMTTreeController.m */; };
 		D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */; };
 		D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */; };
 		D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821619166B5F00C1B9E0 /* TMTTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 		D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNamedEncoding.m; sourceTree = "<group>"; };
 		D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTEncodingTransformer.h; sourceTree = "<group>"; };
 		D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTEncodingTransformer.m; sourceTree = "<group>"; };
+		D276C8151956CDA1009DB27D /* TMTTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTreeController.h; sourceTree = "<group>"; };
+		D276C8161956CDA1009DB27D /* TMTTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTreeController.m; sourceTree = "<group>"; };
 		D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTByteCountFormatter.h; sourceTree = "<group>"; };
 		D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTByteCountFormatter.m; sourceTree = "<group>"; };
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 		D22DC1C21863784800997ADB /* TMTHelperCollection */ = {
 			isa = PBXGroup;
 			children = (
+				D276C8131956CD94009DB27D /* Controllers */,
 				D295821319166AF000C1B9E0 /* Protocols */,
 				D22DC24618637A4F00997ADB /* Utils */,
 				D22DC26118637A4F00997ADB /* Views */,
@@ -261,6 +266,23 @@
 			path = Encoding;
 			sourceTree = "<group>";
 		};
+		D276C8131956CD94009DB27D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D276C8141956CD94009DB27D /* TMTTreeController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D276C8141956CD94009DB27D /* TMTTreeController */ = {
+			isa = PBXGroup;
+			children = (
+				D276C8151956CDA1009DB27D /* TMTTreeController.h */,
+				D276C8161956CDA1009DB27D /* TMTTreeController.m */,
+			);
+			path = TMTTreeController;
+			sourceTree = "<group>";
+		};
 		D29383B41945CDFF005C6C3F /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +323,7 @@
 				D2654AD51927A50E00DE58B2 /* TMTEncodingManager.h in Headers */,
 				D2654ADD1927AC8700DE58B2 /* TMTNamedEncoding.h in Headers */,
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
+				D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */,
 				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
 				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
 				D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */,
@@ -441,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */,
 				D2654AD61927A50E00DE58B2 /* TMTEncodingManager.m in Sources */,
 				D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */,
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,

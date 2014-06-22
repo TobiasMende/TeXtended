@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="fileTree" destination="UsM-XZ-1lJ" id="lze-GU-ocY"/>
                 <outlet property="outlineView" destination="i4F-Z5-MRe" id="JBj-e3-Iza"/>
+                <outlet property="searchField" destination="LFJ-pQ-nSF" id="2DU-0k-p2y"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -19,14 +20,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="EGM-Yg-2IP">
-                    <rect key="frame" x="0.0" y="0.0" width="204" height="488"/>
+                    <rect key="frame" x="0.0" y="20" width="204" height="468"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="5ix-G1-Azx">
-                        <rect key="frame" x="1" y="1" width="202" height="486"/>
+                        <rect key="frame" x="1" y="1" width="202" height="466"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="small" viewBased="YES" indentationPerLevel="14" autosaveExpandedItems="YES" outlineTableColumn="pNH-Ol-wAX" id="i4F-Z5-MRe" customClass="FileOutlineView">
-                                <rect key="frame" x="0.0" y="0.0" width="202" height="486"/>
+                                <rect key="frame" x="0.0" y="0.0" width="202" height="466"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -110,9 +111,21 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <searchField verticalHuggingPriority="750" id="LFJ-pQ-nSF">
+                    <rect key="frame" x="0.0" y="1" width="204" height="19"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="Ckk-tH-fOQ">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </searchFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="QOA-C0-uIH"/>
+                    </connections>
+                </searchField>
             </subviews>
         </customView>
-        <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" selectsInsertedObjects="NO" id="UsM-XZ-1lJ">
+        <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" selectsInsertedObjects="NO" id="UsM-XZ-1lJ" customClass="TMTTreeController">
             <declaredKeys>
                 <string>name</string>
                 <string>icon</string>
