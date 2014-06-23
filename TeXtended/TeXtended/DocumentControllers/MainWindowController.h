@@ -23,6 +23,7 @@
 
 @interface MainWindowController : NSWindowController <NSWindowDelegate, DMSplitViewDelegate>
     {
+        BOOL wasMainWindow;
     }
 
     @property TMTTabViewController *firsTabViewController;

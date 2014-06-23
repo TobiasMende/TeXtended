@@ -65,6 +65,10 @@
 
     }
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    
+}
+
 
     - (void)applicationWillTerminate:(NSNotification *)notification
     {

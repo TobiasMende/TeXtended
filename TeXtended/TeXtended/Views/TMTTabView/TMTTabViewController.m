@@ -81,6 +81,7 @@
         [newItem setView:[item view]];
         [self.tabView addTabViewItem:newItem];
         [self.tabView selectTabViewItem:newItem];
+        
     }
 
     - (void)addNewTabWithTitle:(NSString *)aTitle

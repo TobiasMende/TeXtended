@@ -13,6 +13,7 @@
 #import "TMTTabViewController.h"
 #import "OutlineTabViewController.h"
 #import "NSFileManager+TMTExtension.h"
+#import "TMTTabViewItem.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
@@ -40,6 +41,7 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
     {
         DDLogVerbose(@"windowDidLoad");
         [super windowDidLoad];
+        
 
         self.firsTabViewController = [TMTTabViewController new];
         self.secondTabViewController = [TMTTabViewController new];
@@ -66,7 +68,17 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
         [self.shareButton sendActionOn:NSLeftMouseDownMask];
         self.fileViewController.document = self.document;
+        
     }
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    if (!wasMainWindow) {
+        [self.window makeFirstResponder:self.firsTabViewController.tabView.selectedTabViewItem.view];
+        wasMainWindow = YES;
+    }
+   
+}
+
 
     - (void)setDocument:(NSDocument *)document
     {

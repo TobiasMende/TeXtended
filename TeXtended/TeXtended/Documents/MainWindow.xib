@@ -100,9 +100,6 @@
                         </holdingPriorities>
                     </splitView>
                 </subviews>
-                <connections>
-                    <outlet property="nextKeyView" destination="4tf-d3-bg9" id="gw8-td-dlS"/>
-                </connections>
             </view>
             <toolbar key="toolbar" implicitIdentifier="7612277C-9CDB-4C0D-A7C7-09E7D5D491CF" displayMode="iconAndLabel" sizeMode="regular" id="100368" customClass="MainToolbar">
                 <allowedToolbarItems>
@@ -264,7 +261,6 @@
             <connections>
                 <outlet property="controller" destination="-2" id="100352"/>
                 <outlet property="delegate" destination="-2" id="100530"/>
-                <outlet property="initialFirstResponder" destination="4tf-d3-bg9" id="7mh-gS-taA"/>
             </connections>
         </window>
         <customObject id="-3" userLabel="Application"/>
