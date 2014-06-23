@@ -96,7 +96,6 @@
                                     <outlet property="dataSource" destination="-2" id="Uou-em-BSd"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
                                     <outlet property="menu" destination="vNl-31-Y3q" id="ogY-EV-u3P"/>
-                                    <outlet property="nextKeyView" destination="LFJ-pQ-nSF" id="CjE-3j-iec"/>
                                     <outlet property="viewController" destination="-2" id="aeT-Sc-nLa"/>
                                 </connections>
                             </outlineView>

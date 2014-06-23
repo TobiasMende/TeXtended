@@ -180,11 +180,9 @@ static NSArray *INTERNAL_EXTENSIONS;
 -(void)controlTextDidChange:(NSNotification *)note {
     if (note.object == self.searchField) {
         if ([self.searchField.stringValue isEqualToString:@""]) {
-            [self.outlineView collapseItem:nil collapseChildren:YES];
             self.fileTree.selectionIndexPaths = @[];
         } else {
             [self.fileTree filterContentBy:[NSPredicate predicateWithFormat:@"name contains[c] %@", self.searchField.stringValue]];
-            [self.outlineView collapseItem:nil collapseChildren:YES];
             [self.outlineView expandItem:self.fileTree.selectionIndexPaths];
         }
     }
@@ -626,5 +624,9 @@ static NSArray *INTERNAL_EXTENSIONS;
     {
         return [[NSWorkspace sharedWorkspace] iconForFile:[item previewItemURL].path];
     }
+
+- (IBAction)performFindPanelAction:(id)sender {
+    [self.view.window makeFirstResponder:self.searchField];
+}
 
 @end
