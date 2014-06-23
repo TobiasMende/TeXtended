@@ -44,6 +44,8 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (FileNode *)findFileNodeForPath:(NSString *)path;
 
+- (void)clearSearchResults;
+
 @end
 
 @implementation FileViewController
@@ -180,13 +182,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 -(void)controlTextDidChange:(NSNotification *)note {
     if (note.object == self.searchField) {
         if ([self.searchField.stringValue isEqualToString:@""]) {
-            if (preFilterExpandedItems) {
-                self.fileTree.selectionIndexPaths = preFilterSelectedItems;
-                [self.outlineView collapseItem:nil];
-                [self.outlineView restoreExpandedStateWithArray:preFilterExpandedItems];
-                preFilterExpandedItems = nil;
-                preFilterSelectedItems = nil;
-            }
+            [self clearSearchResults];
         } else {
             if (!preFilterExpandedItems) {
                 preFilterExpandedItems = self.outlineView.expandedItems;
@@ -197,6 +193,28 @@ static NSArray *INTERNAL_EXTENSIONS;
             [self.outlineView scrollRowToVisible:self.outlineView.selectedRow];
         }
     }
+}
+
+- (void)clearSearchResults {
+    if (preFilterExpandedItems) {
+        self.fileTree.selectionIndexPaths = preFilterSelectedItems;
+        [self.outlineView collapseItem:nil];
+        [self.outlineView restoreExpandedStateWithArray:preFilterExpandedItems];
+        preFilterExpandedItems = nil;
+        preFilterSelectedItems = nil;
+    }
+}
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+    if (control == self.searchField) {
+        if (commandSelector == @selector(cancelOperation:)) {
+            [self.view.window makeFirstResponder:self.outlineView];
+            self.searchField.stringValue = @"";
+            [self clearSearchResults];
+            return YES;
+        }
+    }
+    return NO;
 }
 
     - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
