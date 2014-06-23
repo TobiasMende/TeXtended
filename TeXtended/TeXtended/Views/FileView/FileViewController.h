@@ -17,6 +17,8 @@
     {
 
         BOOL pathObserverIsActive;
+        NSArray *preFilterExpandedItems;
+        NSArray *preFilterSelectedItems;
 
     }
 

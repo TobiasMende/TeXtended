@@ -180,10 +180,21 @@ static NSArray *INTERNAL_EXTENSIONS;
 -(void)controlTextDidChange:(NSNotification *)note {
     if (note.object == self.searchField) {
         if ([self.searchField.stringValue isEqualToString:@""]) {
-            self.fileTree.selectionIndexPaths = @[];
+            if (preFilterExpandedItems) {
+                self.fileTree.selectionIndexPaths = preFilterSelectedItems;
+                [self.outlineView collapseItem:nil];
+                [self.outlineView restoreExpandedStateWithArray:preFilterExpandedItems];
+                preFilterExpandedItems = nil;
+                preFilterSelectedItems = nil;
+            }
         } else {
+            if (!preFilterExpandedItems) {
+                preFilterExpandedItems = self.outlineView.expandedItems;
+                preFilterSelectedItems = self.fileTree.selectionIndexPaths;
+            }
             [self.fileTree filterContentBy:[NSPredicate predicateWithFormat:@"name contains[c] %@", self.searchField.stringValue]];
             [self.outlineView expandItem:self.fileTree.selectionIndexPaths];
+            [self.outlineView scrollRowToVisible:self.outlineView.selectedRow];
         }
     }
 }
@@ -502,12 +513,12 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (void)buildTree
     {
         [self.fileTree discardEditing];
-        NSArray *expanedItems = [self.outlineView expandedItems];
+        NSArray *expandedItems = [self.outlineView expandedItems];
         NSError *error;
         FileNode *root = [FileNode fileNodeWithPath:self.path];
         self.contents = root.children;
         [self.fileTree rearrangeObjects];
-        [self.outlineView restoreExpandedStateWithArray:expanedItems];
+        [self.outlineView restoreExpandedStateWithArray:expandedItems];
     }
 
     - (NSIndexPath *)indexPathForPath:(NSString *)path
