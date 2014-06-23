@@ -124,9 +124,6 @@
                     </connections>
                 </searchField>
             </subviews>
-            <connections>
-                <outlet property="nextKeyView" destination="EGM-Yg-2IP" id="YWI-xu-XF7"/>
-            </connections>
         </customView>
         <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" selectsInsertedObjects="NO" id="UsM-XZ-1lJ" customClass="TMTTreeController">
             <declaredKeys>

@@ -196,6 +196,9 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (BOOL)control:(NSControl *)control isValidObject:(id)obj
     {
+        if (control == self.searchField) {
+            return YES;
+        }
         FileNode *node = [self currentFileNode];
         NSString *basePath = [node.path stringByDeletingLastPathComponent];
         NSFileManager *fm = [NSFileManager defaultManager];
