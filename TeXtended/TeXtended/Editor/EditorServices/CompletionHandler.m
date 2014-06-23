@@ -350,6 +350,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                 [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
             }
         } else {
+            
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
 

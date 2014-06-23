@@ -201,6 +201,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         NSRange wordRange = [self rangeForUserCompletion];
         if (wordRange.location == NSNotFound) {
+            [self dismissCompletionWindow];
             return;
         }
         NSDictionary *additionalInformation;
@@ -255,6 +256,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (!self.servicesOn) {
             return;
         }
+        
         [completionHandler insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
         if (flag || movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
             [self dismissCompletionWindow];
@@ -319,7 +321,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [self dismissCompletionWindow];
             return;
         }
-        [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
+        
+        if (charRange.length <= word.autoCompletionWord.length) {
+            [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
+        }
     }
 
     - (void)jumpToNextPlaceholder
