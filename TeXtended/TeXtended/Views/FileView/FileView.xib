@@ -96,6 +96,7 @@
                                     <outlet property="dataSource" destination="-2" id="Uou-em-BSd"/>
                                     <outlet property="delegate" destination="-2" id="bZv-Bk-NIq"/>
                                     <outlet property="menu" destination="vNl-31-Y3q" id="ogY-EV-u3P"/>
+                                    <outlet property="nextKeyView" destination="LFJ-pQ-nSF" id="CjE-3j-iec"/>
                                     <outlet property="viewController" destination="-2" id="aeT-Sc-nLa"/>
                                 </connections>
                             </outlineView>
@@ -124,6 +125,9 @@
                     </connections>
                 </searchField>
             </subviews>
+            <connections>
+                <outlet property="nextKeyView" destination="EGM-Yg-2IP" id="YWI-xu-XF7"/>
+            </connections>
         </customView>
         <treeController objectClassName="FileNode" childrenKeyPath="children" leafKeyPath="isLeaf" selectsInsertedObjects="NO" id="UsM-XZ-1lJ" customClass="TMTTreeController">
             <declaredKeys>
