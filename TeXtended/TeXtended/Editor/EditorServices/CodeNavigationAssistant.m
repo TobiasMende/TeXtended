@@ -505,19 +505,28 @@ static const NSSet *KEYS_TO_OBSERVE;
         if (view.lineWrapMode != HardWrap || cursorPositionInLine < wrapAfter) {
             return NO;
         }
-        [view.undoManager beginUndoGrouping];
-        NSString *newLineInsertion = @"\n";
-        if (self.shouldAutoIndentLines) {
-            newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+        
+        NSRange firstLinePart = NSMakeRange(lineRange.location, cursorPositionInLine);
+        NSArray *ranges = [view.string goodPositionsToBreakInRange:firstLinePart];
+        if (ranges.count > 0) {
+            [view.undoManager beginUndoGrouping];
+            NSString *newLineInsertion = @"\n";
+            if (self.shouldAutoIndentLines) {
+                newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+            }
+            NSTextCheckingResult *result = ranges.lastObject;
+            
+            NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
+            NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
+            
+            [view.undoSupport insertText:insertion atIndex:NSMaxRange([result rangeAtIndex:1]) withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+            
+            [view.undoManager endUndoGrouping];
+            return YES;
         }
-        NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
-        NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
-
-        [view.undoSupport insertText:insertion atIndex:view.selectedRange.location withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
-
-        [view.undoManager endUndoGrouping];
-        return YES;
+        return NO;
     }
+
 
     - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string
     {

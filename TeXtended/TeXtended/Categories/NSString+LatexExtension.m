@@ -11,7 +11,7 @@
 
 static NSSet *COMPLETION_ESCAPE_INSERTIONS;
 
-static NSRegularExpression *BLOCK_REGEX;
+static NSRegularExpression *BLOCK_REGEX, *GOOD_BREAK_POSITIONS;
 
 #define COMMAND_PREFIX_SIZE 100
 
@@ -28,8 +28,9 @@ static NSRegularExpression *BLOCK_REGEX;
     {
         NSError *error;
         BLOCK_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\\\begin\\W*\\{(.*?)\\}|\\\\end\\W*\\{(.*?)\\}" options:0 error:&error];
+        GOOD_BREAK_POSITIONS = [NSRegularExpression regularExpressionWithPattern:@"\\w(\\s+)" options:NSRegularExpressionAnchorsMatchLines error:&error];
         if (error) {
-            NSLog(@"Wrong BLOCK_REGEX");
+            NSLog(@"Wrong Regex");
         }
     }
 
@@ -216,5 +217,9 @@ static NSRegularExpression *BLOCK_REGEX;
         NSTextCheckingResult *result = [BLOCK_REGEX firstMatchInString:self options:0 range:beginRange];
         return [self substringWithRange:[result rangeAtIndex:1]];
     }
+
+-(NSArray *)goodPositionsToBreakInRange:(NSRange) range {
+    return [GOOD_BREAK_POSITIONS matchesInString:self options:0 range:range];
+}
 
 @end

@@ -32,4 +32,6 @@
 
     - (BOOL)rangeContainsEnd:(NSRange)range;
 
+- (NSArray *)goodPositionsToBreakInRange:(NSRange) range;
+
 @end
