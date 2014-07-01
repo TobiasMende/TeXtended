@@ -34,6 +34,7 @@
 
     - (void)awakeFromNib
     {
+        [super awakeFromNib];
         [[TMTTabManager sharedTabManager] addTabViewController:self];
         //[tabBar setDelegate:self];
         //self.tabView.delegate = self;
@@ -52,6 +53,10 @@
         [tabBar setAutomaticallyAnimates:YES];
         [tabBar setAllowsScrubbing:YES];
         [tabBar setTearOffStyle:MMTabBarTearOffAlphaWindow];
+        
+        NSResponder *tmp = self.tabView.nextResponder;
+        self.tabView.nextResponder = self;
+        self.nextResponder = tmp;
     }
 
 
@@ -238,6 +243,12 @@
     for (NSTabViewItem *item in self.tabView.tabViewItems) {
         [self handleTabClose:item];
     }
+}
+
+- (void)performClose:(id)sender  {
+        NSTabViewItem *item = self.tabView.selectedTabViewItem;
+        [self.tabView removeTabViewItem:item];
+        [self handleTabClose:item];
 }
 
 @end
