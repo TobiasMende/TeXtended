@@ -67,6 +67,8 @@
 		D21F316E1895C73300FF6E83 /* link.icns in Resources */ = {isa = PBXBuildFile; fileRef = D21F31691895C73300FF6E83 /* link.icns */; };
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
+		D22646D319630EB2007B6489 /* StartScreenWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646D119630EB2007B6489 /* StartScreenWindowController.m */; };
+		D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22646D219630EB2007B6489 /* StartScreenWindow.xib */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
 		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
@@ -262,6 +264,9 @@
 		D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBBF1726879000E2F8EC /* Constants.m */; };
 		D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACBC11726879000E2F8EC /* PreferencesController.m */; };
 		D2E7A51B1768E8F400B2BA3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC54FF171EAFAB00D81CF1 /* main.m */; };
+		D2E7D68C19631F480036AA40 /* document.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D68A19631F480036AA40 /* document.png */; };
+		D2E7D68D19631F480036AA40 /* project.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D68B19631F480036AA40 /* project.png */; };
+		D2E7D693196320CD0036AA40 /* lego.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D692196320CD0036AA40 /* lego.png */; };
 		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FC9EAC189680670015C192 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FC9EAB189680670015C192 /* CacheManager.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
@@ -459,6 +464,9 @@
 		D220755917687A310041890F /* TeXtended.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TeXtended.icns; sourceTree = "<group>"; };
 		D22354C718617E7A0056A472 /* CompletionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionManager.h; sourceTree = "<group>"; };
 		D22354C818617E7A0056A472 /* CompletionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionManager.m; sourceTree = "<group>"; };
+		D22646D019630EB2007B6489 /* StartScreenWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenWindowController.h; sourceTree = "<group>"; };
+		D22646D119630EB2007B6489 /* StartScreenWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenWindowController.m; sourceTree = "<group>"; };
+		D22646D219630EB2007B6489 /* StartScreenWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartScreenWindow.xib; sourceTree = "<group>"; };
 		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22A6BEC181C148700364DD6 /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
@@ -738,6 +746,9 @@
 		D2E7A4DC1768E2F600B2BA3C /* TexdocPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocPanelController.h; sourceTree = "<group>"; };
 		D2E7A4DD1768E2F600B2BA3C /* TexdocPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocPanelController.m; sourceTree = "<group>"; };
 		D2E7A4DE1768E2F600B2BA3C /* TexdocPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocPanel.xib; sourceTree = "<group>"; };
+		D2E7D68A19631F480036AA40 /* document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = document.png; sourceTree = "<group>"; };
+		D2E7D68B19631F480036AA40 /* project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = project.png; sourceTree = "<group>"; };
+		D2E7D692196320CD0036AA40 /* lego.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lego.png; sourceTree = "<group>"; };
 		D2FC9EAA189680670015C192 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		D2FC9EAB189680670015C192 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		D2FCB62B1768EB40008C2FE9 /* TexdocController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocController.h; sourceTree = "<group>"; };
@@ -1097,6 +1108,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D22646CF19630E91007B6489 /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D22646D019630EB2007B6489 /* StartScreenWindowController.h */,
+				D22646D119630EB2007B6489 /* StartScreenWindowController.m */,
+				D22646D219630EB2007B6489 /* StartScreenWindow.xib */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 		D22785C81761351900CFBD12 /* Console */ = {
 			isa = PBXGroup;
 			children = (
@@ -1229,6 +1250,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D22646CF19630E91007B6489 /* StartScreen */,
 				D2654AB91927778B00DE58B2 /* InfoViews */,
 				D2654AAD1927564F00DE58B2 /* CompilerPreferencesView */,
 				D2654AA71927526A00DE58B2 /* InfoWindows */,
@@ -1446,6 +1468,9 @@
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D2E7D692196320CD0036AA40 /* lego.png */,
+				D2E7D68A19631F480036AA40 /* document.png */,
+				D2E7D68B19631F480036AA40 /* project.png */,
 				D2C237A0189550860096ECAA /* map.icns */,
 				D2C2379E18954D910096ECAA /* alert-circled.icns */,
 				D27CD19918913F2100A99997 /* FolderPenIcon.icns */,
@@ -1809,6 +1834,7 @@
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
+				D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */,
 				D21F316D1895C73300FF6E83 /* hammer.icns in Resources */,
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */,
@@ -1828,6 +1854,7 @@
 				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
+				D2E7D68D19631F480036AA40 /* project.png in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
 				D2654AC81927961100DE58B2 /* DocumentInfoView.xib in Resources */,
@@ -1853,6 +1880,7 @@
 				D2A92C431882F71500F1679F /* projecticon.icns in Resources */,
 				D26685F7176F56DA001699A8 /* texicon.icns in Resources */,
 				D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */,
+				D2E7D68C19631F480036AA40 /* document.png in Resources */,
 				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
@@ -1865,6 +1893,7 @@
 				D21F316E1895C73300FF6E83 /* link.icns in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
+				D2E7D693196320CD0036AA40 /* lego.png in Resources */,
 				D2CF6198177247E200ACC3D5 /* info.png in Resources */,
 				D2CF6199177247E200ACC3D5 /* warning.png in Resources */,
 				D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */,
@@ -2065,6 +2094,7 @@
 				D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */,
 				D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */,
 				D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */,
+				D22646D319630EB2007B6489 /* StartScreenWindowController.m in Sources */,
 				D2C2358C189543F00096ECAA /* SMTabBar.m in Sources */,
 				D2E7A50C1768E8F400B2BA3C /* MainWindowController.m in Sources */,
 				D2E7A50D1768E8F400B2BA3C /* ProjectDocument.m in Sources */,
