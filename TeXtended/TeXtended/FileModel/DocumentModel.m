@@ -382,7 +382,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (DocumentModel *)currentMainDocument
     {
         if (!_currentMainDocument) {
-            self.currentMainDocument = self.mainDocuments.firstObject;
+            return self.mainDocuments.firstObject;
         }
         return _currentMainDocument;
     }
