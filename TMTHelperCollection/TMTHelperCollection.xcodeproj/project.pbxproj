@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */; };
+		D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */; };
 		D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
 		D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1C51863784800997ADB /* InfoPlist.strings */; };
 		D22DC1D21863784800997ADB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1D11863784800997ADB /* XCTest.framework */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
+		D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TMTSerialization.m"; sourceTree = "<group>"; };
 		D22DC1B91863784800997ADB /* TMTHelperCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTHelperCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22DC1BC1863784800997ADB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D22DC1BF1863784800997ADB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +128,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D22646C71962DB41007B6489 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */,
+				D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */,
+			);
+			name = Serialization;
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		D22DC1AF1863784800997ADB = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +182,7 @@
 		D22DC1C21863784800997ADB /* TMTHelperCollection */ = {
 			isa = PBXGroup;
 			children = (
+				D22646C71962DB41007B6489 /* Serialization */,
 				D276C8131956CD94009DB27D /* Controllers */,
 				D295821319166AF000C1B9E0 /* Protocols */,
 				D22DC24618637A4F00997ADB /* Utils */,
@@ -325,6 +340,7 @@
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
 				D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */,
 				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
+				D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */,
 				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
 				D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */,
 				D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */,
@@ -468,6 +484,7 @@
 				D2654AD61927A50E00DE58B2 /* TMTEncodingManager.m in Sources */,
 				D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */,
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
+				D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
 				D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */,
 				D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */,

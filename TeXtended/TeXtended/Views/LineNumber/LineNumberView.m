@@ -500,7 +500,7 @@ private)
         }
         
         self.model.lineBookmarks = [self.model.lineBookmarks objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-           return [obj unsignedIntegerValue] < lines.count;
+           return [obj unsignedIntegerValue] <= lines.count;
         }];
 
     }

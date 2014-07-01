@@ -18,6 +18,7 @@
 #import "ProjectModel.h"
 #import "TrackingMessage.h"
 #import <TMTHelperCollection/FileObserver.h>
+#import <TMTHelperCollection/NSSet+TMTSerialization.h>
 #import <OTMXAttribute/OTMXAttribute.h>
 
 
@@ -309,7 +310,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 - (void)saveXAttributes {
     NSError *error = nil;
-    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[NSKeyedArchiver archivedDataWithRootObject:self.lineBookmarks] error:&error]) {
+    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
         DDLogError(@"Can't set xattr for line bookmarks: ", error.userInfo);
     }
     error = nil;
@@ -320,9 +321,11 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 - (void)loadXAttributes {
     NSString *path = self.texPath ? self.texPath : self.systemPath;
-    NSData *lineData = [OTMXAttribute attributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
+    NSString *lineData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
     if (lineData) {
-        self.lineBookmarks = [NSKeyedUnarchiver unarchiveObjectWithData:lineData];
+        self.lineBookmarks =  [NSSet setFromStringSerialization:lineData withObjectDeserializer:^id(NSString * string) {
+            return @([string integerValue]);
+        }];
     }
     
     NSString *selectedRangeData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_TextSelectedRange error:NULL];
