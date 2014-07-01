@@ -53,6 +53,15 @@
         [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         [documents makeObjectsPerformSelector:@selector(buildOutline)];
         [self.bibFiles makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        for (DocumentModel *dm in documents) {
+            if (![fm fileExistsAtPath:dm.texPath]) {
+                [self.documents removeObject:dm];
+                [self removeMainDocument:dm];
+            } else {
+                [dm removeInvalidMaindocuments];
+            }
+        }
     }
 
     - (id)init

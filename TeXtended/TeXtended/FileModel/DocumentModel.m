@@ -59,7 +59,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)dealloc
     {
-        DDLogInfo(@"dealloc");
+        DDLogInfo(@"dealloc [%@]", self.texPath);
         [_filePresenter terminate];
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
@@ -335,6 +335,18 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     NSString *selectedRangeData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_TextSelectedRange error:NULL];
     if (selectedRangeData) {
         self.selectedRange = NSRangeFromString(selectedRangeData);
+    }
+}
+
+- (void)removeInvalidMaindocuments {
+    if (!___projectSyncState.mainDocuments && self.project) {
+        NSArray *mainDocuments = self.mainDocuments;
+        NSFileManager *fm = [NSFileManager defaultManager];
+        for(DocumentModel *md in mainDocuments) {
+            if (![fm fileExistsAtPath:md.texPath]) {
+                [self removeMainDocument:md];
+            }
+        }
     }
 }
 

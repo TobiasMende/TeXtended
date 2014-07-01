@@ -101,6 +101,8 @@
  */
     - (BOOL)saveContent:(NSString *)content error:(__autoreleasing NSError **)error;
 
+- (void) removeInvalidMaindocuments;
+
 
 #pragma mark -  Getter
 
@@ -138,5 +140,6 @@
 #pragma mark - Outline Handling
 
     - (void)buildOutline;
+
 @end
 
