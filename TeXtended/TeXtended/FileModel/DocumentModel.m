@@ -218,12 +218,14 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
         [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
+        [aCoder encodeObject:@(self.documentOpened) forKey:@"documentOpened"];
     }
 
     - (id)initWithCoder:(NSCoder *)aDecoder
     {
         self = [super initWithCoder:aDecoder];
         if (self) {
+            self.documentOpened = [[aDecoder decodeObjectForKey:@"documentOpened"] boolValue];
             self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
             self.project = [aDecoder decodeObjectForKey:@"project"];
             self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
@@ -234,6 +236,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         return self;
     }
+
 
 #pragma mark - Loading & Saving
 
@@ -387,6 +390,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         return nil;
     }
+
+- (NSArray *)openDocuments {
+    return @[self];
+}
 
     - (Compilable *)mainCompilable
     {

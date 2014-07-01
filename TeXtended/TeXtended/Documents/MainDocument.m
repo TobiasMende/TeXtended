@@ -114,7 +114,7 @@
     {
         DDLogVerbose(@"initializeDocumentControllers (Count: %li)", self.model.mainDocuments.count);
         self.documentControllers = [NSMutableSet new];
-        for (DocumentModel *m in self.model.mainDocuments) {
+        for (DocumentModel *m in self.model.openDocuments) {
             [self.documentControllers addObject:[[DocumentController alloc] initWithDocument:m andMainDocument:self]];
         }
     }

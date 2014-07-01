@@ -286,6 +286,12 @@ static NSUInteger LAST_IDENTIFIER = 0;
     }
 
 
+- (NSArray *)openDocuments {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+    
+}
 #pragma mark - MainDocument Collection Helpers
 
     - (void)removeMainDocument:(DocumentModel *)value

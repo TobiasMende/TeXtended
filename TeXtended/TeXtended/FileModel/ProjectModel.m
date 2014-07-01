@@ -139,6 +139,12 @@
         return NSLocalizedString(@"Project", @"Project");
     }
 
+- (NSArray *)openDocuments {
+    return [self.documents objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+        return [((DocumentModel *)obj) isDocumentOpened];
+    }];
+}
+
 #pragma mark - Setter
 
     - (void)setPath:(NSString *)path

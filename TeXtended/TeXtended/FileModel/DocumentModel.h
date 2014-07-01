@@ -54,6 +54,7 @@
     @property (nonatomic, strong) NSNumber *openOnExport;
 
     @property BOOL isCompiling;
+    @property (getter=isDocumentOpened) BOOL documentOpened;
 
     @property NSArray *messages;
 

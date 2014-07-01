@@ -44,6 +44,7 @@
         if (self) {
             self.mainDocument = mainDocument;
             self.model = model;
+            self.model.documentOpened = YES;
             self.consoleViewControllers = [NSMutableSet new];
             self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
             [self.textViewController addObserver:self.compiler];
@@ -88,6 +89,7 @@
 
     - (void)texViewDidClose:(NSNotification *)note
     {
+        self.model.documentOpened = NO;
         self.textViewController.textView.firstResponderDelegate = nil;
         self.textViewController = nil;
         [self.mainDocument removeDocumentController:self];
@@ -95,6 +97,7 @@
 
     - (void)closeDocument
     {
+        self.model.documentOpened = NO;
         self.textViewController.textView.firstResponderDelegate = nil;
         self.textViewController = nil;
         NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
