@@ -189,7 +189,11 @@
 #define TMTSelectedMainDocumentDidChangeNotification @"TMTSelectedMainDocumentDidChangeNotification"
 
 
+// --------------------------------------------------------------------------------
+#pragma mark - XATTR Names
 
+#define TMT_XATTR_TextSelectedRange @"TMTTextSelectedRange"
+#define TMT_XATTR_LineBookmarks @"TMTLineBookmarks"
 // --------------------------------------------------------------------------------
 # pragma mark - Global Enumerations
 

@@ -18,6 +18,7 @@
 #import "ProjectModel.h"
 #import "TrackingMessage.h"
 #import <TMTHelperCollection/FileObserver.h>
+#import <OTMXAttribute/OTMXAttribute.h>
 
 
 static const NSArray *GENERATOR_TYPES_TO_USE;
@@ -42,6 +43,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)initProjectSyncState;
 
     - (void)unsyncProjectState;
+
+- (void)saveXAttributes;
+- (void)loadXAttributes;
+- (void)clearInvalidLineBookmakrs;
 
     @property __DocumentModelProjectSyncState *__projectSyncState;
 
@@ -128,6 +133,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     {
         _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
         _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
+        self.lineBookmarks = [NSMutableSet new];
+        self.selectedRange = NSMakeRange(0, 0);
         self.outlineElements = [NSMutableArray new];
         globalMessagesMap = [NSMutableDictionary new];
         __unsafe_unretained typeof(self) weakSelf = self;
@@ -258,6 +265,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         if (content == nil && error != NULL) {
             *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message" : @"Can't read file"}];
+        } else {
+            [self loadXAttributes];
         }
         return content;
     }
@@ -291,10 +300,36 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         if (success) {
+            [self saveXAttributes];
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
         }
         return success;
     }
+
+
+- (void)saveXAttributes {
+    NSError *error = nil;
+    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[NSKeyedArchiver archivedDataWithRootObject:self.lineBookmarks] error:&error]) {
+        DDLogError(@"Can't set xattr for line bookmarks: ", error.userInfo);
+    }
+    error = nil;
+    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {
+        DDLogError(@"Can't set xattr for selected ranges: ", error.userInfo);
+    }
+}
+
+- (void)loadXAttributes {
+    NSString *path = self.texPath ? self.texPath : self.systemPath;
+    NSData *lineData = [OTMXAttribute attributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
+    if (lineData) {
+        self.lineBookmarks = [NSKeyedUnarchiver unarchiveObjectWithData:lineData];
+    }
+    
+    NSString *selectedRangeData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_TextSelectedRange error:NULL];
+    if (selectedRangeData) {
+        self.selectedRange = NSRangeFromString(selectedRangeData);
+    }
+}
 
 #pragma mark -  Getter
 

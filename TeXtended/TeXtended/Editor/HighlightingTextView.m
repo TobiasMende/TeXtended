@@ -29,6 +29,7 @@
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
 #import "NSString+TMTExtension.h"
+#import "FirstResponderDelegate.h"
 
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 
@@ -138,7 +139,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.servicesOn = YES;
         self.enableQuickPreviewAssistant = YES;
 
-
+        self.selectedRange = [self.firstResponderDelegate model].selectedRange;
         [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
 
     }

@@ -103,6 +103,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         }
         _model = model;
         if (_model) {
+            lineNumberView.model = self.model;
             [self registerModelObserver];
         }
     }
@@ -195,10 +196,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     - (void)initializeAttributes
     {
         lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
+        lineNumberView.model = self.model;
         [self.scrollView setVerticalRulerView:lineNumberView];
         [self.scrollView setHasHorizontalRuler:NO];
         [self.scrollView setHasVerticalRuler:YES];
         [self.scrollView setRulersVisible:YES];
+        
     }
 
 

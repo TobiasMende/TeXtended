@@ -57,6 +57,9 @@
 
     @property NSArray *messages;
 
+    @property NSSet *lineBookmarks;
+    @property NSRange selectedRange;
+
     @property (nonatomic, strong) NSArray *outlineElements;
 
 #pragma mark Readonly Properties

@@ -24,7 +24,7 @@
  *
  * @author Max Bannach
  */
-@class MessageViewController;
+@class MessageViewController, DocumentModel;
 
 @interface LineNumberView : NSRulerView
     {
@@ -47,11 +47,6 @@
          * can be used in NSRange.
          */
         NSMutableArray *lines;
-
-        /**
-         * Holds a key for every line that is anchored.
-         */
-        NSMutableDictionary *lineAnchors;
 
         /**
          * Holds a key for every line that has a warning.
@@ -84,6 +79,7 @@
         MessageViewController *messageWindow;
     }
 
+@property (nonatomic) DocumentModel *model;
 /**
  * This class holds all infos, warnings, errors and so on.
  */
@@ -169,6 +165,6 @@
  * Returns a array that holds the linenumbers of all lines with a anchor.
  * @return NSArray with NSUIntegers for the linenumbers
  */
-    - (NSArray *)anchoredLines;
+    - (NSSet *)anchoredLines;
 
 @end

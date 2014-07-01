@@ -1,10 +1,6 @@
 PODS:
   - CocoaLumberjack (1.9.0):
-    - CocoaLumberjack/CLI
-    - CocoaLumberjack/Core
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/CLI (1.9.0):
-    - CocoaLumberjack/Core
   - CocoaLumberjack/Core (1.9.0)
   - CocoaLumberjack/Extensions (1.9.0):
     - CocoaLumberjack/Core
@@ -16,15 +12,18 @@ PODS:
   - Kiwi/SenTestingKit (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
+  - OTMXAttribute (0.0.3)
 
 DEPENDENCIES:
   - CocoaLumberjack
   - DMInspectorPalette
   - Kiwi
+  - OTMXAttribute
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
   DMInspectorPalette: e6ae811ce61e35d7d5db5d394cbeeaad8d470e31
   Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
+  OTMXAttribute: fe4586170eca13953bc8c68f1a881ceb1883fe66
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

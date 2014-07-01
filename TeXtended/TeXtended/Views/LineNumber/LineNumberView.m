@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
+#import "DocumentModel.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 5.0
@@ -182,7 +183,6 @@ private)
                 NSParagraphStyleAttributeName : numberStyle,
                 NSForegroundColorAttributeName : self.textColor};
 
-        lineAnchors = [[NSMutableDictionary alloc] init];
 
         /* message controlling */
         [self addObserver:self
@@ -198,6 +198,16 @@ private)
         [self setRuleThickness:START_THICKNESS];
         [self calculateLines];
     }
+
+-(void)setModel:(DocumentModel *)model {
+    if (_model) {
+        [_model removeObserver:self forKeyPath:@"lineBookmarks"];
+    }
+    _model = model;
+    if (_model) {
+        [_model addObserver:self forKeyPath:@"lineBookmarks" options:NSKeyValueObservingOptionNew context:NULL];
+    }
+}
 
     - (void)setClientView:(NSView *)aView
     {
@@ -330,17 +340,20 @@ private)
 
     - (void)addAnchorToLine:(NSUInteger)line
     {
-        lineAnchors[[NSNumber numberWithInteger:line]] = @1;
+        
+        self.model.lineBookmarks = [self.model.lineBookmarks setByAddingObject:@(line)];
     }
 
     - (void)removeAnchorFromLine:(NSUInteger)line
     {
-        [lineAnchors removeObjectForKey:[NSNumber numberWithInteger:line]];
+        self.model.lineBookmarks = [self.model.lineBookmarks objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+            return [obj unsignedIntegerValue] != line;
+        }];
     }
 
     - (BOOL)hasAnchor:(NSUInteger)line
     {
-        return [lineAnchors[[NSNumber numberWithInteger:line]] integerValue];
+        return [self.model.lineBookmarks containsObject:@(line)];
     }
 
     - (NSMutableSet *)messagesForLine:(NSUInteger)line
@@ -485,6 +498,10 @@ private)
 
             [invocation performSelector:@selector(invoke) withObject:nil afterDelay:0.0];
         }
+        
+        self.model.lineBookmarks = [self.model.lineBookmarks objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+           return [obj unsignedIntegerValue] < lines.count;
+        }];
 
     }
 
@@ -694,15 +711,16 @@ private)
         return self.anchorBorderColor;
     }
 
-    - (NSArray *)anchoredLines
+    - (NSSet *)anchoredLines
     {
-        return lineAnchors.allKeys;
+        return self.model.lineBookmarks;
     }
 
     - (void)dealloc
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self removeObserver:self forKeyPath:@"messageCollection"];
+        [self.model removeObserver:self forKeyPath:@"lineBookmarks"];
         [self unbind:@"messageCollection"];
     }
 
