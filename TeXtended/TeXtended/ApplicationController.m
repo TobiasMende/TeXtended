@@ -310,14 +310,18 @@
     
     NSMenuItem *openRecent = self.openRecentMenuItem;
     if (openRecent && openRecent.hasSubmenu) {
+        // Creating a new OpenRecent menu with custom entries
         NSMenu *openRecentItems = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"Open Recent", @"")];
+        
+        // Get the "Clear Recent" item (add it later)
         NSMenuItem *clearRecentItem = [openRecent.submenu.itemArray lastObject];
+        [openRecent.submenu removeItem:clearRecentItem];
         
         DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
-        
         NSArray *recentSimpleDocumentURLs = dc.recentSimpleDocumentsURLs;
         NSArray *recentProjectDocumentURLs = dc.recentProjectDocumentsURLs;
         
+        // Add section for Simple Documents:
         NSImage *image = [NSImage imageNamed:@"texicon"];
         image.size = NSMakeSize(16,16);
         for (NSURL *url in recentSimpleDocumentURLs) {
@@ -328,11 +332,11 @@
             item.toolTip = url.path;
             [openRecentItems addItem:item];
         }
-        
         if (recentSimpleDocumentURLs.count > 0) {
             [openRecentItems addItem:[NSMenuItem separatorItem]];
         }
         
+        // Add section for Project Documents:
         image = [NSImage imageNamed:@"projecticon"];
         image.size = NSMakeSize(16,16);
         for (NSURL *url in recentProjectDocumentURLs) {
@@ -343,13 +347,11 @@
             item.image = image;
             [openRecentItems addItem:item];
         }
-        
         if (recentProjectDocumentURLs.count > 0) {
             [openRecentItems addItem:[NSMenuItem separatorItem]];
         }
         
-        
-        [openRecent.submenu removeItem:clearRecentItem];
+        // Add "Clear Recent" from old menu and set new submenu:
         [openRecentItems addItem:clearRecentItem];
         [openRecent setSubmenu:openRecentItems];
         
