@@ -62,6 +62,7 @@
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.tabView);
         for (NSTabViewItem *item in self.tabView.tabViewItems) {
             [self handleTabClose:item];
         }

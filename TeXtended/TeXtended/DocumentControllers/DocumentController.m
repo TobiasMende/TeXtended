@@ -312,6 +312,8 @@
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.model.texPath);
+        
         self.textViewController.firstResponderDelegate = nil;
         [self.compiler terminateAndKill];
         for (ExtendedPDFViewController *c in self.pdfViewControllers) {

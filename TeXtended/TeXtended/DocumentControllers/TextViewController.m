@@ -320,6 +320,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.model.path);
         [lacheck terminate];
         [chktex terminate];
         [self unregisterModelObserver];

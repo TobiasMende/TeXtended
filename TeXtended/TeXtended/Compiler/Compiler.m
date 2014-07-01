@@ -179,6 +179,7 @@
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", currentTasks);
         [self terminateAndKill];
 
     }
