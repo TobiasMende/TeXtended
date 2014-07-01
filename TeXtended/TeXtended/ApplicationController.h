@@ -70,4 +70,9 @@
     + (void)mergeCompileFlows:(BOOL)force;
 
     - (IBAction)togglePreviewPanel:(id)previewPanel;
+
+- (void) updateRecentDocuments;
+- (IBAction)openRecent:(id)sender;
+- (NSMenu *)fileMenu;
+- (NSMenuItem *)openRecentMenuItem;
 @end

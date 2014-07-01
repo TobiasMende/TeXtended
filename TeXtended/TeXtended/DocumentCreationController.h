@@ -26,4 +26,7 @@
     - (void)showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable *)model andCompletionHandler:(void (^) (DocumentModel *))completionHandler;
 
     - (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error;
+
+- (NSArray *) recentSimpleDocumentsURLs;
+- (NSArray *) recentProjectDocumentsURLs;
 @end
