@@ -139,14 +139,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.servicesOn = YES;
         self.enableQuickPreviewAssistant = YES;
 
-        DocumentModel *model = [self.firstResponderDelegate model];
-        if (NSMaxRange(model.selectedRange) < self.string.length) {
-            self.selectedRange = model.selectedRange;
-        }
+       
         [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
 
     }
-
 
     - (NSRange)visibleRange
     {

@@ -312,6 +312,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     NSError *error = nil;
     if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
         DDLogError(@"Can't set xattr for line bookmarks: ", error.userInfo);
+        
     }
     error = nil;
     if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {

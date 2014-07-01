@@ -218,6 +218,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             [string addAttributes:self.textView.typingAttributes range:NSMakeRange(0, string.length)];
             [self.textView.textStorage setAttributedString:string];
             [self.textView.syntaxHighlighter highlightEntireDocument];
+            if (NSMaxRange(self.model.selectedRange) < self.textView.string.length) {
+                self.textView.selectedRange = self.model.selectedRange;
+            }
         }
     }
 
