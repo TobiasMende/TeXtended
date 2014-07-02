@@ -5,6 +5,7 @@ PODS:
   - CocoaLumberjack/Extensions (1.9.0):
     - CocoaLumberjack/Core
   - DMInspectorPalette (0.0.1)
+  - JSONKit-NoWarning (1.2)
   - Kiwi (2.2.4):
     - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.4)
@@ -17,12 +18,14 @@ PODS:
 DEPENDENCIES:
   - CocoaLumberjack
   - DMInspectorPalette
+  - JSONKit-NoWarning
   - Kiwi
   - OTMXAttribute
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
   DMInspectorPalette: e6ae811ce61e35d7d5db5d394cbeeaad8d470e31
+  JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
   Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
   OTMXAttribute: fe4586170eca13953bc8c68f1a881ceb1883fe66
 

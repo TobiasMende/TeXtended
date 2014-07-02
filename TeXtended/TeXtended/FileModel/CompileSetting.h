@@ -72,4 +72,8 @@
  */
     + (CompileSetting *)defaultFinalCompileSetting;
 
+#pragma mark - Serialization & Deserialization
+
+- (NSString *) toJSONString;
++ (CompileSetting *)fromJSONString:(NSString *)json;
 @end
