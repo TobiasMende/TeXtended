@@ -253,8 +253,6 @@
 		D2E7A5031768E8F400B2BA3C /* CodeNavigationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB901726868A00E2F8EC /* CodeNavigationAssistant.m */; };
 		D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB921726868A00E2F8EC /* CompletionHandler.m */; };
 		D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB941726868A00E2F8EC /* EditorService.m */; };
-		D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB961726868A00E2F8EC /* PlaceholderServices.m */; };
-		D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AAF91017293D8200FC09C1 /* UndoSupport.m */; };
 		D2E7A5091768E8F400B2BA3C /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */; };
 		D2E7A50A1768E8F400B2BA3C /* EditorPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9D1726868A00E2F8EC /* EditorPlaceholder.m */; };
 		D2E7A50B1768E8F400B2BA3C /* EditorPlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D21ACB9F1726868A00E2F8EC /* EditorPlaceholderCell.m */; };
@@ -438,8 +436,6 @@
 		D21ACB921726868A00E2F8EC /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		D21ACB931726868A00E2F8EC /* EditorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorService.h; sourceTree = "<group>"; };
 		D21ACB941726868A00E2F8EC /* EditorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorService.m; sourceTree = "<group>"; };
-		D21ACB951726868A00E2F8EC /* PlaceholderServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderServices.h; sourceTree = "<group>"; };
-		D21ACB961726868A00E2F8EC /* PlaceholderServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderServices.m; sourceTree = "<group>"; };
 		D21ACB991726868A00E2F8EC /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
 		D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
 		D21ACB9C1726868A00E2F8EC /* EditorPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorPlaceholder.h; sourceTree = "<group>"; };
@@ -687,8 +683,6 @@
 		D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel_Test.m; sourceTree = "<group>"; };
 		D2A92C421882F71500F1679F /* projecticon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = projecticon.icns; sourceTree = "<group>"; };
 		D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = TeXtended/AppledocSettings.plist; sourceTree = SOURCE_ROOT; };
-		D2AAF90F17293D8200FC09C1 /* UndoSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoSupport.h; sourceTree = "<group>"; };
-		D2AAF91017293D8200FC09C1 /* UndoSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoSupport.m; sourceTree = "<group>"; };
 		D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewObserver.h; sourceTree = "<group>"; };
 		D2B01663176608A800C6CE23 /* ReportBug.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ReportBug.pdf; sourceTree = "<group>"; };
 		D2B0166517660D9900C6CE23 /* Play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Play.pdf; sourceTree = "<group>"; };
@@ -1017,10 +1011,6 @@
 				D21ACB921726868A00E2F8EC /* CompletionHandler.m */,
 				D21ACB931726868A00E2F8EC /* EditorService.h */,
 				D21ACB941726868A00E2F8EC /* EditorService.m */,
-				D21ACB951726868A00E2F8EC /* PlaceholderServices.h */,
-				D21ACB961726868A00E2F8EC /* PlaceholderServices.m */,
-				D2AAF90F17293D8200FC09C1 /* UndoSupport.h */,
-				D2AAF91017293D8200FC09C1 /* UndoSupport.m */,
 				D25749A01863515C0025A536 /* DBLPIntegrator.h */,
 				D25749A11863515C0025A536 /* DBLPIntegrator.m */,
 			);
@@ -2107,8 +2097,6 @@
 				D2E7A5041768E8F400B2BA3C /* CompletionHandler.m in Sources */,
 				D2E7A5051768E8F400B2BA3C /* EditorService.m in Sources */,
 				D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */,
-				D2E7A5061768E8F400B2BA3C /* PlaceholderServices.m in Sources */,
-				D2E7A5071768E8F400B2BA3C /* UndoSupport.m in Sources */,
 				D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */,
 				D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */,
 				D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */,

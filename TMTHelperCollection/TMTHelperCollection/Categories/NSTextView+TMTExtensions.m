@@ -109,4 +109,58 @@
     return aRect;
 }
 
+
+#pragma mark - Undo Support
+
+
+- (void)insertText:(NSAttributedString *)insertion
+           atIndex:(NSUInteger)index
+    withActionName:(NSString *)name
+{
+    if (index >= self.string.length) {
+        [self.textStorage appendAttributedString:insertion];
+    } else {
+        [self.textStorage insertAttributedString:insertion atIndex:index];
+    }
+    [[self.undoManager prepareWithInvocationTarget:self] deleteTextInRange:[NSValue valueWithRange:NSMakeRange(index, insertion.length)] withActionName:name];
+    [self.undoManager setActionName:name];
+    [self didChangeText];
+    
+}
+
+- (void)insertString:(NSString *)insertion atIndex:(NSUInteger)index withActionName:(NSString *)name
+{
+    NSDictionary *attributes;
+    if (self.textStorage.length > 0 && index < self.string.length) {
+        // Do nothing
+        attributes = [self.textStorage attributesAtIndex:index effectiveRange:NULL];
+    } else if (self.textStorage.length > 0 && index - 1 < self.string.length && index > 0) {
+        attributes = [self.textStorage attributesAtIndex:index - 1 effectiveRange:NULL];
+    } else {
+        attributes = [[NSDictionary alloc] init];
+    }
+    NSAttributedString *final = [[NSAttributedString alloc] initWithString:insertion attributes:attributes];
+    [self insertText:final atIndex:index withActionName:name];
+}
+
+- (void)deleteTextInRange:(NSValue *)rangeObject
+           withActionName:(NSString *)name
+{
+    NSRange range = [rangeObject rangeValue];
+    NSAttributedString *insertion = [self.textStorage attributedSubstringFromRange:range];
+    
+    [self.textStorage deleteCharactersInRange:range];
+    [[self.undoManager prepareWithInvocationTarget:self] insertText:insertion atIndex:range.location withActionName:name];
+    [self.undoManager setActionName:name];
+    [self didChangeText];
+}
+
+- (void)setString:(NSString *)string withActionName:(NSString *)name
+{
+    [[self.undoManager prepareWithInvocationTarget:self] setString:[self.string copy] withActionName:name];
+    [self.undoManager setActionName:name];
+    [self setString:string];
+}
+
+
 @end

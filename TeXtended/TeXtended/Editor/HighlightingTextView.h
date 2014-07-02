@@ -13,7 +13,7 @@
 #import "CompletionProtocol.h"
 #import "LightHighlightingTextView.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
+@class BracketHighlighter, CodeNavigationAssistant, CompletionHandler, CodeExtensionEngine, EditorService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -30,8 +30,6 @@
         BracketHighlighter *bracketHighlighter;
 
         /** The CodeNavigationAssistant handles line and carret highlighting as well as tab and new line insertion */
-        /** The PlaceholderServices handles placeholder navigation */
-        PlaceholderServices *placeholderService;
 
         /** The CompletionHandler contains the auto completion logic */
         CompletionHandler *completionHandler;
@@ -77,9 +75,6 @@
 
 /** Property for the first visble row in the visible area */
     @property NSUInteger firstVisibleRow;
-
-/** The undo support instance */
-    @property (strong) UndoSupport *undoSupport;
 
 
 /** if `YES` all services are on, if `NO` this object behaves in general like a normal NSTextView. */

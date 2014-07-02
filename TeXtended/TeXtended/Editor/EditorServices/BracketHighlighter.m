@@ -8,8 +8,8 @@
 
 #import "BracketHighlighter.h"
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 #import "HighlightingTextView.h"
-#import "UndoSupport.h"
 #import <TMTHelperCollection/TMTLog.h>
 
 static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
@@ -139,7 +139,7 @@ typedef enum
         }
 
         //insert the closing bracket and reset cursor to current insertion point
-        [view.undoSupport insertString:extClosingBracket atIndex:insertionPoint withActionName:NSLocalizedString(@"Autoinsert Matching Bracket", "Autoinsert Matching Bracket")];
+        [view insertString:extClosingBracket atIndex:insertionPoint withActionName:NSLocalizedString(@"Autoinsert Matching Bracket", "Autoinsert Matching Bracket")];
         [view setSelectedRange:NSMakeRange(insertionPoint, 0)];
         [view showFindIndicatorForRange:NSMakeRange(insertionPoint, extClosingBracket.length)];
     }

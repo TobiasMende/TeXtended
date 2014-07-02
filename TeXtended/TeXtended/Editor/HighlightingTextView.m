@@ -10,12 +10,10 @@
 #import "LatexSyntaxHighlighter.h"
 #import "BracketHighlighter.h"
 #import "CodeNavigationAssistant.h"
-#import "PlaceholderServices.h"
 #import "Completion.h"
 #import "EnvironmentCompletion.h"
 #import "CompletionHandler.h"
 #import "CodeExtensionEngine.h"
-#import "UndoSupport.h"
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
@@ -118,10 +116,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super awakeFromNib];
         bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
         _codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
-        placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
         completionHandler = [[CompletionHandler alloc] initWithTextView:self];
         _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
-        _undoSupport = [[UndoSupport alloc] initWithTextView:self];
 
         [self registerUserDefaultsObserver];
         [self setCompletionEnabled:YES];
@@ -330,7 +326,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (!self.servicesOn) {
             return;
         }
-        [placeholderService handleInsertTab];
+        [self handleInsertTab];
     }
 
     - (void)jumpToPreviousPlaceholder
@@ -338,7 +334,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (!self.servicesOn) {
             return;
         }
-        [placeholderService handleInsertBacktab];
+        [self handleInsertBacktab];
     }
 
     - (void)updateTrackingAreas
@@ -496,7 +492,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (autoCompletionController) {
             NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
             [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
-        } else if (![placeholderService handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
+        } else if (![self handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
             [super insertTab:sender];
         }
 
@@ -509,7 +505,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             [super insertBacktab:sender];
             return;
         }
-        if (![placeholderService handleInsertBacktab] && ![self.codeNavigationAssistant handleBacktabInsertion]) {
+        if (![self handleInsertBacktab] && ![self.codeNavigationAssistant handleBacktabInsertion]) {
             [super insertBacktab:sender];
         }
     }
@@ -730,7 +726,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
 
-        [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
+        [self deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
 
 
     }
@@ -844,12 +840,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             firstStr = [self.textStorage attributedSubstringFromRange:first];
         }
         if (first.length == 0) {
-            [self.undoSupport deleteTextInRange:[NSValue valueWithRange:second] withActionName:@""];
+            [self deleteTextInRange:[NSValue valueWithRange:second] withActionName:@""];
         } else {
             [self insertText:firstStr replacementRange:second];
         }
         if (second.length == 0) {
-            [self.undoSupport deleteTextInRange:[NSValue valueWithRange:first] withActionName:@""];
+            [self deleteTextInRange:[NSValue valueWithRange:first] withActionName:@""];
         } else {
             [self insertText:secondStr replacementRange:first];
         }

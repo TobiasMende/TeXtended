@@ -7,7 +7,6 @@
 //
 
 #import "CodeNavigationAssistant.h"
-#import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
@@ -389,7 +388,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             result = [self handleWrappingInLine:lineRange ofString:content] || result;
         }
         [view.undoManager beginUndoGrouping];
-        [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+        [view setString:view.string withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
         [view setString:content];
         [view.undoManager endUndoGrouping];
         return result;
@@ -416,7 +415,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
             NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
             
-            [view.undoSupport insertText:insertion atIndex:NSMaxRange([result rangeAtIndex:1]) withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+            [view insertText:insertion atIndex:NSMaxRange([result rangeAtIndex:1]) withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
             
             [view.undoManager endUndoGrouping];
             return YES;
