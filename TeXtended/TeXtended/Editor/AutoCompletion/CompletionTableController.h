@@ -15,6 +15,8 @@
         NSString *fileName;
 
         Class type;
+        
+        NSPopover *popver;
     }
 
     @property (strong) NSMutableArray *completions;

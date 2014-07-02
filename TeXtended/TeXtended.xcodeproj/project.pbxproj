@@ -43,6 +43,9 @@
 		D20C97491826FCE800E23911 /* ConsoleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C97481826FCE800E23911 /* ConsoleCellView.m */; };
 		D20C974B1826FCF500E23911 /* ConsoleCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20C974A1826FCF500E23911 /* ConsoleCellView.xib */; };
 		D20C974E1826FD8A00E23911 /* ConsoleData.m in Sources */ = {isa = PBXBuildFile; fileRef = D20C974D1826FD8A00E23911 /* ConsoleData.m */; };
+		D20E8ACB19640319004ADAA2 /* MultiLineCellEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8AC919640319004ADAA2 /* MultiLineCellEditorViewController.m */; };
+		D20E8ACC19640319004ADAA2 /* MultiLineCellEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20E8ACA19640319004ADAA2 /* MultiLineCellEditorView.xib */; };
+		D20E8ACF196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
 		D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D21840DD1864934C00B73EB5 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
@@ -395,6 +398,11 @@
 		D20C974A1826FCF500E23911 /* ConsoleCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleCellView.xib; sourceTree = "<group>"; };
 		D20C974C1826FD8A00E23911 /* ConsoleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleData.h; sourceTree = "<group>"; };
 		D20C974D1826FD8A00E23911 /* ConsoleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleData.m; sourceTree = "<group>"; };
+		D20E8AC819640319004ADAA2 /* MultiLineCellEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiLineCellEditorViewController.h; path = MultiLineCellEditor/MultiLineCellEditorViewController.h; sourceTree = "<group>"; };
+		D20E8AC919640319004ADAA2 /* MultiLineCellEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiLineCellEditorViewController.m; path = MultiLineCellEditor/MultiLineCellEditorViewController.m; sourceTree = "<group>"; };
+		D20E8ACA19640319004ADAA2 /* MultiLineCellEditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MultiLineCellEditorView.xib; path = MultiLineCellEditor/MultiLineCellEditorView.xib; sourceTree = "<group>"; };
+		D20E8ACD196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionWhiteSpaceValueTransformer.h; sourceTree = "<group>"; };
+		D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionWhiteSpaceValueTransformer.m; sourceTree = "<group>"; };
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
 		D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoViewController.h; sourceTree = "<group>"; };
 		D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoViewController.m; sourceTree = "<group>"; };
@@ -889,6 +897,18 @@
 			path = LayoutManager;
 			sourceTree = "<group>";
 		};
+		D20E8AC7196402E8004ADAA2 /* MultiLineCellEditor */ = {
+			isa = PBXGroup;
+			children = (
+				D20E8AC819640319004ADAA2 /* MultiLineCellEditorViewController.h */,
+				D20E8AC919640319004ADAA2 /* MultiLineCellEditorViewController.m */,
+				D20E8ACA19640319004ADAA2 /* MultiLineCellEditorView.xib */,
+				D20E8ACD196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.h */,
+				D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */,
+			);
+			name = MultiLineCellEditor;
+			sourceTree = "<group>";
+		};
 		D21ACB6917267BFD00E2F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1076,7 @@
 		D21ACBBB1726879000E2F8EC /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				D20E8AC7196402E8004ADAA2 /* MultiLineCellEditor */,
 				D21ACBBC1726879000E2F8EC /* CompletionsController.h */,
 				D21ACBBD1726879000E2F8EC /* CompletionsController.m */,
 				D21ACBBE1726879000E2F8EC /* Constants.h */,
@@ -1876,6 +1897,7 @@
 				D220755A17687A310041890F /* TeXtended.icns in Resources */,
 				D2FF0D7B17F70017003423F7 /* EncodingView.xib in Resources */,
 				D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */,
+				D20E8ACC19640319004ADAA2 /* MultiLineCellEditorView.xib in Resources */,
 				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
 				D2A92C431882F71500F1679F /* projecticon.icns in Resources */,
 				D26685F7176F56DA001699A8 /* texicon.icns in Resources */,
@@ -2040,6 +2062,7 @@
 				D2654AB11927566D00DE58B2 /* CompilerPreferencesViewController.m in Sources */,
 				D2E7A4F21768E8F400B2BA3C /* NSString+LatexExtension.m in Sources */,
 				D2654AAB192752A500DE58B2 /* ModelInfoWindowController.m in Sources */,
+				D20E8ACB19640319004ADAA2 /* MultiLineCellEditorViewController.m in Sources */,
 				D2E7A4F31768E8F400B2BA3C /* ConsoleViewController.m in Sources */,
 				D22E169E1824ED10005B5B91 /* TMTTabViewItem.m in Sources */,
 				D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */,
@@ -2064,6 +2087,7 @@
 				D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */,
 				D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */,
 				D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */,
+				D20E8ACF196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m in Sources */,
 				D2E7A5011768E8F400B2BA3C /* BracketHighlighter.m in Sources */,
 				D2E7A5021768E8F400B2BA3C /* CodeExtensionEngine.m in Sources */,
 				D2C2357E189535160096ECAA /* NSString+TMTExtension.m in Sources */,
