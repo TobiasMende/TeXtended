@@ -34,7 +34,7 @@ static const NSString *DEST_PLACEHOLDER = @"@@destination@@";
         return result;
     }
 
-    - (NSAttributedString *)getCompletion:(NSString *)path
+    - (NSAttributedString *)attributedStringByInsertingDestination:(NSString *)path
     {
         NSString *retValue;
         if (!self.usePathExtentsion) {
@@ -49,7 +49,7 @@ static const NSString *DEST_PLACEHOLDER = @"@@destination@@";
 
 - (NSArray *)fileExtensions {
     NSArray *extensions = [self.insertion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",; "]];
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:extensions];
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:extensions.count];
     for(NSString *ext in extensions) {
         if (ext.length > 0) {
             [result addObject:ext.lowercaseString];

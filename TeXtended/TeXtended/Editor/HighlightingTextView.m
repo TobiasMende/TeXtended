@@ -72,6 +72,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)showDBLPSearchView;
 
     - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **)info;
+
+- (void)selectAndInsertDropCompletion:(NSArray *)insertions;
+- (void) insertDropCompletion:(id)sender;
 @end
 
 @implementation HighlightingTextView
@@ -248,15 +251,12 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)insertDropCompletionForModel:(DocumentModel *)model
     {
         NSString *base = model.texPath ? [model.texPath stringByDeletingLastPathComponent] : nil;
-        for (NSUInteger i = 0 ; i < [droppedFileNames count] ; i++) {
-
-            NSString *filename = [droppedFileNames objectAtIndex:i];
-            NSString *path = base ? [filename relativePathWithBase:base] : filename;
-            NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:path];
-
-            [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
-
-            if ([droppedFileNames count] > i + 1) {
+        
+        for (NSString *fileName in droppedFileNames) {
+            NSString *path = base ? [fileName relativePathWithBase:base] : fileName;
+             NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:path];
+            [self selectAndInsertDropCompletion:insertions];
+            if (![fileName isEqualToString:droppedFileNames.lastObject]) {
                 [self insertNewline:self];
             }
         }
@@ -269,15 +269,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     - (void)insertDropCompletionForPath:(NSString *)path
     {
-        for (NSUInteger i = 0 ; i < [droppedFileNames count] ; i++) {
-
-            NSString *filename = [droppedFileNames objectAtIndex:i];
-
-            NSAttributedString *insertion = [[CompletionManager sharedInstance] getDropCompletionForPath:[filename relativePathWithBase:[path stringByDeletingLastPathComponent]]];
-
-            [self insertText:[completionHandler expandWhiteSpacesInAttrString:insertion]];
-
-            if ([droppedFileNames count] > i + 1) {
+        
+        for (NSString *fileName in droppedFileNames) {
+            NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:[fileName relativePathWithBase:[path stringByDeletingLastPathComponent]]];
+            
+            [self selectAndInsertDropCompletion:insertions];
+    
+            
+            if (![droppedFileNames isEqualTo:droppedFileNames.lastObject]) {
                 [self insertNewline:self];
             }
         }
@@ -288,6 +287,31 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [[self window] makeFirstResponder:self];
     }
 
+- (void)selectAndInsertDropCompletion:(NSArray *)insertions {
+    if (insertions.count == 1) {
+        [self insertDropCompletion:insertions.firstObject];
+        return;
+    }
+    NSMenu *select = [NSMenu new];
+    for (NSAttributedString *insertion in insertions) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:insertion.string action:@selector(insertDropCompletion:) keyEquivalent:@""];
+        item.target = self;
+        item.representedObject = insertion;
+        [select addItem:item];
+    }
+    
+    NSPoint position = [self firstRectForCharacterRange:self.selectedRange].origin ;
+    [select popUpMenuPositioningItem:select.itemArray.firstObject atLocation:position inView:nil];
+}
+
+- (void)insertDropCompletion:(id)sender {
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:[sender representedObject]]];
+    } else if([sender isKindOfClass:[NSAttributedString class]]) {
+        [self insertText:[completionHandler expandWhiteSpacesInAttrString:sender]];
+
+    }
+}
     - (void)flagsChanged:(NSEvent *)theEvent
     {
         [super flagsChanged:theEvent];

@@ -103,17 +103,21 @@ static NSSet *SPECIAL_SYMBOLS;
 
 #pragma mark - Maintaining the Drops
 
-    - (NSAttributedString *)getDropCompletionForPath:(NSString *)path
+    - (NSArray *)possibleDropCompletionsForPath:(NSString *)path
     {
+        NSMutableArray *possibilities = [NSMutableArray new];
         NSString *pathExtension = [path pathExtension];
         for (DropCompletion *dropCompletion in self.dropCompletions.completions) {
             
             if ([dropCompletion.fileExtensions containsObject:pathExtension.lowercaseString]) {
-                return [dropCompletion getCompletion:path];
+                [possibilities addObject:[dropCompletion attributedStringByInsertingDestination:path]];
             }
         }
-        // return the path by default.
-        return [[NSAttributedString alloc] initWithString:path];
+        
+        if (possibilities.count == 0) {
+            [possibilities addObject:[[NSAttributedString alloc] initWithString:path]];
+        }
+        return possibilities;
     }
 
     + (NSSet *)specialSymbols
