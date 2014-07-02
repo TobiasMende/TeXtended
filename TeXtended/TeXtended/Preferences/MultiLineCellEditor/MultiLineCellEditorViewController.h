@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class Completion;
+@class Completion,LightHighlightingTextView;
 @interface MultiLineCellEditorViewController : NSViewController<NSTextViewDelegate> {
     NSValueTransformer *transformer;
 }
@@ -16,6 +16,7 @@
 
 @property Completion *completion;
 @property NSString *keyPath;
-@property (strong) IBOutlet NSTextView *textView;
-
+@property (strong) IBOutlet LightHighlightingTextView *textView;
+@property (assign) NSPopover* popover;
+- (void) close:(id)sender;
 @end

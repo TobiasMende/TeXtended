@@ -8,6 +8,7 @@
 
 #import "MultiLineCellEditorViewController.h"
 #import "CompletionWhiteSpaceValueTransformer.h"
+#import "LightHighlightingTextView.h"
 
 @interface MultiLineCellEditorViewController ()
 
@@ -29,13 +30,29 @@
 - (void)loadView {
     [super loadView];
     [self.textView bind:@"value" toObject:self.completion withKeyPath:self.keyPath options:@{NSValueTransformerBindingOption: transformer,NSContinuouslyUpdatesValueBindingOption:@(YES), NSValidatesImmediatelyBindingOption:@(YES)}];
+    NSResponder *tmp = self.textView.nextResponder;
+    self.textView.nextResponder = self;
+    self.nextResponder = tmp;
+    
 }
+
+
 
 - (void)dealloc {
     [self.textView unbind:@"value"];
+    self.textView.nextResponder = self.nextResponder;
+    self.textView.delegate = nil;
+}
+- (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+    if (commandSelector == @selector(cancelOperation:) || commandSelector == @selector(noop:)) {
+        [self close:nil];
+        return YES;
+    }
+    return NO;
 }
 
-- (void)textDidEndEditing:(NSNotification *)notification {
-    [self.view.window close];
+
+- (void)close:(id)sender {
+    [self.popover performClose:self];
 }
 @end

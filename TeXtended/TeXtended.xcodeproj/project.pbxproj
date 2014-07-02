@@ -46,6 +46,7 @@
 		D20E8ACB19640319004ADAA2 /* MultiLineCellEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8AC919640319004ADAA2 /* MultiLineCellEditorViewController.m */; };
 		D20E8ACC19640319004ADAA2 /* MultiLineCellEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20E8ACA19640319004ADAA2 /* MultiLineCellEditorView.xib */; };
 		D20E8ACF196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */; };
+		D20E8AD219641C56004ADAA2 /* LightHighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8AD119641C55004ADAA2 /* LightHighlightingTextView.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
 		D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D21840DD1864934C00B73EB5 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
@@ -403,6 +404,8 @@
 		D20E8ACA19640319004ADAA2 /* MultiLineCellEditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MultiLineCellEditorView.xib; path = MultiLineCellEditor/MultiLineCellEditorView.xib; sourceTree = "<group>"; };
 		D20E8ACD196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionWhiteSpaceValueTransformer.h; sourceTree = "<group>"; };
 		D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionWhiteSpaceValueTransformer.m; sourceTree = "<group>"; };
+		D20E8AD019641C55004ADAA2 /* LightHighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightHighlightingTextView.h; sourceTree = "<group>"; };
+		D20E8AD119641C55004ADAA2 /* LightHighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightHighlightingTextView.m; sourceTree = "<group>"; };
 		D213171417782485002966FC /* TMTMessageCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTMessageCellView.xib; sourceTree = "<group>"; };
 		D21A1C2C17806F4B0087E10D /* MessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInfoViewController.h; sourceTree = "<group>"; };
 		D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInfoViewController.m; sourceTree = "<group>"; };
@@ -961,6 +964,8 @@
 				D21ACB8A1726868A00E2F8EC /* EditorServices */,
 				D21ACB991726868A00E2F8EC /* HighlightingTextView.h */,
 				D21ACB9A1726868A00E2F8EC /* HighlightingTextView.m */,
+				D20E8AD019641C55004ADAA2 /* LightHighlightingTextView.h */,
+				D20E8AD119641C55004ADAA2 /* LightHighlightingTextView.m */,
 				D21ACB9B1726868A00E2F8EC /* Placeholder */,
 				D2AB7DF3176DAA5800D1AB7B /* TextViewObserver.h */,
 			);
@@ -2159,6 +2164,7 @@
 				D2CF617A17709CA900ACC3D5 /* TrackingMessage.m in Sources */,
 				D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */,
 				F68687F418781D5F00898026 /* PrintDialogController.m in Sources */,
+				D20E8AD219641C56004ADAA2 /* LightHighlightingTextView.m in Sources */,
 				D2CF617D1770A37B00ACC3D5 /* LacheckParser.m in Sources */,
 				D2CF61811770B13E00ACC3D5 /* ChktexParser.m in Sources */,
 				D2CF61841770B31200ACC3D5 /* Parser.m in Sources */,
