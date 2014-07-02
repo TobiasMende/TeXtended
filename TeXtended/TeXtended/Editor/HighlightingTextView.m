@@ -110,38 +110,18 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)awakeFromNib
     {
 
-        NSDictionary *option = @{NSValueTransformerNameBindingOption : NSUnarchiveFromDataTransformerName};
-        [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
-        [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
-
-
-        _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
+        [super awakeFromNib];
         bracketHighlighter = [[BracketHighlighter alloc] initWithTextView:self];
         _codeNavigationAssistant = [[CodeNavigationAssistant alloc] initWithTextView:self];
         placeholderService = [[PlaceholderServices alloc] initWithTextView:self];
         completionHandler = [[CompletionHandler alloc] initWithTextView:self];
         _codeExtensionEngine = [[CodeExtensionEngine alloc] initWithTextView:self];
         _undoSupport = [[UndoSupport alloc] initWithTextView:self];
-        if (self.string.length > 0) {
-            [self.syntaxHighlighter highlightEntireDocument];
-        }
+
         [self registerUserDefaultsObserver];
-        [self setRichText:NO];
         [self setCompletionEnabled:YES];
-        [self setDisplaysLinkToolTips:YES];
-        [self setHorizontallyResizable:YES];
-        [self setVerticallyResizable:YES];
-        [self setSmartInsertDeleteEnabled:NO];
-        [self setAutomaticTextReplacementEnabled:NO];
-        [self setAutomaticDashSubstitutionEnabled:NO];
-        [self setAutomaticQuoteSubstitutionEnabled:NO];
-        [self setUsesFontPanel:NO];
         self.servicesOn = YES;
         self.enableQuickPreviewAssistant = YES;
-
-       
-        [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
-
     }
 
     - (NSRange)visibleRange
@@ -359,13 +339,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 
-    - (void)updateSyntaxHighlighting
-    {
-        if (!self.servicesOn) {
-            return;
-        }
-        [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
-    }
 
 
     - (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines
@@ -538,17 +511,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (!self.servicesOn) {
             return;
         }
-        [self.syntaxHighlighter highlightEntireDocument];
         [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
-    }
-
-    - (void)setString:(NSString *)string
-    {
-        [super setString:string];
-        if (!self.servicesOn) {
-            return;
-        }
-        [self.syntaxHighlighter highlightEntireDocument];
     }
 
     - (void)showMainDocumentsWindow:(NSArray *)mainDocuments
@@ -590,6 +553,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
         }
     }
+
+- (void)setPlaceholderReplacementEnabled:(BOOL)enable {
+    completionHandler.shouldReplacePlaceholders = enable;
+}
 
 
     - (NSUInteger)currentCol

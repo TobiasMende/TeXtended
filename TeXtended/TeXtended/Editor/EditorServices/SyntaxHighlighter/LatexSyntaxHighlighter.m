@@ -132,9 +132,6 @@ static NSRegularExpression *COMMAND_REGEX;
 # pragma mark Highlighting Methods
     - (void)highlightAtSelectionChange
     {
-        if (!view.servicesOn) {
-            return;
-        }
         [self highlightNarrowArea];
 
     }

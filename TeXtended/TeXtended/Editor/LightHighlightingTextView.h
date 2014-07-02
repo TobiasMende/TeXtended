@@ -7,7 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SyntaxHighlighter.h"
 
-@interface LightHighlightingTextView : NSText
+@interface LightHighlightingTextView : NSTextView
+/** The syntax highlighter */
+@property (strong) id <SyntaxHighlighter> syntaxHighlighter;
+@property SEL cancelOpSelector;
 
+- (void)updateSyntaxHighlighting;
+- (NSRange)extendedVisibleRange;
+- (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines;
 @end
