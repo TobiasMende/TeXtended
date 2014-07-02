@@ -40,6 +40,15 @@
     [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
     
 }
+
+
+- (void)insertLineBreak:(id)sender {
+    [self.undoManager beginUndoGrouping];
+    [self insertText:@"\\\\"];
+    [self insertNewline:self];
+    [self.undoManager endUndoGrouping];
+}
+
 - (void)updateSyntaxHighlighting
 {
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
