@@ -293,6 +293,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     NSMenu *select = [NSMenu new];
+    select.font = [NSFont menuBarFontOfSize:[NSFont smallSystemFontSize]];
     for (NSAttributedString *insertion in insertions) {
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:insertion.string action:@selector(insertDropCompletion:) keyEquivalent:@""];
         item.target = self;
@@ -538,22 +539,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
     }
 
-    - (void)showMainDocumentsWindow:(NSArray *)mainDocuments
-    {
-        if (!autoCompletionController) {
-            autoCompletionController = [[AutoCompletionWindowController alloc] initWithSelectionDidChangeCallback:nil];
-            autoCompletionController.parent = self;
-        }
-
-        NSMutableArray *dictionaryArray = [NSMutableArray new];
-
-        for (NSString *path in mainDocuments) {
-            [dictionaryArray addObject:@{@"key" : path}];
-        }
-
-        [[self window] makeFirstResponder:self];
-        [autoCompletionController positionWindowWithContent:dictionaryArray andInformation:@{TMTDropCompletionKey : @YES}];
-    }
 
 
 #pragma mark -
@@ -993,15 +978,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             DocumentModel *model = self.firstResponderDelegate.model;
 
             if (model.mainDocuments.count > 1) {
-                NSMutableArray *mainDocumentNames = [[NSMutableArray alloc] init];
                 NSMutableSet *dirs = [[NSMutableSet alloc] init];
                 for (DocumentModel *temp in model.mainDocuments) {
                     [dirs addObject:[[temp.path stringByDeletingLastPathComponent] relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
-                    NSString *str = [NSString stringWithFormat:NSLocalizedString(@"Relative path to %@", @"Relativ to prefix"), [temp.path relativePathWithBase:[temp.project.path stringByDeletingLastPathComponent]]];
-                    [mainDocumentNames addObject:str];
                 }
-                if ([dirs count] > 1) {
-                    [self showMainDocumentsWindow:mainDocumentNames];
+                if (dirs.count > 1) {
+                    // Insert absolute path
+                    [self insertDropCompletionForModel:nil];
                 }
                 else {
                     [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
