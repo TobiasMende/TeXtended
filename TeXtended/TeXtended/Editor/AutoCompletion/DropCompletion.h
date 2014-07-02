@@ -13,5 +13,6 @@
     @property BOOL usePathExtentsion;
 
     - (NSAttributedString *)getCompletion:(NSString *)path;
+    - (NSArray *)fileExtensions;
 
 @end

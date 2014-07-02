@@ -47,4 +47,15 @@ static const NSString *DEST_PLACEHOLDER = @"@@destination@@";
         return [self substitutePlaceholdersInString:retValue];
     }
 
+- (NSArray *)fileExtensions {
+    NSArray *extensions = [self.insertion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",; "]];
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:extensions];
+    for(NSString *ext in extensions) {
+        if (ext.length > 0) {
+            [result addObject:ext.lowercaseString];
+        }
+    }
+    return result;
+}
+
 @end

@@ -8,31 +8,7 @@
             <key>TMTCompletionUseExtensionKey</key>
             <false/>
             <key>TMTCompletionInsertionKey</key>
-            <string>jpg</string>
-        </dict>
-        <dict>
-            <key>TMTCompletionExtensionKey</key>
-            <string>\includegraphics{@@destination@@}</string>
-            <key>TMTCompletionUseExtensionKey</key>
-            <false/>
-            <key>TMTCompletionInsertionKey</key>
-            <string>pdf</string>
-        </dict>
-        <dict>
-            <key>TMTCompletionExtensionKey</key>
-            <string>\includegraphics{@@destination@@}</string>
-            <key>TMTCompletionUseExtensionKey</key>
-            <false/>
-            <key>TMTCompletionInsertionKey</key>
-            <string>png</string>
-        </dict>
-        <dict>
-            <key>TMTCompletionExtensionKey</key>
-            <string>\includegraphics{@@destination@@}</string>
-            <key>TMTCompletionUseExtensionKey</key>
-            <false/>
-            <key>TMTCompletionInsertionKey</key>
-            <string>eps</string>
+            <string>jpg,pdf,png,eps</string>
         </dict>
         <dict>
             <key>TMTCompletionExtensionKey</key>
