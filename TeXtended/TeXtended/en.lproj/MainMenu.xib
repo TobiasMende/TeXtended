@@ -87,8 +87,7 @@
                                     <action selector="newProject:" target="-1" id="602"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="New from Template ..." keyEquivalent="n" id="Dvw-RG-Izb">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                            <menuItem title="New from Template ..." keyEquivalent="N" id="Dvw-RG-Izb">
                                 <connections>
                                     <action selector="showNewFromTemplate:" target="534" id="7Vp-wz-f9n"/>
                                 </connections>

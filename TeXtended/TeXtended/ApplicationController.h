@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PreferencesController, DocumentCreationController, CompletionsController, TexdocPanelController, ConsoleWindowController, TemplateController;
+@class PreferencesController, DocumentCreationController, CompletionsController, TexdocPanelController, ConsoleWindowController, TemplateController, StartScreenWindowController;
 
 /**
  The application controller is a singleton which represents the central instance of the TeXtended application.
@@ -31,6 +31,8 @@
         ConsoleWindowController *consoleWindowController;
 
         TemplateController *templateController;
+        
+        StartScreenWindowController *startScreenController;
     }
 
 
@@ -73,6 +75,8 @@
 
 - (void) updateRecentDocuments;
 - (IBAction)openRecent:(id)sender;
+- (NSArray *)addRecentSimpleDocumentsTo:(NSMenu *)menu;
+- (NSArray *)addRecentProjectDocumentsTo:(NSMenu *)menu;
 - (NSMenu *)fileMenu;
 - (NSMenuItem *)openRecentMenuItem;
 @end
