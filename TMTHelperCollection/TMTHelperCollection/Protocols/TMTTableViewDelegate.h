@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMTTableView.h"
+@protocol TMTTableViewDelegate <NSTableViewDelegate>
 
-@protocol TMTTableViewDelegate <NSObject>
+@optional
 
+- (BOOL)tableView:(TMTTableView *)tableView editColumn:(NSInteger)column row:(NSInteger)row withEvent:(NSEvent *)theEvent select:(BOOL)select;
 @end
