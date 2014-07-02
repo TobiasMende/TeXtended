@@ -137,7 +137,7 @@ static NSArray *INTERNAL_EXTENSIONS;
                 [PathObserverFactory removeObserver:self];
             }
             _path = path;
-
+            DDLogInfo(@"Setting path: %@", _path);
             if (_path) {
                 [[PathObserverFactory pathObserverForPath:_path] addObserver:self withSelector:@selector(pathObserverBuildTree)];
                 [self buildTree];
@@ -157,7 +157,7 @@ static NSArray *INTERNAL_EXTENSIONS;
         NSURL *url = self.document.fileURL;
 
         self.path = [url.path stringByDeletingLastPathComponent];
-        DDLogWarn(@"Setting path: %@", self.path);
+        
     }
 
     - (NSString *)basePathForCreation:(NSString *)path
