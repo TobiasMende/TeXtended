@@ -49,6 +49,13 @@
     [self.undoManager endUndoGrouping];
 }
 
+- (void)insertNewlineIgnoringFieldEditor:(id)sender {
+    [self.undoManager beginUndoGrouping];
+    [self insertNewline:self];
+    [self insertText:@"\\item"];
+    [self.undoManager endUndoGrouping];
+}
+
 - (void)updateSyntaxHighlighting
 {
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
