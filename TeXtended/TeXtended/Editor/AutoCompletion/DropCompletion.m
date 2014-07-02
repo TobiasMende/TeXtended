@@ -9,11 +9,13 @@
 #import "DropCompletion.h"
 #import "Constants.h"
 
+static const NSString *DEST_PLACEHOLDER = @"@@destination@@";
+
 @implementation DropCompletion
 
     - (id)init
     {
-        return [self initWithInsertion:@"" andExtension:@"@@destination@@"];
+        return [self initWithInsertion:@"" andExtension:DEST_PLACEHOLDER.copy];
     }
 
     - (id)initWithDictionary:(NSDictionary *)dict
@@ -36,10 +38,10 @@
     {
         NSString *retValue;
         if (!self.usePathExtentsion) {
-            retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:[path stringByDeletingPathExtension]];
+            retValue = [self.extension stringByReplacingOccurrencesOfString:DEST_PLACEHOLDER.copy withString:[path stringByDeletingPathExtension]];
         }
         else {
-            retValue = [self.extension stringByReplacingOccurrencesOfString:@"@@destination@@" withString:path];
+            retValue = [self.extension stringByReplacingOccurrencesOfString:DEST_PLACEHOLDER.copy withString:path];
         }
 
         return [self substitutePlaceholdersInString:retValue];
