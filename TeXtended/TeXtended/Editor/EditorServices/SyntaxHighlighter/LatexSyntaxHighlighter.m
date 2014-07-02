@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
@@ -144,7 +145,7 @@ static NSRegularExpression *COMMAND_REGEX;
 
     - (void)highlightNarrowArea
     {
-        [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
+        [self highlightRange:[view.string extendRange:view.selectedRange byLines:20]];
     }
 
     - (void)highlightVisibleArea

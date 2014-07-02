@@ -28,6 +28,7 @@
 #import "FirstResponderDelegate.h"
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
 #import <TMTHelperCollection/NSTextView+TMTExtensions.h>
+#import <TMTHelperCollection/NSTextView+LatexExtensions.h>
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import "NSTextView+TMTEditorExtension.h"
 
@@ -37,23 +38,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 @interface HighlightingTextView ()
 
-/**
- Method for getting the new first range after swapping two ranges.
- 
- @param first a random line range
- @param second another random line range
- 
- @return the first range, if it was the first range before, the second otherwise.
- */
-    - (NSRange)firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
-
-/** Method for swapping text in two ranges 
- 
- @param first first range
- @param second second range
- 
- */
-    - (void)swapTextIn:(NSRange)first and:(NSRange)second;
 
 /** Method for setting up all user defaults observer */
     - (void)registerUserDefaultsObserver;
@@ -353,35 +337,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 
-
-
-    - (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines
-    {
-        for (NSUInteger iteration = 0 ; iteration < numLines ; iteration++) {
-            BOOL update = NO;
-            if (range.location > 0) {
-                range.location -= 1;
-                range.length += 1;
-                update = YES;
-            }
-            if (NSMaxRange(range) < self.string.length - 1 && NSMaxRange(range) > 0) {
-                range.length += 1;
-                update = YES;
-            }
-            if (update) {
-                range = [self.string lineTextRangeWithRange:range withLineTerminator:YES];
-            } else {
-                break;
-            }
-        }
-        return range;
-    }
-
     - (NSRange)extendedVisibleRange
     {
         NSRange range = [self.string lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
 
-        return [self extendRange:range byLines:5];
+        return [self.string extendRange:range byLines:5];
 
     }
 
@@ -798,74 +758,21 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 }
 
-    - (NSRange)firstRangeAfterSwapping:(NSRange)first and:(NSRange)second
-    {
-        if (second.length > first.length) {
-            NSUInteger lengthDif = second.length - first.length;
-            first.location = second.location + lengthDif;
-            return first;
-        } else if (first.length > second.length) {
-            NSUInteger lengthDif = first.length - second.length;
-            first.location = second.location - lengthDif;
-            return first;
-        }
-        return second;
-    }
-
-    - (void)swapTextIn:(NSRange)first and:(NSRange)second
-    {
-        if (first.location > second.location) {
-            // Ensure that first range ist before second range
-            NSRange tmp = first;
-            first = second;
-            second = tmp;
-        }
-
-        NSAttributedString *secondStr;
-        if (second.length == 0) {
-            NSUInteger pos = second.location > 0 ? second.location - 1 : 0;
-            NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
-            secondStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
-        } else {
-
-            secondStr = [self.textStorage attributedSubstringFromRange:second];
-        }
-        NSAttributedString *firstStr;
-        if (first.length == 0) {
-            NSUInteger pos = first.location > 0 ? first.location - 1 : 0;
-            NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
-            firstStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
-        } else {
-
-            firstStr = [self.textStorage attributedSubstringFromRange:first];
-        }
-        if (first.length == 0) {
-            [self deleteTextInRange:[NSValue valueWithRange:second] withActionName:@""];
-        } else {
-            [self insertText:firstStr replacementRange:second];
-        }
-        if (second.length == 0) {
-            [self deleteTextInRange:[NSValue valueWithRange:first] withActionName:@""];
-        } else {
-            [self insertText:secondStr replacementRange:first];
-        }
-
-    }
 
 
     - (void)commentSelection:(id)sender
     {
-        [self.codeNavigationAssistant commentSelectionInRange:self.selectedRange];
+        [self commentSelectionInRange:self.selectedRange];
     }
 
     - (void)uncommentSelection:(id)sender
     {
-        [self.codeNavigationAssistant uncommentSelectionInRange:self.selectedRange];
+        [self uncommentSelectionInRange:self.selectedRange];
     }
 
     - (void)toggleComment:(id)sender
     {
-        [self.codeNavigationAssistant toggleCommentInRange:self.selectedRange];
+        [self toggleCommentInRange:self.selectedRange];
     }
 
     - (void)jumpNextAnchor:(id)sender

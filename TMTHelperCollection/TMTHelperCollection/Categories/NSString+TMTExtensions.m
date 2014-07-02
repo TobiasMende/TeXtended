@@ -109,4 +109,26 @@ static void initialize_NSString_TMTExtensions()
     return @"";
 }
 
+- (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines
+{
+    for (NSUInteger iteration = 0 ; iteration < numLines ; iteration++) {
+        BOOL update = NO;
+        if (range.location > 0) {
+            range.location -= 1;
+            range.length += 1;
+            update = YES;
+        }
+        if (NSMaxRange(range) < self.length - 1 && NSMaxRange(range) > 0) {
+            range.length += 1;
+            update = YES;
+        }
+        if (update) {
+            range = [self lineTextRangeWithRange:range withLineTerminator:YES];
+        } else {
+            break;
+        }
+    }
+    return range;
+}
+
 @end

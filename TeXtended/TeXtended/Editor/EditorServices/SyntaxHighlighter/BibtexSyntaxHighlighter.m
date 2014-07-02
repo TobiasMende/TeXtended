@@ -10,6 +10,7 @@
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 
 static NSString *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 
@@ -143,7 +144,7 @@ static NSSet *USER_DEFAULTS_BINDING_KEYS;
     - (void)highlightNarrowArea
     {
         //TODO: online highlight +- 5 lines;
-        [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
+        [self highlightRange:[view.string extendRange:view.selectedRange byLines:20]];
     }
 
     - (void)highlightVisibleArea

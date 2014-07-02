@@ -15,5 +15,4 @@
 
 - (void)updateSyntaxHighlighting;
 - (NSRange)extendedVisibleRange;
-- (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines;
 @end

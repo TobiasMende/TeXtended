@@ -19,8 +19,6 @@ static const NSSet *WHITESPACES;
 static const NSRegularExpression *SPACE_REGEX;
 
 
-static const NSRegularExpression *FIRST_NONWHITESPACE_IN_LINE;
-
 static const NSSet *KEYS_TO_UNBIND;
 
 static const NSSet *KEYS_TO_OBSERVE;
@@ -48,7 +46,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         
         SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\w((?:\\t| )+(?!$))\\w" options:NSRegularExpressionAnchorsMatchLines error:&error];
         
-        FIRST_NONWHITESPACE_IN_LINE = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\s*)(\\S)(?:.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+      
         if (error) {
             DDLogError(@"Error!!!");
         }
@@ -139,110 +137,6 @@ static const NSSet *KEYS_TO_OBSERVE;
         [self highlightCurrentLine];
         [self highlightCarret];
     }
-
-
-
-#pragma mark -
-#pragma mark Comment & Uncomment
-
-    - (void)commentSelectionInRange:(NSRange)range
-    {
-        NSRange lineRange = [view.string lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
-            lineRange.length += 1;
-        }
-        if (matches.count == 0) {
-            NSBeep();
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(uncommentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view setSelectedRange:[view.string lineTextRangeWithRange:lineRange]];
-        [view.undoManager endUndoGrouping];
-        [view didChangeText];
-
-    }
-
-    - (void)uncommentSelectionInRange:(NSRange)range
-    {
-        NSRange lineRange = [view.string lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-        BOOL actionDone = NO;
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            if ([[area substringWithRange:match] isEqualToString:@"%"]) {
-                [area replaceCharactersInRange:match withString:@""];
-                lineRange.length -= 1;
-                actionDone = YES;
-            }
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(commentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view setSelectedRange:[view.string lineTextRangeWithRange:lineRange]];
-        [view.undoManager endUndoGrouping];
-        if (!actionDone) {
-            NSBeep();
-        } else {
-            [view setSelectedRange:lineRange];
-        }
-        [view didChangeText];
-    }
-
-
-    - (void)toggleCommentInRange:(NSRange)range
-    {
-        NSRange lineRange = [view.string lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-
-        BOOL actionDone = NO;
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            if ([[area substringWithRange:match] isEqualToString:@"%"]) {
-                [area replaceCharactersInRange:match withString:@""];
-                lineRange.length -= 1;
-            } else {
-                [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
-                lineRange.length += 1;
-            }
-            actionDone = YES;
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(toggleCommentInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view.undoManager endUndoGrouping];
-        if (!actionDone) {
-            NSBeep();
-        } else {
-            [view setSelectedRange:[view.string lineTextRangeWithRange:lineRange]];
-        }
-        [view didChangeText];
-    }
-
-    - (void)uncommentSelectionInRangeString:(NSString *)range
-    {
-        [self uncommentSelectionInRange:NSRangeFromString(range)];
-    }
-
-    - (void)commentSelectionInRangeString:(NSString *)range
-    {
-        [self commentSelectionInRange:NSRangeFromString(range)];
-    }
-
-    - (void)toggleCommentInRangeString:(NSString *)range
-    {
-        [self toggleCommentInRange:NSRangeFromString(range)];
-    }
-
 
 #pragma mark -
 #pragma mark Carret Highlighting

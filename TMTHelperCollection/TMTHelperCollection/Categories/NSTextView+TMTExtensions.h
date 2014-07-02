@@ -73,4 +73,23 @@
  */
 - (void)setString:(NSString *)string withActionName:(NSString *)name;
 
+
+/**
+ Method for getting the new first range after swapping two ranges.
+ 
+ @param first a random line range
+ @param second another random line range
+ 
+ @return the first range, if it was the first range before, the second otherwise.
+ */
+- (NSRange)firstRangeAfterSwapping:(NSRange)first and:(NSRange)second;
+
+/** Method for swapping text in two ranges
+ 
+ @param first first range
+ @param second second range
+ 
+ */
+- (void)swapTextIn:(NSRange)first and:(NSRange)second;
+
 @end

@@ -65,11 +65,6 @@
     return NSMakeRange(0, self.string.length);
 }
 
-
-- (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines {
-    return [self extendedVisibleRange];
-}
-
 - (void)paste:(id)sender {
     [super paste:sender];
     [self.syntaxHighlighter highlightEntireDocument];

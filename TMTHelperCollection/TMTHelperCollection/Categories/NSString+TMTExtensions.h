@@ -48,4 +48,6 @@
  @return The whitespaces at the line beginning.
  */
 - (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange;
+
+- (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines;
 @end

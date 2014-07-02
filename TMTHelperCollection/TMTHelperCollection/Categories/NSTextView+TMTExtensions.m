@@ -78,6 +78,9 @@
     }
 }
 
+
+
+
 #pragma mark - Line Getter
 
 - (NSRect)lineRectforRange:(NSRange)r
@@ -162,5 +165,62 @@
     [self setString:string];
 }
 
+
+#pragma mark - Text Swapping
+
+
+- (NSRange)firstRangeAfterSwapping:(NSRange)first and:(NSRange)second
+{
+    if (second.length > first.length) {
+        NSUInteger lengthDif = second.length - first.length;
+        first.location = second.location + lengthDif;
+        return first;
+    } else if (first.length > second.length) {
+        NSUInteger lengthDif = first.length - second.length;
+        first.location = second.location - lengthDif;
+        return first;
+    }
+    return second;
+}
+
+- (void)swapTextIn:(NSRange)first and:(NSRange)second
+{
+    if (first.location > second.location) {
+        // Ensure that first range ist before second range
+        NSRange tmp = first;
+        first = second;
+        second = tmp;
+    }
+    
+    NSAttributedString *secondStr;
+    if (second.length == 0) {
+        NSUInteger pos = second.location > 0 ? second.location - 1 : 0;
+        NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
+        secondStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
+    } else {
+        
+        secondStr = [self.textStorage attributedSubstringFromRange:second];
+    }
+    NSAttributedString *firstStr;
+    if (first.length == 0) {
+        NSUInteger pos = first.location > 0 ? first.location - 1 : 0;
+        NSDictionary *attr = [self.textStorage attributesAtIndex:pos effectiveRange:NULL];
+        firstStr = [[NSAttributedString alloc] initWithString:@"" attributes:attr];
+    } else {
+        
+        firstStr = [self.textStorage attributedSubstringFromRange:first];
+    }
+    if (first.length == 0) {
+        [self deleteTextInRange:[NSValue valueWithRange:second] withActionName:@""];
+    } else {
+        [self insertText:firstStr replacementRange:second];
+    }
+    if (second.length == 0) {
+        [self deleteTextInRange:[NSValue valueWithRange:first] withActionName:@""];
+    } else {
+        [self insertText:secondStr replacementRange:first];
+    }
+    
+}
 
 @end
