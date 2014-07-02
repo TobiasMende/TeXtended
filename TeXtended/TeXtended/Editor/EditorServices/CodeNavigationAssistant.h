@@ -70,25 +70,7 @@
  */
     - (void)handleNewLineInsertion;
 
-/**
- Getter for the line range for a provided range
- 
- @param range the range to get the entire line range without line terminator.
- 
- @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
- */
-    - (NSRange)lineTextRangeWithRange:(NSRange)range;
 
-
-/**
- Getter for the line range for a provided range
- 
- @param range the range to get the entire line range.
- @param flag if `YES`, the range contains the line termiantor at the end. 
- 
- @return the containing line range or a range of multiple lines if the provided range was bigger than a single line.
- */
-    - (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag;
 
 /**
  Handles automatic hard wrapping of long lines in the provided range
@@ -118,14 +100,7 @@
  */
     - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string;
 
-/**
- Method returns the white space at the beginning of a given line (Usefull for auto-indention)
- 
- @param lineRange the line
- 
- @return The whitespaces at the line beginning.
- */
-    - (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange;
+
 
 
 /**
@@ -180,21 +155,8 @@
  */
     - (IBAction)uncommentSelectionInRangeString:(NSString *)range;
 
-/**
- Builds a string representing a line break at the current cursor position in the text view
- @return a string containing whitespaces for the line break and for preserving the indention
- */
-    - (NSString *)lineBreak;
 
 
-/**
- Builds a string representing a single tab
- @return a string containing \t if ![self shouldUseSpacesAsTabs] or a string containing [self numberOfSpacesForTab] spaces otherwise.
- */
-    - (NSString *)singleTab;
-
-/** Number of spaces which should replace a single tab */
-    @property NSNumber *numberOfSpacesForTab;
 
 /** The background color for highlighting the current line. */
     @property (strong) NSColor *currentLineColor;
@@ -213,11 +175,5 @@
 
 /** If `YES`, the text of the current line is highlighted */
     @property BOOL shouldHighlightCurrentLineText;
-
-/** If `YES`, tabs were replaced during writing */
-    @property BOOL shouldUseSpacesAsTabs;
-
-/** If `YES`, a new line has the same indention as the previous line */
-    @property BOOL shouldAutoIndentLines;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (LatexExtension)
+@interface NSString (LatexExtensions)
 
     - (BOOL)latexLineBreakPreceedingPosition:(NSUInteger)position;
 
@@ -33,5 +33,8 @@
     - (BOOL)rangeContainsEnd:(NSRange)range;
 
 - (NSArray *)goodPositionsToBreakInRange:(NSRange) range;
+
+
+- (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)range;
 
 @end

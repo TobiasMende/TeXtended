@@ -15,7 +15,10 @@
 #import "EnvironmentCompletion.h"
 #import "CodeNavigationAssistant.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+LatexExtensions.h>
+#import "NSString+TMTEditorExtensions.h"
+#import "NSTextView+TMTEditorExtension.h"
 #import "BibFile.h"
 #import "CompletionTableController.h"
 #import "OutlineHelper.h"
@@ -29,7 +32,7 @@ static const NSSet *COMPLETION_ESCAPE_INSERTIONS;
 
 static const NSSet *KEYS_TO_UNBIND;
 
-static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
+
 
 
 @interface CompletionHandler ()
@@ -82,13 +85,9 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
  */
     - (TMTCompletionType)completionTypeForPartialWordRange:(NSRange)charRange;
 
-/** Method for detecting and skipping the closing bracket of a \begin{...} statement */
-    - (void)skipClosingBracket;
 
 
     - (void)unbindAll;
-
-    - (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)range;
 
 @end
 
@@ -100,15 +99,9 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
         COMPLETION_TYPE_BY_PREFIX = @{@"\\" : @(TMTCommandCompletion), @"\\begin{" : @(TMTBeginCompletion), @"\\end{" : @(TMTEndCompletion)};
         COMPLETION_ESCAPE_INSERTIONS = [NSSet setWithObjects:@"{", @"}", @"[", @"]", @"(", @")", nil];
-        NSError *error;
-        TAB_REGEX = [NSRegularExpression regularExpressionWithPattern:@"(\\\\t)\\b" options:0 error:&error];
-        NEW_LINE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\\\n\\b" options:0 error:&error];
+
 
         COMPLETION_BY_PREFIX_TYPE = @{CommandTypeCite : @(TMTCiteCompletion), CommandTypeLabel : @(TMTLabelCompletion), CommandTypeRef : @(TMTRefCompletion)};
-
-        if (error) {
-            DDLogError(@"CompletionHandler: Can't creat regular expressions: %@", error.userInfo);
-        }
 
     }
 
@@ -171,7 +164,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             return nil;
         }
         *info = @{TMTShouldShowDBLPKey : @YES, TMTCompletionTypeKey : @(TMTCiteCompletion)};
-        charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+        charRange = [view.string extendedCiteEntryPrefixRangeFor:charRange];
         NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
         NSArray *bibFiles = [view.firstResponderDelegate model].bibFiles;
@@ -195,7 +188,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             return nil;
         }
         *info = @{TMTCompletionTypeKey : @(TMTRefCompletion)};
-        charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+        charRange = [view.string extendedCiteEntryPrefixRangeFor:charRange];
         NSString *prefix = [[view.string substringWithRange:charRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
         NSArray *mainDocuments = [view.firstResponderDelegate model].mainDocuments;
@@ -212,14 +205,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
         return matches;
     }
 
-    - (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)charRange
-    {
-        while (charRange.location > 0 && ![[view.string substringWithRange:NSMakeRange(charRange.location - 1, 1)] isEqualToString:@"{"] && ![[view.string substringWithRange:NSMakeRange(charRange.location - 1, 1)] isEqualToString:@","]) {
-            charRange.location--;
-            charRange.length++;
-        }
-        return charRange;
-    }
+
 
 
     - (NSArray *)commandCompletionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary * __autoreleasing *)info
@@ -281,8 +267,8 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                     return;
                 }
                 [view insertFinalCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
-                if (flag && [self isFinalInsertion:movement]) {
-                    [self skipClosingBracket];
+                if (flag && [view isFinalInsertion:movement]) {
+                    [view skipClosingBracket];
                 }
                 break;
             case TMTCiteCompletion:
@@ -299,36 +285,32 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
     - (void)insertCiteCompletion:(CiteCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
     {
-        if (flag && [self isFinalInsertion:movement]) {
+        if (flag && [view isFinalInsertion:movement]) {
             [view.undoManager beginUndoGrouping];
-            charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+            charRange = [view.string extendedCiteEntryPrefixRangeFor:charRange];
             [view setSelectedRange:charRange];
             [view delete:nil];
             [view insertText:completion.key];
             [view.undoManager endUndoGrouping];
-        } else {
-            //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     }
 
     - (void)insertRefCompletion:(OutlineElement *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
     {
-        if (flag && [self isFinalInsertion:movement]) {
+        if (flag && [view isFinalInsertion:movement]) {
             [view.undoManager beginUndoGrouping];
-            charRange = [self extendedCiteEntryPrefixRangeFor:charRange];
+            charRange = [view.string extendedCiteEntryPrefixRangeFor:charRange];
             [view setSelectedRange:charRange];
             [view delete:nil];
             [view insertText:completion.key];
             [view.undoManager endUndoGrouping];
-        } else {
-            //[view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
     }
 
     - (void)insertCommandCompletion:(CommandCompletion *)completion forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
     {
 
-        if (flag && [self isFinalInsertion:movement]) {
+        if (flag && [view isFinalInsertion:movement]) {
             completion.counter++;
             if ([completion hasPlaceholders] && self.shouldReplacePlaceholders) {
 
@@ -336,7 +318,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                 [view.undoManager beginUndoGrouping];
                 NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithString:[[completion insertion] substringWithRange:NSMakeRange(1, completion.insertion.length - 1)]];
                 if (!(view.currentModifierFlags & NSAlternateKeyMask)) {
-                    [final appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
+                    [final appendAttributedString:[view expandWhiteSpaces:completion.substitutedExtension]];
                 }
                 [view setSelectedRange:NSUnionRange(view.selectedRange, charRange)];
                 [view delete:nil];
@@ -365,7 +347,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
         if (type != TMTBeginCompletion && type != TMTNoCompletion) {
             return;
         }
-        if (!flag || ![self isFinalInsertion:movement]) {
+        if (!flag || ![view isFinalInsertion:movement]) {
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
             return;
         }
@@ -378,7 +360,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
             [view insertFinalCompletion:completion forPartialWordRange:charRange movement:movement isFinal:flag];
         }
 
-        [self skipClosingBracket];
+        [view skipClosingBracket];
         NSUInteger position = [view selectedRange].location;
 
 
@@ -390,18 +372,18 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                 [string appendAttributedString:[completion substitutedFirstLineExtension]];
             }
             if ([completion hasExtension]) {
-                NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
-                NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
+                NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[NSString singleTab] attributes:nil];
+                NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.string lineBreakForPosition:view.selectedRange.location] attributes:nil];
                 if (self.shouldAutoIndentEnvironment) {
                     [string appendAttributedString:newLine];
                     [string appendAttributedString:singleTab];
                 }
                 if (completion && [completion hasPlaceholders] && self.shouldReplacePlaceholders) {
-                    [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
+                    [string appendAttributedString:[view expandWhiteSpaces:completion.substitutedExtension]];
                 }
             }
             if (self.shouldAutoIndentEnvironment && [completion hasExtension]) {
-                [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil]];
+                [string appendAttributedString:[[NSAttributedString alloc] initWithString:[view.string lineBreakForPosition:view.selectedRange.location] attributes:nil]];
             }
             [string appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\\end{%@}", completion.insertion] attributes:nil]];
 
@@ -417,56 +399,12 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
     }
 
-    - (NSAttributedString *)expandWhiteSpacesInAttrString:(NSAttributedString *)string
-    {
-        NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant singleTab] attributes:nil];
-        NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[view.codeNavigationAssistant lineBreak] attributes:nil];
-        NSMutableAttributedString *extension = [string mutableCopy];
-        NSArray *tabs = [TAB_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
-        for (NSTextCheckingResult *r in [tabs reverseObjectEnumerator]) {
-            [extension replaceCharactersInRange:r.range withAttributedString:singleTab];
-        }
-        NSArray *newlines = [NEW_LINE_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
-        for (NSTextCheckingResult *r in [newlines reverseObjectEnumerator]) {
-            [extension replaceCharactersInRange:r.range withAttributedString:newLine];
-        }
-        return extension;
-    }
-
-    - (void)skipClosingBracket
-    {
-        NSUInteger position = [view selectedRange].location;
-        if (position < view.string.length) {
-            NSRange r = NSMakeRange(position, 1);
-            if ([[view.string substringWithRange:r] isEqualToString:@"}"]) {
-                [view setSelectedRange:NSMakeRange(position + 1, 0)];
-            }
-        }
-    }
 
     - (NSArray *)completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
     {
         return nil;
     }
 
-
-    - (BOOL)isFinalInsertion:(NSUInteger)movement
-    {
-        switch (movement) {
-            case NSTabTextMovement:
-                return YES;
-                break;
-            case NSRightTextMovement:
-                return YES;
-                break;
-            case NSReturnTextMovement:
-                return YES;
-                break;
-            default:
-                return NO;
-                break;
-        }
-    }
 
     - (BOOL)willHandleCompletionForPartialWordRange:(NSRange)charRange
     {

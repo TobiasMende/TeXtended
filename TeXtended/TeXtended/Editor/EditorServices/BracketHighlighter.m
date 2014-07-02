@@ -7,7 +7,7 @@
 //
 
 #import "BracketHighlighter.h"
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 #import "HighlightingTextView.h"
 #import "UndoSupport.h"
 #import <TMTHelperCollection/TMTLog.h>

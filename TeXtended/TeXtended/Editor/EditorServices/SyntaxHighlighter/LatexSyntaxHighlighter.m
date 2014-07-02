@@ -9,7 +9,7 @@
 #import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSSet *USER_DEFAULTS_BINDING_KEYS;

@@ -123,11 +123,7 @@
 
 
 
-/**
- Getter for the visible range
- @return the visible range
- */
-    - (NSRange)visibleRange;
+
 
 /**
  Method for finally inserting the completion
@@ -172,19 +168,6 @@
 
 
 
-
-/** Getter for the currently selected column
- 
- @return the selected column
- */
-    - (NSUInteger)currentCol;
-
-/** Getter for the column for the selected range
- @param range the range to get the column for.
- 
- @return the column of the provided ranges location
- */
-    - (NSUInteger)colForRange:(NSRange)range;
 
 /**
  Method for showing a given line in the view.

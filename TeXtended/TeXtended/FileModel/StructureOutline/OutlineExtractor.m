@@ -13,7 +13,7 @@
 #import "DocumentModel.h"
 #import "NSString+PathExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+TMTExtension.h"
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 
 static const NSDictionary *ELEMENT_EXTRACTOR_REGEX_LOOKUP;
 

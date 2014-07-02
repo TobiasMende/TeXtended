@@ -8,7 +8,7 @@
 
 #import "LatexSpellChecker.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 
 @interface LatexSpellChecker ()
 

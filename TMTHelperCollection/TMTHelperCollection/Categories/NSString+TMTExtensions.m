@@ -6,10 +6,19 @@
 //  Copyright (c) 2014 Tobias Mende. All rights reserved.
 //
 
-#import "NSString+TMTExtension.h"
+#import "NSString+TMTExtensions.h"
+#import "TMTLog.h"
 
-@implementation NSString (TMTExtension)
+static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 
+@implementation NSString (TMTExtensions)
+
+
+__attribute__((constructor))
+static void initialize_NSString_TMTExtensions()
+{
+    SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:NULL];
+}
 
     - (NSArray *)tmplineRanges
     {
@@ -58,4 +67,46 @@
     {
         return [self lineRangeForRange:NSMakeRange(position, 0)];
     }
+
+
+
+- (NSRange)lineTextRangeWithRange:(NSRange)range
+{
+    return [self lineTextRangeWithRange:range withLineTerminator:NO];
+}
+
+- (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag
+{
+    NSUInteger rangeStart, contentsEnd, rangeEnd;
+    NSRange result;
+    if (range.location != NSNotFound && NSMaxRange(range) <= self.length) {
+        [self getLineStart:&rangeStart end:&rangeEnd contentsEnd:&contentsEnd forRange:range];
+        
+        
+        if (flag) {
+            NSUInteger length = rangeEnd - rangeStart;
+            result = NSMakeRange(rangeStart, length);
+            
+        } else {
+            NSUInteger length = contentsEnd - rangeStart;
+            result = NSMakeRange(rangeStart, length);
+        }
+    } else {
+        result = NSMakeRange(NSNotFound, 0);
+        DDLogError(@"Error for provided range: %@", NSStringFromRange(range));
+    }
+    return result;
+}
+
+
+- (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange
+{
+    NSRange rangeOfFirstMatch = [SPACE_AT_LINE_BEGINNING rangeOfFirstMatchInString:self options:0 range:lineRange];
+    if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+        return [self substringWithRange:rangeOfFirstMatch];
+        
+    }
+    return @"";
+}
+
 @end

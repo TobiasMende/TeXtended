@@ -64,6 +64,7 @@
     {
         documentCreationController = [[DocumentCreationController alloc] init];
         preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+        
         [TMTLog customizeLogger];
 
     }

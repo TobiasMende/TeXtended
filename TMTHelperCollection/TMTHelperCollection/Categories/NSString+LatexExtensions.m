@@ -1,13 +1,13 @@
 //
-//  NSString+LatexExtension.m
+//  NSString+LatexExtensions.m
 //  SimpleSyntaxHighlightingTest
 //
 //  Created by Tobias Mende on 11.04.13.
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import "NSString+LatexExtension.h"
-#import "NSString+TMTExtension.h"
+#import "NSString+LatexExtensions.h"
+#import "NSString+TMTExtensions.h"
 
 static NSSet *COMPLETION_ESCAPE_INSERTIONS;
 
@@ -15,7 +15,7 @@ static NSRegularExpression *BLOCK_REGEX, *GOOD_BREAK_POSITIONS;
 
 #define COMMAND_PREFIX_SIZE 100
 
-@implementation NSString (LatexExtension)
+@implementation NSString (LatexExtensions)
 
     __attribute__((constructor))
     static void initialize_COMPLETION_ESCAPE_INSERTIONS()
@@ -194,6 +194,7 @@ static NSRegularExpression *BLOCK_REGEX, *GOOD_BREAK_POSITIONS;
             }
             currentPosition = NSMaxRange(next.range);
         }
+        return NSMakeRange(NSNotFound, 0);
     }
 
     - (NSRange)blockRangeForPosition:(NSUInteger)position
@@ -220,6 +221,15 @@ static NSRegularExpression *BLOCK_REGEX, *GOOD_BREAK_POSITIONS;
 
 -(NSArray *)goodPositionsToBreakInRange:(NSRange) range {
     return [GOOD_BREAK_POSITIONS matchesInString:self options:0 range:range];
+}
+
+- (NSRange)extendedCiteEntryPrefixRangeFor:(NSRange)charRange
+{
+    while (charRange.location > 0 && ![[self substringWithRange:NSMakeRange(charRange.location - 1, 1)] isEqualToString:@"{"] && ![[self substringWithRange:NSMakeRange(charRange.location - 1, 1)] isEqualToString:@","]) {
+        charRange.location--;
+        charRange.length++;
+    }
+    return charRange;
 }
 
 @end

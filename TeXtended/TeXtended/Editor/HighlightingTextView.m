@@ -10,7 +10,6 @@
 #import "LatexSyntaxHighlighter.h"
 #import "BracketHighlighter.h"
 #import "CodeNavigationAssistant.h"
-#import "NSString+LatexExtension.h"
 #import "PlaceholderServices.h"
 #import "Completion.h"
 #import "EnvironmentCompletion.h"
@@ -28,8 +27,11 @@
 #import "CompletionManager.h"
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
-#import "NSString+TMTExtension.h"
 #import "FirstResponderDelegate.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
+#import "NSTextView+TMTEditorExtension.h"
 
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 
@@ -127,16 +129,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         self.enableQuickPreviewAssistant = YES;
     }
 
-    - (NSRange)visibleRange
-    {
-        NSRect visibleRect = [self visibleRect];
-        NSLayoutManager *lm = [self layoutManager];
-        NSTextContainer *tc = [self textContainer];
 
-        NSRange glyphVisibleRange = [lm glyphRangeForBoundingRect:visibleRect inTextContainer:tc];;
-        NSRange charVisibleRange = [lm characterRangeForGlyphRange:glyphVisibleRange actualGlyphRange:nil];
-        return charVisibleRange;
-    }
 
 
     - (id)debugQuickLookObject {
@@ -307,9 +300,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)insertDropCompletion:(id)sender {
     if ([sender isKindOfClass:[NSMenuItem class]]) {
-        [self insertText:[completionHandler expandWhiteSpacesInAttrString:[sender representedObject]]];
+        [self insertText:[self expandWhiteSpaces:[sender representedObject]]];
     } else if([sender isKindOfClass:[NSAttributedString class]]) {
-        [self insertText:[completionHandler expandWhiteSpacesInAttrString:sender]];
+        [self insertText:[self expandWhiteSpaces:sender]];
 
     }
 }
@@ -380,7 +373,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 update = YES;
             }
             if (update) {
-                range = [self.codeNavigationAssistant lineTextRangeWithRange:range withLineTerminator:YES];
+                range = [self.string lineTextRangeWithRange:range withLineTerminator:YES];
             } else {
                 break;
             }
@@ -390,7 +383,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     - (NSRange)extendedVisibleRange
     {
-        NSRange range = [self.codeNavigationAssistant lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
+        NSRange range = [self.string lineTextRangeWithRange:self.visibleRange withLineTerminator:YES];
 
         return [self extendRange:range byLines:5];
 
@@ -423,7 +416,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
         [bracketHighlighter handleBracketsOnInsertWithInsertion:str];
         NSRange lineRange = [self.string lineRangeForRange:self.selectedRange];
-        [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+        [self.string lineTextRangeWithRange:self.selectedRange];
         if ([self.codeNavigationAssistant handleWrappingInLine:lineRange]) {
             [self scrollRangeToVisible:self.selectedRange];
         }
@@ -567,27 +560,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     completionHandler.shouldReplacePlaceholders = enable;
 }
 
-
-    - (NSUInteger)currentCol
-    {
-        return [self colForRange:self.selectedRange];
-    }
-
-    - (NSUInteger)colForRange:(NSRange)range
-    {
-        NSUInteger location = 0;
-
-        NSRange window = NSMakeRange(range.location, 1);
-        while (window.location > 0 && NSMaxRange(window) < self.string.length) {
-            if ([[self.string substringWithRange:window] isEqualToString:@"\n"]) {
-                return location;
-            } else {
-                location++;
-                window.location--;
-            }
-        }
-        return location;
-    }
 
 
 #pragma mark -
@@ -756,7 +728,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (self.selectedRanges.count != 1) {
             return;
         }
-        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
+        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
 
         [self.undoSupport deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
 
@@ -768,11 +740,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (self.selectedRanges.count != 1) {
             return;
         }
-        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
         if (NSMaxRange(totalRange) < self.string.length) {
             stopTextDidChangeNotifications = YES;
             NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-            NSRange nextLine = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(NSMaxRange(totalRange) + 1, 0)];
+            NSRange nextLine = [self.string lineTextRangeWithRange:NSMakeRange(NSMaxRange(totalRange) + 1, 0)];
             [self.undoManager beginUndoGrouping];
             [self swapTextIn:totalRange and:nextLine];
             [self setSelectedRange:[self firstRangeAfterSwapping:totalRange and:nextLine]];
@@ -786,10 +758,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (BOOL)respondsToSelector:(SEL)aSelector
     {
         if (aSelector == @selector(moveLinesUp:)) {
-            NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+            NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
             return totalRange.location != 0;
         } else if (aSelector == @selector(moveLinesDown:)) {
-            NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+            NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
             return NSMaxRange(totalRange) < self.string.length;
         } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
             return self.selectedRanges.count == 1;
@@ -808,11 +780,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         if (self.selectedRanges.count != 1) {
             return;
         }
-        NSRange totalRange = [self.codeNavigationAssistant lineTextRangeWithRange:self.selectedRange];
+        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
         if (totalRange.location > 0) {
             stopTextDidChangeNotifications = YES;
             NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-            NSRange lineBefore = [self.codeNavigationAssistant lineTextRangeWithRange:NSMakeRange(totalRange.location - 1, 0)];
+            NSRange lineBefore = [self.string lineTextRangeWithRange:NSMakeRange(totalRange.location - 1, 0)];
             [self.undoManager beginUndoGrouping];
             [self swapTextIn:lineBefore and:totalRange];
             [self setSelectedRange:NSMakeRange(lineBefore.location, totalRange.length)];
@@ -1003,26 +975,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
-    - (NSUInteger)characterIndexOfPoint:(NSPoint)aPoint
-    {
-        NSUInteger glyphIndex;
-        NSLayoutManager *layoutManager = [self layoutManager];
-        CGFloat fraction;
-        NSRange range;
 
-        range = [layoutManager glyphRangeForTextContainer:[self textContainer]];
-        aPoint.x -= [self textContainerOrigin].x;
-        aPoint.y -= [self textContainerOrigin].y;
-        glyphIndex = [layoutManager glyphIndexForPoint:aPoint
-                                       inTextContainer:[self textContainer]
-                        fractionOfDistanceThroughGlyph:&fraction];
-
-        if (glyphIndex == NSMaxRange(range) - 1)
-            return [[self textStorage]
-                    length];
-        else return [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-
-    }
 
 #pragma mark -
 #pragma mark Drawing Actions

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 @class HighlightingTextView;
 
 /**

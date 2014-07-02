@@ -14,7 +14,7 @@
 #import "NSString+PathExtension.h"
 #import "NSString+RegexReplace.h"
 #import "NSString+RNTextStatistics.h"
-#import "NSString+TMTExtension.h"
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 
 @interface NSString_Categories_Test : XCTestCase
 

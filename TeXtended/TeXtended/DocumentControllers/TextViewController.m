@@ -20,6 +20,7 @@
 #import "NSAttributedString+Replace.h"
 #import "OutlineExtractor.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 
 /** Delay for message collection updates in seconds */
 static const double MESSAGE_UPDATE_DELAY = 1.5;
