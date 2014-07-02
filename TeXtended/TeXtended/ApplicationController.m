@@ -24,6 +24,7 @@
 #import "SimpleDocument.h"
 #import "ProjectDocument.h";
 #import <Quartz/Quartz.h>
+#import "StartScreenWindowController.h"
 
 
 @interface ApplicationController ()
@@ -317,37 +318,13 @@
         NSMenuItem *clearRecentItem = [openRecent.submenu.itemArray lastObject];
         [openRecent.submenu removeItem:clearRecentItem];
         
-        DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
-        NSArray *recentSimpleDocumentURLs = dc.recentSimpleDocumentsURLs;
-        NSArray *recentProjectDocumentURLs = dc.recentProjectDocumentsURLs;
-        
-        // Add section for Simple Documents:
-        NSImage *image = [NSImage imageNamed:@"texicon"];
-        image.size = NSMakeSize(16,16);
-        for (NSURL *url in recentSimpleDocumentURLs) {
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[[url path] lastPathComponent] action:@selector(openRecent:) keyEquivalent:@""];
-            item.representedObject = url;
-            item.target = self;
-            item.image = image;
-            item.toolTip = url.path;
-            [openRecentItems addItem:item];
-        }
-        if (recentSimpleDocumentURLs.count > 0) {
+        if ([self addRecentSimpleDocumentsTo:openRecentItems].count > 0) {
             [openRecentItems addItem:[NSMenuItem separatorItem]];
         }
         
         // Add section for Project Documents:
-        image = [NSImage imageNamed:@"projecticon"];
-        image.size = NSMakeSize(16,16);
-        for (NSURL *url in recentProjectDocumentURLs) {
-            NSString *title = [[[url path] lastPathComponent] stringByDeletingPathExtension];
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(openRecent:) keyEquivalent:@""];
-            item.representedObject = url;
-            item.target = self;
-            item.image = image;
-            [openRecentItems addItem:item];
-        }
-        if (recentProjectDocumentURLs.count > 0) {
+        
+        if ([self addRecentProjectDocumentsTo:openRecentItems].count > 0) {
             [openRecentItems addItem:[NSMenuItem separatorItem]];
         }
         
@@ -356,6 +333,39 @@
         [openRecent setSubmenu:openRecentItems];
         
     }
+}
+
+- (NSArray *)addRecentSimpleDocumentsTo:(NSMenu *)menu {
+    // Add section for Simple Documents:
+    DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
+    NSArray *recentSimpleDocumentURLs = dc.recentSimpleDocumentsURLs;
+    NSImage *image = [NSImage imageNamed:@"texicon"];
+    image.size = NSMakeSize(16,16);
+    for (NSURL *url in recentSimpleDocumentURLs) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[[url path] lastPathComponent] action:@selector(openRecent:) keyEquivalent:@""];
+        item.representedObject = url;
+        item.target = self;
+        item.image = image;
+        item.toolTip = url.path;
+        [menu addItem:item];
+    }
+    return recentSimpleDocumentURLs;
+}
+
+- (NSArray *)addRecentProjectDocumentsTo:(NSMenu *)menu {
+    DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
+     NSArray *recentProjectDocumentURLs = dc.recentProjectDocumentsURLs;
+    NSImage *image = [NSImage imageNamed:@"projecticon"];
+    image.size = NSMakeSize(16,16);
+    for (NSURL *url in recentProjectDocumentURLs) {
+        NSString *title = [[[url path] lastPathComponent] stringByDeletingPathExtension];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(openRecent:) keyEquivalent:@""];
+        item.representedObject = url;
+        item.target = self;
+        item.image = image;
+        [menu addItem:item];
+    }
+    return  recentProjectDocumentURLs;
 }
 
 - (NSMenu *)fileMenu {
@@ -382,6 +392,14 @@
     } else {
         NSBeep();
     }
+}
+
+- (BOOL)applicationOpenUntitledFile:(NSApplication *)sender {
+    if (!startScreenController) {
+        startScreenController = [StartScreenWindowController new];
+    }
+    [startScreenController showWindow:self];
+    return YES;
 }
 
 
