@@ -469,6 +469,10 @@ static NSArray *INTERNAL_EXTENSIONS;
             NSFileManager *fm = [NSFileManager defaultManager];
             for (NSURL *url in objects) {
                 NSError *moveError;
+                if ([url.path.stringByDeletingLastPathComponent isEqualToString:destPath]) {
+                    // ignore drops in same directory
+                    continue;
+                }
                 BOOL success = [fm moveItemAtURL:url toURL:[destination URLByAppendingPathComponent:url.lastPathComponent] error:&moveError];
                 if (!success) {
                     [failedURLS addObject:url];
