@@ -40,15 +40,6 @@
     [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
     
 }
-
-
-- (void)cancelOperation:(id)sender {
-    if (self.delegate && self.cancelOpSelector) {
-        [self.delegate performSelector:self.cancelOpSelector withObject:sender];
-    } else if(self.nextResponder && [self.nextResponder respondsToSelector:@selector(cancelOperation:)]){
-        [self.nextResponder cancelOperation:sender];
-    }
-}
 - (void)updateSyntaxHighlighting
 {
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];

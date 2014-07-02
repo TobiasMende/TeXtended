@@ -12,7 +12,6 @@
 @interface LightHighlightingTextView : NSTextView
 /** The syntax highlighter */
 @property (strong) id <SyntaxHighlighter> syntaxHighlighter;
-@property SEL cancelOpSelector;
 
 - (void)updateSyntaxHighlighting;
 - (NSRange)extendedVisibleRange;
