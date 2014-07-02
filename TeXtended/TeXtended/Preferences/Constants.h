@@ -194,6 +194,10 @@
 
 #define TMT_XATTR_TextSelectedRange @"TMTTextSelectedRange"
 #define TMT_XATTR_LineBookmarks @"TMTLineBookmarks"
+#define TMT_XATTR_LiveCompileEnabled @"TMTLiveCompileEnabled"
+#define TMT_XATTR_LiveCompiler @"TMTLiveCompiler"
+#define TMT_XATTR_DraftCompiler @"TMTDraftCompiler"
+#define TMT_XATTR_FinalCompiler @"TMTFinalCompiler"
 // --------------------------------------------------------------------------------
 # pragma mark - Global Enumerations
 

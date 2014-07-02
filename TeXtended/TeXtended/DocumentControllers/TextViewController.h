@@ -87,5 +87,6 @@
  */
     - (void)removeDelegateObserver:(id <TextViewObserver>)observer;
 
+- (void)firstResponderIsDeallocating;
 
 @end

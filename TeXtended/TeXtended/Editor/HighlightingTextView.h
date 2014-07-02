@@ -11,6 +11,7 @@
 #import "SyntaxHighlighter.h"
 #import "FirstResponderDelegate.h"
 #import "CompletionProtocol.h"
+#import "LightHighlightingTextView.h"
 
 @class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
 
@@ -21,7 +22,7 @@
  
  */
 
-@interface HighlightingTextView : NSTextView
+@interface HighlightingTextView : LightHighlightingTextView
     {
         /** The SyntaxHighlighter highlights latex code by regular expressions */
 
@@ -63,8 +64,7 @@
 /** The code navigation assistant */
     @property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
 
-/** The syntax highlighter */
-    @property (strong) id <SyntaxHighlighter> syntaxHighlighter;
+
 
 /** The code extension engine, adding linking like texdoc etc. */
     @property (strong) CodeExtensionEngine *codeExtensionEngine;
@@ -121,10 +121,6 @@
  */
     - (IBAction)moveLinesUp:(id)sender;
 
-/**
- Called when the syntax highlighting should be updated
- */
-    - (void)updateSyntaxHighlighting;
 
 
 /**
@@ -174,14 +170,7 @@
  */
     - (IBAction)uncommentSelection:(id)sender;
 
-/**
- Getter for an extended visible range (adding some additional lines at begin and end of the visible range)
- 
- @return a range which has a larger size or the same size as the visible range.
- */
-    - (NSRange)extendedVisibleRange;
 
-    - (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines;
 
 
 /** Getter for the currently selected column
@@ -274,5 +263,7 @@
     - (IBAction)gotoBlockBegin:(id)sender;
 
     - (IBAction)gotoBlockEnd:(id)sender;
+
+- (void)setPlaceholderReplacementEnabled:(BOOL)enable;
 
 @end

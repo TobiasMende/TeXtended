@@ -7,6 +7,7 @@
 //
 
 #import "TMTTableView.h"
+#import "TMTTableViewDelegate.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -49,6 +50,16 @@
 
         [super rightMouseDown:theEvent];
     }
+
+- (void)editColumn:(NSInteger)column row:(NSInteger)row withEvent:(NSEvent *)theEvent select:(BOOL)select {
+    BOOL handled = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tableView:editColumn:row:withEvent:select:)]) {
+        handled = [(id<TMTTableViewDelegate>)self.delegate tableView:self editColumn:column row:row withEvent:theEvent select:select];
+    }
+    if (!handled){
+        [super editColumn:column row:row withEvent:theEvent select:select];
+    }
+}
 
 
     - (BOOL)isOpaque

@@ -14,6 +14,7 @@
 #import "OutlineTabViewController.h"
 #import "NSFileManager+TMTExtension.h"
 #import "TMTTabViewItem.h"
+#import "TMTTabManager.h"
 
 static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
@@ -180,9 +181,14 @@ static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.window.title);
         [self.outlineController windowIsGoingToDie];
+        [[TMTTabManager sharedTabManager] removeTabViewController:self.firsTabViewController];
+        [[TMTTabManager sharedTabManager] removeTabViewController:self.secondTabViewController];
+        
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTViewOrderAppearance];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
 
     }
 

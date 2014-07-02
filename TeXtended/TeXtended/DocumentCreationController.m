@@ -12,6 +12,7 @@
 #import "ProjectModel.h"
 #import "EncodingController.h"
 #import "SimpleDocument.h"
+#import "ApplicationController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "ProjectCreationWindowController.h"
 
@@ -74,8 +75,15 @@
             }
         };
         [self.projectCreationWindowController showWindow:self];
-        // TODO: initialize the project creation controller.
     }
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem {
+    NSMenuItem *parent = [(NSMenuItem *)anItem parentItem];
+    if ([parent.submenu isEqual:[ApplicationController sharedApplicationController].fileMenu]) {
+        [[ApplicationController sharedApplicationController] updateRecentDocuments];
+    }
+    return [super validateUserInterfaceItem:anItem];
+}
 
 # pragma mark - Searching and Showing TexDocuments
 
@@ -166,5 +174,35 @@
         }];
     }
 
+
+#pragma mark - Recent Documents
+
+- (NSArray *) recentSimpleDocumentsURLs {
+    NSArray *recentDocuments = [self recentDocumentURLs];
+    NSIndexSet *recentTexDocuments = [recentDocuments indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSURL *url = (NSURL *)obj;
+        NSString *type = [[DocumentCreationController sharedDocumentController] typeForContentsOfURL:url error:nil];
+        if (type && [[DocumentCreationController sharedDocumentController] documentClassForType:type] == [SimpleDocument class]) {
+            return YES;
+        }
+        return NO;
+    }];
+    
+    return [recentDocuments objectsAtIndexes:recentTexDocuments];
+}
+
+- (NSArray *)recentProjectDocumentsURLs {
+    NSArray *recentDocuments = [self recentDocumentURLs];
+    
+    NSIndexSet *recentProjectDocuments = [recentDocuments indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSURL *url = (NSURL *)obj;
+        NSString *type = [[DocumentCreationController sharedDocumentController] typeForContentsOfURL:url error:nil];
+        if (type && [[DocumentCreationController sharedDocumentController] documentClassForType:type] == [ProjectDocument class]) {
+            return YES;
+        }
+        return NO;
+    }];
+    return [recentDocuments objectsAtIndexes:recentProjectDocuments];
+}
 
 @end

@@ -54,6 +54,8 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.path);
+        [self.outlineView setViewController:nil];
         [self.document removeObserver:self forKeyPath:FILE_KEY_PATH];
         [PathObserverFactory removeObserver:self];
     }

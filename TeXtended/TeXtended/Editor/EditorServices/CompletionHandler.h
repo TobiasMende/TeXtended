@@ -27,6 +27,8 @@
 
     @property BOOL shouldCompleteRefs;
 
+    @property BOOL shouldReplacePlaceholders;
+
 /**
  Method for retreiving matching completions for a given word.
  

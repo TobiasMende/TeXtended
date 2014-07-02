@@ -36,6 +36,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 @interface DocumentModel ()
 
     - (void)initDefaults;
+    - (void)initSingleDocumentDefaults;
 
     - (void)updateMessages:(NSArray *)messages;
 
@@ -45,8 +46,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)unsyncProjectState;
 
-- (void)saveXAttributes;
-- (void)loadXAttributes;
+- (void)saveTextSpecificXAttributes;
+- (void)loadTextSpecificXAttributes;
+- (void)saveModelSpecificXAttributes;
+- (void)loadModelSpecificXAttributes;
 - (void)clearInvalidLineBookmakrs;
 
     @property __DocumentModelProjectSyncState *__projectSyncState;
@@ -61,6 +64,9 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     {
         DDLogInfo(@"dealloc [%@]", self.texPath);
         [_filePresenter terminate];
+        if (self.texPath && [[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
+            [self saveModelSpecificXAttributes];
+        }
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
         [self unsyncProjectState];
@@ -158,6 +164,12 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         [self updateCompileSettingBindings:draft];
         [self updateCompileSettingBindings:final];
     }
+
+- (void)initSingleDocumentDefaults {
+    if (!self.project) {
+        [self loadModelSpecificXAttributes];
+    }
+}
 
     - (void)initProjectSyncState
     {
@@ -270,7 +282,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         if (content == nil && error != NULL) {
             *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message" : @"Can't read file"}];
         } else {
-            [self loadXAttributes];
+            [self loadTextSpecificXAttributes];
         }
         return content;
     }
@@ -304,14 +316,16 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         if (success) {
-            [self saveXAttributes];
+            [self saveTextSpecificXAttributes];
+            [self saveModelSpecificXAttributes];
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
         }
         return success;
     }
 
+#pragma mark - XATTR handling
 
-- (void)saveXAttributes {
+- (void)saveTextSpecificXAttributes {
     NSError *error = nil;
     if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
         DDLogError(@"Can't set xattr for line bookmarks: ", error.userInfo);
@@ -323,7 +337,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     }
 }
 
-- (void)loadXAttributes {
+- (void)loadTextSpecificXAttributes {
     NSString *path = self.texPath ? self.texPath : self.systemPath;
     NSString *lineData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
     if (lineData) {
@@ -335,6 +349,55 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     NSString *selectedRangeData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_TextSelectedRange error:NULL];
     if (selectedRangeData) {
         self.selectedRange = NSRangeFromString(selectedRangeData);
+    }
+}
+
+
+- (void)loadModelSpecificXAttributes {
+    if (!self.texPath) {
+        return;
+    }
+    NSString *liveCompileData = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompileEnabled error:nil];
+    if (liveCompileData) {
+        self.liveCompile = @([liveCompileData boolValue]);
+    }
+    NSString *liveCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler error:nil];
+    if (liveCompilerJSON) {
+        self.hasLiveCompiler = YES;
+        self.liveCompiler = [CompileSetting fromJSONString:liveCompilerJSON];
+    }
+    NSString *draftCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler error:nil];
+    if (draftCompilerJSON) {
+        self.hasDraftCompiler = YES;
+        self.draftCompiler = [CompileSetting fromJSONString:draftCompilerJSON];
+    }
+    NSString *finalCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler error:nil];
+    if (finalCompilerJSON) {
+        self.hasFinalCompiler = YES;
+        self.finalCompiler = [CompileSetting fromJSONString:finalCompilerJSON];
+    }
+    
+}
+
+- (void)saveModelSpecificXAttributes {
+    if (!self.texPath || self.project) {
+        return;
+    }
+    [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompileEnabled value:[NSString stringWithFormat:@"%@", self.liveCompile] error:nil];
+    if (self.hasLiveCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler value:self.liveCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler error:nil];
+    }
+    if (self.hasDraftCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler value:self.draftCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler error:nil];
+    }
+    if (self.hasFinalCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler value:self.finalCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler error:nil];
     }
 }
 
@@ -382,7 +445,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (DocumentModel *)currentMainDocument
     {
         if (!_currentMainDocument) {
-            self.currentMainDocument = self.mainDocuments.firstObject;
+            return self.mainDocuments.firstObject;
         }
         return _currentMainDocument;
     }
@@ -518,6 +581,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             _texPath = texPath;
             if ([_texPath isAbsolutePath]) {
                 [_filePresenter setPath:texPath];
+                [self initSingleDocumentDefaults];
                 [self buildOutline];
             }
         }

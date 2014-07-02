@@ -132,6 +132,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
             self.shouldAutoIndentEnvironment = [[[defaults values] valueForKey:TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS] boolValue];
             [self bind:@"shouldAutoIndentEnvironment" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS] options:NULL];
+            self.shouldReplacePlaceholders = YES;
         }
         return self;
     }
@@ -329,7 +330,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
         if (flag && [self isFinalInsertion:movement]) {
             completion.counter++;
-            if ([completion hasPlaceholders]) {
+            if ([completion hasPlaceholders] && self.shouldReplacePlaceholders) {
 
 
                 [view.undoManager beginUndoGrouping];
@@ -395,7 +396,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
                     [string appendAttributedString:newLine];
                     [string appendAttributedString:singleTab];
                 }
-                if (completion && [completion hasPlaceholders]) {
+                if (completion && [completion hasPlaceholders] && self.shouldReplacePlaceholders) {
                     [string appendAttributedString:[self expandWhiteSpacesInAttrString:[completion substitutedExtension]]];
                 }
             }
@@ -406,7 +407,7 @@ static const NSRegularExpression *TAB_REGEX, *NEW_LINE_REGEX;
 
             [view insertText:string];
             [view setSelectedRange:NSMakeRange(position, 0)];
-            if ([completion hasPlaceholders]) {
+            if ([completion hasPlaceholders] && self.shouldReplacePlaceholders) {
                 [view setSelectedRange:NSMakeRange(position, 0)];
                 [view jumpToNextPlaceholder];
             }

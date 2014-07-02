@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@protocol TMTTableViewDelegate;
 @class CompletionManager, TMTArrayController;
 
 /**
@@ -20,9 +20,9 @@
  
  @warning *Important:* Due to the fact that this class deals with files in the application support folder. There can't be more than one instance of the CompletionsController. To ensure this fact, it's designed as singleton. Therefor calling [CompletionsController init] doesn't create a new instance if one exists.
  */
-@interface CompletionsController : NSObject <NSTableViewDelegate>
+@interface CompletionsController : NSObject <TMTTableViewDelegate,NSPopoverDelegate>
     {
-
+        NSPopover *popover;
     }
 
     @property (assign) CompletionManager *manager;

@@ -20,6 +20,7 @@ target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
     pod 'DMInspectorPalette'
     pod 'OTMXAttribute'
+    pod 'JSONKit-NoWarning'
 end
 
 target 'TeXtended Tests', :exclusive => true do

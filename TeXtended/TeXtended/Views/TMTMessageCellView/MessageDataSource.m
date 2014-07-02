@@ -155,10 +155,7 @@
             NSArray *messages = [_model mergedGlobalMessages];
             if (messages) {
                 self.messages = messages;
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^
-                {
-                    [self.tableView reloadData];
-                }];
+                [[NSOperationQueue mainQueue] addOperation:[[NSInvocationOperation alloc] initWithTarget:self.tableView selector:@selector(reloadData) object:nil]];
             }
         }
     }

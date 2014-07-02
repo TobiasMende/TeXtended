@@ -318,10 +318,17 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark -
 #pragma mark Dealloc
 
+- (void)firstResponderIsDeallocating {
+    [messageUpdateTimer invalidate];
+    [lacheck terminate];
+    [chktex terminate];
+    self.firstResponderDelegate = nil;
+}
+
     - (void)dealloc
     {
-        [lacheck terminate];
-        [chktex terminate];
+        DDLogVerbose(@"dealloc [%@]", self.model.path);
+        
         [self unregisterModelObserver];
         NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
         if (item) {

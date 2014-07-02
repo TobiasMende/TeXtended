@@ -21,6 +21,8 @@
 #import "CompletionManager.h"
 #import "TemplateController.h"
 #import "Template.h"
+#import "SimpleDocument.h"
+#import "ProjectDocument.h";
 #import <Quartz/Quartz.h>
 
 
@@ -65,9 +67,6 @@
 
     }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    
-}
 
 
     - (void)applicationWillTerminate:(NSNotification *)notification
@@ -304,5 +303,86 @@
             [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
         }
     }
+
+#pragma mark - Open Recent Menu Hack
+
+- (void)updateRecentDocuments {
+    
+    NSMenuItem *openRecent = self.openRecentMenuItem;
+    if (openRecent && openRecent.hasSubmenu) {
+        // Creating a new OpenRecent menu with custom entries
+        NSMenu *openRecentItems = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"Open Recent", @"")];
+        
+        // Get the "Clear Recent" item (add it later)
+        NSMenuItem *clearRecentItem = [openRecent.submenu.itemArray lastObject];
+        [openRecent.submenu removeItem:clearRecentItem];
+        
+        DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
+        NSArray *recentSimpleDocumentURLs = dc.recentSimpleDocumentsURLs;
+        NSArray *recentProjectDocumentURLs = dc.recentProjectDocumentsURLs;
+        
+        // Add section for Simple Documents:
+        NSImage *image = [NSImage imageNamed:@"texicon"];
+        image.size = NSMakeSize(16,16);
+        for (NSURL *url in recentSimpleDocumentURLs) {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[[url path] lastPathComponent] action:@selector(openRecent:) keyEquivalent:@""];
+            item.representedObject = url;
+            item.target = self;
+            item.image = image;
+            item.toolTip = url.path;
+            [openRecentItems addItem:item];
+        }
+        if (recentSimpleDocumentURLs.count > 0) {
+            [openRecentItems addItem:[NSMenuItem separatorItem]];
+        }
+        
+        // Add section for Project Documents:
+        image = [NSImage imageNamed:@"projecticon"];
+        image.size = NSMakeSize(16,16);
+        for (NSURL *url in recentProjectDocumentURLs) {
+            NSString *title = [[[url path] lastPathComponent] stringByDeletingPathExtension];
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(openRecent:) keyEquivalent:@""];
+            item.representedObject = url;
+            item.target = self;
+            item.image = image;
+            [openRecentItems addItem:item];
+        }
+        if (recentProjectDocumentURLs.count > 0) {
+            [openRecentItems addItem:[NSMenuItem separatorItem]];
+        }
+        
+        // Add "Clear Recent" from old menu and set new submenu:
+        [openRecentItems addItem:clearRecentItem];
+        [openRecent setSubmenu:openRecentItems];
+        
+    }
+}
+
+- (NSMenu *)fileMenu {
+    return [[[[NSApplication sharedApplication] mainMenu] itemAtIndex:1] submenu];
+}
+
+- (NSMenuItem *)openRecentMenuItem {
+    NSMenu *fileMenu = self.fileMenu;
+    NSInteger openDocumentMenuItemIndex = [fileMenu indexOfItemWithTarget:nil andAction:@selector(openDocument:)];
+    
+    if (openDocumentMenuItemIndex>=0) {
+        // APPLE'S COMMENT: We'll presume it's the Open Recent menu item, because this is
+        // APPLE'S COMMENT: the heuristic that NSDocumentController uses to add it to the
+        // APPLE'S COMMENT: File menu
+        return [fileMenu itemAtIndex:openDocumentMenuItemIndex+1];
+    }
+    return nil;
+}
+
+- (void)openRecent:(id)sender {
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+        NSURL *url = [((NSMenuItem *)sender) representedObject];
+        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:nil];
+    } else {
+        NSBeep();
+    }
+}
+
 
 @end
