@@ -588,7 +588,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                     [self dismissCompletionWindow];
                     break;
                 case TMTReturnKeyCode: { // Brackets are needed here due to compiler issues
-                    if (autoCompletionController.tableView.selectedRow >= autoCompletionController.content.count) {
+                    if (autoCompletionController.tableView.selectedRow >= (NSInteger)autoCompletionController.content.count) {
                         if ([(autoCompletionController.additionalInformation)[TMTShouldShowDBLPKey] boolValue]) {
                             [self showDBLPSearchView];
                         }
@@ -778,7 +778,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)jumpNextAnchor:(id)sender
     {
         NSUInteger current = [self currentRow];
-        NSArray *anchors = self.lineNumberView.anchoredLines;
+        NSArray *anchors = [self.lineNumberView.anchoredLines allObjects];
         anchors = [anchors sortedArrayUsingSelector:@selector(compare:)];
         NSUInteger nextLine = NSNotFound;
         for (NSNumber *line in anchors) {
@@ -786,7 +786,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 nextLine = line.unsignedIntegerValue
                         ;
             }
-            if (line.integerValue > current) {
+            if (line.unsignedIntegerValue > current) {
                 nextLine = line.unsignedIntegerValue;
                 break;
             }
@@ -797,14 +797,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (void)jumpPreviousAnchor:(id)sender
     {
         NSUInteger current = [self currentRow];
-        NSArray *anchors = self.lineNumberView.anchoredLines;
+        NSArray *anchors = [self.lineNumberView.anchoredLines allObjects];
         anchors = [anchors sortedArrayUsingSelector:@selector(compare:)];
         NSUInteger nextLine = NSNotFound;
         for (NSNumber *line in [anchors reverseObjectEnumerator]) {
             if (nextLine == NSNotFound) {
                 nextLine = line.unsignedIntegerValue;
             }
-            if (line.integerValue < current) {
+            if (line.unsignedIntegerValue < current) {
                 nextLine = line.unsignedIntegerValue;
                 break;
             }

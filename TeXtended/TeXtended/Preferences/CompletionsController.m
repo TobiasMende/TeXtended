@@ -71,7 +71,7 @@ CompletionsController *instance;
 - (void)showPopoverForTable:(NSTableView *)tableView column:(NSTableColumn *)column row:(NSInteger)row {
     
     NSArray *completions = [self completionsForTable:tableView];
-    if (row < 0 || row >= completions.count) {
+    if (row < 0 || (NSUInteger)row >= completions.count) {
         return;
     }
     
@@ -88,7 +88,6 @@ CompletionsController *instance;
     popover.contentViewController = vc;
     vc.popover = popover;
     
-    NSCell *cell = [column dataCellForRow:row];
     NSRect rect = [tableView frameOfCellAtColumn:[tableView columnWithIdentifier:column.identifier] row:row];
     [popover showRelativeToRect:rect ofView:tableView preferredEdge:NSMaxYEdge];
 }

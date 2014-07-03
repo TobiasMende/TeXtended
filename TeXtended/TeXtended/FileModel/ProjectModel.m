@@ -18,7 +18,6 @@
 
 /** Method for configuring the default settings of a project
 *
-* @param context the context.
 *
 */
     - (void)initDefaults;
@@ -148,7 +147,7 @@
         return NSLocalizedString(@"Project", @"Project");
     }
 
-- (NSArray *)openDocuments {
+- (NSSet *)openDocuments {
     return [self.documents objectsPassingTest:^BOOL(id obj, BOOL *stop) {
         return [((DocumentModel *)obj) isDocumentOpened];
     }];
@@ -163,6 +162,17 @@
         }
     }
 
+
+- (void)addBibFileWithPath:(NSString *)path
+{
+    BibFile *file = [BibFile new];
+    
+    file.project = self;
+    file.path = path;
+    if (![self.bibFiles containsObject:file]) {
+        self.bibFiles = [self.bibFiles arrayByAddingObject:file];
+    }
+}
 #pragma mark - Collection Helpers
 
     - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate

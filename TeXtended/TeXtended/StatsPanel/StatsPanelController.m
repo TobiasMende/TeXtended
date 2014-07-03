@@ -38,7 +38,7 @@
         NSInteger words = [content wordCount];
         NSInteger sentences = [content sentenceCount];
         NSInteger letters = [content letterCount];
-        NSInteger symbols = [content length];
+        NSUInteger symbols = [content length];
         self.words = [NSString stringWithFormat:@"%ld", (long) words];
         self.sentences = [NSString stringWithFormat:@"%ld", (long) sentences];
         self.letters = [NSString stringWithFormat:@"%ld", (long) letters];

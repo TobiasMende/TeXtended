@@ -25,17 +25,17 @@
 #pragma mark - Actions
 
 - (IBAction)openNewDocument:(id)sender {
-    self.close;
+    [self close];
     [[DocumentCreationController sharedDocumentController] newDocument:nil];
 }
 
 - (IBAction)openNewProject:(id)sender {
-    self.close;
+    [self close];
     [[DocumentCreationController sharedDocumentController] newProject:nil];
 }
 
 - (IBAction)openTemplate:(id)sender {
-    self.close;
+    [self close];
     [[ApplicationController sharedApplicationController] showNewFromTemplate:nil];
 }
 
@@ -53,7 +53,7 @@
 }
 
 - (IBAction)openExistingDocumentOrProject:(id)sender {
-    self.close;
+    [self close];
     [[DocumentCreationController sharedDocumentController] openDocument:nil];
 }
 
@@ -82,7 +82,7 @@
 }
 
 - (void)openRecent:(id)sender {
-    self.close;
+    [self close];
     [[ApplicationController sharedApplicationController] openRecent:sender];
 }
 @end

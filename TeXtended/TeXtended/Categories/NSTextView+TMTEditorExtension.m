@@ -27,7 +27,7 @@ static void initialize_NSTextView_TMTEditorExtensions()
 {
     NSAttributedString *singleTab = [[NSAttributedString alloc] initWithString:[NSString singleTab] attributes:nil];
     NSAttributedString *newLine = [[NSAttributedString alloc] initWithString:[self.string lineBreakForPosition:self.selectedRange.location] attributes:nil];
-    NSMutableAttributedString *extension = [self mutableCopy];
+    NSMutableAttributedString *extension = [string mutableCopy];
     NSArray *tabs = [TAB_REGEX matchesInString:extension.string options:0 range:NSMakeRange(0, extension.string.length)];
     for (NSTextCheckingResult *r in [tabs reverseObjectEnumerator]) {
         [extension replaceCharactersInRange:r.range withAttributedString:singleTab];

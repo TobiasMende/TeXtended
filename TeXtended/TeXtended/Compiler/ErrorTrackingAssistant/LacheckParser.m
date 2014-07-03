@@ -19,8 +19,6 @@
  * This parses a document.
  *
  * @param path to the document
- * @param obj
- * @param action
  */
     - (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *))handler
     {
@@ -47,16 +45,16 @@
 
 
         [task setStandardOutput:[NSPipe pipe]];
-        [task setTerminationHandler:^(NSTask *task)
+        [task setTerminationHandler:^(NSTask *t)
         {
-            NSFileHandle *read = [task.standardOutput fileHandleForReading];
+            NSFileHandle *read = [t.standardOutput fileHandleForReading];
             NSData *dataRead = [read readDataToEndOfFile];
             NSString *stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
             NSArray *messages = [self parseOutput:stringRead withBaseDir:dirPath];
-            if (completionHandler) {
-                completionHandler(messages);
+            if (self->completionHandler) {
+                self->completionHandler(messages);
             }
-            task.terminationHandler = nil;
+            t.terminationHandler = nil;
         }];
 
         @try {
@@ -67,7 +65,6 @@
             DDLogVerbose(@"%@", [NSThread callStackSymbols]);
             completionHandler(nil);
         }
-#pragma clang diagnostic pop
 
     }
 

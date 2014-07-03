@@ -56,7 +56,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     {
         DDLogVerbose(@"dealloc [%@]", self.path);
         [self.outlineView setViewController:nil];
-        [self.document removeObserver:self forKeyPath:FILE_KEY_PATH];
+        [self.document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         [PathObserverFactory removeObserver:self];
     }
 
@@ -111,7 +111,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (MainDocument *)currentMainDocument
     {
         if ([self.document isKindOfClass:[MainDocument class]]) {
-            return self.document;
+            return (MainDocument *)self.document;
         }
         return nil;
     }
@@ -122,11 +122,11 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (void)setDocument:(NSDocument *)document
     {
         if (_document) {
-            [_document removeObserver:self forKeyPath:FILE_KEY_PATH];
+            [_document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         }
         _document = document;
         if (_document) {
-            [_document addObserver:self forKeyPath:FILE_KEY_PATH options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:nil];
+            [_document addObserver:self forKeyPath:FILE_KEY_PATH.copy options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:nil];
         }
     }
 
@@ -147,7 +147,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
     {
-        if ([keyPath isEqualToString:FILE_KEY_PATH]) {
+        if ([keyPath isEqualToString:FILE_KEY_PATH.copy]) {
             [self updatePath];
         }
     }
@@ -283,7 +283,7 @@ static NSArray *INTERNAL_EXTENSIONS;
             NSBeep();
             return;
         }
-        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)row] byExtendingSelection:NO];
 
         [self.outlineView editColumn:0 row:row withEvent:nil select:YES];
         // TODO: finish implementation
@@ -298,7 +298,6 @@ static NSArray *INTERNAL_EXTENSIONS;
         NSModalResponse response = [alert runModal];
 
         if (response == NSAlertDefaultReturn) {
-            NSError *error;
             const NSInteger currentRow = self.currentRow;
 
             [[NSWorkspace sharedWorkspace] recycleURLs:@[[NSURL fileURLWithPath:node.path]] completionHandler:^(NSDictionary *newURLs, NSError *error)
@@ -308,7 +307,7 @@ static NSArray *INTERNAL_EXTENSIONS;
                 }
                 [self buildTree];
                 NSInteger row = currentRow > 0 ? currentRow - 1 : currentRow;
-                [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+                [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)row] byExtendingSelection:NO];
             }];
         }
 
@@ -446,7 +445,6 @@ static NSArray *INTERNAL_EXTENSIONS;
             return NSDragOperationNone;
         }
         FileNode *node = [item representedObject];
-        id finalItem = item;
         if ([node isLeaf]) {
             NSTreeNode *parent = [item parentNode];
             if (parent) {
@@ -538,7 +536,6 @@ static NSArray *INTERNAL_EXTENSIONS;
     {
         [self.fileTree discardEditing];
         NSArray *expandedItems = [self.outlineView expandedItems];
-        NSError *error;
         FileNode *root = [FileNode fileNodeWithPath:self.path];
         self.contents = root.children;
         [self.fileTree rearrangeObjects];
@@ -636,12 +633,12 @@ static NSArray *INTERNAL_EXTENSIONS;
         FileNode *node = [FileNode new];
 
         node.path = [item previewItemURL].path;
-        NSInteger index = [self.contents indexOfObject:item];
+        NSUInteger index = [self.contents indexOfObject:item];
         if (index == NSNotFound) {
             return NSZeroRect;
         }
 
-        NSRect iconRect = [self.outlineView frameOfCellAtColumn:0 row:index];
+        NSRect iconRect = [self.outlineView frameOfCellAtColumn:0 row:(NSInteger)index];
 
         // check that the icon rect is visible on screen
         NSRect visibleRect = [self.outlineView visibleRect];

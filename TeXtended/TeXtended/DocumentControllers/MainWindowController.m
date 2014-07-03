@@ -16,7 +16,6 @@
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
 
-static const int REFRESH_LIVE_VIEW_TAG = 1001;
 
 @interface MainWindowController ()
 @end

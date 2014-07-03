@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@protocol TMTTableViewDelegate;
+#import <TMTHelperCollection/TMTTableViewDelegate.h>
 @class CompletionManager, TMTArrayController;
 
 /**

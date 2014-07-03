@@ -59,7 +59,7 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
             self = [self initWithInsertion:insertion];
         }
         if (self && counter) {
-            self.counter = [counter integerValue];
+            self.counter = (NSUInteger)[counter integerValue];
         }
         return self;
     }
@@ -187,7 +187,7 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
         if (self) {
             _insertion = [aDecoder decodeObjectForKey:TMTCompletionInsertionKey];
             _extension = [aDecoder decodeObjectForKey:TMTCompletionExtensionKey];
-            _counter = [aDecoder decodeIntegerForKey:TMTCompletionCounterKey];
+            _counter = (NSUInteger)[aDecoder decodeIntegerForKey:TMTCompletionCounterKey];
         }
         return self;
     }
@@ -197,13 +197,13 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
     {
         [aCoder encodeObject:self.insertion forKey:TMTCompletionInsertionKey];
         [aCoder encodeObject:self.extension forKey:TMTCompletionExtensionKey];
-        [aCoder encodeInteger:self.counter forKey:TMTCompletionCounterKey];
+        [aCoder encodeInteger:(NSInteger)self.counter forKey:TMTCompletionCounterKey];
     }
 
 
     - (NSMutableDictionary *)dictionaryRepresentation
     {
-        return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion, TMTCompletionInsertionKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithInteger:self.counter], TMTCompletionCounterKey, nil];
+        return [NSMutableDictionary dictionaryWithObjectsAndKeys:self.insertion, TMTCompletionInsertionKey, self.extension, TMTCompletionExtensionKey, [NSNumber numberWithUnsignedInteger:self.counter], TMTCompletionCounterKey, nil];
 
     }
 

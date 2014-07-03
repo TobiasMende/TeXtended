@@ -13,14 +13,16 @@
 
     - (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *messages))completionHandler
     {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
     - (NSArray *)parseContent:(NSString *)content forDocument:(NSString *)path
     {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
     - (BOOL)infoValid:(NSString *)info
@@ -30,8 +32,9 @@
 
     - (NSArray *)parseOutput:(NSString *)output withBaseDir:(NSString *)base
     {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                     userInfo:nil];
     }
 
     - (NSString *)absolutPath:(NSString *)path withBaseDir:(NSString *)base

@@ -22,7 +22,7 @@
 #import "TemplateController.h"
 #import "Template.h"
 #import "SimpleDocument.h"
-#import "ProjectDocument.h";
+#import "ProjectDocument.h"
 #import <Quartz/Quartz.h>
 #import "StartScreenWindowController.h"
 
@@ -32,9 +32,29 @@
     + (void)registerDefaults;
 
 
+
 @end
 
-@implementation ApplicationController
+@implementation ApplicationController {
+    /** references to the controller which handels the preferences window. */
+    PreferencesController *preferencesController;
+    
+    /** reference to the controller handling the creation and management of all documents in this application */
+    DocumentCreationController *documentCreationController;
+    
+    /** reference to the texdoc panel controller handling the app wide texdoc support */
+    TexdocPanelController *texdocPanelController;
+    
+    ConsoleWindowController *consoleWindowController;
+    
+    TemplateController *templateController;
+    
+    StartScreenWindowController *startScreenController;
+}
+
+
+
+
 
     + (void)initialize
     {

@@ -30,7 +30,6 @@
         if (self) {
             self.compileProcessHandler = controller;
             currentTasks = [NSMutableSet new];
-            weakSelf = self;
             // get the settings and observe them
             self.idleTimeForLiveCompile = 1.5;
         }
@@ -89,6 +88,7 @@
             }
             [currentTask setArguments:arguments];
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
+            __unsafe_unretained id weakSelf = self;
             [currentTask setTerminationHandler:^(NSTask *task)
             {
                 [weakSelf finishedCompilationTask:task forData:console];
@@ -170,7 +170,6 @@
 
     - (void)terminateAndKill
     {
-        weakSelf = nil;
         [self abort];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self.compileProcessHandler.textViewController removeDelegateObserver:self];

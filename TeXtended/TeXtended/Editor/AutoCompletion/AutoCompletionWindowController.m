@@ -120,7 +120,7 @@
     - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
     {
         CGFloat height;
-        if (row >= 0 && row < self.content.count) {
+        if (row >= 0 && (NSUInteger)row < self.content.count) {
             switch ([(self.additionalInformation)[TMTCompletionTypeKey] intValue]) {
                 case TMTCiteCompletion:
                     height = [CiteCompletionView defaultViewHeight];
@@ -176,7 +176,7 @@
     - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     {
 
-        if (row >= 0 && row < self.content.count) {
+        if (row >= 0 && (NSUInteger)row < self.content.count) {
             NSTableCellView *result = [self customTableCellViewFor:tableView andRow:row];
             tableView.rowHeight = [self tableView:tableView heightOfRow:row];
             id item = (self.content)[row];
@@ -220,7 +220,7 @@
     - (void)tableViewSelectionDidChange:(NSNotification *)notification
     {
         NSInteger currentIndex = self.tableView.selectedRow;
-        if (currentIndex >= self.content.count || currentIndex < 0) {
+        if (currentIndex < 0 || (NSUInteger)currentIndex >= self.content.count) {
             return;
         }
 

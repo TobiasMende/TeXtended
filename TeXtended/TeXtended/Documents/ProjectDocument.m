@@ -41,7 +41,7 @@
         return self;
     }
 
-    - (void)setModel:(ProjectDocument *)model
+    - (void)setModel:(ProjectModel *)model
     {
         if (_model) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:_model];
@@ -217,7 +217,7 @@
         }
         @catch (NSException *exception) {
 
-            NSAlert *alert = [NSAlert alertWithError:exception];
+            NSAlert *alert = [NSAlert alertWithMessageText:exception.name defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Exception Reason: %@",exception.reason];
             [alert setAlertStyle:NSWarningAlertStyle];
             [alert runModal];
             return;
@@ -237,11 +237,11 @@
         [panel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result)
                 {
                     if (result == NSFileHandlingPanelOKButton) {
-                        NSString *path = panel.URL.path;
+                        NSString *p = panel.URL.path;
                         NSError *error;
-                        [content writeToFile:path atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
+                        [content writeToFile:p atomically:YES encoding:[@([self.encController selection]) longValue] error:&error];
                         if (error) {
-                            DDLogError(@"Can't create document at %@: %@", path, error.userInfo);
+                            DDLogError(@"Can't create document at %@: %@", p, error.userInfo);
                         }
                     }
                 }];

@@ -23,7 +23,7 @@ static void initialize_NSTextView_TMTExtensions()
 
 
 
-- (BOOL)isFinalInsertion:(NSUInteger)movement
+- (BOOL)isFinalInsertion:(NSInteger)movement
 {
     switch (movement) {
         case NSTabTextMovement:

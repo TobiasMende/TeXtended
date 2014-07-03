@@ -17,7 +17,7 @@
  @return `YES` if the insertion is final, `NO` otherwise.
  
  */
-- (BOOL)isFinalInsertion:(NSUInteger)movement;
+- (BOOL)isFinalInsertion:(NSInteger)movement;
 
 
 #pragma mark - Comment & Uncomment

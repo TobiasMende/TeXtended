@@ -9,7 +9,7 @@
 #import "EditorService.h"
 #import "CompletionProtocol.h"
 
-@class Completion, EnvironmentCompletion, CiteCompletion;
+@class Completion, EnvironmentCompletion, CiteCompletion, OutlineElement;
 
 @interface CompletionHandler : EditorService
 
@@ -96,6 +96,6 @@
 
     - (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
-    - (void)insertRefCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+    - (void)insertRefCompletion:(OutlineElement *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
 @end

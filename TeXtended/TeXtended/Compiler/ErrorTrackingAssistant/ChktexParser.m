@@ -37,8 +37,6 @@ static const NSDictionary *DEBUG_NUMBERS;
  * This parses a document.
  *
  * @param path to the document
- * @param obj
- * @param action
  */
     - (void)parseDocument:(NSString *)path callbackBlock:(void (^)(NSArray *))handler
     {
@@ -60,16 +58,16 @@ static const NSDictionary *DEBUG_NUMBERS;
 
         [task setStandardOutput:[NSPipe pipe]];
         [task setStandardError:[NSPipe pipe]];
-        [task setTerminationHandler:^(NSTask *task)
+        [task setTerminationHandler:^(NSTask *t)
         {
-            NSFileHandle *read = [task.standardOutput fileHandleForReading];
+            NSFileHandle *read = [t.standardOutput fileHandleForReading];
             NSData *dataRead = [read readDataToEndOfFile];
             NSString *stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
             NSArray *messages = [self parseOutput:stringRead withBaseDir:dirPath];
-            if (completionHandler) {
-                completionHandler(messages);
+            if (self->completionHandler) {
+                self->completionHandler(messages);
             }
-            task.terminationHandler = nil;
+            t.terminationHandler = nil;
         }];
         @try {
             [task launch];
@@ -102,14 +100,14 @@ static const NSDictionary *DEBUG_NUMBERS;
                 continue;
             }
             NSString *path = [self absolutPath:components[0] withBaseDir:base];
-            NSUInteger line = [components[1] integerValue];
+            NSUInteger lineNumber = [components[1] integerValue];
             NSUInteger column = [components[2] integerValue];
             NSInteger warning = [components[3] integerValue];
             NSString *info = components[4];
             TMTTrackingMessageType type = [self typeForChktexNumber:warning];
 
             if (type <= thresh) {
-                TrackingMessage *m = [[TrackingMessage alloc] initMessage:type inDocument:path inLine:line withTitle:@"Chktex Warning" andInfo:info];
+                TrackingMessage *m = [[TrackingMessage alloc] initMessage:type inDocument:path inLine:lineNumber withTitle:@"Chktex Warning" andInfo:info];
                 m.furtherInfo = [self messageForChktexNumber:warning ofType:type];
                 m.column = column;
                 [collection addObject:m];

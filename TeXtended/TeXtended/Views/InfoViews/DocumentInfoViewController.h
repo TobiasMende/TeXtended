@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
-
+#import "ModelInfoViewController.h"
 @class DocumentModel, TMTQuickLookView;
 
-@interface DocumentInfoViewController : NSViewController
+@interface DocumentInfoViewController : NSViewController <ModelInfoViewController>
 
-    @property DocumentModel *model;
+    @property (nonatomic) DocumentModel *model;
 
     @property (strong, nonatomic) IBOutlet TMTQuickLookView *quickLook;
 

@@ -61,7 +61,7 @@
         [createPanel beginWithCompletionHandler:^(NSInteger result)
         {
             if (result == NSFileHandlingPanelOKButton) {
-                NSString *path = createPanel.URL.path;
+                NSString *path = self->createPanel.URL.path;
                 NSFileManager *fm = [NSFileManager defaultManager];
                 if (![fm fileExistsAtPath:path]) {
                     NSString *content = @"% Start your awesome tex project here!";

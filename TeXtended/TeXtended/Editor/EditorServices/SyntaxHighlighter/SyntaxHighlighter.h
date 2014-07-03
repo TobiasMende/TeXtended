@@ -34,5 +34,4 @@
  */
     - (void)highlightRange:(NSRange)range;
 
-- (void)highlightContextBased:(NSString *)context;
 @end

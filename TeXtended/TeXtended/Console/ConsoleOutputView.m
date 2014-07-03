@@ -141,7 +141,7 @@ static const NSSet *KEYS_TO_UNBIND;
         }
         NSArray *values = [attribute componentsSeparatedByString:@":"];
         NSString *path = values[0];
-        NSUInteger line = [values[1] integerValue];
+        NSUInteger line = [values[1] unsignedIntegerValue];
         DocumentModel *compiledModel = self.controller.console.model;
         //DocumentModel *documentsModel = self.controller.console.documentController.model;
         path = [PathFactory absolutPathFor:path withBasedir:[compiledModel.texPath stringByDeletingLastPathComponent]];
@@ -149,7 +149,7 @@ static const NSSet *KEYS_TO_UNBIND;
         [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:path withReferenceModel:compiledModel andCompletionHandler:^(DocumentModel *model)
         {
             if (model) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithInteger:line]}];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TMTShowLineInTextViewNotification object:model userInfo:@{TMTIntegerKey : [NSNumber numberWithUnsignedInteger:line]}];
                 if (![model.mainCompilable isEqualTo:compiledModel.mainCompilable]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:TMTMessagesDidChangeNotification object:model.texPath userInfo:@{TMTMessageCollectionKey : self.controller.console.consoleMessages, TMTMessageGeneratorTypeKey : @(TMTLogFileParser)}];
                 }

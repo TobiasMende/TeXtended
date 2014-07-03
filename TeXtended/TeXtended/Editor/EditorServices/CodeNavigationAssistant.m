@@ -265,7 +265,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             return NO;
         }
         NSMutableString *content = [[NSMutableString alloc] initWithString:view.string];
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         NSError *error;
         NSString *longLinesPattern = [NSString stringWithFormat:@"^(?:.{%ld,})$", wrapAfter + 1];
         NSRegularExpression *longLineRegex = [NSRegularExpression regularExpressionWithPattern:longLinesPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -290,7 +290,7 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     - (BOOL)handleWrappingInLine:(NSRange)lineRange
     {
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         NSUInteger cursorPositionInLine = view.selectedRange.location - lineRange.location;
         if (view.lineWrapMode != HardWrap || cursorPositionInLine < wrapAfter) {
             return NO;
@@ -320,7 +320,7 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string
     {
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         if (view.lineWrapMode != HardWrap || lineRange.length < wrapAfter) {
             return NO;
         }

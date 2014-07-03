@@ -49,10 +49,8 @@
 /**
  * Init with a set of messages, these messages will be displayed.
  *
- * @param messages
  * @return ide
  */
     - (id)initWithTrackingMessages:(NSMutableSet *)messages forRec:(NSRect)rec onView:(NSView *)view withPreferredEdge:(NSRectEdge)preferredEdge;
 
-    @property (strong) IBOutlet NSTableView *_messageTable;
 @end

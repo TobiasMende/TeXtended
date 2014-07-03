@@ -201,7 +201,7 @@
 
     + (NSPasteboardReadingOptions)readingOptionsForType:(NSString *)type pasteboard:(NSPasteboard *)pasteboard
     {
-        [NSURL readingOptionsForType:type pasteboard:pasteboard];
+        return [NSURL readingOptionsForType:type pasteboard:pasteboard];
     }
 
     - (id)initWithPasteboardPropertyList:(id)propertyList ofType:(NSString *)type

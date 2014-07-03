@@ -189,7 +189,7 @@
 /**
  Getter for a line range for a given line index.
  
- @param line the lines 1-based index
+ @param index the lines 1-based index
  
  @return the range of the given line
  */

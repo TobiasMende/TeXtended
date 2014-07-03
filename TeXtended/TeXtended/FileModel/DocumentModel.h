@@ -7,12 +7,11 @@
 //
 
 #import "Compilable.h"
-
+#import <TMTHelperCollection/FileObserver.h>
 #import <Foundation/Foundation.h>
 
 @class ProjectModel, OutlineElement, OutlineExtractor;
 @class GenericFilePresenter;
-@protocol FileObserver;
 
 /**
  * Instances of this class represent a core data object containing information about a single latex file.
@@ -39,7 +38,7 @@
     @property (strong) NSDate *lastCompile;
 
 /** Reference to the project containing this document. Might be empty if this document is handled in single document mode */
-    @property (assign) ProjectModel *project;
+    @property (assign, nonatomic) ProjectModel *project;
 
 /** The path to the output file (might be empty) */
     @property (nonatomic, strong) NSString *pdfPath;

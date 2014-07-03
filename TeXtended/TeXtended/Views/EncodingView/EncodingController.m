@@ -33,7 +33,7 @@
 
         [self.popUp removeAllItems];
         // Fill with encodings
-        for (NSInteger cnt = 0 ; cnt < [self.encodings count] ; cnt++) {
+        for (NSUInteger cnt = 0 ; cnt < [self.encodings count] ; cnt++) {
             NSNumber *encodingNumber = (self.encodings)[cnt];
             NSStringEncoding encoding = [encodingNumber unsignedLongValue];
             [self.popUp addItemWithTitle:[NSString localizedNameOfStringEncoding:encoding]];
@@ -47,17 +47,17 @@
         NSOpenPanel *openPanel = (NSOpenPanel *) sender;
         NSStringEncoding encoding;
         NSError *error;
-        NSString *content = [[NSString alloc] initWithContentsOfFile:[[openPanel URL] path] usedEncoding:&encoding error:&error];
-#pragma unused(content)
-        [self.popUp selectItemAtIndex:[self.encodings indexOfObject:@(encoding)]];
+        (void)[[NSString alloc] initWithContentsOfFile:[[openPanel URL] path] usedEncoding:&encoding error:&error];
+        [self.popUp selectItemAtIndex:(NSInteger)[self.encodings indexOfObject:@(encoding)]];
         self.selectionDidChange = YES;
     }
 
     - (NSStringEncoding)selection
     {
         self.selectionDidChange = NO;
-        if (self.popUp.indexOfSelectedItem < self.encodings.count) {
-            return [(self.encodings)[self.popUp.indexOfSelectedItem] unsignedLongValue];
+        NSInteger selection = self.popUp.indexOfSelectedItem;
+        if (selection >= 0 && (NSUInteger)selection < self.encodings.count) {
+            return [self.encodings[(NSUInteger)selection] unsignedLongValue];
         } else {
             return [NSString defaultCStringEncoding];
         }

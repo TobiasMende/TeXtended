@@ -73,19 +73,19 @@
 ///---------------------------------------------------------------------------------------
 
 /** Get the total number of alphabetical characters in a string. */
-    - (NSInteger)letterCount;
+    - (NSUInteger)letterCount;
 
 /** Get the total number of words in a string. */
-    - (NSInteger)wordCount;
+    - (NSUInteger)wordCount;
 
 /** Get the total number of sentences in a string. */
-    - (NSInteger)sentenceCount;
+    - (NSUInteger)sentenceCount;
 
 /** Get the total number of syllables in a word string. 
  
  @see syllableTotal
  */
-    - (NSInteger)syllableCount;
+    - (NSUInteger)syllableCount;
 
 /** Get the total number of syllables in a string. 
  

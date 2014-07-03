@@ -44,7 +44,7 @@
         _content = content;
         NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[content count]];
 
-        for (NSInteger i = 0 ; i < [content count] ; i++) {
+        for (NSUInteger i = 0 ; i < [content count] ; i++) {
             [temp setObject:[[content objectAtIndex:i] lastPathComponent] atIndexedSubscript:i];
         }
 

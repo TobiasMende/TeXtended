@@ -17,24 +17,7 @@
  
  */
 
-@interface ApplicationController : NSObject <NSApplicationDelegate>
-    {
-        /** references to the controller which handels the preferences window. */
-        PreferencesController *preferencesController;
-
-        /** reference to the controller handling the creation and management of all documents in this application */
-        DocumentCreationController *documentCreationController;
-
-        /** reference to the texdoc panel controller handling the app wide texdoc support */
-        TexdocPanelController *texdocPanelController;
-
-        ConsoleWindowController *consoleWindowController;
-
-        TemplateController *templateController;
-        
-        StartScreenWindowController *startScreenController;
-    }
-
+@interface ApplicationController : NSObject <NSApplicationDelegate> 
 
 /** Method for showing the texdoc panel to the user 
  

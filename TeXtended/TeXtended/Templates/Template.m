@@ -104,9 +104,9 @@ static NSString *CONTENT_DIR_NAME = @"content";
         }
         BOOL success = [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:self.mainFileName] toPath:model.texPath error:error];
         NSArray *content = [fm contentsOfDirectoryAtPath:self.contentPath error:NULL];
-        for (NSString *name in content) {
-            if (![name isEqualToString:self.mainFileName]) {
-                [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:name] toPath:[directory stringByAppendingPathComponent:name] error:NULL];
+        for (NSString *contentName in content) {
+            if (![contentName isEqualToString:self.mainFileName]) {
+                [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:contentName] toPath:[directory stringByAppendingPathComponent:contentName] error:NULL];
             }
         }
         if (success && self.hasPreviewPDF) {

@@ -89,7 +89,7 @@
     - (void)openSelectedDoc
     {
         NSInteger row = [self.listView selectedRow];
-        if (row < entries.count && row >= 0) {
+        if (row >= 0 && (NSUInteger)row < entries.count) {
             TexdocEntry *entry = entries[row];
             NSURL *url = [NSURL fileURLWithPath:entry.path];
             [[NSWorkspace sharedWorkspace] openURL:url];

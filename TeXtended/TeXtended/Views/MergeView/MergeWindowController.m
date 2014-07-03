@@ -58,7 +58,7 @@
             return [NSString stringWithFormat:@"Error while loading file: %@", path];
         }
 
-        NSMutableString *retContent = [NSMutableString stringWithString:[content stringByReplacingOccurrencesOfString:@"\\include\{" withString:@"\\clearpage\n\\input\{"]];
+        NSMutableString *retContent = [NSMutableString stringWithString:[content stringByReplacingOccurrencesOfString:@"\\include{" withString:@"\\clearpage\n\\input{"]];
 
 
         for (NSString *command in commandsToReplace) {

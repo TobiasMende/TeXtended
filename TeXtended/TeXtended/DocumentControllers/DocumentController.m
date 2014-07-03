@@ -16,6 +16,7 @@
 #import "TMTTabManager.h"
 #import "HighlightingTextView.h"
 #import "ExtendedPdf.h"
+#import "ProjectModel.h"
 #import "ModelInfoWindowController.h"
 
 @interface DocumentController ()
@@ -279,21 +280,21 @@
 
 - (void)showInformation:(id)sender {
     
-    if (!_modelInfoWindow) {
-        _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+    if (!modelInfoWindow) {
+        modelInfoWindow= [ModelInfoWindowController sharedInstance];
     }
-    _modelInfoWindow.model = self.model;
-    [_modelInfoWindow showWindow:self];
+    modelInfoWindow.model = self.model;
+    [modelInfoWindow showWindow:self];
     
 }
 
 - (void)showProjectInformation:(id)sender {
     if (self.model.project) {
-        if (!_modelInfoWindow) {
-            _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+        if (!modelInfoWindow) {
+            modelInfoWindow= [ModelInfoWindowController sharedInstance];
         }
-        _modelInfoWindow.model = self.model.project;
-        [_modelInfoWindow showWindow:self];
+        modelInfoWindow.model = self.model.project;
+        [modelInfoWindow showWindow:self];
     } else {
         NSBeep();
     }
@@ -301,7 +302,7 @@
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
     if (aSelector == @selector(showProjectInformation:)) {
-        return self.model.project;
+        return self.model.project != nil;
     } else {
         return [super respondsToSelector:aSelector];
     }

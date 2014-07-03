@@ -150,7 +150,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         NSTabViewItem *view = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
         [view.tabView.window makeKeyAndOrderFront:self];
         [view.tabView selectTabViewItem:view];
-        NSInteger row = [(note.userInfo)[TMTIntegerKey] integerValue];
+        NSUInteger row = [(note.userInfo)[TMTIntegerKey] unsignedIntegerValue];
         [self.textView showLine:row];
     }
 

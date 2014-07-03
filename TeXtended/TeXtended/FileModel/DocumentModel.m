@@ -50,7 +50,6 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 - (void)loadTextSpecificXAttributes;
 - (void)saveModelSpecificXAttributes;
 - (void)loadModelSpecificXAttributes;
-- (void)clearInvalidLineBookmakrs;
 
     @property __DocumentModelProjectSyncState *__projectSyncState;
 
@@ -144,7 +143,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         self.selectedRange = NSMakeRange(0, 0);
         self.outlineElements = [NSMutableArray new];
         globalMessagesMap = [NSMutableDictionary new];
-        __unsafe_unretained typeof(self) weakSelf = self;
+        __unsafe_unretained DocumentModel *weakSelf = self;
         if (!self.liveCompile) {
             [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
             removeLiveCompileObserver = ^(void) {
@@ -328,12 +327,12 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 - (void)saveTextSpecificXAttributes {
     NSError *error = nil;
     if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
-        DDLogError(@"Can't set xattr for line bookmarks: ", error.userInfo);
+        DDLogError(@"Can't set xattr for line bookmarks: %@", error.userInfo);
         
     }
     error = nil;
     if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {
-        DDLogError(@"Can't set xattr for selected ranges: ", error.userInfo);
+        DDLogError(@"Can't set xattr for selected ranges: %@", error.userInfo);
     }
 }
 
@@ -466,8 +465,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         return nil;
     }
 
-- (NSArray *)openDocuments {
-    return @[self];
+- (NSSet *)openDocuments {
+    return [NSSet setWithObject:self];
 }
 
     - (Compilable *)mainCompilable

@@ -38,7 +38,7 @@
         {
 
 
-            NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
+            NSArray *results = [self->weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
 
 
             callersHandler(sequenceNumber, results, orthography, wordCount);

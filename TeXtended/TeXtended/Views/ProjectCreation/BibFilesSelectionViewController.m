@@ -37,7 +37,7 @@
         [addPanel beginWithCompletionHandler:^(NSInteger result)
         {
             if (result == NSFileHandlingPanelOKButton) {
-                NSArray *urls = addPanel.URLs;
+                NSArray *urls = self->addPanel.URLs;
                 for (NSURL *url in urls) {
                     NSString *path = url.path;
                     if (![self.bibFiles.arrangedObjects containsObject:path]) {
@@ -62,7 +62,7 @@
         [createPanel beginWithCompletionHandler:^(NSInteger result)
         {
             if (result == NSFileHandlingPanelOKButton) {
-                NSString *path = createPanel.URL.path;
+                NSString *path = self->createPanel.URL.path;
                 NSFileManager *fm = [NSFileManager defaultManager];
                 if (![self.bibFiles.arrangedObjects containsObject:path] && ![fm fileExistsAtPath:path]) {
                     if ([fm createFileAtPath:path contents:[@"" dataUsingEncoding:NSUTF8StringEncoding] attributes:nil]) {

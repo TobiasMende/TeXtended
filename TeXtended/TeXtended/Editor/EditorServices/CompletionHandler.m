@@ -154,6 +154,8 @@ static const NSSet *KEYS_TO_UNBIND;
                 return [self citeCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
             case TMTRefCompletion:
                 return [self refCompletionsForPartialWordRange:charRange indexOfSelectedItem:index additionalInformation:info];
+            default:
+                return nil;
         }
         return nil;
     }

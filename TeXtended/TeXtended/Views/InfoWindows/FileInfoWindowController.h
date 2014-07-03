@@ -31,7 +31,6 @@
 @property (strong, nonatomic) IBOutlet TMTQuickLookView *quickLook;
 @property TMTPassiveFileWrapper *wrapper;
 @property (nonatomic) NSURL *fileURL;
-- (FileInfoWindowController *)initWithURL:(NSURL *) url;
 @end
 
 

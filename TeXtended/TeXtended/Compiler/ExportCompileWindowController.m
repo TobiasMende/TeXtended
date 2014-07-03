@@ -75,9 +75,9 @@
         [pdfPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result)
         {
             if (result == NSFileHandlingPanelOKButton) {
-                NSURL *file = [pdfPathPanel URL];
-                DocumentModel *m = (self.mainDocumentsController.selectedObjects)[0];
-                m.pdfPath = [file path];
+                NSURL *file = [self->pdfPathPanel URL];
+                DocumentModel *model = (self.mainDocumentsController.selectedObjects)[0];
+                model.pdfPath = [file path];
             }
         }];
 
@@ -112,7 +112,7 @@
         [texPathPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result)
         {
             if (result == NSFileHandlingPanelOKButton) {
-                NSURL *file = [texPathPanel URL];
+                NSURL *file = [self->texPathPanel URL];
                 DocumentModel *m = [weakModel modelForTexPath:file.path];
                 [weakModel addMainDocument:m];
             }
