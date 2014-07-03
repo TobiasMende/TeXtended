@@ -500,7 +500,7 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" title="View Order Appearance" borderType="line" id="1Vx-SB-CUl">
+                <box autoresizesSubviews="NO" title="View Order" borderType="line" id="1Vx-SB-CUl">
                     <rect key="frame" x="17" y="16" width="150" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
