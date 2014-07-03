@@ -20,7 +20,7 @@
 
     @property BOOL alignment;
 
-    @property (readonly) NSInteger minimumTableSize;
+    @property (readonly) NSUInteger minimumTableSize;
 
     @property IBOutlet NSButton *OKButton;
 
