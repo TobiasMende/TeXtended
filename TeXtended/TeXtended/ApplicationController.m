@@ -214,6 +214,7 @@
                 TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS : @YES,
                 TMT_SHOULD_COMPLETE_COMMANDS : @YES,
                 TMT_SHOULD_COMPLETE_ENVIRONMENTS : @YES,
+                TMTShouldShowStartScreen : @YES,
                 TMTShouldCompleteCites : @YES,
                 TMTShouldCompleteRefs : @YES,
                 TMT_SHOULD_LINK_TEXDOC : @YES,
@@ -423,5 +424,8 @@
     return YES;
 }
 
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TMTShouldShowStartScreen];
+}
 
 @end

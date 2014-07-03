@@ -85,6 +85,7 @@
 #define TMT_SHOULD_COMPLETE_ENVIRONMENTS @"TMTShouldCompleteEnvironments"
 #define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
 #define TMT_SHOULD_UNDERLINE_TEXDOC_LINKS @"TMTShouldUnderlineTexdocLinks"
+#define TMTShouldShowStartScreen @"TMTShouldShowStartScreen"
 #define TMTShouldCompleteCites @"TMTShouldCompleteCites"
 #define TMTShouldCompleteRefs @"TMTShouldCompleteRefs"
 #define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
