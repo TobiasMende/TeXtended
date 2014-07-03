@@ -453,7 +453,7 @@ private)
 
         // Round up the value. There is a bug on 10.4 where the display gets all wonky when scrolling if you don't
         // return an integral value here.
-        return ceilf(MAX(START_THICKNESS, stringSize.width + 2 * BORDER_SIZE + BORDER_LINE_SIZE)) + SYMBOL_SIZE;
+        return MAX(START_THICKNESS, stringSize.width + 2.0 * BORDER_SIZE + BORDER_LINE_SIZE) + SYMBOL_SIZE;
     }
 
     - (void)calculateLines

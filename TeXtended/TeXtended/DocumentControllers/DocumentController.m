@@ -91,16 +91,12 @@
     - (void)texViewDidClose:(NSNotification *)note
     {
         self.model.documentOpened = NO;
-        self.textViewController.textView.firstResponderDelegate = nil;
-        self.textViewController = nil;
         [self.mainDocument removeDocumentController:self];
     }
 
     - (void)closeDocument
     {
         self.model.documentOpened = NO;
-        self.textViewController.textView.firstResponderDelegate = nil;
-        self.textViewController = nil;
         NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
         [item.tabView removeTabViewItem:item];
         [self.mainDocument removeDocumentController:self];

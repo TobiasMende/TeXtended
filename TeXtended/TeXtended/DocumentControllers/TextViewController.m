@@ -320,25 +320,27 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark Dealloc
 
 - (void)firstResponderIsDeallocating {
+    DDLogVerbose(@"DC ist deallocating");
     [messageUpdateTimer invalidate];
     [lacheck terminate];
     [chktex terminate];
     self.firstResponderDelegate = nil;
+    [self unregisterModelObserver];
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
+    if (item) {
+        [item.tabView removeTabViewItem:item];
+    }
+    [self unbind:@"liveScrolling"];
+    [self.textView removeObserver:self forKeyPath:@"currentRow"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
     - (void)dealloc
     {
         DDLogVerbose(@"dealloc [%@]", self.model.path);
         
-        [self unregisterModelObserver];
-        NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
-        if (item) {
-            [item.tabView removeTabViewItem:item];
-        }
-        [self unbind:@"liveScrolling"];
-        [self.textView removeObserver:self forKeyPath:@"currentRow"];
 
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 
 
