@@ -12,9 +12,9 @@
 
 @interface MatrixViewController : NSWindowController
 
-    @property NSInteger rows;
+    @property NSUInteger rows;
 
-    @property NSInteger columns;
+    @property NSUInteger columns;
 
     @property NSString *type;
 
