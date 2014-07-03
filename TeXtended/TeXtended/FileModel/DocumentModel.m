@@ -326,12 +326,16 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 - (void)saveTextSpecificXAttributes {
     NSError *error = nil;
-    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
+    NSString *path = self.texPath ? self.texPath : self.systemPath;
+    if (!path) {
+        return;
+    }
+    if (self.lineBookmarks && ![OTMXAttribute setAttributeAtPath:path name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
         DDLogError(@"Can't set xattr for line bookmarks: %@", error.userInfo);
         
     }
     error = nil;
-    if (![OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {
+    if (![OTMXAttribute setAttributeAtPath:path name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {
         DDLogError(@"Can't set xattr for selected ranges: %@", error.userInfo);
     }
 }
