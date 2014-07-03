@@ -7,6 +7,7 @@
 //	Licensed under MIT License
 //
 
+
 #import "DMSplitView.h"
 #import <Quartz/Quartz.h>
 
@@ -521,7 +522,7 @@
 
         for (NSNumber *priorityIndex in [[priorityIndexes allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
             NSNumber *subviewIndex = priorityIndexes[priorityIndex];
-            if (subviewIndex.integerValue >= self.subviews.count)
+            if (subviewIndex.unsignedIntegerValue >= self.subviews.count)
                 continue;
 
             NSView *subview = (NSView *) self.subviews[subviewIndex.integerValue];
@@ -712,7 +713,7 @@
                 }
             }                   completionHandler:^
             {
-                isAnimating = NO;
+                self->isAnimating = NO;
                 //[self setNeedsDisplay:YES];
 
                 if (completition != nil) completition(YES);
@@ -822,7 +823,7 @@
         [self.subviews enumerateObjectsUsingBlock:^(NSView *subview, NSUInteger subviewIndex, BOOL *stop)
         {
             CGFloat size = ([self isSubviewCollapsed:subview] ? 0.0 : (self.isVertical ? NSWidth(subview.frame) : NSHeight(subview.frame)));
-            subviewsStates[subviewIndex] = size;
+            self->subviewsStates[subviewIndex] = size;
         }];
     }
 
@@ -858,7 +859,7 @@
         } else {
             // We can shrink or grow only at one side because our index is the top left or the top right
             NSInteger dividerIndex = (subviewIndex > 0 ? subviewIndex - 1 : subviewIndex);
-            NSInteger dividerPosition = [self positionOfDividerAtIndex:dividerIndex];
+            CGFloat dividerPosition = [self positionOfDividerAtIndex:dividerIndex];
             if (subviewIndex == 0) dividerPosition += deltaValue;
             else dividerPosition -= deltaValue;
             involvedDividers = @[@(dividerIndex)];
