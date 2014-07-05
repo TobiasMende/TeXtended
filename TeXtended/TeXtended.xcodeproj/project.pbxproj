@@ -655,6 +655,7 @@
 		D2928A711967D95C00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		D2928A731967D96700F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		D2928A751967DA3700F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TemplatesWindow.xib; sourceTree = "<group>"; };
+		D2928A771967DA6600F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/TemplatesWindow.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -2219,6 +2220,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D2928A751967DA3700F6C9BD /* en */,
+				D2928A771967DA6600F6C9BD /* de */,
 			);
 			name = TemplatesWindow.xib;
 			sourceTree = "<group>";
