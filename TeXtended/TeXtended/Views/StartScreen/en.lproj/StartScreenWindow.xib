@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="StartScreenWindowController">
+            <connections>
+                <outlet property="recentDocumentsButton" destination="Y9r-SN-frk" id="x0c-Qc-tiu"/>
+                <outlet property="recentProjectsButton" destination="VYj-Py-SEG" id="sIb-aF-a6K"/>
+                <outlet property="window" destination="fmU-mS-QAp" id="zSZ-ge-eQi"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="fmU-mS-QAp" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES" HUD="YES"/>
+            <rect key="contentRect" x="196" y="240" width="580" height="383"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="nAs-tM-OXH">
+                <rect key="frame" x="0.0" y="0.0" width="580" height="383"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" id="euV-2w-lDB">
+                        <rect key="frame" x="20" y="196" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="New Document" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EoC-ng-Wv1">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                            <string key="keyEquivalent">n</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openNewDocument:" target="-2" id="DcS-VG-7w5"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="Jum-xG-xCW">
+                        <rect key="frame" x="20" y="110" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="New Project" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="69y-bu-seh">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                            <string key="keyEquivalent">n</string>
+                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openNewProject:" target="-2" id="UBk-hh-I1P"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="Y9r-SN-frk">
+                        <rect key="frame" x="294" y="196" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="Recent Documents" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDN-a2-5jv">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showRecentDocuments:" target="-2" id="Psq-eJ-ZWw"/>
+                            <binding destination="-2" name="enabled" keyPath="self.recentDocuments.@count" id="M3o-YD-fvU"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="ZLd-Ct-e93">
+                        <rect key="frame" x="20" y="24" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="New From Template" bezelStyle="smallSquare" image="lego" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dEA-nu-hPk">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                            <string key="keyEquivalent">N</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openTemplate:" target="-2" id="dTd-iR-lJ4"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="2dT-eO-Fed">
+                        <rect key="frame" x="294" y="24" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="Open Document / Project" bezelStyle="smallSquare" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z7Z-Fk-AX2">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                            <string key="keyEquivalent">o</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openExistingDocumentOrProject:" target="-2" id="b39-qv-llI"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="VYj-Py-SEG">
+                        <rect key="frame" x="294" y="110" width="266" height="80"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" title="Recent Projects" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fue-oQ-0IC">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="15"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showRecentProjects:" target="-2" id="Nny-P9-JV0"/>
+                            <binding destination="-2" name="enabled" keyPath="self.recentProjects.@count" id="X5c-BH-vnQ"/>
+                        </connections>
+                    </button>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="h8W-hw-F4l">
+                        <rect key="frame" x="20" y="298" width="65" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TeXtended" id="9FP-GY-NzF"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="J6K-ta-NNS">
+                        <rect key="frame" x="93" y="332" width="412" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="TeXtended - LaTex Editor for OS X" id="wz6-QQ-Def">
+                            <font key="font" metaFont="systemBold" size="18"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MM1-tj-6Sh">
+                        <rect key="frame" x="91" y="298" width="412" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Choose an option:" id="ONx-QA-0Gi">
+                            <font key="font" metaFont="system" size="16"/>
+                            <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="bMO-My-H8Y">
+                        <rect key="frame" x="18" y="0.0" width="544" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Copyright 2014: TMTProject – textended.de" id="JLb-eD-Tg9">
+                            <font key="font" metaFont="miniSystem"/>
+                            <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+        </window>
+    </objects>
+    <resources>
+        <image name="TeXtended" width="512" height="512"/>
+        <image name="document" width="40" height="40"/>
+        <image name="lego" width="36.680595397949219" height="43.629852294921875"/>
+        <image name="project" width="40" height="40"/>
+    </resources>
+</document>

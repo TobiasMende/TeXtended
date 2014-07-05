@@ -9,12 +9,22 @@
 #import <Cocoa/Cocoa.h>
 #import "ProjectCreationAssistantViewController.h"
 
-@class CompileSetting;
+@class CompileSetting,CompilerPreferencesViewController;
 
 @interface CompilerSettingsViewController : NSViewController <ProjectCreationAssistantViewController>
     {
         NSManagedObjectContext *context;
     }
+@property (strong) IBOutlet NSBox *liveBox;
+@property (strong) IBOutlet NSBox *draftBox;
+@property (strong) IBOutlet NSBox *finalBox;
+
+
+@property CompilerPreferencesViewController *liveCompilePrefs;
+
+@property CompilerPreferencesViewController *draftCompilePrefs;
+
+@property CompilerPreferencesViewController *finalCompilePrefs;
 
     @property CompileSetting *liveCompiler;
 

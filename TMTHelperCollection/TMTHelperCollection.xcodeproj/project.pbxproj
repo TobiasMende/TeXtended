@@ -123,6 +123,8 @@
 		D28F2864196488470085344F /* NSTextView+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+LatexExtensions.m"; sourceTree = "<group>"; };
 		D28F287019656ADF0085344F /* NSRegularExpression+LatexExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+LatexExtensions.h"; sourceTree = "<group>"; };
 		D28F287119656ADF0085344F /* NSRegularExpression+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+LatexExtensions.m"; sourceTree = "<group>"; };
+		D2928B001967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2928B011967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTByteCountFormatter.h; sourceTree = "<group>"; };
 		D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTByteCountFormatter.m; sourceTree = "<group>"; };
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = D22DC1AF1863784800997ADB;
 			productRefGroup = D22DC1BA1863784800997ADB /* Products */;
@@ -580,6 +583,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D22DC1C61863784800997ADB /* en */,
+				D2928B001967F6CE00F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -588,6 +592,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D22DC1DB1863784800997ADB /* en */,
+				D2928B011967F6CE00F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

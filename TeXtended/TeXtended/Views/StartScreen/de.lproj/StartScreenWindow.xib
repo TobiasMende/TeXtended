@@ -25,7 +25,7 @@
                     <button verticalHuggingPriority="750" id="euV-2w-lDB">
                         <rect key="frame" x="20" y="196" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="New Document" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EoC-ng-Wv1">
+                        <buttonCell key="cell" type="smallSquare" title="Neues Dokument" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EoC-ng-Wv1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                             <string key="keyEquivalent">n</string>
@@ -38,7 +38,7 @@
                     <button verticalHuggingPriority="750" id="Jum-xG-xCW">
                         <rect key="frame" x="20" y="110" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="New Project" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="69y-bu-seh">
+                        <buttonCell key="cell" type="smallSquare" title="Neues Projekt" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="69y-bu-seh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                             <string key="keyEquivalent">n</string>
@@ -51,7 +51,7 @@
                     <button verticalHuggingPriority="750" id="Y9r-SN-frk">
                         <rect key="frame" x="294" y="196" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="Recent Documents" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDN-a2-5jv">
+                        <buttonCell key="cell" type="smallSquare" title="Benutzte Dokumente" bezelStyle="smallSquare" image="document" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDN-a2-5jv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                         </buttonCell>
@@ -63,7 +63,7 @@
                     <button verticalHuggingPriority="750" id="ZLd-Ct-e93">
                         <rect key="frame" x="20" y="24" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="New From Template" bezelStyle="smallSquare" image="lego" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dEA-nu-hPk">
+                        <buttonCell key="cell" type="smallSquare" title="Neu aus Vorlage" bezelStyle="smallSquare" image="lego" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dEA-nu-hPk">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                             <string key="keyEquivalent">N</string>
@@ -76,7 +76,7 @@
                     <button verticalHuggingPriority="750" id="2dT-eO-Fed">
                         <rect key="frame" x="294" y="24" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="Open Document / Project" bezelStyle="smallSquare" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z7Z-Fk-AX2">
+                        <buttonCell key="cell" type="smallSquare" title="Dokument/ Projekt öffnen" bezelStyle="smallSquare" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z7Z-Fk-AX2">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                             <string key="keyEquivalent">o</string>
@@ -89,7 +89,7 @@
                     <button verticalHuggingPriority="750" id="VYj-Py-SEG">
                         <rect key="frame" x="294" y="110" width="266" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="Recent Projects" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fue-oQ-0IC">
+                        <buttonCell key="cell" type="smallSquare" title="Benutzte Projekte" bezelStyle="smallSquare" image="project" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fue-oQ-0IC">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="systemBold" size="15"/>
                         </buttonCell>
@@ -106,16 +106,16 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="J6K-ta-NNS">
                         <rect key="frame" x="93" y="332" width="412" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="TeXtended - LaTex Editor for OS X" id="wz6-QQ-Def">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="TeXtended - LaTex Editor für OS X" id="wz6-QQ-Def">
                             <font key="font" metaFont="systemBold" size="18"/>
                             <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MM1-tj-6Sh">
-                        <rect key="frame" x="91" y="307" width="412" height="17"/>
+                        <rect key="frame" x="91" y="305" width="412" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Choose an option:" id="ONx-QA-0Gi">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Wähle eine Option:" id="ONx-QA-0Gi">
                             <font key="font" metaFont="system" size="16"/>
                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
