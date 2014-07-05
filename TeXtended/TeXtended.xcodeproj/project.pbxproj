@@ -172,6 +172,7 @@
 		D2928AF01967EB7200F6C9BD /* TexdocPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AF21967EB7200F6C9BD /* TexdocPanel.xib */; };
 		D2928AF41967EBA400F6C9BD /* ExtendedPdfControlls.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AF61967EBA400F6C9BD /* ExtendedPdfControlls.xib */; };
 		D2928AF81967EBF700F6C9BD /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AFA1967EBF700F6C9BD /* PreferencesWindow.xib */; };
+		D2928AFE1967F33200F6C9BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2928AFC1967F33200F6C9BD /* Localizable.strings */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -694,6 +695,8 @@
 		D2928AF71967EBAF00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ExtendedPdfControlls.xib; sourceTree = "<group>"; };
 		D2928AF91967EBF700F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		D2928AFB1967EBFD00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
+		D2928AFD1967F33200F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D2928AFF1967F41900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1696,6 +1699,7 @@
 		D2CC54FA171EAFAB00D81CF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2928AFC1967F33200F6C9BD /* Localizable.strings */,
 				D271983C1743989B00342CB0 /* CompileFlows */,
 				D21ACB7C172685C100E2F8EC /* Development */,
 				D21ACB721726855000E2F8EC /* Sparkle */,
@@ -1973,6 +1977,7 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				D2928AAC1967E35C00F6C9BD /* PrintDialog.xib in Resources */,
+				D2928AFE1967F33200F6C9BD /* Localizable.strings in Resources */,
 				D2928A901967E04A00F6C9BD /* ProjectInfoView.xib in Resources */,
 				D2928A941967E0AE00F6C9BD /* CompilerPreferencesView.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
@@ -2554,6 +2559,15 @@
 				D2928AFB1967EBFD00F6C9BD /* de */,
 			);
 			name = PreferencesWindow.xib;
+			sourceTree = "<group>";
+		};
+		D2928AFC1967F33200F6C9BD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AFD1967F33200F6C9BD /* en */,
+				D2928AFF1967F41900F6C9BD /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
