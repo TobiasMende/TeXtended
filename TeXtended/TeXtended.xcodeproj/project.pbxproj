@@ -115,7 +115,6 @@
 		D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */; };
 		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
 		D2654AC61927925600DE58B2 /* edit.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC51927925600DE58B2 /* edit.icns */; };
-		D2654AC81927961100DE58B2 /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC71927961100DE58B2 /* DocumentInfoView.xib */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
 		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
@@ -167,6 +166,7 @@
 		D2928A801967DCA900F6C9BD /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A821967DCA900F6C9BD /* EditTemplateView.xib */; };
 		D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A861967DCFE00F6C9BD /* StatsPanel.xib */; };
 		D2928A881967DE1500F6C9BD /* StartScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A8A1967DE1500F6C9BD /* StartScreenWindow.xib */; };
+		D2928A8C1967DED800F6C9BD /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A8E1967DED800F6C9BD /* DocumentInfoView.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -557,7 +557,6 @@
 		D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentInfoViewController.m; sourceTree = "<group>"; };
 		D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfoViewController.h; sourceTree = "<group>"; };
 		D2654AC51927925600DE58B2 /* edit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = edit.icns; sourceTree = "<group>"; };
-		D2654AC71927961100DE58B2 /* DocumentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentInfoView.xib; sourceTree = "<group>"; };
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
@@ -662,6 +661,8 @@
 		D2928A871967DD0300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StatsPanel.xib; sourceTree = "<group>"; };
 		D2928A891967DE1500F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StartScreenWindow.xib; sourceTree = "<group>"; };
 		D2928A8B1967DE1900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StartScreenWindow.xib; sourceTree = "<group>"; };
+		D2928A8D1967DED800F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DocumentInfoView.xib; sourceTree = "<group>"; };
+		D2928A8F1967DEDE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/DocumentInfoView.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -1268,7 +1269,7 @@
 		D2654AB91927778B00DE58B2 /* InfoViews */ = {
 			isa = PBXGroup;
 			children = (
-				D2654AC71927961100DE58B2 /* DocumentInfoView.xib */,
+				D2928A8E1967DED800F6C9BD /* DocumentInfoView.xib */,
 				D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */,
 				D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */,
 				D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */,
@@ -1890,7 +1891,7 @@
 				D2E7D68D19631F480036AA40 /* project.png in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
 				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
-				D2654AC81927961100DE58B2 /* DocumentInfoView.xib in Resources */,
+				D2928A8C1967DED800F6C9BD /* DocumentInfoView.xib in Resources */,
 				D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
 				D25721F8175F56CB00A08F1D /* ConsoleView.xib in Resources */,
@@ -2273,6 +2274,15 @@
 				D2928A8B1967DE1900F6C9BD /* de */,
 			);
 			name = StartScreenWindow.xib;
+			sourceTree = "<group>";
+		};
+		D2928A8E1967DED800F6C9BD /* DocumentInfoView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A8D1967DED800F6C9BD /* en */,
+				D2928A8F1967DEDE00F6C9BD /* de */,
+			);
+			name = DocumentInfoView.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
