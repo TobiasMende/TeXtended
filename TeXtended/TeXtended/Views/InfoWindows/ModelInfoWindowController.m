@@ -61,7 +61,8 @@
         [self.infoView setContentView:self.infoViewController.view];
         
         [self.liveCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
-
+        [self.draftCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [self.finalCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
 
