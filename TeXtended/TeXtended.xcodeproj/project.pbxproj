@@ -650,6 +650,10 @@
 		D291E68F188290F600CDC8C8 /* CompletionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionTableController.h; sourceTree = "<group>"; };
 		D291E690188290F600CDC8C8 /* CompletionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionTableController.m; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
+		D2928A681967D48200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2928A691967D48200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2928A6A1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2928A6B1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -1822,6 +1826,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = D2CC54E7171EAFAB00D81CF1;
 			productRefGroup = D2CC54F1171EAFAB00D81CF1 /* Products */;
@@ -2204,6 +2209,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D2A739E018D4BF78005991D5 /* en */,
+				D2928A681967D48200F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2212,6 +2218,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D2CC54FD171EAFAB00D81CF1 /* en */,
+				D2928A6A1967D48300F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2220,6 +2227,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D2CC5503171EAFAB00D81CF1 /* en */,
+				D2928A6B1967D48300F6C9BD /* de */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -2228,6 +2236,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D2CC550C171EAFAB00D81CF1 /* en */,
+				D2928A691967D48200F6C9BD /* de */,
 			);
 			name = MainMenu.xib;
 			path = ..;
