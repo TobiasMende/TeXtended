@@ -72,7 +72,6 @@
 		D220755A17687A310041890F /* TeXtended.icns in Resources */ = {isa = PBXBuildFile; fileRef = D220755917687A310041890F /* TeXtended.icns */; };
 		D22354C918617E7A0056A472 /* CompletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D22354C818617E7A0056A472 /* CompletionManager.m */; };
 		D22646D319630EB2007B6489 /* StartScreenWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646D119630EB2007B6489 /* StartScreenWindowController.m */; };
-		D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22646D219630EB2007B6489 /* StartScreenWindow.xib */; };
 		D22A6BEE181C148700364DD6 /* TMTCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22A6BED181C148700364DD6 /* TMTCustomView.m */; };
 		D22CEE0117EE0989003C6844 /* DMSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22CEE0017EE0989003C6844 /* DMSplitView.m */; };
 		D22E169C1824ED10005B5B91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22E16951824ED10005B5B91 /* TMTTabViewController.m */; };
@@ -167,6 +166,7 @@
 		D2928A7C1967DB7600F6C9BD /* AddNewTemplateWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A7E1967DB7600F6C9BD /* AddNewTemplateWindow.xib */; };
 		D2928A801967DCA900F6C9BD /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A821967DCA900F6C9BD /* EditTemplateView.xib */; };
 		D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A861967DCFE00F6C9BD /* StatsPanel.xib */; };
+		D2928A881967DE1500F6C9BD /* StartScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A8A1967DE1500F6C9BD /* StartScreenWindow.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -473,7 +473,6 @@
 		D22354C818617E7A0056A472 /* CompletionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionManager.m; sourceTree = "<group>"; };
 		D22646D019630EB2007B6489 /* StartScreenWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenWindowController.h; sourceTree = "<group>"; };
 		D22646D119630EB2007B6489 /* StartScreenWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenWindowController.m; sourceTree = "<group>"; };
-		D22646D219630EB2007B6489 /* StartScreenWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartScreenWindow.xib; sourceTree = "<group>"; };
 		D22785C91761354C00CFBD12 /* ConsoleOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleOutputView.h; sourceTree = "<group>"; };
 		D22785CA1761354C00CFBD12 /* ConsoleOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleOutputView.m; sourceTree = "<group>"; };
 		D22A6BEC181C148700364DD6 /* TMTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTCustomView.h; sourceTree = "<group>"; };
@@ -661,6 +660,8 @@
 		D2928A831967DCAC00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/EditTemplateView.xib; sourceTree = "<group>"; };
 		D2928A851967DCFE00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatsPanel.xib; sourceTree = "<group>"; };
 		D2928A871967DD0300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StatsPanel.xib; sourceTree = "<group>"; };
+		D2928A891967DE1500F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StartScreenWindow.xib; sourceTree = "<group>"; };
+		D2928A8B1967DE1900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StartScreenWindow.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -1142,7 +1143,7 @@
 			children = (
 				D22646D019630EB2007B6489 /* StartScreenWindowController.h */,
 				D22646D119630EB2007B6489 /* StartScreenWindowController.m */,
-				D22646D219630EB2007B6489 /* StartScreenWindow.xib */,
+				D2928A8A1967DE1500F6C9BD /* StartScreenWindow.xib */,
 			);
 			path = StartScreen;
 			sourceTree = "<group>";
@@ -1866,7 +1867,7 @@
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
 				D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
-				D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */,
+				D2928A881967DE1500F6C9BD /* StartScreenWindow.xib in Resources */,
 				D21F316D1895C73300FF6E83 /* hammer.icns in Resources */,
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
 				D2928A741967DA3700F6C9BD /* TemplatesWindow.xib in Resources */,
@@ -2263,6 +2264,15 @@
 				D2928A871967DD0300F6C9BD /* de */,
 			);
 			name = StatsPanel.xib;
+			sourceTree = "<group>";
+		};
+		D2928A8A1967DE1500F6C9BD /* StartScreenWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A891967DE1500F6C9BD /* en */,
+				D2928A8B1967DE1900F6C9BD /* de */,
+			);
+			name = StartScreenWindow.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
