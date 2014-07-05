@@ -170,6 +170,7 @@
 		D2928AD01967E8BB00F6C9BD /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AD21967E8BB00F6C9BD /* MessageInfoView.xib */; };
 		D2928AD41967E8F400F6C9BD /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AD61967E8F400F6C9BD /* GoToLineSheet.xib */; };
 		D2928AD81967E93E00F6C9BD /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928ADA1967E93E00F6C9BD /* TexdocView.xib */; };
+		D2928ADC1967E97E00F6C9BD /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928ADE1967E97E00F6C9BD /* ExportCompileWindow.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -273,7 +274,6 @@
 		D2E7D68C19631F480036AA40 /* document.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D68A19631F480036AA40 /* document.png */; };
 		D2E7D68D19631F480036AA40 /* project.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D68B19631F480036AA40 /* project.png */; };
 		D2E7D693196320CD0036AA40 /* lego.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E7D692196320CD0036AA40 /* lego.png */; };
-		D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25FF83117651C5D00530928 /* ExportCompileWindow.xib */; };
 		D2FC9EAC189680670015C192 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FC9EAB189680670015C192 /* CacheManager.m */; };
 		D2FDF4DC176279E2002B6F33 /* ExtendedPDFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2FDF4DB176279E2002B6F33 /* ExtendedPDFView.xib */; };
 		D2FF0D7A17F70017003423F7 /* EncodingController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF0D7817F70017003423F7 /* EncodingController.m */; };
@@ -533,7 +533,6 @@
 		D25749BA186370450025A536 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D25FBAAA18903EED00FD3987 /* MainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainToolbar.h; sourceTree = "<group>"; };
 		D25FBAAB18903EED00FD3987 /* MainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainToolbar.m; sourceTree = "<group>"; };
-		D25FF83117651C5D00530928 /* ExportCompileWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D25FF83217651C5D00530928 /* ExportCompileWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportCompileWindowController.h; sourceTree = "<group>"; };
 		D25FF83317651C5D00530928 /* ExportCompileWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCompileWindowController.m; sourceTree = "<group>"; };
 		D2654AA8192752A500DE58B2 /* ModelInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelInfoWindowController.h; sourceTree = "<group>"; };
@@ -685,6 +684,8 @@
 		D2928AD71967E8F900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/GoToLineSheet.xib; sourceTree = "<group>"; };
 		D2928AD91967E93E00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TexdocView.xib; sourceTree = "<group>"; };
 		D2928ADB1967E94500F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/TexdocView.xib; sourceTree = "<group>"; };
+		D2928ADD1967E97E00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExportCompileWindow.xib; sourceTree = "<group>"; };
+		D2928ADF1967E98200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ExportCompileWindow.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -854,7 +855,7 @@
 			isa = PBXGroup;
 			children = (
 				D2CF617717709B3400ACC3D5 /* ErrorTrackingAssistant */,
-				D25FF83117651C5D00530928 /* ExportCompileWindow.xib */,
+				D2928ADE1967E97E00F6C9BD /* ExportCompileWindow.xib */,
 				D25FF83217651C5D00530928 /* ExportCompileWindowController.h */,
 				D25FF83317651C5D00530928 /* ExportCompileWindowController.m */,
 				76049C9E1752085000778E2A /* Compiler.h */,
@@ -1897,7 +1898,7 @@
 				D2928AC01967E4A800F6C9BD /* PropertyFileSelectionView.xib in Resources */,
 				D2928A701967D95C00F6C9BD /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
-				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
+				D2928ADC1967E97E00F6C9BD /* ExportCompileWindow.xib in Resources */,
 				D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */,
 				D213171517782485002966FC /* TMTMessageCellView.xib in Resources */,
 				D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */,
@@ -2473,6 +2474,15 @@
 				D2928ADB1967E94500F6C9BD /* de */,
 			);
 			name = TexdocView.xib;
+			sourceTree = "<group>";
+		};
+		D2928ADE1967E97E00F6C9BD /* ExportCompileWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928ADD1967E97E00F6C9BD /* en */,
+				D2928ADF1967E98200F6C9BD /* de */,
+			);
+			name = ExportCompileWindow.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
