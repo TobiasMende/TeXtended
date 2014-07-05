@@ -16,19 +16,16 @@
             <rect key="frame" x="0.0" y="0.0" width="318" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fs5-aV-QJv">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fs5-aV-QJv">
                     <rect key="frame" x="5" y="136" width="128" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="114" id="mEi-2J-T4g"/>
-                    </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name der Vorlage:" id="1qD-n2-Wea">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3j-xe-hQT">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S3j-xe-hQT">
                     <rect key="frame" x="139" y="133" width="172" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="PSj-fw-x3y">
@@ -115,18 +112,18 @@ DQ
             <constraints>
                 <constraint firstItem="Bge-UK-a7o" firstAttribute="leading" secondItem="f5A-Ov-If4" secondAttribute="leading" id="2Ng-xQ-6Lf"/>
                 <constraint firstItem="f5A-Ov-If4" firstAttribute="trailing" secondItem="NDx-NU-eSt" secondAttribute="trailing" id="4Fh-pI-XzQ"/>
-                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="Bge-UK-a7o" secondAttribute="leading" id="4ME-Qw-QMO"/>
-                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="7" id="8Mq-xI-J6c"/>
+                <constraint firstItem="Fs5-aV-QJv" firstAttribute="centerY" secondItem="S3j-xe-hQT" secondAttribute="centerY" id="8Qe-bK-JSH"/>
                 <constraint firstAttribute="bottom" secondItem="NDx-NU-eSt" secondAttribute="bottom" constant="7" id="8w4-8X-B0P"/>
                 <constraint firstItem="f5A-Ov-If4" firstAttribute="top" secondItem="Bge-UK-a7o" secondAttribute="bottom" constant="8" symbolic="YES" id="BFU-37-kgo"/>
                 <constraint firstItem="f5A-Ov-If4" firstAttribute="trailing" secondItem="S3j-xe-hQT" secondAttribute="trailing" id="BLV-Bb-KGH"/>
                 <constraint firstItem="S3j-xe-hQT" firstAttribute="top" secondItem="1" secondAttribute="top" constant="7" id="EWP-Nf-Wea"/>
+                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="Bge-UK-a7o" secondAttribute="leading" id="IxC-Gj-eRs"/>
                 <constraint firstItem="NDx-NU-eSt" firstAttribute="top" secondItem="f5A-Ov-If4" secondAttribute="bottom" constant="9" id="M96-y9-zVu"/>
                 <constraint firstAttribute="trailing" secondItem="Bge-UK-a7o" secondAttribute="trailing" constant="20" symbolic="YES" id="Oia-FM-gCA"/>
-                <constraint firstItem="S3j-xe-hQT" firstAttribute="leading" secondItem="Fs5-aV-QJv" secondAttribute="trailing" constant="8" symbolic="YES" id="aTQ-YY-MfP"/>
+                <constraint firstItem="S3j-xe-hQT" firstAttribute="leading" secondItem="Fs5-aV-QJv" secondAttribute="trailing" constant="8" symbolic="YES" id="VU7-TT-TI1"/>
+                <constraint firstItem="Fs5-aV-QJv" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="7" id="bug-qU-OTO"/>
                 <constraint firstItem="f5A-Ov-If4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="cuS-DU-SuD"/>
-                <constraint firstItem="Bge-UK-a7o" firstAttribute="top" secondItem="Fs5-aV-QJv" secondAttribute="bottom" constant="8" symbolic="YES" id="hzw-1h-o3j"/>
-                <constraint firstItem="S3j-xe-hQT" firstAttribute="centerY" secondItem="Fs5-aV-QJv" secondAttribute="centerY" id="wie-bM-284"/>
+                <constraint firstItem="Bge-UK-a7o" firstAttribute="top" secondItem="Fs5-aV-QJv" secondAttribute="bottom" constant="8" symbolic="YES" id="rDo-AJ-s7Q"/>
             </constraints>
         </customView>
     </objects>

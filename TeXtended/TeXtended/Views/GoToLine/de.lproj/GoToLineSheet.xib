@@ -22,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="246" height="86"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                         <rect key="frame" x="17" y="49" width="94" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gehe zu Zeile:" id="24">
@@ -31,7 +31,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17">
                         <rect key="frame" x="130" y="44" width="96" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="23">
@@ -89,12 +89,12 @@ Gw
                     <constraint firstAttribute="bottom" secondItem="19" secondAttribute="bottom" constant="20" symbolic="YES" id="7"/>
                     <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" constant="20" symbolic="YES" id="8"/>
                     <constraint firstAttribute="trailing" secondItem="17" secondAttribute="trailing" constant="20" symbolic="YES" id="9"/>
-                    <constraint firstItem="17" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="8" symbolic="YES" id="10"/>
                     <constraint firstItem="17" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="11"/>
                     <constraint firstAttribute="bottom" secondItem="18" secondAttribute="bottom" constant="20" symbolic="YES" id="12"/>
                     <constraint firstItem="18" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="13"/>
-                    <constraint firstItem="16" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="14"/>
-                    <constraint firstItem="16" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="15"/>
+                    <constraint firstItem="18" firstAttribute="top" secondItem="16" secondAttribute="bottom" constant="8" symbolic="YES" id="2jV-Xn-05w"/>
+                    <constraint firstItem="17" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="21" id="9HG-74-cx6"/>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="19" id="jZh-cw-Lnu"/>
                 </constraints>
             </view>
             <connections>

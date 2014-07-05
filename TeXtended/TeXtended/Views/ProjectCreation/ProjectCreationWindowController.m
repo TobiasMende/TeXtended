@@ -39,11 +39,11 @@
         [super windowDidLoad];
 
 
-        DMPaletteSectionView *projectPathContainer = [[DMPaletteSectionView alloc] initWithContentView:self.folderSelection.view andTitle:@"1. Select a project folder"];
-        DMPaletteSectionView *mainAndBibcontainer = [[DMPaletteSectionView alloc] initWithContentView:self.mainDocumentSelection.view andTitle:@"2. Select or create the main documents"];
-        DMPaletteSectionView *propertyFileContainer = [[DMPaletteSectionView alloc] initWithContentView:propertySelection.view andTitle:@"3. Select a property file"];
-        DMPaletteSectionView *bibFileContainer = [[DMPaletteSectionView alloc] initWithContentView:bibFilesSelection.view andTitle:@"4. Select the bib files"];
-        DMPaletteSectionView *compilerSettingContainer = [[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:@"5. Configure the compiler settings"];
+        DMPaletteSectionView *projectPathContainer = [[DMPaletteSectionView alloc] initWithContentView:self.folderSelection.view andTitle:NSLocalizedString(@"1. Select a project folder", @"Title in ProjectCreationWindow")];
+        DMPaletteSectionView *mainAndBibcontainer = [[DMPaletteSectionView alloc] initWithContentView:self.mainDocumentSelection.view andTitle:NSLocalizedString(@"2. Select or create the main documents", @"Title in ProjectCreationWindow")];
+        DMPaletteSectionView *propertyFileContainer = [[DMPaletteSectionView alloc] initWithContentView:propertySelection.view andTitle:NSLocalizedString(@"3. Select a property file", @"Title in ProjectCreationWindow")];
+        DMPaletteSectionView *bibFileContainer = [[DMPaletteSectionView alloc] initWithContentView:bibFilesSelection.view andTitle:NSLocalizedString(@"4. Select the bib files", @"Title in ProjectCreationWindow")];
+        DMPaletteSectionView *compilerSettingContainer = [[DMPaletteSectionView alloc] initWithContentView:compilerSettings.view andTitle:NSLocalizedString(@"5. Configure the compiler settings", @"Title in ProjectCreationWindow")];
         container.sectionViews = @[projectPathContainer,
                 mainAndBibcontainer,
                 propertyFileContainer,

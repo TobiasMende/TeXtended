@@ -113,7 +113,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MM1-tj-6Sh">
-                        <rect key="frame" x="91" y="307" width="412" height="17"/>
+                        <rect key="frame" x="91" y="298" width="412" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Choose an option:" id="ONx-QA-0Gi">
                             <font key="font" metaFont="system" size="16"/>

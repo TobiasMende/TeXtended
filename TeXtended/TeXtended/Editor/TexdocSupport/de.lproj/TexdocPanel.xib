@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="351" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="52">
                     <rect key="frame" x="17" y="75" width="86" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Paket-Name:" id="53">
@@ -61,7 +61,7 @@
                         <outlet property="nextKeyView" destination="72" id="149"/>
                     </connections>
                 </button>
-                <progressIndicator misplaced="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="112">
+                <progressIndicator maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="112">
                     <rect key="frame" x="20" y="40" width="94" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
@@ -75,16 +75,16 @@
                 </progressIndicator>
             </subviews>
             <constraints>
-                <constraint firstItem="52" firstAttribute="leading" secondItem="42" secondAttribute="leading" constant="20" symbolic="YES" id="45"/>
-                <constraint firstItem="52" firstAttribute="top" secondItem="42" secondAttribute="top" constant="20" symbolic="YES" id="46"/>
                 <constraint firstItem="44" firstAttribute="top" secondItem="42" secondAttribute="top" constant="20" symbolic="YES" id="47"/>
                 <constraint firstAttribute="trailing" secondItem="44" secondAttribute="trailing" constant="20" symbolic="YES" id="48"/>
                 <constraint firstItem="43" firstAttribute="leading" secondItem="44" secondAttribute="leading" id="49"/>
                 <constraint firstAttribute="trailing" secondItem="43" secondAttribute="trailing" constant="20" symbolic="YES" id="51"/>
-                <constraint firstItem="112" firstAttribute="leading" secondItem="42" secondAttribute="leading" constant="20" symbolic="YES" id="138"/>
-                <constraint firstItem="112" firstAttribute="trailing" secondItem="52" secondAttribute="trailing" id="140"/>
                 <constraint firstItem="43" firstAttribute="top" secondItem="44" secondAttribute="bottom" constant="8" symbolic="YES" id="146"/>
-                <constraint firstItem="112" firstAttribute="bottom" secondItem="43" secondAttribute="bottom" id="147"/>
+                <constraint firstItem="52" firstAttribute="top" secondItem="44" secondAttribute="top" id="7N7-vb-fRQ"/>
+                <constraint firstItem="112" firstAttribute="leading" secondItem="42" secondAttribute="leading" constant="20" symbolic="YES" id="DQf-yB-AsO"/>
+                <constraint firstItem="112" firstAttribute="bottom" secondItem="43" secondAttribute="bottom" id="OuJ-7K-is2"/>
+                <constraint firstItem="43" firstAttribute="leading" secondItem="112" secondAttribute="trailing" constant="15" id="QHQ-Td-iUv"/>
+                <constraint firstItem="44" firstAttribute="leading" secondItem="52" secondAttribute="trailing" constant="28" id="glt-5G-Hvk"/>
             </constraints>
         </view>
         <window title="Texdoc Support" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" animationBehavior="default" id="7" customClass="NSPanel">
