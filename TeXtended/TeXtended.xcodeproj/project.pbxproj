@@ -57,7 +57,6 @@
 		D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB841726868A00E2F8EC /* CommandCompletions.plist */; };
 		D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB891726868A00E2F8EC /* EnvironmentCompletions.plist */; };
 		D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBC21726879000E2F8EC /* PreferencesWindow.xib */; };
-		D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21ACBD41726889700E2F8EC /* MainWindow.xib */; };
 		D21ACBE61726892A00E2F8EC /* SourceCodePro-Black.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */; };
 		D21ACBE71726892A00E2F8EC /* SourceCodePro-Bold.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */; };
 		D21ACBE81726892A00E2F8EC /* SourceCodePro-ExtraLight.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */; };
@@ -85,7 +84,6 @@
 		D2326ADC188A816D008DEE51 /* NSFileManager+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADB188A816D008DEE51 /* NSFileManager+TMTExtension.m */; };
 		D2326ADF188A98E7008DEE51 /* NSAttributedString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */; };
 		D2326AE3188AC085008DEE51 /* TemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AE1188AC085008DEE51 /* TemplateController.m */; };
-		D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */; };
 		D2326AEB188ADB06008DEE51 /* AddTemplatePlaceholder.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */; };
 		D2326AEE188ADC50008DEE51 /* TemplatesCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */; };
 		D2326AF0188AE0F0008DEE51 /* TemplatePlaceholder.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2326AEF188AE0F0008DEE51 /* TemplatePlaceholder.xib */; };
@@ -166,6 +164,8 @@
 		D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */; };
 		D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */; };
 		D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E690188290F600CDC8C8 /* CompletionTableController.m */; };
+		D2928A701967D95C00F6C9BD /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A721967D95C00F6C9BD /* MainWindow.xib */; };
+		D2928A741967DA3700F6C9BD /* TemplatesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A761967DA3700F6C9BD /* TemplatesWindow.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -455,7 +455,6 @@
 		D21ACBD01726889700E2F8EC /* ProjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDocument.m; sourceTree = "<group>"; };
 		D21ACBD21726889700E2F8EC /* SimpleDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDocument.h; sourceTree = "<group>"; };
 		D21ACBD31726889700E2F8EC /* SimpleDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDocument.m; sourceTree = "<group>"; };
-		D21ACBD41726889700E2F8EC /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		D21ACBDA172688B400E2F8EC /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
 		D21ACBDB172688B400E2F8EC /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
 		D21ACBDC172688B400E2F8EC /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -496,7 +495,6 @@
 		D2326ADE188A98E7008DEE51 /* NSAttributedString+Replace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Replace.m"; sourceTree = "<group>"; };
 		D2326AE0188AC085008DEE51 /* TemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateController.h; sourceTree = "<group>"; };
 		D2326AE1188AC085008DEE51 /* TemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateController.m; sourceTree = "<group>"; };
-		D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplatesWindow.xib; sourceTree = "<group>"; };
 		D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTemplatePlaceholder.xib; sourceTree = "<group>"; };
 		D2326AEC188ADC50008DEE51 /* TemplatesCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplatesCollectionView.h; sourceTree = "<group>"; };
 		D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesCollectionView.m; sourceTree = "<group>"; };
@@ -654,6 +652,9 @@
 		D2928A691967D48200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2928A6A1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2928A6B1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D2928A711967D95C00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D2928A731967D96700F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D2928A751967DA3700F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TemplatesWindow.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -851,7 +852,7 @@
 				D2326AD8188A7961008DEE51 /* Template.m */,
 				D2326AE0188AC085008DEE51 /* TemplateController.h */,
 				D2326AE1188AC085008DEE51 /* TemplateController.m */,
-				D2326AE2188AC085008DEE51 /* TemplatesWindow.xib */,
+				D2928A761967DA3700F6C9BD /* TemplatesWindow.xib */,
 				D2326AEA188ADB06008DEE51 /* AddTemplatePlaceholder.xib */,
 				D2326AEC188ADC50008DEE51 /* TemplatesCollectionView.h */,
 				D2326AED188ADC50008DEE51 /* TemplatesCollectionView.m */,
@@ -1099,7 +1100,7 @@
 			children = (
 				D2A550811752085600BC05DD /* MainWindowController.h */,
 				D2A550821752085600BC05DD /* MainWindowController.m */,
-				D21ACBD41726889700E2F8EC /* MainWindow.xib */,
+				D2928A721967D95C00F6C9BD /* MainWindow.xib */,
 				D2CC550B171EAFAB00D81CF1 /* MainMenu.xib */,
 				D21ACBCF1726889700E2F8EC /* ProjectDocument.h */,
 				D21ACBD01726889700E2F8EC /* ProjectDocument.m */,
@@ -1863,12 +1864,12 @@
 				D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */,
 				D21F316D1895C73300FF6E83 /* hammer.icns in Resources */,
 				D22E169D1824ED10005B5B91 /* TMTTabView.xib in Resources */,
-				D2326AE4188AC085008DEE51 /* TemplatesWindow.xib in Resources */,
+				D2928A741967DA3700F6C9BD /* TemplatesWindow.xib in Resources */,
 				761C07291945CB9A007F5AB1 /* FileTypeInfos.plist in Resources */,
 				D21ACBA41726868A00E2F8EC /* EnvironmentCompletions.plist in Resources */,
 				D21ACBC61726879000E2F8EC /* PreferencesWindow.xib in Resources */,
 				D254798518379F080097C97D /* PropertyFileSelectionView.xib in Resources */,
-				D21ACBD81726889700E2F8EC /* MainWindow.xib in Resources */,
+				D2928A701967D95C00F6C9BD /* MainWindow.xib in Resources */,
 				D22E16A01824ED10005B5B91 /* TMTTabViewWindow.xib in Resources */,
 				D2F177D417651DBD0089DBC0 /* ExportCompileWindow.xib in Resources */,
 				D288C94718D47E9D007384E6 /* BibDocument.xib in Resources */,
@@ -2205,6 +2206,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D2928A721967D95C00F6C9BD /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A711967D95C00F6C9BD /* en */,
+				D2928A731967D96700F6C9BD /* de */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D2928A761967DA3700F6C9BD /* TemplatesWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A751967DA3700F6C9BD /* en */,
+			);
+			name = TemplatesWindow.xib;
+			sourceTree = "<group>";
+		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
