@@ -81,7 +81,6 @@
 		D2326AF3188AE28A008DEE51 /* TemplatePlaceholderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2326AF2188AE28A008DEE51 /* TemplatePlaceholderController.m */; };
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
-		D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */; };
 		D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
@@ -171,6 +170,7 @@
 		D2928AE01967EA1400F6C9BD /* ConsoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AE21967EA1400F6C9BD /* ConsoleView.xib */; };
 		D2928AE41967EA5000F6C9BD /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AE61967EA5000F6C9BD /* ConsoleWindow.xib */; };
 		D2928AE81967EAA300F6C9BD /* ConsoleCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AEA1967EAA300F6C9BD /* ConsoleCellView.xib */; };
+		D2928AEC1967EAD600F6C9BD /* QuickPreviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AEE1967EAD600F6C9BD /* QuickPreviewWindow.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -498,7 +498,6 @@
 		D23DD42818794D2600C0EF97 /* QuickPreviewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPreviewManager.h; sourceTree = "<group>"; };
 		D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPreviewManager.m; sourceTree = "<group>"; };
 		D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompileProcessHandler.h; sourceTree = "<group>"; };
-		D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickPreviewWindow.xib; sourceTree = "<group>"; };
 		D23FD40D1863A4D7006BFD33 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StructureOutlineView.xib; sourceTree = "<group>"; };
 		D248E4DA177763C7008DDE80 /* TMTMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTMessageCellView.h; sourceTree = "<group>"; };
@@ -689,6 +688,8 @@
 		D2928AE71967EA5400F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ConsoleWindow.xib; sourceTree = "<group>"; };
 		D2928AE91967EAA300F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ConsoleCellView.xib; sourceTree = "<group>"; };
 		D2928AEB1967EAA700F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ConsoleCellView.xib; sourceTree = "<group>"; };
+		D2928AED1967EAD600F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/QuickPreviewWindow.xib; sourceTree = "<group>"; };
+		D2928AEF1967EADA00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/QuickPreviewWindow.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1212,7 +1213,7 @@
 			children = (
 				D23DD42818794D2600C0EF97 /* QuickPreviewManager.h */,
 				D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */,
-				D23DD42C187952BC00C0EF97 /* QuickPreviewWindow.xib */,
+				D2928AEE1967EAD600F6C9BD /* QuickPreviewWindow.xib */,
 			);
 			path = QuickPreview;
 			sourceTree = "<group>";
@@ -1978,7 +1979,7 @@
 				D2928A801967DCA900F6C9BD /* EditTemplateView.xib in Resources */,
 				D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */,
 				D21F316B1895C73300FF6E83 /* bookmark.icns in Resources */,
-				D23DD42D187952BC00C0EF97 /* QuickPreviewWindow.xib in Resources */,
+				D2928AEC1967EAD600F6C9BD /* QuickPreviewWindow.xib in Resources */,
 				D2928AE41967EA5000F6C9BD /* ConsoleWindow.xib in Resources */,
 				F646754918795859006EAD63 /* DropCompletions.plist in Resources */,
 				D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */,
@@ -2514,6 +2515,15 @@
 				D2928AEB1967EAA700F6C9BD /* de */,
 			);
 			name = ConsoleCellView.xib;
+			sourceTree = "<group>";
+		};
+		D2928AEE1967EAD600F6C9BD /* QuickPreviewWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AED1967EAD600F6C9BD /* en */,
+				D2928AEF1967EADA00F6C9BD /* de */,
+			);
+			name = QuickPreviewWindow.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
