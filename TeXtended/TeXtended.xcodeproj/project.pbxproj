@@ -132,7 +132,6 @@
 		D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28089BA181BBE7B00EEF55C /* MessageOutlineView.xib */; };
 		D2809C35187DC6D700C59909 /* LatexSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = D2809C34187DC6D700C59909 /* LatexSpellChecker.m */; };
 		D2809C39187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list in Resources */ = {isa = PBXBuildFile; fileRef = D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */; };
-		D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2848709188B00E300CC91A0 /* ShareDialog.xib */; };
 		D284870D188B00E300CC91A0 /* ShareDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = D284870B188B00E300CC91A0 /* ShareDialogController.m */; };
 		D2848713188B3AE300CC91A0 /* TMTQuickLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2848712188B3AE300CC91A0 /* TMTQuickLookView.m */; };
 		D2848717188B6B9000CC91A0 /* DefaultTemplates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2848716188B6B9000CC91A0 /* DefaultTemplates.bundle */; };
@@ -168,6 +167,7 @@
 		D2928A981967E11800F6C9BD /* ModelInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A9A1967E11800F6C9BD /* ModelInfoWindow.xib */; };
 		D2928A9C1967E1BC00F6C9BD /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A9E1967E1BC00F6C9BD /* FileInfoWindow.xib */; };
 		D2928AA01967E1F800F6C9BD /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AA21967E1F800F6C9BD /* FileView.xib */; };
+		D2928AA41967E29E00F6C9BD /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AA61967E29E00F6C9BD /* ShareDialog.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -603,7 +603,6 @@
 		D2809C33187DC6D700C59909 /* LatexSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSpellChecker.h; sourceTree = "<group>"; };
 		D2809C34187DC6D700C59909 /* LatexSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSpellChecker.m; sourceTree = "<group>"; };
 		D2809C38187DEB8300C59909 /* SpellCheckerPrefixesToIgnore.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpellCheckerPrefixesToIgnore.list; sourceTree = "<group>"; };
-		D2848709188B00E300CC91A0 /* ShareDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDialog.xib; sourceTree = "<group>"; };
 		D284870A188B00E300CC91A0 /* ShareDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDialogController.h; sourceTree = "<group>"; };
 		D284870B188B00E300CC91A0 /* ShareDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDialogController.m; sourceTree = "<group>"; };
 		D2848711188B3AE300CC91A0 /* TMTQuickLookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTQuickLookView.h; sourceTree = "<group>"; };
@@ -669,6 +668,8 @@
 		D2928A9F1967E1C000F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/FileInfoWindow.xib; sourceTree = "<group>"; };
 		D2928AA11967E1F800F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FileView.xib; sourceTree = "<group>"; };
 		D2928AA31967E1FC00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/FileView.xib; sourceTree = "<group>"; };
+		D2928AA51967E29E00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShareDialog.xib; sourceTree = "<group>"; };
+		D2928AA71967E2A300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ShareDialog.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1449,7 +1450,7 @@
 		D2848708188B00E300CC91A0 /* ShareDialog */ = {
 			isa = PBXGroup;
 			children = (
-				D2848709188B00E300CC91A0 /* ShareDialog.xib */,
+				D2928AA61967E29E00F6C9BD /* ShareDialog.xib */,
 				D284870A188B00E300CC91A0 /* ShareDialogController.h */,
 				D284870B188B00E300CC91A0 /* ShareDialogController.m */,
 			);
@@ -1890,7 +1891,7 @@
 				D24EE30817F71D1400793643 /* AutoCompletionWindow.xib in Resources */,
 				D21F316C1895C73300FF6E83 /* forward.icns in Resources */,
 				D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */,
-				D284870C188B00E300CC91A0 /* ShareDialog.xib in Resources */,
+				D2928AA41967E29E00F6C9BD /* ShareDialog.xib in Resources */,
 				76041826174CF5BA000503E7 /* ExtendedPdfControlls.xib in Resources */,
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D2E7D68D19631F480036AA40 /* project.png in Resources */,
@@ -2333,6 +2334,15 @@
 				D2928AA31967E1FC00F6C9BD /* de */,
 			);
 			name = FileView.xib;
+			sourceTree = "<group>";
+		};
+		D2928AA61967E29E00F6C9BD /* ShareDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AA51967E29E00F6C9BD /* en */,
+				D2928AA71967E2A300F6C9BD /* de */,
+			);
+			name = ShareDialog.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
