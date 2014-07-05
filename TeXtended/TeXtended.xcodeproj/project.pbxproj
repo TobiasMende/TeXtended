@@ -121,7 +121,6 @@
 		D26B827F18D57E87009F3BCC /* NSString_Categories_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */; };
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
 		D26E8CF81912D33500326CAE /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26E8CF61912D33500326CAE /* FileViewController.m */; };
-		D26E8CF91912D33500326CAE /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D26E8CF71912D33500326CAE /* FileView.xib */; };
 		D2784BFF19153998002497D8 /* FileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784BFE19153998002497D8 /* FileNode.m */; };
 		D2784C0519155196002497D8 /* FileOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784C0419155196002497D8 /* FileOutlineView.m */; };
 		D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27CD1971891388100A99997 /* CiteInfoViewController.m */; };
@@ -168,6 +167,7 @@
 		D2928A941967E0AE00F6C9BD /* CompilerPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A961967E0AE00F6C9BD /* CompilerPreferencesView.xib */; };
 		D2928A981967E11800F6C9BD /* ModelInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A9A1967E11800F6C9BD /* ModelInfoWindow.xib */; };
 		D2928A9C1967E1BC00F6C9BD /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A9E1967E1BC00F6C9BD /* FileInfoWindow.xib */; };
+		D2928AA01967E1F800F6C9BD /* FileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AA21967E1F800F6C9BD /* FileView.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -578,7 +578,6 @@
 		D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+TMTExtension.m"; sourceTree = "<group>"; };
 		D26E8CF51912D33500326CAE /* FileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewController.h; sourceTree = "<group>"; };
 		D26E8CF61912D33500326CAE /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewController.m; sourceTree = "<group>"; };
-		D26E8CF71912D33500326CAE /* FileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileView.xib; sourceTree = "<group>"; };
 		D27198351743884B00342CB0 /* LatexSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatexSyntaxHighlighter.h; sourceTree = "<group>"; };
 		D27198361743884B00342CB0 /* LatexSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatexSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D27198371743884B00342CB0 /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
@@ -668,6 +667,8 @@
 		D2928A9B1967E12200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ModelInfoWindow.xib; sourceTree = "<group>"; };
 		D2928A9D1967E1BC00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FileInfoWindow.xib; sourceTree = "<group>"; };
 		D2928A9F1967E1C000F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/FileInfoWindow.xib; sourceTree = "<group>"; };
+		D2928AA11967E1F800F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FileView.xib; sourceTree = "<group>"; };
+		D2928AA31967E1FC00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/FileView.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1351,7 +1352,7 @@
 			children = (
 				D26E8CF51912D33500326CAE /* FileViewController.h */,
 				D26E8CF61912D33500326CAE /* FileViewController.m */,
-				D26E8CF71912D33500326CAE /* FileView.xib */,
+				D2928AA21967E1F800F6C9BD /* FileView.xib */,
 				D2784BFD19153998002497D8 /* FileNode.h */,
 				D2784BFE19153998002497D8 /* FileNode.m */,
 				D2784C0319155196002497D8 /* FileOutlineView.h */,
@@ -1928,7 +1929,7 @@
 				D28089BC181BBE7B00EEF55C /* MessageOutlineView.xib in Resources */,
 				7654503D18379D770013CC4D /* FolderSelectionView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
-				D26E8CF91912D33500326CAE /* FileView.xib in Resources */,
+				D2928AA01967E1F800F6C9BD /* FileView.xib in Resources */,
 				D21F316E1895C73300FF6E83 /* link.icns in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
@@ -2323,6 +2324,15 @@
 				D2928A9F1967E1C000F6C9BD /* de */,
 			);
 			name = FileInfoWindow.xib;
+			sourceTree = "<group>";
+		};
+		D2928AA21967E1F800F6C9BD /* FileView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AA11967E1F800F6C9BD /* en */,
+				D2928AA31967E1FC00F6C9BD /* de */,
+			);
+			name = FileView.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
