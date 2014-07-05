@@ -11,6 +11,9 @@
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
 #import "DocumentModel.h"
+#import "CacheManager.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import "OutlineElement.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 5.0
@@ -582,6 +585,11 @@ private)
         if (lineHeights.count == 0) {
             return;
         }
+        NSEnumerator *outlineEnumerator = self.model.outlineElements.objectEnumerator;
+        OutlineElement *current = outlineEnumerator.nextObject;
+        while (current && current.line < lineLabel) {
+            current = outlineEnumerator.nextObject;
+        }
         for (NSUInteger i = 0 ; i < lineHeights.count - 1 ; i++) {
             /* draw rect for current line */
             NSRect lineRect = NSMakeRect(dirtyRect.size.width - BORDER_SIZE ,
@@ -590,7 +598,10 @@ private)
                     [lineHeights[i + 1] unsignedIntegerValue] - [lineHeights[i] unsignedIntegerValue]
             );
 
-            if ((lineLabel + i) % 2 == 0) {
+            if (current && current.line == lineLabel+i+1) {
+                [[[CacheManager sharedCacheManager] colorForOutlineElement:current] set];
+                current = outlineEnumerator.nextObject;
+            } else if ((lineLabel + i) % 2 == 0) {
                 [self.borderColorA set];
             } else {
                 [self.borderColorB set];
