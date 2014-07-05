@@ -48,8 +48,6 @@
 
         QuickPreviewManager *quickPreview;
 
-        NSArray *droppedFileNames;
-        
     }
 
     @property BOOL completionEnabled;

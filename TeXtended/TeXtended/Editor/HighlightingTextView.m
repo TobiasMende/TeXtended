@@ -59,6 +59,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)selectAndInsertDropCompletion:(NSArray *)insertions;
 - (void) insertDropCompletion:(id)sender;
+- (void)insertDropCompletionForPath:(NSString *)path andFileNames:(NSArray *)droppedFileNames;
+
+- (void)insertDropCompletionForModel:(DocumentModel *)model andFileNames:(NSArray *)droppedFileNames;
+
+
 @end
 
 @implementation HighlightingTextView
@@ -507,16 +512,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                         }
                     } else {
                         NSUInteger index = (NSUInteger) (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-
-                        if ([(autoCompletionController.additionalInformation)[TMTDropCompletionKey] boolValue]) {
-                            NSDictionary *pathDioctionary = (autoCompletionController.content)[index];
-                            NSString *path = [[self.firstResponderDelegate.model.project.path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[pathDioctionary objectForKey:@"key"]];
-                            [self insertDropCompletionForPath:path];
-                            [self dismissCompletionWindow];
-                        }
-                        else {
                             [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSReturnTextMovement isFinal:YES];
-                        }
                     }
                     return;
                 }
@@ -677,7 +673,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
             NSUInteger characterIndex = [self characterIndexOfPoint:draggingLocation];
             [self setSelectedRange:NSMakeRange(characterIndex, 0)];
 
-            droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
+            NSArray *droppedFileNames = [pb propertyListForType:NSFilenamesPboardType];
 
             DocumentModel *model = self.firstResponderDelegate.model;
 
@@ -688,13 +684,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
                 }
                 if (dirs.count > 1) {
                     // Insert absolute path
-                    [self insertDropCompletionForModel:nil];
+                    [self insertDropCompletionForModel:nil andFileNames:droppedFileNames];
                 }
                 else {
-                    [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
+                    [self insertDropCompletionForModel:[model.mainDocuments firstObject] andFileNames:droppedFileNames];
                 }
             } else if (model.mainDocuments.count == 1) {
-                [self insertDropCompletionForModel:[model.mainDocuments firstObject]];
+                [self insertDropCompletionForModel:[model.mainDocuments firstObject] andFileNames:droppedFileNames];
             }
 
         }
@@ -709,7 +705,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 
-- (void)insertDropCompletionForModel:(DocumentModel *)model
+- (void)insertDropCompletionForModel:(DocumentModel *)model andFileNames:(NSArray *)droppedFileNames
 {
     NSString *base = model.texPath ? [model.texPath stringByDeletingLastPathComponent] : nil;
     
@@ -728,7 +724,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [[self window] makeFirstResponder:self];
 }
 
-- (void)insertDropCompletionForPath:(NSString *)path
+- (void)insertDropCompletionForPath:(NSString *)path andFileNames:(NSArray *)droppedFileNames
 {
     
     for (NSString *fileName in droppedFileNames) {
