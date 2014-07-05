@@ -104,7 +104,6 @@
 		D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D257498D18631C5C0025A536 /* DefaultCompletionView.xib */; };
 		D257499218631E5B0025A536 /* DefaultCompletionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D257499118631E5B0025A536 /* DefaultCompletionView.m */; };
 		D2574995186324730025A536 /* DBLPButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574994186324730025A536 /* DBLPButtonView.m */; };
-		D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25749961863247F0025A536 /* DBLPButtonView.xib */; };
 		D25749A21863515C0025A536 /* DBLPIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25749A11863515C0025A536 /* DBLPIntegrator.m */; };
 		D25FBAAC18903EED00FD3987 /* MainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FBAAB18903EED00FD3987 /* MainToolbar.m */; };
 		D2654AAB192752A500DE58B2 /* ModelInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AA9192752A500DE58B2 /* ModelInfoWindowController.m */; };
@@ -149,7 +148,6 @@
 		D28F286C19648B510085344F /* NSString+TMTEditorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F286B19648B510085344F /* NSString+TMTEditorExtensions.m */; };
 		D28F286F196495E00085344F /* NSTextView+TMTEditorExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F286E196495E00085344F /* NSTextView+TMTEditorExtension.m */; };
 		D2906E761824F5EC003213AA /* TMTTabManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2906E751824F5EC003213AA /* TMTTabManager.m */; };
-		D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D291E684188055F700CDC8C8 /* CiteInfoView.xib */; };
 		D291E68C1882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */; };
 		D291E68D1882853B00CDC8C8 /* NSString+RegexReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E6891882853B00CDC8C8 /* NSString+RegexReplace.m */; };
 		D291E68E1882853B00CDC8C8 /* NSString+RNTextStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = D291E68B1882853B00CDC8C8 /* NSString+RNTextStatistics.m */; };
@@ -170,6 +168,8 @@
 		D2928AA41967E29E00F6C9BD /* ShareDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AA61967E29E00F6C9BD /* ShareDialog.xib */; };
 		D2928AA81967E2EC00F6C9BD /* MergeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AAA1967E2EC00F6C9BD /* MergeWindow.xib */; };
 		D2928AAC1967E35C00F6C9BD /* PrintDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AAE1967E35C00F6C9BD /* PrintDialog.xib */; };
+		D2928AB01967E3EC00F6C9BD /* DBLPButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AB21967E3EC00F6C9BD /* DBLPButtonView.xib */; };
+		D2928AB41967E42000F6C9BD /* CiteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AB61967E42000F6C9BD /* CiteInfoView.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -535,7 +535,6 @@
 		D257499118631E5B0025A536 /* DefaultCompletionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultCompletionView.m; sourceTree = "<group>"; };
 		D2574993186324730025A536 /* DBLPButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPButtonView.h; sourceTree = "<group>"; };
 		D2574994186324730025A536 /* DBLPButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPButtonView.m; sourceTree = "<group>"; };
-		D25749961863247F0025A536 /* DBLPButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPButtonView.xib; sourceTree = "<group>"; };
 		D25749A01863515C0025A536 /* DBLPIntegrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPIntegrator.h; sourceTree = "<group>"; };
 		D25749A11863515C0025A536 /* DBLPIntegrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPIntegrator.m; sourceTree = "<group>"; };
 		D25749BA186370450025A536 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -628,7 +627,6 @@
 		D28F286E196495E00085344F /* NSTextView+TMTEditorExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+TMTEditorExtension.m"; sourceTree = "<group>"; };
 		D2906E741824F5EC003213AA /* TMTTabManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabManager.h; sourceTree = "<group>"; };
 		D2906E751824F5EC003213AA /* TMTTabManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabManager.m; sourceTree = "<group>"; };
-		D291E684188055F700CDC8C8 /* CiteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CiteInfoView.xib; sourceTree = "<group>"; };
 		D291E6861882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+SimpleRegex.h"; sourceTree = "<group>"; };
 		D291E6871882853B00CDC8C8 /* NSRegularExpression+SimpleRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+SimpleRegex.m"; sourceTree = "<group>"; };
 		D291E6881882853B00CDC8C8 /* NSString+RegexReplace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexReplace.h"; sourceTree = "<group>"; };
@@ -674,6 +672,10 @@
 		D2928AAB1967E2F100F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MergeWindow.xib; sourceTree = "<group>"; };
 		D2928AAD1967E35C00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrintDialog.xib; sourceTree = "<group>"; };
 		D2928AAF1967E36100F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/PrintDialog.xib; sourceTree = "<group>"; };
+		D2928AB11967E3EC00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DBLPButtonView.xib; sourceTree = "<group>"; };
+		D2928AB31967E3F900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/DBLPButtonView.xib; sourceTree = "<group>"; };
+		D2928AB51967E42000F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CiteInfoView.xib; sourceTree = "<group>"; };
+		D2928AB71967E42300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/CiteInfoView.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1242,8 +1244,8 @@
 				D257498F18631E110025A536 /* CustomTableCellView.h */,
 				D2574993186324730025A536 /* DBLPButtonView.h */,
 				D2574994186324730025A536 /* DBLPButtonView.m */,
-				D25749961863247F0025A536 /* DBLPButtonView.xib */,
-				D291E684188055F700CDC8C8 /* CiteInfoView.xib */,
+				D2928AB21967E3EC00F6C9BD /* DBLPButtonView.xib */,
+				D2928AB61967E42000F6C9BD /* CiteInfoView.xib */,
 				D27CD1961891388100A99997 /* CiteInfoViewController.h */,
 				D27CD1971891388100A99997 /* CiteInfoViewController.m */,
 			);
@@ -1898,7 +1900,7 @@
 				D2A550701751FF4B00BC05DD /* TextView.xib in Resources */,
 				D2E7D68D19631F480036AA40 /* project.png in Resources */,
 				D254798A1837A0D30097C97D /* CompilerSettingsView.xib in Resources */,
-				D291E685188055F700CDC8C8 /* CiteInfoView.xib in Resources */,
+				D2928AB41967E42000F6C9BD /* CiteInfoView.xib in Resources */,
 				D2928A8C1967DED800F6C9BD /* DocumentInfoView.xib in Resources */,
 				D2C2379F18954D910096ECAA /* alert-circled.icns in Resources */,
 				D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */,
@@ -1943,7 +1945,7 @@
 				760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */,
 				D28DC0D7177AC94900E4C711 /* pdflatex.rb in Resources */,
 				D28DC0DA177AEBC900E4C711 /* xelatex.rb in Resources */,
-				D25749971863247F0025A536 /* DBLPButtonView.xib in Resources */,
+				D2928AB01967E3EC00F6C9BD /* DBLPButtonView.xib in Resources */,
 				D28DC0DC177AED2900E4C711 /* lualatex.rb in Resources */,
 				D21A1C3017806F4B0087E10D /* MessageInfoView.xib in Resources */,
 				D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */,
@@ -2363,6 +2365,24 @@
 				D2928AAF1967E36100F6C9BD /* de */,
 			);
 			name = PrintDialog.xib;
+			sourceTree = "<group>";
+		};
+		D2928AB21967E3EC00F6C9BD /* DBLPButtonView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AB11967E3EC00F6C9BD /* en */,
+				D2928AB31967E3F900F6C9BD /* de */,
+			);
+			name = DBLPButtonView.xib;
+			sourceTree = "<group>";
+		};
+		D2928AB61967E42000F6C9BD /* CiteInfoView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AB51967E42000F6C9BD /* en */,
+				D2928AB71967E42300F6C9BD /* de */,
+			);
+			name = CiteInfoView.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
