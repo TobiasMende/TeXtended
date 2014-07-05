@@ -112,7 +112,6 @@
 		D2654AB11927566D00DE58B2 /* CompilerPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AAF1927566D00DE58B2 /* CompilerPreferencesViewController.m */; };
 		D2654AB21927566D00DE58B2 /* CompilerPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654AB01927566D00DE58B2 /* CompilerPreferencesView.xib */; };
 		D2654ABD192777A800DE58B2 /* ProjectInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */; };
-		D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */; };
 		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
 		D2654AC61927925600DE58B2 /* edit.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC51927925600DE58B2 /* edit.icns */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
@@ -167,6 +166,7 @@
 		D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A861967DCFE00F6C9BD /* StatsPanel.xib */; };
 		D2928A881967DE1500F6C9BD /* StartScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A8A1967DE1500F6C9BD /* StartScreenWindow.xib */; };
 		D2928A8C1967DED800F6C9BD /* DocumentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A8E1967DED800F6C9BD /* DocumentInfoView.xib */; };
+		D2928A901967E04A00F6C9BD /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A921967E04A00F6C9BD /* ProjectInfoView.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -552,7 +552,6 @@
 		D2654AB01927566D00DE58B2 /* CompilerPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompilerPreferencesView.xib; sourceTree = "<group>"; };
 		D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfoViewController.h; sourceTree = "<group>"; };
 		D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfoViewController.m; sourceTree = "<group>"; };
-		D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
 		D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentInfoViewController.h; sourceTree = "<group>"; };
 		D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentInfoViewController.m; sourceTree = "<group>"; };
 		D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelInfoViewController.h; sourceTree = "<group>"; };
@@ -663,6 +662,8 @@
 		D2928A8B1967DE1900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StartScreenWindow.xib; sourceTree = "<group>"; };
 		D2928A8D1967DED800F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DocumentInfoView.xib; sourceTree = "<group>"; };
 		D2928A8F1967DEDE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/DocumentInfoView.xib; sourceTree = "<group>"; };
+		D2928A911967E04A00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectInfoView.xib; sourceTree = "<group>"; };
+		D2928A931967E04F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/ProjectInfoView.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -1272,7 +1273,7 @@
 				D2928A8E1967DED800F6C9BD /* DocumentInfoView.xib */,
 				D2654ABA192777A800DE58B2 /* ProjectInfoViewController.h */,
 				D2654ABB192777A800DE58B2 /* ProjectInfoViewController.m */,
-				D2654ABC192777A800DE58B2 /* ProjectInfoView.xib */,
+				D2928A921967E04A00F6C9BD /* ProjectInfoView.xib */,
 				D2654ABF192777FB00DE58B2 /* DocumentInfoViewController.h */,
 				D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */,
 				D2654AC41927790F00DE58B2 /* ModelInfoViewController.h */,
@@ -1946,7 +1947,7 @@
 				D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */,
 				D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */,
 				F68687F118781D2E00898026 /* PrintDialog.xib in Resources */,
-				D2654ABE192777A800DE58B2 /* ProjectInfoView.xib in Resources */,
+				D2928A901967E04A00F6C9BD /* ProjectInfoView.xib in Resources */,
 				D2654AB21927566D00DE58B2 /* CompilerPreferencesView.xib in Resources */,
 				D28089B6181BBAE100EEF55C /* OutlineTabView.xib in Resources */,
 				D2928A7C1967DB7600F6C9BD /* AddNewTemplateWindow.xib in Resources */,
@@ -2283,6 +2284,15 @@
 				D2928A8F1967DEDE00F6C9BD /* de */,
 			);
 			name = DocumentInfoView.xib;
+			sourceTree = "<group>";
+		};
+		D2928A921967E04A00F6C9BD /* ProjectInfoView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A911967E04A00F6C9BD /* en */,
+				D2928A931967E04F00F6C9BD /* de */,
+			);
+			name = ProjectInfoView.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
