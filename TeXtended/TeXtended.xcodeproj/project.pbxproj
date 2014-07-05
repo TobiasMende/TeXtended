@@ -166,6 +166,7 @@
 		D2928A781967DB0900F6C9BD /* AddTemplatePlaceholder.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A7A1967DB0900F6C9BD /* AddTemplatePlaceholder.xib */; };
 		D2928A7C1967DB7600F6C9BD /* AddNewTemplateWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A7E1967DB7600F6C9BD /* AddNewTemplateWindow.xib */; };
 		D2928A801967DCA900F6C9BD /* EditTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A821967DCA900F6C9BD /* EditTemplateView.xib */; };
+		D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928A861967DCFE00F6C9BD /* StatsPanel.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D29383B31945C3D9005C6C3F /* FileInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
@@ -285,7 +286,6 @@
 		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
 		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
 		F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3776E18000AB900B42BF6 /* StatsPanelController.m */; };
-		F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3776F18000AB900B42BF6 /* StatsPanel.xib */; };
 		F6E5C485188A750D00D2A911 /* GraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C484188A750D00D2A911 /* GraphNode.m */; };
 		F6E5C488188A774400D2A911 /* GraphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C487188A774400D2A911 /* GraphController.m */; };
 		F6E5C48B188A786800D2A911 /* GraphEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C48A188A786800D2A911 /* GraphEdge.m */; };
@@ -659,6 +659,8 @@
 		D2928A7F1967DB7B00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AddNewTemplateWindow.xib; sourceTree = "<group>"; };
 		D2928A811967DCA900F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EditTemplateView.xib; sourceTree = "<group>"; };
 		D2928A831967DCAC00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/EditTemplateView.xib; sourceTree = "<group>"; };
+		D2928A851967DCFE00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatsPanel.xib; sourceTree = "<group>"; };
+		D2928A871967DD0300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/StatsPanel.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D29383B11945C3D9005C6C3F /* FileInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInfoWindow.xib; sourceTree = "<group>"; };
@@ -792,7 +794,6 @@
 		F6B77907180DB83E0079EFF6 /* MatrixView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatrixView.xib; sourceTree = "<group>"; };
 		F6D3776D18000AB900B42BF6 /* StatsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsPanelController.h; sourceTree = "<group>"; };
 		F6D3776E18000AB900B42BF6 /* StatsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsPanelController.m; sourceTree = "<group>"; };
-		F6D3776F18000AB900B42BF6 /* StatsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsPanel.xib; sourceTree = "<group>"; };
 		F6E5C483188A750D00D2A911 /* GraphNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphNode.h; sourceTree = "<group>"; };
 		F6E5C484188A750D00D2A911 /* GraphNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphNode.m; sourceTree = "<group>"; };
 		F6E5C486188A774400D2A911 /* GraphController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphController.h; sourceTree = "<group>"; };
@@ -1760,7 +1761,7 @@
 			children = (
 				F6D3776D18000AB900B42BF6 /* StatsPanelController.h */,
 				F6D3776E18000AB900B42BF6 /* StatsPanelController.m */,
-				F6D3776F18000AB900B42BF6 /* StatsPanel.xib */,
+				D2928A861967DCFE00F6C9BD /* StatsPanel.xib */,
 			);
 			path = StatsPanel;
 			sourceTree = "<group>";
@@ -1863,7 +1864,7 @@
 				D2CC550D171EAFAB00D81CF1 /* MainMenu.xib in Resources */,
 				D2C2357A1895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist in Resources */,
 				D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */,
-				F6D3777118000AB900B42BF6 /* StatsPanel.xib in Resources */,
+				D2928A841967DCFE00F6C9BD /* StatsPanel.xib in Resources */,
 				D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */,
 				D22646D419630EB2007B6489 /* StartScreenWindow.xib in Resources */,
 				D21F316D1895C73300FF6E83 /* hammer.icns in Resources */,
@@ -2253,6 +2254,15 @@
 				D2928A831967DCAC00F6C9BD /* de */,
 			);
 			name = EditTemplateView.xib;
+			sourceTree = "<group>";
+		};
+		D2928A861967DCFE00F6C9BD /* StatsPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928A851967DCFE00F6C9BD /* en */,
+				D2928A871967DD0300F6C9BD /* de */,
+			);
+			name = StatsPanel.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
