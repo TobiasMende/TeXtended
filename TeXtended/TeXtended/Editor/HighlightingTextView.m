@@ -63,6 +63,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 @implementation HighlightingTextView
 
+#pragma mark - Init & Dealloc
+
     + (void)initialize
     {
         if (self == [HighlightingTextView class]) {
@@ -70,15 +72,11 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
     }
 
-    - (id)initWithFrame:(NSRect)frame
-    {
-        self = [super initWithFrame:frame];
-        if (self) {
-
-        }
-
-        return self;
-    }
+- (void)dealloc
+{
+    [self unregisterUserDefaultsObserver];
+    
+}
 
     - (void)registerUserDefaultsObserver
     {
@@ -110,11 +108,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 
-
-
-    - (id)debugQuickLookObject {
-        return self.attributedString;
-    }
+#pragma mark - Auto Completion
 
     - (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index additionalInformation:(NSDictionary **)info
     {
@@ -198,15 +192,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return range;
     }
 
-    - (LineNumberView *)lineNumberView
-    {
-        if ([self.enclosingScrollView.verticalRulerView isKindOfClass:[LineNumberView class]]) {
-            return (LineNumberView *) self.enclosingScrollView.verticalRulerView;
-        }
-        return nil;
-
-    }
-
     - (void)insertCompletion:(id <CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
     {
         if (!self.servicesOn) {
@@ -221,121 +206,26 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
-    - (void)insertDropCompletionForModel:(DocumentModel *)model
-    {
-        NSString *base = model.texPath ? [model.texPath stringByDeletingLastPathComponent] : nil;
-        
-        for (NSString *fileName in droppedFileNames) {
-            NSString *path = base ? [fileName relativePathWithBase:base] : fileName;
-             NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:path];
-            [self selectAndInsertDropCompletion:insertions];
-            if (![fileName isEqualToString:droppedFileNames.lastObject]) {
-                [self insertNewline:self];
-            }
-        }
-
-        [self jumpToNextPlaceholder];
-
-        // After drop operation the first responder remains the drag source
-        [[self window] makeFirstResponder:self];
-    }
-
-    - (void)insertDropCompletionForPath:(NSString *)path
-    {
-        
-        for (NSString *fileName in droppedFileNames) {
-            NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:[fileName relativePathWithBase:[path stringByDeletingLastPathComponent]]];
-            
-            [self selectAndInsertDropCompletion:insertions];
-    
-            
-            if (![droppedFileNames isEqualTo:droppedFileNames.lastObject]) {
-                [self insertNewline:self];
-            }
-        }
-
-        [self jumpToNextPlaceholder];
-
-        // After drop operation the first responder remains the drag source
-        [[self window] makeFirstResponder:self];
-    }
-
-- (void)selectAndInsertDropCompletion:(NSArray *)insertions {
-    if (insertions.count == 1) {
-        [self insertDropCompletion:insertions.firstObject];
+- (void)insertFinalCompletion:(id <CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
+{
+    if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
+        [self delete:nil];
+        [self dismissCompletionWindow];
         return;
     }
-    NSMenu *select = [NSMenu new];
-    select.font = [NSFont menuBarFontOfSize:[NSFont smallSystemFontSize]];
-    for (NSAttributedString *insertion in insertions) {
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:insertion.string action:@selector(insertDropCompletion:) keyEquivalent:@""];
-        item.target = self;
-        item.representedObject = insertion;
-        [select addItem:item];
-    }
     
-    NSPoint position = [self firstRectForCharacterRange:self.selectedRange].origin ;
-    [select popUpMenuPositioningItem:select.itemArray.firstObject atLocation:position inView:nil];
-}
-
-- (void)insertDropCompletion:(id)sender {
-    if ([sender isKindOfClass:[NSMenuItem class]]) {
-        [self insertText:[self expandWhiteSpaces:[sender representedObject]]];
-    } else if([sender isKindOfClass:[NSAttributedString class]]) {
-        [self insertText:[self expandWhiteSpaces:sender]];
-
+    if (charRange.length <= word.autoCompletionWord.length) {
+        [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
     }
 }
+
+
+#pragma mark -
     - (void)flagsChanged:(NSEvent *)theEvent
     {
         [super flagsChanged:theEvent];
         self.currentModifierFlags = theEvent.modifierFlags;
     }
-
-    - (void)insertFinalCompletion:(id <CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
-    {
-        if (movement == NSCancelTextMovement || movement == NSLeftTextMovement) {
-            [self delete:nil];
-            [self dismissCompletionWindow];
-            return;
-        }
-        
-        if (charRange.length <= word.autoCompletionWord.length) {
-            [super insertCompletion:word.autoCompletionWord forPartialWordRange:charRange movement:movement isFinal:flag];
-        }
-    }
-
-    - (void)jumpToNextPlaceholder
-    {
-        if (!self.servicesOn) {
-            return;
-        }
-        [self handleInsertTab];
-    }
-
-    - (void)jumpToPreviousPlaceholder
-    {
-        if (!self.servicesOn) {
-            return;
-        }
-        [self handleInsertBacktab];
-    }
-
-    - (void)updateTrackingAreas
-    {
-        if (scrollTimer) {
-            [scrollTimer invalidate];
-        }
-        scrollTimer = [NSTimer scheduledTimerWithTimeInterval:UPDATE_AFTER_SCROLL_DELAY target:self selector:@selector(finalyUpdateTrackingAreas:) userInfo:nil repeats:NO];
-
-    }
-
-    - (void)finalyUpdateTrackingAreas:(id)userInfo
-    {
-        [super updateTrackingAreas];
-
-    }
-
 
     - (NSRange)extendedVisibleRange
     {
@@ -379,6 +269,8 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
+#pragma mark - Go To Line
+
     - (void)goToLine:(id)sender
     {
         if (!goToLineSheet) {
@@ -389,30 +281,45 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [NSApp beginSheet:[goToLineSheet window]
            modalForWindow:[self window]
             modalDelegate:self
-           didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
+           didEndSelector:@selector(goToLineSheetDidEnd:returnCode:contextInfo:)
               contextInfo:nil];
         [NSApp runModalForWindow:[self window]];
     }
 
-    - (IBAction)matrixView:(id)sender
-    {
-        if (!matrixView) {
-            matrixView = [[MatrixViewController alloc] init];
-        }
-        [NSApp beginSheet:[matrixView window]
-           modalForWindow:[self window]
-            modalDelegate:self
-           didEndSelector:@selector(matrixSheetDidEnd:returnCode:contextInfo:)
-              contextInfo:nil];
-        [NSApp runModalForWindow:[self window]];
-    }
-
-    - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
+    - (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
     {
         if (returnCode == NSRunStoppedResponse) {
             [self showLine:goToLineSheet.line.unsignedIntegerValue];
         }
     }
+
+- (void)showLine:(NSUInteger)line
+{
+    [self.window makeKeyAndOrderFront:self];
+    if (line <= self.string.numberOfLines && line > 0) {
+        NSRange lineRange = [self.string rangeForLine:line - 1];
+        [self scrollRangeToVisible:lineRange];
+        [self setSelectedRange:lineRange];
+    } else {
+        NSBeep();
+    }
+    
+}
+
+#pragma mark - Matrix View
+
+- (IBAction)matrixView:(id)sender
+{
+    if (!matrixView) {
+        matrixView = [[MatrixViewController alloc] init];
+    }
+    [NSApp beginSheet:[matrixView window]
+       modalForWindow:[self window]
+        modalDelegate:self
+       didEndSelector:@selector(matrixSheetDidEnd:returnCode:contextInfo:)
+          contextInfo:nil];
+    [NSApp runModalForWindow:[self window]];
+}
 
     - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
     {
@@ -424,74 +331,36 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         }
     }
 
-    - (void)showLine:(NSUInteger)line
-    {
-        [self.window makeKeyAndOrderFront:self];
-        if (line <= self.string.numberOfLines && line > 0) {
-            NSRange lineRange = [self.string rangeForLine:line - 1];
-            [self scrollRangeToVisible:lineRange];
-            [self setSelectedRange:lineRange];
-        } else {
-            NSBeep();
-        }
 
+#pragma mark - Anchors
+- (void)jumpToNextPlaceholder
+{
+    if (!self.servicesOn) {
+        return;
     }
+    [self handleInsertTab];
+}
 
-    - (NSRange)rangeForLine:(NSUInteger)index
-    {
-        return [self.string rangeForLine:index - 1];
+- (void)jumpToPreviousPlaceholder
+{
+    if (!self.servicesOn) {
+        return;
     }
+    [self handleInsertBacktab];
+}
 
 
-    - (void)insertTab:(id)sender
-    {
-        if (!self.servicesOn) {
-            [super insertTab:sender];
-            return;
-        }
-        if (autoCompletionController) {
-            NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
-            [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
-        } else if (![self handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
-            [super insertTab:sender];
-        }
+#pragma mark - Setter & Getter
 
+
+- (LineNumberView *)lineNumberView
+{
+    if ([self.enclosingScrollView.verticalRulerView isKindOfClass:[LineNumberView class]]) {
+        return (LineNumberView *) self.enclosingScrollView.verticalRulerView;
     }
-
-
-    - (void)insertBacktab:(id)sender
-    {
-        if (!self.servicesOn) {
-            [super insertBacktab:sender];
-            return;
-        }
-        if (![self handleInsertBacktab] && ![self.codeNavigationAssistant handleBacktabInsertion]) {
-            [super insertBacktab:sender];
-        }
-    }
-
-    - (void)insertNewline:(id)sender
-    {
-        if (!self.servicesOn) {
-            [super insertNewline:sender];
-            return;
-        }
-        [self.codeNavigationAssistant handleNewLineInsertion];
-    }
-
-    - (void)paste:(id)sender
-    {
-        [super paste:sender];
-        if (!self.servicesOn) {
-            return;
-        }
-        [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
-    }
-
-
-
-#pragma mark -
-#pragma mark Setter & Getter
+    return nil;
+    
+}
 
     - (void)setLineWrapMode:(TMTLineWrappingMode)lineWrapMode
     {
@@ -518,8 +387,52 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 
-#pragma mark -
-#pragma mark Input Actions
+#pragma mark - Input Actions
+
+- (void)insertTab:(id)sender
+{
+    if (!self.servicesOn) {
+        [super insertTab:sender];
+        return;
+    }
+    if (autoCompletionController) {
+        NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
+        [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
+    } else if (![self handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
+        [super insertTab:sender];
+    }
+    
+}
+
+
+- (void)insertBacktab:(id)sender
+{
+    if (!self.servicesOn) {
+        [super insertBacktab:sender];
+        return;
+    }
+    if (![self handleInsertBacktab] && ![self.codeNavigationAssistant handleBacktabInsertion]) {
+        [super insertBacktab:sender];
+    }
+}
+
+- (void)insertNewline:(id)sender
+{
+    if (!self.servicesOn) {
+        [super insertNewline:sender];
+        return;
+    }
+    [self.codeNavigationAssistant handleNewLineInsertion];
+}
+
+- (void)paste:(id)sender
+{
+    [super paste:sender];
+    if (!self.servicesOn) {
+        return;
+    }
+    [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
+}
 
     - (void)selectCurrentBlock:(id)sender
     {
@@ -679,47 +592,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
-    - (IBAction)deleteLines:(id)sender
-    {
-        if (self.selectedRanges.count != 1) {
-            return;
-        }
-        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
-
-        [self deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
-
-
-    }
-
-    - (IBAction)moveLinesDown:(id)sender
-    {
-        if (self.selectedRanges.count != 1) {
-            return;
-        }
-        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
-        if (NSMaxRange(totalRange) < self.string.length) {
-            stopTextDidChangeNotifications = YES;
-            NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-            NSRange nextLine = [self.string lineTextRangeWithRange:NSMakeRange(NSMaxRange(totalRange) + 1, 0)];
-            [self.undoManager beginUndoGrouping];
-            [self swapTextIn:totalRange and:nextLine];
-            [self setSelectedRange:[self firstRangeAfterSwapping:totalRange and:nextLine]];
-            [self.undoManager setActionName:actionName];
-            [self.undoManager endUndoGrouping];
-            stopTextDidChangeNotifications = NO;
-            [self didChangeText];
-        }
-    }
-
     - (BOOL)respondsToSelector:(SEL)aSelector
     {
-        if (aSelector == @selector(moveLinesUp:)) {
-            NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
-            return totalRange.location != 0;
-        } else if (aSelector == @selector(moveLinesDown:)) {
-            NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
-            return NSMaxRange(totalRange) < self.string.length;
-        } else if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
+        if (aSelector == @selector(commentSelection:) || aSelector == @selector(uncommentSelection:) || aSelector == @selector(toggleComment:)) {
             return self.selectedRanges.count == 1;
         } else if (aSelector == @selector(jumpNextAnchor:) || aSelector == @selector(jumpPreviousAnchor:)) {
             return self.lineNumberView && self.lineNumberView.anchoredLines.count > 0;
@@ -728,51 +603,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         } else {
             return [super respondsToSelector:aSelector] || (self.firstResponderDelegate && [self.firstResponderDelegate respondsToSelector:aSelector]);
         }
-    }
-
-
-    - (IBAction)moveLinesUp:(id)sender
-    {
-        if (self.selectedRanges.count != 1) {
-            return;
-        }
-        NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange];
-        if (totalRange.location > 0) {
-            stopTextDidChangeNotifications = YES;
-            NSString *actionName = NSLocalizedString(@"Move Lines", @"moving lines");
-            NSRange lineBefore = [self.string lineTextRangeWithRange:NSMakeRange(totalRange.location - 1, 0)];
-            [self.undoManager beginUndoGrouping];
-            [self swapTextIn:lineBefore and:totalRange];
-            [self setSelectedRange:NSMakeRange(lineBefore.location, totalRange.length)];
-            [self.undoManager setActionName:actionName];
-            [self.undoManager endUndoGrouping];
-            stopTextDidChangeNotifications = NO;
-            [self didChangeText];
-        }
-    }
-
-
-- (void)didChangeText {
-    if (!stopTextDidChangeNotifications) {
-        [super didChangeText];
-    }
-}
-
-
-
-    - (void)commentSelection:(id)sender
-    {
-        [self commentSelectionInRange:self.selectedRange];
-    }
-
-    - (void)uncommentSelection:(id)sender
-    {
-        [self uncommentSelectionInRange:self.selectedRange];
-    }
-
-    - (void)toggleComment:(id)sender
-    {
-        [self toggleCommentInRange:self.selectedRange];
     }
 
     - (void)jumpNextAnchor:(id)sender
@@ -812,8 +642,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [self showLine:nextLine];
     }
 
-#pragma mark -
-#pragma mark Drag & Drop
+#pragma mark - Drag & Drop
 
     - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
     {
@@ -880,8 +709,90 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 
 
-#pragma mark -
-#pragma mark Drawing Actions
+- (void)insertDropCompletionForModel:(DocumentModel *)model
+{
+    NSString *base = model.texPath ? [model.texPath stringByDeletingLastPathComponent] : nil;
+    
+    for (NSString *fileName in droppedFileNames) {
+        NSString *path = base ? [fileName relativePathWithBase:base] : fileName;
+        NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:path];
+        [self selectAndInsertDropCompletion:insertions];
+        if (![fileName isEqualToString:droppedFileNames.lastObject]) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window] makeFirstResponder:self];
+}
+
+- (void)insertDropCompletionForPath:(NSString *)path
+{
+    
+    for (NSString *fileName in droppedFileNames) {
+        NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:[fileName relativePathWithBase:[path stringByDeletingLastPathComponent]]];
+        
+        [self selectAndInsertDropCompletion:insertions];
+        
+        
+        if (![droppedFileNames isEqualTo:droppedFileNames.lastObject]) {
+            [self insertNewline:self];
+        }
+    }
+    
+    [self jumpToNextPlaceholder];
+    
+    // After drop operation the first responder remains the drag source
+    [[self window] makeFirstResponder:self];
+}
+
+- (void)selectAndInsertDropCompletion:(NSArray *)insertions {
+    if (insertions.count == 1) {
+        [self insertDropCompletion:insertions.firstObject];
+        return;
+    }
+    NSMenu *select = [NSMenu new];
+    select.font = [NSFont menuBarFontOfSize:[NSFont smallSystemFontSize]];
+    for (NSAttributedString *insertion in insertions) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:insertion.string action:@selector(insertDropCompletion:) keyEquivalent:@""];
+        item.target = self;
+        item.representedObject = insertion;
+        [select addItem:item];
+    }
+    
+    NSPoint position = [self firstRectForCharacterRange:self.selectedRange].origin ;
+    [select popUpMenuPositioningItem:select.itemArray.firstObject atLocation:position inView:nil];
+}
+
+- (void)insertDropCompletion:(id)sender {
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+        [self insertText:[self expandWhiteSpaces:[sender representedObject]]];
+    } else if([sender isKindOfClass:[NSAttributedString class]]) {
+        [self insertText:[self expandWhiteSpaces:sender]];
+        
+    }
+}
+
+
+#pragma mark - Drawing Actions
+
+- (void)updateTrackingAreas
+{
+    if (scrollTimer) {
+        [scrollTimer invalidate];
+    }
+    scrollTimer = [NSTimer scheduledTimerWithTimeInterval:UPDATE_AFTER_SCROLL_DELAY target:self selector:@selector(finalyUpdateTrackingAreas:) userInfo:nil repeats:NO];
+    
+}
+
+- (void)finalyUpdateTrackingAreas:(id)userInfo
+{
+    [super updateTrackingAreas];
+    
+}
+
 
     - (void)drawViewBackgroundInRect:(NSRect)rect
     {
@@ -934,11 +845,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
 
 
-    - (void)dealloc
-    {
-        [self unregisterUserDefaultsObserver];
-
-    }
 
 # pragma mark - First Responder Chain
 

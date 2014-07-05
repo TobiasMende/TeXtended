@@ -50,7 +50,6 @@
 
         NSArray *droppedFileNames;
         
-        BOOL stopTextDidChangeNotifications;
     }
 
     @property BOOL completionEnabled;
@@ -95,26 +94,6 @@
  */
     - (IBAction)hardWrapText:(id)sender;
 
-/**
- Method can be called to delete the lines containing the selected text.
- 
- @param sender the calling object
- */
-    - (IBAction)deleteLines:(id)sender;
-
-/**
- Method moves the lines containing the selected text downwards
- 
- @param sender the method caller
- */
-    - (IBAction)moveLinesDown:(id)sender;
-
-/**
- Method moves the lines containing the selected text upwards
- 
- @param sender the method caller
- */
-    - (IBAction)moveLinesUp:(id)sender;
 
 
 
@@ -141,29 +120,10 @@
  */
     - (void)jumpToPreviousPlaceholder;
 
-/** Method for toggling the comment state for the selected lines 
- 
- @param sender the sender
- */
-    - (IBAction)toggleComment:(id)sender;
-
-/**
- Method for adding a comment sign (%) at the beginning of every selected line
- 
- @param sender the sender
- */
-    - (IBAction)commentSelection:(id)sender;
-
-/**
- Method for deleting a comment sign (%) at the beginning of every selected line
- 
- @param sender the sender
- */
-    - (IBAction)uncommentSelection:(id)sender;
 
 
 
-
+#pragma mark - Go To Line
 /**
  Method for showing a given line in the view.
  
@@ -179,31 +139,23 @@
     - (IBAction)goToLine:(id)sender;
 
 /**
- Action for starting the MatrixViewController's dialog.
- 
- @param sender the sender
- */
-    - (IBAction)matrixView:(id)sender;
-
-
-/**
- Getter for a line range for a given line index.
- 
- @param index the lines 1-based index
- 
- @return the range of the given line
- */
-    - (NSRange)rangeForLine:(NSUInteger)index;
-
-/**
  Notification about the end of the GoToLineSheetController's sheet.
  
  
  @param sheet the sheet which ends.
  @param returnCode the termination state of the sheet.
-@param context `NULL` in most cases.
+ @param context `NULL` in most cases.
  */
-    - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+- (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+
+
+#pragma mark - Matrix View
+/**
+ Action for starting the MatrixViewController's dialog.
+
+ @param sender the sender
+ */
+    - (IBAction)matrixView:(id)sender;
 
 /**
  Notification about the end of the MatrixViewController's sheet.
@@ -215,6 +167,8 @@
  */
     - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 
+
+#pragma mark - Anchors
 /** Method for jumping to the next anchor in the line number view
  
  @param sender the actions calller
