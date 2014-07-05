@@ -105,10 +105,8 @@
 		D2654AC2192777FB00DE58B2 /* DocumentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AC0192777FB00DE58B2 /* DocumentInfoViewController.m */; };
 		D2654AC61927925600DE58B2 /* edit.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2654AC51927925600DE58B2 /* edit.icns */; };
 		D26685F7176F56DA001699A8 /* texicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D26685F6176F56DA001699A8 /* texicon.icns */; };
-		D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2668617176F5B39001699A8 /* GoToLineSheet.xib */; };
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
-		D266862A176F5B39001699A8 /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266861E176F5B39001699A8 /* TexdocView.xib */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
 		D26B827F18D57E87009F3BCC /* NSString_Categories_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */; };
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
@@ -170,6 +168,8 @@
 		D2928AC81967E83600F6C9BD /* MainDocumentsSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928ACA1967E83600F6C9BD /* MainDocumentsSelectionView.xib */; };
 		D2928ACC1967E85F00F6C9BD /* BibFilesSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928ACE1967E85F00F6C9BD /* BibFilesSelectionView.xib */; };
 		D2928AD01967E8BB00F6C9BD /* MessageInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AD21967E8BB00F6C9BD /* MessageInfoView.xib */; };
+		D2928AD41967E8F400F6C9BD /* GoToLineSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928AD61967E8F400F6C9BD /* GoToLineSheet.xib */; };
+		D2928AD81967E93E00F6C9BD /* TexdocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2928ADA1967E93E00F6C9BD /* TexdocView.xib */; };
 		D29383B21945C3D9005C6C3F /* FileInfoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */; };
 		D296059F178091F7007C599B /* SplitviewBottom.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059C178091F7007C599B /* SplitviewBottom.pdf */; };
 		D29605A0178091F7007C599B /* SplitviewLeft.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059D178091F7007C599B /* SplitviewLeft.pdf */; };
@@ -549,12 +549,10 @@
 		D2656908173A65600030381C /* CompileSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileSetting.h; sourceTree = "<group>"; };
 		D2656909173A65600030381C /* CompileSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileSetting.m; sourceTree = "<group>"; };
 		D26685F6176F56DA001699A8 /* texicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = texicon.icns; sourceTree = "<group>"; };
-		D2668617176F5B39001699A8 /* GoToLineSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoToLineSheet.xib; sourceTree = "<group>"; };
 		D2668618176F5B39001699A8 /* GoToLineSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoToLineSheetController.h; sourceTree = "<group>"; };
 		D2668619176F5B39001699A8 /* GoToLineSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoToLineSheetController.m; sourceTree = "<group>"; };
 		D266861B176F5B39001699A8 /* LineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineNumberView.h; sourceTree = "<group>"; };
 		D266861C176F5B39001699A8 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
-		D266861E176F5B39001699A8 /* TexdocView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TexdocView.xib; sourceTree = "<group>"; };
 		D266861F176F5B39001699A8 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2668620176F5B39001699A8 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
@@ -683,6 +681,10 @@
 		D2928ACF1967E86200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/BibFilesSelectionView.xib; sourceTree = "<group>"; };
 		D2928AD11967E8BB00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MessageInfoView.xib; sourceTree = "<group>"; };
 		D2928AD31967E8BF00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MessageInfoView.xib; sourceTree = "<group>"; };
+		D2928AD51967E8F400F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GoToLineSheet.xib; sourceTree = "<group>"; };
+		D2928AD71967E8F900F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/GoToLineSheet.xib; sourceTree = "<group>"; };
+		D2928AD91967E93E00F6C9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TexdocView.xib; sourceTree = "<group>"; };
+		D2928ADB1967E94500F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/TexdocView.xib; sourceTree = "<group>"; };
 		D29383AF1945C3D9005C6C3F /* FileInfoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfoWindowController.h; sourceTree = "<group>"; };
 		D29383B01945C3D9005C6C3F /* FileInfoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfoWindowController.m; sourceTree = "<group>"; };
 		D296059C178091F7007C599B /* SplitviewBottom.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SplitviewBottom.pdf; sourceTree = "<group>"; };
@@ -1330,7 +1332,7 @@
 		D2668616176F5B39001699A8 /* GoToLine */ = {
 			isa = PBXGroup;
 			children = (
-				D2668617176F5B39001699A8 /* GoToLineSheet.xib */,
+				D2928AD61967E8F400F6C9BD /* GoToLineSheet.xib */,
 				D2668618176F5B39001699A8 /* GoToLineSheetController.h */,
 				D2668619176F5B39001699A8 /* GoToLineSheetController.m */,
 			);
@@ -1352,7 +1354,7 @@
 		D266861D176F5B39001699A8 /* Texdoc */ = {
 			isa = PBXGroup;
 			children = (
-				D266861E176F5B39001699A8 /* TexdocView.xib */,
+				D2928ADA1967E93E00F6C9BD /* TexdocView.xib */,
 				D266861F176F5B39001699A8 /* TexdocViewController.h */,
 				D2668620176F5B39001699A8 /* TexdocViewController.m */,
 			);
@@ -1931,9 +1933,9 @@
 				D2E7A4E01768E2F600B2BA3C /* TexdocPanel.xib in Resources */,
 				D2A92C431882F71500F1679F /* projecticon.icns in Resources */,
 				D26685F7176F56DA001699A8 /* texicon.icns in Resources */,
-				D2668627176F5B39001699A8 /* GoToLineSheet.xib in Resources */,
+				D2928AD41967E8F400F6C9BD /* GoToLineSheet.xib in Resources */,
 				D2E7D68C19631F480036AA40 /* document.png in Resources */,
-				D266862A176F5B39001699A8 /* TexdocView.xib in Resources */,
+				D2928AD81967E93E00F6C9BD /* TexdocView.xib in Resources */,
 				D2CF61871770BBDC00ACC3D5 /* ChktexDebugNumbers.plist in Resources */,
 				D2CF61891770BD0000ACC3D5 /* ChktexInfoNumbers.plist in Resources */,
 				D2928A781967DB0900F6C9BD /* AddTemplatePlaceholder.xib in Resources */,
@@ -2453,6 +2455,24 @@
 				D2928AD31967E8BF00F6C9BD /* de */,
 			);
 			name = MessageInfoView.xib;
+			sourceTree = "<group>";
+		};
+		D2928AD61967E8F400F6C9BD /* GoToLineSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AD51967E8F400F6C9BD /* en */,
+				D2928AD71967E8F900F6C9BD /* de */,
+			);
+			name = GoToLineSheet.xib;
+			sourceTree = "<group>";
+		};
+		D2928ADA1967E93E00F6C9BD /* TexdocView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2928AD91967E93E00F6C9BD /* en */,
+				D2928ADB1967E94500F6C9BD /* de */,
+			);
+			name = TexdocView.xib;
 			sourceTree = "<group>";
 		};
 		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
