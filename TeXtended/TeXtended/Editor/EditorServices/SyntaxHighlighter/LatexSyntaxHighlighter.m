@@ -171,39 +171,39 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
             return;
         }
         
-        NSScanner *scanner = [NSScanner scannerWithString:view.string];
-        scanner.scanLocation = textRange.location;
-        NSUInteger rangeStart = textRange.location;
-        NSUInteger end = NSMaxRange(textRange);
-        
+        NSScanner *scanner = [NSScanner scannerWithString:[view.string substringWithRange:textRange]];
+        scanner.scanLocation = 0;
+        NSUInteger rangeStart = 0;
+        NSUInteger end = textRange.length;
+        NSUInteger location = textRange.location;
         while (scanner.scanLocation < end && !scanner.isAtEnd) {
             [scanner scanUpToCharactersFromSet:ALL_SYMBOLS.copy intoString:NULL];
                 // Found Begin of Something
                 // Uncolor normal text
-                [self highlightFrom:rangeStart to:scanner.scanLocation withColor:nil andFlag:NO];
+                [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:nil andFlag:NO];
                 
                 rangeStart = scanner.scanLocation;
                 if ([scanner scanCharactersFromSet:ROUND_BRACKETS.copy intoString:NULL] ) {
                     // color round brackets
-                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
+                    [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
                 } else if ([scanner scanCharactersFromSet:CURLY_BRACKETS.copy intoString:NULL]) {
                     // color curly brackets
-                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.curlyBracketColor andFlag:self.shouldHighlightArguments];
+                     [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.curlyBracketColor andFlag:self.shouldHighlightArguments];
                 } else if ([scanner scanCharactersFromSet:RECT_BRACKETS.copy intoString:NULL]) {
                     // color rect brackets
-                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
+                     [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
                 } else if([scanner scanString:@"\\" intoString:NULL]) {
                     // color commands
                     [scanner scanUpToCharactersFromSet:COMMAND_END_CHARACTERS.copy  intoString:NULL];
-                    [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
-                } else if([self highlightInlineMath:scanner withRangeStart:rangeStart andRangeEnd:end]) {
+                    [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
+                } else if([self highlightInlineMath:scanner withRangeStart:location+rangeStart andRangeEnd:location+end]) {
                     
-                } else if([self highlightComment:scanner withRangeStart:rangeStart]) {
+                } else if([self highlightComment:scanner withRangeStart:location+rangeStart]) {
                 
                 } else if (scanner.isAtEnd) {
                     // ignore this case. no special symbols in content
                 } else {
-                    DDLogError(@"Unexpected Case!! Seeing: %@", [view.string substringToIndex:rangeStart]);
+                    DDLogError(@"Unexpected Case!! Seeing: %@", [view.string substringToIndex:location+rangeStart]);
                 }
                 rangeStart = scanner.scanLocation;
          
