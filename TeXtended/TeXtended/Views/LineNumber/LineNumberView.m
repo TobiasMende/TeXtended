@@ -13,6 +13,7 @@
 #import "DocumentModel.h"
 #import "CacheManager.h"
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 #import "OutlineElement.h"
 
 /* Size of the small line borders */
@@ -545,20 +546,15 @@ private)
 
     - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect
     {
-        NSRect visibleRect = [self.scrollView.documentView visibleRect];
 
         /* draw small black line */
         [self.lineColor set];
-        NSRect rect = NSMakeRect(dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE, 0, BORDER_LINE_SIZE, 2 * visibleRect.size.height);
+        NSRect rect = NSMakeRect(dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE, dirtyRect.origin.y, BORDER_LINE_SIZE, dirtyRect.size.height);
         NSRectFill(rect);
-
         HighlightingTextView *view = [self.scrollView documentView];
-        NSLayoutManager *manager = view.layoutManager;
-        NSTextContainer *container = view.textContainer;
-        NSRange range, glyphRange;
 
-        glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
-        range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+        NSRect visibleRect = [self.scrollView.documentView visibleRect];
+        NSRange range = view.visibleRange;
         range.length++;
         NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location];
         NSMutableArray *lineHeights;
