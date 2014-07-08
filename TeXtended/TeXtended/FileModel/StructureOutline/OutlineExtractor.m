@@ -57,8 +57,6 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             _isExtracting = NO;
             return;
         }
-        if (_completionHandler) {
-        }
         [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:nil];
     }
 
