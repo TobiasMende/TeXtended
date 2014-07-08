@@ -59,7 +59,6 @@
  * @param outPath the path of the pdf file
  * @param row the line in the latex file
  * @param col the column in the latex file
- * @return an instance which automatically starts a synctex task and blocks until it returns.
  */
     - (void)startWithInputPath:(NSString *)inPath outputPath:(NSString *)outPath row:(NSUInteger)row andColumn:(NSUInteger)col andHandler:(void (^)(ForwardSynctex *result))completionHandler;
 

@@ -11,18 +11,20 @@
 #import <Quartz/Quartz.h>
 
 
-@class FileNode, FileOutlineView, ModelInfoWindowController, FileInfoWindowController;
+@class FileNode, FileOutlineView, ModelInfoWindowController, FileInfoWindowController, TMTTreeController;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource>
     {
 
         BOOL pathObserverIsActive;
+        NSArray *preFilterExpandedItems;
+        NSArray *preFilterSelectedItems;
 
     }
 
 #pragma mark - Properties
 
-    @property (strong) IBOutlet NSTreeController *fileTree;
+    @property (strong) IBOutlet TMTTreeController *fileTree;
 
     @property (nonatomic) NSString *path;
 
@@ -33,6 +35,7 @@
     @property (strong) IBOutlet FileOutlineView *outlineView;
 
     @property (strong) QLPreviewPanel *previewPanel;
+@property (strong) IBOutlet NSSearchField *searchField;
 
     @property ModelInfoWindowController *infoWindowController;
 

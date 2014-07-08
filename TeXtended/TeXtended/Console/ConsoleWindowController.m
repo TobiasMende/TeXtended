@@ -89,7 +89,7 @@
 #pragma mark - Table View Data Source
     - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
     {
-        return self.consoleDatas.count;
+        return (NSInteger)self.consoleDatas.count;
     }
 
     - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
@@ -109,8 +109,8 @@
             result = (ConsoleCellView *) c.view;
         }
         result.identifier = nil;
-        if (row < self.consoleDatas.count) {
-            result.console = (self.consoleDatas)[row];
+        if (row < (NSInteger)self.consoleDatas.count) {
+            result.console = (self.consoleDatas)[(NSUInteger)row];
             result.controller = self;
         }
         return result;
@@ -122,8 +122,8 @@
     - (void)tableViewSelectionDidChange:(NSNotification *)notification
     {
         NSInteger row = [self.tableView selectedRow];
-        if (row >= 0 && row < self.consoleDatas.count) {
-            self.viewController.console = (self.consoleDatas)[row];
+        if (row >= 0 && (NSUInteger)row < self.consoleDatas.count) {
+            self.viewController.console = (self.consoleDatas)[(NSUInteger)row];
             [self.viewController scrollToCurrentPosition];
         }
     }

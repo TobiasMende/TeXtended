@@ -16,6 +16,7 @@
 #import "TMTTabManager.h"
 #import "HighlightingTextView.h"
 #import "ExtendedPdf.h"
+#import "ProjectModel.h"
 #import "ModelInfoWindowController.h"
 
 @interface DocumentController ()
@@ -44,6 +45,7 @@
         if (self) {
             self.mainDocument = mainDocument;
             self.model = model;
+            self.model.documentOpened = YES;
             self.consoleViewControllers = [NSMutableSet new];
             self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
             [self.textViewController addObserver:self.compiler];
@@ -54,6 +56,7 @@
 
     - (BOOL)saveDocumentModel:(NSError * __autoreleasing *)outError
     {
+        self.model.selectedRange =self.textViewController.textView.selectedRange;
         return [self.model saveContent:[self.textViewController content] error:outError];
     }
 
@@ -87,15 +90,13 @@
 
     - (void)texViewDidClose:(NSNotification *)note
     {
-        self.textViewController.textView.firstResponderDelegate = nil;
-        self.textViewController = nil;
+        self.model.documentOpened = NO;
         [self.mainDocument removeDocumentController:self];
     }
 
     - (void)closeDocument
     {
-        self.textViewController.textView.firstResponderDelegate = nil;
-        self.textViewController = nil;
+        self.model.documentOpened = NO;
         NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
         [item.tabView removeTabViewItem:item];
         [self.mainDocument removeDocumentController:self];
@@ -275,21 +276,21 @@
 
 - (void)showInformation:(id)sender {
     
-    if (!_modelInfoWindow) {
-        _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+    if (!modelInfoWindow) {
+        modelInfoWindow= [ModelInfoWindowController sharedInstance];
     }
-    _modelInfoWindow.model = self.model;
-    [_modelInfoWindow showWindow:self];
+    modelInfoWindow.model = self.model;
+    [modelInfoWindow showWindow:self];
     
 }
 
 - (void)showProjectInformation:(id)sender {
     if (self.model.project) {
-        if (!_modelInfoWindow) {
-            _modelInfoWindow= [ModelInfoWindowController sharedInstance];
+        if (!modelInfoWindow) {
+            modelInfoWindow= [ModelInfoWindowController sharedInstance];
         }
-        _modelInfoWindow.model = self.model.project;
-        [_modelInfoWindow showWindow:self];
+        modelInfoWindow.model = self.model.project;
+        [modelInfoWindow showWindow:self];
     } else {
         NSBeep();
     }
@@ -297,7 +298,7 @@
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
     if (aSelector == @selector(showProjectInformation:)) {
-        return self.model.project;
+        return self.model.project != nil;
     } else {
         return [super respondsToSelector:aSelector];
     }
@@ -308,7 +309,8 @@
 
     - (void)dealloc
     {
-        self.textViewController.firstResponderDelegate = nil;
+        DDLogVerbose(@"dealloc [%@]", self.model.texPath);
+        [self.textViewController firstResponderIsDeallocating];
         [self.compiler terminateAndKill];
         for (ExtendedPDFViewController *c in self.pdfViewControllers) {
             if ([c.pdfView.firstResponderDelegate isEqual:self]) {

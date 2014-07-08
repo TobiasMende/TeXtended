@@ -29,7 +29,6 @@
 
 /** 
  * Setup synctex from the pdf back to tex.
- * @param sender
  */
     - (void)startBackwardSynctex:(id)sender;
 

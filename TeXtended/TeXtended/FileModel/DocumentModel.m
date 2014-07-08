@@ -18,6 +18,8 @@
 #import "ProjectModel.h"
 #import "TrackingMessage.h"
 #import <TMTHelperCollection/FileObserver.h>
+#import <TMTHelperCollection/NSSet+TMTSerialization.h>
+#import <OTMXAttribute/OTMXAttribute.h>
 
 
 static const NSArray *GENERATOR_TYPES_TO_USE;
@@ -34,6 +36,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 @interface DocumentModel ()
 
     - (void)initDefaults;
+    - (void)initSingleDocumentDefaults;
 
     - (void)updateMessages:(NSArray *)messages;
 
@@ -42,6 +45,11 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (void)initProjectSyncState;
 
     - (void)unsyncProjectState;
+
+- (void)saveTextSpecificXAttributes;
+- (void)loadTextSpecificXAttributes;
+- (void)saveModelSpecificXAttributes;
+- (void)loadModelSpecificXAttributes;
 
     @property __DocumentModelProjectSyncState *__projectSyncState;
 
@@ -53,8 +61,11 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)dealloc
     {
-        DDLogInfo(@"dealloc");
+        DDLogInfo(@"dealloc [%@]", self.texPath);
         [_filePresenter terminate];
+        if (self.texPath && [[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
+            [self saveModelSpecificXAttributes];
+        }
         [self unbind:@"liveCompile"];
         [self unbind:@"openOnExport"];
         [self unsyncProjectState];
@@ -128,9 +139,11 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     {
         _texIdentifier = [self.identifier stringByAppendingString:@"-tex"];
         _pdfIdentifier = [self.identifier stringByAppendingString:@"-pdf"];
+        self.lineBookmarks = [NSMutableSet new];
+        self.selectedRange = NSMakeRange(0, 0);
         self.outlineElements = [NSMutableArray new];
         globalMessagesMap = [NSMutableDictionary new];
-        __unsafe_unretained typeof(self) weakSelf = self;
+        __unsafe_unretained DocumentModel *weakSelf = self;
         if (!self.liveCompile) {
             [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveCompile] options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:NULL];
             removeLiveCompileObserver = ^(void) {
@@ -150,6 +163,12 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         [self updateCompileSettingBindings:draft];
         [self updateCompileSettingBindings:final];
     }
+
+- (void)initSingleDocumentDefaults {
+    if (!self.project) {
+        [self loadModelSpecificXAttributes];
+    }
+}
 
     - (void)initProjectSyncState
     {
@@ -210,12 +229,14 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         [aCoder encodeObject:self.liveCompile forKey:@"liveCompile"];
         [aCoder encodeObject:self.openOnExport forKey:@"openOnExport"];
+        [aCoder encodeObject:@(self.documentOpened) forKey:@"documentOpened"];
     }
 
     - (id)initWithCoder:(NSCoder *)aDecoder
     {
         self = [super initWithCoder:aDecoder];
         if (self) {
+            self.documentOpened = [[aDecoder decodeObjectForKey:@"documentOpened"] boolValue];
             self.lastCompile = [aDecoder decodeObjectForKey:@"lastCompile"];
             self.project = [aDecoder decodeObjectForKey:@"project"];
             self.pdfPath = [aDecoder decodeObjectForKey:@"pdfPath"];
@@ -226,6 +247,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         return self;
     }
+
 
 #pragma mark - Loading & Saving
 
@@ -258,6 +280,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         if (content == nil && error != NULL) {
             *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message" : @"Can't read file"}];
+        } else {
+            [self loadTextSpecificXAttributes];
         }
         return content;
     }
@@ -291,10 +315,106 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
         }
         if (success) {
+            [self saveTextSpecificXAttributes];
+            [self saveModelSpecificXAttributes];
             [[NSNotificationCenter defaultCenter] postNotificationName:TMTDidSaveDocumentModelContent object:self];
         }
         return success;
     }
+
+#pragma mark - XATTR handling
+
+- (void)saveTextSpecificXAttributes {
+    NSError *error = nil;
+    NSString *path = self.texPath ? self.texPath : self.systemPath;
+    if (!path) {
+        return;
+    }
+    if (self.lineBookmarks && ![OTMXAttribute setAttributeAtPath:path name:TMT_XATTR_LineBookmarks value:[self.lineBookmarks stringSerialization] error:&error]) {
+        DDLogError(@"Can't set xattr for line bookmarks: %@", error.userInfo);
+        
+    }
+    error = nil;
+    if (![OTMXAttribute setAttributeAtPath:path name:TMT_XATTR_TextSelectedRange value:NSStringFromRange(self.selectedRange) error:&error]) {
+        DDLogError(@"Can't set xattr for selected ranges: %@", error.userInfo);
+    }
+}
+
+- (void)loadTextSpecificXAttributes {
+    NSString *path = self.texPath ? self.texPath : self.systemPath;
+    NSString *lineData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
+    if (lineData) {
+        self.lineBookmarks =  [NSSet setFromStringSerialization:lineData withObjectDeserializer:^id(NSString * string) {
+            return @([string integerValue]);
+        }];
+    }
+    
+    NSString *selectedRangeData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_TextSelectedRange error:NULL];
+    if (selectedRangeData) {
+        self.selectedRange = NSRangeFromString(selectedRangeData);
+    }
+}
+
+
+- (void)loadModelSpecificXAttributes {
+    if (!self.texPath) {
+        return;
+    }
+    NSString *liveCompileData = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompileEnabled error:nil];
+    if (liveCompileData) {
+        self.liveCompile = @([liveCompileData boolValue]);
+    }
+    NSString *liveCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler error:nil];
+    if (liveCompilerJSON) {
+        self.hasLiveCompiler = YES;
+        self.liveCompiler = [CompileSetting fromJSONString:liveCompilerJSON];
+    }
+    NSString *draftCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler error:nil];
+    if (draftCompilerJSON) {
+        self.hasDraftCompiler = YES;
+        self.draftCompiler = [CompileSetting fromJSONString:draftCompilerJSON];
+    }
+    NSString *finalCompilerJSON = [OTMXAttribute stringAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler error:nil];
+    if (finalCompilerJSON) {
+        self.hasFinalCompiler = YES;
+        self.finalCompiler = [CompileSetting fromJSONString:finalCompilerJSON];
+    }
+    
+}
+
+- (void)saveModelSpecificXAttributes {
+    if (!self.texPath || self.project) {
+        return;
+    }
+    [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompileEnabled value:[NSString stringWithFormat:@"%@", self.liveCompile] error:nil];
+    if (self.hasLiveCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler value:self.liveCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_LiveCompiler error:nil];
+    }
+    if (self.hasDraftCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler value:self.draftCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_DraftCompiler error:nil];
+    }
+    if (self.hasFinalCompiler) {
+        [OTMXAttribute setAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler value:self.finalCompiler.toJSONString error:nil];
+    } else {
+        [OTMXAttribute removeAttributeAtPath:self.texPath name:TMT_XATTR_FinalCompiler error:nil];
+    }
+}
+
+- (void)removeInvalidMaindocuments {
+    if (!___projectSyncState.mainDocuments && self.project) {
+        NSArray *mainDocuments = self.mainDocuments;
+        NSFileManager *fm = [NSFileManager defaultManager];
+        for(DocumentModel *md in mainDocuments) {
+            if (![fm fileExistsAtPath:md.texPath]) {
+                [self removeMainDocument:md];
+            }
+        }
+    }
+}
 
 #pragma mark -  Getter
 
@@ -328,7 +448,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     - (DocumentModel *)currentMainDocument
     {
         if (!_currentMainDocument) {
-            self.currentMainDocument = self.mainDocuments.firstObject;
+            return self.mainDocuments.firstObject;
         }
         return _currentMainDocument;
     }
@@ -348,6 +468,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         return nil;
     }
+
+- (NSSet *)openDocuments {
+    return [NSSet setWithObject:self];
+}
 
     - (Compilable *)mainCompilable
     {
@@ -460,6 +584,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             _texPath = texPath;
             if ([_texPath isAbsolutePath]) {
                 [_filePresenter setPath:texPath];
+                [self initSingleDocumentDefaults];
                 [self buildOutline];
             }
         }

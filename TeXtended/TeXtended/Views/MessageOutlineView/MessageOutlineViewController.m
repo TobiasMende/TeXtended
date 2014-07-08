@@ -17,7 +17,7 @@
 @implementation MessageOutlineViewController
 
 
-    - (id)initWithModel:(Compilable *)model
+    - (id)initWithModel:(DocumentModel *)model
     {
         self = [self initWithNibName:@"MessageOutlineView" bundle:nil];
         if (self) {

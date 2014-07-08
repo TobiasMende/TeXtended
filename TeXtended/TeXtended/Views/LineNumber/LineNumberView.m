@@ -10,6 +10,11 @@
 #import "HighlightingTextView.h"
 #import "TrackingMessage.h"
 #import "MessageViewController.h"
+#import "DocumentModel.h"
+#import "CacheManager.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
+#import "OutlineElement.h"
 
 /* Size of the small line borders */
 #define BORDER_SIZE 5.0
@@ -48,7 +53,6 @@ private)
  * Finds the line number for a given statring index of a line.
  * This is needed, to find the first line that is visible.
  * @param index the line index
- * @param text to find the line number in
  * @return the line number
  *
  */
@@ -100,7 +104,6 @@ private)
 
 /**
  * Draws a error for a selected line.
- * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
@@ -108,7 +111,6 @@ private)
 
 /**
  * Draws a warning for a selected line.
- * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
@@ -116,7 +118,6 @@ private)
 
 /**
  * Draws a info for a selected line.
- * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
@@ -124,7 +125,6 @@ private)
 
 /**
  * Draws a debug for a selected line.
- * @param dirtyRect the rect where the anchor should be drawn in (rect of the rulerview)
  * @param visibleRect the currently visbile rect
  * @param lineHight the hight of the current line
  */
@@ -182,7 +182,6 @@ private)
                 NSParagraphStyleAttributeName : numberStyle,
                 NSForegroundColorAttributeName : self.textColor};
 
-        lineAnchors = [[NSMutableDictionary alloc] init];
 
         /* message controlling */
         [self addObserver:self
@@ -198,6 +197,16 @@ private)
         [self setRuleThickness:START_THICKNESS];
         [self calculateLines];
     }
+
+-(void)setModel:(DocumentModel *)model {
+    if (_model) {
+        [_model removeObserver:self forKeyPath:@"lineBookmarks"];
+    }
+    _model = model;
+    if (_model) {
+        [_model addObserver:self forKeyPath:@"lineBookmarks" options:NSKeyValueObservingOptionNew context:NULL];
+    }
+}
 
     - (void)setClientView:(NSView *)aView
     {
@@ -287,21 +296,20 @@ private)
         NSRect visibleRect = view.visibleRect;
         NSLayoutManager *manager = view.layoutManager;
         NSTextContainer *container = view.textContainer;
-        NSString *text = view.string;
         NSRange range, glyphRange;
 
         glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
         range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
         range.length++;
         NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location];
-        NSMutableArray *lineHights;
-        lineHights = [self calculateLineHeights:lineLabel];
+        NSMutableArray *lineHeights;
+        lineHeights = [self calculateLineHeights:lineLabel];
 
 
         /* calculate the clicked line */
         NSUInteger current = 0;
-        for (int i = 0 ; i < [lineHights count] ; i++) {
-            if (location.y > [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y) {
+        for (NSUInteger i = 0 ; i < [lineHeights count] ; i++) {
+            if (location.y > [lineHeights[i] unsignedIntegerValue] - visibleRect.origin.y) {
                 current = lineLabel + i + 1;
             }
         }
@@ -313,7 +321,7 @@ private)
                 messageWindow = nil;
             }
             NSRect rec = NSMakeRect(4,
-                    [lineHights[current - lineLabel - 1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
+                    [lineHeights[current - lineLabel - 1] integerValue] - visibleRect.origin.y + 0.75 * SYMBOL_SIZE,
                     1,
                     1);
 
@@ -330,17 +338,20 @@ private)
 
     - (void)addAnchorToLine:(NSUInteger)line
     {
-        lineAnchors[[NSNumber numberWithInteger:line]] = @1;
+        
+        self.model.lineBookmarks = [self.model.lineBookmarks setByAddingObject:@(line)];
     }
 
     - (void)removeAnchorFromLine:(NSUInteger)line
     {
-        [lineAnchors removeObjectForKey:[NSNumber numberWithInteger:line]];
+        self.model.lineBookmarks = [self.model.lineBookmarks objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+            return [obj unsignedIntegerValue] != line;
+        }];
     }
 
     - (BOOL)hasAnchor:(NSUInteger)line
     {
-        return [lineAnchors[[NSNumber numberWithInteger:line]] integerValue];
+        return [self.model.lineBookmarks containsObject:@(line)];
     }
 
     - (NSMutableSet *)messagesForLine:(NSUInteger)line
@@ -446,7 +457,7 @@ private)
 
         // Round up the value. There is a bug on 10.4 where the display gets all wonky when scrolling if you don't
         // return an integral value here.
-        return ceilf(MAX(START_THICKNESS, stringSize.width + 2 * BORDER_SIZE + BORDER_LINE_SIZE)) + SYMBOL_SIZE;
+        return MAX(START_THICKNESS, stringSize.width + 2.0 * BORDER_SIZE + BORDER_LINE_SIZE) + SYMBOL_SIZE;
     }
 
     - (void)calculateLines
@@ -455,7 +466,7 @@ private)
         lines = [NSMutableArray new];
         NSTextView *view = self.scrollView.documentView;
         NSString *text = view.string;
-        float index = 0;
+        NSUInteger index = 0;
 
         do {
             [lines addObject:[NSNumber numberWithUnsignedInteger:index]];
@@ -485,6 +496,10 @@ private)
 
             [invocation performSelector:@selector(invoke) withObject:nil afterDelay:0.0];
         }
+        
+        self.model.lineBookmarks = [self.model.lineBookmarks objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+           return [obj unsignedIntegerValue] <= self->lines.count;
+        }];
 
     }
 
@@ -498,7 +513,7 @@ private)
         NSRange nullRange = NSMakeRange(NSNotFound, 0);
         NSRectArray rects = 0;
 
-        float height = 0;
+        CGFloat height = 0;
         NSUInteger index = 0, rectCount;
 
         for (NSUInteger line = startLine ; height < NSMaxY(visibleRect) && line < lines.count ; line++) {
@@ -515,7 +530,7 @@ private)
 
         // to draw the last line
         if (rects) {
-            [heights addObject:[NSNumber numberWithFloat:rects->origin.y + visibleRect.size.height]];
+            [heights addObject:[NSNumber numberWithDouble:rects->origin.y + visibleRect.size.height]];
         }
         return heights;
     }
@@ -531,33 +546,23 @@ private)
 
     - (void)drawHashMarksAndLabelsInRect:(NSRect)dirtyRect
     {
-        NSRect visibleRect = [self.scrollView.documentView visibleRect];
 
         /* draw small black line */
         [self.lineColor set];
-        NSRect rect = {dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE ,
-                0,
-                BORDER_LINE_SIZE,
-                2 * visibleRect.size.height,
-        };
+        NSRect rect = NSMakeRect(dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE, dirtyRect.origin.y, BORDER_LINE_SIZE, dirtyRect.size.height);
         NSRectFill(rect);
-
         HighlightingTextView *view = [self.scrollView documentView];
-        NSLayoutManager *manager = view.layoutManager;
-        NSTextContainer *container = view.textContainer;
-        NSString *text = view.string;
-        NSRange range, glyphRange;
 
-        glyphRange = [manager glyphRangeForBoundingRect:visibleRect inTextContainer:container];
-        range = [manager characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+        NSRect visibleRect = [self.scrollView.documentView visibleRect];
+        NSRange range = view.visibleRange;
         range.length++;
         NSUInteger lineLabel = [self lineNumberForCharacterIndex:range.location];
-        NSMutableArray *lineHights;
+        NSMutableArray *lineHeights;
 
-        lineHights = [self calculateLineHeights:lineLabel];
+        lineHeights = [self calculateLineHeights:lineLabel];
 
         // catch cases where the textview has size 0
-        if ([lineHights count] == 0) {
+        if ([lineHeights count] == 0) {
             return;
         }
 
@@ -565,7 +570,7 @@ private)
          * Calculate the current line and the first visible line, this is needed from other views
          * and set here, because the lines are allready calculated.
          */
-        NSInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location] + 1;
+        NSUInteger currentLine = [self lineNumberForCharacterIndex:[view selectedRange].location] + 1;
         if (view.currentRow != currentLine) {
             view.currentRow = currentLine;
         }
@@ -573,41 +578,52 @@ private)
             view.firstVisibleRow = lineLabel + 1;
         }
 
-        for (int i = 0 ; i < [lineHights count] - 1 ; i++) {
+        if (lineHeights.count == 0) {
+            return;
+        }
+        NSEnumerator *outlineEnumerator = self.model.outlineElements.objectEnumerator;
+        OutlineElement *current = outlineEnumerator.nextObject;
+        while (current && current.line < lineLabel) {
+            current = outlineEnumerator.nextObject;
+        }
+        for (NSUInteger i = 0 ; i < lineHeights.count - 1 ; i++) {
             /* draw rect for current line */
-            NSRect rect = {dirtyRect.size.width - BORDER_SIZE ,
-                    [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y,
+            NSRect lineRect = NSMakeRect(dirtyRect.size.width - BORDER_SIZE ,
+                    [lineHeights[i] unsignedIntegerValue] - visibleRect.origin.y,
                     BORDER_SIZE,
-                    [lineHights[i + 1] unsignedIntegerValue] - [lineHights[i] unsignedIntegerValue]
-            };
+                    [lineHeights[i + 1] unsignedIntegerValue] - [lineHeights[i] unsignedIntegerValue]
+            );
 
-            if ((lineLabel + i) % 2 == 0) {
+            if (current && current.line == lineLabel+i+1) {
+                [[[CacheManager sharedCacheManager] colorForOutlineElement:current] set];
+                current = outlineEnumerator.nextObject;
+            } else if ((lineLabel + i) % 2 == 0) {
                 [self.borderColorA set];
             } else {
                 [self.borderColorB set];
             }
-            NSRectFill(rect);
+            NSRectFill(lineRect);
 
             if ([self hasAnchor:lineLabel + i + 1]) {
-                [self drawAnchorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawAnchorIn:dirtyRect withVisibleRect:visibleRect forLineHigh:[lineHeights[i] integerValue]];
             }
 
             if ([self hasError:lineLabel + i + 1]) {
-                [self drawErrorInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawErrorInVisibleRect:visibleRect forLineHigh:[lineHeights[i] integerValue]];
             } else if ([self hasWarning:lineLabel + i + 1]) {
-                [self drawWarningInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawWarningInVisibleRect:visibleRect forLineHigh:[lineHeights[i] integerValue]];
             } else if ([self hasInfo:lineLabel + i + 1]) {
-                [self drawInfoInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawInfoInVisibleRect:visibleRect forLineHigh:[lineHeights[i] integerValue]];
             } else if ([self hasDebug:lineLabel + i + 1]) {
-                [self drawDebugInVisibleRect:visibleRect forLineHigh:[lineHights[i] integerValue]];
+                [self drawDebugInVisibleRect:visibleRect forLineHigh:[lineHeights[i] integerValue]];
             }
 
             NSString *lineNumer = [NSString stringWithFormat:@"%li", lineLabel + i + 1];
-            NSRect rectFront = {0,
-                    [lineHights[i] unsignedIntegerValue] - visibleRect.origin.y - NUMBER_DISTANCE_TO_NEXTLINE,
+            NSRect rectFront = NSMakeRect(0,
+                    [lineHeights[i] unsignedIntegerValue] - visibleRect.origin.y - NUMBER_DISTANCE_TO_NEXTLINE,
                     dirtyRect.size.width - BORDER_SIZE - BORDER_LINE_SIZE - NUMBER_DISTANCE_TO_LINE,
-                    [lineHights[i + 1] unsignedIntegerValue] - [lineHights[i] unsignedIntegerValue]
-            };
+                    [lineHeights[i + 1] unsignedIntegerValue] - [lineHeights[i] unsignedIntegerValue]
+            );
 
             [lineNumer drawInRect:rectFront withAttributes:attributesForNumbers];
         }
@@ -694,15 +710,16 @@ private)
         return self.anchorBorderColor;
     }
 
-    - (NSArray *)anchoredLines
+    - (NSSet *)anchoredLines
     {
-        return lineAnchors.allKeys;
+        return self.model.lineBookmarks;
     }
 
     - (void)dealloc
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self removeObserver:self forKeyPath:@"messageCollection"];
+        [self.model removeObserver:self forKeyPath:@"lineBookmarks"];
         [self unbind:@"messageCollection"];
     }
 

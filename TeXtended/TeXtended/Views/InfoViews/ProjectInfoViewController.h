@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "ModelInfoViewController.h"
 @class ProjectModel;
 
-@interface ProjectInfoViewController : NSViewController <NSPathControlDelegate>
+@interface ProjectInfoViewController : NSViewController <ModelInfoViewController,NSPathControlDelegate>
 
     @property (strong) IBOutlet NSPathControl *directoryPathControl;
 

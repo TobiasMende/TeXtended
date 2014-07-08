@@ -98,7 +98,7 @@
 
 #pragma mark - Counting
 
-    - (NSInteger)letterCount
+    - (NSUInteger)letterCount
     {
         if ([self isEqualToString:@""]) {
             return 0;
@@ -106,11 +106,10 @@
 
         NSString *cleanText = [self cleanText];
         NSString *strippedString = [cleanText stringByReplacingRegularExpression:@"[^a-zA-Z]+" withString:@"" options:NSRegularExpressionCaseInsensitive];
-        NSInteger letterCount = [strippedString length];
-        return letterCount;
+        return strippedString.length;
     }
 
-    - (NSInteger)wordCount
+    - (NSUInteger)wordCount
     {
         if ([self isEqualToString:@""]) {
             return 0;
@@ -118,11 +117,10 @@
 
         NSString *cleanText = [self cleanText];
         NSString *strippedText = [cleanText stringByReplacingRegularExpression:@"[^\\s]" withString:@"" options:kNilOptions];
-        NSInteger wordCount = 1 + [strippedText length];
-        return wordCount;
+        return 1 + [strippedText length];
     }
 
-    - (NSInteger)sentenceCount
+    - (NSUInteger)sentenceCount
     {
         if ([self isEqualToString:@""]) {
             return 0;
@@ -130,8 +128,7 @@
 
         NSString *cleanText = [self cleanText];
         NSString *strippedString = [cleanText stringByReplacingRegularExpression:@"[^\\.\\!\\?]+" withString:@"" options:NSRegularExpressionCaseInsensitive];
-        NSInteger sentencesCount = MAX(1, [strippedString length]);
-        return sentencesCount;
+        return (strippedString.length < 1 ? 1 : strippedString.length);
     }
 
 // No test required. sentenceCount and wordCount are already tested
@@ -199,7 +196,7 @@
         return syllableCount;
     }
 
-    - (NSInteger)syllableCount
+    - (NSUInteger)syllableCount
     {
         if ([self isEqualToString:@""]) {
             return 0;
@@ -211,7 +208,7 @@
         NSString *lowercase = [strippedString lowercaseString];
 
         // altered in enumerate blocks
-        __block NSInteger syllableCount = 0;
+        __block NSUInteger syllableCount = 0;
 
         // special rules that don't follow syllable matching patterns
         NSDictionary *exceptions = @{

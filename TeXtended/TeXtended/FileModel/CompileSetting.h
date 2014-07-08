@@ -50,7 +50,6 @@
 
 /** Getter for a default live compile setting generated using the user defaults
  *
- * @param context The context to insert the new object into
  *
  * return a new compile setting object
  */
@@ -58,7 +57,6 @@
 
 /** Getter for a default draft compile setting generated using the user defaults
  *
- * @param context The context to insert the new object into
  *
  * return a new compile setting object
  */
@@ -66,10 +64,13 @@
 
 /** Getter for a default final compile setting generated using the user defaults
  *
- * @param context The context to insert the new object into
  *
  * return a new compile setting object
  */
     + (CompileSetting *)defaultFinalCompileSetting;
 
+#pragma mark - Serialization & Deserialization
+
+- (NSString *) toJSONString;
++ (CompileSetting *)fromJSONString:(NSString *)json;
 @end

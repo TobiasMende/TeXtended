@@ -8,6 +8,7 @@
 
 #import "CompileSetting.h"
 #import "Constants.h"
+#import <JSONKit-NoWarning/JSONKit.h>
 
 @interface CompileSetting ()
 
@@ -111,5 +112,20 @@
         return setting;
     }
 
+#pragma mark - Serialization & Deserialization
 
+- (NSString *) toJSONString {
+    NSDictionary *content = @{@"compilerPath": self.compilerPath, @"compileBib" : self.compileBib, @"numberOfCompiles" : self.numberOfCompiles, @"customArgument" : self.customArgument};
+    return [content JSONString];
+}
+
++ (CompileSetting *)fromJSONString:(NSString *)json {
+    NSDictionary *content = [json objectFromJSONString];
+    CompileSetting *setting = [CompileSetting new];
+    setting.compilerPath = content[@"compilerPath"];
+    setting.compileBib = content[@"compileBib"];
+    setting.numberOfCompiles = content[@"numberOfCompiles"];
+    setting.customArgument = content[@"customArgument"];
+    return setting;
+}
 @end

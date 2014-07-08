@@ -9,16 +9,14 @@
 #import "LatexSyntaxHighlighter.h"
 #import "HighlightingTextView.h"
 #import "CodeExtensionEngine.h"
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import <TMTHelperCollection/TMTLog.h>
 
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
 static const NSCharacterSet *ALL_SYMBOLS;
 static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *COMMAND_END_CHARACTERS, *ALLOWED_IN_MATH_MODE;
 
-static NSString *COMMAND_PATTERN;
-
-static NSRegularExpression *COMMAND_REGEX;
 
 @interface LatexSyntaxHighlighter ()
 
@@ -50,7 +48,7 @@ static NSRegularExpression *COMMAND_REGEX;
         NSMutableCharacterSet *tmp = [NSMutableCharacterSet characterSetWithCharactersInString:@"{}[],.%"];
         [tmp formUnionWithCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         COMMAND_END_CHARACTERS = tmp.copy;
-        COMMAND_PATTERN = @"\\\\[a-zA-Z0-9@_]+|\\\\\\\\";
+    
 
     }
 
@@ -132,9 +130,6 @@ static NSRegularExpression *COMMAND_REGEX;
 # pragma mark Highlighting Methods
     - (void)highlightAtSelectionChange
     {
-        if (!view.servicesOn) {
-            return;
-        }
         [self highlightNarrowArea];
 
     }
@@ -147,7 +142,7 @@ static NSRegularExpression *COMMAND_REGEX;
 
     - (void)highlightNarrowArea
     {
-        [self highlightRange:[view extendRange:view.selectedRange byLines:20]];
+        [self highlightRange:[view.string extendRange:view.selectedRange byLines:20]];
     }
 
     - (void)highlightVisibleArea
@@ -182,24 +177,24 @@ static NSRegularExpression *COMMAND_REGEX;
         NSUInteger end = NSMaxRange(textRange);
         
         while (scanner.scanLocation < end && !scanner.isAtEnd) {
-            [scanner scanUpToCharactersFromSet:ALL_SYMBOLS intoString:NULL];
+            [scanner scanUpToCharactersFromSet:ALL_SYMBOLS.copy intoString:NULL];
                 // Found Begin of Something
                 // Uncolor normal text
                 [self highlightFrom:rangeStart to:scanner.scanLocation withColor:nil andFlag:NO];
                 
                 rangeStart = scanner.scanLocation;
-                if ([scanner scanCharactersFromSet:ROUND_BRACKETS intoString:NULL] ) {
+                if ([scanner scanCharactersFromSet:ROUND_BRACKETS.copy intoString:NULL] ) {
                     // color round brackets
                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
-                } else if ([scanner scanCharactersFromSet:CURLY_BRACKETS intoString:NULL]) {
+                } else if ([scanner scanCharactersFromSet:CURLY_BRACKETS.copy intoString:NULL]) {
                     // color curly brackets
                      [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.curlyBracketColor andFlag:self.shouldHighlightArguments];
-                } else if ([scanner scanCharactersFromSet:RECT_BRACKETS intoString:NULL]) {
+                } else if ([scanner scanCharactersFromSet:RECT_BRACKETS.copy intoString:NULL]) {
                     // color rect brackets
                      [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.bracketColor andFlag:self.shouldHighlightBrackets];
                 } else if([scanner scanString:@"\\" intoString:NULL]) {
                     // color commands
-                    [scanner scanUpToCharactersFromSet:COMMAND_END_CHARACTERS  intoString:NULL];
+                    [scanner scanUpToCharactersFromSet:COMMAND_END_CHARACTERS.copy  intoString:NULL];
                     [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
                 } else if([self highlightInlineMath:scanner withRangeStart:rangeStart andRangeEnd:end]) {
                     
@@ -238,7 +233,7 @@ static NSRegularExpression *COMMAND_REGEX;
 
 - (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andRangeEnd:(NSUInteger)rangeEnd {
     while (!scanner.isAtEnd && scanner.scanLocation < rangeEnd) {
-        [scanner scanUpToCharactersFromSet:ALLOWED_IN_MATH_MODE intoString:NULL];
+        [scanner scanUpToCharactersFromSet:ALLOWED_IN_MATH_MODE.copy intoString:NULL];
         NSUInteger subrangeEnd = scanner.scanLocation;
         if ([scanner scanString:@"$" intoString:NULL]) {
             break;
@@ -390,15 +385,6 @@ static NSRegularExpression *COMMAND_REGEX;
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTextViewDidChangeSelectionNotification object:view];
         [self unbindFromUserDefaults];
-    }
-
-
-#pragma mark -
-#pragma mark Regex Getter
-
-    + (NSRegularExpression *)commandExpression
-    {
-        return COMMAND_REGEX;
     }
 
 

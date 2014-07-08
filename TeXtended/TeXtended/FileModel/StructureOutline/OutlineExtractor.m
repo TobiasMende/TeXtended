@@ -13,7 +13,7 @@
 #import "DocumentModel.h"
 #import "NSString+PathExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+TMTExtension.h"
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
 
 static const NSDictionary *ELEMENT_EXTRACTOR_REGEX_LOOKUP;
 
@@ -56,8 +56,6 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             }
             _isExtracting = NO;
             return;
-        }
-        if (_completionHandler) {
         }
         [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:nil];
     }
@@ -175,14 +173,14 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
         NSSet *labels = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeLabel];
         for (NSValue *v in labels) {
             CommandCompletion *c = v.nonretainedObjectValue;
-            NSString *part = [NSString stringWithFormat:@"\%@\\{(.*)\\}", c.insertion];
+            NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
             [regex appendFormat:@"%@|", part];
         }
 
         NSSet *refs = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeRef];
         for (NSValue *v in refs) {
             CommandCompletion *c = v.nonretainedObjectValue;
-            NSString *part = [NSString stringWithFormat:@"\%@\\{(.*)\\}", c.insertion];
+            NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
             [regex appendFormat:@"%@|", part];
         }
 

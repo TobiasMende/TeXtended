@@ -8,14 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Compilable, MessageDataSource;
+@class DocumentModel, MessageDataSource;
 
 @interface MessageOutlineViewController : NSViewController
 
-    @property (assign) Compilable *model;
+    @property (assign) DocumentModel *model;
 
     @property (assign) IBOutlet MessageDataSource *messageDataSource;
 
 
-    - (id)initWithModel:(Compilable *)model;
+    - (id)initWithModel:(DocumentModel *)model;
 @end

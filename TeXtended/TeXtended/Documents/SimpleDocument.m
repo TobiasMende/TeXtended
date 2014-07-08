@@ -235,6 +235,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (void)dealloc
     {
+        DDLogVerbose(@"dealloc [%@]", self.fileURL);
         [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self.model];
     }
 

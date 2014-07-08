@@ -74,7 +74,7 @@
             tmpContent = content;
         }
 
-        return content;
+        return content != nil;
 
 
     }

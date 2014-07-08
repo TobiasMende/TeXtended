@@ -200,6 +200,24 @@ static NSUInteger LAST_IDENTIFIER = 0;
                                      userInfo:nil];
     }
 
+-(NSString *)path {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
+- (NSString *)name {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
+-(NSString *)type {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
     - (NSString *)debugDescription
     {
         return [NSString stringWithFormat:@"%@[%@]", [self class], self.path];
@@ -286,6 +304,12 @@ static NSUInteger LAST_IDENTIFIER = 0;
     }
 
 
+- (NSSet *)openDocuments {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+    
+}
 #pragma mark - MainDocument Collection Helpers
 
     - (void)removeMainDocument:(DocumentModel *)value
@@ -312,16 +336,16 @@ static NSUInteger LAST_IDENTIFIER = 0;
 
 #pragma mark BibFile Collection Helpers
 
-    - (void)addBibFileWithPath:(NSString *)path
-    {
-        BibFile *file = [BibFile new];
-
-        file.project = self;
-        file.path = path;
-        if (![self.bibFiles containsObject:file]) {
-            self.bibFiles = [self.bibFiles arrayByAddingObject:file];
-        }
+- (void)addBibFileWithPath:(NSString *)path
+{
+    // Fallback method for simple documents
+    BibFile *file = [BibFile new];
+    
+    file.path = path;
+    if (![self.bibFiles containsObject:file]) {
+        self.bibFiles = [self.bibFiles arrayByAddingObject:file];
     }
+}
 
 
     - (TMTBibTexEntry *)findBibTexEntryForKey:(NSString *)key containingDocument:(NSString *__autoreleasing *)path

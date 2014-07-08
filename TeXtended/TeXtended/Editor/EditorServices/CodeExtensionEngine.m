@@ -15,6 +15,7 @@
 #import "CiteInfoViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import <BibTexToolsFramework/TMTBibTexEntry.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 
 #define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 

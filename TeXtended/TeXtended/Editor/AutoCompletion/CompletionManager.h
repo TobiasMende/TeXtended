@@ -49,7 +49,7 @@
 
     - (NSMutableSet *)commandCompletionsByType:(NSString *)type;
 
-    - (NSAttributedString *)getDropCompletionForPath:(NSString *)path;
+    - (NSArray *)possibleDropCompletionsForPath:(NSString *)path;
 
     + (NSSet *)specialSymbols;
 

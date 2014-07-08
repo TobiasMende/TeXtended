@@ -55,13 +55,13 @@ static const NSRegularExpression *SYNCTEX_REGEX;
 
             NSPipe *outPipe = [NSPipe pipe];
             [task setStandardOutput:outPipe];
-            [task setTerminationHandler:^(NSTask *task)
+            [task setTerminationHandler:^(NSTask *t)
             {
                 NSFileHandle *read = [outPipe fileHandleForReading];
                 NSData *dataRead = [read readDataToEndOfFile];
                 NSString *stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
                 NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
-                for (NSString *arg in task.arguments) {
+                for (NSString *arg in t.arguments) {
                     [command appendFormat:@" %@", arg];
                 }
                 [self parseOutput:stringRead];

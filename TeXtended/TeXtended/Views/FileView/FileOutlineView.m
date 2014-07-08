@@ -103,6 +103,7 @@
     {
         if (viewController) {
             [viewController setNextResponder:newNextResponder];
+            self.nextResponder = viewController;
             return;
         }
 

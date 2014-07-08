@@ -33,6 +33,9 @@
     - (void)dealloc
     {
         DDLogVerbose(@"dealloc");
+        [self.liveCompilePrefs removeObserver:self forKeyPath:@"enabled"];
+        [self.draftCompilePrefs removeObserver:self forKeyPath:@"enabled"];
+        [self.finalCompilePrefs removeObserver:self forKeyPath:@"enabled"];
     }
 
     - (id)init
@@ -56,7 +59,10 @@
         [self.draftCompilerView setContentView:self.draftCompilePrefs.view];
         [self.finalCompilerView setContentView:self.finalCompilePrefs.view];
         [self.infoView setContentView:self.infoViewController.view];
-
+        
+        [self.liveCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [self.draftCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [self.finalCompilePrefs addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
 
@@ -85,9 +91,11 @@
             self.liveCompilePrefs.compiler = model.liveCompiler;
             self.draftCompilePrefs.compiler = model.draftCompiler;
             self.finalCompilePrefs.compiler = model.finalCompiler;
-            [self.liveCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasLiveCompiler" options:nil];
-            [self.draftCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasDraftCompiler" options:nil];
-            [self.finalCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasFinalCompiler" options:nil];
+            
+            NSDictionary *options = @{NSContinuouslyUpdatesValueBindingOption: @(YES), NSValidatesImmediatelyBindingOption:@(YES)};
+            [self.liveCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasLiveCompiler" options:options];
+            [self.draftCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasDraftCompiler" options:options];
+            [self.finalCompilePrefs bind:@"enabled" toObject:self.model withKeyPath:@"hasFinalCompiler" options:options];
             [self buildInfoView];
         }
     }
@@ -170,5 +178,16 @@
 
         return _instance;
     }
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.liveCompilePrefs) {
+        self.model.hasLiveCompiler = self.liveCompilePrefs.enabled;
+    } else if (object == self.draftCompilePrefs) {
+        self.model.hasDraftCompiler = self.draftCompilePrefs.enabled;
+    } else if (object == self.finalCompilePrefs) {
+        self.model.hasFinalCompiler = self.finalCompilePrefs.enabled;
+    }
+}
 
 @end

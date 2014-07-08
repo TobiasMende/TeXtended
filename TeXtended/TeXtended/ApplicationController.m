@@ -21,7 +21,10 @@
 #import "CompletionManager.h"
 #import "TemplateController.h"
 #import "Template.h"
+#import "SimpleDocument.h"
+#import "ProjectDocument.h"
 #import <Quartz/Quartz.h>
+#import "StartScreenWindowController.h"
 
 
 @interface ApplicationController ()
@@ -29,9 +32,29 @@
     + (void)registerDefaults;
 
 
+
 @end
 
-@implementation ApplicationController
+@implementation ApplicationController {
+    /** references to the controller which handels the preferences window. */
+    PreferencesController *preferencesController;
+    
+    /** reference to the controller handling the creation and management of all documents in this application */
+    DocumentCreationController *documentCreationController;
+    
+    /** reference to the texdoc panel controller handling the app wide texdoc support */
+    TexdocPanelController *texdocPanelController;
+    
+    ConsoleWindowController *consoleWindowController;
+    
+    TemplateController *templateController;
+    
+    StartScreenWindowController *startScreenController;
+}
+
+
+
+
 
     + (void)initialize
     {
@@ -61,9 +84,11 @@
     {
         documentCreationController = [[DocumentCreationController alloc] init];
         preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
+        
         [TMTLog customizeLogger];
 
     }
+
 
 
     - (void)applicationWillTerminate:(NSNotification *)notification
@@ -189,6 +214,7 @@
                 TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS : @YES,
                 TMT_SHOULD_COMPLETE_COMMANDS : @YES,
                 TMT_SHOULD_COMPLETE_ENVIRONMENTS : @YES,
+                TMTShouldShowStartScreen : @YES,
                 TMTShouldCompleteCites : @YES,
                 TMTShouldCompleteRefs : @YES,
                 TMT_SHOULD_LINK_TEXDOC : @YES,
@@ -300,5 +326,106 @@
             [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
         }
     }
+
+#pragma mark - Open Recent Menu Hack
+
+- (void)updateRecentDocuments {
+    
+    NSMenuItem *openRecent = self.openRecentMenuItem;
+    if (openRecent && openRecent.hasSubmenu) {
+        // Creating a new OpenRecent menu with custom entries
+        NSMenu *openRecentItems = [[NSMenu alloc] initWithTitle:NSLocalizedString(@"Open Recent", @"")];
+        
+        // Get the "Clear Recent" item (add it later)
+        NSMenuItem *clearRecentItem = [openRecent.submenu.itemArray lastObject];
+        [openRecent.submenu removeItem:clearRecentItem];
+        
+        if ([self addRecentSimpleDocumentsTo:openRecentItems].count > 0) {
+            [openRecentItems addItem:[NSMenuItem separatorItem]];
+        }
+        
+        // Add section for Project Documents:
+        
+        if ([self addRecentProjectDocumentsTo:openRecentItems].count > 0) {
+            [openRecentItems addItem:[NSMenuItem separatorItem]];
+        }
+        
+        // Add "Clear Recent" from old menu and set new submenu:
+        [openRecentItems addItem:clearRecentItem];
+        [openRecent setSubmenu:openRecentItems];
+        
+    }
+}
+
+- (NSArray *)addRecentSimpleDocumentsTo:(NSMenu *)menu {
+    // Add section for Simple Documents:
+    DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
+    NSArray *recentSimpleDocumentURLs = dc.recentSimpleDocumentsURLs;
+    NSImage *image = [NSImage imageNamed:@"texicon"];
+    image.size = NSMakeSize(16,16);
+    for (NSURL *url in recentSimpleDocumentURLs) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[[url path] lastPathComponent] action:@selector(openRecent:) keyEquivalent:@""];
+        item.representedObject = url;
+        item.target = self;
+        item.image = image;
+        item.toolTip = url.path;
+        [menu addItem:item];
+    }
+    return recentSimpleDocumentURLs;
+}
+
+- (NSArray *)addRecentProjectDocumentsTo:(NSMenu *)menu {
+    DocumentCreationController *dc = [DocumentCreationController sharedDocumentController];
+     NSArray *recentProjectDocumentURLs = dc.recentProjectDocumentsURLs;
+    NSImage *image = [NSImage imageNamed:@"projecticon"];
+    image.size = NSMakeSize(16,16);
+    for (NSURL *url in recentProjectDocumentURLs) {
+        NSString *title = [[[url path] lastPathComponent] stringByDeletingPathExtension];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:@selector(openRecent:) keyEquivalent:@""];
+        item.representedObject = url;
+        item.target = self;
+        item.image = image;
+        [menu addItem:item];
+    }
+    return  recentProjectDocumentURLs;
+}
+
+- (NSMenu *)fileMenu {
+    return [[[[NSApplication sharedApplication] mainMenu] itemAtIndex:1] submenu];
+}
+
+- (NSMenuItem *)openRecentMenuItem {
+    NSMenu *fileMenu = self.fileMenu;
+    NSInteger openDocumentMenuItemIndex = [fileMenu indexOfItemWithTarget:nil andAction:@selector(openDocument:)];
+    
+    if (openDocumentMenuItemIndex>=0) {
+        // APPLE'S COMMENT: We'll presume it's the Open Recent menu item, because this is
+        // APPLE'S COMMENT: the heuristic that NSDocumentController uses to add it to the
+        // APPLE'S COMMENT: File menu
+        return [fileMenu itemAtIndex:openDocumentMenuItemIndex+1];
+    }
+    return nil;
+}
+
+- (void)openRecent:(id)sender {
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+        NSURL *url = [((NSMenuItem *)sender) representedObject];
+        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:nil];
+    } else {
+        NSBeep();
+    }
+}
+
+- (BOOL)applicationOpenUntitledFile:(NSApplication *)sender {
+    if (!startScreenController) {
+        startScreenController = [StartScreenWindowController new];
+    }
+    [startScreenController showWindow:self];
+    return YES;
+}
+
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TMTShouldShowStartScreen];
+}
 
 @end

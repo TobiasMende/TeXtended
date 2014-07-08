@@ -9,7 +9,7 @@
 #import "EditorService.h"
 #import "CompletionProtocol.h"
 
-@class Completion, EnvironmentCompletion, CiteCompletion;
+@class Completion, EnvironmentCompletion, CiteCompletion, OutlineElement;
 
 @interface CompletionHandler : EditorService
 
@@ -26,6 +26,8 @@
     @property BOOL shouldCompleteCites;
 
     @property BOOL shouldCompleteRefs;
+
+    @property BOOL shouldReplacePlaceholders;
 
 /**
  Method for retreiving matching completions for a given word.
@@ -72,15 +74,7 @@
  */
     - (void)insertCompletion:(id <CompletionProtocol>)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
-/**
- Method for detecting whether the insertion is final or not depending on the text movement type
- 
- @param movement the text movement
- 
- @return `YES` if the insertion is final, `NO` otherwise.
- 
- */
-    - (BOOL)isFinalInsertion:(NSUInteger)movement;
+
 
 /** Checks whether the given insertion is contained in a black list
  
@@ -102,8 +96,6 @@
 
     - (void)insertCiteCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
-    - (void)insertRefCompletion:(CiteCompletion *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
+    - (void)insertRefCompletion:(OutlineElement *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag;
 
-
-    - (NSAttributedString *)expandWhiteSpacesInAttrString:(NSAttributedString *)string;
 @end

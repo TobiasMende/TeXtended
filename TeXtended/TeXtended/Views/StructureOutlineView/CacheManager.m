@@ -13,7 +13,7 @@
 
 static const NSString *OUTLINE_COLOR_CONTEXT = @"OUTLINE_COLOR_CONTEXT";
 
-static const NSArray *OUTLINE_COLOR_KEYS;;
+static const NSArray *OUTLINE_COLOR_KEYS;
 
 @implementation CacheManager
 

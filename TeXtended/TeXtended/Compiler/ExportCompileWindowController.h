@@ -51,19 +51,16 @@
 
 /** 
  * Open a dialog to change the export path.
- * @param sender
  */
     - (IBAction)exportPathDialog:(id)sender;
 
 /**
  * Remove a main document from the maindocument list.
- * @param sender
  */
     - (IBAction)removeMainDocument:(id)sender;
 
 /**
  * Add a main document from the maindocument list.
- * @param sender
  */
     - (IBAction)addMainDocument:(id)sender;
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */; };
+		D20E8AD419642A73004ADAA2 /* TMTTableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */; };
 		D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
 		D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1C51863784800997ADB /* InfoPlist.strings */; };
 		D22DC1D21863784800997ADB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1D11863784800997ADB /* XCTest.framework */; };
@@ -36,6 +39,20 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
+		D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D276C8151956CDA1009DB27D /* TMTTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D276C8161956CDA1009DB27D /* TMTTreeController.m */; };
+		D28F285519647FF40085344F /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285319647FF40085344F /* NSSet+TMTSerialization.h */; };
+		D28F285619647FF40085344F /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F285419647FF40085344F /* NSSet+TMTSerialization.m */; };
+		D28F2859196480090085344F /* NSTextView+TMTExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F2857196480090085344F /* NSTextView+TMTExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D28F285A196480090085344F /* NSTextView+TMTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F2858196480090085344F /* NSTextView+TMTExtensions.m */; };
+		D28F285D196483870085344F /* NSString+TMTExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285B196483870085344F /* NSString+TMTExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D28F285E196483870085344F /* NSString+TMTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F285C196483870085344F /* NSString+TMTExtensions.m */; };
+		D28F2861196485340085344F /* NSString+LatexExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285F196485340085344F /* NSString+LatexExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D28F2862196485340085344F /* NSString+LatexExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F2860196485340085344F /* NSString+LatexExtensions.m */; };
+		D28F2865196488470085344F /* NSTextView+LatexExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F2863196488470085344F /* NSTextView+LatexExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D28F2866196488470085344F /* NSTextView+LatexExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F2864196488470085344F /* NSTextView+LatexExtensions.m */; };
+		D28F287219656ADF0085344F /* NSRegularExpression+LatexExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F287019656ADF0085344F /* NSRegularExpression+LatexExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D28F287319656ADF0085344F /* NSRegularExpression+LatexExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F287119656ADF0085344F /* NSRegularExpression+LatexExtensions.m */; };
 		D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */; };
 		D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */; };
 		D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821619166B5F00C1B9E0 /* TMTTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +72,9 @@
 
 /* Begin PBXFileReference section */
 		071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTableViewDelegate.h; sourceTree = "<group>"; };
+		D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
+		D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TMTSerialization.m"; sourceTree = "<group>"; };
 		D22DC1B91863784800997ADB /* TMTHelperCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTHelperCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22DC1BC1863784800997ADB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D22DC1BF1863784800997ADB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +109,22 @@
 		D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNamedEncoding.m; sourceTree = "<group>"; };
 		D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTEncodingTransformer.h; sourceTree = "<group>"; };
 		D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTEncodingTransformer.m; sourceTree = "<group>"; };
+		D276C8151956CDA1009DB27D /* TMTTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTreeController.h; sourceTree = "<group>"; };
+		D276C8161956CDA1009DB27D /* TMTTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTreeController.m; sourceTree = "<group>"; };
+		D28F285319647FF40085344F /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
+		D28F285419647FF40085344F /* NSSet+TMTSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TMTSerialization.m"; sourceTree = "<group>"; };
+		D28F2857196480090085344F /* NSTextView+TMTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+TMTExtensions.h"; sourceTree = "<group>"; };
+		D28F2858196480090085344F /* NSTextView+TMTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+TMTExtensions.m"; sourceTree = "<group>"; };
+		D28F285B196483870085344F /* NSString+TMTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TMTExtensions.h"; sourceTree = "<group>"; };
+		D28F285C196483870085344F /* NSString+TMTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TMTExtensions.m"; sourceTree = "<group>"; };
+		D28F285F196485340085344F /* NSString+LatexExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LatexExtensions.h"; sourceTree = "<group>"; };
+		D28F2860196485340085344F /* NSString+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LatexExtensions.m"; sourceTree = "<group>"; };
+		D28F2863196488470085344F /* NSTextView+LatexExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+LatexExtensions.h"; sourceTree = "<group>"; };
+		D28F2864196488470085344F /* NSTextView+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+LatexExtensions.m"; sourceTree = "<group>"; };
+		D28F287019656ADF0085344F /* NSRegularExpression+LatexExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+LatexExtensions.h"; sourceTree = "<group>"; };
+		D28F287119656ADF0085344F /* NSRegularExpression+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+LatexExtensions.m"; sourceTree = "<group>"; };
+		D2928B001967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2928B011967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTByteCountFormatter.h; sourceTree = "<group>"; };
 		D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTByteCountFormatter.m; sourceTree = "<group>"; };
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
@@ -120,6 +156,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D22646C71962DB41007B6489 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */,
+				D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */,
+			);
+			name = Serialization;
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		D22DC1AF1863784800997ADB = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +210,9 @@
 		D22DC1C21863784800997ADB /* TMTHelperCollection */ = {
 			isa = PBXGroup;
 			children = (
+				D28F285219647FF40085344F /* Categories */,
+				D22646C71962DB41007B6489 /* Serialization */,
+				D276C8131956CD94009DB27D /* Controllers */,
 				D295821319166AF000C1B9E0 /* Protocols */,
 				D22DC24618637A4F00997ADB /* Utils */,
 				D22DC26118637A4F00997ADB /* Views */,
@@ -261,6 +310,42 @@
 			path = Encoding;
 			sourceTree = "<group>";
 		};
+		D276C8131956CD94009DB27D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D276C8141956CD94009DB27D /* TMTTreeController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D276C8141956CD94009DB27D /* TMTTreeController */ = {
+			isa = PBXGroup;
+			children = (
+				D276C8151956CDA1009DB27D /* TMTTreeController.h */,
+				D276C8161956CDA1009DB27D /* TMTTreeController.m */,
+			);
+			path = TMTTreeController;
+			sourceTree = "<group>";
+		};
+		D28F285219647FF40085344F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D28F285F196485340085344F /* NSString+LatexExtensions.h */,
+				D28F2860196485340085344F /* NSString+LatexExtensions.m */,
+				D28F285B196483870085344F /* NSString+TMTExtensions.h */,
+				D28F285C196483870085344F /* NSString+TMTExtensions.m */,
+				D28F285319647FF40085344F /* NSSet+TMTSerialization.h */,
+				D28F285419647FF40085344F /* NSSet+TMTSerialization.m */,
+				D28F2857196480090085344F /* NSTextView+TMTExtensions.h */,
+				D28F2858196480090085344F /* NSTextView+TMTExtensions.m */,
+				D28F2863196488470085344F /* NSTextView+LatexExtensions.h */,
+				D28F2864196488470085344F /* NSTextView+LatexExtensions.m */,
+				D28F287019656ADF0085344F /* NSRegularExpression+LatexExtensions.h */,
+				D28F287119656ADF0085344F /* NSRegularExpression+LatexExtensions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		D29383B41945CDFF005C6C3F /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */,
+				D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -296,13 +382,22 @@
 			files = (
 				D22DC28F18637ACA00997ADB /* FileObserver.h in Headers */,
 				D22DC29018637ACA00997ADB /* GenericFilePresenter.h in Headers */,
+				D28F2865196488470085344F /* NSTextView+LatexExtensions.h in Headers */,
 				D22DC29818637ACA00997ADB /* TMTLog.h in Headers */,
+				D28F2859196480090085344F /* NSTextView+TMTExtensions.h in Headers */,
 				D22DC29918637ACA00997ADB /* TMTLogFormatter.h in Headers */,
 				D2654AD51927A50E00DE58B2 /* TMTEncodingManager.h in Headers */,
+				D28F285519647FF40085344F /* NSSet+TMTSerialization.h in Headers */,
 				D2654ADD1927AC8700DE58B2 /* TMTNamedEncoding.h in Headers */,
 				D22DC29A18637ACA00997ADB /* PathObserverFactory.h in Headers */,
+				D28F287219656ADF0085344F /* NSRegularExpression+LatexExtensions.h in Headers */,
+				D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */,
+				D28F2861196485340085344F /* NSString+LatexExtensions.h in Headers */,
 				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
+				D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */,
+				D20E8AD419642A73004ADAA2 /* TMTTableViewDelegate.h in Headers */,
 				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
+				D28F285D196483870085344F /* NSString+TMTExtensions.h in Headers */,
 				D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */,
 				D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
@@ -372,6 +467,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = D22DC1AF1863784800997ADB;
 			productRefGroup = D22DC1BA1863784800997ADB /* Products */;
@@ -441,17 +537,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */,
 				D2654AD61927A50E00DE58B2 /* TMTEncodingManager.m in Sources */,
 				D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */,
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
+				D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
+				D28F285A196480090085344F /* NSTextView+TMTExtensions.m in Sources */,
 				D29383B81945CE59005C6C3F /* TMTByteCountFormatter.m in Sources */,
 				D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */,
 				D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */,
 				D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */,
 				D22DC28B18637AB800997ADB /* TMTLog.m in Sources */,
 				D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */,
+				D28F285619647FF40085344F /* NSSet+TMTSerialization.m in Sources */,
 				D22DC28D18637AB800997ADB /* PathObserverFactory.m in Sources */,
+				D28F2866196488470085344F /* NSTextView+LatexExtensions.m in Sources */,
+				D28F287319656ADF0085344F /* NSRegularExpression+LatexExtensions.m in Sources */,
+				D28F285E196483870085344F /* NSString+TMTExtensions.m in Sources */,
+				D28F2862196485340085344F /* NSString+LatexExtensions.m in Sources */,
 				D22DC28E18637AB800997ADB /* TMTHelperCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +583,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D22DC1C61863784800997ADB /* en */,
+				D2928B001967F6CE00F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -487,6 +592,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D22DC1DB1863784800997ADB /* en */,
+				D2928B011967F6CE00F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -520,10 +626,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -552,10 +662,14 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;

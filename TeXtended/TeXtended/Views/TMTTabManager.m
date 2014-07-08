@@ -14,7 +14,7 @@ static TMTTabManager *tabManager = nil;
 
 @interface TMTTabManager ()
 
-- documentModelIsDeleted:(NSNotification *)note;
+- (void)documentModelIsDeleted:(NSNotification *)note;
 
 @end
 
@@ -74,7 +74,7 @@ static TMTTabManager *tabManager = nil;
         return nil;
     }
 
-- (id)documentModelIsDeleted:(NSNotification *)note {
+- (void)documentModelIsDeleted:(NSNotification *)note {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         NSTabViewItem *item = [self tabViewItemForIdentifier:note.userInfo[TMTTexIdentifierKey]];
         if (item) {

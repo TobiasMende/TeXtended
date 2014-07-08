@@ -12,15 +12,15 @@
 
 @interface MatrixViewController : NSWindowController
 
-    @property NSInteger rows;
+    @property NSUInteger rows;
 
-    @property NSInteger columns;
+    @property NSUInteger columns;
 
     @property NSString *type;
 
     @property BOOL alignment;
 
-    @property (readonly) NSInteger minimumTableSize;
+    @property (readonly) NSUInteger minimumTableSize;
 
     @property IBOutlet NSButton *OKButton;
 

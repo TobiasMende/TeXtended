@@ -20,6 +20,30 @@
         </dict>
         <dict>
             <key>TMTCompletionExtensionKey</key>
+            <string>{@@text@@}</string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <true/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\footnote</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string>[@@number@@]{@@footnote@@}</string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <true/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\footnote</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\footnotesize</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
             <string></string>
             <key>TMTCompletionHasPlaceholdersKey</key>
             <false/>
@@ -113,6 +137,46 @@
             <false/>
             <key>TMTCompletionInsertionKey</key>
             <string>\listoftables</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\large</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\huge</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\small</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\tiny</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <false/>
+            <key>TMTCompletionInsertionKey</key>
+            <string>\scriptsize</string>
         </dict>
         <dict>
             <key>TMTCompletionExtensionKey</key>

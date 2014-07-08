@@ -11,8 +11,9 @@
 #import "SyntaxHighlighter.h"
 #import "FirstResponderDelegate.h"
 #import "CompletionProtocol.h"
+#import "LightHighlightingTextView.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, PlaceholderServices, CompletionHandler, CodeExtensionEngine, EditorService, UndoSupport, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
+@class BracketHighlighter, CodeNavigationAssistant, CompletionHandler, CodeExtensionEngine, EditorService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -21,7 +22,7 @@
  
  */
 
-@interface HighlightingTextView : NSTextView
+@interface HighlightingTextView : LightHighlightingTextView
     {
         /** The SyntaxHighlighter highlights latex code by regular expressions */
 
@@ -29,8 +30,6 @@
         BracketHighlighter *bracketHighlighter;
 
         /** The CodeNavigationAssistant handles line and carret highlighting as well as tab and new line insertion */
-        /** The PlaceholderServices handles placeholder navigation */
-        PlaceholderServices *placeholderService;
 
         /** The CompletionHandler contains the auto completion logic */
         CompletionHandler *completionHandler;
@@ -49,9 +48,6 @@
 
         QuickPreviewManager *quickPreview;
 
-        NSArray *droppedFileNames;
-        
-        BOOL stopTextDidChangeNotifications;
     }
 
     @property BOOL completionEnabled;
@@ -63,8 +59,7 @@
 /** The code navigation assistant */
     @property (readonly) CodeNavigationAssistant *codeNavigationAssistant;
 
-/** The syntax highlighter */
-    @property (strong) id <SyntaxHighlighter> syntaxHighlighter;
+
 
 /** The code extension engine, adding linking like texdoc etc. */
     @property (strong) CodeExtensionEngine *codeExtensionEngine;
@@ -77,9 +72,6 @@
 
 /** Property for the first visble row in the visible area */
     @property NSUInteger firstVisibleRow;
-
-/** The undo support instance */
-    @property (strong) UndoSupport *undoSupport;
 
 
 /** if `YES` all services are on, if `NO` this object behaves in general like a normal NSTextView. */
@@ -100,38 +92,10 @@
  */
     - (IBAction)hardWrapText:(id)sender;
 
-/**
- Method can be called to delete the lines containing the selected text.
- 
- @param sender the calling object
- */
-    - (IBAction)deleteLines:(id)sender;
-
-/**
- Method moves the lines containing the selected text downwards
- 
- @param sender the method caller
- */
-    - (IBAction)moveLinesDown:(id)sender;
-
-/**
- Method moves the lines containing the selected text upwards
- 
- @param sender the method caller
- */
-    - (IBAction)moveLinesUp:(id)sender;
-
-/**
- Called when the syntax highlighting should be updated
- */
-    - (void)updateSyntaxHighlighting;
 
 
-/**
- Getter for the visible range
- @return the visible range
- */
-    - (NSRange)visibleRange;
+
+
 
 /**
  Method for finally inserting the completion
@@ -154,49 +118,10 @@
  */
     - (void)jumpToPreviousPlaceholder;
 
-/** Method for toggling the comment state for the selected lines 
- 
- @param sender the sender
- */
-    - (IBAction)toggleComment:(id)sender;
-
-/**
- Method for adding a comment sign (%) at the beginning of every selected line
- 
- @param sender the sender
- */
-    - (IBAction)commentSelection:(id)sender;
-
-/**
- Method for deleting a comment sign (%) at the beginning of every selected line
- 
- @param sender the sender
- */
-    - (IBAction)uncommentSelection:(id)sender;
-
-/**
- Getter for an extended visible range (adding some additional lines at begin and end of the visible range)
- 
- @return a range which has a larger size or the same size as the visible range.
- */
-    - (NSRange)extendedVisibleRange;
-
-    - (NSRange)extendRange:(NSRange)range byLines:(NSUInteger)numLines;
 
 
-/** Getter for the currently selected column
- 
- @return the selected column
- */
-    - (NSUInteger)currentCol;
 
-/** Getter for the column for the selected range
- @param range the range to get the column for.
- 
- @return the column of the provided ranges location
- */
-    - (NSUInteger)colForRange:(NSRange)range;
-
+#pragma mark - Go To Line
 /**
  Method for showing a given line in the view.
  
@@ -212,31 +137,23 @@
     - (IBAction)goToLine:(id)sender;
 
 /**
- Action for starting the MatrixViewController's dialog.
- 
- @param sender the sender
- */
-    - (IBAction)matrixView:(id)sender;
-
-
-/**
- Getter for a line range for a given line index.
- 
- @param line the lines 1-based index
- 
- @return the range of the given line
- */
-    - (NSRange)rangeForLine:(NSUInteger)index;
-
-/**
  Notification about the end of the GoToLineSheetController's sheet.
  
  
  @param sheet the sheet which ends.
  @param returnCode the termination state of the sheet.
-@param context `NULL` in most cases.
+ @param context `NULL` in most cases.
  */
-    - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+- (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
+
+
+#pragma mark - Matrix View
+/**
+ Action for starting the MatrixViewController's dialog.
+
+ @param sender the sender
+ */
+    - (IBAction)matrixView:(id)sender;
 
 /**
  Notification about the end of the MatrixViewController's sheet.
@@ -248,6 +165,8 @@
  */
     - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 
+
+#pragma mark - Anchors
 /** Method for jumping to the next anchor in the line number view
  
  @param sender the actions calller
@@ -274,5 +193,7 @@
     - (IBAction)gotoBlockBegin:(id)sender;
 
     - (IBAction)gotoBlockEnd:(id)sender;
+
+- (void)setPlaceholderReplacementEnabled:(BOOL)enable;
 
 @end

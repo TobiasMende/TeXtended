@@ -83,7 +83,7 @@
     @property (assign) id <FirstResponderDelegate> firstResponderDelegate;
 
 /** The current scaling factor of the grid. */
-    - (float)getScalingFactor;
+    - (CGFloat)scalingFactor;
 
 /**
   * Draws a grid of the given size on the current page.

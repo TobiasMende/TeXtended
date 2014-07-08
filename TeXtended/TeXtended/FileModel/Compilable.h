@@ -100,6 +100,8 @@
 - (void)projectModelIsDeallocating;
 
 
+- (NSSet *)openDocuments;
+
 #pragma mark MainDocument Collection Helpers
 
     - (void)addMainDocument:(DocumentModel *)value;

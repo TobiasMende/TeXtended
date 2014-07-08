@@ -9,6 +9,7 @@
 #import <TMTHelperCollection/PathObserverFactory.h>
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/TMTTextField.h>
+#import <TMTHelperCollection/TMTTreeController.h>
 #import <Quartz/Quartz.h>
 
 #import "FileViewController.h"
@@ -43,6 +44,8 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (FileNode *)findFileNodeForPath:(NSString *)path;
 
+- (void)clearSearchResults;
+
 @end
 
 @implementation FileViewController
@@ -51,7 +54,9 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)dealloc
     {
-        [self.document removeObserver:self forKeyPath:FILE_KEY_PATH];
+        DDLogVerbose(@"dealloc [%@]", self.path);
+        [self.outlineView setViewController:nil];
+        [self.document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         [PathObserverFactory removeObserver:self];
     }
 
@@ -106,7 +111,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (MainDocument *)currentMainDocument
     {
         if ([self.document isKindOfClass:[MainDocument class]]) {
-            return self.document;
+            return (MainDocument *)self.document;
         }
         return nil;
     }
@@ -117,11 +122,11 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (void)setDocument:(NSDocument *)document
     {
         if (_document) {
-            [_document removeObserver:self forKeyPath:FILE_KEY_PATH];
+            [_document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         }
         _document = document;
         if (_document) {
-            [_document addObserver:self forKeyPath:FILE_KEY_PATH options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:nil];
+            [_document addObserver:self forKeyPath:FILE_KEY_PATH.copy options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial context:nil];
         }
     }
 
@@ -132,7 +137,7 @@ static NSArray *INTERNAL_EXTENSIONS;
                 [PathObserverFactory removeObserver:self];
             }
             _path = path;
-
+            DDLogInfo(@"Setting path: %@", _path);
             if (_path) {
                 [[PathObserverFactory pathObserverForPath:_path] addObserver:self withSelector:@selector(pathObserverBuildTree)];
                 [self buildTree];
@@ -142,7 +147,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
     {
-        if ([keyPath isEqualToString:FILE_KEY_PATH]) {
+        if ([keyPath isEqualToString:FILE_KEY_PATH.copy]) {
             [self updatePath];
         }
     }
@@ -152,7 +157,7 @@ static NSArray *INTERNAL_EXTENSIONS;
         NSURL *url = self.document.fileURL;
 
         self.path = [url.path stringByDeletingLastPathComponent];
-        DDLogWarn(@"Setting path: %@", self.path);
+        
     }
 
     - (NSString *)basePathForCreation:(NSString *)path
@@ -168,11 +173,51 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 #pragma mark - Text Delegates
 
-    - (void)controlTextDidEndEditing:(NSNotification *)obj
+    - (void)controlTextDidEndEditing:(NSNotification *)note
     {
-        [self buildTree];
-        pathObserverIsActive = YES;
+        if (note.object != self.searchField) {
+            [self buildTree];
+            pathObserverIsActive = YES;
+        }
     }
+
+-(void)controlTextDidChange:(NSNotification *)note {
+    if (note.object == self.searchField) {
+        if ([self.searchField.stringValue isEqualToString:@""]) {
+            [self clearSearchResults];
+        } else {
+            if (!preFilterExpandedItems) {
+                preFilterExpandedItems = self.outlineView.expandedItems;
+                preFilterSelectedItems = self.fileTree.selectionIndexPaths;
+            }
+            [self.fileTree filterContentBy:[NSPredicate predicateWithFormat:@"name contains[c] %@", self.searchField.stringValue]];
+            [self.outlineView expandItem:self.fileTree.selectionIndexPaths];
+            [self.outlineView scrollRowToVisible:self.outlineView.selectedRow];
+        }
+    }
+}
+
+- (void)clearSearchResults {
+    if (preFilterExpandedItems) {
+        self.fileTree.selectionIndexPaths = preFilterSelectedItems;
+        [self.outlineView collapseItem:nil];
+        [self.outlineView restoreExpandedStateWithArray:preFilterExpandedItems];
+        preFilterExpandedItems = nil;
+        preFilterSelectedItems = nil;
+    }
+}
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
+    if (control == self.searchField) {
+        if (commandSelector == @selector(cancelOperation:)) {
+            [self.view.window makeFirstResponder:self.outlineView];
+            self.searchField.stringValue = @"";
+            [self clearSearchResults];
+            return YES;
+        }
+    }
+    return NO;
+}
 
     - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
     {
@@ -182,6 +227,9 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (BOOL)control:(NSControl *)control isValidObject:(id)obj
     {
+        if (control == self.searchField) {
+            return YES;
+        }
         FileNode *node = [self currentFileNode];
         NSString *basePath = [node.path stringByDeletingLastPathComponent];
         NSFileManager *fm = [NSFileManager defaultManager];
@@ -235,7 +283,7 @@ static NSArray *INTERNAL_EXTENSIONS;
             NSBeep();
             return;
         }
-        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)row] byExtendingSelection:NO];
 
         [self.outlineView editColumn:0 row:row withEvent:nil select:YES];
         // TODO: finish implementation
@@ -250,7 +298,6 @@ static NSArray *INTERNAL_EXTENSIONS;
         NSModalResponse response = [alert runModal];
 
         if (response == NSAlertDefaultReturn) {
-            NSError *error;
             const NSInteger currentRow = self.currentRow;
 
             [[NSWorkspace sharedWorkspace] recycleURLs:@[[NSURL fileURLWithPath:node.path]] completionHandler:^(NSDictionary *newURLs, NSError *error)
@@ -260,7 +307,7 @@ static NSArray *INTERNAL_EXTENSIONS;
                 }
                 [self buildTree];
                 NSInteger row = currentRow > 0 ? currentRow - 1 : currentRow;
-                [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+                [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)row] byExtendingSelection:NO];
             }];
         }
 
@@ -398,7 +445,6 @@ static NSArray *INTERNAL_EXTENSIONS;
             return NSDragOperationNone;
         }
         FileNode *node = [item representedObject];
-        id finalItem = item;
         if ([node isLeaf]) {
             NSTreeNode *parent = [item parentNode];
             if (parent) {
@@ -421,6 +467,10 @@ static NSArray *INTERNAL_EXTENSIONS;
             NSFileManager *fm = [NSFileManager defaultManager];
             for (NSURL *url in objects) {
                 NSError *moveError;
+                if ([url.path.stringByDeletingLastPathComponent isEqualToString:destPath]) {
+                    // ignore drops in same directory
+                    continue;
+                }
                 BOOL success = [fm moveItemAtURL:url toURL:[destination URLByAppendingPathComponent:url.lastPathComponent] error:&moveError];
                 if (!success) {
                     [failedURLS addObject:url];
@@ -485,12 +535,11 @@ static NSArray *INTERNAL_EXTENSIONS;
     - (void)buildTree
     {
         [self.fileTree discardEditing];
-        NSArray *expanedItems = [self.outlineView expandedItems];
-        NSError *error;
+        NSArray *expandedItems = [self.outlineView expandedItems];
         FileNode *root = [FileNode fileNodeWithPath:self.path];
         self.contents = root.children;
         [self.fileTree rearrangeObjects];
-        [self.outlineView restoreExpandedStateWithArray:expanedItems];
+        [self.outlineView restoreExpandedStateWithArray:expandedItems];
     }
 
     - (NSIndexPath *)indexPathForPath:(NSString *)path
@@ -584,12 +633,12 @@ static NSArray *INTERNAL_EXTENSIONS;
         FileNode *node = [FileNode new];
 
         node.path = [item previewItemURL].path;
-        NSInteger index = [self.contents indexOfObject:item];
+        NSUInteger index = [self.contents indexOfObject:item];
         if (index == NSNotFound) {
             return NSZeroRect;
         }
 
-        NSRect iconRect = [self.outlineView frameOfCellAtColumn:0 row:index];
+        NSRect iconRect = [self.outlineView frameOfCellAtColumn:0 row:(NSInteger)index];
 
         // check that the icon rect is visible on screen
         NSRect visibleRect = [self.outlineView visibleRect];
@@ -610,5 +659,9 @@ static NSArray *INTERNAL_EXTENSIONS;
     {
         return [[NSWorkspace sharedWorkspace] iconForFile:[item previewItemURL].path];
     }
+
+- (IBAction)performFindPanelAction:(id)sender {
+    [self.view.window makeFirstResponder:self.searchField];
+}
 
 @end

@@ -28,7 +28,7 @@
                 NSString *key = comps[0];
                 NSString *value = comps[1];
                 if ([key isEqualToString:@"Page"]) {
-                    self.page = [value floatValue];
+                    self.page = (NSUInteger)[value integerValue];
                 } else if ([key isEqualToString:@"x"]) {
                     self.x = [value floatValue];
                 } else if ([key isEqualToString:@"y"]) {
@@ -101,19 +101,19 @@
 
             NSPipe *outPipe = [NSPipe pipe];
             [task setStandardOutput:outPipe];
-            [task setTerminationHandler:^(NSTask *task)
+            [task setTerminationHandler:^(NSTask *t)
             {
 
                 NSFileHandle *read = [outPipe fileHandleForReading];
                 NSData *dataRead = [read readDataToEndOfFile];
                 NSString *stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
                 NSMutableString *command = [NSMutableString stringWithString:[PathFactory synctex]];
-                for (NSString *arg in task.arguments) {
+                for (NSString *arg in t.arguments) {
                     [command appendFormat:@" %@", arg];
                 }
                 ForwardSynctex *result = [[ForwardSynctex alloc] initWithOutput:stringRead];
                 completionHandler(result);
-                task.terminationHandler = nil;
+                t.terminationHandler = nil;
             }];
             @try {
                 [task launch];

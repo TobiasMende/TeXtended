@@ -10,7 +10,7 @@
 
 @interface FileOutlineView : NSOutlineView
     {
-        IBOutlet NSViewController *viewController;
+        __unsafe_unretained IBOutlet  NSViewController *viewController;
     }
 
     @property IBOutlet NSMenu *contextualMenu;
@@ -20,4 +20,5 @@
     - (NSArray *)expandedItems;
 
     - (void)restoreExpandedStateWithArray:(NSArray *)array;
+- (void)setViewController:(NSViewController *)newController;
 @end

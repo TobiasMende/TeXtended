@@ -368,16 +368,16 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         if (!category) {
             categoriesToShow = [NSMutableArray arrayWithCapacity:self.categories.count - 1];
             NSEnumerator *iterator = self.categories.objectEnumerator;
-            iterator.nextObject; //Skip "All Templates"
+            (void)iterator.nextObject; //Skip "All Templates"
             for (NSDictionary *dict in iterator) {
                 [categoriesToShow addObject:dict[@"value"]];
             }
         } else {
-            categoriesToShow = [NSArray arrayWithObject:category];
+            categoriesToShow = [NSMutableArray arrayWithObject:category];
         }
 
-        for (NSString *category in categoriesToShow) {
-            NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
+        for (NSString *categoryName in categoriesToShow) {
+            NSString *dir = [[TemplateController templateDirectory] stringByAppendingPathComponent:categoryName];
             for (NSString *tmpl in [fm contentsOfDirectoryAtPath:dir error:nil]) {
                 if ([tmpl.pathExtension.lowercaseString isEqualToString:TMTTemplateExtension.lowercaseString]) {
                     Template *template = [Template templateFromFile:[dir stringByAppendingPathComponent:tmpl]];
@@ -415,7 +415,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
                                           options:nil];
         if (urls.count > 0) {
             *proposedDropOperation = NSCollectionViewDropOn;
-            if (*proposedDropIndex >= self.currentTemplates.count) {
+            if (*proposedDropIndex >= (NSInteger)self.currentTemplates.count) {
                 if (*proposedDropIndex < 0) {
                     *proposedDropIndex = *proposedDropIndex - 1;
                 } else {
@@ -508,7 +508,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         if (row == 0) {
             return NO;
         }
-        if ((self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
+        if (((NSInteger)self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
             return NO;
         }
 
@@ -557,7 +557,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
                 [final addObject:url];
             }
         }
-        if (final.count == 0 || (self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
+        if (final.count == 0 || ((NSInteger)self.categoriesController.selectionIndex == row && [[info draggingSource] isKindOfClass:[TemplatesCollectionView class]])) {
             return NSDragOperationNone;
         }
 

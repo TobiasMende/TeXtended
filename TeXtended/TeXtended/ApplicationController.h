@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PreferencesController, DocumentCreationController, CompletionsController, TexdocPanelController, ConsoleWindowController, TemplateController;
+@class PreferencesController, DocumentCreationController, CompletionsController, TexdocPanelController, ConsoleWindowController, TemplateController, StartScreenWindowController;
 
 /**
  The application controller is a singleton which represents the central instance of the TeXtended application.
@@ -17,22 +17,7 @@
  
  */
 
-@interface ApplicationController : NSObject <NSApplicationDelegate>
-    {
-        /** references to the controller which handels the preferences window. */
-        PreferencesController *preferencesController;
-
-        /** reference to the controller handling the creation and management of all documents in this application */
-        DocumentCreationController *documentCreationController;
-
-        /** reference to the texdoc panel controller handling the app wide texdoc support */
-        TexdocPanelController *texdocPanelController;
-
-        ConsoleWindowController *consoleWindowController;
-
-        TemplateController *templateController;
-    }
-
+@interface ApplicationController : NSObject <NSApplicationDelegate> 
 
 /** Method for showing the texdoc panel to the user 
  
@@ -70,4 +55,11 @@
     + (void)mergeCompileFlows:(BOOL)force;
 
     - (IBAction)togglePreviewPanel:(id)previewPanel;
+
+- (void) updateRecentDocuments;
+- (IBAction)openRecent:(id)sender;
+- (NSArray *)addRecentSimpleDocumentsTo:(NSMenu *)menu;
+- (NSArray *)addRecentProjectDocumentsTo:(NSMenu *)menu;
+- (NSMenu *)fileMenu;
+- (NSMenuItem *)openRecentMenuItem;
 @end

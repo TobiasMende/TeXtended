@@ -41,7 +41,7 @@
     {
         /* set the size of the sliders so that they cover the current page */
         NSSize size = [[self.extendedPdf currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size;
-        double scalingFactor = [self.extendedPdf getScalingFactor];
+        double scalingFactor = [self.extendedPdf scalingFactor];
         [self.gridHSpacingSlider setMaxValue:size.height / scalingFactor + 1];
         [self.gridHOffsetSlider setMaxValue:size.height];
         [self.gridVSpacingSlider setMaxValue:size.width / scalingFactor + 1];

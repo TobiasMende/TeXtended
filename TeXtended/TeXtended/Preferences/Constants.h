@@ -85,6 +85,7 @@
 #define TMT_SHOULD_COMPLETE_ENVIRONMENTS @"TMTShouldCompleteEnvironments"
 #define TMT_SHOULD_AUTO_INDENT_ENVIRONMENTS @"TMTShouldAutoIndentEnvironments"
 #define TMT_SHOULD_UNDERLINE_TEXDOC_LINKS @"TMTShouldUnderlineTexdocLinks"
+#define TMTShouldShowStartScreen @"TMTShouldShowStartScreen"
 #define TMTShouldCompleteCites @"TMTShouldCompleteCites"
 #define TMTShouldCompleteRefs @"TMTShouldCompleteRefs"
 #define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
@@ -189,7 +190,15 @@
 #define TMTSelectedMainDocumentDidChangeNotification @"TMTSelectedMainDocumentDidChangeNotification"
 
 
+// --------------------------------------------------------------------------------
+#pragma mark - XATTR Names
 
+#define TMT_XATTR_TextSelectedRange @"TMTTextSelectedRange"
+#define TMT_XATTR_LineBookmarks @"TMTLineBookmarks"
+#define TMT_XATTR_LiveCompileEnabled @"TMTLiveCompileEnabled"
+#define TMT_XATTR_LiveCompiler @"TMTLiveCompiler"
+#define TMT_XATTR_DraftCompiler @"TMTDraftCompiler"
+#define TMT_XATTR_FinalCompiler @"TMTFinalCompiler"
 // --------------------------------------------------------------------------------
 # pragma mark - Global Enumerations
 

@@ -49,6 +49,14 @@ static FlagMap USED_FLAGS[] = {
  @param observer the observer to remove
  */
     - (void)removeObserver:(id)observer;
+
+void fsevents_debug(const FSEventStreamEventFlags eventFlags[], size_t numEvents);
+void fsevents_callback(ConstFSEventStreamRef streamRef,
+                       void *userData,
+                       size_t numEvents,
+                       void *eventPaths,
+                       const FSEventStreamEventFlags eventFlags[],
+                       const FSEventStreamEventId eventIds[]);
 @end
 
 

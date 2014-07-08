@@ -261,14 +261,14 @@ static const NSSet *KEYS_TO_UNBIND;
 
         // draw the next or prev page
         if (self.pageAlpha) {
-            NSInteger i = [self.document indexForPage:page];
+            NSUInteger pageIndex = [self.document indexForPage:page];
             PDFPage *nextPage = nil;
-            if (i % 2 != 0) {
-                if (i > 0) {
-                    nextPage = [self.document pageAtIndex:i - 1];
+            if (pageIndex % 2 != 0) {
+                if (pageIndex > 0) {
+                    nextPage = [self.document pageAtIndex:pageIndex - 1];
                 }
-            } else if (i < [self.document pageCount] - 1) {
-                nextPage = [self.document pageAtIndex:i + 1];
+            } else if (pageIndex < [self.document pageCount] - 1) {
+                nextPage = [self.document pageAtIndex:pageIndex + 1];
             }
             if (nextPage) {
                 NSData *data = [nextPage dataRepresentation];
@@ -306,10 +306,10 @@ static const NSSet *KEYS_TO_UNBIND;
 
     - (void)drawGrid:(NSSize)size
     {
-        int width = size.width;
-        int height = size.height;
+        CGFloat width = size.width;
+        CGFloat height = size.height;
         int i = 0;
-        float scaling = [self getScalingFactor];
+        CGFloat scaling = [self scalingFactor];
         if (scaling < 1 && [self gridVerticalSpacing] == 1) scaling = 1;
 
         /* use the given color */
@@ -321,17 +321,17 @@ static const NSSet *KEYS_TO_UNBIND;
         /* first the vertical lines */
         if (scaling < 1 && [self gridVerticalSpacing] == 1) scaling = 1;
         if (self.drawVerticalLines && [self gridVerticalSpacing] > 0) {
-            for (i = [self gridVerticalOffset] ; i <= width ; i = i + [self gridVerticalSpacing] * scaling) {
+            for (i = [self gridVerticalOffset] ; i <= width ; i = i + (NSUInteger)((CGFloat)[self gridVerticalSpacing] * scaling)) {
                 [drawingPath moveToPoint:NSMakePoint(i, 0)];
                 [drawingPath lineToPoint:NSMakePoint(i, height)];
             }
         }
 
         /* then the horizontal lines */
-        scaling = [self getScalingFactor];
+        scaling = [self scalingFactor];
         if (scaling < 1 && [self gridHorizontalSpacing] == 1) scaling = 1;
         if (self.drawHorizotalLines && [self gridHorizontalSpacing] > 0) {
-            for (i = height - [self gridHorizontalOffset] ; i > 0 ; i = i - [self gridHorizontalSpacing] * scaling) {
+            for (i = (NSUInteger)height - [self gridHorizontalOffset] ; i > 0 ; i = i - (NSUInteger)((CGFloat)[self gridHorizontalSpacing] * scaling)) {
                 [drawingPath moveToPoint:NSMakePoint(0, i)];
                 [drawingPath lineToPoint:NSMakePoint(width, i)];
             }
@@ -342,11 +342,11 @@ static const NSSet *KEYS_TO_UNBIND;
     }
 
 /** which unit should be used? */
-    - (float)getScalingFactor
+    - (CGFloat)scalingFactor
     {
 
         if ([self.gridUnit isEqualToString:@"pt"]) {
-            return 1;
+            return 1.0;
         }
         if ([self.gridUnit isEqualToString:@"q"]) {
             return 0.709;
@@ -358,7 +358,7 @@ static const NSSet *KEYS_TO_UNBIND;
             return 28.35;
         }
 
-        return 1;
+        return 1.0;
     }
 
 #pragma mark -

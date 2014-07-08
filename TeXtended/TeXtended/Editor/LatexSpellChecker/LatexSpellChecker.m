@@ -8,7 +8,7 @@
 
 #import "LatexSpellChecker.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+LatexExtension.h"
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 
 @interface LatexSpellChecker ()
 
@@ -38,7 +38,7 @@
         {
 
 
-            NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
+            NSArray *results = [self->weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
 
 
             callersHandler(sequenceNumber, results, orthography, wordCount);

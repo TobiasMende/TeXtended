@@ -20,6 +20,7 @@
 #import "NSAttributedString+Replace.h"
 #import "OutlineExtractor.h"
 #import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 
 /** Delay for message collection updates in seconds */
 static const double MESSAGE_UPDATE_DELAY = 1.5;
@@ -103,6 +104,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         }
         _model = model;
         if (_model) {
+            lineNumberView.model = self.model;
             [self registerModelObserver];
         }
     }
@@ -148,7 +150,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         NSTabViewItem *view = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
         [view.tabView.window makeKeyAndOrderFront:self];
         [view.tabView selectTabViewItem:view];
-        NSInteger row = [(note.userInfo)[TMTIntegerKey] integerValue];
+        NSUInteger row = [(note.userInfo)[TMTIntegerKey] unsignedIntegerValue];
         [self.textView showLine:row];
     }
 
@@ -195,10 +197,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     - (void)initializeAttributes
     {
         lineNumberView = [[LineNumberView alloc] initWithScrollView:[self scrollView]];
+        lineNumberView.model = self.model;
         [self.scrollView setVerticalRulerView:lineNumberView];
         [self.scrollView setHasHorizontalRuler:NO];
         [self.scrollView setHasVerticalRuler:YES];
         [self.scrollView setRulersVisible:YES];
+        
     }
 
 
@@ -215,6 +219,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             [string addAttributes:self.textView.typingAttributes range:NSMakeRange(0, string.length)];
             [self.textView.textStorage setAttributedString:string];
             [self.textView.syntaxHighlighter highlightEntireDocument];
+            if (NSMaxRange(self.model.selectedRange) < self.textView.string.length) {
+                self.textView.selectedRange = self.model.selectedRange;
+            }
         }
     }
 
@@ -312,19 +319,28 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark -
 #pragma mark Dealloc
 
+- (void)firstResponderIsDeallocating {
+    DDLogVerbose(@"DC ist deallocating");
+    [messageUpdateTimer invalidate];
+    [lacheck terminate];
+    [chktex terminate];
+    self.firstResponderDelegate = nil;
+    [self unregisterModelObserver];
+    NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
+    if (item) {
+        [item.tabView removeTabViewItem:item];
+    }
+    [self unbind:@"liveScrolling"];
+    [self.textView removeObserver:self forKeyPath:@"currentRow"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
     - (void)dealloc
     {
-        [lacheck terminate];
-        [chktex terminate];
-        [self unregisterModelObserver];
-        NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
-        if (item) {
-            [item.tabView removeTabViewItem:item];
-        }
-        [self unbind:@"liveScrolling"];
-        [self.textView removeObserver:self forKeyPath:@"currentRow"];
+        DDLogVerbose(@"dealloc [%@]", self.model.path);
+        
 
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 
 

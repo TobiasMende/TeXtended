@@ -23,6 +23,8 @@ static const NSString *TMTTemplateCompilableKey = @"TMTTemplateCompilableKey";
 
 static const NSString *TMTTemplateUidKey = @"TMTTemplateUidKey";
 
+static const NSArray *EXCLUDED_FILE_NAMES;
+
 static NSString *CONFIG_FILE_NAME = @"config.plist";
 
 static NSString *PREVIEW_FILE_NAME = @"preview.pdf";
@@ -41,6 +43,13 @@ static NSString *CONTENT_DIR_NAME = @"content";
 @end
 
 @implementation Template
+
++(void)initialize {
+    if ([self class] == [Template class]) {
+        EXCLUDED_FILE_NAMES = @[@".ds_store"];
+
+    }
+}
 
     - (id)initWithDictionary:(NSDictionary *)config name:(NSString *)name andCategory:(NSString *)category
     {
@@ -104,9 +113,12 @@ static NSString *CONTENT_DIR_NAME = @"content";
         }
         BOOL success = [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:self.mainFileName] toPath:model.texPath error:error];
         NSArray *content = [fm contentsOfDirectoryAtPath:self.contentPath error:NULL];
-        for (NSString *name in content) {
-            if (![name isEqualToString:self.mainFileName]) {
-                [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:name] toPath:[directory stringByAppendingPathComponent:name] error:NULL];
+        for (NSString *contentName in content) {
+            if ([EXCLUDED_FILE_NAMES containsObject:contentName.lowercaseString]) {
+                continue;
+            }
+            if (![contentName isEqualToString:self.mainFileName]) {
+                [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:contentName] toPath:[directory stringByAppendingPathComponent:contentName] error:NULL];
             }
         }
         if (success && self.hasPreviewPDF) {
@@ -135,6 +147,9 @@ static NSString *CONTENT_DIR_NAME = @"content";
         }
         BOOL success = YES;
         for (NSString *path in content) {
+            if ([EXCLUDED_FILE_NAMES containsObject:path.lowercaseString]) {
+                continue;
+            }
             success = [fm copyItemAtPath:[self.contentPath stringByAppendingPathComponent:path] toPath:[directory stringByAppendingPathComponent:path] error:error];
             if (!success) {
                 return nil;

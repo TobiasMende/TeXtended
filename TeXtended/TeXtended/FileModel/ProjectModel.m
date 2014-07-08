@@ -18,7 +18,6 @@
 
 /** Method for configuring the default settings of a project
 *
-* @param context the context.
 *
 */
     - (void)initDefaults;
@@ -53,6 +52,15 @@
         [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         [documents makeObjectsPerformSelector:@selector(buildOutline)];
         [self.bibFiles makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        for (DocumentModel *dm in documents) {
+            if (![fm fileExistsAtPath:dm.texPath]) {
+                [self.documents removeObject:dm];
+                [self removeMainDocument:dm];
+            } else {
+                [dm removeInvalidMaindocuments];
+            }
+        }
     }
 
     - (id)init
@@ -139,6 +147,12 @@
         return NSLocalizedString(@"Project", @"Project");
     }
 
+- (NSSet *)openDocuments {
+    return [self.documents objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+        return [((DocumentModel *)obj) isDocumentOpened];
+    }];
+}
+
 #pragma mark - Setter
 
     - (void)setPath:(NSString *)path
@@ -148,6 +162,17 @@
         }
     }
 
+
+- (void)addBibFileWithPath:(NSString *)path
+{
+    BibFile *file = [BibFile new];
+    
+    file.project = self;
+    file.path = path;
+    if (![self.bibFiles containsObject:file]) {
+        self.bibFiles = [self.bibFiles arrayByAddingObject:file];
+    }
+}
 #pragma mark - Collection Helpers
 
     - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate

@@ -181,14 +181,14 @@
             return nil;
         }
         else {
-            self.fileEncoding = [NSNumber numberWithLong:encoding];
+            self.fileEncoding = [NSNumber numberWithUnsignedLong:encoding];
             return content;
         }
     }
 
     - (BOOL)writeFileContent:(NSString *)content
     {
-        NSStringEncoding encoding = self.fileEncoding ? self.fileEncoding.longValue : NSUTF8StringEncoding;
+        NSStringEncoding encoding = self.fileEncoding ? self.fileEncoding.unsignedLongValue : NSUTF8StringEncoding;
         NSError *error;
 
         [content writeToFile:self.path atomically:YES encoding:encoding error:&error];

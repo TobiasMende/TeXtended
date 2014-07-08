@@ -65,7 +65,7 @@
             NSViewController *c = [[NSViewController alloc] initWithNibName:@"TMTMessageCellView" bundle:nil];
             result = (TMTMessageCellView *) c.view;
         }
-        if (row < self.messages.count) {
+        if (row >= 0 && (NSUInteger)row < self.messages.count) {
             TrackingMessage *item = (self.messages)[row];
             result.model = [self.model modelForTexPath:item.document byCreating:NO];
             result.objectValue = item;
@@ -93,7 +93,7 @@
             return;
         }
         NSView *view = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
-        if (row < self.messages.count) {
+        if ((NSUInteger)row < self.messages.count) {
             TrackingMessage *message = (self.messages)[row];
             if (!infoController) {
                 infoController = [[MessageInfoViewController alloc] init];
@@ -116,7 +116,7 @@
     - (void)handleClick:(id)sender
     {
         NSInteger row = [self.tableView clickedRow];
-        if (row < self.messages.count) {
+        if (row >= 0 && (NSUInteger)row < self.messages.count) {
             TrackingMessage *message = (self.messages)[row];
 
             [[DocumentCreationController sharedDocumentController] showTexDocumentForPath:message.document withReferenceModel:self.model andCompletionHandler:^(DocumentModel *newModel)
@@ -135,7 +135,7 @@
     {
         //[rowView setBackgroundColor:[NSColor greenColor]];
         [messageLock lock];
-        if (row < self.messages.count) {
+        if (row >= 0 && (NSUInteger)row < self.messages.count) {
             TrackingMessage *m = (self.messages)[row];
             [rowView setBackgroundColor:[TrackingMessage backgroundColorForType:m.type]];
         }
@@ -155,10 +155,7 @@
             NSArray *messages = [_model mergedGlobalMessages];
             if (messages) {
                 self.messages = messages;
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^
-                {
-                    [self.tableView reloadData];
-                }];
+                [[NSOperationQueue mainQueue] addOperation:[[NSInvocationOperation alloc] initWithTarget:self.tableView selector:@selector(reloadData) object:nil]];
             }
         }
     }

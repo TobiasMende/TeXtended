@@ -22,7 +22,7 @@
  */
 @interface DocumentController : NSObject <ViewControllerProtocol, FirstResponderDelegate, CompileProcessHandler>
     {
-        ModelInfoWindowController *_modelInfoWindow;
+        ModelInfoWindowController *modelInfoWindow;
     }
 
 /** The model handeld by this controller. */

@@ -127,7 +127,7 @@
         if (self.model.pdfPath) {
             // what is visible before the update?
             PDFDestination *visibleArea = [self.pdfView currentDestination];
-            NSInteger index = -1;
+            NSUInteger index = NSNotFound;
             NSPoint point = NSMakePoint(0, 0);
             if (visibleArea) {
                 index = [self.pdfView.document indexForPage:visibleArea.page];
@@ -141,7 +141,7 @@
                 pdfDoc = [[PDFDocument alloc] initWithURL:url];
                 [self.pdfView setDocument:pdfDoc];
                 // restore visible region
-                if (index >= 0 && index < pdfDoc.pageCount) {
+                if (index != NSNotFound && index < pdfDoc.pageCount) {
                     PDFPage *page = [pdfDoc pageAtIndex:index];
                     if (page) {
                         [self.pdfView goToRect:NSMakeRect(point.x, point.y, 0, 0) onPage:page];

@@ -20,6 +20,16 @@
             <key>TMTCompletionHasPlaceholdersKey</key>
             <true/>
             <key>TMTCompletionInsertionKey</key>
+            <string>document</string>
+        </dict>
+        <dict>
+            <key>TMTCompletionExtensionKey</key>
+            <string>@@content@@</string>
+            <key>TMTCompletionFirstLineExtensionKey</key>
+            <string></string>
+            <key>TMTCompletionHasPlaceholdersKey</key>
+            <true/>
+            <key>TMTCompletionInsertionKey</key>
             <string>frame</string>
         </dict>
         <dict>

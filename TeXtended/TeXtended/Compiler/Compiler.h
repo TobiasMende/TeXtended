@@ -25,7 +25,7 @@
     {
         NSMutableSet *currentTasks;
 
-        __unsafe_unretained id weakSelf;
+
     }
 
 

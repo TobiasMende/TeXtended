@@ -7,19 +7,17 @@
 //
 
 #import "CodeNavigationAssistant.h"
-#import "UndoSupport.h"
 #import "HighlightingTextView.h"
 #import <TMTHelperCollection/TMTLog.h>
-#import "NSString+LatexExtension.h"
-
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
+#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
+#import <TMTHelperCollection/NSString+TMTExtensions.h>
+#import "NSString+TMTEditorExtensions.h"
+#import "SettingsHelper.h"
 static const NSSet *WHITESPACES;
 
 static const NSRegularExpression *SPACE_REGEX;
 
-
-static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
-
-static const NSRegularExpression *FIRST_NONWHITESPACE_IN_LINE;
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -45,10 +43,10 @@ static const NSSet *KEYS_TO_OBSERVE;
 
         WHITESPACES = [NSSet setWithObjects:@" ", @"\t", nil];
         NSError *error;
-        SPACE_AT_LINE_BEGINNING = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\p{z}|\\t)*" options:NSRegularExpressionAnchorsMatchLines error:&error];
+        
         SPACE_REGEX = [NSRegularExpression regularExpressionWithPattern:@"\\w((?:\\t| )+(?!$))\\w" options:NSRegularExpressionAnchorsMatchLines error:&error];
         
-        FIRST_NONWHITESPACE_IN_LINE = [NSRegularExpression regularExpressionWithPattern:@"^(?:\\s*)(\\S)(?:.*)$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+      
         if (error) {
             DDLogError(@"Error!!!");
         }
@@ -78,14 +76,6 @@ static const NSSet *KEYS_TO_OBSERVE;
             self.shouldHighlightCarret = [[[defaults values] valueForKey:TMT_SHOULD_HIGHLIGHT_CARRET] boolValue];
             [self bind:@"shouldHighlightCarret" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_HIGHLIGHT_CARRET] options:NULL];
 
-            self.shouldUseSpacesAsTabs = [[[defaults values] valueForKey:TMT_SHOULD_USE_SPACES_AS_TABS] boolValue];
-            [self bind:@"shouldUseSpacesAsTabs" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_USE_SPACES_AS_TABS] options:NULL];
-
-            self.shouldAutoIndentLines = [[[defaults values] valueForKey:TMT_SHOULD_AUTO_INDENT_LINES] boolValue];
-            [self bind:@"shouldAutoIndentLines" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_AUTO_INDENT_LINES] options:NULL];
-
-            self.numberOfSpacesForTab = [[defaults values] valueForKey:TMT_EDITOR_NUM_TAB_SPACES];
-            [self bind:@"numberOfSpacesForTab" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_NUM_TAB_SPACES] options:NULL];
 
             for (NSString *key in KEYS_TO_OBSERVE) {
                 [self addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:NULL];
@@ -113,7 +103,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             if (range.location > view.string.length) {
                 return;
             }
-            NSRect lineRect = [self lineRectforRange:range];
+            NSRect lineRect = [view lineRectforRange:range];
             if (lineRect.size.width == 0) {
                 return;
             }
@@ -129,7 +119,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         }
         NSLayoutManager *lm = [view layoutManager];
         if (self.shouldHighlightCurrentLineText) {
-            NSRange lineRange = [self lineTextRangeWithRange:range];
+            NSRange lineRange = [view.string lineTextRangeWithRange:range];
 
             // [lm removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:lastLineRange];
             [lm addTemporaryAttributes:@{NSForegroundColorAttributeName : self.currentLineTextColor} forCharacterRange:lineRange];
@@ -149,170 +139,6 @@ static const NSSet *KEYS_TO_OBSERVE;
     }
 
 #pragma mark -
-#pragma mark Line Getter
-
-    - (NSRect)lineRectforRange:(NSRange)aRange
-    {
-        NSRange r = aRange;
-        NSRange startLineRange = [[view string] lineRangeForRange:NSMakeRange(r.location, 0)];
-        NSInteger er = NSMaxRange(r) - 1;
-        NSString *text = [view string];
-
-        if (er >= [text length]) {
-            return NSZeroRect;
-        }
-        if (er < r.location) {
-            er = r.location;
-        }
-
-        NSRange endLineRange = [[view string] lineRangeForRange:NSMakeRange(er, 0)];
-
-        NSRange gr = [[view layoutManager] glyphRangeForCharacterRange:NSMakeRange(startLineRange.location, NSMaxRange(endLineRange) - startLineRange.location - 1)
-                                                  actualCharacterRange:NULL];
-        NSRect br = [[view layoutManager] boundingRectForGlyphRange:gr inTextContainer:[view textContainer]];
-        NSRect b = [view bounds];
-        CGFloat h = br.size.height;
-        CGFloat w = b.size.width;
-        CGFloat y = br.origin.y;
-        NSPoint containerOrigin = [view textContainerOrigin];
-        NSRect aRect = NSMakeRect(0, y, w, h);
-        // Convert from view coordinates to container coordinates
-        aRect = NSOffsetRect(aRect, containerOrigin.x, containerOrigin.y);
-        return aRect;
-    }
-
-
-    - (NSRange)lineTextRangeWithRange:(NSRange)range
-    {
-        return [self lineTextRangeWithRange:range withLineTerminator:NO];
-    }
-
-    - (NSRange)lineTextRangeWithRange:(NSRange)range withLineTerminator:(BOOL)flag
-    {
-        NSUInteger rangeStart, contentsEnd, rangeEnd;
-        NSRange result;
-        if (range.location != NSNotFound && NSMaxRange(range) <= view.string.length) {
-            [view.string getLineStart:&rangeStart end:&rangeEnd contentsEnd:&contentsEnd forRange:range];
-
-
-            if (flag) {
-                NSUInteger length = rangeEnd - rangeStart;
-                result = NSMakeRange(rangeStart, length);
-
-            } else {
-                NSUInteger length = contentsEnd - rangeStart;
-                result = NSMakeRange(rangeStart, length);
-            }
-        } else {
-            result = NSMakeRange(NSNotFound, 0);
-            DDLogError(@"Error for provided range: %@", NSStringFromRange(range));
-        }
-        return result;
-    }
-
-#pragma mark -
-#pragma mark Comment & Uncomment
-
-    - (void)commentSelectionInRange:(NSRange)range
-    {
-        NSRange lineRange = [self lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
-            lineRange.length += 1;
-        }
-        if (matches.count == 0) {
-            NSBeep();
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(uncommentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
-        [view.undoManager endUndoGrouping];
-        [view didChangeText];
-
-    }
-
-    - (void)uncommentSelectionInRange:(NSRange)range
-    {
-        NSRange lineRange = [self lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-        BOOL actionDone = NO;
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            if ([[area substringWithRange:match] isEqualToString:@"%"]) {
-                [area replaceCharactersInRange:match withString:@""];
-                lineRange.length -= 1;
-                actionDone = YES;
-            }
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(commentSelectionInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
-        [view.undoManager endUndoGrouping];
-        if (!actionDone) {
-            NSBeep();
-        } else {
-            [view setSelectedRange:lineRange];
-        }
-        [view didChangeText];
-    }
-
-
-    - (void)toggleCommentInRange:(NSRange)range
-    {
-        NSRange lineRange = [self lineTextRangeWithRange:range];
-        NSRange tmp = lineRange;
-        NSMutableString *area = [[view.string substringWithRange:lineRange] mutableCopy];
-        NSArray *matches = [FIRST_NONWHITESPACE_IN_LINE matchesInString:area options:0 range:NSMakeRange(0, area.length)];
-
-        BOOL actionDone = NO;
-        for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
-            NSRange match = [result rangeAtIndex:1];
-            if ([[area substringWithRange:match] isEqualToString:@"%"]) {
-                [area replaceCharactersInRange:match withString:@""];
-                lineRange.length -= 1;
-            } else {
-                [area replaceCharactersInRange:NSMakeRange(match.location, 0) withString:@"%"];
-                lineRange.length += 1;
-            }
-            actionDone = YES;
-        }
-        [view.undoManager beginUndoGrouping];
-        [view.undoManager registerUndoWithTarget:self selector:@selector(toggleCommentInRangeString:) object:NSStringFromRange(lineRange)];
-        [view replaceCharactersInRange:tmp withString:area];
-        [view.undoManager endUndoGrouping];
-        if (!actionDone) {
-            NSBeep();
-        } else {
-            [view setSelectedRange:[self lineTextRangeWithRange:lineRange]];
-        }
-        [view didChangeText];
-    }
-
-    - (void)uncommentSelectionInRangeString:(NSString *)range
-    {
-        [self uncommentSelectionInRange:NSRangeFromString(range)];
-    }
-
-    - (void)commentSelectionInRangeString:(NSString *)range
-    {
-        [self commentSelectionInRange:NSRangeFromString(range)];
-    }
-
-    - (void)toggleCommentInRangeString:(NSString *)range
-    {
-        [self toggleCommentInRange:NSRangeFromString(range)];
-    }
-
-
-#pragma mark -
 #pragma mark Carret Highlighting
 
     - (void)highlightCarret
@@ -330,7 +156,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         if (view.selectedRanges.count > 1 || view.selectedRange.length > 0 || !self.carretColor) {
             return;
         }
-        NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
+        NSRange lineRange = [view.string lineTextRangeWithRange:view.selectedRange];
         NSUInteger currentPosition = view.selectedRange.location < view.string.length ? view.selectedRange.location : 0;
         if (currentPosition < lineRange.location) {
             return;
@@ -347,7 +173,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         if (view.selectedRanges.count > 1) {
             return NO;
         }
-        NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
+        NSRange lineRange = [view.string lineTextRangeWithRange:view.selectedRange];
         if (lineRange.location != NSNotFound) {
             NSRange totalRange = NSUnionRange(lineRange, view.selectedRange);
             if (view.selectedRange.length > 0 && view.selectedRange.location == totalRange.location) {
@@ -356,7 +182,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             }
         }
 
-        NSString *tab = [self singleTab];
+        NSString *tab = [NSString singleTab];
         [view insertText:tab];
         return YES;
     }
@@ -366,7 +192,7 @@ static const NSSet *KEYS_TO_OBSERVE;
         if (view.selectedRanges.count > 1) {
             return NO;
         }
-        NSRange lineRange = [self lineTextRangeWithRange:view.selectedRange];
+        NSRange lineRange = [view.string lineTextRangeWithRange:view.selectedRange];
         if (lineRange.location != NSNotFound) {
             NSRange totalRange = NSUnionRange(lineRange, view.selectedRange);
             if (view.selectedRange.length > 0 && view.selectedRange.location == totalRange.location) {
@@ -374,7 +200,7 @@ static const NSSet *KEYS_TO_OBSERVE;
                 return YES;
             }
         }
-        NSString *tab = [self singleTab];
+        NSString *tab = [NSString singleTab];
         NSUInteger position = view.selectedRange.location;
         if (position < tab.length) {
             return NO;
@@ -391,28 +217,14 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     }
 
-/**
- Method returns a single tab, meaning a \t or a user defined amount of spaces.
- */
-    - (NSString *)singleTab
-    {
-        NSString *tab = @"\t";
-        if (self.shouldUseSpacesAsTabs) {
-            tab = @"";
-            for (NSUInteger i = 0 ; i < [self.numberOfSpacesForTab integerValue] ; i++) {
-                tab = [tab stringByAppendingString:@" "];
-            }
-        }
-        return tab;
-    }
 
 /**
  Indents multiple lines at once.
  */
     - (void)handleMultiLineIndent
     {
-        NSString *tab = [self singleTab];
-        NSRange totalRange = NSUnionRange([self lineTextRangeWithRange:view.selectedRange], view.selectedRange);
+        NSString *tab = [NSString singleTab];
+        NSRange totalRange = NSUnionRange([view.string lineTextRangeWithRange:view.selectedRange], view.selectedRange);
         NSError *error;
         NSRegularExpression *beginOfLine = [NSRegularExpression regularExpressionWithPattern:@"^" options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
         NSString *string = [view.string substringWithRange:totalRange];
@@ -427,8 +239,8 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     - (void)handleMultiLineUnindent
     {
-        NSString *pattern = [NSString stringWithFormat:@"^(\\t| {%li})", self.numberOfSpacesForTab.integerValue];
-        NSRange totalRange = NSUnionRange([self lineTextRangeWithRange:view.selectedRange], view.selectedRange);
+        NSString *pattern = [NSString stringWithFormat:@"^(\\t| {%li})", [SettingsHelper sharedInstance].numberOfSpacesForTab];
+        NSRange totalRange = NSUnionRange([view.string lineTextRangeWithRange:view.selectedRange], view.selectedRange);
         NSError *error;
         NSRegularExpression *beginOfLine = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
         NSString *string = [view.string substringWithRange:totalRange];
@@ -441,32 +253,10 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     }
 
-    - (NSString *)lineBreak
-    {
-        NSUInteger position = view.selectedRange.location;
-        NSString *lineBreak = @"\n";
-        if (self.shouldAutoIndentLines) {
-            NSRange lineRange = [view.string lineRangeForRange:NSMakeRange(position, 0)];
-            lineBreak = [lineBreak stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
-
-        }
-        return lineBreak;
-    }
-
     - (void)handleNewLineInsertion
     {
 
-        [view insertText:[self lineBreak]];
-    }
-
-    - (NSString *)whiteSpacesAtLineBeginning:(NSRange)lineRange
-    {
-        NSRange rangeOfFirstMatch = [SPACE_AT_LINE_BEGINNING rangeOfFirstMatchInString:[view string] options:0 range:lineRange];
-        if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
-            return [view.string substringWithRange:rangeOfFirstMatch];
-
-        }
-        return @"";
+        [view insertText:[view.string lineBreakForPosition:view.selectedRange.location]];
     }
 
     - (BOOL)handleWrappingInRange:(NSRange)textRange
@@ -475,7 +265,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             return NO;
         }
         NSMutableString *content = [[NSMutableString alloc] initWithString:view.string];
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         NSError *error;
         NSString *longLinesPattern = [NSString stringWithFormat:@"^(?:.{%ld,})$", wrapAfter + 1];
         NSRegularExpression *longLineRegex = [NSRegularExpression regularExpressionWithPattern:longLinesPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
@@ -492,7 +282,7 @@ static const NSSet *KEYS_TO_OBSERVE;
             result = [self handleWrappingInLine:lineRange ofString:content] || result;
         }
         [view.undoManager beginUndoGrouping];
-        [view.undoSupport setString:view.string withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+        [view setString:view.string withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
         [view setString:content];
         [view.undoManager endUndoGrouping];
         return result;
@@ -500,34 +290,43 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     - (BOOL)handleWrappingInLine:(NSRange)lineRange
     {
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         NSUInteger cursorPositionInLine = view.selectedRange.location - lineRange.location;
         if (view.lineWrapMode != HardWrap || cursorPositionInLine < wrapAfter) {
             return NO;
         }
-        [view.undoManager beginUndoGrouping];
-        NSString *newLineInsertion = @"\n";
-        if (self.shouldAutoIndentLines) {
-            newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+        
+        NSRange firstLinePart = NSMakeRange(lineRange.location, cursorPositionInLine);
+        NSArray *ranges = [view.string goodPositionsToBreakInRange:firstLinePart];
+        if (ranges.count > 0) {
+            [view.undoManager beginUndoGrouping];
+            NSString *newLineInsertion = @"\n";
+            if ([SettingsHelper sharedInstance].shouldAutoIndentLines) {
+                newLineInsertion = [newLineInsertion stringByAppendingString:[view.string whiteSpacesAtLineBeginning:lineRange]];
+            }
+            NSTextCheckingResult *result = ranges.lastObject;
+            
+            NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
+            NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
+            
+            [view insertText:insertion atIndex:NSMaxRange([result rangeAtIndex:1]) withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
+            
+            [view.undoManager endUndoGrouping];
+            return YES;
         }
-        NSDictionary *attributes = [view.textStorage attributesAtIndex:lineRange.location effectiveRange:NULL];
-        NSAttributedString *insertion = [[NSAttributedString alloc] initWithString:newLineInsertion attributes:attributes];
-
-        [view.undoSupport insertText:insertion atIndex:view.selectedRange.location withActionName:NSLocalizedString(@"Line Wrap", "wrap undo")];
-
-        [view.undoManager endUndoGrouping];
-        return YES;
+        return NO;
     }
+
 
     - (BOOL)handleWrappingInLine:(NSRange)lineRange ofString:(NSMutableString *)string
     {
-        NSUInteger wrapAfter = [view.hardWrapAfter integerValue];
+        NSUInteger wrapAfter = [view.hardWrapAfter unsignedIntegerValue];
         if (view.lineWrapMode != HardWrap || lineRange.length < wrapAfter) {
             return NO;
         }
         NSString *newLineInsertion = @"\n";
-        if (self.shouldAutoIndentLines) {
-            newLineInsertion = [newLineInsertion stringByAppendingString:[self whiteSpacesAtLineBeginning:lineRange]];
+        if ([SettingsHelper sharedInstance].shouldAutoIndentLines) {
+            newLineInsertion = [newLineInsertion stringByAppendingString:[view.string whiteSpacesAtLineBeginning:lineRange]];
         }
 
         NSArray *spaces = [SPACE_REGEX matchesInString:view.string options:0 range:lineRange];

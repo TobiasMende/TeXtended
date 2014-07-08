@@ -24,7 +24,7 @@
             if (![item.itemIdentifier isEqualToString:@"SharingButton"] || !self.shouldHideShareButton) {
                 [item validate];
             } else {
-                [self removeItemAtIndex:index];
+                [self removeItemAtIndex:(NSInteger)index];
             }
         }
     }
