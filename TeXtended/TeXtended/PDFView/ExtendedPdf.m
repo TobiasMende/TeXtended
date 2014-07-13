@@ -176,6 +176,14 @@ static const NSSet *KEYS_TO_UNBIND;
     [super mouseDown:theEvent];
 }
 
+- (void)setCursorForAreaOfInterest:(PDFAreaOfInterest)area {
+    if (area & kPDFTextArea && [NSEvent modifierFlags] & NSCommandKeyMask) {
+        [[NSCursor crosshairCursor] push];
+    } else {
+        [super setCursorForAreaOfInterest:area];
+    }
+}
+
     - (void)updatePageNumber:(NSNotification *)note
     {
         [pageNumbers update];
