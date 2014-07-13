@@ -11,6 +11,7 @@
 #import "ExtendedPDFViewController.h"
 #import "PageNumberViewController.h"
 #import "StatsPanelController.h"
+#import <TMTHelperCollection/TMTLog.h>
 
 static const NSSet *KEYS_TO_UNBIND;
 
@@ -148,6 +149,32 @@ static const NSSet *KEYS_TO_UNBIND;
         [menu insertItem:item atIndex:0];
         return menu;
     }
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    if (theEvent.modifierFlags & NSCommandKeyMask) {
+        // CMD + Click;
+        NSPoint myMouseLocation =  [self convertPoint:theEvent.locationInWindow fromView:nil];
+        PDFPage *page = [self pageForPoint:myMouseLocation nearest:NO];
+        if (!page) {
+            DDLogWarn(@"No page for location %@", NSStringFromPoint(myMouseLocation));
+            NSBeep();
+            return;
+        }
+        NSPoint pagePoint = [self convertPoint:myMouseLocation toPage:page];
+        PDFSelection *selection = [page selectionForWordAtPoint:pagePoint];
+        if (!selection) {
+            DDLogWarn(@"No word-selection for location %@", NSStringFromPoint(pagePoint));
+            NSBeep();
+            return;
+        }
+        [self setCurrentSelection:selection];
+        [self startBackwardSynctex:self];
+    } else {
+        [super mouseDown:theEvent];
+    }
+    
+    [super mouseDown:theEvent];
+}
 
     - (void)updatePageNumber:(NSNotification *)note
     {
