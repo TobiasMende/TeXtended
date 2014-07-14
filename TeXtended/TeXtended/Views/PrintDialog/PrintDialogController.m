@@ -17,31 +17,16 @@
     - (id)init
     {
         self = [super initWithWindowNibName:@"PrintDialog"];
-        if (self) {
-            // Initialization code here.
-        }
         return self;
     }
 
-    - (id)initWithWindow:(NSWindow *)window
-    {
-        self = [super initWithWindow:window];
-        if (self) {
-            // Initialization code here.
-        }
-        return self;
-    }
-
-    - (void)windowDidLoad
-    {
-        [super windowDidLoad];
-    }
 
     - (IBAction)cancelDialog:(id)sender
     {
         [NSApp stopModal];
         [NSApp endSheet:self.window returnCode:NSRunAbortedResponse];
         [self.window orderOut:self];
+        [self.window close];
     }
 
     - (IBAction)OKDialog:(id)sender
@@ -49,6 +34,7 @@
         [NSApp stopModal];
         [NSApp endSheet:self.window];
         [self.window orderOut:self];
+        [self.window close];
     }
 
 @end
