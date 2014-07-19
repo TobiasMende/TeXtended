@@ -37,7 +37,7 @@
 
 
 - (void)performDoubleClick {
-    if ([self.publicationTable clickedRow] < 0) {
+    if ([self.publicationTable selectedRow] < 0) {
         return;
     }
     [self executeCitation:self];
