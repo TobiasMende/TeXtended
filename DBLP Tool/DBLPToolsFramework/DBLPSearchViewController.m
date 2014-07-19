@@ -64,7 +64,7 @@
 }
 
 
-- (void)controlTextDidChange:(NSNotification *)obj {
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
     if (self.authorField.stringValue.length >= 2) {
         [self.publicationsController setContent:nil];
         [interface searchAuthor:self.authorField.stringValue];
