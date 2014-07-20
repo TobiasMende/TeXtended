@@ -50,7 +50,7 @@
 
         NSArray *documents = self.documents.allObjects;
         [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
-        [documents makeObjectsPerformSelector:@selector(buildOutline)];
+        //    [documents makeObjectsPerformSelector:@selector(buildOutline)];
         [self.bibFiles makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         NSFileManager *fm = [NSFileManager defaultManager];
         for (DocumentModel *dm in documents) {

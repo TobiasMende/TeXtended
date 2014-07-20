@@ -585,7 +585,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             if ([_texPath isAbsolutePath]) {
                 [_filePresenter setPath:texPath];
                 [self initSingleDocumentDefaults];
-                [self buildOutline];
+                [self performSelectorInBackground:@selector(buildOutline) withObject:nil];
             }
         }
     }
@@ -773,6 +773,8 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             [[OutlineExtractor new] extractIn:content forModel:self withCallback:nil];
         }
     }
+
+
 
 #pragma mark - Message Handling
 
