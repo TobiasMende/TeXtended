@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DocumentModel.h"
 
+@class TextViewController;
 @protocol FirstResponderDelegate <NSObject>
 
     - (DocumentModel *)model;
@@ -36,5 +37,5 @@
 
 - (IBAction)showInformation:(id)sender;
 - (IBAction)showProjectInformation:(id)sender;
-
+- (void)textViewControllerDidLoadView:(TextViewController *)controller;
 @end

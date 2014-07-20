@@ -53,32 +53,19 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 @implementation TextViewController
 
 
-    - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc
+    - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc andModel:(DocumentModel *)model
     {
         self = [super initWithNibName:@"TextView" bundle:nil];
         if (self) {
-            self.firstResponderDelegate = dc;
+            _firstResponderDelegate = dc;
+            _model = model;
             observers = [NSMutableSet new];
             synctex = [ForwardSynctexController new];
-            [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
-
-            self.tabViewItem = [TMTTabViewItem new];
-            [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption : NSLocalizedString(@"Untitled", @"Untitled")}];
-            [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
-            self.tabViewItem.view = self.view;
             outlineExtractor = [OutlineExtractor new];
 
         }
         return self;
     }
-
-    - (void)setFirstResponderDelegate:(id <FirstResponderDelegate>)firstResponderDelegate
-    {
-        _firstResponderDelegate = firstResponderDelegate;
-        self.textView.firstResponderDelegate = firstResponderDelegate;
-        self.model = firstResponderDelegate.model;
-    }
-
 
     - (void)registerModelObserver
     {
@@ -95,18 +82,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTViewSynctexChanged object:self.model];
         [self.model removeObserver:self forKeyPath:@"messages"];
-    }
-
-    - (void)setModel:(DocumentModel *)model
-    {
-        if (_model) {
-            [self unregisterModelObserver];
-        }
-        _model = model;
-        if (_model) {
-            lineNumberView.model = self.model;
-            [self registerModelObserver];
-        }
     }
 
     - (void)updateMessageCollection:(NSNotification *)note
@@ -187,10 +162,23 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     - (void)loadView
     {
         [super loadView];
+        self.textView.firstResponderDelegate = _firstResponderDelegate;
+        [self registerModelObserver];
+        [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
+        
+        self.tabViewItem = [TMTTabViewItem new];
+        [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption : NSLocalizedString(@"Untitled", @"Untitled")}];
+        [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
+        self.tabViewItem.view = self.view;
+        
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
         self.textView.firstResponderDelegate = self.firstResponderDelegate;
         [self updateMessageCollection:nil];
+        
+        if ([self.firstResponderDelegate respondsToSelector:@selector(textViewControllerDidLoadView:)]) {
+            [self.firstResponderDelegate textViewControllerDidLoadView:self];
+        }
 
     }
 
@@ -324,7 +312,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     [messageUpdateTimer invalidate];
     [lacheck terminate];
     [chktex terminate];
-    self.firstResponderDelegate = nil;
+    _firstResponderDelegate = nil;
     [self unregisterModelObserver];
     NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:self.model.texIdentifier];
     if (item) {
