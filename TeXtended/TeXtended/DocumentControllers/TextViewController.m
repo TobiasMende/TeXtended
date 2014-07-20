@@ -163,6 +163,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     {
         [super loadView];
         self.textView.firstResponderDelegate = _firstResponderDelegate;
+        __unsafe_unretained TextViewController *tvc = self;
+        self.textView.rangeSpecificUpdate = ^void(NSRange range) {
+             [tvc->outlineExtractor extractIn:tvc.textView.string inRange:range forModel:tvc.model withCallback:nil];
+        };
         [self registerModelObserver];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         
@@ -278,15 +282,12 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     }
 
-
     - (void)textDidChange:(NSNotification *)notification
     {
         if (!_dirty) {
             self.dirty = YES;
         }
-        if (!outlineExtractor.isExtracting) {
-            [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
-        }
+
 
         if (messageUpdateTimer) {
             [messageUpdateTimer invalidate];
@@ -326,6 +327,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     }
     [self unbind:@"liveScrolling"];
     [self.textView removeObserver:self forKeyPath:@"currentRow"];
+    self.textView.rangeSpecificUpdate = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

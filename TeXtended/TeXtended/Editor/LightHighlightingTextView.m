@@ -45,9 +45,9 @@
 
 - (BOOL)becomeFirstResponder {
     BOOL become = [super becomeFirstResponder];
-    if (!viewStateInitialized) {
+    if (!_viewStateInitialized) {
         [self.syntaxHighlighter highlightEntireDocument];
-        viewStateInitialized = YES;
+        _viewStateInitialized = YES;
     }
     return become;
 }
