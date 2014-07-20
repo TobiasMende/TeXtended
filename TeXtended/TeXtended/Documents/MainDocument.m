@@ -47,14 +47,16 @@
             progressWindowController.maxValue = @(self.documentControllers.count);
             progressWindowController.value = @(0);
             [self performSelectorInBackground:@selector(loadControllersInBackground) withObject:nil];
-            [[NSApplication sharedApplication] beginSheet:progressWindowController.window modalForWindow:self.mainWindowController.window modalDelegate:self didEndSelector:@selector(controllerLoadingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+            [NSApp beginSheet:progressWindowController.window modalForWindow:self.mainWindowController.window modalDelegate:self didEndSelector:@selector(controllerLoadingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
         }
 
 
     }
 
 - (void)controllerLoadingSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-  
+    [progressWindowController.window orderOut:self];
+    
+    [progressWindowController close];
 }
 
 - (void)loadControllersInBackground {
@@ -62,11 +64,8 @@
     for (DocumentController *dc in self.documentControllers) {
         [dc loadViews];
         progressWindowController.value = @(progressWindowController.value.unsignedIntegerValue+1);
-        progressWindowController.progressInfo = [NSString stringWithFormat:NSLocalizedString(@"Loading %@", @"Loading (texName)"), dc.model.texName];
     }
-    [[NSApplication sharedApplication] endSheet:progressWindowController.window];
-    [progressWindowController.window orderOut:self];
-    [progressWindowController close];
+    [NSApp endSheet:progressWindowController.window];
 }
 
     - (void)setNumberOfCompilingDocuments:(NSUInteger)numberOfCompilingDocuments
