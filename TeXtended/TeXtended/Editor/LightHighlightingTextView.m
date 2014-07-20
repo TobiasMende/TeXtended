@@ -28,9 +28,6 @@
     
     
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
-    if (self.string.length > 0) {
-        [self.syntaxHighlighter highlightEntireDocument];
-    }
     [self setRichText:NO];
     [self setDisplaysLinkToolTips:YES];
     [self setHorizontallyResizable:YES];
@@ -46,6 +43,14 @@
     
 }
 
+- (BOOL)becomeFirstResponder {
+    BOOL become = [super becomeFirstResponder];
+    if (!viewStateInitialized) {
+        [self.syntaxHighlighter highlightEntireDocument];
+        viewStateInitialized = YES;
+    }
+    return become;
+}
 
 - (void)paste:(id)sender {
     [super paste:sender];

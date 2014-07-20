@@ -242,6 +242,7 @@
         DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
         [self.documentControllers addObject:dc];
         self.currentDC = dc;
+        [dc loadViews];
     }
 
 
