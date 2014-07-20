@@ -179,9 +179,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             [self.firstResponderDelegate textViewControllerDidLoadView:self];
         }
         
-        if (self.textView.string && self.textView.string.length > 0) {
-            [self updateMessageCollection:nil];
-        }
+//        if (self.textView.string && self.textView.string.length > 0) {
+//            [self updateMessageCollection:nil];
+//        }
 
     }
 
