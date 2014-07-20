@@ -174,10 +174,13 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self initializeAttributes];
         [self.textView addObserver:self forKeyPath:@"currentRow" options:NSKeyValueObservingOptionNew context:NULL];
         self.textView.firstResponderDelegate = self.firstResponderDelegate;
-        [self updateMessageCollection:nil];
         
         if ([self.firstResponderDelegate respondsToSelector:@selector(textViewControllerDidLoadView:)]) {
             [self.firstResponderDelegate textViewControllerDidLoadView:self];
+        }
+        
+        if (self.textView.string && self.textView.string.length > 0) {
+            [self updateMessageCollection:nil];
         }
 
     }
