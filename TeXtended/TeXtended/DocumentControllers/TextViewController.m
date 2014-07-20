@@ -179,6 +179,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             [self.firstResponderDelegate textViewControllerDidLoadView:self];
         }
         
+        //TODO: do it at another point
 //        if (self.textView.string && self.textView.string.length > 0) {
 //            [self updateMessageCollection:nil];
 //        }
@@ -209,7 +210,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             NSMutableAttributedString *string = [content attributedStringBySubstitutingPlaceholders];
             [string addAttributes:self.textView.typingAttributes range:NSMakeRange(0, string.length)];
             [self.textView.textStorage setAttributedString:string];
-            [self.textView.syntaxHighlighter highlightEntireDocument];
             if (NSMaxRange(self.model.selectedRange) < self.textView.string.length) {
                 self.textView.selectedRange = self.model.selectedRange;
             }
