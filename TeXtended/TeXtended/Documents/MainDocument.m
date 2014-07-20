@@ -243,6 +243,8 @@
         [self.documentControllers addObject:dc];
         self.currentDC = dc;
         [dc loadViews];
+        NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
+        [item.tabView selectTabViewItem:item];
     }
 
 
