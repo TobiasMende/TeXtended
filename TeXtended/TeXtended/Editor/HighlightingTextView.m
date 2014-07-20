@@ -63,8 +63,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)insertDropCompletionForModel:(DocumentModel *)model andFileNames:(NSArray *)droppedFileNames;
 
-- (void)updateRange:(NSRange)range;
-
 
 @end
 
@@ -276,7 +274,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
-
 #pragma mark - Go To Line
 
     - (void)goToLine:(id)sender
@@ -393,10 +390,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     completionHandler.shouldReplacePlaceholders = enable;
 }
 
-- (void)setString:(NSString *)string {
-    [super setString:string];
-    [self updateRange:NSMakeRange(0, string.length)];
-}
+
 
 #pragma mark - Input Actions
 
@@ -443,7 +437,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return;
     }
     [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
-    [self updateRange:NSMakeRange(0, self.string.length)];
 }
 
     - (void)selectCurrentBlock:(id)sender
@@ -790,12 +783,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     
 }
 
-- (void)updateRange:(NSRange)range {
-    if (self.rangeSpecificUpdate) {
-        self.rangeSpecificUpdate(range);
-    }
-}
-
 - (void)finalyUpdateTrackingAreas:(id)userInfo
 {
     [super updateTrackingAreas];
@@ -873,9 +860,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     - (BOOL)becomeFirstResponder
     {
         [self makeKeyView];
-        if (!self.viewStateInitialized) {
-            [self updateRange:NSMakeRange(0, self.string.length)];
-        }
         return [super becomeFirstResponder];
     }
 

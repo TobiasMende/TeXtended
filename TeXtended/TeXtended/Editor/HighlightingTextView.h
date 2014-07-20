@@ -47,11 +47,9 @@
         DBLPIntegrator *dblpIntegrator;
 
         QuickPreviewManager *quickPreview;
-        
 
     }
 
-    @property (nonatomic, copy) void (^rangeSpecificUpdate)(NSRange);
     @property BOOL completionEnabled;
 
     @property (assign) id <FirstResponderDelegate> firstResponderDelegate;

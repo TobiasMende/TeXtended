@@ -25,7 +25,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
     - (OutlineElementType)typeForRange:(NSRange)range inContent:(NSString *)content;
 
-    - (void)backgroundExtraction:(NSString *)range;
+    - (void)backgroundExtraction:(void *)info;
 
     - (NSRange)firstValidRangeInResult:(NSTextCheckingResult *)result;
 @end
@@ -41,31 +41,27 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     }
 
 
--(void)extractIn:(NSString *)c inRange:(NSRange)range forModel:(DocumentModel *)m withCallback:(void (^)(NSArray *))ch {
-    if (self.isExtracting) {
-        return;
-    }
-    _isExtracting = YES;
-    _completionHandler = ch;
-    _content = c.copy;
-    _model = m;
-    if (!_content || !_model) {
-        if (_completionHandler) {
-            _completionHandler(nil);
-        }
-        _isExtracting = NO;
-        return;
-    }
-    [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:NSStringFromRange(range)];
-}
     - (void)extractIn:(NSString *)c forModel:(DocumentModel *)m withCallback:(void (^)(NSArray *))ch
     {
-        [self extractIn:c inRange:NSMakeRange(0, c.length) forModel:m withCallback:ch];
+        if (self.isExtracting) {
+            return;
+        }
+        _isExtracting = YES;
+        _completionHandler = ch;
+        _content = c.copy;
+        _model = m;
+        if (!_content || !_model) {
+            if (_completionHandler) {
+                _completionHandler(nil);
+            }
+            _isExtracting = NO;
+            return;
+        }
+        [self performSelectorInBackground:@selector(backgroundExtraction:) withObject:nil];
     }
 
-    - (void)backgroundExtraction:(NSString *)rangeString
+    - (void)backgroundExtraction:(void *)info
     {
-        NSRange range = NSRangeFromString(rangeString);
 
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[self masterRegexString] options:0 error:&error];
@@ -78,7 +74,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             return;
         }
 
-        NSArray *results = [regex matchesInString:_content options:0 range:range];
+        NSArray *results = [regex matchesInString:_content options:0 range:NSMakeRange(0, _content.length)];
         NSMutableArray *outline = [NSMutableArray arrayWithCapacity:results.count];
 
         for (NSTextCheckingResult *result in results) {
