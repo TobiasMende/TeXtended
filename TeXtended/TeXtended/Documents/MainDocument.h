@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "FirstResponderDelegate.h"
 
-@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, ShareDialogController, TemplateController, ProgressWindowController;
+@class Compilable, MainWindowController, ExportCompileWindowController, DocumentController, DocumentModel, PrintDialogController, MergeWindowController, EncodingController, ShareDialogController, TemplateController;
 
 @interface MainDocument : NSDocument <NSSharingServicePickerDelegate, NSSharingServiceDelegate>
     {
@@ -22,8 +22,6 @@
         ShareDialogController *shareDialogController;
 
         NSRecursiveLock *numberLock;
-        
-        ProgressWindowController *progressWindowController;
     }
 
 /** The controller of the documents main window */
