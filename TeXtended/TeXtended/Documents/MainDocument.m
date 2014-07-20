@@ -245,6 +245,7 @@
         [dc loadViews];
         NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
         [item.tabView selectTabViewItem:item];
+        [item.tabView.window makeFirstResponder:item.view];
     }
 
 
