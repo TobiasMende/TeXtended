@@ -47,10 +47,12 @@
     BOOL become = [super becomeFirstResponder];
     if (!viewStateInitialized) {
         [self.syntaxHighlighter highlightEntireDocument];
+                    [[NSNotificationCenter defaultCenter] addObserver:self.syntaxHighlighter selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:self];
         viewStateInitialized = YES;
     }
     return become;
 }
+
 
 - (void)paste:(id)sender {
     [super paste:sender];
@@ -91,11 +93,6 @@
     return [self.string rangeForLine:index - 1];
 }
 
-- (void)setString:(NSString *)string
-{
-    [super setString:string];
-    [self.syntaxHighlighter highlightEntireDocument];
-}
 
 
 #pragma mark - Commenting Text

@@ -58,8 +58,6 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
         self = [super initWithTextView:tv];
         if (self) {
             [self registerDefaults];
-
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:view];
         }
         return self;
     }
