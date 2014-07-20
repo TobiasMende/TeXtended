@@ -25,9 +25,9 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
     - (void)highlightAtSelectionChange;
 
 
-- (BOOL)highlightInlineMath:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart andRangeEnd:(NSUInteger)rangeEnd;
-- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andRangeEnd:(NSUInteger)rangeEnd;
-- (BOOL)highlightComment:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart;
+- (BOOL)highlightInlineMath:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart andSubstringLocation:(NSUInteger)location;
+- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andSubstringLocation:(NSUInteger)location;
+- (BOOL)highlightComment:(NSScanner*)scanner withRangeStart:(NSUInteger) rangeStart andSubstringLocation:(NSUInteger)location;
 @end
 
 @implementation LatexSyntaxHighlighter
@@ -196,9 +196,9 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
                     // color commands
                     [scanner scanUpToCharactersFromSet:COMMAND_END_CHARACTERS.copy  intoString:NULL];
                     [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
-                } else if([self highlightInlineMath:scanner withRangeStart:location+rangeStart andRangeEnd:location+end]) {
+                } else if([self highlightInlineMath:scanner withRangeStart:rangeStart andSubstringLocation:location]) {
                     
-                } else if([self highlightComment:scanner withRangeStart:location+rangeStart]) {
+                } else if([self highlightComment:scanner withRangeStart:rangeStart andSubstringLocation:location]) {
                 
                 } else if (scanner.isAtEnd) {
                     // ignore this case. no special symbols in content
@@ -211,28 +211,28 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
         
     }
 
-- (BOOL)highlightInlineMath:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart andRangeEnd:(NSUInteger)rangeEnd {
+- (BOOL)highlightInlineMath:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart andSubstringLocation:(NSUInteger)location {
     if ([scanner scanString:@"$" intoString:NULL]) {
         if ([scanner scanString:@"$" intoString:NULL]) {
             // Start is $$
             
-            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andRangeEnd:rangeEnd];
+            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andSubstringLocation:location];
             [scanner scanString:@"$" intoString:NULL];
         } else  {
             // Start is $
-            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andRangeEnd:rangeEnd];
+            [self scanBetweenDollars:scanner withRangeStart:&rangeStart andSubstringLocation:location];
             
         }
         
-        [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
+        [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
         return YES;
     } else {
         return NO;
     }
 }
 
-- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andRangeEnd:(NSUInteger)rangeEnd {
-    while (!scanner.isAtEnd && scanner.scanLocation < rangeEnd) {
+- (void)scanBetweenDollars:(NSScanner *)scanner withRangeStart:(NSUInteger*)rangeStart andSubstringLocation:(NSUInteger)location {
+    while (!scanner.isAtEnd) {
         [scanner scanUpToCharactersFromSet:ALLOWED_IN_MATH_MODE.copy intoString:NULL];
         NSUInteger subrangeEnd = scanner.scanLocation;
         if ([scanner scanString:@"$" intoString:NULL]) {
@@ -241,7 +241,7 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
             if (!scanner.isAtEnd) {
                 scanner.scanLocation +=1;
             }
-        } else if([self highlightComment:scanner withRangeStart:scanner.scanLocation]) {
+        } else if([self highlightComment:scanner withRangeStart:scanner.scanLocation andSubstringLocation:location]) {
             [self highlightFrom:*rangeStart to:subrangeEnd withColor:self.inlineMathColor andFlag:self.shouldHighlightInlineMath];
             *rangeStart = scanner.scanLocation;
         }
@@ -250,14 +250,14 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
     
 }
 
-- (BOOL)highlightComment:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart {
+- (BOOL)highlightComment:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart andSubstringLocation:(NSUInteger)location{
     if([scanner scanString:@"%" intoString:NULL]) {
         // color comment
         NSCharacterSet *tmp = scanner.charactersToBeSkipped;
         scanner.charactersToBeSkipped = nil;
         [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
         
-        [self highlightFrom:rangeStart to:scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
+        [self highlightFrom:location+rangeStart to:location+scanner.scanLocation withColor:self.commentColor andFlag:self.shouldHighlightComments];
         [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
         scanner.charactersToBeSkipped = tmp;
         return YES;
