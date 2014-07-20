@@ -281,6 +281,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     - (void)textDidChange:(NSNotification *)notification
     {
+        if (!_dirty) {
+            self.dirty = YES;
+        }
         if (!outlineExtractor.isExtracting) {
             [outlineExtractor extractIn:self.textView.string forModel:self.model withCallback:nil];
         }

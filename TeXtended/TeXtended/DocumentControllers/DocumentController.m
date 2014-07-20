@@ -60,7 +60,15 @@
     - (BOOL)saveDocumentModel:(NSError * __autoreleasing *)outError
     {
         self.model.selectedRange =self.textViewController.textView.selectedRange;
-        return [self.model saveContent:[self.textViewController content] error:outError];
+        if (!self.textViewController.dirty) {
+            return YES;
+        }
+        BOOL success = [self.model saveContent:[self.textViewController content] error:outError];
+        
+        if (success) {
+            self.textViewController.dirty = NO;
+        }
+        return success;
     }
 
 

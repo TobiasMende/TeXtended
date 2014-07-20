@@ -42,6 +42,7 @@
     }
 
     @property (strong) TMTTabViewItem *tabViewItem;
+@property (getter = isDirty) BOOL dirty;
 
 /** The view showing the latex source code to the user */
     @property (strong) IBOutlet HighlightingTextView *textView;
