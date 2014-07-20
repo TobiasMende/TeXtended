@@ -42,7 +42,7 @@
     {
         [super loadView];
         [(ExtendedPdf *) self.pdfView setController:self];
-        [self loadPDF];
+        [self performSelectorOnMainThread:@selector(loadPDF) withObject:nil waitUntilDone:NO];
     }
 
 
