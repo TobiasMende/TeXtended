@@ -199,6 +199,8 @@
 		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
+		D2B3E5CF197C0FCF0028E902 /* ProgressWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3E5CD197C0FCF0028E902 /* ProgressWindowController.m */; };
+		D2B3E5D0197C0FCF0028E902 /* ProgressWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B3E5CE197C0FCF0028E902 /* ProgressWindow.xib */; };
 		D2C235781895118A0096ECAA /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C235731895118A0096ECAA /* OutlineElement.m */; };
 		D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */; };
 		D2C2357A1895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235751895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist */; };
@@ -734,6 +736,9 @@
 		D2B0166517660D9900C6CE23 /* Play.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Play.pdf; sourceTree = "<group>"; };
 		D2B016671766163E00C6CE23 /* Export.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Export.pdf; sourceTree = "<group>"; };
 		D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Livepreview.pdf; sourceTree = "<group>"; };
+		D2B3E5CC197C0FCF0028E902 /* ProgressWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressWindowController.h; sourceTree = "<group>"; };
+		D2B3E5CD197C0FCF0028E902 /* ProgressWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressWindowController.m; sourceTree = "<group>"; };
+		D2B3E5CE197C0FCF0028E902 /* ProgressWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressWindow.xib; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
 		D2C235721895118A0096ECAA /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
@@ -1313,6 +1318,7 @@
 		D2668615176F5B39001699A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2B3E5CB197C0FB90028E902 /* ProgressWindow */,
 				D22646CF19630E91007B6489 /* StartScreen */,
 				D2654AB91927778B00DE58B2 /* InfoViews */,
 				D2654AAD1927564F00DE58B2 /* CompilerPreferencesView */,
@@ -1556,6 +1562,16 @@
 				D2B01663176608A800C6CE23 /* ReportBug.pdf */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		D2B3E5CB197C0FB90028E902 /* ProgressWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D2B3E5CC197C0FCF0028E902 /* ProgressWindowController.h */,
+				D2B3E5CD197C0FCF0028E902 /* ProgressWindowController.m */,
+				D2B3E5CE197C0FCF0028E902 /* ProgressWindow.xib */,
+			);
+			path = ProgressWindow;
 			sourceTree = "<group>";
 		};
 		D2C23571189511580096ECAA /* StructureOutline */ = {
@@ -1956,6 +1972,7 @@
 				D2928ABC1967E48100F6C9BD /* FolderSelectionView.xib in Resources */,
 				D2CF618B1770BD0D00ACC3D5 /* ChktexWarningNumbers.plist in Resources */,
 				D2928AA01967E1F800F6C9BD /* FileView.xib in Resources */,
+				D2B3E5D0197C0FCF0028E902 /* ProgressWindow.xib in Resources */,
 				D21F316E1895C73300FF6E83 /* link.icns in Resources */,
 				D2CF61911770FC7600ACC3D5 /* check.png in Resources */,
 				D2CF61921770FC7600ACC3D5 /* error.png in Resources */,
@@ -2222,6 +2239,7 @@
 				D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */,
 				D28F286F196495E00085344F /* NSTextView+TMTEditorExtension.m in Sources */,
 				766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */,
+				D2B3E5CF197C0FCF0028E902 /* ProgressWindowController.m in Sources */,
 				D291E691188290F600CDC8C8 /* CompletionTableController.m in Sources */,
 				F6E5C488188A774400D2A911 /* GraphController.m in Sources */,
 				D27CD1981891388100A99997 /* CiteInfoViewController.m in Sources */,

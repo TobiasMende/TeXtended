@@ -16,10 +16,13 @@
 #import "EncodingController.h"
 #import "ShareDialogController.h"
 #import "TemplateController.h"
+#import "ProgressWindowController.h"
 
 @interface MainDocument ()
 
     - (void)firstResponderDidChangeNotification:(NSNotification *)note;
+- (void)loadControllersInBackground;
+- (void)controllerLoadingSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 @end
 
 @implementation MainDocument
@@ -39,14 +42,31 @@
     {
         [super windowControllerDidLoadNib:windowController];
         if ([windowController isKindOfClass:[MainWindowController class]]) {
-            self.currentDC = self.documentControllers.anyObject;
-            for (DocumentController *dc in self.documentControllers) {
-                [dc loadViews];
-            }
+            progressWindowController = [ProgressWindowController new];
+            progressWindowController.minValue = @(0);
+            progressWindowController.maxValue = @(self.documentControllers.count);
+            progressWindowController.value = @(0);
+            [self performSelectorInBackground:@selector(loadControllersInBackground) withObject:nil];
+            [NSApp beginSheet:progressWindowController.window modalForWindow:self.mainWindowController.window modalDelegate:self didEndSelector:@selector(controllerLoadingSheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
         }
 
 
     }
+
+- (void)controllerLoadingSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    [progressWindowController.window orderOut:self];
+    
+    [progressWindowController close];
+}
+
+- (void)loadControllersInBackground {
+    self.currentDC = self.documentControllers.anyObject;
+    for (DocumentController *dc in self.documentControllers) {
+        [dc loadViews];
+        progressWindowController.value = @(progressWindowController.value.unsignedIntegerValue+1);
+    }
+    [NSApp endSheet:progressWindowController.window];
+}
 
     - (void)setNumberOfCompilingDocuments:(NSUInteger)numberOfCompilingDocuments
     {
