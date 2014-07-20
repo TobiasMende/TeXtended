@@ -90,4 +90,6 @@
 
 - (void)firstResponderIsDeallocating;
 
+- (void)updateOutlineInRange:(NSRange)range;
+
 @end

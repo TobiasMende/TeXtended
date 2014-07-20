@@ -24,4 +24,5 @@
     @property (readonly) BOOL isExtracting;
 
     - (void)extractIn:(NSString *)content forModel:(DocumentModel *)model withCallback:(void (^) (NSArray *outline))completionHandler;
+- (void)extractIn:(NSString *)content inRange:(NSRange)range forModel:(DocumentModel *)model withCallback:(void (^) (NSArray *outline))completionHandler;
 @end
