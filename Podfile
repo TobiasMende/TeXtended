@@ -7,7 +7,7 @@ xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
 
 platform :osx, '10.7'
 
-target :TMTLatexTable do
+target :TMTLatexTableFramework do
     xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
 end
 
