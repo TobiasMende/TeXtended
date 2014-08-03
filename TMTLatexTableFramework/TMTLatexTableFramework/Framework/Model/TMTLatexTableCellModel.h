@@ -22,7 +22,7 @@ typedef enum _TMTLatexTableCellBorder {
 
 @interface TMTLatexTableCellModel : NSObject<NSCopying>
 
-@property NSString *content;
+@property (nonatomic)NSString *content;
 
 
 #pragma mark - Cell Merging

@@ -19,4 +19,7 @@
 @property SEL altArrowDownAction;
 @property SEL altArrowLeftAction;
 @property SEL altArrowRightAction;
+
+- (void)addTableColumnAtIndex:(NSUInteger)index;
+- (void)removeTableColumnAtIndex:(NSUInteger)index;
 @end

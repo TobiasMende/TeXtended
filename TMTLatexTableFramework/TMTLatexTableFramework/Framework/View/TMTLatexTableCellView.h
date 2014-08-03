@@ -9,5 +9,5 @@
 #import <Cocoa/Cocoa.h>
 @class TMTLatexTableCellModel;
 @interface TMTLatexTableCellView : NSTableCellView
-@property NSString *test;
+- (TMTLatexTableCellModel *)model;
 @end

@@ -8,12 +8,19 @@
 
 #import "TMTLatexTableView.h"
 
+
+static const NSArray *LETTERS;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 @interface TMTLatexTableView ()
 - (void)executeSelector:(SEL)aSelector;
+- (NSString *)identifierForColumn:(NSUInteger) column;
 @end
 @implementation TMTLatexTableView
+
++ (void)initialize {
+    LETTERS = [@"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z" componentsSeparatedByString:@" "];
+}
 
 - (void)keyDown:(NSEvent *)theEvent {
     NSString*   const   character   =   [theEvent charactersIgnoringModifiers];
@@ -64,6 +71,43 @@
         [self.target performSelector:aSelector withObject:self];
     }
 }
+
+
+- (void)addTableColumnAtIndex:(NSUInteger)index {
+    NSTableColumn *column = [NSTableColumn new];
+    [self addTableColumn:column];
+    for (NSUInteger i = index; i < self.numberOfColumns; i++) {
+        [[self.tableColumns[i] headerCell] setStringValue:[self identifierForColumn:i]];
+    }
+}
+
+- (void)removeTableColumnAtIndex:(NSUInteger)index {
+    [self removeTableColumnAtIndex:index];
+    for (NSUInteger i = index; i < self.numberOfColumns; i++) {
+        [[self.tableColumns[i] headerCell] setStringValue:[self identifierForColumn:i]];
+    }
+}
+
+
+- (NSString *)identifierForColumn:(NSUInteger)column {
+    NSMutableString *string = [NSMutableString new];
+    while (column > 0) {
+        column--;
+        NSUInteger mod = column % LETTERS.count;
+        [string appendString:LETTERS[mod]];
+        column -= mod;
+        column /= LETTERS.count;
+    }
+    NSMutableString *reversedString = [NSMutableString stringWithCapacity:[string length]];
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0,[string length])
+                               options:(NSStringEnumerationReverse | NSStringEnumerationByComposedCharacterSequences)
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                [reversedString appendString:substring];
+                            }];
+    return reversedString;
+}
+
 
 @end
 #pragma clang diagnostic pop
