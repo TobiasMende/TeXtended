@@ -284,8 +284,6 @@
 		F646754918795859006EAD63 /* DropCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F646754818795859006EAD63 /* DropCompletions.plist */; };
 		F68687F418781D5F00898026 /* PrintDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68687F318781D5F00898026 /* PrintDialogController.m */; };
 		F6980D451882DDE10023DE4D /* MergeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980D431882DDE10023DE4D /* MergeWindowController.m */; };
-		F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B77906180DB83E0079EFF6 /* MatrixViewController.m */; };
-		F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B77907180DB83E0079EFF6 /* MatrixView.xib */; };
 		F6D3777018000AB900B42BF6 /* StatsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3776E18000AB900B42BF6 /* StatsPanelController.m */; };
 		F6E5C485188A750D00D2A911 /* GraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C484188A750D00D2A911 /* GraphNode.m */; };
 		F6E5C488188A774400D2A911 /* GraphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5C487188A774400D2A911 /* GraphController.m */; };
@@ -821,9 +819,6 @@
 		F68687F318781D5F00898026 /* PrintDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintDialogController.m; sourceTree = "<group>"; };
 		F6980D421882DDE10023DE4D /* MergeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeWindowController.h; sourceTree = "<group>"; };
 		F6980D431882DDE10023DE4D /* MergeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeWindowController.m; sourceTree = "<group>"; };
-		F6B77905180DB83E0079EFF6 /* MatrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixViewController.h; sourceTree = "<group>"; };
-		F6B77906180DB83E0079EFF6 /* MatrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixViewController.m; sourceTree = "<group>"; };
-		F6B77907180DB83E0079EFF6 /* MatrixView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatrixView.xib; sourceTree = "<group>"; };
 		F6D3776D18000AB900B42BF6 /* StatsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsPanelController.h; sourceTree = "<group>"; };
 		F6D3776E18000AB900B42BF6 /* StatsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsPanelController.m; sourceTree = "<group>"; };
 		F6E5C483188A750D00D2A911 /* GraphNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphNode.h; sourceTree = "<group>"; };
@@ -1328,7 +1323,6 @@
 				D22A6BEB181C148700364DD6 /* TMTCustomView */,
 				D28089B7181BBE3D00EEF55C /* MessageOutlineView */,
 				D28089B1181BBAD000EEF55C /* OutlineTabView */,
-				F6B77904180DB8080079EFF6 /* MatrixView */,
 				D2FF0D7617F70017003423F7 /* EncodingView */,
 				D28AAFDF17EF34500033BDD4 /* TMTTabView */,
 				D291F56517EDD7AB00BD54AD /* DMSplitView */,
@@ -1779,16 +1773,6 @@
 			path = MergeView;
 			sourceTree = "<group>";
 		};
-		F6B77904180DB8080079EFF6 /* MatrixView */ = {
-			isa = PBXGroup;
-			children = (
-				F6B77905180DB83E0079EFF6 /* MatrixViewController.h */,
-				F6B77906180DB83E0079EFF6 /* MatrixViewController.m */,
-				F6B77907180DB83E0079EFF6 /* MatrixView.xib */,
-			);
-			path = MatrixView;
-			sourceTree = "<group>";
-		};
 		F6D3776C18000A7000B42BF6 /* StatsPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1933,7 +1917,6 @@
 				D27CD19A18913F2100A99997 /* FolderPenIcon.icns in Resources */,
 				D2B0166617660D9900C6CE23 /* Play.pdf in Resources */,
 				D257498E18631C5C0025A536 /* DefaultCompletionView.xib in Resources */,
-				F6B77909180DB83E0079EFF6 /* MatrixView.xib in Resources */,
 				D2654AC61927925600DE58B2 /* edit.icns in Resources */,
 				D2C237A1189550860096ECAA /* map.icns in Resources */,
 				D2B016681766163E00C6CE23 /* Export.pdf in Resources */,
@@ -2184,7 +2167,6 @@
 				D2E7A5191768E8F400B2BA3C /* Constants.m in Sources */,
 				D2E7A51A1768E8F400B2BA3C /* PreferencesController.m in Sources */,
 				D257498C18631B2E0025A536 /* CiteCompletionView.m in Sources */,
-				F6B77908180DB83E0079EFF6 /* MatrixViewController.m in Sources */,
 				D2C2358D189543F00096ECAA /* SMTabBarButtonCell.m in Sources */,
 				D2E7A51B1768E8F400B2BA3C /* main.m in Sources */,
 				D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */,
