@@ -62,7 +62,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             observers = [NSMutableSet new];
             synctex = [ForwardSynctexController new];
             outlineExtractor = [OutlineExtractor new];
-
+            _tabViewItem = [TMTTabViewItem new];
         }
         return self;
     }
@@ -166,7 +166,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self registerModelObserver];
         [self bind:@"liveScrolling" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTDocumentEnableLiveScrolling] options:NULL];
         
-        self.tabViewItem = [TMTTabViewItem new];
+        
         [self.tabViewItem bind:@"title" toObject:self withKeyPath:@"model.texName" options:@{NSNullPlaceholderBindingOption : NSLocalizedString(@"Untitled", @"Untitled")}];
         [self.tabViewItem bind:@"identifier" toObject:self withKeyPath:@"model.texIdentifier" options:NULL];
         self.tabViewItem.view = self.view;

@@ -28,7 +28,7 @@
     {
         self = [super init];
         if (self) {
-            self.encController = [EncodingController new];
+            _encController = [EncodingController new];
             numberLock = [NSRecursiveLock new];
         }
         return self;
