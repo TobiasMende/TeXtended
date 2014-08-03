@@ -9,11 +9,7 @@
 #import "TMTLatexTableCellModel.h"
 
 @implementation TMTLatexTableCellModel
-- (id)init {
-    self = [super init];
-    NSLog(@"init");
-    return self;
-}
+
 - (id)copyWithZone:(NSZone *)zone {
     return self;
 }
@@ -24,6 +20,5 @@
 
 - (void)setContent:(NSString *)content {
     _content = content;
-    NSLog(@"Set %@", content);
 }
 @end

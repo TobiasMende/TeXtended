@@ -74,7 +74,8 @@ static const NSArray *LETTERS;
 
 
 - (void)addTableColumnAtIndex:(NSUInteger)index {
-    NSTableColumn *column = [NSTableColumn new];
+    NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:@"DefaultColumn"];
+    [column.headerCell setAlignment:NSCenterTextAlignment];
     [self addTableColumn:column];
     for (NSUInteger i = index; i < self.numberOfColumns; i++) {
         [[self.tableColumns[i] headerCell] setStringValue:[self identifierForColumn:i]];
@@ -88,6 +89,15 @@ static const NSArray *LETTERS;
     }
 }
 
+
+- (void)setNumberOfColumns:(NSInteger)num {
+    while (num > self.tableColumns.count) {
+        [self addTableColumnAtIndex:self.tableColumns.count];
+    }
+    while (num < self.tableColumns.count) {
+        [self removeTableColumnAtIndex:self.tableColumns.count-1];
+    }
+}
 
 - (NSString *)identifierForColumn:(NSUInteger)column {
     NSMutableString *string = [NSMutableString new];

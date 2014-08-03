@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 @class TMTLatexTableCellModel;
-@interface TMTLatexTableCellView : NSTableCellView
+@interface TMTLatexTableCellView : NSTableCellView {
+    BOOL observersRegistered;
+}
 - (TMTLatexTableCellModel *)model;
 @end

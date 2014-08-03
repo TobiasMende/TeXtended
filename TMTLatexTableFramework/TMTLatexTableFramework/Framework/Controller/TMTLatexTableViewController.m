@@ -11,12 +11,14 @@
 #import "TMTLatexTableCellModel.h"
 #import "TMTLatexTableView.h"
 #import "TMTLatexTableCellView.h"
+#import "TMTLatexTableRowView.h"
 
 
 
 @interface TMTLatexTableViewController ()
 - (BOOL)rowIsValid:(NSInteger) rowIndex;
 - (BOOL)columnIsValid:(NSInteger)columnIndex;
+- (void)updateTableColumns;
 @end
 
 @implementation TMTLatexTableViewController
@@ -25,8 +27,8 @@
     self = [super initWithNibName:@"TMTLatexTableViewController" bundle:[NSBundle bundleForClass:[TMTLatexTableViewController class]]];
     if (self) {
         _model = [TMTLatexTableModel new];
-        _model.numberOfColumns = 5;
-        _model.numberOfRows = 5;
+        [_model addObserver:self forKeyPath:@"numberOfRows" options:NSKeyValueObservingOptionNew context:NULL];
+        [_model addObserver:self forKeyPath:@"numberOfColumns" options:NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
 }
@@ -39,6 +41,20 @@
     _tableView.cmdArrowUpAction = @selector(addRowAbove:);
     _tableView.cmdArrowLeftAction = @selector(addColumnLeft:);
     _tableView.cmdArrowRightAction = @selector(addColumnRight:);
+    _model.numberOfColumns = 5;
+    _model.numberOfRows = 5;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == _model) {
+        if ([keyPath isEqualToString:@"numberOfColumns"]) {
+            [self updateTableColumns];
+        } else if([keyPath isEqualToString:@"numberOfRows"]) {
+            [self.tableView reloadData];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 #pragma mark - Data Source Methods
@@ -88,17 +104,25 @@
                   row:(NSInteger)row {
     NSUInteger columnIndex = [tableView.tableColumns indexOfObject:tableColumn];
     if (columnIndex == 0) {
-        NSTableCellView *view = [tableView makeViewWithIdentifier:@"TMTLineNumberCellView" owner:self];
+        NSTableCellView *view = [tableView makeViewWithIdentifier:@"TMTLineNumberCellView" owner:nil];
         view.objectValue = [NSString stringWithFormat:@"%li", row+1];
         return view;
     }
     
     // Get an existing cell with the MyView identifier if it exists
-    TMTLatexTableCellView *result = [tableView makeViewWithIdentifier:@"TMTLatexTableCellView" owner:self];
+    TMTLatexTableCellView *result = [tableView makeViewWithIdentifier:@"TMTLatexTableCellView" owner:nil];
     result.objectValue = [self tableView:tableView objectValueForTableColumn:tableColumn row:row];
     // Return the result
     return result;
     
+}
+
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
+    TMTLatexTableRowView *view = [tableView makeViewWithIdentifier:@"RowView" owner:self];
+    if (!view) {
+        view = [[TMTLatexTableRowView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
+    }
+    return view;
 }
 
 #pragma mark - Table Actions
@@ -159,6 +183,14 @@
 }
 
 
+- (void)updateTableColumns {
+    self.tableView.numberOfColumns = self.model.numberOfColumns+1;
+}
+
+- (void)dealloc {
+    [_model removeObserver:self forKeyPath:@"numberOfRows"];
+    [_model removeObserver:self forKeyPath:@"numberOfColumns"];
+}
 
 
 @end

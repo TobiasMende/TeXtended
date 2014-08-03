@@ -133,18 +133,20 @@ static const NSArray *OBSERVED_MODEL_KEYPATHS;
 # pragma mark - Key Value Observing
 
 - (void)addModelObservers {
-    if (self.objectValue) {
+    if (self.objectValue && !observersRegistered) {
         for (NSString *key in OBSERVED_MODEL_KEYPATHS) {
             [self.objectValue addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:NULL];
         }
+        observersRegistered = YES;
     }
 }
 
 - (void)removeModelObservers {
-    if (self.objectValue) {
+    if (self.objectValue && observersRegistered) {
         for (NSString *key in OBSERVED_MODEL_KEYPATHS) {
             [self.objectValue removeObserver:self forKeyPath:key];
         }
+        observersRegistered = NO;
     }
 }
 

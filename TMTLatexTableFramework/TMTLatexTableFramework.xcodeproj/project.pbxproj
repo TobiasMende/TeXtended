@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D260F262198EBDFA00EDAA3A /* TMTLatexTableRowView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */; };
+		D260F263198EBDFA00EDAA3A /* TMTLatexTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */; };
+		D260F272198EC80F00EDAA3A /* TMTLineNumberCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */; };
+		D260F273198EC80F00EDAA3A /* TMTLineNumberCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */; };
 		D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
 		D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866CD198E7BB3006C0565 /* InfoPlist.strings */; };
 		D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */; };
@@ -65,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableRowView.h; sourceTree = "<group>"; };
+		D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableRowView.m; sourceTree = "<group>"; };
+		D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLineNumberCellView.h; sourceTree = "<group>"; };
+		D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLineNumberCellView.m; sourceTree = "<group>"; };
 		D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTLatexTableFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2D866C4198E7BB3006C0565 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2D866C7198E7BB3006C0565 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -262,11 +270,15 @@
 		D2D866F2198E7C02006C0565 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */,
+				D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */,
 				D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */,
 				D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */,
 				D2D86700198E7C35006C0565 /* TMTLatexTableView.m */,
 				D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */,
 				D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */,
+				D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */,
+				D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -323,7 +335,9 @@
 				D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */,
 				D2D8673F198E80B9006C0565 /* TMTLatexTableCellView.h in Headers */,
 				D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */,
+				D260F272198EC80F00EDAA3A /* TMTLineNumberCellView.h in Headers */,
 				D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */,
+				D260F262198EBDFA00EDAA3A /* TMTLatexTableRowView.h in Headers */,
 				D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +501,8 @@
 			files = (
 				D2D866FC198E7C2B006C0565 /* TMTLatexTableCellModel.m in Sources */,
 				D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */,
+				D260F263198EBDFA00EDAA3A /* TMTLatexTableRowView.m in Sources */,
+				D260F273198EC80F00EDAA3A /* TMTLineNumberCellView.m in Sources */,
 				D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */,
 				D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */,
 				D2D86740198E80B9006C0565 /* TMTLatexTableCellView.m in Sources */,

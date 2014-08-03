@@ -71,28 +71,44 @@
     }
 }
 
++ (BOOL)automaticallyNotifiesObserversOfNumberOfColumns {
+    return NO;
+}
+
++ (BOOL)automaticallyNotifiesObserversOfNumberOfRows {
+    return NO;
+}
+
 - (void)addRowAtIndex:(NSUInteger)index {
     [self.rows insertObject:self.emptyRow atIndex:index];
+    [self willChangeValueForKey:@"numberOfRows"];
     _numberOfRows++;
+    [self didChangeValueForKey:@"numberOfRows"];
 }
 
 - (void)removeRowAtIndex:(NSUInteger)index {
     [self.rows removeObjectAtIndex:index];
+    [self willChangeValueForKey:@"numberOfRows"];
     _numberOfRows--;
+    [self didChangeValueForKey:@"numberOfRows"];
 }
 
 - (void)addColumnAtIndex:(NSUInteger)index {
     for (NSMutableArray *row in self.rows) {
         [row insertObject:[TMTLatexTableCellModel new] atIndex:index];
     }
-    _numberOfColumns ++;
+    [self willChangeValueForKey:@"numberOfColumns"];
+    _numberOfColumns++;
+    [self didChangeValueForKey:@"numberOfColumns"];
 }
 
 - (void)removeColumnAtIndex:(NSUInteger)index {
     for (NSMutableArray *row in self.rows) {
         [row removeObjectAtIndex:index];
     }
+    [self willChangeValueForKey:@"numberOfColumns"];
     _numberOfColumns--;
+    [self didChangeValueForKey:@"numberOfColumns"];
 }
 
 

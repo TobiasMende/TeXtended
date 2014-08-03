@@ -22,4 +22,5 @@
 
 - (void)addTableColumnAtIndex:(NSUInteger)index;
 - (void)removeTableColumnAtIndex:(NSUInteger)index;
+- (void)setNumberOfColumns:(NSInteger)num;
 @end

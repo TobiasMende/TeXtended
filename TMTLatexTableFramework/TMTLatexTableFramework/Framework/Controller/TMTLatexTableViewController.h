@@ -12,7 +12,7 @@
 @interface TMTLatexTableViewController : NSViewController<NSTableViewDelegate, NSTableViewDataSource>
 @property (strong) IBOutlet TMTLatexTableView *tableView;
 
-@property TMTLatexTableModel *model;
+@property (readonly)TMTLatexTableModel *model;
 
 - (void)addRowBelow:(TMTLatexTableView*)sender;
 - (void)addRowAbove:(TMTLatexTableView*)sender;
