@@ -20,7 +20,7 @@ typedef enum _TMTLatexTableCellBorder {
     DOUBLE
 } TMTLatexTableCellBorder;
 
-@interface TMTLatexTableCellModel : NSObject
+@interface TMTLatexTableCellModel : NSObject<NSCopying>
 
 @property NSString *content;
 

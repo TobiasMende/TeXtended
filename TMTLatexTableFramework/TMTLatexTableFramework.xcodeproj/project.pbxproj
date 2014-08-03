@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D28BA595198E875B004520F5 /* TMTLatexTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28BA594198E875B004520F5 /* TMTLatexTableCellView.xib */; };
 		D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
 		D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866CD198E7BB3006C0565 /* InfoPlist.strings */; };
 		D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */; };
@@ -36,6 +37,8 @@
 		D2D8672D198E7C48006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D8672B198E7C48006C0565 /* InfoPlist.strings */; };
 		D2D8672F198E7C48006C0565 /* TMTLatexTableExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */; };
 		D2D86736198E7CE5006C0565 /* TMTLatexTableFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */; };
+		D2D8673F198E80B9006C0565 /* TMTLatexTableCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */; };
+		D2D86740198E80B9006C0565 /* TMTLatexTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D28BA594198E875B004520F5 /* TMTLatexTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTLatexTableCellView.xib; sourceTree = "<group>"; };
 		D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTLatexTableFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2D866C4198E7BB3006C0565 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D2D866C7198E7BB3006C0565 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +105,8 @@
 		D2D8672A198E7C48006C0565 /* TMTLatexTableExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableExampleTests-Info.plist"; sourceTree = "<group>"; };
 		D2D8672C198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableExampleTests.m; sourceTree = "<group>"; };
+		D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableCellView.h; sourceTree = "<group>"; };
+		D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +267,9 @@
 				D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */,
 				D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */,
 				D2D86700198E7C35006C0565 /* TMTLatexTableView.m */,
+				D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */,
+				D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */,
+				D28BA594198E875B004520F5 /* TMTLatexTableCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */,
+				D2D8673F198E80B9006C0565 /* TMTLatexTableCellView.h in Headers */,
 				D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */,
 				D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */,
 				D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */,
@@ -441,6 +451,7 @@
 			files = (
 				D2D86704198E7C35006C0565 /* TMTLatexTableViewController.xib in Resources */,
 				D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */,
+				D28BA595198E875B004520F5 /* TMTLatexTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +493,7 @@
 				D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */,
 				D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */,
 				D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */,
+				D2D86740198E80B9006C0565 /* TMTLatexTableCellView.m in Sources */,
 				D2D86703198E7C35006C0565 /* TMTLatexTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -812,6 +824,7 @@
 				D2D866EB198E7BB3006C0565 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2D866EC198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -820,6 +833,7 @@
 				D2D866EE198E7BB3006C0565 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2D86730198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExample" */ = {
 			isa = XCConfigurationList;
@@ -828,6 +842,7 @@
 				D2D86732198E7C48006C0565 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2D86733198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -836,6 +851,7 @@
 				D2D86735198E7C48006C0565 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

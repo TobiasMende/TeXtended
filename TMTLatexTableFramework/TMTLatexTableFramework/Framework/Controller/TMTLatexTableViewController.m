@@ -10,6 +10,7 @@
 #import "TMTLatexTableModel.h"
 #import "TMTLatexTableCellModel.h"
 #import "TMTLatexTableView.h"
+#import "TMTLatexTableCellView.h"
 
 @interface TMTLatexTableViewController ()
 - (BOOL)rowIsValid:(NSInteger) rowIndex;
@@ -47,7 +48,7 @@
         return nil;
     }
     if ([aTableColumn.identifier isEqualToString:@"rowNumber"]) {
-        return [NSNumber numberWithInteger:rowIndex+1];
+        return [NSString stringWithFormat:@"%li", rowIndex+1];
     }
     NSUInteger columnIndex = [aTableView.tableColumns indexOfObject:aTableColumn]-1;
     if (![self columnIsValid:columnIndex]) {

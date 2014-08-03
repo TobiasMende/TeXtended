@@ -16,8 +16,10 @@
 @implementation TMTLatexTableView
 
 - (void)keyDown:(NSEvent *)theEvent {
+    NSString*   const   character   =   [theEvent charactersIgnoringModifiers];
+    unichar     const   code        =   [character characterAtIndex:0];
     if (theEvent.modifierFlags & NSCommandKeyMask) {
-        switch (theEvent.keyCode) {
+        switch (code) {
             case NSUpArrowFunctionKey:
                 [self executeSelector:self.cmdArrowUpAction];
                 break;
@@ -31,10 +33,11 @@
                 [self executeSelector:self.cmdArrowRightAction];
                 break;
             default:
+                [super keyDown:theEvent];
                 break;
         }
     } else if(theEvent.modifierFlags & NSAlternateKeyMask) {
-        switch (theEvent.keyCode) {
+        switch (code) {
             case NSUpArrowFunctionKey:
                 [self executeSelector:self.altArrowUpAction];
                 break;
@@ -48,8 +51,11 @@
                 [self executeSelector:self.altArrowRightAction];
                 break;
             default:
+                [super keyDown:theEvent];
                 break;
         }
+    } else {
+        [super keyDown:theEvent];
     }
 }
 

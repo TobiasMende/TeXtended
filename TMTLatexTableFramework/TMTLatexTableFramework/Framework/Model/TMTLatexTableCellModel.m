@@ -9,5 +9,11 @@
 #import "TMTLatexTableCellModel.h"
 
 @implementation TMTLatexTableCellModel
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
 
+- (NSString *)description {
+    return self.content ? self.content : @"";
+}
 @end
