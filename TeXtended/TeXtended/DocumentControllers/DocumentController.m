@@ -21,8 +21,6 @@
 
 @interface DocumentController ()
 
-    - (void)updateViewsAfterModelChange;
-
     - (ExtendedPDFViewController *)findExistingPDFViewControllerFor:(DocumentModel *)model;
 
     - (void)findOrCreatePDFViewControllerFor:(DocumentModel *)model;
@@ -44,10 +42,15 @@
         self = [super init];
         if (self) {
             self.mainDocument = mainDocument;
-            self.model = model;
+            _model = model;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texViewDidClose:) name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
+            for (DocumentModel *m in self.model.mainDocuments) {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pdfViewDidClose:) name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
+            }
             self.model.documentOpened = YES;
             self.consoleViewControllers = [NSMutableSet new];
             self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
+            _textViewController = [[TextViewController alloc] initWithFirstResponder:self andModel:self.model];
             [self.textViewController addObserver:self.compiler];
         }
         return self;
@@ -57,7 +60,15 @@
     - (BOOL)saveDocumentModel:(NSError * __autoreleasing *)outError
     {
         self.model.selectedRange =self.textViewController.textView.selectedRange;
-        return [self.model saveContent:[self.textViewController content] error:outError];
+        if (!self.textViewController.dirty) {
+            return YES;
+        }
+        BOOL success = [self.model saveContent:[self.textViewController content] error:outError];
+        
+        if (success) {
+            self.textViewController.dirty = NO;
+        }
+        return success;
     }
 
 
@@ -66,27 +77,6 @@
         [self.textViewController breakUndoCoalescing];
     }
 
-
-    - (void)setModel:(DocumentModel *)model
-    {
-        if (model != _model) {
-            if (self.model) {
-                [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
-                for (DocumentModel *m in self.model.mainDocuments) {
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
-                }
-            }
-            _model = model;
-
-            [self updateViewsAfterModelChange];
-            if (self.model) {
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(texViewDidClose:) name:TMTTabViewDidCloseNotification object:self.model.texIdentifier];
-                for (DocumentModel *m in self.model.mainDocuments) {
-                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pdfViewDidClose:) name:TMTTabViewDidCloseNotification object:m.pdfIdentifier];
-                }
-            }
-        }
-    }
 
     - (void)texViewDidClose:(NSNotification *)note
     {
@@ -118,10 +108,14 @@
     }
 
 
-    - (void)updateViewsAfterModelChange
+    - (void)loadViews {
+        [self.textViewController loadView];
+    }
+
+    - (void)textViewControllerDidLoadView:(TextViewController *)controller
     {
         DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
-        _textViewController = [[TextViewController alloc] initWithFirstResponder:self];
+        
         [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
         NSError *error;
         NSString *content = [self.model loadContent:&error];
@@ -132,6 +126,7 @@
                 [self findOrCreatePDFViewControllerFor:model];
             }
         } else {
+            [[NSAlert alertWithError:error] runModal];
             [self closeDocument];
         }
 

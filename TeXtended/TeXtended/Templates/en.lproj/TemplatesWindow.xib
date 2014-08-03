@@ -19,7 +19,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="196" y="240" width="779" height="442"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <value key="minSize" type="size" width="600" height="442"/>
+            <value key="minSize" type="size" width="700" height="442"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="779" height="442"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -105,7 +105,7 @@
                     </scrollView>
                     <button verticalHuggingPriority="750" id="FWM-F5-JQc">
                         <rect key="frame" x="696" y="13" width="80" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZQy-jb-1i5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>

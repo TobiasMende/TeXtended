@@ -86,7 +86,7 @@
         NSTabViewItem *newItem = [[NSTabViewItem alloc] initWithIdentifier:item];
         [newItem setView:[item view]];
         [self.tabView addTabViewItem:newItem];
-        [self.tabView selectTabViewItem:newItem];
+        //[self.tabView selectTabViewItem:newItem];
         
     }
 
@@ -204,7 +204,7 @@
 
     - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
     {
-        [[tabViewItem.view window] makeFirstResponder:tabViewItem.view];
+        //  [[tabViewItem.view window] makeFirstResponder:tabViewItem.view];
     }
 
 

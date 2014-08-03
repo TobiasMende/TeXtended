@@ -15,6 +15,8 @@
 @optional
     - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc;
 
+    - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc andModel:(DocumentModel *)model;
+
     - (void)breakUndoCoalescing;
 
     - (NSTabViewItem *)tabViewItem;

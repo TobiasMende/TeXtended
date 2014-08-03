@@ -21,7 +21,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
 
 @interface OutlineExtractor ()
 
-    - (NSString *)masterRegexString;
+    - (NSRegularExpression *)masterRegex;
 
     - (OutlineElementType)typeForRange:(NSRange)range inContent:(NSString *)content;
 
@@ -63,10 +63,8 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     - (void)backgroundExtraction:(void *)info
     {
 
-        NSError *error;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[self masterRegexString] options:0 error:&error];
-        if (error) {
-            DDLogError(@"%@", error);
+        NSRegularExpression *regex = [self masterRegex];
+        if (!masterRegex) {
             if (_completionHandler) {
                 _completionHandler(nil);
             }
@@ -164,30 +162,37 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     }
 
 
-    - (NSString *)masterRegexString
+    - (NSRegularExpression *)masterRegex
     {
-        NSMutableString *regex = [NSMutableString new];
-        for (NSString *part in [ELEMENT_EXTRACTOR_REGEX_LOOKUP allValues]) {
-            [regex appendFormat:@"%@|", part];
+        if (!masterRegex) {
+            NSMutableString *regex = [NSMutableString new];
+            for (NSString *part in [ELEMENT_EXTRACTOR_REGEX_LOOKUP allValues]) {
+                [regex appendFormat:@"%@|", part];
+            }
+            NSSet *labels = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeLabel];
+            for (NSValue *v in labels) {
+                CommandCompletion *c = v.nonretainedObjectValue;
+                NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
+                [regex appendFormat:@"%@|", part];
+            }
+            
+            NSSet *refs = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeRef];
+            for (NSValue *v in refs) {
+                CommandCompletion *c = v.nonretainedObjectValue;
+                NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
+                [regex appendFormat:@"%@|", part];
+            }
+            
+            [regex deleteCharactersInRange:NSMakeRange(regex.length - 1, 1)];
+            NSError *error;
+            masterRegex = [NSRegularExpression regularExpressionWithPattern:regex options:0 error:&error];
+            if (error) {
+                DDLogError(@"%@", error);
+            }
         }
-        NSSet *labels = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeLabel];
-        for (NSValue *v in labels) {
-            CommandCompletion *c = v.nonretainedObjectValue;
-            NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
-            [regex appendFormat:@"%@|", part];
-        }
-
-        NSSet *refs = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeRef];
-        for (NSValue *v in refs) {
-            CommandCompletion *c = v.nonretainedObjectValue;
-            NSString *part = [NSString stringWithFormat:@"\\%@\\{(.*)\\}", c.insertion];
-            [regex appendFormat:@"%@|", part];
-        }
-
-        [regex deleteCharactersInRange:NSMakeRange(regex.length - 1, 1)];
 
 
-        return regex;
+        return masterRegex;
     }
 
 @end

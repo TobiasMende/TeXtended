@@ -28,7 +28,7 @@
     {
         self = [super init];
         if (self) {
-            self.encController = [EncodingController new];
+            _encController = [EncodingController new];
             numberLock = [NSRecursiveLock new];
         }
         return self;
@@ -37,12 +37,11 @@
 
     - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
     {
-        if (!self.documentControllers || self.documentControllers.count == 0) {
-            [self initializeDocumentControllers];
-        }
+        [super windowControllerDidLoadNib:windowController];
         if ([windowController isKindOfClass:[MainWindowController class]]) {
+            self.currentDC = self.documentControllers.anyObject;
             for (DocumentController *dc in self.documentControllers) {
-                self.currentDC = dc;
+                [dc loadViews];
             }
         }
 
@@ -133,6 +132,7 @@
         DDLogVerbose(@"makeWindowControllers");
         MainWindowController *mc = [[MainWindowController alloc] initForDocument:self];
         self.mainWindowController = mc;
+        [self initializeDocumentControllers];
         [self addWindowController:mc];
 
     }
@@ -242,6 +242,10 @@
         DocumentController *dc = [[DocumentController alloc] initWithDocument:model andMainDocument:self];
         [self.documentControllers addObject:dc];
         self.currentDC = dc;
+        [dc loadViews];
+        NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:model.texIdentifier];
+        [item.tabView selectTabViewItem:item];
+        [item.tabView.window makeFirstResponder:item.view];
     }
 
 

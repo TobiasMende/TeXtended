@@ -37,7 +37,7 @@
 
 
 - (void)performDoubleClick {
-    if ([self.publicationTable clickedRow] < 0) {
+    if ([self.publicationTable selectedRow] < 0) {
         return;
     }
     [self executeCitation:self];
@@ -64,7 +64,7 @@
 }
 
 
-- (void)controlTextDidChange:(NSNotification *)obj {
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
     if (self.authorField.stringValue.length >= 2) {
         [self.publicationsController setContent:nil];
         [interface searchAuthor:self.authorField.stringValue];

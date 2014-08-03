@@ -28,9 +28,6 @@
     
     
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
-    if (self.string.length > 0) {
-        [self.syntaxHighlighter highlightEntireDocument];
-    }
     [self setRichText:NO];
     [self setDisplaysLinkToolTips:YES];
     [self setHorizontallyResizable:YES];
@@ -44,6 +41,16 @@
     
     [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
     
+}
+
+- (BOOL)becomeFirstResponder {
+    BOOL become = [super becomeFirstResponder];
+    if (!viewStateInitialized) {
+        [self.syntaxHighlighter highlightEntireDocument];
+                    [[NSNotificationCenter defaultCenter] addObserver:self.syntaxHighlighter selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:self];
+        viewStateInitialized = YES;
+    }
+    return become;
 }
 
 
@@ -86,11 +93,6 @@
     return [self.string rangeForLine:index - 1];
 }
 
-- (void)setString:(NSString *)string
-{
-    [super setString:string];
-    [self.syntaxHighlighter highlightEntireDocument];
-}
 
 
 #pragma mark - Commenting Text

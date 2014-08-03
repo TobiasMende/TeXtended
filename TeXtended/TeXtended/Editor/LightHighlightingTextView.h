@@ -11,6 +11,7 @@
 
 @interface LightHighlightingTextView : NSTextView {
     BOOL stopTextDidChangeNotifications;
+    BOOL viewStateInitialized;
 }
 
 #pragma mark - Syntax Highlighting
