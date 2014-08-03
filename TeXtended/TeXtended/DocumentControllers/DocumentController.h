@@ -26,10 +26,10 @@
     }
 
 /** The model handeld by this controller. */
-    @property (strong, nonatomic) DocumentModel *model;
+    @property (strong, readonly) DocumentModel *model;
 
 /** Controller for the TextView. */
-    @property (strong) TextViewController *textViewController;
+    @property (strong, readonly) TextViewController *textViewController;
 
     @property (strong) NSMutableSet *pdfViewControllers;
 
@@ -95,5 +95,7 @@
     - (void)pdfViewDidClose:(NSNotification *)note;
 
     - (void)showPDFViews;
+
+    - (void)loadViews;
 
 @end

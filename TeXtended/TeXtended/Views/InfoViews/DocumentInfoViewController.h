@@ -13,7 +13,7 @@
 
 @interface DocumentInfoViewController : NSViewController <ModelInfoViewController>
 
-    @property (nonatomic) DocumentModel *model;
+    @property DocumentModel *model;
 
     @property (strong, nonatomic) IBOutlet TMTQuickLookView *quickLook;
 

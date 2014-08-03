@@ -29,11 +29,6 @@
         [self.quickLook bind:@"previewItem" toObject:self withKeyPath:@"previewItem" options:nil];
     }
 
-    - (void)setModel:(DocumentModel *)model
-    {
-        _model = model;
-    }
-
     + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
     {
         NSSet *keys = [super keyPathsForValuesAffectingValueForKey:key];

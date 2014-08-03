@@ -31,8 +31,11 @@
     {
         self = [super initWithWindowNibName:@"MainWindow"];
         if (self) {
-            self.mainDocument = document;
-
+            _mainDocument = document;
+            _firsTabViewController = [TMTTabViewController new];
+            _secondTabViewController = [TMTTabViewController new];
+            _outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
+            _fileViewController = [FileViewController new];
         }
         return self;
     }
@@ -43,31 +46,28 @@
         [super windowDidLoad];
         
 
-        self.firsTabViewController = [TMTTabViewController new];
-        self.secondTabViewController = [TMTTabViewController new];
-        self.outlineController = [[OutlineTabViewController alloc] initWithMainWindowController:self];
-        self.fileViewController = [FileViewController new];
+        
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTViewOrderAppearance options:0 context:NULL];
 
         BOOL flag = [[NSUserDefaults standardUserDefaults] integerForKey:TMTViewOrderAppearance] == TMTVertical;
-        self.firsTabViewController.closeWindowForLastTabDrag = NO;
-        self.secondTabViewController.closeWindowForLastTabDrag = NO;
-        [self.contentView setVertical:flag];
-        [self.contentView setSubviews:@[self.firsTabViewController.view, self.secondTabViewController.view]];
+        _firsTabViewController.closeWindowForLastTabDrag = NO;
+        _secondTabViewController.closeWindowForLastTabDrag = NO;
+        [_contentView setVertical:flag];
+        [_contentView setSubviews:@[self.firsTabViewController.view, self.secondTabViewController.view]];
 
-        self.outlineViewArea.contentView = self.outlineController.view;
-        self.fileViewArea.contentView = self.fileViewController.view;
-        [self.mainView setMaxSize:200 ofSubviewAtIndex:0];
-        [self.mainView setEventsDelegate:self];
+        _outlineViewArea.contentView = self.outlineController.view;
+        _fileViewArea.contentView = self.fileViewController.view;
+        [_mainView setMaxSize:200 ofSubviewAtIndex:0];
+        [_mainView setEventsDelegate:self];
 
-        [self.contentView setSubviewsResizeMode:DMSplitViewResizeModeUniform];
-        [self.contentView setEventsDelegate:self];
-        [self.contentView setCanCollapse:YES subviewAtIndex:1];
+        [_contentView setSubviewsResizeMode:DMSplitViewResizeModeUniform];
+        [_contentView setEventsDelegate:self];
+        [_contentView setCanCollapse:YES subviewAtIndex:1];
 
-        [self.mainDocument windowControllerDidLoadNib:self];
-
-        [self.shareButton sendActionOn:NSLeftMouseDownMask];
-        self.fileViewController.document = self.document;
+        //[self.mainDocument performSelectorInBackground:@selector(windowControllerDidLoadNib:) withObject:self];
+        [_mainDocument windowControllerDidLoadNib:self];
+        [_shareButton sendActionOn:NSLeftMouseDownMask];
+        _fileViewController.document = self.document;
         
     }
 

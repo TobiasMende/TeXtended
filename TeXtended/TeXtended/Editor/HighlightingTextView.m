@@ -584,8 +584,10 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [self.codeNavigationAssistant handleWrappingInRange:NSMakeRange(0, self.string.length)];
         self.lineWrapMode = current;
         stopTextDidChangeNotifications = NO;
+        
+        [self.syntaxHighlighter highlightEntireDocument];
         [self didChangeText];
-
+        
     }
 
     - (BOOL)respondsToSelector:(SEL)aSelector

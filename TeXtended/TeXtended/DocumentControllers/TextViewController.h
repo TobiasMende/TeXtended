@@ -42,6 +42,7 @@
     }
 
     @property (strong) TMTTabViewItem *tabViewItem;
+@property (getter = isDirty) BOOL dirty;
 
 /** The view showing the latex source code to the user */
     @property (strong) IBOutlet HighlightingTextView *textView;
@@ -49,10 +50,10 @@
 /** The scroll view containing the LineNumberView and the HighlightingTextView */
     @property (strong) IBOutlet NSScrollView *scrollView;
 
-    @property (strong, nonatomic) DocumentModel *model;
+    @property (strong, readonly) DocumentModel *model;
 
 
-    @property (assign, nonatomic) id <FirstResponderDelegate> firstResponderDelegate;
+    @property (assign, readonly) id <FirstResponderDelegate> firstResponderDelegate;
 
 /** Flag for setting whether live scrolling is enabled or not. */
     @property BOOL liveScrolling;
