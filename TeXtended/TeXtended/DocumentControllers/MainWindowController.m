@@ -64,8 +64,8 @@
         [self.contentView setEventsDelegate:self];
         [self.contentView setCanCollapse:YES subviewAtIndex:1];
 
-        [self.mainDocument performSelectorInBackground:@selector(windowControllerDidLoadNib:) withObject:self];
-
+        //[self.mainDocument performSelectorInBackground:@selector(windowControllerDidLoadNib:) withObject:self];
+        [self.mainDocument windowControllerDidLoadNib:self];
         [self.shareButton sendActionOn:NSLeftMouseDownMask];
         self.fileViewController.document = self.document;
         
