@@ -3,9 +3,13 @@ xcodeproj 'TeXtended/TeXtended.xcodeproj'
 xcodeproj 'DBLP Tool/DBLP Tool.xcodeproj'
 xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
 xcodeproj 'MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj'
+xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
 
 platform :osx, '10.7'
 
+target :TMTLatexTable do
+    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
+end
 
 target :TMTHelperCollection do
     xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'

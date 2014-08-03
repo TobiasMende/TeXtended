@@ -1,5 +1,5 @@
 //
-//  TMTAppDelegate.h
+//  AppDelegate.h
 //  TMTLatexTableExample
 //
 //  Created by Tobias Mende on 03.08.14.
@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class TMTLatexTableViewController;
-@interface TMTAppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property TMTLatexTableViewController *controller;

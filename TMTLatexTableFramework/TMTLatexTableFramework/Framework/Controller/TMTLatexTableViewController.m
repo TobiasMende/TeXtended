@@ -19,7 +19,7 @@
 @implementation TMTLatexTableViewController
 
 - (id)init {
-    self = [super initWithNibName:@"TMTLatexTableViewController" bundle:nil];
+    self = [super initWithNibName:@"TMTLatexTableViewController" bundle:[NSBundle bundleForClass:[TMTLatexTableViewController class]]];
     if (self) {
         _model = [TMTLatexTableModel new];
         _model.numberOfColumns = 5;

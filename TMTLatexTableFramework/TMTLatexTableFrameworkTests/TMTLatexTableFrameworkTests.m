@@ -1,6 +1,6 @@
 //
-//  TMTLatexTableTests.m
-//  TMTLatexTableTests
+//  TMTLatexTableFrameworkTests.m
+//  TMTLatexTableFrameworkTests
 //
 //  Created by Tobias Mende on 03.08.14.
 //  Copyright (c) 2014 TeXtended. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface TMTLatexTableTests : XCTestCase
+@interface TMTLatexTableFrameworkTests : XCTestCase
 
 @end
 
-@implementation TMTLatexTableTests
+@implementation TMTLatexTableFrameworkTests
 
 - (void)setUp
 {

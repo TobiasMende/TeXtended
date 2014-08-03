@@ -1,0 +1,843 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
+		D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866CD198E7BB3006C0565 /* InfoPlist.strings */; };
+		D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */; };
+		D2D866DA198E7BB3006C0565 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866D9198E7BB3006C0565 /* XCTest.framework */; };
+		D2D866DB198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
+		D2D866DE198E7BB3006C0565 /* TMTLatexTableFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */; };
+		D2D866E4198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866E2198E7BB3006C0565 /* InfoPlist.strings */; };
+		D2D866E6198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */; };
+		D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */; };
+		D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2D866FC198E7C2B006C0565 /* TMTLatexTableCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */; };
+		D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */; };
+		D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2D86703198E7C35006C0565 /* TMTLatexTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86700198E7C35006C0565 /* TMTLatexTableView.m */; };
+		D2D86704198E7C35006C0565 /* TMTLatexTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */; };
+		D2D8670A198E7C48006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
+		D2D86710198E7C48006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D8670E198E7C48006C0565 /* InfoPlist.strings */; };
+		D2D86712198E7C48006C0565 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86711198E7C48006C0565 /* main.m */; };
+		D2D86716198E7C48006C0565 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2D86714198E7C48006C0565 /* Credits.rtf */; };
+		D2D86719198E7C48006C0565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86718198E7C48006C0565 /* AppDelegate.m */; };
+		D2D8671C198E7C48006C0565 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D8671A198E7C48006C0565 /* MainMenu.xib */; };
+		D2D8671E198E7C48006C0565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2D8671D198E7C48006C0565 /* Images.xcassets */; };
+		D2D86724198E7C48006C0565 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866D9198E7BB3006C0565 /* XCTest.framework */; };
+		D2D86725198E7C48006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
+		D2D8672D198E7C48006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D8672B198E7C48006C0565 /* InfoPlist.strings */; };
+		D2D8672F198E7C48006C0565 /* TMTLatexTableExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */; };
+		D2D86736198E7CE5006C0565 /* TMTLatexTableFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2D866DC198E7BB3006C0565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2D866C0198E7BB3006C0565;
+			remoteInfo = TMTLatexTableFramework;
+		};
+		D2D86726198E7C48006C0565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2D86708198E7C48006C0565;
+			remoteInfo = TMTLatexTableExample;
+		};
+		D2D86737198E7CF0006C0565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2D866C0198E7BB3006C0565;
+			remoteInfo = TMTLatexTableFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTLatexTableFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D866C4198E7BB3006C0565 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D2D866C7198E7BB3006C0565 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2D866C8198E7BB3006C0565 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D2D866C9198E7BB3006C0565 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D2D866CC198E7BB3006C0565 /* TMTLatexTableFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableFramework-Info.plist"; sourceTree = "<group>"; };
+		D2D866CE198E7BB3006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2D866D0198E7BB3006C0565 /* TMTLatexTableFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTLatexTableFramework-Prefix.pch"; sourceTree = "<group>"; };
+		D2D866D1198E7BB3006C0565 /* TMTLatexTableFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableFramework.h; sourceTree = "<group>"; };
+		D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableFramework.m; sourceTree = "<group>"; };
+		D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTLatexTableFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D866D9198E7BB3006C0565 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D2D866E1198E7BB3006C0565 /* TMTLatexTableFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableFrameworkTests-Info.plist"; sourceTree = "<group>"; };
+		D2D866E3198E7BB3006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableFrameworkTests.m; sourceTree = "<group>"; };
+		D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableViewController.h; sourceTree = "<group>"; };
+		D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableViewController.m; sourceTree = "<group>"; };
+		D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableCellModel.h; sourceTree = "<group>"; };
+		D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableCellModel.m; sourceTree = "<group>"; };
+		D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableModel.h; sourceTree = "<group>"; };
+		D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableModel.m; sourceTree = "<group>"; };
+		D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableView.h; sourceTree = "<group>"; };
+		D2D86700198E7C35006C0565 /* TMTLatexTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableView.m; sourceTree = "<group>"; };
+		D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTLatexTableViewController.xib; sourceTree = "<group>"; };
+		D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMTLatexTableExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D8670D198E7C48006C0565 /* TMTLatexTableExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableExample-Info.plist"; sourceTree = "<group>"; };
+		D2D8670F198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2D86711198E7C48006C0565 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2D86713198E7C48006C0565 /* TMTLatexTableExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTLatexTableExample-Prefix.pch"; sourceTree = "<group>"; };
+		D2D86715198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D2D86717198E7C48006C0565 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D2D86718198E7C48006C0565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D2D8671B198E7C48006C0565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D2D8671D198E7C48006C0565 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTLatexTableExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D8672A198E7C48006C0565 /* TMTLatexTableExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableExampleTests-Info.plist"; sourceTree = "<group>"; };
+		D2D8672C198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableExampleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2D866BD198E7BB3006C0565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D866D5198E7BB3006C0565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866DE198E7BB3006C0565 /* TMTLatexTableFramework.framework in Frameworks */,
+				D2D866DB198E7BB3006C0565 /* Cocoa.framework in Frameworks */,
+				D2D866DA198E7BB3006C0565 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D86706198E7C48006C0565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D86736198E7CE5006C0565 /* TMTLatexTableFramework.framework in Frameworks */,
+				D2D8670A198E7C48006C0565 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D86720198E7C48006C0565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D86725198E7C48006C0565 /* Cocoa.framework in Frameworks */,
+				D2D86724198E7C48006C0565 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2D866B7198E7BB3006C0565 = {
+			isa = PBXGroup;
+			children = (
+				D2D866CA198E7BB3006C0565 /* TMTLatexTableFramework */,
+				D2D866DF198E7BB3006C0565 /* TMTLatexTableFrameworkTests */,
+				D2D8670B198E7C48006C0565 /* TMTLatexTableExample */,
+				D2D86728198E7C48006C0565 /* TMTLatexTableExampleTests */,
+				D2D866C3198E7BB3006C0565 /* Frameworks */,
+				D2D866C2198E7BB3006C0565 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2D866C2198E7BB3006C0565 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */,
+				D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */,
+				D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */,
+				D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2D866C3198E7BB3006C0565 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866C4198E7BB3006C0565 /* Cocoa.framework */,
+				D2D866D9198E7BB3006C0565 /* XCTest.framework */,
+				D2D866C6198E7BB3006C0565 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2D866C6198E7BB3006C0565 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866C7198E7BB3006C0565 /* Foundation.framework */,
+				D2D866C8198E7BB3006C0565 /* CoreData.framework */,
+				D2D866C9198E7BB3006C0565 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D2D866CA198E7BB3006C0565 /* TMTLatexTableFramework */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866EF198E7C02006C0565 /* Framework */,
+				D2D866D1198E7BB3006C0565 /* TMTLatexTableFramework.h */,
+				D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */,
+				D2D866CB198E7BB3006C0565 /* Supporting Files */,
+			);
+			path = TMTLatexTableFramework;
+			sourceTree = "<group>";
+		};
+		D2D866CB198E7BB3006C0565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866CC198E7BB3006C0565 /* TMTLatexTableFramework-Info.plist */,
+				D2D866CD198E7BB3006C0565 /* InfoPlist.strings */,
+				D2D866D0198E7BB3006C0565 /* TMTLatexTableFramework-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2D866DF198E7BB3006C0565 /* TMTLatexTableFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */,
+				D2D866E0198E7BB3006C0565 /* Supporting Files */,
+			);
+			path = TMTLatexTableFrameworkTests;
+			sourceTree = "<group>";
+		};
+		D2D866E0198E7BB3006C0565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866E1198E7BB3006C0565 /* TMTLatexTableFrameworkTests-Info.plist */,
+				D2D866E2198E7BB3006C0565 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2D866EF198E7C02006C0565 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866F0198E7C02006C0565 /* Controller */,
+				D2D866F1198E7C02006C0565 /* Model */,
+				D2D866F2198E7C02006C0565 /* View */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		D2D866F0198E7C02006C0565 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */,
+				D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D2D866F1198E7C02006C0565 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */,
+				D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */,
+				D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */,
+				D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2D866F2198E7C02006C0565 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */,
+				D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */,
+				D2D86700198E7C35006C0565 /* TMTLatexTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2D8670B198E7C48006C0565 /* TMTLatexTableExample */ = {
+			isa = PBXGroup;
+			children = (
+				D2D86717198E7C48006C0565 /* AppDelegate.h */,
+				D2D86718198E7C48006C0565 /* AppDelegate.m */,
+				D2D8671A198E7C48006C0565 /* MainMenu.xib */,
+				D2D8671D198E7C48006C0565 /* Images.xcassets */,
+				D2D8670C198E7C48006C0565 /* Supporting Files */,
+			);
+			path = TMTLatexTableExample;
+			sourceTree = "<group>";
+		};
+		D2D8670C198E7C48006C0565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2D8670D198E7C48006C0565 /* TMTLatexTableExample-Info.plist */,
+				D2D8670E198E7C48006C0565 /* InfoPlist.strings */,
+				D2D86711198E7C48006C0565 /* main.m */,
+				D2D86713198E7C48006C0565 /* TMTLatexTableExample-Prefix.pch */,
+				D2D86714198E7C48006C0565 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2D86728198E7C48006C0565 /* TMTLatexTableExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */,
+				D2D86729198E7C48006C0565 /* Supporting Files */,
+			);
+			path = TMTLatexTableExampleTests;
+			sourceTree = "<group>";
+		};
+		D2D86729198E7C48006C0565 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2D8672A198E7C48006C0565 /* TMTLatexTableExampleTests-Info.plist */,
+				D2D8672B198E7C48006C0565 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2D866BE198E7BB3006C0565 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */,
+				D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */,
+				D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */,
+				D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2D866E9198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFramework" */;
+			buildPhases = (
+				D2D866BC198E7BB3006C0565 /* Sources */,
+				D2D866BD198E7BB3006C0565 /* Frameworks */,
+				D2D866BE198E7BB3006C0565 /* Headers */,
+				D2D866BF198E7BB3006C0565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TMTLatexTableFramework;
+			productName = TMTLatexTableFramework;
+			productReference = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D2D866D7198E7BB3006C0565 /* TMTLatexTableFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2D866EC198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFrameworkTests" */;
+			buildPhases = (
+				D2D866D4198E7BB3006C0565 /* Sources */,
+				D2D866D5198E7BB3006C0565 /* Frameworks */,
+				D2D866D6198E7BB3006C0565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2D866DD198E7BB3006C0565 /* PBXTargetDependency */,
+			);
+			name = TMTLatexTableFrameworkTests;
+			productName = TMTLatexTableFrameworkTests;
+			productReference = D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D2D86708198E7C48006C0565 /* TMTLatexTableExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2D86730198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExample" */;
+			buildPhases = (
+				D2D86705198E7C48006C0565 /* Sources */,
+				D2D86706198E7C48006C0565 /* Frameworks */,
+				D2D86707198E7C48006C0565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2D86738198E7CF0006C0565 /* PBXTargetDependency */,
+			);
+			name = TMTLatexTableExample;
+			productName = TMTLatexTableExample;
+			productReference = D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2D86722198E7C48006C0565 /* TMTLatexTableExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2D86733198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExampleTests" */;
+			buildPhases = (
+				D2D8671F198E7C48006C0565 /* Sources */,
+				D2D86720198E7C48006C0565 /* Frameworks */,
+				D2D86721198E7C48006C0565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2D86727198E7C48006C0565 /* PBXTargetDependency */,
+			);
+			name = TMTLatexTableExampleTests;
+			productName = TMTLatexTableExampleTests;
+			productReference = D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2D866B8198E7BB3006C0565 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = TeXtended;
+				TargetAttributes = {
+					D2D866D7198E7BB3006C0565 = {
+						TestTargetID = D2D866C0198E7BB3006C0565;
+					};
+					D2D86722198E7C48006C0565 = {
+						TestTargetID = D2D866C0198E7BB3006C0565;
+					};
+				};
+			};
+			buildConfigurationList = D2D866BB198E7BB3006C0565 /* Build configuration list for PBXProject "TMTLatexTableFramework" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2D866B7198E7BB3006C0565;
+			productRefGroup = D2D866C2198E7BB3006C0565 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */,
+				D2D866D7198E7BB3006C0565 /* TMTLatexTableFrameworkTests */,
+				D2D86708198E7C48006C0565 /* TMTLatexTableExample */,
+				D2D86722198E7C48006C0565 /* TMTLatexTableExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2D866BF198E7BB3006C0565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D86704198E7C35006C0565 /* TMTLatexTableViewController.xib in Resources */,
+				D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D866D6198E7BB3006C0565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866E4198E7BB3006C0565 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D86707198E7C48006C0565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D86710198E7C48006C0565 /* InfoPlist.strings in Resources */,
+				D2D8671E198E7C48006C0565 /* Images.xcassets in Resources */,
+				D2D86716198E7C48006C0565 /* Credits.rtf in Resources */,
+				D2D8671C198E7C48006C0565 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D86721198E7C48006C0565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D8672D198E7C48006C0565 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2D866BC198E7BB3006C0565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866FC198E7C2B006C0565 /* TMTLatexTableCellModel.m in Sources */,
+				D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */,
+				D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */,
+				D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */,
+				D2D86703198E7C35006C0565 /* TMTLatexTableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D866D4198E7BB3006C0565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D866E6198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D86705198E7C48006C0565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D86719198E7C48006C0565 /* AppDelegate.m in Sources */,
+				D2D86712198E7C48006C0565 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D8671F198E7C48006C0565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D8672F198E7C48006C0565 /* TMTLatexTableExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2D866DD198E7BB3006C0565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */;
+			targetProxy = D2D866DC198E7BB3006C0565 /* PBXContainerItemProxy */;
+		};
+		D2D86727198E7C48006C0565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2D86708198E7C48006C0565 /* TMTLatexTableExample */;
+			targetProxy = D2D86726198E7C48006C0565 /* PBXContainerItemProxy */;
+		};
+		D2D86738198E7CF0006C0565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */;
+			targetProxy = D2D86737198E7CF0006C0565 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2D866CD198E7BB3006C0565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D866CE198E7BB3006C0565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2D866E2198E7BB3006C0565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D866E3198E7BB3006C0565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2D8670E198E7C48006C0565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D8670F198E7C48006C0565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2D86714198E7C48006C0565 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D86715198E7C48006C0565 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D2D8671A198E7C48006C0565 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D8671B198E7C48006C0565 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D2D8672B198E7C48006C0565 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2D8672C198E7C48006C0565 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2D866E7198E7BB3006C0565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D2D866E8198E7BB3006C0565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D2D866EA198E7BB3006C0565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
+				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		D2D866EB198E7BB3006C0565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
+				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		D2D866ED198E7BB3006C0565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D2D866EE198E7BB3006C0565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
+				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		D2D86731198E7C48006C0565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2D86732198E7C48006C0565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
+				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D2D86734198E7C48006C0565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D2D86735198E7C48006C0565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
+				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2D866BB198E7BB3006C0565 /* Build configuration list for PBXProject "TMTLatexTableFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D866E7198E7BB3006C0565 /* Debug */,
+				D2D866E8198E7BB3006C0565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2D866E9198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D866EA198E7BB3006C0565 /* Debug */,
+				D2D866EB198E7BB3006C0565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2D866EC198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D866ED198E7BB3006C0565 /* Debug */,
+				D2D866EE198E7BB3006C0565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2D86730198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D86731198E7C48006C0565 /* Debug */,
+				D2D86732198E7C48006C0565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2D86733198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D86734198E7C48006C0565 /* Debug */,
+				D2D86735198E7C48006C0565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2D866B8198E7BB3006C0565 /* Project object */;
+}
