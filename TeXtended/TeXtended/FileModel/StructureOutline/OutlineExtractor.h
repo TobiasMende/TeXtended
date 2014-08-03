@@ -18,6 +18,8 @@
         NSString *_content;
 
         DocumentModel *_model;
+        
+        NSRegularExpression *masterRegex;
 
     }
 
