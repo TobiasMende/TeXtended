@@ -28,14 +28,5 @@
     // Drawing code here.
 }
 
-- (void)drawBackgroundInRect:(NSRect)dirtyRect {
-    
-    [super drawBackgroundInRect:dirtyRect];
 
-}
-
-
-- (NSBackgroundStyle)interiorBackgroundStyle {
-    return NSBackgroundStyleLight;
-}
 @end

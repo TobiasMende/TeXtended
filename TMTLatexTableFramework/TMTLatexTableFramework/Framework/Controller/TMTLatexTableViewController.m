@@ -29,6 +29,8 @@
         _model = [TMTLatexTableModel new];
         [_model addObserver:self forKeyPath:@"numberOfRows" options:NSKeyValueObservingOptionNew context:NULL];
         [_model addObserver:self forKeyPath:@"numberOfColumns" options:NSKeyValueObservingOptionNew context:NULL];
+        _model.numberOfRows = 5;
+        _model.numberOfColumns = 5;
     }
     return self;
 }
@@ -41,8 +43,7 @@
     _tableView.cmdArrowUpAction = @selector(addRowAbove:);
     _tableView.cmdArrowLeftAction = @selector(addColumnLeft:);
     _tableView.cmdArrowRightAction = @selector(addColumnRight:);
-    _model.numberOfColumns = 5;
-    _model.numberOfRows = 5;
+    [self updateTableColumns];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -104,13 +105,13 @@
                   row:(NSInteger)row {
     NSUInteger columnIndex = [tableView.tableColumns indexOfObject:tableColumn];
     if (columnIndex == 0) {
-        NSTableCellView *view = [tableView makeViewWithIdentifier:@"TMTLineNumberCellView" owner:nil];
+        NSTableCellView *view = [tableView makeViewWithIdentifier:@"TMTLineNumberCellView" owner:self];
         view.objectValue = [NSString stringWithFormat:@"%li", row+1];
         return view;
     }
     
     // Get an existing cell with the MyView identifier if it exists
-    TMTLatexTableCellView *result = [tableView makeViewWithIdentifier:@"TMTLatexTableCellView" owner:nil];
+    TMTLatexTableCellView *result = [tableView makeViewWithIdentifier:@"TMTLatexTableCellView" owner:self];
     result.objectValue = [self tableView:tableView objectValueForTableColumn:tableColumn row:row];
     // Return the result
     return result;
@@ -150,25 +151,23 @@
 }
 
 - (void)addColumnLeft:(TMTLatexTableView *)sender {
-    NSInteger selectedColumn = sender.selectedColumn;
-    if (![self columnIsValid:selectedColumn] || selectedColumn == 0) {
+    NSInteger selectedColumn = sender.selectedColumn-1;
+    if (![self columnIsValid:selectedColumn]) {
         NSBeep();
         return;
     }
-    [self.model addColumnAtIndex:selectedColumn-1];
-    [sender addTableColumnAtIndex:selectedColumn];
+    [self.model addColumnAtIndex:selectedColumn];
     [sender reloadData];
 }
 
 - (void)addColumnRight:(TMTLatexTableView *)sender {
-    NSInteger selectedColumn = sender.selectedColumn;
-    if (![self columnIsValid:selectedColumn] || selectedColumn >= self.model.numberOfColumns-1) {
+    NSInteger selectedColumn = sender.selectedColumn-1;
+    if (![self columnIsValid:selectedColumn]) {
         NSBeep();
         return;
     }
     
-    [self.model addColumnAtIndex:selectedColumn];
-    [sender addTableColumnAtIndex:selectedColumn+1];
+    [self.model addColumnAtIndex:selectedColumn+1];
     [sender reloadData];
 }
 
@@ -179,7 +178,7 @@
 }
 
 - (BOOL)columnIsValid:(NSInteger)columnIndex {
-    return columnIndex >= 0 && columnIndex < self.model.numberOfColumns && columnIndex != NSNotFound;
+    return columnIndex >= 0 && columnIndex <= self.model.numberOfColumns && columnIndex != NSNotFound;
 }
 
 

@@ -19,6 +19,7 @@ static const NSArray *OBSERVED_MODEL_KEYPATHS;
 - (void)drawBorders:(NSRect)dirtyRect;
 - (void)removeModelObservers;
 - (void)addModelObservers;
+- (void)updateBorderSettings:(TMTLatexTableCellBorder)borderType;
 @end
 
 @implementation TMTLatexTableCellView
@@ -60,7 +61,6 @@ static const NSArray *OBSERVED_MODEL_KEYPATHS;
         [NSBezierPath fillRect:dirtyRect];
     }
     [self drawBorders:dirtyRect];
-    // Drawing code here.
 }
 
 - (void)drawBorders:(NSRect)dirtyRect {
@@ -97,32 +97,41 @@ static const NSArray *OBSERVED_MODEL_KEYPATHS;
         innerTopRight.x = NSMaxX(inner);
     }
     
-    [[NSColor blackColor] set];
-    if (m.topBorder != NONE) {
-         [NSBezierPath strokeLineFromPoint:outerTopLeft toPoint:outerTopRight];
+    
+    [self updateBorderSettings:m.topBorder];
+    [NSBezierPath strokeLineFromPoint:outerTopLeft toPoint:outerTopRight];
         if (m.topBorder == DOUBLE) {
             [NSBezierPath strokeLineFromPoint:innerTopLeft toPoint:innerTopRight];
         }
-    }
-    if (m.bottomBorder != NONE) {
-         [NSBezierPath strokeLineFromPoint:outerBottomLeft toPoint:outerBottomRight];
+    
+    [self updateBorderSettings:m.bottomBorder];
+    [NSBezierPath strokeLineFromPoint:outerBottomLeft toPoint:outerBottomRight];
         if (m.bottomBorder == DOUBLE) {
             [NSBezierPath strokeLineFromPoint:innerBottomLeft toPoint:innerBottomRight];
         }
-    }
-    if (m.leftBorder != NONE) {
+    
+    [self updateBorderSettings:m.leftBorder];
         [NSBezierPath strokeLineFromPoint:outerTopLeft toPoint:outerBottomLeft];
         if (m.leftBorder == DOUBLE) {
             [NSBezierPath strokeLineFromPoint:innerTopLeft toPoint:innerBottomLeft];
         }
-    }
-    if (m.rightBorder != NONE) {
+    
+    [self updateBorderSettings:m.rightBorder];
         [NSBezierPath strokeLineFromPoint:outerTopRight toPoint:outerBottomRight];
         if (m.rightBorder == DOUBLE) {
             [NSBezierPath strokeLineFromPoint:innerTopRight toPoint:innerBottomRight];
         }
-    }
     
+}
+
+- (void)updateBorderSettings:(TMTLatexTableCellBorder)borderType {
+    if (borderType == NONE) {
+        [[NSColor gridColor] set];
+        [NSBezierPath setDefaultLineWidth:0.5];
+    } else {
+        [[NSColor blackColor] set];
+        [NSBezierPath setDefaultLineWidth:LINE_WIDTH];
+    }
 }
 
 

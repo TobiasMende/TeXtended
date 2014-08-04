@@ -118,6 +118,26 @@ static const NSArray *LETTERS;
     return reversedString;
 }
 
+#pragma mark - Drawing
+
+- (void)drawBackgroundInClipRect:(NSRect)clipRect {
+    [super drawBackgroundInClipRect:clipRect];
+    NSRect firstColumn =NSIntersectionRect([self rectOfColumn:0], clipRect);
+    NSGradient *gradient = [[NSGradient alloc] initWithColors:@[
+                                                                [NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:1],
+                                                                [NSColor colorWithCalibratedRed:0.96 green:0.96 blue:0.96 alpha:1],
+                                                                [NSColor colorWithCalibratedRed:0.93 green:0.93 blue:0.93 alpha:1],
+                                                                [NSColor colorWithCalibratedRed:0.96 green:0.96 blue:0.96 alpha:1]]];
+    [gradient drawInRect:firstColumn angle:0];
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    NSRect firstColumn =NSIntersectionRect([self rectOfColumn:0], self.bounds);
+    [[NSColor headerColor] set];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(firstColumn), NSMaxY(firstColumn)) toPoint:NSMakePoint(NSMaxX(firstColumn), 0)];
+}
+
 
 @end
 #pragma clang diagnostic pop
