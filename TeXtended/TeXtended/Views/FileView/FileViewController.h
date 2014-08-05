@@ -75,6 +75,8 @@
 
     - (IBAction)showInformation:(id)sender;
 
+- (BOOL)isDeletionAllowed;
+
 
 
 @end

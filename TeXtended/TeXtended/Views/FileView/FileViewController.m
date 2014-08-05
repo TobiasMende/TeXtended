@@ -245,6 +245,12 @@ static NSArray *INTERNAL_EXTENSIONS;
     }
 
 
+-(BOOL)isDeletionAllowed {
+    FileNode *node = self.currentFileNode;
+    MainDocument *md = self.currentMainDocument;
+    return node && md && ![md.model.path isEqualToString:node.path];
+}
+
 #pragma mark - Context Menu Actions
 
     - (IBAction)openFile:(id)sender
@@ -265,14 +271,10 @@ static NSArray *INTERNAL_EXTENSIONS;
         if (!self.currentMainDocument) {
             return [super respondsToSelector:aSelector];
         }
-        if (aSelector == @selector(deleteFile:)) {
-            FileNode *node = self.currentFileNode;
-            MainDocument *md = self.currentMainDocument;
-            return node && md && ![md.model.path isEqualToString:node.path];
-        }
-
+        
         return [super respondsToSelector:aSelector];
     }
+
 
     - (IBAction)renameFile:(id)sender
     {
