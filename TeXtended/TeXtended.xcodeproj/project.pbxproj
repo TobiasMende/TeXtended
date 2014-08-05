@@ -80,6 +80,7 @@
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
 		D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */; };
 		D243662C199119DD008A31B5 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
+		D243662D19911FA0008A31B5 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -305,6 +306,7 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 10;
 			files = (
+				D243662D19911FA0008A31B5 /* TMTHelperCollection.framework in CopyFiles */,
 				D2B9830B1990FCC000E2EF5D /* TMTBibTexTools.framework in CopyFiles */,
 				D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */,
 			);
