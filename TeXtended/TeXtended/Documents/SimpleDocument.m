@@ -10,7 +10,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "EncodingController.h"
-#import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/TMTHelperCollection.h>
 #import "DocumentCreationController.h"
 #import "ConsoleManager.h"
 #import "MergeWindowController.h"
