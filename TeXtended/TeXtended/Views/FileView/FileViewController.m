@@ -84,7 +84,6 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)awakeFromNib
     {
-        [super awakeFromNib];
         [self.outlineView registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil]];
         [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
         [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];

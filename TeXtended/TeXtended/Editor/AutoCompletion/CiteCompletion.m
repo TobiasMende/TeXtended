@@ -7,7 +7,7 @@
 //
 
 #import "CiteCompletion.h"
-#import <BibTexToolsFramework/TMTBibTexEntry.h>
+#import <TMTBibTexTools/TMTBibTexEntry.h>
 
 @implementation CiteCompletion
 

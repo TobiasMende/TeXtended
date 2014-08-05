@@ -39,6 +39,7 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
+		D26CF28819910BD700E50931 /* Pods-TMTHelperCollection.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */; };
 		D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D276C8151956CDA1009DB27D /* TMTTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D276C8161956CDA1009DB27D /* TMTTreeController.m */; };
 		D28F285519647FF40085344F /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285319647FF40085344F /* NSSet+TMTSerialization.h */; };
@@ -109,6 +110,7 @@
 		D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNamedEncoding.m; sourceTree = "<group>"; };
 		D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTEncodingTransformer.h; sourceTree = "<group>"; };
 		D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTEncodingTransformer.m; sourceTree = "<group>"; };
+		D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.xcconfig"; path = "../Pods/Pods-TMTHelperCollection.xcconfig"; sourceTree = "<group>"; };
 		D276C8151956CDA1009DB27D /* TMTTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTreeController.h; sourceTree = "<group>"; };
 		D276C8161956CDA1009DB27D /* TMTTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTreeController.m; sourceTree = "<group>"; };
 		D28F285319647FF40085344F /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
@@ -130,7 +132,6 @@
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
 		D295821619166B5F00C1B9E0 /* TMTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTextField.h; sourceTree = "<group>"; };
 		D295821719166B5F00C1B9E0 /* TMTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTextField.m; sourceTree = "<group>"; };
-		E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.xcconfig"; path = "../Pods/Pods-TMTHelperCollection.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,11 +170,11 @@
 		D22DC1AF1863784800997ADB = {
 			isa = PBXGroup;
 			children = (
+				D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */,
 				D22DC1C21863784800997ADB /* TMTHelperCollection */,
 				D22DC1D71863784800997ADB /* TMTHelperCollectionTests */,
 				D22DC1BB1863784800997ADB /* Frameworks */,
 				D22DC1BA1863784800997ADB /* Products */,
-				E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,12 +414,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22DC1E11863784800997ADB /* Build configuration list for PBXNativeTarget "TMTHelperCollection" */;
 			buildPhases = (
-				B40B6FDCE3D74EC4AE325CF9 /* Check Pods Manifest.lock */,
 				D22DC1B41863784800997ADB /* Sources */,
 				D22DC1B51863784800997ADB /* Frameworks */,
 				D22DC1B61863784800997ADB /* Headers */,
 				D22DC1B71863784800997ADB /* Resources */,
-				9B437A30D8F84A829C01EC8F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D26CF28819910BD700E50931 /* Pods-TMTHelperCollection.xcconfig in Resources */,
 				D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,39 +498,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9B437A30D8F84A829C01EC8F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-TMTHelperCollection-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B40B6FDCE3D74EC4AE325CF9 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D22DC1B41863784800997ADB /* Sources */ = {
@@ -602,6 +569,7 @@
 /* Begin XCBuildConfiguration section */
 		D22DC1DF1863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -643,6 +611,7 @@
 		};
 		D22DC1E01863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -678,7 +647,7 @@
 		};
 		D22DC1E21863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -696,7 +665,7 @@
 		};
 		D22DC1E31863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6A84DA3AEF749B2BF99B9D6 /* Pods-TMTHelperCollection.xcconfig */;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -714,6 +683,7 @@
 		};
 		D22DC1E51863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTHelperCollection.framework/Versions/A/TMTHelperCollection";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -736,6 +706,7 @@
 		};
 		D22DC1E61863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTHelperCollection.framework/Versions/A/TMTHelperCollection";
 				COMBINE_HIDPI_IMAGES = YES;

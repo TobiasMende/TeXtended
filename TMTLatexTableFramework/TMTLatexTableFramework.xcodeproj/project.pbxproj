@@ -1,871 +1,2162 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		D260F262198EBDFA00EDAA3A /* TMTLatexTableRowView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */; };
-		D260F263198EBDFA00EDAA3A /* TMTLatexTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */; };
-		D260F272198EC80F00EDAA3A /* TMTLineNumberCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */; };
-		D260F273198EC80F00EDAA3A /* TMTLineNumberCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */; };
-		D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
-		D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866CD198E7BB3006C0565 /* InfoPlist.strings */; };
-		D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */; };
-		D2D866DA198E7BB3006C0565 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866D9198E7BB3006C0565 /* XCTest.framework */; };
-		D2D866DB198E7BB3006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
-		D2D866DE198E7BB3006C0565 /* TMTLatexTableFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */; };
-		D2D866E4198E7BB3006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D866E2198E7BB3006C0565 /* InfoPlist.strings */; };
-		D2D866E6198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */; };
-		D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */; };
-		D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2D866FC198E7C2B006C0565 /* TMTLatexTableCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */; };
-		D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */; };
-		D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2D86703198E7C35006C0565 /* TMTLatexTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86700198E7C35006C0565 /* TMTLatexTableView.m */; };
-		D2D86704198E7C35006C0565 /* TMTLatexTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */; };
-		D2D8670A198E7C48006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
-		D2D86710198E7C48006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D8670E198E7C48006C0565 /* InfoPlist.strings */; };
-		D2D86712198E7C48006C0565 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86711198E7C48006C0565 /* main.m */; };
-		D2D86716198E7C48006C0565 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D2D86714198E7C48006C0565 /* Credits.rtf */; };
-		D2D86719198E7C48006C0565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D86718198E7C48006C0565 /* AppDelegate.m */; };
-		D2D8671C198E7C48006C0565 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D8671A198E7C48006C0565 /* MainMenu.xib */; };
-		D2D8671E198E7C48006C0565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2D8671D198E7C48006C0565 /* Images.xcassets */; };
-		D2D86724198E7C48006C0565 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866D9198E7BB3006C0565 /* XCTest.framework */; };
-		D2D86725198E7C48006C0565 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C4198E7BB3006C0565 /* Cocoa.framework */; };
-		D2D8672D198E7C48006C0565 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2D8672B198E7C48006C0565 /* InfoPlist.strings */; };
-		D2D8672F198E7C48006C0565 /* TMTLatexTableExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */; };
-		D2D86736198E7CE5006C0565 /* TMTLatexTableFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */; };
-		D2D8673F198E80B9006C0565 /* TMTLatexTableCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */; };
-		D2D86740198E80B9006C0565 /* TMTLatexTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D2D866DC198E7BB3006C0565 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2D866C0198E7BB3006C0565;
-			remoteInfo = TMTLatexTableFramework;
-		};
-		D2D86726198E7C48006C0565 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2D86708198E7C48006C0565;
-			remoteInfo = TMTLatexTableExample;
-		};
-		D2D86737198E7CF0006C0565 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D2D866B8198E7BB3006C0565 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D2D866C0198E7BB3006C0565;
-			remoteInfo = TMTLatexTableFramework;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableRowView.h; sourceTree = "<group>"; };
-		D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableRowView.m; sourceTree = "<group>"; };
-		D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLineNumberCellView.h; sourceTree = "<group>"; };
-		D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLineNumberCellView.m; sourceTree = "<group>"; };
-		D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTLatexTableFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2D866C4198E7BB3006C0565 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D2D866C7198E7BB3006C0565 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D2D866C8198E7BB3006C0565 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D2D866C9198E7BB3006C0565 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D2D866CC198E7BB3006C0565 /* TMTLatexTableFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableFramework-Info.plist"; sourceTree = "<group>"; };
-		D2D866CE198E7BB3006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2D866D0198E7BB3006C0565 /* TMTLatexTableFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTLatexTableFramework-Prefix.pch"; sourceTree = "<group>"; };
-		D2D866D1198E7BB3006C0565 /* TMTLatexTableFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableFramework.h; sourceTree = "<group>"; };
-		D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableFramework.m; sourceTree = "<group>"; };
-		D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTLatexTableFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2D866D9198E7BB3006C0565 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D2D866E1198E7BB3006C0565 /* TMTLatexTableFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableFrameworkTests-Info.plist"; sourceTree = "<group>"; };
-		D2D866E3198E7BB3006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableFrameworkTests.m; sourceTree = "<group>"; };
-		D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableViewController.h; sourceTree = "<group>"; };
-		D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableViewController.m; sourceTree = "<group>"; };
-		D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableCellModel.h; sourceTree = "<group>"; };
-		D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableCellModel.m; sourceTree = "<group>"; };
-		D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableModel.h; sourceTree = "<group>"; };
-		D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableModel.m; sourceTree = "<group>"; };
-		D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableView.h; sourceTree = "<group>"; };
-		D2D86700198E7C35006C0565 /* TMTLatexTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableView.m; sourceTree = "<group>"; };
-		D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTLatexTableViewController.xib; sourceTree = "<group>"; };
-		D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMTLatexTableExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2D8670D198E7C48006C0565 /* TMTLatexTableExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableExample-Info.plist"; sourceTree = "<group>"; };
-		D2D8670F198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2D86711198E7C48006C0565 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D2D86713198E7C48006C0565 /* TMTLatexTableExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTLatexTableExample-Prefix.pch"; sourceTree = "<group>"; };
-		D2D86715198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D2D86717198E7C48006C0565 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D2D86718198E7C48006C0565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D2D8671B198E7C48006C0565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D2D8671D198E7C48006C0565 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTLatexTableExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2D8672A198E7C48006C0565 /* TMTLatexTableExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTLatexTableExampleTests-Info.plist"; sourceTree = "<group>"; };
-		D2D8672C198E7C48006C0565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableExampleTests.m; sourceTree = "<group>"; };
-		D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTLatexTableCellView.h; sourceTree = "<group>"; };
-		D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTLatexTableCellView.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D2D866BD198E7BB3006C0565 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D866D5198E7BB3006C0565 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866DE198E7BB3006C0565 /* TMTLatexTableFramework.framework in Frameworks */,
-				D2D866DB198E7BB3006C0565 /* Cocoa.framework in Frameworks */,
-				D2D866DA198E7BB3006C0565 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D86706198E7C48006C0565 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D86736198E7CE5006C0565 /* TMTLatexTableFramework.framework in Frameworks */,
-				D2D8670A198E7C48006C0565 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D86720198E7C48006C0565 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D86725198E7C48006C0565 /* Cocoa.framework in Frameworks */,
-				D2D86724198E7C48006C0565 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		D2D866B7198E7BB3006C0565 = {
-			isa = PBXGroup;
-			children = (
-				D2D866CA198E7BB3006C0565 /* TMTLatexTableFramework */,
-				D2D866DF198E7BB3006C0565 /* TMTLatexTableFrameworkTests */,
-				D2D8670B198E7C48006C0565 /* TMTLatexTableExample */,
-				D2D86728198E7C48006C0565 /* TMTLatexTableExampleTests */,
-				D2D866C3198E7BB3006C0565 /* Frameworks */,
-				D2D866C2198E7BB3006C0565 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		D2D866C2198E7BB3006C0565 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */,
-				D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */,
-				D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */,
-				D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D2D866C3198E7BB3006C0565 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866C4198E7BB3006C0565 /* Cocoa.framework */,
-				D2D866D9198E7BB3006C0565 /* XCTest.framework */,
-				D2D866C6198E7BB3006C0565 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D2D866C6198E7BB3006C0565 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866C7198E7BB3006C0565 /* Foundation.framework */,
-				D2D866C8198E7BB3006C0565 /* CoreData.framework */,
-				D2D866C9198E7BB3006C0565 /* AppKit.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		D2D866CA198E7BB3006C0565 /* TMTLatexTableFramework */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866EF198E7C02006C0565 /* Framework */,
-				D2D866D1198E7BB3006C0565 /* TMTLatexTableFramework.h */,
-				D2D866D2198E7BB3006C0565 /* TMTLatexTableFramework.m */,
-				D2D866CB198E7BB3006C0565 /* Supporting Files */,
-			);
-			path = TMTLatexTableFramework;
-			sourceTree = "<group>";
-		};
-		D2D866CB198E7BB3006C0565 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866CC198E7BB3006C0565 /* TMTLatexTableFramework-Info.plist */,
-				D2D866CD198E7BB3006C0565 /* InfoPlist.strings */,
-				D2D866D0198E7BB3006C0565 /* TMTLatexTableFramework-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2D866DF198E7BB3006C0565 /* TMTLatexTableFrameworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866E5198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m */,
-				D2D866E0198E7BB3006C0565 /* Supporting Files */,
-			);
-			path = TMTLatexTableFrameworkTests;
-			sourceTree = "<group>";
-		};
-		D2D866E0198E7BB3006C0565 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866E1198E7BB3006C0565 /* TMTLatexTableFrameworkTests-Info.plist */,
-				D2D866E2198E7BB3006C0565 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2D866EF198E7C02006C0565 /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866F0198E7C02006C0565 /* Controller */,
-				D2D866F1198E7C02006C0565 /* Model */,
-				D2D866F2198E7C02006C0565 /* View */,
-			);
-			path = Framework;
-			sourceTree = "<group>";
-		};
-		D2D866F0198E7C02006C0565 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866F3198E7C20006C0565 /* TMTLatexTableViewController.h */,
-				D2D866F4198E7C20006C0565 /* TMTLatexTableViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D2D866F1198E7C02006C0565 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D2D866F7198E7C2B006C0565 /* TMTLatexTableCellModel.h */,
-				D2D866F8198E7C2B006C0565 /* TMTLatexTableCellModel.m */,
-				D2D866F9198E7C2B006C0565 /* TMTLatexTableModel.h */,
-				D2D866FA198E7C2B006C0565 /* TMTLatexTableModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D2D866F2198E7C02006C0565 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */,
-				D260F271198EC80F00EDAA3A /* TMTLineNumberCellView.m */,
-				D2D86701198E7C35006C0565 /* TMTLatexTableViewController.xib */,
-				D2D866FF198E7C35006C0565 /* TMTLatexTableView.h */,
-				D2D86700198E7C35006C0565 /* TMTLatexTableView.m */,
-				D2D8673D198E80B9006C0565 /* TMTLatexTableCellView.h */,
-				D2D8673E198E80B9006C0565 /* TMTLatexTableCellView.m */,
-				D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */,
-				D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D2D8670B198E7C48006C0565 /* TMTLatexTableExample */ = {
-			isa = PBXGroup;
-			children = (
-				D2D86717198E7C48006C0565 /* AppDelegate.h */,
-				D2D86718198E7C48006C0565 /* AppDelegate.m */,
-				D2D8671A198E7C48006C0565 /* MainMenu.xib */,
-				D2D8671D198E7C48006C0565 /* Images.xcassets */,
-				D2D8670C198E7C48006C0565 /* Supporting Files */,
-			);
-			path = TMTLatexTableExample;
-			sourceTree = "<group>";
-		};
-		D2D8670C198E7C48006C0565 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2D8670D198E7C48006C0565 /* TMTLatexTableExample-Info.plist */,
-				D2D8670E198E7C48006C0565 /* InfoPlist.strings */,
-				D2D86711198E7C48006C0565 /* main.m */,
-				D2D86713198E7C48006C0565 /* TMTLatexTableExample-Prefix.pch */,
-				D2D86714198E7C48006C0565 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2D86728198E7C48006C0565 /* TMTLatexTableExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				D2D8672E198E7C48006C0565 /* TMTLatexTableExampleTests.m */,
-				D2D86729198E7C48006C0565 /* Supporting Files */,
-			);
-			path = TMTLatexTableExampleTests;
-			sourceTree = "<group>";
-		};
-		D2D86729198E7C48006C0565 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2D8672A198E7C48006C0565 /* TMTLatexTableExampleTests-Info.plist */,
-				D2D8672B198E7C48006C0565 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		D2D866BE198E7BB3006C0565 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866FB198E7C2B006C0565 /* TMTLatexTableCellModel.h in Headers */,
-				D2D8673F198E80B9006C0565 /* TMTLatexTableCellView.h in Headers */,
-				D2D866F5198E7C20006C0565 /* TMTLatexTableViewController.h in Headers */,
-				D260F272198EC80F00EDAA3A /* TMTLineNumberCellView.h in Headers */,
-				D2D866FD198E7C2B006C0565 /* TMTLatexTableModel.h in Headers */,
-				D260F262198EBDFA00EDAA3A /* TMTLatexTableRowView.h in Headers */,
-				D2D86702198E7C35006C0565 /* TMTLatexTableView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2D866E9198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFramework" */;
-			buildPhases = (
-				D2D866BC198E7BB3006C0565 /* Sources */,
-				D2D866BD198E7BB3006C0565 /* Frameworks */,
-				D2D866BE198E7BB3006C0565 /* Headers */,
-				D2D866BF198E7BB3006C0565 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TMTLatexTableFramework;
-			productName = TMTLatexTableFramework;
-			productReference = D2D866C1198E7BB3006C0565 /* TMTLatexTableFramework.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D2D866D7198E7BB3006C0565 /* TMTLatexTableFrameworkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2D866EC198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFrameworkTests" */;
-			buildPhases = (
-				D2D866D4198E7BB3006C0565 /* Sources */,
-				D2D866D5198E7BB3006C0565 /* Frameworks */,
-				D2D866D6198E7BB3006C0565 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D2D866DD198E7BB3006C0565 /* PBXTargetDependency */,
-			);
-			name = TMTLatexTableFrameworkTests;
-			productName = TMTLatexTableFrameworkTests;
-			productReference = D2D866D8198E7BB3006C0565 /* TMTLatexTableFrameworkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D2D86708198E7C48006C0565 /* TMTLatexTableExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2D86730198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExample" */;
-			buildPhases = (
-				D2D86705198E7C48006C0565 /* Sources */,
-				D2D86706198E7C48006C0565 /* Frameworks */,
-				D2D86707198E7C48006C0565 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D2D86738198E7CF0006C0565 /* PBXTargetDependency */,
-			);
-			name = TMTLatexTableExample;
-			productName = TMTLatexTableExample;
-			productReference = D2D86709198E7C48006C0565 /* TMTLatexTableExample.app */;
-			productType = "com.apple.product-type.application";
-		};
-		D2D86722198E7C48006C0565 /* TMTLatexTableExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D2D86733198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExampleTests" */;
-			buildPhases = (
-				D2D8671F198E7C48006C0565 /* Sources */,
-				D2D86720198E7C48006C0565 /* Frameworks */,
-				D2D86721198E7C48006C0565 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D2D86727198E7C48006C0565 /* PBXTargetDependency */,
-			);
-			name = TMTLatexTableExampleTests;
-			productName = TMTLatexTableExampleTests;
-			productReference = D2D86723198E7C48006C0565 /* TMTLatexTableExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D2D866B8198E7BB3006C0565 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = TeXtended;
-				TargetAttributes = {
-					D2D866D7198E7BB3006C0565 = {
-						TestTargetID = D2D866C0198E7BB3006C0565;
-					};
-					D2D86722198E7C48006C0565 = {
-						TestTargetID = D2D866C0198E7BB3006C0565;
-					};
-				};
-			};
-			buildConfigurationList = D2D866BB198E7BB3006C0565 /* Build configuration list for PBXProject "TMTLatexTableFramework" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = D2D866B7198E7BB3006C0565;
-			productRefGroup = D2D866C2198E7BB3006C0565 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */,
-				D2D866D7198E7BB3006C0565 /* TMTLatexTableFrameworkTests */,
-				D2D86708198E7C48006C0565 /* TMTLatexTableExample */,
-				D2D86722198E7C48006C0565 /* TMTLatexTableExampleTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D2D866BF198E7BB3006C0565 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D86704198E7C35006C0565 /* TMTLatexTableViewController.xib in Resources */,
-				D2D866CF198E7BB3006C0565 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D866D6198E7BB3006C0565 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866E4198E7BB3006C0565 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D86707198E7C48006C0565 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D86710198E7C48006C0565 /* InfoPlist.strings in Resources */,
-				D2D8671E198E7C48006C0565 /* Images.xcassets in Resources */,
-				D2D86716198E7C48006C0565 /* Credits.rtf in Resources */,
-				D2D8671C198E7C48006C0565 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D86721198E7C48006C0565 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D8672D198E7C48006C0565 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D2D866BC198E7BB3006C0565 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866FC198E7C2B006C0565 /* TMTLatexTableCellModel.m in Sources */,
-				D2D866F6198E7C20006C0565 /* TMTLatexTableViewController.m in Sources */,
-				D260F263198EBDFA00EDAA3A /* TMTLatexTableRowView.m in Sources */,
-				D260F273198EC80F00EDAA3A /* TMTLineNumberCellView.m in Sources */,
-				D2D866D3198E7BB3006C0565 /* TMTLatexTableFramework.m in Sources */,
-				D2D866FE198E7C2B006C0565 /* TMTLatexTableModel.m in Sources */,
-				D2D86740198E80B9006C0565 /* TMTLatexTableCellView.m in Sources */,
-				D2D86703198E7C35006C0565 /* TMTLatexTableView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D866D4198E7BB3006C0565 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D866E6198E7BB3006C0565 /* TMTLatexTableFrameworkTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D86705198E7C48006C0565 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D86719198E7C48006C0565 /* AppDelegate.m in Sources */,
-				D2D86712198E7C48006C0565 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2D8671F198E7C48006C0565 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2D8672F198E7C48006C0565 /* TMTLatexTableExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D2D866DD198E7BB3006C0565 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */;
-			targetProxy = D2D866DC198E7BB3006C0565 /* PBXContainerItemProxy */;
-		};
-		D2D86727198E7C48006C0565 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D2D86708198E7C48006C0565 /* TMTLatexTableExample */;
-			targetProxy = D2D86726198E7C48006C0565 /* PBXContainerItemProxy */;
-		};
-		D2D86738198E7CF0006C0565 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D2D866C0198E7BB3006C0565 /* TMTLatexTableFramework */;
-			targetProxy = D2D86737198E7CF0006C0565 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D2D866CD198E7BB3006C0565 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D866CE198E7BB3006C0565 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D2D866E2198E7BB3006C0565 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D866E3198E7BB3006C0565 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D2D8670E198E7C48006C0565 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D8670F198E7C48006C0565 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D2D86714198E7C48006C0565 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D86715198E7C48006C0565 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		D2D8671A198E7C48006C0565 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D8671B198E7C48006C0565 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		D2D8672B198E7C48006C0565 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2D8672C198E7C48006C0565 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		D2D866E7198E7BB3006C0565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		D2D866E8198E7BB3006C0565 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		D2D866EA198E7BB3006C0565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
-				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		D2D866EB198E7BB3006C0565 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
-				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
-		D2D866ED198E7BB3006C0565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D2D866EE198E7BB3006C0565 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
-				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		D2D86731198E7C48006C0565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D2D86732198E7C48006C0565 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
-				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D2D86734198E7C48006C0565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D2D86735198E7C48006C0565 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
-				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D2D866BB198E7BB3006C0565 /* Build configuration list for PBXProject "TMTLatexTableFramework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2D866E7198E7BB3006C0565 /* Debug */,
-				D2D866E8198E7BB3006C0565 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2D866E9198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFramework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2D866EA198E7BB3006C0565 /* Debug */,
-				D2D866EB198E7BB3006C0565 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2D866EC198E7BB3006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableFrameworkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2D866ED198E7BB3006C0565 /* Debug */,
-				D2D866EE198E7BB3006C0565 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2D86730198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2D86731198E7C48006C0565 /* Debug */,
-				D2D86732198E7C48006C0565 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D2D86733198E7C48006C0565 /* Build configuration list for PBXNativeTarget "TMTLatexTableExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D2D86734198E7C48006C0565 /* Debug */,
-				D2D86735198E7C48006C0565 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D2D866B8198E7BB3006C0565 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>006422AA66F44BA4BC0FF791</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-TMTLatexTableFramework.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>04FB2258B9094171AFF40724</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>06FF6D12792C4968A129F306</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.xcconfig</string>
+			<key>path</key>
+			<string>../Pods/Pods.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7AF0F2656AA44ACA85FF1ED2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>006422AA66F44BA4BC0FF791</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>7E1F382C86094D02A0356C84</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-TMTLatexTableFramework.xcconfig</string>
+			<key>path</key>
+			<string>../Pods/Pods-TMTLatexTableFramework.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CF04383B440740FCBD8BBF3A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FD963E6B2AED41AD8E24FB72</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D260F260198EBDFA00EDAA3A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableRowView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D260F261198EBDFA00EDAA3A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableRowView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D260F262198EBDFA00EDAA3A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D260F260198EBDFA00EDAA3A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D260F263198EBDFA00EDAA3A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D260F261198EBDFA00EDAA3A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D260F270198EC80F00EDAA3A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLineNumberCellView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D260F271198EC80F00EDAA3A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLineNumberCellView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D260F272198EC80F00EDAA3A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D260F270198EC80F00EDAA3A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D260F273198EC80F00EDAA3A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D260F271198EC80F00EDAA3A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866B7198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866CA198E7BB3006C0565</string>
+				<string>D2D866DF198E7BB3006C0565</string>
+				<string>D2D8670B198E7C48006C0565</string>
+				<string>D2D86728198E7C48006C0565</string>
+				<string>D2D866C3198E7BB3006C0565</string>
+				<string>D2D866C2198E7BB3006C0565</string>
+				<string>06FF6D12792C4968A129F306</string>
+				<string>7E1F382C86094D02A0356C84</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866B8198E7BB3006C0565</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>TeXtended</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>D2D866D7198E7BB3006C0565</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>D2D866C0198E7BB3006C0565</string>
+					</dict>
+					<key>D2D86722198E7C48006C0565</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>D2D866C0198E7BB3006C0565</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D2D866BB198E7BB3006C0565</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D2D866B7198E7BB3006C0565</string>
+			<key>productRefGroup</key>
+			<string>D2D866C2198E7BB3006C0565</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D2D866C0198E7BB3006C0565</string>
+				<string>D2D866D7198E7BB3006C0565</string>
+				<string>D2D86708198E7C48006C0565</string>
+				<string>D2D86722198E7C48006C0565</string>
+			</array>
+		</dict>
+		<key>D2D866BB198E7BB3006C0565</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2D866E7198E7BB3006C0565</string>
+				<string>D2D866E8198E7BB3006C0565</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2D866BC198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866FC198E7C2B006C0565</string>
+				<string>D2D866F6198E7C20006C0565</string>
+				<string>D260F263198EBDFA00EDAA3A</string>
+				<string>D260F273198EC80F00EDAA3A</string>
+				<string>D2D866D3198E7BB3006C0565</string>
+				<string>D2D866FE198E7C2B006C0565</string>
+				<string>D2D86740198E80B9006C0565</string>
+				<string>D2D86703198E7C35006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866BD198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866C5198E7BB3006C0565</string>
+				<string>CF04383B440740FCBD8BBF3A</string>
+				<string>7AF0F2656AA44ACA85FF1ED2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866BE198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866FB198E7C2B006C0565</string>
+				<string>D2D8673F198E80B9006C0565</string>
+				<string>D2D866F5198E7C20006C0565</string>
+				<string>D260F272198EC80F00EDAA3A</string>
+				<string>D2D866FD198E7C2B006C0565</string>
+				<string>D260F262198EBDFA00EDAA3A</string>
+				<string>D2D86702198E7C35006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866BF198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D86704198E7C35006C0565</string>
+				<string>D2D866CF198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866C0198E7BB3006C0565</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D2D866E9198E7BB3006C0565</string>
+			<key>buildPhases</key>
+			<array>
+				<string>04FB2258B9094171AFF40724</string>
+				<string>D2D866BC198E7BB3006C0565</string>
+				<string>D2D866BD198E7BB3006C0565</string>
+				<string>D2D866BE198E7BB3006C0565</string>
+				<string>D2D866BF198E7BB3006C0565</string>
+				<string>E5462147E2DD463EB562AA55</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>TMTLatexTableFramework</string>
+			<key>productName</key>
+			<string>TMTLatexTableFramework</string>
+			<key>productReference</key>
+			<string>D2D866C1198E7BB3006C0565</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>D2D866C1198E7BB3006C0565</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D2D866C2198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866C1198E7BB3006C0565</string>
+				<string>D2D866D8198E7BB3006C0565</string>
+				<string>D2D86709198E7C48006C0565</string>
+				<string>D2D86723198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866C3198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866C4198E7BB3006C0565</string>
+				<string>D2D866D9198E7BB3006C0565</string>
+				<string>D2D866C6198E7BB3006C0565</string>
+				<string>FD963E6B2AED41AD8E24FB72</string>
+				<string>006422AA66F44BA4BC0FF791</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866C4198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Cocoa.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Cocoa.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2D866C5198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C4198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866C6198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866C7198E7BB3006C0565</string>
+				<string>D2D866C8198E7BB3006C0565</string>
+				<string>D2D866C9198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Other Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866C7198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2D866C8198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreData.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreData.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2D866C9198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>AppKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/AppKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D2D866CA198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866EF198E7C02006C0565</string>
+				<string>D2D866D1198E7BB3006C0565</string>
+				<string>D2D866D2198E7BB3006C0565</string>
+				<string>D2D866CB198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866CB198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866CC198E7BB3006C0565</string>
+				<string>D2D866CD198E7BB3006C0565</string>
+				<string>D2D866D0198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866CC198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866CD198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866CE198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866CE198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866CF198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866CD198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866D0198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866D1198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866D2198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableFramework.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866D3198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866D2198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866D4198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866E6198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866D5198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866DE198E7BB3006C0565</string>
+				<string>D2D866DB198E7BB3006C0565</string>
+				<string>D2D866DA198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866D6198E7BB3006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D866E4198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D866D7198E7BB3006C0565</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D2D866EC198E7BB3006C0565</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D2D866D4198E7BB3006C0565</string>
+				<string>D2D866D5198E7BB3006C0565</string>
+				<string>D2D866D6198E7BB3006C0565</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D2D866DD198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>TMTLatexTableFrameworkTests</string>
+			<key>productName</key>
+			<string>TMTLatexTableFrameworkTests</string>
+			<key>productReference</key>
+			<string>D2D866D8198E7BB3006C0565</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>D2D866D8198E7BB3006C0565</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTLatexTableFrameworkTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D2D866D9198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D2D866DA198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866D9198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866DB198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C4198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866DC198E7BB3006C0565</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D2D866B8198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D2D866C0198E7BB3006C0565</string>
+			<key>remoteInfo</key>
+			<string>TMTLatexTableFramework</string>
+		</dict>
+		<key>D2D866DD198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D2D866C0198E7BB3006C0565</string>
+			<key>targetProxy</key>
+			<string>D2D866DC198E7BB3006C0565</string>
+		</dict>
+		<key>D2D866DE198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C1198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866DF198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866E5198E7BB3006C0565</string>
+				<string>D2D866E0198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>TMTLatexTableFrameworkTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E0198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866E1198E7BB3006C0565</string>
+				<string>D2D866E2198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E1198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>TMTLatexTableFrameworkTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E2198E7BB3006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866E3198E7BB3006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E3198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E4198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866E2198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866E5198E7BB3006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableFrameworkTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866E6198E7BB3006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866E5198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866E7198E7BB3006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.9</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2D866E8198E7BB3006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.9</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2D866E9198E7BB3006C0565</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2D866EA198E7BB3006C0565</string>
+				<string>D2D866EB198E7BB3006C0565</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2D866EA198E7BB3006C0565</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7E1F382C86094D02A0356C84</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>FRAMEWORK_VERSION</key>
+				<string>A</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>framework</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2D866EB198E7BB3006C0565</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7E1F382C86094D02A0356C84</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>FRAMEWORK_VERSION</key>
+				<string>A</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>framework</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2D866EC198E7BB3006C0565</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2D866ED198E7BB3006C0565</string>
+				<string>D2D866EE198E7BB3006C0565</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2D866ED198E7BB3006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2D866EE198E7BB3006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2D866EF198E7C02006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866F0198E7C02006C0565</string>
+				<string>D2D866F1198E7C02006C0565</string>
+				<string>D2D866F2198E7C02006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F0198E7C02006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866F3198E7C20006C0565</string>
+				<string>D2D866F4198E7C20006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Controller</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F1198E7C02006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D866F7198E7C2B006C0565</string>
+				<string>D2D866F8198E7C2B006C0565</string>
+				<string>D2D866F9198E7C2B006C0565</string>
+				<string>D2D866FA198E7C2B006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Model</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F2198E7C02006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D260F270198EC80F00EDAA3A</string>
+				<string>D260F271198EC80F00EDAA3A</string>
+				<string>D2D86701198E7C35006C0565</string>
+				<string>D2D866FF198E7C35006C0565</string>
+				<string>D2D86700198E7C35006C0565</string>
+				<string>D2D8673D198E80B9006C0565</string>
+				<string>D2D8673E198E80B9006C0565</string>
+				<string>D260F260198EBDFA00EDAA3A</string>
+				<string>D260F261198EBDFA00EDAA3A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>View</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F3198E7C20006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F4198E7C20006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F5198E7C20006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866F3198E7C20006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2D866F6198E7C20006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866F4198E7C20006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866F7198E7C2B006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableCellModel.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F8198E7C2B006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableCellModel.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866F9198E7C2B006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableModel.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866FA198E7C2B006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableModel.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D866FB198E7C2B006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866F7198E7C2B006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2D866FC198E7C2B006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866F8198E7C2B006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866FD198E7C2B006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866F9198E7C2B006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2D866FE198E7C2B006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866FA198E7C2B006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D866FF198E7C35006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86700198E7C35006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86701198E7C35006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>path</key>
+			<string>TMTLatexTableViewController.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86702198E7C35006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866FF198E7C35006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2D86703198E7C35006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D86700198E7C35006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86704198E7C35006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D86701198E7C35006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86705198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D86719198E7C48006C0565</string>
+				<string>D2D86712198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86706198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D86736198E7CE5006C0565</string>
+				<string>D2D8670A198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86707198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D86710198E7C48006C0565</string>
+				<string>D2D8671E198E7C48006C0565</string>
+				<string>D2D86716198E7C48006C0565</string>
+				<string>D2D8671C198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86708198E7C48006C0565</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D2D86730198E7C48006C0565</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D2D86705198E7C48006C0565</string>
+				<string>D2D86706198E7C48006C0565</string>
+				<string>D2D86707198E7C48006C0565</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D2D86738198E7CF0006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>TMTLatexTableExample</string>
+			<key>productName</key>
+			<string>TMTLatexTableExample</string>
+			<key>productReference</key>
+			<string>D2D86709198E7C48006C0565</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D2D86709198E7C48006C0565</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTLatexTableExample.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D2D8670A198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C4198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D8670B198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D86717198E7C48006C0565</string>
+				<string>D2D86718198E7C48006C0565</string>
+				<string>D2D8671A198E7C48006C0565</string>
+				<string>D2D8671D198E7C48006C0565</string>
+				<string>D2D8670C198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>TMTLatexTableExample</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8670C198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8670D198E7C48006C0565</string>
+				<string>D2D8670E198E7C48006C0565</string>
+				<string>D2D86711198E7C48006C0565</string>
+				<string>D2D86713198E7C48006C0565</string>
+				<string>D2D86714198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8670D198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>TMTLatexTableExample-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8670E198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8670F198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8670F198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86710198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8670E198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86711198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86712198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D86711198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86713198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableExample-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86714198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D86715198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Credits.rtf</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86715198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.rtf</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/Credits.rtf</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86716198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D86714198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86717198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86718198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86719198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D86718198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D8671A198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8671B198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>MainMenu.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8671B198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/MainMenu.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8671C198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8671A198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D8671D198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8671E198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8671D198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D8671F198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D8672F198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86720198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D86725198E7C48006C0565</string>
+				<string>D2D86724198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86721198E7C48006C0565</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2D8672D198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D2D86722198E7C48006C0565</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D2D86733198E7C48006C0565</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D2D8671F198E7C48006C0565</string>
+				<string>D2D86720198E7C48006C0565</string>
+				<string>D2D86721198E7C48006C0565</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D2D86727198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>TMTLatexTableExampleTests</string>
+			<key>productName</key>
+			<string>TMTLatexTableExampleTests</string>
+			<key>productReference</key>
+			<string>D2D86723198E7C48006C0565</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>D2D86723198E7C48006C0565</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTLatexTableExampleTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D2D86724198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866D9198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86725198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C4198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86726198E7C48006C0565</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D2D866B8198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D2D86708198E7C48006C0565</string>
+			<key>remoteInfo</key>
+			<string>TMTLatexTableExample</string>
+		</dict>
+		<key>D2D86727198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D2D86708198E7C48006C0565</string>
+			<key>targetProxy</key>
+			<string>D2D86726198E7C48006C0565</string>
+		</dict>
+		<key>D2D86728198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8672E198E7C48006C0565</string>
+				<string>D2D86729198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>TMTLatexTableExampleTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D86729198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8672A198E7C48006C0565</string>
+				<string>D2D8672B198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8672A198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>TMTLatexTableExampleTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8672B198E7C48006C0565</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2D8672C198E7C48006C0565</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8672C198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8672D198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8672B198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D8672E198E7C48006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableExampleTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8672F198E7C48006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8672E198E7C48006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86730198E7C48006C0565</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2D86731198E7C48006C0565</string>
+				<string>D2D86732198E7C48006C0565</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2D86731198E7C48006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2D86732198E7C48006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2D86733198E7C48006C0565</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D2D86734198E7C48006C0565</string>
+				<string>D2D86735198E7C48006C0565</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D2D86734198E7C48006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D2D86735198E7C48006C0565</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/TMTLatexTableFramework.framework/Versions/A/TMTLatexTableFramework</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>TMTLatexTableExample/TMTLatexTableExample-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D2D86736198E7CE5006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D866C1198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86737198E7CF0006C0565</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D2D866B8198E7BB3006C0565</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D2D866C0198E7BB3006C0565</string>
+			<key>remoteInfo</key>
+			<string>TMTLatexTableFramework</string>
+		</dict>
+		<key>D2D86738198E7CF0006C0565</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D2D866C0198E7BB3006C0565</string>
+			<key>targetProxy</key>
+			<string>D2D86737198E7CF0006C0565</string>
+		</dict>
+		<key>D2D8673D198E80B9006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTLatexTableCellView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8673E198E80B9006C0565</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TMTLatexTableCellView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2D8673F198E80B9006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8673D198E80B9006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2D86740198E80B9006C0565</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2D8673E198E80B9006C0565</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E5462147E2DD463EB562AA55</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/../Pods/Pods-TMTLatexTableFramework-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>FD963E6B2AED41AD8E24FB72</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D2D866B8198E7BB3006C0565</string>
+</dict>
+</plist>

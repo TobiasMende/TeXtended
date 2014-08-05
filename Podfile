@@ -1,23 +1,25 @@
 workspace 'TMTProject'
 xcodeproj 'TeXtended/TeXtended.xcodeproj'
-xcodeproj 'DBLP Tool/DBLP Tool.xcodeproj'
+xcodeproj 'TMTBibTexTools/TMTBibTexTools.xcodeproj'
 xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
 xcodeproj 'MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj'
 xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
 
 platform :osx, '10.7'
 
-target :TMTLatexTableFramework do
-    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
-end
-
 target :TMTHelperCollection do
     xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
-    pod 'CocoaLumberjack'
+	pod 'CocoaLumberjack'
 end
 
-target :BibTexToolsFramework do
-    xcodeproj 'DBLP Tool/DBLP Tool.xcodeproj'
+target :TMTBibTexTools do
+    xcodeproj 'TMTBibTexTools/TMTBibTexTools.xcodeproj'
+	pod 'CocoaLumberjack'
+end
+
+target :TMTLatexTableFramework do
+    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
+	pod 'CocoaLumberjack'
 end
 
 target :TeXtended do
@@ -25,6 +27,8 @@ target :TeXtended do
     pod 'DMInspectorPalette'
     pod 'OTMXAttribute'
     pod 'JSONKit-NoWarning'
+	pod 'CocoaLumberjack'
+	pod 'Sparkle'
 end
 
 target 'TeXtended Tests', :exclusive => true do
