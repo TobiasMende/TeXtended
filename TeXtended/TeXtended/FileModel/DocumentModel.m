@@ -253,6 +253,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (NSString *)loadContent:(NSError *__autoreleasing *)error
     {
+        TMT_TRACE
         if (!self.systemPath) {
             if (!self.texPath) {
                 return nil;
@@ -288,6 +289,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (BOOL)saveContent:(NSString *)content error:(NSError *__autoreleasing *)error
     {
+        TMT_TRACE
         if (!self.systemPath) {
             return NO;
         }
@@ -325,6 +327,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 #pragma mark - XATTR handling
 
 - (void)saveTextSpecificXAttributes {
+    TMT_TRACE
     NSError *error = nil;
     NSString *path = self.texPath ? self.texPath : self.systemPath;
     if (!path) {
@@ -341,6 +344,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 }
 
 - (void)loadTextSpecificXAttributes {
+    TMT_TRACE
     NSString *path = self.texPath ? self.texPath : self.systemPath;
     NSString *lineData = [OTMXAttribute stringAttributeAtPath:path name:TMT_XATTR_LineBookmarks error:NULL];
     if (lineData) {
@@ -357,6 +361,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 
 - (void)loadModelSpecificXAttributes {
+    TMT_TRACE
     if (!self.texPath) {
         return;
     }
@@ -383,6 +388,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 }
 
 - (void)saveModelSpecificXAttributes {
+    TMT_TRACE
     if (!self.texPath || self.project) {
         return;
     }

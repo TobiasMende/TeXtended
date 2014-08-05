@@ -59,6 +59,7 @@
 
     - (BOOL)saveDocumentModel:(NSError * __autoreleasing *)outError
     {
+        TMT_TRACE
         self.model.selectedRange =self.textViewController.textView.selectedRange;
         if (!self.textViewController.dirty) {
             return YES;
@@ -74,6 +75,7 @@
 
     - (void)breakUndoCoalescing
     {
+        TMT_TRACE
         [self.textViewController breakUndoCoalescing];
     }
 
@@ -201,12 +203,14 @@
 
     - (void)draftCompile
     {
+        TMT_TRACE
         [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(draftCompile:didSave:contextInfo:)];
 
     }
 
     - (void)draftCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context
     {
+        TMT_TRACE
         if (self.model.texPath) {
             [self.compiler compile:draft];
         }
@@ -214,12 +218,14 @@
 
     - (void)finalCompile
     {
+        TMT_TRACE
         [self.mainDocument saveEntireDocumentWithDelegate:self andSelector:@selector(finalCompile:didSave:contextInfo:)];
 
     }
 
     - (void)finalCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context
     {
+        TMT_TRACE
         if (self.model.texPath) {
             [self.compiler compile:final];
         }
@@ -233,6 +239,7 @@
 
     - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context
     {
+        TMT_TRACE
         if (self.model.texPath) {
             [self.compiler compile:live];
         }
