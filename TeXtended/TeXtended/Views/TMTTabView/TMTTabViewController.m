@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import <MMTabBarView/MMTabBarView.h>
-#import <MMTabBarView/MMTabStyle.h>
+#import <MMTabBarViewTMTFork/MMTabBarView.h>
+#import <MMTabBarViewTMTFork/MMTabStyle.h>
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTTabViewWindow.h"
 #import "TMTTabViewItem.h"

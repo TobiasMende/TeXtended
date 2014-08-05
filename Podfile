@@ -31,6 +31,7 @@ target :TeXtended do
 	pod 'Sparkle'
 	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 	pod 'TMTBibTexTools', :path => './TMTBibTexTools'
+	pod 'MMTabBarViewTMTFork', :path => './MMTabBarView'
 end
 
 target 'TeXtended Tests', :exclusive => true do

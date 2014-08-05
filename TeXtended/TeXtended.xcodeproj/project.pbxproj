@@ -177,8 +177,6 @@
 		D29605A1178091F7007C599B /* SplitviewRight.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D296059E178091F7007C599B /* SplitviewRight.pdf */; };
 		D2A0E62F176DBF5800EDAB5B /* ForwardSynctex.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */; };
 		D2A0E632176DCAA700EDAB5B /* PathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A0E631176DCAA700EDAB5B /* PathFactory.m */; };
-		D2A13EA01879D6440028E033 /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9D1879D6440028E033 /* MMTabBarView.framework */; };
-		D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9D1879D6440028E033 /* MMTabBarView.framework */; };
 		D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A439E9171EF5130020C15F /* Quartz.framework */; };
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
@@ -295,16 +293,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D21ACB6717267A6B00E2F8EC /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = Frameworks;
-			dstSubfolderSpec = 10;
-			files = (
-				D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D271983E174399FD00342CB0 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,8 +674,6 @@
 		D2A0E62E176DBF5800EDAB5B /* ForwardSynctex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardSynctex.m; sourceTree = "<group>"; };
 		D2A0E630176DCAA700EDAB5B /* PathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFactory.h; sourceTree = "<group>"; };
 		D2A0E631176DCAA700EDAB5B /* PathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathFactory.m; sourceTree = "<group>"; };
-		D2A13E9D1879D6440028E033 /* MMTabBarView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMTabBarView.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/MMTabBarView.framework; sourceTree = "<group>"; };
-		D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
 		D2A439E9171EF5130020C15F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		D2A439F2171F10D60020C15F /* DocumentCreationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreationController.h; sourceTree = "<group>"; };
 		D2A439F3171F10D60020C15F /* DocumentCreationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreationController.m; sourceTree = "<group>"; };
@@ -715,7 +701,6 @@
 		D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Livepreview.pdf; sourceTree = "<group>"; };
 		D2B4FF48175A306D00755C24 /* CompileFlowHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowHandler.h; sourceTree = "<group>"; };
 		D2B4FF49175A306D00755C24 /* CompileFlowHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowHandler.m; sourceTree = "<group>"; };
-		D2B983091990FCBA00E2EF5D /* TMTBibTexTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTBibTexTools.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTBibTexTools.framework; sourceTree = "<group>"; };
 		D2C235721895118A0096ECAA /* OutlineElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineElement.h; sourceTree = "<group>"; };
 		D2C235731895118A0096ECAA /* OutlineElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineElement.m; sourceTree = "<group>"; };
 		D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OutlineElementTypeLookupTable.plist; sourceTree = "<group>"; };
@@ -825,7 +810,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2A13EA01879D6440028E033 /* MMTabBarView.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 				F4DD8D78876D4ED8B36C3C3E /* libPods-TeXtended.a in Frameworks */,
@@ -1619,9 +1603,6 @@
 		D2CC54F2171EAFAB00D81CF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D2B983091990FCBA00E2EF5D /* TMTBibTexTools.framework */,
-				D2A13E9D1879D6440028E033 /* MMTabBarView.framework */,
-				D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */,
 				D23FD40D1863A4D7006BFD33 /* Sparkle.framework */,
 				D2A439E9171EF5130020C15F /* Quartz.framework */,
 				D2CC54F3171EAFAB00D81CF1 /* Cocoa.framework */,
@@ -1794,7 +1775,6 @@
 				D2CC54ED171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54EE171EAFAB00D81CF1 /* Resources */,
 				D2CC5547171EB15500D81CF1 /* Copy Files */,
-				D21ACB6717267A6B00E2F8EC /* CopyFiles */,
 				D271983E174399FD00342CB0 /* Copy Files */,
 				837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */,
 			);

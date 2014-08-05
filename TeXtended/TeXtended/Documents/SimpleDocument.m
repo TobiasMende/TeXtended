@@ -186,16 +186,6 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
         return YES;
     }
 
-- (void)presentError:(NSError *)error modalForWindow:(NSWindow *)window delegate:(id)delegate didPresentSelector:(SEL)didPresentSelector contextInfo:(void *)contextInfo {
-    DDLogError(@"Presenting Error to user:");
-    NSError *underlying = error;
-    while (underlying) {
-        DDLogDebug(@"%@", underlying);
-        underlying = underlying.userInfo[NSUnderlyingErrorKey];
-    }
-    [super presentError:error modalForWindow:window delegate:delegate didPresentSelector:didPresentSelector contextInfo:contextInfo];
-}
-
 
     - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
     {
