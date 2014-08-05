@@ -7,6 +7,7 @@
 //
 
 #import "TMTLog.h"
+#import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "DDASLLogger.h"
 #import "TMTLogFormatter.h"

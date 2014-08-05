@@ -1,32 +1,43 @@
 PODS:
-  - CocoaLumberjack (1.9.0):
+  - CocoaLumberjack (1.9.1):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.9.0)
-  - CocoaLumberjack/Extensions (1.9.0):
+  - CocoaLumberjack/Core (1.9.1)
+  - CocoaLumberjack/Extensions (1.9.1):
     - CocoaLumberjack/Core
   - DMInspectorPalette (0.0.1)
   - JSONKit-NoWarning (1.2)
-  - Kiwi (2.2.4):
-    - Kiwi/SenTestingKit
-  - Kiwi/ARC (2.2.4)
-  - Kiwi/NonARC (2.2.4)
-  - Kiwi/SenTestingKit (2.2.4):
-    - Kiwi/ARC
-    - Kiwi/NonARC
+  - Kiwi (2.3.0)
   - OTMXAttribute (0.0.3)
+  - Sparkle (1.7.1)
+  - TMTBibTexTools (0.1.0):
+    - CocoaLumberjack (>= 1.9.1)
+  - TMTHelperCollection (0.1.0):
+    - CocoaLumberjack (>= 1.9.1)
 
 DEPENDENCIES:
-  - CocoaLumberjack
+  - CocoaLumberjack (>= 1.9.1)
   - DMInspectorPalette
   - JSONKit-NoWarning
   - Kiwi
   - OTMXAttribute
+  - Sparkle
+  - TMTBibTexTools (from `./TMTBibTexTools`)
+  - TMTHelperCollection (from `./TMTHelperCollection`)
+
+EXTERNAL SOURCES:
+  TMTBibTexTools:
+    :path: ./TMTBibTexTools
+  TMTHelperCollection:
+    :path: ./TMTHelperCollection
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
+  CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
   DMInspectorPalette: e6ae811ce61e35d7d5db5d394cbeeaad8d470e31
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
-  Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   OTMXAttribute: fe4586170eca13953bc8c68f1a881ceb1883fe66
+  Sparkle: fde5ffeb7bf01db28925499ce2a75977763af58a
+  TMTBibTexTools: 00006c70ce0860be19945809acc531924b6e7b27
+  TMTHelperCollection: cb2f1f0a54309497e0f6e3bf58bd4fbc3c5a7afb
 
 COCOAPODS: 0.33.1

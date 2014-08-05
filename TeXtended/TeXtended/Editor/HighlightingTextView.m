@@ -17,7 +17,6 @@
 #import "LineNumberView.h"
 #import "GoToLineSheetController.h"
 #import "AutoCompletionWindowController.h"
-#import "MatrixViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import "TextViewLayoutManager.h"
 #import "DBLPIntegrator.h"
@@ -310,31 +309,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     }
     
 }
-
-#pragma mark - Matrix View
-
-- (IBAction)matrixView:(id)sender
-{
-    if (!matrixView) {
-        matrixView = [[MatrixViewController alloc] init];
-    }
-    [NSApp beginSheet:[matrixView window]
-       modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:@selector(matrixSheetDidEnd:returnCode:contextInfo:)
-          contextInfo:nil];
-    [NSApp runModalForWindow:[self window]];
-}
-
-    - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
-    {
-        if (returnCode == NSRunStoppedResponse) {
-            [self.undoManager beginUndoGrouping];
-            EnvironmentCompletion *completion = [matrixView matrixCompletion];
-            [completionHandler insertEnvironmentCompletion:completion forPartialWordRange:self.selectedRange movement:NSReturnTextMovement isFinal:YES];
-            [self.undoManager endUndoGrouping];
-        }
-    }
 
 
 #pragma mark - Anchors

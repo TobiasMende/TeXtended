@@ -93,7 +93,7 @@
 
     - (void)firstResponderDidChangeNotification:(NSNotification *)note
     {
-
+        TMT_TRACE
         id <FirstResponderDelegate> delegate = note.userInfo[TMTFirstResponderKey];
 
         self.currentDC = delegate;
@@ -104,6 +104,7 @@
 
     + (BOOL)autosavesInPlace
     {
+        TMT_TRACE
         return YES;
 
     }
@@ -248,6 +249,14 @@
         [item.tabView.window makeFirstResponder:item.view];
     }
 
+- (BOOL)documentNeedsSaving {
+    for (DocumentController *dc in self.documentControllers) {
+        if (dc.isDirty) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 
 #pragma mark - Printing

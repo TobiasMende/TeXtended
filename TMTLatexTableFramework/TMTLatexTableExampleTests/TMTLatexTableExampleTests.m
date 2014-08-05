@@ -1,18 +1,18 @@
 //
-//  TMTHelperCollectionTests.m
-//  TMTHelperCollectionTests
+//  TMTLatexTableExampleTests.m
+//  TMTLatexTableExampleTests
 //
-//  Created by Tobias Mende on 19.12.13.
-//  Copyright (c) 2013 Tobias Mende. All rights reserved.
+//  Created by Tobias Mende on 03.08.14.
+//  Copyright (c) 2014 TeXtended. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface TMTHelperCollectionTests : XCTestCase
+@interface TMTLatexTableExampleTests : XCTestCase
 
 @end
 
-@implementation TMTHelperCollectionTests
+@implementation TMTLatexTableExampleTests
 
 - (void)setUp
 {

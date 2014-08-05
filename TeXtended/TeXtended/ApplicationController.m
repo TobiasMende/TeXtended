@@ -63,6 +63,7 @@
         [LatexSpellChecker sharedSpellChecker];
         [DocumentCreationController sharedDocumentController];
         [CompletionManager sharedInstance];
+         [TMTLog customizeLogger];
         // Merging compile flows
         [self mergeCompileFlows:NO];
     }
@@ -85,7 +86,7 @@
         documentCreationController = [[DocumentCreationController alloc] init];
         preferencesController = [[PreferencesController alloc] initWithWindowNibName:@"PreferencesWindow"];
         
-        [TMTLog customizeLogger];
+       
 
     }
 

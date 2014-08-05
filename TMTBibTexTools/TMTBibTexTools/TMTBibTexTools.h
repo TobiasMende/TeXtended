@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DBLPToolsFramework : NSObject
+@interface TMTBibTexTools : NSObject
 
 @end

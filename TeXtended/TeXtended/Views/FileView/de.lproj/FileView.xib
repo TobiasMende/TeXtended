@@ -159,7 +159,8 @@ DQ
 CA
 </string>
                     <connections>
-                        <action selector="deleteFile:" target="-2" id="WpL-Qp-f3Y"/>
+                        <action selector="deleteFile:" target="-2" id="5bu-AN-FJs"/>
+                        <binding destination="-2" name="enabled" keyPath="self.isDeletionAllowed" id="Ax8-TO-DTP"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="fge-yb-XTJ"/>

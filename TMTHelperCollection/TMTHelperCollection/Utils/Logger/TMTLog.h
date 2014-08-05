@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
 
+#define TMT_TRACE DDLogVerbose(@"--> %@", THIS_METHOD);
+#define TMTLogTrace() DDLogVerbose(@"--> %@ [%@]", THIS_METHOD, msg)
+
 #ifdef DEBUG
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -16,6 +19,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #else
 static const int ddLogLevel = LOG_LEVEL_WARN;
 #endif
+
 
 @interface TMTLog : NSObject
 

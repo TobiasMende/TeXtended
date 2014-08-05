@@ -9,7 +9,7 @@
 #import "DBLPIntegrator.h"
 #import "HighlightingTextView.h"
 #import "BibFile.h"
-#import <BibTexToolsFramework/DBLPSearchViewController.h>
+#import <TMTBibTexTools/DBLPSearchViewController.h>
 #import "CiteCompletion.h"
 
 @implementation DBLPIntegrator

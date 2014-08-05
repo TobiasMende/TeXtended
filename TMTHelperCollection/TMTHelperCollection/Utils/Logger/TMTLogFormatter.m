@@ -8,7 +8,7 @@
 
 #import "TMTLogFormatter.h"
 
-NSUInteger MAX_CLASS_NAME_LENGTH = 25;
+NSUInteger MAX_CLASS_NAME_LENGTH = 20;
 
 @implementation TMTLogFormatter
 
@@ -37,7 +37,7 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 25;
         NSString *logLevel;
         switch (logMessage->logFlag) {
             case LOG_FLAG_ERROR :
-                logLevel = @"ALARM\t";
+                logLevel = @"ERROR\t";
                 break;
             case LOG_FLAG_WARN  :
                 logLevel = @"WARN\t";
@@ -45,8 +45,14 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 25;
             case LOG_FLAG_INFO  :
                 logLevel = @"INFO\t";
                 break;
-            default             :
+            case LOG_FLAG_DEBUG :
+                logLevel = @"DEBUG\t";
+                break;
+            case LOG_FLAG_VERBOSE :
                 logLevel = @"VERBOSE\t";
+                break;
+            default             :
+                logLevel = @"UNKNOWN\t";
                 break;
         }
 

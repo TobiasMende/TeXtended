@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
-#import <BibTexToolsFramework/TMTBibTexEntry.h>
+#import <TMTBibTexTools/TMTBibTexEntry.h>
 #import <TMTHelperCollection/TMTLog.h>
 
 #import "BibFile.h"

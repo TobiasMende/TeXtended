@@ -13,7 +13,7 @@
 #import "CompletionProtocol.h"
 #import "LightHighlightingTextView.h"
 
-@class BracketHighlighter, CodeNavigationAssistant, CompletionHandler, CodeExtensionEngine, EditorService, GoToLineSheetController, AutoCompletionWindowController, Completion, MatrixViewController, DBLPIntegrator, QuickPreviewManager;
+@class BracketHighlighter, CodeNavigationAssistant, CompletionHandler, CodeExtensionEngine, EditorService, GoToLineSheetController, AutoCompletionWindowController, Completion, DBLPIntegrator, QuickPreviewManager;
 
 /**
  The highlighting text view is the main class of the code editor. It provides additional functionality by extending the NSTextView and using a set of EditorService subclasses for delegating the work.
@@ -37,8 +37,6 @@
         /** The CodeExtensionEngine controls auto linking and information adding features */
         GoToLineSheetController *goToLineSheet;
 
-        /** The MatrixViewController controls the window for creating matrix templates. */
-        MatrixViewController *matrixView;
 
         AutoCompletionWindowController *autoCompletionController;
 
@@ -146,24 +144,6 @@
  */
 - (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 
-
-#pragma mark - Matrix View
-/**
- Action for starting the MatrixViewController's dialog.
-
- @param sender the sender
- */
-    - (IBAction)matrixView:(id)sender;
-
-/**
- Notification about the end of the MatrixViewController's sheet.
- 
- 
- @param sheet the sheet which ends.
- @param returnCode the termination state of the sheet.
- @param context `NULL` in most cases.
- */
-    - (void)matrixSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
 
 
 #pragma mark - Anchors

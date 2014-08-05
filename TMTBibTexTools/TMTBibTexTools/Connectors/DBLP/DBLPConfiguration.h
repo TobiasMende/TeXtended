@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 /**
  The DBLPConfiguration class is a container for configuration of the connection and communication with the DBLP Server

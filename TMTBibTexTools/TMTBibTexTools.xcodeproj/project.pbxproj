@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D20ABB3717B7B1B600F88324 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
+		C84404FF2790439EB06A745D /* libPods-TMTBibTexTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */; };
 		D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
 		D217A430176B442C002DB084 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D217A42E176B442C002DB084 /* InfoPlist.strings */; };
 		D217A432176B442C002DB084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A431176B442C002DB084 /* main.m */; };
@@ -15,31 +15,30 @@
 		D217A439176B442C002DB084 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A438176B442C002DB084 /* AppDelegate.m */; };
 		D217A43C176B442C002DB084 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D217A43A176B442C002DB084 /* MainMenu.xib */; };
 		D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
-		D23BC4E81861E79700E9A507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D23BC4E61861E79700E9A507 /* InfoPlist.strings */; };
-		D23BC4EC1861E79700E9A507 /* DBLPToolsFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC4EB1861E79700E9A507 /* DBLPToolsFramework.m */; };
 		D23BC4F31861E79700E9A507 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4F21861E79700E9A507 /* XCTest.framework */; };
 		D23BC4F41861E79700E9A507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
-		D23BC4F71861E79700E9A507 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */; };
+		D23BC4F71861E79700E9A507 /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */; };
 		D23BC4FD1861E79700E9A507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D23BC4FB1861E79700E9A507 /* InfoPlist.strings */; };
 		D23BC4FF1861E79700E9A507 /* DBLPToolsFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */; };
-		D23BC5061861E7BF00E9A507 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
-		D23BC5071861E7CD00E9A507 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */; };
-		D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D217A442176B463C002DB084 /* DBLPInterface.h */; };
-		D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D217A445176B471A002DB084 /* DBLPCallbackHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D23BC50A1861E7EE00E9A507 /* TMTBibTexEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = D2AB7DE3176B700900D1AB7B /* TMTBibTexEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D23BC50B1861E7EE00E9A507 /* DBLPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */; };
-		D23BC50C1861E7EE00E9A507 /* DBLPToolsFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D23BC4EA1861E79700E9A507 /* DBLPToolsFramework.h */; };
-		D23BC50D1861E7FB00E9A507 /* DBLPInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A443176B463C002DB084 /* DBLPInterface.m */; };
-		D23BC50E1861E7FB00E9A507 /* TMTBibTexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DE4176B700900D1AB7B /* TMTBibTexEntry.m */; };
-		D23BC50F1861E7FB00E9A507 /* DBLPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */; };
-		D23BC5121861E80B00E9A507 /* BibTexToolsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */; };
-		D2574977186220A20025A536 /* TMTBibTexParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D2574975186220A20025A536 /* TMTBibTexParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2574978186220A20025A536 /* TMTBibTexParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2574976186220A20025A536 /* TMTBibTexParser.m */; };
-		D257499B18633AB20025A536 /* DBLPSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D257499818633AB20025A536 /* DBLPSearchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D257499C18633AB20025A536 /* DBLPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D257499918633AB20025A536 /* DBLPSearchViewController.m */; };
-		D257499D18633AB20025A536 /* DBLPSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D257499A18633AB20025A536 /* DBLPSearchView.xib */; };
-		D257499F18634F310025A536 /* DBLPSearchCompletionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2A13EA61879D66F0028E033 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13EA51879D66F0028E033 /* TMTHelperCollection.framework */; };
+		D23BC5121861E80B00E9A507 /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */; };
+		D2989C651990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */; };
+		D2989C661990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */; };
+		D2989C671990EF7F0024DFA6 /* TMTBibTexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */; };
+		D2989C681990EF7F0024DFA6 /* TMTBibTexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */; };
+		D2989C731990EF940024DFA6 /* TMTBibTexParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2989C741990EF940024DFA6 /* TMTBibTexParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C701990EF940024DFA6 /* TMTBibTexParser.m */; };
+		D2989C7B1990F07F0024DFA6 /* DBLPSearchCompletionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2989C7C1990F07F0024DFA6 /* DBLPSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */; };
+		D2989C7D1990F07F0024DFA6 /* DBLPSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2989C7E1990F07F0024DFA6 /* DBLPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */; };
+		D2989C851990F15E0024DFA6 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2989C861990F15E0024DFA6 /* DBLPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */; };
+		D2989C871990F15E0024DFA6 /* DBLPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */; };
+		D2989C881990F15E0024DFA6 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */; };
+		D2989C891990F15E0024DFA6 /* DBLPInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C831990F15E0024DFA6 /* DBLPInterface.h */; };
+		D2989C8A1990F15E0024DFA6 /* DBLPInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C841990F15E0024DFA6 /* DBLPInterface.m */; };
+		D2989C8D1990F1720024DFA6 /* TMTBibTexEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2989C8E1990F1720024DFA6 /* TMTBibTexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */; };
 		D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */; };
 		D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */; };
 /* End PBXBuildFile section */
@@ -61,68 +60,54 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D21840D01864928D00B73EB5 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		B262A339B30D40CF9DED9D6E /* Pods-BibTexToolsFramework.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BibTexToolsFramework.xcconfig"; path = "../Pods/Pods-BibTexToolsFramework.xcconfig"; sourceTree = "<group>"; };
-		BAE6555A71A64BADB2E7D46B /* libPods-BibTexToolsFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BibTexToolsFramework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBLPConfiguration.h; path = "../DBLP Tool/DBLPConfiguration.h"; sourceTree = "<group>"; };
-		D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBLPConfiguration.m; path = "../DBLP Tool/DBLPConfiguration.m"; sourceTree = "<group>"; };
-		D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DBLPConfiguration.plist; path = "../DBLP Tool/DBLPConfiguration.plist"; sourceTree = "<group>"; };
-		D217A422176B442C002DB084 /* DBLP Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DBLP Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTBibTexTools.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D217A422176B442C002DB084 /* TMTBibTexTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMTBibTexTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D217A425176B442C002DB084 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D217A428176B442C002DB084 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D217A429176B442C002DB084 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D217A42A176B442C002DB084 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D217A42D176B442C002DB084 /* DBLP Tool-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLP Tool-Info.plist"; sourceTree = "<group>"; };
+		D217A42D176B442C002DB084 /* TMTBibTexTools-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTBibTexTools-Info.plist"; sourceTree = "<group>"; };
 		D217A42F176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D217A431176B442C002DB084 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D217A433176B442C002DB084 /* DBLP Tool-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBLP Tool-Prefix.pch"; sourceTree = "<group>"; };
+		D217A433176B442C002DB084 /* TMTBibTexTools-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTBibTexTools-Prefix.pch"; sourceTree = "<group>"; };
 		D217A435176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		D217A437176B442C002DB084 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D217A438176B442C002DB084 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D217A43B176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D217A442176B463C002DB084 /* DBLPInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBLPInterface.h; path = "../DBLP Tool/DBLPInterface.h"; sourceTree = "<group>"; };
-		D217A443176B463C002DB084 /* DBLPInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBLPInterface.m; path = "../DBLP Tool/DBLPInterface.m"; sourceTree = "<group>"; };
-		D217A445176B471A002DB084 /* DBLPCallbackHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DBLPCallbackHandler.h; path = "../DBLP Tool/DBLPCallbackHandler.h"; sourceTree = "<group>"; };
-		D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BibTexToolsFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D23BC4E51861E79700E9A507 /* DBLPToolsFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLPToolsFramework-Info.plist"; sourceTree = "<group>"; };
-		D23BC4E71861E79700E9A507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D23BC4E91861E79700E9A507 /* DBLPToolsFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBLPToolsFramework-Prefix.pch"; sourceTree = "<group>"; };
-		D23BC4EA1861E79700E9A507 /* DBLPToolsFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLPToolsFramework.h; sourceTree = "<group>"; };
-		D23BC4EB1861E79700E9A507 /* DBLPToolsFramework.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLPToolsFramework.m; sourceTree = "<group>"; };
+		D220A6F11991123200A28CB7 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
+		D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTBibTexTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23BC4F11861E79700E9A507 /* DBLPToolsFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBLPToolsFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23BC4F21861E79700E9A507 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D23BC4FA1861E79700E9A507 /* DBLPToolsFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLPToolsFrameworkTests-Info.plist"; sourceTree = "<group>"; };
 		D23BC4FC1861E79700E9A507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLPToolsFrameworkTests.m; sourceTree = "<group>"; };
-		D2574975186220A20025A536 /* TMTBibTexParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTBibTexParser.h; sourceTree = "<group>"; };
-		D2574976186220A20025A536 /* TMTBibTexParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTBibTexParser.m; sourceTree = "<group>"; };
-		D257499818633AB20025A536 /* DBLPSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchViewController.h; sourceTree = "<group>"; };
-		D257499918633AB20025A536 /* DBLPSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPSearchViewController.m; sourceTree = "<group>"; };
-		D257499A18633AB20025A536 /* DBLPSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPSearchView.xib; sourceTree = "<group>"; };
-		D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLPSearchCompletionHandler.h; sourceTree = "<group>"; };
 		D2928B021967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2928B031967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2928B041967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D2928B051967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2928B061967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2A13EA51879D66F0028E033 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
-		D2AB7DE3176B700900D1AB7B /* TMTBibTexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexEntry.h; path = "../DBLP Tool/TMTBibTexEntry.h"; sourceTree = "<group>"; };
-		D2AB7DE4176B700900D1AB7B /* TMTBibTexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexEntry.m; path = "../DBLP Tool/TMTBibTexEntry.m"; sourceTree = "<group>"; };
+		D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DBLPToolsFramework-Info.plist"; path = "TMTBibTexTools/DBLPToolsFramework-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBLPToolsFramework-Prefix.pch"; path = "TMTBibTexTools/DBLPToolsFramework-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexTools.h; path = TMTBibTexTools/TMTBibTexTools.h; sourceTree = SOURCE_ROOT; };
+		D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexTools.m; path = TMTBibTexTools/TMTBibTexTools.m; sourceTree = SOURCE_ROOT; };
+		D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexParser.h; path = TMTBibTexTools/TMTBibTexParser.h; sourceTree = SOURCE_ROOT; };
+		D2989C701990EF940024DFA6 /* TMTBibTexParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexParser.m; path = TMTBibTexTools/TMTBibTexParser.m; sourceTree = SOURCE_ROOT; };
+		D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchCompletionHandler.h; sourceTree = "<group>"; };
+		D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPSearchView.xib; sourceTree = "<group>"; };
+		D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchViewController.h; sourceTree = "<group>"; };
+		D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPSearchViewController.m; sourceTree = "<group>"; };
+		D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPCallbackHandler.h; sourceTree = "<group>"; };
+		D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPConfiguration.h; sourceTree = "<group>"; };
+		D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPConfiguration.m; sourceTree = "<group>"; };
+		D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DBLPConfiguration.plist; sourceTree = "<group>"; };
+		D2989C831990F15E0024DFA6 /* DBLPInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPInterface.h; sourceTree = "<group>"; };
+		D2989C841990F15E0024DFA6 /* DBLPInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPInterface.m; sourceTree = "<group>"; };
+		D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexEntry.h; path = TMTBibTexTools/TMTBibTexEntry.h; sourceTree = SOURCE_ROOT; };
+		D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexEntry.m; path = TMTBibTexTools/TMTBibTexEntry.m; sourceTree = SOURCE_ROOT; };
 		D2AB7DEE176B8FAB00D1AB7B /* BibtexWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexWindowController.h; sourceTree = "<group>"; };
 		D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibtexWindowController.m; sourceTree = "<group>"; };
 		D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BibtexWindow.xib; sourceTree = "<group>"; };
+		DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTBibTexTools.xcconfig"; path = "../Pods/Pods-TMTBibTexTools.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC5121861E80B00E9A507 /* BibTexToolsFramework.framework in Frameworks */,
+				D23BC5121861E80B00E9A507 /* TMTBibTexTools.framework in Frameworks */,
 				D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,8 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2A13EA61879D66F0028E033 /* TMTHelperCollection.framework in Frameworks */,
 				D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */,
+				C84404FF2790439EB06A745D /* libPods-TMTBibTexTools.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D23BC4F41861E79700E9A507 /* Cocoa.framework in Frameworks */,
-				D23BC4F71861E79700E9A507 /* BibTexToolsFramework.framework in Frameworks */,
+				D23BC4F71861E79700E9A507 /* TMTBibTexTools.framework in Frameworks */,
 				D23BC4F31861E79700E9A507 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,19 +146,19 @@
 			isa = PBXGroup;
 			children = (
 				D217A42B176B442C002DB084 /* DBLP Tool */,
-				D23BC4E31861E79700E9A507 /* BibTexToolsFramework */,
+				D23BC4E31861E79700E9A507 /* TMTBibTexTools */,
 				D23BC4F81861E79700E9A507 /* DBLPToolsFrameworkTests */,
 				D217A424176B442C002DB084 /* Frameworks */,
 				D217A423176B442C002DB084 /* Products */,
-				B262A339B30D40CF9DED9D6E /* Pods-BibTexToolsFramework.xcconfig */,
+				DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		D217A423176B442C002DB084 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D217A422176B442C002DB084 /* DBLP Tool.app */,
-				D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */,
+				D217A422176B442C002DB084 /* TMTBibTexTools.app */,
+				D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */,
 				D23BC4F11861E79700E9A507 /* DBLPToolsFrameworkTests.xctest */,
 			);
 			name = Products;
@@ -182,11 +167,11 @@
 		D217A424176B442C002DB084 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D2A13EA51879D66F0028E033 /* TMTHelperCollection.framework */,
+				D220A6F11991123200A28CB7 /* TMTHelperCollection.framework */,
 				D217A425176B442C002DB084 /* Cocoa.framework */,
 				D23BC4F21861E79700E9A507 /* XCTest.framework */,
 				D217A427176B442C002DB084 /* Other Frameworks */,
-				BAE6555A71A64BADB2E7D46B /* libPods-BibTexToolsFramework.a */,
+				B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,46 +203,36 @@
 		D217A42C176B442C002DB084 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D217A42D176B442C002DB084 /* DBLP Tool-Info.plist */,
+				D217A42D176B442C002DB084 /* TMTBibTexTools-Info.plist */,
 				D217A42E176B442C002DB084 /* InfoPlist.strings */,
 				D217A431176B442C002DB084 /* main.m */,
-				D217A433176B442C002DB084 /* DBLP Tool-Prefix.pch */,
+				D217A433176B442C002DB084 /* TMTBibTexTools-Prefix.pch */,
 				D217A434176B442C002DB084 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D23BC4E31861E79700E9A507 /* BibTexToolsFramework */ = {
+		D23BC4E31861E79700E9A507 /* TMTBibTexTools */ = {
 			isa = PBXGroup;
 			children = (
-				D217A442176B463C002DB084 /* DBLPInterface.h */,
-				D217A443176B463C002DB084 /* DBLPInterface.m */,
-				D217A445176B471A002DB084 /* DBLPCallbackHandler.h */,
-				D2AB7DE3176B700900D1AB7B /* TMTBibTexEntry.h */,
-				D2AB7DE4176B700900D1AB7B /* TMTBibTexEntry.m */,
-				D20ABB3317B7AE3D00F88324 /* DBLPConfiguration.h */,
-				D20ABB3417B7AE3D00F88324 /* DBLPConfiguration.m */,
-				D20ABB3617B7B1B600F88324 /* DBLPConfiguration.plist */,
-				D23BC4EA1861E79700E9A507 /* DBLPToolsFramework.h */,
-				D23BC4EB1861E79700E9A507 /* DBLPToolsFramework.m */,
+				D2989C751990F07F0024DFA6 /* Connectors */,
+				D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */,
+				D2989C701990EF940024DFA6 /* TMTBibTexParser.m */,
+				D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */,
+				D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */,
+				D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */,
+				D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */,
 				D23BC4E41861E79700E9A507 /* Supporting Files */,
-				D2574975186220A20025A536 /* TMTBibTexParser.h */,
-				D2574976186220A20025A536 /* TMTBibTexParser.m */,
-				D257499818633AB20025A536 /* DBLPSearchViewController.h */,
-				D257499918633AB20025A536 /* DBLPSearchViewController.m */,
-				D257499E18634F2D0025A536 /* DBLPSearchCompletionHandler.h */,
-				D257499A18633AB20025A536 /* DBLPSearchView.xib */,
 			);
-			name = BibTexToolsFramework;
+			name = TMTBibTexTools;
 			path = DBLPToolsFramework;
 			sourceTree = "<group>";
 		};
 		D23BC4E41861E79700E9A507 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D23BC4E51861E79700E9A507 /* DBLPToolsFramework-Info.plist */,
-				D23BC4E61861E79700E9A507 /* InfoPlist.strings */,
-				D23BC4E91861E79700E9A507 /* DBLPToolsFramework-Prefix.pch */,
+				D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */,
+				D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,6 +255,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D2989C751990F07F0024DFA6 /* Connectors */ = {
+			isa = PBXGroup;
+			children = (
+				D2989C761990F07F0024DFA6 /* DBLP */,
+			);
+			name = Connectors;
+			path = TMTBibTexTools/Connectors;
+			sourceTree = SOURCE_ROOT;
+		};
+		D2989C761990F07F0024DFA6 /* DBLP */ = {
+			isa = PBXGroup;
+			children = (
+				D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */,
+				D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */,
+				D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */,
+				D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */,
+				D2989C831990F15E0024DFA6 /* DBLPInterface.h */,
+				D2989C841990F15E0024DFA6 /* DBLPInterface.m */,
+				D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */,
+				D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */,
+				D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */,
+				D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */,
+			);
+			path = DBLP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -287,14 +288,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC50A1861E7EE00E9A507 /* TMTBibTexEntry.h in Headers */,
-				D23BC5091861E7EE00E9A507 /* DBLPCallbackHandler.h in Headers */,
-				D257499F18634F310025A536 /* DBLPSearchCompletionHandler.h in Headers */,
-				D257499B18633AB20025A536 /* DBLPSearchViewController.h in Headers */,
-				D23BC5081861E7EE00E9A507 /* DBLPInterface.h in Headers */,
-				D2574977186220A20025A536 /* TMTBibTexParser.h in Headers */,
-				D23BC50B1861E7EE00E9A507 /* DBLPConfiguration.h in Headers */,
-				D23BC50C1861E7EE00E9A507 /* DBLPToolsFramework.h in Headers */,
+				D2989C731990EF940024DFA6 /* TMTBibTexParser.h in Headers */,
+				D2989C8D1990F1720024DFA6 /* TMTBibTexEntry.h in Headers */,
+				D2989C7B1990F07F0024DFA6 /* DBLPSearchCompletionHandler.h in Headers */,
+				D2989C851990F15E0024DFA6 /* DBLPCallbackHandler.h in Headers */,
+				D2989C7D1990F07F0024DFA6 /* DBLPSearchViewController.h in Headers */,
+				D2989C891990F15E0024DFA6 /* DBLPInterface.h in Headers */,
+				D2989C671990EF7F0024DFA6 /* TMTBibTexTools.h in Headers */,
+				D2989C861990F15E0024DFA6 /* DBLPConfiguration.h in Headers */,
+				D2989C661990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,28 +318,25 @@
 			);
 			name = "DBLP Tool";
 			productName = "DBLP Tool";
-			productReference = D217A422176B442C002DB084 /* DBLP Tool.app */;
+			productReference = D217A422176B442C002DB084 /* TMTBibTexTools.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D23BC4E01861E79700E9A507 /* BibTexToolsFramework */ = {
+		D23BC4E01861E79700E9A507 /* TMTBibTexTools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "BibTexToolsFramework" */;
+			buildConfigurationList = D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "TMTBibTexTools" */;
 			buildPhases = (
-				B6322422897E447790FDE983 /* Check Pods Manifest.lock */,
 				D23BC4DC1861E79700E9A507 /* Sources */,
 				D23BC4DD1861E79700E9A507 /* Frameworks */,
 				D23BC4DE1861E79700E9A507 /* Headers */,
 				D23BC4DF1861E79700E9A507 /* Resources */,
-				D21840D01864928D00B73EB5 /* CopyFiles */,
-				65FD8544128144BBB146D0F9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BibTexToolsFramework;
+			name = TMTBibTexTools;
 			productName = DBLPToolsFramework;
-			productReference = D23BC4E11861E79700E9A507 /* BibTexToolsFramework.framework */;
+			productReference = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D23BC4F01861E79700E9A507 /* DBLPToolsFrameworkTests */ = {
@@ -372,7 +371,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D217A41D176B442C002DB084 /* Build configuration list for PBXProject "DBLP Tool" */;
+			buildConfigurationList = D217A41D176B442C002DB084 /* Build configuration list for PBXProject "TMTBibTexTools" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -385,7 +384,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D23BC4E01861E79700E9A507 /* BibTexToolsFramework */,
+				D23BC4E01861E79700E9A507 /* TMTBibTexTools */,
 				D217A421176B442C002DB084 /* DBLP Tool */,
 				D23BC4F01861E79700E9A507 /* DBLPToolsFrameworkTests */,
 			);
@@ -401,7 +400,6 @@
 				D217A436176B442C002DB084 /* Credits.rtf in Resources */,
 				D217A43C176B442C002DB084 /* MainMenu.xib in Resources */,
 				D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */,
-				D20ABB3717B7B1B600F88324 /* DBLPConfiguration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,9 +407,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC5071861E7CD00E9A507 /* DBLPConfiguration.plist in Resources */,
-				D23BC4E81861E79700E9A507 /* InfoPlist.strings in Resources */,
-				D257499D18633AB20025A536 /* DBLPSearchView.xib in Resources */,
+				D2989C7C1990F07F0024DFA6 /* DBLPSearchView.xib in Resources */,
+				D2989C651990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist in Resources */,
+				D2989C881990F15E0024DFA6 /* DBLPConfiguration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,45 +417,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D23BC5061861E7BF00E9A507 /* DBLPConfiguration.plist in Resources */,
 				D23BC4FD1861E79700E9A507 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		65FD8544128144BBB146D0F9 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-BibTexToolsFramework-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6322422897E447790FDE983 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D217A41E176B442C002DB084 /* Sources */ = {
@@ -474,12 +438,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2574978186220A20025A536 /* TMTBibTexParser.m in Sources */,
-				D23BC50D1861E7FB00E9A507 /* DBLPInterface.m in Sources */,
-				D257499C18633AB20025A536 /* DBLPSearchViewController.m in Sources */,
-				D23BC50E1861E7FB00E9A507 /* TMTBibTexEntry.m in Sources */,
-				D23BC50F1861E7FB00E9A507 /* DBLPConfiguration.m in Sources */,
-				D23BC4EC1861E79700E9A507 /* DBLPToolsFramework.m in Sources */,
+				D2989C871990F15E0024DFA6 /* DBLPConfiguration.m in Sources */,
+				D2989C681990EF7F0024DFA6 /* TMTBibTexTools.m in Sources */,
+				D2989C8A1990F15E0024DFA6 /* DBLPInterface.m in Sources */,
+				D2989C741990EF940024DFA6 /* TMTBibTexParser.m in Sources */,
+				D2989C8E1990F1720024DFA6 /* TMTBibTexEntry.m in Sources */,
+				D2989C7E1990F07F0024DFA6 /* DBLPSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,12 +460,12 @@
 /* Begin PBXTargetDependency section */
 		D23BC4F61861E79700E9A507 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D23BC4E01861E79700E9A507 /* BibTexToolsFramework */;
+			target = D23BC4E01861E79700E9A507 /* TMTBibTexTools */;
 			targetProxy = D23BC4F51861E79700E9A507 /* PBXContainerItemProxy */;
 		};
 		D23BC5111861E80400E9A507 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D23BC4E01861E79700E9A507 /* BibTexToolsFramework */;
+			target = D23BC4E01861E79700E9A507 /* TMTBibTexTools */;
 			targetProxy = D23BC5101861E80400E9A507 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -534,15 +498,6 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		D23BC4E61861E79700E9A507 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D23BC4E71861E79700E9A507 /* en */,
-				D2928B051967F75F00F6C9BD /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D23BC4FB1861E79700E9A507 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -559,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -581,6 +537,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -591,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -609,6 +570,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)/**",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
@@ -619,10 +584,10 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLP Tool/DBLP Tool-Prefix.pch";
-				INFOPLIST_FILE = "DBLP Tool/DBLP Tool-Info.plist";
+				GCC_PREFIX_HEADER = "DBLP Tool/TMTBibTexTools-Prefix.pch";
+				INFOPLIST_FILE = "DBLP Tool/TMTBibTexTools-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TMTBibTexTools;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -632,17 +597,17 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLP Tool/DBLP Tool-Prefix.pch";
-				INFOPLIST_FILE = "DBLP Tool/DBLP Tool-Info.plist";
+				GCC_PREFIX_HEADER = "DBLP Tool/TMTBibTexTools-Prefix.pch";
+				INFOPLIST_FILE = "DBLP Tool/TMTBibTexTools-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TMTBibTexTools;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		D23BC5001861E79700E9A507 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B262A339B30D40CF9DED9D6E /* Pods-BibTexToolsFramework.xcconfig */;
+			baseConfigurationReference = DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -651,18 +616,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					../DerivedData/TMTProject/Build/Products/Debug,
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLPToolsFramework/DBLPToolsFramework-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "DBLPToolsFramework/DBLPToolsFramework-Info.plist";
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -671,7 +630,7 @@
 		};
 		D23BC5011861E79700E9A507 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B262A339B30D40CF9DED9D6E /* Pods-BibTexToolsFramework.xcconfig */;
+			baseConfigurationReference = DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -681,17 +640,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					../DerivedData/TMTProject/Build/Products/Debug,
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLPToolsFramework/DBLPToolsFramework-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "DBLPToolsFramework/DBLPToolsFramework-Info.plist";
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -752,7 +705,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D217A41D176B442C002DB084 /* Build configuration list for PBXProject "DBLP Tool" */ = {
+		D217A41D176B442C002DB084 /* Build configuration list for PBXProject "TMTBibTexTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D217A43D176B442C002DB084 /* Debug */,
@@ -770,7 +723,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "BibTexToolsFramework" */ = {
+		D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "TMTBibTexTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D23BC5001861E79700E9A507 /* Debug */,

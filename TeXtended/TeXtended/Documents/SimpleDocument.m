@@ -10,7 +10,7 @@
 #import "MainWindowController.h"
 #import "DocumentController.h"
 #import "EncodingController.h"
-#import <TMTHelperCollection/TMTLog.h>
+#import <TMTHelperCollection/TMTHelperCollection.h>
 #import "DocumentCreationController.h"
 #import "ConsoleManager.h"
 #import "MergeWindowController.h"
@@ -48,6 +48,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (void)setModel:(DocumentModel *)model
     {
+        TMT_TRACE
         if (_model) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTFirstResponderDelegateChangeNotification object:_model];
         }
@@ -61,11 +62,27 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action
     {
-        [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+        TMT_TRACE
+        if (self.documentNeedsSaving) {
+            [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+        } else if(delegate && [delegate respondsToSelector:action]) {
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [delegate performSelector:action withObject:nil];
+            #pragma clang diagnostic pop
+
+        }
     }
+
+- (void)saveDocument:(id)sender {
+    if (self.documentNeedsSaving) {
+        [super saveDocument:sender];
+    }
+}
 
     - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
     {
+        TMT_TRACE
         [super saveToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
 
         NSNumber *encoding = [[self.encController.popUp selectedItem] representedObject];
@@ -77,6 +94,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * __autoreleasing *)outError
     {
+        TMT_TRACE
         if (saveOperation != NSAutosaveInPlaceOperation && saveOperation != NSAutosaveElsewhereOperation) {
             [self.documentControllers makeObjectsPerformSelector:@selector(breakUndoCoalescing)];
         }
@@ -86,7 +104,11 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
             }
             return NO;
         }
+        DDLogDebug(@"URL(%@), ORIGINAL(%@)", url, absoluteOriginalContentsURL);
         self.model.systemPath = [url path];
+        if (absoluteOriginalContentsURL) {
+            self.model.texPath = absoluteOriginalContentsURL.path;
+        }
         BOOL success = YES;
         for (DocumentController *dc in self.documentControllers) {
             success &= [dc saveDocumentModel:outError];
@@ -130,6 +152,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError * __autoreleasing *)outError
     {
+        TMT_TRACE
         if (outError != NULL) {
             *outError = nil;
         }
@@ -162,6 +185,17 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
         return YES;
     }
+
+- (void)presentError:(NSError *)error modalForWindow:(NSWindow *)window delegate:(id)delegate didPresentSelector:(SEL)didPresentSelector contextInfo:(void *)contextInfo {
+    DDLogError(@"Presenting Error to user:");
+    NSError *underlying = error;
+    while (underlying) {
+        DDLogDebug(@"%@", underlying);
+        underlying = underlying.userInfo[NSUnderlyingErrorKey];
+    }
+    [super presentError:error modalForWindow:window delegate:delegate didPresentSelector:didPresentSelector contextInfo:contextInfo];
+}
+
 
     - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
     {
@@ -229,6 +263,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (void)setFileURL:(NSURL *)url
     {
+        TMT_TRACE
         [super setFileURL:url];
         self.model.texPath = url.path;
     }

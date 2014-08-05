@@ -468,9 +468,6 @@
                             </menuItem>
                             <menuItem title="Tabellen Editor" keyEquivalent="m" id="IVu-h9-Msz">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="matrixView:" target="-1" id="FAx-M7-0Sk"/>
-                                </connections>
                             </menuItem>
                             <menuItem title="Statistiken" id="4Om-hC-ygK">
                                 <modifierMask key="keyEquivalentModifierMask"/>

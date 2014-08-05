@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMTLog.h"
+
+
+#define TMTStringFromBool(b) b ? @"YES" : @"NO"
 
 @interface TMTHelperCollection : NSObject
 
