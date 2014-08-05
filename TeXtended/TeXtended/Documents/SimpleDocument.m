@@ -63,8 +63,22 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action
     {
         TMT_TRACE
-        [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+        if (self.documentNeedsSaving) {
+            [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+        } else if(delegate && [delegate respondsToSelector:action]) {
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [delegate performSelector:action withObject:nil];
+            #pragma clang diagnostic pop
+
+        }
     }
+
+- (void)saveDocument:(id)sender {
+    if (self.documentNeedsSaving) {
+        [super saveDocument:sender];
+    }
+}
 
     - (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
     {

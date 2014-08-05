@@ -249,6 +249,15 @@
         [item.tabView.window makeFirstResponder:item.view];
     }
 
+- (BOOL)documentNeedsSaving {
+    for (DocumentController *dc in self.documentControllers) {
+        if (dc.isDirty) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 
 #pragma mark - Printing
     - (void)printDocument:(id)sender

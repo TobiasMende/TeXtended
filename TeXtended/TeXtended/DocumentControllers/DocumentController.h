@@ -98,4 +98,5 @@
 
     - (void)loadViews;
 
+- (BOOL)isDirty;
 @end

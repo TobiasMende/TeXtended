@@ -245,6 +245,10 @@
         }
     }
 
+- (BOOL)isDirty {
+    return self.textViewController.dirty;
+}
+
 
 #pragma mark - First Responder Delegate
 

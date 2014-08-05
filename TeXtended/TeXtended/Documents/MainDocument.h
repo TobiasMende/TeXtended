@@ -71,4 +71,7 @@
     - (IBAction)shareFile:(id)sender;
 
     - (void)shareItems:(NSArray *)items;
+
+
+- (BOOL)documentNeedsSaving;
 @end
