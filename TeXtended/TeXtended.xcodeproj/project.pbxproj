@@ -42,7 +42,6 @@
 		D20E8ACF196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8ACE196404A2004ADAA2 /* CompletionWhiteSpaceValueTransformer.m */; };
 		D20E8AD219641C56004ADAA2 /* LightHighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D20E8AD119641C55004ADAA2 /* LightHighlightingTextView.m */; };
 		D213171517782485002966FC /* TMTMessageCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D213171417782485002966FC /* TMTMessageCellView.xib */; };
-		D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23FD40D1863A4D7006BFD33 /* Sparkle.framework */; };
 		D21A1C2F17806F4B0087E10D /* MessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A1C2D17806F4B0087E10D /* MessageInfoViewController.m */; };
 		D21ACB6B17267C1100E2F8EC /* dsa_textended.pem in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB6A17267C1100E2F8EC /* dsa_textended.pem */; };
 		D21ACBA11726868A00E2F8EC /* CommandCompletions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21ACB841726868A00E2F8EC /* CommandCompletions.plist */; };
@@ -79,8 +78,6 @@
 		D23BC52F1861ED2400E9A507 /* CiteCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC52E1861ED2400E9A507 /* CiteCompletion.m */; };
 		D23DD42A18794D2600C0EF97 /* QuickPreviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23DD42918794D2600C0EF97 /* QuickPreviewManager.m */; };
 		D2416DA618D6E14D00F16284 /* StructureOutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2416DA518D6E14D00F16284 /* StructureOutlineView.xib */; };
-		D243662C199119DD008A31B5 /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
-		D243662D19911FA0008A31B5 /* TMTHelperCollection.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2A13E9E1879D6440028E033 /* TMTHelperCollection.framework */; };
 		D248E4DC177763C7008DDE80 /* TMTMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DB177763C7008DDE80 /* TMTMessageCellView.m */; };
 		D248E4DF1777647E008DDE80 /* MessageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D248E4DE1777647E008DDE80 /* MessageDataSource.m */; };
 		D24EE30717F71D1400793643 /* AutoCompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EE30517F71D1400793643 /* AutoCompletionWindowController.m */; };
@@ -196,8 +193,6 @@
 		D2B0166617660D9900C6CE23 /* Play.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166517660D9900C6CE23 /* Play.pdf */; };
 		D2B016681766163E00C6CE23 /* Export.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B016671766163E00C6CE23 /* Export.pdf */; };
 		D2B0167017661BCB00C6CE23 /* Livepreview.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B0166F17661BCB00C6CE23 /* Livepreview.pdf */; };
-		D2B9830A1990FCBA00E2EF5D /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B983091990FCBA00E2EF5D /* TMTBibTexTools.framework */; };
-		D2B9830B1990FCC000E2EF5D /* TMTBibTexTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2B983091990FCBA00E2EF5D /* TMTBibTexTools.framework */; };
 		D2C235781895118A0096ECAA /* OutlineElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C235731895118A0096ECAA /* OutlineElement.m */; };
 		D2C235791895118A0096ECAA /* OutlineElementTypeLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235741895118A0096ECAA /* OutlineElementTypeLookupTable.plist */; };
 		D2C2357A1895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C235751895118A0096ECAA /* OutlineElementTypeStringLookupTable.plist */; };
@@ -306,8 +301,6 @@
 			dstPath = Frameworks;
 			dstSubfolderSpec = 10;
 			files = (
-				D243662D19911FA0008A31B5 /* TMTHelperCollection.framework in CopyFiles */,
-				D2B9830B1990FCC000E2EF5D /* TMTBibTexTools.framework in CopyFiles */,
 				D2A13EA31879D6550028E033 /* MMTabBarView.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,10 +825,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D243662C199119DD008A31B5 /* TMTHelperCollection.framework in Frameworks */,
-				D2B9830A1990FCBA00E2EF5D /* TMTBibTexTools.framework in Frameworks */,
 				D2A13EA01879D6440028E033 /* MMTabBarView.framework in Frameworks */,
-				D21840DC1864934700B73EB5 /* Sparkle.framework in Frameworks */,
 				D2A439EA171EF5130020C15F /* Quartz.framework in Frameworks */,
 				D2CC54F4171EAFAB00D81CF1 /* Cocoa.framework in Frameworks */,
 				F4DD8D78876D4ED8B36C3C3E /* libPods-TeXtended.a in Frameworks */,

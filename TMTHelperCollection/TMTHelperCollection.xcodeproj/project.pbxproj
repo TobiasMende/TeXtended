@@ -13,11 +13,6 @@
 		D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */; };
 		D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
 		D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1C51863784800997ADB /* InfoPlist.strings */; };
-		D22DC1D21863784800997ADB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1D11863784800997ADB /* XCTest.framework */; };
-		D22DC1D31863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
-		D22DC1D61863784800997ADB /* TMTHelperCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1B91863784800997ADB /* TMTHelperCollection.framework */; };
-		D22DC1DC1863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1DA1863784800997ADB /* InfoPlist.strings */; };
-		D22DC1DE1863784800997ADB /* TMTHelperCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC1DD1863784800997ADB /* TMTHelperCollectionTests.m */; };
 		D22DC28318637AB800997ADB /* GenericFilePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC24918637A4F00997ADB /* GenericFilePresenter.m */; };
 		D22DC28B18637AB800997ADB /* TMTLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25C18637A4F00997ADB /* TMTLog.m */; };
 		D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DC25E18637A4F00997ADB /* TMTLogFormatter.m */; };
@@ -61,16 +56,6 @@
 		D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D22DC1D41863784800997ADB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D22DC1B01863784800997ADB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D22DC1B81863784800997ADB;
-			remoteInfo = TMTHelperCollection;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTableViewDelegate.h; sourceTree = "<group>"; };
@@ -86,11 +71,6 @@
 		D22DC1C81863784800997ADB /* TMTHelperCollection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTHelperCollection-Prefix.pch"; sourceTree = "<group>"; };
 		D22DC1C91863784800997ADB /* TMTHelperCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTHelperCollection.h; sourceTree = "<group>"; };
 		D22DC1CA1863784800997ADB /* TMTHelperCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTHelperCollection.m; sourceTree = "<group>"; };
-		D22DC1D01863784800997ADB /* TMTHelperCollectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTHelperCollectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D22DC1D11863784800997ADB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D22DC1D91863784800997ADB /* TMTHelperCollectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTHelperCollectionTests-Info.plist"; sourceTree = "<group>"; };
-		D22DC1DB1863784800997ADB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D22DC1DD1863784800997ADB /* TMTHelperCollectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTHelperCollectionTests.m; sourceTree = "<group>"; };
 		D22DC24718637A4F00997ADB /* FileObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObserver.h; sourceTree = "<group>"; };
 		D22DC24818637A4F00997ADB /* GenericFilePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericFilePresenter.h; sourceTree = "<group>"; };
 		D22DC24918637A4F00997ADB /* GenericFilePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericFilePresenter.m; sourceTree = "<group>"; };
@@ -126,7 +106,6 @@
 		D28F287019656ADF0085344F /* NSRegularExpression+LatexExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+LatexExtensions.h"; sourceTree = "<group>"; };
 		D28F287119656ADF0085344F /* NSRegularExpression+LatexExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+LatexExtensions.m"; sourceTree = "<group>"; };
 		D2928B001967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2928B011967F6CE00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D29383B51945CE59005C6C3F /* TMTByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTByteCountFormatter.h; sourceTree = "<group>"; };
 		D29383B61945CE59005C6C3F /* TMTByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTByteCountFormatter.m; sourceTree = "<group>"; };
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
@@ -141,16 +120,6 @@
 			files = (
 				D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */,
 				9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D22DC1CD1863784800997ADB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22DC1D31863784800997ADB /* Cocoa.framework in Frameworks */,
-				D22DC1D21863784800997ADB /* XCTest.framework in Frameworks */,
-				D22DC1D61863784800997ADB /* TMTHelperCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +141,6 @@
 			children = (
 				D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */,
 				D22DC1C21863784800997ADB /* TMTHelperCollection */,
-				D22DC1D71863784800997ADB /* TMTHelperCollectionTests */,
 				D22DC1BB1863784800997ADB /* Frameworks */,
 				D22DC1BA1863784800997ADB /* Products */,
 			);
@@ -182,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				D22DC1B91863784800997ADB /* TMTHelperCollection.framework */,
-				D22DC1D01863784800997ADB /* TMTHelperCollectionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				D22DC1BC1863784800997ADB /* Cocoa.framework */,
-				D22DC1D11863784800997ADB /* XCTest.framework */,
 				D22DC1BE1863784800997ADB /* Other Frameworks */,
 				071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */,
 			);
@@ -230,24 +196,6 @@
 				D22DC1C41863784800997ADB /* TMTHelperCollection-Info.plist */,
 				D22DC1C51863784800997ADB /* InfoPlist.strings */,
 				D22DC1C81863784800997ADB /* TMTHelperCollection-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D22DC1D71863784800997ADB /* TMTHelperCollectionTests */ = {
-			isa = PBXGroup;
-			children = (
-				D22DC1DD1863784800997ADB /* TMTHelperCollectionTests.m */,
-				D22DC1D81863784800997ADB /* Supporting Files */,
-			);
-			path = TMTHelperCollectionTests;
-			sourceTree = "<group>";
-		};
-		D22DC1D81863784800997ADB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D22DC1D91863784800997ADB /* TMTHelperCollectionTests-Info.plist */,
-				D22DC1DA1863784800997ADB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -428,24 +376,6 @@
 			productReference = D22DC1B91863784800997ADB /* TMTHelperCollection.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D22DC1CF1863784800997ADB /* TMTHelperCollectionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D22DC1E41863784800997ADB /* Build configuration list for PBXNativeTarget "TMTHelperCollectionTests" */;
-			buildPhases = (
-				D22DC1CC1863784800997ADB /* Sources */,
-				D22DC1CD1863784800997ADB /* Frameworks */,
-				D22DC1CE1863784800997ADB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D22DC1D51863784800997ADB /* PBXTargetDependency */,
-			);
-			name = TMTHelperCollectionTests;
-			productName = TMTHelperCollectionTests;
-			productReference = D22DC1D01863784800997ADB /* TMTHelperCollectionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -454,11 +384,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tobias Mende";
-				TargetAttributes = {
-					D22DC1CF1863784800997ADB = {
-						TestTargetID = D22DC1B81863784800997ADB;
-					};
-				};
 			};
 			buildConfigurationList = D22DC1B31863784800997ADB /* Build configuration list for PBXProject "TMTHelperCollection" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -474,7 +399,6 @@
 			projectRoot = "";
 			targets = (
 				D22DC1B81863784800997ADB /* TMTHelperCollection */,
-				D22DC1CF1863784800997ADB /* TMTHelperCollectionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -486,14 +410,6 @@
 			files = (
 				D26CF28819910BD700E50931 /* Pods-TMTHelperCollection.xcconfig in Resources */,
 				D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D22DC1CE1863784800997ADB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22DC1DC1863784800997ADB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,23 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D22DC1CC1863784800997ADB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22DC1DE1863784800997ADB /* TMTHelperCollectionTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D22DC1D51863784800997ADB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D22DC1B81863784800997ADB /* TMTHelperCollection */;
-			targetProxy = D22DC1D41863784800997ADB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D22DC1C51863784800997ADB /* InfoPlist.strings */ = {
@@ -551,15 +451,6 @@
 			children = (
 				D22DC1C61863784800997ADB /* en */,
 				D2928B001967F6CE00F6C9BD /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D22DC1DA1863784800997ADB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D22DC1DB1863784800997ADB /* en */,
-				D2928B011967F6CE00F6C9BD /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -681,48 +572,6 @@
 			};
 			name = Release;
 		};
-		D22DC1E51863784800997ADB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTHelperCollection.framework/Versions/A/TMTHelperCollection";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TMTHelperCollectionTests/TMTHelperCollectionTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D22DC1E61863784800997ADB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TMTHelperCollection.framework/Versions/A/TMTHelperCollection";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
-				INFOPLIST_FILE = "TMTHelperCollectionTests/TMTHelperCollectionTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -740,15 +589,6 @@
 			buildConfigurations = (
 				D22DC1E21863784800997ADB /* Debug */,
 				D22DC1E31863784800997ADB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D22DC1E41863784800997ADB /* Build configuration list for PBXNativeTarget "TMTHelperCollectionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D22DC1E51863784800997ADB /* Debug */,
-				D22DC1E61863784800997ADB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

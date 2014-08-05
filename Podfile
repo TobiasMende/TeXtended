@@ -14,21 +14,23 @@ end
 
 target :TMTBibTexTools do
     xcodeproj 'TMTBibTexTools/TMTBibTexTools.xcodeproj'
-	pod 'CocoaLumberjack'
+	pod 'CocoaLumberjack', '>= 1.9.1'
+	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 end
 
-target :TMTLatexTableFramework do
-    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
-	pod 'CocoaLumberjack'
-end
+#target :TMTLatexTableFramework do
+#    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
+#end
 
 target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
+	pod 'CocoaLumberjack', '>= 1.9.1'
     pod 'DMInspectorPalette'
     pod 'OTMXAttribute'
     pod 'JSONKit-NoWarning'
-	pod 'CocoaLumberjack'
 	pod 'Sparkle'
+	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
+	pod 'TMTBibTexTools', :path => './TMTBibTexTools'
 end
 
 target 'TeXtended Tests', :exclusive => true do
