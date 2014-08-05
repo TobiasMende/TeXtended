@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */; };
 		D20E8AD419642A73004ADAA2 /* TMTTableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */; };
@@ -57,7 +56,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTableViewDelegate.h; sourceTree = "<group>"; };
 		D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
 		D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TMTSerialization.m"; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */,
-				9F248C775F9F44319C45A378 /* libPods-TMTHelperCollection.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +156,6 @@
 			children = (
 				D22DC1BC1863784800997ADB /* Cocoa.framework */,
 				D22DC1BE1863784800997ADB /* Other Frameworks */,
-				071BCDEEF4F045E18A6782D6 /* libPods-TMTHelperCollection.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

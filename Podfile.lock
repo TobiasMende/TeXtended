@@ -15,7 +15,6 @@ PODS:
     - CocoaLumberjack (>= 1.9.1)
 
 DEPENDENCIES:
-  - CocoaLumberjack
   - CocoaLumberjack (>= 1.9.1)
   - DMInspectorPalette
   - JSONKit-NoWarning

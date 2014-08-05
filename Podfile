@@ -9,7 +9,7 @@ platform :osx, '10.7'
 
 target :TMTHelperCollection do
     xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
-	pod 'CocoaLumberjack'
+	pod 'CocoaLumberjack', '>= 1.9.1'
 end
 
 target :TMTBibTexTools do
