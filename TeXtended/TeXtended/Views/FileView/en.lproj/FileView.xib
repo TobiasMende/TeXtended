@@ -160,7 +160,7 @@ CA
 </string>
                     <connections>
                         <action selector="deleteFile:" target="-2" id="dp8-x1-d6H"/>
-                        <binding destination="-3" name="enabled" keyPath="self.isDeletionAllowed" id="PyX-UW-RS7"/>
+                        <binding destination="-2" name="enabled" keyPath="self.isDeletionAllowed" id="Z9y-4q-M6B"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="fge-yb-XTJ"/>
