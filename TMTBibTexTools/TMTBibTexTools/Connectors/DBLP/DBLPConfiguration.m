@@ -9,6 +9,8 @@
 #import "DBLPConfiguration.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSString *SERVER_KEY = @"server";
 
 static const NSString *AUTHOR_SEARCH_APPENDIX_KEY = @"authorSearchAppendix";

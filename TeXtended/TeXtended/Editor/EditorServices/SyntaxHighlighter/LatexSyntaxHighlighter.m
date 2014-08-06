@@ -13,6 +13,8 @@
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static NSSet *USER_DEFAULTS_BINDING_KEYS;
 static const NSCharacterSet *ALL_SYMBOLS;
 static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *COMMAND_END_CHARACTERS, *ALLOWED_IN_MATH_MODE;
@@ -38,7 +40,7 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
 
     + (void)initialize
     {
-
+        LOGGING_LOAD
         USER_DEFAULTS_BINDING_KEYS = [NSSet setWithObjects:@"inlineMathColor", @"commandColor", @"bracketColor", @"curlyBracketColor", @"commentColor", @"shouldHighlightArguments", @"shouldHighlightCommands", @"shouldHighlightComments", @"shouldHighlightBrackets", @"shouldHighlightInlineMath", nil];
         ALL_SYMBOLS = [NSCharacterSet characterSetWithCharactersInString:@"()[]{}%$\\"];
         CURLY_BRACKETS = [NSCharacterSet characterSetWithCharactersInString:@"{}"];

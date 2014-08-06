@@ -31,6 +31,8 @@
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import "NSTextView+TMTEditorExtension.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 static const double UPDATE_AFTER_SCROLL_DELAY = 1.0;
 
 static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
@@ -72,6 +74,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     + (void)initialize
     {
         if (self == [HighlightingTextView class]) {
+            LOGGING_LOAD
             DEFAULT_KEYS_TO_OBSERVE = [NSSet setWithObjects:TMT_EDITOR_SELECTION_BACKGROUND_COLOR, TMT_EDITOR_SELECTION_FOREGROUND_COLOR, TMT_EDITOR_LINE_WRAP_MODE, TMT_EDITOR_HARD_WRAP_AFTER, TMT_REPLACE_INVISIBLE_SPACES, TMT_REPLACE_INVISIBLE_LINEBREAKS, TMTLineSpacing, nil];
         }
     }

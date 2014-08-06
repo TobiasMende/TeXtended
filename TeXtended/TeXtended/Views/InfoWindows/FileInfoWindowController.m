@@ -10,6 +10,8 @@
 #import "TMTQuickLookView.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSDictionary *FILE_TYPE_INFOS;
 
 @interface FileInfoWindowController ()

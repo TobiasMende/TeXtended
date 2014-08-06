@@ -19,6 +19,8 @@
 
 #define BOUNDING_RECT_KEY @"TMTBoundingRectKey"
 
+LOGGING_DEFAULT
+
 static const NSRegularExpression *TEXDOC_LINKS;
 
 static NSString *TEXDOC_PREFIX = @"texdoc://";

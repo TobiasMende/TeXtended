@@ -11,6 +11,8 @@
 #import "PathFactory.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSRegularExpression *SYNCTEX_REGEX;
 
 @interface BackwardSynctex ()
@@ -72,7 +74,7 @@ static const NSRegularExpression *SYNCTEX_REGEX;
             }
             @catch (NSException *exception) {
                 DDLogError(@"Cant'start backward synctex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
-                DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+                DDLogDebug(@"%@", [NSThread callStackSymbols]);
             }
 
         }

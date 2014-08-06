@@ -16,6 +16,8 @@
 #import "NSString+PathExtension.h"
 #import "ProjectModel.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface BibFile ()
 
     - (void)readFile;
@@ -31,6 +33,10 @@
 @implementation BibFile
 
 # pragma mark - Init & Dealloc
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (void)dealloc
     {

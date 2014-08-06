@@ -13,6 +13,8 @@
 #import "ExtendedPDFViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
 
 @interface QuickPreviewManager ()

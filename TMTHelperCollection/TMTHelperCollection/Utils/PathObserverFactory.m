@@ -9,6 +9,8 @@
 #import "PathObserverFactory.h"
 #import "TMTLog.h"
 
+LOGGING(LOG_LEVEL_NOTICE)
+
 static NSMutableDictionary *PATH_OBSERVER_DICTIONARY;
 
 typedef struct FlagMap
@@ -239,7 +241,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
     - (void)dealloc
     {
-        DDLogVerbose(@"%@ dealloc", filePath);
+        DDLogTrace(@"%@", filePath);
         FSEventStreamStop(stream);
         FSEventStreamInvalidate(stream);
 

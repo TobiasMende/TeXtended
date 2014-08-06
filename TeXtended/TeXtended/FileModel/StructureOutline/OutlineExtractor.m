@@ -15,6 +15,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static const NSDictionary *ELEMENT_EXTRACTOR_REGEX_LOOKUP;
 
 static const NSDictionary *TYPE_STRING_LOOKUP;
@@ -35,6 +37,7 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
     + (void)initialize
     {
         if (self == [OutlineExtractor class]) {
+            LOGGING_LOAD
             ELEMENT_EXTRACTOR_REGEX_LOOKUP = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OutlineElementTypeLookupTable" ofType:@"plist"]];
             TYPE_STRING_LOOKUP = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"OutlineElementTypeStringLookupTable" ofType:@"plist"]];
         }

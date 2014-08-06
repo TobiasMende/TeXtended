@@ -14,6 +14,8 @@
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 #import "NSString+TMTEditorExtensions.h"
 #import "SettingsHelper.h"
+
+LOGGING_DEFAULT_DYNAMIC
 static const NSSet *WHITESPACES;
 
 static const NSRegularExpression *SPACE_REGEX;
@@ -38,6 +40,7 @@ static const NSSet *KEYS_TO_OBSERVE;
 
     + (void)initialize
     {
+        LOGGING_LOAD
         KEYS_TO_UNBIND = [NSSet setWithObjects:@"currentLineColor", @"shouldHighlightCurrentLine", @"currentLineTextColor", @"shouldHighlightCurrentLineText", @"carretColor", @"shouldHighlightCarret", @"shouldUseSpacesAsTabs", @"shouldAutoIndentLines", @"numberOfSpacesForTab", nil];
         KEYS_TO_OBSERVE = [NSSet setWithObjects:@"currentLineColor", @"shouldHighlightCurrentLine", @"currentLineTextColor", @"shouldHighlightCurrentLineText", @"carretColor", @"shouldHighlightCarret", nil];
 

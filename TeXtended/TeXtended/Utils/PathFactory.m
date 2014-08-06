@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static NSString *TEMP_EXTENSION = @"TMTTemporaryStorage";
 
 @implementation PathFactory

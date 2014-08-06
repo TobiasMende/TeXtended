@@ -10,6 +10,8 @@
 #import "TrackingMessage.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 
 static const NSDictionary *LATEX_ERROR_EXTENSIONS;

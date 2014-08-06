@@ -10,6 +10,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSString+LatexExtensions.h>
 
+LOGGING_DEFAULT
+
 @interface LatexSpellChecker ()
 
     - (NSArray *)removeLatexResultsFrom:(NSArray *)results inContext:(NSString *)content;

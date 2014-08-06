@@ -36,11 +36,17 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 20;
     {
         NSString *logLevel;
         switch (logMessage->logFlag) {
+            case LOG_FLAG_FATAL:
+                logLevel = @"FATAL\t";
+                break;
             case LOG_FLAG_ERROR :
                 logLevel = @"ERROR\t";
                 break;
             case LOG_FLAG_WARN  :
                 logLevel = @"WARN\t";
+                break;
+            case LOG_FLAG_NOTICE :
+                logLevel = @"NOTICE\t";
                 break;
             case LOG_FLAG_INFO  :
                 logLevel = @"INFO\t";
@@ -48,8 +54,8 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 20;
             case LOG_FLAG_DEBUG :
                 logLevel = @"DEBUG\t";
                 break;
-            case LOG_FLAG_VERBOSE :
-                logLevel = @"VERBOSE\t";
+            case LOG_FLAG_TRACE  :
+                logLevel = @"TRACE\t";
                 break;
             default             :
                 logLevel = @"UNKNOWN\t";
@@ -58,6 +64,8 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 20;
 
         NSString *tmp = [NSString stringWithFormat:@"%s", logMessage->file];
         NSString *file = [[tmp lastPathComponent] stringByDeletingPathExtension];
+        
+
 
         NSString *output;
         if (self.extended) {
@@ -68,18 +76,24 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 20;
             }
         } else {
             NSString *classPart;
+            if (logMessage->logFlag == LOG_FLAG_TRACE) {
+                file = [file stringByAppendingFormat:@" %s [%d]", logMessage->function, logMessage->lineNumber];
+            }
             if (logMessage->threadName.length > 0) {
                 classPart = [NSString stringWithFormat:@"%@ (%@)", file, logMessage->threadName];
             } else {
                 classPart = file;
             }
+             if (logMessage->logFlag != LOG_FLAG_TRACE) {
             [TMTLogFormatter updateMaxLength:classPart.length];
             classPart = [TMTLogFormatter extendClassPart:classPart];
+             }
             output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel, classPart, logMessage->logMsg];
         }
 
         return output;
     }
+
 
     + (void)updateMaxLength:(NSUInteger)length
     {

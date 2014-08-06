@@ -14,6 +14,8 @@
 #import "DefaultCompletionView.h"
 #import "DBLPButtonView.h"
 
+LOGGING_DEFAULT
+
 @interface AutoCompletionWindowController ()
 
     - (NSRect)toGlobalCharBounds:(NSRect)localCharBound;

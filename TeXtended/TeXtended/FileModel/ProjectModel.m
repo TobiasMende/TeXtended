@@ -13,6 +13,7 @@
 #import "ProjectModel.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
 
 @interface ProjectModel ()
 
@@ -30,9 +31,13 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc - %@", self);
+        DDLogDebug(@"dealloc - %@", self);
         [self projectModelIsDeallocating];
     }
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
 - (void)projectModelIsDeallocating {
     for (DocumentModel *d in self.documents) {

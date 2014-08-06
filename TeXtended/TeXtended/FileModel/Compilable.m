@@ -13,6 +13,8 @@
 #import "Compilable.h"
 #import "CompileSetting.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 
 static NSUInteger LAST_IDENTIFIER = 0;
 
@@ -29,6 +31,10 @@ static NSUInteger LAST_IDENTIFIER = 0;
 @implementation Compilable
 
 #pragma mark - Init, Dealloc & Copy
+
++(void)initialize {
+    LOGGING_LOAD
+}
 
     - (id)copy
     {
@@ -123,7 +129,7 @@ static NSUInteger LAST_IDENTIFIER = 0;
                 }
             }
             @catch (NSException *exception) {
-                DDLogVerbose(@"Invalid mainDocuments set. Exception: %@", exception);
+                DDLogDebug(@"Invalid mainDocuments set. Exception: %@", exception);
             }
         }
         return self;

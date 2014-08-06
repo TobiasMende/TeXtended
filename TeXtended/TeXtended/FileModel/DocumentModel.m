@@ -21,6 +21,8 @@
 #import <TMTHelperCollection/NSSet+TMTSerialization.h>
 #import <OTMXAttribute/OTMXAttribute.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 
 static const NSArray *GENERATOR_TYPES_TO_USE;
 
@@ -59,9 +61,10 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
 #pragma mark - Init & Dealloc
 
+
     - (void)dealloc
     {
-        DDLogInfo(@"dealloc [%@]", self.texPath);
+        DDLogTrace(@"%@", self.texPath);
         [_filePresenter terminate];
         if (self.texPath && [[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
             [self saveModelSpecificXAttributes];
@@ -82,7 +85,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         if (self.project) {
             if (___projectSyncState.bibFiles) {
                 @try {
-                    DDLogVerbose(@"%@: unsync bibfiles", self);
+                    DDLogDebug(@"%@: unsync bibfiles", self);
                     [self.project removeObserver:self forKeyPath:@"bibFiles"];
                 }
                 @catch (NSException *exception) {
@@ -91,7 +94,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
             if (___projectSyncState.mainDocuments) {
                 @try {
-                    DDLogVerbose(@"%@: unsync mainDocuments", self);
+                    DDLogDebug(@"%@: unsync mainDocuments", self);
                     [self.project removeObserver:self forKeyPath:@"mainDocuments"];
                 }
                 @catch (NSException *exception) {
@@ -100,7 +103,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             }
             if (___projectSyncState.encoding) {
                 @try {
-                    DDLogVerbose(@"%@: unsync encoding", self);
+                    DDLogDebug(@"%@: unsync encoding", self);
                     [self.project removeObserver:self forKeyPath:@"encoding"];
                 }
                 @catch (NSException *exception) {
@@ -176,20 +179,20 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             ___projectSyncState = [__DocumentModelProjectSyncState fullyUnsynced];
 
             if (!super.bibFiles) {
-                DDLogVerbose(@"%@: sync bibfiles", self);
+                DDLogDebug(@"%@: sync bibfiles", self);
                 super.bibFiles = self.project.bibFiles;
                 [self.project addObserver:self forKeyPath:@"bibFiles" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.bibFiles = YES;
             }
             if (!super.mainDocuments) {
-                DDLogVerbose(@"%@: sync mainDocuments", self);
+                DDLogDebug(@"%@: sync mainDocuments", self);
                 super.mainDocuments = self.project.mainDocuments;
                 [self.project addObserver:self forKeyPath:@"mainDocuments" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.mainDocuments = YES;
             }
 
             if (!super.encoding) {
-                DDLogVerbose(@"%@: sync encoding", self);
+                DDLogDebug(@"%@: sync encoding", self);
                 super.encoding = self.project.encoding;
                 [self.project addObserver:self forKeyPath:@"encoding" options:NSKeyValueObservingOptionNew context:NULL];
                 ___projectSyncState.encoding = YES;
@@ -204,6 +207,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     + (void)initialize
     {
         if ([self class] == [DocumentModel class]) {
+            LOGGING_LOAD
             GENERATOR_TYPES_TO_USE = @[@(TMTLogFileParser), @(TMTLacheckParser), @(TMTChktexParser)];
         }
     }

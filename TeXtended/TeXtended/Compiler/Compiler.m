@@ -17,12 +17,18 @@
 #import "ConsoleManager.h"
 #import "MainDocument.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface Compiler ()
 
     - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData *)data;
 @end
 
 @implementation Compiler
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (id)initWithCompileProcessHandler:(id <CompileProcessHandler>)controller
     {
@@ -101,7 +107,7 @@
             }
             @catch (NSException *exception) {
                 DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
-                DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+                DDLogDebug(@"%@", [NSThread callStackSymbols]);
                 [currentTasks removeObject:currentTask];
                 [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
             }
@@ -178,7 +184,7 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", currentTasks);
+        DDLogDebug(@"dealloc [%@]", currentTasks);
         [self terminateAndKill];
 
     }

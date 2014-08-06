@@ -12,6 +12,8 @@
 #import "HighlightingTextView.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSDictionary *BRACKETS_TO_HIGHLIGHT;
 
 static const NSArray *VALID_PRE_CHARS;

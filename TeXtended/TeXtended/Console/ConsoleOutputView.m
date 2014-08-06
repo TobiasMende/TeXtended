@@ -15,6 +15,8 @@
 #import "ConsoleData.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static const NSRegularExpression *ERROR_LINES_EXPRESSION;
 
 static const NSSet *KEYS_TO_UNBIND;
@@ -37,6 +39,7 @@ static const NSSet *KEYS_TO_UNBIND;
     + (void)initialize
     {
         if (self == [ConsoleOutputView class]) {
+            LOGGING_LOAD
             KEYS_TO_UNBIND = [NSSet setWithObjects:@"shouldUnderlineLinks", @"linkColor", nil];
             NSString *regex = @"^([.|/].*?):(.*?): (.*)(?:\\n|.)*?^(l\\.(?:.*))$";
             NSError *error;

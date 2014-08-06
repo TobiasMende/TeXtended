@@ -24,6 +24,8 @@
 #import "OutlineHelper.h"
 #import "OutlineElement.h"
 
+LOGGING_DEFAULT
+
 static const NSDictionary *COMPLETION_TYPE_BY_PREFIX;
 
 static const NSDictionary *COMPLETION_BY_PREFIX_TYPE;
@@ -457,7 +459,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc");
+        TMT_TRACE
         [self unbindAll];
     }
 

@@ -11,6 +11,8 @@
 #import "DBLPConfiguration.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 @interface DBLPInterface ()
 
     - (void)finishAuthorsLoading;

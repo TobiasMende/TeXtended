@@ -10,6 +10,8 @@
 #import "PathFactory.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSDictionary *WARNING_NUMBERS;
 
 static const NSDictionary *INFO_NUMBERS;
@@ -74,7 +76,7 @@ static const NSDictionary *DEBUG_NUMBERS;
         }
         @catch (NSException *exception) {
             DDLogError(@"Cant'start chktex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
-            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+            DDLogDebug(@"%@", [NSThread callStackSymbols]);
             completionHandler(nil);
         }
 

@@ -20,6 +20,7 @@
 #import "FileOutlineView.h"
 #import "FileInfoWindowController.h"
 
+LOGGING_DEFAULT_DYNAMIC
 
 static const NSString *FILE_KEY_PATH = @"fileURL";
 
@@ -54,7 +55,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", self.path);
+        DDLogTrace(@"%@", self.path);
         [self.outlineView setViewController:nil];
         [self.document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         [PathObserverFactory removeObserver:self];
@@ -78,6 +79,7 @@ static NSArray *INTERNAL_EXTENSIONS;
     + (void)initialize
     {
         if ([self class] == [FileViewController class]) {
+            LOGGING_LOAD
             INTERNAL_EXTENSIONS = @[@"tex", @"sty", @"cls"];
         }
     }

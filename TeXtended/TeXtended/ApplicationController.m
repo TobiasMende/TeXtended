@@ -26,6 +26,7 @@
 #import <Quartz/Quartz.h>
 #import "StartScreenWindowController.h"
 
+LOGGING_DEFAULT
 
 @interface ApplicationController ()
 
@@ -58,6 +59,7 @@
 
     + (void)initialize
     {
+        
         //Register default user defaults
         [self registerDefaults];
         [LatexSpellChecker sharedSpellChecker];

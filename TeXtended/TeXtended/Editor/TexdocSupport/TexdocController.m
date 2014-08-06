@@ -12,6 +12,8 @@
 #import "PathFactory.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface TexdocController ()
 
 /**
@@ -36,6 +38,9 @@
 
 @implementation TexdocController
 
++ (void)initialize {
+    LOGGING_LOAD
+}
     - (void)texdocReadComplete:(NSNotification *)notification withPackageName:(NSString *)package info:(NSDictionary *)info andHandler:(id <TexdocHandlerProtocol>)handler
     {
         NSData *data = [notification userInfo][NSFileHandleNotificationDataItem];
@@ -96,7 +101,7 @@
         }
         @catch (NSException *exception) {
             DDLogError(@"Cant'start texdoc task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
-            DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+            DDLogDebug(@"%@", [NSThread callStackSymbols]);
         }
     }
 

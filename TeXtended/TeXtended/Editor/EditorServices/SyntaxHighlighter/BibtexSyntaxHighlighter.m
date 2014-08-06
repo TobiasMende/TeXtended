@@ -12,6 +12,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
 
+LOGGING_DEFAULT
+
 static NSString *COMMAND_PATTERN, *CURLY_BRACKET_PATTERN, *COMMENT_PATTERN, *BRACKET_PATTERN;
 
 static NSRegularExpression *COMMAND_REGEX, *CURLY_BRACKET_REGEX, *COMMENT_REGEX, *BRACKET_REGEX;

@@ -12,6 +12,10 @@
 #import <TMTHelperCollection/TMTTableView.h>
 #import <TMTHelperCollection/TMTLog.h>
 
+
+LOGGING_DEFAULT
+
+
 @interface DBLPSearchViewController ()
 - (void)abortDBLPSearch;
 @end

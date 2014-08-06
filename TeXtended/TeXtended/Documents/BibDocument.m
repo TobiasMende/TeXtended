@@ -14,6 +14,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "LineNumberView.h"
 
+LOGGING_DEFAULT
+
 @interface BibDocument ()
 
     - (void)executeBibdeskScript:(id)sender;

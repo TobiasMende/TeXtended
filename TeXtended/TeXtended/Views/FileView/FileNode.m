@@ -10,6 +10,8 @@
 
 #import "FileNode.h"
 
+LOGGING_DEFAULT
+
 @implementation FileNode
 
 #pragma mark - Getter

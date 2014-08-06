@@ -18,6 +18,8 @@
 #import "TemplateController.h"
 #import "TextViewController.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 static const NSSet *standardDocumentTypes;
 
 static BOOL autosave;
@@ -29,6 +31,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     + (void)initialize
     {
         if (self == [SimpleDocument class]) {
+            LOGGING_LOAD
             standardDocumentTypes = [[NSSet alloc] initWithObjects:@"Latex Document", @"Latex Class Document", @"Latex Style Document", nil];
             autosave = YES;
 
@@ -260,7 +263,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", self.fileURL);
+        DDLogDebug(@"dealloc [%@]", self.fileURL);
         [[ConsoleManager sharedConsoleManager] removeConsoleForModel:self.model];
     }
 

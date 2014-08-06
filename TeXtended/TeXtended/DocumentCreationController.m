@@ -16,6 +16,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "ProjectCreationWindowController.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface DocumentCreationController ()
 
     - (void)showProjectCreationPanel;
@@ -25,7 +27,9 @@
 
 
 @implementation DocumentCreationController
-
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)types
     {

@@ -13,6 +13,8 @@
 #import "StatsPanelController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSSet *KEYS_TO_UNBIND;
 
 @interface ExtendedPdf ()

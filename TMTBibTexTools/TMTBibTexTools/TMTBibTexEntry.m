@@ -10,6 +10,8 @@
 #import "DBLPConfiguration.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 @interface TMTBibTexEntry ()
 
 /** Method for starting asynchronous DBLP information fetching

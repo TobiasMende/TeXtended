@@ -12,6 +12,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "TMTArrayController.h"
 
+LOGGING_DEFAULT
+
 static NSString *FILE_EXTENSION = @"plist";
 
 @interface CompletionTableController ()

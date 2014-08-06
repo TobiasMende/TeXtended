@@ -11,6 +11,7 @@
 #import "PathFactory.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
 
 @implementation ForwardSynctex
 
@@ -120,7 +121,7 @@
             }
             @catch (NSException *exception) {
                 DDLogError(@"Cant'start forward synctex task %@. Exception: %@ (%@)", task, exception.reason, exception.name);
-                DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+                DDLogDebug(@"%@", [NSThread callStackSymbols]);
                 completionHandler(nil);
             }
 

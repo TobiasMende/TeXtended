@@ -19,6 +19,8 @@
 #import "ProjectModel.h"
 #import "ModelInfoWindowController.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface DocumentController ()
 
     - (ExtendedPDFViewController *)findExistingPDFViewControllerFor:(DocumentModel *)model;
@@ -32,7 +34,7 @@
     {
         if (self == [DocumentController class]) {
 
-            /* put initialization code here */
+            LOGGING_LOAD           /* put initialization code here */
 
         }
     }
@@ -116,7 +118,7 @@
 
     - (void)textViewControllerDidLoadView:(TextViewController *)controller
     {
-        DDLogVerbose(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
+        DDLogDebug(@"updateViewsAfterModelChange: model = %@, mainDocument = %@, windowController = %@", self.model, self.mainDocument, self.mainDocument.mainWindowController);
         
         [self.mainDocument.mainWindowController addTabViewItemToFirst:self.textViewController.tabViewItem];
         NSError *error;
@@ -315,7 +317,7 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", self.model.texPath);
+        DDLogDebug(@"dealloc [%@]", self.model.texPath);
         [self.textViewController firstResponderIsDeallocating];
         [self.compiler terminateAndKill];
         for (ExtendedPDFViewController *c in self.pdfViewControllers) {

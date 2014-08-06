@@ -15,6 +15,8 @@
 #import "MainDocument.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSUInteger MESSAGE_TAB_TAG = 0;
 
 static const NSUInteger OUTLINE_TAB_TAG = 1;

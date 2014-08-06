@@ -11,6 +11,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/PathObserverFactory.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static CompileFlowHandler *sharedInstance;
 
 @interface CompileFlowHandler ()
@@ -23,6 +25,10 @@ static CompileFlowHandler *sharedInstance;
 @implementation CompileFlowHandler
 
 /** Inform that a compile flow has changed. */
+
++ (void)initialize {
+    LOGGING_LOAD
+}
     - (void)compileFlowsChanged:(NSArray *)affectedPaths
     {
         [self willChangeValueForKey:@"arrangedObjects"];

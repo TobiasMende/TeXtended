@@ -10,6 +10,8 @@
 #import "TMTBibTexEntry.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static NSCharacterSet *IGNORED_CHARACTERS_IN_ENTRY_ATTRIBUTES;
 static NSCharacterSet *LINE_END_CHARACTERS;
 
@@ -105,7 +107,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
         }
         lastScanLocation = scanner.scanLocation;
     }
-    DDLogVerbose(@"Found %ld entries", entries.count);
+    DDLogDebug(@"Found %ld entries", entries.count);
     return entries;
 }
 
@@ -292,7 +294,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
 - (void)traceError {
     DDLogError(@"BibTex Parser TRACE:");
     [self traceScannerState];
-    DDLogVerbose(@"%@", [NSThread callStackSymbols]);
+    DDLogDebug(@"%@", [NSThread callStackSymbols]);
 }
 
 - (void)traceScannerState {

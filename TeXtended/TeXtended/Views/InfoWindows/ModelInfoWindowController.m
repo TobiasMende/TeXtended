@@ -16,6 +16,8 @@
 #import "ProjectInfoViewController.h"
 #import "ProjectModel.h"
 
+LOGGING_DEFAULT
+
 
 @interface ModelInfoWindowController ()
 
@@ -32,7 +34,7 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc");
+        TMT_TRACE
         [self.liveCompilePrefs removeObserver:self forKeyPath:@"enabled"];
         [self.draftCompilePrefs removeObserver:self forKeyPath:@"enabled"];
         [self.finalCompilePrefs removeObserver:self forKeyPath:@"enabled"];

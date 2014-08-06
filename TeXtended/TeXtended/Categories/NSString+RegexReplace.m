@@ -27,6 +27,8 @@
 #import "EditorPlaceholder.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 
 @implementation NSString (RegexReplace)

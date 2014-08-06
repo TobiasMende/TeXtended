@@ -9,6 +9,8 @@
 #import "CiteInfoViewController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 static const NSString *SHOW_IN_BIBDESK_SCRIPT;
 
 @interface CiteInfoViewController ()

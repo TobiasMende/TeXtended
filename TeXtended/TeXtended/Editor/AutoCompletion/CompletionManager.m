@@ -13,6 +13,8 @@
 #import "CompletionTableController.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static CompletionManager *instance;
 
 static NSSet *SPECIAL_SYMBOLS;
@@ -24,6 +26,7 @@ static NSSet *SPECIAL_SYMBOLS;
     + (void)initialize
     {
         if ([self class] == [CompletionManager class]) {
+            LOGGING_LOAD
             SPECIAL_SYMBOLS = [NSSet setWithObjects:@"{", @"}", @"[", @"]", @"(", @")", @" ", nil];
         }
     }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDLog.h"
+#import "TMTLog.h"
 
 @interface TMTLogFormatter : NSObject <DDLogFormatter>
 

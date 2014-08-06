@@ -14,6 +14,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "TemplatesCollectionView.h"
 
+LOGGING_DEFAULT
+
 static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
 @interface TemplateController ()

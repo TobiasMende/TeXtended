@@ -9,6 +9,8 @@
 #import "SyntaxHighlighterStub.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 @implementation SyntaxHighlighterStub
 
     - (id)initWithTextView:(HighlightingTextView *)tv
@@ -42,7 +44,7 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc");
+        DDLogDebug(@"dealloc");
     }
 
 @end

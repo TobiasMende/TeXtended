@@ -10,6 +10,8 @@
 #import "OutlineElement.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT
+
 @implementation OutlineHelper
 
 

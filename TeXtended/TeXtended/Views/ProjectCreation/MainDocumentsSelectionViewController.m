@@ -11,6 +11,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import "ProjectModel.h"
 
+LOGGING_DEFAULT
+
 @interface MainDocumentsSelectionViewController ()
 
     - (void)initializeContent;

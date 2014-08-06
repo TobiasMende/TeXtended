@@ -9,6 +9,7 @@
 #import "NSString+TMTExtensions.h"
 #import "TMTLog.h"
 
+LOGGING(LOG_LEVEL_NOTICE)
 static const NSRegularExpression *SPACE_AT_LINE_BEGINNING;
 
 @implementation NSString (TMTExtensions)

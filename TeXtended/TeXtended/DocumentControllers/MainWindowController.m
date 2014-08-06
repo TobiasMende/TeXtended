@@ -16,11 +16,17 @@
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 
 @interface MainWindowController ()
 @end
 
 @implementation MainWindowController
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (NSString *)windowNibName
     {
@@ -42,7 +48,7 @@
 
     - (void)windowDidLoad
     {
-        DDLogVerbose(@"windowDidLoad");
+        TMT_TRACE
         [super windowDidLoad];
         
 
@@ -165,7 +171,7 @@
 
     - (void)addTabViewItemToFirst:(TMTTabViewItem *)item
     {
-        DDLogVerbose(@"addTabViewItemToFirst: first = %@, item = %@", self.firsTabViewController, item);
+        DDLogDebug(@"addTabViewItemToFirst: first = %@, item = %@", self.firsTabViewController, item);
         [self.firsTabViewController addTabViewItem:item];
     }
 
@@ -180,7 +186,7 @@
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", self.window.title);
+        DDLogDebug(@"dealloc [%@]", self.window.title);
         [self.outlineController windowIsGoingToDie];
         [[TMTTabManager sharedTabManager] removeTabViewController:self.firsTabViewController];
         [[TMTTabManager sharedTabManager] removeTabViewController:self.secondTabViewController];

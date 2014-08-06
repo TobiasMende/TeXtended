@@ -22,6 +22,8 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 /** Delay for message collection updates in seconds */
 static const double MESSAGE_UPDATE_DELAY = 1.5;
 
@@ -52,6 +54,9 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
 @implementation TextViewController
 
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (id)initWithFirstResponder:(id <FirstResponderDelegate>)dc andModel:(DocumentModel *)model
     {
@@ -314,7 +319,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 #pragma mark Dealloc
 
 - (void)firstResponderIsDeallocating {
-    DDLogVerbose(@"DC ist deallocating");
+    DDLogDebug(@"DC ist deallocating");
     [messageUpdateTimer invalidate];
     [lacheck terminate];
     [chktex terminate];
@@ -332,7 +337,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     - (void)dealloc
     {
-        DDLogVerbose(@"dealloc [%@]", self.model.path);
+        DDLogDebug(@"dealloc [%@]", self.model.path);
         
 
     }

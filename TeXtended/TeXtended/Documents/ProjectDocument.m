@@ -19,12 +19,18 @@
 #import "TemplateController.h"
 #import "ModelInfoWindowController.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface ProjectDocument ()
 
     - (NSURL *)projectFileUrlFromDirectory:(NSURL *)directory;
 @end
 
 @implementation ProjectDocument
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     + (BOOL)preservesVersions
     {
@@ -142,7 +148,7 @@
             id obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:absoluteURL]];
             if (obj) {
                 self.model = (ProjectModel *) obj;
-                DDLogVerbose(@"READ: %@", absoluteURL);
+                DDLogDebug(@"READ: %@", absoluteURL);
                 [self.model finishInitWithPath:[absoluteURL path]];
 
             }

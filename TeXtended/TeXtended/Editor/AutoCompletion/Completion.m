@@ -12,12 +12,15 @@
 #import "CompletionManager.h"
 #import <TMTHelperCollection/TMTLog.h>
 
+LOGGING_DEFAULT_DYNAMIC
+
 static const NSRegularExpression *PLACEHOLDER_REGEX;
 
 @implementation Completion
 
     + (void)initialize
     {
+        LOGGING_LOAD
         NSError *error;
         PLACEHOLDER_REGEX = [NSRegularExpression regularExpressionWithPattern:@"@@[^@@]*@@" options:NSRegularExpressionCaseInsensitive error:&error];
         if (error) {

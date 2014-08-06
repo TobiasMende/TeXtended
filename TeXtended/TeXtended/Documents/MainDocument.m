@@ -17,12 +17,18 @@
 #import "ShareDialogController.h"
 #import "TemplateController.h"
 
+LOGGING_DEFAULT_DYNAMIC
+
 @interface MainDocument ()
 
     - (void)firstResponderDidChangeNotification:(NSNotification *)note;
 @end
 
 @implementation MainDocument
+
++ (void)initialize {
+    LOGGING_LOAD
+}
 
     - (id)init
     {
@@ -104,15 +110,13 @@
 
     + (BOOL)autosavesInPlace
     {
-        TMT_TRACE
         return YES;
-
     }
 
 
     - (void)initializeDocumentControllers
     {
-        DDLogVerbose(@"initializeDocumentControllers (Count: %li)", self.model.mainDocuments.count);
+        DDLogDebug(@"initializeDocumentControllers (Count: %li)", self.model.mainDocuments.count);
         self.documentControllers = [NSMutableSet new];
         for (DocumentModel *m in self.model.openDocuments) {
             [self.documentControllers addObject:[[DocumentController alloc] initWithDocument:m andMainDocument:self]];
@@ -130,7 +134,7 @@
 
     - (void)makeWindowControllers
     {
-        DDLogVerbose(@"makeWindowControllers");
+        DDLogDebug(@"makeWindowControllers");
         MainWindowController *mc = [[MainWindowController alloc] initForDocument:self];
         self.mainWindowController = mc;
         [self initializeDocumentControllers];
