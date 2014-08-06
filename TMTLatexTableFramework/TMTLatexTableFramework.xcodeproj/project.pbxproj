@@ -68,6 +68,41 @@ fi
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1417735F05C349A188645182</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-TMTLatexTableExample.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>2715814004504E1891E3B723</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-TMTLatexTableExample.xcconfig</string>
+			<key>path</key>
+			<string>../Pods/Pods-TMTLatexTableExample.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>65454CD2C8E1440BBEF1BA59</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1417735F05C349A188645182</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>7AF0F2656AA44ACA85FF1ED2</key>
 		<dict>
 			<key>fileRef</key>
@@ -89,6 +124,30 @@ fi
 			<string>../Pods/Pods-TMTLatexTableFramework.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>956E8EBDA9A342C6908B3E41</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/../Pods/Pods-TMTLatexTableExample-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
 		</dict>
 		<key>CF04383B440740FCBD8BBF3A</key>
 		<dict>
@@ -189,6 +248,7 @@ fi
 				<string>D2D866C2198E7BB3006C0565</string>
 				<string>06FF6D12792C4968A129F306</string>
 				<string>7E1F382C86094D02A0356C84</string>
+				<string>2715814004504E1891E3B723</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -398,6 +458,7 @@ fi
 				<string>D2D866C6198E7BB3006C0565</string>
 				<string>FD963E6B2AED41AD8E24FB72</string>
 				<string>006422AA66F44BA4BC0FF791</string>
+				<string>1417735F05C349A188645182</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -1406,6 +1467,7 @@ fi
 			<array>
 				<string>D2D86736198E7CE5006C0565</string>
 				<string>D2D8670A198E7C48006C0565</string>
+				<string>65454CD2C8E1440BBEF1BA59</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -1434,9 +1496,11 @@ fi
 			<string>D2D86730198E7C48006C0565</string>
 			<key>buildPhases</key>
 			<array>
+				<string>EF5DC7092FBF40ADA8098201</string>
 				<string>D2D86705198E7C48006C0565</string>
 				<string>D2D86706198E7C48006C0565</string>
 				<string>D2D86707198E7C48006C0565</string>
+				<string>956E8EBDA9A342C6908B3E41</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -1917,6 +1981,8 @@ fi
 		</dict>
 		<key>D2D86731198E7C48006C0565</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>2715814004504E1891E3B723</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -1946,6 +2012,8 @@ fi
 		</dict>
 		<key>D2D86732198E7C48006C0565</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>2715814004504E1891E3B723</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -2138,6 +2206,36 @@ fi
 			<string>/bin/sh</string>
 			<key>shellScript</key>
 			<string>"${SRCROOT}/../Pods/Pods-TMTLatexTableFramework-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>EF5DC7092FBF40ADA8098201</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>

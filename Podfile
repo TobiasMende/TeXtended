@@ -18,9 +18,10 @@ target :TMTBibTexTools do
 	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 end
 
-#target :TMTLatexTableFramework do
-#    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
-#end
+target :TMTLatexTableExample do
+    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
+    pod 'TMTLatexTable', :path => './TMTLatexTableFramework'
+end
 
 target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'

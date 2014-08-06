@@ -14,6 +14,8 @@ PODS:
     - CocoaLumberjack (>= 1.9.1)
   - TMTHelperCollection (0.1.0):
     - CocoaLumberjack (>= 1.9.1)
+  - TMTLatexTable (0.1.0):
+    - CocoaLumberjack (>= 1.9.1)
 
 DEPENDENCIES:
   - CocoaLumberjack (>= 1.9.1)
@@ -25,6 +27,7 @@ DEPENDENCIES:
   - Sparkle
   - TMTBibTexTools (from `./TMTBibTexTools`)
   - TMTHelperCollection (from `./TMTHelperCollection`)
+  - TMTLatexTable (from `./TMTLatexTableFramework`)
 
 EXTERNAL SOURCES:
   MMTabBarViewTMTFork:
@@ -33,6 +36,8 @@ EXTERNAL SOURCES:
     :path: ./TMTBibTexTools
   TMTHelperCollection:
     :path: ./TMTHelperCollection
+  TMTLatexTable:
+    :path: ./TMTLatexTableFramework
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
@@ -44,5 +49,6 @@ SPEC CHECKSUMS:
   Sparkle: fde5ffeb7bf01db28925499ce2a75977763af58a
   TMTBibTexTools: 00006c70ce0860be19945809acc531924b6e7b27
   TMTHelperCollection: cb2f1f0a54309497e0f6e3bf58bd4fbc3c5a7afb
+  TMTLatexTable: 11969d77db3bc3b7ad2214f016abebe8dfb55ca1
 
 COCOAPODS: 0.33.1
