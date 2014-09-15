@@ -471,7 +471,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         if (!error) {
             NSScanner *scanner = [NSScanner scannerWithString:content];
             NSString *result;
-            BOOL success = [scanner scanUpToString:@"\begin{document}" intoString:&result];
+            BOOL success = [scanner scanUpToString:@"\\begin{document}" intoString:&result];
             if (success && result) {
                 return result;
             }

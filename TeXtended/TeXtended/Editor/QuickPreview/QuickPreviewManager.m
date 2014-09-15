@@ -26,6 +26,8 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
     - (void)compilerStart:(NSNotification *)note;
 
     - (void)compilerEnd:(NSNotification *)note;
+
+- (void)setUpModel;
 @end
 
 @implementation QuickPreviewManager
@@ -36,14 +38,22 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         self = [super initWithWindowNibName:@"QuickPreviewWindow"];
         if (self) {
             self.parentView = parent;
+            [self setUpModel];
             self.pvc = [[ExtendedPDFViewController alloc] init];
-            self.textViewController = [[TextViewController alloc] initWithFirstResponder:self];
+            self.textViewController = [[TextViewController alloc] initWithFirstResponder:self andModel:self.model];
             self.compiler = [[Compiler alloc] initWithCompileProcessHandler:self];
             self.compiler.idleTimeForLiveCompile = 0.75;
             [self.textViewController addObserver:self.compiler];
         }
         return self;
     }
+
+- (void)setUpModel  {
+    self.model = [DocumentModel new];
+    self.model.liveCompile = @YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerStart:) name:TMTCompilerDidStartCompiling object:self.model];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerEnd:) name:TMTCompilerDidEndCompiling object:self.model];
+}
 
     - (void)loadWindow
     {
@@ -55,6 +65,7 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         [self.window setInitialFirstResponder:self.textViewController.textView];
         [self buildTempModelFor:self.parentView.firstResponderDelegate.model];
         self.textViewController.textView.enableQuickPreviewAssistant = NO;
+                    [self.pvc setModel:self.model];
     }
 
     - (void)showWindow:(id)sender
@@ -65,8 +76,9 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         [self updateMainCompilable];
         [self.textViewController setContent:[self.parentView.string substringWithRange:self.parentView.selectedRange]];
         [self.textViewController.textView makeKeyView];
-
-        [self liveCompile:self];
+        if (self.textViewController.content.length != 0) {
+            [self liveCompile:self];
+        }
     }
 
 
@@ -76,20 +88,17 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
             [self.parentModel removeObserver:self forKeyPath:@"self.mainDocuments"];
         }
         if (self.model) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidEndCompiling object:self.model];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:TMTCompilerDidStartCompiling object:self.model];
+            [self.model unbind:@"liveCompiler"];
+            [self.model unbind:@"encoding"];
         }
         self.parentModel = model;
-        self.model = [DocumentModel new];
-        self.model.liveCompile = @YES;
 
         [self.model bind:@"liveCompiler" toObject:model withKeyPath:@"liveCompiler" options:nil];
         [self.model bind:@"encoding" toObject:model withKeyPath:@"encoding" options:nil];
         [self.parentModel addObserver:self forKeyPath:@"self.mainDocuments" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
 
-        [self.pvc setModel:self.model];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerStart:) name:TMTCompilerDidStartCompiling object:self.model];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compilerEnd:) name:TMTCompilerDidEndCompiling object:self.model];
+        
+       
     }
 
     - (void)compilerStart:(NSNotification *)note
@@ -110,26 +119,27 @@ static NSString *TEMP_PREFIX = @"TMTTempQuickPreview-";
         }
     }
 
+- (void)saveDocument:(id)sender {
+    [self updateMainCompilable];
+    if (self.currentHeader) {
+        NSString *body = self.textViewController.content;
+        NSMutableString *content = [[NSMutableString alloc] initWithString:self.currentHeader];
+        [content appendString:@"\n\\begin{document}\n"];
+        [content appendString:body];
+        [content appendString:@"\n\\end{document}"];
+        NSError *error;
+        [content writeToFile:self.model.texPath atomically:YES encoding:self.model.encoding.unsignedLongValue error:&error];
+       
+    } else {
+        DDLogError(@"Can't get header ");
+    }
+    
+}
 
     - (void)liveCompile:(id)sender
     {
-        [self updateMainCompilable];
-        if (self.currentHeader) {
-            NSString *body = self.textViewController.content;
-            NSMutableString *content = [[NSMutableString alloc] initWithString:self.currentHeader];
-            [content appendString:@"\n\\begin{document}\n"];
-            [content appendString:body];
-            [content appendString:@"\n\\end{document}"];
-            NSError *error;
-            [content writeToFile:self.model.texPath atomically:YES encoding:self.model.encoding.unsignedLongValue error:&error];
-            if (error) {
-                DDLogError(@"Can't save: %@", error.userInfo);
-            } else {
-                [self compile:live];
-            }
-        } else {
-            DDLogError(@"Can't get header ");
-        }
+        [self saveDocument:sender];
+        [self compile:live];
     }
 
     - (void)updateMainCompilable
