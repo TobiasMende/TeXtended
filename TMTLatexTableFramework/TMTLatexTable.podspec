@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.resources = 'TMTLatexTableFramework/**/*.{png,jpg,nib,xib}'
   s.requires_arc = true
   s.dependency 'CocoaLumberjack', '>= 1.9.1' 
+  s.dependency 'TMTHelperCollection'
 end

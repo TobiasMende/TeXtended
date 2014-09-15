@@ -19,13 +19,6 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    [super drawRect:dirtyRect];
-    
-    [[NSColor headerColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(self.bounds), NSMaxY(self.bounds)) toPoint:NSMakePoint(NSMaxX(self.bounds), 0)];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(0, 0) toPoint:NSMakePoint(NSMaxX(self.bounds), 0)];
-}
+
 
 @end

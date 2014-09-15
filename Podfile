@@ -23,6 +23,12 @@ target :TMTLatexTableExample do
     pod 'TMTLatexTable', :path => './TMTLatexTableFramework'
 end
 
+target :TMTLatexTableFramework do
+    xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
+    pod 'CocoaLumberjack', '>= 1.9.1'
+	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
+end
+
 target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
 	pod 'CocoaLumberjack', '>= 1.9.1'

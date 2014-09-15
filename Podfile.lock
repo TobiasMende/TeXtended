@@ -16,6 +16,7 @@ PODS:
     - CocoaLumberjack (>= 1.9.1)
   - TMTLatexTable (0.1.0):
     - CocoaLumberjack (>= 1.9.1)
+    - TMTHelperCollection
 
 DEPENDENCIES:
   - CocoaLumberjack (>= 1.9.1)
@@ -49,6 +50,6 @@ SPEC CHECKSUMS:
   Sparkle: fde5ffeb7bf01db28925499ce2a75977763af58a
   TMTBibTexTools: 00006c70ce0860be19945809acc531924b6e7b27
   TMTHelperCollection: cb2f1f0a54309497e0f6e3bf58bd4fbc3c5a7afb
-  TMTLatexTable: 11969d77db3bc3b7ad2214f016abebe8dfb55ca1
+  TMTLatexTable: ea2b15b0b5c468e11e010db8f196d9d2933ea945
 
 COCOAPODS: 0.33.1

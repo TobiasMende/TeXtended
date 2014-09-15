@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TMTLineNumberCellView : NSTableCellView
+@interface TMTLineNumberCellView : NSTableHeaderView
 
 @end
