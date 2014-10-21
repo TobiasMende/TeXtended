@@ -590,7 +590,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)setTexPath:(NSString *)texPath
     {
-        if (_texPath != texPath) {
+        if (![_texPath isEqualToString:texPath]) {
             _texPath = texPath;
             if ([_texPath isAbsolutePath]) {
                 [_filePresenter performSelectorInBackground:@selector(setPath:) withObject:texPath];

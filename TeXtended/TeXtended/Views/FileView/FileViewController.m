@@ -651,8 +651,7 @@ static NSArray *INTERNAL_EXTENSIONS;
         }
 
         // convert icon rect to screen coordinates
-        iconRect = [self.outlineView convertRectToBase:iconRect];
-        iconRect.origin = [[self.outlineView window] convertBaseToScreen:iconRect.origin];
+        iconRect = [[self.outlineView window] convertRectToScreen:iconRect];
 
         return iconRect;
     }
