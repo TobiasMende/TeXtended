@@ -67,7 +67,7 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
     {
         TMT_TRACE
         if (self.documentNeedsSaving) {
-            [self saveToURL:[self fileURL] ofType:[self fileType] forSaveOperation:NSAutosaveInPlaceOperation delegate:delegate didSaveSelector:action contextInfo:NULL];
+            [self autosaveDocumentWithDelegate:delegate didAutosaveSelector:action contextInfo:NULL];
         } else if(delegate && [delegate respondsToSelector:action]) {
             #pragma clang diagnostic push
             #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
