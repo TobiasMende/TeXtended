@@ -13,6 +13,9 @@
 #import "DocumentCreationController.h"
 #import "TMTTabViewItem.h"
 #import "TMTTabManager.h"
+#import <TMTHelperCollection/TMTLog.h>
+
+LOGGING_DEFAULT_DYNAMIC
 
 @interface ExtendedPDFViewController ()
 
@@ -36,6 +39,15 @@
         }
         return self;
     }
+
++ (void)initialize
+{
+    if (self == [ExtendedPDFViewController class]) {
+        
+        LOGGING_LOAD           /* put initialization code here */
+        
+    }
+}
 
 /** Load the view and add a controlls panel */
     - (void)loadView
@@ -139,6 +151,7 @@
                 NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
                 PDFDocument *pdfDoc;
                 pdfDoc = [[PDFDocument alloc] initWithURL:url];
+                DDLogTrace(@"%@", self.model.texPath);
                 [self.pdfView setDocument:pdfDoc];
                 // restore visible region
                 if (index != NSNotFound && index < pdfDoc.pageCount) {

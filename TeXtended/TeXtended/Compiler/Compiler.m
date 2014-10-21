@@ -116,6 +116,7 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData *)data
     {
+        TMT_TRACE
         [data.firstResponderDelegate.mainDocument decrementNumberOfCompilingDocuments];
         data.model.isCompiling = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
