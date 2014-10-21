@@ -307,7 +307,7 @@ LOGGING_DEFAULT_DYNAMIC
             if (isPDF) {
                 NSTabViewItem *item = [[TMTTabManager sharedTabManager] tabViewItemForIdentifier:identifier];
                 [item.tabView selectTabViewItem:item];
-                [[item view] printDocument:nil];
+                [[item view] print:nil];
             }
             else {
                 for (DocumentController *dc in self.documentControllers) {

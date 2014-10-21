@@ -158,10 +158,12 @@ LOGGING_DEFAULT
                             [[NSAlert alertWithError:error] runModal];
                         } else {
                             error = nil;
-                            [[DocumentCreationController sharedDocumentController] openDocumentForCompilable:compilable display:YES andError:&error];
-                            if (error) {
-                                [[NSAlert alertWithError:error] runModal];
-                            }
+                            [[DocumentCreationController sharedDocumentController] openDocumentForCompilable:compilable display:YES completionHandler:^(BOOL loadSuccess, NSError *loadError) {
+                                if (loadError) {
+                                    [[NSAlert alertWithError:loadError] runModal];
+                                }
+                            }];
+                            
                         }
                     }
                 }];

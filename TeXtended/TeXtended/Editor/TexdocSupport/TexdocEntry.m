@@ -9,6 +9,7 @@
 #import "TexdocEntry.h"
 
 @implementation TexdocEntry
+@synthesize description;
 
     - (id)initWithArray:(NSArray *)texdoc
     {
@@ -21,9 +22,9 @@
                 } else {
                     self.path = [[@"~/" stringByAppendingString:path] stringByExpandingTildeInPath];
                 }
-                _description = texdoc[4];
-                if (_description.length == 0) {
-                    _description = [[_path lastPathComponent] stringByDeletingPathExtension];
+                self.description = texdoc[4];
+                if (self.description.length == 0) {
+                    self.description = [[_path lastPathComponent] stringByDeletingPathExtension];
                 }
                 _score = @([texdoc[1] doubleValue]);
             }

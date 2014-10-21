@@ -13,6 +13,7 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 @implementation TMTTableView
 
+
     - (void)keyDown:(NSEvent *)theEvent
     {
         char keyChar = [[theEvent characters] characterAtIndex:0];
@@ -60,12 +61,6 @@
         [super editColumn:column row:row withEvent:theEvent select:select];
     }
 }
-
-
-    - (BOOL)isOpaque
-    {
-        return _opaque;
-    }
 
     - (void)drawBackgroundInClipRect:(NSRect)clipRect
     {

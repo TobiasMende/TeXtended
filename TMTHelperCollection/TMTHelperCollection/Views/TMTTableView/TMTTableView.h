@@ -23,5 +23,4 @@
 
     @property SEL rightClickAction;
 
-    @property BOOL opaque;
 @end

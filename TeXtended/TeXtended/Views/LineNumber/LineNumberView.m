@@ -653,9 +653,7 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            errorImage.flipped = YES;
-            [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            errorImage.flipped = NO;
+            [errorImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f respectFlipped:YES hints:nil];
         }
 
     - (void)drawWarningInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -665,9 +663,7 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            warningImage.flipped = YES;
-            [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            warningImage.flipped = NO;
+            [warningImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f respectFlipped:YES hints:nil];
         }
 
     - (void)drawInfoInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -677,9 +673,7 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            infoImage.flipped = YES;
-            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            infoImage.flipped = NO;
+            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f respectFlipped:YES hints:nil];
         }
 
     - (void)drawDebugInVisibleRect:(NSRect)visibleRect forLineHigh:(NSUInteger)lineHight
@@ -689,9 +683,7 @@ private)
                     SYMBOL_SIZE,
                     SYMBOL_SIZE);
 
-            infoImage.flipped = YES;
-            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
-            infoImage.flipped = NO;
+            [infoImage drawInRect:pos fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f respectFlipped:YES hints:nil];
         }
 
     - (NSColor *)getAnchorColor

@@ -20,7 +20,7 @@
 
     - (id)initWithOperationQueue:(NSOperationQueue *)queue;
 
-    @property (readonly) NSURL *presentedItemURL;
+    @property (readonly, copy) NSURL *presentedItemURL;
 
     @property (readonly) NSOperationQueue *presentedItemOperationQueue;
 

@@ -96,27 +96,36 @@ LOGGING_DEFAULT_DYNAMIC
         [self showTexDocumentForPath:path withReferenceModel:nil andCompletionHandler:completionHandler];
     }
 
-    - (BOOL)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument andError:(NSError **)error
+    - (void)openDocumentForCompilable:(Compilable *)compilable display:(BOOL)displayDocument completionHandler:(void (^)(BOOL success, NSError *error))callbackHandler
     {
         if (!compilable.path) {
             NSBeep();
-            return NO;
+            if (callbackHandler) {
+                callbackHandler(NO, nil);
+            }
+            return;
         }
 
-        NSDocument *doc = [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:compilable.path] display:NO error:error];
-        if (*error) {
-            return NO;
-        }
-        if ([doc isKindOfClass:[SimpleDocument class]]) {
-            [(SimpleDocument *) doc setModel:(DocumentModel *) compilable];
-        } else if ([doc isKindOfClass:[ProjectDocument class]]) {
-            [(ProjectDocument *) doc setModel:(ProjectModel *) compilable];
-        }
-        [doc makeWindowControllers];
-
-        [doc showWindows];
-        return YES;
-    }
+        [self openDocumentWithContentsOfURL:[NSURL fileURLWithPath:compilable.path] display:NO completionHandler:^(NSDocument *doc, BOOL documentWasAlreadyOpen, NSError *error) {
+            if (error && callbackHandler) {
+                callbackHandler(NO, error);
+                return;
+            }
+            if ([doc isKindOfClass:[SimpleDocument class]]) {
+                [(SimpleDocument *) doc setModel:(DocumentModel *) compilable];
+            } else if ([doc isKindOfClass:[ProjectDocument class]]) {
+                [(ProjectDocument *) doc setModel:(ProjectModel *) compilable];
+            }
+            [doc makeWindowControllers];
+            
+            [doc showWindows];
+            
+            if (callbackHandler) {
+                callbackHandler(YES, error);
+            }
+        }];
+        
+}
 
     - (void)showTexDocumentForPath:(NSString *)path withReferenceModel:(Compilable *)model andCompletionHandler:(void (^)(DocumentModel *))completionHandler
     {
