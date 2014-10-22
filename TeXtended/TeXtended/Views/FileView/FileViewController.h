@@ -11,7 +11,7 @@
 #import <Quartz/Quartz.h>
 
 
-@class FileNode, FileOutlineView, ModelInfoWindowController, FileInfoWindowController, TMTTreeController;
+@class FileNode, FileOutlineView, ModelInfoWindowController, FileInfoWindowController, TMTTreeController, TMTBorderedScrollView;
 
 @interface FileViewController : NSViewController <NSOutlineViewDelegate, NSMenuDelegate, NSControlTextEditingDelegate, NSOutlineViewDataSource, QLPreviewPanelDelegate, QLPreviewPanelDataSource>
     {
@@ -33,6 +33,7 @@
     @property NSMutableArray *contents;
 
     @property (strong) IBOutlet FileOutlineView *outlineView;
+@property (strong) IBOutlet TMTBorderedScrollView *scrollView;
 
     @property (strong) QLPreviewPanel *previewPanel;
 @property (strong) IBOutlet NSSearchField *searchField;

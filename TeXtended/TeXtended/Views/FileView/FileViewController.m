@@ -10,6 +10,7 @@
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/TMTTextField.h>
 #import <TMTHelperCollection/TMTTreeController.h>
+#import <TMTHelperCollection/TMTBorderedScrollView.h>
 #import <Quartz/Quartz.h>
 
 #import "FileViewController.h"
@@ -89,6 +90,7 @@ static NSArray *INTERNAL_EXTENSIONS;
         [self.outlineView registerForDraggedTypes:[NSArray arrayWithObjects:NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil]];
         [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:YES];
         [self.outlineView setDraggingSourceOperationMask:NSDragOperationEvery forLocal:NO];
+        self.scrollView.bottomBorder = YES;
     }
 
 
@@ -220,6 +222,12 @@ static NSArray *INTERNAL_EXTENSIONS;
     return NO;
 }
 
+
+- (NSResponder *)nextResponder {
+    NSResponder *responder = [super nextResponder];
+    DDLogTrace(@"next responder: %@", responder);
+    return responder;
+}
     - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
     {
         DDLogInfo(@"Should?");

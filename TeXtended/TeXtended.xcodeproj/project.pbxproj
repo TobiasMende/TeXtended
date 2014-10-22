@@ -327,6 +327,9 @@
 /* Begin PBXFileReference section */
 		27DC213578C4224BB930E5C0 /* SettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsHelper.m; sourceTree = "<group>"; };
 		27DC22469039F8CCD3B961BB /* SettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsHelper.h; sourceTree = "<group>"; };
+		2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6BF77F1F192604D449AB8C81 /* Pods-TeXtended.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended/Pods-TeXtended.debug.xcconfig"; sourceTree = "<group>"; };
 		760346EA1779FA6200CCE0AD /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		760346EB1779FA6200CCE0AD /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		760346EC1779FA6200CCE0AD /* MessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
@@ -345,8 +348,6 @@
 		76B88F8B183787C2006B0E9F /* ProjectCreationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCreationWindowController.h; sourceTree = "<group>"; };
 		76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCreationWindowController.m; sourceTree = "<group>"; };
 		8B2C09292FFF4E7494D6B4C0 /* libPods-TeXtended Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeXtended Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.xcconfig"; path = "../Pods/Pods-TeXtended.xcconfig"; sourceTree = "<group>"; };
-		CE96F771AA85415B94D890DB /* Pods-TeXtended Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.xcconfig"; path = "../Pods/Pods-TeXtended Tests.xcconfig"; sourceTree = "<group>"; };
 		D07C4DE468DD4E0CA7E079D7 /* libPods-TeXtended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeXtended.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D202A06E189A415B0023DA04 /* TextViewLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLayoutManager.h; sourceTree = "<group>"; };
 		D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLayoutManager.m; sourceTree = "<group>"; };
@@ -779,6 +780,7 @@
 		D2FF0D7717F70017003423F7 /* EncodingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingController.h; sourceTree = "<group>"; };
 		D2FF0D7817F70017003423F7 /* EncodingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodingController.m; sourceTree = "<group>"; };
 		D2FF0D7917F70017003423F7 /* EncodingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncodingView.xib; sourceTree = "<group>"; };
+		F2133E23ADF7ED7CECB20295 /* Pods-TeXtended.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended/Pods-TeXtended.release.xcconfig"; sourceTree = "<group>"; };
 		F64675451879579A006EAD63 /* DropCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropCompletion.h; sourceTree = "<group>"; };
 		F64675461879579A006EAD63 /* DropCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropCompletion.m; sourceTree = "<group>"; };
 		F646754818795859006EAD63 /* DropCompletions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DropCompletions.plist; sourceTree = "<group>"; };
@@ -886,6 +888,17 @@
 				D2D712321837E7FF0072BA22 /* ProjectCreationAssistantViewController.h */,
 			);
 			path = ProjectCreation;
+			sourceTree = "<group>";
+		};
+		B383ED6652F68A9FE9511CB4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BF77F1F192604D449AB8C81 /* Pods-TeXtended.debug.xcconfig */,
+				F2133E23ADF7ED7CECB20295 /* Pods-TeXtended.release.xcconfig */,
+				2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */,
+				48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D202A06D189A415B0023DA04 /* LayoutManager */ = {
@@ -1586,8 +1599,7 @@
 				D26685F6176F56DA001699A8 /* texicon.icns */,
 				D2CC54F9171EAFAB00D81CF1 /* TeXtended */,
 				D220755917687A310041890F /* TeXtended.icns */,
-				A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */,
-				CE96F771AA85415B94D890DB /* Pods-TeXtended Tests.xcconfig */,
+				B383ED6652F68A9FE9511CB4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1966,7 +1978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-TeXtended-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended/Pods-TeXtended-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1CFEE058AE24C369E323F71 /* Check Pods Manifest.lock */ = {
@@ -1996,7 +2008,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-TeXtended Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D21F3772171EC04000F961D6 /* ShellScript */ = {
@@ -2568,7 +2580,7 @@
 		};
 		D2A739E818D4BF78005991D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE96F771AA85415B94D890DB /* Pods-TeXtended Tests.xcconfig */;
+			baseConfigurationReference = 2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2604,7 +2616,7 @@
 		};
 		D2A739E918D4BF78005991D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE96F771AA85415B94D890DB /* Pods-TeXtended Tests.xcconfig */;
+			baseConfigurationReference = 48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2736,7 +2748,7 @@
 		};
 		D2CC5511171EAFAB00D81CF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */;
+			baseConfigurationReference = 6BF77F1F192604D449AB8C81 /* Pods-TeXtended.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
@@ -2756,7 +2768,7 @@
 		};
 		D2CC5512171EAFAB00D81CF1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A79D01235B074486A3A703EF /* Pods-TeXtended.xcconfig */;
+			baseConfigurationReference = F2133E23ADF7ED7CECB20295 /* Pods-TeXtended.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;

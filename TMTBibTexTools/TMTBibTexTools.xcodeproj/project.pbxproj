@@ -1,747 +1,1923 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		C84404FF2790439EB06A745D /* libPods-TMTBibTexTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */; };
-		D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
-		D217A430176B442C002DB084 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D217A42E176B442C002DB084 /* InfoPlist.strings */; };
-		D217A432176B442C002DB084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A431176B442C002DB084 /* main.m */; };
-		D217A436176B442C002DB084 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D217A434176B442C002DB084 /* Credits.rtf */; };
-		D217A439176B442C002DB084 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D217A438176B442C002DB084 /* AppDelegate.m */; };
-		D217A43C176B442C002DB084 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D217A43A176B442C002DB084 /* MainMenu.xib */; };
-		D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
-		D23BC4F31861E79700E9A507 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4F21861E79700E9A507 /* XCTest.framework */; };
-		D23BC4F41861E79700E9A507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D217A425176B442C002DB084 /* Cocoa.framework */; };
-		D23BC4F71861E79700E9A507 /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */; };
-		D23BC4FD1861E79700E9A507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D23BC4FB1861E79700E9A507 /* InfoPlist.strings */; };
-		D23BC4FF1861E79700E9A507 /* DBLPToolsFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */; };
-		D23BC5121861E80B00E9A507 /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */; };
-		D2989C651990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */; };
-		D2989C661990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */; };
-		D2989C671990EF7F0024DFA6 /* TMTBibTexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */; };
-		D2989C681990EF7F0024DFA6 /* TMTBibTexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */; };
-		D2989C731990EF940024DFA6 /* TMTBibTexParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2989C741990EF940024DFA6 /* TMTBibTexParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C701990EF940024DFA6 /* TMTBibTexParser.m */; };
-		D2989C7B1990F07F0024DFA6 /* DBLPSearchCompletionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2989C7C1990F07F0024DFA6 /* DBLPSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */; };
-		D2989C7D1990F07F0024DFA6 /* DBLPSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2989C7E1990F07F0024DFA6 /* DBLPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */; };
-		D2989C851990F15E0024DFA6 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2989C861990F15E0024DFA6 /* DBLPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */; };
-		D2989C871990F15E0024DFA6 /* DBLPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */; };
-		D2989C881990F15E0024DFA6 /* DBLPConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */; };
-		D2989C891990F15E0024DFA6 /* DBLPInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C831990F15E0024DFA6 /* DBLPInterface.h */; };
-		D2989C8A1990F15E0024DFA6 /* DBLPInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C841990F15E0024DFA6 /* DBLPInterface.m */; };
-		D2989C8D1990F1720024DFA6 /* TMTBibTexEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2989C8E1990F1720024DFA6 /* TMTBibTexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */; };
-		D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */; };
-		D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D23BC4F51861E79700E9A507 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D217A41A176B442C002DB084 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D23BC4E01861E79700E9A507;
-			remoteInfo = DBLPToolsFramework;
-		};
-		D23BC5101861E80400E9A507 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D217A41A176B442C002DB084 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D23BC4E01861E79700E9A507;
-			remoteInfo = DBLPToolsFramework;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTBibTexTools.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D217A422176B442C002DB084 /* TMTBibTexTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMTBibTexTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D217A425176B442C002DB084 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D217A428176B442C002DB084 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D217A429176B442C002DB084 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D217A42A176B442C002DB084 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D217A42D176B442C002DB084 /* TMTBibTexTools-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMTBibTexTools-Info.plist"; sourceTree = "<group>"; };
-		D217A42F176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D217A431176B442C002DB084 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D217A433176B442C002DB084 /* TMTBibTexTools-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TMTBibTexTools-Prefix.pch"; sourceTree = "<group>"; };
-		D217A435176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D217A437176B442C002DB084 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D217A438176B442C002DB084 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D217A43B176B442C002DB084 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D220A6F11991123200A28CB7 /* TMTHelperCollection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TMTHelperCollection.framework; path = ../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework; sourceTree = "<group>"; };
-		D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTBibTexTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D23BC4F11861E79700E9A507 /* DBLPToolsFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBLPToolsFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D23BC4F21861E79700E9A507 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D23BC4FA1861E79700E9A507 /* DBLPToolsFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBLPToolsFrameworkTests-Info.plist"; sourceTree = "<group>"; };
-		D23BC4FC1861E79700E9A507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLPToolsFrameworkTests.m; sourceTree = "<group>"; };
-		D2928B021967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		D2928B031967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2928B041967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D2928B061967F75F00F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DBLPToolsFramework-Info.plist"; path = "TMTBibTexTools/DBLPToolsFramework-Info.plist"; sourceTree = SOURCE_ROOT; };
-		D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBLPToolsFramework-Prefix.pch"; path = "TMTBibTexTools/DBLPToolsFramework-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexTools.h; path = TMTBibTexTools/TMTBibTexTools.h; sourceTree = SOURCE_ROOT; };
-		D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexTools.m; path = TMTBibTexTools/TMTBibTexTools.m; sourceTree = SOURCE_ROOT; };
-		D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexParser.h; path = TMTBibTexTools/TMTBibTexParser.h; sourceTree = SOURCE_ROOT; };
-		D2989C701990EF940024DFA6 /* TMTBibTexParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexParser.m; path = TMTBibTexTools/TMTBibTexParser.m; sourceTree = SOURCE_ROOT; };
-		D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchCompletionHandler.h; sourceTree = "<group>"; };
-		D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLPSearchView.xib; sourceTree = "<group>"; };
-		D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPSearchViewController.h; sourceTree = "<group>"; };
-		D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPSearchViewController.m; sourceTree = "<group>"; };
-		D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPCallbackHandler.h; sourceTree = "<group>"; };
-		D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPConfiguration.h; sourceTree = "<group>"; };
-		D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPConfiguration.m; sourceTree = "<group>"; };
-		D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DBLPConfiguration.plist; sourceTree = "<group>"; };
-		D2989C831990F15E0024DFA6 /* DBLPInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLPInterface.h; sourceTree = "<group>"; };
-		D2989C841990F15E0024DFA6 /* DBLPInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLPInterface.m; sourceTree = "<group>"; };
-		D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMTBibTexEntry.h; path = TMTBibTexTools/TMTBibTexEntry.h; sourceTree = SOURCE_ROOT; };
-		D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMTBibTexEntry.m; path = TMTBibTexTools/TMTBibTexEntry.m; sourceTree = SOURCE_ROOT; };
-		D2AB7DEE176B8FAB00D1AB7B /* BibtexWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BibtexWindowController.h; sourceTree = "<group>"; };
-		D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BibtexWindowController.m; sourceTree = "<group>"; };
-		D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BibtexWindow.xib; sourceTree = "<group>"; };
-		DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTBibTexTools.xcconfig"; path = "../Pods/Pods-TMTBibTexTools.xcconfig"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D217A41F176B442C002DB084 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D23BC5121861E80B00E9A507 /* TMTBibTexTools.framework in Frameworks */,
-				D217A426176B442C002DB084 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4DD1861E79700E9A507 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D23BC4E21861E79700E9A507 /* Cocoa.framework in Frameworks */,
-				C84404FF2790439EB06A745D /* libPods-TMTBibTexTools.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4EE1861E79700E9A507 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D23BC4F41861E79700E9A507 /* Cocoa.framework in Frameworks */,
-				D23BC4F71861E79700E9A507 /* TMTBibTexTools.framework in Frameworks */,
-				D23BC4F31861E79700E9A507 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		D217A419176B442C002DB084 = {
-			isa = PBXGroup;
-			children = (
-				D217A42B176B442C002DB084 /* DBLP Tool */,
-				D23BC4E31861E79700E9A507 /* TMTBibTexTools */,
-				D23BC4F81861E79700E9A507 /* DBLPToolsFrameworkTests */,
-				D217A424176B442C002DB084 /* Frameworks */,
-				D217A423176B442C002DB084 /* Products */,
-				DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */,
-			);
-			sourceTree = "<group>";
-		};
-		D217A423176B442C002DB084 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D217A422176B442C002DB084 /* TMTBibTexTools.app */,
-				D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */,
-				D23BC4F11861E79700E9A507 /* DBLPToolsFrameworkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D217A424176B442C002DB084 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D220A6F11991123200A28CB7 /* TMTHelperCollection.framework */,
-				D217A425176B442C002DB084 /* Cocoa.framework */,
-				D23BC4F21861E79700E9A507 /* XCTest.framework */,
-				D217A427176B442C002DB084 /* Other Frameworks */,
-				B55066A07D914A33B9F5D22B /* libPods-TMTBibTexTools.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D217A427176B442C002DB084 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D217A428176B442C002DB084 /* AppKit.framework */,
-				D217A429176B442C002DB084 /* CoreData.framework */,
-				D217A42A176B442C002DB084 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		D217A42B176B442C002DB084 /* DBLP Tool */ = {
-			isa = PBXGroup;
-			children = (
-				D2AB7DEE176B8FAB00D1AB7B /* BibtexWindowController.h */,
-				D2AB7DEF176B8FAB00D1AB7B /* BibtexWindowController.m */,
-				D2AB7DF0176B8FAB00D1AB7B /* BibtexWindow.xib */,
-				D217A437176B442C002DB084 /* AppDelegate.h */,
-				D217A438176B442C002DB084 /* AppDelegate.m */,
-				D217A43A176B442C002DB084 /* MainMenu.xib */,
-				D217A42C176B442C002DB084 /* Supporting Files */,
-			);
-			path = "DBLP Tool";
-			sourceTree = "<group>";
-		};
-		D217A42C176B442C002DB084 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D217A42D176B442C002DB084 /* TMTBibTexTools-Info.plist */,
-				D217A42E176B442C002DB084 /* InfoPlist.strings */,
-				D217A431176B442C002DB084 /* main.m */,
-				D217A433176B442C002DB084 /* TMTBibTexTools-Prefix.pch */,
-				D217A434176B442C002DB084 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D23BC4E31861E79700E9A507 /* TMTBibTexTools */ = {
-			isa = PBXGroup;
-			children = (
-				D2989C751990F07F0024DFA6 /* Connectors */,
-				D2989C6F1990EF940024DFA6 /* TMTBibTexParser.h */,
-				D2989C701990EF940024DFA6 /* TMTBibTexParser.m */,
-				D2989C8B1990F1720024DFA6 /* TMTBibTexEntry.h */,
-				D2989C8C1990F1720024DFA6 /* TMTBibTexEntry.m */,
-				D2989C5F1990EF7F0024DFA6 /* TMTBibTexTools.h */,
-				D2989C601990EF7F0024DFA6 /* TMTBibTexTools.m */,
-				D23BC4E41861E79700E9A507 /* Supporting Files */,
-			);
-			name = TMTBibTexTools;
-			path = DBLPToolsFramework;
-			sourceTree = "<group>";
-		};
-		D23BC4E41861E79700E9A507 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2989C5E1990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch */,
-				D2989C5D1990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D23BC4F81861E79700E9A507 /* DBLPToolsFrameworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				D23BC4FE1861E79700E9A507 /* DBLPToolsFrameworkTests.m */,
-				D23BC4F91861E79700E9A507 /* Supporting Files */,
-			);
-			path = DBLPToolsFrameworkTests;
-			sourceTree = "<group>";
-		};
-		D23BC4F91861E79700E9A507 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D23BC4FA1861E79700E9A507 /* DBLPToolsFrameworkTests-Info.plist */,
-				D23BC4FB1861E79700E9A507 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D2989C751990F07F0024DFA6 /* Connectors */ = {
-			isa = PBXGroup;
-			children = (
-				D2989C761990F07F0024DFA6 /* DBLP */,
-			);
-			name = Connectors;
-			path = TMTBibTexTools/Connectors;
-			sourceTree = SOURCE_ROOT;
-		};
-		D2989C761990F07F0024DFA6 /* DBLP */ = {
-			isa = PBXGroup;
-			children = (
-				D2989C7F1990F15E0024DFA6 /* DBLPCallbackHandler.h */,
-				D2989C801990F15E0024DFA6 /* DBLPConfiguration.h */,
-				D2989C811990F15E0024DFA6 /* DBLPConfiguration.m */,
-				D2989C821990F15E0024DFA6 /* DBLPConfiguration.plist */,
-				D2989C831990F15E0024DFA6 /* DBLPInterface.h */,
-				D2989C841990F15E0024DFA6 /* DBLPInterface.m */,
-				D2989C771990F07F0024DFA6 /* DBLPSearchCompletionHandler.h */,
-				D2989C781990F07F0024DFA6 /* DBLPSearchView.xib */,
-				D2989C791990F07F0024DFA6 /* DBLPSearchViewController.h */,
-				D2989C7A1990F07F0024DFA6 /* DBLPSearchViewController.m */,
-			);
-			path = DBLP;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		D23BC4DE1861E79700E9A507 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2989C731990EF940024DFA6 /* TMTBibTexParser.h in Headers */,
-				D2989C8D1990F1720024DFA6 /* TMTBibTexEntry.h in Headers */,
-				D2989C7B1990F07F0024DFA6 /* DBLPSearchCompletionHandler.h in Headers */,
-				D2989C851990F15E0024DFA6 /* DBLPCallbackHandler.h in Headers */,
-				D2989C7D1990F07F0024DFA6 /* DBLPSearchViewController.h in Headers */,
-				D2989C891990F15E0024DFA6 /* DBLPInterface.h in Headers */,
-				D2989C671990EF7F0024DFA6 /* TMTBibTexTools.h in Headers */,
-				D2989C861990F15E0024DFA6 /* DBLPConfiguration.h in Headers */,
-				D2989C661990EF7F0024DFA6 /* DBLPToolsFramework-Prefix.pch in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		D217A421176B442C002DB084 /* DBLP Tool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D217A43F176B442C002DB084 /* Build configuration list for PBXNativeTarget "DBLP Tool" */;
-			buildPhases = (
-				D217A41E176B442C002DB084 /* Sources */,
-				D217A41F176B442C002DB084 /* Frameworks */,
-				D217A420176B442C002DB084 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D23BC5111861E80400E9A507 /* PBXTargetDependency */,
-			);
-			name = "DBLP Tool";
-			productName = "DBLP Tool";
-			productReference = D217A422176B442C002DB084 /* TMTBibTexTools.app */;
-			productType = "com.apple.product-type.application";
-		};
-		D23BC4E01861E79700E9A507 /* TMTBibTexTools */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "TMTBibTexTools" */;
-			buildPhases = (
-				D23BC4DC1861E79700E9A507 /* Sources */,
-				D23BC4DD1861E79700E9A507 /* Frameworks */,
-				D23BC4DE1861E79700E9A507 /* Headers */,
-				D23BC4DF1861E79700E9A507 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TMTBibTexTools;
-			productName = DBLPToolsFramework;
-			productReference = D23BC4E11861E79700E9A507 /* TMTBibTexTools.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D23BC4F01861E79700E9A507 /* DBLPToolsFrameworkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D23BC5051861E79700E9A507 /* Build configuration list for PBXNativeTarget "DBLPToolsFrameworkTests" */;
-			buildPhases = (
-				D23BC4ED1861E79700E9A507 /* Sources */,
-				D23BC4EE1861E79700E9A507 /* Frameworks */,
-				D23BC4EF1861E79700E9A507 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D23BC4F61861E79700E9A507 /* PBXTargetDependency */,
-			);
-			name = DBLPToolsFrameworkTests;
-			productName = DBLPToolsFrameworkTests;
-			productReference = D23BC4F11861E79700E9A507 /* DBLPToolsFrameworkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D217A41A176B442C002DB084 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Tobias Mende";
-				TargetAttributes = {
-					D23BC4F01861E79700E9A507 = {
-						TestTargetID = D23BC4E01861E79700E9A507;
-					};
-				};
-			};
-			buildConfigurationList = D217A41D176B442C002DB084 /* Build configuration list for PBXProject "TMTBibTexTools" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				de,
-			);
-			mainGroup = D217A419176B442C002DB084;
-			productRefGroup = D217A423176B442C002DB084 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D23BC4E01861E79700E9A507 /* TMTBibTexTools */,
-				D217A421176B442C002DB084 /* DBLP Tool */,
-				D23BC4F01861E79700E9A507 /* DBLPToolsFrameworkTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D217A420176B442C002DB084 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D217A430176B442C002DB084 /* InfoPlist.strings in Resources */,
-				D217A436176B442C002DB084 /* Credits.rtf in Resources */,
-				D217A43C176B442C002DB084 /* MainMenu.xib in Resources */,
-				D2AB7DF2176B8FAB00D1AB7B /* BibtexWindow.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4DF1861E79700E9A507 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2989C7C1990F07F0024DFA6 /* DBLPSearchView.xib in Resources */,
-				D2989C651990EF7F0024DFA6 /* DBLPToolsFramework-Info.plist in Resources */,
-				D2989C881990F15E0024DFA6 /* DBLPConfiguration.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4EF1861E79700E9A507 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D23BC4FD1861E79700E9A507 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D217A41E176B442C002DB084 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D217A432176B442C002DB084 /* main.m in Sources */,
-				D217A439176B442C002DB084 /* AppDelegate.m in Sources */,
-				D2AB7DF1176B8FAB00D1AB7B /* BibtexWindowController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4DC1861E79700E9A507 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D2989C871990F15E0024DFA6 /* DBLPConfiguration.m in Sources */,
-				D2989C681990EF7F0024DFA6 /* TMTBibTexTools.m in Sources */,
-				D2989C8A1990F15E0024DFA6 /* DBLPInterface.m in Sources */,
-				D2989C741990EF940024DFA6 /* TMTBibTexParser.m in Sources */,
-				D2989C8E1990F1720024DFA6 /* TMTBibTexEntry.m in Sources */,
-				D2989C7E1990F07F0024DFA6 /* DBLPSearchViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D23BC4ED1861E79700E9A507 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D23BC4FF1861E79700E9A507 /* DBLPToolsFrameworkTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D23BC4F61861E79700E9A507 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D23BC4E01861E79700E9A507 /* TMTBibTexTools */;
-			targetProxy = D23BC4F51861E79700E9A507 /* PBXContainerItemProxy */;
-		};
-		D23BC5111861E80400E9A507 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D23BC4E01861E79700E9A507 /* TMTBibTexTools */;
-			targetProxy = D23BC5101861E80400E9A507 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D217A42E176B442C002DB084 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D217A42F176B442C002DB084 /* en */,
-				D2928B031967F75F00F6C9BD /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D217A434176B442C002DB084 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D217A435176B442C002DB084 /* en */,
-				D2928B041967F75F00F6C9BD /* de */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		D217A43A176B442C002DB084 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D217A43B176B442C002DB084 /* en */,
-				D2928B021967F75F00F6C9BD /* de */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		D23BC4FB1861E79700E9A507 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D23BC4FC1861E79700E9A507 /* en */,
-				D2928B061967F75F00F6C9BD /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		D217A43D176B442C002DB084 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)/**",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		D217A43E176B442C002DB084 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)/**",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		D217A440176B442C002DB084 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLP Tool/TMTBibTexTools-Prefix.pch";
-				INFOPLIST_FILE = "DBLP Tool/TMTBibTexTools-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				PRODUCT_NAME = TMTBibTexTools;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D217A441176B442C002DB084 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLP Tool/TMTBibTexTools-Prefix.pch";
-				INFOPLIST_FILE = "DBLP Tool/TMTBibTexTools-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				PRODUCT_NAME = TMTBibTexTools;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D23BC5001861E79700E9A507 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@rpath";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		D23BC5011861E79700E9A507 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC31F891C26B47CA8EC6D06A /* Pods-TMTBibTexTools.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@rpath";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
-		D23BC5021861E79700E9A507 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLPToolsFramework/DBLPToolsFramework-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D23BC5031861E79700E9A507 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBLPToolsFramework/DBLPToolsFramework-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D217A41D176B442C002DB084 /* Build configuration list for PBXProject "TMTBibTexTools" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D217A43D176B442C002DB084 /* Debug */,
-				D217A43E176B442C002DB084 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D217A43F176B442C002DB084 /* Build configuration list for PBXNativeTarget "DBLP Tool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D217A440176B442C002DB084 /* Debug */,
-				D217A441176B442C002DB084 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D23BC5041861E79700E9A507 /* Build configuration list for PBXNativeTarget "TMTBibTexTools" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D23BC5001861E79700E9A507 /* Debug */,
-				D23BC5011861E79700E9A507 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D23BC5051861E79700E9A507 /* Build configuration list for PBXNativeTarget "DBLPToolsFrameworkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D23BC5021861E79700E9A507 /* Debug */,
-				D23BC5031861E79700E9A507 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D217A41A176B442C002DB084 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>33C0F19DFB206437674AF0F7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C654A19113227108C089D549</string>
+				<string>B914071ADB5126D9FACF36D4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B55066A07D914A33B9F5D22B</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-TMTBibTexTools.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>B914071ADB5126D9FACF36D4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-TMTBibTexTools.release.xcconfig</string>
+			<key>path</key>
+			<string>../Pods/Target Support Files/Pods-TMTBibTexTools/Pods-TMTBibTexTools.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C654A19113227108C089D549</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-TMTBibTexTools.debug.xcconfig</string>
+			<key>path</key>
+			<string>../Pods/Target Support Files/Pods-TMTBibTexTools/Pods-TMTBibTexTools.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C84404FF2790439EB06A745D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B55066A07D914A33B9F5D22B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A419176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A42B176B442C002DB084</string>
+				<string>D23BC4E31861E79700E9A507</string>
+				<string>D23BC4F81861E79700E9A507</string>
+				<string>D217A424176B442C002DB084</string>
+				<string>D217A423176B442C002DB084</string>
+				<string>33C0F19DFB206437674AF0F7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A41A176B442C002DB084</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0500</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Tobias Mende</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>D23BC4F01861E79700E9A507</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>D23BC4E01861E79700E9A507</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D217A41D176B442C002DB084</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>de</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D217A419176B442C002DB084</string>
+			<key>productRefGroup</key>
+			<string>D217A423176B442C002DB084</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D23BC4E01861E79700E9A507</string>
+				<string>D217A421176B442C002DB084</string>
+				<string>D23BC4F01861E79700E9A507</string>
+			</array>
+		</dict>
+		<key>D217A41D176B442C002DB084</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D217A43D176B442C002DB084</string>
+				<string>D217A43E176B442C002DB084</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D217A41E176B442C002DB084</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D217A432176B442C002DB084</string>
+				<string>D217A439176B442C002DB084</string>
+				<string>D2AB7DF1176B8FAB00D1AB7B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D217A41F176B442C002DB084</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D23BC5121861E80B00E9A507</string>
+				<string>D217A426176B442C002DB084</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D217A420176B442C002DB084</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D217A430176B442C002DB084</string>
+				<string>D217A436176B442C002DB084</string>
+				<string>D217A43C176B442C002DB084</string>
+				<string>D2AB7DF2176B8FAB00D1AB7B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D217A421176B442C002DB084</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D217A43F176B442C002DB084</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D217A41E176B442C002DB084</string>
+				<string>D217A41F176B442C002DB084</string>
+				<string>D217A420176B442C002DB084</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D23BC5111861E80400E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DBLP Tool</string>
+			<key>productName</key>
+			<string>DBLP Tool</string>
+			<key>productReference</key>
+			<string>D217A422176B442C002DB084</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D217A422176B442C002DB084</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTBibTexTools.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D217A423176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A422176B442C002DB084</string>
+				<string>D23BC4E11861E79700E9A507</string>
+				<string>D23BC4F11861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A424176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D220A6F11991123200A28CB7</string>
+				<string>D217A425176B442C002DB084</string>
+				<string>D23BC4F21861E79700E9A507</string>
+				<string>D217A427176B442C002DB084</string>
+				<string>B55066A07D914A33B9F5D22B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A425176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Cocoa.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Cocoa.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D217A426176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A425176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A427176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A428176B442C002DB084</string>
+				<string>D217A429176B442C002DB084</string>
+				<string>D217A42A176B442C002DB084</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Other Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A428176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>AppKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/AppKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D217A429176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreData.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreData.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D217A42A176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D217A42B176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2AB7DEE176B8FAB00D1AB7B</string>
+				<string>D2AB7DEF176B8FAB00D1AB7B</string>
+				<string>D2AB7DF0176B8FAB00D1AB7B</string>
+				<string>D217A437176B442C002DB084</string>
+				<string>D217A438176B442C002DB084</string>
+				<string>D217A43A176B442C002DB084</string>
+				<string>D217A42C176B442C002DB084</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DBLP Tool</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A42C176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A42D176B442C002DB084</string>
+				<string>D217A42E176B442C002DB084</string>
+				<string>D217A431176B442C002DB084</string>
+				<string>D217A433176B442C002DB084</string>
+				<string>D217A434176B442C002DB084</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A42D176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>TMTBibTexTools-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A42E176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A42F176B442C002DB084</string>
+				<string>D2928B031967F75F00F6C9BD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A42F176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A430176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A42E176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A431176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A432176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A431176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A433176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TMTBibTexTools-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A434176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A435176B442C002DB084</string>
+				<string>D2928B041967F75F00F6C9BD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Credits.rtf</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A435176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.rtf</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/Credits.rtf</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A436176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A434176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A437176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A438176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A439176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A438176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A43A176B442C002DB084</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D217A43B176B442C002DB084</string>
+				<string>D2928B021967F75F00F6C9BD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>MainMenu.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A43B176B442C002DB084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/MainMenu.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D217A43C176B442C002DB084</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A43A176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D217A43D176B442C002DB084</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>NO</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_MISSING_PROTOTYPES</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_PARAMETER</key>
+				<string>NO</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>HEADER_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)/**</string>
+					<string>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.7</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D217A43E176B442C002DB084</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>NO</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_MISSING_PROTOTYPES</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_PARAMETER</key>
+				<string>NO</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>HEADER_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)/**</string>
+					<string>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.7</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D217A43F176B442C002DB084</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D217A440176B442C002DB084</string>
+				<string>D217A441176B442C002DB084</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D217A440176B442C002DB084</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>DBLP Tool/TMTBibTexTools-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DBLP Tool/TMTBibTexTools-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>@loader_path/../Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>TMTBibTexTools</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D217A441176B442C002DB084</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>DBLP Tool/TMTBibTexTools-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DBLP Tool/TMTBibTexTools-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>@loader_path/../Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>TMTBibTexTools</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D220A6F11991123200A28CB7</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>TMTHelperCollection.framework</string>
+			<key>path</key>
+			<string>../DerivedData/TMTProject/Build/Products/Debug/TMTHelperCollection.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4DC1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2989C871990F15E0024DFA6</string>
+				<string>D2989C681990EF7F0024DFA6</string>
+				<string>D2989C8A1990F15E0024DFA6</string>
+				<string>D2989C741990EF940024DFA6</string>
+				<string>D2989C8E1990F1720024DFA6</string>
+				<string>D2989C7E1990F07F0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4DD1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D23BC4E21861E79700E9A507</string>
+				<string>C84404FF2790439EB06A745D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4DE1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2989C731990EF940024DFA6</string>
+				<string>D2989C8D1990F1720024DFA6</string>
+				<string>D2989C7B1990F07F0024DFA6</string>
+				<string>D2989C851990F15E0024DFA6</string>
+				<string>D2989C7D1990F07F0024DFA6</string>
+				<string>D2989C891990F15E0024DFA6</string>
+				<string>D2989C671990EF7F0024DFA6</string>
+				<string>D2989C861990F15E0024DFA6</string>
+				<string>D2989C661990EF7F0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4DF1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D2989C7C1990F07F0024DFA6</string>
+				<string>D2989C651990EF7F0024DFA6</string>
+				<string>D2989C881990F15E0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4E01861E79700E9A507</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D23BC5041861E79700E9A507</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D23BC4DC1861E79700E9A507</string>
+				<string>D23BC4DD1861E79700E9A507</string>
+				<string>D23BC4DE1861E79700E9A507</string>
+				<string>D23BC4DF1861E79700E9A507</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>TMTBibTexTools</string>
+			<key>productName</key>
+			<string>DBLPToolsFramework</string>
+			<key>productReference</key>
+			<string>D23BC4E11861E79700E9A507</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>D23BC4E11861E79700E9A507</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>TMTBibTexTools.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D23BC4E21861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A425176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC4E31861E79700E9A507</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2989C751990F07F0024DFA6</string>
+				<string>D2989C6F1990EF940024DFA6</string>
+				<string>D2989C701990EF940024DFA6</string>
+				<string>D2989C8B1990F1720024DFA6</string>
+				<string>D2989C8C1990F1720024DFA6</string>
+				<string>D2989C5F1990EF7F0024DFA6</string>
+				<string>D2989C601990EF7F0024DFA6</string>
+				<string>D23BC4E41861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>TMTBibTexTools</string>
+			<key>path</key>
+			<string>DBLPToolsFramework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4E41861E79700E9A507</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2989C5E1990EF7F0024DFA6</string>
+				<string>D2989C5D1990EF7F0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4ED1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D23BC4FF1861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4EE1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D23BC4F41861E79700E9A507</string>
+				<string>D23BC4F71861E79700E9A507</string>
+				<string>D23BC4F31861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4EF1861E79700E9A507</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D23BC4FD1861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D23BC4F01861E79700E9A507</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D23BC5051861E79700E9A507</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D23BC4ED1861E79700E9A507</string>
+				<string>D23BC4EE1861E79700E9A507</string>
+				<string>D23BC4EF1861E79700E9A507</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>D23BC4F61861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DBLPToolsFrameworkTests</string>
+			<key>productName</key>
+			<string>DBLPToolsFrameworkTests</string>
+			<key>productReference</key>
+			<string>D23BC4F11861E79700E9A507</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>D23BC4F11861E79700E9A507</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>DBLPToolsFrameworkTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D23BC4F21861E79700E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>D23BC4F31861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D23BC4F21861E79700E9A507</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC4F41861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A425176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC4F51861E79700E9A507</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D217A41A176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D23BC4E01861E79700E9A507</string>
+			<key>remoteInfo</key>
+			<string>DBLPToolsFramework</string>
+		</dict>
+		<key>D23BC4F61861E79700E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D23BC4E01861E79700E9A507</string>
+			<key>targetProxy</key>
+			<string>D23BC4F51861E79700E9A507</string>
+		</dict>
+		<key>D23BC4F71861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D23BC4E11861E79700E9A507</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC4F81861E79700E9A507</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D23BC4FE1861E79700E9A507</string>
+				<string>D23BC4F91861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DBLPToolsFrameworkTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4F91861E79700E9A507</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D23BC4FA1861E79700E9A507</string>
+				<string>D23BC4FB1861E79700E9A507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4FA1861E79700E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>DBLPToolsFrameworkTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4FB1861E79700E9A507</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D23BC4FC1861E79700E9A507</string>
+				<string>D2928B061967F75F00F6C9BD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4FC1861E79700E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4FD1861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D23BC4FB1861E79700E9A507</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC4FE1861E79700E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DBLPToolsFrameworkTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D23BC4FF1861E79700E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D23BC4FE1861E79700E9A507</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D23BC5001861E79700E9A507</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>C654A19113227108C089D549</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>FRAMEWORK_VERSION</key>
+				<string>A</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<string>$(inherited)</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INSTALL_PATH</key>
+				<string>@rpath</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>framework</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D23BC5011861E79700E9A507</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>B914071ADB5126D9FACF36D4</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>FRAMEWORK_VERSION</key>
+				<string>A</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INSTALL_PATH</key>
+				<string>@rpath</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>framework</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D23BC5021861E79700E9A507</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>DBLPToolsFramework/DBLPToolsFramework-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist</string>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.9</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D23BC5031861E79700E9A507</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>COMBINE_HIDPI_IMAGES</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>DBLPToolsFramework/DBLPToolsFramework-Prefix.pch</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist</string>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>10.9</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D23BC5041861E79700E9A507</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D23BC5001861E79700E9A507</string>
+				<string>D23BC5011861E79700E9A507</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D23BC5051861E79700E9A507</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D23BC5021861E79700E9A507</string>
+				<string>D23BC5031861E79700E9A507</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D23BC5101861E80400E9A507</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D217A41A176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>D23BC4E01861E79700E9A507</string>
+			<key>remoteInfo</key>
+			<string>DBLPToolsFramework</string>
+		</dict>
+		<key>D23BC5111861E80400E9A507</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>D23BC4E01861E79700E9A507</string>
+			<key>targetProxy</key>
+			<string>D23BC5101861E80400E9A507</string>
+		</dict>
+		<key>D23BC5121861E80B00E9A507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D23BC4E11861E79700E9A507</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2928B021967F75F00F6C9BD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>de</string>
+			<key>path</key>
+			<string>de.lproj/MainMenu.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2928B031967F75F00F6C9BD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>de</string>
+			<key>path</key>
+			<string>de.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2928B041967F75F00F6C9BD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.rtf</string>
+			<key>name</key>
+			<string>de</string>
+			<key>path</key>
+			<string>de.lproj/Credits.rtf</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2928B061967F75F00F6C9BD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>de</string>
+			<key>path</key>
+			<string>de.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C5D1990EF7F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>name</key>
+			<string>DBLPToolsFramework-Info.plist</string>
+			<key>path</key>
+			<string>TMTBibTexTools/DBLPToolsFramework-Info.plist</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C5E1990EF7F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>DBLPToolsFramework-Prefix.pch</string>
+			<key>path</key>
+			<string>TMTBibTexTools/DBLPToolsFramework-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C5F1990EF7F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>TMTBibTexTools.h</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexTools.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C601990EF7F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>TMTBibTexTools.m</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexTools.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C651990EF7F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C5D1990EF7F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C661990EF7F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C5E1990EF7F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C671990EF7F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C5F1990EF7F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C681990EF7F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C601990EF7F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C6F1990EF940024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>TMTBibTexParser.h</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexParser.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C701990EF940024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>TMTBibTexParser.m</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexParser.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C731990EF940024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C6F1990EF940024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2989C741990EF940024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C701990EF940024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C751990F07F0024DFA6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2989C761990F07F0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Connectors</string>
+			<key>path</key>
+			<string>TMTBibTexTools/Connectors</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C761990F07F0024DFA6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D2989C7F1990F15E0024DFA6</string>
+				<string>D2989C801990F15E0024DFA6</string>
+				<string>D2989C811990F15E0024DFA6</string>
+				<string>D2989C821990F15E0024DFA6</string>
+				<string>D2989C831990F15E0024DFA6</string>
+				<string>D2989C841990F15E0024DFA6</string>
+				<string>D2989C771990F07F0024DFA6</string>
+				<string>D2989C781990F07F0024DFA6</string>
+				<string>D2989C791990F07F0024DFA6</string>
+				<string>D2989C7A1990F07F0024DFA6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DBLP</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C771990F07F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DBLPSearchCompletionHandler.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C781990F07F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>path</key>
+			<string>DBLPSearchView.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C791990F07F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DBLPSearchViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C7A1990F07F0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DBLPSearchViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C7B1990F07F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C771990F07F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2989C7C1990F07F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C781990F07F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C7D1990F07F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C791990F07F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2989C7E1990F07F0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C7A1990F07F0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C7F1990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DBLPCallbackHandler.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C801990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DBLPConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C811990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DBLPConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C821990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>DBLPConfiguration.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C831990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DBLPInterface.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C841990F15E0024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DBLPInterface.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2989C851990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C7F1990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2989C861990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C801990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C871990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C811990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C881990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C821990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C891990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C831990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C8A1990F15E0024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C841990F15E0024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2989C8B1990F1720024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>TMTBibTexEntry.h</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexEntry.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C8C1990F1720024DFA6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>TMTBibTexEntry.m</string>
+			<key>path</key>
+			<string>TMTBibTexTools/TMTBibTexEntry.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>D2989C8D1990F1720024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C8B1990F1720024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D2989C8E1990F1720024DFA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2989C8C1990F1720024DFA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2AB7DEE176B8FAB00D1AB7B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BibtexWindowController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2AB7DEF176B8FAB00D1AB7B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BibtexWindowController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2AB7DF0176B8FAB00D1AB7B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>path</key>
+			<string>BibtexWindow.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D2AB7DF1176B8FAB00D1AB7B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2AB7DEF176B8FAB00D1AB7B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2AB7DF2176B8FAB00D1AB7B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D2AB7DF0176B8FAB00D1AB7B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D217A41A176B442C002DB084</string>
+</dict>
+</plist>

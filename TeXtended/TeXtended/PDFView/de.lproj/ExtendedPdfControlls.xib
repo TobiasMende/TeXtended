@@ -18,7 +18,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="ExtendedPdf"/>
-        <box focusRingType="none" appearanceType="aqua" boxType="custom" borderType="none" titlePosition="noTitle" id="87">
+        <box wantsLayer="YES" focusRingType="none" appearanceType="aqua" boxType="custom" borderType="none" titlePosition="noTitle" id="87">
             <rect key="frame" x="0.0" y="0.0" width="351" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <view key="contentView">

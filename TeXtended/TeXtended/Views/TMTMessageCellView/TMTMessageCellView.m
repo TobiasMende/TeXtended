@@ -51,6 +51,10 @@
         _model = model;
     }
 
+- (BOOL)allowsVibrancy {
+    return YES;
+}
+
     - (void)firstResponderDidChangeNotification:(NSNotification *)note
     {
         id <FirstResponderDelegate> del = (note.userInfo)[TMTFirstResponderKey];

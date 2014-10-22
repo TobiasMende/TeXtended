@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D20E8AD419642A73004ADAA2 /* TMTTableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */; };
 		D22DC1BD1863784800997ADB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22DC1BC1863784800997ADB /* Cocoa.framework */; };
 		D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22DC1C51863784800997ADB /* InfoPlist.strings */; };
@@ -33,11 +32,10 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
-		D26CF28819910BD700E50931 /* Pods-TMTHelperCollection.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */; };
+		D26CF28819910BD700E50931 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D276C8151956CDA1009DB27D /* TMTTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D276C8161956CDA1009DB27D /* TMTTreeController.m */; };
 		D28F285519647FF40085344F /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285319647FF40085344F /* NSSet+TMTSerialization.h */; };
-		D28F285619647FF40085344F /* NSSet+TMTSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F285419647FF40085344F /* NSSet+TMTSerialization.m */; };
 		D28F2859196480090085344F /* NSTextView+TMTExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F2857196480090085344F /* NSTextView+TMTExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D28F285A196480090085344F /* NSTextView+TMTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D28F2858196480090085344F /* NSTextView+TMTExtensions.m */; };
 		D28F285D196483870085344F /* NSString+TMTExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285B196483870085344F /* NSString+TMTExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,10 +51,14 @@
 		D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821619166B5F00C1B9E0 /* TMTTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D295821919166B5F00C1B9E0 /* TMTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D295821719166B5F00C1B9E0 /* TMTTextField.m */; };
 		D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2F3885519F7C89200B4357C /* TMTBorderedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3885319F7C89200B4357C /* TMTBorderedScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2F3885719F7CCC400B4357C /* TMTBorderedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F3885419F7C89200B4357C /* TMTBorderedScrollView.m */; };
 		FE08952ADC994E2189508871 /* libPods-TMTHelperCollection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1532F53789A4EC497F2FBC3 /* libPods-TMTHelperCollection.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08706C3953A8E20CCB479669 /* Pods-TMTHelperCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TMTHelperCollection/Pods-TMTHelperCollection.debug.xcconfig"; sourceTree = "<group>"; };
+		CDD88FFEBAFB60A4675EE98A /* Pods-TMTHelperCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TMTHelperCollection/Pods-TMTHelperCollection.release.xcconfig"; sourceTree = "<group>"; };
 		D20E8AD319642A6F004ADAA2 /* TMTTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTableViewDelegate.h; sourceTree = "<group>"; };
 		D22646C81962DD25007B6489 /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
 		D22646C91962DD25007B6489 /* NSSet+TMTSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+TMTSerialization.m"; sourceTree = "<group>"; };
@@ -89,7 +91,6 @@
 		D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNamedEncoding.m; sourceTree = "<group>"; };
 		D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTEncodingTransformer.h; sourceTree = "<group>"; };
 		D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTEncodingTransformer.m; sourceTree = "<group>"; };
-		D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-TMTHelperCollection.xcconfig"; path = "../Pods/Pods-TMTHelperCollection.xcconfig"; sourceTree = "<group>"; };
 		D276C8151956CDA1009DB27D /* TMTTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTreeController.h; sourceTree = "<group>"; };
 		D276C8161956CDA1009DB27D /* TMTTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTreeController.m; sourceTree = "<group>"; };
 		D28F285319647FF40085344F /* NSSet+TMTSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+TMTSerialization.h"; sourceTree = "<group>"; };
@@ -110,6 +111,8 @@
 		D295821419166B2B00C1B9E0 /* TMTTextFieldDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMTTextFieldDelegate.h; sourceTree = "<group>"; };
 		D295821619166B5F00C1B9E0 /* TMTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTextField.h; sourceTree = "<group>"; };
 		D295821719166B5F00C1B9E0 /* TMTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTextField.m; sourceTree = "<group>"; };
+		D2F3885319F7C89200B4357C /* TMTBorderedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTBorderedScrollView.h; sourceTree = "<group>"; };
+		D2F3885419F7C89200B4357C /* TMTBorderedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTBorderedScrollView.m; sourceTree = "<group>"; };
 		E1532F53789A4EC497F2FBC3 /* libPods-TMTHelperCollection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTHelperCollection.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801E2CEA81057A7B66DBAB49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08706C3953A8E20CCB479669 /* Pods-TMTHelperCollection.debug.xcconfig */,
+				CDD88FFEBAFB60A4675EE98A /* Pods-TMTHelperCollection.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D22646C71962DB41007B6489 /* Serialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,10 +151,10 @@
 		D22DC1AF1863784800997ADB = {
 			isa = PBXGroup;
 			children = (
-				D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */,
 				D22DC1C21863784800997ADB /* TMTHelperCollection */,
 				D22DC1BB1863784800997ADB /* Frameworks */,
 				D22DC1BA1863784800997ADB /* Products */,
+				801E2CEA81057A7B66DBAB49 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +241,7 @@
 		D22DC26118637A4F00997ADB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2F3885219F7C87800B4357C /* TMTBorderedScrollView */,
 				D295821519166B4400C1B9E0 /* TMTTextField */,
 				D22DC26218637A4F00997ADB /* TMTTableView */,
 			);
@@ -322,6 +335,15 @@
 			path = TMTTextField;
 			sourceTree = "<group>";
 		};
+		D2F3885219F7C87800B4357C /* TMTBorderedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D2F3885319F7C89200B4357C /* TMTBorderedScrollView.h */,
+				D2F3885419F7C89200B4357C /* TMTBorderedScrollView.m */,
+			);
+			path = TMTBorderedScrollView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -343,11 +365,11 @@
 				D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */,
 				D28F2861196485340085344F /* NSString+LatexExtensions.h in Headers */,
 				D295821A19166D0B00C1B9E0 /* TMTTextFieldDelegate.h in Headers */,
-				D22646CA1962DD25007B6489 /* NSSet+TMTSerialization.h in Headers */,
 				D20E8AD419642A73004ADAA2 /* TMTTableViewDelegate.h in Headers */,
 				D295821819166B5F00C1B9E0 /* TMTTextField.h in Headers */,
 				D28F285D196483870085344F /* NSString+TMTExtensions.h in Headers */,
 				D29383B71945CE59005C6C3F /* TMTByteCountFormatter.h in Headers */,
+				D2F3885519F7C89200B4357C /* TMTBorderedScrollView.h in Headers */,
 				D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */,
 				D22DC29B18637ACA00997ADB /* TMTTableRowView.h in Headers */,
 				D22DC29C18637ACA00997ADB /* TMTTableView.h in Headers */,
@@ -384,7 +406,7 @@
 		D22DC1B01863784800997ADB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tobias Mende";
 			};
 			buildConfigurationList = D22DC1B31863784800997ADB /* Build configuration list for PBXProject "TMTHelperCollection" */;
@@ -410,7 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D26CF28819910BD700E50931 /* Pods-TMTHelperCollection.xcconfig in Resources */,
+				D26CF28819910BD700E50931 /* (null) in Resources */,
 				D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-TMTHelperCollection-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TMTHelperCollection/Pods-TMTHelperCollection-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -459,6 +481,7 @@
 				D2654AD61927A50E00DE58B2 /* TMTEncodingManager.m in Sources */,
 				D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */,
 				D22DC2A018637B1E00997ADB /* TMTTableRowView.m in Sources */,
+				D2F3885719F7CCC400B4357C /* TMTBorderedScrollView.m in Sources */,
 				D22646CB1962DD25007B6489 /* NSSet+TMTSerialization.m in Sources */,
 				D22DC2A118637B1E00997ADB /* TMTTableView.m in Sources */,
 				D28F285A196480090085344F /* NSTextView+TMTExtensions.m in Sources */,
@@ -468,7 +491,6 @@
 				D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */,
 				D22DC28B18637AB800997ADB /* TMTLog.m in Sources */,
 				D22DC28C18637AB800997ADB /* TMTLogFormatter.m in Sources */,
-				D28F285619647FF40085344F /* NSSet+TMTSerialization.m in Sources */,
 				D22DC28D18637AB800997ADB /* PathObserverFactory.m in Sources */,
 				D28F2866196488470085344F /* NSTextView+LatexExtensions.m in Sources */,
 				D28F287319656ADF0085344F /* NSRegularExpression+LatexExtensions.m in Sources */,
@@ -495,7 +517,6 @@
 /* Begin XCBuildConfiguration section */
 		D22DC1DF1863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -537,7 +558,6 @@
 		};
 		D22DC1E01863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -573,7 +593,7 @@
 		};
 		D22DC1E21863784800997ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
+			baseConfigurationReference = 08706C3953A8E20CCB479669 /* Pods-TMTHelperCollection.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -591,7 +611,7 @@
 		};
 		D22DC1E31863784800997ADB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26CF28719910BD700E50931 /* Pods-TMTHelperCollection.xcconfig */;
+			baseConfigurationReference = CDD88FFEBAFB60A4675EE98A /* Pods-TMTHelperCollection.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;

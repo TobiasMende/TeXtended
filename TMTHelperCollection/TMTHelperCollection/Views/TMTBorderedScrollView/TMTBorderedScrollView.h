@@ -10,4 +10,9 @@
 
 @interface TMTBorderedScrollView : NSScrollView
 
+@property BOOL leftBorder;
+@property BOOL rightBorder;
+@property BOOL bottomBorder;
+@property BOOL topBorder;
+
 @end

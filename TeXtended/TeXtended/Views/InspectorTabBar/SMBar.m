@@ -50,12 +50,8 @@
 
         static NSColor *borderColor = nil;
         if ([[self window] isKeyWindow]) {
-
             borderColor = [NSColor colorWithCalibratedWhite:0.416 alpha:0.25f];
-            
-        
         } else {
-            static NSColor *borderColor = nil;
             borderColor = [NSColor colorWithCalibratedWhite:0.651 alpha:0.25f];
         }
         

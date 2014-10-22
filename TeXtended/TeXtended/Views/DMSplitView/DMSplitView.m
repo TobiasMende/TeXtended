@@ -147,6 +147,11 @@
 
 #pragma mark - Appearance Properties
 
+
+- (BOOL)allowsVibrancy {
+    return YES;
+}
+
     - (void)setShouldDrawDivider:(BOOL)newShouldDrawDivider
     {
         shouldDrawDivider = newShouldDrawDivider;

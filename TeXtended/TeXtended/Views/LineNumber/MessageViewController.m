@@ -82,7 +82,7 @@ private)
     - (void)setSize
     {
         if ([elements count] == 1) {
-            [self.view setFrameSize:NSSizeFromString(@"{250,38}")];
+            [self.view setFrameSize:NSSizeFromString(@"{250,36}")];
         } else if ([elements count] == 2) {
             [self.view setFrameSize:NSSizeFromString(@"{250,74}")];
         } else {
