@@ -9,7 +9,7 @@ PODS:
   - Kiwi (2.3.0)
   - MMTabBarViewTMTFork (0.1.0)
   - OTMXAttribute (0.0.3)
-  - Sparkle (1.7.1)
+  - Sparkle (1.8.0)
   - TMTBibTexTools (0.1.0):
     - CocoaLumberjack (>= 1.9.1)
   - TMTHelperCollection (0.1.0):
@@ -19,13 +19,13 @@ PODS:
     - TMTHelperCollection
 
 DEPENDENCIES:
-  - CocoaLumberjack (>= 1.9.1)
-  - DMInspectorPalette
-  - JSONKit-NoWarning
-  - Kiwi
+  - CocoaLumberjack (= 1.9.1)
+  - DMInspectorPalette (= 0.0.1)
+  - JSONKit-NoWarning (= 1.2)
+  - Kiwi (= 2.3)
   - MMTabBarViewTMTFork (from `./MMTabBarView`)
-  - OTMXAttribute
-  - Sparkle
+  - OTMXAttribute (= 0.0.3)
+  - Sparkle (= 1.8)
   - TMTBibTexTools (from `./TMTBibTexTools`)
   - TMTHelperCollection (from `./TMTHelperCollection`)
   - TMTLatexTable (from `./TMTLatexTableFramework`)
@@ -45,11 +45,11 @@ SPEC CHECKSUMS:
   DMInspectorPalette: e6ae811ce61e35d7d5db5d394cbeeaad8d470e31
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
-  MMTabBarViewTMTFork: 188953efb2133833718533f206094d368b0a7308
+  MMTabBarViewTMTFork: 8c791c2551430f71b1758dc2c3f57582fff144ec
   OTMXAttribute: fe4586170eca13953bc8c68f1a881ceb1883fe66
-  Sparkle: fde5ffeb7bf01db28925499ce2a75977763af58a
+  Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
   TMTBibTexTools: 00006c70ce0860be19945809acc531924b6e7b27
-  TMTHelperCollection: cb2f1f0a54309497e0f6e3bf58bd4fbc3c5a7afb
+  TMTHelperCollection: 05fda0ca0fdcdefc7a48432b7b21c88f2e136ff2
   TMTLatexTable: ea2b15b0b5c468e11e010db8f196d9d2933ea945
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4
