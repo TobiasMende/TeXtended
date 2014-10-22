@@ -20,4 +20,7 @@
         [super drawRect:dirtyRect];
     }
 
+- (BOOL)allowsVibrancy {
+    return YES;
+}
 @end
