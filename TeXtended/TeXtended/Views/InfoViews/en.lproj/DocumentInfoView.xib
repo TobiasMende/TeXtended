@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DocumentInfoViewController">
             <connections>
-                <outlet property="previewView" destination="Bz5-Ap-P06" id="Y3j-Fc-RFQ"/>
                 <outlet property="quickLook" destination="Bz5-Ap-P06" id="lap-fF-ntH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView wantsLayer="YES" id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="395" height="171"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJS-Y6-hb7">
                     <rect key="frame" x="18" y="134" width="86" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name:" id="ZZr-dq-8qj">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -29,7 +27,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAj-6r-IAP">
                     <rect key="frame" x="20" y="90" width="84" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Last Changed:" id="apB-Ff-btD">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -38,7 +35,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zd0-Wj-kRm">
                     <rect key="frame" x="20" y="68" width="84" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Encoding:" id="dbO-wj-nPY">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +43,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdG-cb-1QZ">
                     <rect key="frame" x="108" y="90" width="178" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="iZb-K8-x9R">
                         <dateFormatter key="formatter" dateStyle="medium" timeStyle="medium" doesRelativeDateFormatting="YES" id="e2J-Hd-NZT"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -60,7 +55,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-sD-D9b">
                     <rect key="frame" x="20" y="112" width="84" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Last Compiled:" id="tEB-JD-VJt">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +63,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-um-KKV">
                     <rect key="frame" x="108" y="112" width="178" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="VgG-fx-E9b">
                         <dateFormatter key="formatter" dateStyle="medium" timeStyle="medium" doesRelativeDateFormatting="YES" id="Fll-0i-W7b"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -82,7 +75,6 @@
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPT-ZG-WH9">
                     <rect key="frame" x="108" y="134" width="178" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="q4q-dv-FYh">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -95,7 +87,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3E-8Z-SrI">
                     <rect key="frame" x="110" y="63" width="149" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="5wy-j5-MZt" id="JDo-kw-Tzc">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -108,14 +99,14 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="J55-nB-WiZ" name="contentValues" keyPath="self.stringEncodings" id="ssQ-UJ-GhC">
+                        <binding destination="-2" name="selectedObject" keyPath="self.model.encoding" previousBinding="ssQ-UJ-GhC" id="aJ3-Le-pSp">
                             <dictionary key="options">
-                                <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                 <string key="NSValueTransformerName">TMTEncodingTransformer</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="selectedObject" keyPath="self.model.encoding" previousBinding="ssQ-UJ-GhC" id="aJ3-Le-pSp">
+                        <binding destination="J55-nB-WiZ" name="contentValues" keyPath="self.stringEncodings" id="ssQ-UJ-GhC">
                             <dictionary key="options">
+                                <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                 <string key="NSValueTransformerName">TMTEncodingTransformer</string>
                             </dictionary>
                         </binding>
@@ -123,7 +114,6 @@
                 </popUpButton>
                 <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bz5-Ap-P06" customClass="TMTQuickLookView">
                     <rect key="frame" x="274" y="14" width="115" height="148"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <binding destination="-2" name="hidden" keyPath="self.pdfExists" id="6s4-fm-i3V">
                             <dictionary key="options">

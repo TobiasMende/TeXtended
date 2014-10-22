@@ -149,7 +149,6 @@ LOGGING_DEFAULT
                 kCGWindowImageDefault);
         NSImage *image = [[NSImage alloc] initWithCGImage:cgimg size:[aView bounds].size];
         NSSize imageSize = [image size];
-        [image setScalesWhenResized:YES];
         CGImageRelease(cgimg);
 
 

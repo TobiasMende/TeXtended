@@ -737,7 +737,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [select addItem:item];
     }
     
-    NSPoint position = [self firstRectForCharacterRange:self.selectedRange].origin ;
+    NSPoint position = [self firstRectForCharacterRange:self.selectedRange actualRange:NULL].origin ;
     [select popUpMenuPositioningItem:select.itemArray.firstObject atLocation:position inView:nil];
 }
 

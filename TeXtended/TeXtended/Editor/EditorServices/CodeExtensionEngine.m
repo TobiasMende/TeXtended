@@ -43,6 +43,8 @@ static const NSSet *KEYS_TO_UNBIND;
  */
     - (void)invalidateTexdocLinks;
 
+- (void)invalidateLinks;
+
 /**
  Adds texdoc links if some are found within the given range
  
@@ -90,6 +92,8 @@ static const NSSet *KEYS_TO_UNBIND;
 
             self.shouldUnderlineTexdoc = [[[defaults values] valueForKey:TMT_SHOULD_UNDERLINE_TEXDOC_LINKS] boolValue];
             [self bind:@"shouldUnderlineTexdoc" toObject:defaults withKeyPath:[@"values." stringByAppendingString:TMT_SHOULD_UNDERLINE_TEXDOC_LINKS] options:NULL];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateLinks) name:NSTextViewDidChangeSelectionNotification object:view];
         }
         return self;
     }
@@ -209,6 +213,11 @@ static const NSSet *KEYS_TO_UNBIND;
     {
         [self addTexdocLinksForRange:[view visibleRange]];
     }
+
+- (void)invalidateLinks {
+    [self invalidateTexdocLinks];
+    
+}
 
     - (void)removeTexdocAttributesForRange:(NSRange)range
     {
