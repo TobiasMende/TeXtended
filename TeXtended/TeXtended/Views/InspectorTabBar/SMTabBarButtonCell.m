@@ -19,6 +19,7 @@
         return self;
     }
 
+
 // prevent automatic state changes
     - (NSInteger)nextState
     {
@@ -36,7 +37,7 @@
             static NSGradient *gradient = nil;
             if (!gradient) {
                 NSColor *color1 = [NSColor colorWithCalibratedWhite:0.7 alpha:0.0];
-                NSColor *color2 = [NSColor colorWithCalibratedWhite:0.7 alpha:5.0];
+                NSColor *color2 = [NSColor colorWithCalibratedWhite:0.7 alpha:2.0];
                 CGFloat loactions[] = {0.0f, 0.5f, 1.0f};
                 gradient = [[NSGradient alloc] initWithColors:@[color1, color2, color1] atLocations:loactions colorSpace:[NSColorSpace genericGrayColorSpace]];
             }

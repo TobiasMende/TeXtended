@@ -10,6 +10,10 @@
 
 @implementation SMBar
 
+- (BOOL)allowsVibrancy {
+    return YES;
+}
+
 // using app and window notifications to change gradient for inactive windows, see
 // http://code.google.com/p/tlanimatingoutlineview/source/browse/trunk/Classes/TLGradientView.m
     - (void)viewWillMoveToWindow:(NSWindow *)newWindow
@@ -44,50 +48,20 @@
     - (void)drawRect:(CGRect)rect
     {
 
+        static NSColor *borderColor = nil;
         if ([[self window] isKeyWindow]) {
-            static NSGradient *gradient = nil;
-            static NSColor *borderColor = nil;
-            if (!gradient) {
-                NSColor *color1 = [NSColor colorWithCalibratedWhite:0.851f alpha:1.0f];
-                NSColor *color2 = [NSColor colorWithCalibratedWhite:0.700f alpha:1.0f];
-                gradient = [[NSGradient alloc] initWithStartingColor:color1
-                                                         endingColor:color2];
-                borderColor = [NSColor colorWithCalibratedWhite:0.416 alpha:1];
-            }
 
-            // Draw bar gradient
-            [gradient drawInRect:self.bounds angle:90.0];
-
-            // add noise
-            //[self drawNoisePattern];
-
-            // Draw drak gray bottom border
-            [borderColor setStroke];
-            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds), NSMaxY(self.bounds) - 0.5f)
-                                      toPoint:NSMakePoint(NSMaxX(self.bounds), NSMaxY(self.bounds) - 0.5f)];
+            borderColor = [NSColor colorWithCalibratedWhite:0.416 alpha:0.25f];
+            
+        
         } else {
-            static NSGradient *gradient = nil;
             static NSColor *borderColor = nil;
-            if (!gradient) {
-                NSColor *color1 = [NSColor colorWithCalibratedWhite:0.965 alpha:1];
-                NSColor *color2 = [NSColor colorWithCalibratedWhite:0.851 alpha:1];
-                gradient = [[NSGradient alloc] initWithStartingColor:color1
-                                                         endingColor:color2];
-                borderColor = [NSColor colorWithCalibratedWhite:0.651 alpha:1];
-            }
-
-            // Draw bar gradient
-            [gradient drawInRect:self.bounds angle:90.0];
-
-            // add noise
-            //[self drawNoisePattern];
-
-            // Draw drak gray bottom border
-            [borderColor setStroke];
-            [NSBezierPath setDefaultLineWidth:0.0f];
-            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds), NSMaxY(self.bounds) - 0.5f)
-                                      toPoint:NSMakePoint(NSMaxX(self.bounds), NSMaxY(self.bounds) - 0.5f)];
+            borderColor = [NSColor colorWithCalibratedWhite:0.651 alpha:0.25f];
         }
+        
+        [borderColor setStroke];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds), NSMaxY(self.bounds) - 0.5f)
+                                  toPoint:NSMakePoint(NSMaxX(self.bounds), NSMaxY(self.bounds) - 0.5f)];
     }
 
 // add noise pattern, see http://stackoverflow.com/questions/8766239
