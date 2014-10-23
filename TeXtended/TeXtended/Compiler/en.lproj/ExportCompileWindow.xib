@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ExportCompileWindowController">
             <connections>
                 <outlet property="bibCheckbox" destination="308" id="515"/>
-                <outlet property="exportPathDialog" destination="529" id="537"/>
                 <outlet property="mainDocumentsController" destination="369" id="370"/>
                 <outlet property="openCheckbox" destination="617" id="621"/>
                 <outlet property="selectionTable" destination="47" id="514"/>
@@ -18,7 +17,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="420" userLabel="Compile Flow Handler Object" customClass="CompileFlowHandler"/>
         <arrayController id="367" customClass="CompileFlowHandler"/>
         <arrayController objectClassName="NSMutableArray" avoidsEmptySelection="NO" id="369">
@@ -33,7 +32,7 @@
         <window title="Export" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES" HUD="YES"/>
             <rect key="contentRect" x="131" y="159" width="537" height="341"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <value key="maxSize" type="size" width="800" height="341"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="537" height="341"/>
@@ -41,32 +40,27 @@
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9">
                         <rect key="frame" x="14" y="13" width="509" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Export" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="export:" target="-2" id="13"/>
                             <outlet property="nextKeyView" destination="47" id="594"/>
                         </connections>
                     </button>
                     <box autoresizesSubviews="NO" title="Main Documents" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="37">
                         <rect key="frame" x="17" y="57" width="177" height="269"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="175" height="253"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                                <scrollView autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
                                     <rect key="frame" x="9" y="33" width="157" height="218"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kw7-c0-yTI">
                                         <rect key="frame" x="1" y="1" width="155" height="216"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="47" customClass="TMTTableView">
-                                                <rect key="frame" x="0.0" y="0.0" width="155" height="216"/>
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="31" rowSizeStyle="automatic" viewBased="YES" id="47" customClass="TMTTableView">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,7 +86,6 @@
                                                                 <subviews>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="54">
                                                                         <rect key="frame" x="1" y="14" width="150" height="17"/>
-                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="55">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -108,7 +101,6 @@
                                                                     </textField>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="386">
                                                                         <rect key="frame" x="0.0" y="-3" width="152" height="17"/>
-                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="462"/>
                                                                         </constraints>
@@ -162,7 +154,6 @@
                                 </scrollView>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="99">
                                     <rect key="frame" x="141" y="0.0" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="106"/>
                                     </constraints>
@@ -175,9 +166,9 @@
                                         <binding destination="369" name="enabled" keyPath="selectedObjects.@count" id="599"/>
                                         <binding destination="-2" name="enabled2" keyPath="self.canRemoveEntry" previousBinding="599" id="607">
                                             <dictionary key="options">
-                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
@@ -185,7 +176,6 @@
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="110">
                                     <rect key="frame" x="117" y="0.0" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="111"/>
                                         <constraint firstAttribute="height" constant="25" id="112"/>
@@ -216,14 +206,12 @@
                     </box>
                     <box autoresizesSubviews="NO" title="Export Settings for %{name}@" boxType="secondary" borderType="bezel" translatesAutoresizingMaskIntoConstraints="NO" id="299">
                         <rect key="frame" x="196" y="57" width="324" height="269"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
                             <rect key="frame" x="3" y="3" width="318" height="251"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="307">
                                     <rect key="frame" x="39" y="201" width="118" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="112" id="556"/>
                                     </constraints>
@@ -246,7 +234,6 @@
                                 </popUpButton>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="308">
                                     <rect key="frame" x="14" y="174" width="142" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Bibliography" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="320">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -258,7 +245,6 @@
                                 </button>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="309">
                                     <rect key="frame" x="73" y="148" width="84" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="317"/>
                                         <constraint firstAttribute="width" constant="80" id="318"/>
@@ -271,19 +257,14 @@
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="310">
                                     <rect key="frame" x="16" y="146" width="37" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="37" id="313"/>
                                         <constraint firstAttribute="height" constant="22" id="314"/>
                                     </constraints>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="315">
-                                        <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" decimalSeparator="," groupingSeparator="." currencyDecimalSeparator="," id="316">
-                                            <real key="roundingIncrement" value="0.0"/>
+                                        <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="," groupingSeparator="." currencyDecimalSeparator="," plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="316">
                                             <integer key="minimum" value="1"/>
                                             <integer key="maximum" value="3"/>
-                                            <metadata>
-                                                <bool key="localizesFormat" value="YES"/>
-                                            </metadata>
                                         </numberFormatter>
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -298,7 +279,6 @@
                                 </textField>
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="311">
                                     <rect key="frame" x="52" y="143" width="19" height="27"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="3" doubleValue="1" valueWraps="YES" id="312"/>
                                     <connections>
                                         <binding destination="369" name="value" keyPath="selection.self.finalCompiler.numberOfCompiles" previousBinding="429" id="457"/>
@@ -309,7 +289,6 @@
                                 </stepper>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="353">
                                     <rect key="frame" x="16" y="99" width="286" height="39"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="39" id="358"/>
                                     </constraints>
@@ -325,7 +304,6 @@
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
                                     <rect key="frame" x="13" y="74" width="77" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="470"/>
                                         <constraint firstAttribute="width" constant="73" id="471"/>
@@ -338,7 +316,6 @@
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="516">
                                     <rect key="frame" x="92" y="74" width="213" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingHead" sendsActionOnEndEditing="YES" title="Label" id="517">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -351,7 +328,6 @@
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="529">
                                     <rect key="frame" x="168" y="42" width="132" height="28"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Change export path" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="530">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -362,7 +338,6 @@
                                 </button>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="617">
                                     <rect key="frame" x="14" y="48" width="153" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="149" id="626"/>
                                     </constraints>
@@ -376,7 +351,6 @@
                                 </button>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VwB-a6-WGy">
                                     <rect key="frame" x="14" y="204" width="22" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yaF-r9-rEX">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -418,8 +392,8 @@
                         <connections>
                             <binding destination="369" name="hidden" keyPath="selectedObjects.@count" id="476">
                                 <dictionary key="options">
-                                    <integer key="NSNullPlaceholder" value="1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                    <integer key="NSNullPlaceholder" value="1"/>
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
@@ -452,7 +426,7 @@
         </window>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="8" height="8"/>
-        <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>
