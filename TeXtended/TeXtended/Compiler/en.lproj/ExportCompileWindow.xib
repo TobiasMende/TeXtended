@@ -32,7 +32,7 @@
         <window title="Export" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES" HUD="YES"/>
             <rect key="contentRect" x="131" y="159" width="537" height="341"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="maxSize" type="size" width="800" height="341"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="537" height="341"/>
@@ -43,6 +43,9 @@
                         <buttonCell key="cell" type="push" title="Export" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="exportDocument:" target="-2" id="6fV-Vs-s7O"/>
+                            </connections>
                         </buttonCell>
                         <connections>
                             <outlet property="nextKeyView" destination="47" id="594"/>

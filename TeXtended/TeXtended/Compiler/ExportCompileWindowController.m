@@ -126,7 +126,7 @@
     }
 
 
-    - (void)export:(id)sender
+    - (void)exportDocument:(id)sender
     {
         [self.window orderOut:nil];
         if (self.documentController && self.mainDocument) {

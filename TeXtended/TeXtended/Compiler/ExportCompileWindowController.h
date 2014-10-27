@@ -70,5 +70,5 @@
  */
     - (BOOL)canRemoveEntry;
 
-    - (void)export:(id)sender;
+    - (IBAction)exportDocument:(id)sender;
 @end
