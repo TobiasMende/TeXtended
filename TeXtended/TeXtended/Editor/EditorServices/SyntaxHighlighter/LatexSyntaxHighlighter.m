@@ -253,6 +253,12 @@ static const NSCharacterSet *CURLY_BRACKETS, *ROUND_BRACKETS, *RECT_BRACKETS, *C
 - (BOOL)highlightComment:(NSScanner *)scanner withRangeStart:(NSUInteger)rangeStart andSubstringLocation:(NSUInteger)location{
     if([scanner scanString:@"%" intoString:NULL]) {
         // color comment
+        
+        if  (location+scanner.scanLocation >  1 && ![scanner.string numberOfBackslashesBeforePositionIsEven:(scanner.scanLocation-1)]) {
+            // THe % symbol is escaped
+            [self highlightFrom:location+scanner.scanLocation-2 to:location+scanner.scanLocation withColor:self.commandColor andFlag:self.shouldHighlightCommands];
+            return YES;
+        }
         NSCharacterSet *tmp = scanner.charactersToBeSkipped;
         scanner.charactersToBeSkipped = nil;
         [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
