@@ -21,6 +21,7 @@
     if (self) {
         self.completion = completion;
         self.keyPath = keyPath;
+        undoManager = [NSUndoManager new];
         transformer = [CompletionWhiteSpaceValueTransformer new];
     }
     return self;
@@ -34,6 +35,10 @@
     self.textView.nextResponder = self;
     self.nextResponder = tmp;
     
+}
+
+- (NSUndoManager *)undoManagerForTextView:(NSTextView *)view {
+    return undoManager;
 }
 
 

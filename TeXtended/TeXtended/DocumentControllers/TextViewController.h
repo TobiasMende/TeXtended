@@ -30,6 +30,8 @@
         ChktexParser *chktex;
 
         LacheckParser *lacheck;
+        
+        NSUndoManager *undoManager;
 
         NSTimer *messageUpdateTimer;
 

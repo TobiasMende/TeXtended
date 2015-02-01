@@ -10,6 +10,7 @@
 @class Completion,LightHighlightingTextView;
 @interface MultiLineCellEditorViewController : NSViewController<NSTextViewDelegate> {
     NSValueTransformer *transformer;
+    NSUndoManager *undoManager;
 }
 
 - (id)initWithCompletion:(Completion *)completion andKeyPath:(NSString *)keyPath;

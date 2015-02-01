@@ -15,7 +15,6 @@
     {
         if (self = [super init]) {
             self.hasCloseButton = YES;
-            self.title = @"TeXtended!";
         }
         return self;
     }

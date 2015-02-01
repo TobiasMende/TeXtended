@@ -67,6 +67,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
             observers = [NSMutableSet new];
             synctex = [ForwardSynctexController new];
             outlineExtractor = [OutlineExtractor new];
+            undoManager = [NSUndoManager new];
             _tabViewItem = [TMTTabViewItem new];
         }
         return self;
@@ -282,6 +283,10 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         [self.scrollView.verticalRulerView setNeedsDisplay:YES];
 
     }
+
+- (NSUndoManager *)undoManagerForTextView:(NSTextView *)view {
+    return undoManager;
+}
 
 
     - (void)textDidChange:(NSNotification *)notification
