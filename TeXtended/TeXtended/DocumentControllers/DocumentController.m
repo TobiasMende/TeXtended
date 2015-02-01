@@ -18,6 +18,7 @@
 #import "ExtendedPdf.h"
 #import "ProjectModel.h"
 #import "ModelInfoWindowController.h"
+#import "StatsPanelController.h"
 
 LOGGING_DEFAULT_DYNAMIC
 
@@ -114,6 +115,37 @@ LOGGING_DEFAULT_DYNAMIC
             [self.pdfViewControllers removeObject:controller];
         }
     }
+
+- (void)showStatistics:(id)sender {
+    NSMutableString *content = [NSMutableString new];
+    PDFDocument *document = [[PDFDocument alloc] initWithURL:[NSURL fileURLWithPath:self.model.currentMainDocument.pdfPath]];
+    if (document == nil) {
+        NSBeep();
+        return;
+    }
+    for (NSUInteger i = 0 ; i < document.pageCount ; i++) {
+        PDFPage *page = [document pageAtIndex:i];
+        [content appendString:page.string];
+    }
+    if (content.length > 0) {
+        if (!statsPanel) {
+            statsPanel = [StatsPanelController new];
+        }
+        [statsPanel showStatistics:content];
+        
+        [NSApp beginSheet:[statsPanel window]
+           modalForWindow:[self.textViewController.view window]
+            modalDelegate:self
+           didEndSelector:@selector(statsPanelDidEnd:returnCode:contextInfo:)
+              contextInfo:nil];
+        [NSApp runModalForWindow:[self.textViewController.view window]];
+    }
+}
+
+- (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
+{
+    statsPanel = nil;
+}
 
 
     - (void)loadViews {
@@ -311,6 +343,8 @@ LOGGING_DEFAULT_DYNAMIC
 - (BOOL)respondsToSelector:(SEL)aSelector {
     if (aSelector == @selector(showProjectInformation:)) {
         return self.model.project != nil;
+    } else if(aSelector == @selector(showStatistics:)) {
+        return self.model.currentMainDocument.pdfPath != nil;
     } else {
         return [super respondsToSelector:aSelector];
     }

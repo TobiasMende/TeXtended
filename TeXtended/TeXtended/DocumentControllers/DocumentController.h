@@ -12,7 +12,7 @@
 #import "CompileProcessHandler.h"
 #import "Constants.h"
 
-@class DocumentModel, TextViewController, Compiler, MainDocument,ModelInfoWindowController;
+@class DocumentModel, TextViewController, Compiler, MainDocument,ModelInfoWindowController,StatsPanelController;
 
 /**
  * The DocumentController holds a DocumentModel and the view representations for this model. It only exists if the current document model ist displayed by any views.
@@ -23,6 +23,7 @@
 @interface DocumentController : NSObject <ViewControllerProtocol, FirstResponderDelegate, CompileProcessHandler>
     {
         ModelInfoWindowController *modelInfoWindow;
+        StatsPanelController *statsPanel;
     }
 
 /** The model handeld by this controller. */
@@ -95,6 +96,8 @@
     - (void)texViewDidClose:(NSNotification *)note;
 
     - (void)pdfViewDidClose:(NSNotification *)note;
+
+- (IBAction)showStatistics:(id)sender;
 
     - (void)showPDFViews;
 

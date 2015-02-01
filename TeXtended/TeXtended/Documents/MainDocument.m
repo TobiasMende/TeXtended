@@ -101,7 +101,6 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (void)firstResponderDidChangeNotification:(NSNotification *)note
     {
-        TMT_TRACE
         id <FirstResponderDelegate> delegate = note.userInfo[TMTFirstResponderKey];
 
         self.currentDC = delegate;
