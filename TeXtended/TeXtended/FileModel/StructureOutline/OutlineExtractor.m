@@ -14,6 +14,7 @@
 #import "NSString+PathExtension.h"
 #import <TMTHelperCollection/TMTLog.h>
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 
 LOGGING_DEFAULT_DYNAMIC
 
@@ -82,6 +83,9 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             OutlineElement *element = [OutlineElement new];
             NSRange totalRange = result.range;
             NSRange infoRange = [self firstValidRangeInResult:result];
+            if ([_content lineIsCommentForPosition:totalRange.location]) {
+                continue;
+            }
             if (infoRange.location == NSNotFound) {
                 DDLogError(@"%li - %@", result.numberOfRanges, NSStringFromRange(totalRange));
                 continue;

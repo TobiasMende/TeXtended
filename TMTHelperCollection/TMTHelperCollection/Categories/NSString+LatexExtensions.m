@@ -61,6 +61,16 @@ static NSRegularExpression *BLOCK_REGEX, *GOOD_BREAK_POSITIONS;
         return backslashCounter;
     }
 
+- (BOOL)lineIsCommentForPosition:(NSUInteger)position {
+    NSRange lineRange = [self lineRangeForPosition:position];
+    for (NSInteger pos = position; pos >= lineRange.location && pos >= 0; pos--) {
+        if ([[self substringWithRange:NSMakeRange(pos, 1)] isEqualToString:@"\%"] && [self numberOfBackslashesBeforePositionIsEven:pos]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
     - (NSRange)latexCommandPrefixRangeBeforePosition:(NSUInteger)position
     {
         NSUInteger startPosition = position < COMMAND_PREFIX_SIZE ? 0 : position - COMMAND_PREFIX_SIZE;
