@@ -25,6 +25,7 @@
     NSDictionary *option = @{NSValueTransformerNameBindingOption : NSUnarchiveFromDataTransformerName};
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
+    [self bind:@"automaticSpellingCorrectionEnabled" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTAutomaticSpellingCorrection] options:nil];
     
     
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
@@ -41,6 +42,12 @@
     
     [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
     
+}
+
+- (void)dealloc {
+    [self unbind:@"textColor"];
+    [self unbind:@"backgroundColor"];
+    [self unbind:@"automaticSpellingCorrectionEnabled"];
 }
 
 - (BOOL)becomeFirstResponder {

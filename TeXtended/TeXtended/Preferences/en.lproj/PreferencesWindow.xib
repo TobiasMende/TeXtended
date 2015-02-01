@@ -1559,7 +1559,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="1733" id="1731" customClass="TMTTableView">
-                                            <rect key="frame" x="0.0" y="0.0" width="652.5" height="19"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="652" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1717,65 +1717,6 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box autoresizesSubviews="NO" title="Auto Completion Settings" borderType="line" id="1639">
-                    <rect key="frame" x="488" y="112" width="399" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="397" height="64"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button id="1654">
-                                <rect key="frame" x="16" y="32" width="164" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Command Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1655">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <connections>
-                                        <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCommands" id="1704"/>
-                                    </connections>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCommands" id="1707"/>
-                                </connections>
-                            </button>
-                            <button id="1658">
-                                <rect key="frame" x="16" y="12" width="179" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Environment Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1659">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteEnvironments" id="1710"/>
-                                </connections>
-                            </button>
-                            <button id="dOv-PC-MBs">
-                                <rect key="frame" x="215" y="12" width="124" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Cite Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ie6-rB-GDn">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCites" id="pb9-gB-pjw"/>
-                                </connections>
-                            </button>
-                            <button id="1662">
-                                <rect key="frame" x="215" y="32" width="166" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Environment Indention" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1663">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="10" name="value" keyPath="values.TMTShouldAutoIndentEnvironments" id="1713"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </view>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </box>
                 <textField verticalHuggingPriority="750" id="1764">
                     <rect key="frame" x="17" y="202" width="870" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1862,14 +1803,14 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Latex Warnings &amp; Errors" borderType="line" id="4091">
-                    <rect key="frame" x="488" y="16" width="399" height="92"/>
+                    <rect key="frame" x="488" y="16" width="399" height="61"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="397" height="76"/>
+                        <rect key="frame" x="1" y="1" width="397" height="45"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" id="4157">
-                                <rect key="frame" x="22" y="47" width="106" height="17"/>
+                                <rect key="frame" x="22" y="16" width="106" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Latex Log Level:" id="4158">
                                     <font key="font" metaFont="system"/>
@@ -1878,7 +1819,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="387" verticalCompressionResistancePriority="421" id="4161">
-                                <rect key="frame" x="142" y="42" width="141" height="26"/>
+                                <rect key="frame" x="142" y="11" width="141" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="4163">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1979,6 +1920,76 @@
                                     </binding>
                                 </connections>
                             </stepper>
+                        </subviews>
+                    </view>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+                <box autoresizesSubviews="NO" title="Auto Completion Settings" borderType="line" id="1639">
+                    <rect key="frame" x="488" y="81" width="399" height="111"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="397" height="95"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button id="1654">
+                                <rect key="frame" x="16" y="63" width="164" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Command Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1655">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCommands" id="1704"/>
+                                    </connections>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCommands" id="1707"/>
+                                </connections>
+                            </button>
+                            <button id="1658">
+                                <rect key="frame" x="16" y="43" width="179" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Environment Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1659">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteEnvironments" id="1710"/>
+                                </connections>
+                            </button>
+                            <button id="dOv-PC-MBs">
+                                <rect key="frame" x="215" y="43" width="124" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Cite Completion" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ie6-rB-GDn">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTShouldCompleteCites" id="pb9-gB-pjw"/>
+                                </connections>
+                            </button>
+                            <button id="1662">
+                                <rect key="frame" x="215" y="63" width="166" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Environment Indention" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1663">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTShouldAutoIndentEnvironments" id="1713"/>
+                                </connections>
+                            </button>
+                            <button id="Da3-g2-Ek2">
+                                <rect key="frame" x="95" y="12" width="207" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Automatic Spelling Correction" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e2n-cM-77W">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="10" name="value" keyPath="values.TMTAutomaticSpellingCorrection" id="aeF-w3-MIn"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

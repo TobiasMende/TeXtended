@@ -222,6 +222,7 @@ LOGGING_DEFAULT
                 TMTShouldShowStartScreen : @YES,
                 TMTShouldCompleteCites : @YES,
                 TMTShouldCompleteRefs : @YES,
+                TMTAutomaticSpellingCorrection : @NO,
                 TMT_SHOULD_LINK_TEXDOC : @YES,
                 TMT_SHOULD_UNDERLINE_TEXDOC_LINKS : @YES,
                 TMT_REPLACE_INVISIBLE_SPACES : @NO,
