@@ -265,7 +265,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             self.systemPath = self.texPath;
         }
         NSStringEncoding encoding = 0;
-        NSString *content;
+        NSString *content = nil;
         if (self.encoding && [self.encoding unsignedLongValue] > 0) {
             content = [[NSString alloc] initWithContentsOfFile:self.systemPath encoding:self.encoding.unsignedLongValue error:error];
         }
@@ -285,7 +285,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         }
         if (content == nil && error != NULL) {
             *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:-1 userInfo:@{@"message" : @"Can't read file"}];
-        } else {
+        } else if (content != nil) {
             [self loadTextSpecificXAttributes];
         }
         return content;

@@ -10,7 +10,7 @@
 
 #import "Kiwi.h"
 
-#import <TMTHelperCollection/NSString+LatexExtension.h>
+#import <TMTHelperCollection/NSString+LatexExtensions.h>
 #import "NSString+PathExtension.h"
 #import "NSString+RegexReplace.h"
 #import "NSString+RNTextStatistics.h"
