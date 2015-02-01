@@ -136,6 +136,7 @@
 #define TMTCompletionTypeKey @"TMTCompletionTypeKey"
 #define TMTCompletionCounterKey @"TMTCompletionCounterKey"
 #define TMTCompletionUseExtensionKey @"TMTCompletionUseExtensionKey"
+#define TMTTemporaryFileExtensions @"TMTTemporaryFileExtensions"
 
 
 // --------------------------------------------------------------------------------

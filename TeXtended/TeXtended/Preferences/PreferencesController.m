@@ -78,9 +78,6 @@
             case 2:
                 view = codeAssistantPreferencesView;
                 break;
-            case 3:
-                view = previewPreferencesView;
-                break;
             case 4:
                 view = dropAssistantPreferenceView;
                 break;

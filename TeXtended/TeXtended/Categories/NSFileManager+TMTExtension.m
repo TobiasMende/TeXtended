@@ -7,18 +7,10 @@
 //
 
 #import "NSFileManager+TMTExtension.h"
-
-static const NSArray *TEMP_FILE_EXTENSIONS;
+#import "Constants.h"
 
 @implementation NSFileManager (TMTExtension)
 
-
-    + (void)initialize
-    {
-        if ([self class] == [NSFileManager class]) {
-            TEMP_FILE_EXTENSIONS = @[@"aux", @"synctex", @"gz", @"gz(busy)", @"log", @"bbl"];
-        }
-    }
 
     - (BOOL)directoryExistsAtPath:(NSString *)path
     {
@@ -36,7 +28,7 @@ static const NSArray *TEMP_FILE_EXTENSIONS;
         }
         BOOL success = YES;
         for (NSString *path in children) {
-            if ([TEMP_FILE_EXTENSIONS containsObject:path.pathExtension.lowercaseString] && ![self directoryExistsAtPath:[directory stringByAppendingPathComponent:path]]) {
+            if ([[NSFileManager temporaryFileExtensions] containsObject:path.pathExtension.lowercaseString] && ![self directoryExistsAtPath:[directory stringByAppendingPathComponent:path]]) {
                 success &= [self removeItemAtPath:[directory stringByAppendingPathComponent:path] error:nil];
             }
         }
@@ -45,6 +37,11 @@ static const NSArray *TEMP_FILE_EXTENSIONS;
 
     + (const NSArray *)temporaryFileExtensions
     {
-        return TEMP_FILE_EXTENSIONS;
+        NSArray *extensions = [[NSUserDefaults standardUserDefaults] arrayForKey:TMTTemporaryFileExtensions];
+        NSMutableArray *final = [NSMutableArray arrayWithCapacity:extensions.count];
+        for (NSString *val in extensions) {
+            [final addObject:val.lowercaseString];
+        }
+        return final;
     }
 @end

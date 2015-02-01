@@ -261,6 +261,7 @@ LOGGING_DEFAULT
                 TMTGridUnit : @"pt",
                 TMTdrawHGrid : @NO,
                 TMTdrawVGrid : @NO,
+                TMTTemporaryFileExtensions : @[@"log",@"gz",@"synctex",@"aux",@"gz(busy)",@"bbl"],
                 TMTHGridSpacing : @1,
                 TMTVGridSpacing : @1,
                 TMTHGridOffset : @0,
