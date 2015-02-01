@@ -276,6 +276,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
     }
 
+
 #pragma mark - Go To Line
 
     - (void)goToLine:(id)sender
@@ -377,7 +378,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [super insertTab:sender];
         return;
     }
-    if (autoCompletionController) {
+    if (autoCompletionController && autoCompletionController.content.count > 0) {
         NSInteger index = (autoCompletionController.tableView.selectedRow >= 0 ? autoCompletionController.tableView.selectedRow : 0);
         [self insertCompletion:(autoCompletionController.content)[index] forPartialWordRange:[self rangeForUserCompletion] movement:NSTabTextMovement isFinal:YES];
     } else if (![self handleInsertTab] && ![self.codeNavigationAssistant handleTabInsertion]) {
@@ -836,11 +837,14 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         return nil;
     }
 
-    - (BOOL)becomeFirstResponder
-    {
-        [self makeKeyView];
-        return [super becomeFirstResponder];
+- (BOOL)becomeFirstResponder {
+    [self makeKeyView];
+    if (!viewStateInitialized) {
+        [self.codeExtensionEngine addLinksForRange:NSMakeRange(0, self.string.length)];
+        [[NSNotificationCenter defaultCenter] addObserver:self.codeExtensionEngine selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:self];
     }
+    return [super becomeFirstResponder];
+}
 
     - (void)makeKeyView
     {

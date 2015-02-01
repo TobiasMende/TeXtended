@@ -135,17 +135,9 @@ static const NSRegularExpression *PLACEHOLDER_REGEX;
     {
         NSMutableString *result = string.mutableCopy;
         NSArray *matches = [PLACEHOLDER_REGEX matchesInString:result options:0 range:NSMakeRange(0, result.length)];
-        NSInteger offset = 0;
         for (NSTextCheckingResult *match in matches.reverseObjectEnumerator) {
             NSRange range = [match range];
-            NSRange final = NSMakeRange(range.location + 2, range.length - 4);
-            NSString *title = [string substringWithRange:final];
-            NSAttributedString *placeholder = [EditorPlaceholder placeholderAsAttributedStringWithName:title];
-            NSRange newRange = NSMakeRange(range.location + offset, range.length);
-            [result replaceCharactersInRange:newRange withString:substitution];
-            offset += placeholder.length - range.length;
-
-
+            [result replaceCharactersInRange:range withString:substitution];
         }
         return result;
     }

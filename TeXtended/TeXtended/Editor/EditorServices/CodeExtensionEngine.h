@@ -42,6 +42,8 @@
  */
     - (void)addLinksForRange:(NSRange)range;
 
+-(void)highlightAtSelectionChange;
+
 
 /**
  Needs to be called if the user has clicked a link in the view

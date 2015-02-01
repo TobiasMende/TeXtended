@@ -114,6 +114,9 @@ static const NSSet *KEYS_TO_UNBIND;
         if (![view.firstResponderDelegate model].bibFiles || [view.firstResponderDelegate model].bibFiles.count == 0) {
             return;
         }
+        if (NSMaxRange(range) > view.string.length) {
+            return;
+        }
 
         NSSet *commands = [[CompletionManager sharedInstance] commandCompletionsByType:CommandTypeCite];
         NSMutableString *pattern = [NSMutableString new];
@@ -121,7 +124,7 @@ static const NSSet *KEYS_TO_UNBIND;
             NSString *key = [((CommandCompletion *) c.nonretainedObjectValue) key];
             key = [CommandCompletion substitutePlaceholdersInString:key withString:@"TMTTextendedCiteKeyPlaceholder"];
             key = [NSRegularExpression escapedPatternForString:key];
-            key = [key stringByReplacingOccurrencesOfString:@"TMTTextendedCiteKeyPlaceholder" withString:@"(.*)"];
+            key = [key stringByReplacingOccurrencesOfString:@"TMTTextendedCiteKeyPlaceholder" withString:@"(.+?)"];
             [pattern appendString:key];
             [pattern appendString:@"|"];
         }
@@ -138,23 +141,27 @@ static const NSSet *KEYS_TO_UNBIND;
 
         NSString *str = view.string;
         NSLayoutManager *lm = view.layoutManager;
+        
+        
 
         NSArray *citeRanges = [citeRegex matchesInString:str options:0 range:range];
-        NSString *splitPattern = @"(\\w|@|_|-|:|/)+";
+        NSString *splitPattern = @"(\\w|@|_|-|:|/|)+";
         NSRegularExpression *split = [NSRegularExpression regularExpressionWithPattern:splitPattern options:NSRegularExpressionCaseInsensitive error:&error];
         for (NSTextCheckingResult *match in citeRanges) {
-            if ([match numberOfRanges] > 1) {
-                NSRange mRange = [match rangeAtIndex:1];
-                // [self removeTexdocAttributesForRange:mRange];
+            for (NSUInteger i = 1; i < match.numberOfRanges; i++) {
+                NSRange mRange = [match rangeAtIndex:i];
+                if (mRange.location == NSNotFound) {
+                    continue;
+                }
                 NSArray *matches = [split matchesInString:view.string options:0 range:mRange];
                 for (NSTextCheckingResult *r in matches) {
                     NSRange finalRange = [r rangeAtIndex:0];
                     if (self.shouldLinkTexdoc) {
-
-                        NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
+                        
                         NSString *key = [str substringWithRange:finalRange];
                         TMTBibTexEntry *citeEntry = [view.firstResponderDelegate.model findBibTexEntryForKey:key containingDocument:NULL];
-                        if (key) {
+                        if (key && citeEntry) {
+                            NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithCapacity:3];
                             NSString *description = [NSString stringWithFormat:@"%@\n%@", citeEntry.author, citeEntry.title];
                             attributes[NSToolTipAttributeName] = description;
                             attributes[NSLinkAttributeName] = [NSString stringWithFormat:@"%@%@", CITE_PREFIX, key];
@@ -167,6 +174,7 @@ static const NSSet *KEYS_TO_UNBIND;
                     }
                 }
             }
+           
         }
 
     }
@@ -216,7 +224,12 @@ static const NSSet *KEYS_TO_UNBIND;
 
 - (void)invalidateLinks {
     [self invalidateTexdocLinks];
+    [self addCiteTooltipsForRange:view.visibleRange];
     
+}
+
+- (void)highlightAtSelectionChange {
+    [self invalidateLinks];
 }
 
     - (void)removeTexdocAttributesForRange:(NSRange)range

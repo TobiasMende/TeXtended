@@ -53,7 +53,6 @@
     return become;
 }
 
-
 - (void)paste:(id)sender {
     [super paste:sender];
     [self.syntaxHighlighter highlightEntireDocument];
