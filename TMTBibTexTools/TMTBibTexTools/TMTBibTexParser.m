@@ -239,6 +239,10 @@ static NSCharacterSet *LINE_END_CHARACTERS;
                 [self traceError];
                 return nil;
             }
+        } else if([scanner scanString:@"{" intoString:NULL]) {
+            depth++;
+        } else if([scanner scanString:@"}" intoString:NULL]) {
+            depth--;
         }
         if (lastScanLocation == scanner.scanLocation) {
             [self traceError];
@@ -272,11 +276,15 @@ static NSCharacterSet *LINE_END_CHARACTERS;
             NSString *value = [strings valueForKey:tmp];
             if (value) {
                 content = [content stringByAppendingString:value];
+            } else {
+                content = [content stringByAppendingString:tmp];
             }
         } else if([scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\",}"] intoString:NULL]) {
             if ([scanner scanCharactersFromSet:LINE_END_CHARACTERS intoString:NULL]) {
                 return (content && content.length > 0) ? content : nil;
             }
+        } else if ([scanner scanCharactersFromSet:LINE_END_CHARACTERS intoString:NULL]) {
+            return (content && content.length > 0) ? content : nil;
         }
         if (lastScanLocation == scanner.scanLocation) {
             [self traceError];
@@ -298,7 +306,7 @@ static NSCharacterSet *LINE_END_CHARACTERS;
 }
 
 - (void)traceScannerState {
-    DDLogInfo(@"%@", [scanner.string substringWithRange:NSMakeRange(scanner.scanLocation, scanner.string.length - scanner.scanLocation > 20 ? 19 : scanner.string.length-scanner.scanLocation)]);
+    DDLogInfo(@"at %li: %@", scanner.scanLocation, [scanner.string substringWithRange:NSMakeRange(scanner.scanLocation, scanner.string.length - scanner.scanLocation > 60 ? 59 : scanner.string.length-scanner.scanLocation)]);
 }
 
 @end
