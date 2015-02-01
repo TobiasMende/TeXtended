@@ -45,7 +45,7 @@ customArguments = argCount >= 6 ? ARGV[5].split : []
 
 pdfName         = File.basename(pdfPath, File.extname(pdfPath))
 outputDir       = File.dirname(pdfPath)
-FileUtils.cd(outputDir)
+FileUtils.cd(File.dirname(texPath))
 
 # ========================================================================
 # =============== You'd like to change to code from here: ================
