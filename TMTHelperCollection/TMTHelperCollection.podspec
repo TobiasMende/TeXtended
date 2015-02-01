@@ -10,5 +10,6 @@ Pod::Spec.new do |s|
   s.source_files = 'TMTHelperCollection/**/*.{h,m}'
   s.requires_arc = true
   s.source = {:git => 'https://github.com/TobiasMende/TeXtended/tree/develop/TMTHelperCollection'}
+  s.resources  = 'TMTHelperCollection/**/*.{png,xib,nib}'
   s.dependency 'CocoaLumberjack', '>= 1.9.1' 
 end
