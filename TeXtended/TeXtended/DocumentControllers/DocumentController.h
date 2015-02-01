@@ -57,6 +57,8 @@
  */
     - (BOOL)saveDocumentModel:(NSError **)outError;
 
+- (BOOL)saveDocumentModel:(NSError **)outError force:(BOOL)force;
+
 
     - (void)closeDocument;
 

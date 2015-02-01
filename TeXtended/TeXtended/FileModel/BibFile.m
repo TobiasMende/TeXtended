@@ -248,4 +248,16 @@ LOGGING_DEFAULT_DYNAMIC
         return [self.path hash];
     }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    BibFile *other = [BibFile new];
+    other.lastRead = [self.lastRead copyWithZone:zone];
+    other.fileEncoding = [self.fileEncoding copyWithZone:zone];
+    other.path = [self.path copyWithZone:zone];
+    other.project = [self.project copyWithZone:zone];
+    [other readFile];
+    return other;
+}
+
 @end

@@ -235,4 +235,14 @@ LOGGING_DEFAULT_DYNAMIC
         return keys;
     }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    ProjectModel *other = [super copyWithZone:zone];
+    other.path = [self.path copyWithZone:zone];
+    other.documents = [self.documents copyWithZone:zone];
+    other.properties = [self.properties copyWithZone:zone];
+    return other;
+}
+
 @end
