@@ -1,6 +1,6 @@
 PODS:
   - CocoaLumberjack (1.9.1):
-    - CocoaLumberjack/Extensions
+    - CocoaLumberjack/Extensions (= 1.9.1)
   - CocoaLumberjack/Core (1.9.1)
   - CocoaLumberjack/Extensions (1.9.1):
     - CocoaLumberjack/Core
@@ -52,4 +52,4 @@ SPEC CHECKSUMS:
   TMTHelperCollection: 05fda0ca0fdcdefc7a48432b7b21c88f2e136ff2
   TMTLatexTable: ea2b15b0b5c468e11e010db8f196d9d2933ea945
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

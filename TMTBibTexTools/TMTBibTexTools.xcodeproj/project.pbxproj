@@ -98,14 +98,6 @@
 				<string>0500</string>
 				<key>ORGANIZATIONNAME</key>
 				<string>Tobias Mende</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>D23BC4F01861E79700E9A507</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>D23BC4E01861E79700E9A507</string>
-					</dict>
-				</dict>
 			</dict>
 			<key>buildConfigurationList</key>
 			<string>D217A41D176B442C002DB084</string>
@@ -136,7 +128,6 @@
 			<array>
 				<string>D23BC4E01861E79700E9A507</string>
 				<string>D217A421176B442C002DB084</string>
-				<string>D23BC4F01861E79700E9A507</string>
 			</array>
 		</dict>
 		<key>D217A41D176B442C002DB084</key>
@@ -244,7 +235,6 @@
 			<array>
 				<string>D217A422176B442C002DB084</string>
 				<string>D23BC4E11861E79700E9A507</string>
-				<string>D23BC4F11861E79700E9A507</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -810,6 +800,7 @@
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
+				<string>D2872D6A1A7E5DA5003F12B7</string>
 				<string>D2989C7C1990F07F0024DFA6</string>
 				<string>D2989C651990EF7F0024DFA6</string>
 				<string>D2989C881990F15E0024DFA6</string>
@@ -829,6 +820,7 @@
 				<string>D23BC4DD1861E79700E9A507</string>
 				<string>D23BC4DE1861E79700E9A507</string>
 				<string>D23BC4DF1861E79700E9A507</string>
+				<string>D2872D6B1A7E5E84003F12B7</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -901,87 +893,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D23BC4ED1861E79700E9A507</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>D23BC4FF1861E79700E9A507</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>D23BC4EE1861E79700E9A507</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>D23BC4F41861E79700E9A507</string>
-				<string>D23BC4F71861E79700E9A507</string>
-				<string>D23BC4F31861E79700E9A507</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>D23BC4EF1861E79700E9A507</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>D23BC4FD1861E79700E9A507</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>D23BC4F01861E79700E9A507</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>D23BC5051861E79700E9A507</string>
-			<key>buildPhases</key>
-			<array>
-				<string>D23BC4ED1861E79700E9A507</string>
-				<string>D23BC4EE1861E79700E9A507</string>
-				<string>D23BC4EF1861E79700E9A507</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>D23BC4F61861E79700E9A507</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>DBLPToolsFrameworkTests</string>
-			<key>productName</key>
-			<string>DBLPToolsFrameworkTests</string>
-			<key>productReference</key>
-			<string>D23BC4F11861E79700E9A507</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>D23BC4F11861E79700E9A507</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>DBLPToolsFrameworkTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>D23BC4F21861E79700E9A507</key>
 		<dict>
 			<key>isa</key>
@@ -994,49 +905,6 @@
 			<string>Library/Frameworks/XCTest.framework</string>
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>D23BC4F31861E79700E9A507</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D23BC4F21861E79700E9A507</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>D23BC4F41861E79700E9A507</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D217A425176B442C002DB084</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>D23BC4F51861E79700E9A507</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D217A41A176B442C002DB084</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>D23BC4E01861E79700E9A507</string>
-			<key>remoteInfo</key>
-			<string>DBLPToolsFramework</string>
-		</dict>
-		<key>D23BC4F61861E79700E9A507</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>D23BC4E01861E79700E9A507</string>
-			<key>targetProxy</key>
-			<string>D23BC4F51861E79700E9A507</string>
-		</dict>
-		<key>D23BC4F71861E79700E9A507</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D23BC4E11861E79700E9A507</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>D23BC4F81861E79700E9A507</key>
 		<dict>
@@ -1104,13 +972,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D23BC4FD1861E79700E9A507</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D23BC4FB1861E79700E9A507</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>D23BC4FE1861E79700E9A507</key>
 		<dict>
 			<key>isa</key>
@@ -1121,13 +982,6 @@
 			<string>DBLPToolsFrameworkTests.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D23BC4FF1861E79700E9A507</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D23BC4FE1861E79700E9A507</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>D23BC5001861E79700E9A507</key>
 		<dict>
@@ -1217,115 +1071,12 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>D23BC5021861E79700E9A507</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>DBLPToolsFramework/DBLPToolsFramework-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist</string>
-				<key>MACOSX_DEPLOYMENT_TARGET</key>
-				<string>10.9</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>D23BC5031861E79700E9A507</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>COMBINE_HIDPI_IMAGES</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>DBLPToolsFramework/DBLPToolsFramework-Prefix.pch</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>DBLPToolsFrameworkTests/DBLPToolsFrameworkTests-Info.plist</string>
-				<key>MACOSX_DEPLOYMENT_TARGET</key>
-				<string>10.9</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
 		<key>D23BC5041861E79700E9A507</key>
 		<dict>
 			<key>buildConfigurations</key>
 			<array>
 				<string>D23BC5001861E79700E9A507</string>
 				<string>D23BC5011861E79700E9A507</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>D23BC5051861E79700E9A507</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>D23BC5021861E79700E9A507</string>
-				<string>D23BC5031861E79700E9A507</string>
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
@@ -1362,6 +1113,37 @@
 			<string>D23BC4E11861E79700E9A507</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2872D6A1A7E5DA5003F12B7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D217A42E176B442C002DB084</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D2872D6B1A7E5E84003F12B7</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/../Pods/Target Support Files/Pods-TMTBibTexTools/Pods-TMTBibTexTools-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
 		</dict>
 		<key>D2928B021967F75F00F6C9BD</key>
 		<dict>
