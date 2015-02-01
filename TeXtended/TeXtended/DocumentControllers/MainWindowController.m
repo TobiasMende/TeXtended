@@ -118,7 +118,7 @@ LOGGING_DEFAULT_DYNAMIC
         NSArray *dms = self.mainDocument.model.mainDocuments;
 
         for (DocumentModel *dm in dms) {
-            [[NSFileManager defaultManager] removeTemporaryFilesAtPath:[dm.texPath stringByDeletingLastPathComponent]];
+            [[NSFileManager defaultManager] removeTemporaryFilesAtPath:[dm.pdfPath stringByDeletingLastPathComponent]];
         }
     }
 
