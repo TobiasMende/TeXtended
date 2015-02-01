@@ -18,7 +18,7 @@
  *
  */
 
-@interface BibFile : NSObject <NSCoding, FileObserver>
+@interface BibFile : NSObject <NSCoding, FileObserver, NSCopying>
     {
 
         /** The presenter observes the file for changes made by other applications */

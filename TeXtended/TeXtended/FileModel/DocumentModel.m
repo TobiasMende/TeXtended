@@ -300,6 +300,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         if (!self.encoding || [self.encoding unsignedLongValue] == 0) {
             self.encoding = [NSNumber numberWithUnsignedLong:NSUTF8StringEncoding];
         }
+      
         BOOL success = [content writeToURL:[NSURL fileURLWithPath:self.systemPath] atomically:YES encoding:[self.encoding unsignedLongValue] error:error];
         if (!success) {
             NSStringEncoding alternate = NSUTF8StringEncoding;
@@ -863,6 +864,21 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
         
         
     }
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    DocumentModel *other = [super copyWithZone:zone];
+    other.project = [self.project copyWithZone:zone];
+    other.lastCompile = [self.lastCompile copyWithZone:zone];
+    other.pdfPath = [self.pdfPath copyWithZone:zone];
+    other.texPath = [self.texPath copyWithZone:zone];
+    other.liveCompile = [self.liveCompile copyWithZone:zone];
+    other.openOnExport = [self.openOnExport copyWithZone:zone];
+    other.lineBookmarks = [self.lineBookmarks copyWithZone:zone];
+    other.selectedRange = self.selectedRange;
+    return other;
+}
 
 @end
 

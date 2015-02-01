@@ -107,20 +107,33 @@ static const NSSet *SELECTORS_HANDLED_BY_DC;
             }
             return NO;
         }
-        DDLogDebug(@"URL(%@), ORIGINAL(%@)", url, absoluteOriginalContentsURL);
-        self.model.systemPath = [url path];
-        if (absoluteOriginalContentsURL) {
-            self.model.texPath = absoluteOriginalContentsURL.path;
+        
+        
+        switch (saveOperation) {
+            case NSAutosaveElsewhereOperation:
+                [self saveAllContent:NULL force:NO];
+                return [[NSFileManager defaultManager] copyItemAtURL:absoluteOriginalContentsURL toURL:url error:outError];
+            case NSSaveAsOperation:
+                self.model.systemPath = url.path;
+                return [self saveAllContent:outError force:YES];
+            default:
+                DDLogDebug(@"URL(%@), ORIGINAL(%@)", url, absoluteOriginalContentsURL);
+                self.model.systemPath = [url path];
+                if (absoluteOriginalContentsURL) {
+                    self.model.texPath = absoluteOriginalContentsURL.path;
+                }
+                return [self saveAllContent:outError force:NO];
         }
-        BOOL success = YES;
-        for (DocumentController *dc in self.documentControllers) {
-            success &= [dc saveDocumentModel:outError];
-        }
+}
 
-        return success;
-
-
+- (BOOL)saveAllContent:(NSError * __autoreleasing *)outError force:(BOOL)force{
+    BOOL success = YES;
+    for (DocumentController *dc in self.documentControllers) {
+        success &= [dc saveDocumentModel:outError force:force];
     }
+    
+    return success;
+}
 
     - (void)saveAsTemplate:(id)sender
     {

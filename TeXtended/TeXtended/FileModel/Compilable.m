@@ -376,4 +376,20 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return citeEntry;
     }
 
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    Compilable *other = [Compilable new];
+    other.encoding = self.encoding;
+    other.mainDocuments = [self.mainDocuments copyWithZone:zone];
+    other.bibFiles = [self.bibFiles copyWithZone:zone];
+    other.draftCompiler = [self.draftCompiler copyWithZone:zone];
+    other.finalCompiler = [self.finalCompiler copyWithZone:zone];
+    other.liveCompiler = [self.liveCompiler copyWithZone:zone];
+    other.hasDraftCompiler = self.hasDraftCompiler;
+    other.hasLiveCompiler = self.hasLiveCompiler;
+    other.hasFinalCompiler = self.hasFinalCompiler;
+    return other;
+}
+
 @end

@@ -61,18 +61,22 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (BOOL)saveDocumentModel:(NSError * __autoreleasing *)outError
     {
-        TMT_TRACE
-        self.model.selectedRange =self.textViewController.textView.selectedRange;
-        if (!self.textViewController.dirty) {
-            return YES;
-        }
-        BOOL success = [self.model saveContent:[self.textViewController content] error:outError];
-        
-        if (success) {
-            self.textViewController.dirty = NO;
-        }
-        return success;
+        return [self saveDocumentModel:outError force:NO];
     }
+
+- (BOOL)saveDocumentModel:(NSError *__autoreleasing *)outError force:(BOOL)force {
+    TMT_TRACE
+    self.model.selectedRange =self.textViewController.textView.selectedRange;
+    if (!self.textViewController.dirty && !force) {
+        return YES;
+    }
+    BOOL success = [self.model saveContent:[self.textViewController content] error:outError];
+    
+    if (success) {
+        self.textViewController.dirty = NO;
+    }
+    return success;
+}
 
 
     - (void)breakUndoCoalescing

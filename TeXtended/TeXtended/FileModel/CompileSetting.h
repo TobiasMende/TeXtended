@@ -15,7 +15,7 @@
  *
  */
 
-@interface CompileSetting : NSObject <NSCoding>
+@interface CompileSetting : NSObject <NSCoding,NSCopying>
 
 #pragma mark - Properties
 /** The path to the compile flow */

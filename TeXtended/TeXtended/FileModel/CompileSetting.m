@@ -25,17 +25,6 @@
         [self unbindAll];
     }
 
-    - (id)copy
-    {
-        CompileSetting *setting = [CompileSetting new];
-
-        setting.compilerPath = [self.compilerPath copy];
-        setting.compileBib = [self.compileBib copy];
-        setting.numberOfCompiles = [self.numberOfCompiles copy];
-        setting.customArgument = [self.customArgument copy];
-        return setting;
-    }
-
 
 #pragma mark - NSCoding Support
 
@@ -126,6 +115,17 @@
     setting.compileBib = content[@"compileBib"];
     setting.numberOfCompiles = content[@"numberOfCompiles"];
     setting.customArgument = content[@"customArgument"];
+    return setting;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    CompileSetting *setting = [CompileSetting new];
+    setting.compilerPath = [self.compilerPath copyWithZone:zone];
+    setting.compileBib = [self.compileBib copyWithZone:zone];
+    setting.numberOfCompiles = [self.numberOfCompiles copyWithZone:zone];
+    setting.customArgument = [self.customArgument copyWithZone:zone];
     return setting;
 }
 @end
