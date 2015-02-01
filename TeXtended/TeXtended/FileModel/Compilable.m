@@ -150,6 +150,12 @@ static NSUInteger LAST_IDENTIFIER = 0;
         return [self.path isEqualTo:other.path];
     }
 
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    return prime * result + [self.path hash];
+}
+
 
 #pragma mark - Converter Methods
 

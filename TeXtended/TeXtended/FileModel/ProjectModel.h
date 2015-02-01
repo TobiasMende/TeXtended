@@ -34,6 +34,8 @@
 /** The main properties of this project */
     @property (strong) DocumentModel *properties;
 
+@property (readonly) BOOL initialized;
+
 
 #pragma mark - Getter
 

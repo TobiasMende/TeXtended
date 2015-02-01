@@ -542,7 +542,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
     }
 
 - (NSString *)description {
-    return self.texName ? self.texName : [super description];
+    return self.texPath ? self.texPath : [super description];
 }
 
 #pragma mark - Setter
@@ -646,7 +646,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
             return self;
         }
         else if (self.project) {
-            return [self.project modelForTexPath:path];
+            return [self.project modelForTexPath:path byCreating:shouldCreate];
         }
         else if (shouldCreate) {
             if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {

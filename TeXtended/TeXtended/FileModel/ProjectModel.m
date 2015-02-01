@@ -53,8 +53,8 @@ LOGGING_DEFAULT_DYNAMIC
     {
         self.path = absolutePath;
 
+        [self.documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         NSArray *documents = self.documents.allObjects;
-        [documents makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         //    [documents makeObjectsPerformSelector:@selector(buildOutline)];
         [self.bibFiles makeObjectsPerformSelector:@selector(finishInitWithPath:) withObject:absolutePath];
         NSFileManager *fm = [NSFileManager defaultManager];
@@ -66,6 +66,8 @@ LOGGING_DEFAULT_DYNAMIC
                 [dm removeInvalidMaindocuments];
             }
         }
+        _initialized = YES;
+        
     }
 
     - (id)init
@@ -182,19 +184,23 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (DocumentModel *)modelForTexPath:(NSString *)path byCreating:(BOOL)shouldCreate
     {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
         for (DocumentModel *model in self.documents) {
             if ([model.texPath isEqualToString:path]) {
                 return model;
             }
         }
+        if (!self.initialized) {
+            return nil;
+        }
         if (shouldCreate) {
-            if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-                return nil;
-            }
+            
             DocumentModel *model = [DocumentModel new];
-            [self.documents addObject:model];
             model.project = self;
             model.texPath = path;
+            [self.documents addObject:model];
             return model;
         }
         else {
