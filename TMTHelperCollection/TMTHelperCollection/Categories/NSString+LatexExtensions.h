@@ -12,6 +12,8 @@
 
     - (BOOL)latexLineBreakPreceedingPosition:(NSUInteger)position;
 
+- (BOOL)lineIsCommentForPosition:(NSUInteger) position;
+
     - (BOOL)numberOfBackslashesBeforePositionIsEven:(NSUInteger)position;
 
     - (NSUInteger)numberOfBackslashesBeforePosition:(NSUInteger)position;

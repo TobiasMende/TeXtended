@@ -343,6 +343,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
     - (void)dealloc
     {
         DDLogDebug(@"dealloc [%@]", self.model.path);
+        self.textView.firstResponderDelegate = nil;
         
 
     }
