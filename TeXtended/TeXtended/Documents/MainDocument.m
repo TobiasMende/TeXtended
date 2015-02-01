@@ -65,7 +65,9 @@ LOGGING_DEFAULT_DYNAMIC
     - (void)decrementNumberOfCompilingDocuments
     {
         [numberLock lock];
-        self.numberOfCompilingDocuments--;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.numberOfCompilingDocuments--;
+        });
         [numberLock unlock];
     }
 
