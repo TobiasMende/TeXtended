@@ -88,6 +88,7 @@
 #define TMTShouldShowStartScreen @"TMTShouldShowStartScreen"
 #define TMTShouldCompleteCites @"TMTShouldCompleteCites"
 #define TMTShouldCompleteRefs @"TMTShouldCompleteRefs"
+#define TMTAutomaticSpellingCorrection @"TMTAutomaticSpellingCorrection"
 #define TMT_SHOULD_LINK_TEXDOC @"TMTShouldLinkTexdoc"
 #define TMT_REPLACE_INVISIBLE_SPACES @"TMTReplaceInvisibleSpaces"
 #define TMT_REPLACE_INVISIBLE_LINEBREAKS @"TMTReplaceInvisibleLinebreaks"

@@ -83,7 +83,7 @@ static const NSSet *KEYS_TO_UNBIND;
 
     - (void)statsPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context
     {
-
+        statsPanel = nil;
     }
 
     - (void)initVariables
