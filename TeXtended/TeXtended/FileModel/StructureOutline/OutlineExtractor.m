@@ -140,6 +140,9 @@ static const NSDictionary *TYPE_STRING_LOOKUP;
             scanner.scanLocation = range.location;
             NSString *prefix = nil;
             [scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"{["] intoString:&prefix];
+            if ([prefix hasSuffix:@"*"]) {
+                prefix = [prefix substringToIndex:prefix.length-1];
+            }
             NSNumber *type = [TYPE_STRING_LOOKUP objectForKey:prefix];
             if (type) {
                 return (OutlineElementType) type.unsignedLongValue;
