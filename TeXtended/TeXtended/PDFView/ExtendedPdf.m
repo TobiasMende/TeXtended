@@ -171,10 +171,7 @@ static const NSSet *KEYS_TO_UNBIND;
         }
         [self setCurrentSelection:selection];
         [self startBackwardSynctex:self];
-    } else {
-        [super mouseDown:theEvent];
-    }
-    
+    } 
     [super mouseDown:theEvent];
 }
 
