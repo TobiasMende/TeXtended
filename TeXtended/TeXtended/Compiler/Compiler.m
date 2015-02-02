@@ -45,6 +45,7 @@ LOGGING_DEFAULT_DYNAMIC
     - (void)compile:(CompileMode)mode
     {
         [self.liveTimer invalidate];
+        [self abort];
         NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
         for (DocumentModel *model in mainDocuments) {

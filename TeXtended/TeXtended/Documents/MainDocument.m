@@ -22,6 +22,8 @@ LOGGING_DEFAULT_DYNAMIC
 @interface MainDocument ()
 
     - (void)firstResponderDidChangeNotification:(NSNotification *)note;
+    - (void)_decrementNumberOfCompilingDocuments:(id)sender;
+    - (void)_incrementNumberOfCompilingDocuments:(id)sender;
 @end
 
 @implementation MainDocument
@@ -64,19 +66,21 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (void)decrementNumberOfCompilingDocuments
     {
-        [numberLock lock];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.numberOfCompilingDocuments--;
-        });
-        [numberLock unlock];
+        [self performSelectorOnMainThread:@selector(_decrementNumberOfCompilingDocuments:) withObject:NULL waitUntilDone:YES ];
     }
 
     - (void)incrementNumberOfCompilingDocuments
     {
-        [numberLock lock];
-        self.numberOfCompilingDocuments++;
-        [numberLock unlock];
+            [self performSelectorOnMainThread:@selector(_incrementNumberOfCompilingDocuments:) withObject:NULL waitUntilDone:YES ];
     }
+
+- (void)_decrementNumberOfCompilingDocuments:(id)sender {
+    self.numberOfCompilingDocuments--;
+}
+
+- (void)_incrementNumberOfCompilingDocuments:(id)sender {
+    self.numberOfCompilingDocuments++;
+}
 
 
     - (void)saveEntireDocumentWithDelegate:(id)delegate andSelector:(SEL)action
