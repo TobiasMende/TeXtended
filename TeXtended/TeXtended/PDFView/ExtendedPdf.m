@@ -16,6 +16,7 @@
 LOGGING_DEFAULT
 
 static const NSSet *KEYS_TO_UNBIND;
+static const NSSet *KEY_PATHS_TO_OBSERVE;
 
 @interface ExtendedPdf ()
 
@@ -29,6 +30,7 @@ static const NSSet *KEYS_TO_UNBIND;
     + (void)initialize
     {
         KEYS_TO_UNBIND = [NSSet setWithObjects:@"drawHorizotalLines", @"gridHorizontalSpacing", @"gridHorizontalOffset", @"drawVerticalLines", @"gridVerticalSpacing", @"gridVerticalOffset", @"gridColor", @"drawPageNumbers", @"gridUnit", nil];
+        KEY_PATHS_TO_OBSERVE = [NSSet setWithObjects:TMTGridColor,TMTGridUnit,TMTdrawHGrid,TMTdrawVGrid,TMTHGridOffset,TMTHGridSpacing,TMTVGridOffset,TMTVGridSpacing,TMTPageNumbers, nil];
     }
 
     - (id)init
@@ -90,40 +92,29 @@ static const NSSet *KEYS_TO_UNBIND;
     {
 
         // init variables
-        [self setGridHorizontalSpacing:1];
-        [self setGridVerticalSpacing:1];
-        [self setGridHorizontalOffset:0];
-        [self setGridVerticalOffset:0];
-        [self setGridColor:[NSColor colorWithCalibratedRed:0.5f green:0.5f blue:0.5f alpha:0.25f]];
-        [self setDrawPageNumbers:NO];
-
-        // link horizontal line propertys to application shared
+                // link horizontal line propertys to application shared
         [self bind:@"drawHorizotalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawHGrid] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawHGrid options:0 context:NULL];
         [self bind:@"gridHorizontalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridSpacing] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridSpacing options:0 context:NULL];
         [self bind:@"gridHorizontalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTHGridOffset] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTHGridOffset options:0 context:NULL];
 
         // link vertical line propertys to application shared
         [self bind:@"drawVerticalLines" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTdrawVGrid] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTdrawVGrid options:0 context:NULL];
         [self bind:@"gridVerticalSpacing" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTVGridSpacing] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTVGridSpacing options:0 context:NULL];
         [self bind:@"gridVerticalOffset" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTVGridOffset] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTVGridOffset options:0 context:NULL];
 
         // link line color propertys to application shared
         [self bind:@"gridColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTGridColor] options:@{NSValueTransformerNameBindingOption : NSUnarchiveFromDataTransformerName}];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTGridColor options:0 context:NULL];
 
         // link page number propertys to application shared
         [self bind:@"drawPageNumbers" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTPageNumbers] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTPageNumbers options:0 context:NULL];
 
         // link grid unit to application shared
         [self bind:@"gridUnit" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTGridUnit] options:nil];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:TMTGridUnit options:0 context:NULL];
+        
+        
+        for(NSString *key in KEY_PATHS_TO_OBSERVE) {
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
+        }
 
         // notifcation if pdf page didchange
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePageNumber:) name:PDFViewPageChangedNotification object:self];
@@ -135,7 +126,11 @@ static const NSSet *KEYS_TO_UNBIND;
 /** Needed to redraw page if grid color changes or units */
     - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
     {
-        [self layoutDocumentView];
+        if ([[NSUserDefaults standardUserDefaults] isEqualTo:object] && [KEY_PATHS_TO_OBSERVE containsObject:keyPath]) {
+            [self layoutDocumentView];
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
     }
 
     - (void)startBackwardSynctex:(id)sender
@@ -436,15 +431,10 @@ static const NSSet *KEYS_TO_UNBIND;
 
     - (void)dealloc
     {
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridColor];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTGridUnit];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTdrawHGrid];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTHGridOffset];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTHGridSpacing];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTdrawVGrid];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTVGridOffset];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTVGridSpacing];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:TMTPageNumbers];
+     
+        for(NSString *key in KEY_PATHS_TO_OBSERVE) {
+            [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
+        }
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self unbindAll];
 
