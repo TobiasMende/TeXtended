@@ -146,7 +146,7 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (void)textDidChange:(NSNotification *)notification
     {
-        if (![[self.compileProcessHandler.model liveCompile] boolValue]) {
+        if (![[self.compileProcessHandler.model liveCompile] boolValue] || self.isCompiling) {
             return; // live compile deactivated
         }
 
@@ -161,6 +161,14 @@ LOGGING_DEFAULT_DYNAMIC
                                                            repeats:NO]];
     }
 
+- (BOOL)isCompiling {
+    for(NSTask *task in currentTasks) {
+        if (task.isRunning) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
     - (void)abort
     {

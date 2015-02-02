@@ -71,6 +71,8 @@
 
     - (void)abort;
 
+- (BOOL)isCompiling;
+
 /**
  * `YES`, if autocompile is activated.
  */
