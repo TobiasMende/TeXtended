@@ -77,5 +77,6 @@
  * `YES`, if autocompile is activated.
  */
     @property BOOL autoCompile;
+    @property BOOL dirty;
 
 @end

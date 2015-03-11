@@ -45,6 +45,7 @@ LOGGING_DEFAULT_DYNAMIC
     - (void)compile:(CompileMode)mode
     {
         [self.liveTimer invalidate];
+        self.dirty = NO;
         [self abort];
         NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
@@ -123,10 +124,13 @@ LOGGING_DEFAULT_DYNAMIC
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
         data.model.lastCompile = [NSDate new];
         data.compileRunning = NO;
+        [currentTasks removeObject:task];
         if (data.compileMode == final && [data.model.openOnExport boolValue]) {
             [[NSWorkspace sharedWorkspace] openFile:data.model.pdfPath];
+        } else if(self.dirty && !self.isCompiling && self.compileProcessHandler.model.liveCompile.boolValue) {
+            [self liveCompile];
         }
-        [currentTasks removeObject:task];
+
     }
 
     - (void)liveCompile
@@ -146,8 +150,13 @@ LOGGING_DEFAULT_DYNAMIC
 
     - (void)textDidChange:(NSNotification *)notification
     {
-        if (![[self.compileProcessHandler.model liveCompile] boolValue] || self.isCompiling) {
+        if (![[self.compileProcessHandler.model liveCompile] boolValue]) {
             return; // live compile deactivated
+        }
+
+        if (self.isCompiling) {
+            self.dirty = YES;
+            return;
         }
 
         if ([self.liveTimer isValid]) {
