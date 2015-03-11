@@ -32,7 +32,6 @@
 		D2654ADE1927AC8700DE58B2 /* TMTNamedEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654ADC1927AC8700DE58B2 /* TMTNamedEncoding.m */; };
 		D2654AE11927ACE500DE58B2 /* TMTEncodingTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D2654ADF1927ACE500DE58B2 /* TMTEncodingTransformer.h */; };
 		D2654AE21927ACE500DE58B2 /* TMTEncodingTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2654AE01927ACE500DE58B2 /* TMTEncodingTransformer.m */; };
-		D26CF28819910BD700E50931 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D276C8171956CDA1009DB27D /* TMTTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = D276C8151956CDA1009DB27D /* TMTTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D276C8181956CDA1009DB27D /* TMTTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D276C8161956CDA1009DB27D /* TMTTreeController.m */; };
 		D28F285519647FF40085344F /* NSSet+TMTSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = D28F285319647FF40085344F /* NSSet+TMTSerialization.h */; };
@@ -432,7 +431,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D26CF28819910BD700E50931 /* (null) in Resources */,
 				D22DC1C71863784800997ADB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

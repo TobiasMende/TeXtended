@@ -10,24 +10,20 @@
 #import "LatexSyntaxHighlighter.h"
 #import "TextViewLayoutManager.h"
 #import "Constants.h"
-#import <TMTHelperCollection/NSString+LatexExtensions.h>
-#import <TMTHelperCollection/NSTextView+TMTExtensions.h>
 #import <TMTHelperCollection/NSTextView+LatexExtensions.h>
 #import <TMTHelperCollection/NSString+TMTExtensions.h>
-#import "NSTextView+TMTEditorExtension.h"
+
 @implementation LightHighlightingTextView
 
 
+- (void)awakeFromNib {
 
-- (void)awakeFromNib
-{
-    
     NSDictionary *option = @{NSValueTransformerNameBindingOption : NSUnarchiveFromDataTransformerName};
     [self bind:@"textColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_FOREGROUND_COLOR] options:option];
     [self bind:@"backgroundColor" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMT_EDITOR_BACKGROUND_COLOR] options:option];
     [self bind:@"automaticSpellingCorrectionEnabled" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:[@"values." stringByAppendingString:TMTAutomaticSpellingCorrection] options:nil];
-    
-    
+
+
     _syntaxHighlighter = [[LatexSyntaxHighlighter alloc] initWithTextView:self];
     [self setRichText:NO];
     [self setDisplaysLinkToolTips:YES];
@@ -38,10 +34,10 @@
     [self setAutomaticDashSubstitutionEnabled:NO];
     [self setAutomaticQuoteSubstitutionEnabled:NO];
     [self setUsesFontPanel:NO];
-    
-    
+
+
     [self.textContainer replaceLayoutManager:[TextViewLayoutManager new]];
-    
+
 }
 
 - (void)dealloc {
@@ -54,7 +50,7 @@
     BOOL become = [super becomeFirstResponder];
     if (!viewStateInitialized) {
         [self.syntaxHighlighter highlightEntireDocument];
-                    [[NSNotificationCenter defaultCenter] addObserver:self.syntaxHighlighter selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:self];
+        [[NSNotificationCenter defaultCenter] addObserver:self.syntaxHighlighter selector:@selector(highlightAtSelectionChange) name:NSTextViewDidChangeSelectionNotification object:self];
         viewStateInitialized = YES;
     }
     return become;
@@ -82,8 +78,7 @@
 
 #pragma mark - Syntax Highlighting
 
-- (void)updateSyntaxHighlighting
-{
+- (void)updateSyntaxHighlighting {
     [self.syntaxHighlighter highlightRange:[self extendedVisibleRange]];
 }
 
@@ -94,35 +89,29 @@
 
 #pragma mark - Getter & Setter
 
-- (NSRange)rangeForLine:(NSUInteger)index
-{
+- (NSRange)rangeForLine:(NSUInteger)index {
     return [self.string rangeForLine:index - 1];
 }
 
 
-
 #pragma mark - Commenting Text
 
-- (IBAction)commentSelection:(id)sender
-{
+- (IBAction)commentSelection:(id)sender {
     [self commentSelectionInRange:self.selectedRange];
 }
 
-- (IBAction)uncommentSelection:(id)sender
-{
+- (IBAction)uncommentSelection:(id)sender {
     [self uncommentSelectionInRange:self.selectedRange];
 }
 
-- (IBAction)toggleComment:(id)sender
-{
+- (IBAction)toggleComment:(id)sender {
     [self toggleCommentInRange:self.selectedRange];
 }
 
 
 #pragma mark - Moving Lines
 
-- (IBAction)moveLinesUp:(id)sender
-{
+- (IBAction)moveLinesUp:(id)sender {
     if (self.selectedRanges.count != 1) {
         return;
     }
@@ -141,8 +130,7 @@
     }
 }
 
-- (IBAction)moveLinesDown:(id)sender
-{
+- (IBAction)moveLinesDown:(id)sender {
     if (self.selectedRanges.count != 1) {
         return;
     }
@@ -161,16 +149,15 @@
     }
 }
 
-- (IBAction)deleteLines:(id)sender
-{
+- (IBAction)deleteLines:(id)sender {
     if (self.selectedRanges.count != 1) {
         return;
     }
     NSRange totalRange = [self.string lineTextRangeWithRange:self.selectedRange withLineTerminator:YES];
-    
+
     [self deleteTextInRange:[NSValue valueWithRange:totalRange] withActionName:NSLocalizedString(@"Delete Lines", @"line deletion")];
-    
-    
+
+
 }
 
 
