@@ -13,6 +13,12 @@ Start by checking out the project:
 
 ```bash
 git clone git@github.com:TobiasMende/TeXtended.git
+cd TeXtended
+```
+
+You need [cocoapods](http://cocoapods.org) inorder to install dependencies.
+```bash
+pod install
 ```
 
 ## Contributing
