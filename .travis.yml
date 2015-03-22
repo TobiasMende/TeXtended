@@ -5,7 +5,7 @@ env: CONFIGURATION_BUILD_DIR='.'
 script: 
   - xctool -workspace TMTProject.xcworkspace -scheme TeXtended -configuration Release  build archive -archivePath "Build"
   - cd "Build.xcarchive/Products/Applications"
-  - zip TeXtended.zip TeXtended.app
+  - zip -r TeXtended.zip TeXtended.app
 deploy:
   provider: releases
   api_key:
