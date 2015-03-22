@@ -1,5 +1,5 @@
 [submodule "MMTabBarView"]
 	path = MMTabBarView
-	url = git@github.com:TobiasMende/MMTabBarView.git
+	url = git://github.com/TobiasMende/MMTabBarView.git
 	update = rebase
 	fetchRecurseSubmodules = false
