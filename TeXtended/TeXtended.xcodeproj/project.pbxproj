@@ -29,7 +29,6 @@
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
-		CAE149A5B8AE46BC9D0F5A2C /* libPods-TeXtended Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2C09292FFF4E7494D6B4C0 /* libPods-TeXtended Tests.a */; };
 		D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */; };
 		D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D4D1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m */; };
 		D2078D541837B620001C4A56 /* BibFilesSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D521837B620001C4A56 /* BibFilesSelectionViewController.m */; };
@@ -100,7 +99,7 @@
 		D2668628176F5B39001699A8 /* GoToLineSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668619176F5B39001699A8 /* GoToLineSheetController.m */; };
 		D2668629176F5B39001699A8 /* LineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D266861C176F5B39001699A8 /* LineNumberView.m */; };
 		D266862B176F5B39001699A8 /* TexdocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2668620176F5B39001699A8 /* TexdocViewController.m */; };
-		D26B827F18D57E87009F3BCC /* NSString_Categories_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */; };
+		D266F6EF1ABEE80B00FD548B /* TeXtended_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D266F6EE1ABEE80B00FD548B /* TeXtended_Tests.m */; };
 		D26C02FA18964C6600289F34 /* NSColor+TMTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D26C02F918964C6600289F34 /* NSColor+TMTExtension.m */; };
 		D26E8CF81912D33500326CAE /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D26E8CF61912D33500326CAE /* FileViewController.m */; };
 		D2784BFF19153998002497D8 /* FileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D2784BFE19153998002497D8 /* FileNode.m */; };
@@ -181,10 +180,6 @@
 		D2A550701751FF4B00BC05DD /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5506E1751FF4B00BC05DD /* TextView.xib */; };
 		D2A5507F1752003A00BC05DD /* OutlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5507D1752003A00BC05DD /* OutlineView.xib */; };
 		D2A739D418D4B056005991D5 /* OutlineHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739D318D4B056005991D5 /* OutlineHelper.m */; };
-		D2A739DB18D4BF78005991D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25749BA186370450025A536 /* XCTest.framework */; };
-		D2A739E118D4BF78005991D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2A739DF18D4BF78005991D5 /* InfoPlist.strings */; };
-		D2A739EB18D4BFD2005991D5 /* ProjectModel_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */; };
-		D2A739ED18D4C2CD005991D5 /* DocumentModel_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */; };
 		D2A92C431882F71500F1679F /* projecticon.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2A92C421882F71500F1679F /* projecticon.icns */; };
 		D2A9DD281727BB4C005D9DC8 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2A9DD271727BB4C005D9DC8 /* AppledocSettings.plist */; };
 		D2B01664176608A800C6CE23 /* ReportBug.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B01663176608A800C6CE23 /* ReportBug.pdf */; };
@@ -283,7 +278,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D2A739E518D4BF78005991D5 /* PBXContainerItemProxy */ = {
+		D266F6F01ABEE80B00FD548B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D2CC54E8171EAFAB00D81CF1 /* Project object */;
 			proxyType = 1;
@@ -518,6 +513,9 @@
 		D266861C176F5B39001699A8 /* LineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineNumberView.m; sourceTree = "<group>"; };
 		D266861F176F5B39001699A8 /* TexdocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexdocViewController.h; sourceTree = "<group>"; };
 		D2668620176F5B39001699A8 /* TexdocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexdocViewController.m; sourceTree = "<group>"; };
+		D266F6EA1ABEE80B00FD548B /* TeXtended Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeXtended Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D266F6ED1ABEE80B00FD548B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D266F6EE1ABEE80B00FD548B /* TeXtended_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeXtended_Tests.m; sourceTree = "<group>"; };
 		D2681FEE173143AF003AF83D /* Compilable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compilable.h; sourceTree = "<group>"; };
 		D2681FEF173143AF003AF83D /* Compilable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Compilable.m; sourceTree = "<group>"; };
 		D2681FF1173143C2003AF83D /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
@@ -590,7 +588,6 @@
 		D291E68F188290F600CDC8C8 /* CompletionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionTableController.h; sourceTree = "<group>"; };
 		D291E690188290F600CDC8C8 /* CompletionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionTableController.m; sourceTree = "<group>"; };
 		D291F56617EDD7AB00BD54AD /* DMSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplitView.h; sourceTree = "<group>"; };
-		D2928A681967D48200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2928A691967D48200F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D2928A6A1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D2928A6B1967D48300F6C9BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -687,10 +684,6 @@
 		D2A550821752085600BC05DD /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = ../DocumentControllers/MainWindowController.m; sourceTree = "<group>"; };
 		D2A739D218D4B056005991D5 /* OutlineHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineHelper.h; sourceTree = "<group>"; };
 		D2A739D318D4B056005991D5 /* OutlineHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineHelper.m; sourceTree = "<group>"; };
-		D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeXtended Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2A739DE18D4BF78005991D5 /* TeXtended Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TeXtended Tests-Info.plist"; sourceTree = "<group>"; };
-		D2A739E018D4BF78005991D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2A739E418D4BF78005991D5 /* TeXtended Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeXtended Tests-Prefix.pch"; sourceTree = "<group>"; };
 		D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel_Test.m; sourceTree = "<group>"; };
 		D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel_Test.m; sourceTree = "<group>"; };
 		D2A92C421882F71500F1679F /* projecticon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = projecticon.icns; sourceTree = "<group>"; };
@@ -799,12 +792,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D2A739D718D4BF78005991D5 /* Frameworks */ = {
+		D266F6E71ABEE80B00FD548B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2A739DB18D4BF78005991D5 /* XCTest.framework in Frameworks */,
-				CAE149A5B8AE46BC9D0F5A2C /* libPods-TeXtended Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1333,26 @@
 			path = Texdoc;
 			sourceTree = "<group>";
 		};
+		D266F6EB1ABEE80B00FD548B /* TeXtended Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */,
+				D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */,
+				D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */,
+				D266F6EE1ABEE80B00FD548B /* TeXtended_Tests.m */,
+				D266F6EC1ABEE80B00FD548B /* Supporting Files */,
+			);
+			path = "TeXtended Tests";
+			sourceTree = "<group>";
+		};
+		D266F6EC1ABEE80B00FD548B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D266F6ED1ABEE80B00FD548B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D26E8CF41912D2C000326CAE /* FileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1477,27 +1488,6 @@
 			path = DMSplitView;
 			sourceTree = "<group>";
 		};
-		D2A739DC18D4BF78005991D5 /* TeXtended Tests */ = {
-			isa = PBXGroup;
-			children = (
-				D2A739DD18D4BF78005991D5 /* Supporting Files */,
-				D2A739EA18D4BFD2005991D5 /* ProjectModel_Test.m */,
-				D2A739EC18D4C2CD005991D5 /* DocumentModel_Test.m */,
-				D26B827E18D57E87009F3BCC /* NSString_Categories_Test.m */,
-			);
-			path = "TeXtended Tests";
-			sourceTree = "<group>";
-		};
-		D2A739DD18D4BF78005991D5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D2A739DE18D4BF78005991D5 /* TeXtended Tests-Info.plist */,
-				D2A739DF18D4BF78005991D5 /* InfoPlist.strings */,
-				D2A739E418D4BF78005991D5 /* TeXtended Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D2B01662176608A800C6CE23 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1593,7 +1583,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A92C421882F71500F1679F /* projecticon.icns */,
-				D2A739DC18D4BF78005991D5 /* TeXtended Tests */,
+				D266F6EB1ABEE80B00FD548B /* TeXtended Tests */,
 				D2CC54F2171EAFAB00D81CF1 /* Frameworks */,
 				D2CC54F1171EAFAB00D81CF1 /* Products */,
 				D26685F6176F56DA001699A8 /* texicon.icns */,
@@ -1607,7 +1597,7 @@
 			isa = PBXGroup;
 			children = (
 				D2CC54F0171EAFAB00D81CF1 /* TeXtended.app */,
-				D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */,
+				D266F6EA1ABEE80B00FD548B /* TeXtended Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1758,24 +1748,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D2A739D918D4BF78005991D5 /* TeXtended Tests */ = {
+		D266F6E91ABEE80B00FD548B /* TeXtended Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2A739E718D4BF78005991D5 /* Build configuration list for PBXNativeTarget "TeXtended Tests" */;
+			buildConfigurationList = D266F6F21ABEE80B00FD548B /* Build configuration list for PBXNativeTarget "TeXtended Tests" */;
 			buildPhases = (
-				03D8DD7BD7564EA09D9F2D7E /* Check Pods Manifest.lock */,
-				D2A739D618D4BF78005991D5 /* Sources */,
-				D2A739D718D4BF78005991D5 /* Frameworks */,
-				D2A739D818D4BF78005991D5 /* Resources */,
-				C42D0758697845528F4412F1 /* Copy Pods Resources */,
+				D266F6E61ABEE80B00FD548B /* Sources */,
+				D266F6E71ABEE80B00FD548B /* Frameworks */,
+				D266F6E81ABEE80B00FD548B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D2A739E618D4BF78005991D5 /* PBXTargetDependency */,
+				D266F6F11ABEE80B00FD548B /* PBXTargetDependency */,
 			);
 			name = "TeXtended Tests";
 			productName = "TeXtended Tests";
-			productReference = D2A739DA18D4BF78005991D5 /* TeXtended Tests.xctest */;
+			productReference = D266F6EA1ABEE80B00FD548B /* TeXtended Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D2CC54EF171EAFAB00D81CF1 /* TeXtended */ = {
@@ -1808,7 +1796,8 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tobias Mende";
 				TargetAttributes = {
-					D2A739D918D4BF78005991D5 = {
+					D266F6E91ABEE80B00FD548B = {
+						CreatedOnToolsVersion = 6.2;
 						TestTargetID = D2CC54EF171EAFAB00D81CF1;
 					};
 				};
@@ -1828,17 +1817,16 @@
 			targets = (
 				D2CC54EF171EAFAB00D81CF1 /* TeXtended */,
 				D21F376E171EC03700F961D6 /* Documentation */,
-				D2A739D918D4BF78005991D5 /* TeXtended Tests */,
+				D266F6E91ABEE80B00FD548B /* TeXtended Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D2A739D818D4BF78005991D5 /* Resources */ = {
+		D266F6E81ABEE80B00FD548B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2A739E118D4BF78005991D5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1951,21 +1939,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03D8DD7BD7564EA09D9F2D7E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1996,21 +1969,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C42D0758697845528F4412F1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D21F3772171EC04000F961D6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2027,13 +1985,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D2A739D618D4BF78005991D5 /* Sources */ = {
+		D266F6E61ABEE80B00FD548B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D26B827F18D57E87009F3BCC /* NSString_Categories_Test.m in Sources */,
-				D2A739ED18D4C2CD005991D5 /* DocumentModel_Test.m in Sources */,
-				D2A739EB18D4BFD2005991D5 /* ProjectModel_Test.m in Sources */,
+				D266F6EF1ABEE80B00FD548B /* TeXtended_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,10 +2145,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D2A739E618D4BF78005991D5 /* PBXTargetDependency */ = {
+		D266F6F11ABEE80B00FD548B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2CC54EF171EAFAB00D81CF1 /* TeXtended */;
-			targetProxy = D2A739E518D4BF78005991D5 /* PBXContainerItemProxy */;
+			targetProxy = D266F6F01ABEE80B00FD548B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2522,15 +2478,6 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		D2A739DF18D4BF78005991D5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2A739E018D4BF78005991D5 /* en */,
-				D2928A681967D48200F6C9BD /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D2CC54FC171EAFAB00D81CF1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2578,72 +2525,78 @@
 			};
 			name = Release;
 		};
-		D2A739E818D4BF78005991D5 /* Debug */ = {
+		D266F6F31ABEE80B00FD548B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TeXtended Tests/TeXtended Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "TeXtended Tests/TeXtended Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				INFOPLIST_FILE = "TeXtended Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 			};
 			name = Debug;
 		};
-		D2A739E918D4BF78005991D5 /* Release */ = {
+		D266F6F41ABEE80B00FD548B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TeXtended Tests/TeXtended Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "TeXtended Tests/TeXtended Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				INFOPLIST_FILE = "TeXtended Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 			};
 			name = Release;
 		};
@@ -2798,14 +2751,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2A739E718D4BF78005991D5 /* Build configuration list for PBXNativeTarget "TeXtended Tests" */ = {
+		D266F6F21ABEE80B00FD548B /* Build configuration list for PBXNativeTarget "TeXtended Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D2A739E818D4BF78005991D5 /* Debug */,
-				D2A739E918D4BF78005991D5 /* Release */,
+				D266F6F31ABEE80B00FD548B /* Debug */,
+				D266F6F41ABEE80B00FD548B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		D2CC54EB171EAFAB00D81CF1 /* Build configuration list for PBXProject "TeXtended" */ = {
 			isa = XCConfigurationList;
