@@ -25,8 +25,8 @@ Thats it!
 
 ## Contributing
 
-Feel free to make a pullrequest and contribute. If you have a nice idea for feature, please
-add a corresponding issue. We are pleased to discuss it!
+Feel free to make a pullrequest and contribute. If you have a nice idea for a feature, please
+add a corresponding issue. We are pleased to discuss it with you!
 
 ## License
 
