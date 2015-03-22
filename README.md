@@ -5,7 +5,7 @@ TeXtended is an all new LaTeX Editor written for OS X in Objective C. It’s fre
 
 ## Installation
 
-The latest version of TeXtended can be downlowed [here](http://).
+The latest version of TeXtended can be downlowed [here](http://get.textended.de/latest).
 
 ## Setting up a Development Environment
 
