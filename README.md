@@ -9,17 +9,19 @@ The latest version of TeXtended can be downlowed [here](http://).
 
 ## Setting up a Development Environment
 
-Start by checking out the project:
+Start by checking out the project together with its submodules:
 
 ```bash
-git clone git@github.com:TobiasMende/TeXtended.git
+git clone --recursive git@github.com:TobiasMende/TeXtended.git
 cd TeXtended
 ```
 
-You need [cocoapods](http://cocoapods.org) inorder to install dependencies.
+You need [cocoapods](http://cocoapods.org) in order to install dependencies.
 ```bash
 pod install
 ```
+Open TMTProject.xcworkspace with XCode and choose TeXtended as target.
+Thats it!
 
 ## Contributing
 
