@@ -10,7 +10,7 @@ deploy:
   provider: releases
   api_key:
     secure: Zo6ZGC3llFDqk7grBTj+zEiy7jKsDInE6TV8Z5NlMuEx2BRffPiqB0jInwAxKsIj6D25oU4Ajhmm8qjTcqCVA70Q5wcVx3rfixZ5RPslvQplkxZv8Or88kczIvDNhN7m6fMTY3tL6CxdsTPtlChyw9+TqYKmviqx2L7d0YfXIuQ=
-  file: "Build.xcarchive/Products/Applications/TeXtended.zip"
+  file: "TeXtended.zip"
   skip_cleanup: true
   on:
     tags: true
