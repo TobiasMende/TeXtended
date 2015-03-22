@@ -95,12 +95,8 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         if (!self.model.currentMainDocument || !self.model.currentMainDocument.texPath) return;
 
         // save the current document, since it is probabily included
-        NSError *error = nil;
         if (self.firstResponderDelegate) {
             [self.firstResponderDelegate saveDocument:nil];
-        }
-        if (error) {
-            return;
         }
 
         if (self.model.currentMainDocument.texPath && self.content) {
@@ -184,11 +180,6 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
         if ([self.firstResponderDelegate respondsToSelector:@selector(textViewControllerDidLoadView:)]) {
             [self.firstResponderDelegate textViewControllerDidLoadView:self];
         }
-        
-        //TODO: do it at another point
-//        if (self.textView.string && self.textView.string.length > 0) {
-//            [self updateMessageCollection:nil];
-//        }
 
     }
 
