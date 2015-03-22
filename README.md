@@ -1,4 +1,4 @@
-TeXtended - LaTeX Editor for OS X.
+TeXtended - LaTeX Editor for OS X. [![Build Status](https://travis-ci.org/TobiasMende/TeXtended.svg?branch=develop)](https://travis-ci.org/TobiasMende/TeXtended)
 =========
 
 TeXtended is an all new LaTeX Editor written for OS X in Objective C. It’s free and beta, so feel free to test the app and contact us for feature requests and issue reports.
