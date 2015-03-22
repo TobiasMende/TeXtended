@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2A739D918D4BF78005991D5"
+               BlueprintIdentifier = "D266F6E91ABEE80B00FD548B"
                BuildableName = "TeXtended Tests.xctest"
                BlueprintName = "TeXtended Tests"
                ReferencedContainer = "container:TeXtended.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2A739D918D4BF78005991D5"
+               BlueprintIdentifier = "D266F6E91ABEE80B00FD548B"
                BuildableName = "TeXtended Tests.xctest"
                BlueprintName = "TeXtended Tests"
                ReferencedContainer = "container:TeXtended.xcodeproj">
