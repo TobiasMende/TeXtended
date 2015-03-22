@@ -1,2 +1,5 @@
 language: objective-c
 xcode_workspace: TMTProject.xcworkspace
+xcode_scheme: "TeXtended"
+script: xctool -workspace TMTProject.xcworkspace -scheme TeXtended -configuration Release build archive
+
