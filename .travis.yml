@@ -1,8 +1,9 @@
 language: objective-c
 xcode_workspace: TMTProject.xcworkspace
 xcode_scheme: TeXtended
+env: CONFIGURATION_BUILD_DIR='.'
 script: xctool -workspace TMTProject.xcworkspace -scheme TeXtended -configuration
-  Release build archive CONFIGURATION_BUILD_DIR='.'
+  Release build archive
 deploy:
   provider: releases
   api_key:
