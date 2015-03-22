@@ -9,5 +9,4 @@ deploy:
     secure: Zo6ZGC3llFDqk7grBTj+zEiy7jKsDInE6TV8Z5NlMuEx2BRffPiqB0jInwAxKsIj6D25oU4Ajhmm8qjTcqCVA70Q5wcVx3rfixZ5RPslvQplkxZv8Or88kczIvDNhN7m6fMTY3tL6CxdsTPtlChyw9+TqYKmviqx2L7d0YfXIuQ=
   file: TeXtended.app
   on:
-    repo: TobiasMende/TeXtended
-    branch: develop
+    tags: true
