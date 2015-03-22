@@ -16,7 +16,7 @@ git clone --recursive git@github.com:TobiasMende/TeXtended.git
 cd TeXtended
 ```
 
-You need [cocoapods](http://cocoapods.org) in order to install dependencies.
+You need [cocoapods](http://cocoapods.org) in order to install the dependencies.
 ```bash
 pod install
 ```
