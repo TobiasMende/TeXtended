@@ -2795,14 +2795,19 @@
 			baseConfigurationReference = 6BF77F1F192604D449AB8C81 /* Pods-TeXtended.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-luebeck.isp.tmtproject.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2812,14 +2817,19 @@
 			baseConfigurationReference = F2133E23ADF7ED7CECB20295 /* Pods-TeXtended.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-luebeck.isp.tmtproject.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
