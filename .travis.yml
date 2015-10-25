@@ -1,5 +1,4 @@
 language: objective-c
-xcode_image: xcode7.1
 xcode_workspace: TMTProject.xcworkspace
 xcode_scheme: TeXtended
 env: CONFIGURATION_BUILD_DIR='.'
