@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DBLPSearchViewController">
@@ -17,23 +17,23 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <view id="Ple-09-h0k">
             <rect key="frame" x="0.0" y="0.0" width="668" height="568"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrm-RR-Fsz">
                     <rect key="frame" x="20" y="350" width="628" height="170"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="rQ6-97-tZd">
-                        <rect key="frame" x="1" y="17" width="626" height="152"/>
+                        <rect key="frame" x="1" y="0.0" width="626" height="169"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" autosaveColumns="NO" headerView="6cV-TG-dhD" id="908-04-DM7" customClass="TMTTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="626" height="152"/>
+                                <rect key="frame" x="0.0" y="0.0" width="626" height="146"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn editable="NO" width="504" minWidth="40" maxWidth="1000" id="1uy-rt-NWS">
@@ -88,37 +88,42 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <connections>
                             <outlet property="nextKeyView" destination="sXZ-Sg-33v" id="0zA-vl-dh9"/>
                         </connections>
                     </clipView>
+                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="u6O-0T-ytn">
                         <rect key="frame" x="1" y="119" width="223" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="0CR-t3-7Kc">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="0CR-t3-7Kc">
                         <rect key="frame" x="611" y="17" width="16" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="6cV-TG-dhD">
-                        <rect key="frame" x="0.0" y="0.0" width="626" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="626" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="iEK-VC-cnY">
                     <rect key="frame" x="632" y="531" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
                     <connections>
                         <binding destination="-2" name="animate" keyPath="self.searchinAuthor" id="CT0-eb-ndN"/>
                     </connections>
                 </progressIndicator>
-                <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sXZ-Sg-33v">
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sXZ-Sg-33v">
                     <rect key="frame" x="428" y="316" width="220" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="DFr-Gd-JGV"/>
                     </constraints>
+                    <animations/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Title ..." usesSingleLineMode="YES" bezelStyle="round" id="71R-Fg-0g0">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -133,8 +138,8 @@
                         </binding>
                         <binding destination="o6F-JA-hp2" name="enabled" keyPath="selection.key" id="XwH-3M-Bgh">
                             <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
                         </binding>
@@ -143,16 +148,16 @@
                 </searchField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATU-cg-NLX">
                     <rect key="frame" x="20" y="49" width="628" height="259"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="MYU-lZ-Pbg">
-                        <rect key="frame" x="1" y="17" width="626" height="241"/>
+                        <rect key="frame" x="1" y="0.0" width="626" height="258"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="4sF-EP-MO4" id="kr7-In-skA" customClass="TMTTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="626" height="241"/>
+                                <rect key="frame" x="0.0" y="0.0" width="626" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn editable="NO" width="53.54296875" minWidth="40" maxWidth="1000" id="4vq-KO-N8a">
@@ -225,24 +230,29 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
+                    <animations/>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="979-ne-C3A">
                         <rect key="frame" x="1" y="286" width="438" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="0jB-cs-rNU">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="4sF-EP-MO4">
-                        <rect key="frame" x="0.0" y="0.0" width="626" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="626" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-Pr-TQd">
                     <rect key="frame" x="18" y="320" width="404" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" continuous="YES" sendsActionOnEndEditing="YES" title="Author Name" id="gKf-lR-VBP">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -251,24 +261,24 @@
                     <connections>
                         <binding destination="o6F-JA-hp2" name="hidden" keyPath="selection.key" id="s4L-kC-56T">
                             <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="1"/>
                                 <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="1"/>
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>
                         </binding>
                         <binding destination="o6F-JA-hp2" name="displayPatternValue1" keyPath="selection.value" id="gLi-K2-tRn">
                             <dictionary key="options">
+                                <string key="NSDisplayPattern">Publications of %{value1}@</string>
                                 <string key="NSNoSelectionPlaceholder" base64-UTF8="YES">
 IA
 </string>
-                                <string key="NSDisplayPattern">Publications of %{value1}@</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </textField>
-                <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0gd-DU-jdk">
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0gd-DU-jdk">
                     <rect key="frame" x="20" y="528" width="604" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Author ..." usesSingleLineMode="YES" bezelStyle="round" id="QZE-JT-gBU">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -281,10 +291,10 @@ IA
                 </searchField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QfR-m5-g6T">
                     <rect key="frame" x="18" y="17" width="257" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="252" id="QPm-zn-dkb"/>
                     </constraints>
+                    <animations/>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingHead" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GTU-uf-uEL" id="CGI-9i-6iH">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -299,8 +309,8 @@ IA
                     <connections>
                         <binding destination="sX2-MF-vSy" name="enabled" keyPath="selection.key" id="uUK-yb-mgI">
                             <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
@@ -316,7 +326,7 @@ IA
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wva-dh-7Q4">
                     <rect key="frame" x="293" y="13" width="361" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
                     <buttonCell key="cell" type="push" title="Insert Citation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aiT-ZV-4vz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -325,8 +335,8 @@ IA
                         <action selector="executeCitation:" target="-2" id="Brq-7Q-XPa"/>
                         <binding destination="sX2-MF-vSy" name="enabled" keyPath="selection.key" id="XZS-6s-uBG">
                             <dictionary key="options">
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
                                 <integer key="NSNullPlaceholder" value="0"/>
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
@@ -366,6 +376,7 @@ IA
                 <constraint firstItem="Zrm-RR-Fsz" firstAttribute="leading" secondItem="T0K-Pr-TQd" secondAttribute="leading" id="vTG-LN-LX2"/>
                 <constraint firstItem="sXZ-Sg-33v" firstAttribute="top" secondItem="Ple-09-h0k" secondAttribute="top" constant="230" id="wwO-cx-5H0"/>
             </constraints>
+            <animations/>
             <connections>
                 <outlet property="nextKeyView" destination="0gd-DU-jdk" id="Kd5-Hm-tSt"/>
             </connections>

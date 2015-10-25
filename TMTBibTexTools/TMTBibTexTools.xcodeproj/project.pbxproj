@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		21D406B58D7F620C41E61B9D /* libPods-DBLPTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4BCAE70CE0C76C5E119FF7 /* libPods-DBLPTool.a */; };
-		D2E0714D1BDCFEB100018A78 /* TMTBibTexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E0714C1BDCFEB100018A78 /* TMTBibTexTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2E071541BDCFEB100018A78 /* TMTBibTexTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E0714A1BDCFEB100018A78 /* TMTBibTexTools.framework */; };
 		D2E071591BDCFEB100018A78 /* TMTBibTexToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E071581BDCFEB100018A78 /* TMTBibTexToolsTests.m */; };
 		D2E071741BDCFF2400018A78 /* DBLPCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E071631BDCFF2400018A78 /* DBLPCallbackHandler.h */; };
@@ -273,7 +272,6 @@
 				D2E0717F1BDCFF2400018A78 /* TMTBibTexEntry.h in Headers */,
 				D2E0717A1BDCFF2400018A78 /* DBLPSearchCompletionHandler.h in Headers */,
 				D2E071831BDCFF2400018A78 /* TMTBibTexTools.h in Headers */,
-				D2E0714D1BDCFEB100018A78 /* TMTBibTexTools.h in Headers */,
 				D2E071811BDCFF2400018A78 /* TMTBibTexParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

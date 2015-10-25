@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		65454CD2C8E1440BBEF1BA59 /* libPods-TMTLatexTableExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1417735F05C349A188645182 /* libPods-TMTLatexTableExample.a */; };
 		7AF0F2656AA44ACA85FF1ED2 /* libPods-TMTLatexTableFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006422AA66F44BA4BC0FF791 /* libPods-TMTLatexTableFramework.a */; };
-		CF04383B440740FCBD8BBF3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD963E6B2AED41AD8E24FB72 /* libPods.a */; };
 		D260F262198EBDFA00EDAA3A /* TMTLatexTableRowView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F260198EBDFA00EDAA3A /* TMTLatexTableRowView.h */; };
 		D260F263198EBDFA00EDAA3A /* TMTLatexTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D260F261198EBDFA00EDAA3A /* TMTLatexTableRowView.m */; };
 		D260F272198EC80F00EDAA3A /* TMTLineNumberCellView.h in Headers */ = {isa = PBXBuildFile; fileRef = D260F270198EC80F00EDAA3A /* TMTLineNumberCellView.h */; };
@@ -130,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D866C5198E7BB3006C0565 /* Cocoa.framework in Frameworks */,
-				CF04383B440740FCBD8BBF3A /* libPods.a in Frameworks */,
 				7AF0F2656AA44ACA85FF1ED2 /* libPods-TMTLatexTableFramework.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,7 +452,7 @@
 		D2D866B8198E7BB3006C0565 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = TeXtended;
 				TargetAttributes = {
 					D2D866D7198E7BB3006C0565 = {
@@ -733,6 +731,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -797,6 +796,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
 				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -813,6 +813,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
 				INFOPLIST_FILE = "TMTLatexTableFramework/TMTLatexTableFramework-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -834,6 +835,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -852,6 +854,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TMTLatexTableFramework/TMTLatexTableFramework-Prefix.pch";
 				INFOPLIST_FILE = "TMTLatexTableFrameworkTests/TMTLatexTableFrameworkTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -871,6 +874,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -885,6 +889,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
 				INFOPLIST_FILE = "TMTLatexTableExample/TMTLatexTableExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -906,6 +911,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -924,6 +930,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TMTLatexTableExample/TMTLatexTableExample-Prefix.pch";
 				INFOPLIST_FILE = "TMTLatexTableExampleTests/TMTLatexTableExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.textended.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
