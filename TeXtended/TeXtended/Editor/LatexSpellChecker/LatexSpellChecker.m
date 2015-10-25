@@ -29,7 +29,7 @@ LOGGING_DEFAULT
 
 - (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *,id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull, NSInteger))completionHandler {
     void (^adapter)(NSInteger, NSArray *, NSOrthography *, NSInteger);
-    adapter = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount)
+    adapter = ^(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> * _Nonnull tmpResults, NSOrthography * _Nonnull orthography, NSInteger wordCount)
     {
         NSArray *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);
