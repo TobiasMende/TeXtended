@@ -14,15 +14,17 @@ LOGGING_DEFAULT
 
 @interface LatexSpellChecker ()
 
-- (nonnull NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(nonnull NSArray<NSTextCheckingResult *> *)results inContext:(NSString *)content;
+- (NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(NSArray<NSTextCheckingResult *> *)results inContext:(NSString *)content;
+- (NSArray<NSTextCheckingResult *> *)updateResults:(NSArray<NSTextCheckingResult *> *)results forContent:(NSString *)content;
 
+- (void)initializePrefixesToIgnore;
 @end
 
 @implementation LatexSpellChecker
 
-- (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *, id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray<NSTextCheckingResult *> *_Nonnull, NSOrthography *_Nonnull, NSInteger))completionHandler {
-    void (^adapter)(NSInteger, NSArray<NSTextCheckingResult *> *_Nonnull , NSOrthography * _Nonnull, NSInteger);
-    adapter = ^(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> *_Nonnull tmpResults, NSOrthography *_Nonnull orthography, NSInteger wordCount) {
+- (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *, id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray<NSTextCheckingResult *> *, NSOrthography *, NSInteger))completionHandler {
+    void (^adapter)(NSInteger, NSArray<NSTextCheckingResult *> *, NSOrthography *, NSInteger);
+    adapter = ^(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> *tmpResults, NSOrthography *orthography, NSInteger wordCount) {
         NSArray<NSTextCheckingResult *> *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);
     };
@@ -32,19 +34,14 @@ LOGGING_DEFAULT
 
 # pragma mark - Private Methods
 
-- (nonnull NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(nonnull NSArray<NSTextCheckingResult *> *)results inContext:(NSString *)content {
+- (NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(NSArray<NSTextCheckingResult *> *)results inContext:(NSString *)content {
+    [self initializePrefixesToIgnore];
+
+    return [self updateResults:results forContent:content];
+}
+
+- (NSArray<NSTextCheckingResult *> *)updateResults:(NSArray<NSTextCheckingResult *> *)results forContent:(NSString *)content {
     NSMutableArray<NSTextCheckingResult *> *finalResults = [NSMutableArray arrayWithCapacity:results.count];
-    if (!prefixesToIgnore) {
-        NSString *strings = [NSString                           stringWithContentsOfFile:[[NSBundle mainBundle]
-                pathForResource:@"SpellCheckerPrefixesToIgnore" ofType:@"list"] encoding:NSUTF8StringEncoding error:NULL];
-
-        prefixesToIgnore = [strings componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        if (!prefixesToIgnore) {
-            DDLogError(@"Can't load prefixes!");
-        }
-
-    }
-
     for (NSTextCheckingResult *result in results) {
         NSRange range = result.range;
         if (result.resultType != NSTextCheckingTypeSpelling) {
@@ -61,6 +58,19 @@ LOGGING_DEFAULT
         [finalResults addObject:result];
     }
     return finalResults;
+}
+
+- (void)initializePrefixesToIgnore {
+    if (!prefixesToIgnore) {
+        NSString *strings = [NSString                           stringWithContentsOfFile:[[NSBundle mainBundle]
+                pathForResource:@"SpellCheckerPrefixesToIgnore" ofType:@"list"] encoding:NSUTF8StringEncoding error:NULL];
+
+        prefixesToIgnore = [strings componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        if (!prefixesToIgnore) {
+            DDLogError(@"Can't load prefixes!");
+        }
+
+    }
 }
 
 @end
