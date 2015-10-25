@@ -29,10 +29,9 @@ LOGGING_DEFAULT
 
 - (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *,id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull, NSInteger))completionHandler {
     void (^adapter)(NSInteger, NSArray *, NSOrthography *, NSInteger);
-    __weak id weakSelf = self;
     adapter = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount)
     {
-        NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
+        NSArray *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);
     };
     
