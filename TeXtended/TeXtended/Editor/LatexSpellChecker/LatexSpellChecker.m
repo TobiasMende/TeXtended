@@ -14,7 +14,7 @@ LOGGING_DEFAULT
 
 @interface LatexSpellChecker ()
 
-    - (NSArray *)removeLatexResultsFrom:(NSArray *)results inContext:(NSString *)content;
+    - (NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(NSArray<NSTextCheckingResult *> * _Nonnull)results inContext:(NSString *)content;
 
     - (NSString *)descriptionForResultType:(NSTextCheckingType)type;
 @end
@@ -31,7 +31,7 @@ LOGGING_DEFAULT
     void (^adapter)(NSInteger, NSArray *, NSOrthography *, NSInteger);
     adapter = ^(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> * _Nonnull tmpResults, NSOrthography * _Nonnull orthography, NSInteger wordCount)
     {
-        NSArray *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
+        NSArray<NSTextCheckingResult *> *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);
     };
     
@@ -40,9 +40,9 @@ LOGGING_DEFAULT
 
 # pragma mark - Private Methods
 
-    - (NSArray *)removeLatexResultsFrom:(NSArray *)results inContext:(NSString *)content
+    - (NSArray<NSTextCheckingResult *> *)removeLatexResultsFrom:(NSArray<NSTextCheckingResult *> * _Nonnull)results inContext:(NSString *)content
     {
-        NSMutableArray *finalResults = [NSMutableArray arrayWithCapacity:results.count];
+        NSMutableArray<NSTextCheckingResult *> *finalResults = [NSMutableArray arrayWithCapacity:results.count];
         if (!prefixesToIgnore) {
             NSString *strings = [NSString                           stringWithContentsOfFile:[[NSBundle mainBundle]
                     pathForResource:@"SpellCheckerPrefixesToIgnore" ofType:@"list"] encoding:NSUTF8StringEncoding error:NULL];
