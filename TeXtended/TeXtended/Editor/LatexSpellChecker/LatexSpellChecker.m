@@ -23,7 +23,8 @@ LOGGING_DEFAULT
 @implementation LatexSpellChecker
 
 - (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *, id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^ _Nullable)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull, NSInteger))completionHandler{
-    void (^adapter)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull, NSInteger);
+    void (^adapter)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull
+                    , NSInteger);
     adapter = ^(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> *tmpResults, NSOrthography *orthography, NSInteger wordCount) {
         NSArray<NSTextCheckingResult *> *results = [self removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);

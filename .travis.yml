@@ -3,13 +3,7 @@ xcode_image: xcode7.1
 xcode_workspace: TMTProject.xcworkspace
 xcode_scheme: TeXtended
 env: CONFIGURATION_BUILD_DIR='.'
-
-before_script:
-  - brew update
-  - brew outdated xctool || brew upgrade xctool
-  - gem install cocoapods
 script: 
-  - pod install
   - xctool -workspace TMTProject.xcworkspace -scheme TeXtended -configuration Release  build archive -archivePath "Build"
 before_deploy:
   - cd "Build.xcarchive/Products/Applications"
