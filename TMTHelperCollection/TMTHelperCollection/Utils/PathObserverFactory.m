@@ -9,7 +9,7 @@
 #import "PathObserverFactory.h"
 #import "TMTLog.h"
 
-LOGGING(LOG_LEVEL_NOTICE)
+LOGGING(DDLogLevelDebug)
 
 static NSMutableDictionary *PATH_OBSERVER_DICTIONARY;
 
@@ -241,7 +241,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
     - (void)dealloc
     {
-        DDLogTrace(@"%@", filePath);
+        DDLogVerbose(@"%@", filePath);
         FSEventStreamStop(stream);
         FSEventStreamInvalidate(stream);
 

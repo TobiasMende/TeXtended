@@ -7,7 +7,3 @@
 //
 
 #import "TMTBibTexTools.h"
-
-@implementation TMTBibTexTools
-
-@end

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TemplatePlaceholderController">
@@ -12,17 +13,18 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" borderType="line" titlePosition="noTitle" id="RJK-Cd-WCr">
-            <rect key="frame" x="0.0" y="0.0" width="156" height="206"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" id="RJK-Cd-WCr">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <view key="contentView">
-                <rect key="frame" x="1" y="1" width="154" height="204"/>
+            <view key="contentView" id="jte-Se-M9I">
+                <rect key="frame" x="1" y="1" width="148" height="198"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="P96-xQ-FmY">
-                        <rect key="frame" x="2" y="14" width="144" height="17"/>
+                        <rect key="frame" x="2" y="8" width="144" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="jqm-EV-zSE">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -34,8 +36,9 @@
                         </connections>
                     </textField>
                     <customView wantsLayer="YES" id="4LJ-UE-kOx" customClass="TMTQuickLookView">
-                        <rect key="frame" x="18" y="39" width="118" height="150"/>
+                        <rect key="frame" x="18" y="33" width="118" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <animations/>
                         <connections>
                             <binding destination="-2" name="hidden" keyPath="self.representedObject.hasPreviewPDF" id="Yh8-23-nSy">
                                 <dictionary key="options">
@@ -45,8 +48,9 @@
                         </connections>
                     </customView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="T4S-jH-TGB">
-                        <rect key="frame" x="16" y="39" width="122" height="150"/>
+                        <rect key="frame" x="16" y="33" width="122" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="bAK-IE-tHW">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +66,9 @@
                         </connections>
                     </textField>
                 </subviews>
+                <animations/>
             </view>
+            <animations/>
             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
             <color key="fillColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
             <connections>

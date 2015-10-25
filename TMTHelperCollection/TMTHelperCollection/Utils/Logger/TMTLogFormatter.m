@@ -35,60 +35,54 @@ NSUInteger MAX_CLASS_NAME_LENGTH = 20;
     - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
     {
         NSString *logLevel;
-        switch (logMessage->logFlag) {
-            case LOG_FLAG_FATAL:
-                logLevel = @"FATAL\t";
-                break;
-            case LOG_FLAG_ERROR :
+        switch (logMessage->_flag) {
+            case DDLogFlagError:
                 logLevel = @"ERROR\t";
                 break;
-            case LOG_FLAG_WARN  :
+            case DDLogFlagWarning  :
                 logLevel = @"WARN\t";
                 break;
-            case LOG_FLAG_NOTICE :
-                logLevel = @"NOTICE\t";
-                break;
-            case LOG_FLAG_INFO  :
+            case DDLogFlagInfo  :
                 logLevel = @"INFO\t";
                 break;
-            case LOG_FLAG_DEBUG :
+            case DDLogFlagDebug :
                 logLevel = @"DEBUG\t";
                 break;
-            case LOG_FLAG_TRACE  :
-                logLevel = @"TRACE\t";
+            case DDLogFlagVerbose  :
+                logLevel = @"VERBOSE\t";
                 break;
             default             :
                 logLevel = @"UNKNOWN\t";
                 break;
         }
 
-        NSString *tmp = [NSString stringWithFormat:@"%s", logMessage->file];
+        NSString *tmp = [NSString stringWithFormat:@"%@", logMessage->_file];
         NSString *file = [[tmp lastPathComponent] stringByDeletingPathExtension];
         
 
 
         NSString *output;
         if (self.extended) {
-            if (logMessage->threadName.length > 0) {
-                output = [NSString stringWithFormat:@"%@ - %@| %@.%s (%@) | %@", logMessage->timestamp, logLevel, file, logMessage->function, logMessage->threadName, logMessage->logMsg];
+            if (logMessage->_threadName.length > 0) {
+                output = [NSString stringWithFormat:@"%@ - %@| %@.%@ (%@) | %@", logMessage->_timestamp, logLevel, file, logMessage->_function, logMessage->_threadName, logMessage->_message];
             } else {
-                output = [NSString stringWithFormat:@"%@ - %@| %@.%s | %@", logMessage->timestamp, logLevel, file, logMessage->function, logMessage->logMsg];
+                output = [NSString stringWithFormat:@"%@ - %@| %@.%@ | %@", logMessage->_timestamp, logLevel, file, logMessage->_function, logMessage->_message];
             }
         } else {
             NSString *classPart;
-            if (logMessage->logFlag == LOG_FLAG_TRACE) {
-                file = [file stringByAppendingFormat:@" %s [%d]", logMessage->function, logMessage->lineNumber];
+            if (logMessage->_flag == DDLogFlagVerbose) {
+                file = [file stringByAppendingFormat:@" %@ [%li]", logMessage->_function, logMessage->_line];
             }
-            if (logMessage->threadName.length > 0) {
-                classPart = [NSString stringWithFormat:@"%@ (%@)", file, logMessage->threadName];
+            if (logMessage->_threadName.length > 0) {
+                classPart = [NSString stringWithFormat:@"%@ (%@)", file, logMessage->_threadName];
             } else {
                 classPart = file;
             }
-             if (logMessage->logFlag != LOG_FLAG_TRACE) {
+             if (logMessage->_flag != DDLogFlagVerbose) {
             [TMTLogFormatter updateMaxLength:classPart.length];
             classPart = [TMTLogFormatter extendClassPart:classPart];
              }
-            output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel, classPart, logMessage->logMsg];
+            output = [NSString stringWithFormat:@"%@| %@ | %@", logLevel, classPart, logMessage->_message];
         }
 
         return output;

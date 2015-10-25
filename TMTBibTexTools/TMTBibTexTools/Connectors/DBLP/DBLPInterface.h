@@ -17,16 +17,10 @@
  **Author:** Tobias Mende
  
  */
-@interface DBLPInterface : NSObject <NSURLConnectionDataDelegate, NSXMLParserDelegate>
+@interface DBLPInterface : NSObject <NSXMLParserDelegate>
     {
-        NSMutableData *receivedAuthorData;
 
-        NSMutableData *receivedKeyData;
-
-        NSURLConnection *authorConnection;
-
-        NSURLConnection *dblpKeyConnection;
-
+        NSURLSessionDataTask *receiveTask;
         DBLPConfiguration *config;
 
     }

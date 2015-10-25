@@ -24,7 +24,6 @@
 #import "StartScreenWindowController.h"
 #import "CompileFlowMerger.h"
 
-LOGGING_DEFAULT
 
 @interface ApplicationController ()
 
@@ -350,7 +349,7 @@ LOGGING_DEFAULT
             TMT_EDITOR_FONT_SIZE : @12.0f,
             TMT_EDITOR_FONT_ITALIC : @NO,
             TMT_EDITOR_FONT_BOLD : @NO,
-            TMT_LOG_LEVEL_KEY : @(LOG_LEVEL_WARN),
+            TMT_LOG_LEVEL_KEY : @(DDLogLevelWarning),
             TMTGridColor : [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
             TMTGridUnit : @"pt",
             TMTdrawHGrid : @NO,

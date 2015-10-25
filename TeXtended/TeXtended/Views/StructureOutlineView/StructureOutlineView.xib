@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <deployment version="1090" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StructureOutlineViewController">
@@ -21,7 +21,9 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" viewBased="YES" id="lvc-XH-Rgx" customClass="TMTTableView">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <size key="intercellSpacing" width="3" height="2"/>
                         <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -46,6 +48,7 @@
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d3B-DP-8jM">
                                                 <rect key="frame" x="0.0" y="1" width="14" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <animations/>
                                                 <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="bZV-IB-qqE"/>
                                                 <connections>
                                                     <binding destination="Glg-Gr-zoy" name="value" keyPath="image" id="DAi-vo-kqn">
@@ -58,6 +61,7 @@
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="AHI-3y-uAV">
                                                 <rect key="frame" x="19" y="0.0" width="277" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <animations/>
                                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="lQl-Vh-F7f">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -70,6 +74,7 @@
                                                 </connections>
                                             </textField>
                                         </subviews>
+                                        <animations/>
                                         <connections>
                                             <outlet property="textField" destination="AHI-3y-uAV" id="yKM-Wl-J9Y"/>
                                         </connections>
@@ -91,14 +96,18 @@
                         </connections>
                     </tableView>
                 </subviews>
+                <animations/>
                 <nil key="backgroundColor"/>
             </clipView>
-            <scroller key="horizontalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="YES" id="cOp-NZ-2gi">
+            <animations/>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cOp-NZ-2gi">
                 <autoresizingMask key="autoresizingMask"/>
+                <animations/>
             </scroller>
-            <scroller key="verticalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="NO" id="YPx-5a-3hY">
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="YPx-5a-3hY">
                 <rect key="frame" x="224" y="17" width="15" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <animations/>
             </scroller>
         </scrollView>
         <arrayController objectClassName="OutlineElement" editable="NO" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="hhk-Fo-W17">

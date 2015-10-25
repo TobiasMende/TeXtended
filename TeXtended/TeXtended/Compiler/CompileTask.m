@@ -11,6 +11,7 @@
 #import "CompileSetting.h"
 #import "CompileTaskDelegate.h"
 #import "CompilerArgumentBuilder.h"
+
 #import <TMTHelperCollection/TMTLog.h>
 
 LOGGING_DEFAULT_DYNAMIC
@@ -35,10 +36,10 @@ LOGGING_DEFAULT_DYNAMIC
 @end
 
 @implementation CompileTask {
-    DocumentModel *model;
-    ConsoleData *data;
-    id <CompileTaskDelegate> delegate;
-    NSTask *compileTask;
+    DocumentModel *_model;
+    ConsoleData *_data;
+    id <CompileTaskDelegate> _delegate;
+    NSTask *_compileTask;
 }
 
 + (void)initialize {
@@ -48,10 +49,10 @@ LOGGING_DEFAULT_DYNAMIC
 - (id)initWithDocument:(DocumentModel *)model forMode:(CompileMode)mode withDelegate:(id <CompileTaskDelegate>)delegate {
     self = [super init];
     if (self) {
-        self->model = model;
-        self->delegate = delegate;
-        self->compileTask = [NSTask new];
-        self->data = [self consoleData:model forMode:mode];
+        self->_model = model;
+        self->_delegate = delegate;
+        self->_compileTask = [NSTask new];
+        self->_data = [self consoleData:model forMode:mode];
     }
     return self;
 }
@@ -64,24 +65,24 @@ LOGGING_DEFAULT_DYNAMIC
 }
 
 - (BOOL)isRunning {
-    return compileTask.running;
+    return _compileTask.running;
 }
 
 - (void)abort {
     if (self.isRunning) {
-        [compileTask terminate];
+        [_compileTask terminate];
         if (self.isRunning) {
-            [compileTask interrupt];
+            [_compileTask interrupt];
         }
     }
 }
 
 - (BOOL)shouldOpenPDF {
-    return data.compileMode == final && [data.model.openOnExport boolValue];
+    return _data.compileMode == final && [_data.model.openOnExport boolValue];
 }
 
 - (NSString *)pdfPath {
-    return model.pdfPath;
+    return _model.pdfPath;
 }
 
 - (void)execute {
@@ -99,33 +100,33 @@ LOGGING_DEFAULT_DYNAMIC
 
 - (void)configureTerminationHandler {
     __weak id weakSelf = self;
-    [compileTask setTerminationHandler:^(NSTask *task) {
+    [_compileTask setTerminationHandler:^(NSTask *task) {
         [weakSelf finishedCompilationTask];
     }];
 }
 
 - (void)configureArguments {
-    CompilerArgumentBuilder *argumentBuilder = [[CompilerArgumentBuilder alloc] initWithData:data];
-    [compileTask setArguments:[argumentBuilder build]];
+    CompilerArgumentBuilder *argumentBuilder = [[CompilerArgumentBuilder alloc] initWithData:_data];
+    [_compileTask setArguments:[argumentBuilder build]];
 }
 
 - (void)configureCompilerPath {
-    NSString *path = [[CompileFlowHandler path] stringByAppendingPathComponent:[data.compileSetting compilerPath]];
-    [compileTask setLaunchPath:path];
+    NSString *path = [[CompileFlowHandler path] stringByAppendingPathComponent:[_data.compileSetting compilerPath]];
+    [_compileTask setLaunchPath:path];
 }
 
 - (void)configurePipes {
     NSPipe *outPipe = [NSPipe pipe];
     NSPipe *inPipe = [NSPipe pipe];
     if (!outPipe || !inPipe) {
-        DDLogError(@"One of the pipes could not be initialized. Aborting compile for model %@", model);
+        DDLogError(@"One of the pipes could not be initialized. Aborting compile for model %@", _model);
         return;
     }
 
-    model.consoleOutputPipe = outPipe;
-    model.consoleInputPipe = inPipe;
-    [compileTask setStandardOutput:model.consoleOutputPipe];
-    [compileTask setStandardInput:model.consoleInputPipe];
+    _model.consoleOutputPipe = outPipe;
+    _model.consoleInputPipe = inPipe;
+    [_compileTask setStandardOutput:_model.consoleOutputPipe];
+    [_compileTask setStandardInput:_model.consoleInputPipe];
 }
 
 - (void)configureEnvironment {
@@ -133,7 +134,7 @@ LOGGING_DEFAULT_DYNAMIC
     environment[@"max_print_line"] = @"1000";
     environment[@"error_line"] = @"254";
     environment[@"half_error_line"] = @"238";
-    [compileTask setEnvironment:environment];
+    [_compileTask setEnvironment:environment];
 }
 
 - (void)tryToStartCompilation {
@@ -146,36 +147,36 @@ LOGGING_DEFAULT_DYNAMIC
 }
 
 - (void)startCompilation {
-    [delegate compilationStarted:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
+    [_delegate compilationStarted:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:_model];
     [self updateDataOnStart];
-    [compileTask launch];
+    [_compileTask launch];
 }
 
 - (void)failCompilation:(NSException *)exception {
     DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", exception, exception.reason, exception.name);
     DDLogDebug(@"%@", [NSThread callStackSymbols]);
     [self updateDataOnEnd];
-    [delegate compilationFailed:self];
+    [_delegate compilationFailed:self];
 }
 
 - (void)finishedCompilationTask {
     TMT_TRACE
     [self updateDataOnEnd];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
-    [delegate compilationFinished:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:_model];
+    [_delegate compilationFinished:self];
 }
 
 - (void)updateDataOnStart {
-    data.compileRunning = YES;
-    data.consoleActive = YES;
-    model.isCompiling = YES;
+    _data.compileRunning = YES;
+    _data.consoleActive = YES;
+    _model.isCompiling = YES;
 }
 
 - (void)updateDataOnEnd {
-    model.isCompiling = NO;
-    model.lastCompile = [NSDate new];
-    data.compileRunning = NO;
+    _model.isCompiling = NO;
+    _model.lastCompile = [NSDate new];
+    _data.compileRunning = NO;
 }
 
 @end

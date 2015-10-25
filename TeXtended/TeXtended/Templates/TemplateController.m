@@ -129,7 +129,10 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (IBAction)deleteCategory:(id)sender
     {
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Are you sure to delete the category? All contained templates will be deleted.", @"Are you sure to delete the category? All contained templates will be deleted.") defaultButton:NSLocalizedString(@"Remove", @"Remove Button") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:nil informativeTextWithFormat:@""];
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Are you sure to delete the category? All contained templates will be deleted.", @"Are you sure to delete the category? All contained templates will be deleted.");
+        [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Remove")];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
         NSModalResponse response = [alert runModal];
         if (response == NSAlertDefaultReturn) {
             NSFileManager *fm = [NSFileManager defaultManager];
@@ -143,7 +146,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     - (void)openSavePanelForWindow:(NSWindow *)window
     {
         self.isSaving = YES;
-        [NSApp beginSheet:self.window modalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        [window beginSheet:self.window completionHandler:nil];
     }
 
     - (void)openLoadWindow
@@ -154,7 +157,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (IBAction)cancel:(id)sender
     {
-        [NSApp endSheet:self.window];
+        [self.window endSheet:self.window];
         [self close];
         self.sheet = nil;
         if (self.saveHandler) {
@@ -167,14 +170,14 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (void)cancelSave:(id)sender
     {
-        [NSApp endSheet:self.sheet];
+        [self.window endSheet:self.sheet];
         [self.sheet close];
         self.sheet = nil;
     }
 
     - (IBAction)load:(id)sender
     {
-        Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
+        Template *template = self.currentTemplates[self.currentTemplatesView.selectionIndexes.firstIndex];
         self.loadHandler(template, YES);
         [self close];
     }
@@ -183,7 +186,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     {
         NSIndexSet *selection = [self.currentTemplatesView selectionIndexes];
         NSUInteger index = selection.firstIndex == NSNotFound ? 0 : selection.firstIndex;
-        id item = [self.currentTemplates objectAtIndex:index];
+        id item = self.currentTemplates[index];
         if ([item isKindOfClass:[Template class]]) {
             Template *template = (Template *) item;
             self.templateName = template.name;
@@ -193,22 +196,22 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             self.overrideAllowed = NO;
         }
         if (!self.sheet) {
-            [NSBundle loadNibNamed:@"AddNewTemplateWindow" owner:self];
+            [[NSBundle mainBundle] loadNibNamed:@"AddNewTemplateWindow" owner:self topLevelObjects:NULL];
         }
-        [NSApp beginSheet:self.sheet modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:NULL];
+        [self.window beginSheet:self.sheet completionHandler:nil];
     }
 
     - (void)finallySave:(id)sender
     {
         Template *template = [Template new];
-        template.category = [self.categories objectAtIndex:self.categoriesController.selectionIndex][@"value"];
+        template.category = self.categories[self.categoriesController.selectionIndex][@"value"];
         template.info = self.templateDescription ? self.templateDescription : @"";
         template.name = self.templateName;
 
-        [NSApp endSheet:self.sheet];
+        [self.window endSheet:self.sheet];
         [self.sheet close];
         self.sheet = nil;
-        [NSApp endSheet:self.window];
+        [self.window endSheet:self.window];
         [self.window close];
         self.saveHandler(template, YES);
 
@@ -216,19 +219,23 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (NSString *)currentCategoryPath
     {
-        NSString *category = [self.categories objectAtIndex:self.categoriesController.selectionIndex][@"value"];
+        NSString *category = self.categories[self.categoriesController.selectionIndex][@"value"];
         return [[TemplateController templateDirectory] stringByAppendingPathComponent:category];
     }
 
     - (IBAction)removeTemplate:(id)sender
     {
-        Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
+        Template *template = self.currentTemplates[self.currentTemplatesView.selectionIndexes.firstIndex];
         if (template) {
-            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure to delete the template %@", @"Are you sure to delete the template [template name]"), template.name] defaultButton:NSLocalizedString(@"Remove", @"Remove Button") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:nil informativeTextWithFormat:@""];
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = [NSString stringWithFormat:NSLocalizedString(@"Are you sure to delete the template %@", @"Are you sure to delete the template [template name]"), template.name];
+            [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Remove")];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+
             NSModalResponse response = [alert runModal];
             if (response == NSAlertDefaultReturn) {
                 if ([template remove:NULL]) {
-                    [self tableViewSelectionDidChange:nil];
+                    [self updateSelectionModel];
                 }
             }
         } else {
@@ -241,7 +248,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         NSUInteger index = self.currentTemplatesView.selectionIndexes.firstIndex;
         BOOL nameUnchanged = NO;
         if (index > 0 && index != NSNotFound) {
-            Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
+            Template *template = self.currentTemplates[self.currentTemplatesView.selectionIndexes.firstIndex];
             nameUnchanged = [self.templateName isEqualToString:template.name];
         }
         return !self.templateExists || nameUnchanged;
@@ -250,7 +257,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
     - (IBAction)editTemplate:(id)sender
     {
         NSUInteger index = self.currentTemplatesView.selectionIndexes.firstIndex;
-        Template *template = [self.currentTemplates objectAtIndex:index];
+        Template *template = self.currentTemplates[index];
         self.templateName = template.name;
         self.templateDescription = template.info;
         editPopover = [NSPopover new];
@@ -263,7 +270,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (void)saveEditTemplate:(id)sender
     {
-        Template *template = [self.currentTemplates objectAtIndex:self.currentTemplatesView.selectionIndexes.firstIndex];
+        Template *template = self.currentTemplates[self.currentTemplatesView.selectionIndexes.firstIndex];
         template.info = self.templateDescription;
         [template save:NULL];
         NSError *error = nil;
@@ -324,8 +331,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         [self.currentTemplatesView setAllowsMultipleSelection:NO];
         [self.categoriesView registerForDraggedTypes:@[NSURLPboardType]];
         [self.currentTemplatesView registerForDraggedTypes:@[NSURLPboardType]];
-        [self tableViewSelectionDidChange:nil];
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        [self updateSelectionModel];
     }
 
 
@@ -333,19 +339,23 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
 
     - (void)tableViewSelectionDidChange:(NSNotification *)notification
     {
-        NSUInteger index = self.categoriesController.selectionIndex;
-        if (index == NSNotFound) {
-            return;
-        }
-        NSString *category = index == 0 ? nil : [self.categories objectAtIndex:index][@"value"];
-        [self loadTemplatesFromCategory:category];
+        [self updateSelectionModel];
     }
 
+- (void)updateSelectionModel {
+    NSUInteger index = self.categoriesController.selectionIndex;
+    if (index == NSNotFound) {
+        return;
+    }
+    NSString *category = index == 0 ? nil : self.categories[index][@"value"];
+    [self loadTemplatesFromCategory:category];
+}
 
-    - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
     {
         NSString *newName = fieldEditor.string;
-        NSString *oldName = [self.categories objectAtIndex:self.categoriesController.selectionIndex][@"value"];
+        NSString *oldName = self.categories[self.categoriesController.selectionIndex][@"value"];
         NSFileManager *fm = [NSFileManager defaultManager];
         if ([fm directoryExistsAtPath:[[TemplateController templateDirectory] stringByAppendingPathComponent:newName]]) {
             return NO;
@@ -375,7 +385,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
                 [categoriesToShow addObject:dict[@"value"]];
             }
         } else {
-            categoriesToShow = [NSMutableArray arrayWithObject:category];
+            categoriesToShow = [@[category] mutableCopy];
         }
 
         for (NSString *categoryName in categoriesToShow) {
@@ -443,13 +453,13 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         NSPasteboard *pb = info.draggingPasteboard;
         NSArray *urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
                                           options:nil];
-        Template *tmpl = [self.currentTemplates objectAtIndex:index];
+        Template *tmpl = self.currentTemplates[index];
         if (!tmpl) {
             return NO;
         }
         if (urls.count == 1 && [[urls.firstObject pathExtension].lowercaseString isEqualToString:@"pdf"]) {
             if ([tmpl replacePreviewPdf:[urls.firstObject path]]) {
-                [self tableViewSelectionDidChange:nil];
+                [self updateSelectionModel];
                 return YES;
             }
             return NO;
@@ -461,9 +471,12 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             BOOL shouldWrite = YES;
             NSString *destPath = [tmpl.contentPath stringByAppendingPathComponent:name];
             if ([fm fileExistsAtPath:destPath]) {
-                NSAlert *override = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"File %@ exists. Do you wan't to overwrite it?", @"File [file name] exists. Do you wan't to overwrite it?"), name] defaultButton:NSLocalizedString(@"Override", @"Override") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:nil informativeTextWithFormat:@""];
-                override.alertStyle = NSWarningAlertStyle;
-                if ([override runModal] == NSModalResponseOK) {
+                NSAlert *alert = [NSAlert new];
+                alert.messageText = [NSString stringWithFormat:NSLocalizedString(@"File %@ exists. Do you wan't to overwrite it?", @"File [file name] exists. Do you wan't to overwrite it?"), name];
+                [alert addButtonWithTitle:NSLocalizedString(@"Override", @"Override")];
+                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+                alert.alertStyle = NSWarningAlertStyle;
+                if ([alert runModal] == NSModalResponseOK) {
                     [fm removeItemAtPath:destPath error:NULL];
                 } else {
                     shouldWrite = NO;
@@ -514,7 +527,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             return NO;
         }
 
-        NSString *category = [self.categories objectAtIndex:row][@"value"];
+        NSString *category = self.categories[(NSUInteger) row][@"value"];
         NSPasteboard *pb = [info draggingPasteboard];
         NSArray *urls = [pb readObjectsForClasses:[NSArray arrayWithObject:[NSURL class]]
                                           options:nil];
@@ -537,7 +550,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
             }
         }
         if (success) {
-            [self tableViewSelectionDidChange:nil];
+            [self updateSelectionModel];
         }
         return success;
     }
@@ -564,7 +577,7 @@ static NSString *TMTTemplateTypeKey = @"TMTTemplateTypeKey";
         }
 
         NSFileManager *fm = [NSFileManager defaultManager];
-        NSString *category = [self.categories objectAtIndex:row][@"value"];
+        NSString *category = self.categories[(NSUInteger) row][@"value"];
         if (category) {
             for (NSURL *url in final) {
                 if ([fm fileExistsAtPath:[[[TemplateController templateDirectory] stringByAppendingPathComponent:category] stringByAppendingPathComponent:url.lastPathComponent]]) {

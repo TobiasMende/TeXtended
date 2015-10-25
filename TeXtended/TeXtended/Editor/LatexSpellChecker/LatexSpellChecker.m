@@ -30,26 +30,22 @@ LOGGING_DEFAULT
         return self;
     }
 
-
-    - (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray *, NSOrthography *, NSInteger))callersHandler
+- (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *,id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> *results, NSOrthography *orthography, NSInteger wordCount))completionHandler {
+    void (^adapter)(NSInteger, NSArray *, NSOrthography *, NSInteger);
+    
+    adapter = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount)
     {
+        
+        
+        NSArray *results = [self->weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
+        
+        
+        completionHandler(sequenceNumber, results, orthography, wordCount);
+    };
+    
+    return [super requestCheckingOfString:stringToCheck range:range types:checkingTypes options:options inSpellDocumentWithTag:tag completionHandler:adapter];
 
-        void (^completionHandler)(NSInteger, NSArray *, NSOrthography *, NSInteger);
-
-        completionHandler = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount)
-        {
-
-
-            NSArray *results = [self->weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
-
-
-            callersHandler(sequenceNumber, results, orthography, wordCount);
-        };
-
-        return [super requestCheckingOfString:stringToCheck range:range types:checkingTypes options:options inSpellDocumentWithTag:tag completionHandler:completionHandler];
-    }
-
-
+}
 
 # pragma mark - Private Methods
 

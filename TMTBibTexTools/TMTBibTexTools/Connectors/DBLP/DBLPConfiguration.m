@@ -30,7 +30,9 @@ static const NSString *BIBTEX_SEARCH_APPENDIX_KEY = @"bibtexSearchAppendix";
     {
         self = [super init];
         if (self) {
-            NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"DBLPConfiguration" ofType:@"plist"]];
+            NSBundle* classBundle = [NSBundle bundleForClass:[DBLPConfiguration class]];
+            NSString *path = [classBundle pathForResource:@"DBLPConfiguration" ofType:@"plist"];
+            NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:path];
             self.server = config[SERVER_KEY];
             self.authorSearchAppendix = config[AUTHOR_SEARCH_APPENDIX_KEY];
             self.keySearchAppendix = config[KEY_SEARCH_APPENDIX_KEY];

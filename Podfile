@@ -5,18 +5,25 @@ xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
 xcodeproj 'MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj'
 xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
 
-platform :osx, '10.7'
+platform :osx, '10.9'
 
 target :TMTHelperCollection do
     xcodeproj 'TMTHelperCollection/TMTHelperCollection.xcodeproj'
-	pod 'CocoaLumberjack', '1.9.1'
+	pod 'CocoaLumberjack'
 end
 
 target :TMTBibTexTools do
     xcodeproj 'TMTBibTexTools/TMTBibTexTools.xcodeproj'
-	pod 'CocoaLumberjack', '1.9.1'
+	pod 'CocoaLumberjack'
 	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 end
+target :DBLPTool do
+    xcodeproj 'TMTBibTexTools/TMTBibTexTools.xcodeproj'
+  pod 'TMTBibTexTools', :path => './TMTBibTexTools'
+	pod 'CocoaLumberjack'
+	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
+end
+
 
 target :TMTLatexTableExample do
     xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
@@ -25,13 +32,13 @@ end
 
 target :TMTLatexTableFramework do
     xcodeproj 'TMTLatexTableFramework/TMTLatexTableFramework.xcodeproj'
-    pod 'CocoaLumberjack', '1.9.1'
+    pod 'CocoaLumberjack'
 	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 end
 
 target :TeXtended do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
-	pod 'CocoaLumberjack', '1.9.1'
+	pod 'CocoaLumberjack'
     pod 'DMInspectorPalette', '0.0.1'
     pod 'OTMXAttribute', '0.0.3'
     pod 'JSONKit-NoWarning', '1.2'

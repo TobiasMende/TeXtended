@@ -64,7 +64,7 @@ static const NSArray *GENERATOR_TYPES_TO_USE;
 
     - (void)dealloc
     {
-        DDLogTrace(@"%@", self.texPath);
+        DDLogVerbose(@"%@", self.texPath);
         [_filePresenter terminate];
         if (self.texPath && [[NSFileManager defaultManager] fileExistsAtPath:self.texPath]) {
             [self saveModelSpecificXAttributes];

@@ -18,12 +18,12 @@
 @end
 
 @implementation CompilerArgumentBuilder {
-    ConsoleData *data;
+    ConsoleData *_data;
 }
 - (id)initWithData:(ConsoleData *)data {
     self = [super init];
     if(self) {
-        self->data = data;
+        self->_data = data;
     }
     return self;
 }
@@ -37,19 +37,19 @@
 }
 
 - (void)addCompileSettingArguments:(NSMutableArray *)arguments {
-    [arguments addObject:data.compileSetting.numberOfCompiles.stringValue];
-    [arguments addObject:@(data.compileMode).stringValue];
-    [arguments addObject:data.compileSetting.compileBib.stringValue];
+    [arguments addObject:_data.compileSetting.numberOfCompiles.stringValue];
+    [arguments addObject:@(_data.compileMode).stringValue];
+    [arguments addObject:_data.compileSetting.compileBib.stringValue];
 }
 
 - (void)addCustomArgument:(NSMutableArray *)arguments {
-    if (data.compileSetting.customArgument && data.compileSetting.customArgument.length > 0) {
-        [arguments addObject:[NSString stringWithFormat:@"\"%@\"", data.compileSetting.customArgument]];
+    if (_data.compileSetting.customArgument && _data.compileSetting.customArgument.length > 0) {
+        [arguments addObject:[NSString stringWithFormat:@"\"%@\"", _data.compileSetting.customArgument]];
     }
 }
 
 - (void)addPathArguments:(NSMutableArray *)arguments {
-    [arguments addObject:[data.model.texPath stringByDeletingPathExtension]];
-    [arguments addObject:data.model.pdfPath];
+    [arguments addObject:[_data.model.texPath stringByDeletingPathExtension]];
+    [arguments addObject:_data.model.pdfPath];
 }
 @end

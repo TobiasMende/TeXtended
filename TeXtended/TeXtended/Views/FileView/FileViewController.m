@@ -56,7 +56,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
     - (void)dealloc
     {
-        DDLogTrace(@"%@", self.path);
+        DDLogVerbose(@"%@", self.path);
         [self.outlineView setViewController:nil];
         [self.document removeObserver:self forKeyPath:FILE_KEY_PATH.copy];
         [PathObserverFactory removeObserver:self];
@@ -225,7 +225,7 @@ static NSArray *INTERNAL_EXTENSIONS;
 
 - (NSResponder *)nextResponder {
     NSResponder *responder = [super nextResponder];
-    DDLogTrace(@"next responder: %@", responder);
+    DDLogVerbose(@"next responder: %@", responder);
     return responder;
 }
     - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item

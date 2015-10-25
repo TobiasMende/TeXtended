@@ -215,7 +215,7 @@ static const double MESSAGE_UPDATE_DELAY = 1.5;
 
     - (NSSet *)children
     {
-        return [NSSet setWithObject:nil];
+        return [NSSet new];
     }
 
     - (void)syncPDF:(DocumentModel *)model

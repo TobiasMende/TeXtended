@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Tobias Mende. All rights reserved.
 //
 
+#import <TMTHelperCollection/TMTLog.h>
 #import "AppDelegate.h"
 #import "DBLPSearchViewController.h"
 #import "BibtexWindowController.h"
+LOGGING_DEFAULT
 
 @implementation AppDelegate
 
@@ -23,6 +25,8 @@
 
     - (void)applicationWillFinishLaunching:(NSNotification *)notification
     {
+        [TMTLog customizeLogger];
+        TMT_TRACE
         self.controller = [DBLPSearchViewController new];
         [self.window setContentView:self.controller.view];
     }

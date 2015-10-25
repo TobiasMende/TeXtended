@@ -26,11 +26,7 @@
  **Author:** Tobias Mende
  
  */
-@interface TMTBibTexEntry : NSObject <NSURLConnectionDataDelegate>
-    {
-        /** The data received from the url provided on initialization */
-        NSMutableData *receivedData;
-    }
+@interface TMTBibTexEntry : NSObject
 
 /**
  Initializes the publication object by starting asynchronous fetching of bib informations from the DBLP server.

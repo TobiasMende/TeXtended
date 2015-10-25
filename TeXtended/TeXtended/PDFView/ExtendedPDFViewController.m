@@ -151,7 +151,7 @@ LOGGING_DEFAULT_DYNAMIC
                 NSURL *url = [NSURL fileURLWithPath:self.model.pdfPath];
                 PDFDocument *pdfDoc;
                 pdfDoc = [[PDFDocument alloc] initWithURL:url];
-                DDLogTrace(@"%@", self.model.texPath);
+                DDLogVerbose(@"%@", self.model.texPath);
                 [self.pdfView setDocument:pdfDoc];
                 // restore visible region
                 if (index != NSNotFound && index < pdfDoc.pageCount) {

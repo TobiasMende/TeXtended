@@ -82,44 +82,32 @@ LOGGING_DEFAULT
         return self;
     }
 
-    - (void)parseDocument:(NSURL *)url
+- (void)parseDocumentData:(NSData *)data
+{
+    NSError *parseError;
+    NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:data options:0 error:&parseError];
+    if (parseError) {
+        DDLogError(@"Can't parse doc. %@", [parseError userInfo]);
+    } else {
+        [self fetchGeneralInfos:doc];
+    }
+}
+
+- (void)parseDocument:(NSURL *)url
     {
         NSURLRequest *theRequest = [NSURLRequest requestWithURL:url
                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                 timeoutInterval:60.0];
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-
-        if (connection) {
-            // Create the NSMutableData to hold the received data.
-            // receivedData is an instance variable declared elsewhere.
-            receivedData = [NSMutableData data];
-        }
-    }
-
-#pragma mark - Networking
-
-    - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-    {
-        [receivedData setLength:0];
-
-    }
-
-    - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-    {
-        [receivedData appendData:data];
-
-    }
-
-    - (void)connectionDidFinishLoading:(NSURLConnection *)connection
-    {
-        NSError *error;
-        NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:receivedData options:0 error:&error];
-        if (error) {
-            DDLogError(@"Can't parse doc. %@", [error userInfo]);
-        } else {
-            [self fetchGeneralInfos:doc];
-        }
-
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if(error) {
+                DDLogError(@"Failed to request the data: %@", error.userInfo);
+            } else {
+                [self parseDocumentData:data];
+            }
+        }];
+        
+        [task resume];
     }
 
 # pragma mark Information Extraction
@@ -133,7 +121,10 @@ LOGGING_DEFAULT
         self.xml = e;
         self.type = e.name;
         self.key = [@"DBLP:" stringByAppendingString:[[e attributeForName:@"key"] stringValue]];
-        self.mdate = [NSDate dateWithString:[[e attributeForName:@"mdate"] stringValue]];
+        
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        self.mdate = [dateFormatter dateFromString:[[e attributeForName:@"mdate"] stringValue]];
 
     }
 

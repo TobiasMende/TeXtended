@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <deployment version="1090" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TexdocViewController">
@@ -21,13 +21,14 @@
             <subviews>
                 <scrollView canDrawConcurrently="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="23" horizontalPageScroll="10" verticalLineScroll="23" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                     <rect key="frame" x="0.0" y="0.0" width="485" height="107"/>
-                    <clipView key="contentView" misplaced="YES" drawsBackground="NO" id="Qm8-Gb-dQX">
-                        <rect key="frame" x="1" y="17" width="483" height="89"/>
+                    <clipView key="contentView" drawsBackground="NO" id="Qm8-Gb-dQX">
+                        <rect key="frame" x="0.0" y="0.0" width="485" height="107"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" headerView="19" id="17" customClass="TMTTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="483" height="23"/>
+                                <rect key="frame" x="0.0" y="0.0" width="485" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <animations/>
                                 <size key="intercellSpacing" width="3" height="1"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -77,23 +78,29 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <animations/>
                         <nil key="backgroundColor"/>
                     </clipView>
-                    <scroller key="horizontalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="YES" id="18">
+                    <animations/>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="18">
                         <rect key="frame" x="1" y="90" width="472" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="20">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="20">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="19">
-                        <rect key="frame" x="0.0" y="0.0" width="483" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="485" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </tableHeaderView>
                 </scrollView>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="90">
                     <rect key="frame" x="5" y="109" width="480" height="17"/>
+                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Dokumentation auswählen:" allowsEditingTextAttributes="YES" id="91">
                         <font key="font" metaFont="systemBold" size="12"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -118,6 +125,7 @@
                 <constraint firstItem="16" firstAttribute="top" secondItem="90" secondAttribute="bottom" constant="2" id="iNi-GF-79I"/>
                 <constraint firstItem="90" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="7" id="mu1-2m-rno"/>
             </constraints>
+            <animations/>
             <connections>
                 <outlet property="nextKeyView" destination="17" id="201"/>
             </connections>
@@ -126,8 +134,9 @@
             <rect key="frame" x="0.0" y="0.0" width="474" height="127"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="54">
+                <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="476" translatesAutoresizingMaskIntoConstraints="NO" id="54">
                     <rect key="frame" x="-3" y="55" width="480" height="17"/>
+                    <animations/>
                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" alignment="center" title="Es wurde keine Dokumentation für das Paket gefunden" id="55">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -140,15 +149,17 @@
                 <constraint firstItem="54" firstAttribute="centerY" secondItem="44" secondAttribute="centerY" id="TNt-rO-wpp"/>
                 <constraint firstItem="54" firstAttribute="centerX" secondItem="44" secondAttribute="centerX" id="vLk-6L-HVF"/>
             </constraints>
+            <animations/>
         </customView>
         <textFieldCell sendsActionOnEndEditing="YES" title="No matching document was found for this package" id="53">
             <font key="font" metaFont="system"/>
             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
         </textFieldCell>
-        <textField verticalHuggingPriority="750" id="46">
+        <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="229" id="46">
             <rect key="frame" x="0.0" y="0.0" width="233" height="42"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <animations/>
             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="No matching document was found for this package" id="47">
                 <font key="font" metaFont="systemBold"/>
                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

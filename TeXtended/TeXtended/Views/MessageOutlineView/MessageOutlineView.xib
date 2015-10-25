@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MessageOutlineViewController">
@@ -21,7 +21,9 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="34" rowSizeStyle="automatic" viewBased="YES" id="e3j-NY-kYF" customClass="TMTTableView">
+                        <rect key="frame" x="0.0" y="0.0" width="218" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <size key="intercellSpacing" width="3" height="2"/>
                         <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -46,6 +48,7 @@
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="IPy-23-yDB">
                                                 <rect key="frame" x="0.0" y="17" width="215" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <animations/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="64p-Ck-bW5">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -53,6 +56,7 @@
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
+                                        <animations/>
                                         <connections>
                                             <outlet property="textField" destination="IPy-23-yDB" id="GjS-A4-M04"/>
                                         </connections>
@@ -66,14 +70,18 @@
                         </connections>
                     </tableView>
                 </subviews>
+                <animations/>
                 <nil key="backgroundColor"/>
             </clipView>
-            <scroller key="horizontalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="YES" id="Noz-2L-f5V">
+            <animations/>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Noz-2L-f5V">
                 <rect key="frame" x="1" y="10" width="33" height="16"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <animations/>
             </scroller>
-            <scroller key="verticalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="NO" id="83I-50-WcM">
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="83I-50-WcM">
                 <autoresizingMask key="autoresizingMask"/>
+                <animations/>
             </scroller>
         </scrollView>
         <customObject id="bVc-BY-t5w" customClass="MessageDataSource">

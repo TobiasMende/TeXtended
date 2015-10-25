@@ -15,9 +15,9 @@ LOGGING_DEFAULT
 
 @interface DBLPInterface ()
 
-    - (void)finishAuthorsLoading;
+- (void)finishAuthorsLoading:(NSData *)authorData;
 
-    - (void)finishKeysLoading;
+- (void)finishKeysLoading:(NSData *)publicationData;
 @end
 
 @implementation DBLPInterface
@@ -34,115 +34,82 @@ LOGGING_DEFAULT
 
     - (void)searchAuthor:(NSString *)query
     {
-        NSString *total = [config.server stringByAppendingFormat:@"%@%@", config.authorSearchAppendix, [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        const NSString *stripedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString *total = [config.server stringByAppendingFormat:@"%@%@", config.authorSearchAppendix, stripedQuery];
         NSURL *url = [NSURL URLWithString:total];
         NSURLRequest *theRequest = [NSURLRequest requestWithURL:url
-                                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                    cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                 timeoutInterval:60.0];
-        if (authorConnection) {
-            [authorConnection cancel];
+
+        if(receiveTask) {
+            [receiveTask cancel];
         }
-        authorConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-        if (authorConnection) {
-            // Create the NSMutableData to hold the received data.
-            // receivedData is an instance variable declared elsewhere.
-            [self.handler startedFetchingAuthors:query];
-            receivedAuthorData = [NSMutableData data];
-        } else {
-            NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:@{@"description" : @"DBLP Connection failed"}];
-            [self.handler failedFetchingAuthors:error];
-            // Inform the user that the connection failed.
-        }
+        receiveTask = [[NSURLSession sharedSession] dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if([self isCancelled:error]) {
+                return;
+            }
+            if(error) {
+                DDLogError(@"DBLP Connection failed: %@", error.userInfo);
+                [self.handler failedFetchingAuthors:error];
+            } else {
+                [self finishAuthorsLoading:data];
+            }
+        }];
+        [self.handler startedFetchingAuthors:query];
+        [receiveTask resume];
     }
 
+- (BOOL)isCancelled:(NSError *)error {
+    return error && error.code == NSURLErrorCancelled;
+}
 
-    - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-    {
-        if ([connection isEqualTo:authorConnection]) {
-            [receivedAuthorData setLength:0];
-        } else if ([connection isEqualTo:dblpKeyConnection]) {
-            [receivedKeyData setLength:0];
+- (void)finishAuthorsLoading:(NSData *)authorData {
+    NSError *error;
+    NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:authorData options:0 error:&error];
+    NSMutableDictionary *results;
+    if (error) {
+        DDLogError(@"Can't fetch anything: %@", error);
+        [self.handler failedFetchingAuthors:error];
+    } else {
+        NSArray *a = [xml nodesForXPath:@"/authors/author" error:&error];
+        results = [NSMutableDictionary dictionaryWithCapacity:a.count];
+        for (NSXMLElement *node in a) {
+            NSString *urlpt = [[node attributeForName:@"urlpt"] stringValue];
+            results[urlpt] = [node stringValue];
+            [self.handler finishedFetchingAuthors:results];
+        }
+        if (a.count == 0) {
+            [self.handler finishedFetchingAuthors:results];
         }
     }
+}
 
-    - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-    {
-        if ([connection isEqualTo:authorConnection]) {
-            [receivedAuthorData appendData:data];
-        } else if ([connection isEqualTo:dblpKeyConnection]) {
-            [receivedKeyData appendData:data];
-        }
-    }
+- (void)finishKeysLoading:(NSData *)publicationData {
+    NSError *error;
+    NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:publicationData options:0 error:&error];
+    NSMutableArray *results;
 
-    - (void)connectionDidFinishLoading:(NSURLConnection *)connection
-    {
-        if ([connection isEqualTo:authorConnection]) {
-            authorConnection = nil;
-            [self finishAuthorsLoading];
-        } else if ([connection isEqualTo:dblpKeyConnection]) {
-            [self finishKeysLoading];
-        }
-    }
-
-    - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-    {
-        if ([connection isEqualTo:authorConnection]) {
-            authorConnection = nil;
-            [self.handler failedFetchingAuthors:error];
-        } else if ([connection isEqualTo:dblpKeyConnection]) {
-            [self.handler failedFetchingKeys:error];
-        }
-    }
-
-    - (void)finishAuthorsLoading
-    {
-        NSError *error;
-        NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:receivedAuthorData options:0 error:&error];
-        NSMutableDictionary *results;
+    if (error) {
+        DDLogError(@"Can't fetch anything: %@", error);
+        [self.handler failedFetchingKeys:error];
+    } else {
+        NSArray *a = [xml nodesForXPath:@"/dblpperson/dblpkey" error:&error];
+        results = [NSMutableArray arrayWithCapacity:a.count];
         if (error) {
-            DDLogError(@"Can't fetch anything: %@", error);
-            [self.handler failedFetchingAuthors:error];
-        } else {
-            NSArray *a = [xml nodesForXPath:@"/authors/author" error:&error];
-            results = [NSMutableDictionary dictionaryWithCapacity:a.count];
-            for (NSXMLElement *node in a) {
-                NSString *urlpt = [[node attributeForName:@"urlpt"] stringValue];
-                results[urlpt] = [node stringValue];
-                [self.handler finishedFetchingAuthors:results];
-            }
-            if (a.count == 0) {
-                [self.handler finishedFetchingAuthors:results];
+            DDLogError(@"Can't extract dblpkeys from xml: %@", [error userInfo]);
+        }
+        for (NSXMLElement *node in a) {
+            NSString *personRecord = [[node attributeForName:@"type"] stringValue];
+            if (!personRecord) {
+                NSString *appendix = [node stringValue];
+                NSString *bibUrl = [config.server stringByAppendingFormat:@"%@%@.xml", config.bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                TMTBibTexEntry *pub = [[TMTBibTexEntry alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
+                [results addObject:pub];
             }
         }
+        [self.handler finishedFetchingKeys:results];
     }
-
-    - (void)finishKeysLoading
-    {
-        NSError *error;
-        NSXMLDocument *xml = [[NSXMLDocument alloc] initWithData:receivedKeyData options:0 error:&error];
-        NSMutableArray *results;
-
-        if (error) {
-            DDLogError(@"Can't fetch anything: %@", error);
-            [self.handler failedFetchingKeys:error];
-        } else {
-            NSArray *a = [xml nodesForXPath:@"/dblpperson/dblpkey" error:&error];
-            results = [NSMutableArray arrayWithCapacity:a.count];
-            if (error) {
-                DDLogError(@"Can't extract dblpkeys from xml: %@", [error userInfo]);
-            }
-            for (NSXMLElement *node in a) {
-                NSString *personRecord = [[node attributeForName:@"type"] stringValue];
-                if (!personRecord) {
-                    NSString *appendix = [node stringValue];
-                    NSString *bibUrl = [config.server stringByAppendingFormat:@"%@%@.xml", config.bibtexSearchAppendix, [appendix stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                    TMTBibTexEntry *pub = [[TMTBibTexEntry alloc] initWithXMLUrl:[NSURL URLWithString:bibUrl]];
-                    [results addObject:pub];
-                }
-            }
-            [self.handler finishedFetchingKeys:results];
-        }
-    }
+}
 
 
     - (void)publicationsForAuthor:(NSString *)urlpt
@@ -152,20 +119,25 @@ LOGGING_DEFAULT
         NSURLRequest *theRequest = [NSURLRequest requestWithURL:url
                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                 timeoutInterval:60.0];
-        if (dblpKeyConnection) {
-            [dblpKeyConnection cancel];
+
+        if (receiveTask) {
+            [receiveTask cancel];
         }
-        dblpKeyConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-        if (dblpKeyConnection) {
-            // Create the NSMutableData to hold the received data.
-            // receivedData is an instance variable declared elsewhere.
-            [self.handler startedFetchingKeys:urlpt];
-            receivedKeyData = [NSMutableData data];
-        } else {
-            NSError *error = [NSError errorWithDomain:@"DBLP Connection failed" code:0 userInfo:@{@"description" : @"DBLP Connection failed"}];
-            [self.handler failedFetchingKeys:error];
-            // Inform the user that the connection failed.
-        }
+
+        NSURLSession *session = [NSURLSession sharedSession];
+        receiveTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if([self isCancelled:error]) {
+                return;
+            }
+            if(error) {
+                DDLogError(@"DBLP Connection failed: %@", error.userInfo);
+                [self.handler failedFetchingKeys:error];
+            } else {
+                [self finishKeysLoading:data];
+            }
+        }];
+        [self.handler startedFetchingKeys:urlpt];
+        [receiveTask resume];
     }
 
 
