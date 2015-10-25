@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'TMTBibTexTools'
-  s.version  = '0.1.0'
+  s.version  = '0.2.0'
   s.license  = 'MIT'
   s.summary  = "A pretty obscure library.
                 You've probably never heard of it."
@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.source_files = 'TMTBibTexTools/**/*.{h,m}'
   s.requires_arc = true
   s.resources  = 'TMTBibTexTools/**/*.{plist,png,xib,nib}'
-  s.dependency 'CocoaLumberjack', '>= 1.9.1' 
+  s.dependency 'CocoaLumberjack'
 end
