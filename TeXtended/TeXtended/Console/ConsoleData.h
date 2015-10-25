@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "CompileProcessHandler.h"
 
-@class DocumentModel, DocumentController;
+@class DocumentModel, DocumentController, CompileSetting;
 
 @interface ConsoleData : NSObject
     {
@@ -51,4 +51,6 @@
     - (void)refreshCompile;
 
     - (NSComparisonResult)compareConsoleData:(ConsoleData *)other;
+
+    - (CompileSetting *)compileSetting;
 @end

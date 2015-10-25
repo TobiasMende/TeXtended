@@ -8,20 +8,28 @@
 
 #import "Compiler.h"
 #import "DocumentModel.h"
-#import "CompileFlowHandler.h"
-#import "CompileSetting.h"
 #import "DocumentController.h"
 #import "TextViewController.h"
-#import <TMTHelperCollection/TMTLog.h>
-#import "ConsoleData.h"
-#import "ConsoleManager.h"
 #import "MainDocument.h"
+#import "CompileTask.h"
+
+#import <TMTHelperCollection/TMTLog.h>
 
 LOGGING_DEFAULT_DYNAMIC
 
 @interface Compiler ()
 
-    - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData *)data;
+- (void)compileAllDocuments:(CompileMode)mode;
+
+- (void)compileDocument:(DocumentModel *)model withMode:(CompileMode)mode;
+
+- (void)finish:(CompileTask *)compileTask;
+
+- (BOOL)shouldRestartLiveCompile;
+
+- (void)restartLiveCompilerTimer;
+
+- (BOOL)isLiveCompileActive;
 @end
 
 @implementation Compiler
@@ -30,148 +38,93 @@ LOGGING_DEFAULT_DYNAMIC
     LOGGING_LOAD
 }
 
-    - (id)initWithCompileProcessHandler:(id <CompileProcessHandler>)controller
-    {
-        self = [super init];
-        if (self) {
-            self.compileProcessHandler = controller;
-            currentTasks = [NSMutableSet new];
-            // get the settings and observe them
-            self.idleTimeForLiveCompile = 1.5;
+- (id)initWithCompileProcessHandler:(id <CompileProcessHandler>)controller {
+    self = [super init];
+    if (self) {
+        self.compileProcessHandler = controller;
+        currentTasks = [NSMutableSet new];
+        self.idleTimeForLiveCompile = 1.5;
+    }
+    return self;
+}
+
+- (void)compile:(CompileMode)mode {
+    [self.liveTimer invalidate];
+    self.dirty = NO;
+    [self abort];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
+    [self compileAllDocuments:mode];
+}
+
+- (void)compileAllDocuments:(CompileMode)mode {
+    NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
+    for (DocumentModel *model in mainDocuments) {
+        if (!model.texPath) {
+            continue;
         }
-        return self;
+        [self compileDocument:model withMode:mode];
+    }
+}
+
+- (void)compileDocument:(DocumentModel *)model withMode:(CompileMode)mode {
+    CompileTask *task = [[CompileTask alloc] initWithDocument:model forMode:mode withDelegate:self];
+    [currentTasks addObject:task];
+    [task execute];
+}
+
+- (void)finish:(CompileTask *)compileTask {
+    [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
+    [currentTasks removeObject:compileTask];
+}
+
+- (BOOL)shouldRestartLiveCompile {
+    return self.dirty && !self.isCompiling && self.compileProcessHandler.model.liveCompile.boolValue;
+}
+
+- (void)liveCompile {
+    if (self.compileProcessHandler.model.texPath) {
+        [self.compileProcessHandler liveCompile:nil];
+    }
+}
+
+- (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context {
+    if (self.compileProcessHandler.model.texPath) {
+        [self compile:live];
+    }
+}
+
+- (void)textDidChange:(NSNotification *)notification {
+    if (!self.isLiveCompileActive) {
+        return;
     }
 
-    - (void)compile:(CompileMode)mode
-    {
+    if (self.isCompiling) {
+        self.dirty = YES;
+        return;
+    }
+
+    [self restartLiveCompilerTimer];
+
+}
+
+- (void)restartLiveCompilerTimer {
+    if (self.liveTimer.valid) {
         [self.liveTimer invalidate];
-        self.dirty = NO;
-        [self abort];
-        NSArray *mainDocuments = [self.compileProcessHandler.model mainDocuments];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerWillStartCompilingMainDocuments object:self.compileProcessHandler.model];
-        for (DocumentModel *model in mainDocuments) {
-            if (!model.texPath) {
-                continue;
-            }
-
-            ConsoleData *console = [[ConsoleManager sharedConsoleManager] consoleForModel:model];
-            console.firstResponderDelegate = self.compileProcessHandler;
-            console.compileMode = mode;
-            console.compileRunning = YES;
-            console.consoleActive = YES;
-            model.isCompiling = YES;
-
-            CompileSetting *settings;
-            NSTask *currentTask = [[NSTask alloc] init];
-            NSPipe *outPipe = [NSPipe pipe];
-            NSPipe *inPipe = [NSPipe pipe];
-            if (!outPipe || !inPipe) {
-                DDLogError(@"One of the pipes could not be initialized. Aborting compile for model %@", model);
-                continue;
-            }
-            model.consoleOutputPipe = outPipe;
-            model.consoleInputPipe = inPipe;
-            [currentTask setStandardOutput:model.consoleOutputPipe];
-            [currentTask setStandardInput:model.consoleInputPipe];
-            NSString *path;
-
-            if (mode == draft) {
-                settings = [model draftCompiler];
-            } else if (mode == final) {
-                settings = [model finalCompiler];
-            } else if (mode == live) {
-                settings = [model liveCompiler];
-            }
-            path = [[CompileFlowHandler path] stringByAppendingPathComponent:[settings compilerPath]];
-            NSMutableDictionary *environment = [NSMutableDictionary dictionaryWithDictionary:[[NSProcessInfo processInfo] environment]];
-            environment[@"max_print_line"] = @"1000";
-            environment[@"error_line"] = @"254";
-            environment[@"half_error_line"] = @"238";
-            [currentTask setEnvironment:environment];
-            [currentTask setLaunchPath:path];
-            NSNumber *compileMode = [NSNumber numberWithInt:mode];
-            NSMutableArray *arguments = [NSMutableArray arrayWithObjects:[model.texPath stringByDeletingPathExtension], model.pdfPath, settings.numberOfCompiles.stringValue, compileMode.stringValue, settings.compileBib.stringValue, nil];
-            if (settings.customArgument && settings.customArgument.length > 0) {
-                [arguments addObject:[NSString stringWithFormat:@"\"%@\"", settings.customArgument]];
-            }
-            [currentTask setArguments:arguments];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
-            __unsafe_unretained id weakSelf = self;
-            [currentTask setTerminationHandler:^(NSTask *task)
-            {
-                [weakSelf finishedCompilationTask:task forData:console];
-                task.terminationHandler = nil;
-            }];
-            [self.compileProcessHandler.mainDocument incrementNumberOfCompilingDocuments];
-            [currentTasks addObject:currentTask];
-            @try {
-                [currentTask launch];
-            }
-            @catch (NSException *exception) {
-                DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", currentTask, exception.reason, exception.name);
-                DDLogDebug(@"%@", [NSThread callStackSymbols]);
-                [currentTasks removeObject:currentTask];
-                [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
-            }
-        }
     }
 
-    - (void)finishedCompilationTask:(NSTask *)task forData:(ConsoleData *)data
-    {
-        TMT_TRACE
-        [data.firstResponderDelegate.mainDocument decrementNumberOfCompilingDocuments];
-        data.model.isCompiling = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:data.model];
-        data.model.lastCompile = [NSDate new];
-        data.compileRunning = NO;
-        [currentTasks removeObject:task];
-        if (data.compileMode == final && [data.model.openOnExport boolValue]) {
-            [[NSWorkspace sharedWorkspace] openFile:data.model.pdfPath];
-        } else if(self.dirty && !self.isCompiling && self.compileProcessHandler.model.liveCompile.boolValue) {
-            [self liveCompile];
-        }
+    [self setLiveTimer:[NSTimer scheduledTimerWithTimeInterval:[self idleTimeForLiveCompile]
+                                                        target:self
+                                                      selector:@selector(liveCompile)
+                                                      userInfo:nil
+                                                       repeats:NO]];
+}
 
-    }
-
-    - (void)liveCompile
-    {
-        if (self.compileProcessHandler.model.texPath) {
-            [self.compileProcessHandler liveCompile:nil];
-        }
-
-    }
-
-    - (void)liveCompile:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)context
-    {
-        if (self.compileProcessHandler.model.texPath) {
-            [self compile:live];
-        }
-    }
-
-    - (void)textDidChange:(NSNotification *)notification
-    {
-        if (![[self.compileProcessHandler.model liveCompile] boolValue]) {
-            return; // live compile deactivated
-        }
-
-        if (self.isCompiling) {
-            self.dirty = YES;
-            return;
-        }
-
-        if ([self.liveTimer isValid]) {
-            [self.liveTimer invalidate];
-        }
-
-        [self setLiveTimer:[NSTimer scheduledTimerWithTimeInterval:[self idleTimeForLiveCompile]
-                                                            target:self
-                                                          selector:@selector(liveCompile)
-                                                          userInfo:nil
-                                                           repeats:NO]];
-    }
+- (BOOL)isLiveCompileActive {
+    return [[self.compileProcessHandler.model liveCompile] boolValue];
+}
 
 - (BOOL)isCompiling {
-    for(NSTask *task in currentTasks) {
+    for (CompileTask *task in currentTasks) {
         if (task.isRunning) {
             return YES;
         }
@@ -179,33 +132,43 @@ LOGGING_DEFAULT_DYNAMIC
     return NO;
 }
 
-    - (void)abort
-    {
-        for (NSTask *task in currentTasks) {
-            task.terminationHandler = nil;
-            if (task.isRunning) {
-                [task terminate];
-                if (task.isRunning) {
-                    [task interrupt];
-                }
-                [self.compileProcessHandler.mainDocument decrementNumberOfCompilingDocuments];
-            }
-        }
+- (void)abort {
+    for (CompileTask *task in currentTasks) {
+        [task abort];
     }
+}
 
-    - (void)terminateAndKill
-    {
-        [self abort];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        [self.compileProcessHandler.textViewController removeDelegateObserver:self];
-        self.compileProcessHandler = NULL;
+- (void)terminateAndKill {
+    [self abort];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.compileProcessHandler.textViewController removeDelegateObserver:self];
+    self.compileProcessHandler = NULL;
+}
+
+- (void)dealloc {
+    DDLogDebug(@"dealloc [%@]", currentTasks);
+    [self terminateAndKill];
+}
+
+#pragma mark -
+#pragma mark CompilerTaskDelegate implementation
+
+- (void)compilationStarted:(CompileTask *)compileTask {
+    [self.compileProcessHandler.mainDocument incrementNumberOfCompilingDocuments];
+}
+
+- (void)compilationFailed:(CompileTask *)compileTask {
+    [self finish:compileTask];
+}
+
+- (void)compilationFinished:(CompileTask *)compileTask {
+    TMT_TRACE
+    [self finish:compileTask];
+    if ([compileTask shouldOpenPDF]) {
+        [[NSWorkspace sharedWorkspace] openFile:compileTask.pdfPath];
+    } else if ([self shouldRestartLiveCompile]) {
+        [self liveCompile];
     }
-
-    - (void)dealloc
-    {
-        DDLogDebug(@"dealloc [%@]", currentTasks);
-        [self terminateAndKill];
-
-    }
+}
 
 @end

@@ -10,18 +10,19 @@
 #import "TextViewObserver.h"
 #import "Constants.h"
 #import "CompileProcessHandler.h"
+#import "CompileTaskDelegate.h"
 
 @class DocumentController, CompileSetting;
 
 /**
  * This class handels the compile flow for the main documents of
  * the model of a given DocumentController.
- * It proviedes methods to compile this documents in draft and final mode
+ * It provides methods to compile this documents in draft and final mode
  * and gives the possibility to handle the compile by it self for live compile.
  *
- * @author Max Bannach
+ * @author Max Bannach, Tobias Mende
  */
-@interface Compiler : NSObject <TextViewObserver>
+@interface Compiler : NSObject <TextViewObserver, CompileTaskDelegate>
     {
         NSMutableSet *currentTasks;
 

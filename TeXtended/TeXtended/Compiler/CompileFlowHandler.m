@@ -24,7 +24,6 @@ static CompileFlowHandler *sharedInstance;
 
 @implementation CompileFlowHandler
 
-/** Inform that a compile flow has changed. */
 
 + (void)initialize {
     LOGGING_LOAD
@@ -41,7 +40,6 @@ static CompileFlowHandler *sharedInstance;
         dispatch_once(&onceToken, ^
         {
             sharedInstance = [[CompileFlowHandler actualAlloc] initActual];
-            // Do any other initialisation stuff here
         });
         return sharedInstance;
     }
@@ -81,16 +79,13 @@ static CompileFlowHandler *sharedInstance;
     {
         NSFileManager *fm = [NSFileManager defaultManager];
         NSError *error;
-
         NSString *flowPath = [CompileFlowHandler path];
 
         NSArray *flowPaths = [fm contentsOfDirectoryAtURL:[NSURL fileURLWithPath:flowPath] includingPropertiesForKeys:@[NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsSubdirectoryDescendants error:&error];
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        dict[NSFilePosixPermissions] = @511;
+        NSDictionary *dict = @{NSFilePosixPermissions : @511};
 
         NSMutableArray *final = [[NSMutableArray alloc] initWithCapacity:[flowPaths count]];
         for (NSURL *p in flowPaths) {
-            //NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:p,@"path", [p lastPathComponent],@"title", nil];
             NSError *error1;
             [fm setAttributes:dict ofItemAtPath:[p path] error:&error1];
             if (error1) {

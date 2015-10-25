@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		27DC21988E833E355059A00F /* SettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC213578C4224BB930E5C0 /* SettingsHelper.m */; };
+		27DC25C02E1A2498F6187297 /* CompilerArgumentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC224B59EF2F9017C0BB5C /* CompilerArgumentBuilder.m */; };
+		27DC2ED0E37C79B1FC9FC4F0 /* CompileTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2AD9ED7E0FC26CE4E428 /* CompileTask.m */; };
 		760346ED1779FA6200CCE0AD /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760346EB1779FA6200CCE0AD /* MessageViewController.m */; };
 		760346EE1779FA6200CCE0AD /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760346EC1779FA6200CCE0AD /* MessageView.xib */; };
 		761C07291945CB9A007F5AB1 /* FileTypeInfos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 761C07281945CB9A007F5AB1 /* FileTypeInfos.plist */; };
@@ -324,6 +326,11 @@
 /* Begin PBXFileReference section */
 		27DC213578C4224BB930E5C0 /* SettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsHelper.m; sourceTree = "<group>"; };
 		27DC22469039F8CCD3B961BB /* SettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsHelper.h; sourceTree = "<group>"; };
+		27DC224B59EF2F9017C0BB5C /* CompilerArgumentBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilerArgumentBuilder.m; sourceTree = "<group>"; };
+		27DC2770295264FCE2E2A538 /* CompileTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileTaskDelegate.h; sourceTree = "<group>"; };
+		27DC2AB3BD299A07A781CECF /* CompileTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileTask.h; sourceTree = "<group>"; };
+		27DC2AD9ED7E0FC26CE4E428 /* CompileTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileTask.m; sourceTree = "<group>"; };
+		27DC2DBA6454DBA85572D7DB /* CompilerArgumentBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilerArgumentBuilder.h; sourceTree = "<group>"; };
 		2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended Tests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6BF77F1F192604D449AB8C81 /* Pods-TeXtended.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeXtended.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TeXtended/Pods-TeXtended.debug.xcconfig"; sourceTree = "<group>"; };
@@ -835,6 +842,11 @@
 				D28DC0DF177B691B00E4C711 /* BackwardSynctex.h */,
 				D28DC0E0177B691B00E4C711 /* BackwardSynctex.m */,
 				D23DD42B187950BC00C0EF97 /* CompileProcessHandler.h */,
+				27DC2AD9ED7E0FC26CE4E428 /* CompileTask.m */,
+				27DC2AB3BD299A07A781CECF /* CompileTask.h */,
+				27DC2770295264FCE2E2A538 /* CompileTaskDelegate.h */,
+				27DC224B59EF2F9017C0BB5C /* CompilerArgumentBuilder.m */,
+				27DC2DBA6454DBA85572D7DB /* CompilerArgumentBuilder.h */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -2211,6 +2223,8 @@
 				D20C97411826F88700E23911 /* ConsoleManager.m in Sources */,
 				7654503C18379D770013CC4D /* FolderSelectionViewController.m in Sources */,
 				27DC21988E833E355059A00F /* SettingsHelper.m in Sources */,
+				27DC2ED0E37C79B1FC9FC4F0 /* CompileTask.m in Sources */,
+				27DC25C02E1A2498F6187297 /* CompilerArgumentBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
