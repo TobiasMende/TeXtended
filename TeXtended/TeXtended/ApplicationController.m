@@ -263,7 +263,7 @@
 - (void)openRecent:(id)sender {
     if ([sender isKindOfClass:[NSMenuItem class]]) {
         NSURL * url = [((NSMenuItem *) sender) representedObject];
-        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:nil];
+        [[DocumentCreationController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {}];
     } else {
         NSBeep();
     }
