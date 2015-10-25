@@ -99,7 +99,7 @@ LOGGING_DEFAULT
                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                 timeoutInterval:60.0];
         NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
             if(error) {
                 DDLogError(@"Failed to request the data: %@", error.userInfo);
             } else {

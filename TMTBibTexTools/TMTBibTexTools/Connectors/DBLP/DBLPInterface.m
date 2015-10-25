@@ -44,7 +44,7 @@ LOGGING_DEFAULT
         if(receiveTask) {
             [receiveTask cancel];
         }
-        receiveTask = [[NSURLSession sharedSession] dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        receiveTask = [[NSURLSession sharedSession] dataTaskWithRequest:theRequest completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
             if([self isCancelled:error]) {
                 return;
             }
@@ -125,7 +125,7 @@ LOGGING_DEFAULT
         }
 
         NSURLSession *session = [NSURLSession sharedSession];
-        receiveTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        receiveTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
             if([self isCancelled:error]) {
                 return;
             }
