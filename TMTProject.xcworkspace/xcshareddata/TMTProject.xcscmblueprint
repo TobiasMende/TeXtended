@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5D38EBF9CA1935E0124A7BFB543E76B116AB87BD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5D38EBF9CA1935E0124A7BFB543E76B116AB87BD" : 0,
+    "B28F34E93FF7C34A6E2F490D54CBCF67304F4394" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BDDB0482-8675-424B-B1C1-C87DF0A953B7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5D38EBF9CA1935E0124A7BFB543E76B116AB87BD" : "tmtproject",
+    "B28F34E93FF7C34A6E2F490D54CBCF67304F4394" : "tmtprojectMMTabBarView"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TMTProject",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TMTProject.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:TobiasMende\/TeXtended.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D38EBF9CA1935E0124A7BFB543E76B116AB87BD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:TobiasMende\/MMTabBarView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B28F34E93FF7C34A6E2F490D54CBCF67304F4394"
+    }
+  ]
+}
