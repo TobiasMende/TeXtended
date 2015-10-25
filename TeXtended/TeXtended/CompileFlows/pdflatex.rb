@@ -51,9 +51,9 @@ FileUtils.cd(File.dirname(texPath))
 # =============== You'd like to change to code from here: ================
 # ========================================================================
 
-TYPESETTER      = "/usr/texbin/pdflatex"
-BIBTEX          ="/usr/texbin/bibtex"
-ENV['PATH']     ="/usr/texbin:/usr/local/bin:#{ENV['PATH']}"
+TYPESETTER      = "/Library/TeX/Distributions/Programs/texbin/pdflatex"
+BIBTEX          ="/Library/TeX/Distributions/Programs/texbin/bibtex"
+ENV['PATH']     ="/Library/TeX/Distributions/Programs/texbin:/usr/local/bin:#{ENV['PATH']}"
 
 puts "==========================================================="
 puts "\t Typesetting #{texPath}"
