@@ -218,6 +218,7 @@
 		D2CF6198177247E200ACC3D5 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF6196177247E200ACC3D5 /* info.png */; };
 		D2CF6199177247E200ACC3D5 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CF6197177247E200ACC3D5 /* warning.png */; };
 		D2DC66301772FB1F00C5A1FF /* LogfileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */; };
+		D2E0713E1BDCB81600018A78 /* CompileFlowMerger.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E0713D1BDCB81600018A78 /* CompileFlowMerger.m */; };
 		D2E2854D185B0EFB00B8D7BC /* ConsoleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2854C185B0EFB00B8D7BC /* ConsoleWindow.m */; };
 		D2E7A4E21768E8F400B2BA3C /* ExportCompileWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25FF83317651C5D00530928 /* ExportCompileWindowController.m */; };
 		D2E7A4E31768E8F400B2BA3C /* Compiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 76049C9F1752085000778E2A /* Compiler.m */; };
@@ -754,6 +755,8 @@
 		D2DC662E1772FB1F00C5A1FF /* LogfileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogfileParser.h; sourceTree = "<group>"; };
 		D2DC662F1772FB1F00C5A1FF /* LogfileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogfileParser.m; sourceTree = "<group>"; };
 		D2DFD21F182572FE0022E8E2 /* FirstResponderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstResponderDelegate.h; sourceTree = "<group>"; };
+		D2E0713C1BDCB81600018A78 /* CompileFlowMerger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompileFlowMerger.h; sourceTree = "<group>"; };
+		D2E0713D1BDCB81600018A78 /* CompileFlowMerger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompileFlowMerger.m; sourceTree = "<group>"; };
 		D2E2854B185B0EFB00B8D7BC /* ConsoleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleWindow.h; sourceTree = "<group>"; };
 		D2E2854C185B0EFB00B8D7BC /* ConsoleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleWindow.m; sourceTree = "<group>"; };
 		D2E7A4DB1768DF6500B2BA3C /* TexdocHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TexdocHandlerProtocol.h; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 		76049C9C1751FDB000778E2A /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
+				D2E0713C1BDCB81600018A78 /* CompileFlowMerger.h */,
+				D2E0713D1BDCB81600018A78 /* CompileFlowMerger.m */,
 				D2CF617717709B3400ACC3D5 /* ErrorTrackingAssistant */,
 				D2928ADE1967E97E00F6C9BD /* ExportCompileWindow.xib */,
 				D25FF83217651C5D00530928 /* ExportCompileWindowController.h */,
@@ -1799,7 +1804,7 @@
 		D2CC54E8171EAFAB00D81CF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Tobias Mende";
 				TargetAttributes = {
 					D266F6E91ABEE80B00FD548B = {
@@ -2130,6 +2135,7 @@
 				D28089B5181BBAE100EEF55C /* OutlineTabViewController.m in Sources */,
 				D2654ABD192777A800DE58B2 /* ProjectInfoViewController.m in Sources */,
 				D28089BB181BBE7B00EEF55C /* MessageOutlineViewController.m in Sources */,
+				D2E0713E1BDCB81600018A78 /* CompileFlowMerger.m in Sources */,
 				D27F805418253A3E00BCD72A /* MainDocument.m in Sources */,
 				D28F1EEF1882CF0A006BFDE5 /* TMTArrayController.m in Sources */,
 				D288C94F18D49EA2007384E6 /* BibtexSyntaxHighlighter.m in Sources */,
@@ -2626,6 +2632,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tobiasmende.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 			};
@@ -2663,6 +2670,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tobiasmende.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeXtended.app/Contents/MacOS/TeXtended";
 			};
@@ -2687,6 +2695,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2778,6 +2787,7 @@
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-luebeck.isp.tmtproject.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2794,6 +2804,7 @@
 				GCC_PREFIX_HEADER = "TeXtended/TeXtended-Prefix.pch";
 				INFOPLIST_FILE = "TeXtended/TeXtended-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-luebeck.isp.tmtproject.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

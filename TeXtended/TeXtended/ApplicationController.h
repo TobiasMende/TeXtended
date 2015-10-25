@@ -52,9 +52,7 @@
  */
     + (NSString *)userApplicationSupportDirectoryPath;
 
-    + (void)mergeCompileFlows:(BOOL)force;
-
-    - (IBAction)togglePreviewPanel:(id)previewPanel;
+- (IBAction)togglePreviewPanel:(id)previewPanel;
 
 - (void) updateRecentDocuments;
 - (IBAction)openRecent:(id)sender;

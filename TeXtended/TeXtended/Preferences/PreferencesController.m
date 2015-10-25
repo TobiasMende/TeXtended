@@ -11,6 +11,7 @@
 #import "CompletionManager.h"
 #import "CompileFlowHandler.h"
 #import "ApplicationController.h"
+#import "CompileFlowMerger.h"
 
 @interface PreferencesController ()
 
@@ -146,7 +147,7 @@
 
     - (IBAction)resetCompilers:(id)sender
     {
-        [ApplicationController mergeCompileFlows:YES];
+        [[CompileFlowMerger new] mergeCompileFlows:YES];
     }
 
 
