@@ -16,7 +16,22 @@
 LOGGING_DEFAULT_DYNAMIC
 
 @interface CompileTask ()
+- (ConsoleData *)consoleData:(DocumentModel *)model forMode:(CompileMode)mode;
+
+- (void)configureTask;
+- (void)configureTerminationHandler;
+- (void)configureArguments;
+- (void)configureCompilerPath;
+- (void)configurePipes;
+- (void)configureEnvironment;
+
+- (void)tryToStartCompilation;
+- (void)failCompilation:(NSException *)exception;
+- (void)startCompilation;
+- (void)updateDataOnStart;
 - (void)finishedCompilationTask;
+
+- (void)updateDataOnEnd;
 @end
 
 @implementation CompileTask {
@@ -130,21 +145,21 @@ LOGGING_DEFAULT_DYNAMIC
     }
 }
 
-- (void)failCompilation:(NSException *)exception {
-    DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", exception, exception.reason, exception.name);
-    DDLogDebug(@"%@", [NSThread callStackSymbols]);
-    [self endCompilation];
-    [delegate compilationFailed:self];
-}
-
 - (void)startCompilation {
     [delegate compilationStarted:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidStartCompiling object:model];
-    [self beginCompilation];
+    [self updateDataOnStart];
     [compileTask launch];
 }
 
-- (void)beginCompilation {
+- (void)failCompilation:(NSException *)exception {
+    DDLogError(@"Cant'start compiler task %@. Exception: %@ (%@)", exception, exception.reason, exception.name);
+    DDLogDebug(@"%@", [NSThread callStackSymbols]);
+    [self updateDataOnEnd];
+    [delegate compilationFailed:self];
+}
+
+- (void)updateDataOnStart {
     data.compileRunning = YES;
     data.consoleActive = YES;
     model.isCompiling = YES;
@@ -152,16 +167,15 @@ LOGGING_DEFAULT_DYNAMIC
 
 - (void)finishedCompilationTask {
     TMT_TRACE
-    [self endCompilation];
+    [self updateDataOnEnd];
     [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
     [delegate compilationFinished:self];
 }
 
-- (void)endCompilation {
+- (void)updateDataOnEnd {
     model.isCompiling = NO;
     model.lastCompile = [NSDate new];
     data.compileRunning = NO;
 }
-
 
 @end

@@ -9,6 +9,14 @@
 #import "ConsoleData.h"
 
 
+@interface CompilerArgumentBuilder ()
+- (void)addCompileSettingArguments:(NSMutableArray *)arguments;
+
+- (void)addCustomArgument:(NSMutableArray *)arguments;
+
+- (void)addPathArguments:(NSMutableArray *)arguments;
+@end
+
 @implementation CompilerArgumentBuilder {
     ConsoleData *data;
 }

@@ -78,7 +78,7 @@ LOGGING_DEFAULT_DYNAMIC
 }
 
 - (BOOL)shouldRestartLiveCompile {
-    return self.dirty && !self.isCompiling && self.compileProcessHandler.model.liveCompile.boolValue;
+    return self.dirty && !self.isCompiling && self.isLiveCompileActive;
 }
 
 - (void)liveCompile {
@@ -120,7 +120,7 @@ LOGGING_DEFAULT_DYNAMIC
 }
 
 - (BOOL)isLiveCompileActive {
-    return [[self.compileProcessHandler.model liveCompile] boolValue];
+    return [self.compileProcessHandler.model.liveCompile boolValue];
 }
 
 - (BOOL)isCompiling {
@@ -164,9 +164,9 @@ LOGGING_DEFAULT_DYNAMIC
 - (void)compilationFinished:(CompileTask *)compileTask {
     TMT_TRACE
     [self finish:compileTask];
-    if ([compileTask shouldOpenPDF]) {
+    if (compileTask.shouldOpenPDF) {
         [[NSWorkspace sharedWorkspace] openFile:compileTask.pdfPath];
-    } else if ([self shouldRestartLiveCompile]) {
+    } else if (self.shouldRestartLiveCompile) {
         [self liveCompile];
     }
 }

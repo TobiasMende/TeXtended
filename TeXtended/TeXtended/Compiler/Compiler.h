@@ -49,15 +49,9 @@
  */
     - (id)initWithCompileProcessHandler:(id <CompileProcessHandler>)controller;
 
-/**
- * Calls the compile method on the document.
- * @param mode defines, in which mode the compiler should run.
- */
+
     - (void)compile:(CompileMode)mode;
 
-/**
- * Call for a live compile perform.
- */
     - (void)liveCompile;
 
 /**
