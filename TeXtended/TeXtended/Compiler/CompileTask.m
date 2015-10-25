@@ -28,9 +28,9 @@ LOGGING_DEFAULT_DYNAMIC
 - (void)tryToStartCompilation;
 - (void)failCompilation:(NSException *)exception;
 - (void)startCompilation;
-- (void)updateDataOnStart;
 - (void)finishedCompilationTask;
 
+- (void)updateDataOnStart;
 - (void)updateDataOnEnd;
 @end
 
@@ -159,17 +159,17 @@ LOGGING_DEFAULT_DYNAMIC
     [delegate compilationFailed:self];
 }
 
-- (void)updateDataOnStart {
-    data.compileRunning = YES;
-    data.consoleActive = YES;
-    model.isCompiling = YES;
-}
-
 - (void)finishedCompilationTask {
     TMT_TRACE
     [self updateDataOnEnd];
     [[NSNotificationCenter defaultCenter] postNotificationName:TMTCompilerDidEndCompiling object:model];
     [delegate compilationFinished:self];
+}
+
+- (void)updateDataOnStart {
+    data.compileRunning = YES;
+    data.consoleActive = YES;
+    model.isCompiling = YES;
 }
 
 - (void)updateDataOnEnd {
