@@ -15,15 +15,13 @@
 
 LOGGING_DEFAULT
 
-
 @interface DBLPSearchViewController ()
-- (void)abortDBLPSearch;
 @end
 
 @implementation DBLPSearchViewController
 
 - (id)init {
-    
+
     self = [super initWithNibName:@"DBLPSearchView" bundle:[NSBundle bundleForClass:[self class]]];
     interface = [[DBLPInterface alloc] initWithHandler:self];
     return self;
@@ -31,14 +29,13 @@ LOGGING_DEFAULT
 
 - (void)finishInitialization {
     [self.view.window makeFirstResponder:self.authorField];
-    
+
 }
 
 - (void)loadView {
     [super loadView];
     self.publicationTable.enterAction = @selector(executeCitation:);
 }
-
 
 - (void)performDoubleClick {
     if ([self.publicationTable selectedRow] < 0) {
@@ -47,11 +44,10 @@ LOGGING_DEFAULT
     [self executeCitation:self];
 }
 
-
 - (void)finishedFetchingAuthors:(NSMutableDictionary *)authors {
     [self.authorsController setContent:authors];
     [self clickedAuthorTable:self];
-    
+
     self.searchinAuthor = NO;
 }
 
@@ -67,23 +63,21 @@ LOGGING_DEFAULT
     DDLogError(@"Failed to fetch: %@", error.userInfo);
 }
 
-
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
     if (self.authorField.stringValue.length >= 2) {
         [self.publicationsController setContent:nil];
         [interface searchAuthor:self.authorField.stringValue];
-        
+
     }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     if ([notification.object isEqualTo:self.publicationTable]) {
         // Nothing to do ATM
-    } else if([notification.object isEqualTo:self.authorTable]) {
+    } else if ([notification.object isEqualTo:self.authorTable]) {
         [self clickedAuthorTable:self];
     }
 }
-
 
 - (IBAction)clickedAuthorTable:(id)sender {
     NSUInteger row = [self.authorsController selectionIndex];
@@ -114,12 +108,6 @@ LOGGING_DEFAULT
     }
 }
 
-- (void)abortDBLPSearch {
-    if ([self.handler respondsToSelector:@selector(dblpSearchAborted)]) {
-        [self.handler dblpSearchAborted];
-    }
-}
-
 - (void)finishedFetchingKeys:(NSMutableArray *)authors {
     [self.publicationsController setContent:authors];
 }
@@ -131,7 +119,6 @@ LOGGING_DEFAULT
 }
 
 - (void)startedFetchingKeys:(NSString *)urlpt {
-    
 }
 
 @end
