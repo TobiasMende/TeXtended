@@ -24,27 +24,19 @@ LOGGING_DEFAULT
     - (id)init
     {
         self = [super init];
-        if (self) {
-            weakSelf = self;
-        }
         return self;
     }
 
-- (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *,id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger sequenceNumber, NSArray<NSTextCheckingResult *> *results, NSOrthography *orthography, NSInteger wordCount))completionHandler {
+- (NSInteger)requestCheckingOfString:(NSString *)stringToCheck range:(NSRange)range types:(NSTextCheckingTypes)checkingTypes options:(NSDictionary<NSString *,id> *)options inSpellDocumentWithTag:(NSInteger)tag completionHandler:(void (^)(NSInteger, NSArray<NSTextCheckingResult *> * _Nonnull, NSOrthography * _Nonnull, NSInteger))completionHandler {
     void (^adapter)(NSInteger, NSArray *, NSOrthography *, NSInteger);
-    
+    __weak id weakSelf = self;
     adapter = ^(NSInteger sequenceNumber, NSArray *tmpResults, NSOrthography *orthography, NSInteger wordCount)
     {
-        
-        
-        NSArray *results = [self->weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
-        
-        
+        NSArray *results = [weakSelf removeLatexResultsFrom:tmpResults inContext:stringToCheck];
         completionHandler(sequenceNumber, results, orthography, wordCount);
     };
     
     return [super requestCheckingOfString:stringToCheck range:range types:checkingTypes options:options inSpellDocumentWithTag:tag completionHandler:adapter];
-
 }
 
 # pragma mark - Private Methods
@@ -66,25 +58,16 @@ LOGGING_DEFAULT
         for (NSTextCheckingResult *result in results) {
             NSRange range = result.range;
             if (result.resultType != NSTextCheckingTypeSpelling) {
-                //DDLogWarn(@"%li, %@ : %@", result.numberOfRanges, [self descriptionForResultType:result.resultType], [content substringWithRange:result.range]);
                 [finalResults addObject:result];
                 continue;
             }
             if (![content numberOfBackslashesBeforePositionIsEven:range.location]) {
-                // It's a command:
                 continue;
             }
             NSRange prefix = [content latexCommandPrefixRangeBeforePosition:range.location];
             if (prefix.location != NSNotFound && [prefixesToIgnore containsObject:[content substringWithRange:prefix]]) {
-                // The word has a prefix to ignore
                 continue;
             }
-//        if (prefix.location != NSNotFound) {
-//            
-//            DDLogInfo(@"Unskipped Command Prefix: %@ for word %@", [content substringWithRange:prefix],[content substringWithRange:range]);
-//        }
-            //DDLogWarn(@"NH: %@", [content substringWithRange:range]);
-            // Unknown element. Add to result
             [finalResults addObject:result];
         }
         return finalResults;

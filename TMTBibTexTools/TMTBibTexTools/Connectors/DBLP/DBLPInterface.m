@@ -50,9 +50,13 @@ LOGGING_DEFAULT
             }
             if(error) {
                 DDLogError(@"DBLP Connection failed: %@", error.userInfo);
-                [self.handler failedFetchingAuthors:error];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.handler failedFetchingAuthors:error];
+                });
+                
             } else {
-                [self finishAuthorsLoading:data];
+                    [self finishAuthorsLoading:data];
+                
             }
         }];
         [self.handler startedFetchingAuthors:query];
@@ -76,10 +80,15 @@ LOGGING_DEFAULT
         for (NSXMLElement *node in a) {
             NSString *urlpt = [[node attributeForName:@"urlpt"] stringValue];
             results[urlpt] = [node stringValue];
-            [self.handler finishedFetchingAuthors:results];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.handler finishedFetchingAuthors:results];
+            });
+            
         }
         if (a.count == 0) {
-            [self.handler finishedFetchingAuthors:results];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.handler finishedFetchingAuthors:results];
+            });
         }
     }
 }
@@ -107,7 +116,9 @@ LOGGING_DEFAULT
                 [results addObject:pub];
             }
         }
-        [self.handler finishedFetchingKeys:results];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.handler finishedFetchingKeys:results];
+        });
     }
 }
 

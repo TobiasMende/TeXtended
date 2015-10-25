@@ -10,8 +10,6 @@
 
 @interface LatexSpellChecker : NSSpellChecker
     {
-        __unsafe_unretained LatexSpellChecker *weakSelf;
-
         NSArray *prefixesToIgnore;
     }
 
