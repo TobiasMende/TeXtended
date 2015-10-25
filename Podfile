@@ -35,7 +35,7 @@ target :TeXtended do
     pod 'DMInspectorPalette', '0.0.1'
     pod 'OTMXAttribute', '0.0.3'
     pod 'JSONKit-NoWarning', '1.2'
-	pod 'Sparkle', '1.8'
+	pod 'Sparkle'
 	pod 'TMTHelperCollection', :path => './TMTHelperCollection'
 	pod 'TMTBibTexTools', :path => './TMTBibTexTools'
 	pod 'MMTabBarViewTMTFork', :path => './MMTabBarView'
@@ -43,5 +43,5 @@ end
 
 target 'TeXtended Tests', :exclusive => true do
     xcodeproj 'TeXtended/TeXtended.xcodeproj'
-    pod 'Kiwi', '2.3'
+    pod 'Kiwi'
 end

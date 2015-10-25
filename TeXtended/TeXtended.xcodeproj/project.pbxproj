@@ -29,6 +29,7 @@
 		766E35AE1780BE4C00028704 /* PageNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766E35AC1780BE4C00028704 /* PageNumberViewController.m */; };
 		766E35AF1780BE4C00028704 /* PageNumberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 766E35AD1780BE4C00028704 /* PageNumberView.xib */; };
 		76B88F8E183787C2006B0E9F /* ProjectCreationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B88F8C183787C2006B0E9F /* ProjectCreationWindowController.m */; };
+		77A80BDBBB3631BE90B8E701 /* libPods-TeXtended Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2C09292FFF4E7494D6B4C0 /* libPods-TeXtended Tests.a */; };
 		D202A070189A415B0023DA04 /* TextViewLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A06F189A415B0023DA04 /* TextViewLayoutManager.m */; };
 		D2078D4F1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D4D1837B5B9001C4A56 /* MainDocumentsSelectionViewController.m */; };
 		D2078D541837B620001C4A56 /* BibFilesSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2078D521837B620001C4A56 /* BibFilesSelectionViewController.m */; };
@@ -796,6 +797,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A80BDBBB3631BE90B8E701 /* libPods-TeXtended Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1752,9 +1754,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D266F6F21ABEE80B00FD548B /* Build configuration list for PBXNativeTarget "TeXtended Tests" */;
 			buildPhases = (
+				31B48EB9705D5B94E249C78D /* Check Pods Manifest.lock */,
 				D266F6E61ABEE80B00FD548B /* Sources */,
 				D266F6E71ABEE80B00FD548B /* Frameworks */,
 				D266F6E81ABEE80B00FD548B /* Resources */,
+				CE46BB7F71B2723DEE93BE21 /* Embed Pods Frameworks */,
+				CD672736F2FCACFCB330C58B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1777,6 +1782,7 @@
 				D2CC5547171EB15500D81CF1 /* Copy Files */,
 				D271983E174399FD00342CB0 /* Copy Files */,
 				837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */,
+				F1C84898417B4700561A041F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1939,6 +1945,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		31B48EB9705D5B94E249C78D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		837AD2DC7FC64A29B5F28485 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1969,6 +1990,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		CD672736F2FCACFCB330C58B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE46BB7F71B2723DEE93BE21 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended Tests/Pods-TeXtended Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D21F3772171EC04000F961D6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1981,6 +2032,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Build an Xcode documentation\n/usr/local/bin/appledoc \"$SOURCE_ROOT/$PROJECT_NAME\"\n# Add documentation to Xcode\nosascript \"$SOURCE_ROOT/$PROJECT_NAME/Development/ReloadDocset.scpt\"";
+		};
+		F1C84898417B4700561A041F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TeXtended/Pods-TeXtended-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2527,6 +2593,7 @@
 		};
 		D266F6F31ABEE80B00FD548B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CE4C91BD4E3537831BE66D9 /* Pods-TeXtended Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2566,6 +2633,7 @@
 		};
 		D266F6F41ABEE80B00FD548B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48B0C16E323B1D3663249BAD /* Pods-TeXtended Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
