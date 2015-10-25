@@ -602,6 +602,7 @@
 				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
 				INFOPLIST_FILE = "TMTHelperCollection/TMTHelperCollection-Info.plist";
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -620,6 +621,7 @@
 				GCC_PREFIX_HEADER = "TMTHelperCollection/TMTHelperCollection-Prefix.pch";
 				INFOPLIST_FILE = "TMTHelperCollection/TMTHelperCollection-Info.plist";
 				INSTALL_PATH = "@rpath";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
