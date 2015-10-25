@@ -134,17 +134,6 @@
  */
     - (IBAction)goToLine:(id)sender;
 
-/**
- Notification about the end of the GoToLineSheetController's sheet.
- 
- 
- @param sheet the sheet which ends.
- @param returnCode the termination state of the sheet.
- @param context `NULL` in most cases.
- */
-- (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context;
-
-
 
 #pragma mark - Anchors
 /** Method for jumping to the next anchor in the line number view

@@ -3,7 +3,7 @@ xcode_workspace: TMTProject.xcworkspace
 xcode_scheme: TeXtended
 osx_image: xcode7.1
 env: CONFIGURATION_BUILD_DIR='.'
-script: 
+script:
   - xctool -workspace TMTProject.xcworkspace -scheme TeXtended -configuration Release  build archive -archivePath "Build"
 before_deploy:
   - cd "Build.xcarchive/Products/Applications"

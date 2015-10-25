@@ -57,8 +57,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 - (void)insertDropCompletion:(id)sender;
 
-- (void)insertDropCompletionForPath:(NSString *)path andFileNames:(NSArray *)droppedFileNames;
-
 - (void)insertDropCompletionForModel:(DocumentModel *)model andFileNames:(NSArray *)droppedFileNames;
 
 
@@ -134,7 +132,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [autoCompletionController.window orderOut:self];
     autoCompletionController = nil;
 }
-
 
 - (void)extendedComplete:(id)sender {
     if (!sender) {
@@ -224,9 +221,9 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
 
 }
 
-- (void)insertText:(id)str {
+- (void)insertText:(id)str replacementRange:(NSRange)replacementRange {
     if (!self.servicesOn) {
-        [super insertText:str];
+        [super insertText:str replacementRange:replacementRange];
         return;
     }
     if (![completionHandler shouldCompleteForInsertion:str]) {
@@ -235,7 +232,7 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (![bracketHighlighter shouldInsert:str]) {
         return;
     }
-    [super insertText:str];
+    [super insertText:str replacementRange:replacementRange];
     if ([str isKindOfClass:[NSAttributedString class]]) {
         return;
     }
@@ -254,7 +251,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if ([self.codeNavigationAssistant handleWrappingInLine:lineRange]) {
         [self scrollRangeToVisible:self.selectedRange];
     }
-
 }
 
 
@@ -264,20 +260,13 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     if (!goToLineSheet) {
         goToLineSheet = [[GoToLineSheetController alloc] init];
     }
-    goToLineSheet.line = [NSNumber numberWithInteger:self.currentRow];
-    goToLineSheet.max = [NSNumber numberWithInteger:self.string.numberOfLines];
-    [NSApp beginSheet:[goToLineSheet window]
-       modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:@selector(goToLineSheetDidEnd:returnCode:contextInfo:)
-          contextInfo:nil];
-    [NSApp runModalForWindow:[self window]];
-}
-
-- (void)goToLineSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)context {
-    if (returnCode == NSRunStoppedResponse) {
-        [self showLine:goToLineSheet.line.unsignedIntegerValue];
-    }
+    goToLineSheet.line = @(self.currentRow);
+    goToLineSheet.max = @(self.string.numberOfLines);
+    [self.window beginSheet:goToLineSheet.window completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSRunStoppedResponse) {
+            [self showLine:goToLineSheet.line.unsignedIntegerValue];
+        }
+    }];
 }
 
 - (void)showLine:(NSUInteger)line {
@@ -657,25 +646,6 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
     [[self window] makeFirstResponder:self];
 }
 
-- (void)insertDropCompletionForPath:(NSString *)path andFileNames:(NSArray *)droppedFileNames {
-
-    for (NSString *fileName in droppedFileNames) {
-        NSArray *insertions = [[CompletionManager sharedInstance] possibleDropCompletionsForPath:[fileName relativePathWithBase:[path stringByDeletingLastPathComponent]]];
-
-        [self selectAndInsertDropCompletion:insertions];
-
-
-        if (![droppedFileNames isEqualTo:droppedFileNames.lastObject]) {
-            [self insertNewline:self];
-        }
-    }
-
-    [self jumpToNextPlaceholder];
-
-    // After drop operation the first responder remains the drag source
-    [[self window] makeFirstResponder:self];
-}
-
 - (void)selectAndInsertDropCompletion:(NSArray *)insertions {
     if (insertions.count == 1) {
         [self insertDropCompletion:insertions.firstObject];
@@ -798,6 +768,5 @@ static const NSSet *DEFAULT_KEYS_TO_OBSERVE;
         [[NSNotificationCenter defaultCenter] postNotificationName:TMTFirstResponderDelegateChangeNotification object:self.firstResponderDelegate.model.mainCompilable userInfo:@{TMTFirstResponderKey : self.firstResponderDelegate, TMTNotificationSourceWindowKey : self.window}];
     }
 }
-
 
 @end
